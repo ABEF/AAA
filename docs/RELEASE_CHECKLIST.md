@@ -5,27 +5,10 @@ Reviewed2026-11-05. This approves one frozen release; it is not a second Todo.
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
-The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
-adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
-fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
-claims and current ownership; no USD values or signing are cached.24new final
-cases pass, with147affected checks at their recorded earlier stage. General
-lineage/other history consumers, real workloads/rotation and production approval
-remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
-identifies exact mint-recipient/statistics/payment gaps without adding authority.
-
-The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
-recovery1: governance can convert only unsupported/unallocated royalty value to
-ETH for active rarity weights at recovery. Existing earned/deferred entitlements
-are excluded; no external recipient or weakened conversion floor. Unsupported
-late tokens can forward only to the authenticated successor. New runtime/event
-pins and rebuilt earnings checkpoints are required; no installed environment
-changes. ERC2981 requests5%, not universally enforced marketplace payment.
-
 ## Evidence and approval boundary
 
-Consolidation baseline: main `096fd2be4db514d5fd8930c672522ed1fc6c3ff0`;
-current royalty source extends the manual-safeguard baseline. The new
+Current Solidity/source baseline: main `28f75738a01efae2a2e11cf861e5e94d4d10efb3`.
+Current royalty source extends the historical manual-safeguard baseline. The
 [royalty normal/static record](../reports/royalty-audit-20261105/VERIFICATION.md)
 binds43normal gates and474strict detector contexts; old records remain historical.
 Those two views differ from historical authority e26fc74. No approved
@@ -33,14 +16,11 @@ deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 
-Historical [authority verification](../reports/authority-audit-20261103/VERIFICATION.md)
-binds52production/31dependency sources,43normal gates and471static records
-(19current-context review/452exact unchanged reuse).14distinct selected EVM
-behaviors pass across recorded scopes;25corrected targeted Python checks pass.
-The historical reference37/818/37/13 has no gaps; the new reference is
-37contracts/820functions/37constructors/13receivers with zero gaps. This is not a fresh full regression,
-published CI or independent audit. Earlier reports retain their original pins,
-failures, skips and measurements.
+The current source-bound reference covers37contracts/820functions/37constructors/
+13receivers with zero gaps. [Earlier authority evidence](../reports/authority-audit-20261103/VERIFICATION.md)
+retains its older source scope. Neither internal record is a fresh full regression,
+published CI or independent audit. Original reports retain their pins, failed
+attempts, skips and measurements; overlapping stages must not be summed.
 
 Current local actual-core/multi-day tests do not sign off sustained keeper uptime,
 actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source8 services/site,
@@ -62,7 +42,7 @@ actual release record below remain required.
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration39 at the current custody5 compiler-output pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
 | Services/site | Schema10/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Current471-record static disposition is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Security | Current474-record static disposition(33reviewed contexts/441exact reuse) is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 

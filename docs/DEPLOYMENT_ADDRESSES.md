@@ -172,7 +172,7 @@ identities, not ticker symbols or addresses copied from another chain.
 
 Current selected-market identities and dated observations are retained in
 [pool selection](POOL_SELECTION.md) and the [pinned pool observation](../reports/hookless-pool/observed-pool.json).
-[Activation routing](ACTIVATION_ROUTING.md) and [service decisions](PRODUCTION_SERVICES.md)
+[Activation routing](ACTIVATION_ENTRY.md#routing-controls) and [service decisions](PRODUCTION_SERVICES.md)
 record remaining qualification; none is production approval. A v4 **pool ID is a
 bytes32 identity**, not a wallet or a separate pool-contract address. Native
 admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned

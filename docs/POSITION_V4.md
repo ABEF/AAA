@@ -1,11 +1,12 @@
 # Accounting4: collective holder principal return
 
-Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema10](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
-
-**Historical profile4 reference.** The fresh source candidate now uses
-[accounting5 / optional bounded portfolio](POSITION_V5.md). Keep this profile,
-its deployments, codecs, journals and evidence separate; do not relabel it V5.
-The descriptions below retain profile4's behavior and original verification scope.
+**Historical profile4 interface reference.** The fresh release uses
+[accounting6/Entry3/schema10](POSITION_V6.md); profile4's historical successor was
+[accounting5](POSITION_V5.md). Keep each generation's deployments, codecs,
+journals and evidence separate. All relative terms such as "current" or "fresh"
+below describe that older generation, including its900-second confirmation
+policy; they are not current release instructions. Do not relabel or execute a
+current procedure from this page. The original behavior/source scope is retained.
 
 Current fresh LP protection uses confirmation2 and separate emergency capability1.
 Ordinary readiness requires physical/reference same-side range exit (unless a

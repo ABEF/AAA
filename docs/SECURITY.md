@@ -42,12 +42,12 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 
 ## Contributions, shared accounting and execution
 
-1. Direct minting currently requires exactly **0.05 ETH**, creates one dormant
+1. Direct minting requires the exact current governed price (**0.05 ETH default**), creates one dormant
    NFT and adds no LP or reward eligibility. OpenSea primary minting, including
    the agreed 0.05 ETH buyer total net of platform fees to the recipient, is not
    integrated or qualified. Mint proceeds are not royalties or LP backing.
-2. Activation requires at least **$100 of original source value**; growth requires
-   at least **$5**, subject to pool limits. These are contribution thresholds,
+2. Activation/growth defaults are **$100/$5 original source value**. ProtocolPolicy
+   governs future minima (each >=$1, growth<=activation), with stronger pool limits. These are contribution thresholds,
    not a current market-value floor. An activated NFT stays eligible after value
    losses. The same NFT keeps its revealed rarity, palette and pattern.
 3. Two independently reviewed USD sources per priced asset must be fresh, valid

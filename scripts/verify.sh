@@ -20,6 +20,7 @@ fi
 printf '%s\n' "$profile_review" > "$evidence_dir/toolchain-before.json"
 python3 scripts/sync-project-todo.py --check
 python3 scripts/generate-function-reference.py --check
+python3 scripts/generate-operator-reference.py --check
 python3 scripts/run_python_tests.py --output "$evidence_dir/python-tests.json"
 python3 scripts/source_checks.py --output "$evidence_dir/source-checks.json"
 # Python checks can inspect files; require the same effective tool/profile at

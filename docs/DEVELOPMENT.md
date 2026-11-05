@@ -31,6 +31,7 @@ bash scripts/install-deps.sh
 bash scripts/verify.sh
 # Documentation/reference consistency without repeating contract suites:
 python3 scripts/generate-function-reference.py --check
+python3 scripts/generate-operator-reference.py --check
 python3 scripts/sync-project-todo.py --check
 ```
 

@@ -10,7 +10,7 @@ Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
 custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position and compatible
 parked same-chain canonical V6 wire remain; they do not imply old runtime compatibility.
-[Profile](POSITION_V6.md), [implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md).
+[Profile](POSITION_V6.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
 Production inventory is schema10 with20 helper pins. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
@@ -20,22 +20,10 @@ Use [consolidated findings](AUDIT_FINDINGS.md) for historical dispositions and
 mechanism, test pass, configured service and approved production release are
 separate milestones.
 
-The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
-adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
-fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
-claims and current ownership; no USD values or signing are cached.24new final
-cases pass, with147affected checks at their recorded earlier stage. General
-lineage/other history consumers, real workloads/rotation and production approval
-remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
-identifies exact mint-recipient/statistics/payment gaps without adding authority.
-
-The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
-recovery1: governance can convert only unsupported/unallocated royalty value to
-ETH for active rarity weights at recovery. Existing earned/deferred entitlements
-are excluded; no external recipient or weakened conversion floor. Unsupported
-late tokens can forward only to the authenticated successor. New runtime/event
-pins and rebuilt earnings checkpoints are required; no installed environment
-changes. ERC2981 requests5%, not universally enforced marketplace payment.
+Current capabilities and exact evidence are in the tables below and the
+[report map](../reports/README.md). Operator procedures have a source-bound
+[complete short call catalog](OPERATOR_MANUAL.md#operator-call-tables), with
+separate exact permission/output notes; it is documentation, not execution approval.
 
 ## Smart contracts
 
@@ -69,7 +57,7 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
 | Inventory | Schema10/custody5 validates20helpers, both physical legs and fresh capabilities. Schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
-| Earnings | Separate LP/collective/royalties, current-price USD, claimable versus earned/claimed, authenticated chronology and no duplicate income from claims/conversion/imports. Missing prices/data remain unavailable. |
+| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; recovery1 first allocation is counted once. Missing data stays unavailable. |
 
 Explicit fresh read/keeper configs set custody_version5 and check actual runtime.
 Keeper principal_distribution is disabled/rejected on5; governance pays/submits

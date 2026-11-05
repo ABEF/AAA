@@ -129,7 +129,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Publish poplint without changing the demo | [Demo/integration environment map](SITE_ENVIRONMENTS.md) |
 | Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
 | Prepare a reviewHash and exact ordered explorer inputs without signing | [Offline review preparation](#prepare-and-check-an-offline-reviewhash) |
-| Find every manual write's caller, ordered inputs and reversal limits | [Manual write input catalog](#manual-write-input-catalog) |
+| Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
 ## Current accounting6 deployment boundary
@@ -1313,7 +1313,7 @@ runtime/configuration requires the documented journal-preserving reviewed rollou
 Old concurrent quotes can become invalid and need new review; a confirmed
 approval is not repeated blindly. Already mined operations cannot be undone.
 
-To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash; fresh Entry3 has no routes to disable. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ROUTING.md).
+To stop an input immediately, use `ActivationAssets.setAsset(token,false,expectedCodeHash,reviewHash)` with the exact ETH-zero or fixed-ZZZ token and nonzero review hash; fresh Entry3 has no routes to disable. Disable paths deliberately avoid dependency calls needed for enabling; they can help when a token/feed is broken. Previously attached LP, shares and claims are not erased. Re-enabling requires valid current token/feed/code checks and new quotes. Pool configuration cannot silently re-enable an explicitly disabled source. See [Entry and source policy](ACTIVATION_ENTRY.md) and [routing](ACTIVATION_ENTRY.md#routing-controls).
 
 ## Pool admission and retirement
 
@@ -1483,7 +1483,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ reviewed `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and collective holder return. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires collective holder return and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
-| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
+| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay unallocated until separately reviewed recovery1; earned/deferred entitlements remain protected. |
 | Synchronize/claim royalties | Permissionless `RoyaltyRewards.sync(asset)`/`syncAll`; actual owner calls ledger `claim` or bounded ClaimRouter | Direct royalty claim synchronizes pending admitted receipts. LP claim does not harvest new venue fees. Use current owner and actual funded amounts. |
 
 A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**, or claim individually. One failed operation reverts the whole batch; simulate and split by asset/NFT if needed. No operator can choose a different beneficiary or claim just because it holds ERC721 approval. All unclaimed rights follow the current NFT owner; already paid funds do not travel with it. An escrow that owns the NFT is the contract-level holder. Lifetime claimed display requires complete confirmed index history, including predecessors after replacement.
@@ -2421,32 +2421,11 @@ preserving its evidence. Never change a running journal to match a report label.
 
 ## Callable contract reference: reads, writes, inputs and outputs
 
-Open the [complete callable-function reference](CONTRACT_FUNCTIONS.md). It is
-grouped by contract, with a navigation index and separate read/write tables.
-Each entry records the concise purpose, required caller, exact argument and
-return types, tuple fields and relevant safety limitations. Constructors and
-native-ETH receive hooks are included separately; internal-only libraries are
-not callable deployed contracts.
-
-- **Read:** `view`/`pure` does not submit a transaction. A read can still fail on
-  stale prices, missing history, retired lifecycle or dependency faults.
-- **Write:** a successful transaction changes state. Many writes return nothing;
-  their result is confirmed state/events, not an invented output value. A return
-  value from a simulated write does not prove the transaction later succeeded.
-- **Inputs:** token/native amounts are raw integer units unless explicitly USD,
-  BPS, ticks or timestamps. Native ETH sent with a payable call is a separate
-  transaction `value`, not an ABI argument. Gas is always separate.
-- **Permission:** external/public ABI visibility does not grant operator access.
-  Holder, governance, keeper, parent-module and authenticated-callback roles
-  remain distinct. Use the linked procedure before signing a consequential call.
-- **Addresses:** this is a source reference, not the production address book.
-  Verify chain, deployed version, runtime, bindings and [address inventory](DEPLOYMENT_ADDRESSES.md)
-  first. Do not call current ABIs against historical local deployments.
-
-The source-bound [generation/check procedure](CONTRACT_FUNCTIONS.md#maintenance)
-must accompany future function, permission, parameter, output or behavior changes.
-No read or write is executed by generating this reference.
-
+Use the [short operator tables](#operator-call-tables) for quick calls and the
+[source-bound reference](CONTRACT_FUNCTIONS.md) for exact outputs, full permission
+and input/value explanations. Reads may revert; writes require a confirmed receipt
+and state check. A simulated return is not a transaction result. Inputs, transaction
+value and network gas are separate. ABI visibility never grants operator authority.
 
 ## Prepare and check an offline reviewHash
 
@@ -2527,266 +2506,15 @@ state verification; never commit keys, credentialed endpoints or journal state.
 Publishing a review hash does not attest the keeper host or eliminate governance
 trust. No particular operator wallet type, extra person or timelock is required.
 
-## Manual write input catalog
-
-This index is for the reviewed fresh candidate; **production is not approved**. Resolve exact chain, controller, contract/runtime and ABI first. Each signature preserves argument order. Named structs use their source type; follow the function-reference link for every nested field in canonical ABI order. The detailed task procedure and actual function guards remain mandatory.
-
-**Configuration authority:** `G` means Access.canConfigure: before seal **only bootstrap**, not a distinct governance wallet; after seal **only current governance**, canonicalState0/no preparation. Additional lifecycle/body guards still apply. `B` means pre-seal bootstrap only. A global pause alone does not block normal configuration. Other permissions are stated per row; a public function is not automatically operator-callable.
-
-All amounts are raw currency units unless explicitly USD18/BPS/ticks/seconds; ETH uses wei, token uses reviewed decimals, liquidity minimum is raw Uniswap L. A deadline is Unix seconds, execution time through at most600seconds ahead. All transactions pay gas separately. Where required, `reviewHash` is a nonzero commitment to a review, not permission, timestamp, signature or proof of safety; the documented automatic-range disable explicitly accepts zero unused fields.
-
-Only ordinary on-chain configuration generally needs no keeper restart. Local source/config/runtime/API pins need controlled matching restart, original journals retained. Stop/reconcile the automated signer before manual same-key nonce use. Preserve hashes, receipts, spent gas and pending intents; never reset history or resend an ambiguous action.
-
-### Permission boundary and completeness
-
-The historical manual-operation audit classified231 mutable ABI functions and90 manual endpoints. Current additions are documented in the [future operating settings](#future-operating-settings) section and the regenerated source-bound callable reference; those historical counts are not current coverage totals. Fixed module-only methods/callbacks are not manual alternatives to the listed parents. Holder NFT transfers/approvals, activation, growth and reward claims remain owner/payer flows described in the callable reference. Constructors/sealing choose immutable identities; no current method grants a generic sweep, arbitrary recipient, new principal token or bridge.
-
-### ZZZAccessController
-
-[Procedure](#authorities) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzaccesscontroller)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `acceptGovernance()` | Pending nonzero governance wallet only, operating canonical state and no preparation. | The exact proposed wallet accepts authority atomically and clears the proposal. Not a rollback. The newly accepted wallet must propose/complete a later handover. |
-| `bind(bytes32 id, address implementation)` | Bootstrap only, before seal. | Bind one of the16 supported core module slots exactly once before seal, verifying deployed code and matching controller. One-time module binding; no replacement/unbind. Wrong binding requires a fresh deployment. |
-| `cancelPreparation(bytes32 noticeHash)` | Current governance directly while the exact preparation is active and canonical state is operating. | Cancel the exact active preparation notice while the source is still operating. Ends only the exact notice before freeze. New preparation is a new reviewed nonce. |
-| `proposeGovernance(address candidate)` | Current governance only, canonical operating state and no preparation. Controller-self/current-wallet candidates reject. | Propose a governance-wallet replacement without a delay; zero cancels a proposal. Zero candidate cancels a pending proposal; candidate must accept to gain authority. |
-| `seal()` | Bootstrap only, once. | Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated. Irreversible. Clears bootstrap; no unseal/upgrade or deployment reset. |
-| `setGuardian(address who, bool enabled)` | G. | Grant or revoke guardian pause authority and emit GuardianChanged for the resulting state. Apply the opposite grant after reconciling incidents; guardian grants pause-only power. |
-| `setKeeper(address who, bool enabled)` | G. | Grant or revoke bounded keeper maintenance authority and emit KeeperChanged. Apply the opposite grant; preserve pending signer/nonces/spend state before key rotation. |
-| `setPaused(bool state)` | Current governance, bootstrap before seal, or an enabled guardian for state=true only. Canonical lifecycle guards remain independent. | Set or clear ordinary global pause. Governance may unpause; guardians cannot. Does not undo preparation, freeze or LP exit. |
-| `startPreparation(ZZZAccessController.PreparationNotice notice)` | Current governance directly, sealed canonical operating state. | Announce a cancellable same-chain replacement/draining window; no custody or rights leave. Use cancelPreparation(exact preparationHash) before freeze; no funds or rights move here. |
-
-### ZZZActivationAssets
-
-[Procedure](#activation-assets-and-routes) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzactivationassets)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `configureZZZ(address token, bytes32 expectedCodeHash, bytes32 reviewHash)` | B; unavailable after seal. Additional guards: unset fixed ZZZ identity and valid current code/decimals/dual pricing. | Configure the fixed ZZZ ERC20 once before sealing and record its validated source policy. One-time fixed token. No replacement; issuer migration uses holder exit and a fresh deployment. |
-| `setAsset(address token, bool enabled, bytes32 expectedCodeHash, bytes32 reviewHash)` | G. | Append and activate same-identity source enablement/runtime policy. Append disabled policy to stop; re-enable only through validated new policy. No third input. |
-
-### ZZZActivationEntry
-
-[Procedure](#activation-assets-and-routes) · [Exact seven-field ABI](ACTIVATION_ENTRY.md)
-· [Callable reference](CONTRACT_FUNCTIONS.md#zzzactivationentry)
-
-Fresh Entry3 has no governance route setters, route catalogue, conversion
-executor or native swap receiver. To stop an input, governance uses
-`ActivationAssets.setAsset`; to change balancing venues, use the separately
-reviewed LP Balancer policy. Existing earned conversions retain their own stops.
-
-The NFT's current owner calls
-`executeReviewed(request,maximumLossBps,expectedContributionPolicy)` with ordered
-request fields `nftId,poolId,sourceAsset,amountIn,minimumLiquidity,deadline,increase`.
-Source is native ETH(address0) or fixed ZZZ already in the pool. For ETH send
-exactly amountIn as value; for ZZZ send0 and approve only that amount to Entry.
-Use the positive LP-unit floor, Unix deadline<=now+600, caller loss maximum0–1000bps
-and exact nonzero ProtocolPolicy.entryFingerprint. This is not an operator
-reviewHash. No routeId/minimumOut exists. Entry forwards input to Vault balancing;
-actual marginal LP must pass the retained financial/owner/callback guards before
-success. A separately confirmed approval is not LP and should not be repeated
-after ambiguous transaction status. New ABI/runtime profiles never adopt old
-pending records or update an existing deployment automatically.
-
-### ZZZBuyback
-
-[Procedure](#tune-or-stop-buyback-trading) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzbuyback)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `execute(address token, uint256 amount, bytes32 poolId, uint256 deadline)` | Authorized keeper; live/operating. Original keeper authorization and unpaused state are rechecked after external work. | Release classified buyback reserves, acquire ZZZ if necessary, then verify an actual supply-reducing burn. No undo of a completed burn. Change reviewed task/operating limit before the next trade. |
-| `setOperatingTradeUSD(uint256 limit)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Adjust the future per-trade buyback budget within the reviewed governance maximum. Zero stops all new burns; restore a reviewed positive value no higher than reviewed maxTradeUSD. |
-
-### ZZZCanonicalHandoff
-
-[Procedure](#whole-collection-replacement) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `abort()` | Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards. | Begin pre-commit cancellation of a frozen handoff and permanently cancel the importer. Begin abort, return every funded leg and finishAbort only after full restoration. |
-| `commit()` | Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards. | Atomically retire the source and activate its one fully funded compatible successor. Irreversibly retires source and activates successor; no post-commit abort/revival. |
-| `completeImport()` | Permissionless after complete source-authenticated import. | Verify every imported count/root and mark the successor ready for backing. Does not activate successor. Complete exact funding, then source governance commit. |
-| `exportRows(uint8 slot, uint256 count)` | Permissionless in the export phase. | Commit a bounded ordered batch of source records into the canonical snapshot root. Continue on-chain exported cursor; rows/root remain authenticated, not editable relay input. |
-| `finishAbort()` | Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards. | Reactivate the original source only after every sent leg is fully restored and validated. Source resumes only after verified backing restoration; deliberate pause/service state still needs review. |
-| `freeze()` | Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards. | Freeze ownership/accounting and atomically capture six source-domain cutoffs for the reviewed sealed importer. Use abort/complete exact restoration before finishAbort, or complete commit; unpause alone cannot undo it. |
-| `fund(uint8 slot, uint256 index)` | Permissionless in funding phase after completed import. | Transfer one exact classified source backing leg to the matching successor module. Return the exact funded leg only through an authenticated source abort; no free recipient. |
-| `importRows(uint8 slot, bytes[] records)` | Permissionless relay in importer phase. | Import source-authenticated ordered records into the inert successor. Continue exact imported cursor with authentic exported bytes; do not infer or renumber rows. |
-| `prepareImport(address sourceController)` | That deployment’s bootstrap before sealing. | Mark an unused unsealed successor as an inert same-chain importer for one source controller. One-time importer binding before seal; cancelled importer is not ordinary live recovery. |
-| `returnFunds(uint8 slot, uint256 index)` | Permissionless during source abort, exact funded/unreturned leg. | Recover one previously funded leg from a cancelled importer and restore source classification. Continue until every funded leg is returned; no private/manual transfer substitutes for acknowledgment. |
-| `settle(uint8 slot)` | Permissionless with the exact phase/cursor. | Settle exactly the next captured canonical domain before export/funding. Continue exact slot order. Do not repeat/skip acknowledged domain settlement. |
-
-### ZZZCompounder
-
-[Procedure](#coordinate-compounding-with-rebalancing) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzcompounder)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `compound(uint256 id, uint128 minimumLiquidity, uint256 deadline)` | Authorized keeper; live/operating. Original keeper authorization and unpaused state are rechecked after external work. | Ask Vault to reinvest one bucket’s designated compound reserve and attributed idle. No undo. Failed compound reverts; stop scheduling/revoke keeper for containment, not interval=0. |
-
-### ZZZLPBalancer
-
-[Procedure](#add-or-remove-an-execution-pool-after-sealing) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzlpbalancer)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `configureExecutionPools(bytes32[] pools, bytes32 reviewHash)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit. | Replace the complete bounded list of reviewed admitted execution pools. Replace entire reviewed list; empty list disables swaps without price reads, with no implicit fallback. |
-| `configureSolver(uint8 iterations, uint32 gasLimit, bytes32 reviewHash)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit. | Change bounded quote search/gas policy, advancing executionRevision. Reconfigure within fixed bounds after complete-operation gas/sizing review; old work must be reconciled. |
-
-### ZZZLPRewardConverter
-
-[Procedure](LP_ETH_SETTLEMENT.md#operator-procedure) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzlprewardconverter)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `addRoute(ZZZRewardConverter.RoutePolicy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append a reviewed immutable single-hop v3 exact-input route into native ETH via the fixed wrapper. Append-only identity. Disable the route; do not overwrite it under the old ID. |
-| `addV4Route(ZZZV4RouteExecutor.Policy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append a reviewed typed hookless static v4 route into actual native ETH. Append-only typed route. Disable it to stop; no generic callback/recipient authority. |
-| `configureWrapper(ZZZRewardConverter.WrapperPolicy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths. Wrapper identity is constructor-fixed. Policy can be re-reviewed, not repointed to another asset. |
-| `setConversionLossBps(uint16 value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Set the permitted future conversion loss beneath the hard 10% ceiling. Reconfigure within0–1000bps; cannot relax stronger caller minimum or repair a failed route. |
-| `setEnabled(bool value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Stop or reopen this converter without querying dependencies. False is a dependency-independent converter stop. True does not qualify routes or clear pending work. |
-| `setRouteEnabled(bytes32 id, bool value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Disable or re-enable one admitted conversion route. False stops without upstream checks; true fully revalidates. Mined executions stay final. |
-
-### ZZZMigration
-
-[Procedure](#custody-and-lp-migration) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzmigration)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `allocatePrincipal(uint256 maximum)` | Governance only under custody5; canonical operating state, not preparing, Allocating phase; authority rechecked after calls. | Advance deterministic proportional principal apportionment over bounded captured mint ordinals. Continue bounded cursor. Allocation is irreversible; complete every bucket before Ready. |
-| `beginCollectiveExit(bytes32 reviewHash)` | Current governance through controller; sealed, paused, canonical operating and not preparing. | Validate every funded bucket and captured mint inventory, then irreversibly start collective principal return. Irreversible global principal retirement. Does not close or pay all holders in this first call. |
-| `closeBucket(uint256 bucket, uint256 minimumETH, uint256 minimumZZZ, uint256 deadline)` | Current governance; terminal exit in Closing, paused and canonical operating. | Final-harvest and close one captured bucket into exact ETH+ZZZ settlement backing. Continue remaining buckets. No swaps; preserve raw minima/phase/backing on failure. |
-| `closeResidual(ZZZMigration.ParkingRequest r)` | Selected governance only; sealed/globally paused, operating canonical lifecycle without preparation or terminal LP exit; nonreentrant. | Manually remove only the reviewed residual LP into Vault idle while preserving the main and all NFT rights. No reverse transfer to a recipient. Main remains; idle can be redeployed by guarded ordinary/emergency maintenance. |
-| `configureZZZ(address token, bytes32 codeHash, bytes32 reviewHash)` | B; unavailable after seal. Additional guards: nonReentrant, unset fixed ZZZ identity matching source admission, Rewards and immutable Buyback. | Bind the fixed ZZZ token once before sealing, matching source admission, Rewards admission and immutable Buyback. One-time fixed token. No replacement; issuer migration uses holder exit and a fresh deployment. |
-| `distributePrincipal(uint256[] ids)` | Governance only under custody5; Ready phase and canonical operating lifecycle, not preparing; post-callback authority recheck. Ordinary pause does not block payouts. | Attempt automatic principal pushes to current NFT owners in isolated bounded subcalls. Retry unpaid/deferred IDs only. Successful payment is never due again; ownership follows NFT until paid. |
-| `emergencyRebalance(EmergencyRebalance request)` | Current governance only; sealed/paused, operating, no canonical preparation/import/retirement or terminal LP exit. Nonreentrant; not a keeper fallback. | Manually close/optionally swap/redeploy one shared LP while globally paused, under an exact custody-bound manifest. No automatic retry/fallback. Paused governance explicitly reviews every retained financial check and final backing. |
-| `invalidateParking(uint256 id)` | Drain-authorized governance before irreversible LP exit. | Advance the shared bucket nonce to invalidate unused parking and residual-close reviews. Advances shared nonce; rebuild fresh park/residual review. Does not move funds or cancel mined custody. |
-| `moveFunds(uint256 id, bytes32 pool, uint128 minimum, uint256 deadline)` | Current governance; live and before irreversible LP exit. | Atomically move a live shared LP to an admitted native ETH/fixed-ZZZ pool with identical actual currencies. A later guarded move/park may reverse direction if occupancy/capacity permit; not an undo. |
-| `park(ZZZMigration.ParkingRequest r)` | Drain-authorized governance while globally paused,before terminal exit; nonreentrant. | Harvest/close both exactly reviewed LP legs into Vault idle without releasing custody. Unpause and guarded resume after review; principal stays in Vault. Parking does not withdraw to governance. |
-| `resume(uint256 id, bytes32 pool, uint128 minimum, uint256 deadline)` | Current governance; live and before irreversible LP exit. | Deploy a locally parked bucket into an admitted same-actual-pair LP. A later paused park may close again; verify destination reservation/deposit ordering first. |
-
-### ZZZMigrationBudget
-
-[Procedure](#typed-conversion-and-loss-limit-operations) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzmigrationbudget)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `setCompoundInterval(bytes32 poolId, uint32 interval)` | G. Additional guards: nonReentrant, no preparation/canonical lock or active captured snapshot. | Configure a pool standalone-compound interval without changing backing or recorded clocks. Minimum600seconds, never zero. Stop automation separately; change does not reset recorded clocks. |
-| `setLossLimits(uint16 contribution, uint16 maintenance)` | G. Additional guards: nonReentrant, no preparation/canonical lock or active captured snapshot. | Set contribution and maintenance caps for future operations within hard 10% maxima. Read/preserve the other value. Future operation only; captured caller and operation floors remain. |
-
-### ZZZNFT
-
-[Procedure](#mint-and-metadata) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzznft)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `addRoyaltyAsset(address token)` | G. | Append an admitted ERC20 royalty payment currency to the NFT-bound ledger. Permanent at-most16ERC20+ETH list. No remove/sweep; unsupported or orphaned recovery is a separate governance-only classification and cannot consume earned balances. |
-| `finalizeTraits(uint256 id)` | Anyone; canonical accounting must be operating. | Finalize the next mint-ordered revealed rarity/palette/pattern from its verified stored words. Original fulfilled draws only, in mint order. Missing provider response cannot be fabricated. |
-| `refreshMetadata(uint256 id)` | Anyone; no NFT ownership required. | Emit an ERC4906 notification for an existing NFT. Notification only; no trait/root change and no promise marketplace cache refreshes immediately. |
-| `refreshMetadataRange(uint256 firstOrdinal, uint256 lastOrdinal)` | Anyone. | Emit one ERC4906 notification per actual NFT in a bounded ordinal interval. At most50 inclusive mint ordinals, not token IDs. Notification only. |
-| `setBaseURI(string baseURI)` | B; unavailable after seal. Additional guards: empty/unconfigured base and valid nonempty IPFS/Arweave root. | Populate an initially empty immutable artwork root once before sealing. One nonempty IPFS/Arweave root before seal; no URI replacement afterward. |
-| `setMintPaused(bool state)` | G. | Stop or resume new NFT issuance/randomness requests independently. False reopens only new mints when all other guards pass. Pending fulfillment/finalize remains separate. |
-
-### ZZZOracle
-
-[Procedure](#configure-stop-and-recover-usd-pricing) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzoracle)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `setDualFeed(address token, ZZZOracle.SourcePolicy primary, ZZZOracle.SourcePolicy secondary, uint16 maxDeviationBps, bytes32 reviewHash)` | G. | Append and immediately activate a fully reviewed independent two-source USD policy for an asset. Append/review a healthy independent pair; old policy is immutable history, not overwritten. |
-| `setSequencerFeed(address source, bytes32 expectedCodeHash, bytes32 reviewHash)` | G. | Replace the uptime dependency with a newly reviewed nonzero source without reading the broken old source. Nonzero reviewed replacement only; cannot remove uptime protection or waive grace. |
-
-### ZZZPoolRegistry
-
-[Procedure](#pool-admission-and-retirement) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzpoolregistry)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `configureNative(PoolConfig config)` | G. Additional guards: exact nativeConfiguration admission/terminal-exit guards and full venue validation. | Admit or reconfigure a reviewed static hookless native ETH/fixed-ZZZ pool, including compatible future fee tiers. Reconfigure complete reviewed config; no token/core change. Post-exit admission is Ready/reserve-only. |
-| `disablePool(bytes32 poolId, bool disableDeposits, bool disableOperations)` | G. | Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True only clears flags; false preserves. Reopen with full configureNative validation. |
-
-### ZZZPortfolioPolicy
-
-[Procedure](#portfolio-management-controls) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `configureResidualSide(bytes32 pool, uint16 next, bytes32 reviewed)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit. | Choose residual extent toward the corresponding new-main boundary. Per-pool desired geometry. Enabled same-value review advances revision; no immediate placement/rollback. |
-| `setMode(bytes32 pool, bool next, bytes32 reviewed)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit. | Select desired single/hybrid mode; disabling requests a guarded merge instead of deleting a live residual. Desired mode only; false requests ordinary guarded merge. No per-residual pause, arbitrary withdrawal or immediate exit. |
-| `setTriggerBps(uint16 next, bytes32 reviewed)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit. | Change ordinary edge-threshold fraction in single and optional hybrid mode. Global threshold1–10000bps of centre-to-edge distance. Reconfiguration resets samples, not geometry exemption. |
-
-### ZZZRebalanceConfirmation
-
-[Procedure](#configure-rebalance-confirmation) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `configure(uint32 secondsRequired, uint32 maximumGap, bytes32 reviewed)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit, nonReentrant. | Configure the sampled window and maximum gap, advancing policy revision so earlier samples cannot authorize the new policy. Duration60seconds–7days; gap0 stops the sampled market path, not the deliberate geometry exception; otherwise <=duration/2. Old samples reset. |
-| `observe(uint256 bucket)` | Authorized keeper; sealed/unpaused, operating canonical lifecycle and no principal exit; nonreentrant. | Record threshold sample during/after cooldown; reset for changed side/identity,excessive gap,no candidate or caught fault. Recorded sample, not swap or rebalance. On observed failure reset succeeds; preserve pending/hash provenance. |
-| `resetObservation(uint256 bucket)` | Authorized keeper; operating canonical lifecycle and no principal exit. Ordinary global pause is allowed; nonreentrant. | Delete recorded bucket evidence after an observed incident so it cannot be extended on recovery. Clear-only keeper operation, allowed during ordinary pause; not an eligibility/budget override. |
-| `setRequireReferenceExit(bool required, bytes32 reviewed)` | G. Additional guards: operating canonical lifecycle and no preparation, no terminal LP exit, nonReentrant. | Set reviewed independent-reference corroboration policy and monotonically invalidate old samples. Weakening independent corroboration is explicit governance risk. Re-enable only after automatic range policies disabled. |
-
-### ZZZRewards
-
-[Procedure](#revenue-operations) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzrewards)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `addAsset(address token)` | G. | Append a reviewed LP reward currency within the bounded admission inventory. Permanent at-most32ERC20+ETH LP payout history; cannot remove liabilities or admit new principal inputs. |
-| `bindConverter(address candidate)` | B; unavailable after seal. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings. | Bind the one fixed LP-reward-to-ETH executor before sealing. One-time before seal; routes/policy remain governed but bound implementation cannot be replaced. |
-| `convertBatch(address token, uint256[] ids, bytes32 routeId, uint256 minimumETH, uint256 deadline)` | Authorized keeper; live/operating economic state. | Swap selected NFTs’ already allocated ERC20 LP rewards into ETH and credit the same NFTs. Keeper only, sorted unique at most32NFT IDs. The same NFTs retain exact converted credit; current owners hold the rights; this is not income or claim. |
-
-### ZZZRoyaltyConverter
-
-[Procedure](ROYALTY_SETTLEMENT.md) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `addRoute(ZZZRewardConverter.RoutePolicy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append a reviewed immutable single-hop v3 exact-input route into native ETH via the fixed wrapper. Append-only identity. Disable the route; do not overwrite it under the old ID. |
-| `addV4Route(ZZZV4RouteExecutor.Policy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Append a reviewed typed hookless static v4 route into actual native ETH. Append-only typed route. Disable it to stop; no generic callback/recipient authority. |
-| `configureWrapper(ZZZRewardConverter.WrapperPolicy policy)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths. Wrapper identity is constructor-fixed. Policy can be re-reviewed, not repointed to another asset. |
-| `setConversionLossBps(uint16 value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Set the permitted future conversion loss beneath the hard 10% ceiling. Reconfigure within0–1000bps; cannot relax stronger caller minimum or repair a failed route. |
-| `setEnabled(bool value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Stop or reopen this converter without querying dependencies. False is a dependency-independent converter stop. True does not qualify routes or clear pending work. |
-| `setRouteEnabled(bytes32 id, bool value)` | G. Additional guards: operating canonical lifecycle and no preparation, nonReentrant. | Disable or re-enable one admitted conversion route. False stops without upstream checks; true fully revalidates. Mined executions stay final. |
-
-### ZZZRoyaltyRewards
-
-[Procedure](#marketplace-currency-and-eth-payouts) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `recoverUnallocated(address asset,uint256 amount,bytes32 routeId,uint256 minimumETH,uint256 deadline,bytes32 reviewHash)` | Current governance, sealed active canonical NFT, unpaused/no preparation; pre/post authority. | Recover only unsupported/orphaned value into ETH for active rarity weights at execution. Earned/deferred funds excluded. Reviewed routes/prices and conversion floors remain; exact [inputs and recovery procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery). |
-| `bindConverter(address candidate)` | B; unavailable after seal. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings. | Bind one reviewed royalty-only ETH conversion executor before sealing. One-time before seal; routes/policy remain governed but bound implementation cannot be replaced. |
-| `convertBatch(address asset, uint256[] ids, bytes32 routeId, uint256 minimumETH, uint256 deadline)` | Authorized keeper, sealed canonical NFT and live economic/operation state. | Convert selected earned royalty balances in one swap and credit ETH to those same NFTs. Keeper only, sorted unique at most32NFT IDs. The same NFTs retain exact converted credit; current owners hold the rights; this is not income or claim. |
-| `forwardLate(address asset)` | Permissionless after authenticated canonical retirement. | Forward admitted or unsupported late currencies from a retired receiver to its authenticated immediate successor, no chosen recipient. Successor admission/recovery determines allocation; broken tokens may still fail. |
-| `fund(address asset, uint256 amount)` | Permissionless funder in active economic state. | Pull an exact ERC20 royalty donation and synchronize its actual receipt. Transfers actual admitted royalty currency as revenue; no fabricated balance or principal/activation authority. |
-| `sync(address asset)` | Permissionless in active economic state. | Recognize actual newly arrived royalty funds and advance that currency’s eligible-weight index. Assign actual newly received currency to existing eligible cohort; no LP harvesting or swaps. |
-| `syncAll()` | Permissionless in active economic state. | Synchronize every admitted royalty currency using normal accounting checks. Reads every admitted royalty currency. One failing sync may revert; use source-specific sync/recovery, not guessed zero. |
-
-### ZZZStrategy
-
-[Procedure](#range-and-strategy) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzstrategy)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `applyKeeperRange(bytes32 poolId)` | Enabled keeper; sealed, unpaused normal canonical operation with no preparation. | Apply the currently eligible preapproved width selected by keeperRangeTarget. Disabled in selected manual policy. Separate opt-in chooses only approved2500/5000, never arbitrary width. |
-| `setAdditionalLossBps(uint16 limit, bytes32 reviewHash)` | G. Additional guards: operating canonical lifecycle and no preparation. | Set the extra oracle-relative loss limit after actual directional core fees. Separate additional-after-directional-fee guard; keep gross loss/caller/spot/oracle floors distinct. |
-| `setKeeperRangePolicy(bytes32 poolId, bool enabled, uint16 narrowTriggerBps, uint16 widenTriggerBps, uint32 minInterval, bytes32 reviewHash)` | G. Additional guards: operating canonical lifecycle and no preparation. | Enable/disable reviewed on-chain switching between ±25% and ±50% in the approved price orientation. Selected operating policy keeps disabled. Disabling does not restore old physical ticks or erase pending hashes. |
-| `setRangeOrientation(bytes32 poolId, uint8 orientation)` | G. Additional guards: operating canonical lifecycle and no preparation. | Select explicit raw or inverse price orientation for future target range calculations. Physical ticks are not reinterpreted. New orientation disables automatic policy and requests guarded new geometry. |
-
-### ZZZVault
-
-[Procedure](#manual-rebalance-at-a-chosen-time) · [Exact ABI, tuple fields, inputs and outputs](CONTRACT_FUNCTIONS.md#zzzvault)
-
-| Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
-| --- | --- | --- |
-| `collectFees(uint256 id, uint256 deadline)` | Permissionless while live and canonical accounting is active. | Collect actual main/residual venue fees and fund one bucket80/10/5/5 allocation. Permissionless single shared-bucket harvest; no fixed split override, swap, compounding, burn or claim. |
-| `rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline)` | Wallet must be keeper-authorized, including governance if it calls directly; live/operating and on-chain eligibility/cooldown required. Original keeper authorization and unpaused state are rechecked after external work. | Replace complete shared portfolio after guarded edge-threshold/sample readiness and fee settlement. Keeper capability required even for governance. Ordinary eligibility/confirmation/cooldown/budgets remain. |
-| `reservePool(bytes32 pool, uint256 bucket)` | G. Additional guards: no terminal LP exit. | Permanently associate an admitted pool with a reviewed bucket identity, including a valid first-activation reservation. An empty initial bucket must equal `VaultCanonical.bucketIdentity(pool)`; a move uses the intended already-active bucket. Matching repeat is idempotent; no unreserve/delete repair. |
-
-### Out-of-catalog manual operations
-
-Provider subscription funding/consumer registration, OpenSea product/receiver setup, DNS/TLS/service users/monitoring, RPC credentials, wallet/Safe owner recovery, metadata pinning and software/backup operations are external operational procedures, not extra contract endpoints. Follow the linked service, mint and recovery procedures; no actual production addresses/service names are invented here. No public signing, deployed service change or restart is authorized by this catalog.
-
+<a id="manual-write-input-catalog"></a>
+
+## Short call catalog
+
+The former partial write catalog is consolidated into the [complete operator
+call tables](#operator-call-tables) below: exact inputs, examples and brief
+explanations for every current ABI function. Named tuple fields are expanded
+there. The task procedures above retain their permission, sequencing, verification,
+stop/restart and irreversible boundaries; the table is an index, not a bypass.
 
 ## Future operating settings
 
@@ -2847,3 +2575,2153 @@ Fixed after seal: core/helper implementations, ETH/fixed-ZZZ identities, supply/
 quotas/final traits/art root,80/10/5/5, royalty weights/5% request, exact shares/
 backing/current-owner rights, terminal holder return, no external custody sweep/
 bridge and normal10% loss ceilings. These are not operational knobs.
+
+
+## Read this before using the call tables
+
+Use the exact verified deployment, chain, ABI and caller. No production address is
+configured here. Examples are input templates, not executed transactions. In an
+explorer select **Read** or **Write Contract**, the named contract and matching
+overload; fill its ordered fields. A Safe must submit as the Safe. Module/callback
+rows cannot be called from your wallet. Follow the linked operation's guards.
+
+### Resolve IDs, hashes and amounts
+
+| Input symbol | Expected source | Example read / preparation | Meaning |
+| --- | --- | --- | --- |
+| `NFT_ID` | Actual canonical NFT ID | `NFT.tokenAtOrdinal(1)` | Full hashed NFT identifier |
+| `POOL_ID` | Admitted contribution destination | `PoolRegistry.contributionPool()` | PoolKey hash; no address |
+| `BUCKET_ID` | Existing NFT/pool bucket | `Vault.nftBucket(NFT_ID)` or `Vault.poolBucket(POOL_ID)` | Shared custody account identifier |
+| `EXPECTED_CONTRIBUTION_POLICY` | Current scoped entry policy | `ProtocolPolicy.entryFingerprint()` | Contribution policy; not reviewHash |
+| `EXPECTED_MINT_POLICY` | Current sale/VRF policy | `Vault.mintPolicyFingerprint()` | Mint policy; not reviewHash |
+| `CUSTODY_HASH` | Current emergency custody | `Migration.emergencyCustodyHash(BUCKET_ID)` | Exact emergency snapshot identity |
+| `LP_TOKEN_ID` | Actual main PositionManager NFT ID | Read `Vault.group(BUCKET_ID)`; use `lpTokenId` | Physical LP; not PoPL NFT |
+| `PORTFOLIO_HASH` | Current registered physical positions | `LiquidityManager.portfolioFingerprint(LP_TOKEN_ID)` | Includes current physical liquidity |
+| `CURRENT_NONCE`, `CUSTODY_EPOCH` | Current parking/recovery state | `Migration.parkingNonce(BUCKET_ID)`; `Migration.custodyEpoch(BUCKET_ID)` | Reject stale operation replay |
+| `REVIEW_HASH` | Your saved reviewed manifest | [Offline review procedure](#prepare-and-check-an-offline-reviewhash) | Fingerprint; never authorization proof |
+| `MINT_PRICE_WEI` | Current sale terms | `Vault.mintPrice()` | Exact native mint payment |
+| `UNIX_DEADLINE` | Fresh chain time and operation rules | Reviewed timestamp through allowed limit | Seconds; not an expired example |
+| `*_ADDRESS`, `*_CODE_HASH` | Exact reviewed deployment/runtime inventory | [Address and runtime inventory](DEPLOYMENT_ADDRESSES.md) | Never ticker-based guesses |
+| `*_USD` | USD18 integer amount | `$100 = 100000000000000000000` | Dollar value; not token units |
+| `*_WEI` | Exact native ETH units | `0.05 ETH = 50000000000000000` | Native amount; gas separate |
+| `RAW_UNITS` | Actual source-token decimals | `1 token = 10^actualDecimals` | No assumed stablecoin peg |
+| `MINIMUM_LIQUIDITY`, ticks, minima | Reviewed simulation/physical placement | [Contribution preparation](ACTIVATION_PREPARATION.md), [emergency review](EMERGENCY_REBALANCE.md) | Not USD or guessed liquidity |
+
+Other uppercase labels identify that operation's corresponding input; obtain them
+from its linked procedure/current snapshot. They are not optional defaults. Primary
+and secondary feeds must have distinct reviewed identities and independent
+upstreams; replacing both with one feed is invalid. Capture review fingerprints
+again after a relevant setting changes, including restore-to-old-value changes.
+
+### Wallet flows and external token approvals
+
+The external fixed ZZZ ERC20 is not one of the37PoPL contract ABIs. Its approval
+calls are separate from NFT approvals:
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `ZZZ.allowance` | Current owner, selected spender | `allowance(OWNER_ADDRESS, ENTRY_ADDRESS)` | Read current token allowance |
+| `ZZZ.approve` | Exact reviewed spender/amount | `approve(ENTRY_ADDRESS, EXACT_ZZZ_RAW_UNITS)` | Approve exact contribution only |
+| `ZZZ.approve` | Confirmed stale allowance, spender | `approve(ENTRY_ADDRESS, 0)` | Revoke unused token allowance |
+
+The spender above is for the reviewed Entry flow. Direct Vault funding uses its
+own exact reviewed spender; never substitute one arbitrarily. ETH needs no ERC20
+approval. Reprepare after an approval confirms. `NFT.approve/setApprovalForAll`
+permits NFT transfers, not contribution spending. Do not use unlimited approvals.
+Entry `increase=false` activates; `increase=true` grows existing LP. Its example
+below shows native ETH; fixed-ZZZ input uses its exact token address and
+transaction value0. Artwork and shares change only after confirmed actual LP.
+
+<!-- BEGIN GENERATED OPERATOR CALLS -->
+
+## Operator call tables
+
+Source-bound coverage: **820 functions, 37 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+
+Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
+
+Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wallet/token approvals](#wallet-flows-and-external-token-approvals) for exact funding and transaction value.
+
+**Caller keys:** `G` governance after seal/bootstrap before seal; `B` bootstrap only; `K` keeper-authorized wallet; `H` NFT owner/approved NFT transfer caller as specified; `P` permissionless; `N` exact nominated recipient/provider; `M` fixed module/parent only; `C` authenticated callback only; `D` deployment only; `R` read, possibly guarded. These keys do not replace the linked exact permission. Governance is not automatically keeper-authorized. Guardian may pause, never unpause.
+
+**Input format:** examples show function(arguments), not transaction calldata. Tuple/array brackets preserve ABI order; addresses and decimal integers are quoted for JSON precision. Quoted uppercase names are unresolved replacements, not literal values; replace boolean placeholders with true/false. Enter separate arguments/expanded tuple fields in the explorer or reviewed ABI tool. A tuple/array is ONE top-level argument. Use exact integer strings, never floats. Transaction value/gas are separate. Direct mint examples do not implement OpenSea primary mint.
+
+**Order:** read identities/state → capture current inputs → review → simulate exact caller/value/calldata → sign if authorized → verify receipt/state. Failed/reverted/unresolved operations need receipt reconciliation; do not guess success, resend, reset journals or restart services from this table.
+
+### Table navigation
+
+- [Safety, governance and permissions](#calls-safety)
+- [Daily LP management](#calls-liquidity)
+- [Pools, ranges, execution and prices](#calls-policy)
+- [LP rewards, royalties and claims](#calls-revenue)
+- [Parking, holder return and canonical replacement](#calls-recovery)
+- [NFTs, contributions and metadata](#calls-holders)
+- [Bound modules, helpers and factories](#calls-internals)
+- [Expanded tuple examples](#expanded-tuple-examples)
+- [Deployment constructors](#deployment-constructors)
+- [ETH receive hooks](#eth-receive-hooks)
+
+<a id="calls-safety"></a>
+
+### Safety, governance and permissions
+
+<a id="zzzaccesscontroller"></a>
+
+#### AccessController
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [AccessController.setPaused](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `state: bool` | `setPaused(true)` | Pause or resume ordinary operations |
+| `G` [AccessController.setKeeper](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `who: address`<br>`enabled: bool` | `setKeeper(KEEPER_ADDRESS, true)` | Grant or revoke keeper |
+| `G` [AccessController.setGuardian](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `who: address`<br>`enabled: bool` | `setGuardian(GUARDIAN_ADDRESS, true)` | Grant or revoke guardian |
+| `G` [AccessController.proposeGovernance](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `candidate: address` | `proposeGovernance(CANDIDATE_ADDRESS)` | Propose next governance wallet |
+| `N` [AccessController.acceptGovernance](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `acceptGovernance()` | Accept governance authority |
+| `G` [AccessController.startPreparation](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `notice` [ZZZAccessController.PreparationNotice](#input-zzzaccesscontroller-preparationnotice) | `startPreparation(["DESTINATION_CHAIN", "SUCCESSOR_CONTROLLER_ADDRESS", "DEPLOYMENT_COMMITMENT", "REVIEW_HASH"])` | Announce reviewed canonical replacement |
+| `G` [AccessController.cancelPreparation](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `noticeHash: bytes32` | `cancelPreparation(NOTICE_HASH)` | Cancel replacement preparation |
+| `B` [AccessController.bindProtocolPolicy](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `implementation: address` | `bindProtocolPolicy(IMPLEMENTATION_ADDRESS)` | Bind operating policy once |
+| `B` [AccessController.bind](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `id: bytes32`<br>`implementation: address` | `bind(MODULE_ID, IMPLEMENTATION_ADDRESS)` | Bind protocol module |
+| `B` [AccessController.seal](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `seal()` | Seal immutable protocol bindings |
+
+<details>
+<summary>Read functions and constants (25)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [AccessController.GOVERNANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `GOVERNANCE_VERSION()` | Read governance version |
+| `R` [AccessController.activationAssetsFactory](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `activationAssetsFactory()` | Read activation assets factory |
+| `R` [AccessController.bootstrap](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `bootstrap()` | Read bootstrap |
+| `R` [AccessController.canConfigure](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `account: address` | `canConfigure(ACCOUNT_ADDRESS)` | Read can configure |
+| `R` [AccessController.canonicalHandoff](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `canonicalHandoff()` | Read canonical handoff |
+| `R` [AccessController.canonicalSettling](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `canonicalSettling()` | Read canonical settling |
+| `R` [AccessController.canonicalState](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `canonicalState()` | Read canonical state |
+| `R` [AccessController.governance](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `governance()` | Read governance |
+| `R` [AccessController.guardians](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `input0: address` | `guardians(TARGET_ADDRESS)` | Read guardians |
+| `R` [AccessController.isSealed](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `isSealed()` | Read is sealed |
+| `R` [AccessController.keeperAuthorized](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `caller: address` | `keeperAuthorized(CALLER_ADDRESS)` | Read keeper authorized |
+| `R` [AccessController.keepers](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `input0: address` | `keepers(TARGET_ADDRESS)` | Read keepers |
+| `R` [AccessController.lpExitStarted](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `lpExitStarted()` | Read lp exit started |
+| `R` [AccessController.module](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `input0: bytes32` | `module(MODULE_ID)` | Read module |
+| `R` [AccessController.moduleAuthorized](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `id: bytes32`<br>`caller: address` | `moduleAuthorized(MODULE_ID, CALLER_ADDRESS)` | Read module authorized |
+| `R` [AccessController.paused](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `paused()` | Read paused |
+| `R` [AccessController.pendingGovernance](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `pendingGovernance()` | Read pending governance |
+| `R` [AccessController.preparationActive](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationActive()` | Read preparation active |
+| `R` [AccessController.preparationHash](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationHash()` | Read preparation hash |
+| `R` [AccessController.preparationNonce](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationNonce()` | Read preparation nonce |
+| `R` [AccessController.preparationNotice](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationNotice()` | Read preparation notice |
+| `R` [AccessController.preparationReadyDestination](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationReadyDestination()` | Read preparation ready destination |
+| `R` [AccessController.preparationStartedAt](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `preparationStartedAt()` | Read preparation started at |
+| `R` [AccessController.protocolPolicy](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `protocolPolicy()` | Read protocol policy |
+| `R` [AccessController.royaltyFactory](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `royaltyFactory()` | Read royalty factory |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (2)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [AccessController.canonicalTransition](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `state: uint8`<br>`settling: bool`<br>`clearPreparation: bool` | `canonicalTransition(STATE, SETTLING, CLEAR_PREPARATION)` | Advance canonical controller phase |
+| `M` [AccessController.startLPExit](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | None | `startLPExit()` | Authorize terminal LP shutdown |
+
+</details>
+
+<a id="calls-liquidity"></a>
+
+### Daily LP management
+
+<a id="zzzvault"></a>
+
+#### Vault
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [Vault.collectFees](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`deadline: uint256` | `collectFees(BUCKET_ID, UNIX_DEADLINE)` | Harvest and allocate fees |
+| `K` [Vault.rebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `rebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Replace shared LP positions |
+| `H` [Vault.activate](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `activate(NFT_ID, POOL_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Activate dormant NFT liquidity |
+| `H` [Vault.increase](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `increase(NFT_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Grow existing attached LP |
+| `P` [Vault.mintDormant](CONTRACT_FUNCTIONS.md#zzzvault) | `expectedMintPolicy: bytes32`<br>`value: wei` (separate) | `mintDormant(EXPECTED_MINT_POLICY); value=MINT_PRICE_WEI wei` | Mint dormant PoPL NFT |
+| `G` [Vault.reservePool](CONTRACT_FUNCTIONS.md#zzzvault) | `pool: bytes32`<br>`bucket: uint256` | `reservePool(POOL_ID, BUCKET_ID)` | Reserve historical custody capacity |
+
+<details>
+<summary>Read functions and constants (22)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Vault.ACCOUNTING_VERSION](CONTRACT_FUNCTIONS.md#zzzvault) | None | `ACCOUNTING_VERSION()` | Read accounting version |
+| `R` [Vault.MAX_BUCKETS](CONTRACT_FUNCTIONS.md#zzzvault) | None | `MAX_BUCKETS()` | Read max buckets |
+| `R` [Vault.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzvault) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [Vault.access](CONTRACT_FUNCTIONS.md#zzzvault) | None | `access()` | Read access |
+| `R` [Vault.bucketAt](CONTRACT_FUNCTIONS.md#zzzvault) | `index: uint256` | `bucketAt(0)` | Read bucket at |
+| `R` [Vault.bucketCount](CONTRACT_FUNCTIONS.md#zzzvault) | None | `bucketCount()` | Read bucket count |
+| `R` [Vault.bucketTotalShares](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: uint256` | `bucketTotalShares(BUCKET_ID)` | Read bucket total shares |
+| `R` [Vault.canonicalChainId](CONTRACT_FUNCTIONS.md#zzzvault) | None | `canonicalChainId()` | Read canonical chain id |
+| `R` [Vault.canonicalModule](CONTRACT_FUNCTIONS.md#zzzvault) | None | `canonicalModule()` | Read canonical module |
+| `R` [Vault.contributionUSD](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: uint256` | `contributionUSD(NFT_ID)` | Read contribution usd |
+| `R` [Vault.group](CONTRACT_FUNCTIONS.md#zzzvault) | `bucket: uint256` | `group(BUCKET_ID)` | Read group |
+| `R` [Vault.homePoolId](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: uint256` | `homePoolId(BUCKET_ID)` | Read home pool id |
+| `R` [Vault.migrationBudget](CONTRACT_FUNCTIONS.md#zzzvault) | None | `migrationBudget()` | Read migration budget |
+| `R` [Vault.mintPolicyFingerprint](CONTRACT_FUNCTIONS.md#zzzvault) | None | `mintPolicyFingerprint()` | Read current mint policy |
+| `R` [Vault.mintPrice](CONTRACT_FUNCTIONS.md#zzzvault) | None | `mintPrice()` | Read mint price |
+| `R` [Vault.mintProceedsRecipient](CONTRACT_FUNCTIONS.md#zzzvault) | None | `mintProceedsRecipient()` | Read mint proceeds recipient |
+| `R` [Vault.nftBucket](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: uint256` | `nftBucket(NFT_ID)` | Read NFT custody bucket |
+| `R` [Vault.nftStatus](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256` | `nftStatus(NFT_ID)` | Read nft status |
+| `R` [Vault.poolBucket](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: bytes32` | `poolBucket(POOL_ID)` | Read pool custody bucket |
+| `R` [Vault.sequence](CONTRACT_FUNCTIONS.md#zzzvault) | None | `sequence()` | Read sequence |
+| `R` [Vault.sharesOf](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: uint256` | `sharesOf(NFT_ID)` | Read shares of |
+| `R` [Vault.totalIdle](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: address` | `totalIdle(TARGET_ADDRESS)` | Read total idle |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (12)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Vault.beginLPExit](CONTRACT_FUNCTIONS.md#zzzvault) | None | `beginLPExit()` | Commit terminal principal lock |
+| `M` [Vault.canonicalBarrier](CONTRACT_FUNCTIONS.md#zzzvault) | None | `canonicalBarrier()` | Set canonical accounting barrier |
+| `M` [Vault.canonicalSend](CONTRACT_FUNCTIONS.md#zzzvault) | `token: address`<br>`destination: address`<br>`amount: uint256` | `canonicalSend(ZZZ_ADDRESS, DESTINATION_ADDRESS, AMOUNT)` | Send authenticated canonical backing |
+| `M` [Vault.canonicalWrite](CONTRACT_FUNCTIONS.md#zzzvault) | `kind: uint8`<br>`row: bytes` | `canonicalWrite(KIND, ROW)` | Write authenticated imported accounting |
+| `M` [Vault.closeResidual](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`deadline: uint256` | `closeResidual(BUCKET_ID, UNIX_DEADLINE)` | Close residual; retain main |
+| `M` [Vault.compound](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `compound(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Reinvest designated LP reserves |
+| `M` [Vault.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `emergencyRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Force reviewed emergency consolidation |
+| `M` [Vault.exitBucketToHolders](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumETH: uint256`<br>`minimumZZZ: uint256`<br>`deadline: uint256` | `exitBucketToHolders(BUCKET_ID, MINIMUM_ETH_WEI, MINIMUM_ZZZ, UNIX_DEADLINE)` | Return bucket principal internally |
+| `M` [Vault.movePool](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`newPool: bytes32`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `movePool(BUCKET_ID, POOL_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Execute authenticated pool movement |
+| `C` [Vault.onERC721Received](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: address`<br>`input1: address`<br>`input2: uint256`<br>`input3: bytes` | `onERC721Received(TARGET_ADDRESS, TARGET_ADDRESS, INPUT2, ENCODED_BYTES)` | Read on erc721 received |
+| `M` [Vault.park](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`deadline: uint256` | `park(BUCKET_ID, UNIX_DEADLINE)` | Close LP into attributed idle |
+| `M` [Vault.resume](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`newPool: bytes32`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `resume(BUCKET_ID, POOL_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Redeploy parked LP principal |
+
+</details>
+
+<a id="zzzstrategy"></a>
+
+#### Strategy
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `K` [Strategy.applyKeeperRange](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32` | `applyKeeperRange(POOL_ID)` | Apply approved range choice |
+| `G` [Strategy.setAdditionalLossBps](CONTRACT_FUNCTIONS.md#zzzstrategy) | `limit: uint16`<br>`reviewHash: bytes32` | `setAdditionalLossBps(1, REVIEW_HASH)` | Set additional execution-loss limit |
+| `G` [Strategy.setKeeperRangePolicy](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`enabled: bool`<br>`narrowTriggerBps: uint16`<br>`widenTriggerBps: uint16`<br>`minInterval: uint32`<br>`reviewHash: bytes32` | `setKeeperRangePolicy(POOL_ID, false, NARROW_TRIGGER_BPS, WIDEN_TRIGGER_BPS, MIN_INTERVAL, REVIEW_HASH)` | Configure approved range choices |
+| `G` [Strategy.setRangeOrientation](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`orientation: uint8` | `setRangeOrientation(POOL_ID, ORIENTATION)` | Configure human-price range orientation |
+
+<details>
+<summary>Read functions and constants (27)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Strategy.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
+| `R` [Strategy.MAINTENANCE_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `MAINTENANCE_POLICY_VERSION()` | Read maintenance policy version |
+| `R` [Strategy.MAX_ADDITIONAL_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `MAX_ADDITIONAL_LOSS_BPS()` | Read max additional loss bps |
+| `R` [Strategy.PORTFOLIO_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `PORTFOLIO_VERSION()` | Read portfolio version |
+| `R` [Strategy.RANGE_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `RANGE_POLICY_VERSION()` | Read range policy version |
+| `R` [Strategy.REBALANCE_CONFIRMATION_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `REBALANCE_CONFIRMATION_VERSION()` | Read rebalance confirmation version |
+| `R` [Strategy.access](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `access()` | Read access |
+| `R` [Strategy.activeKeeperRangePolicies](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `activeKeeperRangePolicies()` | Read active keeper range policies |
+| `R` [Strategy.additionalLossBps](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `additionalLossBps()` | Read additional loss bps |
+| `R` [Strategy.compoundPlan](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256`<br>`amount0: uint256`<br>`amount1: uint256` | `compoundPlan(BUCKET_ID, AMOUNT0, AMOUNT1)` | Read compound plan |
+| `R` [Strategy.executionQualityRevision](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `executionQualityRevision()` | Read execution quality revision |
+| `R` [Strategy.keeperRangePolicy](CONTRACT_FUNCTIONS.md#zzzstrategy) | `input0: bytes32` | `keeperRangePolicy(POOL_ID)` | Read keeper range policy |
+| `R` [Strategy.keeperRangeTarget](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32` | `keeperRangeTarget(POOL_ID)` | Read keeper range target |
+| `R` [Strategy.minimumOutput](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`direction: bool`<br>`amount: uint256` | `minimumOutput(POOL_ID, DIRECTION, AMOUNT)` | Read minimum output |
+| `R` [Strategy.minimumOutputForExit](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`direction: bool`<br>`amount: uint256` | `minimumOutputForExit(POOL_ID, DIRECTION, AMOUNT)` | Read minimum output for exit |
+| `R` [Strategy.needsRebalance](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256` | `needsRebalance(BUCKET_ID)` | Check raw adjustment need |
+| `R` [Strategy.portfolioPolicy](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `portfolioPolicy()` | Read portfolio policy |
+| `R` [Strategy.rangeOrientation](CONTRACT_FUNCTIONS.md#zzzstrategy) | `input0: bytes32` | `rangeOrientation(POOL_ID)` | Read range orientation |
+| `R` [Strategy.rangeUpdatePending](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256` | `rangeUpdatePending(BUCKET_ID)` | Read range update pending |
+| `R` [Strategy.rebalanceCondition](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256` | `rebalanceCondition(BUCKET_ID)` | Read rebalance condition |
+| `R` [Strategy.rebalanceConfirmation](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `rebalanceConfirmation()` | Read rebalance confirmation |
+| `R` [Strategy.rebalanceObservation](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256` | `rebalanceObservation(BUCKET_ID)` | Read rebalance observation |
+| `R` [Strategy.rebalanceReady](CONTRACT_FUNCTIONS.md#zzzstrategy) | `id: uint256` | `rebalanceReady(BUCKET_ID)` | Read rebalance ready |
+| `R` [Strategy.swapPlan](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256` | `swapPlan(POOL_ID, AMOUNT0, AMOUNT1)` | Read swap plan |
+| `R` [Strategy.target](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32` | `target(POOL_ID)` | Read target |
+| `R` [Strategy.validateExitPrice](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32` | `validateExitPrice(POOL_ID)` | Read validate exit price |
+| `R` [Strategy.validatePrice](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32` | `validatePrice(POOL_ID)` | Read validate price |
+
+</details>
+
+<a id="zzzrebalanceconfirmation"></a>
+
+#### RebalanceConfirmation
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [RebalanceConfirmation.configure](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `secondsRequired: uint32`<br>`maximumGap: uint32`<br>`reviewed: bytes32` | `configure(600, 300, REVIEW_HASH)` | Configure sampled confirmation timing |
+| `K` [RebalanceConfirmation.observe](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `observe(BUCKET_ID)` | Record sampled trigger evidence |
+| `K` [RebalanceConfirmation.resetObservation](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `resetObservation(BUCKET_ID)` | Clear stale sampled evidence |
+| `G` [RebalanceConfirmation.setRequireReferenceExit](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `required: bool`<br>`reviewed: bytes32` | `setRequireReferenceExit(REQUIRED, REVIEWED)` | Configure independent trigger corroboration |
+
+<details>
+<summary>Read functions and constants (17)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [RebalanceConfirmation.MAX_DURATION](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `MAX_DURATION()` | Read max duration |
+| `R` [RebalanceConfirmation.REBALANCE_CONFIRMATION_VERSION](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `REBALANCE_CONFIRMATION_VERSION()` | Read rebalance confirmation version |
+| `R` [RebalanceConfirmation.access](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `access()` | Read access |
+| `R` [RebalanceConfirmation.condition](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `condition(BUCKET_ID)` | Read sampled trigger condition |
+| `R` [RebalanceConfirmation.controlFingerprint](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `poolId: bytes32` | `controlFingerprint(POOL_ID)` | Read current control identity |
+| `R` [RebalanceConfirmation.duration](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `duration()` | Read duration |
+| `R` [RebalanceConfirmation.emergencyReady](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `emergencyReady(BUCKET_ID)` | Read emergency ready |
+| `R` [RebalanceConfirmation.marketSides](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `marketSides(BUCKET_ID)` | Read market sides |
+| `R` [RebalanceConfirmation.maxObservationGap](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `maxObservationGap()` | Read max observation gap |
+| `R` [RebalanceConfirmation.observationFingerprint](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256`<br>`poolId: bytes32` | `observationFingerprint(BUCKET_ID, POOL_ID)` | Read observation fingerprint |
+| `R` [RebalanceConfirmation.observations](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `input0: uint256` | `observations(BUCKET_ID)` | Read observations |
+| `R` [RebalanceConfirmation.policyRevision](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `policyRevision()` | Read policy revision |
+| `R` [RebalanceConfirmation.ready](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `bucket: uint256` | `ready(BUCKET_ID)` | Check sampled adjustment readiness |
+| `R` [RebalanceConfirmation.referenceReviewHash](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `referenceReviewHash()` | Read reference review hash |
+| `R` [RebalanceConfirmation.requireReferenceExit](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `requireReferenceExit()` | Read require reference exit |
+| `R` [RebalanceConfirmation.reviewHash](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `reviewHash()` | Read review hash |
+| `R` [RebalanceConfirmation.strategy](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `strategy()` | Read strategy |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [RebalanceConfirmation.invalidatePolicy](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | None | `invalidatePolicy()` | Invalidate sampled policy evidence |
+
+</details>
+
+<a id="zzzcompounder"></a>
+
+#### Compounder
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `K` [Compounder.compound](CONTRACT_FUNCTIONS.md#zzzcompounder) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `compound(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Reinvest designated LP reserves |
+
+<details>
+<summary>Read functions and constants (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Compounder.access](CONTRACT_FUNCTIONS.md#zzzcompounder) | None | `access()` | Read access |
+
+</details>
+
+<a id="zzzbuyback"></a>
+
+#### Buyback
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `K` [Buyback.execute](CONTRACT_FUNCTIONS.md#zzzbuyback) | `token: address`<br>`amount: uint256`<br>`poolId: bytes32`<br>`deadline: uint256` | `execute(ZZZ_ADDRESS, AMOUNT, POOL_ID, UNIX_DEADLINE)` | Execute guarded reserve buyback |
+| `G` [Buyback.setMaximumTradeUSD](CONTRACT_FUNCTIONS.md#zzzbuyback) | `limit: uint256`<br>`reviewHash: bytes32` | `setMaximumTradeUSD(1, REVIEW_HASH)` | Set reviewed buyback maximum |
+| `G` [Buyback.setOperatingTradeUSD](CONTRACT_FUNCTIONS.md#zzzbuyback) | `limit: uint256` | `setOperatingTradeUSD(1)` | Set buyback operating amount |
+
+<details>
+<summary>Read functions and constants (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Buyback.access](CONTRACT_FUNCTIONS.md#zzzbuyback) | None | `access()` | Read access |
+| `R` [Buyback.maxTradeUSD](CONTRACT_FUNCTIONS.md#zzzbuyback) | None | `maxTradeUSD()` | Read max trade usd |
+| `R` [Buyback.operatingTradeUSD](CONTRACT_FUNCTIONS.md#zzzbuyback) | None | `operatingTradeUSD()` | Read operating trade usd |
+| `R` [Buyback.zzz](CONTRACT_FUNCTIONS.md#zzzbuyback) | None | `zzz()` | Read zzz |
+
+</details>
+
+<a id="calls-policy"></a>
+
+### Pools, ranges, execution and prices
+
+<a id="zzzpoolregistry"></a>
+
+#### PoolRegistry
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [PoolRegistry.configureNative](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `config` [PoolConfig](#input-poolconfig) | `configureNative([["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"])` | Admit configured ETH/ZZZ pool |
+| `G` [PoolRegistry.disablePool](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32`<br>`disableDeposits: bool`<br>`disableOperations: bool` | `disablePool(POOL_ID, DISABLE_DEPOSITS, DISABLE_OPERATIONS)` | Stop selected pool operations |
+
+<details>
+<summary>Read functions and constants (11)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [PoolRegistry.SELECTED_NATIVE_POOL](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `SELECTED_NATIVE_POOL()` | Read selected native pool |
+| `R` [PoolRegistry.access](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `access()` | Read access |
+| `R` [PoolRegistry.accounting](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32` | `accounting(POOL_ID)` | Read accounting |
+| `R` [PoolRegistry.activationAssets](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `activationAssets()` | Read activation assets |
+| `R` [PoolRegistry.activationEntry](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `activationEntry()` | Read activation entry |
+| `R` [PoolRegistry.configurationRevision](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `configurationRevision()` | Read configuration revision |
+| `R` [PoolRegistry.contributionPool](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | None | `contributionPool()` | Read current contribution pool |
+| `R` [PoolRegistry.contributionValue](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256` | `contributionValue(POOL_ID, AMOUNT0, AMOUNT1)` | Read contribution value |
+| `R` [PoolRegistry.exists](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `input0: bytes32` | `exists(POOL_ID)` | Read exists |
+| `R` [PoolRegistry.get](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32` | `get(POOL_ID)` | Read get |
+| `R` [PoolRegistry.isNativePool](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32` | `isNativePool(POOL_ID)` | Read is native pool |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [PoolRegistry.applyKeeperRange](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `poolId: bytes32`<br>`width: uint16` | `applyKeeperRange(POOL_ID, WIDTH)` | Apply approved range choice |
+
+</details>
+
+<a id="zzzactivationassets"></a>
+
+#### ActivationAssets
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `B` [ActivationAssets.configureZZZ](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `configureZZZ(ZZZ_ADDRESS, EXPECTED_CODE_HASH, REVIEW_HASH)` | Bind fixed ZZZ identity |
+| `G` [ActivationAssets.setAsset](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address`<br>`enabled: bool`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setAsset(ZZZ_ADDRESS, true, EXPECTED_CODE_HASH, REVIEW_HASH)` | Enable or disable contribution asset |
+
+<details>
+<summary>Read functions and constants (11)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ActivationAssets.NATIVE_ASSET_CODE_HASH](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `NATIVE_ASSET_CODE_HASH()` | Read native asset code hash |
+| `R` [ActivationAssets.SOURCE_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `SOURCE_POLICY_VERSION()` | Read source policy version |
+| `R` [ActivationAssets.access](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `access()` | Read access |
+| `R` [ActivationAssets.activePolicy](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `input0: address` | `activePolicy(TARGET_ADDRESS)` | Read active policy |
+| `R` [ActivationAssets.isContributionAsset](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address` | `isContributionAsset(ZZZ_ADDRESS)` | Read is contribution asset |
+| `R` [ActivationAssets.policies](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `input0: bytes32` | `policies(ASSET_POLICY_ID)` | Read policies |
+| `R` [ActivationAssets.policyAt](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `ordinal: uint256` | `policyAt(1)` | Read policy at |
+| `R` [ActivationAssets.policyCount](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `policyCount()` | Read policy count |
+| `R` [ActivationAssets.registry](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `registry()` | Read registry |
+| `R` [ActivationAssets.value](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address`<br>`amount: uint256` | `value(ZZZ_ADDRESS, AMOUNT)` | Value reviewed asset amount |
+| `R` [ActivationAssets.zzz](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `zzz()` | Read zzz |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [ActivationAssets.admitPoolAsset](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address` | `admitPoolAsset(ZZZ_ADDRESS)` | Register pool asset identity |
+
+</details>
+
+<a id="zzzportfoliopolicy"></a>
+
+#### PortfolioPolicy
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [PortfolioPolicy.setMode](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`next: bool`<br>`reviewed: bytes32` | `setMode(POOL_ID, NEXT, REVIEWED)` | Enable or disable residual |
+| `G` [PortfolioPolicy.configureMainAllocation](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`next: uint16`<br>`reviewed: bytes32` | `configureMainAllocation(POOL_ID, 6000, REVIEWED)` | Configure minimum main allocation |
+| `G` [PortfolioPolicy.configureResidualSide](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`next: uint16`<br>`reviewed: bytes32` | `configureResidualSide(POOL_ID, 5000, REVIEW_HASH)` | Configure residual side geometry |
+| `G` [PortfolioPolicy.configureResidualGap](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`next: uint24`<br>`reviewed: bytes32` | `configureResidualGap(POOL_ID, 1, REVIEWED)` | Configure residual spacing gap |
+| `G` [PortfolioPolicy.setTriggerBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `next: uint16`<br>`reviewed: bytes32` | `setTriggerBps(8500, REVIEW_HASH)` | Configure portfolio adjustment threshold |
+
+<details>
+<summary>Read functions and constants (25)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [PortfolioPolicy.DEFAULT_RESIDUAL_SIDE_BPS](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `DEFAULT_RESIDUAL_SIDE_BPS()` | Read default residual side bps |
+| `R` [PortfolioPolicy.HARD_MAXIMUM_RESIDUAL_BPS](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `HARD_MAXIMUM_RESIDUAL_BPS()` | Read hard maximum residual bps |
+| `R` [PortfolioPolicy.HARD_MINIMUM_MAIN_BPS](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `HARD_MINIMUM_MAIN_BPS()` | Read hard minimum main bps |
+| `R` [PortfolioPolicy.PORTFOLIO_VERSION](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `PORTFOLIO_VERSION()` | Read portfolio version |
+| `R` [PortfolioPolicy.access](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `access()` | Read access |
+| `R` [PortfolioPolicy.appliedRevision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: uint256` | `appliedRevision(LP_TOKEN_ID)` | Read applied revision |
+| `R` [PortfolioPolicy.configurationPending](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `bucket: uint256` | `configurationPending(BUCKET_ID)` | Read configuration pending |
+| `R` [PortfolioPolicy.controlFingerprint](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `controlFingerprint(POOL_ID)` | Read current control identity |
+| `R` [PortfolioPolicy.controlRevision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `controlRevision(POOL_ID)` | Read control revision |
+| `R` [PortfolioPolicy.enabled](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `enabled(POOL_ID)` | Read enabled |
+| `R` [PortfolioPolicy.geometryRevision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `geometryRevision(POOL_ID)` | Read geometry revision |
+| `R` [PortfolioPolicy.maximumResidualBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `maximumResidualBps(POOL_ID)` | Read maximum residual bps |
+| `R` [PortfolioPolicy.minimumMainBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `minimumMainBps(POOL_ID)` | Read minimum main bps |
+| `R` [PortfolioPolicy.modeReviewHash](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `modeReviewHash(POOL_ID)` | Read mode review hash |
+| `R` [PortfolioPolicy.range](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `c` [PoolConfig](#input-poolconfig)<br>`referenceX96: uint160`<br>`orientation: uint8` | `range([["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"], REFERENCE_X96, ORIENTATION)` | Read range |
+| `R` [PortfolioPolicy.residualGapSpacings](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `residualGapSpacings(POOL_ID)` | Read residual gap spacings |
+| `R` [PortfolioPolicy.residualRange](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`current: uint160`<br>`mainLower: int24`<br>`mainUpper: int24`<br>`residual0: bool` | `residualRange(POOL_ID, CURRENT, MAIN_LOWER, MAIN_UPPER, RESIDUAL0)` | Read residual range |
+| `R` [PortfolioPolicy.residualReviewHash](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `residualReviewHash(POOL_ID)` | Read residual review hash |
+| `R` [PortfolioPolicy.residualSideBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `residualSideBps(POOL_ID)` | Read residual side bps |
+| `R` [PortfolioPolicy.revision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `revision()` | Read revision |
+| `R` [PortfolioPolicy.strategy](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `strategy()` | Read strategy |
+| `R` [PortfolioPolicy.thresholdBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `thresholdBps()` | Read threshold bps |
+| `R` [PortfolioPolicy.thresholdSide](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `center: uint160`<br>`lower: int24`<br>`upper: int24`<br>`price: uint160` | `thresholdSide(CENTER, LOWER_TICK, UPPER_TICK, PRICE)` | Read threshold side |
+| `R` [PortfolioPolicy.triggerReviewHash](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `triggerReviewHash()` | Read trigger review hash |
+| `R` [PortfolioPolicy.triggerRevision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `triggerRevision()` | Read trigger revision |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [PortfolioPolicy.recordApplied](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `main: uint256`<br>`pool: bytes32` | `recordApplied(LP_TOKEN_ID, POOL_ID)` | Record applied portfolio policy |
+
+</details>
+
+<a id="zzzprotocolpolicy"></a>
+
+#### ProtocolPolicy
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [ProtocolPolicy.setEntryPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `activationUSD: uint128`<br>`growthUSD: uint128`<br>`maxIdleBps: uint16`<br>`reviewHash: bytes32` | `setEntryPolicy(100000000000000000000, 5000000000000000000, 500, REVIEW_HASH)` | Set future contribution minima |
+| `G` [ProtocolPolicy.setMaintenancePolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `maxIdleBps: uint16`<br>`reviewHash: bytes32` | `setMaintenancePolicy(500, REVIEW_HASH)` | Set maintenance idle ceiling |
+| `G` [ProtocolPolicy.setGasPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `payoutGas: uint32`<br>`sourceCallGas: uint32`<br>`royaltySyncGas: uint32`<br>`reviewHash: bytes32` | `setGasPolicy(PAYOUT_GAS, SOURCE_CALL_GAS, ROYALTY_SYNC_GAS, REVIEW_HASH)` | Set bounded callback gas |
+| `G` [ProtocolPolicy.setMintPrice](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `price: uint128`<br>`reviewHash: bytes32` | `setMintPrice(50000000000000000, REVIEW_HASH)` | Set future mint price |
+| `G` [ProtocolPolicy.proposeMintRecipient](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `candidate: address`<br>`reviewHash: bytes32` | `proposeMintRecipient(CANDIDATE_ADDRESS, REVIEW_HASH)` | Propose future mint recipient |
+| `N` [ProtocolPolicy.acceptMintRecipient](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `acceptMintRecipient()` | Accept future mint proceeds |
+| `G` [ProtocolPolicy.setEvolutionThresholds](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `enhancedUSD: uint128`<br>`singularityUSD: uint128`<br>`reviewHash: bytes32` | `setEvolutionThresholds(1000000000000000000000, 10000000000000000000000, REVIEW_HASH)` | Set cosmetic evolution thresholds |
+| `B` [ProtocolPolicy.configureRandomness](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `coordinator: address`<br>`expectedCodeHash: bytes32`<br>`keyHash: bytes32`<br>`subscriptionId: uint256`<br>`confirmations: uint16`<br>`callbackGas: uint32`<br>`nativePayment: bool`<br>`reviewHash: bytes32` | `configureRandomness(COORDINATOR_ADDRESS, EXPECTED_CODE_HASH, KEY_HASH, SUBSCRIPTION_ID, CONFIRMATIONS, CALLBACK_GAS, NATIVE_PAYMENT, REVIEW_HASH)` | Configure initial randomness provider |
+| `G` [ProtocolPolicy.setRandomnessRequestSettings](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `confirmations: uint16`<br>`callbackGas: uint32`<br>`reviewHash: bytes32` | `setRandomnessRequestSettings(CONFIRMATIONS, CALLBACK_GAS, REVIEW_HASH)` | Set future randomness request settings |
+| `G` [ProtocolPolicy.rotateRandomness](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `coordinator: address`<br>`expectedCodeHash: bytes32`<br>`keyHash: bytes32`<br>`subscriptionId: uint256`<br>`confirmations: uint16`<br>`callbackGas: uint32`<br>`nativePayment: bool`<br>`reviewHash: bytes32` | `rotateRandomness(COORDINATOR_ADDRESS, EXPECTED_CODE_HASH, KEY_HASH, SUBSCRIPTION_ID, CONFIRMATIONS, CALLBACK_GAS, NATIVE_PAYMENT, REVIEW_HASH)` | Rotate fully drained provider |
+
+<details>
+<summary>Read functions and constants (24)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ProtocolPolicy.MAX_CALL_GAS](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `MAX_CALL_GAS()` | Read max call gas |
+| `R` [ProtocolPolicy.MAX_IDLE_BPS](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `MAX_IDLE_BPS()` | Read max idle bps |
+| `R` [ProtocolPolicy.MIN_CALL_GAS](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `MIN_CALL_GAS()` | Read min call gas |
+| `R` [ProtocolPolicy.PROTOCOL_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `PROTOCOL_POLICY_VERSION()` | Read protocol policy version |
+| `R` [ProtocolPolicy.access](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `access()` | Read access |
+| `R` [ProtocolPolicy.configurationHash](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `configurationHash()` | Read configuration hash |
+| `R` [ProtocolPolicy.configurationRevision](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `configurationRevision()` | Read configuration revision |
+| `R` [ProtocolPolicy.entryFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `entryFingerprint()` | Read current contribution policy |
+| `R` [ProtocolPolicy.entryPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `entryPolicy()` | Read entry policy |
+| `R` [ProtocolPolicy.gasFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `gasFingerprint()` | Read gas fingerprint |
+| `R` [ProtocolPolicy.gasPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `gasPolicy()` | Read gas policy |
+| `R` [ProtocolPolicy.maintenanceFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `maintenanceFingerprint()` | Read maintenance fingerprint |
+| `R` [ProtocolPolicy.maintenancePolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `maintenancePolicy()` | Read maintenance policy |
+| `R` [ProtocolPolicy.metadataFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `metadataFingerprint()` | Read metadata fingerprint |
+| `R` [ProtocolPolicy.metadataPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `metadataPolicy()` | Read metadata policy |
+| `R` [ProtocolPolicy.mintFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `mintFingerprint()` | Read mint fingerprint |
+| `R` [ProtocolPolicy.payoutGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `payoutGas()` | Read payout gas |
+| `R` [ProtocolPolicy.royaltySyncGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `royaltySyncGas()` | Read royalty sync gas |
+| `R` [ProtocolPolicy.saleFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `saleFingerprint()` | Read sale fingerprint |
+| `R` [ProtocolPolicy.salePolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `salePolicy()` | Read sale policy |
+| `R` [ProtocolPolicy.sourceCallGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `sourceCallGas()` | Read source call gas |
+| `R` [ProtocolPolicy.validateMintRecipient](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `validateMintRecipient()` | Read validate mint recipient |
+| `R` [ProtocolPolicy.vrfPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `vrfPolicy()` | Read vrf policy |
+| `R` [ProtocolPolicy.vrfRevision](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `vrfRevision()` | Read vrf revision |
+
+</details>
+
+<a id="zzzoracle"></a>
+
+#### Oracle
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [Oracle.setDualFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`primary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`secondary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`maxDeviationBps: uint16`<br>`reviewHash: bytes32` | `setDualFeed(ZZZ_ADDRESS, ["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"], ["SECONDARY_FEED_ADDRESS", "SECONDARY_CODE_HASH", "SECONDARY_INDEPENDENCE_ID", "SECONDARY_MAX_AGE", "SECONDARY_FEED_DECIMALS"], 300, REVIEW_HASH)` | Configure independent price sources |
+| `G` [Oracle.setSequencerFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `source: address`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setSequencerFeed(SOURCE_ADDRESS, EXPECTED_CODE_HASH, REVIEW_HASH)` | Configure sequencer outage guard |
+
+<details>
+<summary>Read functions and constants (21)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Oracle.FINGERPRINT_DOMAIN](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `FINGERPRINT_DOMAIN()` | Read fingerprint domain |
+| `R` [Oracle.MAX_DEVIATION_BPS](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `MAX_DEVIATION_BPS()` | Read max deviation bps |
+| `R` [Oracle.PRICING_VERSION](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `PRICING_VERSION()` | Read pricing version |
+| `R` [Oracle.SEQUENCER_GRACE](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `SEQUENCER_GRACE()` | Read sequencer grace |
+| `R` [Oracle.access](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `access()` | Read access |
+| `R` [Oracle.activePolicy](CONTRACT_FUNCTIONS.md#zzzoracle) | `input0: address` | `activePolicy(TARGET_ADDRESS)` | Read active policy |
+| `R` [Oracle.activeSequencerPolicy](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `activeSequencerPolicy()` | Read active sequencer policy |
+| `R` [Oracle.contributionPricing](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `contributionPricing()` | Read contribution pricing |
+| `R` [Oracle.policy](CONTRACT_FUNCTIONS.md#zzzoracle) | `id: bytes32` | `policy(PRICE_POLICY_ID)` | Read policy |
+| `R` [Oracle.policyAt](CONTRACT_FUNCTIONS.md#zzzoracle) | `ordinal: uint256` | `policyAt(1)` | Read policy at |
+| `R` [Oracle.policyCount](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `policyCount()` | Read policy count |
+| `R` [Oracle.price](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address` | `price(ZZZ_ADDRESS)` | Read price |
+| `R` [Oracle.priceBounds](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address` | `priceBounds(ZZZ_ADDRESS)` | Read independent price bounds |
+| `R` [Oracle.quote](CONTRACT_FUNCTIONS.md#zzzoracle) | `input: address`<br>`output: address`<br>`amount: uint256` | `quote(INPUT_ADDRESS, OUTPUT_ADDRESS, AMOUNT)` | Quote reviewed asset value |
+| `R` [Oracle.referenceX96](CONTRACT_FUNCTIONS.md#zzzoracle) | `token0: address`<br>`token1: address` | `referenceX96(0x0000000000000000000000000000000000000000, ZZZ_ADDRESS)` | Read reference x96 |
+| `R` [Oracle.sequencerFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `sequencerFeed()` | Read sequencer feed |
+| `R` [Oracle.sequencerPolicies](CONTRACT_FUNCTIONS.md#zzzoracle) | `input0: bytes32` | `sequencerPolicies(SEQUENCER_POLICY_ID)` | Read sequencer policies |
+| `R` [Oracle.sequencerPolicyAt](CONTRACT_FUNCTIONS.md#zzzoracle) | `ordinal: uint256` | `sequencerPolicyAt(1)` | Read sequencer policy at |
+| `R` [Oracle.sequencerPolicyCount](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `sequencerPolicyCount()` | Read sequencer policy count |
+| `R` [Oracle.tokenDecimals](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address` | `tokenDecimals(ZZZ_ADDRESS)` | Read token decimals |
+| `R` [Oracle.value](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`amount: uint256` | `value(ZZZ_ADDRESS, AMOUNT)` | Value reviewed asset amount |
+
+</details>
+
+<a id="zzzlpbalancer"></a>
+
+#### LPBalancer
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [LPBalancer.configureExecutionPools](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `pools: bytes32[]`<br>`reviewHash: bytes32` | `configureExecutionPools(["POOLS"], REVIEWED_ROUTE_ID)` | Configure reviewed execution venues |
+| `G` [LPBalancer.configureSolver](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `iterations: uint8`<br>`gasLimit: uint32`<br>`reviewHash: bytes32` | `configureSolver(ITERATIONS, GAS_LIMIT, REVIEW_HASH)` | Configure bounded sizing solver |
+
+<details>
+<summary>Read functions and constants (18)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [LPBalancer.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
+| `R` [LPBalancer.LP_ROUTING_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `LP_ROUTING_VERSION()` | Read lp routing version |
+| `R` [LPBalancer.MAX_ADDITIONAL_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `MAX_ADDITIONAL_LOSS_BPS()` | Read max additional loss bps |
+| `R` [LPBalancer.MAX_EXECUTION_POOLS](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `MAX_EXECUTION_POOLS()` | Read max execution pools |
+| `R` [LPBalancer.access](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `access()` | Read access |
+| `R` [LPBalancer.additionalLossBps](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `additionalLossBps()` | Read additional loss bps |
+| `R` [LPBalancer.balanceMath](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `balanceMath()` | Read balance math |
+| `R` [LPBalancer.deploymentAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256` | `deploymentAmounts(CURRENT, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1)` | Read deployment amounts |
+| `R` [LPBalancer.executionPoolAt](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `index: uint256` | `executionPoolAt(0)` | Read execution pool at |
+| `R` [LPBalancer.executionPoolCount](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `executionPoolCount()` | Read execution pool count |
+| `R` [LPBalancer.executionRevision](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `executionRevision()` | Read execution revision |
+| `R` [LPBalancer.liquidityManager](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `liquidityManager()` | Read liquidity manager |
+| `R` [LPBalancer.policyFingerprint](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `target: bytes32`<br>`venue: bytes32` | `policyFingerprint(POOL_ID, POOL_ID)` | Read policy fingerprint |
+| `R` [LPBalancer.poolManager](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `poolManager()` | Read pool manager |
+| `R` [LPBalancer.principalAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `id: uint256` | `principalAmounts(LP_TOKEN_ID)` | Read principal amounts |
+| `R` [LPBalancer.quoteGasLimit](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `quoteGasLimit()` | Read quote gas limit |
+| `R` [LPBalancer.searchIterations](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `searchIterations()` | Read search iterations |
+| `R` [LPBalancer.stateView](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `stateView()` | Read state view |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (5)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LPBalancer.plan](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `target: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256` | `plan(TARGET, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1)` | Plan bounded balancing operation |
+| `M` [LPBalancer.planReplacement](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `target: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256`<br>`mainFloor: uint16`<br>`marks: uint256[4]` | `planReplacement(POOL_ID, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1, MAIN_FLOOR, ["MARKS", "MARKS", "MARKS", "MARKS"])` | Plan replacement LP inventory |
+| `M` [LPBalancer.quoteCandidate](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `key` [PoolKey](#input-poolkey)<br>`direction: bool`<br>`amount: uint256` | `quoteCandidate(["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], DIRECTION, AMOUNT)` | Quote candidate execution venue |
+| `M` [LPBalancer.routePlan](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`id: bytes32`<br>`direction: bool`<br>`requireActive: bool` | `routePlan(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], POOL_ID, DIRECTION, REQUIRE_ACTIVE)` | Choose reviewed balancing route |
+| `C` [LPBalancer.unlockCallback](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `data: bytes` | `unlockCallback(0x)` | Settle authenticated core callback |
+
+</details>
+
+<a id="zzzmigrationbudget"></a>
+
+#### MigrationBudget
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [MigrationBudget.setCompoundInterval](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `poolId: bytes32`<br>`interval: uint32` | `setCompoundInterval(POOL_ID, 3600)` | Set standalone compounding interval |
+| `G` [MigrationBudget.setLossLimits](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `contribution: uint16`<br>`maintenance: uint16` | `setLossLimits(200, 300)` | Set contribution/maintenance loss limits |
+
+<details>
+<summary>Read functions and constants (41)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [MigrationBudget.DEFAULT_COMPOUND_INTERVAL](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `DEFAULT_COMPOUND_INTERVAL()` | Read default compound interval |
+| `R` [MigrationBudget.EMERGENCY_REBALANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `EMERGENCY_REBALANCE_VERSION()` | Read emergency rebalance version |
+| `R` [MigrationBudget.IDLE_COMPOUNDING_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `IDLE_COMPOUNDING_VERSION()` | Read idle compounding version |
+| `R` [MigrationBudget.MAX_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `MAX_LOSS_BPS()` | Read max loss bps |
+| `R` [MigrationBudget.REBALANCE_CONFIRMATION_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `REBALANCE_CONFIRMATION_VERSION()` | Read rebalance confirmation version |
+| `R` [MigrationBudget.access](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `access()` | Read access |
+| `R` [MigrationBudget.assertDeployed](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `assertDeployed(BUCKET_ID)` | Read assert deployed |
+| `R` [MigrationBudget.assertIdle](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `assertIdle(BUCKET_ID)` | Read assert idle |
+| `R` [MigrationBudget.assertIdleLoss](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`beforeValue: uint256` | `assertIdleLoss(BUCKET_ID, BEFORE_VALUE)` | Read assert idle loss |
+| `R` [MigrationBudget.assertPut](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`a0: uint256`<br>`a1: uint256`<br>`spent0: uint256`<br>`spent1: uint256`<br>`before0: uint256`<br>`before1: uint256` | `assertPut(BUCKET_ID, A0, A1, SPENT0, SPENT1, BEFORE0, BEFORE1)` | Read assert put |
+| `R` [MigrationBudget.balanceContext](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `balanceContext(BUCKET_ID)` | Read balance context |
+| `R` [MigrationBudget.compositionEpoch](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `input0: uint256` | `compositionEpoch(BUCKET_ID)` | Read composition epoch |
+| `R` [MigrationBudget.compoundInterval](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `poolId: bytes32` | `compoundInterval(POOL_ID)` | Read compound interval |
+| `R` [MigrationBudget.compoundReady](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `compoundReady(BUCKET_ID)` | Read compound ready |
+| `R` [MigrationBudget.contributionLossBps](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `contributionLossBps()` | Read contribution loss bps |
+| `R` [MigrationBudget.emergencyActive](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyActive()` | Read emergency active |
+| `R` [MigrationBudget.emergencyBucket](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyBucket()` | Read emergency bucket |
+| `R` [MigrationBudget.emergencyChecks](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyChecks()` | Read emergency checks |
+| `R` [MigrationBudget.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyFingerprint()` | Read emergency fingerprint |
+| `R` [MigrationBudget.historicalCompoundValue](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `historicalCompoundValue(BUCKET_ID)` | Read historical compound value |
+| `R` [MigrationBudget.idleValue](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `idleValue(BUCKET_ID)` | Read idle value |
+| `R` [MigrationBudget.lastCompound](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `input0: uint256` | `lastCompound(BUCKET_ID)` | Read last compound |
+| `R` [MigrationBudget.maintenanceBucket](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `maintenanceBucket()` | Read maintenance bucket |
+| `R` [MigrationBudget.maintenanceLossBps](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `maintenanceLossBps()` | Read maintenance loss bps |
+| `R` [MigrationBudget.maintenancePrices](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `maintenancePrices()` | Read maintenance prices |
+| `R` [MigrationBudget.mintTarget](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `mintTarget(BUCKET_ID)` | Read mint target |
+| `R` [MigrationBudget.nav](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `nav(BUCKET_ID)` | Read nav |
+| `R` [MigrationBudget.poolTokens](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `poolId: bytes32` | `poolTokens(POOL_ID)` | Read pool tokens |
+| `R` [MigrationBudget.validateCanonicalWriter](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `caller: address` | `validateCanonicalWriter(CALLER_ADDRESS)` | Read validate canonical writer |
+| `R` [MigrationBudget.validateEmergency](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `bucket: uint256` | `validateEmergency(BUCKET_ID)` | Read validate emergency |
+| `R` [MigrationBudget.validateHolderExit](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`migrationCaller: address` | `validateHolderExit(BUCKET_ID, MIGRATION_CALLER_ADDRESS)` | Read validate holder exit |
+| `R` [MigrationBudget.validateLPReceiver](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `sender: address` | `validateLPReceiver(SENDER_ADDRESS)` | Read validate lpreceiver |
+| `R` [MigrationBudget.validateMove](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`nextPool: bytes32`<br>`minimumLiquidity: uint128` | `validateMove(BUCKET_ID, POOL_ID, MINIMUM_LIQUIDITY)` | Read validate move |
+| `R` [MigrationBudget.validateNativeSender](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `sender: address` | `validateNativeSender(SENDER_ADDRESS)` | Read validate native sender |
+| `R` [MigrationBudget.validateOwner](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`caller: address`<br>`minted: bool`<br>`activation: bool` | `validateOwner(NFT_ID, CALLER_ADDRESS, MINTED, ACTIVATION)` | Read validate owner |
+| `R` [MigrationBudget.validateRebalance](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`minimumLiquidity: uint128` | `validateRebalance(BUCKET_ID, MINIMUM_LIQUIDITY)` | Read validate rebalance |
+| `R` [MigrationBudget.validateReservation](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `poolId: bytes32`<br>`bucket: uint256` | `validateReservation(POOL_ID, BUCKET_ID)` | Read validate reservation |
+| `R` [MigrationBudget.validateResidualClose](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `validateResidualClose(BUCKET_ID)` | Read validate residual close |
+| `R` [MigrationBudget.validateUnwind](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `validateUnwind(BUCKET_ID)` | Read validate unwind |
+| `R` [MigrationBudget.valueBucket](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `bucket: uint256`<br>`amount0: uint256`<br>`amount1: uint256` | `valueBucket(BUCKET_ID, AMOUNT0, AMOUNT1)` | Read value bucket |
+| `R` [MigrationBudget.vault](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `vault()` | Read vault |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [MigrationBudget.beginEmergency](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `bucket: uint256`<br>`checks: uint8` | `beginEmergency(BUCKET_ID, 31)` | Begin reviewed emergency context |
+| `M` [MigrationBudget.checkpoint](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`phase: uint8` | `checkpoint(BUCKET_ID, PHASE)` | Capture maintenance valuation |
+| `M` [MigrationBudget.contributionNav](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `contributionNav(BUCKET_ID)` | Measure incumbent attributed NAV |
+| `M` [MigrationBudget.contributionResult](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `bucket: uint256`<br>`inputUSD: uint256`<br>`supply: uint256`<br>`incumbentNAV: uint256`<br>`incumbentDeployed: uint256`<br>`deployed: uint256`<br>`idle: uint256`<br>`limits: uint32` | `contributionResult(BUCKET_ID, INPUT_USD, SUPPLY, INCUMBENT_NAV, INCUMBENT_DEPLOYED, DEPLOYED, IDLE, LIMITS)` | Verify contribution deployment result |
+| `M` [MigrationBudget.endEmergency](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `endEmergency()` | Close emergency operation context |
+| `M` [MigrationBudget.importComposition](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`epoch: uint64` | `importComposition(BUCKET_ID, EPOCH)` | Import physical portfolio accounting |
+| `M` [MigrationBudget.recordComposition](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `recordComposition(BUCKET_ID)` | Record physical portfolio accounting |
+| `M` [MigrationBudget.validateContribution](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256`<br>`bucket: uint256`<br>`inputUSD: uint256`<br>`inputTotal: uint256`<br>`minimumLiquidity: uint128`<br>`activation: bool` | `validateContribution(NFT_ID, BUCKET_ID, INPUT_USD, INPUT_TOTAL, MINIMUM_LIQUIDITY, ACTIVATION)` | Verify isolated contribution floors |
+
+</details>
+
+<a id="calls-revenue"></a>
+
+### LP rewards, royalties and claims
+
+<a id="zzzfeecontroller"></a>
+
+#### FeeController
+
+<details>
+<summary>Read functions and constants (9)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [FeeController.FEE_INTAKE_VERSION](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | None | `FEE_INTAKE_VERSION()` | Read fee intake version |
+| `R` [FeeController.access](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | None | `access()` | Read access |
+| `R` [FeeController.accounted](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `input0: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
+| `R` [FeeController.buybackBalance](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `input0: address` | `buybackBalance(TARGET_ADDRESS)` | Read buyback balance |
+| `R` [FeeController.canonicalBucketRecord](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `id: uint256`<br>`asset: address` | `canonicalBucketRecord(BUCKET_ID, ASSET_ADDRESS)` | Read canonical bucket record |
+| `R` [FeeController.canonicalModule](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | None | `canonicalModule()` | Read canonical module |
+| `R` [FeeController.canonicalState](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | None | `canonicalState()` | Read canonical state |
+| `R` [FeeController.compoundBalance](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `input0: uint256`<br>`input1: address` | `compoundBalance(BUCKET_ID, TARGET_ADDRESS)` | Read compound balance |
+| `R` [FeeController.dust](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `input0: uint256`<br>`input1: address` | `dust(BUCKET_ID, TARGET_ADDRESS)` | Read dust |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [FeeController.allocate](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `id: uint256`<br>`token: address`<br>`amount: uint256`<br>`value: wei` (separate) | `allocate(BUCKET_ID, ZZZ_ADDRESS, AMOUNT); value=SETTLEMENT_WEI wei` | Split actual harvested fees |
+| `M` [FeeController.canonicalBarrier](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | None | `canonicalBarrier()` | Set canonical accounting barrier |
+| `M` [FeeController.canonicalFlush](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `id: uint256`<br>`asset: address` | `canonicalFlush(BUCKET_ID, ASSET_ADDRESS)` | Flush captured accounting dust |
+| `M` [FeeController.canonicalSend](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `asset: address`<br>`destination: address`<br>`amount: uint256` | `canonicalSend(ASSET_ADDRESS, DESTINATION_ADDRESS, AMOUNT)` | Send authenticated canonical backing |
+| `M` [FeeController.canonicalWrite](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `kind: uint8`<br>`record: bytes` | `canonicalWrite(KIND, RECORD)` | Write authenticated imported accounting |
+| `M` [FeeController.flushDust](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `id: uint256`<br>`token: address` | `flushDust(BUCKET_ID, ZZZ_ADDRESS)` | Settle incumbent fee dust |
+| `M` [FeeController.releaseBuyback](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `token: address`<br>`amount: uint256` | `releaseBuyback(ZZZ_ADDRESS, AMOUNT)` | Release designated buyback reserve |
+| `M` [FeeController.releaseCompound](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `id: uint256`<br>`token: address` | `releaseCompound(BUCKET_ID, ZZZ_ADDRESS)` | Release designated compound reserve |
+
+</details>
+
+<a id="zzzmembership"></a>
+
+#### Membership
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Membership.access](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `access()` | Read access |
+| `R` [Membership.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [Membership.canonicalCount](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalCount()` | Read canonical count |
+| `R` [Membership.canonicalExport](CONTRACT_FUNCTIONS.md#zzzmembership) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [Membership.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [Membership.eligible](CONTRACT_FUNCTIONS.md#zzzmembership) | `input0: uint256` | `eligible(NFT_ID)` | Read eligible |
+| `R` [Membership.totalEligible](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `totalEligible()` | Read total eligible |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (6)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Membership.activate](CONTRACT_FUNCTIONS.md#zzzmembership) | `id: uint256` | `activate(NFT_ID)` | Register equal collective membership |
+| `M` [Membership.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [Membership.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [Membership.canonicalImport](CONTRACT_FUNCTIONS.md#zzzmembership) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [Membership.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `canonicalSettle()` | Settle captured reward indexes |
+| `M` [Membership.settleDust](CONTRACT_FUNCTIONS.md#zzzmembership) | None | `settleDust()` | Settle pre-membership fee dust |
+
+</details>
+
+<a id="zzzrewards"></a>
+
+#### Rewards
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [Rewards.addAsset](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address` | `addAsset(ROYALTY_TOKEN_ADDRESS)` | Admit reward currency |
+| `B` [Rewards.bindConverter](CONTRACT_FUNCTIONS.md#zzzrewards) | `candidate: address` | `bindConverter(CANDIDATE_ADDRESS)` | Bind conversion implementation once |
+| `H` [Rewards.claim](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address` | `claim(NFT_ID, 0x0000000000000000000000000000000000000000)` | Claim current owner's rewards |
+| `K` [Rewards.convertBatch](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address`<br>`ids: uint256[]`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convertBatch(ZZZ_ADDRESS, ["IDS"], REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert earned balances proportionally |
+
+<details>
+<summary>Read functions and constants (25)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Rewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_ASSETS()` | Read max assets |
+| `R` [Rewards.MAX_CONVERSION_NFTS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_CONVERSION_NFTS()` | Read max conversion nfts |
+| `R` [Rewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
+| `R` [Rewards.SCALE](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `SCALE()` | Read scale |
+| `R` [Rewards.access](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `access()` | Read access |
+| `R` [Rewards.assetCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `assetCount()` | Read asset count |
+| `R` [Rewards.assets](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256` | `assets(0)` | Read assets |
+| `R` [Rewards.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [Rewards.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256` | `canonicalBacking(0)` | Read canonical backing |
+| `R` [Rewards.canonicalCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalCount()` | Read canonical count |
+| `R` [Rewards.canonicalExport](CONTRACT_FUNCTIONS.md#zzzrewards) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [Rewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [Rewards.claimable](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address` | `claimable(NFT_ID, ZZZ_ADDRESS)` | Read funded claimable balance |
+| `R` [Rewards.collective](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `collective(NFT_ID, TARGET_ADDRESS)` | Read collective |
+| `R` [Rewards.converter](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `converter()` | Read converter |
+| `R` [Rewards.fraction](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `fraction(NFT_ID, TARGET_ADDRESS)` | Read fraction |
+| `R` [Rewards.index](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `index(TARGET_ADDRESS)` | Read index |
+| `R` [Rewards.individual](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `individual(NFT_ID, TARGET_ADDRESS)` | Read individual |
+| `R` [Rewards.isAsset](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
+| `R` [Rewards.liabilities](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
+| `R` [Rewards.orphaned](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `orphaned(TARGET_ADDRESS)` | Read orphaned |
+| `R` [Rewards.ownerFraction](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `ownerFraction(NFT_ID, TARGET_ADDRESS)` | Read owner fraction |
+| `R` [Rewards.ownerIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `ownerIndex(BUCKET_ID, TARGET_ADDRESS)` | Read owner index |
+| `R` [Rewards.paidIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `paidIndex(NFT_ID, TARGET_ADDRESS)` | Read paid index |
+| `R` [Rewards.paidOwnerIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `paidOwnerIndex(NFT_ID, TARGET_ADDRESS)` | Read paid owner index |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (12)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Rewards.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
+| `M` [Rewards.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [Rewards.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [Rewards.canonicalImport](CONTRACT_FUNCTIONS.md#zzzrewards) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [Rewards.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
+| `M` [Rewards.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
+| `M` [Rewards.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalSettle()` | Settle captured reward indexes |
+| `M` [Rewards.checkpointAll](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `checkpointAll(NFT_ID)` | Checkpoint active collective members |
+| `M` [Rewards.checkpointOwner](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `checkpointOwner(NFT_ID)` | Checkpoint individual NFT rewards |
+| `M` [Rewards.claimFor](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address`<br>`owner: address` | `claimFor(NFT_ID, 0x0000000000000000000000000000000000000000, OWNER_ADDRESS)` | Forward authenticated owner claim |
+| `M` [Rewards.creditCanonicalCutoff](CONTRACT_FUNCTIONS.md#zzzrewards) | `bucketId: uint256`<br>`token: address`<br>`personal: uint256`<br>`shared: uint256`<br>`value: wei` (separate) | `creditCanonicalCutoff(BUCKET_ID, ZZZ_ADDRESS, PERSONAL, SHARED); value=SETTLEMENT_WEI wei` | Credit captured cutoff rewards |
+| `M` [Rewards.creditPool](CONTRACT_FUNCTIONS.md#zzzrewards) | `bucketId: uint256`<br>`token: address`<br>`personal: uint256`<br>`shared: uint256`<br>`value: wei` (separate) | `creditPool(BUCKET_ID, ZZZ_ADDRESS, PERSONAL, SHARED); value=SETTLEMENT_WEI wei` | Credit funded LP rewards |
+
+</details>
+
+<a id="zzzroyaltyrewards"></a>
+
+#### RoyaltyRewards
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [RoyaltyRewards.sync](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `sync(ASSET_ADDRESS)` | Synchronize actual royalty receipts |
+| `P` [RoyaltyRewards.syncAll](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `syncAll()` | Synchronize all admitted currencies |
+| `K` [RoyaltyRewards.convertBatch](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`ids: uint256[]`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convertBatch(ASSET_ADDRESS, ["IDS"], REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert earned balances proportionally |
+| `G` [RoyaltyRewards.recoverUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256`<br>`reviewHash: bytes32` | `recoverUnallocated(ROYALTY_TOKEN_ADDRESS, UNALLOCATED_RAW_UNITS, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE, REVIEW_HASH)` | Recover unallocated royalties proportionally |
+| `H` [RoyaltyRewards.claim](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claim(NFT_ID, 0x0000000000000000000000000000000000000000)` | Claim current owner's rewards |
+| `P` [RoyaltyRewards.forwardLate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `forwardLate(ASSET_ADDRESS)` | Forward receipts to successor |
+| `P` [RoyaltyRewards.fund](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256` | `fund(ASSET_ADDRESS, AMOUNT)` | Fund actual received royalties |
+| `B` [RoyaltyRewards.bindConverter](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `candidate: address` | `bindConverter(CANDIDATE_ADDRESS)` | Bind conversion implementation once |
+
+<details>
+<summary>Read functions and constants (32)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [RoyaltyRewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ASSETS()` | Read max assets |
+| `R` [RoyaltyRewards.MAX_CONVERSION_NFTS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_CONVERSION_NFTS()` | Read max conversion nfts |
+| `R` [RoyaltyRewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
+| `R` [RoyaltyRewards.ROYALTY_RECOVERY_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_RECOVERY_VERSION()` | Read royalty recovery version |
+| `R` [RoyaltyRewards.SCALE](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `SCALE()` | Read scale |
+| `R` [RoyaltyRewards.accounted](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
+| `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
+| `R` [RoyaltyRewards.activationCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `activationCount()` | Read activation count |
+| `R` [RoyaltyRewards.activationOrdinal](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `activationOrdinal(NFT_ID)` | Read activation ordinal |
+| `R` [RoyaltyRewards.assetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCount()` | Read asset count |
+| `R` [RoyaltyRewards.assets](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `assets(0)` | Read assets |
+| `R` [RoyaltyRewards.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [RoyaltyRewards.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256` | `canonicalBacking(0)` | Read canonical backing |
+| `R` [RoyaltyRewards.canonicalController](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalController()` | Read canonical controller |
+| `R` [RoyaltyRewards.canonicalCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalCount()` | Read canonical count |
+| `R` [RoyaltyRewards.canonicalExport](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [RoyaltyRewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [RoyaltyRewards.claimable](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claimable(NFT_ID, ASSET_ADDRESS)` | Read funded claimable balance |
+| `R` [RoyaltyRewards.converter](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `converter()` | Read converter |
+| `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
+| `R` [RoyaltyRewards.eligibleFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `eligibleFor(NFT_ID, ASSET_ADDRESS)` | Read eligible for |
+| `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
+| `R` [RoyaltyRewards.fraction](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `fraction(NFT_ID, TARGET_ADDRESS)` | Read fraction |
+| `R` [RoyaltyRewards.index](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `index(TARGET_ADDRESS)` | Read index |
+| `R` [RoyaltyRewards.isAsset](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
+| `R` [RoyaltyRewards.liabilities](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
+| `R` [RoyaltyRewards.nft](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `nft()` | Read nft |
+| `R` [RoyaltyRewards.orphaned](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `orphaned(TARGET_ADDRESS)` | Read orphaned |
+| `R` [RoyaltyRewards.paidIndex](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `paidIndex(NFT_ID, TARGET_ADDRESS)` | Read paid index |
+| `R` [RoyaltyRewards.pending](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `pending(ASSET_ADDRESS)` | Read unprocessed royalty receipts |
+| `R` [RoyaltyRewards.totalWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `totalWeight()` | Read total weight |
+| `R` [RoyaltyRewards.weightOf](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `weightOf(NFT_ID)` | Read weight of |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (12)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [RoyaltyRewards.activate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`weight: uint256` | `activate(NFT_ID, WEIGHT)` | Register activated royalty weight |
+| `M` [RoyaltyRewards.addAsset](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `token: address` | `addAsset(ROYALTY_TOKEN_ADDRESS)` | Admit reward currency |
+| `M` [RoyaltyRewards.bindCanonicalController](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `controller: address` | `bindCanonicalController(CONTROLLER_ADDRESS)` | Bind canonical controller once |
+| `M` [RoyaltyRewards.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
+| `M` [RoyaltyRewards.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [RoyaltyRewards.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [RoyaltyRewards.canonicalImport](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [RoyaltyRewards.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
+| `M` [RoyaltyRewards.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
+| `M` [RoyaltyRewards.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalSettle()` | Settle captured reward indexes |
+| `M` [RoyaltyRewards.claimFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address`<br>`owner: address` | `claimFor(NFT_ID, 0x0000000000000000000000000000000000000000, OWNER_ADDRESS)` | Forward authenticated owner claim |
+| `M` [RoyaltyRewards.syncForActivation](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `syncForActivation(ASSET_ADDRESS)` | Isolate optional currency synchronization |
+
+</details>
+
+<a id="zzzlprewardconverter"></a>
+
+#### LPRewardConverter
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [LPRewardConverter.addRoute](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `policy` [ZZZRewardConverter.RoutePolicy](#input-zzzrewardconverter-routepolicy) | `addRoute(["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
+| `G` [LPRewardConverter.addV4Route](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy) | `addV4Route(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit native conversion route |
+| `G` [LPRewardConverter.configureWrapper](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `policy` [ZZZRewardConverter.WrapperPolicy](#input-zzzrewardconverter-wrapperpolicy) | `configureWrapper(["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"])` | Configure reviewed wrapper policy |
+| `G` [LPRewardConverter.setConversionLossBps](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `value: uint16` | `setConversionLossBps(100)` | Set conversion execution-loss limit |
+| `G` [LPRewardConverter.setEnabled](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `value: bool` | `setEnabled(VALUE)` | Enable or disable conversion |
+| `G` [LPRewardConverter.setRouteEnabled](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32`<br>`value: bool` | `setRouteEnabled(REVIEWED_ROUTE_ID, VALUE)` | Enable or disable reviewed route |
+
+<details>
+<summary>Read functions and constants (13)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [LPRewardConverter.MAX_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `MAX_LOSS_BPS()` | Read max loss bps |
+| `R` [LPRewardConverter.access](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `access()` | Read access |
+| `R` [LPRewardConverter.conversionLossBps](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `conversionLossBps()` | Read conversion loss bps |
+| `R` [LPRewardConverter.enabled](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `enabled()` | Read enabled |
+| `R` [LPRewardConverter.ledger](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `ledger()` | Read ledger |
+| `R` [LPRewardConverter.route](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32` | `route(REVIEWED_ROUTE_ID)` | Read route |
+| `R` [LPRewardConverter.routeEnabled](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32` | `routeEnabled(REVIEWED_ROUTE_ID)` | Read route enabled |
+| `R` [LPRewardConverter.routeExists](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32` | `routeExists(REVIEWED_ROUTE_ID)` | Read route exists |
+| `R` [LPRewardConverter.routeKind](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32` | `routeKind(REVIEWED_ROUTE_ID)` | Read route kind |
+| `R` [LPRewardConverter.v4Executor](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `v4Executor()` | Read v4 executor |
+| `R` [LPRewardConverter.v4Route](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `id: bytes32` | `v4Route(REVIEWED_ROUTE_ID)` | Read v4 route |
+| `R` [LPRewardConverter.wrapper](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `wrapper()` | Read wrapper |
+| `R` [LPRewardConverter.wrapperPolicy](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | None | `wrapperPolicy()` | Read wrapper policy |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LPRewardConverter.convert](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `source: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convert(SOURCE_ADDRESS, AMOUNT, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert authenticated ledger funds |
+
+</details>
+
+<a id="zzzroyaltyconverter"></a>
+
+#### RoyaltyConverter
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [RoyaltyConverter.addRoute](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZRewardConverter.RoutePolicy](#input-zzzrewardconverter-routepolicy) | `addRoute(["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
+| `G` [RoyaltyConverter.addV4Route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy) | `addV4Route(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit native conversion route |
+| `G` [RoyaltyConverter.configureWrapper](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZRewardConverter.WrapperPolicy](#input-zzzrewardconverter-wrapperpolicy) | `configureWrapper(["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"])` | Configure reviewed wrapper policy |
+| `G` [RoyaltyConverter.setConversionLossBps](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: uint16` | `setConversionLossBps(100)` | Set conversion execution-loss limit |
+| `G` [RoyaltyConverter.setEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: bool` | `setEnabled(VALUE)` | Enable or disable conversion |
+| `G` [RoyaltyConverter.setRouteEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32`<br>`value: bool` | `setRouteEnabled(REVIEWED_ROUTE_ID, VALUE)` | Enable or disable reviewed route |
+
+<details>
+<summary>Read functions and constants (13)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [RoyaltyConverter.MAX_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `MAX_LOSS_BPS()` | Read max loss bps |
+| `R` [RoyaltyConverter.access](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `access()` | Read access |
+| `R` [RoyaltyConverter.conversionLossBps](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `conversionLossBps()` | Read conversion loss bps |
+| `R` [RoyaltyConverter.enabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `enabled()` | Read enabled |
+| `R` [RoyaltyConverter.ledger](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `ledger()` | Read ledger |
+| `R` [RoyaltyConverter.route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `route(REVIEWED_ROUTE_ID)` | Read route |
+| `R` [RoyaltyConverter.routeEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeEnabled(REVIEWED_ROUTE_ID)` | Read route enabled |
+| `R` [RoyaltyConverter.routeExists](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeExists(REVIEWED_ROUTE_ID)` | Read route exists |
+| `R` [RoyaltyConverter.routeKind](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeKind(REVIEWED_ROUTE_ID)` | Read route kind |
+| `R` [RoyaltyConverter.v4Executor](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `v4Executor()` | Read v4 executor |
+| `R` [RoyaltyConverter.v4Route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `v4Route(REVIEWED_ROUTE_ID)` | Read v4 route |
+| `R` [RoyaltyConverter.wrapper](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `wrapper()` | Read wrapper |
+| `R` [RoyaltyConverter.wrapperPolicy](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `wrapperPolicy()` | Read wrapper policy |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [RoyaltyConverter.convert](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `source: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convert(SOURCE_ADDRESS, AMOUNT, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert authenticated ledger funds |
+
+</details>
+
+<a id="zzzclaimrouter"></a>
+
+#### ClaimRouter
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `H` [ClaimRouter.claimBatch](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | `claims` [ZZZClaimRouter.Claim[]](#input-zzzclaimrouter-claim-array) | `claimBatch([["NFT_ID", "0x0000000000000000000000000000000000000000", false], ["NFT_ID", "0x0000000000000000000000000000000000000000", true]])` | Claim selected funded rewards |
+
+<details>
+<summary>Read functions and constants (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ClaimRouter.MAX_CLAIMS](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | None | `MAX_CLAIMS()` | Read max claims |
+| `R` [ClaimRouter.access](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | None | `access()` | Read access |
+| `R` [ClaimRouter.nft](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | None | `nft()` | Read nft |
+| `R` [ClaimRouter.royalties](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | None | `royalties()` | Read royalties |
+
+</details>
+
+<a id="calls-recovery"></a>
+
+### Parking, holder return and canonical replacement
+
+<a id="zzzmigration"></a>
+
+#### Migration
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [Migration.park](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `park(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close LP into attributed idle |
+| `G` [Migration.closeResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `closeResidual(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close residual; retain main |
+| `G` [Migration.resume](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `resume(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Redeploy parked LP principal |
+| `G` [Migration.moveFunds](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `moveFunds(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Move LP between admitted pools |
+| `G` [Migration.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyRebalance(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Force reviewed emergency consolidation |
+| `G` [Migration.beginCollectiveExit](CONTRACT_FUNCTIONS.md#zzzmigration) | `reviewHash: bytes32` | `beginCollectiveExit(REVIEW_HASH)` | Start irreversible holder return |
+| `G` [Migration.closeBucket](CONTRACT_FUNCTIONS.md#zzzmigration) | `bucket: uint256`<br>`minimumETH: uint256`<br>`minimumZZZ: uint256`<br>`deadline: uint256` | `closeBucket(BUCKET_ID, MINIMUM_ETH_WEI, MINIMUM_ZZZ, UNIX_DEADLINE)` | Close terminal principal bucket |
+| `G` [Migration.allocatePrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `maximum: uint256` | `allocatePrincipal(MAXIMUM)` | Allocate terminal holder principal |
+| `G` [Migration.distributePrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `ids: uint256[]` | `distributePrincipal(["NFT_ID"])` | Pay terminal current holders |
+| `H` [Migration.claimPrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`recipient: address` | `claimPrincipal(NFT_ID, RECIPIENT_ADDRESS)` | Claim failed principal payout |
+| `G` [Migration.invalidateParking](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256` | `invalidateParking(BUCKET_ID)` | Invalidate reviewed parking nonce |
+| `B` [Migration.configureZZZ](CONTRACT_FUNCTIONS.md#zzzmigration) | `token: address`<br>`codeHash: bytes32`<br>`reviewHash: bytes32` | `configureZZZ(ZZZ_ADDRESS, CODE_HASH, REVIEW_HASH)` | Bind fixed ZZZ identity |
+
+<details>
+<summary>Read functions and constants (28)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [Migration.CUSTODY_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `CUSTODY_VERSION()` | Read custody version |
+| `R` [Migration.EMERGENCY_REBALANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `EMERGENCY_REBALANCE_VERSION()` | Read emergency rebalance version |
+| `R` [Migration.MAX_BATCH](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `MAX_BATCH()` | Read max batch |
+| `R` [Migration.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [Migration.access](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `access()` | Read access |
+| `R` [Migration.activePlan](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `activePlan(BUCKET_ID)` | Read active plan |
+| `R` [Migration.allocationCursor](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `allocationCursor()` | Read allocation cursor |
+| `R` [Migration.bucketSettlement](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `bucketSettlement(BUCKET_ID)` | Read bucket settlement |
+| `R` [Migration.claimablePrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256` | `claimablePrincipal(NFT_ID)` | Read claimable principal |
+| `R` [Migration.currentZZZ](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `currentZZZ()` | Read current zzz |
+| `R` [Migration.custodyEpoch](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `custodyEpoch(BUCKET_ID)` | Read custody epoch |
+| `R` [Migration.emergencyCustodyHash](CONTRACT_FUNCTIONS.md#zzzmigration) | `bucket: uint256` | `emergencyCustodyHash(BUCKET_ID)` | Read emergency custody identity |
+| `R` [Migration.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `emergencyFingerprint()` | Read emergency fingerprint |
+| `R` [Migration.emergencyRequest](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `emergencyRequest()` | Read emergency request |
+| `R` [Migration.emergencyTarget](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `emergencyTarget()` | Read emergency target |
+| `R` [Migration.exitMintedCount](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `exitMintedCount()` | Read exit minted count |
+| `R` [Migration.exitPhase](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `exitPhase()` | Read exit phase |
+| `R` [Migration.exitReviewHash](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `exitReviewHash()` | Read exit review hash |
+| `R` [Migration.outstandingCount](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `outstandingCount()` | Read outstanding count |
+| `R` [Migration.parkingNonce](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `parkingNonce(BUCKET_ID)` | Read parking nonce |
+| `R` [Migration.principalOf](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `principalOf(NFT_ID)` | Read principal of |
+| `R` [Migration.remainingBuckets](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `remainingBuckets()` | Read remaining buckets |
+| `R` [Migration.remainingETH](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `remainingETH()` | Read remaining eth |
+| `R` [Migration.remainingZZZ](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `remainingZZZ()` | Read remaining zzz |
+| `R` [Migration.settlementBucketAt](CONTRACT_FUNCTIONS.md#zzzmigration) | `index: uint256` | `settlementBucketAt(0)` | Read settlement bucket at |
+| `R` [Migration.settlementBucketCount](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `settlementBucketCount()` | Read settlement bucket count |
+| `R` [Migration.validation](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `validation()` | Read validation |
+| `R` [Migration.zzzCodeHash](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `zzzCodeHash()` | Read zzz code hash |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Migration.payCurrentOwner](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256` | `payCurrentOwner(NFT_ID)` | Pay authenticated current owner |
+
+</details>
+
+<a id="zzzcanonicalhandoff"></a>
+
+#### CanonicalHandoff
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [CanonicalHandoff.abort](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `abort()` | Abort canonical replacement |
+| `G` [CanonicalHandoff.commit](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `commit()` | Commit canonical replacement atomically |
+| `P` [CanonicalHandoff.completeImport](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `completeImport()` | Complete authenticated row import |
+| `P` [CanonicalHandoff.exportRows](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`count: uint256` | `exportRows(SLOT, 1)` | Export authenticated canonical rows |
+| `G` [CanonicalHandoff.finishAbort](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `finishAbort()` | Finish fully funded abort |
+| `G` [CanonicalHandoff.freeze](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `freeze()` | Freeze canonical ownership accounting |
+| `P` [CanonicalHandoff.fund](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `fund(SLOT, 0)` | Transfer authenticated canonical backing |
+| `P` [CanonicalHandoff.importRows](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`records: bytes[]` | `importRows(SLOT, ["RECORDS"])` | Import authenticated canonical rows |
+| `B` [CanonicalHandoff.prepareImport](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `sourceController: address` | `prepareImport(SOURCE_CONTROLLER_ADDRESS)` | Prepare successor import binding |
+| `P` [CanonicalHandoff.returnFunds](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `returnFunds(SLOT, 0)` | Restore selected source backing |
+| `P` [CanonicalHandoff.settle](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8` | `settle(SLOT)` | Settle next canonical step |
+
+<details>
+<summary>Read functions and constants (22)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [CanonicalHandoff.MAX_ROWS](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `MAX_ROWS()` | Read max rows |
+| `R` [CanonicalHandoff.SCHEMA](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `SCHEMA()` | Read schema |
+| `R` [CanonicalHandoff.SLOTS](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `SLOTS()` | Read slots |
+| `R` [CanonicalHandoff.access](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `access()` | Read access |
+| `R` [CanonicalHandoff.assetCount](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `assetCount(0)` | Read asset count |
+| `R` [CanonicalHandoff.deploymentCommitment](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `deploymentCommitment()` | Read deployment commitment |
+| `R` [CanonicalHandoff.destinationController](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `destinationController()` | Read destination controller |
+| `R` [CanonicalHandoff.exportCursor](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `exportCursor(0)` | Read export cursor |
+| `R` [CanonicalHandoff.exportRoot](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `exportRoot(0)` | Read export root |
+| `R` [CanonicalHandoff.funded](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint8`<br>`input1: uint256` | `funded(0, 0)` | Read funded |
+| `R` [CanonicalHandoff.handoffId](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `handoffId()` | Read handoff id |
+| `R` [CanonicalHandoff.importComplete](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `importComplete()` | Read import complete |
+| `R` [CanonicalHandoff.importCursor](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `importCursor(0)` | Read import cursor |
+| `R` [CanonicalHandoff.importRoot](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `importRoot(0)` | Read import root |
+| `R` [CanonicalHandoff.incomingFunded](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint8`<br>`input1: uint256` | `incomingFunded(0, 0)` | Read incoming funded |
+| `R` [CanonicalHandoff.incomingSource](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `incomingSource()` | Read incoming source |
+| `R` [CanonicalHandoff.moduleAt](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8` | `moduleAt(SLOT)` | Read module at |
+| `R` [CanonicalHandoff.phase](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `phase()` | Read phase |
+| `R` [CanonicalHandoff.recordCount](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `recordCount(0)` | Read record count |
+| `R` [CanonicalHandoff.returned](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint8`<br>`input1: uint256` | `returned(0, 0)` | Read returned |
+| `R` [CanonicalHandoff.settlementCursor](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `settlementCursor()` | Read settlement cursor |
+| `R` [CanonicalHandoff.stateRoot](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `stateRoot()` | Read state root |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (5)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [CanonicalHandoff.acceptFunding](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `acceptFunding(SLOT, 0)` | Acknowledge authenticated funding |
+| `M` [CanonicalHandoff.activate](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `activate()` | Activate authenticated successor deployment |
+| `M` [CanonicalHandoff.bindFrozen](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `id: bytes32` | `bindFrozen(ID)` | Bind frozen source snapshot |
+| `M` [CanonicalHandoff.cancelImport](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `cancelImport()` | Cancel authenticated import |
+| `M` [CanonicalHandoff.returnFunding](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `returnFunding(SLOT, 0)` | Return authenticated abort funding |
+
+</details>
+
+<a id="calls-holders"></a>
+
+### NFTs, contributions and metadata
+
+<a id="zzznft"></a>
+
+#### NFT
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [NFT.addRoyaltyAsset](CONTRACT_FUNCTIONS.md#zzznft) | `token: address` | `addRoyaltyAsset(ROYALTY_TOKEN_ADDRESS)` | Admit royalty payment currency |
+| `H` [NFT.approve](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`tokenId: uint256` | `approve(TO_ADDRESS, NFT_ID)` | Approve one NFT transfer |
+| `P` [NFT.finalizeTraits](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `finalizeTraits(NFT_ID)` | Finalize original artwork draw |
+| `P` [NFT.refreshMetadata](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `refreshMetadata(NFT_ID)` | Refresh one NFT metadata |
+| `P` [NFT.refreshMetadataRange](CONTRACT_FUNCTIONS.md#zzznft) | `firstOrdinal: uint256`<br>`lastOrdinal: uint256` | `refreshMetadataRange(1, LAST_ORDINAL)` | Refresh bounded metadata range |
+| `H` [NFT.safeTransferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256` | `safeTransferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID)` | Safely transfer NFT ownership |
+| `H` [NFT.safeTransferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256`<br>`data: bytes` | `safeTransferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID, 0x)` | Safely transfer NFT ownership |
+| `H` [NFT.setApprovalForAll](CONTRACT_FUNCTIONS.md#zzznft) | `operator: address`<br>`approved: bool` | `setApprovalForAll(OPERATOR_ADDRESS, false)` | Set NFT operator approval |
+| `B` [NFT.setBaseURI](CONTRACT_FUNCTIONS.md#zzznft) | `baseURI: string` | `setBaseURI(IPFS_BASE_URI)` | Bind permanent artwork base |
+| `G` [NFT.setMintPaused](CONTRACT_FUNCTIONS.md#zzznft) | `state: bool` | `setMintPaused(true)` | Pause or resume minting |
+| `H` [NFT.transferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256` | `transferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID)` | Transfer NFT ownership |
+
+<details>
+<summary>Read functions and constants (44)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [NFT.MAX_METADATA_REFRESH_BATCH](CONTRACT_FUNCTIONS.md#zzznft) | None | `MAX_METADATA_REFRESH_BATCH()` | Read max metadata refresh batch |
+| `R` [NFT.MAX_SUPPLY](CONTRACT_FUNCTIONS.md#zzznft) | None | `MAX_SUPPLY()` | Read max supply |
+| `R` [NFT.access](CONTRACT_FUNCTIONS.md#zzznft) | None | `access()` | Read access |
+| `R` [NFT.artworkBaseURI](CONTRACT_FUNCTIONS.md#zzznft) | None | `artworkBaseURI()` | Read artwork base uri |
+| `R` [NFT.balanceOf](CONTRACT_FUNCTIONS.md#zzznft) | `owner: address` | `balanceOf(OWNER_ADDRESS)` | Read balance of |
+| `R` [NFT.callbackGasLimit](CONTRACT_FUNCTIONS.md#zzznft) | None | `callbackGasLimit()` | Read callback gas limit |
+| `R` [NFT.canonicalArtwork](CONTRACT_FUNCTIONS.md#zzznft) | `rarity: uint8`<br>`item: uint256` | `canonicalArtwork(0, ITEM)` | Read canonical artwork |
+| `R` [NFT.canonicalModule](CONTRACT_FUNCTIONS.md#zzznft) | None | `canonicalModule()` | Read canonical module |
+| `R` [NFT.canonicalRandomness](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `canonicalRandomness(NFT_ID)` | Read canonical randomness |
+| `R` [NFT.canonicalSuccessor](CONTRACT_FUNCTIONS.md#zzznft) | None | `canonicalSuccessor()` | Read canonical successor |
+| `R` [NFT.claimRouter](CONTRACT_FUNCTIONS.md#zzznft) | None | `claimRouter()` | Read claim router |
+| `R` [NFT.colorOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `colorOf(NFT_ID)` | Read color of |
+| `R` [NFT.currentLPValue](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `currentLPValue(NFT_ID)` | Read current lpvalue |
+| `R` [NFT.evolution](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `evolution(NFT_ID)` | Read evolution |
+| `R` [NFT.getApproved](CONTRACT_FUNCTIONS.md#zzznft) | `tokenId: uint256` | `getApproved(NFT_ID)` | Read get approved |
+| `R` [NFT.isApprovedForAll](CONTRACT_FUNCTIONS.md#zzznft) | `owner: address`<br>`operator: address` | `isApprovedForAll(OWNER_ADDRESS, OPERATOR_ADDRESS)` | Read is approved for all |
+| `R` [NFT.keyHash](CONTRACT_FUNCTIONS.md#zzznft) | None | `keyHash()` | Read key hash |
+| `R` [NFT.metadataRenderer](CONTRACT_FUNCTIONS.md#zzznft) | None | `metadataRenderer()` | Read metadata renderer |
+| `R` [NFT.mintOrdinalOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `mintOrdinalOf(NFT_ID)` | Read mint ordinal of |
+| `R` [NFT.mintPaused](CONTRACT_FUNCTIONS.md#zzznft) | None | `mintPaused()` | Read mint paused |
+| `R` [NFT.mintedCount](CONTRACT_FUNCTIONS.md#zzznft) | None | `mintedCount()` | Read minted count |
+| `R` [NFT.name](CONTRACT_FUNCTIONS.md#zzznft) | None | `name()` | Read name |
+| `R` [NFT.nativePayment](CONTRACT_FUNCTIONS.md#zzznft) | None | `nativePayment()` | Read native payment |
+| `R` [NFT.nextToFinalize](CONTRACT_FUNCTIONS.md#zzznft) | None | `nextToFinalize()` | Read next to finalize |
+| `R` [NFT.ownerOf](CONTRACT_FUNCTIONS.md#zzznft) | `tokenId: uint256` | `ownerOf(NFT_ID)` | Read current NFT owner |
+| `R` [NFT.paletteOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `paletteOf(NFT_ID)` | Read palette of |
+| `R` [NFT.patternOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `patternOf(NFT_ID)` | Read pattern of |
+| `R` [NFT.randomnessConfigured](CONTRACT_FUNCTIONS.md#zzznft) | None | `randomnessConfigured()` | Read randomness configured |
+| `R` [NFT.randomnessCoordinator](CONTRACT_FUNCTIONS.md#zzznft) | None | `randomnessCoordinator()` | Read randomness coordinator |
+| `R` [NFT.randomnessEpoch](CONTRACT_FUNCTIONS.md#zzznft) | None | `randomnessEpoch()` | Read randomness epoch |
+| `R` [NFT.rarityOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `rarityOf(NFT_ID)` | Read rarity of |
+| `R` [NFT.rarityRemaining](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `rarityRemaining(0)` | Read rarity remaining |
+| `R` [NFT.remainingToReveal](CONTRACT_FUNCTIONS.md#zzznft) | None | `remainingToReveal()` | Read remaining to reveal |
+| `R` [NFT.requestConfirmations](CONTRACT_FUNCTIONS.md#zzznft) | None | `requestConfirmations()` | Read request confirmations |
+| `R` [NFT.requestEpochOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `requestEpochOf(NFT_ID)` | Read request epoch of |
+| `R` [NFT.requestOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `requestOf(NFT_ID)` | Read request of |
+| `R` [NFT.royaltyInfo](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256`<br>`salePrice: uint256` | `royaltyInfo(NFT_ID, 1000000000000000000)` | Read requested royalty payment |
+| `R` [NFT.royaltyRewards](CONTRACT_FUNCTIONS.md#zzznft) | None | `royaltyRewards()` | Read royalty rewards |
+| `R` [NFT.subscriptionId](CONTRACT_FUNCTIONS.md#zzznft) | None | `subscriptionId()` | Read subscription id |
+| `R` [NFT.supportsInterface](CONTRACT_FUNCTIONS.md#zzznft) | `interfaceId: bytes4` | `supportsInterface(0x2a55205a)` | Read supports interface |
+| `R` [NFT.symbol](CONTRACT_FUNCTIONS.md#zzznft) | None | `symbol()` | Read symbol |
+| `R` [NFT.tokenAtOrdinal](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `tokenAtOrdinal(1)` | Read token at ordinal |
+| `R` [NFT.tokenURI](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `tokenURI(NFT_ID)` | Read token uri |
+| `R` [NFT.traitsReady](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `traitsReady(NFT_ID)` | Read traits ready |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [NFT.canonicalRetire](CONTRACT_FUNCTIONS.md#zzznft) | None | `canonicalRetire()` | Retire source NFT authority |
+| `M` [NFT.canonicalWriteArtwork](CONTRACT_FUNCTIONS.md#zzznft) | `rarity: uint8`<br>`item: uint256`<br>`value: uint16` | `canonicalWriteArtwork(0, ITEM, VALUE)` | Import authenticated artwork draw |
+| `M` [NFT.canonicalWriteHeader](CONTRACT_FUNCTIONS.md#zzznft) | `count: uint256`<br>`next: uint256`<br>`remaining: uint256`<br>`quotas: uint16[3]`<br>`epoch: uint256` | `canonicalWriteHeader(1, NEXT, REMAINING, ["QUOTAS", "QUOTAS", "QUOTAS"], EPOCH)` | Import authenticated NFT header |
+| `M` [NFT.canonicalWriteRecord](CONTRACT_FUNCTIONS.md#zzznft) | `row: uint256`<br>`value` [CanonicalNFTRecord](#input-canonicalnftrecord) | `canonicalWriteRecord(ROW, ["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD"])` | Import authenticated NFT record |
+| `M` [NFT.mint](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`id: uint256` | `mint(TO_ADDRESS, NFT_ID)` | Mint authenticated PoPL NFT |
+| `M` [NFT.notifyContribution](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `notifyContribution(NFT_ID)` | Register successful contribution rights |
+| `M` [NFT.policyMetadataChanged](CONTRACT_FUNCTIONS.md#zzznft) | None | `policyMetadataChanged()` | Announce changed display policy |
+| `C` [NFT.rawFulfillRandomWords](CONTRACT_FUNCTIONS.md#zzznft) | `requestId: uint256`<br>`words: uint256[]` | `rawFulfillRandomWords(REQUEST_ID, ["RARITY_WORD", "ARTWORK_WORD"])` | Record original provider randomness |
+
+</details>
+
+<a id="zzzactivationentry"></a>
+
+#### ActivationEntry
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `H` [ActivationEntry.executeReviewed](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `request` [ZZZActivationEntry.Request](#input-zzzactivationentry-request)<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32`<br>`value: wei` (separate) | `executeReviewed(["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false], 200, EXPECTED_CONTRIBUTION_POLICY); value=ETH_INPUT_WEI wei` | Activate or grow attached LP |
+
+<details>
+<summary>Read functions and constants (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ActivationEntry.ENTRY_ROUTING_VERSION](CONTRACT_FUNCTIONS.md#zzzactivationentry) | None | `ENTRY_ROUTING_VERSION()` | Read entry routing version |
+| `R` [ActivationEntry.REVIEW_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzactivationentry) | None | `REVIEW_POLICY_VERSION()` | Read review policy version |
+| `R` [ActivationEntry.access](CONTRACT_FUNCTIONS.md#zzzactivationentry) | None | `access()` | Read access |
+| `R` [ActivationEntry.activationAssets](CONTRACT_FUNCTIONS.md#zzzactivationentry) | None | `activationAssets()` | Read activation assets |
+| `R` [ActivationEntry.pricingContext](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `id: uint256`<br>`pool: bytes32`<br>`packed: uint256`<br>`gross: uint256` | `pricingContext(NFT_ID, POOL_ID, PACKED, GROSS)` | Read pricing context |
+| `R` [ActivationEntry.registry](CONTRACT_FUNCTIONS.md#zzzactivationentry) | None | `registry()` | Read registry |
+| `R` [ActivationEntry.sourceValue](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256` | `sourceValue(POOL_ID, AMOUNT0, AMOUNT1)` | Read source value |
+| `R` [ActivationEntry.validateOwner](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `id: uint256`<br>`vaultCallHash: bytes32` | `validateOwner(NFT_ID, VAULT_CALL_HASH)` | Read validate owner |
+
+</details>
+
+<a id="zzznftmetadata"></a>
+
+#### NFTMetadata
+
+<details>
+<summary>Read functions and constants (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [NFTMetadata.access](CONTRACT_FUNCTIONS.md#zzznftmetadata) | None | `access()` | Read access |
+| `R` [NFTMetadata.artworkItem](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `rarity: uint8`<br>`item: uint256` | `artworkItem(RARITY, 0)` | Read artwork item |
+| `R` [NFTMetadata.currentValue](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `currentValue(NFT_ID)` | Read current value |
+| `R` [NFTMetadata.render](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `input` [NFTMetadataInput](#input-nftmetadatainput) | `render(["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"])` | Read render |
+
+</details>
+
+<a id="calls-internals"></a>
+
+### Bound modules, helpers and factories
+
+<a id="zzzcontributionpricing"></a>
+
+#### ContributionPricing
+
+<details>
+<summary>Read functions and constants (14)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ContributionPricing.ENTRY_REVIEW_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `ENTRY_REVIEW_VERSION()` | Read entry review version |
+| `R` [ContributionPricing.access](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `access()` | Read access |
+| `R` [ContributionPricing.active](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `active()` | Read active |
+| `R` [ContributionPricing.assertDeployed](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`maxIdleBps: uint16` | `assertDeployed(BUCKET_ID, MAX_IDLE_BPS)` | Read assert deployed |
+| `R` [ContributionPricing.assertPortfolioUtilization](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256` | `assertPortfolioUtilization(BUCKET_ID, PRICE0, PRICE1, SCALE0, SCALE1)` | Read assert portfolio utilization |
+| `R` [ContributionPricing.checkMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`beforeValue: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256`<br>`lossBps: uint16`<br>`maxIdleBps: uint16`<br>`expectedMaintenancePolicy: bytes32` | `checkMaintenance(BUCKET_ID, BEFORE_VALUE, PRICE0, PRICE1, SCALE0, SCALE1, LOSS_BPS, MAX_IDLE_BPS, EXPECTED_MAINTENANCE_POLICY)` | Read check maintenance |
+| `R` [ContributionPricing.compoundReady](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `compoundReady(BUCKET_ID)` | Read compound ready |
+| `R` [ContributionPricing.entryIdleLimit](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `entryIdleLimit(BUCKET_ID)` | Read entry idle limit |
+| `R` [ContributionPricing.historicalValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `historicalValue(BUCKET_ID)` | Read historical value |
+| `R` [ContributionPricing.idleValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `idleValue(BUCKET_ID)` | Read idle value |
+| `R` [ContributionPricing.markMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `markMaintenance(BUCKET_ID)` | Read mark maintenance |
+| `R` [ContributionPricing.nav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `nav(BUCKET_ID)` | Read nav |
+| `R` [ContributionPricing.oracle](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `oracle()` | Read oracle |
+| `R` [ContributionPricing.valueBucket](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`amount0: uint256`<br>`amount1: uint256` | `valueBucket(BUCKET_ID, AMOUNT0, AMOUNT1)` | Read value bucket |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (5)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [ContributionPricing.begin](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `nft: uint256`<br>`bucket: uint256`<br>`packed: uint256`<br>`inputUSD: uint256`<br>`limits: uint32` | `begin(NFT_ID, BUCKET_ID, PACKED, INPUT_USD, LIMITS)` | Begin contribution pricing |
+| `M` [ContributionPricing.beginEntryReviewed](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `nft: uint256`<br>`pool: bytes32`<br>`source: address`<br>`amount: uint256`<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32` | `beginEntryReviewed(NFT_ID, POOL_ID, SOURCE_ADDRESS, AMOUNT, MAXIMUM_LOSS_BPS, EXPECTED_CONTRIBUTION_POLICY)` | Capture reviewed contribution context |
+| `M` [ContributionPricing.contributionNav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `contributionNav(BUCKET_ID)` | Measure incumbent attributed NAV |
+| `M` [ContributionPricing.endEntry](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `endEntry()` | Close reviewed entry context |
+| `M` [ContributionPricing.finish](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`inputUSD: uint256`<br>`supply: uint256`<br>`incumbentNAV: uint256`<br>`incumbentDeployed: uint256`<br>`deployed: uint256`<br>`idle: uint256`<br>`limits: uint32` | `finish(BUCKET_ID, INPUT_USD, SUPPLY, INCUMBENT_NAV, INCUMBENT_DEPLOYED, DEPLOYED, IDLE, LIMITS)` | Finish contribution pricing context |
+
+</details>
+
+<a id="zzzliquiditymanager"></a>
+
+#### LiquidityManager
+
+<details>
+<summary>Read functions and constants (25)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [LiquidityManager.EMERGENCY_REBALANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `EMERGENCY_REBALANCE_VERSION()` | Read emergency rebalance version |
+| `R` [LiquidityManager.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
+| `R` [LiquidityManager.LP_ROUTING_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `LP_ROUTING_VERSION()` | Read lp routing version |
+| `R` [LiquidityManager.PORTFOLIO_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `PORTFOLIO_VERSION()` | Read portfolio version |
+| `R` [LiquidityManager.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [LiquidityManager.access](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `access()` | Read access |
+| `R` [LiquidityManager.activeSecondaryCount](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `activeSecondaryCount()` | Read active secondary count |
+| `R` [LiquidityManager.amounts](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `id: uint256` | `amounts(LP_TOKEN_ID)` | Read amounts |
+| `R` [LiquidityManager.balanceContext](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `targetPool: bytes32` | `balanceContext(POOL_ID)` | Read balance context |
+| `R` [LiquidityManager.balancingRouter](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `balancingRouter()` | Read balancing router |
+| `R` [LiquidityManager.executionConfig](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`ops: bool` | `executionConfig(POOL_ID, OPS)` | Read execution config |
+| `R` [LiquidityManager.executionHybridReplacement](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32` | `executionHybridReplacement(POOL_ID)` | Read execution hybrid replacement |
+| `R` [LiquidityManager.executionOrdinaryReplacement](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `executionOrdinaryReplacement()` | Read execution ordinary replacement |
+| `R` [LiquidityManager.executionPortfolioFingerprint](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `executionPortfolioFingerprint(LP_TOKEN_ID)` | Read execution portfolio fingerprint |
+| `R` [LiquidityManager.executionSpot](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32` | `executionSpot(POOL_ID)` | Read execution spot |
+| `R` [LiquidityManager.permit2](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `permit2()` | Read permit2 |
+| `R` [LiquidityManager.poolManager](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `poolManager()` | Read pool manager |
+| `R` [LiquidityManager.portfolioAmounts](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `portfolioAmounts(LP_TOKEN_ID)` | Read portfolio amounts |
+| `R` [LiquidityManager.portfolioFingerprint](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `portfolioFingerprint(LP_TOKEN_ID)` | Read physical portfolio identity |
+| `R` [LiquidityManager.positionManager](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `positionManager()` | Read position manager |
+| `R` [LiquidityManager.positionOperator](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `positionOperator()` | Read position operator |
+| `R` [LiquidityManager.secondaryId](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `secondaryId(LP_TOKEN_ID)` | Read secondary id |
+| `R` [LiquidityManager.spot](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `poolId: bytes32` | `spot(POOL_ID)` | Read spot |
+| `R` [LiquidityManager.stateView](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `stateView()` | Read state view |
+| `R` [LiquidityManager.ticks](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `id: uint256` | `ticks(LP_TOKEN_ID)` | Read ticks |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (10)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LiquidityManager.balance](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `targetPool: bytes32`<br>`existingLpId: uint256`<br>`amount0: uint256`<br>`amount1: uint256`<br>`deadline: uint256`<br>`value: wei` (separate) | `balance(POOL_ID, LP_TOKEN_ID, AMOUNT0, AMOUNT1, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Balance attributed token inventory |
+| `M` [LiquidityManager.beginEmergency](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `beginEmergency()` | Begin reviewed emergency context |
+| `M` [LiquidityManager.close](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`id: uint256`<br>`deadline: uint256` | `close(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Close registered main LP |
+| `M` [LiquidityManager.closeSecondary](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`main: uint256`<br>`deadline: uint256` | `closeSecondary(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Close registered residual LP |
+| `M` [LiquidityManager.collect](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`id: uint256`<br>`deadline: uint256` | `collect(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Harvest actual position fees |
+| `M` [LiquidityManager.endEmergency](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `endEmergency()` | Close emergency operation context |
+| `M` [LiquidityManager.increase](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`id: uint256`<br>`a0: uint256`<br>`a1: uint256`<br>`minL: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `increase(POOL_ID, LP_TOKEN_ID, A0, A1, MIN_L, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Grow existing attached LP |
+| `M` [LiquidityManager.mint](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`a0: uint256`<br>`a1: uint256`<br>`minL: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `mint(POOL_ID, LOWER_TICK, UPPER_TICK, A0, A1, MIN_L, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Mint authenticated NFT position |
+| `M` [LiquidityManager.swap](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `poolId: bytes32`<br>`zeroForOne: bool`<br>`amountIn: uint256`<br>`minimumOut: uint256`<br>`deadline: uint256`<br>`value: wei` (separate) | `swap(POOL_ID, ZERO_FOR_ONE, AMOUNT_IN, MINIMUM_OUT, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Execute authenticated bounded swap |
+| `C` [LiquidityManager.unlockCallback](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `data: bytes` | `unlockCallback(0x)` | Settle authenticated core callback |
+
+</details>
+
+<a id="zzzlppositionexecutor"></a>
+
+#### LPPositionExecutor
+
+<details>
+<summary>Read functions and constants (15)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [LPPositionExecutor.LP_POSITION_EXECUTOR_VERSION](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `LP_POSITION_EXECUTOR_VERSION()` | Read lp position executor version |
+| `R` [LPPositionExecutor.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [LPPositionExecutor.access](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `access()` | Read access |
+| `R` [LPPositionExecutor.activeSecondaryCount](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `activeSecondaryCount()` | Read active secondary count |
+| `R` [LPPositionExecutor.amounts](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `id: uint256` | `amounts(LP_TOKEN_ID)` | Read amounts |
+| `R` [LPPositionExecutor.balancingRouter](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `balancingRouter()` | Read balancing router |
+| `R` [LPPositionExecutor.liquidityManager](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `liquidityManager()` | Read liquidity manager |
+| `R` [LPPositionExecutor.permit2](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `permit2()` | Read permit2 |
+| `R` [LPPositionExecutor.poolManager](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `poolManager()` | Read pool manager |
+| `R` [LPPositionExecutor.portfolioAmounts](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `mainId: uint256` | `portfolioAmounts(LP_TOKEN_ID)` | Read portfolio amounts |
+| `R` [LPPositionExecutor.portfolioFingerprint](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `mainId: uint256` | `portfolioFingerprint(LP_TOKEN_ID)` | Read physical portfolio identity |
+| `R` [LPPositionExecutor.positionManager](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `positionManager()` | Read position manager |
+| `R` [LPPositionExecutor.secondaryId](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `input0: uint256` | `secondaryId(LP_TOKEN_ID)` | Read secondary id |
+| `R` [LPPositionExecutor.stateView](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `stateView()` | Read state view |
+| `R` [LPPositionExecutor.ticks](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `id: uint256` | `ticks(LP_TOKEN_ID)` | Read ticks |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (5)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LPPositionExecutor.close](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `poolId: bytes32`<br>`id: uint256`<br>`deadline: uint256` | `close(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Close registered main LP |
+| `M` [LPPositionExecutor.closeSecondary](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `poolId: bytes32`<br>`main: uint256`<br>`deadline: uint256` | `closeSecondary(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Close registered residual LP |
+| `M` [LPPositionExecutor.collect](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `poolId: bytes32`<br>`id: uint256`<br>`deadline: uint256` | `collect(POOL_ID, LP_TOKEN_ID, UNIX_DEADLINE)` | Harvest actual position fees |
+| `M` [LPPositionExecutor.increase](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `poolId: bytes32`<br>`id: uint256`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `increase(POOL_ID, LP_TOKEN_ID, AMOUNT0, AMOUNT1, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Grow existing attached LP |
+| `M` [LPPositionExecutor.mint](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `poolId: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `mint(POOL_ID, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Mint authenticated NFT position |
+
+</details>
+
+<a id="zzzlpbalancemath"></a>
+
+#### LPBalanceMath
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [LPBalanceMath.LP_BALANCE_MATH_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `LP_BALANCE_MATH_VERSION()` | Read lp balance math version |
+| `R` [LPBalanceMath.balancer](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `balancer()` | Read balancer |
+| `R` [LPBalanceMath.deploymentAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256` | `deploymentAmounts(CURRENT, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1)` | Read deployment amounts |
+| `R` [LPBalanceMath.deploymentDebts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`liquidity: uint128` | `deploymentDebts(CURRENT, LOWER_TICK, UPPER_TICK, LIQUIDITY)` | Read deployment debts |
+| `R` [LPBalanceMath.evaluate](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`price: uint160`<br>`a0: uint256`<br>`a1: uint256` | `evaluate(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], PRICE, A0, A1)` | Read evaluate |
+| `R` [LPBalanceMath.principalAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `positionManager: address`<br>`state: address`<br>`id: uint256` | `principalAmounts(POSITION_MANAGER_ADDRESS, STATE_ADDRESS, LP_TOKEN_ID)` | Read principal amounts |
+| `R` [LPBalanceMath.seed](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`direction: bool`<br>`fee: uint256` | `seed(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], DIRECTION, FEE)` | Read seed |
+
+</details>
+
+<a id="zzzv4routeexecutor"></a>
+
+#### V4RouteExecutor
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [V4RouteExecutor.NATIVE_ASSET_CODE_HASH](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | None | `NATIVE_ASSET_CODE_HASH()` | Read native asset code hash |
+| `R` [V4RouteExecutor.ROUTE_DOMAIN](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | None | `ROUTE_DOMAIN()` | Read route domain |
+| `R` [V4RouteExecutor.parent](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | None | `parent()` | Read parent |
+| `R` [V4RouteExecutor.route](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32` | `route(REVIEWED_ROUTE_ID)` | Read route |
+| `R` [V4RouteExecutor.routeEnabled](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `input0: bytes32` | `routeEnabled(REVIEWED_ROUTE_ID)` | Read route enabled |
+| `R` [V4RouteExecutor.routeExists](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `input0: bytes32` | `routeExists(REVIEWED_ROUTE_ID)` | Read route exists |
+| `R` [V4RouteExecutor.validate](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32` | `validate(REVIEWED_ROUTE_ID)` | Read validate |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [V4RouteExecutor.addRoute](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy) | `addRoute(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
+| `M` [V4RouteExecutor.execute](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32`<br>`amountIn: uint256`<br>`minimumOut: uint256`<br>`deadline: uint256`<br>`value: wei` (separate) | `execute(REVIEWED_ROUTE_ID, AMOUNT_IN, MINIMUM_OUT, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Execute authenticated conversion route |
+| `M` [V4RouteExecutor.setRouteEnabled](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32`<br>`enabled: bool` | `setRouteEnabled(REVIEWED_ROUTE_ID, false)` | Enable or disable reviewed route |
+| `C` [V4RouteExecutor.unlockCallback](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `payload: bytes` | `unlockCallback(PAYLOAD)` | Settle authenticated core callback |
+
+</details>
+
+<a id="zzzcustodyvalidation"></a>
+
+#### CustodyValidation
+
+<details>
+<summary>Read functions and constants (6)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [CustodyValidation.access](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `access()` | Read access |
+| `R` [CustodyValidation.emergencyCustodyHash](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `emergencyCustodyHash(BUCKET_ID)` | Read emergency custody identity |
+| `R` [CustodyValidation.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyFingerprint(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read emergency fingerprint |
+| `R` [CustodyValidation.migration](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `migration()` | Read migration |
+| `R` [CustodyValidation.residualMainFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `residualMainFingerprint(BUCKET_ID)` | Read residual main fingerprint |
+| `R` [CustodyValidation.validateParking](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `validateParking(ENCODED)` | Read validate parking |
+
+</details>
+
+<a id="zzzfeescanonical"></a>
+
+#### FeesCanonical
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [FeesCanonical.access](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `access()` | Read access |
+| `R` [FeesCanonical.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [FeesCanonical.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `index: uint256` | `canonicalBacking(0)` | Read canonical backing |
+| `R` [FeesCanonical.canonicalCount](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalCount()` | Read canonical count |
+| `R` [FeesCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [FeesCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [FeesCanonical.fees](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `fees()` | Read fees |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [FeesCanonical.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
+| `M` [FeesCanonical.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [FeesCanonical.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [FeesCanonical.canonicalImport](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [FeesCanonical.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `index: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
+| `M` [FeesCanonical.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
+| `M` [FeesCanonical.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | None | `canonicalSettle()` | Settle captured reward indexes |
+
+</details>
+
+<a id="zzznftcanonical"></a>
+
+#### NFTCanonical
+
+<details>
+<summary>Read functions and constants (6)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [NFTCanonical.access](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `access()` | Read access |
+| `R` [NFTCanonical.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [NFTCanonical.canonicalCount](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalCount()` | Read canonical count |
+| `R` [NFTCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [NFTCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [NFTCanonical.nft](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `nft()` | Read nft |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [NFTCanonical.canonicalActivate](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [NFTCanonical.canonicalCapture](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [NFTCanonical.canonicalImport](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [NFTCanonical.canonicalSettle](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalSettle()` | Settle captured reward indexes |
+
+</details>
+
+<a id="zzzvaultcanonical"></a>
+
+#### VaultCanonical
+
+<details>
+<summary>Read functions and constants (20)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [VaultCanonical.access](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `access()` | Read access |
+| `R` [VaultCanonical.aliasBucket](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `input0: bytes32` | `aliasBucket(POOL_ID)` | Read alias bucket |
+| `R` [VaultCanonical.aliases](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `input0: uint256` | `aliases(0)` | Read aliases |
+| `R` [VaultCanonical.bucketIdentity](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `pool: bytes32` | `bucketIdentity(POOL_ID)` | Read bucket identity |
+| `R` [VaultCanonical.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [VaultCanonical.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `index: uint256` | `canonicalBacking(0)` | Read canonical backing |
+| `R` [VaultCanonical.canonicalCount](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalCount()` | Read canonical count |
+| `R` [VaultCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [VaultCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [VaultCanonical.mintIdentity](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `ordinal: uint256` | `mintIdentity(1)` | Read mint identity |
+| `R` [VaultCanonical.mintPolicyFingerprint](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `mintPolicyFingerprint()` | Read current mint policy |
+| `R` [VaultCanonical.mintPrice](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `mintPrice()` | Read mint price |
+| `R` [VaultCanonical.mintProceedsRecipient](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `mintProceedsRecipient()` | Read mint proceeds recipient |
+| `R` [VaultCanonical.originChain](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `originChain()` | Read origin chain |
+| `R` [VaultCanonical.originVault](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `originVault()` | Read origin vault |
+| `R` [VaultCanonical.validateContribution](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`bucket: uint256`<br>`inputUSD: uint256`<br>`inputTotal: uint256`<br>`minimumLiquidity: uint128`<br>`activation: bool` | `validateContribution(NFT_ID, BUCKET_ID, INPUT_USD, INPUT_TOTAL, MINIMUM_LIQUIDITY, ACTIVATION)` | Read validate contribution |
+| `R` [VaultCanonical.validateHolderExit](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`migrationCaller: address` | `validateHolderExit(BUCKET_ID, MIGRATION_CALLER_ADDRESS)` | Read validate holder exit |
+| `R` [VaultCanonical.validateMint](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `value: uint256`<br>`ordinal: uint256`<br>`expectedPolicy: bytes32` | `validateMint(VALUE, 1, EXPECTED_POLICY)` | Read validate mint |
+| `R` [VaultCanonical.validateOwner](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`caller: address`<br>`minted: bool`<br>`activation: bool` | `validateOwner(NFT_ID, CALLER_ADDRESS, MINTED, ACTIVATION)` | Read validate owner |
+| `R` [VaultCanonical.vault](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `vault()` | Read vault |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [VaultCanonical.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
+| `M` [VaultCanonical.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [VaultCanonical.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [VaultCanonical.canonicalImport](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [VaultCanonical.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `index: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
+| `M` [VaultCanonical.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
+| `M` [VaultCanonical.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `canonicalSettle()` | Settle captured reward indexes |
+| `M` [VaultCanonical.registerAlias](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `pool: bytes32`<br>`bucket: uint256` | `registerAlias(POOL_ID, BUCKET_ID)` | Register authenticated local alias |
+
+</details>
+
+<a id="zzzpythpricefeed"></a>
+
+#### PythPriceFeed
+
+<details>
+<summary>Read functions and constants (11)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [PythPriceFeed.MAX_CONFIDENCE_BPS](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `MAX_CONFIDENCE_BPS()` | Read max confidence bps |
+| `R` [PythPriceFeed.SOURCE_CALL_GAS](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `SOURCE_CALL_GAS()` | Read source call gas |
+| `R` [PythPriceFeed.core](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `core()` | Read core |
+| `R` [PythPriceFeed.decimals](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `decimals()` | Read decimals |
+| `R` [PythPriceFeed.expectedCoreCodeHash](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `expectedCoreCodeHash()` | Read expected core code hash |
+| `R` [PythPriceFeed.expectedExponent](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `expectedExponent()` | Read expected exponent |
+| `R` [PythPriceFeed.feedId](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `feedId()` | Read feed id |
+| `R` [PythPriceFeed.latestRoundData](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `latestRoundData()` | Read latest round data |
+| `R` [PythPriceFeed.maxAge](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `maxAge()` | Read max age |
+| `R` [PythPriceFeed.maxConfidenceBps](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `maxConfidenceBps()` | Read max confidence bps |
+| `R` [PythPriceFeed.reviewHash](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `reviewHash()` | Read review hash |
+
+</details>
+
+<a id="zzzactivationassetsfactory"></a>
+
+#### ActivationAssetsFactory
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [ActivationAssetsFactory.create](CONTRACT_FUNCTIONS.md#zzzactivationassetsfactory) | None | `create()` | Create caller-bound helper |
+
+<details>
+<summary>Read functions and constants (2)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [ActivationAssetsFactory.access](CONTRACT_FUNCTIONS.md#zzzactivationassetsfactory) | None | `access()` | Read access |
+| `R` [ActivationAssetsFactory.assetsOf](CONTRACT_FUNCTIONS.md#zzzactivationassetsfactory) | `input0: address` | `assetsOf(TARGET_ADDRESS)` | Read assets of |
+
+</details>
+
+<a id="zzzroyaltyfactory"></a>
+
+#### RoyaltyFactory
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [RoyaltyFactory.create](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `create()` | Create caller-bound helper |
+
+<details>
+<summary>Read functions and constants (1)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [RoyaltyFactory.controller](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `controller()` | Read controller |
+
+</details>
+
+### Expanded tuple examples
+
+Fields are expanded recursively in exact ABI order. Uppercase symbols remain required snapshot/review inputs. These examples prove neither venue feasibility nor historical entitlement. Parameter semantics and bounds remain in the linked function/procedure.
+
+<details>
+<summary>CanonicalNFTRecord</summary>
+
+<a id="input-canonicalnftrecord"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `value` | `(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256)` | `["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD"]` |
+| `value.id` | `uint256` | `ID` |
+| `value.owner` | `address` | `OWNER_ADDRESS` |
+| `value.rarity` | `uint8` | `RARITY` |
+| `value.color` | `uint8` | `COLOR` |
+| `value.palette` | `uint8` | `PALETTE` |
+| `value.pattern` | `uint8` | `PATTERN` |
+| `value.requestId` | `uint256` | `REQUEST_ID` |
+| `value.requestEpoch` | `uint256` | `REQUEST_EPOCH` |
+| `value.rarityWord` | `uint256` | `RARITY_WORD` |
+| `value.colorWord` | `uint256` | `COLOR_WORD` |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` |
+| `request.bucket` | `uint256` | `BUCKET_ID` |
+| `request.custodyHash` | `bytes32` | `CUSTODY_HASH` |
+| `request.checks` | `uint8` | `31` |
+| `request.lower` | `int24` | `LOWER_TICK` |
+| `request.upper` | `int24` | `UPPER_TICK` |
+| `request.swapPool` | `bytes32` | `SWAP_POOL` |
+| `request.zeroForOne` | `bool` | `ZERO_FOR_ONE` |
+| `request.amountIn` | `uint128` | `AMOUNT_IN` |
+| `request.minimumOut` | `uint128` | `MINIMUM_OUT` |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` |
+| `request.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+<details>
+<summary>NFTMetadataInput</summary>
+
+<a id="input-nftmetadatainput"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `input` | `(uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string)` | `["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"]` |
+| `input.id` | `uint256` | `ID` |
+| `input.rarity` | `uint8` | `RARITY` |
+| `input.palette` | `uint8` | `PALETTE` |
+| `input.pattern` | `uint8` | `PATTERN` |
+| `input.stage` | `uint8` | `STAGE` |
+| `input.traitsReady` | `bool` | `TRAITS_READY` |
+| `input.valuationAvailable` | `bool` | `VALUATION_AVAILABLE` |
+| `input.valueUSD` | `uint256` | `VALUE_USD` |
+| `input.royaltyWeight` | `uint8` | `ROYALTY_WEIGHT` |
+| `input.baseURI` | `string` | `IPFS_BASE_URI` |
+
+</details>
+
+<details>
+<summary>PoolConfig</summary>
+
+<a id="input-poolconfig"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `config` | `((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)` | `[["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"]` |
+| `config.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
+| `config.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
+| `config.key.currency1` | `address` | `ZZZ_ADDRESS` |
+| `config.key.fee` | `uint24` | `FEE` |
+| `config.key.tickSpacing` | `int24` | `TICK_SPACING` |
+| `config.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+| `config.depositsEnabled` | `bool` | `DEPOSITS_ENABLED` |
+| `config.operationsEnabled` | `bool` | `OPERATIONS_ENABLED` |
+| `config.rangeBps` | `uint16` | `RANGE_BPS` |
+| `config.triggerBps` | `uint16` | `TRIGGER_BPS` |
+| `config.maxSpotDeviationBps` | `uint16` | `MAX_SPOT_DEVIATION_BPS` |
+| `config.maxSlippageBps` | `uint16` | `MAX_SLIPPAGE_BPS` |
+| `config.minRebalanceInterval` | `uint32` | `MIN_REBALANCE_INTERVAL` |
+| `config.minDepositUSD` | `uint256` | `MIN_DEPOSIT_USD` |
+| `config.maxPositionUSD` | `uint256` | `MAX_POSITION_USD` |
+
+</details>
+
+<details>
+<summary>PoolKey</summary>
+
+<a id="input-poolkey"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
+| `key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
+| `key.currency1` | `address` | `ZZZ_ADDRESS` |
+| `key.fee` | `uint24` | `FEE` |
+| `key.tickSpacing` | `int24` | `TICK_SPACING` |
+| `key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+
+</details>
+
+<details>
+<summary>ZZZAccessController.PreparationNotice</summary>
+
+<a id="input-zzzaccesscontroller-preparationnotice"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `notice` | `(uint256,address,bytes32,bytes32)` | `["DESTINATION_CHAIN", "SUCCESSOR_CONTROLLER_ADDRESS", "DEPLOYMENT_COMMITMENT", "REVIEW_HASH"]` |
+| `notice.destinationChain` | `uint256` | `DESTINATION_CHAIN` |
+| `notice.successorController` | `address` | `SUCCESSOR_CONTROLLER_ADDRESS` |
+| `notice.deploymentCommitment` | `bytes32` | `DEPLOYMENT_COMMITMENT` |
+| `notice.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+<details>
+<summary>ZZZActivationEntry.Request</summary>
+
+<a id="input-zzzactivationentry-request"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `request` | `(uint256,bytes32,address,uint256,uint128,uint256,bool)` | `["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false]` |
+| `request.nftId` | `uint256` | `NFT_ID` |
+| `request.poolId` | `bytes32` | `POOL_ID` |
+| `request.sourceAsset` | `address` | `0x0000000000000000000000000000000000000000` |
+| `request.amountIn` | `uint256` | `ETH_INPUT_WEI` |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` |
+| `request.increase` | `bool` | `false` |
+
+</details>
+
+<details>
+<summary>ZZZClaimRouter.Claim[]</summary>
+
+<a id="input-zzzclaimrouter-claim-array"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `claims` | `(uint256,address,bool)[]` | `[["NFT_ID", "0x0000000000000000000000000000000000000000", false], ["NFT_ID", "0x0000000000000000000000000000000000000000", true]]` |
+| `claims[0]` | `(uint256,address,bool)` | `["NFT_ID", "0x0000000000000000000000000000000000000000", false]` |
+| `claims[0].nftId` | `uint256` | `NFT_ID` |
+| `claims[0].asset` | `address` | `0x0000000000000000000000000000000000000000` |
+| `claims[0].royalty` | `bool` | `false` |
+
+</details>
+
+<details>
+<summary>ZZZLPBalanceMath.Context</summary>
+
+<a id="input-zzzlpbalancemath-context"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `x` | `(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4])` | `["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]]` |
+| `x.target` | `bytes32` | `TARGET` |
+| `x.spot` | `uint160` | `SPOT` |
+| `x.lower` | `uint160` | `LOWER` |
+| `x.upper` | `uint160` | `UPPER` |
+| `x.amount0` | `uint256` | `AMOUNT0` |
+| `x.amount1` | `uint256` | `AMOUNT1` |
+| `x.prices` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"]` |
+| `x.prices.lower0` | `uint256` | `LOWER0` |
+| `x.prices.upper0` | `uint256` | `UPPER0` |
+| `x.prices.lower1` | `uint256` | `LOWER1` |
+| `x.prices.upper1` | `uint256` | `UPPER1` |
+| `x.prices.scale1` | `uint256` | `SCALE1` |
+| `x.prices.referenceX96` | `uint160` | `REFERENCE_X96` |
+| `x.prices.extraLoss` | `uint16` | `EXTRA_LOSS` |
+| `x.mainFloor` | `uint16` | `MAIN_FLOOR` |
+| `x.marks` | `uint256[4]` | `["MARKS", "MARKS", "MARKS", "MARKS"]` |
+| `x.marks[0]` | `uint256` | `MARKS` |
+
+</details>
+
+<details>
+<summary>ZZZMigration.ParkingRequest</summary>
+
+<a id="input-zzzmigration-parkingrequest"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `r` | `(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)` | `["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"]` |
+| `r.bucketId` | `uint256` | `BUCKET_ID` |
+| `r.poolId` | `bytes32` | `POOL_ID` |
+| `r.lpTokenId` | `uint256` | `LP_TOKEN_ID` |
+| `r.totalShares` | `uint256` | `TOTAL_SHARES` |
+| `r.depositUSD` | `uint256` | `DEPOSIT_USD` |
+| `r.custodyEpoch` | `uint64` | `CUSTODY_EPOCH` |
+| `r.nonce` | `uint64` | `CURRENT_NONCE` |
+| `r.token0` | `address` | `0x0000000000000000000000000000000000000000` |
+| `r.token1` | `address` | `ZZZ_ADDRESS` |
+| `r.minimum0` | `uint128` | `MINIMUM0` |
+| `r.minimum1` | `uint128` | `MINIMUM1` |
+| `r.deadline` | `uint256` | `UNIX_DEADLINE` |
+| `r.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| `r.portfolioHash` | `bytes32` | `PORTFOLIO_HASH` |
+
+</details>
+
+<details>
+<summary>ZZZOracle.SourcePolicy</summary>
+
+<a id="input-zzzoracle-sourcepolicy"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `primary` | `(address,bytes32,bytes32,uint32,uint8)` | `["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"]` |
+| `primary.source` | `address` | `PRIMARY_FEED_ADDRESS` |
+| `primary.expectedCodeHash` | `bytes32` | `PRIMARY_CODE_HASH` |
+| `primary.independenceId` | `bytes32` | `PRIMARY_INDEPENDENCE_ID` |
+| `primary.maxAge` | `uint32` | `PRIMARY_MAX_AGE` |
+| `primary.feedDecimals` | `uint8` | `PRIMARY_FEED_DECIMALS` |
+
+</details>
+
+<details>
+<summary>ZZZRewardConverter.RoutePolicy</summary>
+
+<a id="input-zzzrewardconverter-routepolicy"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `policy` | `(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"]` |
+| `policy.source` | `address` | `SOURCE_ADDRESS` |
+| `policy.router` | `address` | `ROUTER_ADDRESS` |
+| `policy.factory` | `address` | `FACTORY_ADDRESS` |
+| `policy.pool` | `address` | `POOL_ADDRESS` |
+| `policy.fee` | `uint24` | `FEE` |
+| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` |
+| `policy.routerCodeHash` | `bytes32` | `ROUTER_CODE_HASH` |
+| `policy.factoryCodeHash` | `bytes32` | `FACTORY_CODE_HASH` |
+| `policy.poolCodeHash` | `bytes32` | `POOL_CODE_HASH` |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+<details>
+<summary>ZZZRewardConverter.WrapperPolicy</summary>
+
+<a id="input-zzzrewardconverter-wrapperpolicy"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `policy` | `(bytes32,address,address,address,bytes32,bytes32,bytes32)` | `["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"]` |
+| `policy.codeHash` | `bytes32` | `CODE_HASH` |
+| `policy.admin` | `address` | `ADMIN_ADDRESS` |
+| `policy.implementation` | `address` | `IMPLEMENTATION_ADDRESS` |
+| `policy.adminOwner` | `address` | `ADMIN_OWNER_ADDRESS` |
+| `policy.adminCodeHash` | `bytes32` | `ADMIN_CODE_HASH` |
+| `policy.implementationCodeHash` | `bytes32` | `IMPLEMENTATION_CODE_HASH` |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+<details>
+<summary>ZZZV4RouteExecutor.Policy</summary>
+
+<a id="input-zzzv4routeexecutor-policy"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `policy` | `(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"]` |
+| `policy.source` | `address` | `SOURCE_ADDRESS` |
+| `policy.output` | `address` | `OUTPUT_ADDRESS` |
+| `policy.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
+| `policy.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
+| `policy.key.currency1` | `address` | `ZZZ_ADDRESS` |
+| `policy.key.fee` | `uint24` | `FEE` |
+| `policy.key.tickSpacing` | `int24` | `TICK_SPACING` |
+| `policy.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+| `policy.poolManager` | `address` | `POOL_MANAGER_ADDRESS` |
+| `policy.stateView` | `address` | `STATE_VIEW_ADDRESS` |
+| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` |
+| `policy.outputCodeHash` | `bytes32` | `OUTPUT_CODE_HASH` |
+| `policy.poolManagerCodeHash` | `bytes32` | `POOL_MANAGER_CODE_HASH` |
+| `policy.stateViewCodeHash` | `bytes32` | `STATE_VIEW_CODE_HASH` |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+### Deployment constructors
+
+<details>
+<summary>Deployment-only inputs; no deployment authorization</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [AccessController.constructor](CONTRACT_FUNCTIONS.md#zzzaccesscontroller) | `initialGovernance: address`<br>`initialKeeper: address`<br>`initialGuardian: address` | `deploy AccessController(INITIAL_GOVERNANCE_ADDRESS, INITIAL_KEEPER_ADDRESS, INITIAL_GUARDIAN_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ActivationAssets.constructor](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `controller: address`<br>`poolRegistry: address` | `deploy ActivationAssets(CONTROLLER_ADDRESS, POOL_REGISTRY_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ActivationAssetsFactory.constructor](CONTRACT_FUNCTIONS.md#zzzactivationassetsfactory) | None | `deploy ActivationAssetsFactory()` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ActivationEntry.constructor](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `controller: address`<br>`poolRegistry: address`<br>`assets: address` | `deploy ActivationEntry(CONTROLLER_ADDRESS, POOL_REGISTRY_ADDRESS, ASSETS_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Buyback.constructor](CONTRACT_FUNCTIONS.md#zzzbuyback) | `controller: address`<br>`zzzToken: address`<br>`maximumTradeUSD: uint256` | `deploy Buyback(CONTROLLER_ADDRESS, ZZZ_TOKEN_ADDRESS, MAXIMUM_TRADE_USD)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [CanonicalHandoff.constructor](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `controller: address` | `deploy CanonicalHandoff(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ClaimRouter.constructor](CONTRACT_FUNCTIONS.md#zzzclaimrouter) | `controller: address`<br>`nftController: address`<br>`royaltyLedger: address` | `deploy ClaimRouter(CONTROLLER_ADDRESS, NFT_CONTROLLER_ADDRESS, ROYALTY_LEDGER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Compounder.constructor](CONTRACT_FUNCTIONS.md#zzzcompounder) | `controller: address` | `deploy Compounder(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ContributionPricing.constructor](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `controller: address`<br>`priceOracle: address` | `deploy ContributionPricing(CONTROLLER_ADDRESS, PRICE_ORACLE_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [CustodyValidation.constructor](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `controller: address` | `deploy CustodyValidation(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [FeeController.constructor](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `controller: address` | `deploy FeeController(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [FeesCanonical.constructor](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `controller: address`<br>`feeController: address` | `deploy FeesCanonical(CONTROLLER_ADDRESS, FEE_CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [LPBalanceMath.constructor](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `deploy LPBalanceMath()` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [LPBalancer.constructor](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `controller: address`<br>`core: address`<br>`state: address` | `deploy LPBalancer(CONTROLLER_ADDRESS, CORE_ADDRESS, STATE_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [LPPositionExecutor.constructor](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `controller: address`<br>`positionManager_: address`<br>`stateView_: address`<br>`poolManager_: address`<br>`permit2_: address`<br>`balancer_: address` | `deploy LPPositionExecutor(CONTROLLER_ADDRESS, POSITION_MANAGER_ADDRESS, STATE_VIEW_ADDRESS, POOL_MANAGER_ADDRESS, PERMIT2_ADDRESS, BALANCER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [LPRewardConverter.constructor](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `controller: address`<br>`rewards: address`<br>`wrappedETH: address` | `deploy LPRewardConverter(CONTROLLER_ADDRESS, REWARDS_ADDRESS, WRAPPED_ETH_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [LiquidityManager.constructor](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `controller: address`<br>`positionManager_: address`<br>`stateView_: address`<br>`poolManager_: address`<br>`permit2_: address`<br>`balancer_: address` | `deploy LiquidityManager(CONTROLLER_ADDRESS, POSITION_MANAGER_ADDRESS, STATE_VIEW_ADDRESS, POOL_MANAGER_ADDRESS, PERMIT2_ADDRESS, BALANCER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Membership.constructor](CONTRACT_FUNCTIONS.md#zzzmembership) | `controller: address` | `deploy Membership(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Migration.constructor](CONTRACT_FUNCTIONS.md#zzzmigration) | `controller: address` | `deploy Migration(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [MigrationBudget.constructor](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `controller: address` | `deploy MigrationBudget(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [NFT.constructor](CONTRACT_FUNCTIONS.md#zzznft) | `controller: address`<br>`baseURI: string` | `deploy NFT(CONTROLLER_ADDRESS, IPFS_BASE_URI)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [NFTCanonical.constructor](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `controller: address`<br>`collection: address` | `deploy NFTCanonical(CONTROLLER_ADDRESS, COLLECTION_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [NFTMetadata.constructor](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `controller: address` | `deploy NFTMetadata(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Oracle.constructor](CONTRACT_FUNCTIONS.md#zzzoracle) | `controller: address`<br>`sequencer: address` | `deploy Oracle(CONTROLLER_ADDRESS, SEQUENCER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [PoolRegistry.constructor](CONTRACT_FUNCTIONS.md#zzzpoolregistry) | `controller: address` | `deploy PoolRegistry(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [PortfolioPolicy.constructor](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `controller: address` | `deploy PortfolioPolicy(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [ProtocolPolicy.constructor](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `controller: address`<br>`initialMintRecipient: address` | `deploy ProtocolPolicy(CONTROLLER_ADDRESS, INITIAL_MINT_RECIPIENT_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [PythPriceFeed.constructor](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | `source: address`<br>`codeHash: bytes32`<br>`id: bytes32`<br>`exponent: int32`<br>`age: uint32`<br>`confidenceBps: uint16`<br>`review: bytes32` | `deploy PythPriceFeed(SOURCE_ADDRESS, CODE_HASH, ID, EXPONENT, AGE, CONFIDENCE_BPS, REVIEW)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RebalanceConfirmation.constructor](CONTRACT_FUNCTIONS.md#zzzrebalanceconfirmation) | `controller: address` | `deploy RebalanceConfirmation(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Rewards.constructor](CONTRACT_FUNCTIONS.md#zzzrewards) | `controller: address` | `deploy Rewards(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RoyaltyConverter.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `controller: address`<br>`receiver: address`<br>`wrappedETH: address` | `deploy RoyaltyConverter(CONTROLLER_ADDRESS, RECEIVER_ADDRESS, WRAPPED_ETH_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RoyaltyFactory.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `deploy RoyaltyFactory()` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RoyaltyRewards.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `nftController: address` | `deploy RoyaltyRewards(NFT_CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Strategy.constructor](CONTRACT_FUNCTIONS.md#zzzstrategy) | `controller: address`<br>`portfolio: address`<br>`confirmation: address` | `deploy Strategy(CONTROLLER_ADDRESS, PORTFOLIO_ADDRESS, CONFIRMATION_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [V4RouteExecutor.constructor](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | None | `deploy V4RouteExecutor()` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [Vault.constructor](CONTRACT_FUNCTIONS.md#zzzvault) | `controller: address`<br>`nftHomeChain: uint256`<br>`budget: address` | `deploy Vault(CONTROLLER_ADDRESS, NFT_HOME_CHAIN, BUDGET_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [VaultCanonical.constructor](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `controller: address`<br>`vaultController: address`<br>`chain: uint256` | `deploy VaultCanonical(CONTROLLER_ADDRESS, VAULT_CONTROLLER_ADDRESS, CHAIN)` | Deploy bound implementation |
+
+</details>
+
+### ETH receive hooks
+
+<details>
+<summary>No ABI arguments; sender/value authentication still applies</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Buyback.receive](CONTRACT_FUNCTIONS.md#zzzbuyback) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [FeeController.receive](CONTRACT_FUNCTIONS.md#zzzfeecontroller) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [FeesCanonical.receive](CONTRACT_FUNCTIONS.md#zzzfeescanonical) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LPPositionExecutor.receive](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LPRewardConverter.receive](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [LiquidityManager.receive](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Migration.receive](CONTRACT_FUNCTIONS.md#zzzmigration) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Rewards.receive](CONTRACT_FUNCTIONS.md#zzzrewards) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [RoyaltyConverter.receive](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [RoyaltyRewards.receive](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `value: wei` (separate) | `send ETH; data=0x; value=ROYALTY_ETH_WEI wei` | Receive marketplace ETH royalties |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [V4RouteExecutor.receive](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Vault.receive](CONTRACT_FUNCTIONS.md#zzzvault) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [VaultCanonical.receive](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+</details>
+
+<!-- END GENERATED OPERATOR CALLS -->

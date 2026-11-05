@@ -1,0 +1,742 @@
+{
+  "baseline": "28f75738a01efae2a2e11cf861e5e94d4d10efb3",
+  "baseline_markdown_count": 105,
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "original_sha256": "7d293ca84d318a84f4c705afc04f8af9cfed0fc486003f46c82b1a2396e704e0",
+      "current_sha256": "e9b339b502776b7d7e82a319f1ab7af0e4291b227e70ba67e7f5d492c174e76f",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "original_sha256": "4007c7a3647f415c869a215c9ebc817b0dcc281a2da6b04d8124cff2c060738c",
+      "current_sha256": "9ce3855707dbde1140d72a922cd8fa05a4701671b9f98048fb8a9af404e87ae9",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "README.md",
+      "original_sha256": "378d313f6a62756be510bc7038c2f266109ee728922f3dcdbc8468fa7206fb12",
+      "current_sha256": "0b2ccc11ce09bf099f8774b4eee9440a91c591fc29b805bbd08b9bbbc24bec67",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "TODO.md",
+      "original_sha256": "2ac7943f82e0a5c878268c522685fb9309664157b6f18dcc25ac7092af5e4f7c",
+      "current_sha256": "f0751baa11f434507b19cbe3e321309ca6d713e617785d06fe897c24b00d47e2",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/ACCESS_PERMISSIONS.md",
+      "original_sha256": "c315cf2cfaec370d3c252233c066d7cfa8d3fb4033b1621ff40549c5eacbc83d",
+      "current_sha256": "c315cf2cfaec370d3c252233c066d7cfa8d3fb4033b1621ff40549c5eacbc83d",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ACTIVATION_ENTRY.md",
+      "original_sha256": "cba4d845be98628bb3487d3cbb8908b258f49c3d355ada531efd7b24d64f552b",
+      "current_sha256": "2a4ffe2606c0ff25fe9ac1503a94a7f9605df18cde5f9534bfdab5a0bc8d90e4",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/ACTIVATION_PREPARATION.md",
+      "original_sha256": "966a342c37a9b1b54e3d13aaf147308ffea435c56483e0af37dcf9ffcf15253e",
+      "current_sha256": "966a342c37a9b1b54e3d13aaf147308ffea435c56483e0af37dcf9ffcf15253e",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ACTIVATION_ROUTING.md",
+      "original_sha256": "8f1b978cde01c7e880c333b43ba4754050dc87daab21c0bd6e36f00814f1e51e",
+      "current_sha256": "45f24c8a1f4f59b2ea4cd5022e08b9d7894231c0f83e233d244c58d6ad4fd841",
+      "changed": true,
+      "action": "Merged unique current controls into ACTIVATION_ENTRY; stable pointer retained"
+    },
+    {
+      "path": "docs/ADAPTABLE_POLICY.md",
+      "original_sha256": "a55c03f0850323fab79b7b9a322b88f6d6d9142357c53b51d0ea9b7ea642f8e2",
+      "current_sha256": "a55c03f0850323fab79b7b9a322b88f6d6d9142357c53b51d0ea9b7ea642f8e2",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/API_INGRESS.md",
+      "original_sha256": "75cc1adc8dcb3151ea3d3a34933a63e4fde6351a89712b4063bdcf16b62f4d0e",
+      "current_sha256": "75cc1adc8dcb3151ea3d3a34933a63e4fde6351a89712b4063bdcf16b62f4d0e",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "original_sha256": "d53f50275dddae0c28a440e4aaddd0b8179c8617ac6127c3548b50bca3eb0a7a",
+      "current_sha256": "908c1adc4d4ea7d5b40b07deb88f5b05d6717595d93eb6dd61a623296845dbc6",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/ARCHITECTURE_EVOLUTION.md",
+      "original_sha256": "1bed9119d4dff392d2104b57d6acb229c436a1bf9148309b5852d9dbb36b8bad",
+      "current_sha256": "1bed9119d4dff392d2104b57d6acb229c436a1bf9148309b5852d9dbb36b8bad",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ARTWORK_PUBLICATION.md",
+      "original_sha256": "f12133cec2ad38821bdcd0664b63263c2e3ee48a81fb089761fad4bc1e657de0",
+      "current_sha256": "f12133cec2ad38821bdcd0664b63263c2e3ee48a81fb089761fad4bc1e657de0",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/AUDIT.md",
+      "original_sha256": "750d66b792415f1ec16a569294a5f7119a6397ea356ef686d7856fc6a4e1a38e",
+      "current_sha256": "750d66b792415f1ec16a569294a5f7119a6397ea356ef686d7856fc6a4e1a38e",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "original_sha256": "b4707fef4e1c921418557e5d3a0804fa42ed5861d1226c3eb204bcd297e00f84",
+      "current_sha256": "b4707fef4e1c921418557e5d3a0804fa42ed5861d1226c3eb204bcd297e00f84",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/BRIDGE_ONBOARDING.md",
+      "original_sha256": "8fe2b38b1fadbb2658b51ee7f92501a1a920cea802769e7014d47c5ea5286c4f",
+      "current_sha256": "8fe2b38b1fadbb2658b51ee7f92501a1a920cea802769e7014d47c5ea5286c4f",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/BROWSER_WALLET.md",
+      "original_sha256": "c56d848a7ba43d7f09669daa24be46b9bbc556a1e51047e46ba7c622073d9598",
+      "current_sha256": "c56d848a7ba43d7f09669daa24be46b9bbc556a1e51047e46ba7c622073d9598",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CANONICAL_HANDOFF.md",
+      "original_sha256": "db48a584508193638f2c173118a51cedf7b56c4c5c03b9c7b61e1a9acbe26a00",
+      "current_sha256": "db48a584508193638f2c173118a51cedf7b56c4c5c03b9c7b61e1a9acbe26a00",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CANONICAL_MIGRATION_DESIGN.md",
+      "original_sha256": "c48fdfd2a847603fc994316960f7e10071e9f8d5bcb1a2058fcdaebf1e2eea67",
+      "current_sha256": "c48fdfd2a847603fc994316960f7e10071e9f8d5bcb1a2058fcdaebf1e2eea67",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "original_sha256": "1f3f86ff37a2586edb235314b553eabb1d527a0a6f33699483a95d58c050d467",
+      "current_sha256": "1f3f86ff37a2586edb235314b553eabb1d527a0a6f33699483a95d58c050d467",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CHANGE_AND_RECOVERY.md",
+      "original_sha256": "d2a74f05c218284cdb4457d0cce7081c53c43d26a10017be2563031302ecc4d4",
+      "current_sha256": "687e301f94401eb9c4575735e9bf5bfbd5902161d3bee6445b97ed3b4c144853",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/CLAIM_ROUTER.md",
+      "original_sha256": "8d8fef89fba441b369354368a898c05fae0ee72fe52231c0b4bb9ae4882f488d",
+      "current_sha256": "8d8fef89fba441b369354368a898c05fae0ee72fe52231c0b4bb9ae4882f488d",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/COLLECTION_READS.md",
+      "original_sha256": "5e3e5b83ab0796b8a218bef72fbac8fa4036f52a43e76e4f87e228990ce76dd3",
+      "current_sha256": "5e3e5b83ab0796b8a218bef72fbac8fa4036f52a43e76e4f87e228990ce76dd3",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/COMPONENT_STATUS.md",
+      "original_sha256": "dbd047200bdc710f4d70b9ad6695527fc31cc4d8ba3bcaa668cc86386363fe20",
+      "current_sha256": "c5d690689c46d1273d5fad96213529846351eae5f0d01358e8aef9f8e22f7acb",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/CONCURRENT_SERVICES.md",
+      "original_sha256": "6516de8abd0a3d5d823a8446f1388b5ff0d7142ddc6adae4d9d97ae29862d528",
+      "current_sha256": "6516de8abd0a3d5d823a8446f1388b5ff0d7142ddc6adae4d9d97ae29862d528",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CONTRACT_FUNCTIONS.md",
+      "original_sha256": "ad00c81c9ae0b9b991ad93e5e8d9670a400ae374e4409b22506c052ae7211121",
+      "current_sha256": "ad00c81c9ae0b9b991ad93e5e8d9670a400ae374e4409b22506c052ae7211121",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CONTRIBUTION_MINIMUMS.md",
+      "original_sha256": "7a646891200895ac7d09929f24f281ff16f5c93e30a085dc24c275d98e9931a9",
+      "current_sha256": "7a646891200895ac7d09929f24f281ff16f5c93e30a085dc24c275d98e9931a9",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CURRENT_WEBSITE_PROFILE.md",
+      "original_sha256": "f1bd51d936fab8fd990ec0808cc2ebe4002cd031f540263bdbd795f57d4fa7cd",
+      "current_sha256": "f1bd51d936fab8fd990ec0808cc2ebe4002cd031f540263bdbd795f57d4fa7cd",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/CUSTODY_PARKING.md",
+      "original_sha256": "ef60dce79eeb84a55688a7fda2a38f364359d9f73fc057ec173e521e13ac5c17",
+      "current_sha256": "ef60dce79eeb84a55688a7fda2a38f364359d9f73fc057ec173e521e13ac5c17",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/DEPLOYMENT_ADDRESSES.md",
+      "original_sha256": "6b8353b9ead517b5413041d2e976a6f3b2e13e0b1e776f9d3a319a247d52cd3e",
+      "current_sha256": "ca78dde1f2a72a8d7bdc4c774e3b27c6efbeb024262fc6ab779a447df2862ae1",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/DEPLOYMENT_WEBSITE.md",
+      "original_sha256": "405e413b64df6cd96c9efefbe831904b1f71c8e8462a54c191e8712e7d46a44f",
+      "current_sha256": "405e413b64df6cd96c9efefbe831904b1f71c8e8462a54c191e8712e7d46a44f",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "original_sha256": "1895953f76a37456fd2df4a50f41e62da410413d34898acb749b67ac1393bfa3",
+      "current_sha256": "9a875af7c278b3e15763c92698c5ed45c0d05806fd7776c281b8597d1ad0027b",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/DYNAMIC_LIQUIDITY.md",
+      "original_sha256": "66a4639d63b04f16d2f025c877828d8ad14731543955b2cfb5551dd853ba41fb",
+      "current_sha256": "66a4639d63b04f16d2f025c877828d8ad14731543955b2cfb5551dd853ba41fb",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EARNINGS_CHECKPOINTS.md",
+      "original_sha256": "6bb3ad44733c43d5b811ae2cabca52dda8b87b694ee02e68a31ccdc95abc8fa9",
+      "current_sha256": "6bb3ad44733c43d5b811ae2cabca52dda8b87b694ee02e68a31ccdc95abc8fa9",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EARNINGS_HISTORY.md",
+      "original_sha256": "59c84652a527b22ad1664b1cf72a831b0fa27a3195dcf59db4b5e7e0e6e70d1b",
+      "current_sha256": "59c84652a527b22ad1664b1cf72a831b0fa27a3195dcf59db4b5e7e0e6e70d1b",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ECONOMICS.md",
+      "original_sha256": "c35966eb3f4b11d83345f853fdce95bfb0d320751d13a2eb7121d65ae5521a50",
+      "current_sha256": "c35966eb3f4b11d83345f853fdce95bfb0d320751d13a2eb7121d65ae5521a50",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EMERGENCY_REBALANCE.md",
+      "original_sha256": "47361e17d1ea0d8ddf2342e7f0acde5f7e7259c1dd862ee9650335435ca51f45",
+      "current_sha256": "47361e17d1ea0d8ddf2342e7f0acde5f7e7259c1dd862ee9650335435ca51f45",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EXECUTION_LOSS_POLICY.md",
+      "original_sha256": "07e11c23b9fb76177bc9098ea77035546a36bcf2e4393b225cac98cbf66b32c6",
+      "current_sha256": "07e11c23b9fb76177bc9098ea77035546a36bcf2e4393b225cac98cbf66b32c6",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EXECUTION_QUALITY.md",
+      "original_sha256": "046762ac527b4fff76fbbf97298517070f2aa752fd32778137dba2c7adad9bb2",
+      "current_sha256": "046762ac527b4fff76fbbf97298517070f2aa752fd32778137dba2c7adad9bb2",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/EXTERNAL_REWARDS.md",
+      "original_sha256": "669ce07d88b9bd80e5174c390f602a54722fea0fa7215c834cdf57c99c15b471",
+      "current_sha256": "669ce07d88b9bd80e5174c390f602a54722fea0fa7215c834cdf57c99c15b471",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FRONTEND_API.md",
+      "original_sha256": "76614a55e456440c1da5e2833b5c57631e5f3262e33d5a2021d1bdb00320ed50",
+      "current_sha256": "76614a55e456440c1da5e2833b5c57631e5f3262e33d5a2021d1bdb00320ed50",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FRONTEND_HISTORY.md",
+      "original_sha256": "942f6d084609e5cfc99804d546e80dee3aaeb18dbfd78cfcdda511b1e5d4d72b",
+      "current_sha256": "942f6d084609e5cfc99804d546e80dee3aaeb18dbfd78cfcdda511b1e5d4d72b",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FRONTEND_LIFECYCLE.md",
+      "original_sha256": "4b33a312ad9d5d6d1d0423faffe5ab29bca92fd29f2a352b7048c7310601e67e",
+      "current_sha256": "4b33a312ad9d5d6d1d0423faffe5ab29bca92fd29f2a352b7048c7310601e67e",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FRONTEND_LINEAGE.md",
+      "original_sha256": "53438de5d4922e195a282595d687beed365bb58b09b80ead00469dc1f0e58289",
+      "current_sha256": "53438de5d4922e195a282595d687beed365bb58b09b80ead00469dc1f0e58289",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FRONTEND_TRANSACTIONS.md",
+      "original_sha256": "fea166aecd7ec2fd2e17a5521dbd3035e64ac8ee1896c97c85c60d1ba179a647",
+      "current_sha256": "fea166aecd7ec2fd2e17a5521dbd3035e64ac8ee1896c97c85c60d1ba179a647",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/FROZEN_REVIEW_BUNDLE.md",
+      "original_sha256": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7",
+      "current_sha256": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/GOVERNANCE.md",
+      "original_sha256": "4d559be1767975a3f4166e88b21bec15768c5fd75bc2927e4367e97f8fd03a38",
+      "current_sha256": "4d559be1767975a3f4166e88b21bec15768c5fd75bc2927e4367e97f8fd03a38",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/GOVERNED_CUSTODY_HANDOFF.md",
+      "original_sha256": "4c6a86df97f04c29d57735aec37fc903ee8e32c45596fe8016c464125112a6a2",
+      "current_sha256": "4c6a86df97f04c29d57735aec37fc903ee8e32c45596fe8016c464125112a6a2",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/HISTORY_AUDIT.md",
+      "original_sha256": "2fe6b3feff50ff6b05ae80227bfcdd5be7517c5bb63e900d2adac95fc4804695",
+      "current_sha256": "2fe6b3feff50ff6b05ae80227bfcdd5be7517c5bb63e900d2adac95fc4804695",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/HOLDER_COLLECTIVE_EXIT.md",
+      "original_sha256": "2ee509e7c60afbba80d49a10151eaecf8fc61839a396f5c0721617267962ada0",
+      "current_sha256": "2ee509e7c60afbba80d49a10151eaecf8fc61839a396f5c0721617267962ada0",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/HOLDER_PREFLIGHT.md",
+      "original_sha256": "6adb052d59c1dff32cc4617236fb66bc1c36c723152f1d496b70f22dad0194f1",
+      "current_sha256": "6adb052d59c1dff32cc4617236fb66bc1c36c723152f1d496b70f22dad0194f1",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/IDLE_AND_DUST.md",
+      "original_sha256": "3c56104667582202b2baa3f08b480e1316b8c1bae007f078b3696d59a8317263",
+      "current_sha256": "3c56104667582202b2baa3f08b480e1316b8c1bae007f078b3696d59a8317263",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "original_sha256": "b55661bca6321f6d533318a5dc6edb6306e9e2beb9c4268d6bd4c69334677dff",
+      "current_sha256": "98ee8bb699be22157b535f751fabc470cc948b7b27f37f28852796bd4c35ba50",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/INDEXER_RECOVERY.md",
+      "original_sha256": "767c8abac999a8c7e8a4751ec6e1e3c991c0aba59303b142d432c5857a0a25c8",
+      "current_sha256": "767c8abac999a8c7e8a4751ec6e1e3c991c0aba59303b142d432c5857a0a25c8",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/INTEGRATION_CAMPAIGN.md",
+      "original_sha256": "585343e4f416faa27a5335dfb9ffdce2cea9f45a3a7360fbb44c4c2fd8159c38",
+      "current_sha256": "585343e4f416faa27a5335dfb9ffdce2cea9f45a3a7360fbb44c4c2fd8159c38",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/KEEPER_COORDINATION.md",
+      "original_sha256": "5c38a572a67cc97f99f0c4cfdf0a459e663981c18cbac3b74643dd0af03412ab",
+      "current_sha256": "5c38a572a67cc97f99f0c4cfdf0a459e663981c18cbac3b74643dd0af03412ab",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/KEEPER_RECOVERY.md",
+      "original_sha256": "293c5dd3dfd4d04591d9f2ae0f906e8433baea53c953b157bff47e0c15024afe",
+      "current_sha256": "293c5dd3dfd4d04591d9f2ae0f906e8433baea53c953b157bff47e0c15024afe",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/KEEPER_REHEARSALS.md",
+      "original_sha256": "8fc07324a51ade4aa7a520c122f5d0db5cef4987f39c8002e4c6b8ffee0c15f6",
+      "current_sha256": "8fc07324a51ade4aa7a520c122f5d0db5cef4987f39c8002e4c6b8ffee0c15f6",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/KEEPER_SAFEGUARDS.md",
+      "original_sha256": "c0c6b2f06bad3de7d510466b3adadf9c7528d630d40b76e868db0f3822a037ad",
+      "current_sha256": "c0c6b2f06bad3de7d510466b3adadf9c7528d630d40b76e868db0f3822a037ad",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/LOCAL_API_REHEARSAL.md",
+      "original_sha256": "b859d7e65eb8e0da6c89d2c195466dcf128d5066c05a031674ddfdf50419c20e",
+      "current_sha256": "b859d7e65eb8e0da6c89d2c195466dcf128d5066c05a031674ddfdf50419c20e",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/LOCAL_TEST_STACK.md",
+      "original_sha256": "52155a587c3f342f898c61a6398fe959aaed32b985903310e8f80cedb0b28dce",
+      "current_sha256": "52155a587c3f342f898c61a6398fe959aaed32b985903310e8f80cedb0b28dce",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/LOCAL_WEBSITE.md",
+      "original_sha256": "4d0edda18edf0d786c2eb45cb05bad70f421bd7ee9311c3e53a6dc31a3e3cd2c",
+      "current_sha256": "4d0edda18edf0d786c2eb45cb05bad70f421bd7ee9311c3e53a6dc31a3e3cd2c",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/LP_ETH_SETTLEMENT.md",
+      "original_sha256": "5149c61ecc0617a41bfd244ab6fbb365fdeb0ae52ebfdf8066148d1aebf68b00",
+      "current_sha256": "5149c61ecc0617a41bfd244ab6fbb365fdeb0ae52ebfdf8066148d1aebf68b00",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/LP_EXECUTION_POLICY.md",
+      "original_sha256": "7df469c1309c4203ef478356126df7c1084abd802b7acf82db28a27add7518d4",
+      "current_sha256": "7df469c1309c4203ef478356126df7c1084abd802b7acf82db28a27add7518d4",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/MIGRATION_SAFETY.md",
+      "original_sha256": "077353e26a06d3b425eee468ec87dae59ccfae0a311b8cef50c5d5b6e5e59a53",
+      "current_sha256": "077353e26a06d3b425eee468ec87dae59ccfae0a311b8cef50c5d5b6e5e59a53",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/MINT_INTEGRATION_QUALIFICATION.md",
+      "original_sha256": "a66c8b9d656beee729059b5367b72b6706ae8de20e4a4391f01955101ca65b4d",
+      "current_sha256": "a66c8b9d656beee729059b5367b72b6706ae8de20e4a4391f01955101ca65b4d",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/NATIVE_ETH_ARCHITECTURE.md",
+      "original_sha256": "2d6ca1b75b1f729c079698707e39a80d3fd7d359210206fffe45886c8613364b",
+      "current_sha256": "2d6ca1b75b1f729c079698707e39a80d3fd7d359210206fffe45886c8613364b",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/NATIVE_WEBSITE_PROFILE.md",
+      "original_sha256": "090ee0586a572974dd9dfc1728602e6758c71f9953e1c2c4a51671c7c128744f",
+      "current_sha256": "090ee0586a572974dd9dfc1728602e6758c71f9953e1c2c4a51671c7c128744f",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/NFT_METADATA.md",
+      "original_sha256": "27885bad34f2ddb5fa2fdd2d0a100cc09d079ce8fd7455433eee48c0e6d06f22",
+      "current_sha256": "a66daab6e1fd9a9c34d468516a619ad79248a993b0bcf5b7a3716f1fcffdb40e",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/ONE_DOLLAR_REHEARSAL.md",
+      "original_sha256": "a0e48c6b59e3293ca294f65225080ff152927f281cfe7f9f91984e9efccc6123",
+      "current_sha256": "a0e48c6b59e3293ca294f65225080ff152927f281cfe7f9f91984e9efccc6123",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "original_sha256": "22bd23da3a18e942529e3572fd8928619edfdb51d444edee0d50eeede81f839d",
+      "current_sha256": "22bd23da3a18e942529e3572fd8928619edfdb51d444edee0d50eeede81f839d",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "original_sha256": "e716a9626937281a6ac6c8f76163b2d1a525dff58168b18bd9511aef3d2795bf",
+      "current_sha256": "6a013a50e166a05ffb47454b8e26ee8ce5b478a444af81eeaf2fdb12f7f603b8",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md",
+      "original_sha256": "ccc9c4c11f4edb8e7bdc72f2fce8c915d5852ad75bf8ba7b9114da7ccf33d18c",
+      "current_sha256": "20566fd7d2520049bb93d3c1557bb93c641b6db0f3396b39bb7dc585c2d04351",
+      "changed": true,
+      "action": "Consolidated historical content into exact-Git pointer; original anchors retained"
+    },
+    {
+      "path": "docs/PAIR_MIGRATION.md",
+      "original_sha256": "71ea5834bf8ab67da884d9cc390826a2a9b16c4fe419ed1228305b36c851a0dc",
+      "current_sha256": "71ea5834bf8ab67da884d9cc390826a2a9b16c4fe419ed1228305b36c851a0dc",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/PASSIVE_INVENTORY_PLAN.md",
+      "original_sha256": "e0834a07d82d1937b8a1743624a9e98ae12430b641a58748c1fe16d636f22fc8",
+      "current_sha256": "91d65c91b11f40cdf2dc9882050c32e77428e8bd3b645cf400179e33a2bcfd5b",
+      "changed": true,
+      "action": "Consolidated historical content into exact-Git pointer; original anchors retained"
+    },
+    {
+      "path": "docs/POOL_SELECTION.md",
+      "original_sha256": "b852a7dc91871217b4d77c1902afb4603b0aa5b159b4d03b32e5be03e0d56682",
+      "current_sha256": "b852a7dc91871217b4d77c1902afb4603b0aa5b159b4d03b32e5be03e0d56682",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/PORTFOLIO_OPERATIONS.md",
+      "original_sha256": "98e654725cc27219d33051c950f2fc32c9eaba6d5d0f12e6d138315c6fa5e94a",
+      "current_sha256": "98e654725cc27219d33051c950f2fc32c9eaba6d5d0f12e6d138315c6fa5e94a",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/POSITION_V3.md",
+      "original_sha256": "113888f63401bc73dc336fcbdd10345dee199452212437e5d325c67530406abb",
+      "current_sha256": "ad2928b335ea78f5bd3e58abf352b0e52513ad8b9977bd76c366b94221b11d06",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/POSITION_V4.md",
+      "original_sha256": "a7cf8b7191e1b182cef31c296e7c07e704f852e8e82a442e00659f84aae24d13",
+      "current_sha256": "5913f9f74e3dd5ebf1cc36de914e43a3cef878ea9b9ce90376bdb189e716cbd8",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/POSITION_V5.md",
+      "original_sha256": "5230a4e85a430cb4e202749cdb8156c77996b87a0eee2db68c5c16f366b81368",
+      "current_sha256": "5230a4e85a430cb4e202749cdb8156c77996b87a0eee2db68c5c16f366b81368",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/POSITION_V6.md",
+      "original_sha256": "9d49dd105d61479b7d15ec96ebd26e0ca6eab24a01b130b0a20ca8779f5785b2",
+      "current_sha256": "9d49dd105d61479b7d15ec96ebd26e0ca6eab24a01b130b0a20ca8779f5785b2",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/POST_SEAL_POLICY.md",
+      "original_sha256": "3fecd5870c3c8ad8198487b52d4b97fe7803d31f8af2755ba6a06d7029cedab8",
+      "current_sha256": "94e7a85efc0292831f0ecd411139a93c6e1e425115a44d4e0f23b4491878ae88",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/PRICE_SECURITY.md",
+      "original_sha256": "3c442c4948c62a32eeb627cf0657d395fa48a4a5db72fc2e7d09cfd5907afd74",
+      "current_sha256": "3c442c4948c62a32eeb627cf0657d395fa48a4a5db72fc2e7d09cfd5907afd74",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/PRODUCTION_PREFLIGHT.md",
+      "original_sha256": "bc8bc73b2441287f51f48f2b9c46de2b37be40fe48b8e4191240b0ae707c9a73",
+      "current_sha256": "bc8bc73b2441287f51f48f2b9c46de2b37be40fe48b8e4191240b0ae707c9a73",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/PRODUCTION_SERVICES.md",
+      "original_sha256": "69680b743b88aec8b5f406900bd31a4e83faa7dcdd73ce4c045aa71a6c13e772",
+      "current_sha256": "9b9478a9a5216e5dd298a16e487fbe98d3dfb43d3911c210e295b6ab20efd6f9",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/PYTH_PRICE_SOURCE.md",
+      "original_sha256": "6b62fb7cd614b2f5a3124870727fb8b1ec26581702f98db0a77ea7f999b70f29",
+      "current_sha256": "6b62fb7cd614b2f5a3124870727fb8b1ec26581702f98db0a77ea7f999b70f29",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/RANGE_POLICY_UPDATES.md",
+      "original_sha256": "3fd292924d4887c383d81501fba20cab7e82d430904079c7c2c14b17adcfe171",
+      "current_sha256": "3fd292924d4887c383d81501fba20cab7e82d430904079c7c2c14b17adcfe171",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/README.md",
+      "original_sha256": "b569f2a5fd35b5e935976e03be2c5b2abf1a1da43769ac756c85ebd2737f9ddb",
+      "current_sha256": "6a1e9291314239534e0c1ed1916004a499c72677350ccc2d4802467bf25f3cbf",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "original_sha256": "815627376af1851e0c9bede1eb82e5164a75fb53d01e7914aab8ca3508f19da7",
+      "current_sha256": "1e6a59faba4903d7fd19613c68d3c39090309c6f1a3126d194dbafc2d5f04b55",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/REVENUE_SHARE.md",
+      "original_sha256": "e6b54914aa3041da5a3dae83faf8c63def35af9ef0124e72fe6680a98280ddcd",
+      "current_sha256": "e6b54914aa3041da5a3dae83faf8c63def35af9ef0124e72fe6680a98280ddcd",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "original_sha256": "2a722cbfaece42e5d8b5dcaf4efc7ecb245e80daf643003972f334704483bc48",
+      "current_sha256": "5e2b77d2d00409f794d51b65be3085fce9ae92619666ac66a12b79926752e86f",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/ROBINHOOD_POOL.md",
+      "original_sha256": "6d4f57a7f70186a48f1b1c7b2122907df79fa18c77992bea355df8a70ee8c92c",
+      "current_sha256": "6d4f57a7f70186a48f1b1c7b2122907df79fa18c77992bea355df8a70ee8c92c",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ROYALTY_REPORTING.md",
+      "original_sha256": "0cbecb364494a9966bf8ce37fd5bbfdb37b66d935e60a94fecddf2ac93f35741",
+      "current_sha256": "0cbecb364494a9966bf8ce37fd5bbfdb37b66d935e60a94fecddf2ac93f35741",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/ROYALTY_SETTLEMENT.md",
+      "original_sha256": "e52e139d36a6ce210c2e409a899fccca77306a298749d3d1e0537777ecf0e181",
+      "current_sha256": "e52e139d36a6ce210c2e409a899fccca77306a298749d3d1e0537777ecf0e181",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/RPC_PREPARATION_QUALIFICATION.md",
+      "original_sha256": "2fe601e9c62e6a7baac340f1eae8b6066644319f72873b37cf6c5ac6a6f04628",
+      "current_sha256": "2fe601e9c62e6a7baac340f1eae8b6066644319f72873b37cf6c5ac6a6f04628",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "original_sha256": "bd8de23f557590e0409b8358458f35568890f373279c4f7702c48224272a7708",
+      "current_sha256": "c733a8d389e33c185258b6e34ca6bcd3ec03d86f5ee372d2423fbdefa84fec8d",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/SECURITY_AUDIT_PLAN.md",
+      "original_sha256": "583d760393cce3382fff6564ceec7eaf0532f7096ca49a63ecaca28138609293",
+      "current_sha256": "1855b5974bfeb0c581d89ad975b18d86b444b6426e953a812af557b5b7e08abe",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/SIMPLIFIED_RELEASE.md",
+      "original_sha256": "e2c727faa5c04547ff2afe6eff48e3317b46b5bacec55c69bc8df4ce21ae07ea",
+      "current_sha256": "e2c727faa5c04547ff2afe6eff48e3317b46b5bacec55c69bc8df4ce21ae07ea",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/SITE_ENVIRONMENTS.md",
+      "original_sha256": "d9d611e2f2c2e03dbbcd1b18dea5de984179ee3f7d98cecef1f2d43582298b36",
+      "current_sha256": "d9d611e2f2c2e03dbbcd1b18dea5de984179ee3f7d98cecef1f2d43582298b36",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/THIRD_PASS_AUDIT_PROMPT.md",
+      "original_sha256": "74584f9aa770ba1eebcac1b9804f9642ba2b307c7235e704e3e234c5fa9735d5",
+      "current_sha256": "d601c75a2969cd1ff2665ffeeca2f599434c4e0230e57d22584b0d27fc1e9e8b",
+      "changed": true,
+      "action": "Consolidated historical content into exact-Git pointer; original anchors retained"
+    },
+    {
+      "path": "docs/TODO_WORKFLOW.md",
+      "original_sha256": "4c1853ae9822f7fcf2008a768021879b528239a674918f7b303fc0ca0867963f",
+      "current_sha256": "cfa841565bee51bee7e3c67ae1385413437fcc72b47cde4ed1b35f08b5af38c2",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/TYPED_V4_ROUTES.md",
+      "original_sha256": "d92c3d6c7eb5217739478b3430e27e830052dc2353dac1e482efdfeaddc1f16d",
+      "current_sha256": "d92c3d6c7eb5217739478b3430e27e830052dc2353dac1e482efdfeaddc1f16d",
+      "changed": false,
+      "action": "Retained distinct specialist/current or historical-profile guide"
+    },
+    {
+      "path": "docs/WHOLE_PROJECT_AUDIT_PROMPT.md",
+      "original_sha256": "992b8d6b821a2e963b6f9eb1389bae06df16e716217ed29268748efbca136fd3",
+      "current_sha256": "43c96f7652a45d72fe39cf2318a406a571c9ec97586c03bd0fdb40c06608c552",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "original_sha256": "100781338cef91eef334f98aac4d8dbb8d523d5fb640d063c604481b5d098786",
+      "current_sha256": "6cf04e394ed9e5dbff19538c86c24c8664c27f80768d7743395971372c018d6f",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    },
+    {
+      "path": "reports/README.md",
+      "original_sha256": "8b1699a17fd44d2d38452b0f3ad77fafd43ebfca01abb733cfde8c88aa086c7e",
+      "current_sha256": "a184376933a3265262d8323b0fbe130e6c65c807d6663cee4540b10279a6a2bb",
+      "changed": true,
+      "action": "Updated current guide/navigation"
+    }
+  ],
+  "scope": "Root/docs Markdown inventory and consolidation decisions; retained historical codecs are not relabeled. This is not a fresh line-by-line security audit of every document."
+}

@@ -1,30 +1,20 @@
 # Documentation map
 
-Reviewed2026-11-04. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-05. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 
-For enable/disable, independent residual close, urgent consolidation, raw
-parking and recovery, use [main/residual management](OPERATOR_MANUAL.md#portfolio-management-controls).
-[Current manual-operation audit and verification](../reports/manual-operations-20261031/VERIFICATION.md)
-record exact manual controls, inputs, caller/restart boundaries, offline review
-preparation and scoped verification. The earlier source audit retains its
-three corrections, normal gates and static-triage scope. The former portfolio guide is a compatibility
-pointer; all maintained management procedures are in the Operator manual.
+Start with [current profile identities](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md),
+[findings](AUDIT_FINDINGS.md) and the maintained [Operator manual](OPERATOR_MANUAL.md).
+Its [short call tables](OPERATOR_MANUAL.md#operator-call-tables) cover every current
+ABI function, with exact inputs, examples and explanations of at most five words.
+The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
+caller/value notes. These are documentation templates, never transaction approval.
 
-Start with [current profile identities](POSITION_V6.md),
-[features/evidence](IMPLEMENTATION_STATUS.md), [consolidated findings](AUDIT_FINDINGS.md)
-and the [operator manual](OPERATOR_MANUAL.md). The optional portfolio plan and
-original management reviews retain their exact implementation history.
-Default single main, optional main/residual, explicit fresh accounting6 capabilities
-and schema10/direct Entry3 inventory are source-only; historical profiles and existing sites,
-workers, Anvil and journals retain their meanings.
-
-The [research plan](PASSIVE_INVENTORY_PLAN.md) explains earlier alternatives and
-tradeoffs; it is not the implemented operating procedure. Older
-[reports](../reports/README.md) retain source scope and unchanged bytes. The
-[completed reconciliation](../reports/historical-reconciliation-completion-20261029/REVIEW.md)
-does not qualify later source or close external release gates.
+Current source is accounting6/custody5/portfolio2/direct Entry3 plus royalty
+recovery1. Historical profiles, research, reports and actual running sites retain
+their original meaning. Use [the report map](../reports/README.md) for exact source
+scope; a historical audit is not a current operating procedure or release sign-off.
 
 ## 1. Smart contracts
 
@@ -32,14 +22,14 @@ does not qualify later source or close external release gates.
 | --- | --- |
 | Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md) |
-| Contribution and actual added LP | [Atomic Entry](ACTIVATION_ENTRY.md), [routing](ACTIVATION_ROUTING.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
+| Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
 | LP execution and upkeep | [Policy3/Budget4, LP routing2 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V6 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
-| Callable inputs/outputs/permissions | [Generated source-bound function reference](CONTRACT_FUNCTIONS.md) |
+| Callable inputs/outputs/permissions | [Short operator tables](OPERATOR_MANUAL.md#operator-call-tables), [full source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
 [independent confirmation policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer),
@@ -65,16 +55,12 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
 | Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody5 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
-| Small-value/integration research | [$1 local build](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
+| Small-value/integration research | [$1 governed rehearsal](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
-The [whole-project audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md),
-[two prompt challenges](../reports/whole-project-audit-20261029/PROMPT_REVIEW.md)
-and [results](../reports/whole-project-audit-20261029/REVIEW.md) record the broader
-review and later four-minute service-cadence decision. The earlier
-[third-pass brief](THIRD_PASS_AUDIT_PROMPT.md) and
-[results](../reports/third-pass-20261028/REVIEW.md) retain their frozen
-October26-28 scope. Both distinguish actual repairs
-from accepted limits and externally blocked qualification.
+The [whole-project audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md) is the maintained
+starting point for an audit. Earlier third-pass and passive-inventory/implementation
+plans are exact-Git historical pointers. They do not override current source,
+operator procedures or the sole Todo.
 
 ## Release, security and upkeep
 
@@ -85,7 +71,7 @@ from accepted limits and externally blocked qualification.
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
 | Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [frozen review export](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
 | Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
-| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
+| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalty-audit-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
 
 ## Historical references
 

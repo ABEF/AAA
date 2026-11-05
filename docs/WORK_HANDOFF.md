@@ -1,123 +1,83 @@
 # Work handoff
 
-Reviewed5November2026; royalty audit baseline main
-`e0076181ae8ef24089f0e5fea1f730581ff67986`. Verify actual local/remote heads before
-claiming publication. Read [instructions](../AGENTS.md),
+Reviewed5November2026. Current Solidity/source baseline main
+`28f75738a01efae2a2e11cf861e5e94d4d10efb3`; verify actual local/remote Git heads.
+Read [instructions](../AGENTS.md), [context](../PROJECT_CONTEXT.md),
 [README](../README.md), [sole Todo](../TODO.md),
-[operator](OPERATOR_MANUAL.md) and
-[findings](AUDIT_FINDINGS.md). **Production NOT APPROVED.**
-Repository memory is not a timeline or background synchronization service.
+[Operator manual](OPERATOR_MANUAL.md) and [profile](POSITION_V6.md).
+**Production NOT APPROVED.** Publication is not deployment or rollout.
 
-The [earnings checkpoint milestone](../reports/earnings-checkpoints-20261104/REVIEW.md)
-adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
-fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
-claims and current ownership; no USD values or signing are cached.24new final
-cases pass, with147affected checks at their recorded earlier stage. General
-lineage/other history consumers, real workloads/rotation and production approval
-remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
-identifies exact mint-recipient/statistics/payment gaps without adding authority.
+## Current task result
 
-Current royalty source extends the manual-safeguard baseline. The latest
-royalty record binds43normal size gates and474strict static contexts
-(33current/441exact referenced-source reuse); affected EVM/Python scopes and
-retained failures are recorded separately. The actual CI checker selects that
-source-matched royalty review. Earlier normal/static/reconciliation records
-remain historical. Four protected dirty files and all earlier reports stay
-unchanged; publication is not a running-service update.
+The operator guide has generated four-column examples for all820functions,
+37constructors and13receivers, grouped by duty/contract with folded reads and
+module callbacks. Each explanation has at most5words. Tuple/array fields remain
+complete; caller, transaction value, raw units and live snapshot symbols remain
+explicit. New `operator-call-examples.json` binds the exact source function
+reference; `generate-operator-reference.py --check` is part of normal verification.
+These are documentation templates, not unsigned transactions or signing authority.
 
-The indexer anchor/streaming/transactional startup repairs and keeper deadline/
-clear-priority fixes remain implemented. Checkpoint1 is a first implemented milestone;
-lineage/other consumers, archival/rotation and operating qualification remain open. Actual idle scheduling and
-threshold economics remain an operating choice. Five removed creator/bridge
-task IDs are explicitly superseded; no retired architecture is revived.
+[Documentation verification](../reports/operator-docs-20261105/VERIFICATION.md)
+records the focused checks, complete document map and unchanged source scope.
 
-The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
-recovery1: governance can convert only unsupported/unallocated royalty value to
-ETH for active rarity weights at recovery. Existing earned/deferred entitlements
-are excluded; no external recipient or weakened conversion floor. Unsupported
-late tokens can forward only to the authenticated successor. New runtime/event
-pins and rebuilt earnings checkpoints are required; no installed environment
-changes. ERC2981 requests5%, not universally enforced marketplace payment.
+The partial write catalog and duplicate Entry-routing prose are consolidated.
+Three historical plans/prompts retain stable pointers to exact original Git text.
+Old profile codecs stay exact. Current maps/security/minima/royalty text now
+include future-governed terms and unallocated recovery1. No Solidity behavior,
+economic rights, sources, public signer or running environment changed.
 
-New current normal43gates and strict474static contexts replace only changed
-royalty scope; source publication never upgrades old runtimes or journals.
+## Verify documentation without repeating contract suites
 
-## Current source and preserved environments
+```text
+python scripts/generate-function-reference.py --check
+python scripts/generate-operator-reference.py --check
+python scripts/sync-project-todo.py --check
+```
 
-[Accounting6 profile](POSITION_V6.md), direct Entry3/review-policy2/pricing2,
-ProtocolPolicy1/Portfolio2, maintenance3/confirmation3/compound4/custody5/emergency2/
-LP-routing2; schema10 inventory17modules/20helpers. Same eight-word Position and
-canonical V6 do not identify runtime compatibility. No Entry conversion child,
-route catalogue or receiver remains. Separate earned-reward converters stay.
+For ABI/behavior changes first regenerate the source-bound ABI/notes, review all
+changed examples/roles/tuple/value semantics, then regenerate the tables. Never
+re-pin automatically just to pass. The source-bound [full reference](CONTRACT_FUNCTIONS.md)
+owns exact outputs/permissions; the manual owns procedures/recovery/reversal.
+Inspect actual IDs: NFT_ID is not BUCKET_ID, and portfolioFingerprint takes the
+main LP_TOKEN_ID. Contribution policy, mint policy and offline reviewHash differ.
 
-Default single main or optional one residual in the same ETH/fixed-ZZZ pool;
-entrant-only main growth and both-leg accounting remain. Normal600/240/300
-confirmation,85% threshold, initial12hours and60–300jitter remain. Hourly harvest
-is separate from compound/burn/claim. See current context/manual for all defaults
-and governed bounds; do not reconstruct settings from old audit prose.
+## Exact source evidence and remaining work
 
-No deployment, sealing, site/service/Anvil/journal/signing/heartbeat change.
-Keep Anvil8902 and its NFTs/LP/balances/recovery records. Popldemo remains its
-simulation; poplint remains separately served current3/read-and-prepare, not the
-fresh source8 consumer. DEPLOYMENT null, browser signer Anvil-only, heartbeat paused.
+[Royalty verification](../reports/royalty-audit-20261105/VERIFICATION.md) owns the
+latest43normal gates/474strict static contexts and72distinct selected EVM cases;
+Python stages overlap. Current source is accounting6/custody5/portfolio2/direct
+Entry3 plus recovery1; compatible parked canonicalV6 wire is not runtime identity.
+Earlier [reports](../reports/README.md) retain their original pins/failures/scope.
+Documentation work does not rerun unchanged Solidity suites or establish CI/live
+provider/gas/hosting/marketplace or independent approval.
 
-## Earlier authority evidence to reuse, with limits
+Real feeds/routes/VRF/authorities, OpenSea primary integration, source8 matching
+site/services, metadata, history longevity/restore, operating economics and
+independent audit/remediation remain open under the [roadmap](ROADMAP.md) and sole
+Todo. Do not revive retired bridges/creator inboxes/third contribution inputs or
+external custody-address exits. Existing earned/deferred royalties remain distinct
+from current-weight unallocated recovery. Review actual converter binding before
+seal; source publication does not enable the optional keeper conversion worker.
 
-Use [authority verification](../reports/authority-audit-20261103/VERIFICATION.md):
-52production/31dependencies,43normal EIP170/EIP3860 gates at that historical revision,0.8.26/Cancun/viaIR/
-optimizer1/Yulfalse.471static records:19current contexts and452exact unchanged
-reuse;37contracts/818functions/37constructors/13receivers without gaps.
-14distinct selected EVM successes span two recorded stages;25corrected Python
-methods pass. Initial size/test/observer/reference failures remain preserved.
-No full suite, published CI, target gas/uptime or independent approval is implied.
+## Preserve actual environments and unrelated work
 
-That authority revision: Migration24537(39margin), Vault23941(635), Budget24339(237),
-Balancer24216(360); Entry9863. Only production Migration changed: custody5 plus
-governance-only allocation/distribution and authenticated owner-read reuse.
-Holder LP/royalty/fallback claims remain. Fresh schema10/read/keeper versions
-are explicit; disable keeper principal_distribution on5. Old custody4/schema9
-and pending records retain their original behavior. See [permissions](ACCESS_PERMISSIONS.md).
-Earlier Entry3/consolidation evidence retains its source scope.
-
-## Collective exit assurance supplement
-
-[Exit assurance](../reports/holder-exit-assurance-20261103/REVIEW.md) changes tests
-and guidance only at historical e26fc74.10distinct selected EVM
-behaviors across explicit scopes, including1000fuzz cases, corrected1000-NFT
-model,1000distinct owners,37mixed wallets and actual local v4 two-leg closure.
-Initial missing-Manager model failures remain recorded; no production guard was
-removed. Mixed real NFTs cover dormant/three tiers/three rarities, top-ups,
-previous claims and transfer after allocation. Those normal43gate/static471/callable
-records retain their historical source scope; no full repeat, live rehearsal or rollout. Existing
-receiver/dependency/gas/authority/independent-audit limits remain. Operator guide
-now explains grouped per-NFT reconciliation rather than per-wallet entitlement.
-External assurance root preserves the original test/docs and all run stages.
-
-## Continue next
-
-Use the [roadmap](ROADMAP.md) and owning Todo tasks. Real feeds/routes/VRF,
-authorities, OpenSea, fresh current-profile services/site, economics/target gas,
-storage/recovery, long-lived history and independent audit remain open. Prior
-recommendations now implemented include cooldown observation, harvest coalescing,
-active-main candidate filtering, residual-only close and direct Entry removal.
-Do not reopen retired creator/bridge/third-input/external-custody requirements.
-
-Operator changes must update exact procedure, fields, authority, effect,
-verification, stop/restart/reverse and irreversible limits in the same change.
-Source publication never upgrades running services or reinterprets pending intents.
-
-## Archives and unrelated work
+Anvil8902, minted NFTs/LP/balances/journals and website overlays remain unchanged.
+Popldemo is simulation; separately served poplint remains current3/unconfigured,
+not the new source8/accounting6consumer. Public DEPLOYMENT null; signing Anvil-only;
+heartbeat remains user-paused. No public transaction, deployment/seal, reset,
+service/site restart or journal conversion was authorized.
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-Earlier `authority-audit-20261103` holds111 archived original files,
-2634 baseline report hashes and485 code/config/test/build pins. Its BASELINE.json
-also binds four unrelated dirty files; preserve/exclude them:
-reports/source-checks.json, scripts/run-fork-checks.py,
-tests_python/test_fork_runner.py, tests_python/test_frontend_history.py.
-Do not stage unrelated untracked design/cache/old report drafts.
+`operator-docs-20261105/BASELINE.json` archives109original maintained files, full
+source/report pins and the four protected dirty files below. Earlier royalty and
+manual/authority evidence remains in its original linked directories. Preserve
+unrelated untracked drafts; stage only owned changes and verify index/HEAD Python
+publication closure before claiming published.
 
-Prior `direct-entry-v3-20261103` retains585 original files,2678 prior report
-hashes and raw compiler/analyzer/EVM/Python stages. Earlier archive roots are
-linked from their immutable verification records. They are history, not another
-current instruction set. Check exact archived and live hashes before evidence reuse.
+| Protected tracked file | Original SHA256 |
+| --- | --- |
+| `reports/source-checks.json` | `049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4` |
+| `scripts/run-fork-checks.py` | `875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b` |
+| `tests_python/test_fork_runner.py` | `6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9` |
+| `tests_python/test_frontend_history.py` | `361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb` |

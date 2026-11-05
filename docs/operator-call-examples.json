@@ -1,0 +1,6998 @@
+{
+  "schema": 1,
+  "reference_sha256": "642e44169883106200837259d248de52d648139b7f26e15ed85b01f900cea537",
+  "rows": {
+    "ZZZAccessController.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$INITIAL_GOVERNANCE_ADDRESS",
+        "$INITIAL_KEEPER_ADDRESS",
+        "$INITIAL_GUARDIAN_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.GOVERNANCE_VERSION()": {
+      "role": "R",
+      "short": "Read governance version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.acceptGovernance()": {
+      "role": "N",
+      "short": "Accept governance authority",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.activationAssetsFactory()": {
+      "role": "R",
+      "short": "Read activation assets factory",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.bind(bytes32,address)": {
+      "role": "B",
+      "short": "Bind protocol module",
+      "arguments": [
+        "$MODULE_ID",
+        "$IMPLEMENTATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.bindProtocolPolicy(address)": {
+      "role": "B",
+      "short": "Bind operating policy once",
+      "arguments": [
+        "$IMPLEMENTATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.bootstrap()": {
+      "role": "R",
+      "short": "Read bootstrap",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.canConfigure(address)": {
+      "role": "R",
+      "short": "Read can configure",
+      "arguments": [
+        "$ACCOUNT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.cancelPreparation(bytes32)": {
+      "role": "G",
+      "short": "Cancel replacement preparation",
+      "arguments": [
+        "$NOTICE_HASH"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.canonicalHandoff()": {
+      "role": "R",
+      "short": "Read canonical handoff",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.canonicalSettling()": {
+      "role": "R",
+      "short": "Read canonical settling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.canonicalState()": {
+      "role": "R",
+      "short": "Read canonical state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.canonicalTransition(uint8,bool,bool)": {
+      "role": "M",
+      "short": "Advance canonical controller phase",
+      "arguments": [
+        "$STATE",
+        "$SETTLING",
+        "$CLEAR_PREPARATION"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.governance()": {
+      "role": "R",
+      "short": "Read governance",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.guardians(address)": {
+      "role": "R",
+      "short": "Read guardians",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.isSealed()": {
+      "role": "R",
+      "short": "Read is sealed",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.keeperAuthorized(address)": {
+      "role": "R",
+      "short": "Read keeper authorized",
+      "arguments": [
+        "$CALLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.keepers(address)": {
+      "role": "R",
+      "short": "Read keepers",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.lpExitStarted()": {
+      "role": "R",
+      "short": "Read lp exit started",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.module(bytes32)": {
+      "role": "R",
+      "short": "Read module",
+      "arguments": [
+        "$MODULE_ID"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.moduleAuthorized(bytes32,address)": {
+      "role": "R",
+      "short": "Read module authorized",
+      "arguments": [
+        "$MODULE_ID",
+        "$CALLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.paused()": {
+      "role": "R",
+      "short": "Read paused",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.pendingGovernance()": {
+      "role": "R",
+      "short": "Read pending governance",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationActive()": {
+      "role": "R",
+      "short": "Read preparation active",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationHash()": {
+      "role": "R",
+      "short": "Read preparation hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationNonce()": {
+      "role": "R",
+      "short": "Read preparation nonce",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationNotice()": {
+      "role": "R",
+      "short": "Read preparation notice",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationReadyDestination()": {
+      "role": "R",
+      "short": "Read preparation ready destination",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.preparationStartedAt()": {
+      "role": "R",
+      "short": "Read preparation started at",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.proposeGovernance(address)": {
+      "role": "G",
+      "short": "Propose next governance wallet",
+      "arguments": [
+        "$CANDIDATE_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZAccessController.protocolPolicy()": {
+      "role": "R",
+      "short": "Read protocol policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.royaltyFactory()": {
+      "role": "R",
+      "short": "Read royalty factory",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.seal()": {
+      "role": "B",
+      "short": "Seal immutable protocol bindings",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.setGuardian(address,bool)": {
+      "role": "G",
+      "short": "Grant or revoke guardian",
+      "arguments": [
+        "$GUARDIAN_ADDRESS",
+        true
+      ],
+      "value": null
+    },
+    "ZZZAccessController.setKeeper(address,bool)": {
+      "role": "G",
+      "short": "Grant or revoke keeper",
+      "arguments": [
+        "$KEEPER_ADDRESS",
+        true
+      ],
+      "value": null
+    },
+    "ZZZAccessController.setPaused(bool)": {
+      "role": "G",
+      "short": "Pause or resume ordinary operations",
+      "arguments": [
+        true
+      ],
+      "value": null
+    },
+    "ZZZAccessController.startLPExit()": {
+      "role": "M",
+      "short": "Authorize terminal LP shutdown",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZAccessController.startPreparation((uint256,address,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Announce reviewed canonical replacement",
+      "arguments": [
+        [
+          "$DESTINATION_CHAIN",
+          "$SUCCESSOR_CONTROLLER_ADDRESS",
+          "$DEPLOYMENT_COMMITMENT",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$POOL_REGISTRY_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.NATIVE_ASSET_CODE_HASH()": {
+      "role": "R",
+      "short": "Read native asset code hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssets.SOURCE_POLICY_VERSION()": {
+      "role": "R",
+      "short": "Read source policy version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssets.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssets.activePolicy(address)": {
+      "role": "R",
+      "short": "Read active policy",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.admitPoolAsset(address)": {
+      "role": "M",
+      "short": "Register pool asset identity",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.configureZZZ(address,bytes32,bytes32)": {
+      "role": "B",
+      "short": "Bind fixed ZZZ identity",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$EXPECTED_CODE_HASH",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.isContributionAsset(address)": {
+      "role": "R",
+      "short": "Read is contribution asset",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.policies(bytes32)": {
+      "role": "R",
+      "short": "Read policies",
+      "arguments": [
+        "$ASSET_POLICY_ID"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.policyAt(uint256)": {
+      "role": "R",
+      "short": "Read policy at",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.policyCount()": {
+      "role": "R",
+      "short": "Read policy count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssets.registry()": {
+      "role": "R",
+      "short": "Read registry",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssets.setAsset(address,bool,bytes32,bytes32)": {
+      "role": "G",
+      "short": "Enable or disable contribution asset",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        true,
+        "$EXPECTED_CODE_HASH",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.value(address,uint256)": {
+      "role": "R",
+      "short": "Value reviewed asset amount",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.zzz()": {
+      "role": "R",
+      "short": "Read zzz",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssetsFactory.constructor()": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssetsFactory.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationAssetsFactory.assetsOf(address)": {
+      "role": "R",
+      "short": "Read assets of",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssetsFactory.create()": {
+      "role": "P",
+      "short": "Create caller-bound helper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$POOL_REGISTRY_ADDRESS",
+        "$ASSETS_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZActivationEntry.ENTRY_ROUTING_VERSION()": {
+      "role": "R",
+      "short": "Read entry routing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.REVIEW_POLICY_VERSION()": {
+      "role": "R",
+      "short": "Read review policy version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.activationAssets()": {
+      "role": "R",
+      "short": "Read activation assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+      "role": "H",
+      "short": "Activate or grow attached LP",
+      "arguments": [
+        [
+          "$NFT_ID",
+          "$POOL_ID",
+          "0x0000000000000000000000000000000000000000",
+          "$ETH_INPUT_WEI",
+          "$MINIMUM_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          false
+        ],
+        200,
+        "$EXPECTED_CONTRIBUTION_POLICY"
+      ],
+      "value": "$ETH_INPUT_WEI"
+    },
+    "ZZZActivationEntry.pricingContext(uint256,bytes32,uint256,uint256)": {
+      "role": "R",
+      "short": "Read pricing context",
+      "arguments": [
+        "$NFT_ID",
+        "$POOL_ID",
+        "$PACKED",
+        "$GROSS"
+      ],
+      "value": null
+    },
+    "ZZZActivationEntry.registry()": {
+      "role": "R",
+      "short": "Read registry",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZActivationEntry.sourceValue(bytes32,uint256,uint256)": {
+      "role": "R",
+      "short": "Read source value",
+      "arguments": [
+        "$POOL_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZActivationEntry.validateOwner(uint256,bytes32)": {
+      "role": "R",
+      "short": "Read validate owner",
+      "arguments": [
+        "$NFT_ID",
+        "$VAULT_CALL_HASH"
+      ],
+      "value": null
+    },
+    "ZZZBuyback.constructor(address,address,uint256)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$ZZZ_TOKEN_ADDRESS",
+        "$MAXIMUM_TRADE_USD"
+      ],
+      "value": null
+    },
+    "ZZZBuyback.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZBuyback.execute(address,uint256,bytes32,uint256)": {
+      "role": "K",
+      "short": "Execute guarded reserve buyback",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$AMOUNT",
+        "$POOL_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZBuyback.maxTradeUSD()": {
+      "role": "R",
+      "short": "Read max trade usd",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZBuyback.operatingTradeUSD()": {
+      "role": "R",
+      "short": "Read operating trade usd",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZBuyback.setMaximumTradeUSD(uint256,bytes32)": {
+      "role": "G",
+      "short": "Set reviewed buyback maximum",
+      "arguments": [
+        1,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZBuyback.setOperatingTradeUSD(uint256)": {
+      "role": "G",
+      "short": "Set buyback operating amount",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZBuyback.zzz()": {
+      "role": "R",
+      "short": "Read zzz",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZBuyback.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZCanonicalHandoff.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.MAX_ROWS()": {
+      "role": "R",
+      "short": "Read max rows",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.SCHEMA()": {
+      "role": "R",
+      "short": "Read schema",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.SLOTS()": {
+      "role": "R",
+      "short": "Read slots",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.abort()": {
+      "role": "G",
+      "short": "Abort canonical replacement",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.acceptFunding(uint8,uint256)": {
+      "role": "M",
+      "short": "Acknowledge authenticated funding",
+      "arguments": [
+        "$SLOT",
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.activate()": {
+      "role": "M",
+      "short": "Activate authenticated successor deployment",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.assetCount(uint256)": {
+      "role": "R",
+      "short": "Read asset count",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.bindFrozen(bytes32)": {
+      "role": "M",
+      "short": "Bind frozen source snapshot",
+      "arguments": [
+        "$ID"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.cancelImport()": {
+      "role": "M",
+      "short": "Cancel authenticated import",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.commit()": {
+      "role": "G",
+      "short": "Commit canonical replacement atomically",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.completeImport()": {
+      "role": "P",
+      "short": "Complete authenticated row import",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.deploymentCommitment()": {
+      "role": "R",
+      "short": "Read deployment commitment",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.destinationController()": {
+      "role": "R",
+      "short": "Read destination controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.exportCursor(uint256)": {
+      "role": "R",
+      "short": "Read export cursor",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.exportRoot(uint256)": {
+      "role": "R",
+      "short": "Read export root",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.exportRows(uint8,uint256)": {
+      "role": "P",
+      "short": "Export authenticated canonical rows",
+      "arguments": [
+        "$SLOT",
+        1
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.finishAbort()": {
+      "role": "G",
+      "short": "Finish fully funded abort",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.freeze()": {
+      "role": "G",
+      "short": "Freeze canonical ownership accounting",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.fund(uint8,uint256)": {
+      "role": "P",
+      "short": "Transfer authenticated canonical backing",
+      "arguments": [
+        "$SLOT",
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.funded(uint8,uint256)": {
+      "role": "R",
+      "short": "Read funded",
+      "arguments": [
+        0,
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.handoffId()": {
+      "role": "R",
+      "short": "Read handoff id",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.importComplete()": {
+      "role": "R",
+      "short": "Read import complete",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.importCursor(uint256)": {
+      "role": "R",
+      "short": "Read import cursor",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.importRoot(uint256)": {
+      "role": "R",
+      "short": "Read import root",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.importRows(uint8,bytes[])": {
+      "role": "P",
+      "short": "Import authenticated canonical rows",
+      "arguments": [
+        "$SLOT",
+        [
+          "$RECORDS"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.incomingFunded(uint8,uint256)": {
+      "role": "R",
+      "short": "Read incoming funded",
+      "arguments": [
+        0,
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.incomingSource()": {
+      "role": "R",
+      "short": "Read incoming source",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.moduleAt(uint8)": {
+      "role": "R",
+      "short": "Read module at",
+      "arguments": [
+        "$SLOT"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.phase()": {
+      "role": "R",
+      "short": "Read phase",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.prepareImport(address)": {
+      "role": "B",
+      "short": "Prepare successor import binding",
+      "arguments": [
+        "$SOURCE_CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.recordCount(uint256)": {
+      "role": "R",
+      "short": "Read record count",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.returnFunding(uint8,uint256)": {
+      "role": "M",
+      "short": "Return authenticated abort funding",
+      "arguments": [
+        "$SLOT",
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.returnFunds(uint8,uint256)": {
+      "role": "P",
+      "short": "Restore selected source backing",
+      "arguments": [
+        "$SLOT",
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.returned(uint8,uint256)": {
+      "role": "R",
+      "short": "Read returned",
+      "arguments": [
+        0,
+        0
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.settle(uint8)": {
+      "role": "P",
+      "short": "Settle next canonical step",
+      "arguments": [
+        "$SLOT"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.settlementCursor()": {
+      "role": "R",
+      "short": "Read settlement cursor",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.stateRoot()": {
+      "role": "R",
+      "short": "Read state root",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZClaimRouter.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$NFT_CONTROLLER_ADDRESS",
+        "$ROYALTY_LEDGER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZClaimRouter.MAX_CLAIMS()": {
+      "role": "R",
+      "short": "Read max claims",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZClaimRouter.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZClaimRouter.claimBatch((uint256,address,bool)[])": {
+      "role": "H",
+      "short": "Claim selected funded rewards",
+      "arguments": [
+        [
+          [
+            "$NFT_ID",
+            "0x0000000000000000000000000000000000000000",
+            false
+          ],
+          [
+            "$NFT_ID",
+            "0x0000000000000000000000000000000000000000",
+            true
+          ]
+        ]
+      ],
+      "value": null
+    },
+    "ZZZClaimRouter.nft()": {
+      "role": "R",
+      "short": "Read nft",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZClaimRouter.royalties()": {
+      "role": "R",
+      "short": "Read royalties",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCompounder.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZCompounder.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCompounder.compound(uint256,uint128,uint256)": {
+      "role": "K",
+      "short": "Reinvest designated LP reserves",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$PRICE_ORACLE_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.ENTRY_REVIEW_VERSION()": {
+      "role": "R",
+      "short": "Read entry review version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.active()": {
+      "role": "R",
+      "short": "Read active",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.assertDeployed(uint256,uint16)": {
+      "role": "R",
+      "short": "Read assert deployed",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MAX_IDLE_BPS"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Read assert portfolio utilization",
+      "arguments": [
+        "$BUCKET_ID",
+        "$PRICE0",
+        "$PRICE1",
+        "$SCALE0",
+        "$SCALE1"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)": {
+      "role": "M",
+      "short": "Begin contribution pricing",
+      "arguments": [
+        "$NFT_ID",
+        "$BUCKET_ID",
+        "$PACKED",
+        "$INPUT_USD",
+        "$LIMITS"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)": {
+      "role": "M",
+      "short": "Capture reviewed contribution context",
+      "arguments": [
+        "$NFT_ID",
+        "$POOL_ID",
+        "$SOURCE_ADDRESS",
+        "$AMOUNT",
+        "$MAXIMUM_LOSS_BPS",
+        "$EXPECTED_CONTRIBUTION_POLICY"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.checkMaintenance(uint256,uint256,uint256,uint256,uint256,uint256,uint16,uint16,bytes32)": {
+      "role": "R",
+      "short": "Read check maintenance",
+      "arguments": [
+        "$BUCKET_ID",
+        "$BEFORE_VALUE",
+        "$PRICE0",
+        "$PRICE1",
+        "$SCALE0",
+        "$SCALE1",
+        "$LOSS_BPS",
+        "$MAX_IDLE_BPS",
+        "$EXPECTED_MAINTENANCE_POLICY"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.compoundReady(uint256)": {
+      "role": "R",
+      "short": "Read compound ready",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.contributionNav(uint256)": {
+      "role": "M",
+      "short": "Measure incumbent attributed NAV",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.endEntry()": {
+      "role": "M",
+      "short": "Close reviewed entry context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.entryIdleLimit(uint256)": {
+      "role": "R",
+      "short": "Read entry idle limit",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+      "role": "M",
+      "short": "Finish contribution pricing context",
+      "arguments": [
+        "$BUCKET_ID",
+        "$INPUT_USD",
+        "$SUPPLY",
+        "$INCUMBENT_NAV",
+        "$INCUMBENT_DEPLOYED",
+        "$DEPLOYED",
+        "$IDLE",
+        "$LIMITS"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.historicalValue(uint256)": {
+      "role": "R",
+      "short": "Read historical value",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.idleValue(uint256)": {
+      "role": "R",
+      "short": "Read idle value",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.markMaintenance(uint256)": {
+      "role": "R",
+      "short": "Read mark maintenance",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.nav(uint256)": {
+      "role": "R",
+      "short": "Read nav",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.oracle()": {
+      "role": "R",
+      "short": "Read oracle",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.valueBucket(uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Read value bucket",
+      "arguments": [
+        "$BUCKET_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCustodyValidation.emergencyCustodyHash(uint256)": {
+      "role": "R",
+      "short": "Read emergency custody identity",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.emergencyFingerprint((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))": {
+      "role": "R",
+      "short": "Read emergency fingerprint",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CUSTODY_HASH",
+          31,
+          "$LOWER_TICK",
+          "$UPPER_TICK",
+          "$SWAP_POOL",
+          "$ZERO_FOR_ONE",
+          "$AMOUNT_IN",
+          "$MINIMUM_OUT",
+          "$MINIMUM_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.migration()": {
+      "role": "R",
+      "short": "Read migration",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCustodyValidation.residualMainFingerprint(uint256)": {
+      "role": "R",
+      "short": "Read residual main fingerprint",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.validateParking(bytes)": {
+      "role": "R",
+      "short": "Read validate parking",
+      "arguments": [
+        "$ENCODED"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.FEE_INTAKE_VERSION()": {
+      "role": "R",
+      "short": "Read fee intake version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeeController.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeeController.accounted(address)": {
+      "role": "R",
+      "short": "Read accounted",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.allocate(uint256,address,uint256)": {
+      "role": "M",
+      "short": "Split actual harvested fees",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ZZZ_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZFeeController.buybackBalance(address)": {
+      "role": "R",
+      "short": "Read buyback balance",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.canonicalBarrier()": {
+      "role": "M",
+      "short": "Set canonical accounting barrier",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeeController.canonicalBucketRecord(uint256,address)": {
+      "role": "R",
+      "short": "Read canonical bucket record",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.canonicalFlush(uint256,address)": {
+      "role": "M",
+      "short": "Flush captured accounting dust",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.canonicalModule()": {
+      "role": "R",
+      "short": "Read canonical module",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeeController.canonicalSend(address,address,uint256)": {
+      "role": "M",
+      "short": "Send authenticated canonical backing",
+      "arguments": [
+        "$ASSET_ADDRESS",
+        "$DESTINATION_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.canonicalState()": {
+      "role": "R",
+      "short": "Read canonical state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeeController.canonicalWrite(uint8,bytes)": {
+      "role": "M",
+      "short": "Write authenticated imported accounting",
+      "arguments": [
+        "$KIND",
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.compoundBalance(uint256,address)": {
+      "role": "R",
+      "short": "Read compound balance",
+      "arguments": [
+        "$BUCKET_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.dust(uint256,address)": {
+      "role": "R",
+      "short": "Read dust",
+      "arguments": [
+        "$BUCKET_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.flushDust(uint256,address)": {
+      "role": "M",
+      "short": "Settle incumbent fee dust",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.releaseBuyback(address,uint256)": {
+      "role": "M",
+      "short": "Release designated buyback reserve",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.releaseCompound(uint256,address)": {
+      "role": "M",
+      "short": "Release designated compound reserve",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeeController.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZFeesCanonical.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$FEE_CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeesCanonical.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalAccept(uint256,address)": {
+      "role": "M",
+      "short": "Accept authenticated classified backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZFeesCanonical.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalBacking(uint256)": {
+      "role": "R",
+      "short": "Read canonical backing",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalRelease(uint256,address)": {
+      "role": "M",
+      "short": "Release authenticated classified backing",
+      "arguments": [
+        0,
+        "$DESTINATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalRestore(uint256,address)": {
+      "role": "M",
+      "short": "Restore captured source backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZFeesCanonical.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.fees()": {
+      "role": "R",
+      "short": "Read fees",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZFeesCanonical.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLPBalanceMath.constructor()": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.LP_BALANCE_MATH_VERSION()": {
+      "role": "R",
+      "short": "Read lp balance math version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.balancer()": {
+      "role": "R",
+      "short": "Read balancer",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+      "role": "R",
+      "short": "Read deployment amounts",
+      "arguments": [
+        "$CURRENT",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.deploymentDebts(uint160,int24,int24,uint128)": {
+      "role": "R",
+      "short": "Read deployment debts",
+      "arguments": [
+        "$CURRENT",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$LIQUIDITY"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)": {
+      "role": "R",
+      "short": "Read evaluate",
+      "arguments": [
+        [
+          "$TARGET",
+          "$SPOT",
+          "$LOWER",
+          "$UPPER",
+          "$AMOUNT0",
+          "$AMOUNT1",
+          [
+            "$LOWER0",
+            "$UPPER0",
+            "$LOWER1",
+            "$UPPER1",
+            "$SCALE1",
+            "$REFERENCE_X96",
+            "$EXTRA_LOSS"
+          ],
+          "$MAIN_FLOOR",
+          [
+            "$MARKS",
+            "$MARKS",
+            "$MARKS",
+            "$MARKS"
+          ]
+        ],
+        "$PRICE",
+        "$A0",
+        "$A1"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.principalAmounts(address,address,uint256)": {
+      "role": "R",
+      "short": "Read principal amounts",
+      "arguments": [
+        "$POSITION_MANAGER_ADDRESS",
+        "$STATE_ADDRESS",
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)": {
+      "role": "R",
+      "short": "Read seed",
+      "arguments": [
+        [
+          "$TARGET",
+          "$SPOT",
+          "$LOWER",
+          "$UPPER",
+          "$AMOUNT0",
+          "$AMOUNT1",
+          [
+            "$LOWER0",
+            "$UPPER0",
+            "$LOWER1",
+            "$UPPER1",
+            "$SCALE1",
+            "$REFERENCE_X96",
+            "$EXTRA_LOSS"
+          ],
+          "$MAIN_FLOOR",
+          [
+            "$MARKS",
+            "$MARKS",
+            "$MARKS",
+            "$MARKS"
+          ]
+        ],
+        "$DIRECTION",
+        "$FEE"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$CORE_ADDRESS",
+        "$STATE_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.EXECUTION_QUALITY_VERSION()": {
+      "role": "R",
+      "short": "Read execution quality version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.LP_ROUTING_VERSION()": {
+      "role": "R",
+      "short": "Read lp routing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.MAX_ADDITIONAL_LOSS_BPS()": {
+      "role": "R",
+      "short": "Read max additional loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.MAX_EXECUTION_POOLS()": {
+      "role": "R",
+      "short": "Read max execution pools",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.additionalLossBps()": {
+      "role": "R",
+      "short": "Read additional loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.balanceMath()": {
+      "role": "R",
+      "short": "Read balance math",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.configureExecutionPools(bytes32[],bytes32)": {
+      "role": "G",
+      "short": "Configure reviewed execution venues",
+      "arguments": [
+        [
+          "$POOLS"
+        ],
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.configureSolver(uint8,uint32,bytes32)": {
+      "role": "G",
+      "short": "Configure bounded sizing solver",
+      "arguments": [
+        "$ITERATIONS",
+        "$GAS_LIMIT",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+      "role": "R",
+      "short": "Read deployment amounts",
+      "arguments": [
+        "$CURRENT",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.executionPoolAt(uint256)": {
+      "role": "R",
+      "short": "Read execution pool at",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.executionPoolCount()": {
+      "role": "R",
+      "short": "Read execution pool count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.executionRevision()": {
+      "role": "R",
+      "short": "Read execution revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.liquidityManager()": {
+      "role": "R",
+      "short": "Read liquidity manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.plan(bytes32,int24,int24,uint256,uint256)": {
+      "role": "M",
+      "short": "Plan bounded balancing operation",
+      "arguments": [
+        "$TARGET",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.planReplacement(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])": {
+      "role": "M",
+      "short": "Plan replacement LP inventory",
+      "arguments": [
+        "$POOL_ID",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$AMOUNT0",
+        "$AMOUNT1",
+        "$MAIN_FLOOR",
+        [
+          "$MARKS",
+          "$MARKS",
+          "$MARKS",
+          "$MARKS"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.policyFingerprint(bytes32,bytes32)": {
+      "role": "R",
+      "short": "Read policy fingerprint",
+      "arguments": [
+        "$POOL_ID",
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.poolManager()": {
+      "role": "R",
+      "short": "Read pool manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.principalAmounts(uint256)": {
+      "role": "R",
+      "short": "Read principal amounts",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+      "role": "M",
+      "short": "Quote candidate execution venue",
+      "arguments": [
+        [
+          "0x0000000000000000000000000000000000000000",
+          "$ZZZ_ADDRESS",
+          "$FEE",
+          "$TICK_SPACING",
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "$DIRECTION",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.quoteGasLimit()": {
+      "role": "R",
+      "short": "Read quote gas limit",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+      "role": "M",
+      "short": "Choose reviewed balancing route",
+      "arguments": [
+        [
+          "$TARGET",
+          "$SPOT",
+          "$LOWER",
+          "$UPPER",
+          "$AMOUNT0",
+          "$AMOUNT1",
+          [
+            "$LOWER0",
+            "$UPPER0",
+            "$LOWER1",
+            "$UPPER1",
+            "$SCALE1",
+            "$REFERENCE_X96",
+            "$EXTRA_LOSS"
+          ],
+          "$MAIN_FLOOR",
+          [
+            "$MARKS",
+            "$MARKS",
+            "$MARKS",
+            "$MARKS"
+          ]
+        ],
+        "$POOL_ID",
+        "$DIRECTION",
+        "$REQUIRE_ACTIVE"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.searchIterations()": {
+      "role": "R",
+      "short": "Read search iterations",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.stateView()": {
+      "role": "R",
+      "short": "Read state view",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.unlockCallback(bytes)": {
+      "role": "C",
+      "short": "Settle authenticated core callback",
+      "arguments": [
+        "0x"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.constructor(address,address,address,address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$POSITION_MANAGER_ADDRESS",
+        "$STATE_VIEW_ADDRESS",
+        "$POOL_MANAGER_ADDRESS",
+        "$PERMIT2_ADDRESS",
+        "$BALANCER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.LP_POSITION_EXECUTOR_VERSION()": {
+      "role": "R",
+      "short": "Read lp position executor version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.RESIDUAL_EXIT_VERSION()": {
+      "role": "R",
+      "short": "Read residual exit version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.activeSecondaryCount()": {
+      "role": "R",
+      "short": "Read active secondary count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.amounts(uint256)": {
+      "role": "R",
+      "short": "Read amounts",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.balancingRouter()": {
+      "role": "R",
+      "short": "Read balancing router",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.close(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Close registered main LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.closeSecondary(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Close registered residual LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.collect(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Harvest actual position fees",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Grow existing attached LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$AMOUNT0",
+        "$AMOUNT1",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLPPositionExecutor.liquidityManager()": {
+      "role": "R",
+      "short": "Read liquidity manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Mint authenticated NFT position",
+      "arguments": [
+        "$POOL_ID",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$AMOUNT0",
+        "$AMOUNT1",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLPPositionExecutor.permit2()": {
+      "role": "R",
+      "short": "Read permit2",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.poolManager()": {
+      "role": "R",
+      "short": "Read pool manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.portfolioAmounts(uint256)": {
+      "role": "R",
+      "short": "Read portfolio amounts",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.portfolioFingerprint(uint256)": {
+      "role": "R",
+      "short": "Read physical portfolio identity",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.positionManager()": {
+      "role": "R",
+      "short": "Read position manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.secondaryId(uint256)": {
+      "role": "R",
+      "short": "Read secondary id",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.stateView()": {
+      "role": "R",
+      "short": "Read state view",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.ticks(uint256)": {
+      "role": "R",
+      "short": "Read ticks",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLPRewardConverter.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$REWARDS_ADDRESS",
+        "$WRAPPED_ETH_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.MAX_LOSS_BPS()": {
+      "role": "R",
+      "short": "Read max loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Admit reviewed swap route",
+      "arguments": [
+        [
+          "$SOURCE_ADDRESS",
+          "$ROUTER_ADDRESS",
+          "$FACTORY_ADDRESS",
+          "$POOL_ADDRESS",
+          "$FEE",
+          "$SOURCE_CODE_HASH",
+          "$ROUTER_CODE_HASH",
+          "$FACTORY_CODE_HASH",
+          "$POOL_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Admit native conversion route",
+      "arguments": [
+        [
+          "$SOURCE_ADDRESS",
+          "$OUTPUT_ADDRESS",
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$FEE",
+            "$TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$POOL_MANAGER_ADDRESS",
+          "$STATE_VIEW_ADDRESS",
+          "$SOURCE_CODE_HASH",
+          "$OUTPUT_CODE_HASH",
+          "$POOL_MANAGER_CODE_HASH",
+          "$STATE_VIEW_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Configure reviewed wrapper policy",
+      "arguments": [
+        [
+          "$CODE_HASH",
+          "$ADMIN_ADDRESS",
+          "$IMPLEMENTATION_ADDRESS",
+          "$ADMIN_OWNER_ADDRESS",
+          "$ADMIN_CODE_HASH",
+          "$IMPLEMENTATION_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.conversionLossBps()": {
+      "role": "R",
+      "short": "Read conversion loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.convert(address,uint256,bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Convert authenticated ledger funds",
+      "arguments": [
+        "$SOURCE_ADDRESS",
+        "$AMOUNT",
+        "$REVIEWED_ROUTE_ID",
+        "$MINIMUM_ETH_WEI",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.enabled()": {
+      "role": "R",
+      "short": "Read enabled",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.ledger()": {
+      "role": "R",
+      "short": "Read ledger",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.route(bytes32)": {
+      "role": "R",
+      "short": "Read route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.routeEnabled(bytes32)": {
+      "role": "R",
+      "short": "Read route enabled",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.routeExists(bytes32)": {
+      "role": "R",
+      "short": "Read route exists",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.routeKind(bytes32)": {
+      "role": "R",
+      "short": "Read route kind",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.setConversionLossBps(uint16)": {
+      "role": "G",
+      "short": "Set conversion execution-loss limit",
+      "arguments": [
+        100
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.setEnabled(bool)": {
+      "role": "G",
+      "short": "Enable or disable conversion",
+      "arguments": [
+        "$VALUE"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.setRouteEnabled(bytes32,bool)": {
+      "role": "G",
+      "short": "Enable or disable reviewed route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID",
+        "$VALUE"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.v4Executor()": {
+      "role": "R",
+      "short": "Read v4 executor",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.v4Route(bytes32)": {
+      "role": "R",
+      "short": "Read v4 route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPRewardConverter.wrapper()": {
+      "role": "R",
+      "short": "Read wrapper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.wrapperPolicy()": {
+      "role": "R",
+      "short": "Read wrapper policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPRewardConverter.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLiquidityManager.constructor(address,address,address,address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$POSITION_MANAGER_ADDRESS",
+        "$STATE_VIEW_ADDRESS",
+        "$POOL_MANAGER_ADDRESS",
+        "$PERMIT2_ADDRESS",
+        "$BALANCER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.EMERGENCY_REBALANCE_VERSION()": {
+      "role": "R",
+      "short": "Read emergency rebalance version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.EXECUTION_QUALITY_VERSION()": {
+      "role": "R",
+      "short": "Read execution quality version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.LP_ROUTING_VERSION()": {
+      "role": "R",
+      "short": "Read lp routing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.PORTFOLIO_VERSION()": {
+      "role": "R",
+      "short": "Read portfolio version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.RESIDUAL_EXIT_VERSION()": {
+      "role": "R",
+      "short": "Read residual exit version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.activeSecondaryCount()": {
+      "role": "R",
+      "short": "Read active secondary count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.amounts(uint256)": {
+      "role": "R",
+      "short": "Read amounts",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256)": {
+      "role": "M",
+      "short": "Balance attributed token inventory",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$AMOUNT0",
+        "$AMOUNT1",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLiquidityManager.balanceContext(bytes32)": {
+      "role": "R",
+      "short": "Read balance context",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.balancingRouter()": {
+      "role": "R",
+      "short": "Read balancing router",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.beginEmergency()": {
+      "role": "M",
+      "short": "Begin reviewed emergency context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.close(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Close registered main LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.closeSecondary(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Close registered residual LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.collect(bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Harvest actual position fees",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.endEmergency()": {
+      "role": "M",
+      "short": "Close emergency operation context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionConfig(bytes32,bool)": {
+      "role": "R",
+      "short": "Read execution config",
+      "arguments": [
+        "$POOL_ID",
+        "$OPS"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionHybridReplacement(bytes32)": {
+      "role": "R",
+      "short": "Read execution hybrid replacement",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionOrdinaryReplacement()": {
+      "role": "R",
+      "short": "Read execution ordinary replacement",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionPortfolioFingerprint(uint256)": {
+      "role": "R",
+      "short": "Read execution portfolio fingerprint",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionSpot(bytes32)": {
+      "role": "R",
+      "short": "Read execution spot",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Grow existing attached LP",
+      "arguments": [
+        "$POOL_ID",
+        "$LP_TOKEN_ID",
+        "$A0",
+        "$A1",
+        "$MIN_L",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLiquidityManager.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Mint authenticated NFT position",
+      "arguments": [
+        "$POOL_ID",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$A0",
+        "$A1",
+        "$MIN_L",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLiquidityManager.permit2()": {
+      "role": "R",
+      "short": "Read permit2",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.poolManager()": {
+      "role": "R",
+      "short": "Read pool manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.portfolioAmounts(uint256)": {
+      "role": "R",
+      "short": "Read portfolio amounts",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.portfolioFingerprint(uint256)": {
+      "role": "R",
+      "short": "Read physical portfolio identity",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.positionManager()": {
+      "role": "R",
+      "short": "Read position manager",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.positionOperator()": {
+      "role": "R",
+      "short": "Read position operator",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.secondaryId(uint256)": {
+      "role": "R",
+      "short": "Read secondary id",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.spot(bytes32)": {
+      "role": "R",
+      "short": "Read spot",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.stateView()": {
+      "role": "R",
+      "short": "Read state view",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256)": {
+      "role": "M",
+      "short": "Execute authenticated bounded swap",
+      "arguments": [
+        "$POOL_ID",
+        "$ZERO_FOR_ONE",
+        "$AMOUNT_IN",
+        "$MINIMUM_OUT",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZLiquidityManager.ticks(uint256)": {
+      "role": "R",
+      "short": "Read ticks",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.unlockCallback(bytes)": {
+      "role": "C",
+      "short": "Settle authenticated core callback",
+      "arguments": [
+        "0x"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZMembership.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMembership.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.activate(uint256)": {
+      "role": "M",
+      "short": "Register equal collective membership",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZMembership.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZMembership.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZMembership.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.eligible(uint256)": {
+      "role": "R",
+      "short": "Read eligible",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZMembership.settleDust()": {
+      "role": "M",
+      "short": "Settle pre-membership fee dust",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMembership.totalEligible()": {
+      "role": "R",
+      "short": "Read total eligible",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigration.CUSTODY_VERSION()": {
+      "role": "R",
+      "short": "Read custody version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.EMERGENCY_REBALANCE_VERSION()": {
+      "role": "R",
+      "short": "Read emergency rebalance version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.MAX_BATCH()": {
+      "role": "R",
+      "short": "Read max batch",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.RESIDUAL_EXIT_VERSION()": {
+      "role": "R",
+      "short": "Read residual exit version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.activePlan(uint256)": {
+      "role": "R",
+      "short": "Read active plan",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.allocatePrincipal(uint256)": {
+      "role": "G",
+      "short": "Allocate terminal holder principal",
+      "arguments": [
+        "$MAXIMUM"
+      ],
+      "value": null
+    },
+    "ZZZMigration.allocationCursor()": {
+      "role": "R",
+      "short": "Read allocation cursor",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.beginCollectiveExit(bytes32)": {
+      "role": "G",
+      "short": "Start irreversible holder return",
+      "arguments": [
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZMigration.bucketSettlement(uint256)": {
+      "role": "R",
+      "short": "Read bucket settlement",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.claimPrincipal(uint256,address)": {
+      "role": "H",
+      "short": "Claim failed principal payout",
+      "arguments": [
+        "$NFT_ID",
+        "$RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigration.claimablePrincipal(uint256)": {
+      "role": "R",
+      "short": "Read claimable principal",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.closeBucket(uint256,uint256,uint256,uint256)": {
+      "role": "G",
+      "short": "Close terminal principal bucket",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_ETH_WEI",
+        "$MINIMUM_ZZZ",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZMigration.closeResidual((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Close residual; retain main",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$POOL_ID",
+          "$LP_TOKEN_ID",
+          "$TOTAL_SHARES",
+          "$DEPOSIT_USD",
+          "$CUSTODY_EPOCH",
+          "$CURRENT_NONCE",
+          "0x0000000000000000000000000000000000000000",
+          "$ZZZ_ADDRESS",
+          "$MINIMUM0",
+          "$MINIMUM1",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH",
+          "$PORTFOLIO_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZMigration.configureZZZ(address,bytes32,bytes32)": {
+      "role": "B",
+      "short": "Bind fixed ZZZ identity",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$CODE_HASH",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZMigration.currentZZZ()": {
+      "role": "R",
+      "short": "Read current zzz",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.custodyEpoch(uint256)": {
+      "role": "R",
+      "short": "Read custody epoch",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.distributePrincipal(uint256[])": {
+      "role": "G",
+      "short": "Pay terminal current holders",
+      "arguments": [
+        [
+          "$NFT_ID"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZMigration.emergencyCustodyHash(uint256)": {
+      "role": "R",
+      "short": "Read emergency custody identity",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.emergencyFingerprint()": {
+      "role": "R",
+      "short": "Read emergency fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.emergencyRebalance((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))": {
+      "role": "G",
+      "short": "Force reviewed emergency consolidation",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CUSTODY_HASH",
+          31,
+          "$LOWER_TICK",
+          "$UPPER_TICK",
+          "$SWAP_POOL",
+          "$ZERO_FOR_ONE",
+          "$AMOUNT_IN",
+          "$MINIMUM_OUT",
+          "$MINIMUM_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZMigration.emergencyRequest()": {
+      "role": "R",
+      "short": "Read emergency request",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.emergencyTarget()": {
+      "role": "R",
+      "short": "Read emergency target",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.exitMintedCount()": {
+      "role": "R",
+      "short": "Read exit minted count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.exitPhase()": {
+      "role": "R",
+      "short": "Read exit phase",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.exitReviewHash()": {
+      "role": "R",
+      "short": "Read exit review hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.invalidateParking(uint256)": {
+      "role": "G",
+      "short": "Invalidate reviewed parking nonce",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.moveFunds(uint256,bytes32,uint128,uint256)": {
+      "role": "G",
+      "short": "Move LP between admitted pools",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID",
+        "$MINIMUM",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZMigration.outstandingCount()": {
+      "role": "R",
+      "short": "Read outstanding count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.park((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Close LP into attributed idle",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$POOL_ID",
+          "$LP_TOKEN_ID",
+          "$TOTAL_SHARES",
+          "$DEPOSIT_USD",
+          "$CUSTODY_EPOCH",
+          "$CURRENT_NONCE",
+          "0x0000000000000000000000000000000000000000",
+          "$ZZZ_ADDRESS",
+          "$MINIMUM0",
+          "$MINIMUM1",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH",
+          "$PORTFOLIO_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZMigration.parkingNonce(uint256)": {
+      "role": "R",
+      "short": "Read parking nonce",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.payCurrentOwner(uint256)": {
+      "role": "M",
+      "short": "Pay authenticated current owner",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.principalOf(uint256)": {
+      "role": "R",
+      "short": "Read principal of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigration.remainingBuckets()": {
+      "role": "R",
+      "short": "Read remaining buckets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.remainingETH()": {
+      "role": "R",
+      "short": "Read remaining eth",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.remainingZZZ()": {
+      "role": "R",
+      "short": "Read remaining zzz",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.resume(uint256,bytes32,uint128,uint256)": {
+      "role": "G",
+      "short": "Redeploy parked LP principal",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID",
+        "$MINIMUM",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZMigration.settlementBucketAt(uint256)": {
+      "role": "R",
+      "short": "Read settlement bucket at",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZMigration.settlementBucketCount()": {
+      "role": "R",
+      "short": "Read settlement bucket count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.validation()": {
+      "role": "R",
+      "short": "Read validation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.zzzCodeHash()": {
+      "role": "R",
+      "short": "Read zzz code hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZMigrationBudget.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.DEFAULT_COMPOUND_INTERVAL()": {
+      "role": "R",
+      "short": "Read default compound interval",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.EMERGENCY_REBALANCE_VERSION()": {
+      "role": "R",
+      "short": "Read emergency rebalance version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.IDLE_COMPOUNDING_VERSION()": {
+      "role": "R",
+      "short": "Read idle compounding version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.MAX_LOSS_BPS()": {
+      "role": "R",
+      "short": "Read max loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.REBALANCE_CONFIRMATION_VERSION()": {
+      "role": "R",
+      "short": "Read rebalance confirmation version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.assertDeployed(uint256)": {
+      "role": "R",
+      "short": "Read assert deployed",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.assertIdle(uint256)": {
+      "role": "R",
+      "short": "Read assert idle",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.assertIdleLoss(uint256,uint256)": {
+      "role": "R",
+      "short": "Read assert idle loss",
+      "arguments": [
+        "$BUCKET_ID",
+        "$BEFORE_VALUE"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Read assert put",
+      "arguments": [
+        "$BUCKET_ID",
+        "$A0",
+        "$A1",
+        "$SPENT0",
+        "$SPENT1",
+        "$BEFORE0",
+        "$BEFORE1"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.balanceContext(uint256)": {
+      "role": "R",
+      "short": "Read balance context",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.beginEmergency(uint256,uint8)": {
+      "role": "M",
+      "short": "Begin reviewed emergency context",
+      "arguments": [
+        "$BUCKET_ID",
+        31
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.checkpoint(uint256,uint8)": {
+      "role": "M",
+      "short": "Capture maintenance valuation",
+      "arguments": [
+        "$BUCKET_ID",
+        "$PHASE"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.compositionEpoch(uint256)": {
+      "role": "R",
+      "short": "Read composition epoch",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.compoundInterval(bytes32)": {
+      "role": "R",
+      "short": "Read compound interval",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.compoundReady(uint256)": {
+      "role": "R",
+      "short": "Read compound ready",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.contributionLossBps()": {
+      "role": "R",
+      "short": "Read contribution loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.contributionNav(uint256)": {
+      "role": "M",
+      "short": "Measure incumbent attributed NAV",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+      "role": "M",
+      "short": "Verify contribution deployment result",
+      "arguments": [
+        "$BUCKET_ID",
+        "$INPUT_USD",
+        "$SUPPLY",
+        "$INCUMBENT_NAV",
+        "$INCUMBENT_DEPLOYED",
+        "$DEPLOYED",
+        "$IDLE",
+        "$LIMITS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.emergencyActive()": {
+      "role": "R",
+      "short": "Read emergency active",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.emergencyBucket()": {
+      "role": "R",
+      "short": "Read emergency bucket",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.emergencyChecks()": {
+      "role": "R",
+      "short": "Read emergency checks",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.emergencyFingerprint()": {
+      "role": "R",
+      "short": "Read emergency fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.endEmergency()": {
+      "role": "M",
+      "short": "Close emergency operation context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.historicalCompoundValue(uint256)": {
+      "role": "R",
+      "short": "Read historical compound value",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.idleValue(uint256)": {
+      "role": "R",
+      "short": "Read idle value",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.importComposition(uint256,uint64)": {
+      "role": "M",
+      "short": "Import physical portfolio accounting",
+      "arguments": [
+        "$BUCKET_ID",
+        "$EPOCH"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.lastCompound(uint256)": {
+      "role": "R",
+      "short": "Read last compound",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.maintenanceBucket()": {
+      "role": "R",
+      "short": "Read maintenance bucket",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.maintenanceLossBps()": {
+      "role": "R",
+      "short": "Read maintenance loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.maintenancePrices()": {
+      "role": "R",
+      "short": "Read maintenance prices",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigrationBudget.mintTarget(uint256)": {
+      "role": "R",
+      "short": "Read mint target",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.nav(uint256)": {
+      "role": "R",
+      "short": "Read nav",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.poolTokens(bytes32)": {
+      "role": "R",
+      "short": "Read pool tokens",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.recordComposition(uint256)": {
+      "role": "M",
+      "short": "Record physical portfolio accounting",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.setCompoundInterval(bytes32,uint32)": {
+      "role": "G",
+      "short": "Set standalone compounding interval",
+      "arguments": [
+        "$POOL_ID",
+        3600
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.setLossLimits(uint16,uint16)": {
+      "role": "G",
+      "short": "Set contribution/maintenance loss limits",
+      "arguments": [
+        200,
+        300
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateCanonicalWriter(address)": {
+      "role": "R",
+      "short": "Read validate canonical writer",
+      "arguments": [
+        "$CALLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+      "role": "M",
+      "short": "Verify isolated contribution floors",
+      "arguments": [
+        "$NFT_ID",
+        "$BUCKET_ID",
+        "$INPUT_USD",
+        "$INPUT_TOTAL",
+        "$MINIMUM_LIQUIDITY",
+        "$ACTIVATION"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateEmergency(uint256)": {
+      "role": "R",
+      "short": "Read validate emergency",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateHolderExit(uint256,address)": {
+      "role": "R",
+      "short": "Read validate holder exit",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MIGRATION_CALLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateLPReceiver(address)": {
+      "role": "R",
+      "short": "Read validate lpreceiver",
+      "arguments": [
+        "$SENDER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateMove(uint256,bytes32,uint128)": {
+      "role": "R",
+      "short": "Read validate move",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID",
+        "$MINIMUM_LIQUIDITY"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateNativeSender(address)": {
+      "role": "R",
+      "short": "Read validate native sender",
+      "arguments": [
+        "$SENDER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateOwner(uint256,address,bool,bool)": {
+      "role": "R",
+      "short": "Read validate owner",
+      "arguments": [
+        "$NFT_ID",
+        "$CALLER_ADDRESS",
+        "$MINTED",
+        "$ACTIVATION"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateRebalance(uint256,uint128)": {
+      "role": "R",
+      "short": "Read validate rebalance",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateReservation(bytes32,uint256)": {
+      "role": "R",
+      "short": "Read validate reservation",
+      "arguments": [
+        "$POOL_ID",
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateResidualClose(uint256)": {
+      "role": "R",
+      "short": "Read validate residual close",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.validateUnwind(uint256)": {
+      "role": "R",
+      "short": "Read validate unwind",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.valueBucket(uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Read value bucket",
+      "arguments": [
+        "$BUCKET_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.vault()": {
+      "role": "R",
+      "short": "Read vault",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.constructor(address,string)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$IPFS_BASE_URI"
+      ],
+      "value": null
+    },
+    "ZZZNFT.MAX_METADATA_REFRESH_BATCH()": {
+      "role": "R",
+      "short": "Read max metadata refresh batch",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.MAX_SUPPLY()": {
+      "role": "R",
+      "short": "Read max supply",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.addRoyaltyAsset(address)": {
+      "role": "G",
+      "short": "Admit royalty payment currency",
+      "arguments": [
+        "$ROYALTY_TOKEN_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.approve(address,uint256)": {
+      "role": "H",
+      "short": "Approve one NFT transfer",
+      "arguments": [
+        "$TO_ADDRESS",
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.artworkBaseURI()": {
+      "role": "R",
+      "short": "Read artwork base uri",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.balanceOf(address)": {
+      "role": "R",
+      "short": "Read balance of",
+      "arguments": [
+        "$OWNER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.callbackGasLimit()": {
+      "role": "R",
+      "short": "Read callback gas limit",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.canonicalArtwork(uint8,uint256)": {
+      "role": "R",
+      "short": "Read canonical artwork",
+      "arguments": [
+        0,
+        "$ITEM"
+      ],
+      "value": null
+    },
+    "ZZZNFT.canonicalModule()": {
+      "role": "R",
+      "short": "Read canonical module",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.canonicalRandomness(uint256)": {
+      "role": "R",
+      "short": "Read canonical randomness",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.canonicalRetire()": {
+      "role": "M",
+      "short": "Retire source NFT authority",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.canonicalSuccessor()": {
+      "role": "R",
+      "short": "Read canonical successor",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.canonicalWriteArtwork(uint8,uint256,uint16)": {
+      "role": "M",
+      "short": "Import authenticated artwork draw",
+      "arguments": [
+        0,
+        "$ITEM",
+        "$VALUE"
+      ],
+      "value": null
+    },
+    "ZZZNFT.canonicalWriteHeader(uint256,uint256,uint256,uint16[3],uint256)": {
+      "role": "M",
+      "short": "Import authenticated NFT header",
+      "arguments": [
+        1,
+        "$NEXT",
+        "$REMAINING",
+        [
+          "$QUOTAS",
+          "$QUOTAS",
+          "$QUOTAS"
+        ],
+        "$EPOCH"
+      ],
+      "value": null
+    },
+    "ZZZNFT.canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256))": {
+      "role": "M",
+      "short": "Import authenticated NFT record",
+      "arguments": [
+        "$ROW",
+        [
+          "$ID",
+          "$OWNER_ADDRESS",
+          "$RARITY",
+          "$COLOR",
+          "$PALETTE",
+          "$PATTERN",
+          "$REQUEST_ID",
+          "$REQUEST_EPOCH",
+          "$RARITY_WORD",
+          "$COLOR_WORD"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.claimRouter()": {
+      "role": "R",
+      "short": "Read claim router",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.colorOf(uint256)": {
+      "role": "R",
+      "short": "Read color of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.currentLPValue(uint256)": {
+      "role": "R",
+      "short": "Read current lpvalue",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.evolution(uint256)": {
+      "role": "R",
+      "short": "Read evolution",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.finalizeTraits(uint256)": {
+      "role": "P",
+      "short": "Finalize original artwork draw",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.getApproved(uint256)": {
+      "role": "R",
+      "short": "Read get approved",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.isApprovedForAll(address,address)": {
+      "role": "R",
+      "short": "Read is approved for all",
+      "arguments": [
+        "$OWNER_ADDRESS",
+        "$OPERATOR_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.keyHash()": {
+      "role": "R",
+      "short": "Read key hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.metadataRenderer()": {
+      "role": "R",
+      "short": "Read metadata renderer",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.mint(address,uint256)": {
+      "role": "M",
+      "short": "Mint authenticated PoPL NFT",
+      "arguments": [
+        "$TO_ADDRESS",
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.mintOrdinalOf(uint256)": {
+      "role": "R",
+      "short": "Read mint ordinal of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.mintPaused()": {
+      "role": "R",
+      "short": "Read mint paused",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.mintedCount()": {
+      "role": "R",
+      "short": "Read minted count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.name()": {
+      "role": "R",
+      "short": "Read name",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.nativePayment()": {
+      "role": "R",
+      "short": "Read native payment",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.nextToFinalize()": {
+      "role": "R",
+      "short": "Read next to finalize",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.notifyContribution(uint256)": {
+      "role": "M",
+      "short": "Register successful contribution rights",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.ownerOf(uint256)": {
+      "role": "R",
+      "short": "Read current NFT owner",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.paletteOf(uint256)": {
+      "role": "R",
+      "short": "Read palette of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.patternOf(uint256)": {
+      "role": "R",
+      "short": "Read pattern of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.policyMetadataChanged()": {
+      "role": "M",
+      "short": "Announce changed display policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.randomnessConfigured()": {
+      "role": "R",
+      "short": "Read randomness configured",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.randomnessCoordinator()": {
+      "role": "R",
+      "short": "Read randomness coordinator",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.randomnessEpoch()": {
+      "role": "R",
+      "short": "Read randomness epoch",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.rarityOf(uint256)": {
+      "role": "R",
+      "short": "Read rarity of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.rarityRemaining(uint256)": {
+      "role": "R",
+      "short": "Read rarity remaining",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZNFT.rawFulfillRandomWords(uint256,uint256[])": {
+      "role": "C",
+      "short": "Record original provider randomness",
+      "arguments": [
+        "$REQUEST_ID",
+        [
+          "$RARITY_WORD",
+          "$ARTWORK_WORD"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.refreshMetadata(uint256)": {
+      "role": "P",
+      "short": "Refresh one NFT metadata",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.refreshMetadataRange(uint256,uint256)": {
+      "role": "P",
+      "short": "Refresh bounded metadata range",
+      "arguments": [
+        1,
+        "$LAST_ORDINAL"
+      ],
+      "value": null
+    },
+    "ZZZNFT.remainingToReveal()": {
+      "role": "R",
+      "short": "Read remaining to reveal",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.requestConfirmations()": {
+      "role": "R",
+      "short": "Read request confirmations",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.requestEpochOf(uint256)": {
+      "role": "R",
+      "short": "Read request epoch of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.requestOf(uint256)": {
+      "role": "R",
+      "short": "Read request of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.royaltyInfo(uint256,uint256)": {
+      "role": "R",
+      "short": "Read requested royalty payment",
+      "arguments": [
+        "$NFT_ID",
+        1000000000000000000
+      ],
+      "value": null
+    },
+    "ZZZNFT.royaltyRewards()": {
+      "role": "R",
+      "short": "Read royalty rewards",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.safeTransferFrom(address,address,uint256)": {
+      "role": "H",
+      "short": "Safely transfer NFT ownership",
+      "arguments": [
+        "$FROM_ADDRESS",
+        "$TO_ADDRESS",
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.safeTransferFrom(address,address,uint256,bytes)": {
+      "role": "H",
+      "short": "Safely transfer NFT ownership",
+      "arguments": [
+        "$FROM_ADDRESS",
+        "$TO_ADDRESS",
+        "$NFT_ID",
+        "0x"
+      ],
+      "value": null
+    },
+    "ZZZNFT.setApprovalForAll(address,bool)": {
+      "role": "H",
+      "short": "Set NFT operator approval",
+      "arguments": [
+        "$OPERATOR_ADDRESS",
+        false
+      ],
+      "value": null
+    },
+    "ZZZNFT.setBaseURI(string)": {
+      "role": "B",
+      "short": "Bind permanent artwork base",
+      "arguments": [
+        "$IPFS_BASE_URI"
+      ],
+      "value": null
+    },
+    "ZZZNFT.setMintPaused(bool)": {
+      "role": "G",
+      "short": "Pause or resume minting",
+      "arguments": [
+        true
+      ],
+      "value": null
+    },
+    "ZZZNFT.subscriptionId()": {
+      "role": "R",
+      "short": "Read subscription id",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.supportsInterface(bytes4)": {
+      "role": "R",
+      "short": "Read supports interface",
+      "arguments": [
+        "0x2a55205a"
+      ],
+      "value": null
+    },
+    "ZZZNFT.symbol()": {
+      "role": "R",
+      "short": "Read symbol",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.tokenAtOrdinal(uint256)": {
+      "role": "R",
+      "short": "Read token at ordinal",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZNFT.tokenURI(uint256)": {
+      "role": "R",
+      "short": "Read token uri",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.traitsReady(uint256)": {
+      "role": "R",
+      "short": "Read traits ready",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.transferFrom(address,address,uint256)": {
+      "role": "H",
+      "short": "Transfer NFT ownership",
+      "arguments": [
+        "$FROM_ADDRESS",
+        "$TO_ADDRESS",
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$COLLECTION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTCanonical.nft()": {
+      "role": "R",
+      "short": "Read nft",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTMetadata.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTMetadata.artworkItem(uint8,uint256)": {
+      "role": "R",
+      "short": "Read artwork item",
+      "arguments": [
+        "$RARITY",
+        0
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.currentValue(uint256)": {
+      "role": "R",
+      "short": "Read current value",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.render((uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string))": {
+      "role": "R",
+      "short": "Read render",
+      "arguments": [
+        [
+          "$ID",
+          "$RARITY",
+          "$PALETTE",
+          "$PATTERN",
+          "$STAGE",
+          "$TRAITS_READY",
+          "$VALUATION_AVAILABLE",
+          "$VALUE_USD",
+          "$ROYALTY_WEIGHT",
+          "$IPFS_BASE_URI"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZOracle.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$SEQUENCER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.FINGERPRINT_DOMAIN()": {
+      "role": "R",
+      "short": "Read fingerprint domain",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.MAX_DEVIATION_BPS()": {
+      "role": "R",
+      "short": "Read max deviation bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.PRICING_VERSION()": {
+      "role": "R",
+      "short": "Read pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.SEQUENCER_GRACE()": {
+      "role": "R",
+      "short": "Read sequencer grace",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.activePolicy(address)": {
+      "role": "R",
+      "short": "Read active policy",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.activeSequencerPolicy()": {
+      "role": "R",
+      "short": "Read active sequencer policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.contributionPricing()": {
+      "role": "R",
+      "short": "Read contribution pricing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.policy(bytes32)": {
+      "role": "R",
+      "short": "Read policy",
+      "arguments": [
+        "$PRICE_POLICY_ID"
+      ],
+      "value": null
+    },
+    "ZZZOracle.policyAt(uint256)": {
+      "role": "R",
+      "short": "Read policy at",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZOracle.policyCount()": {
+      "role": "R",
+      "short": "Read policy count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.price(address)": {
+      "role": "R",
+      "short": "Read price",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.priceBounds(address)": {
+      "role": "R",
+      "short": "Read independent price bounds",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.quote(address,address,uint256)": {
+      "role": "R",
+      "short": "Quote reviewed asset value",
+      "arguments": [
+        "$INPUT_ADDRESS",
+        "$OUTPUT_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZOracle.referenceX96(address,address)": {
+      "role": "R",
+      "short": "Read reference x96",
+      "arguments": [
+        "0x0000000000000000000000000000000000000000",
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.sequencerFeed()": {
+      "role": "R",
+      "short": "Read sequencer feed",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.sequencerPolicies(bytes32)": {
+      "role": "R",
+      "short": "Read sequencer policies",
+      "arguments": [
+        "$SEQUENCER_POLICY_ID"
+      ],
+      "value": null
+    },
+    "ZZZOracle.sequencerPolicyAt(uint256)": {
+      "role": "R",
+      "short": "Read sequencer policy at",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZOracle.sequencerPolicyCount()": {
+      "role": "R",
+      "short": "Read sequencer policy count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.setDualFeed(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,bytes32)": {
+      "role": "G",
+      "short": "Configure independent price sources",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        [
+          "$PRIMARY_FEED_ADDRESS",
+          "$PRIMARY_CODE_HASH",
+          "$PRIMARY_INDEPENDENCE_ID",
+          "$PRIMARY_MAX_AGE",
+          "$PRIMARY_FEED_DECIMALS"
+        ],
+        [
+          "$SECONDARY_FEED_ADDRESS",
+          "$SECONDARY_CODE_HASH",
+          "$SECONDARY_INDEPENDENCE_ID",
+          "$SECONDARY_MAX_AGE",
+          "$SECONDARY_FEED_DECIMALS"
+        ],
+        300,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZOracle.setSequencerFeed(address,bytes32,bytes32)": {
+      "role": "G",
+      "short": "Configure sequencer outage guard",
+      "arguments": [
+        "$SOURCE_ADDRESS",
+        "$EXPECTED_CODE_HASH",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZOracle.tokenDecimals(address)": {
+      "role": "R",
+      "short": "Read token decimals",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.value(address,uint256)": {
+      "role": "R",
+      "short": "Value reviewed asset amount",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.SELECTED_NATIVE_POOL()": {
+      "role": "R",
+      "short": "Read selected native pool",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.accounting(bytes32)": {
+      "role": "R",
+      "short": "Read accounting",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.activationAssets()": {
+      "role": "R",
+      "short": "Read activation assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.activationEntry()": {
+      "role": "R",
+      "short": "Read activation entry",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.applyKeeperRange(bytes32,uint16)": {
+      "role": "M",
+      "short": "Apply approved range choice",
+      "arguments": [
+        "$POOL_ID",
+        "$WIDTH"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.configurationRevision()": {
+      "role": "R",
+      "short": "Read configuration revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
+      "role": "G",
+      "short": "Admit configured ETH/ZZZ pool",
+      "arguments": [
+        [
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$FEE",
+            "$TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$DEPOSITS_ENABLED",
+          "$OPERATIONS_ENABLED",
+          "$RANGE_BPS",
+          "$TRIGGER_BPS",
+          "$MAX_SPOT_DEVIATION_BPS",
+          "$MAX_SLIPPAGE_BPS",
+          "$MIN_REBALANCE_INTERVAL",
+          "$MIN_DEPOSIT_USD",
+          "$MAX_POSITION_USD"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.contributionPool()": {
+      "role": "R",
+      "short": "Read current contribution pool",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPoolRegistry.contributionValue(bytes32,uint256,uint256)": {
+      "role": "R",
+      "short": "Read contribution value",
+      "arguments": [
+        "$POOL_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.disablePool(bytes32,bool,bool)": {
+      "role": "G",
+      "short": "Stop selected pool operations",
+      "arguments": [
+        "$POOL_ID",
+        "$DISABLE_DEPOSITS",
+        "$DISABLE_OPERATIONS"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.exists(bytes32)": {
+      "role": "R",
+      "short": "Read exists",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.get(bytes32)": {
+      "role": "R",
+      "short": "Read get",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPoolRegistry.isNativePool(bytes32)": {
+      "role": "R",
+      "short": "Read is native pool",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.DEFAULT_RESIDUAL_SIDE_BPS()": {
+      "role": "R",
+      "short": "Read default residual side bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.HARD_MAXIMUM_RESIDUAL_BPS()": {
+      "role": "R",
+      "short": "Read hard maximum residual bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.HARD_MINIMUM_MAIN_BPS()": {
+      "role": "R",
+      "short": "Read hard minimum main bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.PORTFOLIO_VERSION()": {
+      "role": "R",
+      "short": "Read portfolio version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.appliedRevision(uint256)": {
+      "role": "R",
+      "short": "Read applied revision",
+      "arguments": [
+        "$LP_TOKEN_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.configurationPending(uint256)": {
+      "role": "R",
+      "short": "Read configuration pending",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.configureMainAllocation(bytes32,uint16,bytes32)": {
+      "role": "G",
+      "short": "Configure minimum main allocation",
+      "arguments": [
+        "$POOL_ID",
+        6000,
+        "$REVIEWED"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.configureResidualGap(bytes32,uint24,bytes32)": {
+      "role": "G",
+      "short": "Configure residual spacing gap",
+      "arguments": [
+        "$POOL_ID",
+        1,
+        "$REVIEWED"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.configureResidualSide(bytes32,uint16,bytes32)": {
+      "role": "G",
+      "short": "Configure residual side geometry",
+      "arguments": [
+        "$POOL_ID",
+        5000,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.controlFingerprint(bytes32)": {
+      "role": "R",
+      "short": "Read current control identity",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.controlRevision(bytes32)": {
+      "role": "R",
+      "short": "Read control revision",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.enabled(bytes32)": {
+      "role": "R",
+      "short": "Read enabled",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.geometryRevision(bytes32)": {
+      "role": "R",
+      "short": "Read geometry revision",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.maximumResidualBps(bytes32)": {
+      "role": "R",
+      "short": "Read maximum residual bps",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.minimumMainBps(bytes32)": {
+      "role": "R",
+      "short": "Read minimum main bps",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.modeReviewHash(bytes32)": {
+      "role": "R",
+      "short": "Read mode review hash",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)": {
+      "role": "R",
+      "short": "Read range",
+      "arguments": [
+        [
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$FEE",
+            "$TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$DEPOSITS_ENABLED",
+          "$OPERATIONS_ENABLED",
+          "$RANGE_BPS",
+          "$TRIGGER_BPS",
+          "$MAX_SPOT_DEVIATION_BPS",
+          "$MAX_SLIPPAGE_BPS",
+          "$MIN_REBALANCE_INTERVAL",
+          "$MIN_DEPOSIT_USD",
+          "$MAX_POSITION_USD"
+        ],
+        "$REFERENCE_X96",
+        "$ORIENTATION"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.recordApplied(uint256,bytes32)": {
+      "role": "M",
+      "short": "Record applied portfolio policy",
+      "arguments": [
+        "$LP_TOKEN_ID",
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.residualGapSpacings(bytes32)": {
+      "role": "R",
+      "short": "Read residual gap spacings",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.residualRange(bytes32,uint160,int24,int24,bool)": {
+      "role": "R",
+      "short": "Read residual range",
+      "arguments": [
+        "$POOL_ID",
+        "$CURRENT",
+        "$MAIN_LOWER",
+        "$MAIN_UPPER",
+        "$RESIDUAL0"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.residualReviewHash(bytes32)": {
+      "role": "R",
+      "short": "Read residual review hash",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.residualSideBps(bytes32)": {
+      "role": "R",
+      "short": "Read residual side bps",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.revision()": {
+      "role": "R",
+      "short": "Read revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.setMode(bytes32,bool,bytes32)": {
+      "role": "G",
+      "short": "Enable or disable residual",
+      "arguments": [
+        "$POOL_ID",
+        "$NEXT",
+        "$REVIEWED"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.setTriggerBps(uint16,bytes32)": {
+      "role": "G",
+      "short": "Configure portfolio adjustment threshold",
+      "arguments": [
+        8500,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.strategy()": {
+      "role": "R",
+      "short": "Read strategy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.thresholdBps()": {
+      "role": "R",
+      "short": "Read threshold bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.thresholdSide(uint160,int24,int24,uint160)": {
+      "role": "R",
+      "short": "Read threshold side",
+      "arguments": [
+        "$CENTER",
+        "$LOWER_TICK",
+        "$UPPER_TICK",
+        "$PRICE"
+      ],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.triggerReviewHash()": {
+      "role": "R",
+      "short": "Read trigger review hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.triggerRevision()": {
+      "role": "R",
+      "short": "Read trigger revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.constructor(address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$INITIAL_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.MAX_CALL_GAS()": {
+      "role": "R",
+      "short": "Read max call gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.MAX_IDLE_BPS()": {
+      "role": "R",
+      "short": "Read max idle bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.MIN_CALL_GAS()": {
+      "role": "R",
+      "short": "Read min call gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.PROTOCOL_POLICY_VERSION()": {
+      "role": "R",
+      "short": "Read protocol policy version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.acceptMintRecipient()": {
+      "role": "N",
+      "short": "Accept future mint proceeds",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.configurationHash()": {
+      "role": "R",
+      "short": "Read configuration hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.configurationRevision()": {
+      "role": "R",
+      "short": "Read configuration revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.configureRandomness(address,bytes32,bytes32,uint256,uint16,uint32,bool,bytes32)": {
+      "role": "B",
+      "short": "Configure initial randomness provider",
+      "arguments": [
+        "$COORDINATOR_ADDRESS",
+        "$EXPECTED_CODE_HASH",
+        "$KEY_HASH",
+        "$SUBSCRIPTION_ID",
+        "$CONFIRMATIONS",
+        "$CALLBACK_GAS",
+        "$NATIVE_PAYMENT",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.entryFingerprint()": {
+      "role": "R",
+      "short": "Read current contribution policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.entryPolicy()": {
+      "role": "R",
+      "short": "Read entry policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.gasFingerprint()": {
+      "role": "R",
+      "short": "Read gas fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.gasPolicy()": {
+      "role": "R",
+      "short": "Read gas policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.maintenanceFingerprint()": {
+      "role": "R",
+      "short": "Read maintenance fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.maintenancePolicy()": {
+      "role": "R",
+      "short": "Read maintenance policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.metadataFingerprint()": {
+      "role": "R",
+      "short": "Read metadata fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.metadataPolicy()": {
+      "role": "R",
+      "short": "Read metadata policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.mintFingerprint()": {
+      "role": "R",
+      "short": "Read mint fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.payoutGas()": {
+      "role": "R",
+      "short": "Read payout gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.proposeMintRecipient(address,bytes32)": {
+      "role": "G",
+      "short": "Propose future mint recipient",
+      "arguments": [
+        "$CANDIDATE_ADDRESS",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.rotateRandomness(address,bytes32,bytes32,uint256,uint16,uint32,bool,bytes32)": {
+      "role": "G",
+      "short": "Rotate fully drained provider",
+      "arguments": [
+        "$COORDINATOR_ADDRESS",
+        "$EXPECTED_CODE_HASH",
+        "$KEY_HASH",
+        "$SUBSCRIPTION_ID",
+        "$CONFIRMATIONS",
+        "$CALLBACK_GAS",
+        "$NATIVE_PAYMENT",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.royaltySyncGas()": {
+      "role": "R",
+      "short": "Read royalty sync gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.saleFingerprint()": {
+      "role": "R",
+      "short": "Read sale fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.salePolicy()": {
+      "role": "R",
+      "short": "Read sale policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setEntryPolicy(uint128,uint128,uint16,bytes32)": {
+      "role": "G",
+      "short": "Set future contribution minima",
+      "arguments": [
+        100000000000000000000,
+        5000000000000000000,
+        500,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setEvolutionThresholds(uint128,uint128,bytes32)": {
+      "role": "G",
+      "short": "Set cosmetic evolution thresholds",
+      "arguments": [
+        1000000000000000000000,
+        10000000000000000000000,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32)": {
+      "role": "G",
+      "short": "Set bounded callback gas",
+      "arguments": [
+        "$PAYOUT_GAS",
+        "$SOURCE_CALL_GAS",
+        "$ROYALTY_SYNC_GAS",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setMaintenancePolicy(uint16,bytes32)": {
+      "role": "G",
+      "short": "Set maintenance idle ceiling",
+      "arguments": [
+        500,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setMintPrice(uint128,bytes32)": {
+      "role": "G",
+      "short": "Set future mint price",
+      "arguments": [
+        50000000000000000,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setRandomnessRequestSettings(uint16,uint32,bytes32)": {
+      "role": "G",
+      "short": "Set future randomness request settings",
+      "arguments": [
+        "$CONFIRMATIONS",
+        "$CALLBACK_GAS",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.sourceCallGas()": {
+      "role": "R",
+      "short": "Read source call gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.validateMintRecipient()": {
+      "role": "R",
+      "short": "Read validate mint recipient",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.vrfPolicy()": {
+      "role": "R",
+      "short": "Read vrf policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.vrfRevision()": {
+      "role": "R",
+      "short": "Read vrf revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.constructor(address,bytes32,bytes32,int32,uint32,uint16,bytes32)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$SOURCE_ADDRESS",
+        "$CODE_HASH",
+        "$ID",
+        "$EXPONENT",
+        "$AGE",
+        "$CONFIDENCE_BPS",
+        "$REVIEW"
+      ],
+      "value": null
+    },
+    "ZZZPythPriceFeed.MAX_CONFIDENCE_BPS()": {
+      "role": "R",
+      "short": "Read max confidence bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.SOURCE_CALL_GAS()": {
+      "role": "R",
+      "short": "Read source call gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.core()": {
+      "role": "R",
+      "short": "Read core",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.decimals()": {
+      "role": "R",
+      "short": "Read decimals",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.expectedCoreCodeHash()": {
+      "role": "R",
+      "short": "Read expected core code hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.expectedExponent()": {
+      "role": "R",
+      "short": "Read expected exponent",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.feedId()": {
+      "role": "R",
+      "short": "Read feed id",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.latestRoundData()": {
+      "role": "R",
+      "short": "Read latest round data",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.maxAge()": {
+      "role": "R",
+      "short": "Read max age",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.maxConfidenceBps()": {
+      "role": "R",
+      "short": "Read max confidence bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPythPriceFeed.reviewHash()": {
+      "role": "R",
+      "short": "Read review hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.MAX_DURATION()": {
+      "role": "R",
+      "short": "Read max duration",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.REBALANCE_CONFIRMATION_VERSION()": {
+      "role": "R",
+      "short": "Read rebalance confirmation version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.condition(uint256)": {
+      "role": "R",
+      "short": "Read sampled trigger condition",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.configure(uint32,uint32,bytes32)": {
+      "role": "G",
+      "short": "Configure sampled confirmation timing",
+      "arguments": [
+        600,
+        300,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.controlFingerprint(bytes32)": {
+      "role": "R",
+      "short": "Read current control identity",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.duration()": {
+      "role": "R",
+      "short": "Read duration",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.emergencyReady(uint256)": {
+      "role": "R",
+      "short": "Read emergency ready",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.invalidatePolicy()": {
+      "role": "M",
+      "short": "Invalidate sampled policy evidence",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.marketSides(uint256)": {
+      "role": "R",
+      "short": "Read market sides",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.maxObservationGap()": {
+      "role": "R",
+      "short": "Read max observation gap",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.observationFingerprint(uint256,bytes32)": {
+      "role": "R",
+      "short": "Read observation fingerprint",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.observations(uint256)": {
+      "role": "R",
+      "short": "Read observations",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.observe(uint256)": {
+      "role": "K",
+      "short": "Record sampled trigger evidence",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.policyRevision()": {
+      "role": "R",
+      "short": "Read policy revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.ready(uint256)": {
+      "role": "R",
+      "short": "Check sampled adjustment readiness",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.referenceReviewHash()": {
+      "role": "R",
+      "short": "Read reference review hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.requireReferenceExit()": {
+      "role": "R",
+      "short": "Read require reference exit",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.resetObservation(uint256)": {
+      "role": "K",
+      "short": "Clear stale sampled evidence",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.reviewHash()": {
+      "role": "R",
+      "short": "Read review hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.setRequireReferenceExit(bool,bytes32)": {
+      "role": "G",
+      "short": "Configure independent trigger corroboration",
+      "arguments": [
+        "$REQUIRED",
+        "$REVIEWED"
+      ],
+      "value": null
+    },
+    "ZZZRebalanceConfirmation.strategy()": {
+      "role": "R",
+      "short": "Read strategy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.MAX_ASSETS()": {
+      "role": "R",
+      "short": "Read max assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.MAX_CONVERSION_NFTS()": {
+      "role": "R",
+      "short": "Read max conversion nfts",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.MAX_ERC20_ASSETS()": {
+      "role": "R",
+      "short": "Read max erc20 assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.SCALE()": {
+      "role": "R",
+      "short": "Read scale",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.addAsset(address)": {
+      "role": "G",
+      "short": "Admit reward currency",
+      "arguments": [
+        "$ROYALTY_TOKEN_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.assetCount()": {
+      "role": "R",
+      "short": "Read asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.assets(uint256)": {
+      "role": "R",
+      "short": "Read assets",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewards.bindConverter(address)": {
+      "role": "B",
+      "short": "Bind conversion implementation once",
+      "arguments": [
+        "$CANDIDATE_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalAccept(uint256,address)": {
+      "role": "M",
+      "short": "Accept authenticated classified backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRewards.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalBacking(uint256)": {
+      "role": "R",
+      "short": "Read canonical backing",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalRelease(uint256,address)": {
+      "role": "M",
+      "short": "Release authenticated classified backing",
+      "arguments": [
+        0,
+        "$DESTINATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalRestore(uint256,address)": {
+      "role": "M",
+      "short": "Restore captured source backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRewards.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.checkpointAll(uint256)": {
+      "role": "M",
+      "short": "Checkpoint active collective members",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.checkpointOwner(uint256)": {
+      "role": "M",
+      "short": "Checkpoint individual NFT rewards",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.claim(uint256,address)": {
+      "role": "H",
+      "short": "Claim current owner's rewards",
+      "arguments": [
+        "$NFT_ID",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "value": null
+    },
+    "ZZZRewards.claimFor(uint256,address,address)": {
+      "role": "M",
+      "short": "Forward authenticated owner claim",
+      "arguments": [
+        "$NFT_ID",
+        "0x0000000000000000000000000000000000000000",
+        "$OWNER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.claimable(uint256,address)": {
+      "role": "R",
+      "short": "Read funded claimable balance",
+      "arguments": [
+        "$NFT_ID",
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.collective(uint256,address)": {
+      "role": "R",
+      "short": "Read collective",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)": {
+      "role": "K",
+      "short": "Convert earned balances proportionally",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        [
+          "$IDS"
+        ],
+        "$REVIEWED_ROUTE_ID",
+        "$MINIMUM_ETH_WEI",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZRewards.converter()": {
+      "role": "R",
+      "short": "Read converter",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.creditCanonicalCutoff(uint256,address,uint256,uint256)": {
+      "role": "M",
+      "short": "Credit captured cutoff rewards",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ZZZ_ADDRESS",
+        "$PERSONAL",
+        "$SHARED"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZRewards.creditPool(uint256,address,uint256,uint256)": {
+      "role": "M",
+      "short": "Credit funded LP rewards",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ZZZ_ADDRESS",
+        "$PERSONAL",
+        "$SHARED"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZRewards.fraction(uint256,address)": {
+      "role": "R",
+      "short": "Read fraction",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.index(address)": {
+      "role": "R",
+      "short": "Read index",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.individual(uint256,address)": {
+      "role": "R",
+      "short": "Read individual",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.isAsset(address)": {
+      "role": "R",
+      "short": "Read is asset",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.liabilities(address)": {
+      "role": "R",
+      "short": "Read liabilities",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.orphaned(address)": {
+      "role": "R",
+      "short": "Read orphaned",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.ownerFraction(uint256,address)": {
+      "role": "R",
+      "short": "Read owner fraction",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.ownerIndex(uint256,address)": {
+      "role": "R",
+      "short": "Read owner index",
+      "arguments": [
+        "$BUCKET_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.paidIndex(uint256,address)": {
+      "role": "R",
+      "short": "Read paid index",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.paidOwnerIndex(uint256,address)": {
+      "role": "R",
+      "short": "Read paid owner index",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewards.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZRoyaltyConverter.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$RECEIVER_ADDRESS",
+        "$WRAPPED_ETH_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.MAX_LOSS_BPS()": {
+      "role": "R",
+      "short": "Read max loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Admit reviewed swap route",
+      "arguments": [
+        [
+          "$SOURCE_ADDRESS",
+          "$ROUTER_ADDRESS",
+          "$FACTORY_ADDRESS",
+          "$POOL_ADDRESS",
+          "$FEE",
+          "$SOURCE_CODE_HASH",
+          "$ROUTER_CODE_HASH",
+          "$FACTORY_CODE_HASH",
+          "$POOL_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Admit native conversion route",
+      "arguments": [
+        [
+          "$SOURCE_ADDRESS",
+          "$OUTPUT_ADDRESS",
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$FEE",
+            "$TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$POOL_MANAGER_ADDRESS",
+          "$STATE_VIEW_ADDRESS",
+          "$SOURCE_CODE_HASH",
+          "$OUTPUT_CODE_HASH",
+          "$POOL_MANAGER_CODE_HASH",
+          "$STATE_VIEW_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
+      "role": "G",
+      "short": "Configure reviewed wrapper policy",
+      "arguments": [
+        [
+          "$CODE_HASH",
+          "$ADMIN_ADDRESS",
+          "$IMPLEMENTATION_ADDRESS",
+          "$ADMIN_OWNER_ADDRESS",
+          "$ADMIN_CODE_HASH",
+          "$IMPLEMENTATION_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.conversionLossBps()": {
+      "role": "R",
+      "short": "Read conversion loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.convert(address,uint256,bytes32,uint256,uint256)": {
+      "role": "M",
+      "short": "Convert authenticated ledger funds",
+      "arguments": [
+        "$SOURCE_ADDRESS",
+        "$AMOUNT",
+        "$REVIEWED_ROUTE_ID",
+        "$MINIMUM_ETH_WEI",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.enabled()": {
+      "role": "R",
+      "short": "Read enabled",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.ledger()": {
+      "role": "R",
+      "short": "Read ledger",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.route(bytes32)": {
+      "role": "R",
+      "short": "Read route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.routeEnabled(bytes32)": {
+      "role": "R",
+      "short": "Read route enabled",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.routeExists(bytes32)": {
+      "role": "R",
+      "short": "Read route exists",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.routeKind(bytes32)": {
+      "role": "R",
+      "short": "Read route kind",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.setConversionLossBps(uint16)": {
+      "role": "G",
+      "short": "Set conversion execution-loss limit",
+      "arguments": [
+        100
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.setEnabled(bool)": {
+      "role": "G",
+      "short": "Enable or disable conversion",
+      "arguments": [
+        "$VALUE"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.setRouteEnabled(bytes32,bool)": {
+      "role": "G",
+      "short": "Enable or disable reviewed route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID",
+        "$VALUE"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.v4Executor()": {
+      "role": "R",
+      "short": "Read v4 executor",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.v4Route(bytes32)": {
+      "role": "R",
+      "short": "Read v4 route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.wrapper()": {
+      "role": "R",
+      "short": "Read wrapper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.wrapperPolicy()": {
+      "role": "R",
+      "short": "Read wrapper policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyConverter.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZRoyaltyFactory.constructor()": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.controller()": {
+      "role": "R",
+      "short": "Read controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.create()": {
+      "role": "P",
+      "short": "Create caller-bound helper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.constructor(address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$NFT_CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.MAX_ASSETS()": {
+      "role": "R",
+      "short": "Read max assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.MAX_CONVERSION_NFTS()": {
+      "role": "R",
+      "short": "Read max conversion nfts",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.MAX_ERC20_ASSETS()": {
+      "role": "R",
+      "short": "Read max erc20 assets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.ROYALTY_RECOVERY_VERSION()": {
+      "role": "R",
+      "short": "Read royalty recovery version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.SCALE()": {
+      "role": "R",
+      "short": "Read scale",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.accounted(address)": {
+      "role": "R",
+      "short": "Read accounted",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.accrued(uint256,address)": {
+      "role": "R",
+      "short": "Read accrued",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.activate(uint256,uint256)": {
+      "role": "M",
+      "short": "Register activated royalty weight",
+      "arguments": [
+        "$NFT_ID",
+        "$WEIGHT"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.activationCount()": {
+      "role": "R",
+      "short": "Read activation count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.activationOrdinal(uint256)": {
+      "role": "R",
+      "short": "Read activation ordinal",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.addAsset(address)": {
+      "role": "M",
+      "short": "Admit reward currency",
+      "arguments": [
+        "$ROYALTY_TOKEN_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.assetCount()": {
+      "role": "R",
+      "short": "Read asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.assets(uint256)": {
+      "role": "R",
+      "short": "Read assets",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.bindCanonicalController(address)": {
+      "role": "M",
+      "short": "Bind canonical controller once",
+      "arguments": [
+        "$CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.bindConverter(address)": {
+      "role": "B",
+      "short": "Bind conversion implementation once",
+      "arguments": [
+        "$CANDIDATE_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalAccept(uint256,address)": {
+      "role": "M",
+      "short": "Accept authenticated classified backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRoyaltyRewards.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalBacking(uint256)": {
+      "role": "R",
+      "short": "Read canonical backing",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalController()": {
+      "role": "R",
+      "short": "Read canonical controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalRelease(uint256,address)": {
+      "role": "M",
+      "short": "Release authenticated classified backing",
+      "arguments": [
+        0,
+        "$DESTINATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalRestore(uint256,address)": {
+      "role": "M",
+      "short": "Restore captured source backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRoyaltyRewards.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.claim(uint256,address)": {
+      "role": "H",
+      "short": "Claim current owner's rewards",
+      "arguments": [
+        "$NFT_ID",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.claimFor(uint256,address,address)": {
+      "role": "M",
+      "short": "Forward authenticated owner claim",
+      "arguments": [
+        "$NFT_ID",
+        "0x0000000000000000000000000000000000000000",
+        "$OWNER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.claimable(uint256,address)": {
+      "role": "R",
+      "short": "Read funded claimable balance",
+      "arguments": [
+        "$NFT_ID",
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)": {
+      "role": "K",
+      "short": "Convert earned balances proportionally",
+      "arguments": [
+        "$ASSET_ADDRESS",
+        [
+          "$IDS"
+        ],
+        "$REVIEWED_ROUTE_ID",
+        "$MINIMUM_ETH_WEI",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.converter()": {
+      "role": "R",
+      "short": "Read converter",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.eligibleCount(address)": {
+      "role": "R",
+      "short": "Read eligible count",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.eligibleFor(uint256,address)": {
+      "role": "R",
+      "short": "Read eligible for",
+      "arguments": [
+        "$NFT_ID",
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.eligibleWeight(address)": {
+      "role": "R",
+      "short": "Read eligible weight",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.forwardLate(address)": {
+      "role": "P",
+      "short": "Forward receipts to successor",
+      "arguments": [
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.fraction(uint256,address)": {
+      "role": "R",
+      "short": "Read fraction",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.fund(address,uint256)": {
+      "role": "P",
+      "short": "Fund actual received royalties",
+      "arguments": [
+        "$ASSET_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.index(address)": {
+      "role": "R",
+      "short": "Read index",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.isAsset(address)": {
+      "role": "R",
+      "short": "Read is asset",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.liabilities(address)": {
+      "role": "R",
+      "short": "Read liabilities",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.nft()": {
+      "role": "R",
+      "short": "Read nft",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.orphaned(address)": {
+      "role": "R",
+      "short": "Read orphaned",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.paidIndex(uint256,address)": {
+      "role": "R",
+      "short": "Read paid index",
+      "arguments": [
+        "$NFT_ID",
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.pending(address)": {
+      "role": "R",
+      "short": "Read unprocessed royalty receipts",
+      "arguments": [
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)": {
+      "role": "G",
+      "short": "Recover unallocated royalties proportionally",
+      "arguments": [
+        "$ROYALTY_TOKEN_ADDRESS",
+        "$UNALLOCATED_RAW_UNITS",
+        "$REVIEWED_ROUTE_ID",
+        "$MINIMUM_ETH_WEI",
+        "$UNIX_DEADLINE",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.sync(address)": {
+      "role": "P",
+      "short": "Synchronize actual royalty receipts",
+      "arguments": [
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.syncAll()": {
+      "role": "P",
+      "short": "Synchronize all admitted currencies",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.syncForActivation(address)": {
+      "role": "M",
+      "short": "Isolate optional currency synchronization",
+      "arguments": [
+        "$ASSET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.totalWeight()": {
+      "role": "R",
+      "short": "Read total weight",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.weightOf(uint256)": {
+      "role": "R",
+      "short": "Read weight of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.receive()": {
+      "role": "P",
+      "short": "Receive marketplace ETH royalties",
+      "arguments": [],
+      "value": "$ROYALTY_ETH_WEI"
+    },
+    "ZZZStrategy.constructor(address,address,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$PORTFOLIO_ADDRESS",
+        "$CONFIRMATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.EXECUTION_QUALITY_VERSION()": {
+      "role": "R",
+      "short": "Read execution quality version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.MAINTENANCE_POLICY_VERSION()": {
+      "role": "R",
+      "short": "Read maintenance policy version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.MAX_ADDITIONAL_LOSS_BPS()": {
+      "role": "R",
+      "short": "Read max additional loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.PORTFOLIO_VERSION()": {
+      "role": "R",
+      "short": "Read portfolio version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.RANGE_POLICY_VERSION()": {
+      "role": "R",
+      "short": "Read range policy version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.REBALANCE_CONFIRMATION_VERSION()": {
+      "role": "R",
+      "short": "Read rebalance confirmation version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.activeKeeperRangePolicies()": {
+      "role": "R",
+      "short": "Read active keeper range policies",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.additionalLossBps()": {
+      "role": "R",
+      "short": "Read additional loss bps",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.applyKeeperRange(bytes32)": {
+      "role": "K",
+      "short": "Apply approved range choice",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.compoundPlan(uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Read compound plan",
+      "arguments": [
+        "$BUCKET_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.executionQualityRevision()": {
+      "role": "R",
+      "short": "Read execution quality revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.keeperRangePolicy(bytes32)": {
+      "role": "R",
+      "short": "Read keeper range policy",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.keeperRangeTarget(bytes32)": {
+      "role": "R",
+      "short": "Read keeper range target",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.minimumOutput(bytes32,bool,uint256)": {
+      "role": "R",
+      "short": "Read minimum output",
+      "arguments": [
+        "$POOL_ID",
+        "$DIRECTION",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.minimumOutputForExit(bytes32,bool,uint256)": {
+      "role": "R",
+      "short": "Read minimum output for exit",
+      "arguments": [
+        "$POOL_ID",
+        "$DIRECTION",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.needsRebalance(uint256)": {
+      "role": "R",
+      "short": "Check raw adjustment need",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.portfolioPolicy()": {
+      "role": "R",
+      "short": "Read portfolio policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.rangeOrientation(bytes32)": {
+      "role": "R",
+      "short": "Read range orientation",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.rangeUpdatePending(uint256)": {
+      "role": "R",
+      "short": "Read range update pending",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.rebalanceCondition(uint256)": {
+      "role": "R",
+      "short": "Read rebalance condition",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.rebalanceConfirmation()": {
+      "role": "R",
+      "short": "Read rebalance confirmation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.rebalanceObservation(uint256)": {
+      "role": "R",
+      "short": "Read rebalance observation",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.rebalanceReady(uint256)": {
+      "role": "R",
+      "short": "Read rebalance ready",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.setAdditionalLossBps(uint16,bytes32)": {
+      "role": "G",
+      "short": "Set additional execution-loss limit",
+      "arguments": [
+        1,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)": {
+      "role": "G",
+      "short": "Configure approved range choices",
+      "arguments": [
+        "$POOL_ID",
+        false,
+        "$NARROW_TRIGGER_BPS",
+        "$WIDEN_TRIGGER_BPS",
+        "$MIN_INTERVAL",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.setRangeOrientation(bytes32,uint8)": {
+      "role": "G",
+      "short": "Configure human-price range orientation",
+      "arguments": [
+        "$POOL_ID",
+        "$ORIENTATION"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.swapPlan(bytes32,uint256,uint256)": {
+      "role": "R",
+      "short": "Read swap plan",
+      "arguments": [
+        "$POOL_ID",
+        "$AMOUNT0",
+        "$AMOUNT1"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.target(bytes32)": {
+      "role": "R",
+      "short": "Read target",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.validateExitPrice(bytes32)": {
+      "role": "R",
+      "short": "Read validate exit price",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZStrategy.validatePrice(bytes32)": {
+      "role": "R",
+      "short": "Read validate price",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.constructor()": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.NATIVE_ASSET_CODE_HASH()": {
+      "role": "R",
+      "short": "Read native asset code hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.ROUTE_DOMAIN()": {
+      "role": "R",
+      "short": "Read route domain",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.addRoute((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
+      "role": "M",
+      "short": "Admit reviewed swap route",
+      "arguments": [
+        [
+          "$SOURCE_ADDRESS",
+          "$OUTPUT_ADDRESS",
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$FEE",
+            "$TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$POOL_MANAGER_ADDRESS",
+          "$STATE_VIEW_ADDRESS",
+          "$SOURCE_CODE_HASH",
+          "$OUTPUT_CODE_HASH",
+          "$POOL_MANAGER_CODE_HASH",
+          "$STATE_VIEW_CODE_HASH",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.execute(bytes32,uint256,uint256,uint256)": {
+      "role": "M",
+      "short": "Execute authenticated conversion route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID",
+        "$AMOUNT_IN",
+        "$MINIMUM_OUT",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZV4RouteExecutor.parent()": {
+      "role": "R",
+      "short": "Read parent",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.route(bytes32)": {
+      "role": "R",
+      "short": "Read route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.routeEnabled(bytes32)": {
+      "role": "R",
+      "short": "Read route enabled",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.routeExists(bytes32)": {
+      "role": "R",
+      "short": "Read route exists",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.setRouteEnabled(bytes32,bool)": {
+      "role": "M",
+      "short": "Enable or disable reviewed route",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID",
+        false
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.unlockCallback(bytes)": {
+      "role": "C",
+      "short": "Settle authenticated core callback",
+      "arguments": [
+        "$PAYLOAD"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.validate(bytes32)": {
+      "role": "R",
+      "short": "Read validate",
+      "arguments": [
+        "$REVIEWED_ROUTE_ID"
+      ],
+      "value": null
+    },
+    "ZZZV4RouteExecutor.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZVault.constructor(address,uint256,address)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$NFT_HOME_CHAIN",
+        "$BUDGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZVault.ACCOUNTING_VERSION()": {
+      "role": "R",
+      "short": "Read accounting version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.MAX_BUCKETS()": {
+      "role": "R",
+      "short": "Read max buckets",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.RESIDUAL_EXIT_VERSION()": {
+      "role": "R",
+      "short": "Read residual exit version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)": {
+      "role": "H",
+      "short": "Activate dormant NFT liquidity",
+      "arguments": [
+        "$NFT_ID",
+        "$POOL_ID",
+        "$ETH_INPUT_WEI",
+        0,
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$ETH_INPUT_WEI"
+    },
+    "ZZZVault.beginLPExit()": {
+      "role": "M",
+      "short": "Commit terminal principal lock",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.bucketAt(uint256)": {
+      "role": "R",
+      "short": "Read bucket at",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZVault.bucketCount()": {
+      "role": "R",
+      "short": "Read bucket count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.bucketTotalShares(uint256)": {
+      "role": "R",
+      "short": "Read bucket total shares",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.canonicalBarrier()": {
+      "role": "M",
+      "short": "Set canonical accounting barrier",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.canonicalChainId()": {
+      "role": "R",
+      "short": "Read canonical chain id",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.canonicalModule()": {
+      "role": "R",
+      "short": "Read canonical module",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.canonicalSend(address,address,uint256)": {
+      "role": "M",
+      "short": "Send authenticated canonical backing",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$DESTINATION_ADDRESS",
+        "$AMOUNT"
+      ],
+      "value": null
+    },
+    "ZZZVault.canonicalWrite(uint8,bytes)": {
+      "role": "M",
+      "short": "Write authenticated imported accounting",
+      "arguments": [
+        "$KIND",
+        "$ROW"
+      ],
+      "value": null
+    },
+    "ZZZVault.closeResidual(uint256,uint256)": {
+      "role": "M",
+      "short": "Close residual; retain main",
+      "arguments": [
+        "$BUCKET_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.collectFees(uint256,uint256)": {
+      "role": "P",
+      "short": "Harvest and allocate fees",
+      "arguments": [
+        "$BUCKET_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.compound(uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Reinvest designated LP reserves",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.contributionUSD(uint256)": {
+      "role": "R",
+      "short": "Read contribution usd",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.emergencyRebalance(uint256,uint128,uint256)": {
+      "role": "M",
+      "short": "Force reviewed emergency consolidation",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.exitBucketToHolders(uint256,uint256,uint256,uint256)": {
+      "role": "M",
+      "short": "Return bucket principal internally",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_ETH_WEI",
+        "$MINIMUM_ZZZ",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.group(uint256)": {
+      "role": "R",
+      "short": "Read group",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.homePoolId(uint256)": {
+      "role": "R",
+      "short": "Read home pool id",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.increase(uint256,uint256,uint256,uint128,uint256)": {
+      "role": "H",
+      "short": "Grow existing attached LP",
+      "arguments": [
+        "$NFT_ID",
+        "$ETH_INPUT_WEI",
+        0,
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": "$ETH_INPUT_WEI"
+    },
+    "ZZZVault.migrationBudget()": {
+      "role": "R",
+      "short": "Read migration budget",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.mintDormant(bytes32)": {
+      "role": "P",
+      "short": "Mint dormant PoPL NFT",
+      "arguments": [
+        "$EXPECTED_MINT_POLICY"
+      ],
+      "value": "$MINT_PRICE_WEI"
+    },
+    "ZZZVault.mintPolicyFingerprint()": {
+      "role": "R",
+      "short": "Read current mint policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.mintPrice()": {
+      "role": "R",
+      "short": "Read mint price",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.mintProceedsRecipient()": {
+      "role": "R",
+      "short": "Read mint proceeds recipient",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.movePool(uint256,bytes32,uint128,uint256)": {
+      "role": "M",
+      "short": "Execute authenticated pool movement",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.nftBucket(uint256)": {
+      "role": "R",
+      "short": "Read NFT custody bucket",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.nftStatus(uint256)": {
+      "role": "R",
+      "short": "Read nft status",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.onERC721Received(address,address,uint256,bytes)": {
+      "role": "C",
+      "short": "Read on erc721 received",
+      "arguments": [
+        "$TARGET_ADDRESS",
+        "$TARGET_ADDRESS",
+        "$INPUT2",
+        "$ENCODED_BYTES"
+      ],
+      "value": null
+    },
+    "ZZZVault.park(uint256,uint256)": {
+      "role": "M",
+      "short": "Close LP into attributed idle",
+      "arguments": [
+        "$BUCKET_ID",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.poolBucket(bytes32)": {
+      "role": "R",
+      "short": "Read pool custody bucket",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.rebalance(uint256,uint128,uint256)": {
+      "role": "K",
+      "short": "Replace shared LP positions",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.reservePool(bytes32,uint256)": {
+      "role": "G",
+      "short": "Reserve historical custody capacity",
+      "arguments": [
+        "$POOL_ID",
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.resume(uint256,bytes32,uint128,uint256)": {
+      "role": "M",
+      "short": "Redeploy parked LP principal",
+      "arguments": [
+        "$BUCKET_ID",
+        "$POOL_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$UNIX_DEADLINE"
+      ],
+      "value": null
+    },
+    "ZZZVault.sequence()": {
+      "role": "R",
+      "short": "Read sequence",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.sharesOf(uint256)": {
+      "role": "R",
+      "short": "Read shares of",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZVault.totalIdle(address)": {
+      "role": "R",
+      "short": "Read total idle",
+      "arguments": [
+        "$TARGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZVault.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZVaultCanonical.constructor(address,address,uint256)": {
+      "role": "D",
+      "short": "Deploy bound implementation",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$VAULT_CONTROLLER_ADDRESS",
+        "$CHAIN"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.access()": {
+      "role": "R",
+      "short": "Read access",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.aliasBucket(bytes32)": {
+      "role": "R",
+      "short": "Read alias bucket",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.aliases(uint256)": {
+      "role": "R",
+      "short": "Read aliases",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.bucketIdentity(bytes32)": {
+      "role": "R",
+      "short": "Read bucket identity",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalAccept(uint256,address)": {
+      "role": "M",
+      "short": "Accept authenticated classified backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZVaultCanonical.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalBacking(uint256)": {
+      "role": "R",
+      "short": "Read canonical backing",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        0,
+        "$RECORD"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalRelease(uint256,address)": {
+      "role": "M",
+      "short": "Release authenticated classified backing",
+      "arguments": [
+        0,
+        "$DESTINATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalRestore(uint256,address)": {
+      "role": "M",
+      "short": "Restore captured source backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZVaultCanonical.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.mintIdentity(uint256)": {
+      "role": "R",
+      "short": "Read mint identity",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.mintPolicyFingerprint()": {
+      "role": "R",
+      "short": "Read current mint policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.mintPrice()": {
+      "role": "R",
+      "short": "Read mint price",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.mintProceedsRecipient()": {
+      "role": "R",
+      "short": "Read mint proceeds recipient",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.originChain()": {
+      "role": "R",
+      "short": "Read origin chain",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.originVault()": {
+      "role": "R",
+      "short": "Read origin vault",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.registerAlias(bytes32,uint256)": {
+      "role": "M",
+      "short": "Register authenticated local alias",
+      "arguments": [
+        "$POOL_ID",
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+      "role": "R",
+      "short": "Read validate contribution",
+      "arguments": [
+        "$NFT_ID",
+        "$BUCKET_ID",
+        "$INPUT_USD",
+        "$INPUT_TOTAL",
+        "$MINIMUM_LIQUIDITY",
+        "$ACTIVATION"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateHolderExit(uint256,address)": {
+      "role": "R",
+      "short": "Read validate holder exit",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MIGRATION_CALLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateMint(uint256,uint256,bytes32)": {
+      "role": "R",
+      "short": "Read validate mint",
+      "arguments": [
+        "$VALUE",
+        1,
+        "$EXPECTED_POLICY"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateOwner(uint256,address,bool,bool)": {
+      "role": "R",
+      "short": "Read validate owner",
+      "arguments": [
+        "$NFT_ID",
+        "$CALLER_ADDRESS",
+        "$MINTED",
+        "$ACTIVATION"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.vault()": {
+      "role": "R",
+      "short": "Read vault",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.receive()": {
+      "role": "M",
+      "short": "Receive authenticated ETH settlement",
+      "arguments": [],
+      "value": "$SETTLEMENT_WEI"
+    }
+  }
+}

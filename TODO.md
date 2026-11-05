@@ -180,6 +180,7 @@ Custody, ownership and reward accounting.
   - Buyback operating/max USD ceilings now use upper-bound input value rounded upward under pricingV2, preventing accepted feed disagreement from exceeding the reviewed ceiling. Existing conservative execution floor, fixed allocation, route and authority controls remain; divergent-price batches may need reducing.
   - [Current post-exit reserve recovery](reports/comprehensive-popl-20261029/REVIEW.md): validated configureNative is implemented after Migration Ready only with deposits disabled. Ready means principal allocated, payouts may remain. Admission cannot reopen LP/access holder backing; actual buyback still needs normal keeper/unpause/price/route/quality checks. Qualify real native dependencies and operator cutover.
   - [Bounded policy implementation](docs/ADAPTABLE_POLICY.md) and [exact operator inputs](docs/OPERATOR_MANUAL.md#future-operating-settings): future minima>=1USD (growth<=activation), separate idle0–4000bps, call budgets100k–1m, mint price/payee proposal+acceptance, cosmetic thresholds, per-pool main6000–9999bps/gap and broader feasible manual ranges. Do not alter existing rights or infer that engineering bounds qualify economics/gas. Fresh mint binds sale+VRF; direct Entry3/review-policy2 binds exact entry fingerprint; callback restoration advances revision and cannot revive old reviews. [Scoped evidence](reports/adaptable-policy-20261031/VERIFICATION.md) keeps tests/builds distinct from actual release qualification.
+  - [Operator documentation consolidation](reports/operator-docs-20261105/REVIEW.md): all820functions/37constructors/13receivers have source-bound four-column examples and<=5word explanations, distinct callers and expanded tuple/value inputs. CI --check rejects ABI/example drift. Exact deployment/snapshot, simulation, role, gas and economic qualification remain separate; source publication changes no running environment.
 
   </details>
 
@@ -1456,4 +1457,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `71515d45d4f1724d5039619d59dd9b5cdbeb1dd12cc1f8564affde3ff655be84`.
+Snapshot SHA-256: `3ad92412ff1115f03c92ac451eaa8cabc610dfb523738923e2939767fcd950ef`.

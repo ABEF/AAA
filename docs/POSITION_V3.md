@@ -2,7 +2,8 @@
 
 Historical versioned interface reference. The fresh release uses [accounting6/Entry3/schema10](POSITION_V6.md). Existing deployments/readers/journals retain this older profile; do not relabel or execute a current procedure from this page.
 
-Historical accounting3 codec. Fresh source uses [accounting4](POSITION_V4.md);
+Historical accounting3 codec. Accounting4 was the subsequent historical profile;
+the fresh source is [accounting6](POSITION_V6.md). Keep this older codec exact and
 never relabel existing deployments or journals.
 
 

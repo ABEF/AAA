@@ -12,14 +12,6 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 [manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update
 existing contracts, services, journals or websites. Public signing remains disabled.
 
-The [earnings checkpoint milestone](reports/earnings-checkpoints-20261104/REVIEW.md)
-adds opt-in reviewed immutable checkpoints plus bounded raw suffix replay for
-fresh single-deployment earnings. It preserves fractions, dust, royalty cohorts,
-claims and current ownership; no USD values or signing are cached.24new final
-cases pass, with147affected checks at their recorded earlier stage. General
-lineage/other history consumers, real workloads/rotation and production approval
-remain open. [OpenSea investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
-identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
 ## Project navigation
 
@@ -30,10 +22,10 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Purpose | Start here |
 | --- | --- |
 | Remaining work | **[Sole Project Todo](TODO.md)**, beside the [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md) |
-| Operate the protocol | **[Operator manual and management procedures](docs/OPERATOR_MANUAL.md)**; [callable inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
+| Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current royalty verification](reports/royalty-audit-20261105/VERIFICATION.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -80,6 +72,9 @@ authenticate ownership, both LP legs, balances and earnings at pinned blocks.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
 Fresh inventory is schema10/direct Entry3; historical profiles remain separate.
+[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) bounds selected history replay;
+lineage/other readers and live workload qualification remain open. [OpenSea
+qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
 
 <a id="frontend-components"></a>
 

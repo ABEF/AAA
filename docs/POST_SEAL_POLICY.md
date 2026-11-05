@@ -113,3 +113,11 @@ Do not include unrelated public holders in a disposable rehearsal. Existing NFT
 and unpaid rights survive stopping services. Actual target-chain operating,
 receiver-failure/recovery and gas rehearsals plus independent audit/remediation
 remain [release requirements](RELEASE_CHECKLIST.md).
+
+## Unallocated royalty recovery after sealing
+
+Recovery1 governance may recover unsupported/orphaned royalty value into ETH for
+active rarity weights at execution. Earned/deferred balances and LP principal
+are excluded; no arbitrary recipient exists. Token conversion still needs the
+converter bound before sealing and reviewed routes/prices. See the [exact
+procedure and inputs](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).

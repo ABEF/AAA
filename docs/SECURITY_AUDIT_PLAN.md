@@ -225,6 +225,13 @@ remain open; the timing fix alone is not a no-MEV guarantee.
 
 ## 5. External dependencies and revenue accounting
 
+Recovery1 is an explicit exception for genuinely unallocated royalty value, not
+an administrator override of earned entitlements. Audit pre/post governance and
+canonical/pause guards, admitted orphaned vs pending/deferred liabilities, exact
+conversion deltas, current active-weight allocation, first-income event replay
+and fixed-successor unsupported forwarding. No token-saleability or universal
+royalty-payment guarantee follows. [Current scope](../reports/royalty-audit-20261105/REVIEW.md).
+
 **Current controls:** exact balance deltas, admitted assets and selected runtime/
 configuration pins constrain transfers. Actual local LP fees, royalties,
 principal and mint proceeds have separate accounting paths. The selected

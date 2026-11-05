@@ -205,6 +205,20 @@ not a different beneficiary. Earlier automatic quarantine remains a classificati
 until explicitly recovered. Current reference37/820/37/13;43normal gates and
 474static contexts(33current/441exact referenced-source reuse). No deployment.
 
+## Operator documentation maintenance
+
+The maintained manual's short four-column call tables cover every current ABI
+function, constructor and receive hook. `docs/operator-call-examples.json` binds
+its complete function reference. For function/input/permission/value changes,
+review the notes, regenerate the ABI reference, update explicit examples/caller
+classes and regenerate `scripts/generate-operator-reference.py`. Normal verification
+runs both `--check` commands; no silent skipping/new default examples. Descriptions
+are1–5words; tuples/arrays expand in ABI order. Keep reads, nominated callers,
+keeper-only, governance, module/callback and deployment roles distinct. Templates
+are unresolved documentation, never a simulation, live snapshot or transaction.
+Historical source plans are exact-Git pointers; preserve source-scoped reports,
+versioned codecs, old journals, original failures and actual environment boundaries.
+
 ## Verification and records
 
 [Four-audit consolidation](reports/four-report-consolidation-20261104/REVIEW.md)
