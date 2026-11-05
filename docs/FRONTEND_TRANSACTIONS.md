@@ -111,12 +111,25 @@ Mixed claim request:
 }
 ```
 
+The opt-in `POST /v1/claims/plan` accepts the same explicit claim payload.
+It preserves every selected NFT/currency/ledger entry, tries bounded batch sizes
+under the existing gas/fee/work policy and returns only `next_batch`, freshly
+simulated through this preparer. Every selection remains in `entries`; blocked,
+unresolved and nonzero omitted selections also remain in `remaining_claims`.
+An opaque execution refusal does
+not identify a malicious currency. No batch is signed, queued or sent. Confirm
+the selected batch before planning the remainder against new state. See the
+[complete planner contract](CLAIM_PLANNING.md). The existing prepare endpoint
+continues to require the entire exact selected batch to succeed atomically.
+
 Bracketed values are unusable examples, not configured accounts or addresses.
 The endpoint requires one canonical Content-Length, at most 16 KiB, one expected
 loopback Host and JSON content type. Duplicate JSON keys, transfer encoding,
 malformed input and unexpected fields are rejected. There are no CORS grants,
 request-body logs or upstream error disclosures. Typed input errors return 400,
-unknown NFTs 404, unavailable verification/simulation 503. Work budgets and worker
+unknown NFTs 404 for exact preparation, unavailable verification/simulation 503.
+The planner instead returns an explicit blocked row for an unminted selection.
+Work budgets and worker
 supervision are implemented; public ingress, TLS, abuse limits and operating
 qualification remain required before hosting.
 

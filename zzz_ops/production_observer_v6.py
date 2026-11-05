@@ -321,8 +321,13 @@ def _observe(config,rpc,*,profile,observer_class):
         if not isinstance(value,dict if key=='dependencies' else list) or len(value)>maximum:raise ValueError('Unbounded declared inventory')
     for key in ('holder_exit','lp_execution','maintenance','rebalance_confirmation','portfolio','protocol_policy'):
         if not isinstance(chain.get(key),dict):raise ValueError('Missing current-profile observation section')
+    precheck=getattr(P,'precheck_chain',None)
+    if precheck is not None:precheck(chain)
     observer=observer_class(rpc,chain);chain_id,genesis=observer.anchor()
-    observer.records(P.expected_bindings(chain));observer.dependencies();observer.tokens();observer.sequencer()
+    observer.records(P.expected_bindings(chain))
+    extension=getattr(observer,'observe_chain_extension',None)
+    if extension is not None:extension()
+    observer.dependencies();observer.tokens();observer.sequencer()
     observer.governance();observer.protocol_policy();observer.pools();observer.sources();observer.ledgers();observer.nft()
     observer.wrappers();observer.routes();observer.maintenance();observer.execution();observer.holder_exit();observer.contribution_reservation();observer.portfolio();observer.confirmation();observer.finish()
     chain['observation']=dict(chain_id=chain_id,genesis_hash=genesis,block_number=observer.start['number'],

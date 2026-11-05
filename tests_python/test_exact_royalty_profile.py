@@ -16,10 +16,10 @@ spec.loader.exec_module(GATE)
 
 class ExactRoyaltyProfileTest(unittest.TestCase):
     def setUp(self):
-        self.current=json.loads((ROOT/'config/production.example.json').read_text())
+        self.current=json.loads((ROOT/'config/production.schema13.example.json').read_text())
         self.old=json.loads((ROOT/'config/production.royalty3.example.json').read_text())
 
-    def test_new_inventory_is_explicit_and_never_ready_by_template(self):
+    def test_archived_exact_inventory_remains_explicit_and_unqualified(self):
         self.assertEqual(self.current['schema_version'],13)
         self.assertEqual(self.current['canonical_schema'],NEW.SCHEMA_NAME)
         report=GATE.validate(self.current,now=1793880000)
@@ -42,7 +42,7 @@ class ExactRoyaltyProfileTest(unittest.TestCase):
             report=GATE.validate(value)
             self.assertFalse(report['ready'])
             self.assertFalse(report['deployment_authorized'])
-            self.assertEqual(report['schema_version'],13)
+            self.assertEqual(report['schema_version'],14)
 
     def test_observer_rejects_old_before_rpc(self):
         class NoRpc:

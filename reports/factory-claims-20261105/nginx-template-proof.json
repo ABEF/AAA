@@ -1,0 +1,8 @@
+{
+  "new_exact_route_matches_reviewed_transaction_post_pattern": true,
+  "all_other_location_bytes_semantically_unchanged": true,
+  "common_ingress_limits_byte_identical_to_HEAD": true,
+  "running_proxy_changed": false,
+  "nginx_runtime_rehearsal_performed": false,
+  "template_sha256": "c21f900d06bdf24455a882ddd33885cc4840f68033ec6bd8f5268ab01f0f8bc7"
+}

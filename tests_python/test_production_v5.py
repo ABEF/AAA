@@ -69,7 +69,7 @@ class PortfolioProductionTests(unittest.TestCase):
         old=F.F.fixture()
         with patch.object(Historical,'validate',side_effect=AssertionError('Historical engine entered default gate')):
             report=CLI.validate(old,now=F.NOW)
-        self.assertEqual(13,report['schema_version']);self.assertFalse(report['ready'])
+        self.assertEqual(14,report['schema_version']);self.assertFalse(report['ready'])
         self.assertFalse(report.get('inventory_consistent',False));self.assertTrue(report['current_release_gate'])
         with self.assertRaises(ValueError):O.observe(old,F.RPC(self.cfg))
 

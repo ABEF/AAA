@@ -1,12 +1,13 @@
 # Current production inventory and read-only preflight
 
 Fresh source: [accounting6 / custody5 / portfolio2](POSITION_V6.md), canonical
-same-chain adaptable-policy V6. **Undeployed; production NOT APPROVED.** Current
-normal size/runtime gates and scoped checks use the
-[authority-change source scope](../reports/authority-audit-20261103/VERIFICATION.md).
+same-chain exact-royalty V8. **Undeployed; production NOT APPROVED.** Current
+factory storage and scoped claim-planning changes are recorded in the
+[factory/claims review](../reports/factory-claims-20261105/REVIEW.md). Older reports
+retain their original source scope.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema10 example](../config/production.example.json) is deliberately
+The [schema14 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
@@ -28,16 +29,17 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema10 explicitly requires accounting6, custody5, governance2, fee intake1,
+Schema14 explicitly requires royalty settlement4/recovery2/reporting5,
+accounting6, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
 LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
-canonical V6 wire does not make an old accounting profile current. Unknown,
+canonical V8 wire does not make an old accounting profile current. Unknown,
 missing, boolean and inconsistent versions fail closed.
 
-There are 17 modules including Access and 20 helpers. New helpers are
-`portfolio_policy`, `lp_balance_math`, `lp_position_executor` and
-`protocol_policy`; the old Entry conversion executor is removed. LP and royalty
-converters retain their own separate v4 executors. Budget, Balancer, PortfolioPolicy and Confirmation are
+There are 17 modules including Access, 18 logical callable helpers and exactly
+2 inert factory code-data children. Optional creator inboxes, Entry conversion,
+royalty conversion and bridge helpers are removed. The LP converter and its v4
+executor remain separate from original-currency royalty claims. Budget, Balancer, PortfolioPolicy and Confirmation are
 standalone fixed-controller companions whose parent getters resolve the sealed
 Access module with reciprocal binding; no mutable parent setter is admitted.
 Manager's fixed typed physical executor is a contract, not a new human operator.
@@ -45,21 +47,48 @@ Verify its Manager/core/state/PosM/Permit2/router wiring, the Balancer arithmeti
 child, actual runtime pins and every code-owned getter. Never assume all helpers
 have the same interface or expose `access()`.
 
-Historical schema9/custody4/direct Entry3 and schema8/routed Entry2 remain available only through explicit
+Historical [schema13](../config/production.schema13.example.json), schema12,
+schema10/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain
+available only through explicit
 `--historical-consistency`, using its own observer and validator. The current
 example has no Entry conversion descriptor or child; it is never rewritten to
 schema8 to obtain a pass. Live qualification and actual rollout remain separate.
 
+## Immutable factory code-data records
+
+The current `factory_code` section declares fixed code-storage version2, whole
+creation length/hash and exactly two ordered child records. Each record contains
+its own nonzero address, source-derived data/runtime lengths and full runtime
+hash. Addresses and observations in the template remain null. The fixed source
+artifact is [factory-code-storage-v2.json](../config/factory-code-storage-v2.json);
+it is not generated from live getter answers or adopted RPC hashes.
+
+The observer adds two bounded `eth_getCode` reads using the same canonical block
+selector as all contract reads. It verifies the exact `0x5f5ffd` revert prefix,
+both ordered full-runtime lengths/hashes and reconstructed original creation
+length/hash. Missing, swapped, duplicate, truncated or unexpected parts fail
+closed; a failed read clears prior positive observations. Factory typed getters
+must bind those same pointers/hashes. Children cannot alias protocol modules,
+helpers, dependencies, tokens or the future mint-payment recipient.
+
+Keep the factory-code qualification review and full independently reviewed
+runtime pins. Canonical V8's existing commitment does not explicitly enumerate
+the factory/data-child hashes; the full schema14 release graph authenticates
+them separately. Ordinary mint, LP and claim operations add no child-code reads.
+These inert children are neither authorities nor royalty recipients. See the
+[fixed code-storage procedure](FACTORY_CODE_STORAGE.md) for exact format,
+constructor boundaries, failure handling and actual target-gas qualifications.
+
 ## Current buyback maximum and creation history
 
-Fresh schema10 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema14 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
 rewrite it after `setMaximumTradeUSD` or use it as a fallback for missing current
 configuration. Raise/lower ordering remains in the [operator procedure](OPERATOR_MANUAL.md#future-operating-settings).
 
-Incomplete fresh10 records must be reviewed/completed and observed again;
+Incomplete fresh14 records must be reviewed/completed and observed again;
 missing/invalid current declarations and non-object chain records fail before
 RPC. The example remains null/unqualified. Historical profiles retain their own
 formats; neither this field nor an on-chain setting change upgrades a journal,
@@ -81,9 +110,9 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema10 observation and offline validation
+## Current schema14 observation and offline validation
 
-[Validator](../zzz_ops/production_v8.py) and [observer](../zzz_ops/production_observer_v8.py)
+[Validator](../zzz_ops/production_v12.py) and [observer](../zzz_ops/production_observer_v12.py)
 operate directly on the fresh layout; no manifest is rewritten as accounting4
 to obtain a historical pass. All contract/code/native-balance reads share one
 EIP-1898 block hash with `requireCanonical`. Genesis, confirmation depth, final
@@ -146,6 +175,20 @@ collective exit remains terminal for new principal/mint release readiness;
 old reward claims and future royalties are separate. Prefunds may exceed
 liabilities but cannot become fabricated income or allocated principal.
 
+## Exact build provenance
+
+The current factory-code artifact is derived from the final closed normal
+compiler output and its complete84-source/settings snapshot. Its receiver
+creation hash is
+`0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831`.
+Forge can normalize source line endings or add unused auto-detected remappings
+to metadata, producing different
+creation bytes with equivalent settings. A different artifact family is not a
+matching release. Use the reviewed exact artifacts, or review and re-pin the
+complete new build and graph. The observer never replaces these expected pins
+with live or independently rebuilt values. Local comparison gas and normal size
+checks retain their own artifact scopes; neither establishes target acceptance.
+
 ## Run the current tools
 
 Copy the current example to a reviewed public-data inventory, independently
@@ -153,8 +196,8 @@ supply actual addresses/pins/source commit, confirmed anchor and review records.
 Keep credentials, keys and endpoints outside the manifest. Then run:
 
 ```bash
-python3 scripts/observe-production-config.py --config reviewed-v6.json --rpc-env POPL_RELEASE_RPC_URL --output observed-v6.json
-python3 scripts/validate-production-config.py --config observed-v6.json --expected-commit RELEASE_COMMIT --output preflight-v6.json
+python3 scripts/observe-production-config.py --config reviewed-schema14.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema14.json
+python3 scripts/validate-production-config.py --config observed-schema14.json --expected-commit RELEASE_COMMIT --output preflight-schema14.json
 ```
 
 `POPL_RELEASE_RPC_URL` names a read-only endpoint environment variable; its
@@ -196,8 +239,8 @@ pins, failures and limitations. A fresh inventory is not automatic state migrati
 `executeReviewed(Request,uint16 maximumLossBps,bytes32 expectedContributionPolicy)` binds current owner, exact native
 value or token allowance, source policy/route, original contribution value and
 caller maximum and exact entry-policy fingerprint before funds move. Actual marginal LP and full final accounting
-still must pass. Production inputs are only fixed ZZZ/native ETH. Separate royalty
-currencies/conversion venues do not add contribution assets. Defaults 2%/1%/3%,
+still must pass. Production inputs are only fixed ZZZ/native ETH. Original-currency royalty
+currencies do not add contribution assets; only LP conversions retain swap venues. Defaults 2%/1%/3%,
 10% governance ceilings, source agreement 3%, spot/venue and caller floors are
 separate. [Entry](ACTIVATION_ENTRY.md), [loss policies](EXECUTION_LOSS_POLICY.md).
 

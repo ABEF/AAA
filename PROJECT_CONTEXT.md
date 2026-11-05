@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed5November2026. Audit baseline main967370f; verify actual local/remote
+Reviewed6November2026. Factory/claim baseline main4f7436a; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -17,7 +17,7 @@ compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
 Accounting6/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
 LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
-words. Fresh royalty4/recovery2/canonicalV8/schema13/reporting5;17modules/18helpers.
+words. Fresh royalty4/recovery2/canonicalV8/schema14/reporting5;17modules/18 callable helpers plus2 inert Factory data children (code-storage2). Historical schema13 preserves old SSTORE Factory.
 Old V7/V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
 One contribution pool at a time, <=4logical historical buckets. One main or
@@ -91,13 +91,20 @@ only after complete abort restoration, through authenticated lineage to reviewed
 current active weights; target governance controls recovery, no chosen recipient.
 The existing fixed VaultCanonical companion verifies one hop read-only.
 
-Factory uses fixed constructor-derived stored creation payload/hash to fit normal
-runtime size; high one-time deployment gas remains a target release gate. Default
+Factory code-storage2 uses exactly2 immutable REVERT-prefixed data children;
+reconstruction checks exact part/whole hashes and sizes before typed CREATE.
+Royalty creation bytes stay identical. Schema14 authenticates the full graph
+from independent final compiler pins; data children have no callable authority.
+Exact target constructor/activation/claim gas remains a release gate.
+Opt-in claim planning returns one freshly simulated unsigned batch within existing
+32-entry/12M/fee/time/RPC limits, with all blocked/unresolved entries retained.
+Replan after confirmation; no signer, queue, service or site change. Default
 optional royalty sync gas1m, not a fixed charge. Expanding to64 currencies needs
-worst-case gas/service/API qualification, even though inventory13 accepts97 token
+worst-case gas/service/API qualification, even though inventory14 accepts97 token
 records. No source publication is operating or independent approval.
 
-Current scoped record: reports/last24h-audit-20261105/VERIFICATION.md and evidence.
+Current changed-source record: reports/factory-claims-20261105/VERIFICATION.md.
+Prior accounting audit: reports/last24h-audit-20261105/VERIFICATION.md and evidence.
 It distinguishes prior failures/empty attempts, final source runs, actual source
 producer/consumer evidence, exact unchanged reuse and missing live qualification.
 Historical royalty-window3 counts never establish current4 evidence.

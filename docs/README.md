@@ -1,6 +1,6 @@
 # Documentation map
 
-Reviewed2026-11-05. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-06. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 
@@ -20,7 +20,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 
 | Topic | Current guide |
 | --- | --- |
-| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
+| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
@@ -43,7 +43,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | --- | --- |
 | Confirmed reads and lifecycle | [Read API](FRONTEND_API.md), [lifecycle](FRONTEND_LIFECYCLE.md), [collection](COLLECTION_READS.md) |
 | Rewards and lifetime history | [Earnings](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md), [raw claim history](FRONTEND_HISTORY.md), [same-chain lineage](FRONTEND_LINEAGE.md) |
-| Unsigned user transactions | [Activation preparation](ACTIVATION_PREPARATION.md), [mint/claim preparation](FRONTEND_TRANSACTIONS.md) |
+| Unsigned user transactions | [Activation preparation](ACTIVATION_PREPARATION.md), [mint/claim preparation](FRONTEND_TRANSACTIONS.md), [gas-aware next claim batch](CLAIM_PLANNING.md) |
 | Ingress, concurrency and storage | [HTTP admission](API_INGRESS.md), [concurrent services](CONCURRENT_SERVICES.md), [indexer recovery](INDEXER_RECOVERY.md), [independent raw-history audit](HISTORY_AUDIT.md) |
 | Keeper safeguards | [Implemented protection inventory](KEEPER_SAFEGUARDS.md) - distinguish contract-enforced rules, service controls and remaining risks. |
 | Management and keeper | [Operator manual](OPERATOR_MANUAL.md), [service operations](OPERATIONS.md), [keeper recovery](KEEPER_RECOVERY.md), [operating rehearsals](KEEPER_REHEARSALS.md) |

@@ -234,9 +234,11 @@ rehearsals and independent audit/remediation remain open. Production NOT APPROVE
 
 ## Exact royalty source boundary
 
-Royalty4/reporting5/schema13/canonicalV8 uses internal whole-unit allocation;
-there is no new deployed helper. The existing RoyaltyFactory stores only fixed
+Royalty4/reporting5/schema14/canonicalV8 uses internal whole-unit allocation.
+The allocator adds no deployed helper; Factory storage2 adds exactly two inert
+code-data children outside the18 callable-helper roles. RoyaltyFactory stores only fixed
 compiled creation bytes, authenticates them with immutable royaltyCodeHash,
 then creates the typed caller's ledger and binds its fixed controller. No caller
-supplies code, salt, recipient or execution payload. Its larger one-time
-deployment gas requires qualification. [Exact rule](EXACT_ROYALTY_ALLOCATION.md).
+supplies code, salt, recipient or execution payload. Code storage reduces
+constructor gas; exact target deployment still requires qualification.
+[Storage format](FACTORY_CODE_STORAGE.md), [exact rule](EXACT_ROYALTY_ALLOCATION.md).

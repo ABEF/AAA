@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-Fresh **royalty settlement4/recovery2**, accounting6/custody5/Entry3, schema13.
+Fresh **royalty settlement4/recovery2**, accounting6/custody5/Entry3, schema14.
 User decision5November2026: holders claim each royalty currency as received.
 **No royalty swap, unwrap, converter binding, price-feed dependency or keeper
 conversion job remains in this fresh ledger.** LP reward conversion is separate.
@@ -75,7 +75,10 @@ not universally supported. Review conventional exact-transfer token behavior.
 | Configure API | `royalty_reporting: {schema:5, converter:null}` | Exact runtime and ROYALTY_SETTLEMENT_VERSION4, separate raw balances, unavailable prices never guessed zero. |
 | Configure fresh keeper | `royalty_settlement_version:4`, omit royalty_conversion or set only `{enabled:false}` | No royalty swaps/unwraps. LP conversion remains separately opt-in. Preserve legacy pending recovery under its original runtime/config. |
 
-One failed selected payout reverts the entire router batch. Simulate exact claims;
+One failed selected payout reverts the entire router batch. The opt-in
+[claim planner](CLAIM_PLANNING.md) prepares one bounded executable batch and
+reports every blocked/unresolved selection; it never silently discards one.
+Simulate exact claims;
 review healthy currencies separately if another is broken. No automatic skipping,
 swapping or sending to an operator wallet occurs. Claims retain their own pause/
 canonical/current-owner guards. Terminal LP exit does not end royalty eligibility.
@@ -84,7 +87,7 @@ Before admitting a new currency, prepare its reviewed API asset descriptor and
 website reward_assets entry, then qualify that coordinated configuration rollout.
 An on-chain admission does not reload a server or populate client metadata.
 No USD feed is required for the raw claim; missing USD prices stay unavailable.
-In schema13, declare an admitted non-ETH royalty currency's strategy as
+In schema14, declare an admitted non-ETH royalty currency's strategy as
 `claim_original`. A royalty-only token may explicitly have `price_policy:null`;
 token identity/decimals/transfer-behavior/admission checks still apply. ETH, ZZZ,
 LP reward assets, contribution assets and conversion sources retain required
@@ -108,10 +111,10 @@ unallocated. Historical and LP fractional reserves keep their separate rules. No
 converter or external beneficiary is involved.
 
 The amount moves from unallocated backing to liabilities in the SAME currency;
-accounted backing stays unchanged. It joins the current active-weight index under
+accounted backing stays unchanged. It joins the current GCD-normalized rarity-ticket book under
 the user's separately approved recovery rule. Verify
 `UnallocatedRoyaltiesAllocated(asset,amount,activeWeight,reviewHash)`, unchanged
-token balance and correct orphan/liability/index changes. Holders later claim
+token balance and correct orphan/liability/ticket-cursor changes. Holders later claim
 normally. Success is irreversible; failure reverts, leaving backing intact.
 
 <a id="late-receipts-after-retirement"></a>

@@ -1,0 +1,6 @@
+{
+  "tests": 17,
+  "passes": 16,
+  "failures": 1,
+  "failure": "New token alias test expected token.identity; existing actual validator correctly reports token.duplicate. Assertion label corrected; no guard/source change."
+}

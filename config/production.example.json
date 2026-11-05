@@ -1,21 +1,17 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "accounting_model": "shared-pools-native-v6",
   "accounting_version": 6,
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Royalty settlement2: original-currency claims, no converter/helper/route or royalty swap budget. Reviewed unallocated receipts are allocated in the same currency. Schema10 retained in production.custody5-royalty1.example.json for historical inspection only. All actual pins/evidence remain unset.",
-    "Fresh schema9/accounting6/Entry-routing3/review2 candidate. Direct ETH/fixedZZZ input,18 helpers. No pre-Vault contribution conversion. Historical schema8/routed Entry2 uses production.policy-v6.example.json; no runtime or journal is upgraded.",
-    "Only native ETH and one fixed ZZZ. Fixed80/10/5/5, separate received-only rarity royalties, terminal return to holders, no integrated bridge or external custody recipient.",
-    "Operating defaults are source references, not observations. Two independent qualified USD sources with3% agreement; contribution2%, conversion1%, maintenance3% operating defaults and10% hard ceilings; gas separate.",
-    "Current global activation/growth minima and idle/gas/sale/metadata terms must be declared with exact revisions/fingerprints and independently observed. Do not infer defaults from missing reads.",
-    "Main minimum defaults60%, residual maximum40%, residual half-side width5000bps, one full aligned tick gap; per-pool governed allocation may raise main floor, never lower the hard60% envelope.",
-    "At most two physical legs per logical bucket, both Vault-owned and included in exact principal. Desired mode/geometry are distinct from physically applied state. At most21 reviewed helpers.",
-    "Fresh85% main threshold,600-second sampled evidence/strict300-second maximum gap,240-second source checks, durable60-300-second random delay, hard12-hour initial cooldown; sampled observations are not continuous history or MEV immunity.",
-    "Source6 canonical admission uses ADAPTABLE_POLICY_V6 even though principal Position retains eight words. Never relabel old runtimes, templates, journals, receipts or interfaces.",
-    "Combined reviewed mint binds sale terms and current VRF generation/settings. Cosmetic/gas changes do not invalidate mint review; neither mint nor Entry policy changes reset LP confirmation.",
-    "All real pins/roles/feeds/routes/VRF/storage/services remain unset where unqualified. Public signing disabled, OpenSea primary drop unimplemented, independent audit/rehearsals open; no deployment authorized."
+    "Fresh schema14/accounting6/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV8.18 logical callable helpers plus exactly2 inert code-data children. Schema13 is preserved in production.schema13.example.json for explicit historical inspection.",
+    "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
+    "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
+    "One-hour royalty opening after the final sale end; exact whole-unit allocation, strict initial cohort, no deadline on dormant cards. Zero participants/preadmission funds remain separate reviewed allocation cases.",
+    "Source defaults are not observations: two independently qualified USD sources agree within3%; contributions2%, LP conversion1%, maintenance3%, hard10% ceilings; gas separate.",
+    "Main/residual geometry remains optional at most2 physical legs per logical bucket. Both remain Vault-owned and accounted; source85% trigger/600-second sampled evidence/300-second max gap/240-second checks/60-300-second jitter/12-hour cooldown remain.",
+    "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -350,7 +346,13 @@
           "observed_bindings": null,
           "bindings": {
             "controller": null,
-            "royaltyCodeHash": null
+            "royaltyCodeHash": null,
+            "CODE_STORAGE_VERSION": 2,
+            "creationCodeLength": 25522,
+            "part0": null,
+            "part1": null,
+            "part0CodeHash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+            "part1CodeHash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0"
           }
         },
         "lp_converter": {
@@ -1037,6 +1039,38 @@
         "vrf_revision": null,
         "observed": null,
         "review_evidence": null
+      },
+      "factory_code": {
+        "code_storage_version": 2,
+        "creation_code_length": 25522,
+        "creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+        "observed_creation_code_length": null,
+        "observed_creation_code_hash": null,
+        "review_evidence": null,
+        "parts": [
+          {
+            "index": 0,
+            "address": null,
+            "data_length": 24573,
+            "runtime_length": 24576,
+            "runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+            "observed_data_length": null,
+            "observed_runtime_length": null,
+            "observed_runtime_hash": null,
+            "observed_prefix": null
+          },
+          {
+            "index": 1,
+            "address": null,
+            "data_length": 949,
+            "runtime_length": 952,
+            "runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+            "observed_data_length": null,
+            "observed_runtime_length": null,
+            "observed_runtime_hash": null,
+            "observed_prefix": null
+          }
+        ]
       }
     }
   ],

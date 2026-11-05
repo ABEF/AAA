@@ -1,0 +1,24 @@
+{
+  "tests_run": 6,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "inputs_unchanged": true,
+  "source_sha256": {
+    "frontend_api/claim_planner.py": "471c9c41586aae6e8318b6cfb960e045e0b4ef9a7dff81dc264c97365b9b9344",
+    "frontend_api/transactions.py": "4a2167d8d9144285d117af937baa27412b7a9835af56c71845ea45142d992f75",
+    "frontend_api/server.py": "36179f244bcb3a6f572cfb75c6ca90eb922d63510e9b0fa5df5bf38170bbf064",
+    "frontend_api/worker.py": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62",
+    "tests_python/test_claim_planner.py": "8480e02e73551c9cf15b73191dbef335501cf130dddd6204ee2f2233df769abe",
+    "tests_python/test_claim_planner_http.py": "8f608fdcbc86aef6fd96cef3f5bcf04a59568c68e30af9a980e5849afa4b01ee"
+  },
+  "methods": [
+    "tests_python.test_frontend_transactions.FrontendTransactionTests.test_mint_exact_target_value_chain_and_simulation_no_reserved_identity",
+    "tests_python.test_frontend_transactions.FrontendTransactionTests.test_mixed_lp_erc20_and_native_royalty_same_nft_and_asset_allowed",
+    "tests_python.test_frontend_transactions.FrontendTransactionTests.test_exact_32_distinct_nfts_are_one_simulation_in_input_order",
+    "tests_python.test_frontend_transaction_http.TransactionHTTPTests.test_actual_preparer_mint_and_mixed_claims_cross_real_http_boundary",
+    "tests_python.test_frontend_transaction_http.TransactionHTTPTests.test_default_handler_still_rejects_post_without_preparation",
+    "tests_python.test_frontend_transaction_http.TransactionHTTPTests.test_other_methods_paths_and_query_overrides_never_prepare"
+  ],
+  "successful": true
+}

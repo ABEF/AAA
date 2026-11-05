@@ -14,7 +14,7 @@ saved transaction profile. Existing Anvil services and journals remain unchanged
 | Pricing / Entry routing / reviewed Entry |2 /3 /2 |
 | Governance / fee intake / execution quality |2 /1 /1 |
 | Royalty unallocated recovery | `ROYALTY_SETTLEMENT_VERSION()==4` / `ROYALTY_RECOVERY_VERSION()==2`; original-currency allocation, no converter; fresh runtime/storage required |
-| Production inventory | Schema13,17 modules and18 helpers; allocator is internal code |
+| Production inventory | Schema14,17 modules/18 callable helpers plus2 inert Factory data children; exact allocator remains internal code |
 | Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` |
 
 Entry-routing3 removes pre-Vault contribution conversion and its child. Read
@@ -47,8 +47,8 @@ that floor is implemented. Manual widths remain subject to real pool/tick and
 execution feasibility. Contributions never recenter or reset the LP clock.
 
 Canonical admission is explicitly V8: source/destination must support exact
-+whole-unit royalty rows, original ticket identity, cursor, policy commitments and
-+visual-threshold compatibility before migration starts. Old profiles and receipt recovery remain
+whole-unit royalty rows, original ticket identity, cursor, policy commitments and
+visual-threshold compatibility before migration starts. Old profiles and receipt recovery remain
 explicitly historical. There is no automatic deployment, journal migration,
 public signing, site rollout or readiness approval.
 
@@ -65,7 +65,7 @@ do not acquire this behavior. Ordinary safeguards and ownership remain.
 | Accounting6 / PositionV6 | Eight-word local Position and current policy/portfolio-aware accounting semantics; not a deployed instance. |
 | Entry routing3 | Seven-field direct ETH/ZZZ Request; no pre-Vault conversion. Review-policy2 and pricing2 remain separate. |
 | LP routing2 | Vault balancing/router/math/typed physical-executor semantics; not Entry routing. |
-| Inventory schema13 | Fresh17module/18helper release observation. Schema10 royalty-converting/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain historical inspection profiles. |
+| Inventory schema14 | Fresh17module/18helper release observation. Schema10 royalty-converting/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain historical inspection profiles. |
 | Canonical V8 | Exact-unit royalty rows and matching same-chain source/backing rules; V7/V6 peers are incompatible. |
 | Read API schema2 / activation config schema1 | Existing envelope/config schema families with separately explicit capability versions and runtime pins. |
 | Source8 | Shorthand for fresh custody5/direct Entry3 sources; ACCOUNTING_VERSION remains6. Historical source7 used custody4/schema9. |
@@ -91,7 +91,7 @@ Unsupported currencies require review/admission; capacity starts16ERC20 and may
 increase to64 plusETH after gas/service review. Raw claims need no price feed;
 USD reporting and LP reward conversion remain separate.
 
-Schema13 retains18helpers: the bounded allocator is internal library code compiled
+Schema14 retains18helpers: the bounded allocator is internal library code compiled
 into the ledger, not another deployed contract or authority. Reporting5/converter:null
 and explicit keeper royalty_settlement_version4 select the fresh behavior. New
 storage/runtime/canonical rows need new reviewed bindings and checkpoint rebuilds;

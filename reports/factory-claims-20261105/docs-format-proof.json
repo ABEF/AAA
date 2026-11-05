@@ -1,0 +1,132 @@
+[
+  {
+    "path": "AGENTS.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "PROJECT_CONTEXT.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "README.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "TODO.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/AUDIT_FINDINGS.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/CLAIM_ROUTER.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/COMPONENT_STATUS.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/CONTRACT_FUNCTIONS.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/DEPLOYMENT_ADDRESSES.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/DEVELOPMENT.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/FRONTEND_API.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/FRONTEND_TRANSACTIONS.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/IMPLEMENTATION_STATUS.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/OPERATOR_MANUAL.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/POSITION_V6.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/PRODUCTION_PREFLIGHT.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/README.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/RELEASE_CHECKLIST.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/ROADMAP.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/ROYALTY_SETTLEMENT.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/WORK_HANDOFF.md",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/function-reference-notes.json",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/operator-call-examples.json",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "docs/project-todo.json",
+    "original_crlf": true,
+    "meaning_unchanged": true
+  },
+  {
+    "path": "reports/README.md",
+    "original_crlf": false,
+    "meaning_unchanged": true
+  }
+]

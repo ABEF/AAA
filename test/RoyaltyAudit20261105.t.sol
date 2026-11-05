@@ -608,23 +608,23 @@ contract RoyaltyFactoryAudit20261105Test is Test {
         assertFalse(arbitrary);
     }
 
-    function testFactoryFailsClosedIfItsStoredPayloadNoLongerMatchesImmutableHash() public {
+    function testFactoryFailsClosedIfItsAuthenticatedCodePayloadChanges() public {
         ZZZRoyaltyFactory factory=new ZZZRoyaltyFactory(); bytes32 expected=factory.royaltyCodeHash();
-        // A cheatcode corrupts the otherwise unwritable private bytes length.
-        // No production function exposes this storage mutation.
-        vm.store(address(factory),bytes32(0),bytes32(0));
+        // Test-only code replacement; neither factory nor carrier exposes a mutator.
+        bytes memory altered=factory.part0().code;altered[3]^=bytes1(uint8(1));
+        vm.etch(factory.part0(),altered);
         assertEq(factory.royaltyCodeHash(),expected);
         vm.expectRevert(ZZZRoyaltyFactory.InvalidCreationCode.selector); factory.create();
     }
 
-    function testGasActualControllerAndNFTConstructorWithFixedPayloadStorage() public {
+    function testGasActualControllerAndNFTConstructorWithImmutableCodeData() public {
         uint256 before=gasleft();
         ZZZAccessController control=new ZZZAccessController(address(0xa11ce),address(0xb0b),address(0xca701));
-        emit log_named_uint("actual controller constructor gas including fixed royalty payload",before-gasleft());
+        emit log_named_uint("actual controller constructor gas including immutable code data",before-gasleft());
         ZZZProtocolPolicy policy=new ZZZProtocolPolicy(address(control),address(0x7ea5));
         control.bindProtocolPolicy(address(policy));
         before=gasleft(); ZZZNFT nft=new ZZZNFT(address(control),"ipfs://exact-audit/");
-        emit log_named_uint("actual NFT constructor gas including exact royalty ledger",before-gasleft());
+        emit log_named_uint("actual NFT constructor gas including code-backed exact royalty ledger",before-gasleft());
         assertEq(nft.royaltyRewards().nft(),address(nft));
         assertEq(nft.royaltyRewards().canonicalController(),address(control));
         assertEq(ZZZRoyaltyFactory(control.royaltyFactory()).royaltyCodeHash(),keccak256(type(ZZZRoyaltyRewards).creationCode));

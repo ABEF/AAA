@@ -131,7 +131,11 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             if len(hosts) != 1 or hosts[0] not in (f'127.0.0.1:{port}', f'localhost:{port}'):
                 self._json(400, {'error': 'invalid_host'})
                 return
-            if self.path != '/v1/transactions/prepare':
+            planning = self.path == '/v1/claims/plan'
+            if self.path != '/v1/transactions/prepare' and not planning:
+                self._json(404, {'error': 'unknown_endpoint'})
+                return
+            if planning and not callable(getattr(preparer, 'plan_claims', None)):
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             if self.headers.get_all('Transfer-Encoding') is not None or self.headers.get_all('Expect') is not None:
@@ -164,7 +168,7 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             from frontend_api.transactions import TransactionInputError
             try:
                 self.begin_work()
-                result = preparer.prepare(payload)
+                result = preparer.plan_claims(payload) if planning else preparer.prepare(payload)
             except AdmissionRejected as exc:
                 self.admission_rejected(exc)
             except ServiceBusy:
@@ -176,7 +180,7 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             except Exception:
                 # Include unexpected service failures in the same fail-closed
                 # boundary. Never echo bodies, RPC errors or exception text.
-                self._json(503, {'error': 'transaction_preparation_unavailable'})
+                self._json(503, {'error': 'claim_planning_unavailable' if planning else 'transaction_preparation_unavailable'})
             else:
                 self._json(200, result)
 

@@ -192,7 +192,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema13 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema14 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -395,7 +395,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema13 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema14 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -1384,7 +1384,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema13 observer checks these facts;
+pre-populate the replacement. The current schema14 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1684,7 +1684,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema13 production observation is separate from keeper live configuration.
+Schema14 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1803,12 +1803,14 @@ raw unit belongs to a ticket; there is no fresh royalty fraction/dust reserve.
 True indivisible mixed-cohort leftovers rotate deterministically. Claims never
 advance the rounding cursor or give the first claimant an advantage.
 
-Read RoyaltyFactory.royaltyCodeHash() and match the final compiler's ledger
-creation-code digest before deploying/binding an NFT. The factory stores fixed
-creation bytes once, has no payload setter, and accepts no arbitrary code/salt/
-recipient. Its typed create() hash-checks those bytes and binds the fixed
-controller atomically. Qualify the larger one-time factory/Access deployment
-gas and exact initcode; this is not per-mint/holder gas or production approval.
+Use the [fixed code-data procedure](FACTORY_CODE_STORAGE.md). Match
+RoyaltyFactory.CODE_STORAGE_VERSION()==2, creationCodeLength/royaltyCodeHash,
+part0/part1 and both partCodeHash getters against independent final compiler
+bytes. Authenticate both actual REVERT-prefixed data runtimes at one pinned
+block using schema14; never accept self-reported pins. Construction creates
+both children automatically. They have no operator call, funding or sweep.
+Factory.create reconstructs the same ledger and binds its fixed controller.
+Qualify exact constructor inputs and target gas; no deployment is authorized.
 
 Optional royalty sync defaults to1m forwarded gas. A too-low governed value can
 defer a healthy currency; simulate cold synchronization and inspect eligibility.
@@ -2121,7 +2123,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema13 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema14 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2305,16 +2307,16 @@ Record the cause, affected block/time/object, containment and exact state; verif
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema13
-release inventory separately observes20 helpers. Bind the separate fee policy to
+retain their declared sets), helper pins and admitted assets first. The schema14
+release inventory separately observes18 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
 
 Run `python -m frontend_api.server --config /operator/path/frontend-read.json
 --transaction-config /operator/path/wallet-policy.json --port 8787` as one command.
 The [configuration and response guide](FRONTEND_TRANSACTIONS.md) defines every
-field. The flag enables only typed `POST /v1/transactions/prepare`; GET-only is
-the default. Use a separate listener for activation preparation. Keep TLS,
+field. The flag enables typed `POST /v1/transactions/prepare` and
+`POST /v1/claims/plan`; GET-only is the default. Use a separate listener for activation preparation. Keep TLS,
 ingress/rate limits and logs under review. No arbitrary calls/signing are added.
 
 Verify independently decoded target/value/calldata, snapshot and policy hashes,
@@ -2322,7 +2324,13 @@ separate estimated gas and draft expiry. The wallet must refresh gas/state and
 confirm account/chain before signing. Mint checks the global/mint switches and
 preparation; claims retain their independent availability. Selected currency
 faults reject a batch; unselected faults do not excuse missing core/inventory
-checks. Choose smaller claim batches when necessary. Claims do not fund their
+checks. Use [gas-aware claim planning](CLAIM_PLANNING.md) for an explicit selection
+of at most32 NFT/currency/ledger entries. Review only next_batch, submit through
+the independently reviewed wallet, confirm it, then replan remaining_claims.
+Every zero, blocked or unavailable entry stays explicit; opaque refusal does
+not prove a bad currency. No batch queue, autoresend or limit increase occurs.
+No service restart/config change is authorized by this source update.
+Claims do not fund their
 own upfront gas. Missing canonical estimation or omitted fee components means
 unavailable, never a latest-state or zero-cost fallback.
 
@@ -2662,7 +2670,7 @@ policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
 On-chain policy changes need no service restart only for a **matching** source8
-worker that reads them dynamically. Adopting direct Entry3/accounting6/schema13/new runtime pins
+worker that reads them dynamically. Adopting direct Entry3/accounting6/schema14/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,
@@ -2733,7 +2741,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **814 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **820 functions, 37 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -4276,14 +4284,24 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `P` [RoyaltyFactory.create](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `create()` | Create caller-bound helper |
 
 <details>
-<summary>Read functions and constants (2)</summary>
+<summary>Read functions and constants (8)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [RoyaltyFactory.CODE_STORAGE_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `CODE_STORAGE_VERSION()` | Read storage format |
 | `R` [RoyaltyFactory.controller](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `controller()` | Read controller |
+| `R` [RoyaltyFactory.creationCodeLength](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `creationCodeLength()` | Read creation payload length |
+| `R` [RoyaltyFactory.part0](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `part0()` | Read first data child |
+| `R` [RoyaltyFactory.part0CodeHash](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `part0CodeHash()` | Read first data hash |
+| `R` [RoyaltyFactory.part1](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `part1()` | Read second data child |
+| `R` [RoyaltyFactory.part1CodeHash](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `part1CodeHash()` | Read second data hash |
 | `R` [RoyaltyFactory.royaltyCodeHash](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `royaltyCodeHash()` | Read fixed payload hash |
 
 </details>
+
+<a id="zzzroyaltycodedata"></a>
+
+#### RoyaltyCodeData
 
 ### Expanded tuple examples
 
@@ -4702,6 +4720,10 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `D` [Rewards.constructor](CONTRACT_FUNCTIONS.md#zzzrewards) | `controller: address` | `deploy Rewards(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RoyaltyCodeData.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltycodedata) | `data: bytes` | `deploy RoyaltyCodeData(SOURCE_BOUND_CREATION_SLICE)` | Construct fixed code data |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |

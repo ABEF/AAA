@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "51a4f57b6ab57bd27b7c7901f6a3aeb0fdb8684e9b8a6fe7d77f5dab9d2d65cd",
+  "reference_sha256": "aac3bad163df84d86c0a60ebf53b9232d4bfea8d9d0476eb20310daf0d7be8f9",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -6881,6 +6881,50 @@
       "role": "R",
       "short": "Validate fixed return hop",
       "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.CODE_STORAGE_VERSION()": {
+      "role": "R",
+      "short": "Read storage format",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.creationCodeLength()": {
+      "role": "R",
+      "short": "Read creation payload length",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.part0()": {
+      "role": "R",
+      "short": "Read first data child",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.part1()": {
+      "role": "R",
+      "short": "Read second data child",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.part0CodeHash()": {
+      "role": "R",
+      "short": "Read first data hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.part1CodeHash()": {
+      "role": "R",
+      "short": "Read second data hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyCodeData.constructor(bytes)": {
+      "role": "D",
+      "short": "Construct fixed code data",
+      "arguments": [
+        "$SOURCE_BOUND_CREATION_SLICE"
+      ],
       "value": null
     }
   }

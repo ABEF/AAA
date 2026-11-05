@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-11-05 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-06 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 25 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 27 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -455,6 +455,17 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-royalty-factory-gas"></a>
+
+- [x] **[Reduce fixed royalty factory deployment gas](docs/FACTORY_CODE_STORAGE.md)** - Implemented. Fixed creation bytes move from SSTORE into two immutable REVERT-prefixed data contracts, with exact part/whole authentication and unchanged typed receiver code. Fresh schema14 makes both addresses explicit; no accounting or authority change.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) records controlled local constructor gas, normal/runtime/initcode gates, tamper/value-call tests and strict static review. These do not qualify actual Robinhood deployment or maximum-state activation.
+
+  </details>
+
 
 ## Backend
 
@@ -673,6 +684,17 @@ The data and services behind the app.
 
   - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
   - [Holder input hardening](reports/system-adversarial-20261026/ops-input/VERIFICATION.md) caps reads before allocation, rejects duplicate/nonfinite/overflow JSON, normalizes parser limits and sanitizes argument errors.24affected methods pass,12new included once; valid flags/static help/exclusive outputs and unresolved-escrow/nonapproval semantics remain. Actual holder/escrow rehearsal still required.
+
+  </details>
+
+<a id="task-claim-batch-planner"></a>
+
+- [x] **[Plan gas-aware exact claim batches](docs/CLAIM_PLANNING.md)** - Implemented. Opt-in claims/plan preserves every selected NFT/asset/ledger entry, returns only the next freshly simulated unsigned batch, and reports zero/blocked/unresolved entries. Existing32-entry/12M/fee/time/RPC bounds stay; no signing or future transaction queue.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) covers bounded batching, refusal isolation, freshness/canonicality/ownership/work limits and HTTP worker dispatch. Matching website/service rollout and actual currency/fee/gas qualification remain open.
 
   </details>
 
@@ -1290,8 +1312,8 @@ Decisions and rehearsals before real funds.
   - Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements.
   - Inventory actual principal/idle/pending compound, earned LP/royalty liabilities, buyback reserves, fractions, quarantines and accidental assets separately. Collective holder return includes only attributed principal+compound; no operator sweep or royalty-custody transfer exists. Qualify broken-token/venue and failed-receiver recovery without erasing liabilities.
   - [Historical venue outage cases](reports/daily-security-20261025/VERIFICATION.md) verify healthy new entry with zero dust, funded incumbent-only dust payout, atomic failure for current venue or old dust payment. No sweep or skipped unbacked reward is permitted.
-  - [Historical rights finding](reports/full-audit-20261025/RIGHTS.md) identified admitted-only late forwarding and no unknown-currency recovery. Superseded by [recovery1](reports/royalty-audit-20261105/REVIEW.md): healthy unsupported tokens forward only to the authenticated successor, where reviewed unallocated recovery can allocate ETH. Broken assets still can fail; no chosen-recipient sweep or old-entitlement override.
-  - Recovery1 removes the unavoidable royalty quarantine lock for supported executable recovery paths, without sweeping Vault funds, earned/fractional liabilities or deferred entitlements. Prove current active-weight exception only for unallocated funds; actual unsellable/frozen/taxed/rebasing/unpriced assets remain a liveness limit.
+  - Current [original-currency recovery2](docs/ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery) forwards unsupported late receipts only to an authenticated successor. Reviewed admission then allocates only unallocated raw units at current GCD-normalized rarity tickets; no conversion or chosen-recipient sweep. Prior recovery1 swap evidence is historical.
+  - Exact settlement4 assigns every allocated whole royalty unit; this does not remove token freeze/blacklist/rebase/transfer failure or unknown-currency admission/capacity limits. Preserve earned/deferred/opening liabilities and classify unallocated funds separately. LP scaled fractions and sub-20 raw dust remain separate.
 
   </details>
 
@@ -1415,19 +1437,20 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Current accounting6 source matches52 production and31 dependency files at43 normal object gates. Vault635/Budget237/Migration20 runtime margins are exact-source reused evidence; constructor arguments, bindings, dynamic URI and target gas remain unqualified. Earlier37/59-byte metrics belong to historical source.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Fresh factory storage2 removes SSTORE creation payload using two immutable inert children. Schema14 authenticates their exact source-derived bytes. Normal44 compiler objects plus actual child runtime/initcode gates pass; Royalty creation bytes remain identical. Exact release arguments/bindings and Robinhood gas remain unqualified; see the factory/claim report for measured local gas and source pins.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Current [adaptable-policy build](reports/adaptable-policy-20261031/VERIFICATION.md) passes43normal gates at52production/31dependency sources: Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384). Earlier42-gate/905/286 and14/37/59-byte margins are historical source scopes; exact constructors, deployed dependencies and target gas remain qualification work.
+  - Historical [adaptable-policy build](reports/adaptable-policy-20261031/VERIFICATION.md) passes43normal gates at52production/31dependency sources: Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384). Earlier42-gate/905/286 and14/37/59-byte margins are historical source scopes; exact constructors, deployed dependencies and target gas remain qualification work.
   - The new3-address controller constructor has fixed96-byte ABI arguments; no proposer/executor arrays remain. Review governance wallet signers/threshold separately from the controller address. [Exact sizes](reports/architecture-pruning-20261025/bytecode-comparison.json) use unchanged normal compiler/EVM limits.
   - Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.
   - Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).
   - The blocked holder-exit keeper example cap2.5Mgas is not a qualified current maintenance budget. Earlier balance-only cold fixture observations2,590,680(one venue)/5,963,090(four) already exceed it before full operation/25%padding. Qualify exact fresh operations, network fee accounting and daily budgets; do not raise limits automatically or treat prior fixture gas as target-chain approval.
   - [Fresh normal compilation](reports/comprehensive-popl-20261029/VERIFICATION.md):39objects pass at78closed source pins; Manager runtime23111/creation48955+160arguments leaves37initcode bytes; Vault runtime24517 leaves59runtime bytes and creation48951+96arguments leaves105initcode bytes. Registry runtime10718/creation42362. Other38bytecode objects are identical to the exact prior production artifact. Exact dynamic NFT URI/arguments, release bindings and target gas still require qualification; no gate relaxation.
-  - [Current reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins supersede older37/59-byte claims for current source only; exact constructor arguments and target gas remain open.
+  - [Historical reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins superseded older37/59-byte claims only for that recorded source; exact constructor arguments and target gas remain open.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): 43 fresh normal gates pass at exact52 production/31 dependency closure final-a8e7dc7cc5. Balancer24216runtime/360margin; Vault635/Budget237/Migration20 margins unchanged. Initial24953-byte Balancer attempt failed and is retained. New helper ABI/runtime/constructor pins require reviewed fresh deployment; no relabelling existing code or journals. Target gas/bindings remain open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
+  - [Factory/claim improvement](reports/factory-claims-20261105/VERIFICATION.md) preserves Royalty creation payload and unchanged economic code;44 normal compiler-object gates plus2 actual returned data-runtime/initcode checks. Historical20/69-byte claims above are original source scopes, not current headroom. Target construction/URI/bindings/max-state gas stay open.
 
   </details>
 
@@ -1467,4 +1490,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `156e6da4a837309020a88c4ca975e0943e53ea220b8361b34760eb61b7d2ff28`.
+Snapshot SHA-256: `9eded27b675627c355ed524b3a32ed8331fec9f9bc24b3b13d8c30222411f9d7`.

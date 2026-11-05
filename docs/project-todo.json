@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-11-05",
+  "reviewed": "2026-11-06",
   "areas": [
     {
       "id": "contracts",
@@ -425,6 +425,16 @@
             "[Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Four new actual-core journeys succeed across recorded stages: six virtual days, repeated one/two-leg mode cycles, trends/reversals, filled/mixed/both-outside inventory and guarded recovery. Residual geometry is nested in main; enabled mode does not force a40% allocation. Production sources unchanged.",
             "[Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes."
           ]
+        },
+        {
+          "id": "royalty-factory-gas",
+          "status": "done",
+          "title": "Reduce fixed royalty factory deployment gas",
+          "text": "Fixed creation bytes move from SSTORE into two immutable REVERT-prefixed data contracts, with exact part/whole authentication and unchanged typed receiver code. Fresh schema14 makes both addresses explicit; no accounting or authority change.",
+          "href": "docs/FACTORY_CODE_STORAGE.md",
+          "acceptance": [
+            "[Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) records controlled local constructor gas, normal/runtime/initcode gates, tamper/value-call tests and strict static review. These do not qualify actual Robinhood deployment or maximum-state activation."
+          ]
         }
       ]
     },
@@ -638,6 +648,16 @@
             "[Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): The action/output matrix explains each major write receipt, post-state and fault boundary. It is reviewed documentation, not implementation of missing automated operation adapters. Compounded reserve-release amounts are not total actual LP deployed; API unavailability after confirmation must not trigger a duplicate action.",
             "Operator guidance now distinguishes direct Entry3 input admission, Balancer.configureExecutionPools and separate LP/royalty converter route methods. A reviewHash is offline provenance, not an executed simulation; ordinary caps and explicit paused-governance emergency bypass remain separate. See [consolidated operator corrections](reports/project-consolidation-20261103/REVIEW.md). Actual live planning/simulation, source rollout and operating acceptance stay open.",
             "[Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates."
+          ]
+        },
+        {
+          "id": "claim-batch-planner",
+          "status": "done",
+          "title": "Plan gas-aware exact claim batches",
+          "text": "Opt-in claims/plan preserves every selected NFT/asset/ledger entry, returns only the next freshly simulated unsigned batch, and reports zero/blocked/unresolved entries. Existing32-entry/12M/fee/time/RPC bounds stay; no signing or future transaction queue.",
+          "href": "docs/CLAIM_PLANNING.md",
+          "acceptance": [
+            "[Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) covers bounded batching, refusal isolation, freshness/canonicality/ownership/work limits and HTTP worker dispatch. Matching website/service rollout and actual currency/fee/gas qualification remain open."
           ]
         }
       ]
@@ -1369,25 +1389,26 @@
             "Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements.",
             "Inventory actual principal/idle/pending compound, earned LP/royalty liabilities, buyback reserves, fractions, quarantines and accidental assets separately. Collective holder return includes only attributed principal+compound; no operator sweep or royalty-custody transfer exists. Qualify broken-token/venue and failed-receiver recovery without erasing liabilities.",
             "[Historical venue outage cases](reports/daily-security-20261025/VERIFICATION.md) verify healthy new entry with zero dust, funded incumbent-only dust payout, atomic failure for current venue or old dust payment. No sweep or skipped unbacked reward is permitted.",
-            "[Historical rights finding](reports/full-audit-20261025/RIGHTS.md) identified admitted-only late forwarding and no unknown-currency recovery. Superseded by [recovery1](reports/royalty-audit-20261105/REVIEW.md): healthy unsupported tokens forward only to the authenticated successor, where reviewed unallocated recovery can allocate ETH. Broken assets still can fail; no chosen-recipient sweep or old-entitlement override.",
-            "Recovery1 removes the unavoidable royalty quarantine lock for supported executable recovery paths, without sweeping Vault funds, earned/fractional liabilities or deferred entitlements. Prove current active-weight exception only for unallocated funds; actual unsellable/frozen/taxed/rebasing/unpriced assets remain a liveness limit."
+            "Current [original-currency recovery2](docs/ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery) forwards unsupported late receipts only to an authenticated successor. Reviewed admission then allocates only unallocated raw units at current GCD-normalized rarity tickets; no conversion or chosen-recipient sweep. Prior recovery1 swap evidence is historical.",
+            "Exact settlement4 assigns every allocated whole royalty unit; this does not remove token freeze/blacklist/rebase/transfer failure or unknown-currency admission/capacity limits. Preserve earned/deferred/opening liabilities and classify unallocated funds separately. LP scaled fractions and sub-20 raw dust remain separate."
           ]
         },
         {
           "id": "deployment-initcode",
           "status": "progress",
           "title": "Qualify exact constructor arguments and deployment size",
-          "text": "Current accounting6 source matches52 production and31 dependency files at43 normal object gates. Vault635/Budget237/Migration20 runtime margins are exact-source reused evidence; constructor arguments, bindings, dynamic URI and target gas remain unqualified. Earlier37/59-byte metrics belong to historical source.",
+          "text": "Fresh factory storage2 removes SSTORE creation payload using two immutable inert children. Schema14 authenticates their exact source-derived bytes. Normal44 compiler objects plus actual child runtime/initcode gates pass; Royalty creation bytes remain identical. Exact release arguments/bindings and Robinhood gas remain unqualified; see the factory/claim report for measured local gas and source pins.",
           "href": "docs/DEPLOYMENT_ADDRESSES.md",
           "acceptance": [
-            "Current [adaptable-policy build](reports/adaptable-policy-20261031/VERIFICATION.md) passes43normal gates at52production/31dependency sources: Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384). Earlier42-gate/905/286 and14/37/59-byte margins are historical source scopes; exact constructors, deployed dependencies and target gas remain qualification work.",
+            "Historical [adaptable-policy build](reports/adaptable-policy-20261031/VERIFICATION.md) passes43normal gates at52production/31dependency sources: Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384). Earlier42-gate/905/286 and14/37/59-byte margins are historical source scopes; exact constructors, deployed dependencies and target gas remain qualification work.",
             "The new3-address controller constructor has fixed96-byte ABI arguments; no proposer/executor arrays remain. Review governance wallet signers/threshold separately from the controller address. [Exact sizes](reports/architecture-pruning-20261025/bytecode-comparison.json) use unchanged normal compiler/EVM limits.",
             "Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.",
             "Controlled same-context Access comparison reproduces9207→9252runtime and42081→42256creation (+45/+175); constructor fixed arguments96bytes give42352total/6800margin. Four isolated role-gas measurements pass, including CREATE+12312raw execution gas. RoyaltyFactory runtime margin69bytes and actual NFT URI constructor arguments require exact release qualification; see [gas evidence](reports/day-readiness-20261025/role-gas.md).",
             "The blocked holder-exit keeper example cap2.5Mgas is not a qualified current maintenance budget. Earlier balance-only cold fixture observations2,590,680(one venue)/5,963,090(four) already exceed it before full operation/25%padding. Qualify exact fresh operations, network fee accounting and daily budgets; do not raise limits automatically or treat prior fixture gas as target-chain approval.",
             "[Fresh normal compilation](reports/comprehensive-popl-20261029/VERIFICATION.md):39objects pass at78closed source pins; Manager runtime23111/creation48955+160arguments leaves37initcode bytes; Vault runtime24517 leaves59runtime bytes and creation48951+96arguments leaves105initcode bytes. Registry runtime10718/creation42362. Other38bytecode objects are identical to the exact prior production artifact. Exact dynamic NFT URI/arguments, release bindings and target gas still require qualification; no gate relaxation.",
-            "[Current reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins supersede older37/59-byte claims for current source only; exact constructor arguments and target gas remain open.",
-            "[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): 43 fresh normal gates pass at exact52 production/31 dependency closure final-a8e7dc7cc5. Balancer24216runtime/360margin; Vault635/Budget237/Migration20 margins unchanged. Initial24953-byte Balancer attempt failed and is retained. New helper ABI/runtime/constructor pins require reviewed fresh deployment; no relabelling existing code or journals. Target gas/bindings remain open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md)."
+            "[Historical reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins superseded older37/59-byte claims only for that recorded source; exact constructor arguments and target gas remain open.",
+            "[LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): 43 fresh normal gates pass at exact52 production/31 dependency closure final-a8e7dc7cc5. Balancer24216runtime/360margin; Vault635/Budget237/Migration20 margins unchanged. Initial24953-byte Balancer attempt failed and is retained. New helper ABI/runtime/constructor pins require reviewed fresh deployment; no relabelling existing code or journals. Target gas/bindings remain open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).",
+            "[Factory/claim improvement](reports/factory-claims-20261105/VERIFICATION.md) preserves Royalty creation payload and unchanged economic code;44 normal compiler-object gates plus2 actual returned data-runtime/initcode checks. Historical20/69-byte claims above are original source scopes, not current headroom. Target construction/URI/bindings/max-state gas stay open."
           ]
         }
       ]

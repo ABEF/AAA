@@ -46,6 +46,9 @@ def _run(output, config, activation_config, action, payload, transaction_config=
             elif action == 'transactions' and transaction_config is not None:
                 from frontend_api.transactions import Transactions
                 result = Transactions(p, transaction_config).prepare(payload)
+            elif action == 'claim_plan' and transaction_config is not None:
+                from frontend_api.transactions import Transactions
+                result = Transactions(p, transaction_config).plan_claims(payload)
             else:
                 raise ValueError('Unsupported operation')
         envelope = {'ok': result}
@@ -236,6 +239,11 @@ class WorkerClient:
             raise RpcError('Transaction preparation is disabled')
         return self._request('activation' if self.activation_config is not None else 'transactions', payload)
 
+    def plan_claims(self, payload):
+        if self.transaction_config is None:
+            raise RpcError('Claim planning is disabled')
+        return self._request('claim_plan', payload)
+
 
 class WorkerPool:
     """No waiting queue or shared Projection/RPC/request budget across callers.
@@ -294,3 +302,6 @@ class WorkerPool:
 
     def prepare(self, payload):
         return self._dispatch('prepare', payload)
+
+    def plan_claims(self, payload):
+        return self._dispatch('plan_claims', payload)

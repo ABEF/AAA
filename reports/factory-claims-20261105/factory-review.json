@@ -1,0 +1,124 @@
+{
+  "status": "PASS for scoped source/behavior/normal-artifact gas work; no operating approval",
+  "production_source_pins": {
+    "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+    "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+    "test/RoyaltyFactoryCodeData.t.sol": "fd2967754ceefc07454a839661c3d71f97ff524f5f45b18aefa89f8559014d47",
+    "test/RoyaltyAudit20261105.t.sol": "5e9aab346029b54a3b19c5eae6329313e7118f2feef5ec775c3a9352ca0532a8"
+  },
+  "royalty_source_byte_identical_to_baseline": true,
+  "protected_dirty_files_byte_identical_to_baseline": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "normal_size_gates": {
+    "ZZZRoyaltyFactory": {
+      "runtime": 1893,
+      "creation": 28983,
+      "runtime_margin": 22683,
+      "actual_constructor_args_bytes": 0,
+      "total_initcode": 28983,
+      "pass": true
+    },
+    "ZZZAccessController": {
+      "runtime": 10438,
+      "creation": 47865,
+      "runtime_margin": 14138,
+      "actual_constructor_args_bytes": 96,
+      "total_initcode": 47961,
+      "pass": true
+    },
+    "ZZZNFT": {
+      "runtime": 22846,
+      "creation": 46505,
+      "runtime_margin": 1730,
+      "actual_constructor_args_bytes": 128,
+      "total_initcode": 46633,
+      "pass": true
+    },
+    "ZZZRoyaltyRewards": {
+      "runtime": 24524,
+      "creation": 25522,
+      "runtime_margin": 52,
+      "actual_constructor_args_bytes": 32,
+      "total_initcode": 25554,
+      "pass": true
+    }
+  },
+  "main_forge_behavior": {
+    "status": true,
+    "methods": [
+      "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest::testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine()",
+      "test/RoyaltyAudit20261105.t.sol:MintSaleEndReviewAudit20261105Test::testProceedsCallbackCannotChangeEndAfterNFTGuardAndRollsBackAllMintState()",
+      "test/RoyaltyAudit20261105.t.sol:RoyaltyFactoryAudit20261105Test::testFactoryBindsOnlyFixedCodeTypedNFTAndController()",
+      "test/RoyaltyAudit20261105.t.sol:RoyaltyFactoryAudit20261105Test::testFactoryFailsClosedIfItsAuthenticatedCodePayloadChanges()",
+      "test/RoyaltyAudit20261105.t.sol:RoyaltyFactoryAudit20261105Test::testGasActualControllerAndNFTConstructorWithImmutableCodeData()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testCarrierEmptyAndMaximumBoundaryAreBoundedInertData()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testCarrierRejectsOrdinaryCallsAndNativePayments()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testMissingEitherDataChildRejects()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testNoPointerMutatorArbitraryCodeOrRecipientEntryExists()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testPartsReconstructExactSourceBytesAndActualNormalRuntimeLimits()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testSameLengthPrefixReplacementCannotHideBehindUnchangedPayload()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testSameLengthTailPayloadReplacementRejects()",
+      "test/RoyaltyFactoryCodeData.t.sol:RoyaltyFactoryCodeDataTest::testTruncatedExtendedAndSwappedPartLengthsReject()"
+    ],
+    "count": 13,
+    "scope": "Isolated offline EVM; fixture code-size override only. Inner CREATE gas excludes full wallet intrinsic/calldata fees. No RPC/deployment/service/Anvil changes.",
+    "source_unchanged": true,
+    "test_unchanged": true,
+    "royalty_creation_hash": "0xee61b40298c3a075124538647c141c5d4a92a761fabc17b61960f883d42eb3ee"
+  },
+  "controlled_forge_gas": {
+    "old_status": true,
+    "new_status": true,
+    "old": [
+      "controlled Access inner CREATE gas: 21756812",
+      "controlled NFT inner CREATE gas: 13962343",
+      "controlled Royalty creation hash: 0xa0cddcb14b869a99faac0f269c54fdef0e9d65b2592d4e213dbf40c490307c18",
+      "controlled Royalty runtime hash: 0x6e1a81113d28ccdc829f5ce4d02747232d2016f8655457ed3d44cda95ae4ff73"
+    ],
+    "new": [
+      "controlled Access inner CREATE gas: 9438678",
+      "controlled NFT inner CREATE gas: 13832153",
+      "controlled Royalty creation hash: 0xa0cddcb14b869a99faac0f269c54fdef0e9d65b2592d4e213dbf40c490307c18",
+      "controlled Royalty runtime hash: 0x6e1a81113d28ccdc829f5ce4d02747232d2016f8655457ed3d44cda95ae4ff73"
+    ],
+    "scope": "Same source/test/config except Factory; same args; warm graph. Separate compiler-metadata family from normal and main tests."
+  },
+  "exact_normal_artifact_gas": {
+    "status": true,
+    "count": 4,
+    "gas": {
+      "testNewNormalColdNFTInnerCreate()": {
+        "normal Access inner CREATE gas": 9424695,
+        "normal NFT inner CREATE gas": 13827621
+      },
+      "testNewNormalWarmInnerCreate()": {
+        "normal Access inner CREATE gas": 9424695,
+        "normal NFT inner CREATE gas": 13827621
+      },
+      "testOldNormalColdNFTInnerCreate()": {
+        "normal Access inner CREATE gas": 21743406,
+        "normal NFT inner CREATE gas": 15555742
+      },
+      "testOldNormalWarmInnerCreate()": {
+        "normal Access inner CREATE gas": 21743406,
+        "normal NFT inner CREATE gas": 13957742
+      }
+    },
+    "scope": "Actual closed-normal creation artifacts loaded from fixed files with exact hash assertions, no production compile in Forge. Same typed arguments, default24576 runtime limit and49152 initcode. Inner CREATE excludes outer wallet intrinsic/calldata and Robinhood qualification. Warm/cold graph contexts separate.",
+    "input_manifest": "exact-normal-gas-inputs.json",
+    "evidence": "exact-normal-artifact-run/status.json"
+  },
+  "metadata_families": "three-compiler-families.json",
+  "limitations": [
+    "No public deployment, signing, provider, target-chain gas fee or service qualification.",
+    "13 behavior cases use a large test-fixture code-size override; independent normal size gates and four actual-normal artifact cases retain production limits.",
+    "Gas values measure inner CREATE frames only; exclude outer transaction intrinsic/calldata, fee market, currency price and some preparation memory.",
+    "Data carrier accepts neither ordinary calls nor ordinary ETH payments, but forced ETH/ERC20 donations are unavoidable off-domain and cannot be recovered by this inert child.",
+    "Actual part0 runtime is exactly24576 bytes; future payload changes require renewed part bounds, normal constructor/initcode gates, source and manifest authentication.",
+    "No helper authority, arbitrary creation code, mutable pointers, external recipient, delegatecall or sweep was added."
+  ]
+}

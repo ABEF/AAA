@@ -1,12 +1,13 @@
 # Work handoff
 
-Reviewed5November2026. Audit baseline main967370f. Inspect actual Git heads
+Reviewed6November2026. Factory/claim baseline main4f7436a. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
 ## Current result
 
-Fresh royalty4/recovery2/reporting5/schema13/canonicalV8,18helpers; accounting6,
+Fresh royalty4/recovery2/reporting5/schema14/canonicalV8,18 callable helpers
+plus2 inert Factory data children; accounting6,
 custody5 and all LP/economic policies unchanged. User-approved exact-unit royalty
 allocation removes permanently stranded ALLOCATED rounding units. GCD-normalized
 rarity tickets, outstanding books, per-currency cursor; source ticketStartONE-based,
@@ -17,8 +18,13 @@ current-owner claims, activation order, cutoff/outage cohorts and exact backing.
 One-hour grace and zero-participant decision remain. Prefunds/unallocated receipts
 require reviewed allocation, unknown currencies admission; frozen tokens cannot be
 guaranteed transferable. No royalty conversion/keeper worker. LP conversion stays.
-Optional sync default1m; capacity16→64 and high fixed-payload factory initialization
-gas still require target qualification. Inventory13 observer/gate share97 token
+Optional sync default1m; capacity16→64 still needs target gas qualification.
+Factory code-storage2 replaces SSTORE payload with two immutable REVERT-prefix
+children and preserves exact royalty creation bytes. New schema14 authenticates
+source-derived length/hash/part bytes; schema13 stays historical.
+Opt-in claims/plan prepares one bounded exact unsigned batch and retains every
+blocked/unresolved selection. Replan after confirmation; existing fee/gas/work
+limits and signer boundaries are unchanged. Inventory14 observer/gate share97 token
 records; historical bounds/readers remain explicit.
 
 Fresh mint review captures Vault composite policy with end+revision and checks
@@ -29,7 +35,9 @@ read-only validated by the existing companion. No arbitrary custody address.
 
 ## Verification and remaining gates
 
-See ../reports/last24h-audit-20261105/REVIEW.md and VERIFICATION.md for exact final
+See ../reports/factory-claims-20261105/REVIEW.md and VERIFICATION.md for changed
+Factory/schema/planner scope; prior accounting scope is in
+../reports/last24h-audit-20261105/REVIEW.md and VERIFICATION.md for exact final
 source/build/static/test/gas pins and retained failures. Earlier royalty3/479/125
 records remain scoped to their original source. No whole-suite/publicCI/actual
 target gas/marketplace/uptime or independent approval is claimed.
@@ -66,13 +74,14 @@ current verification record instead of a second mutable checklist.
 Main only; source/docs publication is not rollout. Anvil8902, all NFTs/LP/balances,
 dist overlays, pending/nonce/receipt/spend journals and shared browser signer stay
 unchanged. Popldemo simulation and separately served poplint current3 remain;
-fresh source8/config13 is not the served site. Public DEPLOYMENT null, signing
+fresh source8/config14 is not the served site. Public DEPLOYMENT null, signing
 Anvil-only; heartbeat remains user-paused. No public transactions or service reset.
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-Task last24h-audit-20261105 archives baseline source/docs/protected hashes, all
-failed/intermediate/compiler/EVM/Python/site/static stages and actual wire proofs.
+Task factory-claims-20261105-a71c archives this change's baseline, compiler/static,
+profile/planner tests, gas and preservation evidence. Prior last24h-audit-20261105
+retains its own failed/intermediate stages and actual accounting wire proofs.
 Earlier report bytes remain immutable; the final preservation record checks them. Preserve unrelated
 untracked drafts and the four tracked dirty files below; never stage them here.
 

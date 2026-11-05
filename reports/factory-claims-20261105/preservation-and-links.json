@@ -1,0 +1,22 @@
+{
+  "protected": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "historical_report_count": 2767,
+  "historical_reports_unchanged": true,
+  "historical_report_failures": [],
+  "website_head": "c88be522cc03c2efa40a3c755d498647214e6fbe",
+  "website_status_clean": true,
+  "website_expected_head": true,
+  "website_signer_config_unchanged": {
+    "browser-wallet.js": true,
+    "deployment-config.js": true
+  },
+  "markdown_files_checked": 28,
+  "missing_relative_file_targets": [],
+  "no_service_site_chain_journal_or_heartbeat_action": true,
+  "not_an_operating_acceptance": true
+}

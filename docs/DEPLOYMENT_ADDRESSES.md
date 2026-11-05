@@ -36,7 +36,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema10 production manifest](../config/production.example.json)
+public addresses. Complete the [schema14 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -120,7 +120,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Creation/binding | Helper addresses and verification |
 | --- | --- |
 | Separate policy companion | `ZZZProtocolPolicy(controller,initialMintRecipient)` before consumers, bind-once Access.protocolPolicy, version1/runtime/scoped values and fingerprints. No custody. |
-| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and factory registry/NFT outputs. |
+| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside18 callable helpers; verify source-derived prefix/length/part/whole hashes using schema14. [Procedure](FACTORY_CODE_STORAGE.md). |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
 | NFT construction | `ZZZRoyaltyRewards`, `ZZZClaimRouter`, `ZZZNFTMetadata`; exact NFT/controller/ledger relationships. |
 | Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and entry-review-policy2 bindings; inactive capture context at anchor. |
@@ -131,15 +131,15 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Separate Strategy companions | `ZZZPortfolioPolicy(controller)` and `ZZZRebalanceConfirmation(controller)` supplied to Strategy. Verify reciprocal Strategy/Access, portfolio2/confirmation3 and runtime. Read actual desired/applied geometry, trigger/revisions/reviews, half-side default 5000 and per-pool main floor6000–9999bps(default6000), complementary residual bound and positive gap spacings. |
 | Confirmation policy | Selected600 seconds/strict 300 second gap,240 second source checks and same-side 85% physical/reference threshold. Constructor gap 0 blocks ordinary readiness. Source late paid enrollment/jitter are separate service rules, not observed market history. |
 | Migration construction | `ZZZCustodyValidation`; exact Migration/Access parent, unchanged custody4-format tuple under custody5, including liquidity-sensitive portfolioHash and runtime. |
-| Converter route children | Two distinct `ZZZV4RouteExecutor` instances: LP converter and royalty converter. Match each immutable `parent()` and owning `v4Executor()`. Direct Entry3 has no conversion child; pin its `ENTRY_ROUTING_VERSION()==3`. |
-| Separate converters | LP and royalty converters have distinct fixed ledgers/controller and explicit optional wrappers; bind their ledgers before sealing if required. |
+| Converter route child | LP converter only: authenticate fixed `ZZZV4RouteExecutor.parent()` and `v4Executor()`. Fresh royalty4 has no converter or executor; direct Entry3 has no conversion child. |
+| Separate LP converter | Fixed Rewards/controller and optional supported wrapper; bind before sealing if required. Original-currency royalties need neither routes, feeds, conversion nor unwrap. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
-eligible holders under the separate 1/2/3 rarity-weighted ledger. Recovery1 must
-be verified on the exact runtime; ETH-conversion promises require the fixed
-converter bound before sealing. Routes remain governed afterward. Unsupported
-royalty balances can be recovered without permanent admission, subject to the
+eligible holders under settlement4 exact-unit1/2/3 rarity tickets. Recovery2
+allocates only reviewed unallocated raw units in their original currency; it
+requires admission and active weights, without swaps or chosen recipients.
+Unknown currencies need reviewed admission/capacity and token behavior first. See the
 [unallocated-only procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
 
 Creator-payment inboxes and their factory are removed from the current source.
@@ -168,7 +168,7 @@ identities, not ticker symbols or addresses copied from another chain.
 | Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; native asset-zero identity and reviewed native USD feed. Native settlement does not require WETH policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
 | Valuation | Explicit `pricing_version: 2`; every priced asset's full two-source policy, append-only ID/ordinal, source runtimes, independence IDs, USD denomination, decimals, reviewed ages/disagreement and proxy/admin/implementation authorities. Observe both raw rounds and `priceBounds` fingerprint at the same confirmed block. Genuine sequencer status or independently approved initial no-feed chain policy remains separate. |
 | Randomness | Qualified VRF coordinator and its implementation/admin/operator identities, subscription consumers and payment asset where applicable. A matching ABI is not qualification. |
-| Optional input conversion | Each admitted typed v3 or static hookless v4 route, exact source/output assets, venue/runtime/fee bindings and full-operation qualification. A route does not establish a safe USD source. |
+| LP balancing/fee conversion | Each reviewed venue and LP-converter route, exact ETH/ZZZ source/output identities, runtime/fees and full-operation qualification. Entry3 itself performs no separate input conversion; royalty claims preserve currency. |
 
 Current selected-market identities and dated observations are retained in
 [pool selection](POOL_SELECTION.md) and the [pinned pool observation](../reports/hookless-pool/observed-pool.json).
@@ -245,7 +245,7 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 Record `Vault.ACCOUNTING_VERSION() == 6` and `ProtocolPolicy.PROTOCOL_POLICY_VERSION() == 1` and the canonical coordinator's
 `SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
-with the fresh20-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
+with18 callable helpers plus2 inert Factory data children and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
 accounting2/fee1 uses the distinct LP-only V3 schema. Neither historical codec
 nor V1 WETH accounting can be imported into this current

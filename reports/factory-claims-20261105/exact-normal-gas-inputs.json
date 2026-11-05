@@ -1,0 +1,93 @@
+{
+  "old": {
+    "compiler_output": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\normal-final-2602e4a69d\\compiler-output.json",
+    "compiler_output_sha256": "48bc2af91a7a435e1a218a6365c3cb6ee461744db963c2635eaabd68899269bc",
+    "contracts": {
+      "ZZZAccessController": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\old-ZZZAccessController.json",
+        "artifact_sha256": "592dfafd0986c8930b523a674fc4521865fd8896143bc2212a0afa9e716ba4f7",
+        "creation_length": 46276,
+        "creation_keccak256": "0xbef6fe3b42c260acc653a2d6f48622cbbf2a30c193c31d582782799f362bf578",
+        "creation_sha256": "571a5362adf83708e9bd0272661b5f90570dc1f0dc06145d6c345764ef4505f5",
+        "runtime_template_length": 10438,
+        "runtime_template_sha256": "839457e0aae844dba7b46ce51ee6e82844b95faafb3938875d70c8504e75b8e2"
+      },
+      "ZZZNFT": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\old-ZZZNFT.json",
+        "artifact_sha256": "9f4056c212ca5a2573df523f90e58133edeb0c3a9559b111050e225105e63c78",
+        "creation_length": 46505,
+        "creation_keccak256": "0x9afe6d02781cfe3b0e64b92e6e8f14a182334e726134ec35d3f555e479b14b56",
+        "creation_sha256": "e5c0ac0a89fd3462269598efee1f21924513bd4bd1467b1a361dce0173942739",
+        "runtime_template_length": 22846,
+        "runtime_template_sha256": "562fdc3a641109563444b8c82a4949a3218a5c6927710f02eae3dfcd7b2d593b"
+      },
+      "ZZZRoyaltyRewards": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\old-ZZZRoyaltyRewards.json",
+        "artifact_sha256": "f2ca17f7257d817c1d9d6dd44d3862467981437c016022532b2c942c94db15ec",
+        "creation_length": 25522,
+        "creation_keccak256": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+        "creation_sha256": "1e2f2f84e8c2075830c8bd6ef1cb63297e3b7d28d7580c2db8cb4be09234adf2",
+        "runtime_template_length": 24524,
+        "runtime_template_sha256": "282e5db4cb2e5ebb3902f63a27ce1439688aa4dc5a68d455b6065a1b9d7e2bf6"
+      },
+      "ZZZProtocolPolicy": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\old-ZZZProtocolPolicy.json",
+        "artifact_sha256": "5ea9313b1a3679aa4d2cbd29fd295d2e9985ba684e0d3f0fd3d5255660f56cff",
+        "creation_length": 17755,
+        "creation_keccak256": "0x965b6bf4c1cad0ce812aeb8caf4ed6c8c4993cae851d592ba0e4f81aacbe28fd",
+        "creation_sha256": "78bd7f81675cbb17f1bc46e257f4e7ad02bb787be9f38c2d11c2c2efeb9438c1",
+        "runtime_template_length": 14746,
+        "runtime_template_sha256": "a5b2e463fc6abe3a23af188b961bc8f4616e6fb8a968ec05e5cb442a588027f0"
+      }
+    }
+  },
+  "new": {
+    "compiler_output": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\normal-final-18b5d496ff\\compiler-output.json",
+    "compiler_output_sha256": "eb12abe40e198d7b17e264d4c1b310847637d494c88a740db75fa39ad6476220",
+    "contracts": {
+      "ZZZAccessController": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\new-ZZZAccessController.json",
+        "artifact_sha256": "841c38de077f32c3b8003603f9fe7f077a8bac4a4865b8a4d17222c893de0cfc",
+        "creation_length": 47865,
+        "creation_keccak256": "0xf833beafe24965a0378dad006958d19ca0b0ae15f1dba7ef6343c9401bd34ebf",
+        "creation_sha256": "fa89b19c258c0f8d16a0830449ce4e33d6f7f285fafde15715a3d76467d06cb1",
+        "runtime_template_length": 10438,
+        "runtime_template_sha256": "101b0f236ed438420672d5181ba2778a2da33f34985233cbaa2a293271cfe72e"
+      },
+      "ZZZNFT": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\new-ZZZNFT.json",
+        "artifact_sha256": "580803a58ea687501434f603272c154e3cd2153095d4c1afdf3b5c21ef9c1b84",
+        "creation_length": 46505,
+        "creation_keccak256": "0xaafa01f8d323af406fcbfa224d5813cc43de5b4e9539703a990b86e2913adbd8",
+        "creation_sha256": "b804b1b6f4a34d68873dff41430b1a3dcc0d5b63ef7f733fd6071868589733a7",
+        "runtime_template_length": 22846,
+        "runtime_template_sha256": "a823fd83bebbba2cd53d6da897e5ebfd0f1c0b79d6d5c4cbe894fe87ba8a5e9a"
+      },
+      "ZZZRoyaltyRewards": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\new-ZZZRoyaltyRewards.json",
+        "artifact_sha256": "f2ca17f7257d817c1d9d6dd44d3862467981437c016022532b2c942c94db15ec",
+        "creation_length": 25522,
+        "creation_keccak256": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+        "creation_sha256": "1e2f2f84e8c2075830c8bd6ef1cb63297e3b7d28d7580c2db8cb4be09234adf2",
+        "runtime_template_length": 24524,
+        "runtime_template_sha256": "282e5db4cb2e5ebb3902f63a27ce1439688aa4dc5a68d455b6065a1b9d7e2bf6"
+      },
+      "ZZZProtocolPolicy": {
+        "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\exact-normal-gas\\normal-artifacts\\new-ZZZProtocolPolicy.json",
+        "artifact_sha256": "5ea9313b1a3679aa4d2cbd29fd295d2e9985ba684e0d3f0fd3d5255660f56cff",
+        "creation_length": 17755,
+        "creation_keccak256": "0x965b6bf4c1cad0ce812aeb8caf4ed6c8c4993cae851d592ba0e4f81aacbe28fd",
+        "creation_sha256": "78bd7f81675cbb17f1bc46e257f4e7ad02bb787be9f38c2d11c2c2efeb9438c1",
+        "runtime_template_length": 14746,
+        "runtime_template_sha256": "a5b2e463fc6abe3a23af188b961bc8f4616e6fb8a968ec05e5cb442a588027f0"
+      }
+    }
+  },
+  "expected_normal": {
+    "whole": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+    "part0": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+    "part1": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+    "payload_byte_identical_old_new": true
+  },
+  "scope": "Exact closed-normal solc creation artifacts, identical typed inputs, inner CREATE gas only. Warm and explicitly account/storage-cooled NFT graph are separate. No wallet intrinsic/calldata/Robinhood fee proof; normal EIP-170 limit retained."
+}

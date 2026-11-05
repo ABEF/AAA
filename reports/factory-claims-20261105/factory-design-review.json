@@ -1,0 +1,25 @@
+{
+  "scope": "Independent source/profile review of final immutable factory-code architecture, not an independent external audit or deployment acceptance.",
+  "source_files_sha256": {
+    "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+    "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6"
+  },
+  "confirmed_defects": [],
+  "invariants_reviewed": [
+    "Fixed source-owned receiver creation bytes split internally; no caller code, arbitrary receiver argument, salt, delegatecall, mutable pointer or value input.",
+    "Exactly two immutable child addresses and source-derived full-runtime hash/length checks; first3bytes PUSH0 PUSH0 REVERT prevent entry into embedded payload; child runtime has no dispatcher/state/sweep/SELFDESTRUCT.",
+    "EXTCODECOPY offset3 and ordered concatenation then full creation hash check precede zero-value CREATE; only constructor NFT msg.sender appended and fixed controller bind remains atomic.",
+    "Public sibling creation cannot replace fixed canonical NFT royalty receiver or acquire its accounting rights.",
+    "Schema14 binds same18 callable helpers plus2 inert data records without changing settlement4/recovery2/reporting5/canonicalV8; old13 archive and old readers retain explicit identity.",
+    "Current observer reads two child runtimes at same EIP1898 canonical selector, enforces exact bytes lengths before decoding, checks independent pinned full hashes/prefix/reconstruction and clears stale positive observations on failure.",
+    "Current validator prevents data aliases with modules/helpers/dependencies/tokens/current mint payee; declared addresses and review records remain unconfigured until independently approved.",
+    "Existing canonical commitment binds Access runtime/factory address but does not separately enumerate factory/child hashes; full source-bound release inventory required."
+  ],
+  "remaining_limits": [
+    "Target transaction/block gas, exact artifacts, deployment workflow and constructor costs remain qualification gates.",
+    "Unsolicited forced ETH/ERC20 balances on inert child addresses cannot be recovered; they are outside protocol accounting.",
+    "Closed-normal metadata/creation artifacts differ from normalized Forge artifact family; pins cannot be interchanged.",
+    "Lower factory constructor cost does not remove aggregate royalty activation/synchronization gas constraints.",
+    "No deployment, live RPC observation, service/site change, signing, Anvil or journal update was performed by this agent."
+  ]
+}

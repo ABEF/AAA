@@ -1,0 +1,29 @@
+test_attempt_and_shared_work_budgets_do_not_reset_or_drop_unassessed_rows (tests_python.test_claim_planner.ClaimPlannerTests.test_attempt_and_shared_work_budgets_do_not_reset_or_drop_unassessed_rows) ... ok
+test_detectable_transport_rate_limit_and_unknown_failures_return_no_draft (tests_python.test_claim_planner.ClaimPlannerTests.test_detectable_transport_rate_limit_and_unknown_failures_return_no_draft) ... ok
+test_final_current_owner_and_fees_are_reread_and_can_stop_publication (tests_python.test_claim_planner.ClaimPlannerTests.test_final_current_owner_and_fees_are_reread_and_can_stop_publication) ... ok
+test_global_failure_after_a_good_trial_does_not_publish_the_older_good_draft (tests_python.test_claim_planner.ClaimPlannerTests.test_global_failure_after_a_good_trial_does_not_publish_the_older_good_draft) ... ok
+test_individual_opaque_refusal_remains_unresolved_without_poisoning_other_currencies (tests_python.test_claim_planner.ClaimPlannerTests.test_individual_opaque_refusal_remains_unresolved_without_poisoning_other_currencies) ... ok
+test_input_selection_is_explicit_bounded_and_cannot_override_transaction_fields (tests_python.test_claim_planner.ClaimPlannerTests.test_input_selection_is_explicit_bounded_and_cannot_override_transaction_fields) ... ok
+test_one_exact_batch_is_freshly_prepared_twice_without_future_transactions (tests_python.test_claim_planner.ClaimPlannerTests.test_one_exact_batch_is_freshly_prepared_twice_without_future_transactions) ... ok
+test_only_hash_bound_identity_metadata_is_cached_with_no_cross_request_state (tests_python.test_claim_planner.ClaimPlannerTests.test_only_hash_bound_identity_metadata_is_cached_with_no_cross_request_state) ... ok
+test_opaque_currency_metadata_or_claim_view_does_not_remove_the_selection (tests_python.test_claim_planner.ClaimPlannerTests.test_opaque_currency_metadata_or_claim_view_does_not_remove_the_selection) ... ok
+test_oversized_execution_is_reduced_with_every_remaining_entry_preserved (tests_python.test_claim_planner.ClaimPlannerTests.test_oversized_execution_is_reduced_with_every_remaining_entry_preserved) ... ok
+test_reorg_staleness_and_expiry_abort_without_fallback_or_state_override (tests_python.test_claim_planner.ClaimPlannerTests.test_reorg_staleness_and_expiry_abort_without_fallback_or_state_override) ... ok
+test_successful_estimate_above_reviewed_gas_or_fee_bound_is_sized_down (tests_python.test_claim_planner.ClaimPlannerTests.test_successful_estimate_above_reviewed_gas_or_fee_bound_is_sized_down) ... ok
+test_zero_blocked_and_unavailable_are_distinct_and_not_invented_as_balances (tests_python.test_claim_planner.ClaimPlannerTests.test_zero_blocked_and_unavailable_are_distinct_and_not_invented_as_balances) ... ok
+test_exact_current_profile_keeps_royalty_window_separate_from_available_lp (tests_python.test_claim_planner.CurrentClaimPlannerTests.test_exact_current_profile_keeps_royalty_window_separate_from_available_lp) ... ERROR
+test_exact_current_profile_uses_original_currencies_and_no_oracle_calls (tests_python.test_claim_planner.CurrentClaimPlannerTests.test_exact_current_profile_uses_original_currencies_and_no_oracle_calls) ... ok
+
+======================================================================
+ERROR: test_exact_current_profile_keeps_royalty_window_separate_from_available_lp (tests_python.test_claim_planner.CurrentClaimPlannerTests.test_exact_current_profile_keeps_royalty_window_separate_from_available_lp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_claim_planner.py", line 242, in test_exact_current_profile_keeps_royalty_window_separate_from_available_lp
+    self.assertEqual(result['next_batch']['provenance']['accounting_version'],6)
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'accounting_version'
+
+----------------------------------------------------------------------
+Ran 15 tests in 9.159s
+
+FAILED (errors=1)

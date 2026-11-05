@@ -1,0 +1,63 @@
+{
+  "scope": "Actual closed-normal creation bytes, source-owned default pins, no mocked verification; local read transport fixture only, no chain qualification",
+  "requests": [
+    [
+      "eth_getCode",
+      [
+        "0x0000000000000000000000000000000000000064",
+        {
+          "blockHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "requireCanonical": true
+        }
+      ]
+    ],
+    [
+      "eth_getCode",
+      [
+        "0x0000000000000000000000000000000000000065",
+        {
+          "blockHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "requireCanonical": true
+        }
+      ]
+    ]
+  ],
+  "errors": [],
+  "observed_section": {
+    "code_storage_version": 2,
+    "creation_code_length": 25522,
+    "creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+    "observed_creation_code_length": 25522,
+    "observed_creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+    "review_evidence": null,
+    "parts": [
+      {
+        "index": 0,
+        "address": "0x0000000000000000000000000000000000000064",
+        "data_length": 24573,
+        "runtime_length": 24576,
+        "runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+        "observed_data_length": 24573,
+        "observed_runtime_length": 24576,
+        "observed_runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+        "observed_prefix": "0x5f5ffd"
+      },
+      {
+        "index": 1,
+        "address": "0x0000000000000000000000000000000000000065",
+        "data_length": 949,
+        "runtime_length": 952,
+        "runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+        "observed_data_length": 949,
+        "observed_runtime_length": 952,
+        "observed_runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+        "observed_prefix": "0x5f5ffd"
+      }
+    ]
+  },
+  "source_files_sha256": {
+    "zzz_ops/factory_code_v2.py": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df",
+    "zzz_ops/production_observer_v12.py": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5",
+    "config/factory-code-storage-v2.json": "080cb03574db7467c6eb811a469a20ac7110749202fed805006acce5fe3f7c9c"
+  }
+}

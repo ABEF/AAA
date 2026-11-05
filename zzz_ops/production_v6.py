@@ -461,11 +461,12 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,royalty_mint_revision=False):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,royalty_mint_revision=False,constructor_forbidden_addresses=None):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
-    addresses=[r.get('address') for group in ('modules','helpers') for r in V._obj(chain.get(group)).values() if isinstance(r,dict)]
+    addresses=([r.get('address') for group in ('modules','helpers') for r in V._obj(chain.get(group)).values() if isinstance(r,dict)]
+        if constructor_forbidden_addresses is None else constructor_forbidden_addresses)
     g.check(recipient is not None and recipient not in addresses,path+'.constructor','mint.recipient','Mint proceeds cannot use a protocol custody/helper address.')
     g.check(ctor.get('canonical_chain_id')==home,path+'.constructor','canonical.chain','Preserve the canonical construction chain.')
     g.num(ctor.get('maximum_buyback_usd18'),path+'.constructor.maximum_buyback_usd18',1,2**128-1)
@@ -516,7 +517,7 @@ def validate(config, *, expected_commit=None, now=None):
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
               service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
               canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,
-              royalty_mint_revision=False):
+              royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
@@ -545,9 +546,11 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
     chains=g.items(cfg.get('chains'),'chains',1,1);reservation_status=None
     for index,item in enumerate(chains):
         chain=g.obj(item,f'chains[{index}]');path=f'chains[{index}]'
-        g.check(set(chain)-{'_notes'}==CHAIN_FIELDS,path,'schema.keys','Use exact current chain fields; external custody is removed.')
+        g.check(set(chain)-{'_notes'}==chain_fields,path,'schema.keys','Use exact current chain fields; external custody is removed.')
         _safe(g,path+'.anchor',lambda:_anchor(g,chain,path,home,int(time.time()) if now is None else now))
         addresses=_safe(g,path+'.contracts',lambda:_contracts(g,chain,path,helpers=helpers,binding_factory=binding_factory)) or []
+        if chain_validator is not None:
+            addresses += _safe(g,path+'.factory_code',lambda:chain_validator(g,chain,path,addresses)) or []
         deps=_safe(g,path+'.dependencies',lambda:V._dependencies(g,chain,path,addresses)) or {}
         tokens=_safe(g,path+'.tokens',lambda:token_validator(g,chain,path,now,addresses)) or {}
         pools=_safe(g,path+'.pools',lambda:_pools(g,chain,path,tokens,deps)) or {}
@@ -567,7 +570,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision,constructor_forbidden_addresses=addresses if chain_validator is not None else None))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):

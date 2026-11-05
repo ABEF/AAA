@@ -38,7 +38,10 @@ function claimBatch(Claim[] calldata claims) external returns (uint256[] memory 
 - A failure rolls back the **entire batch**, including previous payouts, index
   changes and NFT transfers made by payout callbacks. The frontend must simulate
   the exact batch, estimate gas, omit failing/unsupported entries and chunk larger
-  portfolios. Partial success or automatic failure-skipping is not implemented.
+  portfolios. Partial on-chain success or automatic failure-skipping is not
+  implemented. The opt-in [unsigned planner](CLAIM_PLANNING.md) can prepare a
+  smaller exact next batch; it retains unresolved selections explicitly and
+  requires replanning after confirmation.
 
 For example, two NFTs each claiming ZZZ LP rewards, ZZZ royalties and native ETH
 royalties require six entries and one transaction. The router itself takes no

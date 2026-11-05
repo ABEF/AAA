@@ -6062,7 +6062,7 @@
       }
     },
     "ZZZRoyaltyFactory": {
-      "purpose": "Fixed typed ledger factory with a constructor-written private creation payload and immutable payload hash. No code setter, caller-supplied code/salt/recipient or execution facility.",
+      "purpose": "Fixed typed ledger factory with two immutable REVERT-prefixed code-data children and exact whole-payload verification. No mutable code, recipient, salt or execution facility.",
       "functions": {
         "controller()": {
           "purpose": "Identify the immutable controller atomically bound to every receiver this factory creates.",
@@ -6074,7 +6074,7 @@
         "create()": {
           "purpose": "Deploy a fresh caller-bound royalty receiver and bind its canonical controller atomically.",
           "access": "Permissionless caller; normal NFT construction uses this path.",
-          "notes": "Copies only fixed constructor-stored bytes, verifies royaltyCodeHash, appends the typed caller NFT address, deploys and atomically binds the fixed controller. No arbitrary execution payload. Larger one-time factory/Access deployment gas needs target qualification; ordinary holders do not pay this deployment cost.",
+          "notes": "Checks exact part sizes/hashes, copies only data after each three-byte REVERT prefix, checks the original whole payload hash, appends only the typed caller NFT and binds the fixed controller atomically. Ordinary mint/claim never reads the children. Data storage reduces deployment gas; exact target gas still requires qualification.",
           "outputs": {
             "0": "New receiver contract address, permanently bound to msg.sender as its NFT."
           }
@@ -6086,13 +6086,61 @@
           "outputs": {
             "0": "Keccak256 of the exact normal-compiler RoyaltyRewards creation bytes. Compare the reviewed payload and runtime bindings before NFT deployment; corruption makes create revert."
           }
+        },
+        "CODE_STORAGE_VERSION()": {
+          "purpose": "Read fixed creation-code storage format.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Fixed value2; independent of royalty accounting versions."
+          }
+        },
+        "creationCodeLength()": {
+          "purpose": "Read complete receiver creation-byte length.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Creation payload bytes, excluding prefixes and NFT constructor argument."
+          }
+        },
+        "part0()": {
+          "purpose": "Read immutable first data-child address.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "First immutable data child; never a payout or custody recipient."
+          }
+        },
+        "part1()": {
+          "purpose": "Read immutable second data-child address.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Second immutable data child, including a prefix-only child for a short payload."
+          }
+        },
+        "part0CodeHash()": {
+          "purpose": "Read source-bound first runtime hash.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Keccak256 of prefix plus first data slice; independently verify compiler bytes."
+          }
+        },
+        "part1CodeHash()": {
+          "purpose": "Read source-bound second runtime hash.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Keccak256 of prefix plus second data slice; independently verify compiler bytes."
+          }
         }
       },
       "constructor": {
         "purpose": "Deploy and bind Factory deploying caller-bound royalty ledgers and atomically binding the controller, separate from NFT initcode.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {},
-        "notes": "Stores fixed source-bound creation bytes and immutable hash once, with no setter. Normal initcode/runtime gates and exact target deployment gas must pass; publication does not deploy."
+        "notes": "Derives the unchanged source-bound RoyaltyRewards creation payload, deploys exactly two inert children, and fixes their addresses/hashes/length. Child runtime is constructor-returned prefix plus payload, not the generic compiler deployedBytecode placeholder. No separate funding, setter or manual binding."
       }
     },
     "ZZZContributionPricing": {
@@ -7816,6 +7864,18 @@
           },
           "notes": "Requires configured randomness. Preserves provider/subscription/lane/payment mode/generation. Advances VRF/global revision,invalidating old mint reviews; prior request terms/results remain."
         }
+      }
+    },
+    "ZZZRoyaltyCodeData": {
+      "purpose": "Construction-only inert carrier for fixed source-owned deployment bytes. Actual runtime always begins PUSH0/PUSH0/REVERT; no callable dispatcher, forwarding or withdrawal. Forced ETH/ERC20 transfers stay outside protocol accounting.",
+      "functions": {},
+      "constructor": {
+        "purpose": "Return bounded REVERT-prefixed fixed deployment data as runtime.",
+        "access": "Deployment only; the typed Factory constructs both children from its own source bytes.",
+        "inputs": {
+          "data": "Exact source-owned slice of RoyaltyRewards creation payload; at most24573 bytes. Never operator-selected code."
+        },
+        "notes": "Ordinary calls and native payments revert. Actual returned runtime is three prefix bytes plus data; generic compiler deployedBytecode is not its actual runtime. No post-deployment operation or funding is needed."
       }
     }
   }

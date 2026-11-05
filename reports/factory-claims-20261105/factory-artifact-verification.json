@@ -1,0 +1,26 @@
+{
+  "final_compiler_output": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\normal-final-18b5d496ff\\compiler-output.json",
+  "compiler_output_sha256": "eb12abe40e198d7b17e264d4c1b310847637d494c88a740db75fa39ad6476220",
+  "whole": {
+    "observed_creation_code_length": 25522,
+    "observed_creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831"
+  },
+  "parts": [
+    {
+      "observed_data_length": 24573,
+      "observed_runtime_length": 24576,
+      "observed_runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+      "observed_prefix": "0x5f5ffd"
+    },
+    {
+      "observed_data_length": 949,
+      "observed_runtime_length": 952,
+      "observed_runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+      "observed_prefix": "0x5f5ffd"
+    }
+  ],
+  "archived_schema13_exact_HEAD_bytes": true,
+  "artifact_canonical_sha256": "cef671e1bf1293d82d5313c5d54649e28db2f6bf8a3034675b66b3681ced9ba1",
+  "source_pin_count": 84,
+  "not_release_approval": true
+}

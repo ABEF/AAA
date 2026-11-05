@@ -1,0 +1,474 @@
+{
+  "scope": "Exact artifact/source/settings comparison, not relabeling. Terminal metadata byte equality is checked only for RoyaltyRewards; runtime bindings or factory payload hashes remain family-specific regardless. Main Forge and controlled Forge can have different unused remappings in metadata.",
+  "families": {
+    "normal": {
+      "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\normal-final-18b5d496ff\\compiler-output.json",
+      "creation_length": 25522,
+      "creation_keccak256": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+      "creation_sha256": "1e2f2f84e8c2075830c8bd6ef1cb63297e3b7d28d7580c2db8cb4be09234adf2",
+      "settings_differences": {},
+      "compiler_equal_normal": true,
+      "unexplained_source_hashes": [],
+      "source_hashes": {
+        "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "raw_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "LF_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "raw_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "LF_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "raw_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "LF_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "raw_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "LF_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "raw_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "LF_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+        },
+        "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "raw_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "LF_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462"
+        },
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "raw_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "LF_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+        },
+        "src/ZZZRoyaltyRewards.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xdf7d72e76decf5e4362b5eb04f8490f2d99bf795634c833eb789f7295cc74174",
+          "raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "LF_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b"
+        },
+        "src/base/ZZZCanonicalLedger.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "LF_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf"
+        },
+        "src/interfaces/IZZZ.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x89c3cdc83e11fa63861201fe908ff45ac4418fa182622ee3838bfa8218b8a93b",
+          "raw_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+          "LF_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894"
+        },
+        "src/interfaces/IZZZCanonical.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "LF_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+        },
+        "src/interfaces/IZZZProtocolPolicy.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "LF_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322"
+        },
+        "src/libraries/ExactAsset.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "LF_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4"
+        },
+        "src/libraries/ExactRoyaltyAllocation.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "LF_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4"
+        },
+        "src/libraries/ExactToken.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "LF_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+        },
+        "src/libraries/ZZZTypes.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "LF_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc"
+        }
+      },
+      "terminal_metadata_bytes": 53,
+      "terminal_metadata_sha256": "eb519a6e522cf1ba7f5335ec44a1d0b86dcb11edb13ec265fa984dd41b837f73",
+      "creation_except_terminal_metadata_equals_normal": true,
+      "nonmetadata_creation_sha256": "1be68798edadc146cd0d737329cb3afcded062d3e447fec96b28c5169bb3f767"
+    },
+    "controlled_old": {
+      "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\gas-old-storage\\out\\ZZZRoyaltyRewards.sol\\ZZZRoyaltyRewards.json",
+      "creation_length": 25522,
+      "creation_keccak256": "0xa0cddcb14b869a99faac0f269c54fdef0e9d65b2592d4e213dbf40c490307c18",
+      "creation_sha256": "728aa30bd2ec9caa2091580131ab68880741521775011605f7b7d568c2ae0d43",
+      "settings_differences": {},
+      "compiler_equal_normal": true,
+      "unexplained_source_hashes": [],
+      "source_hashes": {
+        "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "raw_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "LF_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "raw_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "LF_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "raw_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "LF_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "raw_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "LF_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "raw_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "LF_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+        },
+        "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "raw_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "LF_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462"
+        },
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "raw_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "LF_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+        },
+        "src/ZZZRoyaltyRewards.sol": {
+          "kind": "CRLF_to_LF_only",
+          "compiler_keccak256": "0xbdc02e22620c0c36c85e9878c9bd3477e46e48b7949919bba2156dc59d3aa4e2",
+          "raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "LF_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b"
+        },
+        "src/base/ZZZCanonicalLedger.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "LF_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf"
+        },
+        "src/interfaces/IZZZ.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x89c3cdc83e11fa63861201fe908ff45ac4418fa182622ee3838bfa8218b8a93b",
+          "raw_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+          "LF_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894"
+        },
+        "src/interfaces/IZZZCanonical.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "LF_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+        },
+        "src/interfaces/IZZZProtocolPolicy.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "LF_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322"
+        },
+        "src/libraries/ExactAsset.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "LF_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4"
+        },
+        "src/libraries/ExactRoyaltyAllocation.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "LF_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4"
+        },
+        "src/libraries/ExactToken.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "LF_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+        },
+        "src/libraries/ZZZTypes.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "LF_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc"
+        }
+      },
+      "terminal_metadata_bytes": 53,
+      "terminal_metadata_sha256": "00208baa52318a2337247fceef4519013bf8c040e59b4b502da235787dce8dd8",
+      "creation_except_terminal_metadata_equals_normal": true,
+      "nonmetadata_creation_sha256": "1be68798edadc146cd0d737329cb3afcded062d3e447fec96b28c5169bb3f767"
+    },
+    "controlled_new": {
+      "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\gas-new-code-data\\out\\ZZZRoyaltyRewards.sol\\ZZZRoyaltyRewards.json",
+      "creation_length": 25522,
+      "creation_keccak256": "0xa0cddcb14b869a99faac0f269c54fdef0e9d65b2592d4e213dbf40c490307c18",
+      "creation_sha256": "728aa30bd2ec9caa2091580131ab68880741521775011605f7b7d568c2ae0d43",
+      "settings_differences": {},
+      "compiler_equal_normal": true,
+      "unexplained_source_hashes": [],
+      "source_hashes": {
+        "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "raw_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "LF_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "raw_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "LF_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "raw_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "LF_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "raw_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "LF_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "raw_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "LF_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+        },
+        "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "raw_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "LF_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462"
+        },
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "raw_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "LF_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+        },
+        "src/ZZZRoyaltyRewards.sol": {
+          "kind": "CRLF_to_LF_only",
+          "compiler_keccak256": "0xbdc02e22620c0c36c85e9878c9bd3477e46e48b7949919bba2156dc59d3aa4e2",
+          "raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "LF_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b"
+        },
+        "src/base/ZZZCanonicalLedger.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "LF_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf"
+        },
+        "src/interfaces/IZZZ.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x89c3cdc83e11fa63861201fe908ff45ac4418fa182622ee3838bfa8218b8a93b",
+          "raw_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+          "LF_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894"
+        },
+        "src/interfaces/IZZZCanonical.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "LF_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+        },
+        "src/interfaces/IZZZProtocolPolicy.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "LF_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322"
+        },
+        "src/libraries/ExactAsset.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "LF_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4"
+        },
+        "src/libraries/ExactRoyaltyAllocation.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "LF_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4"
+        },
+        "src/libraries/ExactToken.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "LF_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+        },
+        "src/libraries/ZZZTypes.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "LF_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc"
+        }
+      },
+      "terminal_metadata_bytes": 53,
+      "terminal_metadata_sha256": "00208baa52318a2337247fceef4519013bf8c040e59b4b502da235787dce8dd8",
+      "creation_except_terminal_metadata_equals_normal": true,
+      "nonmetadata_creation_sha256": "1be68798edadc146cd0d737329cb3afcded062d3e447fec96b28c5169bb3f767"
+    },
+    "main_forge": {
+      "artifact": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\contract-agent\\main-build\\out\\ZZZRoyaltyRewards.sol\\ZZZRoyaltyRewards.json",
+      "creation_length": 25522,
+      "creation_keccak256": "0xee61b40298c3a075124538647c141c5d4a92a761fabc17b61960f883d42eb3ee",
+      "creation_sha256": "6199296de62c9eaf38590359060a62e5af648ecc7e789ea5cdd5ef24ea94a953",
+      "settings_differences": {
+        "remappings": {
+          "normal": [
+            ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+            ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+            ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+            ":forge-std/=lib/forge-std/src/",
+            ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+            ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+            ":v4-core/=node_modules/@uniswap/v4-core/"
+          ],
+          "family": [
+            ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+            ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+            ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+            ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+            ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+            ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+            ":forge-std/=lib/forge-std/src/",
+            ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+            ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+            ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+            ":v4-core/=node_modules/@uniswap/v4-core/"
+          ]
+        }
+      },
+      "compiler_equal_normal": true,
+      "unexplained_source_hashes": [],
+      "source_hashes": {
+        "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "raw_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "LF_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "raw_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "LF_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+        },
+        "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "raw_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "LF_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "raw_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "LF_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+        },
+        "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "raw_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "LF_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+        },
+        "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "raw_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "LF_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462"
+        },
+        "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "raw_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "LF_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+        },
+        "src/ZZZRoyaltyRewards.sol": {
+          "kind": "CRLF_to_LF_only",
+          "compiler_keccak256": "0xbdc02e22620c0c36c85e9878c9bd3477e46e48b7949919bba2156dc59d3aa4e2",
+          "raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "LF_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b"
+        },
+        "src/base/ZZZCanonicalLedger.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "LF_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf"
+        },
+        "src/interfaces/IZZZ.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x89c3cdc83e11fa63861201fe908ff45ac4418fa182622ee3838bfa8218b8a93b",
+          "raw_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+          "LF_sha256": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894"
+        },
+        "src/interfaces/IZZZCanonical.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "LF_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+        },
+        "src/interfaces/IZZZProtocolPolicy.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "LF_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322"
+        },
+        "src/libraries/ExactAsset.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "LF_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4"
+        },
+        "src/libraries/ExactRoyaltyAllocation.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "LF_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4"
+        },
+        "src/libraries/ExactToken.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "LF_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+        },
+        "src/libraries/ZZZTypes.sol": {
+          "kind": "raw_exact",
+          "compiler_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "LF_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc"
+        }
+      },
+      "terminal_metadata_bytes": 53,
+      "terminal_metadata_sha256": "042af400574c8c0548184722bd7e4502d54a406233c1306b7b1f10b967972f09",
+      "creation_except_terminal_metadata_equals_normal": true,
+      "nonmetadata_creation_sha256": "1be68798edadc146cd0d737329cb3afcded062d3e447fec96b28c5169bb3f767"
+    }
+  }
+}

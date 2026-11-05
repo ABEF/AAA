@@ -33,7 +33,8 @@
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
-      "src/ZZZRoyaltyFactory.sol": "517d3543ec1f5fcc9cfda3637f44ee690560c519559e1fa4233af122fe0fe3ec",
+      "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
       "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
@@ -193,6 +194,7 @@
       "src/ZZZPythPriceFeed.sol",
       "src/ZZZRebalanceConfirmation.sol",
       "src/ZZZRewards.sol",
+      "src/ZZZRoyaltyCodeData.sol",
       "src/ZZZRoyaltyFactory.sol",
       "src/ZZZRoyaltyRewards.sol",
       "src/ZZZStrategy.sol",
@@ -221,14 +223,19 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "29b0b5f53d4fd9db7062be78416a269d1e8dadd50ac2453cb822210f0575a9a5",
-    "compiler_output_sha256": "48bc2af91a7a435e1a218a6365c3cb6ee461744db963c2635eaabd68899269bc",
-    "size_evidence_sha256": "2cc1382aa7be93417cf68840621b85503a2e779c7de1235a084c61a5ff8747fa",
+    "compiler_input_sha256": "6351de61067e29416e221a10c9aa3a7df2084e07a2407a1acb074fd80c0f3cc7",
+    "compiler_output_sha256": "eb12abe40e198d7b17e264d4c1b310847637d494c88a740db75fa39ad6476220",
+    "size_evidence_sha256": "065d38d727dd5b80eaa41148c51cf434c2006e6f506ab69fe56d6ad89cfc5a25",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
         "contract": "ZZZNFT",
         "minimum_argument_bytes": 96
+      },
+      {
+        "source": "src/ZZZRoyaltyCodeData.sol",
+        "contract": "ZZZRoyaltyCodeData",
+        "minimum_argument_bytes": 64
       }
     ]
   },
@@ -18814,6 +18821,28 @@
       ],
       "abi_sha256": "c5f59be298b4b63403eba919b50df81e65e07dd4e5af580cb110945145b6d0f3"
     },
+    "ZZZRoyaltyCodeData": {
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "name": "DataTooLong",
+          "type": "error"
+        }
+      ],
+      "abi_sha256": "d03d2b2e6e57919462f1a71b5e2b4c15039bdd3a23cf29b57cebdd5ab248f4c9"
+    },
     "ZZZRoyaltyFactory": {
       "source": "src/ZZZRoyaltyFactory.sol",
       "abi": [
@@ -18826,6 +18855,19 @@
           "inputs": [],
           "name": "InvalidCreationCode",
           "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "CODE_STORAGE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -18855,6 +18897,71 @@
         },
         {
           "inputs": [],
+          "name": "creationCodeLength",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "part0",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "part0CodeHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "part1",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "part1CodeHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "royaltyCodeHash",
           "outputs": [
             {
@@ -18867,7 +18974,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "b4fd24302b4b9ba24be1dc07cf51c0bda233fe8a315e38d47e4a4c07acb5a729"
+      "abi_sha256": "387315ed8b64b7ae5f98c73443255e35c83f9fa55b19e99a4fa64b6cbe0fb580"
     },
     "ZZZRoyaltyRewards": {
       "source": "src/ZZZRoyaltyRewards.sol",
@@ -23531,7 +23638,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "c05df88b88f4b80d36541645c0929a0a424c98f34b3c5e8dcf1f5caad1a8e9c3",
+  "notes_sha256": "13c659919aa7da0f5801dca68b805f10750c379d33fd21663e6f6861ab5fa62f",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -48607,9 +48714,40 @@
       ]
     },
     {
+      "name": "ZZZRoyaltyCodeData",
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "purpose": "Construction-only inert carrier for fixed source-owned deployment bytes. Actual runtime always begins PUSH0/PUSH0/REVERT; no callable dispatcher, forwarding or withdrawal. Forced ETH/ERC20 transfers stay outside protocol accounting.",
+      "category": "Project contract",
+      "functions": [
+        {
+          "signature": "constructor(bytes)",
+          "kind": "constructor",
+          "name": "constructor",
+          "state_mutability": "nonpayable",
+          "purpose": "Return bounded REVERT-prefixed fixed deployment data as runtime.",
+          "access": "Deployment only; the typed Factory constructs both children from its own source bytes.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "data",
+              "label": "data",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Exact source-owned slice of RoyaltyRewards creation payload; at most24573 bytes. Never operator-selected code."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Ordinary calls and native payments revert. Actual returned runtime is three prefix bytes plus data; generic compiler deployedBytecode is not its actual runtime. No post-deployment operation or funding is needed."
+        }
+      ]
+    },
+    {
       "name": "ZZZRoyaltyFactory",
       "source": "src/ZZZRoyaltyFactory.sol",
-      "purpose": "Fixed typed ledger factory with a constructor-written private creation payload and immutable payload hash. No code setter, caller-supplied code/salt/recipient or execution facility.",
+      "purpose": "Fixed typed ledger factory with two immutable REVERT-prefixed code-data children and exact whole-payload verification. No mutable code, recipient, salt or execution facility.",
       "category": "Project contract",
       "functions": [
         {
@@ -48623,7 +48761,30 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Stores fixed source-bound creation bytes and immutable hash once, with no setter. Normal initcode/runtime gates and exact target deployment gas must pass; publication does not deploy."
+          "notes": "Derives the unchanged source-bound RoyaltyRewards creation payload, deploys exactly two inert children, and fixes their addresses/hashes/length. Child runtime is constructor-returned prefix plus payload, not the generic compiler deployedBytecode placeholder. No separate funding, setter or manual binding."
+        },
+        {
+          "signature": "CODE_STORAGE_VERSION()",
+          "kind": "function",
+          "name": "CODE_STORAGE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read fixed creation-code storage format.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Fixed value2; independent of royalty accounting versions."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "controller()",
@@ -48669,7 +48830,122 @@
             }
           ],
           "native_value": null,
-          "notes": "Copies only fixed constructor-stored bytes, verifies royaltyCodeHash, appends the typed caller NFT address, deploys and atomically binds the fixed controller. No arbitrary execution payload. Larger one-time factory/Access deployment gas needs target qualification; ordinary holders do not pay this deployment cost."
+          "notes": "Checks exact part sizes/hashes, copies only data after each three-byte REVERT prefix, checks the original whole payload hash, appends only the typed caller NFT and binds the fixed controller atomically. Ordinary mint/claim never reads the children. Data storage reduces deployment gas; exact target gas still requires qualification."
+        },
+        {
+          "signature": "creationCodeLength()",
+          "kind": "function",
+          "name": "creationCodeLength",
+          "state_mutability": "view",
+          "purpose": "Read complete receiver creation-byte length.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Creation payload bytes, excluding prefixes and NFT constructor argument."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "part0()",
+          "kind": "function",
+          "name": "part0",
+          "state_mutability": "view",
+          "purpose": "Read immutable first data-child address.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "First immutable data child; never a payout or custody recipient."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "part0CodeHash()",
+          "kind": "function",
+          "name": "part0CodeHash",
+          "state_mutability": "view",
+          "purpose": "Read source-bound first runtime hash.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Keccak256 of prefix plus first data slice; independently verify compiler bytes."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "part1()",
+          "kind": "function",
+          "name": "part1",
+          "state_mutability": "view",
+          "purpose": "Read immutable second data-child address.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Second immutable data child, including a prefix-only child for a short payload."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "part1CodeHash()",
+          "kind": "function",
+          "name": "part1CodeHash",
+          "state_mutability": "view",
+          "purpose": "Read source-bound second runtime hash.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Keccak256 of prefix plus second data slice; independently verify compiler bytes."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "royaltyCodeHash()",
@@ -54923,9 +55199,9 @@
   ],
   "gaps": [],
   "counts": {
-    "contracts": 36,
-    "functions": 814,
-    "constructors": 36,
+    "contracts": 37,
+    "functions": 820,
+    "constructors": 37,
     "receive_hooks": 12,
     "fallback_hooks": 0,
     "explanation_gaps": 0,

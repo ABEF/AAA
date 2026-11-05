@@ -146,6 +146,10 @@ class Transactions:
             raise ProjectionError('Transaction snapshot is stale or in the future')
         return now
 
+    def plan_claims(self, payload: Any) -> dict[str, Any]:
+        from frontend_api.claim_planner import ClaimPlanner
+        return ClaimPlanner(self).plan(payload)
+
     @bounded_request
     def prepare(self, payload: Any) -> dict[str, Any]:
         action, owner, claims = _parse(payload)

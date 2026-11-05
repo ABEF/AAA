@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-11-05. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-06. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -33,7 +33,7 @@ This file is current instructions, not a report timeline.
   confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
   fresh canonicalV8 carries sale end/capacity and exact royalty tickets; rejects older peers; tuple shape is not runtime identity.
-  Schema13 inventory has18helpers and exact original-currency royalty4 with canonicalV8. Historical schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
+  Schema14 inventory has18 callable helpers plus2 inert RoyaltyFactory data children and exact original-currency royalty4 with canonicalV8. Historical schema13 royalty4/SSTORE Factory, schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -163,9 +163,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [last24-hour review](reports/last24h-audit-20261105/static-review.json).
-  Full detector/source coverage is source-bound; exact context reuse remains
-  distinguished from current review. Earlier479/471 records stay historical.
+- CI/check-slither-review selects the strict current [factory/claim review](reports/factory-claims-20261105/static-review.json):489records,
+ 20 individually reassessed contexts/469 unique exact referenced-source reuse.
+ Earlier487/479/471 records stay source-scoped and historical.
   Update current default/full record together after relevant source changes.
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
   OpenSea/fresh consumer, providers/authorities/gas/hosting/metadata/recovery and
@@ -189,7 +189,8 @@ the November3 authority report below remains historical for those contexts.
 
 ## Royalty exact-unit source boundary
 
-Fresh royalty4/recovery2/reporting5/schema13/canonicalV8 has18 deployed helpers;
+Fresh royalty4/recovery2/reporting5/schema14/canonicalV8 has18 callable helpers
+plus2 inert Factory code-data children;
 ExactRoyaltyAllocation is internal code. Original currencies remain unchanged,
 without royalty swaps/unwraps/converter. LP conversion/fractions stay separate.
 The user explicitly authorized deterministic whole-unit rounding. GCD-normalize
@@ -209,7 +210,7 @@ and rejects V7. Rebuild/review checkpoints; never relabel old runtimes/journals.
 
 Constructor/preadmission/zero-cohort funds stay reviewed unallocated until their
 authorized decision. Default16ERC20+ETH may expand to64 after gas/service review;
-source inventory13 permits97 total token records, older observer bounds stay
+source inventory14 permits97 total token records, older observer bounds stay
 explicit. Unknown/frozen/taxed/rebasing/unreachable-owner cases cannot have a
 universal automatic payout guarantee. All allocated rounding units are assignable,
 not all imaginable tokens transferable. Current-owner rights and outage cohorts
@@ -217,9 +218,19 @@ remain. See [exact rules](docs/EXACT_ROYALTY_ALLOCATION.md).
 
 Default optional royalty sync gas is1m(existing100k–1m bounds). Lowering it may
 defer healthy currencies. Router32 is a count limit, not worst-case gas approval.
-Factory stores only constructor-derived fixed creation bytes and immutable hash;
-create accepts no code/recipient/salt, verifies hash, deploys typed NFT-bound ledger.
-Its high one-time initialization gas requires actual target-chain qualification.
+Factory code-storage2 stores the unchanged constructor-derived royalty creation
+payload in exactly2 immutable REVERT-prefix data children (offset3,maxdata24573).
+create checks exact part lengths/hashes, reconstructs and whole-hash verifies,
+then typed zero-value CREATE binds caller NFT/controller. No code setter or
+arbitrary code/recipient/salt. Schema14/code-owned part pins authenticate all37
+module/helper/data addresses (17+18+2), with no per-claim data-child RPC reads.
+Historical schema13 retains its SSTORE factory. Actual target gas remains open.
+See [format](docs/FACTORY_CODE_STORAGE.md), [claim planning](docs/CLAIM_PLANNING.md)
+and [scoped verification](reports/factory-claims-20261105/VERIFICATION.md).
+Claim planning is an opt-in unsigned endpoint:<=32 explicit entries,<=10 trials
+plus fresh final preparation under existing12M/fee/time/RPC budgets. Every
+selection remains classified; no opaque fault diagnosis, auto-skip, future queue,
+signing or service/site change. Replan remaining entries after confirmation.
 
 Mint review uses Vault's six-word fingerprint(domain,core Policy fingerprint,
 NFT,receiver,mintEnd,mintEndRevision). Every end setter increments revision;

@@ -26,7 +26,7 @@ GROUPS = (
     ('internals', 'Bound modules, helpers and factories', ('ZZZContributionPricing', 'ZZZLiquidityManager',
      'ZZZLPPositionExecutor', 'ZZZLPBalanceMath', 'ZZZV4RouteExecutor', 'ZZZCustodyValidation',
      'ZZZFeesCanonical', 'ZZZNFTCanonical', 'ZZZVaultCanonical', 'ZZZPythPriceFeed',
-     'ZZZActivationAssetsFactory', 'ZZZRoyaltyFactory')),
+     'ZZZActivationAssetsFactory', 'ZZZRoyaltyFactory', 'ZZZRoyaltyCodeData')),
 )
 WRITE_ORDER = {
     'ZZZAccessController': ('setPaused', 'setKeeper', 'setGuardian', 'proposeGovernance', 'acceptGovernance',

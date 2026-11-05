@@ -1,6 +1,6 @@
 # Feature and evidence reference
 
-Reviewed 2026-11-05. This records implemented source, not another task list.
+Reviewed 2026-11-06. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -13,7 +13,7 @@ fresh royalty4/canonicalV8 carries sale end/capacity and exact-unit ticket right
 and rejects older peers.
 Tuple shape does not imply runtime compatibility.
 [Profile](POSITION_V6.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema13 with18 helper pins; the new allocator is internal code, not a deployed helper. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+Production inventory is schema14 with18 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 preserves the exact RoyaltyRewards creation payload and accounting ABI. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -55,9 +55,11 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Capability | Implemented source boundary |
 | --- | --- |
 | Confirmed reads | Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
+| Claim planning | Opt-in /v1/claims/plan accepts up to32 exact selections, simulates bounded subsets under existing12M/fee/work limits and returns only one freshly verified draft. Every unresolved entry remains explicit; no signing, queue or automatic skip. [Procedure](CLAIM_PLANNING.md). |
+| Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; source-bound schema14 and actual returned-runtime gates required. [Storage format](FACTORY_CODE_STORAGE.md). |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
-| Inventory | Schema13/custody5 validates18helpers, both physical legs and exact-unit royalty4; reporting5/canonicalV8 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema14/custody5 validates18helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs and exact-unit royalty4; reporting5/canonicalV8 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
 | Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
 
