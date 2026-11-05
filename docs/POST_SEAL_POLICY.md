@@ -9,7 +9,7 @@ owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedu
 Fresh execution-quality1 additionally permits governance to set the Strategy-owned
 additional oracle-relative loss limit after known core fees, initial 1% and bounded
 0-10%. Gross venue, captured operation and caller floors remain independent;
-separate reward converters retain their own all-in policy. [Exact controls](EXECUTION_QUALITY.md).
+the separate LP reward converter retains its all-in policy. [Exact controls](EXECUTION_QUALITY.md).
 
 Fresh confirmation3/emergency2 retains two post-seal controls: reviewed
 `setRequireReferenceExit` (sample-invalidating policy change) and a separate
@@ -34,7 +34,7 @@ terminal LP exit. [Complete procedure and risk](EMERGENCY_REBALANCE.md).
 | Loss policy | Contribution 2%, conversion 1%, maintenance 3% defaults, each governance ceiling 10%; separate converter settings. | Stronger caller/venue minima and separate gas remain. Raw collective principal return uses raw minima, not a 3% USD guarantee. |
 | Randomness requests | Future confirmations3-200 and callback gas200,000-10,000,000 via `setRandomnessRequestSettings`. | ProtocolPolicy permits planned coordinator/lane/subscription/payment rotation only after all old draws finalize; no pending reroll/repair/retargeting. Actual provider bounds may be narrower. |
 | Buyback | `setOperatingTradeUSD` from zero through reviewed `maxTradeUSD`, whose positive uint128 USD18 bound governance can change separately; zero stops buys before price/reserve reads. | Fixed ZZZ target; no administrator withdrawal of reserves or automatic keeper salary. |
-| Royalties | Admit reviewed marketplace currencies and configure guarded conversion. | Actual received receipts and original per-NFT rights remain; no external royalty-custody exit/drain. |
+| Royalties | Admit reviewed marketplace currencies and allocate only reviewed unallocated original units; no royalty conversion. | Actual received receipts and original per-NFT rights remain; no external royalty-custody exit/drain. |
 | Services | Qualified RPC/hosting/API/keeper settings with preserved deployment and pending records. | A config edit does not change deployed code, safely migrate a journal or qualify a new source profile. |
 
 Adding/changing a route or feed is security-sensitive despite immediate governance.
@@ -116,8 +116,8 @@ remain [release requirements](RELEASE_CHECKLIST.md).
 
 ## Unallocated royalty recovery after sealing
 
-Recovery1 governance may recover unsupported/orphaned royalty value into ETH for
-active rarity weights at execution. Earned/deferred balances and LP principal
-are excluded; no arbitrary recipient exists. Token conversion still needs the
-converter bound before sealing and reviewed routes/prices. See the [exact
+Recovery2 governance may allocate admitted orphaned royalty units in their ORIGINAL
+currency at active rarity weights at execution. Earned/deferred balances, fractions
+and LP principal are excluded; no recipient, converter, swap or oracle is involved.
+Unsupported currencies require review/admission within16ERC20 slots plus ETH. See the [exact
 procedure and inputs](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).

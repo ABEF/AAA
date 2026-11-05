@@ -584,7 +584,7 @@ def _dual_price(g,chain,token,path,addresses):
         pp+'.review_evidence','pricing.independence','Independently qualify the pair, market coverage, disagreement/freshness bounds and fail-closed outage behavior.','pricing')
 
 
-def _tokens(g,chain,path,now,addresses):
+def _tokens(g,chain,path,now,addresses,*,raw_royalty_assets=frozenset()):
     result = {}
     stamp = _obj(chain.get('observed_block')).get('timestamp')
     for i,item in enumerate(g.items(chain.get('tokens'),path+'.tokens',33,2)):
@@ -604,7 +604,8 @@ def _tokens(g,chain,path,now,addresses):
                 tp,'token.semantics','Qualify exact non-rebasing, non-taxed transfer behavior and token authority risks.','security')
         g.check(type(token.get('observed_decimals')) is int and token.get('observed_decimals') == decimals,
             tp+'.observed_decimals','token.decimals','Read exact asset decimals at the inventory block.','pricing')
-        _dual_price(g,chain,token,tp,addresses)
+        if not (address in raw_royalty_assets and token.get('price_policy') is None):
+            _dual_price(g,chain,token,tp,addresses)
         if address is not None: result[address] = token
     g.check(ZERO in result and NATIVE_DEPENDENCIES['zzz'][0] in result,path+'.tokens','token.required',
         'Qualify both actual ETH and the currently selected ZZZ contract.','pricing')

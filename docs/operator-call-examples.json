@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "642e44169883106200837259d248de52d648139b7f26e15ed85b01f900cea537",
+  "reference_sha256": "b153736fa572fdee91b7c86966f4dd953a68cc6f3cb8896b83e725a5e2040076",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -5420,207 +5420,6 @@
       "arguments": [],
       "value": "$SETTLEMENT_WEI"
     },
-    "ZZZRoyaltyConverter.constructor(address,address,address)": {
-      "role": "D",
-      "short": "Deploy bound implementation",
-      "arguments": [
-        "$CONTROLLER_ADDRESS",
-        "$RECEIVER_ADDRESS",
-        "$WRAPPED_ETH_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.MAX_LOSS_BPS()": {
-      "role": "R",
-      "short": "Read max loss bps",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.access()": {
-      "role": "R",
-      "short": "Read access",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-      "role": "G",
-      "short": "Admit reviewed swap route",
-      "arguments": [
-        [
-          "$SOURCE_ADDRESS",
-          "$ROUTER_ADDRESS",
-          "$FACTORY_ADDRESS",
-          "$POOL_ADDRESS",
-          "$FEE",
-          "$SOURCE_CODE_HASH",
-          "$ROUTER_CODE_HASH",
-          "$FACTORY_CODE_HASH",
-          "$POOL_CODE_HASH",
-          "$REVIEW_HASH"
-        ]
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-      "role": "G",
-      "short": "Admit native conversion route",
-      "arguments": [
-        [
-          "$SOURCE_ADDRESS",
-          "$OUTPUT_ADDRESS",
-          [
-            "0x0000000000000000000000000000000000000000",
-            "$ZZZ_ADDRESS",
-            "$FEE",
-            "$TICK_SPACING",
-            "0x0000000000000000000000000000000000000000"
-          ],
-          "$POOL_MANAGER_ADDRESS",
-          "$STATE_VIEW_ADDRESS",
-          "$SOURCE_CODE_HASH",
-          "$OUTPUT_CODE_HASH",
-          "$POOL_MANAGER_CODE_HASH",
-          "$STATE_VIEW_CODE_HASH",
-          "$REVIEW_HASH"
-        ]
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
-      "role": "G",
-      "short": "Configure reviewed wrapper policy",
-      "arguments": [
-        [
-          "$CODE_HASH",
-          "$ADMIN_ADDRESS",
-          "$IMPLEMENTATION_ADDRESS",
-          "$ADMIN_OWNER_ADDRESS",
-          "$ADMIN_CODE_HASH",
-          "$IMPLEMENTATION_CODE_HASH",
-          "$REVIEW_HASH"
-        ]
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.conversionLossBps()": {
-      "role": "R",
-      "short": "Read conversion loss bps",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.convert(address,uint256,bytes32,uint256,uint256)": {
-      "role": "M",
-      "short": "Convert authenticated ledger funds",
-      "arguments": [
-        "$SOURCE_ADDRESS",
-        "$AMOUNT",
-        "$REVIEWED_ROUTE_ID",
-        "$MINIMUM_ETH_WEI",
-        "$UNIX_DEADLINE"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.enabled()": {
-      "role": "R",
-      "short": "Read enabled",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.ledger()": {
-      "role": "R",
-      "short": "Read ledger",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.route(bytes32)": {
-      "role": "R",
-      "short": "Read route",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.routeEnabled(bytes32)": {
-      "role": "R",
-      "short": "Read route enabled",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.routeExists(bytes32)": {
-      "role": "R",
-      "short": "Read route exists",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.routeKind(bytes32)": {
-      "role": "R",
-      "short": "Read route kind",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.setConversionLossBps(uint16)": {
-      "role": "G",
-      "short": "Set conversion execution-loss limit",
-      "arguments": [
-        100
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.setEnabled(bool)": {
-      "role": "G",
-      "short": "Enable or disable conversion",
-      "arguments": [
-        "$VALUE"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.setRouteEnabled(bytes32,bool)": {
-      "role": "G",
-      "short": "Enable or disable reviewed route",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID",
-        "$VALUE"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.v4Executor()": {
-      "role": "R",
-      "short": "Read v4 executor",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.v4Route(bytes32)": {
-      "role": "R",
-      "short": "Read v4 route",
-      "arguments": [
-        "$REVIEWED_ROUTE_ID"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.wrapper()": {
-      "role": "R",
-      "short": "Read wrapper",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.wrapperPolicy()": {
-      "role": "R",
-      "short": "Read wrapper policy",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyConverter.receive()": {
-      "role": "M",
-      "short": "Receive authenticated ETH settlement",
-      "arguments": [],
-      "value": "$SETTLEMENT_WEI"
-    },
     "ZZZRoyaltyFactory.constructor()": {
       "role": "D",
       "short": "Deploy bound implementation",
@@ -5650,12 +5449,6 @@
     "ZZZRoyaltyRewards.MAX_ASSETS()": {
       "role": "R",
       "short": "Read max assets",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.MAX_CONVERSION_NFTS()": {
-      "role": "R",
-      "short": "Read max conversion nfts",
       "arguments": [],
       "value": null
     },
@@ -5744,14 +5537,6 @@
       "short": "Bind canonical controller once",
       "arguments": [
         "$CONTROLLER_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.bindConverter(address)": {
-      "role": "B",
-      "short": "Bind conversion implementation once",
-      "arguments": [
-        "$CANDIDATE_ADDRESS"
       ],
       "value": null
     },
@@ -5877,26 +5662,6 @@
       ],
       "value": null
     },
-    "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)": {
-      "role": "K",
-      "short": "Convert earned balances proportionally",
-      "arguments": [
-        "$ASSET_ADDRESS",
-        [
-          "$IDS"
-        ],
-        "$REVIEWED_ROUTE_ID",
-        "$MINIMUM_ETH_WEI",
-        "$UNIX_DEADLINE"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.converter()": {
-      "role": "R",
-      "short": "Read converter",
-      "arguments": [],
-      "value": null
-    },
     "ZZZRoyaltyRewards.eligibleCount(address)": {
       "role": "R",
       "short": "Read eligible count",
@@ -6000,19 +5765,6 @@
       "short": "Read unprocessed royalty receipts",
       "arguments": [
         "$ASSET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)": {
-      "role": "G",
-      "short": "Recover unallocated royalties proportionally",
-      "arguments": [
-        "$ROYALTY_TOKEN_ADDRESS",
-        "$UNALLOCATED_RAW_UNITS",
-        "$REVIEWED_ROUTE_ID",
-        "$MINIMUM_ETH_WEI",
-        "$UNIX_DEADLINE",
-        "$REVIEW_HASH"
       ],
       "value": null
     },
@@ -6993,6 +6745,22 @@
       "short": "Receive authenticated ETH settlement",
       "arguments": [],
       "value": "$SETTLEMENT_WEI"
+    },
+    "ZZZRoyaltyRewards.ROYALTY_SETTLEMENT_VERSION()": {
+      "role": "R",
+      "short": "Read original-currency capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.allocateUnallocated(address,uint256,bytes32)": {
+      "role": "G",
+      "short": "Allocate reviewed original-currency royalties",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET",
+        "$UNALLOCATED_RAW_AMOUNT",
+        "$REVIEW_HASH"
+      ],
+      "value": null
     }
   }
 }

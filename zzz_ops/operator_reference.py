@@ -20,7 +20,7 @@ GROUPS = (
     ('policy', 'Pools, ranges, execution and prices', ('ZZZPoolRegistry', 'ZZZActivationAssets',
               'ZZZPortfolioPolicy', 'ZZZProtocolPolicy', 'ZZZOracle', 'ZZZLPBalancer', 'ZZZMigrationBudget')),
     ('revenue', 'LP rewards, royalties and claims', ('ZZZFeeController', 'ZZZMembership', 'ZZZRewards',
-                'ZZZRoyaltyRewards', 'ZZZLPRewardConverter', 'ZZZRoyaltyConverter', 'ZZZClaimRouter')),
+                'ZZZRoyaltyRewards', 'ZZZLPRewardConverter', 'ZZZClaimRouter')),
     ('recovery', 'Parking, holder return and canonical replacement', ('ZZZMigration', 'ZZZCanonicalHandoff')),
     ('holders', 'NFTs, contributions and metadata', ('ZZZNFT', 'ZZZActivationEntry', 'ZZZNFTMetadata')),
     ('internals', 'Bound modules, helpers and factories', ('ZZZContributionPricing', 'ZZZLiquidityManager',
@@ -40,8 +40,7 @@ WRITE_ORDER = {
     'ZZZMigration': ('park', 'closeResidual', 'resume', 'moveFunds', 'emergencyRebalance',
                     'beginCollectiveExit', 'closeBucket', 'allocatePrincipal', 'distributePrincipal',
                     'claimPrincipal', 'invalidateParking', 'configureZZZ'),
-    'ZZZRoyaltyRewards': ('sync', 'syncAll', 'convertBatch', 'recoverUnallocated', 'claim',
-                         'forwardLate', 'fund', 'bindConverter'),
+    'ZZZRoyaltyRewards': ('sync', 'syncAll', 'allocateUnallocated', 'claim', 'forwardLate', 'fund'),
 }
 
 

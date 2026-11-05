@@ -97,7 +97,7 @@ Stablecoins may be admitted separately as marketplace royalty currencies.
 
 ## Entry and membership
 
-Activation defaults to at least100USD original ETH/fixed-ZZZ source value (future-governed policy minima), with the captured contribution floor(default2%,at least98%) actually deployed as marginal oracle-valued MAIN LP. Registry-created direct [Entry3](ACTIVATION_ENTRY.md) forwards the exact pair input to the fixed Vault; no pre-Vault route/conversion child exists. Vault performs reviewed ratio balancing and LP placement within the one captured source budget. Owner/context, dual-price/policy, exact allowance/balance and actual marginal LP checks remain. Growth defaults5USD under the same rules and stronger pool minima; current governed idle limits remain independent. Separate earned-LP/royalty converters retain their own v3/v4 routes. Actual input/venue/token/feed/gas qualification remains open.
+Activation defaults to at least100USD original ETH/fixed-ZZZ source value (future-governed policy minima), with the captured contribution floor(default2%,at least98%) actually deployed as marginal oracle-valued MAIN LP. Registry-created direct [Entry3](ACTIVATION_ENTRY.md) forwards the exact pair input to the fixed Vault; no pre-Vault route/conversion child exists. Vault performs reviewed ratio balancing and LP placement within the one captured source budget. Owner/context, dual-price/policy, exact allowance/balance and actual marginal LP checks remain. Growth defaults5USD under the same rules and stronger pool minima; current governed idle limits remain independent. Only the LP reward converter retains reviewed v3/v4 routes; royalties are claimed in their original currency. Actual input/venue/token/feed/gas qualification remains open.
 
 Before share/membership changes, the Vault settles already-funded local dust
 and harvests both current bucket legs. Entrant-only swaps/deployment increase the
@@ -124,7 +124,14 @@ keeps its ordinary keeper/unpause/execution controls. [Procedure](OPERATOR_MANUA
 
 ## NFT royalties and metadata
 
-The NFT owns immutable royalty/metadata helpers. ERC-2981 requests 5% sale royalties payable directly to the separate receiver; 100% of eligible receipts is reserved for activated rarity weights 1/2/3. Native ETH and up to 16 reviewed ERC20 assets use funded indexes, pre-join pending synchronization and current-owner claims. There is no LP revenue split or arbitrary administrator sweep in this ledger. No external royalty-custody exit or administrator drain exists; eligibility and receipts continue after LP exit. Pre-admission/constructor/zero-eligibility funds are classified as unallocated. Governance-only recovery1 may convert/release that value into ETH at current active rarity weights, without consuming existing earned/deferred liabilities or using an external beneficiary. The keeper handles approved earned-balance conversion only when explicitly configured. [Royalty procedure](ROYALTY_SETTLEMENT.md).
+Fresh royalty settlement2/recovery2 pays each admitted currency as received.
+There is no royalty converter, swap or unwrap. Governance may allocate only
+reviewed admitted unallocated units in the SAME currency at current active
+rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
+earned/deferred/fractional rights remain excluded. Unsupported currencies require
+review/admission first;16ERC20 slots plus ETH remain. Original-currency claims
+need no price feed; optional USD reporting and LP reward conversion are separate.
+See [current settlement](ROYALTY_SETTLEMENT.md).
 
 VRF callbacks only store request-bound words. Permissionless reveal follows mint order, drawing without replacement to exact 600/300/100 quotas. A separate word draws a fixed artwork entry without replacement within that rarity. Eight base colors form 58 palettes, combined with four patterns: Flowing arcs, Segmented panels, Orbital rings and Twin circuit routes. Rarity, palette and pattern remain immutable; palette/pattern do not affect rewards, while rarity sets only the separate royalty weight. The 1,000-entry inventory has 200 monochrome, 500 bicolor and 300 tricolor slots, each with the 60/30/10 rarity mix; identical palette/pattern/rarity finishes occur at most four times and all 100 Legendary looks are unique. Missing earlier fulfillment blocks later reveal; no reroll/cancellation bypass exists. [NFT details](NFT_METADATA.md).
 

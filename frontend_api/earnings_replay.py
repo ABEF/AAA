@@ -24,6 +24,7 @@ SPECS = {
  ('royalties', 'RoyaltyCustodyReturned(bytes32,address,uint256)'): (2, 1),
  ('royalties', 'RoyaltiesReceived(address,uint256,bool)'): (1, 2),
  ('royalties', 'UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)'): (1, 4),
+ ('royalties', 'UnallocatedRoyaltiesAllocated(address,uint256,uint256,bytes32)'): (1, 3),
  ('handoff', 'Frozen(bytes32,address)'): (2, 0),
  ('handoff', 'Aborted(bytes32)'): (1, 0),
  ('handoff', 'Retired(bytes32,address,bytes32)'): (2, 1),
@@ -273,6 +274,19 @@ class Replay:
                 self.pending_recovery[asset] = transaction
             else:
                 self.cohorts[asset] = set(self.weights)
+        elif name == 'UnallocatedRoyaltiesAllocated':
+            asset = _topic_address(topics[1])
+            amount, supply, review = d
+            cohort = self.cohorts.get(asset)
+            require(not self.frozen and cohort == set(self.weights) and bool(cohort) and
+                    supply == sum(self.weights.values()) and amount > 0 and review != 0,
+                    'Invalid original-currency royalty allocation')
+            self.add('royalties_recovered',asset,amount,timestamp)
+            self.add('royalties_allocated',asset,amount,timestamp)
+            delta=amount*SCALE//supply
+            self.royalty_index[asset] += delta
+            for identifier in self.selected:
+                self.earn('royalties',asset,delta*self.weights.get(identifier,0),timestamp,identifier)
         elif name == 'UnallocatedRoyaltiesRecovered':
             source = _topic_address(topics[1])
             amount, output, supply, review = d

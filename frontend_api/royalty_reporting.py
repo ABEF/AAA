@@ -12,11 +12,13 @@ class Reporting:
     def __init__(self, config, projection):
         from frontend_api.service import Contract, _hash, _keys
         _keys(config, {'schema', 'converter'}, 'royalty_reporting')
-        if type(config['schema']) is not int or config['schema'] not in (1, 2):
+        if type(config['schema']) is not int or config['schema'] not in (1, 2, 3):
             raise ValueError('Unsupported royalty reporting profile')
         self.schema = config['schema']
         if self.schema == 2 and config['converter'] is None:
             raise ValueError('Governed converter reporting requires an explicit runtime pin')
+        if self.schema == 3 and config['converter'] is not None:
+            raise ValueError('Original-currency royalties have no converter')
         self.p = projection
         self.converter = None
         if config['converter'] is not None:
@@ -45,6 +47,12 @@ class Reporting:
     def _converter(self, block):
         from frontend_api.service import ZERO, ProjectionError, _address_word, _bool
         p = self.p
+        if self.schema == 3:
+            if p._uint('royalties','ROYALTY_SETTLEMENT_VERSION()',block=block) != 2:
+                raise ProjectionError('Original-currency royalty capability mismatch')
+            return {'address':None,'available':True,'enabled':False,
+                    'reason':'original_currency_settlement','next_execution_at':None,
+                    'scope':'Royalties are claimed in their received currency; no swap or unwrap.'}
         # Ledger getter failures are a wrong-profile/core failure, not a token outage.
         bound = p._addr('royalties', 'converter()', block=block, native=True)
         result = {'address': None if bound == ZERO else bound, 'available': False,
@@ -102,6 +110,8 @@ class Reporting:
             if count > total or eligible != (ordinal != 0 and ordinal <= count):
                 raise ProjectionError('Inconsistent royalty currency eligibility')
             if asset == ZERO and count != total:
+                if self.schema == 3:
+                    raise ProjectionError('Original-currency native eligibility mismatch')
                 if p.accounting_version in (4,5,6):
                     # There is no native-token read fault or external custody
                     # path in this fresh ledger. Never invoke removed selectors.
@@ -129,10 +139,14 @@ class Reporting:
             if asset == ZERO and weight != 0 and not eligible and item['available'] and int(item['raw']) != 0:
                 raise ProjectionError('Deferred native royalty entitlement predates eligibility')
             item.update(eligible=eligible, eligibility='inactive' if not weight else 'eligible' if eligible else 'deferred',
-                        settlement_currency='ETH' if asset == ZERO else 'source_asset',
-                        unconverted_raw=item['raw'] if asset != ZERO else None)
+                        settlement_currency=('ETH' if asset == ZERO else 'source_asset'),
+                        unconverted_raw=item['raw'] if asset != ZERO and self.schema != 3 else None)
+            if self.schema == 3:
+                item.update(settlement_mode='original_currency',claim_asset=asset,conversion_required=False)
             balances.append(item)
         return {'available': True, 'schema': self.schema, 'activation_ordinal': ordinal,
                 'balances_complete': all(item['available'] for item in balances),
                 'balances': balances, 'converter': self._converter(block),
-                'scope': 'Eligibility is per currency; deferred NFTs join only future receipts after recovery. Non-ETH balances may be converted or claimed directly; they are not queued ETH payments.'}
+                'scope': ('Eligibility is per currency; deferred NFTs join only future receipts after recovery. '
+                          'All royalties are claimed in their original currency; no conversion or unwrap.' if self.schema == 3 else
+                          'Eligibility is per currency; deferred NFTs join only future receipts after recovery. Non-ETH balances may be converted or claimed directly; they are not queued ETH payments.')}

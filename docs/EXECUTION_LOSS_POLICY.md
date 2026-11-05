@@ -9,7 +9,7 @@ Network gas is separate. The candidate is undeployed and not production approved
 | Category | Policy owner and getters | Measurement |
 | --- | --- | --- |
 | Activation and top-ups | Vault's immutable `migrationBudget()`: `contributionLossBps()` | At least `grossUSD - floor(grossUSD * cap / 10,000)` must be added as marginal deployed LP. Incumbent principal, idle, compound and donations cannot subsidize it. |
-| LP-fee / royalty conversion | Each fixed-ledger converter: `conversionLossBps()` | Native ETH output must meet `ceil(independentOracleQuote * (10,000 - cap) / 10,000)` and the stronger caller minimum. Each converter has its own setting. Exact WETH unwrap remains 1:1. |
+| LP-fee conversion | Fixed LP converter: `conversionLossBps()` | Native ETH output must meet `ceil(independentOracleQuote * (10,000 - cap) / 10,000)` and the stronger caller minimum. Exact WETH unwrap remains 1:1. Royalties are claimed in their original currency and have no swap cap. |
 | Rebalance and atomic same-pair pool move/resume | Budget: `maintenanceLossBps()` | Retain the capped starting principal plus released compound, measured at one starting price vector. This does not apply a USD floor to raw collective holder return. |
 
 `MAX_LOSS_BPS()` is 1,000 basis points (10%) in these current modules. One basis
@@ -25,8 +25,8 @@ oracle-relative deterioration to 1% by default, governance-adjustable0-10% with
 fees are removed from input before computing its conservative output floor.
 The existing gross venue floor, caller minimum and captured contribution/
 maintenance caps remain independent and may be stricter. This is not an extra
-fee allowance on top of every gross cap. Separate LP/royalty converters keep
-their own all-in conversion limits. [Exact formula and scope](EXECUTION_QUALITY.md),
+fee allowance on top of every gross cap. The separate LP reward converter keeps
+its all-in conversion limit; royalty swaps are removed. [Exact formula and scope](EXECUTION_QUALITY.md),
 [operator procedure](OPERATOR_MANUAL.md#set-additional-execution-loss).
 
 ## Operator procedure

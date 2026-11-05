@@ -33,7 +33,7 @@ This file is current instructions, not a report timeline.
   confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
   compatible parked same-chain canonical V6 wire does not imply runtime compatibility.
-  Schema10 inventory has20helpers. Historical schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
+  Schema11 inventory has18helpers and original-currency royalty2. Historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -163,7 +163,7 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review now defaults to the royalty-audit strict474-record review. Earlier471-record evidence remains source-scoped.
+- CI/check-slither-review now defaults to the royalties-in-kind strict466-record review. Earlier471-record evidence remains source-scoped.
  44focused Python methods verify that repair; no analyzer/contract rerun. Update
   full review/default together after relevant source changes; preserve old pins.
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
@@ -186,24 +186,21 @@ the November3 authority report below remains historical for those contexts.
   archive/rotation/restore and independent approval stay open. OpenSea research
   does not implement or approve its exact Robinhood drop caller/payment path.
 
-## Royalty recovery source boundary
+## Royalty original-currency source boundary
 
-The [royalty recovery audit](reports/royalty-audit-20261105/REVIEW.md) adds
-recovery1: governance can convert only unsupported/unallocated royalty value to
-ETH for active rarity weights at recovery. Existing earned/deferred entitlements
-are excluded; no external recipient or weakened conversion floor. Unsupported
-late tokens can forward only to the authenticated successor. New runtime/event
-pins and rebuilt earnings checkpoints are required; no installed environment
-changes. ERC2981 requests5%, not universally enforced marketplace payment.
-Governance recoverUnallocated requires sealed canonical state0, current NFT,
-unpaused/no preparation and pre/post authority; keeper authorization is insufficient.
-Admitted source units are restricted to orphaned after sync; unsupported sources
-need no permanent admission slot. No earned/fractional/deferred liability is
-recoverable. Native unallocated ETH needs no converter; ERC20 recovery still needs
-the pre-seal binding and reviewed routes/prices. No active weights means wait,
-not a different beneficiary. Earlier automatic quarantine remains a classification
-until explicitly recovered. Current reference37/820/37/13;43normal gates and
-474static contexts(33current/441exact referenced-source reuse). No deployment.
+User selected original-currency claims5November2026. Fresh royalty settlement2/
+recovery2 removes swaps, unwrap, converter storage/binding and converter child.
+Royalties remain ETH/WETH/USDC/etc as received. No oracle or route is needed for
+raw claims; LP conversion remains separate. Governance allocateUnallocated uses
+only admitted orphaned units, allocating SAME currency at active weights now,
+without payout or arbitrary recipient. Protect earned/deferred/fraction liabilities.
+Unsupported tokens need review/admission; append-only16ERC20 plusETH remains.
+Fresh schema11/18helpers, reporting3/converter:null, keeper explicit
+royalty_settlement_version2 and no enabled royalty conversion. Preserve legacy
+conversion1 readers/events/tests/journals separately; do not relabel old runtimes.
+New royalty storage/runtime/event pins require fresh authentication and checkpoint
+rebuild/review. Current reference36/797/36/12; normal42gates; strict466contexts
+(25current/441exact referenced-source reuse). No deployment/site/service reset.
 
 ## Operator documentation maintenance
 

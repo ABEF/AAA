@@ -1,7 +1,7 @@
 # Work handoff
 
-Reviewed5November2026. Current Solidity/source baseline main
-`28f75738a01efae2a2e11cf861e5e94d4d10efb3`; verify actual local/remote Git heads.
+Reviewed5November2026. Pre-settlement2 task baseline main
+`bce897c480cd7df67e4936d278d51908d3d7885f`; verify actual local/remote Git heads.
 Read [instructions](../AGENTS.md), [context](../PROJECT_CONTEXT.md),
 [README](../README.md), [sole Todo](../TODO.md),
 [Operator manual](OPERATOR_MANUAL.md) and [profile](POSITION_V6.md).
@@ -9,22 +9,22 @@ Read [instructions](../AGENTS.md), [context](../PROJECT_CONTEXT.md),
 
 ## Current task result
 
-The operator guide has generated four-column examples for all820functions,
-37constructors and13receivers, grouped by duty/contract with folded reads and
-module callbacks. Each explanation has at most5words. Tuple/array fields remain
-complete; caller, transaction value, raw units and live snapshot symbols remain
-explicit. New `operator-call-examples.json` binds the exact source function
-reference; `generate-operator-reference.py --check` is part of normal verification.
-These are documentation templates, not unsigned transactions or signing authority.
+User selected original-currency royalties. Fresh settlement2/recovery2 removes
+the royalty converter and ledger swap/binding/approval entrypoints. Governance
+allocateUnallocated(asset,amount,reviewHash) changes only admitted orphaned units
+to liabilities in the SAME currency at active weights. No earned/deferred/fraction
+backing, LP conversion, principal, weight or current-owner right is changed.
 
-[Documentation verification](../reports/operator-docs-20261105/VERIFICATION.md)
-records the focused checks, complete document map and unchanged source scope.
+Fresh schema11 has18helpers; reporting3/converter:null and explicit keeper
+royalty_settlement_version2/no royalty conversion authenticate the new boundary.
+Legacy schemas/events/conversion tests stay separate. This is a new royalty
+runtime/storage layout, never an upgrade or relabeled journal. Source website
+claims/displays raw royalty currencies; public signing and actual sites unchanged.
 
-The partial write catalog and duplicate Entry-routing prose are consolidated.
-Three historical plans/prompts retain stable pointers to exact original Git text.
-Old profile codecs stay exact. Current maps/security/minima/royalty text now
-include future-governed terms and unallocated recovery1. No Solidity behavior,
-economic rights, sources, public signer or running environment changed.
+Current short tables cover797functions/36constructors/12receivers with845rows.
+[Verification](../reports/royalties-in-kind-20261105/VERIFICATION.md) records
+normal42gates, static466contexts and focused EVM/Python/website checks. Initial
+fixture failures remain archived; no security guard was relaxed.
 
 ## Verify documentation without repeating contract suites
 
@@ -43,10 +43,10 @@ main LP_TOKEN_ID. Contribution policy, mint policy and offline reviewHash differ
 
 ## Exact source evidence and remaining work
 
-[Royalty verification](../reports/royalty-audit-20261105/VERIFICATION.md) owns the
-latest43normal gates/474strict static contexts and72distinct selected EVM cases;
+[Royalty verification](../reports/royalties-in-kind-20261105/VERIFICATION.md) owns the
+current42normal gates/466strict static contexts and58selected EVM methods;
 Python stages overlap. Current source is accounting6/custody5/portfolio2/direct
-Entry3 plus recovery1; compatible parked canonicalV6 wire is not runtime identity.
+Entry3 plus royalty settlement2/recovery2; compatible parked canonicalV6 wire is not runtime identity.
 Earlier [reports](../reports/README.md) retain their original pins/failures/scope.
 Documentation work does not rerun unchanged Solidity suites or establish CI/live
 provider/gas/hosting/marketplace or independent approval.
@@ -56,8 +56,7 @@ site/services, metadata, history longevity/restore, operating economics and
 independent audit/remediation remain open under the [roadmap](ROADMAP.md) and sole
 Todo. Do not revive retired bridges/creator inboxes/third contribution inputs or
 external custody-address exits. Existing earned/deferred royalties remain distinct
-from current-weight unallocated recovery. Review actual converter binding before
-seal; source publication does not enable the optional keeper conversion worker.
+from current-weight unallocated recovery. Review actual admitted royalty currencies before seal; no royalty converter is bound. LP conversion is separate. Source publication changes no worker.
 
 ## Preserve actual environments and unrelated work
 

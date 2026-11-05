@@ -101,7 +101,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    enrolling waiting NFTs. Native ETH has no token balance-read failure or
    external-custody deferral in accounting4/5/6. Gas bounds and full backing checks
    remain. Not every technical activation failure is isolated.
-6. LP/royalty conversions debit the selected NFTs' source entitlements and credit
+6. LP reward conversions debit the selected NFTs' source entitlements and credit
    actual ETH to those same NFTs. Conversion, claim, transfer and principal return
    are not new earnings. No backing can be counted both as raw funds and as
    converted credit. Retired-currency liabilities remain backed and identifiable.

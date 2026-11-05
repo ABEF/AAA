@@ -70,9 +70,11 @@ rehearse actual operation and obtain independent review before production.
 
 ## Restricted royalty recovery
 
-Current governance alone calls RoyaltyRewards.recoverUnallocated with the exact
+Current governance alone calls RoyaltyRewards.allocateUnallocated with the exact
 inputs in the [operator procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
 An authorized keeper cannot recover unsupported/orphaned funds. Existing
-convertBatch retains keeper permission and same-NFT credit. Recovery has no
-arbitrary recipient or earned-balance override; it credits ETH to active weights
-at execution. Retired forwardLate remains permissionless but fixes its successor.
+royalty swaps/unwraps and converter binding are removed from settlement2. Allocation has no
+arbitrary recipient or earned-balance override; it credits the SAME admitted currency
+to active weights at execution. Retired forwardLate fixes its successor. Original
+owner claims and32-entry mixed claim batches stay owner-authorized; LP conversion
+retains its separate keeper permission. Historical royalty conversion profiles remain separate.

@@ -38,21 +38,20 @@ Custody, ownership and reward accounting.
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - In progress. Earned-balance batch ETH conversion, optional-currency fault isolation and governance-only recovery1 of genuinely unallocated tokens are implemented. Recovery uses active rarity weights at execution without consuming earned/deferred funds. Unsupported late currencies forward only to the authenticated successor. Qualify actual converter pre-seal binding, routes/prices, marketplace receipts and operations; broken/illiquid/unpriced tokens cannot be guaranteed convertible.
+- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Settlement2 removes royalty swaps/unwraps and the converter. Holders claim each admitted original currency through direct or mixed claims. Recovery2 allocates only reviewed admitted unallocated units in that same currency at current active weights. Verify actual currencies, marketplace payments, schema11/runtime/API/site integration, gas and independent audit.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Keep ETH pricing and verified ETH/WETH as the initial marketplace scope. Verify actual listings/offers/old orders/checkout settlement; a buyer source currency or ETH pricing preference does not prove what reaches the royalty receiver.
-  - Independently review and record the fixed converter binding before sealing, exact wrapper/admin/implementation policies, admitted source currencies, route/factory/pool pins, feeds and final runtime inventory. Stablecoin support remains conditional on actual settlement needs; no live route is assumed.
-  - Implemented: one guarded conversion for up to 32 NFTs' earned balances, proportional ETH credit to those same NFTs, exact WETH unwrap, at least 99% oracle-valued stablecoin output, strict minimum/deadline, approvals/delta checks and separate keeper gas. Original earned claims/fractions remain intact; unallocated recovery is a separate user-approved rule.
-  - Approved and implemented: activation survives optional royalty-token failures; unseen receipts at recovery go to the earlier cohort, then waiting NFTs join future receipts. Expose eligibleFor and deferred/recovered status accurately. Exact unreadable backing still blocks canonical handoff.
-  - Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.
-  - Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required.
-  - This converter applies only to royalties. It neither converts the LP ledger nor guarantees native ETH for all claims; direct source-currency claims remain supported. See [LP ETH settlement](TODO.md#task-lp-eth-settlement).
-  - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
-  - Before marketplace launch, admit reviewed expected settlement currencies. Unknown pre-admission balances are quarantined, not retroactive NFT income; define provenance/policy before proposing any different treatment. Preserve current healthy/native currency eligibility while optional currency faults defer only that registration. [Operator guidance](docs/OPERATOR_MANUAL.md#deep-cleanup-review---2026-10-25).
-  - [Royalty recovery1 audit](reports/royalty-audit-20261105/REVIEW.md): governance recoverUnallocated converts only unsupported balances or admitted orphaned units, never pending earlier-cohort/earned liabilities. ETH is first allocated by current active weights, not paid to an operator. Prove getter/runtime and converter binding before seal; qualify actual routes/prices/token behavior, receipt logs, failed/retry recovery and operator gas. No universal-token conversion guarantee or automatic spam approval.
+  - User decision5November2026: no royalty swaps or unwraps; keep LP conversion separate. ETH, WETH, USDC and every admitted currency retain their own amounts and exact decimals. No route/feed is needed merely to claim original units.
+  - Preserve activated rarity1/2/3, pending-receipt/incumbent checkpoints, earlier outage cohorts, fractions, current-owner transfers, claim atomicity and zero dormant dilution.
+  - Recovery2 requires reviewed admission first and governance allocateUnallocated(asset,amount,reviewHash), bounded by actual orphaned backing. Allocate the original currency at active weights at recovery; never consume earned/deferred/index-dust liabilities or choose a custody recipient.
+  - Admission remains append-only16ERC20 plus ETH. Review full-capacity/unconventional token recovery before sealing; there is no unlimited-token or universal recoverability promise.
+  - Authenticate schema11/18-helper fresh inventory and settlement2/recovery2, API reporting3/converter:null, and fresh keeper royalty_settlement_version2 with royalty conversion disabled. Do not reinterpret legacy runtimes, event histories or journals.
+  - Source website reviews original-currency claims and separate quantities;32 total NFT/asset/ledger operations maximum. Simulate exact mixed claims and surface unavailable currencies. Public signing remains disabled and actual source/site/API rollout is separate.
+  - Rebuild/review earnings checkpoints after original-currency allocation event semantics change; preserve old conversion/recovery events as history, never new income or additional paid totals.
+  - Qualify actual OpenSea recipient/order/offer/checkout payments, approved token transfer behavior, gas/capacity, outage recovery and independent audit/remediation. Local tests are not live approval.
+  - [Current implementation and evidence](reports/royalties-in-kind-20261105/REVIEW.md). Historical converter/recovery1 reports retain their source scope; those features are deliberately removed from the fresh release.
 
   </details>
 
@@ -1457,4 +1456,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `3ad92412ff1115f03c92ac451eaa8cabc610dfb523738923e2939767fcd950ef`.
+Snapshot SHA-256: `452d97b96cbf4e1dad6432b217efda529d055227df13670d385986a1d955e458`.

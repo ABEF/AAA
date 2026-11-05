@@ -9,7 +9,7 @@ EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership'
 'ZZZOracle','ZZZPoolRegistry',
 'ZZZCanonicalHandoff','ZZZNFTCanonical','ZZZVaultCanonical','ZZZFeesCanonical']
 HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
-'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZRoyaltyConverter','ZZZLPRewardConverter',
+'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing','ZZZLPBalancer','ZZZRebalanceConfirmation','ZZZPortfolioPolicy',
 'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZPythPriceFeed']
 # Required source classes, not the count of deployed helper addresses: two

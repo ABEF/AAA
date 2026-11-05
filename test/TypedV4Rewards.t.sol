@@ -14,11 +14,11 @@ import {ModifyLiquidityParams} from "@uniswap/v4-core/src/types/PoolOperation.so
 import {BalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
-import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
+import {ZZZRoyaltyConverter} from "./historical/ZZZRoyaltyConverter.sol";
 import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
 import {ZZZV4RouteExecutor} from "../src/ZZZV4RouteExecutor.sol";
-import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
+import {ZZZRoyaltyRewards} from "./historical/ZZZRoyaltyRewards.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {PoolKey,Ids} from "../src/libraries/ZZZTypes.sol";

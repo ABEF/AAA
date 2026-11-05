@@ -74,14 +74,16 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 
 `royaltyInfo` requests 5% of sale value, payable entirely to the immutable `ZZZRoyaltyRewards` helper. ERC-2981 reports a royalty request; it does not enforce payment. All actually received eligible funds are distributed to activated Commun/Rare/Legendary at 1/2/3, regardless of LP size/evolution. Dormant NFTs get zero weight. LP owner/collective rewards remain a separate ledger.
 
-Native ETH is admitted automatically. Reviewed ERC20 assets can be appended through NFT governance; prefunds at admission are quarantined. Pending receipts are checkpointed before a new NFT joins, preserving incumbent rights. Zero-eligibility and constructor prefunds remain separately unallocated until governance-only recovery1. It can allocate measured ETH by active rarity weights at recovery, excluding existing earned/deferred entitlements; no external rescue wallet or redirected holder claim exists. Current owners claim, and unclaimed funds follow transfers. Read [economic rules](ECONOMICS.md) for dust, token admission and liveness boundaries.
+Fresh royalty settlement2/recovery2 pays each admitted currency as received.
+There is no royalty converter, swap or unwrap. Governance may allocate only
+reviewed admitted unallocated units in the SAME currency at current active
+rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
+earned/deferred/fractional rights remain excluded. Unsupported currencies require
+review/admission first;16ERC20 slots plus ETH remain. Original-currency claims
+need no price feed; optional USD reporting and LP reward conversion are separate.
+See [current settlement](ROYALTY_SETTLEMENT.md).
 
-The [ETH-first settlement direction](ROYALTY_SETTLEMENT.md) is a separate implemented candidate requiring live qualification: qualify ETH pricing and actual ETH/WETH receipts, and convert
-USDC/USDG only if those royalty settlement currencies cannot be excluded. The candidate converts earned royalties in bounded batches into ETH and preserves
-direct-currency claims as a fallback. A failed optional currency no longer blocks
-activation: earlier eligible NFTs retain unseen receipts; newcomers join that
-currency after recovery. Rarity is fixed at reveal; no additional user payment
-is required. See the settlement guide for exact boundaries and qualification.
+The [original-currency royalty policy](ROYALTY_SETTLEMENT.md) preserves ETH/WETH/USDC and every admitted currency as received. Activated rarity weights and prior rights remain unchanged; holders use direct or mixed claims. No separate activation payment, royalty swap or conversion worker is required.
 
 Primary references: [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981), [ERC-4906](https://eips.ethereum.org/EIPS/eip-4906), [Chainlink VRF security](https://docs.chain.link/vrf/v2-5/security), [VRF request ABI](https://docs.chain.link/vrf/v2-5/subscription/get-a-random-number). Actual coordinator/network review remains open.
 

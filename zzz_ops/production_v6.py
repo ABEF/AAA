@@ -461,7 +461,7 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
@@ -497,7 +497,7 @@ def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILE
     history=g.obj(chain.get('inventory_history'),path+'.inventory_history')
     g.check(history.get('complete') is True,path+'.inventory_history','history.incomplete','Retain complete creation-to-anchor pools/routes/source/asset/role history.')
     V._bound_proof(g,history.get('evidence'),path+'.inventory_history.evidence',chain,kind='complete_deployment_inventory',exact_block=True)
-    _nft(g,chain,path,tokens)
+    _nft(g,chain,path,tokens,royalty_conversion=royalty_conversion)
     services=g.obj(chain.get('services'),path+'.services');g.keys(services,service_profiles,path+'.services')
     for role,profile in service_profiles.items():
         sp=path+'.services.'+role;s=g.obj(services.get(role),sp)
@@ -514,7 +514,7 @@ def validate(config, *, expected_commit=None, now=None):
 
 
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
-              service_profiles, route_validator):
+              service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
@@ -547,10 +547,14 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         _safe(g,path+'.anchor',lambda:_anchor(g,chain,path,home,int(time.time()) if now is None else now))
         addresses=_safe(g,path+'.contracts',lambda:_contracts(g,chain,path,helpers=helpers,binding_factory=binding_factory)) or []
         deps=_safe(g,path+'.dependencies',lambda:V._dependencies(g,chain,path,addresses)) or {}
-        tokens=_safe(g,path+'.tokens',lambda:V._tokens(g,chain,path,now,addresses)) or {}
+        tokens=_safe(g,path+'.tokens',lambda:token_validator(g,chain,path,now,addresses)) or {}
         pools=_safe(g,path+'.pools',lambda:_pools(g,chain,path,tokens,deps)) or {}
         limits=g.obj(chain.get('execution_loss_policy'),path+'.execution_loss_policy')
-        for name in ('contribution_bps','maintenance_bps','lp_conversion_bps','royalty_conversion_bps'):
+        loss_fields=('contribution_bps','maintenance_bps','lp_conversion_bps')
+        if royalty_conversion: loss_fields += ('royalty_conversion_bps',)
+        else: g.check('royalty_conversion_bps' not in limits,path+'.execution_loss_policy','royalty.original_currency',
+                      'Original-currency royalties have no swap loss policy.')
+        for name in loss_fields:
             g.check(type(limits.get(name)) is int,path+'.execution_loss_policy.'+name,'loss.type','Read exact current basis points.')
             g.num(limits.get(name),path+'.execution_loss_policy.'+name,0,1000)
         g.check(limits.get('hard_maximum_bps')==1000 and limits.get('gas_separate') is True,path+'.execution_loss_policy','loss.policy','Retain hard1000bps ceilings and separate gas.')
@@ -561,7 +565,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
@@ -731,7 +735,7 @@ def _pools(g,chain,path,tokens,deps):
         'Read Budget3 compoundInterval for each pool at the same block.','bindings')
     return pools
 
-def _nft(g,chain,path,tokens):
+def _nft(g,chain,path,tokens,*,royalty_conversion=True):
     """Reuse current draw/content/VRF checks, with explicit custody3 asset semantics."""
     # Common checks are source-copied to keep historical validator behavior fixed.
     np=path+'.nft_inventory';nft=g.obj(chain.get('nft_inventory'),np);ctor=V._obj(chain.get('constructor'))
@@ -776,6 +780,10 @@ def _nft(g,chain,path,tokens):
         p=g.proof(asset.get('review_evidence'),np+'.royalty_assets.review_evidence',independent=True)
         g.check(p.get('outage_isolation_reviewed') is True and p.get('old_receipts_preserved') is True,np,'royalty.outage','Review failure isolation and earlier cohorts.')
         routes=chain.get('_validated_routes',{})
+        if not royalty_conversion:
+            g.check(asset.get('strategy')==('native' if address==ZERO else 'claim_original'),np,'royalty.original_currency',
+                    'Declare native ETH or claim_original for each admitted royalty currency; no swap route.')
+            continue
         g.check(address==ZERO and asset.get('strategy')=='native' or address!=ZERO and asset.get('strategy')=='convert_to_eth' and any(
             role=='royalty' and r.get('enabled') is True and r.get('source_asset')==address for (role,_),r in routes.items()),np,'royalty.route','Qualify actual optional-currency ETH conversion; no arbitrary custody recovery.')
 

@@ -587,7 +587,7 @@ class Projection:
                           'default_settlement': 'native_eth' if ZERO in lp_assets else 'source_assets',
                           'royalties': royalty_balances,
                           'lp_scope': 'Already allocated funded LP rewards; unharvested venue fees are not simulated.',
-                          'royalty_scope': 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes unclaimed conversion credits.'},
+                          'royalty_scope': ('Contract view includes pending admitted receipts at this currency\'s eligible membership weights. Royalties are claimed in each original currency.' if self.royalty_reporting is not None and self.royalty_reporting.schema == 3 else 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes historical unclaimed conversion credits.')},
             'royalty_reporting': settlement or {'available': False,
                 'reason': 'Current royalty-ledger reporting profile is not configured; no per-currency eligibility or conversion status is inferred.'},
             'unavailable_metrics': dict(UNAVAILABLE),

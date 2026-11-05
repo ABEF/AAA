@@ -1684,7 +1684,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema10 production observation is separate from keeper live configuration.
+Schema11 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1695,67 +1695,44 @@ Changing the example does not alter any installed service or saved journal.
 
 ### Marketplace currency and ETH payouts
 
-The [settlement and conversion runbook](ROYALTY_SETTLEMENT.md) specifies the exact
-OpenSea pricing procedure, pre-seal converter binding, reviewed wrapper/routes,
-post-seal governance stop/reopen controls, keeper configuration, gas budgets,
-outage recovery and event/accounting checks. Native ETH requires no conversion;
-WETH unwrap is exact and stablecoin conversion enforces the converter's current
-`conversionLossBps()` ceiling (1% by default, maximum 10%), plus stronger caller
-and venue minima.
-Network gas is separate and paid by the keeper. Batches convert earned balances
-for at most 32 NFTs and credit ETH to those same NFTs; they are not claims.
+Fresh royalty settlement2 pays original currencies: ETH, WETH, USDC or another
+reviewed admitted token. No royalty converter, unwrap, route, feed or conversion
+worker is involved. Use [settlement steps](ROYALTY_SETTLEMENT.md) and the complete
+call tables. LP rewards keep their separate ETH-conversion policy.
 
-`RoyaltyRewards.bindConverter` is one-time **before sealing**; converter
-`configureWrapper`, `addRoute`, `setRouteEnabled` and `setEnabled` are immediate
-governance operations within lifecycle controls. The optional keeper job is off
-by default. Do not reset pending/nonce/budget state when adding its contract pins.
-Stop a failed route without querying it, then review fresh policies before restart.
-
-Activation survives optional-currency balance failures. On recovery, unseen funds
-belong to the earlier eligible cohort; waiting NFTs join future receipts only.
-Check `eligibleFor(id,asset)` and the deferred/recovered events. Healthy claims
-continue; exact unreadable backing can still block canonical handoff. Original
-currency claims remain a fallback. Ordinary convertBatch cannot use LP principal, orphaned funds or another NFT's
-entitlement; the separate unallocated-only recovery procedure follows below. Local implementation is not live-service
-approval; use the [central settlement task](../TODO.md#task-royalty-eth-settlement).
+Governance admits a reviewed token through `NFT.addRoyaltyAsset(token)`, including
+after sealing, within16ERC20 slots plus ETH. The current owner uses
+`RoyaltyRewards.claim(id,asset)` or mixed `ClaimRouter.claimBatch` with at most32
+NFT/asset/ledger entries. No approvals are required. Failed selected currencies
+revert a batch; simulate/review healthy entries separately. Fractions, prior
+rights, current ownership and outage cohorts remain protected. Operators can
+call permissionless `sync(asset)` after a token outage to enroll waiting NFTs.
 
 ### Recover unexpected royalty currencies
 
-Use the [complete recovery procedure and input table](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
-Current governance calls `RoyaltyRewards.recoverUnallocated(asset,amount,routeId,minimumETH,deadline,reviewHash)`
-only after proving the amount is unsupported/unallocated, with the receiver's
-recovery1 getter/runtime, pre-seal converter binding, reviewed route/prices,
-positive minimum/deadline and an active rarity-weight denominator. The keeper
-cannot use this authority. No external payout address exists. Earned and deferred
-royalties keep earlier entitlements; current-weight recovery is a separate rule.
-Native unallocated ETH requires no converter. Verify the event, exact source/ETH
-backing and unchanged existing liabilities; later owner claims remain normal.
-Failed transactions revert; stop/review/re-enable bad routes and retry a fresh
-review. Successful first allocation cannot be reversed. No service restart is
-needed solely for the contract call; do not reset keeper journals or keys.
+Review [original-currency unallocated allocation](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
+For an unsupported asset review/admit it first; existing funds become unallocated.
+Governance calls `RoyaltyRewards.allocateUnallocated(asset,amount,reviewHash)`
+under recovery2, sealed/current/unpaused/no preparation and positive active weight.
+Amount is positive raw units bounded by `orphaned(asset)` after sync; reviewHash
+is a nonzero reviewed classification/beneficiary fingerprint. No swap, unwrap,
+price, approval, external recipient or keeper authority. Accounted backing is
+unchanged; source-currency orphaned decreases and liabilities/index increase.
+Existing earned/deferred/fraction funds are excluded. Verify
+`UnallocatedRoyaltiesAllocated`, then holders claim the SAME asset. Success is
+irreversible; failure reverts. No service restart is needed for the contract call.
+Admission capacity16 and pathological tokens remain limits, not a sweep permit.
 
 ### Read royalty status and conversion history
 
-The [reporting guide](ROYALTY_REPORTING.md) gives exact configuration and field
-semantics. In a reviewed schema-2 API configuration, opt in with
-`"royalty_reporting": {"schema": 1, "converter": null}`; supply the exact bound
-converter address/runtime hash only after reviewing them. This changes read
-behavior, not contracts, keeper scheduling or transaction permissions.
-
-Verify dormant/eligible/deferred cases at a confirmed block. A currency failure
-must show an unavailable amount, while healthy balances remain visible. Unknown
-core state, stale snapshots and work limits reject the request. Disabled or
-unverified converter status is not an ETH execution promise. Original-currency
-claims and synchronization retain their separate on-chain controls.
-
-Use actual lifetime `previously_claimed` payouts for the NFT, including past
-owners. Keep `royalty_conversions` separate: current ETH claimable already includes
-unclaimed converted amounts. After an API/indexer outage, restore/backfill complete
-history and retirement cutoffs; never reset them to show zero totals. Roll back
-to a compatible reviewed configuration/release and disable unsupported UI fields
-if needed. Runtime drift requires review, not automatic acceptance of new pins.
-Actual hosting/consumer qualification remains open; no service is started by this
-code change. See the [scoped verification](../reports/royalty-reporting/VERIFICATION.md).
+Use [reporting schema3](ROYALTY_REPORTING.md):
+`"royalty_reporting":{"schema":3,"converter":null}`. Authenticate exact runtime
+and `ROYALTY_SETTLEMENT_VERSION()==2`. Each currency has a separate raw claim,
+eligibility and optional current-price USD value. Non-ETH funds are claimable in
+their original currency, never pending ETH. Missing prices/metadata stay explicit.
+Claims alone increase lifetime paid amounts. Old conversion history remains
+historical and cannot be counted as new income. Rebuild/review checkpoints after
+the semantic replay change; preserve original journals/runtime profiles.
 
 ### Prepare and rotate an earnings checkpoint
 
@@ -2345,12 +2322,11 @@ One-host browser/demo locks do not establish production wallet authorization or
 
 ## Holder payout currencies
 
-LP and royalty converters remain separate, bound to their exact immutable ledgers.
-Follow [LP settlement](LP_ETH_SETTLEMENT.md) and [royalty settlement](ROYALTY_SETTLEMENT.md).
-Native ETH needs no conversion. Non-native earned balances remain their actual
-currency until a successful guarded conversion credits ETH to those same NFTs.
-Keep unavailable/pending amounts explicit; never display source token units as ETH.
-No converter has principal custody or a generic approval/sweep permission.
+Royalties are claimed in their original currencies under settlement2; WETH
+remains WETH. LP holder rewards retain their separate approved ETH-conversion
+path. [Royalty settlement](ROYALTY_SETTLEMENT.md), [LP settlement](LP_ETH_SETTLEMENT.md).
+Never sum raw currencies or call a missing price zero. A source token claim uses
+no price feed; optional USD display and LP conversions have separate requirements.
 
 ## Convert LP holder fees to ETH
 
@@ -2636,7 +2612,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **820 functions, 37 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **797 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3409,22 +3385,20 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | --- | --- | --- | --- |
 | `P` [RoyaltyRewards.sync](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `sync(ASSET_ADDRESS)` | Synchronize actual royalty receipts |
 | `P` [RoyaltyRewards.syncAll](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `syncAll()` | Synchronize all admitted currencies |
-| `K` [RoyaltyRewards.convertBatch](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`ids: uint256[]`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convertBatch(ASSET_ADDRESS, ["IDS"], REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert earned balances proportionally |
-| `G` [RoyaltyRewards.recoverUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256`<br>`reviewHash: bytes32` | `recoverUnallocated(ROYALTY_TOKEN_ADDRESS, UNALLOCATED_RAW_UNITS, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE, REVIEW_HASH)` | Recover unallocated royalties proportionally |
+| `G` [RoyaltyRewards.allocateUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256`<br>`reviewHash: bytes32` | `allocateUnallocated(ADMITTED_ROYALTY_ASSET, UNALLOCATED_RAW_AMOUNT, REVIEW_HASH)` | Allocate reviewed original-currency royalties |
 | `H` [RoyaltyRewards.claim](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claim(NFT_ID, 0x0000000000000000000000000000000000000000)` | Claim current owner's rewards |
 | `P` [RoyaltyRewards.forwardLate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `forwardLate(ASSET_ADDRESS)` | Forward receipts to successor |
 | `P` [RoyaltyRewards.fund](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256` | `fund(ASSET_ADDRESS, AMOUNT)` | Fund actual received royalties |
-| `B` [RoyaltyRewards.bindConverter](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `candidate: address` | `bindConverter(CANDIDATE_ADDRESS)` | Bind conversion implementation once |
 
 <details>
-<summary>Read functions and constants (32)</summary>
+<summary>Read functions and constants (31)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [RoyaltyRewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ASSETS()` | Read max assets |
-| `R` [RoyaltyRewards.MAX_CONVERSION_NFTS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_CONVERSION_NFTS()` | Read max conversion nfts |
 | `R` [RoyaltyRewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
 | `R` [RoyaltyRewards.ROYALTY_RECOVERY_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_RECOVERY_VERSION()` | Read royalty recovery version |
+| `R` [RoyaltyRewards.ROYALTY_SETTLEMENT_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_SETTLEMENT_VERSION()` | Read original-currency capability |
 | `R` [RoyaltyRewards.SCALE](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `SCALE()` | Read scale |
 | `R` [RoyaltyRewards.accounted](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
 | `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
@@ -3439,7 +3413,6 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.canonicalExport](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
 | `R` [RoyaltyRewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalValidate()` | Validate imported classified backing |
 | `R` [RoyaltyRewards.claimable](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claimable(NFT_ID, ASSET_ADDRESS)` | Read funded claimable balance |
-| `R` [RoyaltyRewards.converter](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `converter()` | Read converter |
 | `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
 | `R` [RoyaltyRewards.eligibleFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `eligibleFor(NFT_ID, ASSET_ADDRESS)` | Read eligible for |
 | `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
@@ -3516,49 +3489,6 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [LPRewardConverter.convert](CONTRACT_FUNCTIONS.md#zzzlprewardconverter) | `source: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convert(SOURCE_ADDRESS, AMOUNT, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert authenticated ledger funds |
-
-</details>
-
-<a id="zzzroyaltyconverter"></a>
-
-#### RoyaltyConverter
-
-| Function name | Expected input | Example call inputs | Explanation |
-| --- | --- | --- | --- |
-| `G` [RoyaltyConverter.addRoute](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZRewardConverter.RoutePolicy](#input-zzzrewardconverter-routepolicy) | `addRoute(["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
-| `G` [RoyaltyConverter.addV4Route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy) | `addV4Route(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit native conversion route |
-| `G` [RoyaltyConverter.configureWrapper](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `policy` [ZZZRewardConverter.WrapperPolicy](#input-zzzrewardconverter-wrapperpolicy) | `configureWrapper(["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"])` | Configure reviewed wrapper policy |
-| `G` [RoyaltyConverter.setConversionLossBps](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: uint16` | `setConversionLossBps(100)` | Set conversion execution-loss limit |
-| `G` [RoyaltyConverter.setEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: bool` | `setEnabled(VALUE)` | Enable or disable conversion |
-| `G` [RoyaltyConverter.setRouteEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32`<br>`value: bool` | `setRouteEnabled(REVIEWED_ROUTE_ID, VALUE)` | Enable or disable reviewed route |
-
-<details>
-<summary>Read functions and constants (13)</summary>
-
-| Function name | Expected input | Example call inputs | Explanation |
-| --- | --- | --- | --- |
-| `R` [RoyaltyConverter.MAX_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `MAX_LOSS_BPS()` | Read max loss bps |
-| `R` [RoyaltyConverter.access](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `access()` | Read access |
-| `R` [RoyaltyConverter.conversionLossBps](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `conversionLossBps()` | Read conversion loss bps |
-| `R` [RoyaltyConverter.enabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `enabled()` | Read enabled |
-| `R` [RoyaltyConverter.ledger](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `ledger()` | Read ledger |
-| `R` [RoyaltyConverter.route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `route(REVIEWED_ROUTE_ID)` | Read route |
-| `R` [RoyaltyConverter.routeEnabled](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeEnabled(REVIEWED_ROUTE_ID)` | Read route enabled |
-| `R` [RoyaltyConverter.routeExists](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeExists(REVIEWED_ROUTE_ID)` | Read route exists |
-| `R` [RoyaltyConverter.routeKind](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `routeKind(REVIEWED_ROUTE_ID)` | Read route kind |
-| `R` [RoyaltyConverter.v4Executor](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `v4Executor()` | Read v4 executor |
-| `R` [RoyaltyConverter.v4Route](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `id: bytes32` | `v4Route(REVIEWED_ROUTE_ID)` | Read v4 route |
-| `R` [RoyaltyConverter.wrapper](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `wrapper()` | Read wrapper |
-| `R` [RoyaltyConverter.wrapperPolicy](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | None | `wrapperPolicy()` | Read wrapper policy |
-
-</details>
-
-<details>
-<summary>Contract-only calls: use the parent workflow (1)</summary>
-
-| Function name | Expected input | Example call inputs | Explanation |
-| --- | --- | --- | --- |
-| `M` [RoyaltyConverter.convert](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `source: address`<br>`amount: uint256`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convert(SOURCE_ADDRESS, AMOUNT, REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert authenticated ledger funds |
 
 </details>
 
@@ -4637,10 +4567,6 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `D` [RoyaltyConverter.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `controller: address`<br>`receiver: address`<br>`wrappedETH: address` | `deploy RoyaltyConverter(CONTROLLER_ADDRESS, RECEIVER_ADDRESS, WRAPPED_ETH_ADDRESS)` | Deploy bound implementation |
-
-| Function name | Expected input | Example call inputs | Explanation |
-| --- | --- | --- | --- |
 | `D` [RoyaltyFactory.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `deploy RoyaltyFactory()` | Deploy bound implementation |
 
 | Function name | Expected input | Example call inputs | Explanation |
@@ -4701,10 +4627,6 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [Rewards.receive](CONTRACT_FUNCTIONS.md#zzzrewards) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
-
-| Function name | Expected input | Example call inputs | Explanation |
-| --- | --- | --- | --- |
-| `M` [RoyaltyConverter.receive](CONTRACT_FUNCTIONS.md#zzzroyaltyconverter) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |

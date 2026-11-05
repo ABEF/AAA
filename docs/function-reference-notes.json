@@ -215,7 +215,7 @@
           "access": "Bound canonicalHandoff only; internal protocol endpoint, not an operator shortcut.",
           "inputs": {
             "0": "Canonical lifecycle code 0 operating / 1 frozen / 2 importing / 3 retired / 4 cancelled.",
-            "1": "True permits the coordinator’s bounded settlement phase only when state=1; false disables settlement mode.",
+            "1": "True permits the coordinator\u2019s bounded settlement phase only when state=1; false disables settlement mode.",
             "2": "True clears preparationActive during this authenticated transition; false preserves the current flag."
           }
         },
@@ -385,11 +385,11 @@
           }
         },
         "applyKeeperRange(bytes32,uint16)": {
-          "purpose": "Apply a Strategy-selected preapproved ±25% or ±50% width to registry policy. Requires live normal canonical operation, no preparation and operations-enabled admitted pool. It changes target policy, not existing physical LP ticks.",
+          "purpose": "Apply a Strategy-selected preapproved \u00b125% or \u00b150% width to registry policy. Requires live normal canonical operation, no preparation and operations-enabled admitted pool. It changes target policy, not existing physical LP ticks.",
           "access": "Bound Strategy module only; keepers cannot call Registry directly.",
           "inputs": {
             "0": "PoolKey-derived admitted pool ID.",
-            "1": "Exactly 2500 or 5000 BPS (±25%/±50% in approved orientation); internal Strategy-selected target, not user-chosen width."
+            "1": "Exactly 2500 or 5000 BPS (\u00b125%/\u00b150% in approved orientation); internal Strategy-selected target, not user-chosen width."
           }
         },
         "contributionValue(bytes32,uint256,uint256)": {
@@ -616,10 +616,10 @@
           }
         },
         "sourceValue(bytes32,uint256,uint256)": {
-          "purpose": "Expose frozen original-source value only to the parent Registry’s exact contribution check.",
+          "purpose": "Expose frozen original-source value only to the parent Registry\u2019s exact contribution check.",
           "access": "Fixed Registry only; internal view endpoint.",
           "inputs": {
-            "0": "Pool ID from the Registry’s exact current contribution check.",
+            "0": "Pool ID from the Registry\u2019s exact current contribution check.",
             "1": "Actual raw currency0 contribution amount matching the live Entry context; wei for native ETH.",
             "2": "Actual raw currency1 contribution amount matching that same context."
           },
@@ -752,7 +752,7 @@
           }
         },
         "isApprovedForAll(address,address)": {
-          "purpose": "Read an owner/operator’s ERC721 transfer approval.",
+          "purpose": "Read an owner/operator\u2019s ERC721 transfer approval.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "NFT owner who granted or revoked a collection-wide operator approval.",
@@ -832,7 +832,7 @@
           }
         },
         "paletteOf(uint256)": {
-          "purpose": "Read a revealed NFT’s immutable prepared-palette index. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
+          "purpose": "Read a revealed NFT\u2019s immutable prepared-palette index. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
@@ -842,7 +842,7 @@
           }
         },
         "patternOf(uint256)": {
-          "purpose": "Read a revealed NFT’s immutable prepared-pattern index. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
+          "purpose": "Read a revealed NFT\u2019s immutable prepared-pattern index. Unrevealed mapping defaults are not assigned traits; check traitsReady and existence.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
@@ -958,7 +958,7 @@
           }
         },
         "traitsReady(uint256)": {
-          "purpose": "Read whether this NFT’s original rarity/palette/pattern draw was finalized.",
+          "purpose": "Read whether this NFT\u2019s original rarity/palette/pattern draw was finalized.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual canonical NFT ID, not a one-based mint ordinal or display number."
@@ -1079,18 +1079,18 @@
           }
         },
         "approve(address,uint256)": {
-          "purpose": "Set or clear the one-token ERC721 transfer approval. Approval permits NFT transfer, not contribution/claim authority or principal redemption. The NFT’s unclaimed rights follow any later transfer.",
+          "purpose": "Set or clear the one-token ERC721 transfer approval. Approval permits NFT transfer, not contribution/claim authority or principal redemption. The NFT\u2019s unclaimed rights follow any later transfer.",
           "access": "NFT owner or owner-approved transfer operator.",
           "inputs": {
-            "0": "Address granted one-token transfer approval; zero clears that token’s approval.",
+            "0": "Address granted one-token transfer approval; zero clears that token\u2019s approval.",
             "1": "Existing canonical NFT ID whose transfer approval is changed."
           }
         },
         "setApprovalForAll(address,bool)": {
-          "purpose": "Grant or revoke ERC721 transfer authority across the caller’s NFTs. A marketplace/operator can transfer all approved NFTs; use only intended trusted operator. Does not grant Vault governance or owner-only claims.",
+          "purpose": "Grant or revoke ERC721 transfer authority across the caller\u2019s NFTs. A marketplace/operator can transfer all approved NFTs; use only intended trusted operator. Does not grant Vault governance or owner-only claims.",
           "access": "NFT owner acting for own holdings.",
           "inputs": {
-            "0": "Nonzero address receiving or losing transfer authority across the caller’s NFTs.",
+            "0": "Nonzero address receiving or losing transfer authority across the caller\u2019s NFTs.",
             "1": "True grants collection-wide ERC721 transfer approval; false revokes it. Does not grant principal redemption or owner-only reward claims."
           }
         },
@@ -1141,7 +1141,7 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Finite draw rarity index: 0 Commun / 1 Rare / 2 Legendary.",
-            "1": "Sparse Fisher-Yates inventory slot within that rarity’s prepared artwork draw, not a token ID."
+            "1": "Sparse Fisher-Yates inventory slot within that rarity\u2019s prepared artwork draw, not a token ID."
           },
           "outputs": {
             "0": "uint16 sparse entry encoded plus one; zero represents identity, not palette zero."
@@ -1179,7 +1179,7 @@
           "purpose": "Read the replacement controller/NFT after permanent canonical retirement.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "Both zero before retired state; after retirement returns the coordinator’s destination controller and its bound NFT.",
+            "0": "Both zero before retired state; after retirement returns the coordinator\u2019s destination controller and its bound NFT.",
             "1": "NFT module address of that immediate successor controller; zero before retirement. It is not an approval or automatic escrow-release guarantee."
           }
         },
@@ -1357,7 +1357,7 @@
           }
         },
         "sequencerFeed()": {
-          "purpose": "Read the current sequencer uptime dependency; zero is the deployment’s explicit no-feed mode.",
+          "purpose": "Read the current sequencer uptime dependency; zero is the deployment\u2019s explicit no-feed mode.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Configured uptime source address, zero when absent initially; an installed safeguard has no remove-to-zero setter."
@@ -1456,7 +1456,7 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual admitted asset address; zero means native ETH.",
-            "1": "Raw amount in the token’s own decimals, or wei for ETH; valuation result is floor-rounded USD18."
+            "1": "Raw amount in the token\u2019s own decimals, or wei for ETH; valuation result is floor-rounded USD18."
           },
           "outputs": {
             "0": "Floor(amount*lowerPrice/10**assetDecimals), in USD18."
@@ -1548,13 +1548,13 @@
           "notes": "Every successful orientation setter invalidates confirmation policy revision, including changed-and-restored values; prior ordinary samples cannot authorize the new range policy."
         },
         "setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)": {
-          "purpose": "Enable/disable reviewed on-chain switching between ±25% and ±50% in the approved price orientation. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Disabling needs no healthy Oracle/venue read. Enabling requires orientation 1, current width 2500/5000, ordered narrow/widen thresholds, consistent config and reviewHash. No keeper-selected arbitrary volatility model.",
+          "purpose": "Enable/disable reviewed on-chain switching between \u00b125% and \u00b150% in the approved price orientation. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Disabling needs no healthy Oracle/venue read. Enabling requires orientation 1, current width 2500/5000, ordered narrow/widen thresholds, consistent config and reviewHash. No keeper-selected arbitrary volatility model.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation.",
           "inputs": {
             "0": "Admitted pool ID with explicit orientation 1.",
             "1": "False disables without price/venue reads; true validates and binds reviewed rules.",
-            "2": "Maximum recorded-center displacement in BPS permitting a 5000→2500 narrowing; strictly below widenTriggerBps.",
-            "3": "Minimum displacement permitting 2500→5000 widening; strictly below 2500 BPS.",
+            "2": "Maximum recorded-center displacement in BPS permitting a 5000\u21922500 narrowing; strictly below widenTriggerBps.",
+            "3": "Minimum displacement permitting 2500\u21925000 widening; strictly below 2500 BPS.",
             "4": "Seconds between policy changes:>=600 and>=pool minRebalanceInterval,<=604800.",
             "5": "Nonzero reviewed rule/configuration commitment; enabling snapshots config and current timestamp."
           },
@@ -1643,14 +1643,14 @@
             "2": "Raw currency1 amount available to balance; not an NFT reward, gas amount or USD18 value."
           },
           "outputs": {
-            "0": "True swaps currency0→currency1; false the reverse.",
+            "0": "True swaps currency0\u2192currency1; false the reverse.",
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
           },
           "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
         },
         "compoundPlan(uint256,uint256,uint256)": {
-          "purpose": "Calculate balancing of compound amounts against the bucket’s existing physical LP ticks. Uses current qualified prices and actual directional fees; does not execute, collect or compound assets.",
+          "purpose": "Calculate balancing of compound amounts against the bucket\u2019s existing physical LP ticks. Uses current qualified prices and actual directional fees; does not execute, collect or compound assets.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "id is shared bucket ID; raw amount0/amount1 are ordered pool currency amounts.",
@@ -1658,7 +1658,7 @@
             "2": "Raw currency1 amount available to balance; not an NFT reward, gas amount or USD18 value."
           },
           "outputs": {
-            "0": "True swaps currency0→currency1; false the reverse.",
+            "0": "True swaps currency0\u2192currency1; false the reverse.",
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
           },
@@ -1934,11 +1934,11 @@
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "activate(uint256,bytes32,uint256,uint256,uint128,uint256)": {
@@ -1951,7 +1951,7 @@
             "2": "Raw units of actual ordered currency0; native ETH uses wei.",
             "3": "Raw units of actual ordered currency1.",
             "4": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD.",
-            "5": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "5": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "value": "Exactly amount0 wei for the admitted native ETH/fixed-ZZZ pair; fixed ZZZ is pulled exactly from the authenticated owner/Entry."
         },
@@ -1989,21 +1989,21 @@
           "notes": "Makes no transfer or ordinary financial change."
         },
         "canonicalChainId()": {
-          "purpose": "Identify the chain on which this Vault’s canonical NFT rights are issued.",
+          "purpose": "Identify the chain on which this Vault\u2019s canonical NFT rights are issued.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The chain on which this Vault’s canonical NFT rights are issued."
+            "0": "The chain on which this Vault\u2019s canonical NFT rights are issued."
           }
         },
         "canonicalModule()": {
-          "purpose": "Locate the fixed companion that exports/imports this component’s canonical accounting.",
+          "purpose": "Locate the fixed companion that exports/imports this component\u2019s canonical accounting.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The fixed companion that exports/imports this component’s canonical accounting."
+            "0": "The fixed companion that exports/imports this component\u2019s canonical accounting."
           }
         },
         "canonicalSend(address,address,uint256)": {
-          "purpose": "Transfer an exact classified backing leg under the fixed canonical companion’s captured manifest.",
+          "purpose": "Transfer an exact classified backing leg under the fixed canonical companion\u2019s captured manifest.",
           "access": "Only fixed VaultCanonical.",
           "notes": "No general public rescue or admin sweep; the companion controls the permitted destination/amount.",
           "inputs": {
@@ -2027,7 +2027,7 @@
           "notes": "One shared-bucket call serves every associated NFT; no1000-call loop. Independent hourly keeper harvest or permissionless caller pays its transaction gas. This does not compound,buy back or claim holder rewards,withdraw principal or run after terminal exit.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "1": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "compound(uint256,uint128,uint256)": {
@@ -2037,11 +2037,11 @@
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD.",
-            "2": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "2": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "contributionUSD(uint256)": {
-          "purpose": "Read an NFT’s cumulative admitted gross contribution accounting.",
+          "purpose": "Read an NFT\u2019s cumulative admitted gross contribution accounting.",
           "access": "Anyone; read-only.",
           "notes": "Returns: USD18; not the current marked LP value and not withdrawable principal.",
           "inputs": {
@@ -2063,13 +2063,13 @@
           "notes": "A bucket is shared backing, not an individual NFT allocation. USD contribution marks are not current NAV."
         },
         "homePoolId(uint256)": {
-          "purpose": "Read the bucket’s original canonical home-pool identity, preserved across supported moves.",
+          "purpose": "Read the bucket\u2019s original canonical home-pool identity, preserved across supported moves.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT ID."
           },
           "outputs": {
-            "0": "The bucket’s original canonical home-pool identity, preserved across supported moves."
+            "0": "The bucket\u2019s original canonical home-pool identity, preserved across supported moves."
           }
         },
         "increase(uint256,uint256,uint256,uint128,uint256)": {
@@ -2081,7 +2081,7 @@
             "1": "Raw units of actual ordered currency0; native ETH uses wei.",
             "2": "Raw units of actual ordered currency1.",
             "3": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "4": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "value": "Exactly the declared native pair input, otherwise zero; earlier approval alone does not attach LP."
         },
@@ -2108,7 +2108,7 @@
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Exact admitted destination pool identity; actual pair restrictions remain.",
             "2": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "3": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "nftBucket(uint256)": {
@@ -2152,7 +2152,7 @@
           "notes": "Reviewed paused Migration workflow binds full execution identity/raw minima. No external recipient, USD-oracle prerequisite or normal holder redemption; terminal exit blocks parking.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "1": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "poolBucket(bytes32)": {
@@ -2193,7 +2193,7 @@
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Exact admitted destination pool identity; actual pair restrictions remain.",
             "2": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "3": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "sequence()": {
@@ -2204,13 +2204,13 @@
           }
         },
         "sharesOf(uint256)": {
-          "purpose": "Read the NFT’s nonredeemable ownership shares within its attached shared bucket.",
+          "purpose": "Read the NFT\u2019s nonredeemable ownership shares within its attached shared bucket.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical NFT ID, not mint ordinal or bucket ID."
           },
           "outputs": {
-            "0": "The NFT’s nonredeemable ownership shares within its attached shared bucket."
+            "0": "The NFT\u2019s nonredeemable ownership shares within its attached shared bucket."
           }
         },
         "totalIdle(address)": {
@@ -2316,11 +2316,11 @@
       "purpose": "Immutable native ETH/ZZZ swap coordinator with reviewed Balancer and fixed typed LPPositionExecutor. Vault owns both LP NFTs; exact LP/ZZZ deployment approvals target the child, while swaps use Manager budget approvals.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "amounts(uint256)": {
@@ -2365,7 +2365,7 @@
             "2": "Raw units of actual ordered currency0; native ETH uses wei.",
             "3": "Raw units of actual ordered currency1.",
             "4": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
-            "5": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "5": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "outputs": {
             "0": "Actual raw currency0 spent increasing the existing LP.",
@@ -2384,7 +2384,7 @@
             "3": "Raw units of actual ordered currency0; native ETH uses wei.",
             "4": "Raw units of actual ordered currency1.",
             "5": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
-            "6": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "6": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "outputs": {
             "0": "New MAIN LP ID; residual from secondaryId(main).",
@@ -2415,7 +2415,7 @@
           }
         },
         "spot(bytes32)": {
-          "purpose": "Read the pool’s current square-root price directly from the bound StateView.",
+          "purpose": "Read the pool\u2019s current square-root price directly from the bound StateView.",
           "access": "Anyone; read-only.",
           "notes": "Spot can be manipulated and is not an independent USD Oracle. Returns: sqrt(currency1/currency0) in Q96; do not confuse it with ZZZ price orientation.",
           "inputs": {
@@ -2435,13 +2435,13 @@
         "swap(bytes32,bool,uint256,uint256,uint256)": {
           "purpose": "Execute a typed exact-input swap in an admitted pool with price/output/deadline checks.",
           "access": "Only the sealed fixed Vault or Buyback module.",
-          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0→1; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount. A zero minimum rejects. A positive caller minimum below protocol policy is raised to the stronger protocol floor rather than rejected solely for underspecification; stronger caller minima still bind. Full policy context is captured before input pull and rechecked after output. Direct swaps now also require a constructible configured target range; extreme TickMath ratios can prevent them.",
+          "notes": "No arbitrary recipient: outputs go to the authenticated caller; exact native call value and approval cleanup apply. Inputs: zeroForOne selects ordered currency0\u21921; raw input/minimumOut and Unix deadline bound execution. Returns: Actual raw output amount. A zero minimum rejects. A positive caller minimum below protocol policy is raised to the stronger protocol floor rather than rejected solely for underspecification; stronger caller minima still bind. Full policy context is captured before input pull and rechecked after output. Direct swaps now also require a constructible configured target range; extreme TickMath ratios can prevent them.",
           "inputs": {
             "0": "Exact admitted bytes32 hash of the v4 PoolKey, not a pool contract address.",
-            "1": "True swaps currency0→currency1; false swaps currency1→currency0.",
+            "1": "True swaps currency0\u2192currency1; false swaps currency1\u2192currency0.",
             "2": "Exact raw units of the chosen swap input currency.",
             "3": "Minimum raw units of the ordered swap output currency.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "4": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "outputs": {
             "0": "Actual raw output amount."
@@ -2449,7 +2449,7 @@
           "value": "Exactly amountIn when the selected swap input is native ETH; otherwise zero."
         },
         "ticks(uint256)": {
-          "purpose": "Read a physical position’s lower and upper ticks from the bound position manager.",
+          "purpose": "Read a physical position\u2019s lower and upper ticks from the bound position manager.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Physical Uniswap position-manager NFT ID, not a PoPL NFT or bucket ID."
@@ -2675,22 +2675,22 @@
       "purpose": "Allocate physically received local LP fees at 80/10/5/5 into backed holder, collective, compound and buyback ledgers; no creator inbox or remote intake.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "accounted(address)": {
-          "purpose": "Read the controller’s total classified backing in one currency.",
+          "purpose": "Read the controller\u2019s total classified backing in one currency.",
           "access": "Anyone; read-only.",
-          "notes": "Includes purpose-bound reserves and tracked dust, not an administrator’s spendable balance.",
+          "notes": "Includes purpose-bound reserves and tracked dust, not an administrator\u2019s spendable balance.",
           "inputs": {
             "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
           },
           "outputs": {
-            "0": "The controller’s total classified backing in one currency."
+            "0": "The controller\u2019s total classified backing in one currency."
           }
         },
         "allocate(uint256,address,uint256)": {
@@ -2735,17 +2735,17 @@
           }
         },
         "canonicalModule()": {
-          "purpose": "Locate the fixed companion that exports/imports this component’s canonical accounting.",
+          "purpose": "Locate the fixed companion that exports/imports this component\u2019s canonical accounting.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The fixed companion that exports/imports this component’s canonical accounting."
+            "0": "The fixed companion that exports/imports this component\u2019s canonical accounting."
           }
         },
         "canonicalState()": {
-          "purpose": "Read the controller’s current canonical lifecycle state used by funding/forwarding guards.",
+          "purpose": "Read the controller\u2019s current canonical lifecycle state used by funding/forwarding guards.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The controller’s current canonical lifecycle state used by funding/forwarding guards."
+            "0": "The controller\u2019s current canonical lifecycle state used by funding/forwarding guards."
           }
         },
         "canonicalWrite(uint8,bytes)": {
@@ -2769,14 +2769,14 @@
           }
         },
         "dust(uint256,address)": {
-          "purpose": "Read one bucket/currency’s unsplit fee remainder awaiting a valid allocation boundary.",
+          "purpose": "Read one bucket/currency\u2019s unsplit fee remainder awaiting a valid allocation boundary.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT ID.",
             "1": "Actual currency address; zero denotes native ETH in V2."
           },
           "outputs": {
-            "0": "One bucket/currency’s unsplit fee remainder awaiting a valid allocation boundary."
+            "0": "One bucket/currency\u2019s unsplit fee remainder awaiting a valid allocation boundary."
           }
         },
         "flushDust(uint256,address)": {
@@ -2798,7 +2798,7 @@
           }
         },
         "releaseCompound(uint256,address)": {
-          "purpose": "Send a bucket’s designated compounding reserve back to Vault for reinvestment.",
+          "purpose": "Send a bucket\u2019s designated compounding reserve back to Vault for reinvestment.",
           "access": "Only fixed authorized Vault.",
           "notes": "Cannot spend buyback or claimable balances. Returns: Raw reserve amount released; may be zero.",
           "inputs": {
@@ -2834,7 +2834,7 @@
         "purpose": "Deploy and bind Funded 80/10/5/5 allocation, segregated compound/buyback reserves and optional creator-inbox continuity.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       },
       "receive": {
@@ -2869,19 +2869,19 @@
           }
         },
         "SCALE()": {
-          "purpose": "Read the fixed-point denominator used by this reward ledger’s cumulative indices and fractions.",
+          "purpose": "Read the fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions.",
           "access": "Anyone; read-only.",
           "notes": "Accounting precision, not an amount payable to a holder.",
           "outputs": {
-            "0": "The fixed-point denominator used by this reward ledger’s cumulative indices and fractions."
+            "0": "The fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions."
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "addAsset(address)": {
@@ -2942,7 +2942,7 @@
         "canonicalBacking(uint256)": {
           "purpose": "Read one captured backing asset and raw amount for funded personal/collective reward indices, balances and fractions.",
           "access": "Anyone; read-only.",
-          "notes": "Recorded liability/principal backing, not the module’s unclassified live balance.",
+          "notes": "Recorded liability/principal backing, not the module\u2019s unclassified live balance.",
           "inputs": {
             "0": "Zero-based captured backing leg index."
           },
@@ -3014,7 +3014,7 @@
           "notes": "Reverts on inconsistency; a successful call alone does not activate a successor or approve release."
         },
         "checkpointAll(uint256)": {
-          "purpose": "Settle an NFT’s collective indices before its eligibility changes.",
+          "purpose": "Settle an NFT\u2019s collective indices before its eligibility changes.",
           "access": "Only fixed Membership; active economic state.",
           "notes": "Protects past collective allocations from new activations.",
           "inputs": {
@@ -3022,7 +3022,7 @@
           }
         },
         "checkpointOwner(uint256)": {
-          "purpose": "Settle an NFT’s personal LP-share indices before its shares change.",
+          "purpose": "Settle an NFT\u2019s personal LP-share indices before its shares change.",
           "access": "Only fixed Vault; active economic state.",
           "notes": "Not an owner-address account reset; unclaimed rights remain attached to the NFT.",
           "inputs": {
@@ -3043,7 +3043,7 @@
         },
         "claimFor(uint256,address,address)": {
           "purpose": "Pay an owner-authenticated router claim directly to the current NFT owner.",
-          "access": "Only the NFT’s fixed ClaimRouter, with current-owner recheck.",
+          "access": "Only the NFT\u2019s fixed ClaimRouter, with current-owner recheck.",
           "notes": "Transfer approval alone is not a claim authorization.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
@@ -3067,7 +3067,7 @@
           }
         },
         "collective(uint256,address)": {
-          "purpose": "Read an NFT’s stored equal-membership collective component before further checkpointing.",
+          "purpose": "Read an NFT\u2019s stored equal-membership collective component before further checkpointing.",
           "access": "Anyone; read-only.",
           "notes": "Not rarity-weighted; use claimable() for the combined complete balance.",
           "inputs": {
@@ -3075,11 +3075,11 @@
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "An NFT’s stored equal-membership collective component before further checkpointing."
+            "0": "An NFT\u2019s stored equal-membership collective component before further checkpointing."
           }
         },
         "convertBatch(address,uint256[],bytes32,uint256,uint256)": {
-          "purpose": "Swap selected NFTs’ already allocated ERC20 LP rewards into ETH and credit the same NFTs.",
+          "purpose": "Swap selected NFTs\u2019 already allocated ERC20 LP rewards into ETH and credit the same NFTs.",
           "access": "Authorized keeper; live/operating economic state.",
           "notes": "At most 32 strictly increasing IDs; preserves personal/collective attribution, source fractions and all output wei. This is not a payout. Returns: Total ETH credited in wei; current owners claim later.",
           "inputs": {
@@ -3087,17 +3087,17 @@
             "1": "Strictly increasing NFT ID list, bounded to32; duplicate entries are rejected.",
             "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked.",
             "3": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "4": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "outputs": {
             "0": "Total ETH credited in wei; current owners claim later."
           }
         },
         "converter()": {
-          "purpose": "Locate the fixed executor permitted to convert this ledger’s earned balances.",
+          "purpose": "Locate the fixed executor permitted to convert this ledger\u2019s earned balances.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The fixed executor permitted to convert this ledger’s earned balances."
+            "0": "The fixed executor permitted to convert this ledger\u2019s earned balances."
           }
         },
         "creditCanonicalCutoff(uint256,address,uint256,uint256)": {
@@ -3125,7 +3125,7 @@
           "value": "Exactly personal+shared for native currency zero; otherwise zero and exact ERC20 transfer."
         },
         "fraction(uint256,address)": {
-          "purpose": "Read an NFT’s retained collective fixed-point fractional carry.",
+          "purpose": "Read an NFT\u2019s retained collective fixed-point fractional carry.",
           "access": "Anyone; read-only.",
           "notes": "Backed precision residue, not a whole-unit claim or free dust.",
           "inputs": {
@@ -3133,7 +3133,7 @@
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "An NFT’s retained collective fixed-point fractional carry."
+            "0": "An NFT\u2019s retained collective fixed-point fractional carry."
           }
         },
         "index(address)": {
@@ -3147,7 +3147,7 @@
           }
         },
         "individual(uint256,address)": {
-          "purpose": "Read an NFT’s stored personal LP-reward component before any further index checkpoint.",
+          "purpose": "Read an NFT\u2019s stored personal LP-reward component before any further index checkpoint.",
           "access": "Anyone; read-only.",
           "notes": "May omit yet-uncheckpointed accrual; claimable() is the complete current view.",
           "inputs": {
@@ -3155,7 +3155,7 @@
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "An NFT’s stored personal LP-reward component before any further index checkpoint."
+            "0": "An NFT\u2019s stored personal LP-reward component before any further index checkpoint."
           }
         },
         "isAsset(address)": {
@@ -3189,7 +3189,7 @@
           }
         },
         "ownerFraction(uint256,address)": {
-          "purpose": "Read an NFT’s retained personal-share fixed-point fractional carry.",
+          "purpose": "Read an NFT\u2019s retained personal-share fixed-point fractional carry.",
           "access": "Anyone; read-only.",
           "notes": "Preserved through checkpoints/transfers; not a redeemable LP share.",
           "inputs": {
@@ -3197,7 +3197,7 @@
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "An NFT’s retained personal-share fixed-point fractional carry."
+            "0": "An NFT\u2019s retained personal-share fixed-point fractional carry."
           }
         },
         "ownerIndex(uint256,address)": {
@@ -3238,7 +3238,7 @@
         "purpose": "Deploy and bind NFT-indexed funded personal LP and equal collective entitlements, native conversion credits and current-owner claims.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       },
       "receive": {
@@ -3251,11 +3251,11 @@
       "purpose": "One permanent collective share for each activated canonical NFT, independently of rarity or LP size.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "activate(uint256)": {
@@ -3350,26 +3350,18 @@
         "purpose": "Deploy and bind One permanent collective share for each activated canonical NFT, independently of rarity or LP size.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       }
     },
     "ZZZRoyaltyRewards": {
-      "purpose": "Separate rarity-weighted royalty cohorts, receipt accounting, currency-failure isolation and funded current-owner claims.",
+      "purpose": "Original-currency royalty ledger: per-currency eligibility, fixed rarity weights, current-owner claims and reviewed unallocated allocation; no swaps.",
       "functions": {
         "MAX_ASSETS()": {
           "purpose": "Read the bounded royalty-currency inventory size including native ETH.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "The bounded royalty-currency inventory size including native ETH."
-          }
-        },
-        "MAX_CONVERSION_NFTS()": {
-          "purpose": "Read the maximum number of NFT balances that one earned-reward conversion batch may process.",
-          "access": "Anyone; read-only.",
-          "notes": "Returns: 32 NFTs; caller must also satisfy ordering, asset and execution guards.",
-          "outputs": {
-            "0": "32 NFTs; caller must also satisfy ordering, asset and execution guards."
           }
         },
         "MAX_ERC20_ASSETS()": {
@@ -3380,11 +3372,11 @@
           }
         },
         "SCALE()": {
-          "purpose": "Read the fixed-point denominator used by this reward ledger’s cumulative indices and fractions.",
+          "purpose": "Read the fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions.",
           "access": "Anyone; read-only.",
           "notes": "Accounting precision, not an amount payable to a holder.",
           "outputs": {
-            "0": "The fixed-point denominator used by this reward ledger’s cumulative indices and fractions."
+            "0": "The fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions."
           }
         },
         "accounted(address)": {
@@ -3398,7 +3390,7 @@
           }
         },
         "accrued(uint256,address)": {
-          "purpose": "Read an NFT/currency’s stored whole royalty credit before new index settlement.",
+          "purpose": "Read an NFT/currency\u2019s stored whole royalty credit before new index settlement.",
           "access": "Anyone; read-only.",
           "notes": "Use claimable() for pending eligible receipts as well.",
           "inputs": {
@@ -3406,11 +3398,11 @@
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "An NFT/currency’s stored whole royalty credit before new index settlement."
+            "0": "An NFT/currency\u2019s stored whole royalty credit before new index settlement."
           }
         },
         "activate(uint256,uint256)": {
-          "purpose": "Register the activated NFT’s fixed rarity weight and enroll it in healthy royalty currencies.",
+          "purpose": "Register the activated NFT\u2019s fixed rarity weight and enroll it in healthy royalty currencies.",
           "access": "Only the immutable NFT contract in active economic state.",
           "notes": "Weights are 1/2/3. Failed optional currencies retain their old cohort; activation can still succeed.",
           "inputs": {
@@ -3426,13 +3418,13 @@
           }
         },
         "activationOrdinal(uint256)": {
-          "purpose": "Read an NFT’s activation ordering used to protect earlier royalty cohorts.",
+          "purpose": "Read an NFT\u2019s activation ordering used to protect earlier royalty cohorts.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical NFT ID, not mint ordinal or bucket ID."
           },
           "outputs": {
-            "0": "An NFT’s activation ordering used to protect earlier royalty cohorts."
+            "0": "An NFT\u2019s activation ordering used to protect earlier royalty cohorts."
           }
         },
         "addAsset(address)": {
@@ -3461,19 +3453,11 @@
           }
         },
         "bindCanonicalController(address)": {
-          "purpose": "Atomically bind the fresh receiver to its factory’s controller.",
+          "purpose": "Atomically bind the fresh receiver to its factory\u2019s controller.",
           "access": "Creating factory only; one-time binding.",
           "notes": "A standalone receiver does not create protocol migration authority.",
           "inputs": {
-            "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
-          }
-        },
-        "bindConverter(address)": {
-          "purpose": "Bind one reviewed royalty-only ETH conversion executor before sealing.",
-          "access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings.",
-          "notes": "Distinct from the LP-reward converter and not replaceable after seal.",
-          "inputs": {
-            "0": "Contract with the exact required immutable parent/controller/ledger binding."
+            "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
           }
         },
         "canonicalAccept(uint256,address)": {
@@ -3501,7 +3485,7 @@
         "canonicalBacking(uint256)": {
           "purpose": "Read one captured backing asset and raw amount for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
           "access": "Anyone; read-only.",
-          "notes": "Recorded liability/principal backing, not the module’s unclassified live balance.",
+          "notes": "Recorded liability/principal backing, not the module\u2019s unclassified live balance.",
           "inputs": {
             "0": "Zero-based captured backing leg index."
           },
@@ -3516,10 +3500,10 @@
           "notes": "Requires the canonical freeze lifecycle; no ordinary admin snapshot/write."
         },
         "canonicalController()": {
-          "purpose": "Identify the bound controller providing this royalty receiver’s lifecycle authority.",
+          "purpose": "Identify the bound controller providing this royalty receiver\u2019s lifecycle authority.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The bound controller providing this royalty receiver’s lifecycle authority."
+            "0": "The bound controller providing this royalty receiver\u2019s lifecycle authority."
           }
         },
         "canonicalCount()": {
@@ -3580,7 +3564,7 @@
           "notes": "Reverts on inconsistency; a successful call alone does not activate a successor or approve release."
         },
         "claim(uint256,address)": {
-          "purpose": "Synchronize and pay one NFT’s funded royalty balance to its current owner.",
+          "purpose": "Synchronize and pay one NFT\u2019s funded royalty balance to its current owner.",
           "access": "Current NFT owner; active economic state.",
           "notes": "Ordinary pause and collective LP exit do not revoke royalty rights. A failed currency or receiver can still make this claim revert; actual paid raw units are not new earnings.",
           "inputs": {
@@ -3593,7 +3577,7 @@
         },
         "claimFor(uint256,address,address)": {
           "purpose": "Forward a router-authorized royalty claim directly to the rechecked current NFT owner.",
-          "access": "Only the NFT’s immutable ClaimRouter.",
+          "access": "Only the NFT\u2019s immutable ClaimRouter.",
           "notes": "No arbitrary payout recipient and no transfer-operator claim privilege.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
@@ -3605,7 +3589,7 @@
           }
         },
         "claimable(uint256,address)": {
-          "purpose": "Compute the NFT’s royalty entitlement including actual pending eligible receipts.",
+          "purpose": "Compute the NFT\u2019s royalty entitlement including actual pending eligible receipts.",
           "access": "Anyone; read-only.",
           "notes": "Includes receipt/cohort policy, not merely stored accrued; unavailable/failed currencies may revert.",
           "inputs": {
@@ -3613,39 +3597,17 @@
             "1": "Actual currency address; zero denotes native ETH in native-aware paths."
           },
           "outputs": {
-            "0": "The NFT’s royalty entitlement including actual pending eligible receipts."
-          }
-        },
-        "convertBatch(address,uint256[],bytes32,uint256,uint256)": {
-          "purpose": "Convert selected earned royalty balances in one swap and credit ETH to those same NFTs.",
-          "access": "Authorized keeper, sealed canonical NFT and live economic/operation state.",
-          "notes": "At most 32 sorted IDs; no royalty reallocation to current membership and no payout during conversion. Returns: Total native ETH credited in wei.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths.",
-            "1": "Strictly increasing NFT ID list, bounded to32; duplicate entries are rejected.",
-            "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked.",
-            "3": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          },
-          "outputs": {
-            "0": "Total native ETH credited in wei."
-          }
-        },
-        "converter()": {
-          "purpose": "Locate the fixed royalty-only ETH executor, if bound before sealing.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The fixed royalty-only ETH executor, if bound before sealing."
+            "0": "The NFT\u2019s royalty entitlement including actual pending eligible receipts."
           }
         },
         "eligibleCount(address)": {
-          "purpose": "Read how many activated NFTs have joined this currency’s royalty cohort.",
+          "purpose": "Read how many activated NFTs have joined this currency\u2019s royalty cohort.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
           },
           "outputs": {
-            "0": "How many activated NFTs have joined this currency’s royalty cohort."
+            "0": "How many activated NFTs have joined this currency\u2019s royalty cohort."
           }
         },
         "eligibleFor(uint256,address)": {
@@ -3682,14 +3644,14 @@
           }
         },
         "fraction(uint256,address)": {
-          "purpose": "Read the NFT’s preserved fractional royalty carry in one source currency.",
+          "purpose": "Read the NFT\u2019s preserved fractional royalty carry in one source currency.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical NFT ID, not mint ordinal or bucket ID.",
             "1": "Actual reward/royalty currency address; zero denotes native ETH."
           },
           "outputs": {
-            "0": "The NFT’s preserved fractional royalty carry in one source currency."
+            "0": "The NFT\u2019s preserved fractional royalty carry in one source currency."
           }
         },
         "fund(address,uint256)": {
@@ -3771,7 +3733,7 @@
           }
         },
         "sync(address)": {
-          "purpose": "Recognize actual newly arrived royalty funds and advance that currency’s eligible-weight index.",
+          "purpose": "Recognize actual newly arrived royalty funds and advance that currency\u2019s eligible-weight index.",
           "access": "Permissionless in active economic state.",
           "notes": "Recovered optional assets first allocate unseen old receipts to the old cohort, then enroll waiting NFTs. Returns: Raw amount recognized, not an individual payout.",
           "inputs": {
@@ -3787,7 +3749,7 @@
           "notes": "Unlike isolated activation, a failed asset can revert this all-assets operation."
         },
         "syncForActivation(address)": {
-          "purpose": "Run one optional currency’s bounded synchronization inside activation’s isolated self-call.",
+          "purpose": "Run one optional currency\u2019s bounded synchronization inside activation\u2019s isolated self-call.",
           "access": "Only the ledger itself.",
           "notes": "External callers use sync(); failure cannot enroll newcomers into unseen old receipts.",
           "inputs": {
@@ -3814,27 +3776,29 @@
           }
         },
         "ROYALTY_RECOVERY_VERSION()": {
-          "purpose": "Read the explicit unallocated-royalty recovery capability; old runtimes do not gain it by sharing accounting6.",
+          "purpose": "Read the explicit royalty recovery version.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1 for this reviewed recovery implementation; verify runtime pins as well."
+            "0": "2 for same-currency allocation; old recovery1 swapped to ETH and is a different ABI."
           }
         },
-        "recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)": {
-          "purpose": "Recover only unsupported or explicitly unallocated royalty value as ETH for current active rarity weights.",
-          "access": "Current governance only; sealed active canonical NFT, unpaused, no preparation. Rechecked after callbacks.",
-          "inputs": {
-            "0": "Exact ERC20 source address, or zero for unallocated native ETH. Never a ticker.",
-            "1": "Positive raw source units, at most orphaned(asset) for an admitted asset or actual full balance for an unsupported asset. Pending admitted receipts synchronize first.",
-            "2": "Reviewed enabled converter route ID; zero only for native ETH or explicitly configured exact WETH unwrap.",
-            "3": "Positive minimum ETH output in wei; stronger than the governed oracle floor where applicable. Native recovery requires minimum <= amount.",
-            "4": "Unix on-chain deadline, current through at most600seconds ahead.",
-            "5": "Nonzero bytes32 fingerprint of the reviewed source/amount/route/minimum/deadline and entitlement classification."
-          },
+        "ROYALTY_SETTLEMENT_VERSION()": {
+          "purpose": "Read the explicit royalty settlement version.",
+          "access": "Anyone; read-only.",
           "outputs": {
-            "0": "Actual ETH credited to active weights, not sent to governance and not automatically claimed."
+            "0": "2 for original-currency-only royalties; authenticate exact runtime."
+          }
+        },
+        "allocateUnallocated(address,uint256,bytes32)": {
+          "purpose": "Allocate only admitted unallocated royalty units to currently active rarity weights, in the same currency.",
+          "access": "Current governance only; sealed current canonical NFT, unpaused/no preparation. Authority checked before and after.",
+          "inputs": {
+            "0": "Admitted original currency address, or zero for ETH. Unsupported tokens first require review/admission;16ERC20 limit remains.",
+            "1": "Positive raw units no greater than orphaned(asset) after synchronization. Excludes earned/deferred/fraction liabilities.",
+            "2": "Nonzero bytes32 review fingerprint of asset, amount, classification and current beneficiaries."
           },
-          "notes": "No earned balances, source fractions, deferred-cohort receipts, LP assets, arbitrary recipient or generic calls. Ordinary token conversion requires the pre-seal fixed converter and reviewed route/prices. Recovery allocates previously unallocated value at current weights; it never rewrites existing entitlement. No conversion is possible for every malicious/frozen/illiquid/unpriced token."
+          "outputs": {},
+          "notes": "No swap, unwrap, approval, price feed, route, payout, arbitrary beneficiary or principal access. Accounted backing stays unchanged; orphaned units become liabilities. Owners later claim the original currency. Failed sync/authority/lifecycle reverts."
         }
       },
       "constructor": {
@@ -3854,7 +3818,7 @@
       "purpose": "Fixed LP rewards-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
       "functions": {
         "MAX_LOSS_BPS()": {
-          "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
+          "purpose": "Read the immutable upper bound for the component\u2019s governed execution-loss setting.",
           "access": "Anyone; read-only.",
           "notes": "Returns: 1,000 basis points = 10%; not the current operating cap.",
           "outputs": {
@@ -3862,11 +3826,11 @@
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": {
@@ -3892,7 +3856,7 @@
           }
         },
         "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
-          "purpose": "Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths.",
+          "purpose": "Review the existing immutable WETH wrapper\u2019s runtime/proxy policy for exact unwrap paths.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Does not choose an arbitrary new wrapper. Native v4 conversion does not depend on an unused wrapper.",
           "inputs": {
@@ -3910,16 +3874,16 @@
         "convert(address,uint256,bytes32,uint256,uint256)": {
           "purpose": "Pull exact already-earned ERC20 input from the bound ledger and return measured native ETH to that same ledger.",
           "access": "Only the immutable bound reward ledger.",
-          "notes": "Fresh price bounds, current captured conversion cap, stronger caller minimum and exact balance/allowance checks; no user-selected recipient. Inputs: Raw source amount, admitted route ID, minimumETH in wei and Unix deadline. Returns: Actual ETH output in wei; crediting holders remains the ledger’s job.",
+          "notes": "Fresh price bounds, current captured conversion cap, stronger caller minimum and exact balance/allowance checks; no user-selected recipient. Inputs: Raw source amount, admitted route ID, minimumETH in wei and Unix deadline. Returns: Actual ETH output in wei; crediting holders remains the ledger\u2019s job.",
           "inputs": {
             "0": "Actual ERC20 reward-input address, never inferred from its ticker.",
             "1": "Raw units of the actual specified currency; not its USD value.",
             "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked.",
             "3": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "4": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           },
           "outputs": {
-            "0": "Actual ETH output in wei; crediting holders remains the ledger’s job."
+            "0": "Actual ETH output in wei; crediting holders remains the ledger\u2019s job."
           }
         },
         "enabled()": {
@@ -4045,221 +4009,15 @@
         "purpose": "Deploy and bind Fixed LP-ledger-only executor converting already earned ERC20 rewards into native ETH without changing NFT attribution.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Immutable LP Rewards ledger alone permitted to use its LP converter.",
           "2": "Optional immutable WETH address for explicit unwrap/v3 paths; zero is allowed for native-only deployment."
         }
       },
       "receive": {
         "purpose": "Receive only native output from the expected wrapper/v4 executor during LP conversion.",
-        "access": "Only the operation’s nonzero authenticated nativeSender.",
+        "access": "Only the operation\u2019s nonzero authenticated nativeSender.",
         "value": "Amount must reconcile with the conversion; arbitrary direct donations revert."
-      }
-    },
-    "ZZZRoyaltyConverter": {
-      "purpose": "Fixed royalties-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
-      "functions": {
-        "MAX_LOSS_BPS()": {
-          "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
-          "access": "Anyone; read-only.",
-          "notes": "Returns: 1,000 basis points = 10%; not the current operating cap.",
-          "outputs": {
-            "0": "1,000 basis points = 10%; not the current operating cap."
-          }
-        },
-        "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
-          "access": "Anyone; read-only.",
-          "notes": "Reading the controller address grants no authority.",
-          "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
-          }
-        },
-        "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append a reviewed immutable single-hop v3 exact-input route into native ETH via the fixed wrapper.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Pins source/router/factory/pool and review policy; adding a route does not prove liquidity or price qualification. Returns: Content-derived route ID used by later checked conversions.",
-          "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
-          },
-          "outputs": {
-            "0": "Content-derived route ID used by later checked conversions."
-          }
-        },
-        "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": {
-          "purpose": "Append a reviewed typed hookless static v4 route into actual native ETH.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Immutable parent-bound executor, exact currencies/dependency pins and no arbitrary recipient/calls. Returns: Typed v4 route ID, distinct from v3 identities.",
-          "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
-          },
-          "outputs": {
-            "0": "Typed v4 route ID, distinct from v3 identities."
-          }
-        },
-        "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
-          "purpose": "Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Does not choose an arbitrary new wrapper. Native v4 conversion does not depend on an unused wrapper.",
-          "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
-          }
-        },
-        "conversionLossBps()": {
-          "purpose": "Read the current governed maximum loss for this converter, in basis points.",
-          "access": "Anyone; read-only.",
-          "notes": "Default 100 = 1%; never infer it from MAX_LOSS_BPS or another converter.",
-          "outputs": {
-            "0": "The current governed maximum loss for this converter, in basis points."
-          }
-        },
-        "convert(address,uint256,bytes32,uint256,uint256)": {
-          "purpose": "Pull exact already-earned ERC20 input from the bound ledger and return measured native ETH to that same ledger.",
-          "access": "Only the immutable bound reward ledger.",
-          "notes": "Fresh price bounds, current captured conversion cap, stronger caller minimum and exact balance/allowance checks; no user-selected recipient. Inputs: Raw source amount, admitted route ID, minimumETH in wei and Unix deadline. Returns: Actual ETH output in wei; crediting holders remains the ledger’s job.",
-          "inputs": {
-            "0": "Actual ERC20 reward-input address, never inferred from its ticker.",
-            "1": "Raw units of the actual specified currency; not its USD value.",
-            "2": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked.",
-            "3": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies.",
-            "4": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          },
-          "outputs": {
-            "0": "Actual ETH output in wei; crediting holders remains the ledger’s job."
-          }
-        },
-        "enabled()": {
-          "purpose": "Read whether new conversions are currently permitted by this executor.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "Whether new conversions are currently permitted by this executor."
-          }
-        },
-        "ledger()": {
-          "purpose": "Identify the immutable ledger alone allowed to fund conversion and receive its ETH output.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable ledger alone allowed to fund conversion and receive its ETH output."
-          }
-        },
-        "route(bytes32)": {
-          "purpose": "Read the immutable v3 route descriptor and its runtime/review pins.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash."
-          },
-          "outputs": {
-            "0": "The immutable v3 route descriptor and its runtime/review pins."
-          }
-        },
-        "routeEnabled(bytes32)": {
-          "purpose": "Check the current stop/reopen flag for an admitted route.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash."
-          },
-          "outputs": {
-            "0": "The current stop/reopen flag for an admitted route."
-          }
-        },
-        "routeExists(bytes32)": {
-          "purpose": "Check whether an exact v3/v4 route identity has been admitted.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash."
-          },
-          "outputs": {
-            "0": "Whether an exact v3/v4 route identity has been admitted."
-          }
-        },
-        "routeKind(bytes32)": {
-          "purpose": "Distinguish absent, v3 and typed-v4 conversion route identities.",
-          "access": "Anyone; read-only.",
-          "notes": "Returns: 0 absent, 1 v3, 2 v4; no ABI fallback between kinds.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash."
-          },
-          "outputs": {
-            "0": "0 absent, 1 v3, 2 v4; no ABI fallback between kinds."
-          }
-        },
-        "setConversionLossBps(uint16)": {
-          "purpose": "Set the permitted future conversion loss beneath the hard 10% ceiling.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Basis points; gas separate. Cannot weaken a stronger caller minimum or rewrite already earned credits.",
-          "inputs": {
-            "0": "Actual native mint payment in wei for mint validation; see operation purpose."
-          }
-        },
-        "setEnabled(bool)": {
-          "purpose": "Stop or reopen this converter without querying dependencies.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Stops conversions, not earned claims or NFT ownership; each actual operation still validates its route.",
-          "inputs": {
-            "0": "Actual native mint payment in wei for mint validation; see operation purpose."
-          }
-        },
-        "setRouteEnabled(bytes32,bool)": {
-          "purpose": "Disable or re-enable one admitted conversion route.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "notes": "Disable avoids failing dependency reads; re-enable performs full validation. Affects future reviews, not mined transactions.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash.",
-            "1": "Actual native mint payment in wei for mint validation; see operation purpose."
-          }
-        },
-        "v4Executor()": {
-          "purpose": "Locate the immutable child that settles typed v4 swaps only for this parent converter.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable child that settles typed v4 swaps only for this parent converter."
-          }
-        },
-        "v4Route(bytes32)": {
-          "purpose": "Read the immutable typed v4 descriptor, including actual currencies and singleton/read pins.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Exact admitted conversion-route hash."
-          },
-          "outputs": {
-            "0": "The immutable typed v4 descriptor, including actual currencies and singleton/read pins."
-          }
-        },
-        "wrapper()": {
-          "purpose": "Identify the immutable optional WETH wrapper used by v3/unwrap paths, not native v4 settlement.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "The immutable optional WETH wrapper used by v3/unwrap paths, not native v4 settlement."
-          }
-        },
-        "wrapperPolicy()": {
-          "purpose": "Read the approved wrapper runtime, proxy/admin/implementation and review snapshot.",
-          "access": "Anyone; read-only.",
-          "notes": "An unchanged proxy code hash alone is not an implementation-security guarantee.",
-          "outputs": {
-            "0": "Approved wrapper runtime code hash.",
-            "1": "Reviewed proxy administrator address.",
-            "2": "Reviewed proxy implementation address.",
-            "3": "Reviewed proxy-admin owner address.",
-            "4": "Approved proxy-admin runtime code hash.",
-            "5": "Approved implementation runtime code hash.",
-            "6": "Review commitment covering this complete wrapper dependency policy."
-          }
-        }
-      },
-      "constructor": {
-        "purpose": "Deploy and bind Fixed royalty-ledger-only executor converting already earned ERC20 royalties into native ETH under reviewed routes.",
-        "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
-        "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
-          "1": "Immutable royalty ledger alone allowed to call this converter.",
-          "2": "Optional immutable WETH address for explicit unwrap/v3 paths; zero is allowed for native-only deployment."
-        }
-      },
-      "receive": {
-        "purpose": "Receive only native output from the expected wrapper/v4 executor during conversion.",
-        "access": "Only the operation’s nonzero authenticated nativeSender.",
-        "value": "Amount must subsequently reconcile with that conversion; arbitrary direct donations revert."
       }
     },
     "ZZZClaimRouter": {
@@ -4273,15 +4031,15 @@
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "claimBatch((uint256,address,bool)[])": {
-          "purpose": "Claim selected funded LP/royalty balances atomically for the caller’s currently owned NFTs.",
+          "purpose": "Claim selected funded LP/royalty balances atomically for the caller\u2019s currently owned NFTs.",
           "access": "Current owner of every selected NFT; fixed canonical NFT binding required.",
           "notes": "At most 32 distinct (NFT,asset,ledger) entries. Rechecks owner before each payout; any failure rolls back all entries. Inputs: Each tuple selects NFT ID, actual currency and royalty=true versus LP=false. Returns: Raw claimed amounts in input order; never add different currencies without pricing.",
           "inputs": {
@@ -4310,9 +4068,9 @@
         "purpose": "Deploy and bind Bounded atomic owner-authenticated batching across the fixed LP and royalty ledgers, with direct owner payouts.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Immutable NFT contract whose current owners/rarity rights this helper serves.",
-          "2": "Immutable separate RoyaltyRewards ledger; LP claims use the controller’s fixed Rewards module."
+          "2": "Immutable separate RoyaltyRewards ledger; LP claims use the controller\u2019s fixed Rewards module."
         }
       }
     },
@@ -4320,21 +4078,21 @@
       "purpose": "Keeper-authorized coordination of bucket compound/idle reinvestment through the fixed Vault.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "compound(uint256,uint128,uint256)": {
-          "purpose": "Ask Vault to reinvest one bucket’s designated compound reserve and attributed idle.",
+          "purpose": "Ask Vault to reinvest one bucket\u2019s designated compound reserve and attributed idle.",
           "access": "Authorized keeper; live/operating. Original keeper authorization and unpaused state are rechecked after external work.",
           "notes": "Runs once for the shared physical LP, not once per NFT. Vault enforces exact execution/maintenance/cooldown rules. Inputs: Bucket ID, positive minimum LP increase and Unix deadline; no payout recipient. A callback changing those conditions makes the entire operation revert, including that callback change; separate operator pause/revocation transactions remain unchanged.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
             "1": "Minimum actual Uniswap liquidity units to create/add; not token units or USD.",
-            "2": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "2": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         }
       },
@@ -4342,7 +4100,7 @@
         "purpose": "Deploy and bind Keeper-authorized coordination of bucket compound/idle reinvestment through the fixed Vault.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       }
     },
@@ -4350,11 +4108,11 @@
       "purpose": "Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "execute(address,uint256,bytes32,uint256)": {
@@ -4365,7 +4123,7 @@
             "0": "Actual currency address; zero denotes native ETH only in native-aware paths.",
             "1": "Raw units of the actual specified currency; not its USD value.",
             "2": "Exact admitted bytes32 hash of the v4 PoolKey, not a pool contract address.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+            "3": "Unix timestamp in seconds; must satisfy this operation\u2019s freshness/deadline guards."
           }
         },
         "maxTradeUSD()": {
@@ -4411,7 +4169,7 @@
         "purpose": "Deploy and bind Purpose-bound reserve spending to acquire and verifiably burn the fixed deployment ZZZ token.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Initial actual ERC20 ZZZ token acquired and verifiably burned by Buyback.",
           "2": "Initial positive uint128-bounded USD18 maximum; initially also operatingTradeUSD. Governance may later adjust future sizing,not fixed ZZZ/reserves."
         }
@@ -4803,7 +4561,7 @@
           }
         },
         "MAX_LOSS_BPS()": {
-          "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
+          "purpose": "Read the immutable upper bound for the component\u2019s governed execution-loss setting.",
           "access": "Anyone; read-only.",
           "notes": "Returns: 1,000 basis points = 10%; not the current operating cap.",
           "outputs": {
@@ -4811,11 +4569,11 @@
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "assertDeployed(uint256)": {
@@ -4867,13 +4625,13 @@
           }
         },
         "compositionEpoch(uint256)": {
-          "purpose": "Read the bucket’s backing-composition epoch for migration/history consistency.",
+          "purpose": "Read the bucket\u2019s backing-composition epoch for migration/history consistency.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT ID."
           },
           "outputs": {
-            "0": "The bucket’s backing-composition epoch for migration/history consistency."
+            "0": "The bucket\u2019s backing-composition epoch for migration/history consistency."
           }
         },
         "contributionLossBps()": {
@@ -4896,13 +4654,13 @@
           }
         },
         "contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
-          "purpose": "Verify captured marginal deployment/net backing and compute the contributor’s fair shares.",
+          "purpose": "Verify captured marginal deployment/net backing and compute the contributor\u2019s fair shares.",
           "access": "Only fixed Vault.",
           "notes": "Excludes incumbent principal/idle/historical compound subsidies; closes the matching pricing context. Returns: Issued nonredeemable shares and verified netUSD in USD18.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an NFT ordinal.",
             "1": "Captured original source value in USD18, not raw input units.",
-            "2": "Incumbent bucket’s nonredeemable share supply before this contribution.",
+            "2": "Incumbent bucket\u2019s nonredeemable share supply before this contribution.",
             "3": "Incumbent attributed LP/idle/backing value in USD18.",
             "4": "Incumbent deployed physical LP value in USD18.",
             "5": "Measured physical LP value in USD18.",
@@ -4926,7 +4684,7 @@
           }
         },
         "idleValue(uint256)": {
-          "purpose": "Value only a bucket’s attributed idle pair amounts with current reviewed prices.",
+          "purpose": "Value only a bucket\u2019s attributed idle pair amounts with current reviewed prices.",
           "access": "Anyone; read-only.",
           "notes": "Returns: USD18, not transferable surplus.",
           "inputs": {
@@ -4973,7 +4731,7 @@
           }
         },
         "mintTarget(uint256)": {
-          "purpose": "Resolve the fixed Strategy’s target ticks/reference for this bucket’s pool.",
+          "purpose": "Resolve the fixed Strategy\u2019s target ticks/reference for this bucket\u2019s pool.",
           "access": "Only fixed Vault.",
           "notes": "Returns: Lower/upper ticks and Q96 reference price.",
           "inputs": {
@@ -4988,7 +4746,7 @@
         "nav(uint256)": {
           "purpose": "Read aggregate main/residual principal and attributed idle value.",
           "access": "Anyone; read-only.",
-          "notes": "Includes the pricing companion’s versioned backing rules; external/in-flight state may be unavailable. Returns: Deployed and idle USD18 amounts.",
+          "notes": "Includes the pricing companion\u2019s versioned backing rules; external/in-flight state may be unavailable. Returns: Deployed and idle USD18 amounts.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
           },
@@ -4998,7 +4756,7 @@
           }
         },
         "poolTokens(bytes32)": {
-          "purpose": "Read the pool’s actual ordered accounting currencies.",
+          "purpose": "Read the pool\u2019s actual ordered accounting currencies.",
           "access": "Anyone; read-only.",
           "notes": "Returns: Native ETH is zero; these are not wrapper-substituted display symbols.",
           "inputs": {
@@ -5010,7 +4768,7 @@
           }
         },
         "recordComposition(uint256)": {
-          "purpose": "Advance a bucket’s composition epoch after supported actual custody return.",
+          "purpose": "Advance a bucket\u2019s composition epoch after supported actual custody return.",
           "access": "Only fixed Vault.",
           "notes": "Identifies backing composition; does not issue shares or value external assets.",
           "inputs": {
@@ -5052,7 +4810,7 @@
           }
         },
         "validateLPReceiver(address)": {
-          "purpose": "Accept LP NFTs only from the fixed manager’s bound position manager.",
+          "purpose": "Accept LP NFTs only from the fixed manager\u2019s bound position manager.",
           "access": "Only fixed Vault.",
           "notes": "No general NFT-deposit facility.",
           "inputs": {
@@ -5290,11 +5048,11 @@
       "purpose": "Immutable Migration-created read-only parking/emergency validation. Bind both physical identities/current L; no recipient,token approval,execution or custody authority.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "migration()": {
@@ -5349,7 +5107,7 @@
         "purpose": "Deploy one immutable read-only local parking validator for the creating Migration contract; no recipient, request/destination or custody execution path.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       }
     },
@@ -5387,16 +5145,16 @@
           "access": "Only the authenticated source coordinator.",
           "notes": "Cannot mark an unfunded or duplicate leg complete.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           }
         },
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "activate()": {
@@ -5415,7 +5173,7 @@
           }
         },
         "bindFrozen(bytes32)": {
-          "purpose": "Bind an inert importer to the source’s exact frozen handoff identity and record counts.",
+          "purpose": "Bind an inert importer to the source\u2019s exact frozen handoff identity and record counts.",
           "access": "Only the authenticated source coordinator.",
           "inputs": {
             "0": "Exact authenticated frozen whole-collection handoff ID."
@@ -5476,7 +5234,7 @@
           "access": "Permissionless in the export phase.",
           "notes": "Maximum8 rows; uses on-chain cursors, not assumed operator progress.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Number of consecutive rows to process, bounded by MAX_ROWS."
           }
         },
@@ -5495,7 +5253,7 @@
           "access": "Permissionless in funding phase after completed import.",
           "notes": "Checks asset/amount and actual destination balance delta; no discretionary recipient.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           }
         },
@@ -5547,9 +5305,9 @@
         "importRows(uint8,bytes[])": {
           "purpose": "Import source-authenticated ordered records into the inert successor.",
           "access": "Permissionless relay in importer phase.",
-          "notes": "Checks each row against the source’s exact export; cannot replace owners/shares/traits. Inputs: Slot and at most8 exact ABI record byte arrays in order.",
+          "notes": "Checks each row against the source\u2019s exact export; cannot replace owners/shares/traits. Inputs: Slot and at most8 exact ABI record byte arrays in order.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Ordered exact canonical record bytes; bounded batches preserve on-chain cursor/root."
           }
         },
@@ -5576,14 +5334,14 @@
           "access": "Anyone; read-only.",
           "notes": "Returns: Slots0..5: NFT codec, Vault codec, Membership, Rewards, RoyaltyRewards, Fees codec.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering."
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering."
           },
           "outputs": {
             "0": "Slots0..5: NFT codec, Vault codec, Membership, Rewards, RoyaltyRewards, Fees codec."
           }
         },
         "phase()": {
-          "purpose": "Read this coordinator’s explicit handoff progress state.",
+          "purpose": "Read this coordinator\u2019s explicit handoff progress state.",
           "access": "Anyone; read-only.",
           "notes": "Returns: 0idle,1exporting,2imported-awaiting-backing,3retired,4importing,5active-replacement,6aborting,7cancelled-import,8settling; existing uint8 values unchanged.",
           "outputs": {
@@ -5592,7 +5350,7 @@
         },
         "prepareImport(address)": {
           "purpose": "Mark an unused unsealed successor as an inert same-chain importer for one source controller.",
-          "access": "That deployment’s bootstrap before sealing.",
+          "access": "That deployment\u2019s bootstrap before sealing.",
           "notes": "No ordinary mint/economic work until authenticated activation. Cross-chain transport is unsupported.",
           "inputs": {
             "0": "The one reviewed source controller for an inert compatible importer."
@@ -5609,10 +5367,10 @@
           }
         },
         "returnFunding(uint8,uint256)": {
-          "purpose": "Send the cancelled importer’s exact classified leg back to its source.",
+          "purpose": "Send the cancelled importer\u2019s exact classified leg back to its source.",
           "access": "Only authenticated source coordinator during abort.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           }
         },
@@ -5621,7 +5379,7 @@
           "access": "Permissionless during source abort, exact funded/unreturned leg.",
           "notes": "Verifies actual complete return; no timeout haircut.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering.",
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering.",
             "1": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           }
         },
@@ -5641,7 +5399,7 @@
           "access": "Permissionless with the exact phase/cursor.",
           "notes": "Six fixed-order domains; later receipts cannot silently enter the captured snapshot.",
           "inputs": {
-            "0": "Fixed domain/protection slot; use this component’s declared slot ordering."
+            "0": "Fixed domain/protection slot; use this component\u2019s declared slot ordering."
           }
         },
         "settlementCursor()": {
@@ -5663,7 +5421,7 @@
         "purpose": "Deploy and bind Six-domain same-chain whole-collection replacement with captured roots, exact backing, atomic retirement and fully restored abort.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle."
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle."
         }
       }
     },
@@ -5671,11 +5429,11 @@
       "purpose": "Seal-bound ownership/trait/inventory export/import codec; no fungible custody domain.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "canonicalActivate()": {
@@ -5746,7 +5504,7 @@
         "purpose": "Deploy and bind Seal-bound ownership/trait/inventory export/import codec; no fungible custody domain.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Existing NFT contract bound to the same controller; canonical codec does not create a second collection."
         }
       }
@@ -5755,21 +5513,21 @@
       "purpose": "Immutable Vault companion for ordinary read-only owner/contribution/holder-exit validation and finite canonical export/import of captured backing. No configurable executor or delegatecall; typed validators cannot move custody.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "aliasBucket(bytes32)": {
-          "purpose": "Read the permanent pool-alias reservation exported by this Vault’s canonical identity.",
+          "purpose": "Read the permanent pool-alias reservation exported by this Vault\u2019s canonical identity.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Exact bytes32 admitted pool identity or permanently reserved pool alias."
           },
           "outputs": {
-            "0": "The permanent pool-alias reservation exported by this Vault’s canonical identity."
+            "0": "The permanent pool-alias reservation exported by this Vault\u2019s canonical identity."
           }
         },
         "aliases(uint256)": {
@@ -5818,7 +5576,7 @@
         "canonicalBacking(uint256)": {
           "purpose": "Read one captured backing asset and raw amount for Vault shares, bucket state, identities and attributed principal.",
           "access": "Anyone; read-only.",
-          "notes": "Recorded liability/principal backing, not the module’s unclassified live balance.",
+          "notes": "Recorded liability/principal backing, not the module\u2019s unclassified live balance.",
           "inputs": {
             "0": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           },
@@ -6016,7 +5774,7 @@
         "purpose": "Deploy and bind Fixed codec for original Vault/NFT identity, shared shares, pool aliases and classified principal backing.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Existing accounting6 Vault already bound to this controller; no separate custody authority.",
           "2": "Original canonical chain ID retained for lineage identity."
         }
@@ -6031,11 +5789,11 @@
       "purpose": "Bounded LP-only V3 fee reserve/donation-quarantine export, exact funding and complete abort restoration. No receiver or remote accounting rows.",
       "functions": {
         "access()": {
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
+          "purpose": "Identify the fixed controller that supplies this component\u2019s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
           "notes": "Reading the controller address grants no authority.",
           "outputs": {
-            "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
+            "0": "The fixed controller that supplies this component\u2019s module, governance and lifecycle authorization."
           }
         },
         "canonicalAccept(uint256,address)": {
@@ -6063,7 +5821,7 @@
         "canonicalBacking(uint256)": {
           "purpose": "Read one captured backing asset and raw amount for fee reserves, dust, allocation counters and optional receiver protection.",
           "access": "Anyone; read-only.",
-          "notes": "Recorded liability/principal backing, not the module’s unclassified live balance.",
+          "notes": "Recorded liability/principal backing, not the module\u2019s unclassified live balance.",
           "inputs": {
             "0": "Zero-based captured/list index; it is not itself an asset address or NFT ID."
           },
@@ -6146,7 +5904,7 @@
         "purpose": "Deploy and bind Fixed codec for fee reserves, indices/counters, optional inbox protection and exact funding/restoration.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
         "inputs": {
-          "0": "Fixed AccessController address for this deployment’s roles and lifecycle.",
+          "0": "Fixed AccessController address for this deployment\u2019s roles and lifecycle.",
           "1": "Existing FeeController with matching controller binding."
         }
       },
@@ -6157,7 +5915,7 @@
       }
     },
     "ZZZRoyaltyFactory": {
-      "purpose": "Factory deploying caller-bound royalty ledgers and atomically binding the controller, separate from NFT initcode.",
+      "purpose": "Deploy the original-currency royalty ledger and atomically bind its controller; no royalty converter.",
       "functions": {
         "controller()": {
           "purpose": "Identify the immutable controller atomically bound to every receiver this factory creates.",
@@ -6661,7 +6419,7 @@
           "access": "Only helper self-call from bounded search; other callers revert.",
           "inputs": {
             "0": "Typed reviewed static hookless native ETH/fixed-ZZZ PoolKey.",
-            "1": "True currency0→1, false currency1→0.",
+            "1": "True currency0\u21921, false currency1\u21920.",
             "2": "Positive exact input raw units, bounded to signed-int128 maximum."
           },
           "outputs": {

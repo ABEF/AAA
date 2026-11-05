@@ -1,6 +1,6 @@
 # LP holder rewards settled in ETH
 
-The current undeployed candidate uses native accounting 4, custody 3, fee-intake 1, direct
+The current undeployed candidate uses native accounting6, custody5, fee-intake 1, direct
 governance 2 and local canonical V6. Native ETH fees are indexed directly in ETH;
 only already-earned ERC20 balances, including ZZZ, need conversion. The default
 conversion loss cap is **1%**, governed up to **10%**, with gas paid separately by
@@ -23,10 +23,7 @@ individual/collective components, conserving every received wei. Today's shares,
 rarity or other holders do not reweight it. Transfers carry both unconverted
 balances and ETH credits to the current owner.
 
-`ZZZLPRewardConverter` and `ZZZRoyaltyConverter` share the neutral
-[ZZZRewardConverter base](../src/base/ZZZRewardConverter.sol), but are separate
-instances with immutable bound ledgers, storage and balances. Neither can spend
-the other ledger or principal. They support:
+`ZZZLPRewardConverter` uses the neutral [ZZZRewardConverter base](../src/base/ZZZRewardConverter.sol). The fresh royalty converter is removed; original-currency royalties are separate. LP conversion cannot spend royalty or principal backing. It supports:
 
 | Path | Required checks |
 | --- | --- |

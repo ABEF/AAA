@@ -326,6 +326,8 @@ class Observer:
             if token['observed_decimals'] != token.get('decimals'):
                 self.errors.append({'path': path, 'code': 'decimals.mismatch'})
             if self.pricing_version == 2:
+                if token['address'] in getattr(self,'raw_royalty_assets',()) and token.get('price_policy') is None:
+                    continue
                 self.dual_price(token,path,oracle)
                 continue
             feed = token['feed']
@@ -404,7 +406,7 @@ class Observer:
 
     def wrappers(self):
         fields = ('codeHash','admin','implementation','adminOwner','adminCodeHash','implementationCodeHash','reviewHash')
-        for role in ('lp_converter','royalty_converter'):
+        for role in getattr(self,'converter_roles',('lp_converter','royalty_converter')):
             record = self.chain['helpers'][role]
             wrapper = record['bindings']['wrapper']
             if wrapper == ZERO:

@@ -33,9 +33,8 @@
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
-      "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
-      "src/ZZZRoyaltyRewards.sol": "fe8730906b08d6b2cff7ddd2da7656b1c55dbefd13abc4454b8703ef5f8c183a",
+      "src/ZZZRoyaltyRewards.sol": "f62c9cda816f1f18be45f3b4d6ac1536f750257a58891b76c087b1dcd906ccb6",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
@@ -193,7 +192,6 @@
       "src/ZZZPythPriceFeed.sol",
       "src/ZZZRebalanceConfirmation.sol",
       "src/ZZZRewards.sol",
-      "src/ZZZRoyaltyConverter.sol",
       "src/ZZZRoyaltyFactory.sol",
       "src/ZZZRoyaltyRewards.sol",
       "src/ZZZStrategy.sol",
@@ -221,9 +219,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "77ba0970fe47705f3c7d7c1d43cf9e21ac7f02bb867797ea76e0d2a5119a2b7c",
-    "compiler_output_sha256": "54f5004b0c5b8ab56fa946054341048870457daab9c8406d3c04fa7e796059e9",
-    "size_evidence_sha256": "9f92fea8b92bdfb53ebf5092fe8b8d795867d24c73f0bee02037ede20bb59955",
+    "compiler_input_sha256": "87912f70068021308b16827c2028989844110c2b4b574e208b44eed81b2da8eb",
+    "compiler_output_sha256": "b8b92b8b54b198f01539c1460e4a6f1bff8930cbc2d05fd8ba184ee24c2e3f90",
+    "size_evidence_sha256": "74dfa250eb5f39e99902a960d66b6f46cdd92f9bed68d767c1b1388eaeeed315",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -18671,932 +18669,6 @@
       ],
       "abi_sha256": "c5f59be298b4b63403eba919b50df81e65e07dd4e5af580cb110945145b6d0f3"
     },
-    "ZZZRoyaltyConverter": {
-      "source": "src/ZZZRoyaltyConverter.sol",
-      "abi": [
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "controller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "receiver",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "wrappedETH",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [],
-          "name": "CanonicalLocked",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "Expired",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "InvalidAmount",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "InvalidConfiguration",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "InvalidState",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "LPExitLocked",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "NotReady",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "Paused",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "Preparing",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "ReentrancyGuardReentrantCall",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            }
-          ],
-          "name": "SafeERC20FailedOperation",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "Slippage",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "Unauthorized",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            }
-          ],
-          "name": "UnsupportedToken",
-          "type": "error"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint16",
-              "name": "previous",
-              "type": "uint16"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint16",
-              "name": "current",
-              "type": "uint16"
-            }
-          ],
-          "name": "ConversionLossLimitChanged",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "input",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "nativeOutput",
-              "type": "uint256"
-            }
-          ],
-          "name": "Converted",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "bool",
-              "name": "enabled",
-              "type": "bool"
-            }
-          ],
-          "name": "Enabled",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "bool",
-              "name": "enabled",
-              "type": "bool"
-            }
-          ],
-          "name": "RouteEnabled",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "RouteRecorded",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "V4RouteRecorded",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "policyHash",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "WrapperConfigured",
-          "type": "event"
-        },
-        {
-          "inputs": [],
-          "name": "MAX_LOSS_BPS",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "access",
-          "outputs": [
-            {
-              "internalType": "contract IZZZAccess",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "components": [
-                {
-                  "internalType": "address",
-                  "name": "source",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "router",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "factory",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "pool",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint24",
-                  "name": "fee",
-                  "type": "uint24"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "sourceCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "routerCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "factoryCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "poolCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "reviewHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZRewardConverter.RoutePolicy",
-              "name": "policy",
-              "type": "tuple"
-            }
-          ],
-          "name": "addRoute",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "components": [
-                {
-                  "internalType": "address",
-                  "name": "source",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "output",
-                  "type": "address"
-                },
-                {
-                  "components": [
-                    {
-                      "internalType": "address",
-                      "name": "currency0",
-                      "type": "address"
-                    },
-                    {
-                      "internalType": "address",
-                      "name": "currency1",
-                      "type": "address"
-                    },
-                    {
-                      "internalType": "uint24",
-                      "name": "fee",
-                      "type": "uint24"
-                    },
-                    {
-                      "internalType": "int24",
-                      "name": "tickSpacing",
-                      "type": "int24"
-                    },
-                    {
-                      "internalType": "address",
-                      "name": "hooks",
-                      "type": "address"
-                    }
-                  ],
-                  "internalType": "struct PoolKey",
-                  "name": "key",
-                  "type": "tuple"
-                },
-                {
-                  "internalType": "address",
-                  "name": "poolManager",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "stateView",
-                  "type": "address"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "sourceCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "outputCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "poolManagerCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "stateViewCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "reviewHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZV4RouteExecutor.Policy",
-              "name": "policy",
-              "type": "tuple"
-            }
-          ],
-          "name": "addV4Route",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "components": [
-                {
-                  "internalType": "bytes32",
-                  "name": "codeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "address",
-                  "name": "admin",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "implementation",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "adminOwner",
-                  "type": "address"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "adminCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "implementationCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "reviewHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZRewardConverter.WrapperPolicy",
-              "name": "policy",
-              "type": "tuple"
-            }
-          ],
-          "name": "configureWrapper",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "conversionLossBps",
-          "outputs": [
-            {
-              "internalType": "uint16",
-              "name": "",
-              "type": "uint16"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minimumETH",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "name": "convert",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "output",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "enabled",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "ledger",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "route",
-          "outputs": [
-            {
-              "components": [
-                {
-                  "internalType": "address",
-                  "name": "source",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "router",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "factory",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "pool",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint24",
-                  "name": "fee",
-                  "type": "uint24"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "sourceCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "routerCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "factoryCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "poolCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "reviewHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZRewardConverter.RoutePolicy",
-              "name": "",
-              "type": "tuple"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "routeEnabled",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "routeExists",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "routeKind",
-          "outputs": [
-            {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint16",
-              "name": "value",
-              "type": "uint16"
-            }
-          ],
-          "name": "setConversionLossBps",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bool",
-              "name": "value",
-              "type": "bool"
-            }
-          ],
-          "name": "setEnabled",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bool",
-              "name": "value",
-              "type": "bool"
-            }
-          ],
-          "name": "setRouteEnabled",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "v4Executor",
-          "outputs": [
-            {
-              "internalType": "contract ZZZV4RouteExecutor",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "v4Route",
-          "outputs": [
-            {
-              "components": [
-                {
-                  "internalType": "address",
-                  "name": "source",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "output",
-                  "type": "address"
-                },
-                {
-                  "components": [
-                    {
-                      "internalType": "address",
-                      "name": "currency0",
-                      "type": "address"
-                    },
-                    {
-                      "internalType": "address",
-                      "name": "currency1",
-                      "type": "address"
-                    },
-                    {
-                      "internalType": "uint24",
-                      "name": "fee",
-                      "type": "uint24"
-                    },
-                    {
-                      "internalType": "int24",
-                      "name": "tickSpacing",
-                      "type": "int24"
-                    },
-                    {
-                      "internalType": "address",
-                      "name": "hooks",
-                      "type": "address"
-                    }
-                  ],
-                  "internalType": "struct PoolKey",
-                  "name": "key",
-                  "type": "tuple"
-                },
-                {
-                  "internalType": "address",
-                  "name": "poolManager",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "stateView",
-                  "type": "address"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "sourceCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "outputCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "poolManagerCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "stateViewCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "reviewHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZV4RouteExecutor.Policy",
-              "name": "",
-              "type": "tuple"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "wrapper",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "wrapperPolicy",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "codeHash",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "address",
-              "name": "admin",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "implementation",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "adminOwner",
-              "type": "address"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "adminCodeHash",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "implementationCodeHash",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "stateMutability": "payable",
-          "type": "receive"
-        }
-      ],
-      "abi_sha256": "8e46b9ed1e778d8d6c54e0bf207f44add1b42a0ec4ffba9bf867fd740b01ba3d"
-    },
     "ZZZRoyaltyFactory": {
       "source": "src/ZZZRoyaltyFactory.sol",
       "abi": [
@@ -19780,19 +18852,6 @@
             {
               "indexed": true,
               "internalType": "address",
-              "name": "converter",
-              "type": "address"
-            }
-          ],
-          "name": "ConverterBound",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
               "name": "asset",
               "type": "address"
             },
@@ -19861,37 +18920,6 @@
           "inputs": [
             {
               "indexed": true,
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "asset",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "sourceAmount",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "nativeAmount",
-              "type": "uint256"
-            }
-          ],
-          "name": "RoyaltyConverted",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
               "internalType": "address",
               "name": "asset",
               "type": "address"
@@ -19924,13 +18952,7 @@
             {
               "indexed": false,
               "internalType": "uint256",
-              "name": "sourceAmount",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "nativeAmount",
+              "name": "amount",
               "type": "uint256"
             },
             {
@@ -19946,25 +18968,12 @@
               "type": "bytes32"
             }
           ],
-          "name": "UnallocatedRoyaltiesRecovered",
+          "name": "UnallocatedRoyaltiesAllocated",
           "type": "event"
         },
         {
           "inputs": [],
           "name": "MAX_ASSETS",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "MAX_CONVERSION_NFTS",
           "outputs": [
             {
               "internalType": "uint256",
@@ -19991,6 +19000,19 @@
         {
           "inputs": [],
           "name": "ROYALTY_RECOVERY_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "ROYALTY_SETTLEMENT_VERSION",
           "outputs": [
             {
               "internalType": "uint256",
@@ -20121,6 +19143,29 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "allocateUnallocated",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "assetCount",
           "outputs": [
@@ -20161,19 +19206,6 @@
             }
           ],
           "name": "bindCanonicalController",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "candidate",
-              "type": "address"
-            }
-          ],
-          "name": "bindConverter",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -20441,58 +19473,6 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "asset",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "ids",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minimumETH",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "name": "convertBatch",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "output",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "converter",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
               "name": "",
               "type": "address"
             }
@@ -20750,50 +19730,6 @@
               "internalType": "address",
               "name": "asset",
               "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "routeId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minimumETH",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "recoverUnallocated",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "output",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "asset",
-              "type": "address"
             }
           ],
           "name": "sync",
@@ -20864,7 +19800,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "62e4b03cda1e2938d5b05084f6746a1c8647508892ac380e8c13016292180640"
+      "abi_sha256": "720d43933bfd6c233bd140ba123480190c4675c523da057036b3c0abd03acfe8"
     },
     "ZZZStrategy": {
       "source": "src/ZZZStrategy.sol",
@@ -24119,7 +23055,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "878c4687a82e9b2164b0ba42eabe2e6c1701d0e19deb201aac71b52ca8520fb4",
+  "notes_sha256": "8988214bb9e2786118b5f442ac7a0afbbca8ab2e1c1c33c6bae8d046006c4c2e",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -49062,1237 +47998,9 @@
       ]
     },
     {
-      "name": "ZZZRoyaltyConverter",
-      "source": "src/ZZZRoyaltyConverter.sol",
-      "purpose": "Fixed royalties-ledger-only executor converting earned ERC20 balances into native ETH. Shares the abstract ZZZRewardConverter implementation, but has its own address, immutable ledger, route policies and storage; no shared custody or new authority.",
-      "category": "Project contract",
-      "functions": [
-        {
-          "signature": "constructor(address,address,address)",
-          "kind": "constructor",
-          "name": "constructor",
-          "state_mutability": "nonpayable",
-          "purpose": "Deploy and bind Fixed royalty-ledger-only executor converting already earned ERC20 royalties into native ETH under reviewed routes.",
-          "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "controller",
-              "label": "controller",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Fixed AccessController address for this deployment’s roles and lifecycle."
-            },
-            {
-              "position": 1,
-              "name": "receiver",
-              "label": "receiver",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Immutable royalty ledger alone allowed to call this converter."
-            },
-            {
-              "position": 2,
-              "name": "wrappedETH",
-              "label": "wrappedETH",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Optional immutable WETH address for explicit unwrap/v3 paths; zero is allowed for native-only deployment."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "MAX_LOSS_BPS()",
-          "kind": "function",
-          "name": "MAX_LOSS_BPS",
-          "state_mutability": "view",
-          "purpose": "Read the immutable upper bound for the component’s governed execution-loss setting.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "1,000 basis points = 10%; not the current operating cap."
-            }
-          ],
-          "native_value": null,
-          "notes": "Returns: 1,000 basis points = 10%; not the current operating cap."
-        },
-        {
-          "signature": "access()",
-          "kind": "function",
-          "name": "access",
-          "state_mutability": "view",
-          "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "contract IZZZAccess",
-              "explanation": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
-            }
-          ],
-          "native_value": null,
-          "notes": "Reading the controller address grants no authority."
-        },
-        {
-          "signature": "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))",
-          "kind": "function",
-          "name": "addRoute",
-          "state_mutability": "nonpayable",
-          "purpose": "Append a reviewed immutable single-hop v3 exact-input route into native ETH via the fixed wrapper.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "policy",
-              "label": "policy",
-              "type": "tuple",
-              "canonical_type": "(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)",
-              "internal_type": "struct ZZZRewardConverter.RoutePolicy",
-              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "source",
-                  "label": "source",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "router",
-                  "label": "router",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "factory",
-                  "label": "factory",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 3,
-                  "name": "pool",
-                  "label": "pool",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "fee",
-                  "label": "fee",
-                  "type": "uint24",
-                  "canonical_type": "uint24",
-                  "internal_type": "uint24",
-                  "explanation": null
-                },
-                {
-                  "position": 5,
-                  "name": "sourceCodeHash",
-                  "label": "sourceCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 6,
-                  "name": "routerCodeHash",
-                  "label": "routerCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 7,
-                  "name": "factoryCodeHash",
-                  "label": "factoryCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 8,
-                  "name": "poolCodeHash",
-                  "label": "poolCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 9,
-                  "name": "reviewHash",
-                  "label": "reviewHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Content-derived route ID used by later checked conversions."
-            }
-          ],
-          "native_value": null,
-          "notes": "Pins source/router/factory/pool and review policy; adding a route does not prove liquidity or price qualification. Returns: Content-derived route ID used by later checked conversions."
-        },
-        {
-          "signature": "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))",
-          "kind": "function",
-          "name": "addV4Route",
-          "state_mutability": "nonpayable",
-          "purpose": "Append a reviewed typed hookless static v4 route into actual native ETH.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "policy",
-              "label": "policy",
-              "type": "tuple",
-              "canonical_type": "(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)",
-              "internal_type": "struct ZZZV4RouteExecutor.Policy",
-              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "source",
-                  "label": "source",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "output",
-                  "label": "output",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "key",
-                  "label": "key",
-                  "type": "tuple",
-                  "canonical_type": "(address,address,uint24,int24,address)",
-                  "internal_type": "struct PoolKey",
-                  "explanation": null,
-                  "components": [
-                    {
-                      "position": 0,
-                      "name": "currency0",
-                      "label": "currency0",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    },
-                    {
-                      "position": 1,
-                      "name": "currency1",
-                      "label": "currency1",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    },
-                    {
-                      "position": 2,
-                      "name": "fee",
-                      "label": "fee",
-                      "type": "uint24",
-                      "canonical_type": "uint24",
-                      "internal_type": "uint24",
-                      "explanation": null
-                    },
-                    {
-                      "position": 3,
-                      "name": "tickSpacing",
-                      "label": "tickSpacing",
-                      "type": "int24",
-                      "canonical_type": "int24",
-                      "internal_type": "int24",
-                      "explanation": null
-                    },
-                    {
-                      "position": 4,
-                      "name": "hooks",
-                      "label": "hooks",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    }
-                  ]
-                },
-                {
-                  "position": 3,
-                  "name": "poolManager",
-                  "label": "poolManager",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "stateView",
-                  "label": "stateView",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 5,
-                  "name": "sourceCodeHash",
-                  "label": "sourceCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 6,
-                  "name": "outputCodeHash",
-                  "label": "outputCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 7,
-                  "name": "poolManagerCodeHash",
-                  "label": "poolManagerCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 8,
-                  "name": "stateViewCodeHash",
-                  "label": "stateViewCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 9,
-                  "name": "reviewHash",
-                  "label": "reviewHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Typed v4 route ID, distinct from v3 identities."
-            }
-          ],
-          "native_value": null,
-          "notes": "Immutable parent-bound executor, exact currencies/dependency pins and no arbitrary recipient/calls. Returns: Typed v4 route ID, distinct from v3 identities."
-        },
-        {
-          "signature": "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))",
-          "kind": "function",
-          "name": "configureWrapper",
-          "state_mutability": "nonpayable",
-          "purpose": "Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "policy",
-              "label": "policy",
-              "type": "tuple",
-              "canonical_type": "(bytes32,address,address,address,bytes32,bytes32,bytes32)",
-              "internal_type": "struct ZZZRewardConverter.WrapperPolicy",
-              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "codeHash",
-                  "label": "codeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "admin",
-                  "label": "admin",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "implementation",
-                  "label": "implementation",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 3,
-                  "name": "adminOwner",
-                  "label": "adminOwner",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "adminCodeHash",
-                  "label": "adminCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 5,
-                  "name": "implementationCodeHash",
-                  "label": "implementationCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 6,
-                  "name": "reviewHash",
-                  "label": "reviewHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Does not choose an arbitrary new wrapper. Native v4 conversion does not depend on an unused wrapper."
-        },
-        {
-          "signature": "conversionLossBps()",
-          "kind": "function",
-          "name": "conversionLossBps",
-          "state_mutability": "view",
-          "purpose": "Read the current governed maximum loss for this converter, in basis points.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint16",
-              "canonical_type": "uint16",
-              "internal_type": "uint16",
-              "explanation": "The current governed maximum loss for this converter, in basis points."
-            }
-          ],
-          "native_value": null,
-          "notes": "Default 100 = 1%; never infer it from MAX_LOSS_BPS or another converter."
-        },
-        {
-          "signature": "convert(address,uint256,bytes32,uint256,uint256)",
-          "kind": "function",
-          "name": "convert",
-          "state_mutability": "nonpayable",
-          "purpose": "Pull exact already-earned ERC20 input from the bound ledger and return measured native ETH to that same ledger.",
-          "access": "Only the immutable bound reward ledger.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "source",
-              "label": "source",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual ERC20 reward-input address, never inferred from its ticker."
-            },
-            {
-              "position": 1,
-              "name": "amount",
-              "label": "amount",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Raw units of the actual specified currency; not its USD value."
-            },
-            {
-              "position": 2,
-              "name": "routeId",
-              "label": "routeId",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked."
-            },
-            {
-              "position": 3,
-              "name": "minimumETH",
-              "label": "minimumETH",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies."
-            },
-            {
-              "position": 4,
-              "name": "deadline",
-              "label": "deadline",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "output",
-              "label": "output",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Actual ETH output in wei; crediting holders remains the ledger’s job."
-            }
-          ],
-          "native_value": null,
-          "notes": "Fresh price bounds, current captured conversion cap, stronger caller minimum and exact balance/allowance checks; no user-selected recipient. Inputs: Raw source amount, admitted route ID, minimumETH in wei and Unix deadline. Returns: Actual ETH output in wei; crediting holders remains the ledger’s job."
-        },
-        {
-          "signature": "enabled()",
-          "kind": "function",
-          "name": "enabled",
-          "state_mutability": "view",
-          "purpose": "Read whether new conversions are currently permitted by this executor.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "Whether new conversions are currently permitted by this executor."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "ledger()",
-          "kind": "function",
-          "name": "ledger",
-          "state_mutability": "view",
-          "purpose": "Identify the immutable ledger alone allowed to fund conversion and receive its ETH output.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "The immutable ledger alone allowed to fund conversion and receive its ETH output."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "route(bytes32)",
-          "kind": "function",
-          "name": "route",
-          "state_mutability": "view",
-          "purpose": "Read the immutable v3 route descriptor and its runtime/review pins.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "tuple",
-              "canonical_type": "(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)",
-              "internal_type": "struct ZZZRewardConverter.RoutePolicy",
-              "explanation": "The immutable v3 route descriptor and its runtime/review pins.",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "source",
-                  "label": "source",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "router",
-                  "label": "router",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "factory",
-                  "label": "factory",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 3,
-                  "name": "pool",
-                  "label": "pool",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "fee",
-                  "label": "fee",
-                  "type": "uint24",
-                  "canonical_type": "uint24",
-                  "internal_type": "uint24",
-                  "explanation": null
-                },
-                {
-                  "position": 5,
-                  "name": "sourceCodeHash",
-                  "label": "sourceCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 6,
-                  "name": "routerCodeHash",
-                  "label": "routerCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 7,
-                  "name": "factoryCodeHash",
-                  "label": "factoryCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 8,
-                  "name": "poolCodeHash",
-                  "label": "poolCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 9,
-                  "name": "reviewHash",
-                  "label": "reviewHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "routeEnabled(bytes32)",
-          "kind": "function",
-          "name": "routeEnabled",
-          "state_mutability": "view",
-          "purpose": "Check the current stop/reopen flag for an admitted route.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "The current stop/reopen flag for an admitted route."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "routeExists(bytes32)",
-          "kind": "function",
-          "name": "routeExists",
-          "state_mutability": "view",
-          "purpose": "Check whether an exact v3/v4 route identity has been admitted.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "Whether an exact v3/v4 route identity has been admitted."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "routeKind(bytes32)",
-          "kind": "function",
-          "name": "routeKind",
-          "state_mutability": "view",
-          "purpose": "Distinguish absent, v3 and typed-v4 conversion route identities.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint8",
-              "canonical_type": "uint8",
-              "internal_type": "uint8",
-              "explanation": "0 absent, 1 v3, 2 v4; no ABI fallback between kinds."
-            }
-          ],
-          "native_value": null,
-          "notes": "Returns: 0 absent, 1 v3, 2 v4; no ABI fallback between kinds."
-        },
-        {
-          "signature": "setConversionLossBps(uint16)",
-          "kind": "function",
-          "name": "setConversionLossBps",
-          "state_mutability": "nonpayable",
-          "purpose": "Set the permitted future conversion loss beneath the hard 10% ceiling.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "value",
-              "label": "value",
-              "type": "uint16",
-              "canonical_type": "uint16",
-              "internal_type": "uint16",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Basis points; gas separate. Cannot weaken a stronger caller minimum or rewrite already earned credits."
-        },
-        {
-          "signature": "setEnabled(bool)",
-          "kind": "function",
-          "name": "setEnabled",
-          "state_mutability": "nonpayable",
-          "purpose": "Stop or reopen this converter without querying dependencies.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "value",
-              "label": "value",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Stops conversions, not earned claims or NFT ownership; each actual operation still validates its route."
-        },
-        {
-          "signature": "setRouteEnabled(bytes32,bool)",
-          "kind": "function",
-          "name": "setRouteEnabled",
-          "state_mutability": "nonpayable",
-          "purpose": "Disable or re-enable one admitted conversion route.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            },
-            {
-              "position": 1,
-              "name": "value",
-              "label": "value",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Disable avoids failing dependency reads; re-enable performs full validation. Affects future reviews, not mined transactions."
-        },
-        {
-          "signature": "v4Executor()",
-          "kind": "function",
-          "name": "v4Executor",
-          "state_mutability": "view",
-          "purpose": "Locate the immutable child that settles typed v4 swaps only for this parent converter.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "contract ZZZV4RouteExecutor",
-              "explanation": "The immutable child that settles typed v4 swaps only for this parent converter."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "v4Route(bytes32)",
-          "kind": "function",
-          "name": "v4Route",
-          "state_mutability": "view",
-          "purpose": "Read the immutable typed v4 descriptor, including actual currencies and singleton/read pins.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted conversion-route hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "tuple",
-              "canonical_type": "(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)",
-              "internal_type": "struct ZZZV4RouteExecutor.Policy",
-              "explanation": "The immutable typed v4 descriptor, including actual currencies and singleton/read pins.",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "source",
-                  "label": "source",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "output",
-                  "label": "output",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "key",
-                  "label": "key",
-                  "type": "tuple",
-                  "canonical_type": "(address,address,uint24,int24,address)",
-                  "internal_type": "struct PoolKey",
-                  "explanation": null,
-                  "components": [
-                    {
-                      "position": 0,
-                      "name": "currency0",
-                      "label": "currency0",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    },
-                    {
-                      "position": 1,
-                      "name": "currency1",
-                      "label": "currency1",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    },
-                    {
-                      "position": 2,
-                      "name": "fee",
-                      "label": "fee",
-                      "type": "uint24",
-                      "canonical_type": "uint24",
-                      "internal_type": "uint24",
-                      "explanation": null
-                    },
-                    {
-                      "position": 3,
-                      "name": "tickSpacing",
-                      "label": "tickSpacing",
-                      "type": "int24",
-                      "canonical_type": "int24",
-                      "internal_type": "int24",
-                      "explanation": null
-                    },
-                    {
-                      "position": 4,
-                      "name": "hooks",
-                      "label": "hooks",
-                      "type": "address",
-                      "canonical_type": "address",
-                      "internal_type": "address",
-                      "explanation": null
-                    }
-                  ]
-                },
-                {
-                  "position": 3,
-                  "name": "poolManager",
-                  "label": "poolManager",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "stateView",
-                  "label": "stateView",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 5,
-                  "name": "sourceCodeHash",
-                  "label": "sourceCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 6,
-                  "name": "outputCodeHash",
-                  "label": "outputCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 7,
-                  "name": "poolManagerCodeHash",
-                  "label": "poolManagerCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 8,
-                  "name": "stateViewCodeHash",
-                  "label": "stateViewCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 9,
-                  "name": "reviewHash",
-                  "label": "reviewHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "wrapper()",
-          "kind": "function",
-          "name": "wrapper",
-          "state_mutability": "view",
-          "purpose": "Identify the immutable optional WETH wrapper used by v3/unwrap paths, not native v4 settlement.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "The immutable optional WETH wrapper used by v3/unwrap paths, not native v4 settlement."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "wrapperPolicy()",
-          "kind": "function",
-          "name": "wrapperPolicy",
-          "state_mutability": "view",
-          "purpose": "Read the approved wrapper runtime, proxy/admin/implementation and review snapshot.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "codeHash",
-              "label": "codeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Approved wrapper runtime code hash."
-            },
-            {
-              "position": 1,
-              "name": "admin",
-              "label": "admin",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Reviewed proxy administrator address."
-            },
-            {
-              "position": 2,
-              "name": "implementation",
-              "label": "implementation",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Reviewed proxy implementation address."
-            },
-            {
-              "position": 3,
-              "name": "adminOwner",
-              "label": "adminOwner",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Reviewed proxy-admin owner address."
-            },
-            {
-              "position": 4,
-              "name": "adminCodeHash",
-              "label": "adminCodeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Approved proxy-admin runtime code hash."
-            },
-            {
-              "position": 5,
-              "name": "implementationCodeHash",
-              "label": "implementationCodeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Approved implementation runtime code hash."
-            },
-            {
-              "position": 6,
-              "name": "reviewHash",
-              "label": "reviewHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Review commitment covering this complete wrapper dependency policy."
-            }
-          ],
-          "native_value": null,
-          "notes": "An unchanged proxy code hash alone is not an implementation-security guarantee."
-        },
-        {
-          "signature": "receive()",
-          "kind": "receive",
-          "name": "receive",
-          "state_mutability": "payable",
-          "purpose": "Receive only native output from the expected wrapper/v4 executor during conversion.",
-          "access": "Only the operation’s nonzero authenticated nativeSender.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [],
-          "native_value": "Amount must subsequently reconcile with that conversion; arbitrary direct donations revert.",
-          "notes": null
-        }
-      ]
-    },
-    {
       "name": "ZZZRoyaltyFactory",
       "source": "src/ZZZRoyaltyFactory.sol",
-      "purpose": "Factory deploying caller-bound royalty ledgers and atomically binding the controller, separate from NFT initcode.",
+      "purpose": "Deploy the original-currency royalty ledger and atomically bind its controller; no royalty converter.",
       "category": "Project contract",
       "functions": [
         {
@@ -50359,7 +48067,7 @@
     {
       "name": "ZZZRoyaltyRewards",
       "source": "src/ZZZRoyaltyRewards.sol",
-      "purpose": "Separate rarity-weighted royalty cohorts, receipt accounting, currency-failure isolation and funded current-owner claims.",
+      "purpose": "Original-currency royalty ledger: per-currency eligibility, fixed rarity weights, current-owner claims and reviewed unallocated allocation; no swaps.",
       "category": "Project contract",
       "functions": [
         {
@@ -50409,29 +48117,6 @@
           "notes": null
         },
         {
-          "signature": "MAX_CONVERSION_NFTS()",
-          "kind": "function",
-          "name": "MAX_CONVERSION_NFTS",
-          "state_mutability": "view",
-          "purpose": "Read the maximum number of NFT balances that one earned-reward conversion batch may process.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "32 NFTs; caller must also satisfy ordering, asset and execution guards."
-            }
-          ],
-          "native_value": null,
-          "notes": "Returns: 32 NFTs; caller must also satisfy ordering, asset and execution guards."
-        },
-        {
           "signature": "MAX_ERC20_ASSETS()",
           "kind": "function",
           "name": "MAX_ERC20_ASSETS",
@@ -50459,7 +48144,7 @@
           "kind": "function",
           "name": "ROYALTY_RECOVERY_VERSION",
           "state_mutability": "view",
-          "purpose": "Read the explicit unallocated-royalty recovery capability; old runtimes do not gain it by sharing accounting6.",
+          "purpose": "Read the explicit royalty recovery version.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -50471,7 +48156,30 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1 for this reviewed recovery implementation; verify runtime pins as well."
+              "explanation": "2 for same-currency allocation; old recovery1 swapped to ETH and is a different ABI."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "ROYALTY_SETTLEMENT_VERSION()",
+          "kind": "function",
+          "name": "ROYALTY_SETTLEMENT_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit royalty settlement version.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "2 for original-currency-only royalties; authenticate exact runtime."
             }
           ],
           "native_value": null,
@@ -50687,6 +48395,47 @@
           "notes": "No retrospective royalty rights; native ETH is admitted separately. Taxes/rebases/freeze behavior require review."
         },
         {
+          "signature": "allocateUnallocated(address,uint256,bytes32)",
+          "kind": "function",
+          "name": "allocateUnallocated",
+          "state_mutability": "nonpayable",
+          "purpose": "Allocate only admitted unallocated royalty units to currently active rarity weights, in the same currency.",
+          "access": "Current governance only; sealed current canonical NFT, unpaused/no preparation. Authority checked before and after.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Admitted original currency address, or zero for ETH. Unsupported tokens first require review/admission;16ERC20 limit remains."
+            },
+            {
+              "position": 1,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive raw units no greater than orphaned(asset) after synchronization. Excludes earned/deferred/fraction liabilities."
+            },
+            {
+              "position": 2,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero bytes32 review fingerprint of asset, amount, classification and current beneficiaries."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "No swap, unwrap, approval, price feed, route, payout, arbitrary beneficiary or principal access. Accounted backing stays unchanged; orphaned units become liabilities. Owners later claim the original currency. Failed sync/authority/lifecycle reverts."
+        },
+        {
           "signature": "assetCount()",
           "kind": "function",
           "name": "assetCount",
@@ -50764,29 +48513,6 @@
           "outputs": [],
           "native_value": null,
           "notes": "A standalone receiver does not create protocol migration authority."
-        },
-        {
-          "signature": "bindConverter(address)",
-          "kind": "function",
-          "name": "bindConverter",
-          "state_mutability": "nonpayable",
-          "purpose": "Bind one reviewed royalty-only ETH conversion executor before sealing.",
-          "access": "Only the current bootstrap before sealing; unavailable after sealing. A distinct governance wallet is not the bootstrap. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "candidate",
-              "label": "candidate",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Contract with the exact required immutable parent/controller/ledger binding."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Distinct from the LP-reward converter and not replaceable after seal."
         },
         {
           "signature": "canonicalAccept(uint256,address)",
@@ -51248,98 +48974,6 @@
           "notes": "Includes receipt/cohort policy, not merely stored accrued; unavailable/failed currencies may revert."
         },
         {
-          "signature": "convertBatch(address,uint256[],bytes32,uint256,uint256)",
-          "kind": "function",
-          "name": "convertBatch",
-          "state_mutability": "nonpayable",
-          "purpose": "Convert selected earned royalty balances in one swap and credit ETH to those same NFTs.",
-          "access": "Authorized keeper, sealed canonical NFT and live economic/operation state.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "asset",
-              "label": "asset",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH in native-aware paths."
-            },
-            {
-              "position": 1,
-              "name": "ids",
-              "label": "ids",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "Strictly increasing NFT ID list, bounded to32; duplicate entries are rejected."
-            },
-            {
-              "position": 2,
-              "name": "routeId",
-              "label": "routeId",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked."
-            },
-            {
-              "position": 3,
-              "name": "minimumETH",
-              "label": "minimumETH",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies."
-            },
-            {
-              "position": 4,
-              "name": "deadline",
-              "label": "deadline",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "output",
-              "label": "output",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Total native ETH credited in wei."
-            }
-          ],
-          "native_value": null,
-          "notes": "At most 32 sorted IDs; no royalty reallocation to current membership and no payout during conversion. Returns: Total native ETH credited in wei."
-        },
-        {
-          "signature": "converter()",
-          "kind": "function",
-          "name": "converter",
-          "state_mutability": "view",
-          "purpose": "Locate the fixed royalty-only ETH executor, if bound before sealing.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "The fixed royalty-only ETH executor, if bound before sealing."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "eligibleCount(address)",
           "kind": "function",
           "name": "eligibleCount",
@@ -51783,84 +49417,6 @@
           ],
           "native_value": null,
           "notes": "Rejects custody-in-transit and unsafe reentrant reads; not all balance is distributable income."
-        },
-        {
-          "signature": "recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)",
-          "kind": "function",
-          "name": "recoverUnallocated",
-          "state_mutability": "nonpayable",
-          "purpose": "Recover only unsupported or explicitly unallocated royalty value as ETH for current active rarity weights.",
-          "access": "Current governance only; sealed active canonical NFT, unpaused, no preparation. Rechecked after callbacks.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "asset",
-              "label": "asset",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Exact ERC20 source address, or zero for unallocated native ETH. Never a ticker."
-            },
-            {
-              "position": 1,
-              "name": "amount",
-              "label": "amount",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Positive raw source units, at most orphaned(asset) for an admitted asset or actual full balance for an unsupported asset. Pending admitted receipts synchronize first."
-            },
-            {
-              "position": 2,
-              "name": "routeId",
-              "label": "routeId",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Reviewed enabled converter route ID; zero only for native ETH or explicitly configured exact WETH unwrap."
-            },
-            {
-              "position": 3,
-              "name": "minimumETH",
-              "label": "minimumETH",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Positive minimum ETH output in wei; stronger than the governed oracle floor where applicable. Native recovery requires minimum <= amount."
-            },
-            {
-              "position": 4,
-              "name": "deadline",
-              "label": "deadline",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unix on-chain deadline, current through at most600seconds ahead."
-            },
-            {
-              "position": 5,
-              "name": "reviewHash",
-              "label": "reviewHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Nonzero bytes32 fingerprint of the reviewed source/amount/route/minimum/deadline and entitlement classification."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "output",
-              "label": "output",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Actual ETH credited to active weights, not sent to governance and not automatically claimed."
-            }
-          ],
-          "native_value": null,
-          "notes": "No earned balances, source fractions, deferred-cohort receipts, LP assets, arbitrary recipient or generic calls. Ordinary token conversion requires the pre-seal fixed converter and reviewed route/prices. Recovery allocates previously unallocated value at current weights; it never rewrites existing entitlement. No conversion is possible for every malicious/frozen/illiquid/unpriced token."
         },
         {
           "signature": "sync(address)",
@@ -56443,10 +53999,10 @@
   ],
   "gaps": [],
   "counts": {
-    "contracts": 37,
-    "functions": 820,
-    "constructors": 37,
-    "receive_hooks": 13,
+    "contracts": 36,
+    "functions": 797,
+    "constructors": 36,
+    "receive_hooks": 12,
     "fallback_hooks": 0,
     "explanation_gaps": 0,
     "unannotated_inputs": 0,

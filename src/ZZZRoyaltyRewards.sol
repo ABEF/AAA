@@ -2,7 +2,6 @@
 pragma solidity 0.8.26;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
@@ -25,27 +24,20 @@ interface IZZZRoyaltyNFTOwner {
     function ownerOf(uint256 id) external view returns (address);
     function claimRouter() external view returns (address);
 }
-interface IZZZRoyaltyConverter {
-    function access() external view returns (IZZZAccess);
-    function ledger() external view returns (address);
-    function convert(address, uint256, bytes32, uint256, uint256) external returns (uint256);
-}
 
 /// @notice Separate, funded NFT-sale royalty ledger. LP trading fees never enter
 /// this allocation. The immutable NFT admits assets and activates each NFT once.
 /// Current owners inherit unclaimed balances. No external-custodian exit,
 /// administrator holder-claim or weight override exists.
 contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
-    using SafeERC20 for IERC20;
     uint256 public constant SCALE = 1e36;
     uint256 public constant MAX_ERC20_ASSETS = 16;
     uint256 public constant MAX_ASSETS = MAX_ERC20_ASSETS + 1;
     address public immutable nft;
     address private immutable creator;
     address public canonicalController;
-    address public converter;
-    uint256 public constant MAX_CONVERSION_NFTS = 32;
-    uint256 public constant ROYALTY_RECOVERY_VERSION = 1;
+    uint256 public constant ROYALTY_SETTLEMENT_VERSION = 2;
+    uint256 public constant ROYALTY_RECOVERY_VERSION = 2;
     // Address zero denotes native ETH and is always the first admitted asset.
     address[] public assets;
     mapping(address => bool) public isAsset;
@@ -75,11 +67,9 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     event RoyaltiesReceived(address indexed asset, uint256 amount, bool eligible);
     event Claimed(uint256 indexed id, address indexed asset, address indexed owner, uint256 amount);
     event LateRoyaltiesForwarded(address indexed asset, address indexed receiver, uint256 amount);
-    event ConverterBound(address indexed converter);
-    event RoyaltyConverted(uint256 indexed id, address indexed asset, uint256 sourceAmount, uint256 nativeAmount);
     event RoyaltyAssetDeferred(uint256 indexed id, address indexed asset);
     event RoyaltyEligibilityRecovered(address indexed asset, uint256 firstOrdinal, uint256 lastOrdinal);
-    event UnallocatedRoyaltiesRecovered(address indexed asset, uint256 sourceAmount, uint256 nativeAmount,
+    event UnallocatedRoyaltiesAllocated(address indexed asset, uint256 amount,
         uint256 activeWeight, bytes32 reviewHash);
 
     constructor(address nftController) {
@@ -112,39 +102,20 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
 
     function assetCount() external view returns (uint256) { return assets.length; }
 
-    /// @notice Governance recovers only unallocated funds, never earned balances.
-    /// ETH output joins CURRENT active weights; ordinary/deferred entitlements
-    /// keep their original cohort. An unsupported token need not be admitted to
-    /// the permanent asset list, but its converter route/prices must be reviewed.
-    function recoverUnallocated(address asset, uint256 amount, bytes32 routeId, uint256 minimumETH,
-        uint256 deadline, bytes32 reviewHash) external nonReentrant economic returns (uint256 output) {
+    /// @notice Allocate reviewed unallocated receipts in their ORIGINAL currency.
+    /// Existing earned/deferred/fraction liabilities never enter this amount.
+    /// Admission is separate and bounded; no swap, approval or external recipient.
+    function allocateUnallocated(address asset, uint256 amount, bytes32 reviewHash)
+        external nonReentrant economic {
         _recoveryAuthority();
-        if (amount == 0 || minimumETH == 0 || reviewHash == bytes32(0) || totalWeight == 0 ||
-            deadline < block.timestamp || deadline > block.timestamp + 10 minutes) revert InvalidConfiguration();
-        _sync(address(0));
-        if (asset != address(0) && isAsset[asset]) _sync(asset);
-        uint256 beforeSource = _canonicalBalance(asset);
-        uint256 available = isAsset[asset] ? orphaned[asset] : beforeSource;
-        if (amount > available) revert InvalidConfiguration();
-        if (isAsset[asset]) { orphaned[asset] -= amount; accounted[asset] -= amount; }
-        if (asset == address(0)) {
-            if (routeId != bytes32(0) || minimumETH > amount) revert InvalidConfiguration();
-            output = amount;
-        } else {
-            if (converter == address(0)) revert InvalidConfiguration();
-            uint256 beforeNative = address(this).balance;
-            IERC20(asset).forceApprove(converter, amount);
-            output = IZZZRoyaltyConverter(converter).convert(asset, amount, routeId, minimumETH, deadline);
-            IERC20(asset).forceApprove(converter, 0);
-            if (output == 0 || output < minimumETH || _canonicalBalance(asset) != beforeSource - amount ||
-                address(this).balance != beforeNative + output) revert InvalidState();
-        }
-        // This is first allocation of previously unallocated value, not a claim
-        // or conversion of an existing NFT entitlement. Do not emit a second
-        // RoyaltiesReceived for ETH already counted as an earlier empty receipt.
-        accounted[address(0)] += output; liabilities[address(0)] += output;
-        index[address(0)] += Math.mulDiv(output, SCALE, totalWeight);
-        emit UnallocatedRoyaltiesRecovered(asset, amount, output, totalWeight, reviewHash);
+        if (!isAsset[asset] || amount == 0 || reviewHash == bytes32(0) || totalWeight == 0)
+            revert InvalidConfiguration();
+        _sync(asset);
+        if (amount > orphaned[asset]) revert InvalidConfiguration();
+        orphaned[asset] -= amount;
+        liabilities[asset] += amount;
+        index[asset] += Math.mulDiv(amount, SCALE, totalWeight);
+        emit UnallocatedRoyaltiesAllocated(asset, amount, totalWeight, reviewHash);
         _recoveryAuthority();
     }
 
@@ -152,59 +123,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         IZZZAccess control = IZZZAccess(canonicalController);
         if (!control.canConfigure(msg.sender) || !control.isSealed() || control.paused() ||
             control.preparationActive() || control.module(Ids.NFT) != nft) revert Unauthorized();
-    }
-
-    /// @notice Fixed implementation selected before sealing; routes remain governed.
-    /// A new canonical deployment binds its own converter, never its predecessor's.
-    function bindConverter(address candidate) external nonReentrant economic {
-        IZZZAccess control = IZZZAccess(canonicalController);
-        if (!control.canConfigure(msg.sender) || control.isSealed() || converter != address(0) ||
-            candidate.code.length == 0 || IZZZRoyaltyConverter(candidate).ledger() != address(this) ||
-            address(IZZZRoyaltyConverter(candidate).access()) != canonicalController) revert Unauthorized();
-        converter = candidate;
-        emit ConverterBound(candidate);
-    }
-
-    /// @notice Aggregate already-earned balances, swap once, and credit the same
-    /// NFTs in ETH. This is not a claim: current owners claim the credited ETH
-    /// later. Pending receipts are checkpointed BEFORE selecting any balances.
-    /// Sorted IDs prevent duplicate conversion; no loop over the whole supply.
-    function convertBatch(address asset, uint256[] calldata ids, bytes32 routeId, uint256 minimumETH, uint256 deadline)
-        external nonReentrant economic returns (uint256 output) {
-        IZZZAccess control = IZZZAccess(canonicalController);
-        if (!control.keeperAuthorized(msg.sender) || !control.isSealed() || control.paused() ||
-            control.preparationActive() || control.module(Ids.NFT) != nft || converter == address(0)) revert Unauthorized();
-        if (asset == address(0) || !isAsset[asset] || ids.length == 0 || ids.length > MAX_CONVERSION_NFTS) revert InvalidConfiguration();
-        _sync(address(0)); _sync(asset);
-        uint256[] memory amounts = new uint256[](ids.length);
-        uint256 total;
-        for (uint256 i; i < ids.length; ++i) {
-            if ((i != 0 && ids[i] <= ids[i - 1]) || weightOf[ids[i]] == 0) revert InvalidConfiguration();
-            _checkpoint(ids[i], asset);
-            amounts[i] = accrued[ids[i]][asset]; total += amounts[i];
-            accrued[ids[i]][asset] = 0;
-        }
-        if (total == 0) revert InvalidConfiguration();
-        accounted[asset] -= total; liabilities[asset] -= total;
-        uint256 beforeSource = _canonicalBalance(asset);
-        uint256 beforeNative = address(this).balance;
-        IERC20(asset).forceApprove(converter, total);
-        output = IZZZRoyaltyConverter(converter).convert(asset, total, routeId, minimumETH, deadline);
-        IERC20(asset).forceApprove(converter, 0);
-        if (output == 0 || _canonicalBalance(asset) + total != beforeSource ||
-            address(this).balance != beforeNative + output) revert InvalidState();
-        accounted[address(0)] += output; liabilities[address(0)] += output;
-        uint256 cumulative; uint256 assigned;
-        for (uint256 i; i < ids.length; ++i) {
-            cumulative += amounts[i];
-            uint256 next = Math.mulDiv(output, cumulative, total);
-            uint256 part = next - assigned; assigned = next;
-            accrued[ids[i]][address(0)] += part;
-            emit RoyaltyConverted(ids[i], asset, amounts[i], part);
-        }
-        // Cumulative rounding allocates every received wei; source fractions and
-        // global division dust remain backed in the original currency.
-        if (!control.keeperAuthorized(msg.sender) || control.paused() || control.preparationActive()) revert Unauthorized();
     }
 
     /// @dev Called by NFT governance's authenticated asset-admission wrapper.

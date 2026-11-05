@@ -12,7 +12,7 @@ The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
 caller/value notes. These are documentation templates, never transaction approval.
 
 Current source is accounting6/custody5/portfolio2/direct Entry3 plus royalty
-recovery1. Historical profiles, research, reports and actual running sites retain
+settlement2/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
 their original meaning. Use [the report map](../reports/README.md) for exact source
 scope; a historical audit is not a current operating procedure or release sign-off.
 
@@ -71,7 +71,7 @@ operator procedures or the sole Todo.
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
 | Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [frozen review export](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
 | Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
-| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalty-audit-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
+| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalties-in-kind-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
 
 ## Historical references
 

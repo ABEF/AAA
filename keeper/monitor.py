@@ -131,6 +131,11 @@ class Keeper:
             'last_observed':None,'last_error':None}
         self.gas_review_health = {'state':'not_reviewed_this_cycle','last_review':None}
         self.accounting_version = config.get('accounting_version',1)
+        self.royalty_settlement_version = config.get('royalty_settlement_version',0)
+        if type(self.royalty_settlement_version) is not int or self.royalty_settlement_version not in (0,2):
+            raise ValueError('Unsupported explicit royalty settlement profile')
+        if self.royalty_settlement_version == 2 and self.accounting_version != 6:
+            raise ValueError('Original-currency royalty profile requires accounting6')
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6):
             raise ValueError('Unsupported keeper accounting version')
         historical_custody = 4 if self.accounting_version in (5,6) else 3 if self.accounting_version==4 else 0
@@ -1622,6 +1627,8 @@ class Keeper:
     def submit(self, name: str, signature: str, args: tuple[int|str|list[int],...], key: str, *, value: int = 0,
                metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
         if self.state.get('pending'): return False
+        if getattr(self,'royalty_settlement_version',0) == 2 and name == 'royalties' and signature == ROYALTY_BATCH:
+            raise ValueError('Original-currency royalties cannot be swapped')
         if signature == 'bridgeRewards(uint256,address,bytes32)':
             raise ValueError('Reward bridge scheduling is retired')
         if self.fee_intake_version == 1 and signature in ('syncExternal(uint256)','syncAllExternal()'):

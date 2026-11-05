@@ -225,12 +225,12 @@ remain open; the timing fix alone is not a no-MEV guarantee.
 
 ## 5. External dependencies and revenue accounting
 
-Recovery1 is an explicit exception for genuinely unallocated royalty value, not
-an administrator override of earned entitlements. Audit pre/post governance and
-canonical/pause guards, admitted orphaned vs pending/deferred liabilities, exact
-conversion deltas, current active-weight allocation, first-income event replay
-and fixed-successor unsupported forwarding. No token-saleability or universal
-royalty-payment guarantee follows. [Current scope](../reports/royalty-audit-20261105/REVIEW.md).
+Recovery2 allocates only reviewed admitted unallocated royalty units in their
+original currency at current active weights. Audit prior earned/deferred/fraction
+exclusion, governance pre/post lifecycle checks, same-currency backing and one-time
+event replay. No swap, unwrap, price feed or converter remains for royalties.
+Review the16ERC20 admission bound, pathological-token liveness, current-owner
+claims and fixed-successor forwarding. [Current scope](../reports/royalties-in-kind-20261105/REVIEW.md).
 
 **Current controls:** exact balance deltas, admitted assets and selected runtime/
 configuration pins constrain transfers. Actual local LP fees, royalties,

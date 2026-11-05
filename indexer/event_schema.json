@@ -2346,6 +2346,32 @@
     "name": "CustodyRemoteVerified",
     "signature": "CustodyRemoteVerified(bytes32,bytes32)"
   },
+  "0x99461677cc923ad044c1a2c7d1b9488062387ce456e829818c2d717e21853273": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UnallocatedRoyaltiesAllocated",
+    "signature": "UnallocatedRoyaltiesAllocated(address,uint256,uint256,bytes32)"
+  },
   "0x9b20a1d7d889cb00887b51eabc4dc07e0ba78ad7421d9a2a92fa30e6e0711f89": {
     "fields": [
       {

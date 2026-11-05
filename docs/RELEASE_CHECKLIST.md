@@ -7,17 +7,17 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
-Current Solidity/source baseline: main `28f75738a01efae2a2e11cf861e5e94d4d10efb3`.
+Pre-settlement2 task baseline: main `bce897c480cd7df67e4936d278d51908d3d7885f`.
 Current royalty source extends the historical manual-safeguard baseline. The
-[royalty normal/static record](../reports/royalty-audit-20261105/VERIFICATION.md)
-binds43normal gates and474strict detector contexts; old records remain historical.
+[royalty normal/static record](../reports/royalties-in-kind-20261105/VERIFICATION.md)
+binds42normal gates and466strict detector contexts; old records remain historical.
 Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 
-The current source-bound reference covers37contracts/820functions/37constructors/
-13receivers with zero gaps. [Earlier authority evidence](../reports/authority-audit-20261103/VERIFICATION.md)
+The current source-bound reference covers36contracts/797functions/36constructors/
+12receivers with zero gaps. [Earlier authority evidence](../reports/authority-audit-20261103/VERIFICATION.md)
 retains its older source scope. Neither internal record is a fresh full regression,
 published CI or independent audit. Original reports retain their pins, failed
 attempts, skips and measurements; overlapping stages must not be summed.
@@ -41,8 +41,8 @@ actual release record below remain required.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration39 at the current custody5 compiler-output pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema10/direct Entry3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Current474-record static disposition(33reviewed contexts/441exact reuse) is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Services/site | Schema11/direct Entry3/original-currency royalty2 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Security | Current466-record static disposition(25reviewed contexts/441exact reuse) is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 

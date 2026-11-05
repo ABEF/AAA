@@ -1,7 +1,7 @@
 # PoPL current project context
 
-Reviewed5November2026. Solidity/source baseline main
-`28f75738a01efae2a2e11cf861e5e94d4d10efb3`; verify actual local/remote heads before
+Reviewed5November2026. Pre-settlement2 task baseline main
+`bce897c480cd7df67e4936d278d51908d3d7885f`; verify actual local/remote heads before
 claiming publication. Read [instructions](AGENTS.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and
 [Operator manual](docs/OPERATOR_MANUAL.md). **Undeployed; production NOT APPROVED.**
@@ -16,7 +16,7 @@ with stronger admitted limits. Current owners inherit all unpaid rights.
 
 Fresh accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/
 custody5/emergency2/LP-routing2, pricing2/direct Entry3/review2/governance2/fee1,
-royalty recovery1. Schema10 inventory17modules/20helpers. Position is eight words;
+royalty settlement2/recovery2. Schema11 inventory17modules/18helpers. Position is eight words;
 parked same-chain canonicalV6 wire compatibility never implies runtime compatibility.
 [Exact profile](docs/POSITION_V6.md). Preserve historical codecs/readers/journals.
 
@@ -46,44 +46,37 @@ compound/fixed-ZZZ buyback-burn. Compound has its own interval and service waits
 for in-range/below-trigger/no-pending-geometry state. Harvest, conversion,
 compounding, burn and claims remain separate; no holder loop at harvest.
 
-## Royalties and manual recovery
+## Royalties and manual allocation
 
-ERC2981 requests5%, without universal market enforcement. Actual eligible royalties
-use Commun1/Rare2/Legendary3, independent of LP size. Admitted pending/outage funds
-keep earlier cohort entitlement; unknown/unallocated funds are a separate domain.
-Recovery1 governance can convert only that unallocated domain into ETH at active
-weights at recovery, without an arbitrary beneficiary or touching earned/fractional
-liabilities. Approved earned conversion preserves the same NFTs' rights. Its
-keeper worker is opt-in, with qualified routes/prices still needed. Token converter
-binding is before seal; malicious/unsellable/unpriced tokens may remain immovable.
-
-One human governance/operator, immediate direct configuration with no timelock;
-keeper/guardian/bootstrap capabilities stay separate. Governance may park both
-legs or close only residual while paused. Exact emergency2 manifests can bypass
-financial guards and lose nearly all principal; never automate this fallback.
-
-Terminal governance holder return closes both legs and pays current NFT owners
-actual ETH/ZZZ plus designated compound, excluding rewards/buyback backing.
-Allocation/distribution are governance-only; holder reward/fallback claims remain.
-NFT transfers/royalties survive; no reopening or post-exit canonical replacement.
-No integrated bridge, external custody recipient or post-seal ZZZ replacement.
+Fresh settlement2/recovery2 removes royalty swapping, unwrap, converter binding
+and keeper conversion. Each admitted currency remains itself; owner mixed claims
+support32total NFT/asset/ledger operations. Rarity1/2/3, incumbent receipts,
+outage cohorts, fractions and transferred unpaid rights remain. Governance
+allocateUnallocated(asset,amount,reviewHash) only allocates admitted orphaned
+units in that SAME currency at active weights now; earned/deferred liabilities
+are excluded. Unsupported tokens require review/admission within16ERC20 plusETH.
+No price feed is needed for original claims; missing USD reporting stays unknown.
+LP conversion stays separate. Reporting3/converter:null and keeper explicit
+royalty_settlement_version2 select fresh behavior; old profiles remain historical.
+New ledger storage/runtime and event semantics require fresh bindings and reviewed
+checkpoint rebuild, never a relabeled deployment/journal.
 
 ## Documentation and verification
 
-[Operator tables](docs/OPERATOR_MANUAL.md#operator-call-tables) cover820functions,
-37constructors and13receivers. Four columns, <=5word descriptions, complete typed
+[Operator tables](docs/OPERATOR_MANUAL.md#operator-call-tables) cover797functions,
+36constructors and12receivers. Four columns, <=5word descriptions, complete typed
 input examples with unresolved live values. Reads/callbacks/module-only hooks are
 separate from human actions. Never treat these as simulated wallet transactions.
 Notes/ABI/examples and generated tables must update together; normal verification
 checks both generators. Historical plans now link their exact original Git text.
 
-[Latest royalty verification](reports/royalty-audit-20261105/VERIFICATION.md) binds
-52production/31dependency sources,43normal size gates and474static contexts
-(33current/441exact referenced-source reuse), with72selected EVM successes and
-separately scoped overlapping Python stages. Older records remain immutable and
-source-scoped. Migration39/Vault635/Budget237/Balancer360runtime margins and royalty
-factory463remain source-specific. No independent approval or actual target gas.
-Documentation-only work reuses these exact unchanged Solidity pins.
+[Current original-currency verification](reports/royalties-in-kind-20261105/VERIFICATION.md)
+binds51production/31dependency sources,42normal size gates and466static contexts
+(25current/441exact reuse).58selected EVM methods pass, including1000NFT mixed
+wallets and1000-input conservation fuzz;144affected Python methods pass at their
+recorded stage. Migration39/Vault635/Budget237/Balancer360runtime margins remain;
+royalty18580/factory20127bytes are smaller. No independent or actual target-gas approval.
+
 
 Checkpoint1 is implemented only for opt-in fresh6/5/1single-deployment earnings.
 Other history readers/lineage/archive/rotation/workload qualification remain open;

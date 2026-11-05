@@ -47,6 +47,10 @@ class RoyaltyAutomation:
         if not isinstance(cfg,dict) or type(cfg.get('enabled',False)) is not bool:
             raise ValueError('royalty_conversion requires an explicit enabled boolean')
         self.enabled = cfg.get('enabled',False)
+        if not lp and getattr(keeper,'royalty_settlement_version',0) == 2:
+            if self.enabled or set(cfg)-{'enabled'}:
+                raise ValueError('Original-currency royalties prohibit conversion settings')
+            return
         if not self.enabled: return
         self.missing_explicit_profile = getattr(keeper,'accounting_version',1)==6 and 'profile' not in cfg
         if self.missing_explicit_profile:

@@ -167,19 +167,15 @@ see [history semantics](FRONTEND_HISTORY.md).
 
 ERC-2981 requests **5% of a marketplace sale** payable to the immutable NFT-owned royalty receiver. Payment cannot be forced by this interface. **100% of distributable receipts** is reserved for eligible activated NFTs in weights Commun x1 / Rare x2 / Legendary x3, independently of LP revenue allocations. LP size and evolution do not change royalty weight. Current owners claim all their NFT's accrued balances.
 
-Native ETH and up to 16 reviewed exact-transfer, non-rebasing ERC20s are supported;
-stablecoins admitted here do not become contribution inputs. Pending royalties
-sync to incumbents before a newly activated NFT gains weight. Constructor/admission
-prefunds and zero-eligibility receipts remain unallocated until separately reviewed
-governance recovery1; its ETH output uses active rarity weights at recovery.
-Unsupported royalty tokens can use the same restricted path without admission.
-This first allocation never consumes earlier earned/deferred liabilities. Fractions carry; index
-dust stays reserved. There is no generic sweep, weight replacement or redirected
-holder payout. Royalty backing has no external-custodian exit or return function.
-An unreadable optional currency defers only new eligibility:
-recovery protects its earlier cohort before newcomers join. Healthy currencies
-and activation continue. [Batch conversion](ROYALTY_SETTLEMENT.md) credits the same
-NFTs in ETH under the captured limit (default 1%, maximum 10%), gas separate.
+Native ETH and up to16reviewed exact-transfer/non-rebasing ERC20s have separate
+rarity-weighted original-currency claims. WETH remains WETH; no royalty swaps,
+unwraps, oracle quotes or converter binding remain. New activation checkpoints
+incumbents; currency faults defer only that currency and protect its earlier
+cohort. Current owners inherit unpaid rights; fractions carry and global division
+dust remains backed. Reviewed unallocated units require admission and governance
+`allocateUnallocated(asset,amount,reviewHash)`; they join the SAME currency's index
+at active weights at allocation. Earned/deferred/fraction liabilities are excluded.
+See [settlement and limits](ROYALTY_SETTLEMENT.md). LP fee conversion is separate.
 
 Revealed metadata reports the fixed Commun x1 / Rare x2 / Legendary x3 trait even while
 Dormant. Unrevealed weight is `Unrevealed`, not an invented rarity. The economic

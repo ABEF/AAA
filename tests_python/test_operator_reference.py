@@ -17,10 +17,10 @@ class OperatorReferenceTests(unittest.TestCase):
         cls.reference = json.loads((ROOT/'docs/function-reference.json').read_text())
         cls.examples = json.loads((ROOT/'docs/operator-call-examples.json').read_text())
 
-    def test_current_870_callables_have_exact_examples_and_no_missing_types(self):
+    def test_current_callables_have_exact_examples_and_no_missing_types(self):
         expected = check_examples(self.reference, self.examples)
-        self.assertEqual(len(expected), 870)
-        self.assertEqual(sum(f['kind'] == 'function' for f in expected.values()), 820)
+        self.assertEqual(len(expected), sum(self.reference['counts'][x] for x in ('functions','constructors','receive_hooks')))
+        self.assertEqual(sum(f['kind'] == 'function' for f in expected.values()), self.reference['counts']['functions'])
 
     def test_table_is_current_without_writing_or_compiling(self):
         self.assertFalse(generate(check=True)['ready_for_submission'])
@@ -28,7 +28,7 @@ class OperatorReferenceTests(unittest.TestCase):
     def test_every_callable_has_a_row_and_each_explanation_is_at_most_five_words(self):
         text = render(self.reference, self.examples)
         rows = [line for line in text.splitlines() if line.startswith('| `') and 'CONTRACT_FUNCTIONS.md#' in line]
-        self.assertEqual(len(rows), 870)
+        self.assertEqual(len(rows), len(self.examples['rows']))
         self.assertTrue(all(1 <= len(row.split('|')[-2].strip().split()) <= 5 for row in rows))
         self.assertEqual(text.count(BEGIN), 1); self.assertEqual(text.count(END), 1)
 
@@ -68,7 +68,7 @@ class OperatorReferenceTests(unittest.TestCase):
         self.assertEqual(self.examples['rows']['ZZZMigration.claimPrincipal(uint256,address)']['role'], 'H')
 
     def test_bootstrap_seal_and_one_time_bindings_remain_distinct(self):
-        for identity in ['ZZZAccessController.seal()', 'ZZZRoyaltyRewards.bindConverter(address)',
+        for identity in ['ZZZAccessController.seal()', 'ZZZRewards.bindConverter(address)',
                          'ZZZNFT.setBaseURI(string)']:
             self.assertEqual(self.examples['rows'][identity]['role'], 'B')
 

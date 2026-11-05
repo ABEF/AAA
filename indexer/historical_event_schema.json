@@ -485,6 +485,37 @@
     "name": "CustodyApproved",
     "signature": "CustodyApproved(bytes32,uint256,address,uint256)"
   },
+  "0x72942b4c3efc1a2771bb79910fa8aa483d516aa4ca981905a646efd020af6db6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UnallocatedRoyaltiesRecovered",
+    "signature": "UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)"
+  },
   "0x74c86b4771882a858100c05cb152701493afca53ac4f8af8a3abd03cd3b5fdd0": {
     "fields": [
       {
@@ -598,6 +629,32 @@
     ],
     "name": "RoyaltyCustodyExited",
     "signature": "RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)"
+  },
+  "0x8cf8bdee38d1f77a80e9d022ed87c849557d2289a2e7271026ace74860afd2de": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyConverted",
+    "signature": "RoyaltyConverted(uint256,address,uint256,uint256)"
   },
   "0x906e5c2a5da54d2af5a8c402c4a9035d97a3742b44a5e391da95d561a84bf7a6": {
     "fields": [
