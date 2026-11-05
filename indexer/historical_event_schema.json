@@ -266,6 +266,32 @@
     "name": "LocationRecorded",
     "signature": "LocationRecorded(uint256,uint64,uint256,address)"
   },
+  "0x4bda33d198725cbe85036110b83cb80b958bcc6838a00e4b5ee9897bc36f770e": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previousConfirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "previousCallbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      }
+    ],
+    "name": "RandomnessRequestSettingsChanged",
+    "signature": "RandomnessRequestSettingsChanged(uint16,uint32,uint16,uint32)"
+  },
   "0x4f9da6a7e022cf8b647c0e7081de9755744c61d6d1bdc467b0b71e4319eaf6e6": {
     "fields": [
       {
@@ -333,6 +359,47 @@
     ],
     "name": "NativeRewardWrapped",
     "signature": "NativeRewardWrapped(uint256,address,uint256)"
+  },
+  "0x5978f2026a782bb024c4e8fb6eab5d94109f9cd960e9c88f799fc8a77d5e4803": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "router",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
+        "type": "uint24"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,address,address,address,uint24,bytes32)"
   },
   "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
     "fields": [
@@ -850,6 +917,42 @@
     ],
     "name": "RemoteRewardsSent",
     "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
+  },
+  "0xe44a4d0f9fc4587d20c3a42f0e0980c30b3a6b993d81cea87a9531b9a41489e5": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "coordinator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "keyHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "subscriptionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "nativePayment",
+        "type": "bool"
+      }
+    ],
+    "name": "RandomnessConfigured",
+    "signature": "RandomnessConfigured(address,bytes32,uint256,uint16,uint32,bool)"
   },
   "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
     "fields": [

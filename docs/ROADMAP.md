@@ -14,13 +14,22 @@ lineage/other history consumers, real workloads/rotation and production approval
 remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
 identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
+The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+
 ## 1. Freeze the correct source and integration boundary
 
 Use [accounting6/Entry3/schema10](POSITION_V6.md) and exact runtime/helper/dependency
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [current evidence](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) has exact
+The [current royalty evidence](../reports/royalty-audit-20261105/VERIFICATION.md) and
+[source-scoped manual review](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) have exact
 source scope, retained failed attempts and explicit reuse. Normal Migration has
 39bytes runtime headroom; further code changes need new exact-source gates.
 

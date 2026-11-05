@@ -29,6 +29,14 @@ lineage/other history consumers, real workloads/rotation and production approval
 remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
 identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
+The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+
 ## Smart contracts
 
 | Capability | Implemented behavior | Reference |
@@ -43,7 +51,7 @@ identifies exact mint-recipient/statistics/payment gaps without adding authority
 | Ordinary eligibility | 85% actual centre-to-edge human ZZZ-price distance; physical and independent reference on the same side.600-second sampled window/maxgap300, source240-second checks, fresh60–300-second service jitter, initial hard12hours. Manual geometry changes are a distinct cooldown-gated exception. | [Confirmation](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer) |
 | Financial checks | Dual USD sources with3% agreement; captured default2% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
-| Royalties | Actual received funds; separate ×1/×2/×3 weights, outage isolation and guarded batch conversion. Unclaimed rights follow current ownership. | [Royalties](ROYALTY_SETTLEMENT.md) |
+| Royalties | Actual received funds; ×1/×2/×3 weights, outage isolation and guarded earned-balance conversion. Recovery1 separately converts only unallocated value to ETH at current active weights; unsupported late tokens can forward only to the authenticated successor. Unclaimed rights follow current ownership. ERC2981 requests5%, without transfer enforcement. | [Royalties](ROYALTY_SETTLEMENT.md), [current audit](../reports/royalty-audit-20261105/REVIEW.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
 | Recovery | Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Custody5 allocation/distribution is governance-only; holder LP/royalty/fallback claims remain. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |

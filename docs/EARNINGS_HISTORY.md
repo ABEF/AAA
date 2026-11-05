@@ -9,6 +9,16 @@ retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
 
+## Unallocated royalty recovery
+
+Recovery1 first allocates previously unallocated value through a dedicated
+UnallocatedRoyaltiesRecovered event. The current active weights receive measured
+ETH, with normal index fractions. Collection royalties_recovered is separate
+from earlier received/quarantined currency; royalties_allocated includes it once.
+Existing entitlement conversions and claims still are not new income. Earnings
+checkpoints bind semantic source: rebuild/re-pin after this parser change. See
+[exact rules](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
+
 ## Optional checkpoint1 milestone
 
 The fresh accounting6/custody5/fee-intake1 earnings path can use a reviewed,

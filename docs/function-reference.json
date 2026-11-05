@@ -35,7 +35,7 @@
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "2481b8a5dae25e003eeef1aafec12229d1c01b4e2f7469f5ac4d5faeabd10df6",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
-      "src/ZZZRoyaltyRewards.sol": "235e3f175cdb7347a8a7db05ae682d24cb8496342b95015729eb9dd6746448f0",
+      "src/ZZZRoyaltyRewards.sol": "fe8730906b08d6b2cff7ddd2da7656b1c55dbefd13abc4454b8703ef5f8c183a",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
@@ -221,9 +221,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "5781031ff908f078c25c6cdd8318f37108112ce05822019832c707006bc432ef",
-    "compiler_output_sha256": "7fab4dbb9524d37fd8417c71e89fc0e69aae7ebf562eda81fa7055c00de9c057",
-    "size_evidence_sha256": "8ea013e9594b96ff4d7d07da9d0bd7e1cd9ee724a997f9650ee2f86e965c30ac",
+    "compiler_input_sha256": "77ba0970fe47705f3c7d7c1d43cf9e21ac7f02bb867797ea76e0d2a5119a2b7c",
+    "compiler_output_sha256": "54f5004b0c5b8ab56fa946054341048870457daab9c8406d3c04fa7e796059e9",
+    "size_evidence_sha256": "9f92fea8b92bdfb53ebf5092fe8b8d795867d24c73f0bee02037ede20bb59955",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -19913,6 +19913,43 @@
           "type": "event"
         },
         {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "nativeAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "activeWeight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "UnallocatedRoyaltiesRecovered",
+          "type": "event"
+        },
+        {
           "inputs": [],
           "name": "MAX_ASSETS",
           "outputs": [
@@ -19941,6 +19978,19 @@
         {
           "inputs": [],
           "name": "MAX_ERC20_ASSETS",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "ROYALTY_RECOVERY_VERSION",
           "outputs": [
             {
               "internalType": "uint256",
@@ -20700,6 +20750,50 @@
               "internalType": "address",
               "name": "asset",
               "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "routeId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumETH",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "recoverUnallocated",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "output",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
             }
           ],
           "name": "sync",
@@ -20770,7 +20864,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "f920ef670f7bb44128daafd747d991f8e5b33eeea1eb1d689ec229770e1611f9"
+      "abi_sha256": "62e4b03cda1e2938d5b05084f6746a1c8647508892ac380e8c13016292180640"
     },
     "ZZZStrategy": {
       "source": "src/ZZZStrategy.sol",
@@ -24025,7 +24119,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "5406bbf7b5d00f7cae2f406df40f81550883c605d41988eb0c080590feb4e2e9",
+  "notes_sha256": "878c4687a82e9b2164b0ba42eabe2e6c1701d0e19deb201aac71b52ca8520fb4",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -50361,6 +50455,29 @@
           "notes": null
         },
         {
+          "signature": "ROYALTY_RECOVERY_VERSION()",
+          "kind": "function",
+          "name": "ROYALTY_RECOVERY_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit unallocated-royalty recovery capability; old runtimes do not gain it by sharing accounting6.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this reviewed recovery implementation; verify runtime pins as well."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "SCALE()",
           "kind": "function",
           "name": "SCALE",
@@ -51335,7 +51452,7 @@
           "kind": "function",
           "name": "forwardLate",
           "state_mutability": "nonpayable",
-          "purpose": "Forward post-cutoff royalties from a retired receiver to its one immutable immediate successor.",
+          "purpose": "Forward admitted or unsupported late currencies from a retired receiver to its authenticated immediate successor only.",
           "access": "Permissionless after authenticated canonical retirement.",
           "status": "documented",
           "inputs": [
@@ -51361,7 +51478,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Old captured liabilities are not forwarded twice. Returns: Raw late amount forwarded."
+          "notes": "No caller-selected recipient or active-source drain. A healthy exact-transfer unsupported currency can forward without admission; the active successor separately admits or recovers it. Unreadable/nonstandard tokens can still fail."
         },
         {
           "signature": "fraction(uint256,address)",
@@ -51666,6 +51783,84 @@
           ],
           "native_value": null,
           "notes": "Rejects custody-in-transit and unsafe reentrant reads; not all balance is distributable income."
+        },
+        {
+          "signature": "recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)",
+          "kind": "function",
+          "name": "recoverUnallocated",
+          "state_mutability": "nonpayable",
+          "purpose": "Recover only unsupported or explicitly unallocated royalty value as ETH for current active rarity weights.",
+          "access": "Current governance only; sealed active canonical NFT, unpaused, no preparation. Rechecked after callbacks.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact ERC20 source address, or zero for unallocated native ETH. Never a ticker."
+            },
+            {
+              "position": 1,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive raw source units, at most orphaned(asset) for an admitted asset or actual full balance for an unsupported asset. Pending admitted receipts synchronize first."
+            },
+            {
+              "position": 2,
+              "name": "routeId",
+              "label": "routeId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Reviewed enabled converter route ID; zero only for native ETH or explicitly configured exact WETH unwrap."
+            },
+            {
+              "position": 3,
+              "name": "minimumETH",
+              "label": "minimumETH",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive minimum ETH output in wei; stronger than the governed oracle floor where applicable. Native recovery requires minimum <= amount."
+            },
+            {
+              "position": 4,
+              "name": "deadline",
+              "label": "deadline",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Unix on-chain deadline, current through at most600seconds ahead."
+            },
+            {
+              "position": 5,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero bytes32 fingerprint of the reviewed source/amount/route/minimum/deadline and entitlement classification."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "output",
+              "label": "output",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual ETH credited to active weights, not sent to governance and not automatically claimed."
+            }
+          ],
+          "native_value": null,
+          "notes": "No earned balances, source fractions, deferred-cohort receipts, LP assets, arbitrary recipient or generic calls. Ordinary token conversion requires the pre-seal fixed converter and reviewed route/prices. Recovery allocates previously unallocated value at current weights; it never rewrites existing entitlement. No conversion is possible for every malicious/frozen/illiquid/unpriced token."
         },
         {
           "signature": "sync(address)",
@@ -56249,7 +56444,7 @@
   "gaps": [],
   "counts": {
     "contracts": 37,
-    "functions": 818,
+    "functions": 820,
     "constructors": 37,
     "receive_hooks": 13,
     "fallback_hooks": 0,

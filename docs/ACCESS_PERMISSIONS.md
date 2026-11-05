@@ -67,3 +67,12 @@ This internal review is not a guarantee against hacks. Key compromise, reviewed
 malicious successor code, upstream changes, dependency failure and explicit
 emergency powers remain material trust/liveness risks. Select/secure authorities,
 rehearse actual operation and obtain independent review before production.
+
+## Restricted royalty recovery
+
+Current governance alone calls RoyaltyRewards.recoverUnallocated with the exact
+inputs in the [operator procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
+An authorized keeper cannot recover unsupported/orphaned funds. Existing
+convertBatch retains keeper permission and same-NFT credit. Recovery has no
+arbitrary recipient or earned-balance override; it credits ETH to active weights
+at execution. Retired forwardLate remains permissionless but fixes its successor.

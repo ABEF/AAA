@@ -23,6 +23,7 @@ SPECS = {
  ('royalties', 'RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)'): (3, 2),
  ('royalties', 'RoyaltyCustodyReturned(bytes32,address,uint256)'): (2, 1),
  ('royalties', 'RoyaltiesReceived(address,uint256,bool)'): (1, 2),
+ ('royalties', 'UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)'): (1, 4),
  ('handoff', 'Frozen(bytes32,address)'): (2, 0),
  ('handoff', 'Aborted(bytes32)'): (1, 0),
  ('handoff', 'Retired(bytes32,address,bytes32)'): (2, 1),
@@ -32,7 +33,7 @@ TOPICS = {(role, '0x'+keccak256(sig.encode()).hex()): (sig.split('(')[0], *layou
           for (role, sig), layout in SPECS.items()}
 COLLECTION = ('lp_processed', 'lp_owner_allocated', 'lp_collective_allocated',
               'lp_compounding_allocated', 'lp_buyback_allocated', 'lp_collective_quarantined',
-              'royalties_received', 'royalties_allocated', 'royalties_quarantined')
+              'royalties_received', 'royalties_allocated', 'royalties_quarantined', 'royalties_recovered')
 NFT = ('lp_individual', 'lp_collective', 'royalties')
 
 
@@ -272,6 +273,21 @@ class Replay:
                 self.pending_recovery[asset] = transaction
             else:
                 self.cohorts[asset] = set(self.weights)
+        elif name == 'UnallocatedRoyaltiesRecovered':
+            source = _topic_address(topics[1])
+            amount, output, supply, review = d
+            cohort = self.cohorts.get(ZERO)
+            require(not self.frozen and cohort == set(self.weights) and bool(cohort) and
+                    supply == sum(self.weights.values()) and amount > 0 and output > 0 and review != 0 and
+                    (source != ZERO or amount == output), 'Invalid unallocated royalty recovery')
+            # This first allocation is income at recovery, not a conversion of
+            # earlier NFT earnings. Do not recount an earlier quarantined receipt.
+            self.add('royalties_recovered', ZERO, output, timestamp)
+            self.add('royalties_allocated', ZERO, output, timestamp)
+            delta = output*SCALE//supply
+            self.royalty_index[ZERO] += delta
+            for identifier in self.selected:
+                self.earn('royalties', ZERO, delta*self.weights.get(identifier, 0), timestamp, identifier)
         elif name == 'RoyaltyCustodyExited':
             identifier, asset, recipient = t[0], _topic_address(topics[2]), _topic_address(topics[3])
             amount, review = d

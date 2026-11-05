@@ -1,7 +1,7 @@
 # Marketplace royalty settlement
 
-The undeployed current profile is accounting 4 / fee-intake 1 / direct governance
-2 / holder-exit canonical V6. This page covers marketplace receipts, distinct from
+The undeployed current profile is accounting6 / custody5 / fee-intake1 / direct
+governance2 / canonical V6, with explicit royalty recovery1. This page covers marketplace receipts, distinct from
 activation contributions and venue LP fees. Conversion loss defaults to **1%**,
 governed up to **10%**, with network gas separate. See [execution policy](EXECUTION_LOSS_POLICY.md)
 and the [sole task](../TODO.md#task-royalty-eth-settlement).
@@ -135,6 +135,81 @@ slippage or loss limit is widened.
 Retain the source balances and recorded pending intent; do not force a
 conversion, edit cursors or resend to hide an inconsistent provider.
 
+## Unexpected currencies and unallocated recovery
+
+`RoyaltyRewards.ROYALTY_RECOVERY_VERSION()==1` identifies this fresh source.
+Sealing fixes the receiver implementation; an older runtime has no new recovery
+function merely because its accounting version matches.
+
+Keep two **different** entitlement rules:
+
+- Existing earned funds, pending admitted receipts with an earlier eligible
+  cohort, fractions and global division dust keep their original entitlement.
+  `convertBatch` converts only selected earned balances and credits those same
+  NFTs. A currency-outage recovery still settles unseen funds to its older cohort.
+- A genuinely unsupported token balance or `orphaned(asset)` was never allocated
+  to an NFT. The user approved manual conversion/release into ETH using the active
+  Commun1/Rare2/Legendary3 weights **when recovery executes**. This is first income
+  allocation, not historical reassignment. Arrival-time eligibility cannot be
+  reconstructed for unsupported receipts. Do not use this exception to override
+  ambiguous or already-established entitlements.
+
+Governance calls:
+
+```text
+RoyaltyRewards.recoverUnallocated(asset,amount,routeId,minimumETH,deadline,reviewHash)
+```
+
+| Input / prerequisite | Exact meaning |
+| --- | --- |
+| Governance | Current configured governance wallet, not merely an authorized keeper. Sealed current NFT, canonical state0, unpaused and no preparation; pre/post checks. LP terminal exit does not end royalty eligibility. |
+| `asset` | Actual ERC20 address, or address zero for unallocated ETH. Review token code/proxy/transfer behavior first. |
+| `amount` | Positive raw units. For admitted currencies only `orphaned(asset)` is available after synchronizing pending funds. Unsupported currency recovery can use its actual balance without consuming a permanent admission slot. No reward liabilities are available. |
+| `routeId` | Exact reviewed converter route. Zero for native ETH (no swap), or the supported exact unwrap path. Token swaps still need an enabled typed compatible route and reviewed independent prices. |
+| `minimumETH` | Positive wei floor; ordinary conversion also enforces its current oracle-valued cap (default1%, maximum10%). No recovery financial bypass was added. Native recovery has exact amount and requires minimum<=amount. |
+| `deadline` | On-chain Unix seconds from now to at most600seconds ahead. Prepare/simulate exact calldata; do not reuse an expired review. |
+| `reviewHash` | Nonzero bytes32 fingerprint of your saved reviewed classification, token/amount, route, minimum, deadline and evidence. It is a review identifier, not a contract proof that your analysis was correct. |
+
+Before execution inspect `isAsset`, `orphaned`, `accounted`, `liabilities`, actual
+balances, pending receipts, active weights, converter bindings and routes at a
+pinned block. Record why these units have no prior NFT entitlement. At least one
+NFT must already be activated; otherwise there is nobody to receive the value.
+Use separate reviewed amounts for large inventories or incompatible tokens.
+
+The ledger first settles normal ETH/admitted receipts, converts only the selected
+unallocated amount through its fixed converter and measures exact source/output
+deltas. It credits ETH indexes to current active weights; governance receives no
+funds. Verify `UnallocatedRoyaltiesRecovered`, ETH indexes/liabilities, reduced
+source orphaned/balance, zero approvals and unchanged earned source entitlements.
+A holder later claims through normal owner-authenticated paths. Gas is separate.
+No1000-holder payout loop or change to LP custody is introduced.
+
+Any failure atomically retains the source and existing entitlements. Stop a bad
+route/converter, repair/review it, take a fresh snapshot and retry; no server
+restart is inherently required for an on-chain policy change. The ordinary keeper
+conversion job does **not** authorize or automate this governance recovery. Never
+use its key for governance signing. Recovery allocation is irreversible after
+success and follows subsequent NFT transfers like other unclaimed rights.
+
+`orphaned` remains a backing classification, no longer an unavoidable permanent
+lock for recoverable royalty assets. Unsupported spam is never auto-admitted or
+approved. No contract can guarantee selling malicious, frozen, taxed/rebasing,
+worthless, illiquid or unpriced tokens; a reviewed executable route/prices are
+still necessary. This is not permission to sweep LP reserves or claimable dust.
+
+## Requested royalties are not transfer enforcement
+
+The NFT returns `royaltyRewards()` and floor(salePrice/20), with ERC165 royalty
+interface support. This requests5% in the sale currency; it does not identify a
+sale inside every ERC721 transfer or force payment. Ordinary transfers remain
+unrestricted by a sale-payment validator. [ERC2981](https://eips.ethereum.org/EIPS/eip-2981)
+explicitly treats payment as voluntary. OpenSea documents separate
+[transfer-validator enforcement](https://docs.opensea.io/docs/creator-fee-enforcement)
+for compatible creator-token contracts. It is not currently implemented or
+qualified on Robinhood here. Adding it changes transfer dependencies, censorship,
+market compatibility and recovery assumptions and needs a separate decision;
+never promise universally enforced5% or silently add a transfer restriction.
+
 ## Operator procedure
 
 For collection pricing, the authorized marketplace owner/editor can request:
@@ -230,20 +305,17 @@ network. No new private-key storage, external notification or monitor is added.
 
 ## Late receipts after retirement
 
-`RoyaltyRewards.forwardLate(asset)` forwards only an asset already admitted by
-the retired source ledger, to its fixed immediate successor. Once retired,
-governance cannot add a previously unknown currency there. An arbitrary new
-ERC20 sent to an old receiver is therefore outside the implemented recovery
-support. Existing admitted ETH/ERC20 late receipts retain their original path.
+`RoyaltyRewards.forwardLate(asset)` now accepts admitted or unsupported late
+currencies after authenticated retirement, sending only to its fixed immediate
+successor. Permissionless relayers cannot choose the recipient or access a live
+receiver. Healthy exact-transfer tokens move without admitting them at the old
+receiver. The successor must then use its own reviewed admission or recovery path;
+forwarding alone does not allocate unknown-token entitlements.
 
-Before a handoff, inventory actual marketplace currencies/old signed orders and
-cached receiver addresses; admit/qualify intended currencies before receipt or
-retirement, and update supported marketplace configuration. Do not infer a
-universal settlement-currency ban from collection pricing preferences.
-An extension for bounded forwarding of genuinely unadmitted currencies to the
-fixed successor would require explicit policy, quarantine/backing/security and
-size review before sealing; an arbitrary operator sweep is not equivalent.
-The current release retains its admitted-only behavior. See [rights audit](../reports/full-audit-20261025/RIGHTS.md).
+Inventory old orders/cached recipients and verify successor identity, source and
+destination deltas and LateRoyaltiesForwarded. A malicious/unreadable token or
+incompatible successor can still fail; do not replace that failure with a chosen
+wallet or claim universal recovery. See [current review](../reports/royalty-audit-20261105/REVIEW.md).
 
 ## Qualification boundary
 

@@ -369,6 +369,17 @@ contract NFTMetadataTest is Test {
         vm.prank(ALICE); assertEq(royaltyReceiver.claim(1, address(0)), 1 ether - 1);
     }
 
+    function testRoyaltyRequestDoesNotEnforcePaymentOnOrdinaryTransfer() public {
+        _active(1,0,0);
+        ZZZRoyaltyRewards receiver=nft.royaltyRewards();
+        uint256 before=address(receiver).balance;
+        (address payee,uint256 fee)=nft.royaltyInfo(1,1 ether);
+        assertEq(payee,address(receiver)); assertEq(fee,0.05 ether);
+        vm.prank(ALICE); nft.transferFrom(ALICE,BOB,1);
+        assertEq(nft.ownerOf(1),BOB); assertEq(address(receiver).balance,before);
+        assertEq(receiver.weightOf(1),1); assertEq(receiver.claimable(1,address(0)),0);
+    }
+
     function testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata() public {
         _active(1, 0, 0);
         PositionStatus[2] memory states = [PositionStatus.Outbound, PositionStatus.Parked];

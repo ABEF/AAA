@@ -3,7 +3,8 @@ pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {MockToken, TaxToken} from "./mocks/Mocks.sol";
+import {MockAccess, MockToken, TaxToken} from "./mocks/Mocks.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ExactToken} from "../src/libraries/ExactToken.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 
@@ -12,7 +13,12 @@ import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 contract RoyaltyNFTFixture is ERC721 {
     ZZZRoyaltyRewards public immutable royalties;
     bool public paused;
-    constructor() ERC721("Royalty fixture", "RF") { royalties = new ZZZRoyaltyRewards(address(this)); }
+    constructor() ERC721("Royalty fixture", "RF") {
+        MockAccess control = new MockAccess();
+        ProtocolPolicyFixture.bind(address(control));
+        royalties = new ZZZRoyaltyRewards(address(this));
+        royalties.bindCanonicalController(address(control));
+    }
     function mint(address owner, uint256 id) external { _mint(owner, id); }
     function activate(uint256 id, uint256 weight) external { royalties.activate(id, weight); }
     function addAsset(address token) external { royalties.addAsset(token); }

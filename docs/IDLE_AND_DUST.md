@@ -46,8 +46,8 @@ allowance; do not repeat a successful approval blindly.
 | Buyback reserve | Fixed 5% buyback/burn purpose | Use the governed, bounded buyback worker and actual burn evidence; no dust transfer to a treasury. |
 | Per-NFT reward fractions and global division residuals | Backing for exact reward accounting | Carry/checkpoint under the existing ledger, including through transfer/handoff. Never round them into an operator sweep. |
 | Small LP fee receipt dust | Existing fee allocation/membership semantics | Keep reserved and settle under incumbent weights before membership changes; historical raw-unit exceptions need asset-specific economic review. |
-| Royalties, quarantines and orphaned receipts | Separate royalty domains/cohorts | Convert only earned balances under the royalty converter. No external-custodian drain remains; quarantine is not distributable surplus. |
-| Raw prefunds, accidental tokens or unsolicited ETH | Unclassified or explicitly quarantined funds | Never infer permission from contract balance. They cannot subsidize an entrant, pay another bucket or be swept. Unsupported assets may remain inaccessible. |
+| Royalties, quarantines and orphaned receipts | Separate royalty domains/cohorts | Ordinary conversion preserves earned balances. Recovery1 permits separately reviewed governance recovery of genuinely unallocated royalty value into ETH at current active weights; it cannot consume earned fractions/liabilities. No external-custodian drain. |
+| Raw prefunds, accidental tokens or unsolicited ETH | Unclassified or explicitly quarantined funds | Never infer permission from contract balance. They cannot subsidize an entrant, pay another bucket or be swept. The royalty receiver alone has restricted unallocated recovery; no equivalent arbitrary Vault sweep is added. Broken/unsellable/unpriced assets can remain inaccessible. |
 
 A universal `clear()` or `sendEverything()` would blur these ownership domains.
 This candidate deliberately adds neither. Governance-triggered collective return

@@ -1,0 +1,1080 @@
+{
+  "storage_semantics_unchanged": true,
+  "objects": [
+    {
+      "source": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "contract": "IERC1363",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "contract": "IERC1155Errors",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "contract": "IERC20Errors",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "contract": "IERC721Errors",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "contract": "IERC20",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "contract": "IERC20Metadata",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "contract": "SafeERC20",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "contract": "ERC721",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "contract": "IERC721",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "contract": "IERC721Receiver",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "contract": "IERC721Metadata",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "contract": "ERC721Utils",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "contract": "Base64",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "contract": "Context",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "contract": "Panic",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "contract": "ReentrancyGuard",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "contract": "Strings",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "contract": "ERC165",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "contract": "IERC165",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "contract": "Math",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "contract": "SafeCast",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "contract": "SignedMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "contract": "BitMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+      "contract": "CustomRevert",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+      "contract": "FixedPoint96",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "contract": "FullMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+      "contract": "SafeCast",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "contract": "SqrtPriceMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+      "contract": "TickMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+      "contract": "UnsafeMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol",
+      "contract": "LiquidityAmounts",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ICanonicalOwnerBinding",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IContributionIdentity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IContributionRegistry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IExitIdentity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "IActivationAssetsFactoryIdentity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "IActivationVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalController",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalHelpers",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "IZZZClaimLedger",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingAssets",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingBudget",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingEntry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingPortfolio",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyExecutionFingerprint",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyRegistryRevision",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ILocalParkingState",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "IResidualPolicyControl",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeAssets",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeCutoff",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "ZZZLPBalanceMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "ILPRegistryRevision",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "IPortfolioRoutePolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionExecutionParent",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionPortfolioPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "ZZZLPPositionExecutor",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IEmergencyOutput",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IManagerPortfolioPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "INativePoolAssets",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioBudget",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "IZZZMembershipOrdinals",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IExitTokenIdentity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IExitTokenRegistry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IHolderExitNFT",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IHolderExitVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioStrategy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPositionOperator",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetVaultValidation",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IConfirmationControl",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IEmergencyManifest",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IMigrationIdle",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IPairAssets",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IPairVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "IZZZNFTSuccessor",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "IZZZVRFCoordinator",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "INFTPolicyHandoff",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "IHistoricalCompound",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ICollectiveExitPhase",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "INativeVenueBindings",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioAssociation",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioParent",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "ZZZPortfolioPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "contract": "IPolicyNFT",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "contract": "ZZZProtocolPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationLiquidity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationOracle",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationPortfolio",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationRegistry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationStrategy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "ZZZRebalanceConfirmation",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "IZZZRewardNFTOrdinals",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "contract": "ZZZRoyaltyConverter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyConverter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyNFTOwner",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyOrdinals",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltySuccessor",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": false
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "IRangeRegistry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "IV4FeeState",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "IVaultPositionOperator",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "IVaultResidualLiquidity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalPortfolio",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultNFT",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultRewards",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/base/ZZZModule.sol",
+      "contract": "ZZZModule",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardProxyAdmin",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardWrapper",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "ZZZRewardConverter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IBurnable",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPermit2Minimal",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPoolManagerMinimal",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPositionManagerMinimal",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPriceFeed",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IStateViewMinimal",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZActivationEntry",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZBound",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZFees",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZLiquidity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMembership",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMigration",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZNFT",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZOracle",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZPools",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZRewards",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZStrategy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyBudget",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyController",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyLiquidity",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyVault",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZProtocolPolicy.sol",
+      "contract": "IZZZProtocolPolicy",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteFactory",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RoutePool",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteRouter",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "storage_semantics_unchanged": true,
+      "abi_unchanged": true
+    }
+  ],
+  "wire": "accounting6/custody4-format/canonicalV6 unchanged; recovery1 is explicit new runtime/ABI/event capability, not automatic runtime compatibility"
+}

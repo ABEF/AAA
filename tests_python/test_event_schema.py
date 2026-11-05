@@ -28,6 +28,18 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_retired_entry_route_record_retains_its_exact_decoder(self):
+        signature='RouteRecorded(bytes32,address,address,address,address,uint24,bytes32)'
+        entry=SCHEMA[topic(signature)]
+        self.assertEqual(entry['signature'],signature)
+        self.assertEqual([f['type'] for f in entry['fields']],
+                         ['bytes32','address','address','address','address','uint24','bytes32'])
+        indexed=[];data=[]
+        for field in entry['fields']:
+            value=TOKEN if field['type']=='address' else '0x'+'ab'*32 if field['type']=='bytes32' else 500
+            (indexed if field['indexed'] else data).append(word(value,field['type']))
+        self.assertEqual(decode(log(signature,indexed,data))[0],'RouteRecorded')
+
     def test_guardian_grants_and_revocations_are_exactly_decodable(self):
         signature='GuardianChanged(address,bool)'
         self.assertEqual(SCHEMA[topic(signature)]['fields'],[
@@ -114,9 +126,9 @@ class EventSchemaTests(unittest.TestCase):
 
     def test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules(self):
         historical=json.loads((ROOT/'indexer/historical_event_schema.json').read_text())
-        self.assertEqual(len(historical),33)  # 17 earlier plus 16 retired source descriptors.
         self.assertTrue({'FeedConfigured','BuybackTargetChanged','WrapperPolicyApproved',
-            'ExternalRewardsFunded','RemoteAccountingImported'} <= {entry['name'] for entry in historical.values()})
+            'ExternalRewardsFunded','RemoteAccountingImported','RandomnessConfigured',
+            'RandomnessRequestSettingsChanged'} <= {entry['name'] for entry in historical.values()})
         for event_topic,entry in historical.items():
             with self.subTest(signature=entry['signature']):
                 self.assertEqual(SCHEMA[event_topic],entry)

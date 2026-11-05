@@ -13,6 +13,7 @@ saved transaction profile. Existing Anvil services and journals remain unchanged
 | LP routing / position child / math child |2 /1 /1 |
 | Pricing / Entry routing / reviewed Entry |2 /3 /2 |
 | Governance / fee intake / execution quality |2 /1 /1 |
+| Royalty unallocated recovery | `ROYALTY_RECOVERY_VERSION()==1`; exact new runtime and event reader required; accounting/custody wire unchanged |
 | Production inventory | Schema10,17 modules and20 helpers |
 | Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` |
 

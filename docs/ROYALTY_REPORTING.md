@@ -48,6 +48,18 @@ otherwise verified balances or authorize a conversion. Predecessors never inheri
 this optional current profile automatically. A profile or API rollback does not
 change any on-chain converter, eligibility or already executed transaction.
 
+## Unallocated recovery is first allocation
+
+Recovery1 emits `UnallocatedRoyaltiesRecovered`; the indexer/earnings replay
+recognizes measured ETH as first income allocation to the current active cohort.
+It is neither RoyaltyConverted credit nor Claimed payout. `royalties_recovered_raw`
+is separately reported for the collection, and `royalties_allocated_raw` includes
+it once; older received/quarantined amounts are not counted as a second receipt.
+NFT earnings use the same scaled index/fraction carry. Unknown source tokens need
+no price descriptor for the ETH output. Existing earned/deferred currency funds
+keep their original rights. Exact runtime/source pins and refreshed checkpoints
+are required; old served APIs/journals do not silently gain these semantics.
+
 ## Response fields
 
 `GET /v1/nfts/{token_id}` retains exact decimal raw-unit strings. ETH is represented

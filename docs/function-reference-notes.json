@@ -3671,9 +3671,9 @@
           }
         },
         "forwardLate(address)": {
-          "purpose": "Forward post-cutoff royalties from a retired receiver to its one immutable immediate successor.",
+          "purpose": "Forward admitted or unsupported late currencies from a retired receiver to its authenticated immediate successor only.",
           "access": "Permissionless after authenticated canonical retirement.",
-          "notes": "Old captured liabilities are not forwarded twice. Returns: Raw late amount forwarded.",
+          "notes": "No caller-selected recipient or active-source drain. A healthy exact-transfer unsupported currency can forward without admission; the active successor separately admits or recovers it. Unreadable/nonstandard tokens can still fail.",
           "inputs": {
             "0": "Actual currency address; zero denotes native ETH in native-aware paths."
           },
@@ -3812,6 +3812,29 @@
           "outputs": {
             "0": "Zero before activation; revealed rarity trait itself is still 1/2/3 on the NFT metadata path."
           }
+        },
+        "ROYALTY_RECOVERY_VERSION()": {
+          "purpose": "Read the explicit unallocated-royalty recovery capability; old runtimes do not gain it by sharing accounting6.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1 for this reviewed recovery implementation; verify runtime pins as well."
+          }
+        },
+        "recoverUnallocated(address,uint256,bytes32,uint256,uint256,bytes32)": {
+          "purpose": "Recover only unsupported or explicitly unallocated royalty value as ETH for current active rarity weights.",
+          "access": "Current governance only; sealed active canonical NFT, unpaused, no preparation. Rechecked after callbacks.",
+          "inputs": {
+            "0": "Exact ERC20 source address, or zero for unallocated native ETH. Never a ticker.",
+            "1": "Positive raw source units, at most orphaned(asset) for an admitted asset or actual full balance for an unsupported asset. Pending admitted receipts synchronize first.",
+            "2": "Reviewed enabled converter route ID; zero only for native ETH or explicitly configured exact WETH unwrap.",
+            "3": "Positive minimum ETH output in wei; stronger than the governed oracle floor where applicable. Native recovery requires minimum <= amount.",
+            "4": "Unix on-chain deadline, current through at most600seconds ahead.",
+            "5": "Nonzero bytes32 fingerprint of the reviewed source/amount/route/minimum/deadline and entitlement classification."
+          },
+          "outputs": {
+            "0": "Actual ETH credited to active weights, not sent to governance and not automatically claimed."
+          },
+          "notes": "No earned balances, source fractions, deferred-cohort receipts, LP assets, arbitrary recipient or generic calls. Ordinary token conversion requires the pre-seal fixed converter and reviewed route/prices. Recovery allocates previously unallocated value at current weights; it never rewrites existing entitlement. No conversion is possible for every malicious/frozen/illiquid/unpriced token."
         }
       },
       "constructor": {

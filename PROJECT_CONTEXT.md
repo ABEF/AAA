@@ -1,7 +1,7 @@
 # PoPL current project context
 
-Reviewed5November2026; consolidation baseline main
-`096fd2be4db514d5fd8930c672522ed1fc6c3ff0`. Verify actual local/remote heads before
+Reviewed5November2026; royalty audit baseline main
+`e0076181ae8ef24089f0e5fea1f730581ff67986`. Verify actual local/remote heads before
 claiming publication. Read [Instructions](AGENTS.md),
 [README](README.md), [sole Todo](TODO.md),
 [operator](docs/OPERATOR_MANUAL.md) and
@@ -17,19 +17,30 @@ lineage/other history consumers, real workloads/rotation and production approval
 remain open. [OpenSea investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
 identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
-Current Solidity/build/dependency pins still match the manual-safeguard record;
-no unchanged compiler/analyzer/contract suite was rerun. Its43normal gates,
-471static contexts and selected EVM results retain their original scopes. The
-strict CI checker now selects the full source-matched reconciliation record,
-not the old authority record. A new default/source-integrity regression prevents
-that stale-pointer recurrence. Original reports and four protected dirty files
-remain unchanged; source publication is not a running-service update.
+Current royalty source extends the manual-safeguard baseline. The latest
+royalty record binds43normal size gates and474strict static contexts
+(33current/441exact referenced-source reuse); affected EVM/Python scopes and
+retained failures are recorded separately. The actual CI checker selects that
+source-matched royalty review. Earlier normal/static/reconciliation records
+remain historical. Four protected dirty files and all earlier reports stay
+unchanged; publication is not a running-service update.
 
 The indexer anchor/streaming/transactional startup repairs and keeper deadline/
 clear-priority fixes remain implemented. Checkpoint1 is a first implemented milestone;
 lineage/other consumers, archival/rotation and operating qualification remain open. Actual idle scheduling and
 threshold economics remain an operating choice. Five removed creator/bridge
 task IDs are explicitly superseded; no retired architecture is revived.
+
+The [royalty recovery audit](reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+
+New current normal43gates and strict474static contexts replace only changed
+royalty scope; source publication never upgrades old runtimes or journals.
 
 ## Current source candidate
 

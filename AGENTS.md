@@ -163,7 +163,7 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review now defaults to its full current strict471-record review.
+- CI/check-slither-review now defaults to the royalty-audit strict474-record review. Earlier471-record evidence remains source-scoped.
  44focused Python methods verify that repair; no analyzer/contract rerun. Update
   full review/default together after relevant source changes; preserve old pins.
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
@@ -185,6 +185,25 @@ the November3 authority report below remains historical for those contexts.
   source stage. Do not sum overlaps. Lineage/other readers, actual workload/
   archive/rotation/restore and independent approval stay open. OpenSea research
   does not implement or approve its exact Robinhood drop caller/payment path.
+
+## Royalty recovery source boundary
+
+The [royalty recovery audit](reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+Governance recoverUnallocated requires sealed canonical state0, current NFT,
+unpaused/no preparation and pre/post authority; keeper authorization is insufficient.
+Admitted source units are restricted to orphaned after sync; unsupported sources
+need no permanent admission slot. No earned/fractional/deferred liability is
+recoverable. Native unallocated ETH needs no converter; ERC20 recovery still needs
+the pre-seal binding and reviewed routes/prices. No active weights means wait,
+not a different beneficiary. Earlier automatic quarantine remains a classification
+until explicitly recovered. Current reference37/820/37/13;43normal gates and
+474static contexts(33current/441exact referenced-source reuse). No deployment.
 
 ## Verification and records
 

@@ -14,10 +14,20 @@ lineage/other history consumers, real workloads/rotation and production approval
 remain open. [OpenSea investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
 identifies exact mint-recipient/statistics/payment gaps without adding authority.
 
+The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+
 ## Evidence and approval boundary
 
 Consolidation baseline: main `096fd2be4db514d5fd8930c672522ed1fc6c3ff0`;
-current Solidity pins match the latest manual-safeguard normal/static record.
+current royalty source extends the manual-safeguard baseline. The new
+[royalty normal/static record](../reports/royalty-audit-20261105/VERIFICATION.md)
+binds43normal gates and474strict detector contexts; old records remain historical.
 Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
@@ -27,7 +37,8 @@ Historical [authority verification](../reports/authority-audit-20261103/VERIFICA
 binds52production/31dependency sources,43normal gates and471static records
 (19current-context review/452exact unchanged reuse).14distinct selected EVM
 behaviors pass across recorded scopes;25corrected targeted Python checks pass.
-Current reference37/818/37/13 has no gaps. This is not a fresh full regression,
+The historical reference37/818/37/13 has no gaps; the new reference is
+37contracts/820functions/37constructors/13receivers with zero gaps. This is not a fresh full regression,
 published CI or independent audit. Earlier reports retain their original pins,
 failures, skips and measurements.
 

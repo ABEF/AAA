@@ -170,7 +170,10 @@ ERC-2981 requests **5% of a marketplace sale** payable to the immutable NFT-owne
 Native ETH and up to 16 reviewed exact-transfer, non-rebasing ERC20s are supported;
 stablecoins admitted here do not become contribution inputs. Pending royalties
 sync to incumbents before a newly activated NFT gains weight. Constructor/admission
-prefunds and zero-eligibility receipts stay quarantined. Fractions carry; index
+prefunds and zero-eligibility receipts remain unallocated until separately reviewed
+governance recovery1; its ETH output uses active rarity weights at recovery.
+Unsupported royalty tokens can use the same restricted path without admission.
+This first allocation never consumes earlier earned/deferred liabilities. Fractions carry; index
 dust stays reserved. There is no generic sweep, weight replacement or redirected
 holder payout. Royalty backing has no external-custodian exit or return function.
 An unreadable optional currency defers only new eligibility:

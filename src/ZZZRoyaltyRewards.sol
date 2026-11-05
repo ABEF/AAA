@@ -45,6 +45,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     address public canonicalController;
     address public converter;
     uint256 public constant MAX_CONVERSION_NFTS = 32;
+    uint256 public constant ROYALTY_RECOVERY_VERSION = 1;
     // Address zero denotes native ETH and is always the first admitted asset.
     address[] public assets;
     mapping(address => bool) public isAsset;
@@ -78,6 +79,8 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     event RoyaltyConverted(uint256 indexed id, address indexed asset, uint256 sourceAmount, uint256 nativeAmount);
     event RoyaltyAssetDeferred(uint256 indexed id, address indexed asset);
     event RoyaltyEligibilityRecovered(address indexed asset, uint256 firstOrdinal, uint256 lastOrdinal);
+    event UnallocatedRoyaltiesRecovered(address indexed asset, uint256 sourceAmount, uint256 nativeAmount,
+        uint256 activeWeight, bytes32 reviewHash);
 
     constructor(address nftController) {
         // The NFT may deploy this receiver from its own constructor.
@@ -108,6 +111,48 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     }
 
     function assetCount() external view returns (uint256) { return assets.length; }
+
+    /// @notice Governance recovers only unallocated funds, never earned balances.
+    /// ETH output joins CURRENT active weights; ordinary/deferred entitlements
+    /// keep their original cohort. An unsupported token need not be admitted to
+    /// the permanent asset list, but its converter route/prices must be reviewed.
+    function recoverUnallocated(address asset, uint256 amount, bytes32 routeId, uint256 minimumETH,
+        uint256 deadline, bytes32 reviewHash) external nonReentrant economic returns (uint256 output) {
+        _recoveryAuthority();
+        if (amount == 0 || minimumETH == 0 || reviewHash == bytes32(0) || totalWeight == 0 ||
+            deadline < block.timestamp || deadline > block.timestamp + 10 minutes) revert InvalidConfiguration();
+        _sync(address(0));
+        if (asset != address(0) && isAsset[asset]) _sync(asset);
+        uint256 beforeSource = _canonicalBalance(asset);
+        uint256 available = isAsset[asset] ? orphaned[asset] : beforeSource;
+        if (amount > available) revert InvalidConfiguration();
+        if (isAsset[asset]) { orphaned[asset] -= amount; accounted[asset] -= amount; }
+        if (asset == address(0)) {
+            if (routeId != bytes32(0) || minimumETH > amount) revert InvalidConfiguration();
+            output = amount;
+        } else {
+            if (converter == address(0)) revert InvalidConfiguration();
+            uint256 beforeNative = address(this).balance;
+            IERC20(asset).forceApprove(converter, amount);
+            output = IZZZRoyaltyConverter(converter).convert(asset, amount, routeId, minimumETH, deadline);
+            IERC20(asset).forceApprove(converter, 0);
+            if (output == 0 || output < minimumETH || _canonicalBalance(asset) != beforeSource - amount ||
+                address(this).balance != beforeNative + output) revert InvalidState();
+        }
+        // This is first allocation of previously unallocated value, not a claim
+        // or conversion of an existing NFT entitlement. Do not emit a second
+        // RoyaltiesReceived for ETH already counted as an earlier empty receipt.
+        accounted[address(0)] += output; liabilities[address(0)] += output;
+        index[address(0)] += Math.mulDiv(output, SCALE, totalWeight);
+        emit UnallocatedRoyaltiesRecovered(asset, amount, output, totalWeight, reviewHash);
+        _recoveryAuthority();
+    }
+
+    function _recoveryAuthority() private view {
+        IZZZAccess control = IZZZAccess(canonicalController);
+        if (!control.canConfigure(msg.sender) || !control.isSealed() || control.paused() ||
+            control.preparationActive() || control.module(Ids.NFT) != nft) revert Unauthorized();
+    }
 
     /// @notice Fixed implementation selected before sealing; routes remain governed.
     /// A new canonical deployment binds its own converter, never its predecessor's.
@@ -457,10 +502,11 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             eligibleCount[asset] = activationCount; eligibleWeight[asset] = totalWeight;
         }
     }
-    /// @notice Retired marketplace addresses can still receive payments. Only
-    /// post-cutoff balances are forwarded to the one immutable immediate successor.
+    /// @notice Retired marketplace addresses can still receive payments. Forward
+    /// even unsupported currencies to the one authenticated immediate successor;
+    /// admission or restricted recovery there determines their allocation.
     function forwardLate(address asset) external nonReentrant returns (uint256 amount) {
-        if (_state() != 3 || !isAsset[asset]) revert CanonicalState();
+        if (_state() != 3) revert CanonicalState();
         address handoff = IZZZCanonicalAccess(canonicalController).canonicalHandoff();
         address destination = IZZZRoyaltySuccessor(handoff).destinationController();
         address receiver = IZZZRoyaltyOrdinals(IZZZAccess(destination).module(Ids.NFT)).royaltyRewards();

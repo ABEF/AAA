@@ -136,7 +136,11 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
-eligible holders under the separate 1/2/3 rarity-weighted ledger.
+eligible holders under the separate 1/2/3 rarity-weighted ledger. Recovery1 must
+be verified on the exact runtime; ETH-conversion promises require the fixed
+converter bound before sealing. Routes remain governed afterward. Unsupported
+royalty balances can be recovered without permanent admission, subject to the
+[unallocated-only procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
 
 Creator-payment inboxes and their factory are removed from the current source.
 There is no payer/inbox address to configure, and `Fees.FEE_INTAKE_VERSION() == 1`

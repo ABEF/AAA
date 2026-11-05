@@ -11,9 +11,10 @@ preserves310original finding records/pointers,398pre-ledger unchecked lines,
 fixes, changed architecture, surviving limits and actual open implementation.
 Original reports remain immutable; counts are not independent defects/tests.
 
-The actual CI static-review default had become stale after two manual-view edits.
-It now selects a full strict current-source record;44focused Python methods pass.
-No matching rules, contracts, economics or installed environments changed.
+Earlier reconciliation repaired a stale CI review pointer after two manual-view
+edits; its44focused Python checks and unchanged-contract scope remain historical.
+The current pointer now selects the new royalty review with the same strict
+matching rules. No installed environment changed.
 The [provenance map](../reports/full-history-reconciliation-20261104/FINDINGS.json)
 records the recurring static issue and materially changed original dispositions.
 
@@ -29,6 +30,17 @@ deployment/payment integration. Current official-source research identifies the
 interface, wallet-statistics and nested reentrancy constraints; no guessed mint
 authority was added. Actual providers, authorities, routes/VRF, maximum gas,
 metadata, operating recovery and independent approval remain under the sole Todo.
+
+The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
+recovery1: governance can convert only unsupported/unallocated royalty value to
+ETH for active rarity weights at recovery. Existing earned/deferred entitlements
+are excluded; no external recipient or weakened conversion floor. Unsupported
+late tokens can forward only to the authenticated successor. New runtime/event
+pins and rebuilt earnings checkpoints are required; no installed environment
+changes. ERC2981 requests5%, not universally enforced marketplace payment.
+The new scoped record replaces current royalty source/normal/static bindings only;
+older reports retain their original scope. Unexpected-token saleability and
+actual routes/prices/marketplace/provider/operating approval remain open.
 
 ## Current conclusions by project layer
 

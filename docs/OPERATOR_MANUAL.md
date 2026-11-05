@@ -1715,9 +1715,24 @@ Activation survives optional-currency balance failures. On recovery, unseen fund
 belong to the earlier eligible cohort; waiting NFTs join future receipts only.
 Check `eligibleFor(id,asset)` and the deferred/recovered events. Healthy claims
 continue; exact unreadable backing can still block canonical handoff. Original
-currency claims remain a fallback. No LP principal, orphaned funds or other NFT's
-entitlement is swept into a conversion. Local implementation is not live-service
+currency claims remain a fallback. Ordinary convertBatch cannot use LP principal, orphaned funds or another NFT's
+entitlement; the separate unallocated-only recovery procedure follows below. Local implementation is not live-service
 approval; use the [central settlement task](../TODO.md#task-royalty-eth-settlement).
+
+### Recover unexpected royalty currencies
+
+Use the [complete recovery procedure and input table](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
+Current governance calls `RoyaltyRewards.recoverUnallocated(asset,amount,routeId,minimumETH,deadline,reviewHash)`
+only after proving the amount is unsupported/unallocated, with the receiver's
+recovery1 getter/runtime, pre-seal converter binding, reviewed route/prices,
+positive minimum/deadline and an active rarity-weight denominator. The keeper
+cannot use this authority. No external payout address exists. Earned and deferred
+royalties keep earlier entitlements; current-weight recovery is a separate rule.
+Native unallocated ETH requires no converter. Verify the event, exact source/ETH
+backing and unchanged existing liabilities; later owner claims remain normal.
+Failed transactions revert; stop/review/re-enable bad routes and retry a fresh
+review. Successful first allocation cannot be reversed. No service restart is
+needed solely for the contract call; do not reset keeper journals or keys.
 
 ### Read royalty status and conversion history
 
@@ -2250,11 +2265,13 @@ faults still defer only that currency's new eligibility; recovery synchronizatio
 protects the older cohort. Historical profile3 custody events remain readable,
 but there is no current returnCustody operator action.
 
-Retired `forwardLate(asset)` accepts only previously admitted currencies and sends
-them to the fixed immediate successor. Unknown new ERC20 receipts at a retired
-receiver have no admission/rescue path. Before handoff inventory cached royalty
-receivers, payment currencies and orders; do not promise universal recovery or
-introduce an undocumented sweep. [Royalty recovery](ROYALTY_SETTLEMENT.md#late-receipts-after-retirement).
+Retired `forwardLate(asset)` accepts admitted or unsupported currencies and sends
+only to the authenticated immediate successor. The successor separately admits or
+recovers unknown currencies; forwarding does not choose an entitlement cohort.
+Current governance can use restricted [unallocated recovery](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery),
+with exact inputs and source classification, to convert only genuinely unallocated
+value into ETH at current active weights. Existing/deferred entitlements stay
+separate. Broken/illiquid/unpriced tokens can still fail; no arbitrary sweep exists.
 
 
 ## Disposable local testing
@@ -2662,7 +2679,7 @@ pending records or update an existing deployment automatically.
 
 | Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
 | --- | --- | --- |
-| `addRoyaltyAsset(address token)` | G. | Append an admitted ERC20 royalty payment currency to the NFT-bound ledger. Permanent at-most16ERC20+ETH list. No remove/sweep or arbitrary conversion of quarantined funds. |
+| `addRoyaltyAsset(address token)` | G. | Append an admitted ERC20 royalty payment currency to the NFT-bound ledger. Permanent at-most16ERC20+ETH list. No remove/sweep; unsupported or orphaned recovery is a separate governance-only classification and cannot consume earned balances. |
 | `finalizeTraits(uint256 id)` | Anyone; canonical accounting must be operating. | Finalize the next mint-ordered revealed rarity/palette/pattern from its verified stored words. Original fulfilled draws only, in mint order. Missing provider response cannot be fabricated. |
 | `refreshMetadata(uint256 id)` | Anyone; no NFT ownership required. | Emit an ERC4906 notification for an existing NFT. Notification only; no trait/root change and no promise marketplace cache refreshes immediately. |
 | `refreshMetadataRange(uint256 firstOrdinal, uint256 lastOrdinal)` | Anyone. | Emit one ERC4906 notification per actual NFT in a bounded ordinal interval. At most50 inclusive mint ordinals, not token IDs. Notification only. |
@@ -2737,9 +2754,10 @@ pending records or update an existing deployment automatically.
 
 | Function and ordered inputs | Authorized caller / lifecycle | Result and reversal boundary |
 | --- | --- | --- |
+| `recoverUnallocated(address asset,uint256 amount,bytes32 routeId,uint256 minimumETH,uint256 deadline,bytes32 reviewHash)` | Current governance, sealed active canonical NFT, unpaused/no preparation; pre/post authority. | Recover only unsupported/orphaned value into ETH for active rarity weights at execution. Earned/deferred funds excluded. Reviewed routes/prices and conversion floors remain; exact [inputs and recovery procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery). |
 | `bindConverter(address candidate)` | B; unavailable after seal. Additional guards: economic canonical state0, nonReentrant, one-time unused converter slot and exact ledger/controller bindings. | Bind one reviewed royalty-only ETH conversion executor before sealing. One-time before seal; routes/policy remain governed but bound implementation cannot be replaced. |
 | `convertBatch(address asset, uint256[] ids, bytes32 routeId, uint256 minimumETH, uint256 deadline)` | Authorized keeper, sealed canonical NFT and live economic/operation state. | Convert selected earned royalty balances in one swap and credit ETH to those same NFTs. Keeper only, sorted unique at most32NFT IDs. The same NFTs retain exact converted credit; current owners hold the rights; this is not income or claim. |
-| `forwardLate(address asset)` | Permissionless after authenticated canonical retirement. | Forward post-cutoff royalties from a retired receiver to its one immutable immediate successor. Retired source only; forward current receipts to its authenticated immediate successor, no chosen recipient. |
+| `forwardLate(address asset)` | Permissionless after authenticated canonical retirement. | Forward admitted or unsupported late currencies from a retired receiver to its authenticated immediate successor, no chosen recipient. Successor admission/recovery determines allocation; broken tokens may still fail. |
 | `fund(address asset, uint256 amount)` | Permissionless funder in active economic state. | Pull an exact ERC20 royalty donation and synchronize its actual receipt. Transfers actual admitted royalty currency as revenue; no fabricated balance or principal/activation authority. |
 | `sync(address asset)` | Permissionless in active economic state. | Recognize actual newly arrived royalty funds and advance that currency’s eligible-weight index. Assign actual newly received currency to existing eligible cohort; no LP harvesting or swaps. |
 | `syncAll()` | Permissionless in active economic state. | Synchronize every admitted royalty currency using normal accounting checks. Reads every admitted royalty currency. One failing sync may revert; use source-specific sync/recovery, not guessed zero. |

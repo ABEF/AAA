@@ -123,6 +123,30 @@ contract TypedV4RewardsTest is Test {
         uint256 beforeETH=BOB.balance;vm.prank(BOB);uint256 paid=royalties.claim(1,address(0));
         assertEq(BOB.balance,beforeETH+paid);assertEq(royalties.claimable(1,address(0)),0);
     }
+
+    function testActualV4UnsupportedRoyaltyRecoveryAllocatesOnlyMeasuredETHAtCurrentWeights() public {
+        // A fresh ledger under explicit test-only bootstrap; existing LP/reward
+        // ledgers are not sources of this recovery.
+        access.beginBootstrap();
+        ConversionNFT fresh=new ConversionNFT(address(access)); ZZZRoyaltyRewards ledger=fresh.royalties();
+        access.bind(Ids.NFT,address(fresh));
+        ZZZRoyaltyConverter recovery=new ZZZRoyaltyConverter(address(access),address(ledger),address(0));
+        ledger.bindConverter(address(recovery)); recovery.setEnabled(true);
+        bytes32 route=recovery.addV4Route(_policy()); access.seal();
+        fresh.mint(ALICE,11,0); fresh.mint(BOB,12,1); fresh.mint(CAROL,13,2);
+        fresh.activate(11); fresh.activate(12); token.mint(address(ledger),6 ether);
+        uint256 oldRewards=token.balanceOf(address(rewards));
+        uint256 output=ledger.recoverUnallocated(address(token),6 ether,route,5.94 ether,
+            block.timestamp+60,keccak256("reviewed actual core recovery"));
+        assertGe(output,5.94 ether); assertFalse(ledger.isAsset(address(token)));
+        assertEq(token.balanceOf(address(ledger)),0); assertEq(address(ledger).balance,output);
+        assertEq(ledger.accounted(address(0)),output); assertEq(ledger.liabilities(address(0)),output);
+        assertEq(ledger.claimable(11,address(0)),output/3);
+        assertEq(ledger.claimable(12,address(0)),output*2/3); assertEq(ledger.claimable(13,address(0)),0);
+        assertEq(token.balanceOf(address(rewards)),oldRewards);
+        assertEq(token.allowance(address(ledger),address(recovery)),0);
+        vm.prank(ALICE); assertEq(ledger.claim(11,address(0)),output/3);
+    }
     function testActualV4LPConversionPreservesIndividualCollectiveAndExistingETH() public {
         _creditLP(600e18,200e18);shares.join(rewards,3,100e18);
         rewards.creditPool{value:9e18}(1,address(0),6e18,3e18);

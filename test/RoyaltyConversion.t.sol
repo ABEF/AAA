@@ -14,6 +14,7 @@ import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
 import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
 import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
+import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 contract ConversionAccess is MockAccess { function state(uint8 s) external { canonicalState = s; } }
 contract ConversionNFT is ERC721 {
@@ -22,6 +23,7 @@ contract ConversionNFT is ERC721 {
     mapping(uint256 => uint256) public tokenAtOrdinal;
     mapping(uint256 => uint8) public rarityOf;
     constructor(address control) ERC721("Test", "T") {
+        ProtocolPolicyFixture.bind(control);
         royalties = new ZZZRoyaltyRewards(address(this)); royalties.bindCanonicalController(control);
     }
     function mint(address owner, uint256 id, uint8 rarity) external {
