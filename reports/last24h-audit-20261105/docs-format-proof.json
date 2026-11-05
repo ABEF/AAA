@@ -1,0 +1,224 @@
+[
+  {
+    "path": "PROJECT_CONTEXT.md",
+    "before_sha256": "82a91d9050bb83c611aed5a51fb930ec36fa162219ba51013b1fc475c061e41b",
+    "after_sha256": "64be0475a1f66bf082034c199d43847820853929824f11a87bb6645d85489f60",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ACCESS_PERMISSIONS.md",
+    "before_sha256": "2aa931e82d0c97de184b264562f9d5d6c5d6e67cd798ac0b28cd4f6c99ddd80c",
+    "after_sha256": "66e8664c9b32ec19f449e696df78aca3a4a0951282fbc4faaf02b4bcf2618248",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "before_sha256": "84e5c1da6145520beb3f4cc50260b5a4bc97b565ac5722939c3250949681ecfe",
+    "after_sha256": "d8bc790bd81f3b80ebd582d8c76053b70d733e22c45d05d8f0f610ad8b41e8fc",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ARCHITECTURE_EVOLUTION.md",
+    "before_sha256": "d809eb556d5346fb90797483e71ab98398f83b762b9a93c489ee933ff8b8124b",
+    "after_sha256": "170f89d1557b87270e74f2468632ecde6fe81cc4b5b0d57cf6bebe55c0a5f175",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/AUDIT_FINDINGS.md",
+    "before_sha256": "222a83dd927410c9da08c792e9208eed85b2d54433bff29266e72e115edf451f",
+    "after_sha256": "a84c625c2373a4575e08bf163bb405378e5a704ec3a180a71270eeedeb3529d9",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/CHANGE_AND_RECOVERY.md",
+    "before_sha256": "419e80904337a3805276f59bfe424b9df6acb0d96034b15d0441bd186d255a69",
+    "after_sha256": "6a0b742abf4b5888c1d5c313b896a3eec07a28ac98f10ba4feaafc185fa87126",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/COMPONENT_STATUS.md",
+    "before_sha256": "7b03c50d903796ca27ec8cb468ce36665472c262d77a45e98f652266b8095c17",
+    "after_sha256": "67dc0ce2f0c304da67336fb25ff4668f2f06797b2b3b27e7bc68a1a6027ec14b",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/CONTRIBUTION_MINIMUMS.md",
+    "before_sha256": "01638ad21720a10370838d52a6771ecd03cd730228fce52dbec55545e2cdb17d",
+    "after_sha256": "5a68f8d6bafedabf7806bfd50b2d4c2b24e5d694f3890dbcebc25d970ad33593",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/CUSTODY_PARKING.md",
+    "before_sha256": "f50a0572ae1652372dbc376270acdaaa243495fa9e9cece76a736b0e1ed28618",
+    "after_sha256": "6c327e9e695dfe7ec8cb18a2442f30c9fe22f8b6d384c0fc63653d563207a7cf",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/DEPLOYMENT_ADDRESSES.md",
+    "before_sha256": "fc1c9ee04c7e904b512c3a8d568d27fb73fe2d93a89a04a59f9691a4b7c6373c",
+    "after_sha256": "23f1211bc7d0f41523b38c08bee4b2662ed314b4b97ad878648488c8c1769e05",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/DEPLOYMENT_WEBSITE.md",
+    "before_sha256": "4b395d8cdb291e5330b9fa210e628509a85ef0605ec0a8dbad291ae2c39844e8",
+    "after_sha256": "904f5ceb4f3a7740c3cdb18dea7348bc784a055dd7069077725f16a2ff645ee8",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/DEVELOPMENT.md",
+    "before_sha256": "95d41eef3cc3b6ae7b10db6471b1e4fb36513ecf0c3566a89946a01ff1cdbfd2",
+    "after_sha256": "b03d418eb0ae4f7ae687820dc7226a16cc2db63a74b90b4095cd374be2d180b2",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/EARNINGS_HISTORY.md",
+    "before_sha256": "18ab4ab3300d3fc398ba855191d37a034c5ad80010aa6a2a26dd3b8f4b3803e8",
+    "after_sha256": "d35a9c7e52f30f7d801cf1a0f55d9c12f95641d31aac9e13556621e7b2bec013",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ECONOMICS.md",
+    "before_sha256": "8ab6a6e25ecac4d0587f598cca4c464ca41ec332aa7a8ab4df600dd59b8b84de",
+    "after_sha256": "b498ac1cbd99b1325878ce668fd5760135d3cf051882faa9155a0415a5ead1f4",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/FRONTEND_API.md",
+    "before_sha256": "fa035457431d20c2dd542f63a0a89761e4bbf4b4d7813c3e684734df1425c2cb",
+    "after_sha256": "1e4cb9918fadf41a413fc9f1ba575353db3b225656273841e539d9df3cd99d56",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/FRONTEND_TRANSACTIONS.md",
+    "before_sha256": "a76be634ab14f37f1c67ee258ff15e4c0be8c498c25e320078108f3aba7891af",
+    "after_sha256": "2f8c78cae22a527ab7e356e08c5ff1675764c3c35015a937a2f647f433c6f0ef",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/GOVERNANCE.md",
+    "before_sha256": "3ede037acc8cca649ecbffd97cee0408a680762cd6732bf38b0e8618530d0c52",
+    "after_sha256": "b90f7d15c58d2eb404aeb50668b849e8597a285ddcd079ca8a199382426a072d",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/GOVERNED_CUSTODY_HANDOFF.md",
+    "before_sha256": "a2e323da869b12863788ac80bb76b6f45205a527f5afdf7bb1f1d5eccfeb7f90",
+    "after_sha256": "fd5171b6b269b5de4439fde9cb6937e4cf8ad193542499dcac9d738b2f0c4dd0",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/IDLE_AND_DUST.md",
+    "before_sha256": "516b2a1482d30ab48a35bcc244e46ba19242458d9a2cbf2f7c784a1688ee19ac",
+    "after_sha256": "45cbad40e9714d4aeef7acd5256b4e5e5366c74da96f70075f4f4abfb86d88c7",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/INDEXER_RECOVERY.md",
+    "before_sha256": "7558c4efafa7654a8c42ee04bff89f2f54c735295fea244c785e242088fa7f56",
+    "after_sha256": "1ea4632b683ad27bb7f4ffdbd4da249425157860fc074dbe1e0adfc803859ece",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/LP_ETH_SETTLEMENT.md",
+    "before_sha256": "56aec3c7a67f81ad2f7ffb1973250dc0ab613da0565cd2e3f83a93892c8197ac",
+    "after_sha256": "2569a4654b7c8f646a53669969c122495bceb7cbb4f9ed40dbaec77170f45353",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/MIGRATION_SAFETY.md",
+    "before_sha256": "f88377d41d2f1353143a4430b4dc93393433324961cca4b2ec652e7c887f1285",
+    "after_sha256": "44e512935fceb02cb940a043987aadbcecab99ede5f22d1f35f67566b9df4ce8",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/NATIVE_ETH_ARCHITECTURE.md",
+    "before_sha256": "e70477018fe141207b78372f4bb7c8752eb9e6baabe18f368ef80049ca113878",
+    "after_sha256": "b82d1af1f9718e9e53eb4ead23fd06319f8c0198a0299eccb9e2083c1e46c255",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/NFT_METADATA.md",
+    "before_sha256": "825a9955c8c9ea2e0676e0f438b2e660ca3026e3b6cc5c4d9dfca7f6894ff17e",
+    "after_sha256": "45f944dbd2be7a8c4a0179f656475a2a3ac828e36cc1f397e3c404d3982d0632",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/POOL_SELECTION.md",
+    "before_sha256": "b40ea68ae84dcbf375ed8d4463c8ac9add37f0a8b7503dd364e51688ba454ad7",
+    "after_sha256": "10874bc8e364070ee88ecd7d9ac035ca74bfdc473a367d0d48502bc7cd00fcb1",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/POST_SEAL_POLICY.md",
+    "before_sha256": "f1151cd9c546d63a93c0b63eee1e0448cf3279962b507595a4075d9338efb730",
+    "after_sha256": "0563ab31be549098fe3ab7d38b8ab040e59bb5e842d91cf0f8522f3b17a8cdaa",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/PRODUCTION_SERVICES.md",
+    "before_sha256": "4901306bdfa9bb7191ba2df4cac668fab149dd0ff478b0e92a1916fc832f3c7c",
+    "after_sha256": "b29c3c0471c154d76012153844b13a0b84d62d468da88965d8adf655d1c9f0af",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/README.md",
+    "before_sha256": "64397b3dbb7dcc48c7b15427ea9df2adcc8c5dc016c2dc3f334e0cb65c67e394",
+    "after_sha256": "56967e5236ec19109c169854b2921e68a9875c819340d03b5ef0494bc742fe59",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ROYALTY_LAUNCH_WINDOW.md",
+    "before_sha256": "d4c011d1ea4f2386c954fb537f3b06518843748316a41e029d643d3146be3efc",
+    "after_sha256": "d7f44f81dd3d8b813d945d5307be0ed040bca8503439639ecb3e6aec822bbaac",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ROYALTY_REPORTING.md",
+    "before_sha256": "2c4806330e29141354f23b0d2f1fe6213dd351674801cbb270e0764df8490023",
+    "after_sha256": "bda744bb9382bf1ae26adf5f47965b4352fcdcca4cfc7bf516cf3194588d4827",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/ROYALTY_SETTLEMENT.md",
+    "before_sha256": "8f4da7c7142b486478f9ce732588e9494a9709efded2759955cbf6e9876ddc4b",
+    "after_sha256": "5dc7367f1f3b63b151c62347d5ca48c35d879a4028b4a776279323bac82f7a91",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/SECURITY_AUDIT_PLAN.md",
+    "before_sha256": "662691f0074aa9db947cc3d836c56d5dc3650f27f44e127e0a730166aa87343c",
+    "after_sha256": "8098ebebc23af56a99c56a4825d3bcee1308d5e03289e5fc8e6395593e052167",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/SIMPLIFIED_RELEASE.md",
+    "before_sha256": "2ac176dfc8be7e992c3f2b0b0585bf003ee37722910c25bb641ca804a62e5629",
+    "after_sha256": "3a02f910ab9e840b2d5363e96887dca9682f4ae4de8fc7a4c0bc36870e0e8859",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/WORK_HANDOFF.md",
+    "before_sha256": "867cf7d90863ced2ea196dd778699cd1bbb912fd600de2a55bb158793b542df6",
+    "after_sha256": "52b88d39dfb864132da5e89320eec3ea27a9305fa4f06bdd912a872b6a69877a",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/function-reference-notes.json",
+    "before_sha256": "7c25772eb9062b819f4dd84deabea395a137195bf65ff448e3e9a9999d7e566d",
+    "after_sha256": "fd215dd3073e6045d6f0bc5c83ea114b2ca314fd0c3f7ed302e31227f1d97296",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/operator-call-examples.json",
+    "before_sha256": "618c7295971e2a2e173c25cda578383bac7c2f0c6d6db3820a5223bd386dec93",
+    "after_sha256": "f8b96c1cc7fd9c30bab0aab95ecf38c844c9e63c71d738e29f471776ee8eee9e",
+    "normalized_bytes_identical": true
+  },
+  {
+    "path": "docs/project-todo.json",
+    "before_sha256": "7d32d253d8ea3174ae70c629aafb2d82e97d79e50f430a046017ac661e6e7711",
+    "after_sha256": "3742d3759f8de7ce97e2e32d10830ecf85cc79b973ebc4cd96e8cec0c8a6a5eb",
+    "normalized_bytes_identical": true
+  }
+]

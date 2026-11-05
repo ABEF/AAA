@@ -69,7 +69,7 @@ class PortfolioProductionTests(unittest.TestCase):
         old=F.F.fixture()
         with patch.object(Historical,'validate',side_effect=AssertionError('Historical engine entered default gate')):
             report=CLI.validate(old,now=F.NOW)
-        self.assertEqual(8,report['schema_version']);self.assertFalse(report['ready'])
+        self.assertEqual(13,report['schema_version']);self.assertFalse(report['ready'])
         self.assertFalse(report.get('inventory_consistent',False));self.assertTrue(report['current_release_gate'])
         with self.assertRaises(ValueError):O.observe(old,F.RPC(self.cfg))
 
@@ -258,8 +258,8 @@ class PortfolioProductionTests(unittest.TestCase):
                 self.assertEqual(0,OBS_CLI.main(args+['--historical-consistency']))
             self.assertEqual(6,json.loads(target.read_text(encoding='utf-8'))['schema_version'])
 
-    def test_example_is_current_unqualified_schema8_without_relabelling_schema7(self):
-        cfg=json.loads((ROOT/'config/production.example.json').read_text(encoding='utf-8'))
+    def test_archived_schema8_example_does_not_relabel_the_schema7_engine(self):
+        cfg=json.loads((ROOT/'config/production.policy-v6.example.json').read_text(encoding='utf-8'))
         self.assertEqual(8,cfg['schema_version']);self.assertEqual(21,len(cfg['chains'][0]['helpers']))
         chain=cfg['chains'][0]
         self.assertIsNone(chain['observation']);self.assertIsNone(chain['portfolio']['observed'])

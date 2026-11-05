@@ -1,0 +1,26 @@
+{
+  "scope": "Test-only current/default versus explicitly historical profile boundary repair",
+  "distinct_selected_methods": 6,
+  "first_stage": {
+    "log": "stale-test-boundary-six.log",
+    "run": 6,
+    "passed": 5,
+    "failed": 1
+  },
+  "corrected_stage": {
+    "log": "stale-test-boundary-custody-corrected.log",
+    "run": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "all_distinct_selected_methods_pass_at_their_final_stage": true,
+  "not_an_additional_full_suite": true,
+  "production_source_changed": false,
+  "source_sha256": {
+    "tests_python/test_custody_inventory.py": "f1475ce66545d72d1cff2a13e6d663e2832fdbb8b50b77b6e23158e9af32a938",
+    "tests_python/test_production_v4.py": "ba86e396b7d8a66a3c4bdd981b15a122fa50b685baae6dfa899d1db9c3140106",
+    "tests_python/test_production_v5.py": "0049311c8f26a8817ccf6578850c2ddb0a9ea874d3008ef428bbfe2b7a659305",
+    "tests_python/test_mint_integration_qualification.py": "2cba56305f3390c40ce1388995dc4ae3eedb76f76864ed48152f9e6bb1799660"
+  },
+  "remaining_legacy_tests": "Retain explicit old versions and removed getter/event coverage when bound to historical profiles; do not rename old runtimes current."
+}

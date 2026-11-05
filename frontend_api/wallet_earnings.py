@@ -7,7 +7,7 @@ import hashlib
 from collections import defaultdict
 from types import SimpleNamespace
 
-from frontend_api.earnings_replay import Replay, require
+from frontend_api.earnings_replay import Replay, require, royalty_profile
 from frontend_api.earnings_prices import value_report
 from frontend_api.history import HistoryError, conversion_report, merge_conversions
 from frontend_api.portfolio import CHUNK_SIZE
@@ -57,7 +57,7 @@ def read(engine, wallet_address, block_number, offset):
         at = {'blockHash': cutoff['hash'], 'requireCanonical': True}
         emitters = engine.check_profile(peer, at)
         a, b = peer._admitted(at)
-        model.begin(emitters, a, b, lower, fee_intake_version=peer.fee_intake_version)
+        model.begin(emitters, a, b, lower, fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
         replayed = engine.history_snapshot(peer, cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
         model.finish()
         engine.reconcile(peer, model, at, a, b, replayed.provenance['minted_count'])
@@ -86,7 +86,8 @@ def read(engine, wallet_address, block_number, offset):
         account = SimpleNamespace(nft_id=i, totals=model.account_totals[i], scaled=model.accounts[i],
                                   cohorts=model.cohorts, weights=model.weights,
                                   activation_order=model.activation_order,royalty_opening=model.royalty_opening,
-                                  initial_royalty_allocations=model.initial_royalty_allocations)
+                                  initial_royalty_allocations=model.initial_royalty_allocations,
+                                  ticket_offsets=model.ticket_offsets,royalty_cursors=model.royalty_cursors)
         financial = {'previously_claimed': {'assets': [dict(asset=a, lp_raw=str(claims[i, a][0]),
                      royalties_raw=str(claims[i, a][1])) for a in engine.descriptors]},
                      'lp_conversions': conversion_report(lp_conversions, i, engine.descriptors, {}),

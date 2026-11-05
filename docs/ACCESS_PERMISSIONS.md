@@ -73,7 +73,7 @@ rehearse actual operation and obtain independent review before production.
 Current governance alone calls RoyaltyRewards.allocateUnallocated with the exact
 inputs in the [operator procedure](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
 An authorized keeper cannot recover unsupported/orphaned funds. Existing
-royalty swaps/unwraps and converter binding are removed from settlement3. Allocation has no
+royalty swaps/unwraps and converter binding are removed from settlement4. Allocation has no
 arbitrary recipient or earned-balance override; it credits the SAME admitted currency
 to active weights at execution. Retired forwardLate fixes its successor. Original
 owner claims and32-entry mixed claim batches stay owner-authorized; LP conversion

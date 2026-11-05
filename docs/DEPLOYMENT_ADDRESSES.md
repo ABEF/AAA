@@ -1,6 +1,6 @@
 # Deployment address inventory
 
-Fresh undeployed source: [accounting6 / custody5 / portfolio2 / canonical V6](POSITION_V6.md).
+Fresh undeployed source: [accounting6 / custody5 / portfolio2 / canonical V8](POSITION_V6.md).
 Governance can permanently close LP and return actual ETH+ZZZ to NFT holders;
 there is no external principal/royalty custody recipient. Production is **NOT APPROVED**.
 
@@ -27,7 +27,7 @@ only that owner can choose a fallback recipient for a failed automatic payout.
 | Royalties and future receipts | Continue in the separate royalty ledger under preserved activated rarity weights; no external custody drain. |
 | Buyback reserve, quarantine and unsolicited prefunds | Not swept into principal or an administrator address. Purpose-bound accounting remains. |
 | Mint proceeds already paid | Already held by the recipient at payment time; no management privilege follows. |
-| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonical V6 can carry them to one reviewed same-chain successor. |
+| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonical V8 can carry them to one reviewed same-chain successor. |
 
 Authority wallets and provider-specific subscription ownership remain unselected.
 The selected native ETH/fixedZZZ pool and supported fee-tier replacements are the
@@ -243,7 +243,7 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 ## Native accounting and canonical version inventory
 
 Record `Vault.ACCOUNTING_VERSION() == 6` and `ProtocolPolicy.PROTOCOL_POLICY_VERSION() == 1` and the canonical coordinator's
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")` with their exact
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
 with the fresh20-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier

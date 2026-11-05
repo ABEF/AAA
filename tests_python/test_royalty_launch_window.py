@@ -83,13 +83,13 @@ class RoyaltyWindowReportingTests(unittest.TestCase):
             c,rpc=self.fixture();rpc.responses[addr(5),calldata(sig)]=words(value)
             with self.assertRaises(ProjectionError):Projection(c,rpc,clock=lambda:1000).nft(str(rpc.nft_id))
     def test_current_inventory_requires_new_explicit_profile(self):
-        c=json.loads(Path('config/production.example.json').read_text())
+        c=json.loads(Path('config/production.royalty3.example.json').read_text())
         self.assertEqual(c['schema_version'],12)
         self.assertEqual(P.expected_bindings(c['chains'][0])['helpers']['royalty_rewards']['ROYALTY_SETTLEMENT_VERSION'],3)
         c['schema_version']=11
         self.assertFalse(P.validate(c)['ready'])
     def test_current_observer_keeps_raw_only_classification_and_explicit_capacity(self):
-        c=json.loads(Path('config/production.example.json').read_text())
+        c=json.loads(Path('config/production.royalty3.example.json').read_text())
         o=O.Observer(object(),c['chains'][0])
         self.assertEqual(o.royalty_asset_maximum,65)
         self.assertEqual(o.raw_royalty_assets,P.raw_royalty_assets(c['chains'][0]))

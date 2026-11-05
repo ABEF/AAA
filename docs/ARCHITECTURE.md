@@ -1,7 +1,7 @@
 # Shared permanent-liquidity architecture
 
 **Undeployed candidate; production NOT APPROVED.** The current source uses native
-ETH accounting V6, direct governance V2 and the LP-only same-chain canonical V6
+ETH accounting V6, direct governance V2 and the LP-only same-chain canonical V8
 schema. This fresh-deployment ABI/storage change does not upgrade existing Anvil
 contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V6.md)
 and [current feature/evidence boundaries](IMPLEMENTATION_STATUS.md). Earlier
@@ -124,11 +124,11 @@ keeps its ordinary keeper/unpause/execution controls. [Procedure](OPERATOR_MANUA
 
 ## NFT royalties and metadata
 
-Fresh royalty settlement3/recovery2 pays each admitted currency as received.
+Fresh royalty settlement4/recovery2 pays each admitted currency as received.
 There is no royalty converter, swap or unwrap. Governance may allocate only
 reviewed admitted unallocated units in the SAME currency at current active
 rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
-earned/deferred/fractional rights remain excluded. Unsupported currencies require
+earned/deferred ticket rights remain excluded. Unsupported currencies require
 review/admission first;ERC20 capacity starts16 and can be increased up to64 plus ETH after review. Original-currency claims
 need no price feed; optional USD reporting and LP reward conversion are separate.
 See [current settlement](ROYALTY_SETTLEMENT.md).
@@ -231,3 +231,12 @@ qualified route; the selected pool does not qualify at reference prices. Actual
 independent feeds, proof-verifying VRF, authority wallets, OpenSea primary mint,
 native wallet/service operation, maximal gas/strategy economics, recovery
 rehearsals and independent audit/remediation remain open. Production NOT APPROVED.
+
+## Exact royalty source boundary
+
+Royalty4/reporting5/schema13/canonicalV8 uses internal whole-unit allocation;
+there is no new deployed helper. The existing RoyaltyFactory stores only fixed
+compiled creation bytes, authenticates them with immutable royaltyCodeHash,
+then creates the typed caller's ledger and binds its fixed controller. No caller
+supplies code, salt, recipient or execution payload. Its larger one-time
+deployment gas requires qualification. [Exact rule](EXACT_ROYALTY_ALLOCATION.md).

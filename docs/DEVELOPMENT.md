@@ -203,9 +203,9 @@ actual mainnet-venue qualification in the selected fork/approved rehearsal, neve
 weaken production pins or label test dependencies real.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
-Fresh source profile: accounting6/custody5/governance2/fee1/canonicalV6 with
+Fresh source profile: accounting6/custody5/governance2/fee1/canonicalV8 with
 portfolio2/maintenance3/compound4/LP2/quality1/confirmation3 and separate manual
-emergency2. Inventory uses schema10/20 helpers; schema6/accounting4 and
+emergency2. Inventory uses schema13/18 helpers, royalty4/reporting5; schema6/accounting4 and
 schema5/accounting3 remain explicitly historical. Local actual-v4-core portfolio
 checks are source-scoped with mock external dependencies, not live qualification. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain
@@ -215,6 +215,28 @@ is 4, not a historical code6. Local scaffold is unsealed/local-only; it does not
 approve real addresses. The historical local-stack launcher rejects incompatible
 current pricing/native artifacts before creating state/processes. Preserve
 existing Anvil/journals; use their actual historical configuration.
+
+## Current tests versus historical compatibility
+
+Age alone is not a reason to delete a test. After a behavior/profile change,
+classify the assertion and its actual imports before adapting or retiring it.
+
+| Test group | Maintained purpose |
+| --- | --- |
+| ExactRoyaltyAllocation / RoyaltyAudit20261105 | Current whole-unit/GCD allocation, bounds, claims, V8, mint callbacks and source-wire producer. |
+| NFTRoyalties / NFTMetadata / NativeCustody | Current economic rights, outage behavior, metadata and runtime identity. Remove old rounding-loss expectations from current imports; explicitly reject incompatible old identities. |
+| CombinedCapacityGas | Current default gas and atomic failure/isolation. A former12M success assumption is not valid evidence after changing the optional sync default to1M; target qualification stays separate. |
+| CollectionScale / NFTRightsInvariants | Explicit initial holding/cutoff/zero-cohort cases, exact whole-unit royalty conservation and real post-opening claim activity. Keep LP fractional bounds separate; a handler that only reverts is not claim coverage. |
+| Preparation / holder return / portfolio / canonical fixtures | Mint every required NFT before closing the sale; place activations deliberately before or after cutoff. Preserve earlier earned rights through transfers, pause, both LP legs, exit and import rather than relying on zero claimables. |
+| Exact royalty backend/source-wire/profile tests | Current reporting5, schema13, V8, exact source getters/events/export rows, replay/checkpoint and unsigned review. Synthetic models alone cannot establish source compatibility. |
+| Original-currency2/window3, historical conversion and versioned production readers | Keep separately pinned historical fixtures/imports and negative compatibility checks. Do not relabel them current4 or remove coverage needed for old runtimes/journals. |
+| Current CLI/template tests | Exercise the actual default validator/template. Old-engine fixtures stay explicit; a current template passed into an old validator does not test current readiness. |
+
+Run focused changed assertions and affected behavior. Preserve genuine regression
+failures; change an expectation only when the approved rule or explicit profile
+changed. Do not raise a gas budget, weaken an invariant or replace a failed read
+with zero merely to keep a test green. The [current audit](../reports/last24h-audit-20261105/VERIFICATION.md)
+separates these maintenance corrections from production source verification.
 
 Use [operations](OPERATIONS.md), [operator manual](OPERATOR_MANUAL.md),
 [current context](../PROJECT_CONTEXT.md) and [feature evidence](IMPLEMENTATION_STATUS.md).

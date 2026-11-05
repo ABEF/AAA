@@ -461,7 +461,7 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,royalty_mint_revision=False):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
@@ -497,7 +497,7 @@ def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILE
     history=g.obj(chain.get('inventory_history'),path+'.inventory_history')
     g.check(history.get('complete') is True,path+'.inventory_history','history.incomplete','Retain complete creation-to-anchor pools/routes/source/asset/role history.')
     V._bound_proof(g,history.get('evidence'),path+'.inventory_history.evidence',chain,kind='complete_deployment_inventory',exact_block=True)
-    _nft(g,chain,path,tokens,royalty_conversion=royalty_conversion,royalty_max_assets=royalty_max_assets)
+    _nft(g,chain,path,tokens,royalty_conversion=royalty_conversion,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision)
     services=g.obj(chain.get('services'),path+'.services');g.keys(services,service_profiles,path+'.services')
     for role,profile in service_profiles.items():
         sp=path+'.services.'+role;s=g.obj(services.get(role),sp)
@@ -515,7 +515,8 @@ def validate(config, *, expected_commit=None, now=None):
 
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
               service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
-              canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17):
+              canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,
+              royalty_mint_revision=False):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
@@ -566,7 +567,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
@@ -736,7 +737,7 @@ def _pools(g,chain,path,tokens,deps):
         'Read Budget3 compoundInterval for each pool at the same block.','bindings')
     return pools
 
-def _nft(g,chain,path,tokens,*,royalty_conversion=True,royalty_max_assets=17):
+def _nft(g,chain,path,tokens,*,royalty_conversion=True,royalty_max_assets=17,royalty_mint_revision=False):
     """Reuse current draw/content/VRF checks, with explicit custody3 asset semantics."""
     # Common checks are source-copied to keep historical validator behavior fixed.
     np=path+'.nft_inventory';nft=g.obj(chain.get('nft_inventory'),np);ctor=V._obj(chain.get('constructor'))
@@ -782,6 +783,8 @@ def _nft(g,chain,path,tokens,*,royalty_conversion=True,royalty_max_assets=17):
             g.check(proof.get('worst_case_activation_gas_tested') is True and proof.get('capacity')==capacity,
                     np,'royalty.capacity_gas','Qualify cold/faulted maximum activation and API/history workloads before expansion.')
         window=g.obj(nft.get('royalty_window'),np+'.royalty_window')
+        if royalty_mint_revision:
+            g.num(window.get('mint_end_revision'),np+'.royalty_window.mint_end_revision',0,2**64-1)
         end=g.num(window.get('mint_end'),np+'.royalty_window.mint_end',1,2**64-1)
         g.check(end is not None and window.get('claims_open_at')==end+3600,np,'royalty.window','Configure final sale end and fixed1-hour activation window.')
         proof=g.proof(window.get('marketplace_schedule_evidence'),np+'.royalty_window.marketplace_schedule_evidence')

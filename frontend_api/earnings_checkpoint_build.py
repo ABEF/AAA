@@ -8,7 +8,7 @@ import time
 from types import SimpleNamespace
 
 from frontend_api.earnings_checkpoint import Checkpoint, SHARED, COLLECTION, decode, encode, identity, source_identity, MAX_BYTES
-from frontend_api.earnings_replay import Replay, require
+from frontend_api.earnings_replay import Replay, require, royalty_profile
 from frontend_api.history import conversion_report
 from zzz_ops.work_budget import Budget, checkpoint, request_scope
 
@@ -45,7 +45,7 @@ def _build(engine, number):
     require(life['predecessor_controller'] is None, 'Checkpoint requires original deployment history')
     lp,royalties=p._admitted(at);emitters=engine.check_profile(p,at)
     model=Replay(header['timestamp'],track_all=True)
-    model.begin(emitters,lp,royalties,fee_intake_version=p.fee_intake_version)
+    model.begin(emitters,lp,royalties,fee_intake_version=p.fee_intake_version,royalty_settlement_version=royalty_profile(p))
     history=engine.history_snapshot(p,header,at,lp,royalties,consumer=model,extra_emitters=tuple(emitters.values()))
     model.finish()
     require(not model.frozen and not model.retired and not model.royalty_custody and not model.custody_ids,
@@ -62,11 +62,17 @@ def _build(engine, number):
                 p._uint('vault','nftBucket(uint256)',i,block=at)==bucket and
                 p._uint('royalties','weightOf(uint256)',i,block=at)==model.weights.get(i,0),
                 'Checkpoint NFT rights differ from chain')
+        if royalty_profile(p) == 4:
+            require(p._uint('royalties','ticketStart(uint256)',i,block=at)==(model.ticket_offsets[i]+1 if i in model.weights else 0),
+                    'Checkpoint exact NFT tickets differ from chain')
         financial=dict(previously_claimed={'assets':history.claimed(i,set(engine.descriptors))},
             lp_conversions=conversion_report(history.lp_conversions,i,engine.descriptors,{}),
             royalty_conversions=conversion_report(history.conversions,i,engine.descriptors,{}))
         account=SimpleNamespace(nft_id=i,totals=model.account_totals[i],scaled=model.accounts[i],
-                                cohorts=model.cohorts,weights=model.weights)
+                                cohorts=model.cohorts,weights=model.weights,
+                                activation_order=model.activation_order,royalty_opening=model.royalty_opening,
+                                initial_royalty_allocations=model.initial_royalty_allocations,
+                                ticket_offsets=model.ticket_offsets,royalty_cursors=model.royalty_cursors)
         engine.check_paid(p,account,financial,at,lp,royalties)
     # Historical blocks need canonical/depth checks, not the live UI max-age rule.
     require(p._header(hex(number))==header,'Checkpoint anchor changed during construction')

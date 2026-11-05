@@ -2312,8 +2312,9 @@
           "purpose": "Read current complete sale+VRF mint review fingerprint.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "Exact ProtocolPolicy.mintFingerprint() required by fresh mintDormant(bytes32); not free-form reviewHash or custody fingerprint."
-          }
+            "0": "Fresh six-word domain-separated review hash of core Policy mint fingerprint, NFT, royalty receiver, mintEnd and mintEndRevision. Exact current getter; not Policy.mintFingerprint alone."
+          },
+          "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
         }
       },
       "constructor": {
@@ -3390,14 +3391,6 @@
             "0": "64 hard engineering ceiling; operating capacity starts16. Expansion requires operator gas qualification."
           }
         },
-        "SCALE()": {
-          "purpose": "Read the fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions.",
-          "access": "Anyone; read-only.",
-          "notes": "Accounting precision, not an amount payable to a holder.",
-          "outputs": {
-            "0": "The fixed-point denominator used by this reward ledger\u2019s cumulative indices and fractions."
-          }
-        },
         "accounted(address)": {
           "purpose": "Read total classified royalty backing, including liabilities and segregated funds.",
           "access": "Anyone; read-only.",
@@ -3409,15 +3402,14 @@
           }
         },
         "accrued(uint256,address)": {
-          "purpose": "Read an NFT/currency\u2019s stored whole royalty credit before new index settlement.",
+          "purpose": "Read flat imported whole-unit royalty credit.",
           "access": "Anyone; read-only.",
-          "notes": "Use claimable() for pending eligible receipts as well.",
           "inputs": {
-            "0": "Canonical NFT ID, not mint ordinal or bucket ID.",
-            "1": "Actual reward/royalty currency address; zero denotes native ETH."
+            "0": "Exact NFT token ID.",
+            "1": "Admitted original currency; zero for ETH."
           },
           "outputs": {
-            "0": "An NFT/currency\u2019s stored whole royalty credit before new index settlement."
+            "0": "Imported whole units, excluding ordinary outstanding ticket books. Use claimable for the complete current-owner entitlement."
           }
         },
         "activate(uint256,uint256)": {
@@ -3516,7 +3508,7 @@
         "canonicalCapture()": {
           "purpose": "Capture the immutable cutoff for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Requires an open, finalized initial window and sync of every admitted initial currency. No live initial cohort is discarded. CanonicalV7 header carries sale end/capacity; old V6 is incompatible. LP terminal exit remains independent."
+          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. V8 rejects old peers; an unreadable currency can still block handoff. LP terminal/emergency paths stay independent."
         },
         "canonicalController()": {
           "purpose": "Identify the bound controller providing this royalty receiver\u2019s lifecycle authority.",
@@ -3536,7 +3528,7 @@
         "canonicalExport(uint256)": {
           "purpose": "Encode one exact captured rarity-weighted royalty cohorts, balances, fractions and quarantine record.",
           "access": "Anyone; read-only.",
-          "notes": "Versioned ABI bytes consumed by authenticated import, not a general transaction. Inputs: Input is zero-based canonical record row, not necessarily an NFT ID.",
+          "notes": "V8:160-byte header;192-byte currency row(asset,cursor,accounted,liabilities,orphaned,backing);128-byte NFT row(id,weight,activationOrdinal,ticketStart);96-byte NFT/currency row(id,asset,whole accrued). Frozen view flattens ticket rights without deleting the source books; abort retains them.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal."
           },
@@ -3547,7 +3539,7 @@
         "canonicalImport(uint256,bytes)": {
           "purpose": "Import the next source-authenticated rarity-weighted royalty cohorts, balances, fractions and quarantine record into an inert successor.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite.",
+          "notes": "Only V8 coordinator; exact ordered rows/lengths, source roots and backing. Preserve ticket/ordinal mapping; no overlap/holes, correct rarity, cursor/GCD and exact summed claims=liabilities. Import starts empty books; source semantics are not inferred from row size.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal.",
             "1": "Exact versioned ABI-encoded canonical record authenticated against its source."
@@ -3610,13 +3602,13 @@
         "claimable(uint256,address)": {
           "purpose": "Compute the NFT\u2019s royalty entitlement including actual pending eligible receipts.",
           "access": "Anyone; read-only.",
-          "notes": "Includes receipt/cohort policy, not merely stored accrued; unavailable/failed currencies may revert.",
+          "notes": "Uses current-owner transferable ticket rights and GCD-normalized pending allocation. Normal claims do not advance cursor; view does not change any tree. Frozen export is separately source-bound.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Actual currency address; zero denotes native ETH in native-aware paths."
           },
           "outputs": {
-            "0": "The NFT\u2019s royalty entitlement including actual pending eligible receipts."
+            "0": "Exact original whole units including eligible pending receipts after opening;0 while locked. No fresh royalty fraction reserve. Missing/unreadable backing reverts, never guessed zero."
           }
         },
         "eligibleCount(address)": {
@@ -3648,7 +3640,7 @@
             "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
           },
           "outputs": {
-            "0": "The sum of rarity weights enrolled for one royalty currency."
+            "0": "Original sum of rarity weights in this currency eligible prefix; internal allocation divides by the cohort GCD. This is not LP shares or NFT evolution."
           }
         },
         "forwardLate(address)": {
@@ -3662,17 +3654,6 @@
             "0": "Raw late amount forwarded."
           }
         },
-        "fraction(uint256,address)": {
-          "purpose": "Read the NFT\u2019s preserved fractional royalty carry in one source currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical NFT ID, not mint ordinal or bucket ID.",
-            "1": "Actual reward/royalty currency address; zero denotes native ETH."
-          },
-          "outputs": {
-            "0": "The NFT\u2019s preserved fractional royalty carry in one source currency."
-          }
-        },
         "fund(address,uint256)": {
           "purpose": "Pull an exact ERC20 royalty donation and synchronize its actual receipt.",
           "access": "Permissionless funder in active economic state.",
@@ -3680,16 +3661,6 @@
           "inputs": {
             "0": "Actual currency address; zero denotes native ETH in native-aware paths.",
             "1": "Raw units of the actual specified currency; not its USD value."
-          }
-        },
-        "index(address)": {
-          "purpose": "Read the cumulative funded royalty amount per eligible rarity-weight unit.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
-          },
-          "outputs": {
-            "0": "The cumulative funded royalty amount per eligible rarity-weight unit."
           }
         },
         "isAsset(address)": {
@@ -3709,7 +3680,7 @@
             "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
           },
           "outputs": {
-            "0": "Funded whole-unit holder royalty obligations for one currency."
+            "0": "Allocated whole raw units backed for ticket rights plus flat accrued import credits. Opening pool and explicitly unallocated receipts stay separate."
           }
         },
         "nft()": {
@@ -3727,17 +3698,6 @@
           },
           "outputs": {
             "0": "Quarantined royalty funds, including prefunds, pre-admission balances and receipts with no eligible cohort."
-          }
-        },
-        "paidIndex(uint256,address)": {
-          "purpose": "Read the royalty index already checkpointed for an NFT/currency.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Canonical NFT ID, not mint ordinal or bucket ID.",
-            "1": "Actual reward/royalty currency address; zero denotes native ETH."
-          },
-          "outputs": {
-            "0": "The royalty index already checkpointed for an NFT/currency."
           }
         },
         "pending(address)": {
@@ -3805,7 +3765,7 @@
           "purpose": "Read the explicit royalty settlement version.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "3 for original-currency royalties with the launch window and reviewed capacity; earlier profiles are historical."
+            "0": "4: exact whole-unit, GCD-normalized original-currency royalties, one-hour opening and V8. Earlier profiles remain historical."
           }
         },
         "allocateUnallocated(address,uint256,bytes32)": {
@@ -3817,7 +3777,7 @@
             "2": "Nonzero bytes32 review fingerprint of asset, amount, classification and current beneficiaries."
           },
           "outputs": {},
-          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned/fraction backing is excluded."
+          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned backing is excluded."
         },
         "ACTIVATION_WINDOW()": {
           "purpose": "Read the fixed1-hour activation grace window.",
@@ -3908,7 +3868,47 @@
           "outputs": {
             "0": "Exact raw units allocated;0 if no eligible unallocated units remain."
           },
-          "notes": "Syncs first. Never spends openingPool, earned/fraction liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
+          "notes": "Syncs first. Never spends openingPool, earned liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
+        },
+        "ticketStart(uint256)": {
+          "purpose": "Read the permanent raw rarity-ticket interval start.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Exact NFT token ID; not mint ordinal."
+          },
+          "outputs": {
+            "0": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in V8."
+          }
+        },
+        "allocationCursor(address)": {
+          "purpose": "Read the original-unit rounding cursor in raw ticket coordinates.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Admitted original currency; address zero for native ETH."
+          },
+          "outputs": {
+            "0": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; V8 preserves it."
+          }
+        },
+        "mintEndRevision()": {
+          "purpose": "Read the sale-end review revision.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed V8 import has its own local revision."
+          }
+        },
+        "canonicalRecoverCancelled(address,address)": {
+          "purpose": "Return cancelled-importer royalties to the verified active ledger.",
+          "access": "Fixed canonical coordinator only; cancelled state4; nonReentrant.",
+          "inputs": {
+            "0": "One original currency; zero for native ETH.",
+            "1": "Verified active royalty ledger supplied only by the fixed coordinator."
+          },
+          "outputs": {
+            "0": "Exact raw units transferred; not an external custody payout."
+          },
+          "notes": "Use governance recoverCancelledRoyalties on this cancelled coordinator after complete abort restoration. This hook cannot be called by governance directly; reviewed target admission/cohort and pre/post controls are enforced by the coordinator."
         }
       },
       "constructor": {
@@ -5525,6 +5525,33 @@
           "outputs": {
             "0": "The committed complete source/import state root, zero until complete export/import."
           }
+        },
+        "cancelledRoyaltyReturnController()": {
+          "purpose": "Read the verified royalty-return route cursor.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Original source controller, or last authenticated retired-source hop. No arbitrary recipient input; recovery waits for an operating target."
+          }
+        },
+        "advanceCancelledRoyaltyReturn()": {
+          "purpose": "Advance one authenticated retired-source return hop.",
+          "access": "Anyone; cancelled importer only after original source restoration.",
+          "inputs": {},
+          "outputs": {},
+          "notes": "No payment/input/recipient. Validates reciprocal canonicalV8 lineage, frozen old source roots versus immutable successor import roots, sealed controller/phase. Repeat one bounded hop while the route is retired; cannot skip into an unverified destination."
+        },
+        "recoverCancelledRoyalties(address,bytes32)": {
+          "purpose": "Recover reviewed cancelled royalties into current active rights.",
+          "access": "Current governance of the verified active target only; sealed, unpaused, operating; cancelled source fully restored.",
+          "inputs": {
+            "0": "Original currency admitted by the verified active target; zero for native ETH.",
+            "1": "Nonzero review hash of the exact currency, authenticated route, current eligible cohort and operation manifest."
+          },
+          "outputs": {
+            "0": "Actual raw units returned to the active ledger."
+          },
+          "notes": "No native value. Sync target first, transfer this currency from cancelled ledger, sync again; existing target orphaned funds stay unallocated. Requires opened window, nonzero active weights and unchanged authority/cohort/lifecycle after callbacks. Later arrivals can be recovered again; no swap, arbitrary beneficiary or principal movement."
         }
       },
       "constructor": {
@@ -5862,8 +5889,9 @@
           "purpose": "Read current complete sale+VRF mint review fingerprint.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "Exact ProtocolPolicy.mintFingerprint() required by fresh mintDormant(bytes32); not free-form reviewHash or custody fingerprint."
-          }
+            "0": "Fresh six-word domain-separated review hash of core Policy mint fingerprint, NFT, royalty receiver, mintEnd and mintEndRevision. Exact current getter; not Policy.mintFingerprint alone."
+          },
+          "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
         },
         "validateMint(uint256,uint256,bytes32)": {
           "purpose": "Validate current mint price/policy on canonical home chain and derive identity plus captured recipient.",
@@ -5878,6 +5906,15 @@
             "1": "Current accepted recipient for captured payment forwarding."
           },
           "notes": "No OpenSea buyer/fee adapter,asset movement or identity reservation occurs in this view."
+        },
+        "validateCancelledRoyaltyHop()": {
+          "purpose": "Validate one fixed cancelled-source recovery hop without mutation.",
+          "access": "Fixed canonical coordinator only; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Authenticated sealed next controller on the retired source lineage. No supplied receiver, route or code."
+          },
+          "notes": "Checks its own cancelled controller state/phase, derives the saved route, authenticates V8 parent bindings, reciprocal source/destination, retired/active phases and immutable six export/import domain chains. It cannot move funds or write a cursor. Use coordinator.advanceCancelledRoyaltyReturn, never call this helper as governance."
         }
       },
       "constructor": {
@@ -6025,7 +6062,7 @@
       }
     },
     "ZZZRoyaltyFactory": {
-      "purpose": "Deploy the original-currency royalty ledger and atomically bind its controller; no royalty converter.",
+      "purpose": "Fixed typed ledger factory with a constructor-written private creation payload and immutable payload hash. No code setter, caller-supplied code/salt/recipient or execution facility.",
       "functions": {
         "controller()": {
           "purpose": "Identify the immutable controller atomically bound to every receiver this factory creates.",
@@ -6037,16 +6074,25 @@
         "create()": {
           "purpose": "Deploy a fresh caller-bound royalty receiver and bind its canonical controller atomically.",
           "access": "Permissionless caller; normal NFT construction uses this path.",
-          "notes": "Creating an extra standalone ledger does not register a new canonical NFT or give migration authority. Returns: New receiver contract address, permanently bound to msg.sender as its NFT.",
+          "notes": "Copies only fixed constructor-stored bytes, verifies royaltyCodeHash, appends the typed caller NFT address, deploys and atomically binds the fixed controller. No arbitrary execution payload. Larger one-time factory/Access deployment gas needs target qualification; ordinary holders do not pay this deployment cost.",
           "outputs": {
             "0": "New receiver contract address, permanently bound to msg.sender as its NFT."
+          }
+        },
+        "royaltyCodeHash()": {
+          "purpose": "Read the immutable source-bound royalty creation-code hash.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Keccak256 of the exact normal-compiler RoyaltyRewards creation bytes. Compare the reviewed payload and runtime bindings before NFT deployment; corruption makes create revert."
           }
         }
       },
       "constructor": {
         "purpose": "Deploy and bind Factory deploying caller-bound royalty ledgers and atomically binding the controller, separate from NFT initcode.",
         "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
-        "inputs": {}
+        "inputs": {},
+        "notes": "Stores fixed source-bound creation bytes and immutable hash once, with no setter. Normal initcode/runtime gates and exact target deployment gas must pass; publication does not deploy."
       }
     },
     "ZZZContributionPricing": {
@@ -7496,7 +7542,7 @@
         "access": "Deployment only; controller must have code. Recipient cannot be zero,controller or this helper.",
         "inputs": {
           "0": "Fixed AccessController; bind this helper once through Access before consumer deployment.",
-          "1": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty250k gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
+          "1": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
         }
       },
       "functions": {

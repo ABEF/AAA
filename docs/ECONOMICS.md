@@ -8,7 +8,7 @@ after exit starts. Historical deployments keep their original rules.
 
 
 **Undeployed candidate; production NOT APPROVED.** Accounting6, custody5, portfolio2,
-direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7` retain
+direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` retain
 the economic rights below. Historical profiles retain their own layouts and
 evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V6.md)
 and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
@@ -139,7 +139,7 @@ Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH t
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and
-decoding. Before retirement, same-pair pool moves and compatible canonicalV6
+decoding. Before retirement, same-pair pool moves and compatible canonicalV8
 handoff remain separate operations. Once collective exit starts, minting and all
 new principal work stop permanently; canonical replacement cannot bypass it.
 
@@ -195,7 +195,7 @@ Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounde
 
 Governance may irreversibly start [collective holder return](HOLDER_COLLECTIVE_EXIT.md) while paused. Final harvested fees keep the fixed allocation; pending 5% compound joins that bucket's principal. Each NFT receives its frozen share of actual ETH/ZZZ, including idle and reinvested compound, by deterministic raw-unit apportionment. Earned LP/royalty liabilities, buyback reserves, donations and quarantines are excluded. The operator closes and allocates bounded batches, then sends direct payouts to current owners; normal recipients take no action. A rejecting or unusually expensive receiver is deferred without blocking others, with retry or owner-selected fallback as exceptional recovery. Receipt cannot be forced for every address. Unpaid rights follow NFT transfer; a paid NFT cannot be paid twice. LP earnings end after all LP closes, while NFTs and future royalty shares remain.
 
-Whole-collection handoff is separate and requires compatible accounting6/canonicalV6 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
+Whole-collection handoff is separate and requires compatible accounting6/canonicalV8 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
 
 Governance is immediate: the selected wallet/Safe calls modules directly, with
 its own signature/nonce policy. There is no protocol timelock, queued executor

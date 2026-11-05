@@ -2,6 +2,30 @@
 from frontend_api.service import ProjectionError, _bool
 
 
+def sale_window(projection, header, block):
+    """Fresh stored sale controls only; no token balance, price or sync calls."""
+    p = projection
+    schema = getattr(getattr(p, 'royalty_reporting', None), 'schema', 0)
+    if schema not in (4, 5):
+        return None
+    if (p._addr('nft', 'royaltyRewards()', block=block) != p.contracts['royalties'].address or
+            p._uint('royalties', 'ROYALTY_SETTLEMENT_VERSION()', block=block) != schema-1):
+        raise ProjectionError('Mint sale ledger differs from reviewed bindings')
+    end = p._uint('royalties', 'mintEnd()', block=block)
+    timestamp = header['timestamp']
+    if end >= 2**64 or type(timestamp) is not int or timestamp < 0:
+        raise ProjectionError('Invalid mint sale window timestamp')
+    available = end != 0 and timestamp <= end
+    result = {'configured':bool(end), 'mint_end':end or None,
+              'available':available, 'status':'open' if available else 'closed' if end else 'unconfigured'}
+    if schema == 5:
+        revision = p._uint('royalties', 'mintEndRevision()', block=block)
+        if revision >= 2**64 or (available and revision == 0) or (end == 0 and revision != 0):
+            raise ProjectionError('Invalid mint sale window revision')
+        result['mint_end_revision'] = revision
+    return result
+
+
 def inspect(projection):
     p = projection
     header, head, block = p._snapshot()
@@ -38,14 +62,16 @@ def inspect(projection):
         oldest = {'token_id': str(identifier), 'mint_ordinal': next_ordinal,
                   'request_id': str(request_id), 'request_epoch': str(epoch),
                   'state': 'awaiting_finalization' if fulfilled else 'awaiting_randomness'}
+    window = sale_window(p, header, block)
     p._finish(header)
     remaining_supply = 1000 - minted
-    return {'schema': 2, 'chain_id': p.chain, 'lifecycle': lifecycle,
+    result = {'schema': 2, 'chain_id': p.chain, 'lifecycle': lifecycle,
             'nft': nft, 'coordinator': coordinator, 'minted': minted,
             'remaining_mint_supply': remaining_supply,
             'revealed': next_ordinal-1, 'unfinished_draws': pending, 'oldest_unfinished': oldest,
             'mint_paused': mint_paused,
-            'new_minting_stopped': remaining_supply == 0 or mint_paused or not lifecycle['new_economic_work_available_by_lifecycle'],
+            'new_minting_stopped': remaining_supply == 0 or mint_paused or not lifecycle['new_economic_work_available_by_lifecycle'] or
+                (window is not None and not window['available']),
             'new_minting_stopped_by_supply': remaining_supply == 0,
             'new_minting_stopped_by_lifecycle': not lifecycle['new_economic_work_available_by_lifecycle'],
             'collection_replacement_reveal_condition_met': pending == 0,
@@ -58,3 +84,6 @@ def inspect(projection):
             'provenance': {'block_number': header['number'], 'block_hash': header['hash'],
                            'block_timestamp': header['timestamp'], 'observed_head': head,
                            'configuration_sha256': p.identity}}
+    if window is not None:
+        result.update(sale_window=window, new_minting_stopped_by_sale_window=not window['available'])
+    return result

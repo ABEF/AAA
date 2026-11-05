@@ -175,13 +175,31 @@ class Transactions:
                         policy=p.contracts['protocol_policy'].address,access=p.contracts['access'].address)
                 except (ValueError,TypeError,KeyError) as exc:
                     raise ProjectionError('Mint policy cannot be authenticated') from exc
+                reviewed = mint['fingerprint']
+                mint_window = None
+                if p.royalty_reporting is not None and p.royalty_reporting.schema == 5:
+                    from zzz_ops.mint_policy_v2 import fingerprint as mint_review_fingerprint
+                    receiver=p._addr('nft','royaltyRewards()',block=block)
+                    end=p._uint('royalties','mintEnd()',block=block)
+                    end_revision=p._uint('royalties','mintEndRevision()',block=block)
+                    if receiver != p.contracts['royalties'].address:
+                        raise ProjectionError('Mint royalty receiver differs from the reviewed ledger')
+                    if end == 0 or end_revision == 0 or header['timestamp'] > end or int(p.clock()) > end:
+                        raise TransactionInputError('Mint sale is unconfigured or closed')
+                    try:
+                        reviewed=mint_review_fingerprint(mint['fingerprint'],p.contracts['nft'].address,receiver,end,end_revision)
+                    except ValueError as exc:
+                        raise ProjectionError('Mint sale-end review cannot be authenticated') from exc
+                    mint_window=dict(policy_fingerprint=mint['fingerprint'],royalty_receiver=receiver,mint_end=str(end),mint_end_revision=str(end_revision))
                 fingerprint='0x'+p._call(p.contracts['vault'].address,'mintPolicyFingerprint()',block=block)[0]
-                if (fingerprint!=mint['fingerprint'] or p._uint('vault','mintPrice()',block=block)!=sale['mint_price_wei'] or
+                if (fingerprint!=reviewed or p._uint('vault','mintPrice()',block=block)!=sale['mint_price_wei'] or
                         p._addr('vault','mintProceedsRecipient()',block=block)!=sale['recipient']):
                     raise ProjectionError('Vault mint terms differ from authenticated policy')
                 target,data,value=p.contracts['vault'].address,calldata('mintDormant(bytes32)',fingerprint),sale['mint_price_wei']
                 mint_policy={'fingerprint':fingerprint,'price_wei':str(value),
                     'recipient':sale['recipient'],'revision':str(sale['revision']),'vrf_revision':str(mint['vrf_revision'])}
+                if mint_window is not None:
+                    mint_policy.update(mint_window)
             else:
                 target, data, value = p.contracts['vault'].address, calldata('mintDormant()'), MINT_PRICE
         else:
@@ -248,6 +266,8 @@ class Transactions:
         p._finish(header)
         prepared_at = self._fresh(header)
         expires_at = min(prepared_at + DRAFT_LIFETIME, header['timestamp'] + min(p.max_age, MAX_SNAPSHOT_AGE))
+        if mint_policy is not None and 'mint_end' in mint_policy:
+            expires_at = min(expires_at, int(mint_policy['mint_end'])+1)
         if expires_at <= prepared_at:
             raise ProjectionError('Transaction snapshot expires before draft publication')
         return {

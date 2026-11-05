@@ -74,11 +74,11 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 
 `royaltyInfo` requests 5% of sale value, payable entirely to the immutable `ZZZRoyaltyRewards` helper. ERC-2981 reports a royalty request; it does not enforce payment. All actually received eligible funds are distributed to activated Commun/Rare/Legendary at 1/2/3, regardless of LP size/evolution. Dormant NFTs get zero weight. LP owner/collective rewards remain a separate ledger.
 
-Fresh royalty settlement3/recovery2 pays each admitted currency as received.
+Fresh royalty settlement4/recovery2 pays each admitted currency as received.
 There is no royalty converter, swap or unwrap. Governance may allocate only
 reviewed admitted unallocated units in the SAME currency at current active
 rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
-earned/deferred/fractional rights remain excluded. Unsupported currencies require
+earned/deferred ticket rights remain excluded. Unsupported currencies require
 review/admission first;ERC20 capacity starts16 and can be increased up to64 plus ETH after review. Original-currency claims
 need no price feed; optional USD reporting and LP reward conversion are separate.
 See [current settlement](ROYALTY_SETTLEMENT.md).

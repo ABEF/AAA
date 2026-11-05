@@ -7,20 +7,21 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
-Pre-window task baseline: main `c7dad14ba1f35a230a2380f9db94f66734e62285`.
-Current royalty source extends the historical manual-safeguard baseline. The
-[royalty normal/static record](../reports/royalty-launch-window-20261105/VERIFICATION.md)
-binds42normal gates and466strict detector contexts; old records remain historical.
-Those two views differ from historical authority e26fc74. No approved
-deployment or release-specific configuration exists.
+Pre-audit published royalty3 baseline: main `967370f6d2de36c3e852a90f1458a7782edd7765`.
+The [current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) records the
+fresh royalty4/canonicalV8 candidate, exact source/configuration pins, retained
+failures and affected verification. Its final normal compiler, static and gas
+records must match the frozen release. Earlier royalty3, original-currency and
+authority counts keep their historical source scope; do not reuse them as current
+gate results or sum overlapping stages. No approved deployment or release-specific
+configuration exists.
 [Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 
-The current source-bound reference covers36contracts/797functions/36constructors/
-12receivers with zero gaps. [Earlier authority evidence](../reports/authority-audit-20261103/VERIFICATION.md)
-retains its older source scope. Neither internal record is a fresh full regression,
-published CI or independent audit. Original reports retain their pins, failed
-attempts, skips and measurements; overlapping stages must not be summed.
+The callable reference, short operator tables and their source-bound examples
+must be regenerated and checked against the actual candidate. Earlier function,
+constructor and detector counts belong to their original reports. Internal
+verification is not a fresh full regression, public CI or independent approval.
 
 Current local actual-core/multi-day tests do not sign off sustained keeper uptime,
 actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source8 services/site,
@@ -33,16 +34,16 @@ actual release record below remain required.
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; compatible parked canonical V6 only with both legs closed. [Profile](POSITION_V6.md). |
+| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory13/reporting5/canonicalV8. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V6.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
 | Accounting | Entrant-only swap/deploy and actual marginal LP; combined fees allocated80/10/5/5 once per asset; separate rewards, royalties, compound, buyback and principal-return backing. Current owner gets old unclaimed rights. |
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
-| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration39 at the current custody5 compiler-output pins; none qualifies target gas or future edits. |
+| Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; check exact margins in the current normal compiler record; royalty factory/constructor changes require fresh runtime and initcode checks, not fixture limits or historical headroom. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema12/direct Entry3/original-currency royalty3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
-| Security | Current466-record static disposition(25reviewed contexts/441exact reuse) is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
+| Services/site | Schema13/direct Entry3/exact-unit original-currency royalty4 graph with18helpers, reporting5 and canonicalV8 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
 
@@ -104,4 +105,9 @@ nonce, idle, reward and terminal-holder-return composition before release. Histo
 accounting5/4 binaries do not gain new source6 policy through a manifest label. Both old portfolio
 and current residual reports retain source/failure scope; neither is deployment approval.
 
-Current royalty3 adds the [1-hour sale-close activation window]( ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.
+Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNCH_WINDOW.md)
+and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
+weights, deterministic rotating indivisible units, and no allocated rounding
+remainder after all eligible claims. Initial holding, prefunds, zero participants,
+unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.

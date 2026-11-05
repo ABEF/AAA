@@ -1,5 +1,5 @@
 """Bounded confirmed earnings endpoint with an explicit event-semantics profile."""
-from frontend_api.earnings_replay import Replay, SCALE, require
+from frontend_api.earnings_replay import Replay, SCALE, require, royalty_profile, ticket_amount, allocation_unit
 from frontend_api.earnings_prices import Prices, value_report
 from frontend_api.history import HistoryError, ZERO, conversion_report
 from zzz_ops.abi import address, keccak256
@@ -67,7 +67,10 @@ class Earnings:
                 require(int(p._call(contract.address,'FEE_INTAKE_VERSION()',block=block)[0],16) == 1,
                         'Earnings fee-intake profile differs from the actual module')
         for role in ('rewards','royalties'):
-            require(p._uint(role,'SCALE()',block=block) == SCALE, 'Unsupported earnings index scale')
+            if role == 'royalties' and royalty_profile(p) == 4:
+                require(p._uint(role,'ROYALTY_SETTLEMENT_VERSION()',block=block) == 4, 'Exact royalty capability differs')
+            else:
+                require(p._uint(role,'SCALE()',block=block) == SCALE, 'Unsupported earnings index scale')
         return {**{r:p.contracts[r].address for r in ('nft','rewards','royalties','vault','handoff')},
                 **{r:c.address for r,c in extra.items()}}
 
@@ -93,7 +96,11 @@ class Earnings:
         for asset in lp_assets:
             require(p._uint('rewards','index(address)',asset,block=block) == model.collective_index[asset], 'Collective index history differs')
         for asset in royalty_assets:
-            require(p._uint('royalties','index(address)',asset,block=block) == model.royalty_index[asset], 'Royalty index history differs')
+            if royalty_profile(p) == 4:
+                require(p._uint('royalties','allocationCursor(address)',asset,block=block) == model.royalty_cursors[asset],
+                        'Exact royalty cursor history differs')
+            else:
+                require(p._uint('royalties','index(address)',asset,block=block) == model.royalty_index[asset], 'Royalty index history differs')
             cohort = model.cohorts[asset]
             require(p._uint('royalties','eligibleCount(address)',asset,block=block) == len(cohort), 'Royalty cohort count differs')
             require(p._uint('royalties','eligibleWeight(address)',asset,block=block) == sum(model.weights[i] for i in cohort), 'Royalty cohort weight differs')
@@ -102,6 +109,9 @@ class Earnings:
             require(p._uint('vault','sharesOf(uint256)',identifier,block=block)==shares and
                     p._uint('vault','nftBucket(uint256)',identifier,block=block)==bucket, 'NFT share history differs')
             require(p._uint('royalties','weightOf(uint256)',identifier,block=block)==model.weights.get(identifier,0), 'NFT royalty weight differs')
+            if royalty_profile(p) == 4:
+                require(p._uint('royalties','ticketStart(uint256)',identifier,block=block)==(model.ticket_offsets[identifier]+1 if identifier in model.weights else 0),
+                        'Exact NFT ticket history differs')
 
     def read(self, identifier):
         p=self.p
@@ -134,7 +144,7 @@ class Earnings:
             at={'blockHash':cutoff['hash'],'requireCanonical':True}
             emitters=self.check_profile(peer,at)
             a,b=peer._admitted(at)
-            model.begin(emitters,a,b,lower,fee_intake_version=peer.fee_intake_version)
+            model.begin(emitters,a,b,lower,fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
             replayed=self.history_snapshot(peer,cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
             model.finish()
             self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])
@@ -176,7 +186,7 @@ class Earnings:
             credited=int(financial['royalty_conversions']['total_eth_credited_raw']) if asset==ZERO else 0
             pending=p._uint('royalties','pending(address)',asset,block=block)
             cohort=model.cohorts[asset]
-            if getattr(p,'royalty_reporting',None) is not None and p.royalty_reporting.schema == 4:
+            if getattr(p,'royalty_reporting',None) is not None and p.royalty_reporting.schema >= 4:
                 opened=int(p._call(p.contracts['royalties'].address,'royaltiesOpen()',block=block)[0],16)
                 require(opened in (0,1),'Invalid royalty opening state')
                 if not opened:
@@ -188,7 +198,12 @@ class Earnings:
             weight=sum(model.weights[i] for i in cohort)
             delta=pending*SCALE//weight if weight else 0
             scaled=model.scaled['royalties',asset]
-            extra=(scaled%SCALE+delta*model.weights[model.nft_id])//SCALE if model.nft_id in cohort else 0
+            if royalty_profile(p) == 4:
+                extra=(ticket_amount(pending,weight,model.royalty_cursors[asset],model.ticket_offsets[model.nft_id],
+                       model.weights[model.nft_id],unit=allocation_unit(model.weights[i] for i in cohort))
+                       if model.nft_id in cohort and weight else 0)
+            else:
+                extra=(scaled%SCALE+delta*model.weights[model.nft_id])//SCALE if model.nft_id in cohort else 0
             expected=model.totals['royalties',asset]-paid-converted+credited+extra
             require(expected==p._uint('royalties','claimable(uint256,address)',model.nft_id,asset,block=block),
                     'Royalty earnings do not reconcile with actual claims/conversions and entitlement')

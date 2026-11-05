@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-Fresh **royalty settlement3/recovery2**, accounting6/custody5/Entry3, schema12.
+Fresh **royalty settlement4/recovery2**, accounting6/custody5/Entry3, schema13.
 User decision5November2026: holders claim each royalty currency as received.
 **No royalty swap, unwrap, converter binding, price-feed dependency or keeper
 conversion job remains in this fresh ledger.** LP reward conversion is separate.
@@ -18,7 +18,7 @@ Unconfigured mint end rejects minting/royalty claims. No keeper is required.
 
 `allocateAllUnallocated(asset,reviewHash)` distributes every eligible unallocated
 whole unit of one admitted currency at current active weights. It cannot spend
-the locked initial pool, earned/fraction backing, LP funds or another currency.
+the locked initial pool, earned backing, LP funds or another currency.
 Constructor/preadmission prefunds retain their separate review/allocation rule.
 
 Governance can increase operating ERC20 capacity from16 up to64 using the NFT
@@ -44,8 +44,8 @@ The LP80/10/5/5 allocation does not apply to royalties.
 ## Per-currency accounting and outage boundary
 
 Each currency has independent accounted backing, liabilities, unallocated units,
-eligible cohort, reward index and per-NFT accrued/fraction checkpoints. Divide
-actual raw token units by eligible rarity weights; prices and token tickers are
+eligible cohort, GCD-normalized ticket books and per-NFT whole-unit rights.
+Use [exact allocation](EXACT_ROYALTY_ALLOCATION.md); prices and token tickers are
 not accounting inputs. The current owner inherits all unpaid rights on transfer.
 New activations settle readable currencies to incumbents before joining. A
 growth contribution does not add another royalty weight.
@@ -58,8 +58,8 @@ time during an outage. Review `eligibleFor`, `eligibleCount`, pending/accounted
 balances and the deferred/recovered events. Anyone may call healthy `sync`;
 operators can do so after a currency recovers. No conversion worker is required.
 
-Fractions carry; global index rounding dust remains backed and cannot be swept
-or reclassified as unallocated. Taxed/rebasing/blacklisted/unreadable tokens are
+Fresh royalties have no scaled fraction/index reserve: all allocated raw units
+are assigned to eligible tickets. Historical royalty/LP fractions remain separate. Taxed/rebasing/blacklisted/unreadable tokens are
 not universally supported. Review conventional exact-transfer token behavior.
 
 ## Operator procedure
@@ -72,8 +72,8 @@ not universally supported. Review conventional exact-transfer token behavior.
 | Claim one currency | Current owner `RoyaltyRewards.claim(NFT_ID,ASSET)` | Owner receives the same asset; only its selected liability decreases. No token approval is needed. |
 | Claim LP plus several royalty currencies | Owner `ClaimRouter.claimBatch([(NFT_ID,ASSET,false/true),...])` | At most32 NFT/asset/ledger entries, no duplicates. `false` LP, `true` royalties. Every NFT must belong to caller. |
 | Recover unallocated receipts | Governance `allocateUnallocated(ASSET,RAW_AMOUNT,REVIEW_HASH)` | See restricted allocation below; no conversion, recipient or price arguments. |
-| Configure API | `royalty_reporting: {schema:4, converter:null}` | Exact runtime and ROYALTY_SETTLEMENT_VERSION3, separate raw balances, unavailable prices never guessed zero. |
-| Configure fresh keeper | `royalty_settlement_version:3`, omit royalty_conversion or set only `{enabled:false}` | No royalty swaps/unwraps. LP conversion remains separately opt-in. Preserve legacy pending recovery under its original runtime/config. |
+| Configure API | `royalty_reporting: {schema:5, converter:null}` | Exact runtime and ROYALTY_SETTLEMENT_VERSION4, separate raw balances, unavailable prices never guessed zero. |
+| Configure fresh keeper | `royalty_settlement_version:4`, omit royalty_conversion or set only `{enabled:false}` | No royalty swaps/unwraps. LP conversion remains separately opt-in. Preserve legacy pending recovery under its original runtime/config. |
 
 One failed selected payout reverts the entire router batch. Simulate exact claims;
 review healthy currencies separately if another is broken. No automatic skipping,
@@ -84,7 +84,7 @@ Before admitting a new currency, prepare its reviewed API asset descriptor and
 website reward_assets entry, then qualify that coordinated configuration rollout.
 An on-chain admission does not reload a server or populate client metadata.
 No USD feed is required for the raw claim; missing USD prices stay unavailable.
-In schema12, declare an admitted non-ETH royalty currency's strategy as
+In schema13, declare an admitted non-ETH royalty currency's strategy as
 `claim_original`. A royalty-only token may explicitly have `price_policy:null`;
 token identity/decimals/transfer-behavior/admission checks still apply. ETH, ZZZ,
 LP reward assets, contribution assets and conversion sources retain required
@@ -103,8 +103,8 @@ Governance calls `allocateUnallocated(asset,amount,reviewHash)` only when sealed
 current canonical state0, unpaused/no preparation, with active rarity weight.
 The asset must be admitted, amount positive and no greater than `orphaned(asset)`
 after synchronizing pending receipts; reviewHash is a nonzero reviewed-operation
-fingerprint. Exact inputs are in the Operator call tables. Earned/deferred funds
-and all fractional/index dust are excluded. No price, approval, route, deadline,
+fingerprint. Exact inputs are in the Operator call tables. Earned/deferred ticket rights are excluded; no earned unit is reclassified as
+unallocated. Historical and LP fractional reserves keep their separate rules. No price, approval, route, deadline,
 converter or external beneficiary is involved.
 
 The amount moves from unallocated backing to liabilities in the SAME currency;
@@ -123,13 +123,13 @@ successor, never a selected custody wallet. That successor separately reviews
 admission/allocation. Exact unreadable backing can still block handoff.
 
 Legacy conversion/recovery1 events, readers and tests remain explicitly historical;
-they do not enable swaps on settlement3. CanonicalV7 carries the closed sale/capacity and requires the initial window complete; older V6 wire compatibility
+they do not enable swaps on settlement4. CanonicalV8 carries the closed sale/capacity and requires the initial window complete; older V6 wire compatibility
 is not runtime/storage compatibility. Authenticate current hashes/capabilities;
 never relabel a deployed contract or rewrite an old transaction journal.
 
 ## Qualification boundary
 
-[Current change/evidence](../reports/royalty-launch-window-20261105/REVIEW.md),
+[Current change/evidence](../reports/last24h-audit-20261105/REVIEW.md),
 [mixed claims](CLAIM_ROUTER.md), [reporting](ROYALTY_REPORTING.md).
 Actual token behavior, marketplace payment, API/site configuration, gas and
 independent audit remain open in the [sole task](../TODO.md#task-royalty-eth-settlement).

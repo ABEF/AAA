@@ -1,0 +1,8 @@
+{
+  "path": "indexer/event_schema.json",
+  "change": "Restore original CRLF only",
+  "tested_sha256": "5cf5bfef46cb512690f1419f0b05c6d07c2439c7c39889a238d03bb5fbc5afd5",
+  "current_sha256": "4b67b6e7cc2d3ac8dd400c75106c8c80124c4bc6821fca5fa7987f1ce48779fa",
+  "json_semantics_identical": true,
+  "normalized_bytes_identical": true
+}

@@ -47,6 +47,8 @@ class Lineage:
             if isinstance(item,dict) and ('custody_version' in item or
                     getattr(current,'custody_version',0)==5):
                 fields.add('custody_version')
+            if isinstance(item,dict) and 'royalty_reporting' in item or (current.royalty_reporting is not None and current.royalty_reporting.schema >= 4):
+                fields.add('royalty_reporting')
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
@@ -56,6 +58,9 @@ class Lineage:
                 raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)
+            if current.royalty_reporting is not None and current.royalty_reporting.schema >= 4 and (
+                    previous.royalty_reporting is None or previous.royalty_reporting.schema != current.royalty_reporting.schema):
+                raise ValueError('Current canonical handoff requires explicit matching royalty profiles')
             addresses = {c.address for c in previous.contracts.values()}
             for role, contract in previous.contracts.items():
                 existing = identities.get(contract.address)

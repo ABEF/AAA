@@ -83,7 +83,7 @@ session for a newly reviewed profile; see [local setup](LOCAL_TEST_STACK.md).
 Actual routes, dual-price observations, wallet/API services and target-chain gas
 remain release work. A minimum is not a capital guarantee: current LP value can
 fall after execution, and holders cannot redeem principal during normal operation.
-Fresh accounting6/custody5/portfolio2/canonicalV6 permanently stops activation and growth
+Fresh accounting6/custody5/portfolio2/canonicalV8 permanently stops activation and growth
 once governance begins collective LP retirement, even after ordinary unpause.
 Only governance starts/closes that exit and submits later bounded allocation and
 direct delivery cannot redirect the fixed current-owner entitlements. Normal

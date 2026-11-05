@@ -12,7 +12,7 @@ from pathlib import Path
 import re
 from types import MappingProxyType
 
-from frontend_api.earnings_replay import COLLECTION, NFT, Replay, SCALE, require
+from frontend_api.earnings_replay import COLLECTION, NFT, Replay, SCALE, require, royalty_profile, allocation_unit
 from frontend_api.history import HistoryError, HistorySnapshot, _stored_json, _hash
 from zzz_ops.abi import address
 from zzz_ops.work_budget import checkpoint
@@ -26,8 +26,9 @@ SOURCE_FILES = ('frontend_api/earnings_checkpoint.py', 'frontend_api/earnings_ch
 SHARED = ('mints', 'shares', 'supply', 'members', 'weights', 'activation_order',
           'cohorts', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust',
           'fee_keys', 'events', 'last_timestamp', 'frozen', 'retired',
-          'royalty_mint_end', 'royalty_opening', 'initial_royalty_allocations')
-DEFAULT_MAPS = ('supply', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust')
+          'royalty_mint_end', 'royalty_opening', 'initial_royalty_allocations',
+          'royalty_settlement_version', 'ticket_offsets', 'royalty_cursors')
+DEFAULT_MAPS = ('supply', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust', 'royalty_cursors')
 
 
 def source_identity():
@@ -41,7 +42,7 @@ def identity(engine):
     require(p.accounting_version == 6 and p.custody_version == 5 and p.fee_intake_version == 1,
             'Checkpoint requires explicit accounting6/custody5/fee-intake1')
     return dict(chain=p.chain, deployment_block=p.start, deployment_hash=p.start_hash,
-        accounting=6, custody=5, fee_intake=1,
+        accounting=6, custody=5, fee_intake=1, royalty_settlement=royalty_profile(p),
         contracts={role:dict(address=c.address, code_hash=c.code_hash) for role,c in p.contracts.items()},
         extra={role:dict(address=c.address,code_hash=c.code_hash)
                for role,c in engine.profiles[p.contracts['access'].address].items()},
@@ -251,6 +252,16 @@ class Checkpoint:
         order=s['activation_order']
         require(isinstance(order,list) and len(set(order))==len(order) and set(order)==s['members'] and all(type(i) is int for i in order),
                 'Invalid checkpoint activation order')
+        require(s['royalty_settlement_version']==royalty_profile(engine.p), 'Checkpoint royalty profile differs')
+        require(isinstance(s['ticket_offsets'],dict) and set(s['ticket_offsets'])==set(order), 'Invalid checkpoint ticket inventory')
+        start=0
+        for i in order:
+            require(type(s['ticket_offsets'][i]) is int and s['ticket_offsets'][i]==start, 'Checkpoint ticket order differs')
+            start+=s['weights'][i]
+        require(isinstance(s['royalty_cursors'],dict) and all(a in v['royalty_assets'] and uint(n)
+                and (n < sum(s['weights'][i] for i in s['cohorts'][a]) and
+                     n % allocation_unit(s['weights'][i] for i in s['cohorts'][a]) == 0 if s['cohorts'][a] else n==0)
+                for a,n in s['royalty_cursors'].items()), 'Invalid checkpoint exact royalty cursor')
         end, opening = s['royalty_mint_end'], s['royalty_opening']
         require(end is None or (type(end) is int and 0<end<2**64), 'Invalid checkpoint royalty sale end')
         require(opening is None or (isinstance(opening,tuple) and len(opening)==3 and end is not None and
@@ -280,6 +291,8 @@ class Checkpoint:
                 require(isinstance(key,tuple) and len(key)==2 and key[0] in NFT and key[1] in engine.descriptors
                         and type(amount) is int and amount>=0, 'Invalid checkpoint NFT earnings')
                 require(amount==0 or i in s['members'], 'Dormant checkpoint NFT has earnings')
+                if s['royalty_settlement_version']==4 and key[0]=='royalties':
+                    require(amount%SCALE==0, 'Exact royalty checkpoint contains fractional entitlement')
         require(isinstance(v['collection'],dict) and all(isinstance(k,tuple) and len(k)==2 and k[0] in COLLECTION
                 and k[1] in engine.descriptors and type(n) is int and n>=0 for k,n in v['collection'].items()),
                 'Invalid checkpoint collection earnings')
@@ -319,7 +332,7 @@ class Checkpoint:
                 history['provenance'].get('minted_count')==len(mints), 'Checkpoint history cutoff differs')
         _hash(history['provenance']['start_block_hash'])
         probe=Replay(anchor['timestamp'],track_all=True)
-        probe.begin(v['emitters'],v['lp_assets'],v['royalty_assets'],fee_intake_version=1)
+        probe.begin(v['emitters'],v['lp_assets'],v['royalty_assets'],fee_intake_version=1,royalty_settlement_version=royalty_profile(engine.p))
         seed=Seed('',anchor,{},v,None);seed.restore(probe);probe.finish()
 
     def seed(self):

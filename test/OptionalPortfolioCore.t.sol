@@ -183,6 +183,14 @@ contract OptionalPortfolioCoreTest is Test {
         ethA.set(1e18,block.timestamp,block.timestamp);ethB.set(1e18,block.timestamp,block.timestamp);
         zzzA.set(int256(usd),block.timestamp,block.timestamp);zzzB.set(int256(usd),block.timestamp,block.timestamp);
     }
+    function _finishRoyaltyWindow()private{
+        ZZZRoyaltyRewards ledger=nft.royaltyRewards();
+        if(!ledger.royaltiesOpen()){
+            nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+            _prices();ledger.syncAll();
+        }
+        assertTrue(ledger.royaltiesOpen(),"royalty window must actually open");
+    }
     function unlockCallback(bytes calldata data)external returns(bytes memory){
         require(msg.sender==address(core));(uint8 mode,uint160 q)=abi.decode(data,(uint8,uint160));BalanceDelta delta;
         if(mode==0 || mode==3)(delta,)=core.modifyLiquidity(mode==0?key:targetKey,ModifyLiquidityParams(-60000,60000,int256(1_000_000 ether),bytes32(0)),"");
@@ -431,7 +439,7 @@ contract OptionalPortfolioCoreTest is Test {
         uint256 paid=ALICE.balance;vm.prank(ALICE);rewards.claim(id,address(0));assertEq(ALICE.balance,paid);
     }
     function testCollectiveExitClosesBothAndDirectlyPaysHolderKeepingRoyalties()public{
-        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();access.setPaused(true);
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();_finishRoyaltyWindow();access.setPaused(true);
         migration.beginCollectiveExit(keccak256("TEST ONLY HOLDER RETURN"));migration.closeBucket(bucket,0,0,block.timestamp+100);
         assertEq(manager.activeSecondaryCount(),0);vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
         migration.allocatePrincipal(32);uint256 beforeETH=ALICE.balance;uint256 beforeZZZ=token.balanceOf(ALICE);
@@ -587,7 +595,7 @@ contract OptionalPortfolioCoreTest is Test {
         assertFalse(policy.enabled(pool));assertTrue(policy.configurationPending(bucket));assertEq(manager.secondaryId(main),0);
     }
     function testResidualClosePreservesClaimAndTransferRightsWhilePaused()public{
-        (uint256 id,uint256 bucket,,)=_hybrid();ZZZMigration.ParkingRequest memory request=_residualReview(bucket);
+        (uint256 id,uint256 bucket,,)=_hybrid();_finishRoyaltyWindow();ZZZMigration.ParkingRequest memory request=_residualReview(bucket);
         uint256 expected=rewards.claimable(id,address(0));assertGt(expected,0);access.setPaused(true);migration.closeResidual(request);
         vm.prank(ALICE);nft.transferFrom(ALICE,BOB,id);uint256 paid=BOB.balance;
         vm.prank(BOB);rewards.claim(id,address(0));assertGe(BOB.balance-paid,expected);
@@ -1267,7 +1275,7 @@ contract OptionalPortfolioCoreTest is Test {
     function testMarketCampaignRoyaltyEntitlementsStaySeparateThroughLPModeChangesAndExit() public {
         registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);uint256 bob=_marketMint(BOB,2);
         _marketEntry(ALICE,alice,address(0),1000e18,false);uint256 bucket=vault.nftBucket(alice);
-        ZZZRoyaltyRewards royalties=nft.royaltyRewards();
+        _finishRoyaltyWindow();ZZZRoyaltyRewards royalties=nft.royaltyRewards();
         (bool funded,)=address(royalties).call{value:4 ether}("");assertTrue(funded);royalties.sync(address(0));
         assertEq(royalties.claimable(alice,address(0)),4 ether);assertEq(royalties.claimable(bob,address(0)),0);
         _marketEntry(BOB,bob,address(token),100e18,false);

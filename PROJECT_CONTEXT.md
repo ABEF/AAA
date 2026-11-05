@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed5November2026. Pre-window baseline main c7dad14; verify actual local/remote
+Reviewed5November2026. Audit baseline main967370f; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -17,8 +17,8 @@ compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
 Accounting6/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
 LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
-words. Fresh royalty3/recovery2/canonicalV7/schema12/reporting4;17modules/18helpers.
-Old V6/header/runtime/profile/journal/receipt boundaries remain explicit.
+words. Fresh royalty4/recovery2/canonicalV8/schema13/reporting5;17modules/18helpers.
+Old V7/V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
 One contribution pool at a time, <=4logical historical buckets. One main or
 optional main+ONE residual in same ETH/ZZZ pool, Vault owns both NFTs. At replacement
@@ -56,7 +56,7 @@ Normal sync/claim/activation materializes allocation: no keeper/opening transact
 prerequisite. LP claims are independent. No deadline on DORMANT cards by user choice.
 
 openingPool is separate from constructor/preadmission prefunds, earned liabilities
-and fractions. Zero initial participants leave funds unallocated for later
+and exact ticket backing. Zero initial participants leave funds unallocated for later
 explicit governance decision. allocateAllUnallocated(asset,reviewHash) allocates
 all eligible unallocated whole units of ONE admitted currency at current active
 weights; no swap/payout/recipient/sweep. Partial allocation remains. Unsupported
@@ -66,25 +66,47 @@ Original currencies only: ETH stays ETH, WETH stays WETH, USDC stays USDC. No
 royalty converter/unwrap/approval/price route; separate LP conversion preserved.
 Current owner inherits all unpaid rights.32total NFT/asset/ledger claim entries,
 selected healthy currencies avoid one failed payout reverting an atomic batch.
-Per-currency failure cohorts/fractions preserved. Default16ERC20+ETH capacity can
+Per-currency failure cohorts and previously allocated exact units stay protected. Default16ERC20+ETH capacity can
 only increase through governance to64ERC20+ETH after gas/service review. Review
-hash is NOT a gas proof. No unlimited/frozen-token/zero-rounding-reserve promise.
+hash is NOT a gas proof. No universal frozen-token/unknown-currency payout promise; allocated rounding units are exactly assigned.
 
-CanonicalV7 royalty header five words includes end/capacity; source requires open/
-finalized window and every initial currency synchronized before capture. Old V6
+CanonicalV8 royalty header five words includes end/capacity; source requires open/
+finalized window and every initial currency synchronized before capture. Old V7/V6
 peers rejected early. Import never reopens sale/grace; parked/principal wire shapes
 do not imply runtime compatibility. Emergency/terminal LP recovery is independent.
 
-## Evidence, records and environments
+## Exact-unit audit and evidence
 
-Current scoped report: reports/royalty-launch-window-20261105/VERIFICATION.md.
-51production/31dependency sources,42normal gates,479internal static contexts
-(103current/376exact reuse).125distinct selected EVM successes across explicit
-one-hour stages, including1000NFT/fuzz and actual local-v4/canonical cases.
-183affected Python checks and71reference/static/publication checks at recorded
-stages;157website read/unsigned tests. Counts/scopes not casually summed.
-36contracts/809functions/36constructors/12receivers;857operator examples,0gaps.
-No whole-suite/public CI/actual target gas/marketplace/uptime/independent approval.
+The user approved exact-unit allocation. GCD-normalized captured rarity tickets
+and a per-currency rotating cursor assign every allocated raw unit; no fresh
+royalty scaled index/fraction reserve. StartsONE-based, backend offsetsZERO-based;
+original-source EVM logs/getters/V8 export rows verify that boundary. Claims/imports
+are not income; only generic RoyaltiesAllocated credits fresh earnings once.
+V8 preserves activation order and whole accrued liabilities, flattened in frozen
+view without deleting source books. Old codecs/checkpoints remain historical.
+
+Mint reviews bind sale end/revision plus core policy and NFT/receiver; callback
+and restore-to-revive checks protect them. Cancelled-importer royalties recover
+only after complete abort restoration, through authenticated lineage to reviewed
+current active weights; target governance controls recovery, no chosen recipient.
+The existing fixed VaultCanonical companion verifies one hop read-only.
+
+Factory uses fixed constructor-derived stored creation payload/hash to fit normal
+runtime size; high one-time deployment gas remains a target release gate. Default
+optional royalty sync gas1m, not a fixed charge. Expanding to64 currencies needs
+worst-case gas/service/API qualification, even though inventory13 accepts97 token
+records. No source publication is operating or independent approval.
+
+Current scoped record: reports/last24h-audit-20261105/VERIFICATION.md and evidence.
+It distinguishes prior failures/empty attempts, final source runs, actual source
+producer/consumer evidence, exact unchanged reuse and missing live qualification.
+Historical royalty-window3 counts never establish current4 evidence.
+
+Test maintenance also reconciles current opening/rounding/profile assumptions,
+closed-sale handoffs and nonvacuous stateful claims; explicit historical tests
+remain. Aggregate16×1M optional failures exceed a12M operation envelope, so actual
+currency count/provider gas qualification remains open; no live budget was raised.
+See reports/last24h-audit-20261105/TEST_MAINTENANCE.md and its scoped follow-up receipts.
 
 One Todo ledger docs/project-todo.json generates TODO.md. Keep feature/roadmap/
 release/operator/context linked with source/evidence. Original reports immutable;

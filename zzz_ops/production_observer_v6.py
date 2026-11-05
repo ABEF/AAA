@@ -316,7 +316,7 @@ def _observe(config,rpc,*,profile,observer_class):
         raise ValueError('Review the current buyback maximum separately from constructor provenance')
     for group,roles in (('modules',P.MODULES),('helpers',P.HELPERS)):
         if not isinstance(chain.get(group),dict) or set(chain[group])!=set(roles):raise ValueError('Use exact current module/helper inventory')
-    for key,maximum in (('dependencies',32),('tokens',33),('pools',16),('activation_sources',64),('conversion_routes',64)):
+    for key,maximum in (('dependencies',32),('tokens',getattr(P,'MAX_TOKEN_RECORDS',33)),('pools',16),('activation_sources',64),('conversion_routes',64)):
         value=chain.get(key)
         if not isinstance(value,dict if key=='dependencies' else list) or len(value)>maximum:raise ValueError('Unbounded declared inventory')
     for key in ('holder_exit','lp_execution','maintenance','rebalance_confirmation','portfolio','protocol_policy'):

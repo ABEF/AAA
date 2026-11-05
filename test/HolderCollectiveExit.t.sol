@@ -264,7 +264,12 @@ contract HolderCollectiveExitTest is Test {
         assertEq(rewards.claimable(a,address(token)),54 ether);
     }
     function testUnpaidPrincipalAndPastRewardsFollowTransferAndFutureRoyaltiesContinue() public {
-        uint256 a=_activate(alice,100 ether);uint256 bucket=vault.nftBucket(a);venue.setFees(20 ether,0);_ready(bucket);
+        uint256 a=_activate(alice,100 ether);uint256 bucket=vault.nftBucket(a);
+        // Open royalties before the terminal pause. Exit does not bypass the
+        // sale/grace rule or remove the active NFT's future royalty rights.
+        nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+        royaltyClockFeed.set(1e8,block.timestamp,block.timestamp);nft.royaltyRewards().syncAll();
+        venue.setFees(20 ether,0);_ready(bucket);
         vm.prank(alice);nft.transferFrom(alice,bob,a);uint256 before=bob.balance;
         vm.prank(alice);vm.expectRevert();migration.claimPrincipal(a,alice);
         vm.prank(bob);migration.claimPrincipal(a,bob);assertEq(bob.balance-before,101 ether);

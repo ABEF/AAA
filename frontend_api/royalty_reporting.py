@@ -12,9 +12,11 @@ class Reporting:
     def __init__(self, config, projection):
         from frontend_api.service import Contract, _hash, _keys
         _keys(config, {'schema', 'converter'}, 'royalty_reporting')
-        if type(config['schema']) is not int or config['schema'] not in (1, 2, 3, 4):
+        if type(config['schema']) is not int or config['schema'] not in (1, 2, 3, 4, 5):
             raise ValueError('Unsupported royalty reporting profile')
         self.schema = config['schema']
+        if self.schema == 5 and projection.accounting_version != 6:
+            raise ValueError('Exact royalty reporting requires accounting6/canonicalV8')
         if self.schema == 2 and config['converter'] is None:
             raise ValueError('Governed converter reporting requires an explicit runtime pin')
         if self.schema >= 3 and config['converter'] is not None:
@@ -48,7 +50,7 @@ class Reporting:
         from frontend_api.service import ZERO, ProjectionError, _address_word, _bool
         p = self.p
         if self.schema >= 3:
-            if p._uint('royalties','ROYALTY_SETTLEMENT_VERSION()',block=block) != (3 if self.schema == 4 else 2):
+            if p._uint('royalties','ROYALTY_SETTLEMENT_VERSION()',block=block) != (4 if self.schema == 5 else 3 if self.schema == 4 else 2):
                 raise ProjectionError('Original-currency royalty capability mismatch')
             return {'address':None,'available':True,'enabled':False,
                     'reason':'original_currency_settlement','next_execution_at':None,
@@ -93,31 +95,41 @@ class Reporting:
             result.update(hard_maximum_execution_loss_bps=ceiling, loss_policy='governed')
         return result
 
-    def opening(self, block):
+    def opening(self, block, timestamp):
         from frontend_api.service import ProjectionError, _bool
         end = self.p._uint('royalties', 'mintEnd()', block=block)
         deadline = self.p._uint('royalties', 'royaltiesOpenAt()', block=block)
         opened = _bool(self.p._call(self.p.contracts['royalties'].address, 'royaltiesOpen()', block=block)[0])
         if end >= 2**64 or deadline != (end+3600 if end else 0) or (opened and not end):
             raise ProjectionError('Royalty opening configuration mismatch')
+        if type(timestamp) is not int or timestamp < 0 or opened != bool(end and timestamp >= deadline):
+            raise ProjectionError('Royalty opening state differs from confirmed timestamp')
         return {'configured':bool(end), 'mint_end':end or None, 'claims_open_at':deadline or None,
                 'claims_open':opened, 'activation_window_seconds':3600,
                 'status':'open' if opened else 'locked' if end else 'unconfigured'}
 
-    def read(self, token_id, weight, assets, health, block):
+    def read(self, token_id, weight, assets, health, block, *, timestamp=None):
         from frontend_api.service import ZERO, ProjectionError, _bool
         p = self.p
         converter = self._converter(block)
-        opening = self.opening(block) if self.schema == 4 else None
+        opening = self.opening(block, timestamp) if self.schema >= 4 else None
         if p._addr('royalties', 'canonicalController()', block=block) != p.contracts['access'].address:
             raise ProjectionError('Royalty ledger controller mismatch')
         total = p._uint('royalties', 'activationCount()', block=block)
         ordinal = p._uint('royalties', 'activationOrdinal(uint256)', token_id, block=block)
         if total > 1000 or ordinal > total or (ordinal != 0) != (weight != 0):
             raise ProjectionError('Royalty activation ordinal mismatch')
+        ticket_start = None
+        if self.schema == 5:
+            ticket_start = p._uint('royalties', 'ticketStart(uint256)', token_id, block=block)
+            total_weight = p._uint('royalties', 'totalWeight()', block=block)
+            if (not total <= total_weight <= 3*total or
+                    (weight == 0 and ticket_start != 0) or
+                    (weight != 0 and (not ordinal <= ticket_start <= 3*(ordinal-1)+1 or ticket_start+weight-1 > total_weight))):
+                raise ProjectionError('Exact royalty ticket identity mismatch')
         balances = []
         for asset in assets:
-            count = p._uint('royalties', ('effectiveEligibleCount(address)' if self.schema == 4 else 'eligibleCount(address)'), asset, block=block)
+            count = p._uint('royalties', ('effectiveEligibleCount(address)' if self.schema >= 4 else 'eligibleCount(address)'), asset, block=block)
             eligible = _bool(p._call(p.contracts['royalties'].address,
                 'eligibleFor(uint256,address)', token_id, asset, block=block)[0])
             if count > total or eligible != (ordinal != 0 and ordinal <= count):
@@ -158,11 +170,20 @@ class Reporting:
                         unconverted_raw=item['raw'] if asset != ZERO and self.schema < 3 else None)
             if self.schema >= 3:
                 item.update(settlement_mode='original_currency',claim_asset=asset,conversion_required=False)
+            if self.schema == 5:
+                supply = p._uint('royalties', 'eligibleWeight(address)', asset, block=block)
+                cursor = p._uint('royalties', 'allocationCursor(address)', asset, block=block)
+                if (supply == 0 and cursor != 0) or (supply != 0 and cursor >= supply):
+                    raise ProjectionError('Exact royalty allocation cursor mismatch')
+                item.update(allocation_cursor=cursor)
             balances.append(item)
-        return {'available': True, 'schema': self.schema, 'activation_ordinal': ordinal,
+        result = {'available': True, 'schema': self.schema, 'activation_ordinal': ordinal,
                 'balances_complete': all(item['available'] for item in balances),
                 'balances': balances, 'converter': converter,
                 'opening': opening,
                 'scope': ('Eligibility is per currency; deferred NFTs join only future receipts after recovery. '
                           'All royalties are claimed in their original currency; no conversion or unwrap.' if self.schema >= 3 else
                           'Eligibility is per currency; deferred NFTs join only future receipts after recovery. Non-ETH balances may be converted or claimed directly; they are not queued ETH payments.')}
+        if self.schema == 5:
+            result.update(allocation_method='whole_unit_rotating_tickets', ticket_start=ticket_start)
+        return result

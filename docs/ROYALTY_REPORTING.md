@@ -1,67 +1,79 @@
 # Original-currency royalty balances and history
 
-Fresh reporting schema4 authenticates `ROYALTY_SETTLEMENT_VERSION()==3` and the
-reviewed ledger runtime. Use `"royalty_reporting":{"schema":4,"converter":null}`.
-A converter pin is rejected. Legacy schemas1/2/3 remain explicit readers for older
-deployments and historical conversion events; never relabel them as schema4.
+Fresh reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4, the exact runtime
+and canonicalV8. Use `"royalty_reporting":{"schema":5,"converter":null}`.
+Royalties stay in original units: no converter, unwrap, route, feed or keeper
+is required for a raw claim. LP conversion remains independent.
 
-The API returns separate raw balances/decimals/symbols and currency eligibility.
-Fresh balances say `settlement_mode:original_currency`, `claim_asset:<address>`
-and `conversion_required:false`; `unconverted_raw` is null. WETH is not ETH.
-There is no promised conversion timer or quote. The projection places these
-balances in `claimable.royalties`; reporting holds the eligibility/status summary.
+| Reporting | Royalty capability | Scope |
+| --- | --- | --- |
+|5|4|Current GCD-normalized whole-unit allocation and one-hour opening. |
+|4|3|Historical opening window with scaled royalty fractions. |
+|3|2|Historical original-currency allocation without the opening window. |
+|1/2|Earlier|Their separately pinned conversion/custody semantics only. |
 
-Missing token reads/metadata remain unavailable for that currency, rather than
-zero. Missing USD prices do not prevent a raw claim. Never add raw amounts from
-different currencies or label source tokens as ETH. Current-price USD display
-is optional and must state unavailable when incomplete.
+Never relabel old runtimes, histories, transaction journals or checkpoints.
 
-Claims are current-owner payouts. Conversion/import/transfer is not new income.
-The new `UnallocatedRoyaltiesAllocated` first-credits its ORIGINAL currency at
-current active weights once; it does not add another raw receipt or conversion.
-Previously earned/deferred balances retain their original cohorts. Historical
-RoyaltyConverted/recovery1 events remain decoded at their actual pinned emitters.
-Semantic replay source changed: rebuild/review/re-pin earnings checkpoints;
-never relabel old caches or invent missing history.
+## Balances and opening state
 
-Unsigned claim preparation accepts each approved currency in a32-entry mixed
-ClaimRouter batch, simulates exact inputs and records separate raw outputs.
-The fresh website source includes original-currency royalty entries for schema3,
-with explicit token amounts; large selections need smaller reviewed batches.
-One failed selected token reverts the whole batch. Public signing remains disabled.
+Read separate addresses, raw amounts, decimals and symbols. WETH is not ETH;
+never add incompatible raw currencies. Missing reads/metadata stay unavailable,
+not zero. Missing USD prices do not prevent supported original-unit claims.
 
-See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md),
-[current verification](../reports/royalties-in-kind-20261105/VERIFICATION.md).
-No running API/site/service is changed by source publication.
+Opening status contains configured, mint_end, claims_open_at, claims_open,
+activation_window_seconds3600 and status. Both backend and website check the
+deadline/flag against the SAME confirmed snapshot timestamp. An inconsistent
+flag or a positive locked royalty claim is rejected. Dormant cards show no
+deadline. LP-only balances and claims remain independent of the royalty lock.
 
-<a id="current-native-eligibility-and-historical-custody"></a>
+Use effectiveEligibleCount for the cutoff/outage cohort. Fresh NFT views read
+ticketStart and allocationCursor, not removed royalty index/SCALE/fraction
+getters. Source ticketStart is ONE-based(first1,dormant0); internal replay/checkpoint
+`ticket_offsets` are ZERO-based. Convert only at the explicit source boundary.
+The currency cursor is zero-based raw weight, not an NFT ticket start. Old readers
+retain their explicit getter sets.
 
-## Native eligibility and historical custody
+## Exact earned and paid history
 
-Fresh settlement3 native ETH eligibility cannot be deferred: reporting4 rejects
-a native eligible-count/activation-count mismatch without probing an old custody
-getter. Optional ERC20 eligibility remains per currency. Legacy reporting1/2
-retains its authenticated native-custody history checks for older runtimes; those
-fields neither enable custody exits nor change the fresh profile.
+For settlement4, RoyaltiesAllocated is the sole income-credit event. Reconstruct
+the captured activation prefix, its GCD-normalized weights, original ticket
+mapping and raw cursor. The receipt, InitialRoyaltiesAllocated and recovery
+events also record provenance/lifecycle, but never credit that income again.
+Claims, transfers and canonical import are not new income. Claims alone record
+actual paid amounts. Current ownership carries all unpaid rights.
 
-## Sale-end window and expanded capacity
+Replay independently checks q/remainder rotation and raw cursor divisibility;
+pending initial/ordinary receipts are projected under the actual captured
+cohort. GCD normalization preserves ideal whole-unit shares when all are integral;
+nonintegral mixed cohorts use deterministic rotation, not nearest rounding per NFT.
+See [the exact rule](EXACT_ROYALTY_ALLOCATION.md).
 
-Reporting4 includes opening.configured, mint_end, claims_open_at, claims_open,
-activation_window_seconds3600 and status open/locked/unconfigured. Locked
-royalty balances must be zero spendable units; inconsistent responses fail
-closed. LP balances remain independent. The reader authenticates capability3
-and uses effectiveEligibleCount for the initial cohort during a currency fault.
-Original raw claims need no price feed, conversion or keeper.
+Checkpoint state preserves original activation order, ticket starts, currency
+cursors, opening/cutoff state and whole royalty units. Historical/LP scaled
+fractions remain separate. Compare raw replay against checkpoint plus suffix.
+Semantic source changes require reviewed rebuild/re-pin. The full rolling24-hour
+earnings period stays86,400seconds; it is not the one-hour opening window.
 
-Fresh profile12/canonicalV7 allows at most65royalty currencies including ETH,
-and97combined descriptors; old reporting3/legacy limits remain unchanged.
-Work/RPC/checkpoint/transaction budgets are NOT automatically increased. An
-operator must qualify expanded capacity workloads and update exact descriptors.
-Mixed claims retain32entries; review selected currencies in multiple batches.
+## Lineage, capacity and unsigned claims
 
-Earnings replay records the initial allocation once, not as a second receipt or
-conversion. Claim reconciliation includes the backed pending opening pool only
-after the deadline and only for the cutoff cohort. Event-credit history still
-distinguishes processed credits from pending claimable receipts. Checkpoint
-state includes the sale end, initial cutoff and allocated currencies; source
-identity changes require reviewed rebuild/re-pin. See [window](ROYALTY_LAUNCH_WINDOW.md).
+Each predecessor declares its OWN royalty_reporting schema and runtime pins;
+no omitted/inherited field may turn V8 into an older V6 reader. Matching new
+peers carry reporting5. Historical peers keep their own declared profiles.
+Existing lineage/workload release limitations remain; a profile declaration is
+not operating qualification.
+
+Inventory13 permits65royalty currencies includingETH and97combined descriptors.
+Operating ERC20 capacity starts16 and can increase to64 only after review. Work,
+RPC/history/checkpoint budgets are not raised automatically. A new admission
+requires reviewed client descriptors and a separately authorized configuration
+rollout; raw claims need no USD feed.
+
+The router still permits32selected NFT/currency/ledger entries. Simulate exact
+claims and use smaller healthy batches if gas or a currency failure prevents
+one batch. Failed selected payouts revert atomically; LP-only claims remain a
+separate choice. Source helpers understand reporting5, but complete fresh native6
+site integration/qualification remains open; public signing stays disabled.
+
+See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claim router](CLAIM_ROUTER.md),
+[window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).
+No existing service/site/deployment is updated by source publication.

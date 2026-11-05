@@ -12,7 +12,7 @@ The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
 caller/value notes. These are documentation templates, never transaction approval.
 
 Current source is accounting6/custody5/portfolio2/direct Entry3 plus royalty
-settlement3/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
+settlement4/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
 their original meaning. Use [the report map](../reports/README.md) for exact source
 scope; a historical audit is not a current operating procedure or release sign-off.
 
@@ -21,14 +21,14 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Topic | Current guide |
 | --- | --- |
 | Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md) |
-| Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [claims](CLAIM_ROUTER.md) |
+| Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
 | LP execution and upkeep | [Policy3/Budget4, LP routing2 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
-| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V6 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
+| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V8 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Short operator tables](OPERATOR_MANUAL.md#operator-call-tables), [full source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),

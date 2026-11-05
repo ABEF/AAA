@@ -1,0 +1,78 @@
+{
+  "scope": "Narrow cancelled royalty receiver recovery, fresh canonical V8 source; no deployments, services, journals or signer changes.",
+  "production_files_owned": [
+    "src/ZZZCanonicalHandoff.sol",
+    "src/ZZZVaultCanonical.sol (only approved new read-only route interface/function; mint additions preserved)"
+  ],
+  "test_files_owned": [
+    "test/CanonicalHandoff.t.sol"
+  ],
+  "docs_owned_for_this_addition": [
+    "docs/CANONICAL_HANDOFF.md",
+    "docs/OPERATOR_MANUAL.md"
+  ],
+  "source_hash": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
+  "selected_results": {
+    "testCancelledRecoveryCallbackAuthorityChangeRevertsEverything()": {
+      "status": "Success",
+      "aggregate_test_gas": 109200458
+    },
+    "testCancelledRecoveryRequiresReviewAdmissionAndKeepsUnallocatedSeparate()": {
+      "status": "Success",
+      "aggregate_test_gas": 109582746
+    },
+    "testCancelledRecoveryUsesCurrentTargetGovernance()": {
+      "status": "Success",
+      "aggregate_test_gas": 108209013
+    },
+    "testCancelledReturnWaitsForFrozenSuccessorAndSurvivesItsLaterAbort()": {
+      "status": "Success",
+      "aggregate_test_gas": 398986089
+    },
+    "testCancelledRoyaltyRecoveryRequiresCompletedAbortAndPaysCurrentOwners()": {
+      "status": "Success",
+      "aggregate_test_gas": 112403331
+    },
+    "testCancelledRoyaltyReturnAdvancesTwoRetirementsWithOverwrittenCurrentRoots()": {
+      "status": "Success",
+      "aggregate_test_gas": 497042527
+    }
+  },
+  "source_unchanged": true,
+  "test_unchanged": true,
+  "all_six_passed": true,
+  "limits": [
+    "Local real protocol economic modules with mock venue/token/price/VRF dependencies; not target-chain qualification.",
+    "Reported test gas aggregates deployments and many bounded operations in a test method; never represent one operating call or EOA target gas.",
+    "Normal code-size/initcode and full static current-context review are parent-owned and not implied by fixture size override.",
+    "Token admission, positive live cohort and open royalty window are intentional prerequisites; unsupported/malicious/broken tokens cannot be guaranteed recoverable.",
+    "Original receipt-time cohort cannot be recovered for cancelled extras; governance expressly reviews current active-weight redistribution.",
+    "No ordinary keeper royalty conversion or new public signing capability."
+  ],
+  "design_review": "design-review-final.json",
+  "test_evidence": "attempt3-final-ledger/status.json",
+  "new_events_operational_not_income": [
+    "CancelledRoyaltyReturnAdvanced(address,address)",
+    "CancelledRoyaltiesRecovered(address,address,address,uint256,uint256,uint256,bytes32)"
+  ],
+  "companion_hash": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
+  "focused_normal_size": "size-23c31dbd/status.json",
+  "rejected_size_stages": [
+    "Parent normal-final-0b5daf25e0",
+    "size-88af9a11",
+    "size-6bf68fb5"
+  ],
+  "historical_earlier_test_stage": [
+    "attempt1/status.json - same six methods at larger-coordinator stage, not additive",
+    "attempt2-companion/status.json - same six methods before final ledger size factoring, not additive"
+  ],
+  "current_recognition_event": "RoyaltiesAllocated records income once; RoyaltiesReceived telemetry and movement events are not income.",
+  "full_normal_build": "../../normal-final-2602e4a69d/production-size-gates.json",
+  "final_static_context_review": "../../static-final-context-review.json",
+  "final_source_sha256": {
+    "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
+    "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "test/CanonicalHandoff.t.sol": "327d2121517166c696d0fc46cafe09a6710d747b92b6add0ee4bef5cceb9214d"
+  }
+}

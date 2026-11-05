@@ -25,7 +25,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current royalty verification](reports/royalty-launch-window-20261105/VERIFICATION.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current scoped audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -50,7 +50,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | [Strategy](src/ZZZStrategy.sol), [portfolio policy](src/ZZZPortfolioPolicy.sol), [confirmation](src/ZZZRebalanceConfirmation.sol) | Manual range/mode settings, exact human-price threshold, sampled confirmation and reviewed readiness. |
 | [Budget](src/ZZZMigrationBudget.sol), [Oracle](src/ZZZOracle.sol) | Fixed transaction valuations, independent USD sources, principal/reserve separation, operation and caller loss floors, compound timing and actual main-floor proof. |
 | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol) | Allocate actual harvested fees 80/10/5/5; individual shares and equal activated-NFT collective rights. |
-| [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [ClaimRouter](src/ZZZClaimRouter.sol) | Original-currency royalties, outage isolation, reviewed same-currency unallocated allocation and mixed current-owner claims; no royalty swaps. [Audit and limits](reports/royalties-in-kind-20261105/REVIEW.md). |
+| [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [ClaimRouter](src/ZZZClaimRouter.sol) | Exact-unit original-currency royalties with GCD-normalized rarity weights, rotating indivisible units, outage isolation and current-owner claims; no royalty swaps. The allocator is internal library code, not another deployed helper. [Rule and limits](docs/EXACT_ROYALTY_ALLOCATION.md). |
 | [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) | Reinvest designated reserves or buy and burn the same fixed ZZZ, independently of user claims. |
 | [Migration](src/ZZZMigration.sol), [canonical helpers](src/ZZZVaultCanonical.sol) | Both-leg same-pair moves/parking, terminal holder return and compatible pre-exit same-chain replacement. No bridge or external custody-address exit. |
 | [ProtocolPolicy](src/ZZZProtocolPolicy.sol) | Fixed noncustodial helper for bounded future entry/sale, gas, display and drained-randomness policy; reviews bind scoped revisions. |
@@ -71,7 +71,7 @@ before new work. [Read API](docs/FRONTEND_API.md) and [indexer](indexer/monitor.
 authenticate ownership, both LP legs, balances and earnings at pinned blocks.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema12/direct Entry3/royalty3; historical profiles remain separate.
+Fresh inventory is schema13/direct Entry3/royalty4 with18helpers; reporting5 and canonicalV8 are explicit new boundaries. Historical profiles remain separate.
 [Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) bounds selected history replay;
 lineage/other readers and live workload qualification remain open. [OpenSea
 qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
@@ -231,4 +231,9 @@ Update [task ledger](docs/project-todo.json), generated Todo, features/evidence,
 operator/callable procedures and context together using the
 [maintenance procedure](docs/TODO_WORKFLOW.md). Publication and deployment are separate.
 
-Current royalty3 adds the [1-hour sale-close activation window]( docs/ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.
+Fresh royalty4 retains the [one-hour sale-close activation window](docs/ROYALTY_LAUNCH_WINDOW.md)
+and adds [exact-unit allocation](docs/EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
+weights, deterministic rotating indivisible units, and no allocated rounding
+remainder after all eligible claims. Initial holding, prefunds, zero participants,
+unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.

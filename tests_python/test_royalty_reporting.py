@@ -137,8 +137,8 @@ class ReportingTests(unittest.TestCase):
         with self.assertRaises(ProjectionError): self.read()
         self.rpc.reorg_after_calls = False
         original = self.p.royalty_reporting.read
-        def expire(*args):
-            value = original(*args); self.p.clock = lambda: 2000; return value
+        def expire(*args, **kwargs):
+            value = original(*args, **kwargs); self.p.clock = lambda: 2000; return value
         with patch.object(self.p.royalty_reporting, 'read', side_effect=expire), self.assertRaises(RpcError): self.read()
 
     def test_reporting_config_strict_and_no_implicit_old_abi_probe(self):

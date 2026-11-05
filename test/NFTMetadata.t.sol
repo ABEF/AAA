@@ -331,7 +331,7 @@ contract NFTMetadataTest is Test {
         assertEq(afterTransfer, json, "ownership must not change static traits, eligibility or artwork");
         nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
         vm.prank(ALICE); vm.expectRevert(); receiver.claim(1, address(0));
-        vm.prank(BOB); assertEq(receiver.claim(1, address(0)), 1 ether - 1);
+        vm.prank(BOB); assertEq(receiver.claim(1, address(0)), 1 ether);
         assertTrue(vm.parseJsonBool(_json(1), ".royalty_activated"));
     }
 
@@ -369,7 +369,7 @@ contract NFTMetadataTest is Test {
         assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 3);
         ZZZRoyaltyRewards royaltyReceiver = nft.royaltyRewards();
         vm.deal(address(royaltyReceiver), 1 ether);
-        vm.prank(ALICE); assertEq(royaltyReceiver.claim(1, address(0)), 1 ether - 1);
+        vm.prank(ALICE); assertEq(royaltyReceiver.claim(1, address(0)), 1 ether);
     }
 
     function testRoyaltyRequestDoesNotEnforcePaymentOnOrdinaryTransfer() public {

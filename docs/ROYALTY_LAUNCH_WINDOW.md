@@ -1,6 +1,6 @@
 # Mint close and the royalty activation window
 
-Fresh royalty settlement3/recovery2, inventory12, reporting4 and canonicalV7.
+Fresh royalty settlement4/recovery2, inventory13, reporting5 and canonicalV8.
 Source candidate only: no contract, website, service or existing journal updated.
 
 ## What changes
@@ -48,13 +48,14 @@ Constructor prefunds and tokens received before admission remain SEPARATE from
 the initial pool. They retain the approved review/admit/current-weight allocation
 rule. The contract cannot reconstruct which NFTs were active when an unregistered
 token arrived. Register reviewed marketplace currencies before the sale to avoid
-this ambiguity. Never reclassify earned or fractional backing as unallocated.
+this ambiguity. Never reclassify earned ticket/import backing as unallocated; historical fractional
+backing retains its original profile.
 
 ## Exact operator calls
 
 | Action | Call and inputs | Verify / reverse boundary |
 | --- | --- | --- |
-| Set/revise sale end | Governance `NFT.setMintEnd(uint64 end)`; end in Unix seconds, strictly in the future | Read `RoyaltyRewards.mintEnd()`, `royaltiesOpenAt()` and `MintEndConfigured`. Match the final OpenSea stage. Revisable only before the OLD end passes. |
+| Set/revise sale end | Governance `NFT.setMintEnd(uint64 end)`; end in Unix seconds, strictly in the future | Read `RoyaltyRewards.mintEnd()`, `mintEndRevision()`, `royaltiesOpenAt()` and `MintEndConfigured`. Re-read the Vault mint fingerprint after any change; old reviews are invalid. Match the final OpenSea stage. Revisable only before the OLD end passes. |
 | Inspect lock | `royaltiesOpen()`, `openingPool(asset)`, `claimable(id,asset)` | Claims return no spendable amount before opening. Actual claim attempts revert. LP claims are independent. |
 | Materialize allocation | Anyone `RoyaltyRewards.sync(asset)` | `RoyaltyOpeningFinalized` records the cutoff/count/weight once; `InitialRoyaltiesAllocated` allocates one currency once. Currency faults revert only its selected sync. |
 | Allocate all reviewed unallocated units | Governance `RoyaltyRewards.allocateAllUnallocated(asset,reviewHash)` | Requires open window, sealed current lifecycle, unpaused/no preparation, nonzero active weight and review hash. Returns raw amount;0 if none remain. Verify orphaned decreases, liabilities increase and balance stays unchanged. Irreversible allocation; no payout/swap. |
@@ -83,8 +84,7 @@ configuration together. Older17-currency readers must not be relabeled.
 
 There is no unlimited-token guarantee. Beyond64 needs another reviewed compatible
 implementation. Malicious/frozen/blacklisted/taxed/rebasing tokens can still make
-their own payouts impossible. Normal active currencies remain independent. Tiny
-fractional entitlements stay backed/carry forward; allocation never sweeps them.
+their own payouts impossible. Normal active currencies remain independent. Fresh royalty4 assigns every allocated whole unit through [exact allocation](EXACT_ROYALTY_ALLOCATION.md). LP/historical royalty fractions retain their separate semantics.
 
 ## Incidents and canonical replacement
 
@@ -94,11 +94,11 @@ is still allowed. After closing, no automatic pause/extension changes the cutoff
 Late activation earns future royalties only. Terminal LP exit also stops new LP
 activation: do not initiate it during grace except as a deliberate emergency.
 
-CanonicalV7 deliberately requires the window to have opened/finalized and every
+CanonicalV8 deliberately requires the window to have opened/finalized and every
 admitted currency's initial allocation to have synchronized before capture.
 This temporary restriction avoids dropping a live initial cohort. Exact token
-read failures can still block that handoff. The five-word royalty header carries
-currency count, NFT count, weight, mint end and configured capacity; V6 peers are
+read failures can still block that handoff. V8 also preserves exact ticket starts/activation ordinals and cursors; NFT/currency rows flatten whole units. The five-word royalty header carries
+currency count, NFT count, weight, mint end and configured capacity; V7 and older peers are
 rejected early. LP emergency/parking/terminal-return paths remain independent.
 An importing replacement retains the closed sale and never reopens the grace
 window. Prefunds remain classified separately.
@@ -113,6 +113,8 @@ or pending transaction does not count. Per user preference, dormant NFT cards
 do not display this deadline. The sale schedule still needs clear operator and
 marketplace coordination. Native mint/activation pause controls do not pause the
 clock; resuming mint cannot bypass a sale end which has already passed.
+
+The fresh allocator, rounding rule, recovery limits and1m optional-sync ceiling are detailed in [exact allocation](EXACT_ROYALTY_ALLOCATION.md).
 
 Official references: [OpenSea drop schedule](https://support.opensea.io/en/articles/8867049-prepare-your-drop-schedule)
 and [SeaDrop active-stage checks](https://github.com/ProjectOpenSea/seadrop/blob/main/src/SeaDrop.sol).

@@ -144,7 +144,7 @@ do not acquire this getter requirement. No optional currency read is added merel
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
 
 Accounting4 requires the additional pinned `principal_exit` module, custody3 and
-holder-exit canonical V6. Its irreversible LP-exit flag blocks new mint and
+holder-exit canonical V8. Its irreversible LP-exit flag blocks new mint and
 activation/top-up drafts, including after unpause; earned LP/royalty claims stay
 available to the current owner. Principal returns appear separately in read
 responses and cannot be submitted as ClaimRouter reward operations. No backend

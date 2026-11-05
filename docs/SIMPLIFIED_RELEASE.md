@@ -60,9 +60,9 @@ Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_M
 
 The source requires accounting6, ProtocolPolicy1, Portfolio2, custody5, governance2,
 fee intake1, pricing2, direct Entry-routing3/review-policy2, LP-routing2 and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Position remains eight words; statuses
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8`. Position remains eight words; statuses
 are None0, Active1, reserved Outbound2, Dormant3, Parked4, Exited5. Canonical group
-rows retain twelve words; V6 peers must match exactly and cannot hand off after
+rows retain twelve words; V8 peers must match exactly and cannot hand off after
 LP exit because that importer does not carry terminal principal liabilities.
 
 No automatic historical profile migration exists. Old Anvil deployments,

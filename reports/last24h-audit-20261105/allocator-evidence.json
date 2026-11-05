@@ -1,0 +1,85 @@
+{
+  "allocator_source_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+  "test_source_sha256": "f726c6f993f3c6a357cf91e9336fe0a81a3f1b59b6d6bbad963ea74a242d42fa",
+  "current_stage": "exactallocator-iterative",
+  "selected_methods": 12,
+  "fuzz_runs": 256,
+  "sequence_steps": 64,
+  "all_3000_tickets_drained": true,
+  "max_uint_after_drain_repeat": true,
+  "prior_stages": [
+    "exactallocator",
+    "exactallocator-carry",
+    "exactallocator-final"
+  ],
+  "prior_stages_are_not_final_source_passes": true,
+  "local_harness_gas": {
+    "benchmark_logs": [
+      "allocator cold credit gas: 355156",
+      "allocator warm credit gas: 44041",
+      "allocator three-ticket take gas: 384333"
+    ],
+    "cold_scan_cases": 91,
+    "model_selection_candidates": 116459,
+    "worst_measured": {
+      "weight": 2559,
+      "cursor": 1025,
+      "remainder": 2557,
+      "amount": 5116,
+      "cold_written_slots": 30,
+      "write_visits": 39,
+      "recursive_visits": 86,
+      "selection_score": 699200,
+      "measured_local_harness_gas": 723665
+    },
+    "worst_W_le_1500": {
+      "weight": 1023,
+      "cursor": 513,
+      "remainder": 1021,
+      "amount": 2044,
+      "cold_written_slots": 27,
+      "write_visits": 35,
+      "recursive_visits": 79,
+      "selection_score": 629900,
+      "measured_local_harness_gas": 650245
+    },
+    "limitations": [
+      "Cold fresh-book storage; excludes full royalty ledger/token/API/transaction overhead.",
+      "Topology-selected representative scan, not allcursor/r combinations nor targetchain qualification.",
+      "No newreceipt/claimpolicy, deployedhelper, delegatecall or external callback added by internal allocator."
+    ]
+  },
+  "checked_money_arithmetic": [
+    "book.pending[node]+=delta",
+    "carry+=tag",
+    "book.pending[sibling]+=carry",
+    "leaf+carry",
+    "view amount+=tag",
+    "preview (amount/weight)*count and value+=overlap"
+  ],
+  "integration_read_review": [
+    "Stable ticketstarts exported ratherthanrebuiltinmintorder; source tree untouchedforabort.",
+    "Imported flatclaims sumexactlytocurrencyliabilities; ticket/ordinalbitmaps proveuniqueinrangecoverage withsumweight/maxordinalvalidation.",
+    "Strictcursor<weight holds aseligibleprefixes grow; canonicalzeroWeight requirescursor0.",
+    "Current-owner claim path intact; pendingprojections onlystate0; inactiveweight0 nevercallszeroTicket; viewsnonmutating."
+  ],
+  "keeper4": {
+    "source_sha256": {
+      "keeper/monitor.py": "d0b6dff9c766f47d135e3c535b88dae4628473f93023f75ff9f0ae19b5d0aa0f",
+      "keeper/royalties.py": "6d9fbd09c0372a5d6bd336d184610e04c8989771d219f7ec977f2607ee276f2d",
+      "tests_python/test_operations_audit_20261105.py": "7c2fa5cafc8df203e4c70cd9be80b1169b31b4955fd208c52e940f1a2b325997"
+    },
+    "test_log_sha256": "5feea2cf6fe347a1742149c9ba269d2739b9aedd21d236a10bedcd6e6d20a4c5",
+    "selected_passes": 8,
+    "source_change_scope": "Explicit4 admittedsameas2/3; newroyaltyswap workblocked, LPconversionseparate,pendingfirst preserved. Nojournalmigration."
+  },
+  "no_deployment_service_chain_or_journal_changes": true,
+  "all_arithmetic_checked": true,
+  "bounded_index_proof": [
+    "Entry validation1<=low<=high<=3000 maps leaves4096..7095. Inclusive l/r cover ascends byonebit periteration, atmost13levels; neitherpostfixincrementnorconditionaldecrementcanoverflow/underflow.",
+    "Pointview sumsleaf-to-root; exactnode tags equal priorrecursivecanonicaldyadiccover.",
+    "Pointtake follows12bits ofvalidated(ticket-1) fromroot1 toleaf4095+ticket. Memorycarry materializesonlyoff-path sibling; nocallback/externalcall canobserveintermediatestate.",
+    "AllmoneyandcoordinatearithmeticusesordinarycheckedSolidityoperations; nodebitshifts arebounded by8191.",
+    "A freshselectedtestcomparesall8191nodevalues toindependentpriorrecursivecover beforeandafterselectedtakes."
+  ]
+}

@@ -31,16 +31,15 @@ interface, wallet-statistics and nested reentrancy constraints; no guessed mint
 authority was added. Actual providers, authorities, routes/VRF, maximum gas,
 metadata, operating recovery and independent approval remain under the sole Todo.
 
-The [royalty recovery audit](../reports/royalty-audit-20261105/REVIEW.md) adds
-recovery1: governance can convert only unsupported/unallocated royalty value to
-ETH for active rarity weights at recovery. Existing earned/deferred entitlements
-are excluded; no external recipient or weakened conversion floor. Unsupported
-late tokens can forward only to the authenticated successor. New runtime/event
-pins and rebuilt earnings checkpoints are required; no installed environment
-changes. ERC2981 requests5%, not universally enforced marketplace payment.
-The new scoped record replaces current royalty source/normal/static bindings only;
-older reports retain their original scope. Unexpected-token saleability and
-actual routes/prices/marketplace/provider/operating approval remain open.
+The [last24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) replaces
+current royalty source conclusions with exact-unit settlement4/reporting5,
+schema13/canonicalV8 and original-currency recovery2. Scaled royalties could
+leave whole raw units reserved permanently. The approved GCD-normalized rotating
+ticket rule assigns every allocated unit; no current royalty conversion remains.
+It also repairs checkpoint construction, same-snapshot opening status, sale-end
+review/callback binding, source-wire ticket coordinates and cancelled-receiver
+recovery. Historical recovery1 conversion/window3 reports retain their original
+scope. LP splits/fractions and live-environment boundaries remain unchanged.
 
 ## Current conclusions by project layer
 
@@ -132,11 +131,11 @@ bounded routing/lifetime capacity and absent post-halt recovery. Retired
 requirements are superseded, not “successfully implemented.” Actual external
 qualification and independent audit remain open.
 
-## Current royalty window and capacity follow-up
+## Current royalty window and capacity
 
-[Scoped royalty3 review](../reports/royalty-launch-window-20261105/REVIEW.md) adds
-the final3600second window, initial-cohort/prefund separation, allocate-all and
-reviewed16→64capacity; it does not close broader release findings. CanonicalV7
-and reporting4 are explicit incompatible boundaries. Actual marketplace/time,
-expanded gas/services/restore and independent review remain open. Earlier
-royalty2/24-hour artifacts are not current source proof. No dormant deadline UI.
+Settlement4 keeps the final3600-second window and reviewed16→64ERC20 capacity.
+Initial pool/prefund/zero-cohort rules remain distinct; exact allocation removes
+allocated rounding leftovers, not intentional holding or token transfer faults.
+V8 peers and reporting5 readers explicitly authenticate new ticket/cursor/wire
+semantics. Actual marketplace/time, maximum target gas, providers, restored
+services/history and independent review remain open. No dormant deadline UI.

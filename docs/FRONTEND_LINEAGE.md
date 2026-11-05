@@ -113,3 +113,12 @@ release. Current governance may end LP and return assets directly to NFT owners;
 there is no external custody executor. A later token exchange or deployment is
 separate and acquires no same-chain lineage guarantees by copying configuration.
 See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).
+
+## Exact-royalty peer declaration
+
+Every fresh V8 predecessor must declare its own royalty_reporting schema5 and
+matching royalty runtime. The lineage builder must forward that declaration;
+omitting it or inheriting the current peer's value is rejected. Older declared
+schemas remain historical. Preserve exact ticket mapping/cursors and current
+owner unpaid rights; imports are not new earnings. Existing full-lineage work
+and qualification limits remain open.

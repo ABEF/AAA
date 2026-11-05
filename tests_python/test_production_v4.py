@@ -60,7 +60,7 @@ class CurrentProductionTests(unittest.TestCase):
         self.assertFalse(report['ready']);self.assertEqual('holder_exit_qualification_pending',report['issues'][0]['code'])
         with self.assertRaises(ValueError):O.observe(old,F.RPC(self.cfg))
         report=CLI.validate(self.cfg,now=F.NOW)
-        self.assertEqual(8,report['schema_version'])
+        self.assertEqual(13,report['schema_version'])
         self.assertFalse(report.get('inventory_consistent',False))
 
     def test_wrong_runtime_parent_owner_and_forwarded_quality_are_not_approved(self):

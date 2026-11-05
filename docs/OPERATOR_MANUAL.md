@@ -137,7 +137,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
-`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")`.
+`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V6.md).
 Normal size/runtime gates, scoped offline checks and local actual-v4-core
 integration pass within their [current Entry3 source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
@@ -192,7 +192,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema12 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema13 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -395,7 +395,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema10 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema13 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -1384,7 +1384,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema10 observer checks these facts;
+pre-populate the replacement. The current schema13 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1684,7 +1684,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema12 production observation is separate from keeper live configuration.
+Schema13 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1695,7 +1695,7 @@ Changing the example does not alter any installed service or saved journal.
 
 ### Marketplace currency and ETH payouts
 
-Fresh royalty settlement3 pays original currencies: ETH, WETH, USDC or another
+Fresh royalty settlement4 pays original currencies: ETH, WETH, USDC or another
 reviewed admitted token. No royalty converter, unwrap, route, feed or conversion
 worker is involved. Use [settlement steps](ROYALTY_SETTLEMENT.md) and the complete
 call tables. LP rewards keep their separate ETH-conversion policy.
@@ -1704,13 +1704,36 @@ Governance admits a reviewed token through `NFT.addRoyaltyAsset(token)`, includi
 after sealing, within configured capacity (initial16, reviewed maximum64ERC20 plus ETH). The current owner uses
 `RoyaltyRewards.claim(id,asset)` or mixed `ClaimRouter.claimBatch` with at most32
 NFT/asset/ledger entries. No approvals are required. Failed selected currencies
-revert a batch; simulate/review healthy entries separately. Fractions, prior
+revert a batch; simulate/review healthy entries separately. Exact ticket units, prior
 rights, current ownership and outage cohorts remain protected. Operators can
 call permissionless `sync(asset)` after a token outage to enroll waiting NFTs.
+
+With the fresh1M optional synchronization allowance, sixteen full-budget token
+faults alone exceed a12M transaction envelope, before other activation work.
+The operation must fail atomically if its approved budget is insufficient.
+Qualify the admitted currency population and exact provider/transaction gas
+limits; never assume a larger local test envelope is approved production gas.
+No running service limit changes automatically with the policy default.
+
+Many healthy currencies with expensive pending allocation can also exceed the
+outer budget. You may call permissionless `RoyaltyRewards.sync(asset)` separately
+for each healthy admitted currency, confirm, then prepare/simulate activation
+again. This accounts existing entitlements; it does not pay or swap tokens, and
+does not require a conversion worker. New receipts can recreate work. Do not
+silently lower the isolated allowance, drop a currency, or raise a live outer
+budget to hide a failed estimate; review the actual gas/capacity first.
 
 ### Royalty opening and capacity controls
 
 Follow [the complete window/capacity procedure](ROYALTY_LAUNCH_WINDOW.md).
+Fresh mint reviews use the Vault's composite fingerprint: core sale/VRF policy,
+NFT, receiver, mintEnd and mintEndRevision. Read `RoyaltyRewards.mintEndRevision()`
+with the sale end, then `Vault.mintPolicyFingerprint()` from the same confirmed
+snapshot. Every accepted end setter increments the revision, even the same value;
+old reviews remain invalid if you restore an old end. The Vault rechecks after
+mint-payment callbacks. `ProtocolPolicy.mintFingerprint()` alone is insufficient.
+No restart is needed for this on-chain setter; refresh pending unsigned reviews.
+
 Set NFT.setMintEnd(end) to the final OpenSea stage Unix end BEFORE minting; match
 all mint paths. Governance can revise it while the previous sale remains open.
 After closing it is fixed. Royalty claims open1hour later, independent of LP
@@ -1721,7 +1744,7 @@ governance allocation. NFT ownership carries the rights, not an old wallet list.
 
 For all reviewed unallocated units call RoyaltyRewards.allocateAllUnallocated
 (asset,reviewHash). Read the exact return/event and remaining orphaned balance.
-This never sweeps openingPool, earned/fraction backing or principal. For a partial
+This never sweeps openingPool, earned backing or principal. For a partial
 allocation keep allocateUnallocated(asset,amount,reviewHash). Both are irreversible
 allocations under current active weights, require an open window/current sealed
 lifecycle/unpaused/no preparation, and perform no payout or swap.
@@ -1738,8 +1761,8 @@ Read assetCapacity and AssetCapacityIncreased; separately admit tokens and updat
 reviewed descriptors/worker profiles. Capacity cannot decrease or remove a token.
 A review hash is not a gas proof. No public-chain expansion is qualified here.
 
-Use reporting4 and explicit keeper royalty_settlement_version3 (no royalty swaps).
-Old profiles/journals remain separate. CanonicalV7 requires initial allocation of
+Use reporting5 and explicit keeper royalty_settlement_version4 (no royalty swaps).
+Old profiles/journals remain separate. CanonicalV8 requires initial allocation of
 every admitted currency complete before capture; sync each after opening first.
 Emergency LP/terminal return remains independent. No server restart/deployment is
 implied by a source/config edit; deploy reviewed matching services separately.
@@ -1762,15 +1785,36 @@ pathological tokens remain a limit, not a sweep permit.
 
 ### Read royalty status and conversion history
 
-Use [reporting schema4](ROYALTY_REPORTING.md):
-`"royalty_reporting":{"schema":4,"converter":null}`. Authenticate exact runtime
-and `ROYALTY_SETTLEMENT_VERSION()==3`, sale end and one-hour opening state.
-Historical reporting3/settlement2 remains separately pinned. Each currency has a separate raw claim,
+Use [reporting schema5](ROYALTY_REPORTING.md):
+`"royalty_reporting":{"schema":5,"converter":null}`. Authenticate exact runtime
+and `ROYALTY_SETTLEMENT_VERSION()==4`, sale end and one-hour opening state.
+Historical reporting3/settlement2 and reporting4/settlement3 remain separately pinned. Each currency has a separate raw claim,
 eligibility and optional current-price USD value. Non-ETH funds are claimable in
 their original currency, never pending ETH. Missing prices/metadata stay explicit.
 Claims alone increase lifetime paid amounts. Old conversion history remains
 historical and cannot be counted as new income. Rebuild/review checkpoints after
 the semantic replay change; preserve original journals/runtime profiles.
+
+### Exact-unit allocation and factory checks
+
+Use [the complete exact allocation rule](EXACT_ROYALTY_ALLOCATION.md). Rarity
+tickets are GCD-normalized so ideal integral shares remain exact. Every allocated
+raw unit belongs to a ticket; there is no fresh royalty fraction/dust reserve.
+True indivisible mixed-cohort leftovers rotate deterministically. Claims never
+advance the rounding cursor or give the first claimant an advantage.
+
+Read RoyaltyFactory.royaltyCodeHash() and match the final compiler's ledger
+creation-code digest before deploying/binding an NFT. The factory stores fixed
+creation bytes once, has no payload setter, and accepts no arbitrary code/salt/
+recipient. Its typed create() hash-checks those bytes and binds the fixed
+controller atomically. Qualify the larger one-time factory/Access deployment
+gas and exact initcode; this is not per-mint/holder gas or production approval.
+
+Optional royalty sync defaults to1m forwarded gas. A too-low governed value can
+defer a healthy currency; simulate cold synchronization and inspect eligibility.
+New currency admission/capacity still requires reviewed descriptors and actual
+gas/work qualification. Current unsigned source helpers do not relabel an old
+current3 site or old journal as the fresh native6 profile.
 
 ### Prepare and rotate an earnings checkpoint
 
@@ -1866,11 +1910,50 @@ This is a separately reviewed operation, not routine LP maintenance. Current imp
 Run the [read-only holder inventory and escrow cutover procedure](HOLDER_PREFLIGHT.md) before preparation and again after freeze. Every code-bearing owner requires a review of its ability to release and claim for the exact replacement; a complete inventory is not approval.
 
 1. Independently review the proposed different-code successor, its economic compatibility and deployment commitment. Governance is trusted to approve it; there is no identical-code safeguard. Inventory every contract/escrow NFT holder: same owners at a new NFT contract address does not prove their escrow can operate it. Rehearse withdrawals/cutover while the old system is still usable; never rewrite owners to work around an incompatible escrow.
-2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible V6 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
+2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible canonical V8 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
 3. Finish existing provider responses and ordered `finalizeTraits` calls; confirm `unfinished_draws=0`. This is the selected simple policy: reliable funded provider plus draining before replacement. Do not remove the fully-revealed check if a request is stuck. Cancel the exact notice via `cancelPreparation(noticeHash)` if postponing, then restore ordinary controls deliberately.
 4. Park each live bucket locally with its exact reviewed request; do not start collective holder exit. Governance freeze() stops ownership/accounting before capture. Complete six ordered settle(slot) domains, export/import batches of at most eight and completeImport(), then exact classified fund(slot,index) legs. Recover from on-chain cursors/roots rather than an assumed last successful command.
 5. Verify every root, owner, trait, share, liability, reserve and exact backing. Governance `commit()` atomically retires the source and activates one successor. Finality remains required before service/marketplace cutover. Update canonical address/runtime and complete predecessor-history configuration, payout routing and marketplace collection records; old ERC721 approvals are not imported.
 6. Before commit, `abort()` cancels the importer; return every funded leg via `returnFunds`, then `finishAbort()` only after full restoration. This is not immediate unlock. After successful commit the source cannot be revived by unpausing or cancelling preparation. Late royalty receipts forward one successor at a time through the supported royalty forwarding function. There is no creator-inbox forwarding path.
+
+### Receipts at a cancelled replacement royalty address
+
+Use this only after abort backing is fully restored with `finishAbort()`. The
+cancelled receiver cannot pay its inactive imported ledger. Its remaining receipts
+can instead fund the reviewed **current active** royalty cohort; old earned rights
+and the target's existing unallocated amounts are preserved separately. No holder
+or custody wallet is selected as recipient.
+
+| Call on the cancelled coordinator | Inputs | Example call inputs | Result |
+| --- | --- | --- | --- |
+| `cancelledRoyaltyReturnController` | None | `cancelledRoyaltyReturnController()` | Read current canonical destination |
+| `advanceCancelledRoyaltyReturn` | None | `advanceCancelledRoyaltyReturn()` | Advance one verified successor |
+| `recoverCancelledRoyalties` | Exact currency; nonzero review fingerprint | `recoverCancelledRoyalties("0x0000000000000000000000000000000000000000", REVIEW_HASH)` | Return reviewed royalty receipts |
+
+Read the resolved controller first. If retired, advance one hop at a time until
+it is operating; anyone can pay gas for this metadata-only step. An in-progress
+successor handoff blocks advancement until it commits or fully aborts. There is
+no arbitrary recipient or replacement-address input. The original source must
+already have completed abort restoration; early recovery cannot take its backing.
+
+Recovery itself must be submitted by the **resolved target's current governance
+wallet**, even if the cancelled deployment has a different governance wallet.
+Target must be sealed, unpaused, not preparing, have royalties open and at least
+one active NFT. Admit the exact token at that target first; native ETH uses the
+zero address. Review actual cancelled balance, resolved addresses and current
+weights, retain the reviewed record and its nonzero `bytes32` hash, then simulate
+the exact call with **zero transaction value**. `reviewHash` records that review;
+it is not an automatic audit, price guarantee or live-snapshot proof.
+
+The call moves **all actual remaining units of the selected currency** to the
+fixed target royalty receiver, syncs before and after, and verifies unchanged
+authority/lifecycle/membership. Existing target orphaned units stay unallocated
+until their separate reviewed allocation. Current owners claim recovered units
+through normal original-currency royalty claims. Inspect receipts and exact
+balances after confirmation; repeat only for later receipts, never repeat an
+already confirmed transaction. A failed token/transfer or changed lifecycle
+reverts atomically. No keeper conversion, source reopening, LP action, generic
+sweep or service restart occurs. See the [full recovery procedure](CANONICAL_HANDOFF.md#recover-receipts-sent-to-a-cancelled-importer).
 
 Budget the complete workflow before preparation, using the [domain row/call
 calculation](CANONICAL_HANDOFF.md#workflow-size-and-relay-budget). Four custody
@@ -1878,7 +1961,7 @@ slots do not bound lifetime aliases. Recover exact next cursors/roots after an
 interruption; never skip rows or relax backing to fit a transaction budget.
 This sizing review needs no service restart or on-chain configuration change.
 
-A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V7 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
+A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V8 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
 ## Stop controls
 
@@ -2038,7 +2121,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema10 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema13 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2222,7 +2305,7 @@ Record the cause, affected block/time/object, containment and exact state; verif
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema10
+retain their declared sets), helper pins and admitted assets first. The schema13
 release inventory separately observes20 helpers. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
@@ -2545,7 +2628,7 @@ unsealed importer. Configure the successor **before** prepareImport.
 | Access.bindProtocolPolicy | implementation address; deployed helper.access must match controller, version1 | Bootstrap only, once before consumers/seal. Verify ProtocolPolicyBound and getter. No later replacement/unbind; wrong binding needs fresh deployment. |
 | ProtocolPolicy.setEntryPolicy | uint128 activationUSD, uint128 growthUSD, uint16 maxIdleBps, bytes32 reviewHash | Minima USD18, each>=10^18, growth<=activation; idle0–4000bps. Default100/5USD and500bps. Verify tuple/revision/EntryPolicyConfigured. Restore reviewed values with a new revision; old reviews stay stale. Stronger pool minimum and captured marginal LP floors remain. |
 | ProtocolPolicy.setMaintenancePolicy | uint16 maxIdleBps, bytes32 reviewHash |0–4000bps, default500. Verify MaintenancePolicyConfigured/fingerprint. Relevant confirmation samples restart; does not transfer or reinvest idle itself. |
-| ProtocolPolicy.setGasPolicy | uint32 payoutGas, uint32 sourceCallGas, uint32 royaltySyncGas, bytes32 reviewHash | Each100000–1000000; defaults180000/500000/250000. Verify GasPolicyConfigured/tuple and lean getters. Simulate actual owner/currency/provider and total transaction gas; reduce batch size if needed. No automatic widening and no change to earned backing. |
+| ProtocolPolicy.setGasPolicy | uint32 payoutGas, uint32 sourceCallGas, uint32 royaltySyncGas, bytes32 reviewHash | Each100000–1000000; defaults180000/500000/1000000. Verify GasPolicyConfigured/tuple and lean getters. Simulate actual owner/currency/provider and total transaction gas; reduce batch size if needed. No automatic widening and no change to earned backing. |
 | ProtocolPolicy.setMintPrice | uint128 price, bytes32 reviewHash | Positive native wei; default50000000000000000. Verify MintPriceConfigured, Vault.mintPrice and fresh mint fingerprint. Future direct mints only; OpenSea drop gross/net integration still unqualified. |
 | ProtocolPolicy.proposeMintRecipient | address candidate, bytes32 reviewHash | Candidate must be valid external payee, not accounting/custody module. Zero cancels. Verify pendingRecipient/revision/event. Proposal invalidates older mint reviews but moves no funds. |
 | ProtocolPolicy.acceptMintRecipient | No inputs; candidate itself sends | Verify MintRecipientAccepted/current recipient/pending zero. No governance rights granted. To reverse, propose/accept a later payee; never rewrite past payments. |
@@ -2579,7 +2662,7 @@ policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
 On-chain policy changes need no service restart only for a **matching** source8
-worker that reads them dynamically. Adopting direct Entry3/accounting6/schema10/new runtime pins
+worker that reads them dynamically. Adopting direct Entry3/accounting6/schema13/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,
@@ -2650,7 +2733,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **809 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **814 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3430,7 +3513,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [RoyaltyRewards.allocateAllUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`reviewHash: bytes32` | `allocateAllUnallocated(ADMITTED_ROYALTY_ASSET, REVIEW_HASH)` | Allocate all unallocated royalties |
 
 <details>
-<summary>Read functions and constants (38)</summary>
+<summary>Read functions and constants (37)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3439,11 +3522,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
 | `R` [RoyaltyRewards.ROYALTY_RECOVERY_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_RECOVERY_VERSION()` | Read royalty recovery version |
 | `R` [RoyaltyRewards.ROYALTY_SETTLEMENT_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_SETTLEMENT_VERSION()` | Read original-currency capability |
-| `R` [RoyaltyRewards.SCALE](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `SCALE()` | Read scale |
 | `R` [RoyaltyRewards.accounted](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
 | `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
 | `R` [RoyaltyRewards.activationCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `activationCount()` | Read activation count |
 | `R` [RoyaltyRewards.activationOrdinal](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `activationOrdinal(NFT_ID)` | Read activation ordinal |
+| `R` [RoyaltyRewards.allocationCursor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `allocationCursor(ADMITTED_ROYALTY_ASSET)` | Read currency rounding cursor |
 | `R` [RoyaltyRewards.assetCapacity](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCapacity()` | Read operating currency capacity |
 | `R` [RoyaltyRewards.assetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCount()` | Read asset count |
 | `R` [RoyaltyRewards.assets](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `assets(0)` | Read assets |
@@ -3458,25 +3541,24 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
 | `R` [RoyaltyRewards.eligibleFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `eligibleFor(NFT_ID, ASSET_ADDRESS)` | Read eligible for |
 | `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
-| `R` [RoyaltyRewards.fraction](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `fraction(NFT_ID, TARGET_ADDRESS)` | Read fraction |
-| `R` [RoyaltyRewards.index](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `index(TARGET_ADDRESS)` | Read index |
 | `R` [RoyaltyRewards.isAsset](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
 | `R` [RoyaltyRewards.liabilities](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
 | `R` [RoyaltyRewards.mintEnd](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `mintEnd()` | Read official sale end |
+| `R` [RoyaltyRewards.mintEndRevision](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `mintEndRevision()` | Read sale review revision |
 | `R` [RoyaltyRewards.nft](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `nft()` | Read nft |
 | `R` [RoyaltyRewards.openingPool](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `openingPool(ADMITTED_ROYALTY_ASSET)` | Read initial royalty pool |
 | `R` [RoyaltyRewards.orphaned](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `orphaned(TARGET_ADDRESS)` | Read orphaned |
-| `R` [RoyaltyRewards.paidIndex](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `paidIndex(NFT_ID, TARGET_ADDRESS)` | Read paid index |
 | `R` [RoyaltyRewards.pending](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `pending(ASSET_ADDRESS)` | Read unprocessed royalty receipts |
 | `R` [RoyaltyRewards.royaltiesOpen](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `royaltiesOpen()` | Check royalty claim opening |
 | `R` [RoyaltyRewards.royaltiesOpenAt](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `royaltiesOpenAt()` | Read royalty opening time |
+| `R` [RoyaltyRewards.ticketStart](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `ticketStart(NFT_ID)` | Read raw ticket start |
 | `R` [RoyaltyRewards.totalWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `totalWeight()` | Read total weight |
 | `R` [RoyaltyRewards.weightOf](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `weightOf(NFT_ID)` | Read weight of |
 
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (14)</summary>
+<summary>Contract-only calls: use the parent workflow (15)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3487,6 +3569,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [RoyaltyRewards.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalActivate()` | Activate imported ledger state |
 | `M` [RoyaltyRewards.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalCapture()` | Capture classified ledger backing |
 | `M` [RoyaltyRewards.canonicalImport](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
+| `M` [RoyaltyRewards.canonicalRecoverCancelled](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`receiver: address` | `canonicalRecoverCancelled(ADMITTED_ROYALTY_ASSET, VERIFIED_ACTIVE_ROYALTY_LEDGER)` | Return cancelled royalty currency |
 | `M` [RoyaltyRewards.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
 | `M` [RoyaltyRewards.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
 | `M` [RoyaltyRewards.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalSettle()` | Settle captured reward indexes |
@@ -3635,6 +3718,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `G` [CanonicalHandoff.abort](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `abort()` | Abort canonical replacement |
+| `P` [CanonicalHandoff.advanceCancelledRoyaltyReturn](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `advanceCancelledRoyaltyReturn()` | Advance verified return hop |
 | `G` [CanonicalHandoff.commit](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `commit()` | Commit canonical replacement atomically |
 | `P` [CanonicalHandoff.completeImport](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `completeImport()` | Complete authenticated row import |
 | `P` [CanonicalHandoff.exportRows](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`count: uint256` | `exportRows(SLOT, 1)` | Export authenticated canonical rows |
@@ -3643,11 +3727,12 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `P` [CanonicalHandoff.fund](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `fund(SLOT, 0)` | Transfer authenticated canonical backing |
 | `P` [CanonicalHandoff.importRows](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`records: bytes[]` | `importRows(SLOT, ["RECORDS"])` | Import authenticated canonical rows |
 | `B` [CanonicalHandoff.prepareImport](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `sourceController: address` | `prepareImport(SOURCE_CONTROLLER_ADDRESS)` | Prepare successor import binding |
+| `G` [CanonicalHandoff.recoverCancelledRoyalties](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `asset: address`<br>`reviewHash: bytes32` | `recoverCancelledRoyalties(ADMITTED_ROYALTY_ASSET, REVIEW_HASH)` | Recover cancelled royalty currency |
 | `P` [CanonicalHandoff.returnFunds](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8`<br>`index: uint256` | `returnFunds(SLOT, 0)` | Restore selected source backing |
 | `P` [CanonicalHandoff.settle](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `slot: uint8` | `settle(SLOT)` | Settle next canonical step |
 
 <details>
-<summary>Read functions and constants (22)</summary>
+<summary>Read functions and constants (23)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3656,6 +3741,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [CanonicalHandoff.SLOTS](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `SLOTS()` | Read slots |
 | `R` [CanonicalHandoff.access](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `access()` | Read access |
 | `R` [CanonicalHandoff.assetCount](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `assetCount(0)` | Read asset count |
+| `R` [CanonicalHandoff.cancelledRoyaltyReturnController](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `cancelledRoyaltyReturnController()` | Read verified return controller |
 | `R` [CanonicalHandoff.deploymentCommitment](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `deploymentCommitment()` | Read deployment commitment |
 | `R` [CanonicalHandoff.destinationController](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | None | `destinationController()` | Read destination controller |
 | `R` [CanonicalHandoff.exportCursor](CONTRACT_FUNCTIONS.md#zzzcanonicalhandoff) | `input0: uint256` | `exportCursor(0)` | Read export cursor |
@@ -4096,7 +4182,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### VaultCanonical
 
 <details>
-<summary>Read functions and constants (20)</summary>
+<summary>Read functions and constants (21)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4115,6 +4201,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [VaultCanonical.mintProceedsRecipient](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `mintProceedsRecipient()` | Read mint proceeds recipient |
 | `R` [VaultCanonical.originChain](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `originChain()` | Read origin chain |
 | `R` [VaultCanonical.originVault](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `originVault()` | Read origin vault |
+| `R` [VaultCanonical.validateCancelledRoyaltyHop](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `validateCancelledRoyaltyHop()` | Validate fixed return hop |
 | `R` [VaultCanonical.validateContribution](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`bucket: uint256`<br>`inputUSD: uint256`<br>`inputTotal: uint256`<br>`minimumLiquidity: uint128`<br>`activation: bool` | `validateContribution(NFT_ID, BUCKET_ID, INPUT_USD, INPUT_TOTAL, MINIMUM_LIQUIDITY, ACTIVATION)` | Read validate contribution |
 | `R` [VaultCanonical.validateHolderExit](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`migrationCaller: address` | `validateHolderExit(BUCKET_ID, MIGRATION_CALLER_ADDRESS)` | Read validate holder exit |
 | `R` [VaultCanonical.validateMint](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `value: uint256`<br>`ordinal: uint256`<br>`expectedPolicy: bytes32` | `validateMint(VALUE, 1, EXPECTED_POLICY)` | Read validate mint |
@@ -4189,11 +4276,12 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `P` [RoyaltyFactory.create](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `create()` | Create caller-bound helper |
 
 <details>
-<summary>Read functions and constants (1)</summary>
+<summary>Read functions and constants (2)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [RoyaltyFactory.controller](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `controller()` | Read controller |
+| `R` [RoyaltyFactory.royaltyCodeHash](CONTRACT_FUNCTIONS.md#zzzroyaltyfactory) | None | `royaltyCodeHash()` | Read fixed payload hash |
 
 </details>
 

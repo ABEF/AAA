@@ -2,7 +2,7 @@
 
 Sealing fixes core implementations, bindings and the one ZZZ identity. Immediate
 governance can change supported policy within guards, not rewrite NFT rights.
-The fresh source is [accounting6/custody5/portfolio2/canonical V6](POSITION_V6.md), undeployed
+The fresh source is [accounting6/custody5/portfolio2/canonical V8](POSITION_V6.md), undeployed
 and **NOT APPROVED**. The [sole Todo](../TODO.md#task-post-seal-configuration)
 owns qualification; the [operator manual](OPERATOR_MANUAL.md) owns exact procedures.
 

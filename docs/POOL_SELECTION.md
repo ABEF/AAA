@@ -110,7 +110,7 @@ remain open. Bounded post-seal request/buyback controls and typed v4 conversion 
 actual provider/market qualification remains open. Current-accounting6 holder
 payouts need their own target-chain/receiver/gas qualification. Historical fork
 observations retain their exact source scope; local fixtures do not qualify live
-services. Fresh accounting6/custody5/portfolio2/fee1/governance2/canonicalV6 runtime pins and
+services. Fresh accounting6/custody5/portfolio2/fee1/governance2/canonicalV8 runtime pins and
 actual native wallet/service acceptance are required. Historical native2 and
 served accounting3 website artifacts do not qualify accounting6 integration. Existing fixtures/journals keep their original
 profiles and public deployment is null.

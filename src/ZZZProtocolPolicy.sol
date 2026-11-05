@@ -45,7 +45,7 @@ contract ZZZProtocolPolicy is ZZZModule,ReentrancyGuard {
             revert InvalidConfiguration();
         entry=P.EntryPolicy(100e18,5e18,500,1);
         maintenance=P.MaintenancePolicy(500,1);
-        gasLimits=P.GasPolicy(180000,500000,250000,1);
+        gasLimits=P.GasPolicy(180000,500000,1000000,1);
         sale=P.SalePolicy(uint128(0.05 ether),initialMintRecipient,address(0),1);
         metadata=P.MetadataPolicy(1000e18,10000e18,1);
         configurationHash=keccak256(abi.encode("ZZZ_PROTOCOL_POLICY_V1",block.chainid,address(this),controller,

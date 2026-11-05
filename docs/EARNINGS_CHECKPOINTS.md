@@ -28,8 +28,11 @@ deliberate configuration cutover, not editing or deleting the file in place.
 
 The checkpoint carries ownership, cumulative claims/conversions, minted order,
 shares/supplies, equal membership, rarity weights, royalty eligibility prefixes,
-fee dust, reward indexes and each NFT's complete scaled earnings. Whole-unit
-totals derive from those scaled amounts, preserving carried fractions. Claims,
+fee dust, LP reward indexes and complete earnings. Fresh royalty4 also retains
+whole-unit allocation books, zero-based internal ticket offsets and raw currency
+cursors, with explicit one-based source adapters. Reporting may scale whole
+royalty earnings internally, but this creates no royalty fractional liability.
+LP/historical scaled totals preserve their carried fractions. Claims,
 conversions, contributions, compounding principal and imports are not new income.
 The80/10/5/5 split and quarantine rules do not change. ETH/ZZZ remain the only
 principal inputs; separate royalty currencies retain their own admission.

@@ -1,0 +1,7 @@
+test_accounting3_never_qualifies_fresh_holder_exit_release (tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_accounting3_never_qualifies_fresh_holder_exit_release) ... ok
+test_float_version_cannot_enter_new_profile (tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_float_version_cannot_enter_new_profile) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK

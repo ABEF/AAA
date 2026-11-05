@@ -69,6 +69,12 @@ contract HandoffNativeWrapper is MockToken {
 /// @notice Two independent real controller/economic systems on one local chain.
 /// Venue, asset, oracle and VRF fixtures are deliberately mocked.
 /// This tests same-chain accounting handoff, not external bridging.
+interface ICancelledRoyaltyHandoffTest {
+    function cancelledRoyaltyReturnController() external view returns(address);
+    function advanceCancelledRoyaltyReturn() external;
+    function recoverCancelledRoyalties(address,bytes32) external returns(uint256);
+}
+
 contract CanonicalHandoffTest is Test {
     struct System {
         ZZZAccessController ac;
@@ -195,14 +201,44 @@ contract CanonicalHandoffTest is Test {
     function _activate(System memory s, uint256 id, uint256 amount) private {
         _fresh(); vm.prank(ALICE); s.vault.activate(id, poolId, amount, amount, 1, block.timestamp + 100);
     }
-    function _seed() private returns (uint256 first, uint256 second, uint256 dormant) {
+    function _seed() private returns (uint256 first,uint256 second,uint256 dormant) {
+        (first,second,dormant)=_seedOpen();
+        _finishSeed();
+    }
+    function _seedOpen() private returns (uint256 first, uint256 second, uint256 dormant) {
         first = _mint(source, 0, 27); _activate(source, first, 1000);
         second = _mint(source, source.nft.remainingToReveal() - 1, 45); _activate(source, second, 500);
         dormant = _mint(source, 0, 61);
         source.venue.setFees(103, 107); source.vault.collectFees(source.vault.nftBucket(first), block.timestamp + 100);
         token0.mint(address(source.royalties), 101);
         (bool ok,) = address(source.royalties).call{value: 1 ether + 3}(""); assertTrue(ok);
+    }
+    function _finishSeed() private {
         source.nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);source.royalties.syncAll();_fresh();
+    }
+    /// @dev Mint extras before sale closes, but activate only after the original
+    /// two-incumbent cutoff. Neither older receipts nor stress coverage changes.
+    function _extraBucketsAfterIncumbentOpening() private {
+        bytes32 initialPool=poolId;
+        PoolConfig memory config=source.pools.get(poolId);
+        uint256[3] memory ids;bytes32[3] memory extraPools;
+        for(uint256 i=1;i<4;++i) {
+            config.key.fee=uint24(3000+i);
+            poolId=keccak256(abi.encode(config.key));extraPools[i-1]=poolId;
+            source.pools.set(poolId,config);destination.pools.set(poolId,config);
+            ids[i-1]=_mint(source,i*79,i*133);
+        }
+        _finishSeed();
+        uint256 incumbent=source.nft.tokenAtOrdinal(1);
+        uint256 count=source.royalties.assetCount();uint256[] memory beforeClaims=new uint256[](count);
+        for(uint256 i;i<count;++i) beforeClaims[i]=source.royalties.claimable(incumbent,source.royalties.assets(i));
+        for(uint256 i;i<3;++i) {poolId=extraPools[i];_activate(source,ids[i],100);}
+        for(uint256 i;i<count;++i) {
+            address asset=source.royalties.assets(i);
+            assertEq(source.royalties.claimable(incumbent,asset),beforeClaims[i],"late bucket diluted earlier royalties");
+            for(uint256 j;j<3;++j) assertEq(source.royalties.claimable(ids[j],asset),0,"late bucket received older royalties");
+        }
+        poolId=initialPool;
     }
     function _prepare() private {
         ZZZAccessController.PreparationNotice memory notice = ZZZAccessController.PreparationNotice(
@@ -219,6 +255,7 @@ contract CanonicalHandoffTest is Test {
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
     }
     function _freeze(uint256 activeId) private {
+        if(!source.royalties.royaltiesOpen()) _finishSeed();
         _prepare();
         if (activeId != 0 && source.vault.group(source.vault.nftBucket(activeId)).status == PositionStatus.Active) {
             _park(source.vault.nftBucket(activeId));
@@ -328,8 +365,10 @@ contract CanonicalHandoffTest is Test {
             ledger.ownerFraction(id, asset)));
     }
     function _royaltyRowHash(ZZZRoyaltyRewards ledger, uint256 id, address asset) private view returns (bytes32) {
-        return keccak256(abi.encode(ledger.weightOf(id), ledger.accrued(id, asset),
-            ledger.paidIndex(id, asset), ledger.fraction(id, asset)));
+        // Accrued storage is flattened from the frozen tree; the preceding
+        // claimable assertions verify amounts, while these preserve ticket identity.
+        return keccak256(abi.encode(ledger.weightOf(id), ledger.ticketStart(id),
+            ledger.activationOrdinal(id), ledger.allocationCursor(asset)));
     }
 
     function testImportingDestinationCannotMintOrAllocateRights() public {
@@ -368,7 +407,7 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testFreezeRequiresGovernanceAndFullyRevealedMintInventory() public {
-        bytes32 reviewedPolicy3 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy3); _prepare();
+        bytes32 reviewedPolicy3 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy3); _finishSeed(); _prepare();
         vm.prank(ALICE); vm.expectRevert(); source.handoff.freeze();
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         assertEq(source.ac.canonicalState(), 0);
@@ -376,7 +415,7 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testFreezeRejectsLiveLiquidityAndPreservesItsCustody() public {
-        uint256 id = _mint(source, 0, 0); _activate(source, id, 1000); _prepare();
+        uint256 id = _mint(source, 0, 0); _activate(source, id, 1000); _finishSeed(); _prepare();
         uint256 bucket = source.vault.nftBucket(id); uint256 lp = source.vault.group(bucket).lpTokenId;
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         assertEq(source.ac.canonicalState(), 0); assertEq(source.venue.ownerOf(lp), address(source.vault));
@@ -516,23 +555,45 @@ contract CanonicalHandoffTest is Test {
         bytes32 reviewedPolicy4 = source.vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(); source.vault.mintDormant{value: 0.05 ether}(reviewedPolicy4);
     }
 
-    function testRemainingRarityAndArtworkInventoryContinueAfterMigration() public {
-        _mint(source, 0, 311); _mint(source, 600, 211); _mint(source, 999, 91);
-        uint256 saved = vm.snapshotState();
-        uint256[6] memory expectedIds; uint8[6] memory rarity; uint8[6] memory palette; uint8[6] memory pattern;
-        for (uint256 i; i < 6; ++i) {
-            uint256 id = _mint(source, i * 157, i * 139 + 72); expectedIds[i] = id;
-            rarity[i] = source.nft.rarityOf(id); palette[i] = source.nft.paletteOf(id); pattern[i] = source.nft.patternOf(id);
+    function _artworkInventoryHash(ZZZNFT collection) private view returns(bytes32 hash,uint256 explicitEntries) {
+        for(uint8 rarity;rarity<3;++rarity) {
+            uint256 limit=rarity==0?600:rarity==1?300:100;
+            for(uint256 item;item<limit;++item) {
+                uint16 value=collection.canonicalArtwork(rarity,item);
+                hash=keccak256(abi.encode(hash,rarity,item,value));
+                if(value!=0) ++explicitEntries;
+            }
         }
-        assertTrue(vm.revertToState(saved)); _migrate(0);
-        for (uint256 i; i < 6; ++i) {
-            uint256 id = _mint(destination, i * 157, i * 139 + 72);
-            assertEq(id, expectedIds[i]); assertEq(destination.nft.rarityOf(id), rarity[i]);
-            assertEq(destination.nft.paletteOf(id), palette[i]); assertEq(destination.nft.patternOf(id), pattern[i]);
-        }
-        assertEq(destination.nft.mintedCount(), 9); assertEq(destination.nft.remainingToReveal(), 991);
     }
-
+    function testClosedSaleHandoffPreservesRemainingRarityAndArtworkWithoutReopeningMint() public {
+        uint256[3] memory ids;
+        ids[0]=_mint(source,0,311);ids[1]=_mint(source,600,211);ids[2]=_mint(source,999,91);
+        uint16[3] memory quotas=[source.nft.rarityRemaining(0),source.nft.rarityRemaining(1),source.nft.rarityRemaining(2)];
+        (bytes32 inventory,uint256 entries)=_artworkInventoryHash(source.nft);
+        assertGt(entries,0,"inventory comparison must include drawn swap-map entries");
+        uint256 remaining=source.nft.remainingToReveal();assertEq(remaining,997);
+        _migrate(0);
+        (bytes32 importedInventory,uint256 importedEntries)=_artworkInventoryHash(destination.nft);
+        assertEq(importedInventory,inventory);assertEq(importedEntries,entries);
+        for(uint256 i;i<3;++i) {
+            assertEq(destination.nft.rarityRemaining(i),quotas[i]);
+            assertEq(destination.nft.tokenAtOrdinal(i+1),ids[i]);assertEq(destination.nft.ownerOf(ids[i]),ALICE);
+            assertEq(destination.nft.rarityOf(ids[i]),source.nft.rarityOf(ids[i]));
+            assertEq(destination.nft.paletteOf(ids[i]),source.nft.paletteOf(ids[i]));
+            assertEq(destination.nft.patternOf(ids[i]),source.nft.patternOf(ids[i]));
+        }
+        assertEq(destination.nft.mintedCount(),3);assertEq(destination.nft.remainingToReveal(),remaining);
+        uint64 end=source.royalties.mintEnd();assertEq(destination.royalties.mintEnd(),end);
+        assertTrue(destination.royalties.royaltiesOpen());
+        bytes32 oldReview=source.vault.mintPolicyFingerprint();bytes32 newReview=destination.vault.mintPolicyFingerprint();
+        vm.prank(ALICE);vm.expectRevert();source.vault.mintDormant{value:0.05 ether}(oldReview);
+        vm.prank(ALICE);vm.expectRevert();destination.vault.mintDormant{value:0.05 ether}(newReview);
+        _governReject(source,address(source.nft),abi.encodeCall(source.nft.setMintEnd,(uint64(block.timestamp+1 days))));
+        _governReject(destination,address(destination.nft),abi.encodeCall(destination.nft.setMintEnd,(uint64(block.timestamp+1 days))));
+        assertEq(destination.nft.mintedCount(),3);assertEq(destination.nft.remainingToReveal(),remaining);
+        (importedInventory,importedEntries)=_artworkInventoryHash(destination.nft);
+        assertEq(importedInventory,inventory);assertEq(importedEntries,entries);
+    }
     function testDestinationRoyaltyPrefundsCannotSubstituteForHandoffFundingOrRewardUsers() public {
         (uint256 first,,) = _seed();
         token0.mint(address(destination.royalties), 555);
@@ -628,9 +689,10 @@ contract CanonicalHandoffTest is Test {
         // that setup from the test's aggregate gas cap; every handoff call below
         // remains metered with its normal per-call limits and bounded row size.
         vm.pauseGasMetering();
-        (uint256 first, uint256 second,) = _seed();
+        (uint256 first, uint256 second,) = _seedOpen();
         uint256 last;
         for (uint256 i = 3; i < 1000; ++i) last = _mint(source, i * 157, i * 139 + 72);
+        _finishSeed();
         assertEq(source.nft.remainingToReveal(), 0);
         assertEq(source.nft.rarityRemaining(0), 0); assertEq(source.nft.rarityRemaining(1), 0);
         assertEq(source.nft.rarityRemaining(2), 0);
@@ -662,21 +724,21 @@ contract CanonicalHandoffTest is Test {
         assertEq(destination.membership.totalEligible(), 3); assertGt(destination.vault.sharesOf(dormant), 0);
     }
 
-    function testActivatedSuccessorCanLaterMigrateAgainAfterNewMintsAndContributions() public {
-        (uint256 first,,) = _seed(); _migrate(first);
+    function testActivatedSuccessorCanLaterMigrateAgainAfterDormantActivationAndGrowth() public {
+        (uint256 first,,uint256 dormant) = _seed(); _migrate(first);
         uint256 bucket = destination.vault.nftBucket(first);
         _govern(destination, address(destination.migration), abi.encodeCall(destination.migration.resume,
             (bucket, poolId, 1, block.timestamp + 100)));
-        uint256 newId = _mint(destination, 27, 87); _activate(destination, newId, 100);
+        uint256 newId=dormant;_activate(destination,newId,100);
         vm.prank(ALICE); destination.vault.increase(first, 50, 50, 1, block.timestamp + 100);
         uint256 expectedShares = destination.vault.sharesOf(first);
         source = destination; destination = _deploySystem(false);
         destination.handoff.prepareImport(address(source.ac)); destination.ac.seal(); _approve(destination);
         _migrate(first);
-        assertEq(destination.nft.mintedCount(), 4); assertEq(destination.nft.ownerOf(newId), ALICE);
+        assertEq(destination.nft.mintedCount(), 3); assertEq(destination.nft.ownerOf(newId), ALICE);
         assertEq(destination.vault.sharesOf(first), expectedShares);
         assertEq(destination.vault.nftBucket(newId), bucket); assertEq(destination.membership.totalEligible(), 3);
-        assertEq(destination.nft.mintOrdinalOf(newId), 4);
+        assertEq(destination.nft.mintOrdinalOf(newId), 3);
     }
 
     function testCrossChainNoticeIsRejectedWithoutFreezingOrExporting() public {
@@ -728,8 +790,10 @@ contract CanonicalHandoffTest is Test {
         assertEq(nativeAsset, address(0)); assertEq(nativeBacking, 0);
         assertEq(destination.handoff.assetCount(3), 2);
         assertEq(destination.handoff.assetCount(4), 1); // Native royalty slot, zero backing.
-        uint256 id = _mint(destination, 0, 0);
-        assertEq(destination.nft.ownerOf(id), ALICE); assertEq(destination.nft.mintedCount(), 1);
+        bytes32 review=destination.vault.mintPolicyFingerprint();
+        vm.prank(ALICE);vm.expectRevert();destination.vault.mintDormant{value:0.05 ether}(review);
+        _governReject(destination,address(destination.nft),abi.encodeCall(destination.nft.setMintEnd,(uint64(block.timestamp+1 days))));
+        assertEq(destination.nft.mintedCount(),0);assertEq(destination.nft.remainingToReveal(),1000);
     }
 
     function testSatelliteConfiguredDestinationCannotPrepareCanonicalImport() public {
@@ -794,7 +858,7 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger() public {
-        (uint256 first,,) = _seed();
+        (uint256 first,,) = _seedOpen();
         destination = _deploySystem(false);
         MockToken[30] memory extra;
         for (uint256 i; i < extra.length; ++i) {
@@ -810,14 +874,7 @@ contract CanonicalHandoffTest is Test {
                 extra[i].mint(address(source.royalties), 40 * (i + 1));
             }
         }
-        bytes32 initialPool = poolId;
-        PoolConfig memory config = source.pools.get(poolId);
-        for (uint256 i = 1; i < 4; ++i) {
-            config.key.fee = uint24(3000 + i);
-            poolId = keccak256(abi.encode(config.key)); source.pools.set(poolId, config); destination.pools.set(poolId, config);
-            uint256 id = _mint(source, i * 79, i * 133); _activate(source, id, 100);
-        }
-        poolId = initialPool;
+        _extraBucketsAfterIncumbentOpening();
         for (uint256 i; i < source.vault.bucketCount(); ++i) {
             uint256 bucket = source.vault.bucketAt(i);
             source.venue.setFees(100 + i, 120 + i);
@@ -848,7 +905,7 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testMaximumPrefundedCompanionDomainsFitBudgetAndAbortPreservesAllPrefunds() public {
-        (uint256 first,,) = _seed();
+        (uint256 first,,) = _seedOpen();
         destination = _deploySystem(false);
         MockToken[30] memory extra;
         for (uint256 i; i < extra.length; ++i) {
@@ -864,14 +921,7 @@ contract CanonicalHandoffTest is Test {
                 extra[i].mint(address(source.royalties), 40 * (i + 1));
             }
         }
-        bytes32 initialPool = poolId;
-        PoolConfig memory config = source.pools.get(poolId);
-        for (uint256 i = 1; i < 4; ++i) {
-            config.key.fee = uint24(3000 + i);
-            poolId = keccak256(abi.encode(config.key)); source.pools.set(poolId, config); destination.pools.set(poolId, config);
-            uint256 id = _mint(source, i * 79, i * 133); _activate(source, id, 100);
-        }
-        poolId = initialPool;
+        _extraBucketsAfterIncumbentOpening();
         for (uint256 i; i < source.vault.bucketCount(); ++i) {
             uint256 bucket = source.vault.bucketAt(i);
             source.venue.setFees(100 + i, 120 + i);
@@ -930,5 +980,154 @@ contract CanonicalHandoffTest is Test {
         source.royalties.forwardLate(address(0));
         assertEq(destination.royalties.claimable(first, address(0)), royaltyBeforeLate + 100);
         assertEq(token0.balanceOf(address(source.fees)), 0); assertEq(address(source.royalties).balance, 0);
+    }
+
+    function _cancelled(System memory s) private pure returns(ICancelledRoyaltyHandoffTest) {
+        return ICancelledRoyaltyHandoffTest(address(s.handoff));
+    }
+    function _returnAllFunded() private {
+        for(uint8 slot;slot<6;++slot) {
+            for(uint256 i;i<source.handoff.assetCount(slot);++i) source.handoff.returnFunds(slot,i);
+        }
+    }
+    function _cancelRecoveryReady() private returns(uint256 first,uint256 second) {
+        (first,second,) = _seed(); _freeze(first); _exportAll(); _importAll();
+        _govern(source,address(source.handoff),abi.encodeCall(source.handoff.abort,()));
+        _govern(source,address(source.handoff),abi.encodeCall(source.handoff.finishAbort,()));
+        _govern(source,address(source.ac),abi.encodeCall(source.ac.setPaused,(false)));
+    }
+    function _giveNative(address receiver,uint256 amount) private {
+        (bool ok,) = receiver.call{value:amount}(""); assertTrue(ok);
+    }
+
+    function testCancelledRoyaltyRecoveryRequiresCompletedAbortAndPaysCurrentOwners() public {
+        (uint256 first,uint256 second,) = _seed(); _freeze(first); _exportAll(); _importAll();
+        _giveNative(address(destination.royalties),40); token0.mint(address(destination.royalties),40);
+        _fundAll(); _govern(source,address(source.handoff),abi.encodeCall(source.handoff.abort,()));
+        ICancelledRoyaltyHandoffTest recovery = _cancelled(destination);
+        bytes32 review = keccak256("restored original-currency recovery");
+        vm.expectRevert(); recovery.recoverCancelledRoyalties(address(0),review);
+        _returnAllFunded();
+        vm.expectRevert(); recovery.recoverCancelledRoyalties(address(token0),review);
+        _govern(source,address(source.handoff),abi.encodeCall(source.handoff.finishAbort,()));
+        vm.expectRevert(); recovery.recoverCancelledRoyalties(address(0),review);
+        _govern(source,address(source.ac),abi.encodeCall(source.ac.setPaused,(false)));
+        vm.prank(ALICE); source.nft.transferFrom(ALICE,BOB,second);
+        uint256 beforeFirstNative=source.royalties.claimable(first,address(0));
+        uint256 beforeSecondNative=source.royalties.claimable(second,address(0));
+        uint256 beforeFirstToken=source.royalties.claimable(first,address(token0));
+        uint256 beforeSecondToken=source.royalties.claimable(second,address(token0));
+        assertEq(source.royalties.totalWeight(),4);
+        assertEq(recovery.recoverCancelledRoyalties(address(0),review),40);
+        assertEq(recovery.recoverCancelledRoyalties(address(token0),review),40);
+        assertEq(source.royalties.claimable(first,address(0)),beforeFirstNative+10);
+        assertEq(source.royalties.claimable(second,address(0)),beforeSecondNative+30);
+        assertEq(source.royalties.claimable(first,address(token0)),beforeFirstToken+10);
+        assertEq(source.royalties.claimable(second,address(token0)),beforeSecondToken+30);
+        assertEq(address(destination.royalties).balance,0); assertEq(token0.balanceOf(address(destination.royalties)),0);
+        uint256 aliceNative=ALICE.balance;uint256 bobNative=BOB.balance;
+        uint256 aliceToken=token0.balanceOf(ALICE);uint256 bobToken=token0.balanceOf(BOB);
+        vm.prank(ALICE);source.royalties.claim(first,address(0));
+        vm.prank(BOB);source.royalties.claim(second,address(0));
+        vm.prank(ALICE);source.royalties.claim(first,address(token0));
+        vm.prank(BOB);source.royalties.claim(second,address(token0));
+        assertEq(ALICE.balance-aliceNative,beforeFirstNative+10);assertEq(BOB.balance-bobNative,beforeSecondNative+30);
+        assertEq(token0.balanceOf(ALICE)-aliceToken,beforeFirstToken+10);
+        assertEq(token0.balanceOf(BOB)-bobToken,beforeSecondToken+30);
+        vm.prank(BOB);assertEq(source.royalties.claim(second,address(token0)),0);
+    }
+
+    function testCancelledRecoveryRequiresReviewAdmissionAndKeepsUnallocatedSeparate() public {
+        (uint256 first,uint256 second) = _cancelRecoveryReady();
+        ICancelledRoyaltyHandoffTest recovery = _cancelled(destination);
+        MockToken extra=new MockToken(0); extra.mint(address(source.royalties),7);extra.mint(address(destination.royalties),40);
+        bytes32 review=keccak256("review newly admitted cancelled receipt");
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(extra),review);
+        source.nft.addRoyaltyAsset(address(extra)); assertEq(source.royalties.orphaned(address(extra)),7);
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(extra),bytes32(0));
+        vm.prank(ALICE);vm.expectRevert();recovery.recoverCancelledRoyalties(address(extra),review);
+        assertEq(recovery.recoverCancelledRoyalties(address(extra),review),40);
+        assertEq(source.royalties.orphaned(address(extra)),7);
+        assertEq(source.royalties.claimable(first,address(extra)),10);
+        assertEq(source.royalties.claimable(second,address(extra)),30);
+        assertEq(recovery.recoverCancelledRoyalties(address(extra),review),0);
+        extra.mint(address(destination.royalties),8);
+        assertEq(recovery.recoverCancelledRoyalties(address(extra),review),8);
+        assertEq(source.royalties.claimable(first,address(extra)),12);
+        assertEq(source.royalties.claimable(second,address(extra)),36);
+        assertEq(source.royalties.orphaned(address(extra)),7);
+    }
+
+    function testCancelledRecoveryUsesCurrentTargetGovernance() public {
+        (uint256 first,) = _cancelRecoveryReady(); token0.mint(address(destination.royalties),40);
+        ICancelledRoyaltyHandoffTest recovery=_cancelled(destination);bytes32 review=keccak256("current governance review");
+        uint256 beforeClaim=source.royalties.claimable(first,address(token0));uint256 bobBalance=token0.balanceOf(BOB);
+        source.ac.proposeGovernance(BOB);vm.prank(BOB);source.ac.acceptGovernance();
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(token0),review);
+        vm.prank(BOB);assertEq(recovery.recoverCancelledRoyalties(address(token0),review),40);
+        assertEq(source.royalties.claimable(first,address(token0)),beforeClaim+10);
+        assertEq(token0.balanceOf(BOB),bobBalance);assertEq(destination.ac.governance(),address(this));
+    }
+
+    function testCancelledRecoveryCallbackAuthorityChangeRevertsEverything() public {
+        (uint256 first,) = _cancelRecoveryReady();token0.mint(address(destination.royalties),40);
+        ICancelledRoyaltyHandoffTest recovery=_cancelled(destination);bytes32 review=keccak256("callback atomic recovery");
+        HandoffTransitionToken nextGovernor=new HandoffTransitionToken();source.ac.proposeGovernance(address(nextGovernor));
+        HandoffTransitionToken(address(token0)).arm(address(nextGovernor),
+            abi.encodeCall(nextGovernor.acceptGovernance,(source.ac)),address(destination.royalties),address(source.royalties));
+        uint256 targetBalance=token0.balanceOf(address(source.royalties));
+        uint256 claimBefore=source.royalties.claimable(first,address(token0));
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(token0),review);
+        assertEq(source.ac.governance(),address(this));assertEq(token0.balanceOf(address(destination.royalties)),40);
+        assertEq(token0.balanceOf(address(source.royalties)),targetBalance);
+        assertEq(source.royalties.claimable(first,address(token0)),claimBefore);
+        HandoffTransitionToken(address(token0)).arm(address(0),"",address(0),address(0));
+        source.ac.proposeGovernance(address(0));
+        assertEq(recovery.recoverCancelledRoyalties(address(token0),review),40);
+        assertEq(source.royalties.claimable(first,address(token0)),claimBefore+10);
+    }
+
+    function testCancelledRoyaltyReturnAdvancesTwoRetirementsWithOverwrittenCurrentRoots() public {
+        (uint256 first,) = _cancelRecoveryReady();System memory cancelled=destination;
+        destination=_deploySystem(false);destination.handoff.prepareImport(address(source.ac));destination.ac.seal();
+        _migrate(first);System memory original=source;System memory intermediate=destination;
+        source=intermediate;destination=_deploySystem(false);
+        destination.handoff.prepareImport(address(source.ac));destination.ac.seal();_migrate(first);
+        ICancelledRoyaltyHandoffTest recovery=_cancelled(cancelled);bytes32 review=keccak256("latest canonical route review");
+        (bool directHopAllowed,) = cancelled.handoff.moduleAt(1).staticcall(
+            abi.encodeWithSignature("validateCancelledRoyaltyHop()"));
+        assertFalse(directHopAllowed,"Only the fixed coordinator can use its read-only route validator");
+        token0.mint(address(cancelled.royalties),40);_giveNative(address(cancelled.royalties),40);
+        assertEq(recovery.cancelledRoyaltyReturnController(),address(original.ac));
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(token0),review);
+        vm.prank(ALICE);recovery.advanceCancelledRoyaltyReturn();
+        assertEq(recovery.cancelledRoyaltyReturnController(),address(intermediate.ac));
+        vm.expectRevert();recovery.recoverCancelledRoyalties(address(0),review);
+        vm.prank(BOB);recovery.advanceCancelledRoyaltyReturn();
+        assertEq(recovery.cancelledRoyaltyReturnController(),address(destination.ac));
+        uint256 nativeBefore=destination.royalties.claimable(first,address(0));
+        uint256 tokenBefore=destination.royalties.claimable(first,address(token0));
+        assertEq(recovery.recoverCancelledRoyalties(address(0),review),40);
+        assertEq(recovery.recoverCancelledRoyalties(address(token0),review),40);
+        assertEq(destination.royalties.claimable(first,address(0)),nativeBefore+10);
+        assertEq(destination.royalties.claimable(first,address(token0)),tokenBefore+10);
+        assertEq(token0.balanceOf(address(original.royalties)),0);assertEq(token0.balanceOf(address(intermediate.royalties)),0);
+        vm.expectRevert();recovery.advanceCancelledRoyaltyReturn();
+    }
+
+    function testCancelledReturnWaitsForFrozenSuccessorAndSurvivesItsLaterAbort() public {
+        (uint256 first,) = _cancelRecoveryReady();System memory cancelled=destination;
+        destination=_deploySystem(false);destination.handoff.prepareImport(address(source.ac));destination.ac.seal();_migrate(first);
+        source=destination;destination=_deploySystem(false);
+        destination.handoff.prepareImport(address(source.ac));destination.ac.seal();_freeze(first);
+        ICancelledRoyaltyHandoffTest recovery=_cancelled(cancelled);
+        vm.expectRevert();recovery.advanceCancelledRoyaltyReturn();
+        _govern(source,address(source.handoff),abi.encodeCall(source.handoff.abort,()));
+        _govern(source,address(source.handoff),abi.encodeCall(source.handoff.finishAbort,()));
+        recovery.advanceCancelledRoyaltyReturn();assertEq(recovery.cancelledRoyaltyReturnController(),address(source.ac));
+        token0.mint(address(cancelled.royalties),40);
+        uint256 beforeClaim=source.royalties.claimable(first,address(token0));
+        assertEq(recovery.recoverCancelledRoyalties(address(token0),keccak256("restored latest route")),40);
+        assertEq(source.royalties.claimable(first,address(token0)),beforeClaim+10);
     }
 }

@@ -93,11 +93,12 @@ contract CanonicalPreparationTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        ac = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(ac));
+        ac = new ZZZAccessController(address(this), address(this), GUARDIAN);
         t0 = new MockToken(0); t1 = new MockToken(0);
         pools = new PreparationPools(address(ac));
         venue = new PreparationVenue(address(ac), address(t0), address(t1));
         treasury = new PreparationTreasuryCallback();
+        ProtocolPolicyFixture.bind(address(ac),address(treasury));
         vault = new AccountingVaultHarness(address(ac), block.chainid, payable(address(treasury)), address(new ZZZMigrationBudget(address(ac))));
         nft = new ZZZNFT(address(ac), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         rewards = new ZZZRewards(address(ac)); membership = new ZZZMembership(address(ac));
@@ -169,6 +170,10 @@ contract CanonicalPreparationTest is Test {
 
     function testClaimsTransfersPendingRevealAndLPFeeCollectionStayAvailable() public {
         uint256 active = _active(); uint256 pending = _mint(false); uint256 bucket = vault.nftBucket(active);
+        // Finish all needed mints before closing; the pending draw may still
+        // finalize during preparation, while existing royalty rights stay live.
+        nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+        _fresh();nft.royaltyRewards().syncAll();
         _prepare(); venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
         (bool funded,) = address(nft.royaltyRewards()).call{value: 1 ether}(""); assertTrue(funded);
         vrf.fulfill(nft.requestOf(pending), 0, 0); nft.finalizeTraits(pending); assertTrue(nft.traitsReady(pending));

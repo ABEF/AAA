@@ -13,17 +13,17 @@ saved transaction profile. Existing Anvil services and journals remain unchanged
 | LP routing / position child / math child |2 /1 /1 |
 | Pricing / Entry routing / reviewed Entry |2 /3 /2 |
 | Governance / fee intake / execution quality |2 /1 /1 |
-| Royalty unallocated recovery | `ROYALTY_SETTLEMENT_VERSION()==3` / `ROYALTY_RECOVERY_VERSION()==2`; original-currency allocation, no converter; fresh runtime/storage required |
-| Production inventory | Schema12,17 modules and18 helpers |
-| Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7` |
+| Royalty unallocated recovery | `ROYALTY_SETTLEMENT_VERSION()==4` / `ROYALTY_RECOVERY_VERSION()==2`; original-currency allocation, no converter; fresh runtime/storage required |
+| Production inventory | Schema13,17 modules and18 helpers; allocator is internal code |
+| Same-chain handoff admission | `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` |
 
 Entry-routing3 removes pre-Vault contribution conversion and its child. Read
 [the direct tuple](ACTIVATION_ENTRY.md). Historical schema8/Entry-routing2 remains
 a separate explicit runtime/configuration profile; review-policy2 is unchanged.
 
 Custody5 adds governance-only terminal allocation and push distribution; it
-retains custody4's principal/parking formats and account6. Fresh canonicalV7
-carries the royalty opening/capacity header and rejects old V6 peers.
+retains custody4's principal/parking formats and account6. Fresh canonicalV8
+carries exact-unit ticket/cursor rights and the opening/capacity header; older peers are rejected.
 Owner reward/royalty claims and principal fallback are unchanged. Fresh APIs and
 keepers declare custody_version5; schema9/custody4 remains historical. See
 [authority boundaries](ACCESS_PERMISSIONS.md).
@@ -46,9 +46,9 @@ remain. Optional main allocation defaults60% with a hard60% floor; only raising
 that floor is implemented. Manual widths remain subject to real pool/tick and
 execution feasibility. Contributions never recenter or reset the LP clock.
 
-Canonical admission is deliberately V6 even though records retain their wire
-shape: source/destination must support policy commitments and visual-threshold
-compatibility before migration starts. Old profiles and receipt recovery remain
+Canonical admission is explicitly V8: source/destination must support exact
++whole-unit royalty rows, original ticket identity, cursor, policy commitments and
++visual-threshold compatibility before migration starts. Old profiles and receipt recovery remain
 explicitly historical. There is no automatic deployment, journal migration,
 public signing, site rollout or readiness approval.
 
@@ -65,8 +65,8 @@ do not acquire this behavior. Ordinary safeguards and ownership remain.
 | Accounting6 / PositionV6 | Eight-word local Position and current policy/portfolio-aware accounting semantics; not a deployed instance. |
 | Entry routing3 | Seven-field direct ETH/ZZZ Request; no pre-Vault conversion. Review-policy2 and pricing2 remain separate. |
 | LP routing2 | Vault balancing/router/math/typed physical-executor semantics; not Entry routing. |
-| Inventory schema12 | Fresh17module/18helper release observation. Schema10 royalty-converting/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain historical inspection profiles. |
-| Canonical V6 | Explicit same-chain handoff schema and matching policy/backing rules; not permission to import an arbitrary old runtime. |
+| Inventory schema13 | Fresh17module/18helper release observation. Schema10 royalty-converting/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain historical inspection profiles. |
+| Canonical V8 | Exact-unit royalty rows and matching same-chain source/backing rules; V7/V6 peers are incompatible. |
 | Read API schema2 / activation config schema1 | Existing envelope/config schema families with separately explicit capability versions and runtime pins. |
 | Source8 | Shorthand for fresh custody5/direct Entry3 sources; ACCOUNTING_VERSION remains6. Historical source7 used custody4/schema9. |
 | Served current3 | Older separate poplint website reader/unsigned profile. It is not the current contract generation or a source8 rollout. |
@@ -75,17 +75,32 @@ Use exact getters, code/config/dependency hashes and the [current preflight](PRO
 not a shared numeric suffix, to establish compatibility. [Current findings](AUDIT_FINDINGS.md)
 and [environment map](SITE_ENVIRONMENTS.md) explain evidence and serving boundaries.
 
-## Original-currency royalties: fresh settlement3
+## Original-currency royalties: fresh settlement4
 
-Fresh royalty settlement3/recovery2 pays each admitted currency as received.
-There is no royalty converter, swap or unwrap. Governance may allocate only
-reviewed admitted unallocated units in the SAME currency at current active
-rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
-earned/deferred/fractional rights remain excluded. Unsupported currencies require
-review/admission first;ERC20 capacity starts16 and can be increased up to64 plus ETH after review. Original-currency claims
-need no price feed; optional USD reporting and LP reward conversion are separate.
-See [current settlement](ROYALTY_SETTLEMENT.md).
+Fresh royalty settlement4/recovery2 pays admitted currencies as received using
+[exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md). GCD-normalized rarity weights
+retain exact whole-number proportional shares; indivisible units follow a saved
+deterministic rotating cursor. All allocated raw units are assigned, with no
+scaled-index/fraction reserve after final claims. LP fractions are separate.
 
-Removing the stored converter changes the fresh royalty storage layout. No existing immutable deployment is upgraded. Same-shaped canonical rows require matching runtime/capability/config commitments, not layout inference. Fresh schema12 has18helpers; legacy schema10 retains20. Reporting4/converter:null and keeper royalty_settlement_version3 explicitly select the no-swap behavior.
+There is no royalty converter, swap or unwrap. Current owners inherit unpaid
+ticket and imported accrued rights. Governance may allocate only reviewed admitted
+unallocated units in the SAME currency at current active rarity weights. Initial
+opening pools, earned rights, prefunds and zero-cohort recovery stay distinct.
+Unsupported currencies require review/admission; capacity starts16ERC20 and may
+increase to64 plusETH after gas/service review. Raw claims need no price feed;
+USD reporting and LP reward conversion remain separate.
 
-Current royalty3 adds the [1-hour sale-close activation window]( ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.
+Schema13 retains18helpers: the bounded allocator is internal library code compiled
+into the ledger, not another deployed contract or authority. Reporting5/converter:null
+and explicit keeper royalty_settlement_version4 select the fresh behavior. New
+storage/runtime/canonical rows need new reviewed bindings and checkpoint rebuilds;
+old deployments, readers and transaction journals are never relabeled.
+
+The one-hour sale-close activation window, no deadline on dormant cards, initial
+cutoff cohort and original-currency outage isolation remain. Optional royalty sync
+defaults to1,000,000gas within the existing governed100,000–1,000,000 bounds. The
+new ceiling and64-currency capacity are not target gas/workload qualification.
+See [launch rules](ROYALTY_LAUNCH_WINDOW.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md)
+and [settlement](ROYALTY_SETTLEMENT.md). OpenSea/time binding, expanded service
+acceptance, token-failure recovery limits and independent approval remain open.

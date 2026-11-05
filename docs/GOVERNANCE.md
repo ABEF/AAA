@@ -6,7 +6,7 @@ There is one human project operator: the user. That operator controls governance
 and runs the services. There is no separate operator role, committee or additional
 human approval. Keep the automated keeper's limited service key separate from the
 governance key; this does not imply another person. Production authorities remain
-unset. The fresh candidate is accounting6/custody5/portfolio2/canonicalV6, **NOT APPROVED**.
+unset. The fresh candidate is accounting6/custody5/portfolio2/canonicalV8, **NOT APPROVED**.
 
 The selected governance wallet calls target modules directly. Access authenticates
 it through `canConfigure(caller)`; Access does not schedule or forward calls.

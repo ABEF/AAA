@@ -9,10 +9,11 @@ Reviewed 2026-11-05. This records implemented source, not another task list.
 Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
 custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position remains;
-fresh royalty3/canonicalV7 carries sale end/capacity and rejects old V6 peers.
+fresh royalty4/canonicalV8 carries sale end/capacity and exact-unit ticket rights,
+and rejects older peers.
 Tuple shape does not imply runtime compatibility.
 [Profile](POSITION_V6.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema12 with18 helper pins. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+Production inventory is schema13 with18 helper pins; the new allocator is internal code, not a deployed helper. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -40,7 +41,7 @@ separate exact permission/output notes; it is documentation, not execution appro
 | Ordinary eligibility | 85% actual centre-to-edge human ZZZ-price distance; physical and independent reference on the same side.600-second sampled window/maxgap300, source240-second checks, fresh60–300-second service jitter, initial hard12hours. Manual geometry changes are a distinct cooldown-gated exception. | [Confirmation](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer) |
 | Financial checks | Dual USD sources with3% agreement; captured default2% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
-| Royalties | Settlement2 original-currency claims; ×1/×2/×3 weights, independent currency backing and outage isolation. Recovery2 allocates only admitted unallocated units in the SAME currency at current active weights. No royalty swaps/unwraps/converter. Current owners inherit unpaid rights; ERC2981 requests5%, without transfer enforcement. | [Royalties](ROYALTY_SETTLEMENT.md), [current change/evidence](../reports/royalties-in-kind-20261105/REVIEW.md) |
+| Royalties | Settlement4 original-currency claims; ×1/×2/×3 weights with GCD-normalized exact-unit allocation and a saved rotating remainder cursor. Every allocated raw unit belongs to an NFT; no allocated rounding remainder remains after all eligible claims. Recovery2 assigns reviewed unallocated units at current active weights. Initial/prefund/zero-cohort and token-failure limits remain. No royalty converter; current owners inherit unpaid rights; ERC2981 requests5%, without universal payment enforcement. | [Exact allocation](EXACT_ROYALTY_ALLOCATION.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
 | Recovery | Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Custody5 allocation/distribution is governance-only; holder LP/royalty/fallback claims remain. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |
@@ -56,9 +57,9 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Confirmed reads | Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
-| Inventory | Schema12/custody5 validates18helpers, both physical legs and original-currency royalty3. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema13/custody5 validates18helpers, both physical legs and exact-unit royalty4; reporting5/canonicalV8 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
-| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; same-currency unallocated first allocation is counted once. Missing data stays unavailable. |
+| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
 
 Explicit fresh read/keeper configs set custody_version5 and check actual runtime.
 Keeper principal_distribution is disabled/rejected on5; governance pays/submits
@@ -109,6 +110,7 @@ Actual storage/recovery qualification remains open.
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
+| [Current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) | Exact-unit royalty4 and affected cross-repository changes, with source-scoped verification recorded in the report. | No deployment, maximum-state target gas, supported OpenSea mint path, operating acceptance or independent approval. |
 | [Four-report follow-up](../reports/four-report-consolidation-20261104/VERIFICATION.md) |93focused Python successes,9new startup cases; four input reports and current Solidity/dependency/build pins preserved. | No fresh contract execution, live storage/host acceptance or independent approval. |
 | [Manual safeguard audit](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) | Two view fixes;85distinct selected EVM successes across retained stages,47focused Python passes,43fresh normal gates and471fresh static records(13current-context review/458exact referenced reuse). ABI/storage unchanged; callable37/818/37/13 has0gaps. | Not a full suite, installed-runtime upgrade, target gas/operating rehearsal or independent approval. |
 | [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Historical custody5 revision52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |
@@ -142,4 +144,9 @@ setter from a new runtime/worker/site rollout. Retired architecture and old
 journals remain separate. Real providers/authorities/OpenSea, source8 services/
 website, storage/operations, economics/gas and independent audit remain open.
 
-Current royalty3 adds the [1-hour sale-close activation window]( ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.
+Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNCH_WINDOW.md)
+and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
+weights, deterministic rotating indivisible units, and no allocated rounding
+remainder after all eligible claims. Initial holding, prefunds, zero participants,
+unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.

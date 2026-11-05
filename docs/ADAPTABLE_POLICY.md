@@ -20,7 +20,7 @@ It holds no funds, grants no approvals and has no arbitrary executor or sweep.
 | Maintenance idle ceiling | 500bps (5%) | 0–4000bps, captured with its scoped revision before mutation. Main/residual utilization and retained-value checks remain independent. |
 | Principal payout gas | 180,000 per isolated owner call | 100,000–1,000,000; captured once per bounded payout batch. Tail reserve and per-owner failure isolation remain. |
 | Oracle source-read gas | 500,000 per bounded upstream call | 100,000–1,000,000; exact return length, freshness, dual-source and identity checks remain. |
-| Optional royalty sync gas | 250,000 per isolated currency | 100,000–1,000,000; underfunded outer calls revert; optional failure still defers only that currency without taking old royalties. |
+| Optional royalty sync gas | 1,000,000 per isolated currency | 100,000–1,000,000; underfunded outer calls revert; optional failure still defers only that currency. Lower values can defer a healthy exact allocator; review cold gas first. |
 | Direct mint price | 0.05 ETH gross | Positive uint128 wei. Fresh mint reviews bind price, recipient and current VRF policy. OpenSea primary mint integration remains unfinished. |
 | Future mint recipient | Deployment-selected address | Propose, then candidate itself accepts. Zero proposal cancels. Protocol accounting/custody addresses are rejected; old payments never move. |
 | Enhanced / Singularity display thresholds | $1,000 / $10,000 | Positive increasing uint128 USD18 values. Existing NFT appearance may change; traits, ownership, eligibility, rewards and shares do not. |
@@ -92,7 +92,7 @@ artwork/traits/root, 80/10/5/5 allocation, rarity royalty weights and5% marketpl
 request, exact backing/reserve/share/owner accounting, terminal holder return,
 no arbitrary custody recipient/sweep/bridge, and normal10% loss ceilings.
 An unsealed importer is inert: configure policy before `prepareImport`.
-The fresh V6 handoff binds the policy helper/runtime/configuration commitment and
+The fresh V8 handoff binds the policy helper/runtime/configuration commitment and
 requires matching cosmetic threshold values. V5 cannot be silently imported.
 
 ## Verification limits

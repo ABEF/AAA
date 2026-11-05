@@ -129,7 +129,9 @@ contract NativeCanonicalFundingTest is Test {
     }
     function testCanonicalSchemaNamesNativeAccountingVersion() public {
         MockAccess a=_access();ZZZCanonicalHandoff handoff=new ZZZCanonicalHandoff(address(a));
-        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6"));
+        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1"));

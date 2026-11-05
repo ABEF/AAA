@@ -2104,6 +2104,22 @@
     "name": "Approval",
     "signature": "Approval(address,address,uint256)"
   },
+  "0x8c70bbb2de92aa79534e6efdef63c7a4dfcb60c10a52f3d80299d8265d9a508f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousController",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "nextController",
+        "type": "address"
+      }
+    ],
+    "name": "CancelledRoyaltyReturnAdvanced",
+    "signature": "CancelledRoyaltyReturnAdvanced(address,address)"
+  },
   "0x8cf8bdee38d1f77a80e9d022ed87c849557d2289a2e7271026ace74860afd2de": {
     "fields": [
       {
@@ -2480,6 +2496,42 @@
     ],
     "name": "PoolConfigured",
     "signature": "PoolConfigured(bytes32,address,address)"
+  },
+  "0x9cc6954a7fc84f5c2faa5fbfe5fd13c33f359727534f032ad494df4d8de74523": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligibleCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligibleWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "cursorBefore",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "cursorAfter",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltiesAllocated",
+    "signature": "RoyaltiesAllocated(address,uint256,uint256,uint256,uint256,uint256)"
   },
   "0x9d56d8f39966c4aec41faeb2d0f38767003bb6e271dcd691ef0fc5c1616a77f0": {
     "fields": [
@@ -3729,6 +3781,47 @@
     ],
     "name": "CustodyRecovered",
     "signature": "CustodyRecovered(bytes32,uint256,uint256)"
+  },
+  "0xf44f003891fd42177d22e4243a6425e97281130ce19d4483bbea70365a1a1eb4": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "controller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CancelledRoyaltiesRecovered",
+    "signature": "CancelledRoyaltiesRecovered(address,address,address,uint256,uint256,uint256,bytes32)"
   },
   "0xf5a85f6bd22231f5f3fc3492eb53e86cafdea16c71ca2726359e7a885ba87d0a": {
     "fields": [

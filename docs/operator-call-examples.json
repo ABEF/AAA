@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "5f195359f07d70f0d1f783ba671ce877977e5cad6796b86fa8ee1778d607d05b",
+  "reference_sha256": "51a4f57b6ab57bd27b7c7901f6a3aeb0fdb8684e9b8a6fe7d77f5dab9d2d65cd",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -5464,12 +5464,6 @@
       "arguments": [],
       "value": null
     },
-    "ZZZRoyaltyRewards.SCALE()": {
-      "role": "R",
-      "short": "Read scale",
-      "arguments": [],
-      "value": null
-    },
     "ZZZRoyaltyRewards.accounted(address)": {
       "role": "R",
       "short": "Read accounted",
@@ -5695,29 +5689,12 @@
       ],
       "value": null
     },
-    "ZZZRoyaltyRewards.fraction(uint256,address)": {
-      "role": "R",
-      "short": "Read fraction",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
     "ZZZRoyaltyRewards.fund(address,uint256)": {
       "role": "P",
       "short": "Fund actual received royalties",
       "arguments": [
         "$ASSET_ADDRESS",
         "$AMOUNT"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.index(address)": {
-      "role": "R",
-      "short": "Read index",
-      "arguments": [
-        "$TARGET_ADDRESS"
       ],
       "value": null
     },
@@ -5747,15 +5724,6 @@
       "role": "R",
       "short": "Read orphaned",
       "arguments": [
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRoyaltyRewards.paidIndex(uint256,address)": {
-      "role": "R",
-      "short": "Read paid index",
-      "arguments": [
-        "$NFT_ID",
         "$TARGET_ADDRESS"
       ],
       "value": null
@@ -6849,6 +6817,70 @@
         "$ADMITTED_ROYALTY_ASSET",
         "$REVIEW_HASH"
       ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.ticketStart(uint256)": {
+      "role": "R",
+      "short": "Read raw ticket start",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.allocationCursor(address)": {
+      "role": "R",
+      "short": "Read currency rounding cursor",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyFactory.royaltyCodeHash()": {
+      "role": "R",
+      "short": "Read fixed payload hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.mintEndRevision()": {
+      "role": "R",
+      "short": "Read sale review revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.canonicalRecoverCancelled(address,address)": {
+      "role": "M",
+      "short": "Return cancelled royalty currency",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET",
+        "$VERIFIED_ACTIVE_ROYALTY_LEDGER"
+      ],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.cancelledRoyaltyReturnController()": {
+      "role": "R",
+      "short": "Read verified return controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.advanceCancelledRoyaltyReturn()": {
+      "role": "P",
+      "short": "Advance verified return hop",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZCanonicalHandoff.recoverCancelledRoyalties(address,bytes32)": {
+      "role": "G",
+      "short": "Recover cancelled royalty currency",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateCancelledRoyaltyHop()": {
+      "role": "R",
+      "short": "Validate fixed return hop",
+      "arguments": [],
       "value": null
     }
   }

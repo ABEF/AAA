@@ -34,7 +34,7 @@ contract ProtocolPolicyTest is Test {
     function testDefaultsAreCompleteWithoutGuessedUnconfiguredValues()public view{
         P.EntryPolicy memory e=policy.entryPolicy();assertEq(e.minActivationUSD,100e18);assertEq(e.minGrowthUSD,5e18);assertEq(e.maxIdleBps,500);
         assertEq(policy.maintenancePolicy().maxIdleBps,500);
-        P.GasPolicy memory g=policy.gasPolicy();assertEq(g.payoutGas,180000);assertEq(g.sourceCallGas,500000);assertEq(g.royaltySyncGas,250000);
+        P.GasPolicy memory g=policy.gasPolicy();assertEq(g.payoutGas,180000);assertEq(g.sourceCallGas,500000);assertEq(g.royaltySyncGas,1000000);
         assertEq(policy.payoutGas(),g.payoutGas);assertEq(policy.sourceCallGas(),g.sourceCallGas);assertEq(policy.royaltySyncGas(),g.royaltySyncGas);
         assertEq(policy.salePolicy().recipient,RECIPIENT);assertEq(policy.salePolicy().mintPrice,0.05 ether);
         assertEq(policy.metadataPolicy().enhancedUSD,1000e18);assertEq(policy.metadataPolicy().singularityUSD,10000e18);

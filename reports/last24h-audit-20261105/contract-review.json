@@ -1,0 +1,196 @@
+{
+  "production_source_sha256": {
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "src/ZZZRoyaltyFactory.sol": "517d3543ec1f5fcc9cfda3637f44ee690560c519559e1fa4233af122fe0fe3ec",
+    "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
+    "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
+    "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4"
+  },
+  "conclusions": [
+    {
+      "area": "Allocated whole-unit conservation",
+      "conclusion": "Fixed prefix and normalized GCD tickets partition the eligible NFT cohort. q*W+r equals the entire actual amount; current balance/liability bounds outstanding tags. No lifetime accumulator or claim-order allocation exists."
+    },
+    {
+      "area": "Fair exact shares",
+      "conclusion": "Normalizing equal-rarity cohorts avoids avoidable skew when each ideal NFT share is already an integer. For indivisible units, deterministic rotating tickets define the approved rounding policy; exact fractional promises are not made."
+    },
+    {
+      "area": "Cutoff and delayed sync",
+      "conclusion": "The cutoff freezes the pre-deadline activation cohort lazily before any late activation can join. An unavailable currency catches up to that cutoff before late entrants. Receipt balance observation cannot reconstruct the timestamp of transfers unseen until later; first late observation may include later receipts under the documented cohort rule."
+    },
+    {
+      "area": "Prefunds and admission",
+      "conclusion": "Constructor and pre-admission balances stay distinct unallocated original-currency units until reviewed allocation. allocateAllUnallocated selects all eligible orphaned units of one admitted asset, never earned liabilities or opening-pool backing."
+    },
+    {
+      "area": "Outage and original currency",
+      "conclusion": "Optional unreadable currencies defer registration while activation continues. Unseen funds go to the prior eligible cohort on recovery, before newcomers join. Selected broken/taxed/rebasing/frozen tokens can revert; healthy currencies remain separately claimable."
+    },
+    {
+      "area": "Canonical V8",
+      "conclusion": "Export flattens outstanding tree rights into whole accrued units without mutating the source, preserving abort. Rows preserve original activation ordinals and one-based ticket intervals; import rejects duplicate ordinal/tickets, malformed rows, invalid cursor and claim/liability mismatch. Funded integrated handoffs use synthetic LP venues, not real-v4 qualification."
+    },
+    {
+      "area": "Mint review",
+      "conclusion": "The real outer Vault payee callback exposed a deadline change after the NFT check. Six-word policy fingerprint binds policy, NFT, receiver, end and monotonic local revision; end restoration cannot revive an old review. V8 imports reset that local review revision because minting is already closed and target addresses change."
+    },
+    {
+      "area": "Cancelled receiver recovery",
+      "conclusion": "Completed abort can leave late/prefunded receipts at cancelled importer addresses. The fixed-coordinator hook now moves only actual remaining currency to a reviewed authenticated active canonical receiver. Ops coordinator retains route cursor, restored backing, current governance and pre/post cohort checks; no arbitrary recipient capability."
+    },
+    {
+      "area": "Creation code and deployability",
+      "conclusion": "Stored immutable-hash-bound creation bytes keep the factory runtime below EIP170. No caller-provided code/salt/recipient or mutator is introduced. Deployment gas increases materially and needs target-chain qualification."
+    },
+    {
+      "area": "Scope and unresolved limits",
+      "conclusion": "No universal guarantee covers unsupported pathological currencies, zero eligible beneficiaries, intentional mint/grace holding, inaccessible owners, target gas capacity, actual marketplace behavior, production services or independent approval. Capacity64 is a bounded engineering ceiling requiring measured review, not proven universal safe operation."
+    }
+  ],
+  "final_selected_tests_pending": false,
+  "preserved_boundaries": [
+    "No deployment, public transaction, signer, service, website, existing Anvil, journal or heartbeat change.",
+    "No commit/push by this agent; no protected dirty4 file edits."
+  ],
+  "final_selected_tests": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\final-raw-forward-ledger-mint-wire-and-canonical\\status.json",
+    "methods": 25,
+    "all_success": true,
+    "source_unchanged": true,
+    "test_unchanged": true,
+    "groups": {
+      "mint_review": 5,
+      "royalty_canonical": 7,
+      "actual_source_transcript": 2,
+      "cooled_gas": 2,
+      "fixed_payload_factory": 3,
+      "claim_rollback_reentry": 3,
+      "funded_integrated_handoff_abort": 3
+    },
+    "limits": "These are selected offline EVM methods; not a full suite, independent audit, real-v4 marketplace/provider acceptance or deployment."
+  },
+  "actual_source_fixture": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\final-raw-forward-ledger-mint-wire-and-canonical\\source-derived-fixture.json",
+    "sha256": "99b47685f87eb7be945ead8cb74845fb4e5a2d3a737f47477d03ce1023fbb1e9",
+    "cases": 2,
+    "events": 34,
+    "snapshots": 6,
+    "canonical_rows": 12
+  },
+  "final_local_gas": {
+    "worst_rotated_cooled_sync": 747393,
+    "activation_with_optional_sync": 904342,
+    "controller_CREATE_construction": 21756812,
+    "NFT_CREATE_construction": 13962340,
+    "limitations": "gasleft measurements in local fixture; constructor numbers exclude complete wallet transaction intrinsic/calldata costs. No target-chain qualification."
+  },
+  "focused_normal_size": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\royalty-forward-size1\\status.json",
+    "royalty_runtime": 24524,
+    "creation": 25522,
+    "runtime_headroom": 52,
+    "all_pass": true,
+    "limits": "The parent owns final all-production normal gates; this record is royalty-only."
+  },
+  "historical_stages_not_added_or_relabelled": {
+    "essential-mint-and-canonical-final": {
+      "methods": 0,
+      "successful": false,
+      "source_unchanged": true,
+      "parse_error": "invalid_json_or_compiler_error",
+      "failures": {}
+    },
+    "exact4-affected-final": {
+      "methods": 85,
+      "successful": false,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {
+        "test/NFTRoyalties.t.sol:NFTRoyaltiesTest::testNativeClaimRejectsReentryWithoutLosingEntitlement()": {
+          "status": "Failure",
+          "reason": "assertion failed: 0 != 2",
+          "gas": null
+        }
+      }
+    },
+    "exact4-affected-first": {
+      "methods": 85,
+      "successful": false,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {
+        "test/NFTRoyalties.t.sol:NFTRoyaltiesTest::testFractionsSurviveFrequentNativeAndTokenClaims()": {
+          "status": "Failure",
+          "reason": "assertion failed: 1 != 0",
+          "gas": null
+        },
+        "test/NFTRoyalties.t.sol:NFTRoyaltiesTest::testGlobalRoundingDustDoesNotBecomeNewEntrantWindfall()": {
+          "status": "Failure",
+          "reason": "assertion failed: 2 != 1",
+          "gas": null
+        }
+      }
+    },
+    "exact4-first": {
+      "methods": 19,
+      "successful": false,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {
+        "test/RoyaltyAudit20261105.t.sol:RoyaltyAudit20261105Test::testCanonicalRejectsDuplicateOrdinalsAndOverlappingTickets()": {
+          "status": "Failure",
+          "reason": "next call did not revert as expected",
+          "gas": null
+        },
+        "test/RoyaltyAudit20261105.t.sol:RoyaltyAudit20261105Test::testFiniteEndingWholeLegendaryEntitlementsAreFullyClaimable()": {
+          "status": "Failure",
+          "reason": "assertion failed: 3 != 1",
+          "gas": null
+        }
+      }
+    },
+    "exact4-gcd-factory-first": {
+      "methods": 26,
+      "successful": true,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {}
+    },
+    "final-frozen-ledger-mint-wire-and-canonical": {
+      "methods": 25,
+      "successful": false,
+      "source_unchanged": false,
+      "parse_error": null,
+      "failures": {}
+    },
+    "final-mint-coldgas-canonical-and-claims": {
+      "methods": 17,
+      "successful": false,
+      "source_unchanged": false,
+      "parse_error": null,
+      "failures": {}
+    },
+    "mint-end-review-before": {
+      "methods": 2,
+      "successful": true,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {}
+    },
+    "royalty3-repros": {
+      "methods": 8,
+      "successful": true,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {}
+    },
+    "source-wire-transcripts": {
+      "methods": 2,
+      "successful": true,
+      "source_unchanged": true,
+      "parse_error": null,
+      "failures": {}
+    }
+  }
+}

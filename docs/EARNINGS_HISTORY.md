@@ -3,7 +3,7 @@
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
 candidate uses accounting6/portfolio2, fee intake1 and compatible parked
-same-chain canonical V6. Both physical LPs contribute to one funded allocation
+same-chain canonical V8. Both physical LPs contribute to one funded allocation
 per bucket/asset, not duplicate income streams. Explicit historical4 and3 readers
 retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
@@ -11,13 +11,15 @@ qualification remain open. See the [financial-history task](../TODO.md#task-fina
 
 ## Unallocated royalty recovery
 
-Recovery1 first allocates previously unallocated value through a dedicated
-UnallocatedRoyaltiesRecovered event. The current active weights receive measured
-ETH, with normal index fractions. Collection royalties_recovered is separate
-from earlier received/quarantined currency; royalties_allocated includes it once.
-Existing entitlement conversions and claims still are not new income. Earnings
-checkpoints bind semantic source: rebuild/re-pin after this parser change. See
-[exact rules](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).
+Fresh royalty4/reporting5 credits original-unit `RoyaltiesAllocated` exactly once.
+Receipt/opening/recovery telemetry acknowledges the allocation; it is not another
+income credit. Governance recovery2 allocates reviewed admitted unallocated
+units at the active rarity weights now; existing earned/opening/deferred rights
+are excluded. No royalty conversion or fractional reserve exists in this profile.
+Historical recovery1/scaled-index readers retain their own explicit semantics.
+Checkpoints bind the actual source/codec: reviewed rebuild/re-pin is required.
+See [exact allocation](EXACT_ROYALTY_ALLOCATION.md) and
+[reporting](ROYALTY_REPORTING.md).
 
 ## Optional checkpoint1 milestone
 
@@ -144,7 +146,7 @@ or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet
 | `lp_compounding_allocated_raw`, `lp_buyback_allocated_raw` | Amounts allocated to those reserves, not proof that compounding or a burn has executed |
 | `lp_collective_quarantined_raw` | Collective credits with no eligible membership |
 | `royalties_received_raw`, `royalties_allocated_raw`, `royalties_quarantined_raw` | Actual processed royalty receipts, separated by eligibility; admission/constructor prefunds are excluded |
-| NFT `lp_individual_raw`, `lp_collective_raw`, `royalties_raw` | Exact whole-unit earnings reconstructed from the ledger's 1e36 indexes and carried fractions |
+| NFT `lp_individual_raw`, `lp_collective_raw`, `royalties_raw` | LP earnings reconstructed from their 1e36 indexes/fractions; fresh royalties from exact ticket credits, with no royalty fractions |
 
 Do not sum gross receipts and their allocations as additional income. Current
 fee-intake 1 accepts local LP receipts; no creator-payment inbox, satellite or
@@ -154,8 +156,8 @@ gross/reserve totals from a holder-only credit.
 
 The clock is **on-chain processing/allocation time**. The 24-hour window is
 `(confirmed timestamp - 86400, confirmed timestamp]`. An unsynchronized royalty
-deposit or unharvested venue fee is not yet processed earnings. A fractional token
-unit enters an NFT's period when carried fractions first become a whole raw unit. This distinction
+deposit or unharvested venue fee is not yet processed earnings. An LP fractional unit enters an NFT's period when its carry becomes a whole raw
+unit. Fresh royalty4 assigns whole units at allocation time without a fractional reserve. This distinction
 matters for very small amounts and is returned in the response.
 
 ## USD valuation decision

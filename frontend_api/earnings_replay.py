@@ -1,5 +1,6 @@
 """Exact indexed-earnings replay. No price estimates, writes or transaction signing."""
 from collections import defaultdict
+from math import gcd
 
 from frontend_api.history import HistoryError, _topic_address
 from zzz_ops.abi import decode_words, keccak256
@@ -23,6 +24,7 @@ SPECS = {
  ('royalties', 'RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)'): (3, 2),
  ('royalties', 'RoyaltyCustodyReturned(bytes32,address,uint256)'): (2, 1),
  ('royalties', 'RoyaltiesReceived(address,uint256,bool)'): (1, 2),
+ ('royalties', 'RoyaltiesAllocated(address,uint256,uint256,uint256,uint256,uint256)'): (1, 5),
  ('royalties', 'UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)'): (1, 4),
  ('royalties', 'UnallocatedRoyaltiesAllocated(address,uint256,uint256,bytes32)'): (1, 3),
  ('royalties', 'MintEndConfigured(uint64,uint256)'): (0, 2),
@@ -44,6 +46,37 @@ NFT = ('lp_individual', 'lp_collective', 'royalties')
 def require(condition, message):
     if not condition:
         raise HistoryError(message)
+
+
+def royalty_profile(projection):
+    schema = getattr(getattr(projection, 'royalty_reporting', None), 'schema', 0)
+    return {3: 2, 4: 3, 5: 4}.get(schema, 0)
+
+
+def allocation_unit(weights):
+    """GCD of the captured eligible weights; empty prefixes cannot allocate."""
+    unit = 0
+    for weight in weights:
+        require(type(weight) is int and 1 <= weight <= 3, 'Invalid royalty cohort weight')
+        unit = gcd(unit, weight)
+    return unit
+
+
+def ticket_amount(amount, supply, cursor, start, weight, *, unit=1):
+    """Independent whole-unit q/r allocation, including a wrapping bonus arc."""
+    require(all(type(x) is int for x in (amount, supply, cursor, start, weight)) and
+            amount >= 0 and supply > 0 and 0 <= cursor < supply and
+            0 <= start < supply and 1 <= weight <= 3 and start+weight <= supply,
+            'Invalid exact royalty allocation geometry')
+    require(type(unit) is int and 1 <= unit <= 3 and
+            all(value % unit == 0 for value in (supply,cursor,start,weight)),
+            'Invalid exact royalty allocation unit')
+    supply, cursor, start, weight = (value//unit for value in (supply,cursor,start,weight))
+    quotient, remainder = divmod(amount, supply)
+    end = cursor+remainder
+    def overlap(left, right):
+        return max(0, min(start+weight, right)-max(start, left))
+    return quotient*weight+overlap(cursor, min(end, supply))+overlap(0, max(0, end-supply))
 
 
 class Replay:
@@ -77,6 +110,10 @@ class Replay:
         self.owner_index = defaultdict(int)
         self.collective_index = defaultdict(int)
         self.royalty_index = defaultdict(int)
+        self.royalty_settlement_version = 0
+        self.ticket_offsets = {}  # Internal ZERO-based offsets; source ticketStart is ONE-based.
+        self.royalty_cursors = defaultdict(int)
+        self.pending_exact_allocations = {}
         self.fee_dust = defaultdict(int)
         self.fee_keys = set()
         self.fee_intake_version = 0
@@ -89,9 +126,15 @@ class Replay:
         self.last_timestamp = -1
         self.frozen = self.retired = False
 
-    def begin(self, emitters, lp_assets, royalty_assets, lower=None, *, fee_intake_version=0):
+    def begin(self, emitters, lp_assets, royalty_assets, lower=None, *, fee_intake_version=0, royalty_settlement_version=0):
         require(type(fee_intake_version) is int and fee_intake_version in (0, 1),
                 'Unsupported earnings fee-intake profile')
+        require(type(royalty_settlement_version) is int and royalty_settlement_version in (0,2,3,4),
+                'Unsupported earnings royalty settlement profile')
+        require(not self.pending_exact_allocations, 'Previous royalty epoch left unmatched exact allocations')
+        require(lower is None or (self.royalty_settlement_version == 4) == (royalty_settlement_version == 4),
+                'Canonical exact royalty profile changed')
+        self.royalty_settlement_version = royalty_settlement_version
         require(not self.pending_lp_credit, 'Previous earnings epoch left an unmatched LP credit')
         self.fee_intake_version = fee_intake_version
         self.fee_keys = set()
@@ -102,8 +145,14 @@ class Replay:
             require(self.retired, 'Previous earnings epoch was not retired')
             require(all(cohort == set(self.weights) for cohort in self.cohorts.values()),
                     'Canonical royalty cutoff left deferred eligibility')
-            # Import reconstructs activation ordinals in NFT mint order.
-            self.activation_order = [i for i in self.mints if i in self.weights]
+            if self.royalty_settlement_version != 4:
+                # Historical imports rebuilt ordinals in NFT mint order. V8
+                # preserves the actual activation order and ticket ownership.
+                self.activation_order = [i for i in self.mints if i in self.weights]
+                cursor = 0
+                for i in self.activation_order:
+                    self.ticket_offsets[i] = cursor
+                    cursor += self.weights[i]
         self.frozen = self.retired = False
 
     def add(self, metric, asset, amount, timestamp):
@@ -258,6 +307,26 @@ class Replay:
                     count == len(self.activation_order) and weight == sum(self.weights.values()),
                     'Invalid initial royalty cutoff cohort')
             self.royalty_opening = (cutoff, count, weight)
+        elif name == 'RoyaltiesAllocated':
+            require(self.royalty_settlement_version == 4, 'Exact allocation event in a historical royalty profile')
+            asset = _topic_address(topics[1])
+            amount, count, supply, before, after = d
+            cohort = self.cohorts.get(asset)
+            unit = allocation_unit(self.weights[i] for i in cohort) if cohort is not None else 0
+            require(cohort is not None and cohort == set(self.activation_order[:count]) and
+                    count == len(cohort) and supply == sum(self.weights[i] for i in cohort) and
+                    amount > 0 and supply > 0 and before == self.royalty_cursors[asset] and
+                    unit != 0 and 0 <= before < supply and before % unit == 0 and
+                    after == ((before//unit+amount % (supply//unit)) % (supply//unit))*unit and
+                    asset not in self.pending_exact_allocations,
+                    'Invalid exact royalty allocation or cursor')
+            self.pending_exact_allocations[asset] = (amount, count, supply, transaction)
+            self.royalty_cursors[asset] = after
+            self.add('royalties_allocated', asset, amount, timestamp)
+            for identifier in self.selected:
+                if identifier in cohort:
+                    units = ticket_amount(amount,supply,before,self.ticket_offsets[identifier],self.weights[identifier],unit=unit)
+                    self.earn('royalties',asset,units*SCALE,timestamp,identifier)
         elif name == 'InitialRoyaltiesAllocated':
             asset = _topic_address(topics[1]); amount, count, weight = d
             require(asset in self.cohorts and asset not in self.initial_royalty_allocations and
@@ -267,6 +336,12 @@ class Replay:
             require(self.cohorts[asset] == cohort and sum(self.weights[i] for i in cohort) == weight and
                     (weight != 0 or amount == 0), 'Initial royalty allocation has wrong cohort')
             self.initial_royalty_allocations.add(asset)
+            if self.royalty_settlement_version == 4:
+                if amount:
+                    self.ack_exact(asset, amount, count, weight, transaction)
+                else:
+                    require(asset not in self.pending_exact_allocations, 'Unexpected zero initial allocation credit')
+                return
             self.add('royalties_allocated', asset, amount, timestamp)
             delta = amount*SCALE//weight if weight else 0
             self.royalty_index[asset] += delta
@@ -295,6 +370,7 @@ class Replay:
                 if asset not in deferred:
                     require(cohort == set(self.weights), 'Healthy activation omitted royalty recovery')
                     cohort.add(identifier)
+            self.ticket_offsets[identifier] = sum(self.weights.values())
             self.weights[identifier] = weight
             self.activation_order.append(identifier)
         elif name == 'RoyaltyEligibilityRecovered':
@@ -317,6 +393,9 @@ class Replay:
                     supply == sum(self.weights.values()) and amount > 0 and review != 0,
                     'Invalid original-currency royalty allocation')
             self.add('royalties_recovered',asset,amount,timestamp)
+            if self.royalty_settlement_version == 4:
+                self.ack_exact(asset,amount,len(cohort),supply,transaction)
+                return
             self.add('royalties_allocated',asset,amount,timestamp)
             delta=amount*SCALE//supply
             self.royalty_index[asset] += delta
@@ -363,6 +442,19 @@ class Replay:
             require(bool(eligible) == bool(supply) or (not eligible and window_receipt),
                     'Royalty receipt has inconsistent cohort weight')
             self.add('royalties_received', asset, amount, timestamp)
+            if self.royalty_settlement_version == 4:
+                if eligible and amount:
+                    self.ack_exact(asset,amount,len(cohort),supply,transaction)
+                else:
+                    # canonicalSettle can report zero received units without
+                    # emitting a positive allocation. Never invent an income
+                    # event, or let it acknowledge an unrelated positive credit.
+                    require(asset not in self.pending_exact_allocations, 'Zero/held royalty receipt follows an unmatched exact credit')
+                    self.add('royalties_quarantined',asset,amount,timestamp)
+                if asset in self.pending_recovery:
+                    require(self.pending_recovery.pop(asset) == transaction, 'Royalty cutoff recovery crossed transactions')
+                    self.cohorts[asset] = set(self.weights)
+                return
             self.add('royalties_allocated' if eligible else 'royalties_quarantined', asset, amount, timestamp)
             delta = amount*SCALE//supply if eligible and supply else 0
             self.royalty_index[asset] += delta
@@ -372,8 +464,12 @@ class Replay:
                 require(self.pending_recovery.pop(asset) == transaction, 'Royalty cutoff recovery crossed transactions')
                 self.cohorts[asset] = set(self.weights)
 
+    def ack_exact(self, asset, amount, count, supply, transaction):
+        require(self.pending_exact_allocations.pop(asset, None) == (amount,count,supply,transaction),
+                'Exact royalty credit differs from its allocation receipt')
+
     def finish(self):
-        require(self.started and not self.deferred and not self.pending_recovery and not self.pending_lp_credit,
+        require(self.started and not self.deferred and not self.pending_recovery and not self.pending_lp_credit and not self.pending_exact_allocations,
                 'Incomplete earnings epoch')
         require(set(self.weights) == self.members == set(self.shares), 'Activation/share/membership events are incomplete')
         require(set(self.cohorts) == self.royalty_assets, 'Royalty admission history is incomplete')
@@ -389,5 +485,7 @@ class Replay:
                 'window': {'after_timestamp_exclusive': max(-1, self.timestamp-86400),
                            'through_timestamp_inclusive': self.timestamp},
                 'event_count': self.events, 'clock': 'on-chain processing/allocation time',
-                'rounding': 'Exact 1e36 ledger indexes; NFT whole units enter the period when carried fractions cross one raw unit.',
+                'rounding': ('Royalties use exact whole-unit rotating tickets; LP rewards retain scaled fraction carry.'
+                             if self.royalty_settlement_version == 4 else
+                             'Exact 1e36 ledger indexes; NFT whole units enter the period when carried fractions cross one raw unit.'),
                 'unprocessed_revenue_included': False, 'claims_and_conversions_are_income': False}

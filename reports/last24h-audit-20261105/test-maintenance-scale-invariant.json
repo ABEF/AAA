@@ -1,0 +1,235 @@
+{
+  "scope": "Deprecated test maintenance only: CollectionScale and NFTRightsInvariants. No production behavior, profile, gas configuration, signing, service, deployment, Anvil or journal change.",
+  "owned_files_sha256": {
+    "test/CollectionScale.t.sol": "c8794d7b93f61dcdd0d54d841dd9c484bdafd0a5687042af38e01fa7f4df7069",
+    "test/NFTRightsInvariants.t.sol": "ee85b13d46ae5cbbe696270fbdb73b43d3ea743181309d0ba43aeb94ca88c82a"
+  },
+  "original_files": "original-CollectionScale.t.sol and original-NFTRightsInvariants.t.sol (byte preserved)",
+  "accepted_distinct_contexts": 6,
+  "fresh_final_changed_benchmark_contexts": 1,
+  "exact_unchanged_passed_contexts_reused": 5,
+  "context_reuse_proof": "five-context-reuse-proof.json",
+  "bounded_invariant": {
+    "Invariant": {
+      "runs": 32,
+      "calls": 4096,
+      "reverts": 0,
+      "metrics": {
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.maintain": {
+          "calls": 350,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.synchronizeRoyalty": {
+          "calls": 326,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.harvest": {
+          "calls": 352,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.finishRoyaltyWindow": {
+          "calls": 330,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.receiveRoyalty": {
+          "calls": 339,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimRoyalty": {
+          "calls": 349,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.transfer": {
+          "calls": 369,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimMixed": {
+          "calls": 328,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.activate": {
+          "calls": 356,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.pause": {
+          "calls": 322,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimLP": {
+          "calls": 336,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.topUp": {
+          "calls": 339,
+          "reverts": 0,
+          "discards": 0
+        }
+      },
+      "failed_corpus_replays": 0
+    }
+  },
+  "production_and_dependency_sources_unchanged": true,
+  "unchanged_production_source_count": 83,
+  "normal_static_reuse": "normal-final-2602e4a69d 43gates / static-final487 are exact unchanged production evidence; not rerun for test-only maintenance.",
+  "final_benchmark_stage": "final-gas-shapes-prefix/status.json",
+  "five_financial_stateful_successes_stage": "after-idle-and-same-path/status.json",
+  "final_global_test_tree_unchanged": true,
+  "gas": {
+    "collection.1.activation": 3399930,
+    "collection.2.activation": 3082367,
+    "collection.1000.activation": 3062296,
+    "collection.1.claim-one-asset": 182996,
+    "collection.2.claim-one-asset": 182996,
+    "collection.1000.claim-one-asset": 183137,
+    "collection.1.claim-five-mixed": 1075593,
+    "collection.2.claim-five-mixed": 959445,
+    "collection.1000.claim-five-mixed": 1467033,
+    "collection.1.shared-rebalance": 2353042,
+    "collection.2.shared-rebalance": 2353042,
+    "collection.1000.shared-rebalance": 2353325,
+    "collection.1.shared-compound": 2161355,
+    "collection.2.shared-compound": 2161355,
+    "collection.1000.shared-compound": 2161638,
+    "collection.1000.claim-32-mixed": 5193487
+  },
+  "measured_shapes": [
+    {
+      "nfts": 1,
+      "claimed-nft-royalty-weight": 2,
+      "claimed-nft-first-ticket": 1,
+      "eligible-weight": 2
+    },
+    {
+      "nfts": 2,
+      "claimed-nft-royalty-weight": 1,
+      "claimed-nft-first-ticket": 3,
+      "eligible-weight": 3
+    },
+    {
+      "nfts": 1000,
+      "claimed-nft-royalty-weight": 1,
+      "claimed-nft-first-ticket": 1500,
+      "eligible-weight": 1500
+    }
+  ],
+  "local_gas_limit_unchanged": 12000000,
+  "LP_same_incumbent_path_allowance_unchanged": 100000,
+  "royalty_tree_relative_allowance": null,
+  "changes": [
+    "During-mint receipts remain in the initial opening pool and are independently assigned in full1000-NFT expected payouts. Exact whole units all drain; zero-cohort/preadmission rules are not confused with ordinary opening receipts.",
+    "Separate zero-cutoff-cohort case preserves unallocated balances across later activation and pays only later royalty income.",
+    "Observe actual public RoyaltyOpeningFinalized cutoff event rather than adding or guessing private getters; exercise exact one-hour deadline.",
+    "Invariant ghost includes held openingPool and pending units before opening. After opening, paid plus aggregate healthy current claimables equals all actual receipts; LP fractional inequality remains.",
+    "Expected locked royalty and mixed-batch attempts prove atomic rejection; current owner transfers/claims and end-of-run positive funded drains prevent vacuous coverage.",
+    "Classify only known idle-ceiling entry rejection under fixed synthetic $1/full-placement assumptions; require Slippage and verify balances, shares, bucket, position, total weight and compound reserves unchanged. Unexpected failures remain failures.",
+    "Honor actual compoundReady before synthetic standalone compounding; source intervals/guards are not changed.",
+    "Cool actual ProtocolPolicy in addition to the mock strategy. Separate first creation from incumbent2/1000 comparisons. Keep 12m absolute and100k LP-path budgets; log exact royalty rarity/prefix shape instead of claiming O(1) tree cost."
+  ],
+  "limits": [
+    "Synthetic venue/ERC20/feed/VRF/authority fixtures; not native pool, RPC, real-wallet, maximum-capacity or target-chain qualification.",
+    "Measured mixed claim costs depend on prefix/tag geometry and rarity; selected32-entry batch is not a universal worst case. Vm.cool resets the selected accounts and their slots; unlisted helpers can remain warm.",
+    "Cold worst-capacity operating gas limits remain parent-owned release findings; no live gas limit/config was raised.",
+    "Healthy-currency exactness does not guarantee arbitrary malicious tokens, incapable owners or zero-participant allocation."
+  ],
+  "retained_stages": [
+    {
+      "stage": "before-original",
+      "exit_code": 1,
+      "successful": false,
+      "methods": 2,
+      "failures": {
+        "test/CollectionScale.t.sol:CollectionScaleTest::testAll1000NFTsPreserveIndependentRightsAndFundedConservation()": "assertion failed: 0 != 23",
+        "test/CollectionScale.t.sol:CollectionScaleTest::testColdOperationsAtOneAnd1000NFTsStayBounded()": "InvalidState()"
+      },
+      "parse_error": null,
+      "source_unchanged": true,
+      "global_test_unchanged": false,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "before-handler",
+      "exit_code": 1,
+      "successful": false,
+      "methods": 2,
+      "failures": {
+        "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::testMinimumBoundTopUpActuallyExecutesAndConservesRights()": "assertion failed: 13 != 0",
+        "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::testReceiptActivationTransferPauseAndMixedClaimSequence()": "InvalidState()"
+      },
+      "parse_error": null,
+      "source_unchanged": true,
+      "global_test_unchanged": false,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "after-first",
+      "exit_code": 1,
+      "successful": false,
+      "methods": 0,
+      "failures": {},
+      "parse_error": "invalid_json_or_compiler_error",
+      "source_unchanged": true,
+      "global_test_unchanged": true,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "after-public-cutoff-event",
+      "exit_code": 1,
+      "successful": false,
+      "methods": 6,
+      "failures": {
+        "test/CollectionScale.t.sol:CollectionScaleTest::testColdOperationsAtOneAnd1000NFTsStayBounded()": "NFT population unexpectedly increases bounded path gas: 1467000 > 1175593",
+        "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::invariant_rightsAndActualFundingConserved()": "custom error 0x7dd37f70"
+      },
+      "parse_error": null,
+      "source_unchanged": true,
+      "global_test_unchanged": false,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "after-idle-and-same-path",
+      "exit_code": 1,
+      "successful": false,
+      "methods": 6,
+      "failures": {
+        "test/CollectionScale.t.sol:CollectionScaleTest::testColdOperationsAtOneAnd1000NFTsStayBounded()": "Same-path population regression exceeds allowance: 1467033 > 1059445"
+      },
+      "parse_error": null,
+      "source_unchanged": true,
+      "global_test_unchanged": true,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "final-gas-shapes",
+      "exit_code": 0,
+      "successful": false,
+      "methods": 0,
+      "failures": {},
+      "parse_error": "invalid_json_or_compiler_error",
+      "source_unchanged": true,
+      "global_test_unchanged": true,
+      "owned_test_unchanged": true
+    },
+    {
+      "stage": "final-gas-shapes-prefix",
+      "exit_code": 0,
+      "successful": true,
+      "methods": 1,
+      "failures": {},
+      "parse_error": null,
+      "source_unchanged": true,
+      "global_test_unchanged": true,
+      "owned_test_unchanged": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Component boundaries and current status
 
-This map describes the undeployed [accounting6/custody5/portfolio2/canonical V6](POSITION_V6.md)
+This map describes the undeployed [accounting6/custody5/portfolio2/canonical V8](POSITION_V6.md)
 source, not installed contracts or service qualification. Production is **NOT
 APPROVED**. Use [features/evidence](IMPLEMENTATION_STATUS.md) for scoped checks,
 the [sole Todo](../TODO.md) for work and the [operator manual](OPERATOR_MANUAL.md)
@@ -38,8 +38,7 @@ leave an auxiliary behind.
 | [Rewards](../src/ZZZRewards.sol) | Share-weighted individual plus equal activated collective indices/fractions and current-owner claims. | Actual recipients, complete history and worst-case currency gas. |
 | [Membership](../src/ZZZMembership.sol) | One equal collective share per activated NFT, preserved through transfer/LP exit so past entitlements survive. | Bounded dust/checkpoint costs and complete handoff composition. |
 | [LPRewardConverter](../src/ZZZLPRewardConverter.sol) | Converts only earned balances into the same NFTs' ETH credits, without new-income double counting. | Cheaper qualified ZZZ route at default 1%, latency, gas and operation. |
-| [RoyaltyRewards](../src/ZZZRoyaltyRewards.sol) | Separate actual-receipt1/2/3 rarity ledger, optional-currency outage cohorts and current-owner claims; recovery1 allocates only unallocated value into ETH at current weights. Future royalties continue after LP exit; no external custody drain. | Actual marketplace currencies/receipts and failure/recovery behavior. |
-| [RoyaltyConverter](../src/ZZZRoyaltyConverter.sol) | Guarded batch conversion preserving original NFT entitlements; wrappers only in explicit routes. | Routes/feed/wrapper and keeper operating qualification. |
+| [RoyaltyRewards](../src/ZZZRoyaltyRewards.sol) | Settlement4 original-currency royalties: GCD-normalized rarity tickets, exact whole-unit allocation, opening/outage cohorts and current-owner claims. Recovery2 allocates reviewed unallocated units without swaps; future royalties continue after LP exit. | Actual marketplace currencies/receipts, raw-unit fairness, maximum-state gas and failure/recovery behavior. |
 | [ClaimRouter](../src/ZZZClaimRouter.sol) | Up to 32 mixed ledger claims, actual owner and atomic rollback. Principal return is a separate Migration payout. | Gas, frontend chunking and real receiver acceptance. |
 | [Oracle](../src/ZZZOracle.sol) | Two-source USD bounds, freshness/fingerprint and 3% disagreement; reviewed sequencer policy. | Independent sources, proxies/common-mode/uptime and provider support. |
 | [Optional Pyth source](../src/ZZZPythPriceFeed.sol) | Immutable bounded price/time/confidence reader, no funds/updater. | Actual Core/source/provider and updater review. |
@@ -59,7 +58,7 @@ USD-loss promise. Source currency stays source currency until actually converted
 | [NFTMetadata](../src/ZZZNFTMetadata.sol) | Current LP NAV selects four visual stages; unavailable data stays explicit. Exited LP has verifiedzero and terminal `LP exited` stage4 using existing artwork. | Permanent hosting, feed/cache refresh and current-profile display. |
 | [Factories](../src/ZZZRoyaltyFactory.sol),[Assets factory](../src/ZZZActivationAssetsFactory.sol) | Fixed helper creation and parent/controller bindings. | Exact deployed release inventory and bytecode. |
 | [Migration](../src/ZZZMigration.sol),[parking validation](../src/ZZZCustodyValidation.sol) | Before exit, same-pair moves/reversible parking and separate paused-governance [manual emergency redeployment](EMERGENCY_REBALANCE.md). Terminal exit allocates actual ETH/ZZZ by shares with bounded current-owner payouts/fallback. | Economic bypass trusts governance and can lose almost all principal. Maximal gas, services/UI, operation and independent review remain open; no custodian/bridge/return ingress. |
-| [CanonicalHandoff](../src/ZZZCanonicalHandoff.sol) | Six-domain same-chain capture/import/backing, funded abort and atomic source retirement/replacement activation, only before LP exit. | Exact V6 compatible peers, escrow cutover, funding/interruption/gas and independent review. |
+| [CanonicalHandoff](../src/ZZZCanonicalHandoff.sol) | Six-domain same-chain capture/import/backing, funded abort and atomic source retirement/replacement activation, only before LP exit. | Exact V8 compatible peers, escrow cutover, funding/interruption/gas and independent review. |
 | [NFTCanonical](../src/ZZZNFTCanonical.sol),[VaultCanonical](../src/ZZZVaultCanonical.sol),[FeesCanonical](../src/ZZZFeesCanonical.sol) | Sealed typed codecs for ownership, shares, ledgers/fractions and classified backing. V6 group rows retain the existing12-word record shape. | Actual source/successor manifest and complete operated rehearsal. |
 
 Rarity affects royalties only; color/pattern affect neither ledger. Exited NFTs

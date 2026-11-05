@@ -200,12 +200,11 @@ contract NFTRoyaltiesTest is Test {
         assertEq(_claim(bob, 2, address(token)), 200);
     }
 
-    function testNFTTransferCarriesAllUnclaimedRightsAndFractions() public {
+    function testNFTTransferCarriesAllUnclaimedExactRights() public {
         nft.activate(1, 1);
         nft.activate(2, 1);
         _pay(1);
-        assertEq(_claim(alice, 1, ETH), 0);
-        assertEq(royalties.fraction(1, ETH), royalties.SCALE() / 2);
+        assertEq(royalties.claimable(1, ETH), 1);
         vm.prank(alice);
         nft.transferFrom(alice, carol, 1);
         _pay(3);
@@ -237,15 +236,15 @@ contract NFTRoyaltiesTest is Test {
         owner.claim();
         assertTrue(owner.attempted());
         assertFalse(owner.reentered());
-        assertEq(address(owner).balance, 2 ether - 1);
-        assertEq(royalties.liabilities(ETH), 1);
-        assertEq(royalties.accounted(ETH), 1);
-        assertEq(address(royalties).balance, 1);
-        assertEq(royalties.fraction(4, ETH), royalties.SCALE() - 2);
+        assertEq(address(owner).balance, 2 ether);
+        assertEq(royalties.liabilities(ETH), 0);
+        assertEq(royalties.accounted(ETH), 0);
+        assertEq(address(royalties).balance, 0);
+        assertEq(royalties.allocationCursor(ETH), 0);
         owner.claim();
-        assertEq(address(owner).balance, 2 ether - 1);
-        assertEq(royalties.liabilities(ETH), 1);
-        assertEq(address(royalties).balance, 1);
+        assertEq(address(owner).balance, 2 ether);
+        assertEq(royalties.liabilities(ETH), 0);
+        assertEq(address(royalties).balance, 0);
     }
 
     function testRevertedNativeClaimRollsBackAccounting() public {
@@ -278,26 +277,26 @@ contract NFTRoyaltiesTest is Test {
         assertEq(address(owner).balance, 10);
     }
 
-    function testFractionsSurviveFrequentNativeAndTokenClaims() public {
+    function testExactRemaindersRotateAcrossFrequentNativeAndTokenClaims() public {
         nft.activate(1, 1);
         nft.activate(2, 1);
         _pay(1);
         token.mint(address(royalties), 1);
-        assertEq(_claim(alice, 1, ETH), 0);
+        assertEq(_claim(alice, 1, ETH), 1);
         assertEq(_claim(bob, 2, ETH), 0);
-        assertEq(_claim(alice, 1, address(token)), 0);
+        assertEq(_claim(alice, 1, address(token)), 1);
         assertEq(_claim(bob, 2, address(token)), 0);
         _pay(1);
         token.mint(address(royalties), 1);
-        assertEq(_claim(alice, 1, ETH), 1);
+        assertEq(_claim(alice, 1, ETH), 0);
         assertEq(_claim(bob, 2, ETH), 1);
-        assertEq(_claim(alice, 1, address(token)), 1);
+        assertEq(_claim(alice, 1, address(token)), 0);
         assertEq(_claim(bob, 2, address(token)), 1);
         assertEq(royalties.liabilities(ETH), 0);
         assertEq(royalties.liabilities(address(token)), 0);
     }
 
-    function testGlobalRoundingDustDoesNotBecomeNewEntrantWindfall() public {
+    function testExactRemainderBelongsToIncumbentBeforeNewActivation() public {
         nft.activate(1, 1);
         nft.activate(2, 2);
         token.mint(address(royalties), 1);
@@ -305,11 +304,11 @@ contract NFTRoyaltiesTest is Test {
         nft.activate(3, 3);
         assertEq(royalties.claimable(3, address(token)), 0);
         token.mint(address(royalties), 6);
-        assertEq(_claim(alice, 1, address(token)), 1);
+        assertEq(_claim(alice, 1, address(token)), 2);
         assertEq(_claim(bob, 2, address(token)), 2);
         assertEq(_claim(carol, 3, address(token)), 3);
-        assertEq(token.balanceOf(address(royalties)), 1);
-        assertEq(royalties.liabilities(address(token)), 1);
+        assertEq(token.balanceOf(address(royalties)), 0);
+        assertEq(royalties.liabilities(address(token)), 0);
         assertEq(royalties.claimable(3, address(token)), 0);
     }
 

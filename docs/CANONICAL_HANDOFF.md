@@ -1,17 +1,26 @@
-# Current royalty-window compatibility boundary
-
-Fresh source now uses canonicalV7, ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7.
-The royalty header is five words: asset count, NFT count, total weight, mintEnd,
-assetCapacity. Older V6 peers/headers are rejected; all other domain records retain
-their typed formats. Source capture requires an opened/finalized royalty window
-and every admitted currency initial allocation synchronized. This adds a temporary
-first-hour handoff restriction; LP parking/emergency/terminal exit is independent.
-Import retains the closed sale/capacity, all earned rights and classified prefunds;
-it does not reopen minting or the grace period. Follow [the procedure](ROYALTY_LAUNCH_WINDOW.md).
-The detailed procedures below retain the typed handoff steps; use the V7
-identity/header and the royalty-opening prerequisites above.
-
 # Canonical handoff: same-chain implementation
+
+## Current exact-royalty compatibility
+
+Fresh canonicalV8 uses ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8; V7 and older
+peers are rejected. The royalty header remains five words (currency count, NFT
+count, total weight, closed mint end, capacity). Royalty asset rows are192bytes
+(asset, raw allocation cursor, accounted, liabilities, unallocated, backing).
+NFT weight rows are128bytes (id, weight, activation ordinal, ticket start).
+NFT/currency rows are96bytes (id, asset, accrued whole units).
+
+Frozen view export flattens accrued plus all outstanding normalization-book
+units. Source books stay intact for abort; the importer starts empty books and
+flat accrued units. Import proves unique complete ticket/ordinal coverage,
+rarity, cursor/GCD bounds and each currency's summed claims equal liabilities.
+The coordinator binds exact source row hashes; standalone row shape alone does
+not prove arbitrary replacement code has valid economics.
+
+Opening must have finalized and every admitted initial currency synchronized
+before capture. An unreadable currency can block this handoff; independent LP
+parking/terminal return does not make that currency payable. Import never
+reopens sale/grace. See [exact allocation](EXACT_ROYALTY_ALLOCATION.md).
+
 
 
 
@@ -26,7 +35,7 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")`, matching
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")`, matching
 fresh accounting6 eight-word local Positions and LP-only fee intake1. Both peers must
 expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and
@@ -95,12 +104,15 @@ does not authorize a finality, backing or source-retirement override.
 
 Exports include zero rows and the complete finite domain, rather than a relay's
 chosen Merkle snapshot. Existing IDs, mint ordinals, owners, traits, quota/draw
-inventory, VRF provenance, shares, activation, reward indexes, paid checkpoints,
-fractions, reserves, admitted assets and quarantine classifications survive.
-New VRF requests use a new namespace, preserving historical request provenance.
-Operator approvals are deliberately not imported. Existing minted IDs and later
-mints use the original collection/Vault identity; current custody routing is
-remapped to the replacement. Ordinary holder redemption remains unavailable;
+inventory, VRF provenance, shares, activation, LP indexes/fractions, exact whole
+royalty entitlements, reserves, admitted assets and protected unallocated balances
+survive. Historical request namespaces stay authenticated. V8 requires the sale
+and one-hour opening to be complete and imports that closed end; unused draw
+inventory is preserved for integrity, not permission to mint again. Neither
+replacement activation nor changing future mint-price policy reopens the sale.
+Operator approvals are deliberately not imported. Existing minted IDs retain
+the original collection/Vault identity; current custody routing is remapped to
+the replacement. Ordinary holder redemption remains unavailable;
 a later collective LP shutdown requires its separate governance action.
 
 ## Workflow size and relay budget
@@ -185,6 +197,50 @@ replacement can later prepare another reviewed same-chain replacement; old
 deployments remain retired. Losing an asset dependency during a partially funded
 handoff can keep rights frozen until exact restoration is possible. No universal
 recovery promise is made for a broken or malicious token.
+
+### Recover receipts sent to a cancelled importer
+
+An aborted destination stays permanently cancelled; it cannot reopen or pay its
+inert imported NFT accounting. After `finishAbort()` has restored every funded
+leg, its coordinator can return remaining royalty receipts to the authenticated
+current canonical royalty receiver. This is a separate reviewed **current-weight**
+allocation, not an override of the aborted import or a reconstruction of past
+receipt-time entitlements. It never sends principal or funds to a chosen wallet.
+
+1. Read `cancelledRoyaltyReturnController()` on the **cancelled** coordinator. It
+   initially resolves to its original source. That source must be operating or
+   retired, proving abort restoration completed. While it remains frozen/aborting,
+   no recovery is permitted.
+2. If the resolved controller has since retired, call
+   `advanceCancelledRoyaltyReturn()` once per completed successor hop. Anyone may
+   submit this bounded metadata-only call; there is no target argument. A hop
+   compares its immutable original import chains with the retired source's frozen
+   export chains through the existing fixed Vault companion's read-only check. A successor currently frozen/importing must first finish or
+   abort its later handoff. Later changes to its current snapshot do not erase its
+   original import proof. Repeat until the resolved controller is operating.
+3. The current target must be sealed, unpaused, outside preparation, with an open
+   royalty window and a positive active cohort. Admit the exact currency there
+   first if necessary. Review the cancelled receiver's actual balance, target,
+   receiver and current active weights; record a nonzero `bytes32 reviewHash`.
+   This hash records the review; it does not prove token safety or bind a live
+   snapshot by itself.
+4. From the **target's current governance wallet**, call the cancelled
+   coordinator's `recoverCancelledRoyalties(asset, reviewHash)`. Use the zero
+   address for native ETH, otherwise the exact ERC20 address. Send no ETH value.
+   The function syncs the target, transfers all remaining physical units of that
+   currency from the cancelled royalty receiver, and syncs again. Those units
+   accrue to the captured current active weights; preexisting target unallocated
+   balances remain separate. Holders then use normal original-currency claims.
+5. Re-read balances and receipts. A later receipt at the cancelled address needs
+   another reviewed recovery. Authority, lifecycle, target or membership changes
+   during callbacks revert the entire operation. Taxed, rebasing, blocked or
+   otherwise incompatible tokens may still fail; there is no universal sweep.
+
+`CancelledRoyaltyReturnAdvanced` and `CancelledRoyaltiesRecovered` record routing
+and movement. Count the target's actual credited receipt once, never movement as
+additional income. These functions do not revive the cancelled NFT collection,
+change old earned liabilities, bypass abort backing, swap assets or reopen LP.
+Target-chain gas, provider and operating qualification remain separate release work.
 
 ## Integration and qualification
 

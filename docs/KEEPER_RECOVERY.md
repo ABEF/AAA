@@ -54,11 +54,18 @@ Fresh configuration explicitly selects `accounting_version: 6`,
 confirmation3, compound4 and LP routing2 and
 `fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
 addresses and independently reviewed deployed runtimes in `code_hashes`.
-A compiler template is not a deployed runtime pin. Verify actual version getters
-before new work; pending receipt recovery always runs first.
+A compiler template is not a deployed runtime pin. Reporting5/canonicalV8 and
++inventory13 identify matching fresh readers; the keeper does not import an old
++canonical codec or upgrade a journal by changing that number. Verify actual version getters
+before new work; pending receipt recovery always runs first. Fresh royalty
++settlement4 additionally requires explicit royalty_settlement_version4. It
++disables new royalty-conversion jobs, while LP conversion stays independent.
++Historical2/3 pending work remains under its own original profile; never relabel
++a saved journal to obtain new-runtime compatibility.
 
-Fresh LP routing2 requires the reviewed Manager/Balancer/policy/math/physical
-executor graph,21helper runtimes and reciprocal sealed parent/core/state bindings. A saved pending transaction is recovered before new
+Fresh schema13/LP routing2 requires the reviewed Manager/Balancer/policy/math/physical
++executor graph,18helper runtimes and reciprocal sealed parent/core/state bindings.
++The exact-unit royalty allocator is internal code, not an additional deployment. A saved pending transaction is recovered before new
 LP-router metadata checks; an unavailable router never permits a new balance
 operation. Runtime, signer, accounting and nonce/receipt checkpoints still apply.
 Independently due harvesting does not depend on swap-router metadata. Do not

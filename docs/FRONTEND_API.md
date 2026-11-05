@@ -47,7 +47,7 @@ Source publication does not update the currently served older integration site.
 
 Fresh configuration uses explicit `accounting_version:6`, `custody_version:5` and `fee_intake_version:1`
 with read schema2. It verifies Vault6, direct governance2, custody5 and the
-explicit `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7` admission domain. Position still has
+explicit `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` admission domain. Position still has
 eight words; dormant/parked/exited states remain 3/4/5. The main physical LP ID is
 never replaced by an aggregate or virtual ID.
 
@@ -111,7 +111,7 @@ inventory-repair residual. [Preparation](ACTIVATION_PREPARATION.md).
 
 Accounting1-5 readers remain explicit historical profiles. Omitting the version
 selects legacy1, never6. Their codecs, addresses, runtimes, timing and journals
-are not rewritten. API6 predecessor history requires explicit accounting6 and canonicalV6
+are not rewritten. API6 predecessor history requires explicit accounting6 and canonicalV8
 throughout; the retained record shape does not authorize relabelling old V5
 accounting4/5 history. Historical accounting4 remains a separately pinned custody3 profile.
 

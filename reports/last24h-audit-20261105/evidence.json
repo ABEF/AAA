@@ -1,0 +1,269 @@
+{
+  "review_kind": "Internal source correction and focused last24-hour audit; not production approval",
+  "interval_utc": [
+    "2026-11-04T19:04:18+00:00",
+    "2026-11-05T19:04:18+00:00"
+  ],
+  "baseline_heads": {
+    "contracts": "967370f6d2de36c3e852a90f1458a7782edd7765",
+    "website": "567448797fb94203d719515555b79e60e22a3619"
+  },
+  "normal_build": "normal-final-2602e4a69d",
+  "normal_gates": 43,
+  "normal_source_count": 52,
+  "normal_dependency_count": 31,
+  "exact_source_policy": "Fresh settlement4/reporting5/schema13/canonicalV8; do not reinterpret old runtimes, checkpoints or journals",
+  "actual_evm_source_wire_fixture": {
+    "path": "tests_python/fixtures/exact-royalty-source4-wire.json",
+    "sha256": "99b47685f87eb7be945ead8cb74845fb4e5a2d3a737f47477d03ce1023fbb1e9",
+    "logs": 34,
+    "getter_snapshots": 6,
+    "canonical_rows": 12,
+    "controlled_boundaries": "NFT, Access and ERC20 fixtures; actual production ledger/allocator; not real Uniswap or OpenSea"
+  },
+  "results": {
+    "selected_contract_methods": 25,
+    "selected_cancelled_recovery_methods": 6,
+    "backend_methods": 223,
+    "profile_event_cli_distinct_methods": 55,
+    "profile_cli_corrected_reruns": 2,
+    "reference_checker_methods": 93,
+    "website_selected_cases": 210,
+    "keeper_focused_methods": 8,
+    "unchanged_internal_allocator_methods": 12
+  },
+  "counting_rule": "Distinct scope labels only; do not sum overlapping reruns/earlier stages. Earlier synthetic168 superseded for source-wire acceptance.",
+  "static": {
+    "actual_records": 487,
+    "current_reviewed": 137,
+    "unique_unchanged_referenced_source_reuse": 350,
+    "success": true,
+    "strict_coverage_pass": true,
+    "independent_audit": false
+  },
+  "callable": {
+    "contracts": 36,
+    "functions": 814,
+    "constructors": 36,
+    "receive_hooks": 12,
+    "example_rows": 862,
+    "gaps": 0,
+    "ready_for_submission": false
+  },
+  "local_gas": {
+    "cold_rotated_sync": 747393,
+    "activation_with_optional_sync": 904342,
+    "access_inner_create": 21756812,
+    "nft_inner_create": 13962340,
+    "target_qualified": false,
+    "limits": "Local fixture gasleft measurements; not whole wallet receipts, actual-chain fees or maximum-population qualification"
+  },
+  "artifacts": [
+    {
+      "path": "normal-size-gates.json",
+      "sha256": "2cc1382aa7be93417cf68840621b85503a2e779c7de1235a084c61a5ff8747fa",
+      "bytes": 41464,
+      "original_external_path": "normal-final-2602e4a69d/production-size-gates.json"
+    },
+    {
+      "path": "static-execution.json",
+      "sha256": "b42f0cd3210070a081096666c2d82d247fe5048bd3a5c992a5d24f4face27eca",
+      "bytes": 23151,
+      "original_external_path": "static-attempt-6a23092cd9/EXECUTION.json"
+    },
+    {
+      "path": "static-context-review.json",
+      "sha256": "ad2a0bcd79285b4d4d3e6b3dd248c9bb6aed27139cdd6b3cc11871ded6f75705",
+      "bytes": 219707,
+      "original_external_path": "static-final-context-review.json"
+    },
+    {
+      "path": "contract-review.json",
+      "sha256": "8fc9d06b601d0ce73b1bea19e09bf74c55043e6f7b824488110e01d0a90b6c35",
+      "bytes": 9638,
+      "original_external_path": "contract-agent/CONTRACT_REVIEW.json"
+    },
+    {
+      "path": "contract-tests.json",
+      "sha256": "538804c3d50447b7f888a3490bfecd38e67d540c71327b9ad4eb4e4faff04fab",
+      "bytes": 41352,
+      "original_external_path": "contract-agent/final-raw-forward-ledger-mint-wire-and-canonical/status.json"
+    },
+    {
+      "path": "cancelled-recovery.json",
+      "sha256": "4a3357bb116287153ae133fd288bc9311de0b417a5bbdf9e00269a556fe7fdb2",
+      "bytes": 3991,
+      "original_external_path": "ops-agent/cancelled-recovery/evidence.json"
+    },
+    {
+      "path": "cancelled-recovery-tests.json",
+      "sha256": "2b77c9cc35ab1d98d0cd84661634e67f0c653575fdaf71a84fda40af59074171",
+      "bytes": 37354,
+      "original_external_path": "ops-agent/cancelled-recovery/attempt3-final-ledger/status.json"
+    },
+    {
+      "path": "allocator-evidence.json",
+      "sha256": "3db52cfff41f8a1ecfbb00cb2a2f4c76e0369572efb07d2f23503d9c2b4dda51",
+      "bytes": 3976,
+      "original_external_path": "ops-agent/iterative-evidence.json"
+    },
+    {
+      "path": "backend-tests.json",
+      "sha256": "b7b3e58c27afc15c5ecf59cd0c3f71123399fa81e2f3ae9a5f94ae6a01ec4cf9",
+      "bytes": 11654,
+      "original_external_path": "backend-agent/final-source-coupled-backend.json"
+    },
+    {
+      "path": "backend-tests.log",
+      "sha256": "5cd1767f54b395384cdf6bd5a0a5a79466626eec2d4b89fdda45b085394a0e9d",
+      "bytes": 44262,
+      "original_external_path": "backend-agent/final-source-coupled-backend.log"
+    },
+    {
+      "path": "backend-format-proof.json",
+      "sha256": "23ac2e84682ad39d1b437e4f4bb4b383b603c565f1a35d052808d0bbcdee53e0",
+      "bytes": 339,
+      "original_external_path": "backend-agent/post-test-format-proof.json"
+    },
+    {
+      "path": "docs-format-proof.json",
+      "sha256": "5c800e91d4ebfe5d4b75371bf9da56a80d30750358798cb98538ad33ec92505f",
+      "bytes": 10049,
+      "original_external_path": "docs-format-proof.json"
+    },
+    {
+      "path": "website-tests.log",
+      "sha256": "f92697d88433fd56f5566eb0cfec64606964dc37bf6f498e8030de09a9cad2fe",
+      "bytes": 16476,
+      "original_external_path": "website-corrected.log"
+    },
+    {
+      "path": "profile-tests.log",
+      "sha256": "a0fe07a02d9b569ed0fa04d00537c9f21b8591e6613a1afdd3543999a44887ea",
+      "bytes": 11942,
+      "original_external_path": "profile-current-affected.log"
+    },
+    {
+      "path": "profile-cli-correction.log",
+      "sha256": "c6d109a667e32e1805676c686729fb8d7026d977aeddf0ea47a0e8ed23674fe9",
+      "bytes": 471,
+      "original_external_path": "profile-cli-corrected.log"
+    },
+    {
+      "path": "reference-static-tests.log",
+      "sha256": "087788be7ec9f9c92036715325df727a38862fd2c18bf4da36cc432881c8a689",
+      "bytes": 17822,
+      "original_external_path": "reference-static-final.log"
+    },
+    {
+      "path": "keeper-tests.log",
+      "sha256": "5feea2cf6fe347a1742149c9ba269d2739b9aedd21d236a10bedcd6e6d20a4c5",
+      "bytes": 2017,
+      "original_external_path": "ops-agent/exact-profile-tests.log"
+    },
+    {
+      "path": "test-maintenance-python.json",
+      "sha256": "a79345b59fa164605de8a3e658e3c474aec8d0b95d0b6c14f42fe16a54c32fcc",
+      "bytes": 1194,
+      "original_external_path": "backend-agent/stale-test-boundary-supplement.json"
+    },
+    {
+      "path": "test-maintenance-portfolio.json",
+      "sha256": "2500b7317d99b5f2089da5b5c57cd45239bc9ee6432e2fb20cf54f4d0aeb92f0",
+      "bytes": 8581,
+      "original_external_path": "backend-agent/solidity-royalty-window-four-configured/status.json"
+    },
+    {
+      "path": "test-maintenance-contract-review.json",
+      "sha256": "201c0483bd9549d6da21f62f866bd72c8cbf9b6be9185fb0c1035f768ef2cc6e",
+      "bytes": 6178,
+      "original_external_path": "contract-agent/TEST_MAINTENANCE_REVIEW.json"
+    },
+    {
+      "path": "test-maintenance-contract24.json",
+      "sha256": "311389308d82471044f0f1c3009dd24031643ccf369e09e0d071530e83b4861d",
+      "bytes": 41108,
+      "original_external_path": "contract-agent/test-maintenance-final-frozen24/status.json"
+    },
+    {
+      "path": "test-maintenance-combined5.json",
+      "sha256": "488fca95da5ac37d767536b72bf3f4ea82a008357b07b718864d64b201cc58a5",
+      "bytes": 37107,
+      "original_external_path": "contract-agent/test-maintenance-combined-final-cold/status.json"
+    },
+    {
+      "path": "test-maintenance-scale-invariant.json",
+      "sha256": "2097409bc07f5a6ff5a3f83c507516dcabdde4c8e3264699382275ed4a950b24",
+      "bytes": 10016,
+      "original_external_path": "ops-agent/collection-maintenance/evidence.json"
+    },
+    {
+      "path": "test-maintenance-scale-final.json",
+      "sha256": "7eb73d3279fea281c3e9b3250b13a47664ce687144c35b4c5ec03db3d8f4bda6",
+      "bytes": 36462,
+      "original_external_path": "ops-agent/collection-maintenance/final-gas-shapes-prefix/status.json"
+    },
+    {
+      "path": "test-maintenance-context-reuse.json",
+      "sha256": "d757bbbcf16289ce67dff42623ed812507c127b18d38c085622306b70865068d",
+      "bytes": 5209,
+      "original_external_path": "ops-agent/collection-maintenance/five-context-reuse-proof.json"
+    },
+    {
+      "path": "protected-fixture-compatibility.json",
+      "sha256": "49eb3fd507b931f2706b08d7d2337a88c7211d485a4e9dd416f3b2924007fbe1",
+      "bytes": 385,
+      "original_external_path": "protected-fixture-compatibility.json"
+    },
+    {
+      "path": "python-publication-index.json",
+      "sha256": "223eb08872e9cf5888d0c766f3af350fc315e4ccb5b270e6760e66ba83f1fa78",
+      "bytes": 34749,
+      "original_external_path": "python-publication-index.json"
+    },
+    {
+      "path": "preservation-and-links.json",
+      "sha256": "782b6d37db541289f8cb9ea987240972b078230cd6456aeff42dc8261550136b",
+      "bytes": 1210,
+      "original_external_path": "preservation-and-links.json"
+    }
+  ],
+  "external_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105",
+  "retained_external_failures": "Old royalty3 reproductions, first exact fairness failure, old fractional fixtures, empty regex selection, source-drifted stages, oversized builds, synthetic-wire mismatch, zero telemetry, stale fixture provenance, profile propagation/indentation/fixture failures and website fixture corrections remain recorded.",
+  "unchanged_evidence_reuse": {
+    "indexer": "a915b6a/44f5fa7 exact source contexts; no new WAL/reorg rehearsal",
+    "keeper_scheduling": "0b14aca exact contexts; no service restart or new uptime proof",
+    "manual_guards": "5107954 exact contexts; no weakened controls"
+  },
+  "deployment_authorized": false,
+  "production_approved": false,
+  "services_or_site_changed": false,
+  "anvil_or_journal_changed": false,
+  "public_signing_enabled": false,
+  "independent_audit": false,
+  "remaining": "Actual target deployment/max currency gas; actual token/route/feed/VRF/authority/OpenSea; source8 services/site and archival/restore/lifetime history; independent audit/remediation.",
+  "test_maintenance": {
+    "production_changed": false,
+    "python_distinct_selected_methods": 6,
+    "contract_distinct_selected_methods": 24,
+    "overlapping_final_cold_reruns": 5,
+    "additional_portfolio_methods": 4,
+    "scale_and_stateful_distinct_contexts": 6,
+    "scale_context_reuse": 5,
+    "bounded_invariant": {
+      "runs": 32,
+      "calls": 4096,
+      "unexpected_reverts": 0
+    },
+    "no_full_suite_claim": true,
+    "historical_tests_retained": true,
+    "source": "TEST_MAINTENANCE.md"
+  },
+  "preservation": {
+    "historical_reports": 2732,
+    "changed_document_file_links_checked": 2652,
+    "missing_links": 0,
+    "four_protected_files_unchanged": true,
+    "other_website_tracked_files_unchanged": 5863
+  }
+}

@@ -8,7 +8,7 @@
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
       "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
-      "src/ZZZCanonicalHandoff.sol": "342dc5409dab25f034023fd93a5fd81535045e356a1e2b89a72554f449fe205b",
+      "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
@@ -29,16 +29,16 @@
       "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
-      "src/ZZZProtocolPolicy.sol": "312d944c92829a755a7b2f0276f0ef26d08266cbd33262954a8dfd01445b6182",
+      "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
-      "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
-      "src/ZZZRoyaltyRewards.sol": "a532088d522a077c4d645cb71ff5c56813f5c81dbc1de69bb2f17a1fa9c76c81",
+      "src/ZZZRoyaltyFactory.sol": "517d3543ec1f5fcc9cfda3637f44ee690560c519559e1fa4233af122fe0fe3ec",
+      "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
-      "src/ZZZVaultCanonical.sol": "2377ffc5adf74cde1cc1d4aebaac5aeca0d3dc1f0042870032855c850d3f8300",
+      "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
       "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
@@ -49,6 +49,7 @@
       "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
       "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
@@ -208,6 +209,7 @@
       "src/interfaces/IZZZProtocolPolicy.sol",
       "src/interfaces/IZZZV3Route.sol",
       "src/libraries/ExactAsset.sol",
+      "src/libraries/ExactRoyaltyAllocation.sol",
       "src/libraries/ExactToken.sol",
       "src/libraries/ZZZArtwork.sol",
       "src/libraries/ZZZPriceMath.sol",
@@ -219,9 +221,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "aa46b2707a3bee549159f248bd0ca71ff564d91faa35a901dadcecfe3c5ae8a4",
-    "compiler_output_sha256": "859d50a8d33b270fd7212fa80462c82771b50c0b038585c332e00da57f97bb31",
-    "size_evidence_sha256": "c6cee0dfcd69f1a2719f4a3d610da58affdc0987c6862fba4b044a4d044fb73d",
+    "compiler_input_sha256": "29b0b5f53d4fd9db7062be78416a269d1e8dadd50ac2453cb822210f0575a9a5",
+    "compiler_output_sha256": "48bc2af91a7a435e1a218a6365c3cb6ee461744db963c2635eaabd68899269bc",
+    "size_evidence_sha256": "2cc1382aa7be93417cf68840621b85503a2e779c7de1235a084c61a5ff8747fa",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -2371,6 +2373,74 @@
           "inputs": [
             {
               "indexed": true,
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "controller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "receiver",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "activeCount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "activeWeight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "CancelledRoyaltiesRecovered",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousController",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "nextController",
+              "type": "address"
+            }
+          ],
+          "name": "CancelledRoyaltyReturnAdvanced",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
               "internalType": "bytes32",
               "name": "handoff",
               "type": "bytes32"
@@ -2602,6 +2672,13 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "advanceCancelledRoyaltyReturn",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "uint256",
@@ -2638,6 +2715,19 @@
           "name": "cancelImport",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "cancelledRoyaltyReturnController",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -2978,6 +3068,30 @@
         {
           "inputs": [
             {
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "recoverCancelledRoyalties",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "uint8",
               "name": "slot",
               "type": "uint8"
@@ -3075,7 +3189,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "d4312b5a677c69cbc71b6160ad1728bed2de833afe6ee066b630a303bd835cbb"
+      "abi_sha256": "6175d6f98478c356c4e24b686fa62c83655cb65034f04779929d5a8243c9ab23"
     },
     "ZZZClaimRouter": {
       "source": "src/ZZZClaimRouter.sol",
@@ -18710,6 +18824,11 @@
         },
         {
           "inputs": [],
+          "name": "InvalidCreationCode",
+          "type": "error"
+        },
+        {
+          "inputs": [],
           "name": "controller",
           "outputs": [
             {
@@ -18733,9 +18852,22 @@
           ],
           "stateMutability": "nonpayable",
           "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "royaltyCodeHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         }
       ],
-      "abi_sha256": "0bb943a5ac4ac957db1196b7c2e492c7aaa2b26b5f8ce453f6a27ab0c18aad02"
+      "abi_sha256": "b4fd24302b4b9ba24be1dc07cf51c0bda233fe8a315e38d47e4a4c07acb5a729"
     },
     "ZZZRoyaltyRewards": {
       "source": "src/ZZZRoyaltyRewards.sol",
@@ -18754,6 +18886,11 @@
         {
           "inputs": [],
           "name": "CanonicalState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidAllocation",
           "type": "error"
         },
         {
@@ -18988,6 +19125,49 @@
             },
             {
               "indexed": false,
+              "internalType": "uint256",
+              "name": "eligibleCount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eligibleWeight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "cursorBefore",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "cursorAfter",
+              "type": "uint256"
+            }
+          ],
+          "name": "RoyaltiesAllocated",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
               "internalType": "bool",
               "name": "eligible",
               "type": "bool"
@@ -19162,19 +19342,6 @@
           "type": "function"
         },
         {
-          "inputs": [],
-          "name": "SCALE",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
           "inputs": [
             {
               "internalType": "address",
@@ -19325,6 +19492,25 @@
           "name": "allocateUnallocated",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "allocationCursor",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -19520,6 +19706,30 @@
         {
           "inputs": [
             {
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "receiver",
+              "type": "address"
+            }
+          ],
+          "name": "canonicalRecoverCancelled",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "uint256",
               "name": "i",
               "type": "uint256"
@@ -19637,7 +19847,7 @@
           "outputs": [
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "amount",
               "type": "uint256"
             }
           ],
@@ -19747,30 +19957,6 @@
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "fraction",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
               "internalType": "address",
               "name": "asset",
               "type": "address"
@@ -19802,25 +19988,6 @@
           "name": "increaseAssetCapacity",
           "outputs": [],
           "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "index",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -19876,6 +20043,19 @@
         },
         {
           "inputs": [],
+          "name": "mintEndRevision",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "nft",
           "outputs": [
             {
@@ -19915,30 +20095,6 @@
             }
           ],
           "name": "orphaned",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "paidIndex",
           "outputs": [
             {
               "internalType": "uint256",
@@ -20047,6 +20203,25 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "ticketStart",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "totalWeight",
           "outputs": [
@@ -20083,7 +20258,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "0fa3b3aeca56b8ea1e3e2e22646e390ef75c5e56d585f78ca3a020403e23dfe5"
+      "abi_sha256": "fc7b86d2940e2e1d93e9a46501a5b24762ab84bc9635b56f43ece4b08ceb9c3d"
     },
     "ZZZStrategy": {
       "source": "src/ZZZStrategy.sol",
@@ -23135,6 +23310,19 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "validateCancelledRoyaltyHop",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "next",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "uint256",
@@ -23303,13 +23491,18 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "186d480de12b9c7becd53bde289bae2c421d12f8b57a16cddf38ccbbd807f148"
+      "abi_sha256": "8a7ca06b66301a3cc50e4d4e2267071cde16d30a2ea43e51043f34d1a0917de4"
     }
   },
   "excluded_objects": [
     {
       "contract": "ExactAsset",
       "source": "src/libraries/ExactAsset.sol",
+      "reason": "Internal-only library; no callable ABI."
+    },
+    {
+      "contract": "ExactRoyaltyAllocation",
+      "source": "src/libraries/ExactRoyaltyAllocation.sol",
       "reason": "Internal-only library; no callable ABI."
     },
     {
@@ -23338,7 +23531,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "6611389f8a1e371e20f6c18d31f93c8646f59e1869ecf0bf7dac98d712203a8b",
+  "notes_sha256": "c05df88b88f4b80d36541645c0929a0a424c98f34b3c5e8dcf1f5caad1a8e9c3",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -25882,6 +26075,19 @@
           "notes": "Not a public unpause or multisig-only override of missing backing."
         },
         {
+          "signature": "advanceCancelledRoyaltyReturn()",
+          "kind": "function",
+          "name": "advanceCancelledRoyaltyReturn",
+          "state_mutability": "nonpayable",
+          "purpose": "Advance one authenticated retired-source return hop.",
+          "access": "Anyone; cancelled importer only after original source restoration.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "No payment/input/recipient. Validates reciprocal canonicalV8 lineage, frozen old source roots versus immutable successor import roots, sealed controller/phase. Repeat one bounded hop while the route is retired; cannot skip into an unverified destination."
+        },
+        {
           "signature": "assetCount(uint256)",
           "kind": "function",
           "name": "assetCount",
@@ -25949,6 +26155,29 @@
           "outputs": [],
           "native_value": null,
           "notes": "The cancelled importer cannot become a competing active collection."
+        },
+        {
+          "signature": "cancelledRoyaltyReturnController()",
+          "kind": "function",
+          "name": "cancelledRoyaltyReturnController",
+          "state_mutability": "view",
+          "purpose": "Read the verified royalty-return route cursor.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Original source controller, or last authenticated retired-source hop. No arbitrary recipient input; recovery waits for an operating target."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "commit()",
@@ -26540,6 +26769,48 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "recoverCancelledRoyalties(address,bytes32)",
+          "kind": "function",
+          "name": "recoverCancelledRoyalties",
+          "state_mutability": "nonpayable",
+          "purpose": "Recover reviewed cancelled royalties into current active rights.",
+          "access": "Current governance of the verified active target only; sealed, unpaused, operating; cancelled source fully restored.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Original currency admitted by the verified active target; zero for native ETH."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero review hash of the exact currency, authenticated route, current eligible cohort and operation manifest."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual raw units returned to the active ledger."
+            }
+          ],
+          "native_value": null,
+          "notes": "No native value. Sync target first, transfer this currency from cancelled ledger, sync again; existing target orphaned funds stay unallocated. Requires opened window, nonzero active weights and unchanged authority/cohort/lifecycle after callbacks. Later arrivals can be recovered again; no swap, arbitrary beneficiary or principal movement."
         },
         {
           "signature": "returnFunding(uint8,uint256)",
@@ -44634,7 +44905,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty250k gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
+              "explanation": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
             }
           ],
           "outputs": [],
@@ -48338,7 +48609,7 @@
     {
       "name": "ZZZRoyaltyFactory",
       "source": "src/ZZZRoyaltyFactory.sol",
-      "purpose": "Deploy the original-currency royalty ledger and atomically bind its controller; no royalty converter.",
+      "purpose": "Fixed typed ledger factory with a constructor-written private creation payload and immutable payload hash. No code setter, caller-supplied code/salt/recipient or execution facility.",
       "category": "Project contract",
       "functions": [
         {
@@ -48352,7 +48623,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": null
+          "notes": "Stores fixed source-bound creation bytes and immutable hash once, with no setter. Normal initcode/runtime gates and exact target deployment gas must pass; publication does not deploy."
         },
         {
           "signature": "controller()",
@@ -48398,7 +48669,30 @@
             }
           ],
           "native_value": null,
-          "notes": "Creating an extra standalone ledger does not register a new canonical NFT or give migration authority. Returns: New receiver contract address, permanently bound to msg.sender as its NFT."
+          "notes": "Copies only fixed constructor-stored bytes, verifies royaltyCodeHash, appends the typed caller NFT address, deploys and atomically binds the fixed controller. No arbitrary execution payload. Larger one-time factory/Access deployment gas needs target qualification; ordinary holders do not pay this deployment cost."
+        },
+        {
+          "signature": "royaltyCodeHash()",
+          "kind": "function",
+          "name": "royaltyCodeHash",
+          "state_mutability": "view",
+          "purpose": "Read the immutable source-bound royalty creation-code hash.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Keccak256 of the exact normal-compiler RoyaltyRewards creation bytes. Compare the reviewed payload and runtime bindings before NFT deployment; corruption makes create revert."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         }
       ]
     },
@@ -48540,34 +48834,11 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "3 for original-currency royalties with the launch window and reviewed capacity; earlier profiles are historical."
+              "explanation": "4: exact whole-unit, GCD-normalized original-currency royalties, one-hour opening and V8. Earlier profiles remain historical."
             }
           ],
           "native_value": null,
           "notes": null
-        },
-        {
-          "signature": "SCALE()",
-          "kind": "function",
-          "name": "SCALE",
-          "state_mutability": "view",
-          "purpose": "Read the fixed-point denominator used by this reward ledger’s cumulative indices and fractions.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The fixed-point denominator used by this reward ledger’s cumulative indices and fractions."
-            }
-          ],
-          "native_value": null,
-          "notes": "Accounting precision, not an amount payable to a holder."
         },
         {
           "signature": "accounted(address)",
@@ -48607,7 +48878,7 @@
           "kind": "function",
           "name": "accrued",
           "state_mutability": "view",
-          "purpose": "Read an NFT/currency’s stored whole royalty credit before new index settlement.",
+          "purpose": "Read flat imported whole-unit royalty credit.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -48618,7 +48889,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
+              "explanation": "Exact NFT token ID."
             },
             {
               "position": 1,
@@ -48627,7 +48898,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
+              "explanation": "Admitted original currency; zero for ETH."
             }
           ],
           "outputs": [
@@ -48638,11 +48909,11 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "An NFT/currency’s stored whole royalty credit before new index settlement."
+              "explanation": "Imported whole units, excluding ordinary outstanding ticket books. Use claimable for the complete current-owner entitlement."
             }
           ],
           "native_value": null,
-          "notes": "Use claimable() for pending eligible receipts as well."
+          "notes": null
         },
         {
           "signature": "activate(uint256,uint256)",
@@ -48795,7 +49066,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Syncs first. Never spends openingPool, earned/fraction liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
+          "notes": "Syncs first. Never spends openingPool, earned liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
         },
         {
           "signature": "allocateUnallocated(address,uint256,bytes32)",
@@ -48836,7 +49107,40 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned/fraction backing is excluded."
+          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned backing is excluded."
+        },
+        {
+          "signature": "allocationCursor(address)",
+          "kind": "function",
+          "name": "allocationCursor",
+          "state_mutability": "view",
+          "purpose": "Read the original-unit rounding cursor in raw ticket coordinates.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "input0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Admitted original currency; address zero for native ETH."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; V8 preserves it."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "assetCapacity()",
@@ -49061,7 +49365,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Requires an open, finalized initial window and sync of every admitted initial currency. No live initial cohort is discarded. CanonicalV7 header carries sale end/capacity; old V6 is incompatible. LP terminal exit remains independent."
+          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. V8 rejects old peers; an unreadable currency can still block handoff. LP terminal/emergency paths stay independent."
         },
         {
           "signature": "canonicalController()",
@@ -49140,7 +49444,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Versioned ABI bytes consumed by authenticated import, not a general transaction. Inputs: Input is zero-based canonical record row, not necessarily an NFT ID."
+          "notes": "V8:160-byte header;192-byte currency row(asset,cursor,accounted,liabilities,orphaned,backing);128-byte NFT row(id,weight,activationOrdinal,ticketStart);96-byte NFT/currency row(id,asset,whole accrued). Frozen view flattens ticket rights without deleting the source books; abort retains them."
         },
         {
           "signature": "canonicalImport(uint256,bytes)",
@@ -49172,7 +49476,49 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite."
+          "notes": "Only V8 coordinator; exact ordered rows/lengths, source roots and backing. Preserve ticket/ordinal mapping; no overlap/holes, correct rarity, cursor/GCD and exact summed claims=liabilities. Import starts empty books; source semantics are not inferred from row size."
+        },
+        {
+          "signature": "canonicalRecoverCancelled(address,address)",
+          "kind": "function",
+          "name": "canonicalRecoverCancelled",
+          "state_mutability": "nonpayable",
+          "purpose": "Return cancelled-importer royalties to the verified active ledger.",
+          "access": "Fixed canonical coordinator only; cancelled state4; nonReentrant.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "One original currency; zero for native ETH."
+            },
+            {
+              "position": 1,
+              "name": "receiver",
+              "label": "receiver",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Verified active royalty ledger supplied only by the fixed coordinator."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact raw units transferred; not an external custody payout."
+            }
+          ],
+          "native_value": null,
+          "notes": "Use governance recoverCancelledRoyalties on this cancelled coordinator after complete abort restoration. This hook cannot be called by governance directly; reviewed target admission/cohort and pre/post controls are enforced by the coordinator."
         },
         {
           "signature": "canonicalRelease(uint256,address)",
@@ -49388,16 +49734,16 @@
           "outputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "output0",
+              "name": "amount",
+              "label": "amount",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The NFT’s royalty entitlement including actual pending eligible receipts."
+              "explanation": "Exact original whole units including eligible pending receipts after opening;0 while locked. No fresh royalty fraction reserve. Missing/unreadable backing reverts, never guessed zero."
             }
           ],
           "native_value": null,
-          "notes": "Includes receipt/cohort policy, not merely stored accrued; unavailable/failed currencies may revert."
+          "notes": "Uses current-owner transferable ticket rights and GCD-normalized pending allocation. Normal claims do not advance cursor; view does not change any tree. Frozen export is separately source-bound."
         },
         {
           "signature": "effectiveEligibleCount(address)",
@@ -49534,7 +49880,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The sum of rarity weights enrolled for one royalty currency."
+              "explanation": "Original sum of rarity weights in this currency eligible prefix; internal allocation divides by the cohort GCD. This is not LP shares or NFT evolution."
             }
           ],
           "native_value": null,
@@ -49572,48 +49918,6 @@
           ],
           "native_value": null,
           "notes": "No caller-selected recipient or active-source drain. A healthy exact-transfer unsupported currency can forward without admission; the active successor separately admits or recovers it. Unreadable/nonstandard tokens can still fail."
-        },
-        {
-          "signature": "fraction(uint256,address)",
-          "kind": "function",
-          "name": "fraction",
-          "state_mutability": "view",
-          "purpose": "Read the NFT’s preserved fractional royalty carry in one source currency.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The NFT’s preserved fractional royalty carry in one source currency."
-            }
-          ],
-          "native_value": null,
-          "notes": null
         },
         {
           "signature": "fund(address,uint256)",
@@ -49680,39 +49984,6 @@
           "notes": "Review hash is a fingerprint, not an on-chain gas proof. No automatic admission, currency deletion or entitlement change."
         },
         {
-          "signature": "index(address)",
-          "kind": "function",
-          "name": "index",
-          "state_mutability": "view",
-          "purpose": "Read the cumulative funded royalty amount per eligible rarity-weight unit.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH in the native-aware ledger."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The cumulative funded royalty amount per eligible rarity-weight unit."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "isAsset(address)",
           "kind": "function",
           "name": "isAsset",
@@ -49772,7 +50043,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Funded whole-unit holder royalty obligations for one currency."
+              "explanation": "Allocated whole raw units backed for ticket rights plus flat accrued import credits. Opening pool and explicitly unallocated receipts stay separate."
             }
           ],
           "native_value": null,
@@ -49796,6 +50067,29 @@
               "canonical_type": "uint64",
               "internal_type": "uint64",
               "explanation": "uint64 Unix seconds;0 means unconfigured and royalties/minting remain locked."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "mintEndRevision()",
+          "kind": "function",
+          "name": "mintEndRevision",
+          "state_mutability": "view",
+          "purpose": "Read the sale-end review revision.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed V8 import has its own local revision."
             }
           ],
           "native_value": null,
@@ -49885,48 +50179,6 @@
               "canonical_type": "uint256",
               "internal_type": "uint256",
               "explanation": "Quarantined royalty funds, including prefunds, pre-admission balances and receipts with no eligible cohort."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "paidIndex(uint256,address)",
-          "kind": "function",
-          "name": "paidIndex",
-          "state_mutability": "view",
-          "purpose": "Read the royalty index already checkpointed for an NFT/currency.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The royalty index already checkpointed for an NFT/currency."
             }
           ],
           "native_value": null,
@@ -50102,6 +50354,39 @@
           "outputs": [],
           "native_value": null,
           "notes": "External callers use sync(); failure cannot enroll newcomers into unseen old receipts."
+        },
+        {
+          "signature": "ticketStart(uint256)",
+          "kind": "function",
+          "name": "ticketStart",
+          "state_mutability": "view",
+          "purpose": "Read the permanent raw rarity-ticket interval start.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "input0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact NFT token ID; not mint ordinal."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in V8."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "totalWeight()",
@@ -53137,11 +53422,11 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "Exact ProtocolPolicy.mintFingerprint() required by fresh mintDormant(bytes32); not free-form reviewHash or custody fingerprint."
+              "explanation": "Fresh six-word domain-separated review hash of core Policy mint fingerprint, NFT, royalty receiver, mintEnd and mintEndRevision. Exact current getter; not Policy.mintFingerprint alone."
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
         },
         {
           "signature": "mintPrice()",
@@ -54177,11 +54462,11 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "Exact ProtocolPolicy.mintFingerprint() required by fresh mintDormant(bytes32); not free-form reviewHash or custody fingerprint."
+              "explanation": "Fresh six-word domain-separated review hash of core Policy mint fingerprint, NFT, royalty receiver, mintEnd and mintEndRevision. Exact current getter; not Policy.mintFingerprint alone."
             }
           ],
           "native_value": null,
-          "notes": null
+          "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
         },
         {
           "signature": "mintPrice()",
@@ -54306,6 +54591,29 @@
           "outputs": [],
           "native_value": null,
           "notes": "Permanent reservation cannot be assigned to a different bucket later."
+        },
+        {
+          "signature": "validateCancelledRoyaltyHop()",
+          "kind": "function",
+          "name": "validateCancelledRoyaltyHop",
+          "state_mutability": "view",
+          "purpose": "Validate one fixed cancelled-source recovery hop without mutation.",
+          "access": "Fixed canonical coordinator only; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "next",
+              "label": "next",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Authenticated sealed next controller on the retired source lineage. No supplied receiver, route or code."
+            }
+          ],
+          "native_value": null,
+          "notes": "Checks its own cancelled controller state/phase, derives the saved route, authenticates V8 parent bindings, reciprocal source/destination, retired/active phases and immutable six export/import domain chains. It cannot move funds or write a cursor. Use coordinator.advanceCancelledRoyaltyReturn, never call this helper as governance."
         },
         {
           "signature": "validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
@@ -54616,7 +54924,7 @@
   "gaps": [],
   "counts": {
     "contracts": 36,
-    "functions": 809,
+    "functions": 814,
     "constructors": 36,
     "receive_hooks": 12,
     "fallback_hooks": 0,

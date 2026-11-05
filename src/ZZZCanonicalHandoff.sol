@@ -22,6 +22,19 @@ interface ICanonicalHelpers {
     function canonicalRetire() external;
 }
 
+interface ICancelledRoyaltyHop {
+    function validateCancelledRoyaltyHop() external view returns(address);
+}
+
+interface ICancelledRoyaltyLedger {
+    function royaltiesOpen() external view returns(bool);
+    function isAsset(address) external view returns(bool);
+    function activationCount() external view returns(uint256);
+    function totalWeight() external view returns(uint256);
+    function sync(address) external returns(uint256);
+    function canonicalRecoverCancelled(address,address) external returns(uint256);
+}
+
 /// @notice Fixed, bounded handoff coordinator. This first transport is direct
 /// same-chain custody with atomic retirement/activation. It cannot attest remote
 /// consensus or move assets through an unqualified cross-chain provider.
@@ -29,7 +42,7 @@ interface ICanonicalHelpers {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;
@@ -72,6 +85,7 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
     mapping(uint8 => mapping(uint256 => bool)) public incomingFunded;
     mapping(uint8 => mapping(uint256 => bool)) public returned;
     bytes32 private destinationDeployment;
+    address private cancelledRoyaltyRoute;
     error Unauthorized();
     error InvalidState();
     error InvalidRecord();
@@ -91,6 +105,9 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
     event AbortStarted(bytes32 indexed handoff);
     event BackingReturned(bytes32 indexed handoff, uint8 indexed slot, uint256 indexed index);
     event Aborted(bytes32 indexed handoff);
+    event CancelledRoyaltyReturnAdvanced(address indexed previousController,address indexed nextController);
+    event CancelledRoyaltiesRecovered(address indexed asset,address indexed controller,address indexed receiver,
+        uint256 amount,uint256 activeCount,uint256 activeWeight,bytes32 reviewHash);
 
     constructor(address controller) {
         access = ICanonicalController(controller);
@@ -471,5 +488,63 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         phase = incomingSource == address(0) ? PHASE_IDLE : PHASE_ACTIVE_REPLACEMENT;
         access.canonicalTransition(STATE_OPERATING, false, true);
         emit Aborted(handoffId);
+    }
+
+    /// @notice Only an authenticated descendant of the original restored
+    /// source can receive cancelled royalties. This cursor never accepts input.
+    function cancelledRoyaltyReturnController() public view returns(address) {
+        return cancelledRoyaltyRoute == address(0) ? incomingSource : cancelledRoyaltyRoute;
+    }
+
+    function _cancelledRestored() private view {
+        if(phase != PHASE_CANCELLED_IMPORT || access.canonicalState() != STATE_CANCELLED) revert InvalidState();
+        uint8 sourceState = IZZZAccess(incomingSource).canonicalState();
+        if(sourceState != STATE_OPERATING && sourceState != STATE_RETIRED) revert InvalidState();
+    }
+
+    function _recoveryPeer(address controller) private view returns(ZZZCanonicalHandoff peer) {
+        peer = _peer(controller);
+        if(peer.SCHEMA() != SCHEMA || address(peer.access()) != controller) revert InvalidState();
+    }
+
+    /// @notice Advance ONE immutable retired-source hop. Repeated calls follow
+    /// arbitrarily long reviewed histories without unbounded execution.
+    function advanceCancelledRoyaltyReturn() external nonReentrant {
+        _cancelledRestored();
+        address previous = cancelledRoyaltyReturnController();
+        address next = ICancelledRoyaltyHop(moduleAt(DOMAIN_VAULT)).validateCancelledRoyaltyHop();
+        cancelledRoyaltyRoute = next;
+        emit CancelledRoyaltyReturnAdvanced(previous,next);
+    }
+
+    function _cancelledTarget(address asset) private view returns(address controller,address receiver) {
+        _cancelledRestored();
+        controller = cancelledRoyaltyReturnController();
+        IZZZAccess target = IZZZAccess(controller);
+        _recoveryPeer(controller);
+        if(!target.isSealed() || target.canonicalState() != STATE_OPERATING || target.paused() ||
+            target.preparationActive() || !target.canConfigure(msg.sender))
+            revert Unauthorized();
+        receiver = ICanonicalHelpers(target.module(Ids.NFT)).royaltyRewards();
+        if(receiver == address(0) || receiver == moduleAt(DOMAIN_ROYALTIES) ||
+            !ICancelledRoyaltyLedger(receiver).royaltiesOpen() || !ICancelledRoyaltyLedger(receiver).isAsset(asset))
+            revert InvalidState();
+    }
+
+    /// @notice Current TARGET governance reviews return of one cancelled
+    /// currency to current active weights. No operator-chosen recipient/swap.
+    function recoverCancelledRoyalties(address asset,bytes32 reviewHash) external nonReentrant returns(uint256 amount) {
+        if(reviewHash == bytes32(0)) revert InvalidRecord();
+        (address target,address receiver) = _cancelledTarget(asset);
+        ICancelledRoyaltyLedger ledger = ICancelledRoyaltyLedger(receiver);
+        ledger.sync(asset);
+        uint256 count = ledger.activationCount(); uint256 weight = ledger.totalWeight();
+        if(weight == 0) revert InvalidState();
+        amount = ICancelledRoyaltyLedger(moduleAt(DOMAIN_ROYALTIES)).canonicalRecoverCancelled(asset,receiver);
+        ledger.sync(asset);
+        (address afterTarget,address afterReceiver) = _cancelledTarget(asset);
+        if(afterTarget != target || afterReceiver != receiver || ledger.activationCount() != count ||
+            ledger.totalWeight() != weight) revert InvalidState();
+        emit CancelledRoyaltiesRecovered(asset,target,receiver,amount,count,weight,reviewHash);
     }
 }

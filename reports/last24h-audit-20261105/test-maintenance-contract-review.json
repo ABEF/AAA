@@ -1,0 +1,87 @@
+{
+  "scope": "Current Solidity test expectations/launch fixtures only; no production changes.",
+  "test_sha256": {
+    "test/NativeCustody.t.sol": "b06cde4a96ef4235a9a2823594fa47151897af3e4e1cdf25a05206745a7903b6",
+    "test/NFTMetadata.t.sol": "c0604642c5a5135bd72a2a1a18dd46fe40becddb15e1be46972c1834b2d84cdc",
+    "test/CombinedCapacityGas.t.sol": "bb8556b32d2b4eeb0f3317e4b56903e486aad45beb62f30b3552624f6e9f9d2f",
+    "test/CanonicalPreparation.t.sol": "c64235acc95b09b8af7cd94741081620a196d0acf254827c9f6380e345988bbf",
+    "test/HolderCollectiveExit.t.sol": "ce7e42c3d3cd70fd33c28f055f8d6fbffa265cc508afbdf202e76b4b42a63776",
+    "test/CanonicalHandoff.t.sol": "2373f553cfd78067981bb6b0e72a965bcdfe99c8be73f7d7dc73fdd148b94982",
+    "test/RoyaltyAudit20261105.t.sol": "042a8471b62e7f8e428d25787a8020c5d57e4383b7eb078845df4cfa8fa9e64c"
+  },
+  "static_inventory": {
+    "obsolete_current_royalty_getters": "No fresh royalty index/paidIndex/fraction/SCALE calls found outside deliberate historical imports; LP reward getters remain current.",
+    "confirmed_stale": [
+      "NativeCustody positive schema V6 assertion against current V8 source",
+      "Two NFTMetadata single-Legendary payout expectations retain old1wei index loss",
+      "CombinedCapacity lacks real royalty opening and falsely claims sixteen1M gas faults fit12M",
+      "CanonicalPreparation positive royalty claims before actual opening",
+      "HolderCollectiveExit positive future royalty claim before actual opening"
+    ],
+    "deliberate_historical": [
+      "RoyaltyConversion.t.sol",
+      "TypedV4Rewards.t.sol",
+      "test/historical/*"
+    ],
+    "other_owners": {
+      "CollectionScale": "operations_audit",
+      "OptionalPortfolioCore and DynamicAccounting": "royalty_backend_audit"
+    }
+  },
+  "first_attempt": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\test-maintenance-current-royalty4\\status.json",
+    "methods": 4,
+    "successes": 3,
+    "failure": "CombinedCapacity explicit20M local fault attempt returns InvalidState at18,790,767 gas;12M rejected at10,870,827 gas. Failure preserved."
+  },
+  "corrected_scope": {
+    "methods_expected": 10,
+    "window": "Mint all required fixture NFTs first, then actual sale close and1hour grace, synchronize initial currency rights, then enter preparation/terminal pause or activate late entrant.",
+    "budget": "12M remains unchanged; assert atomic failure.24M is explicitly a LOCAL fixture probe only; no live/API/provider/target approval."
+  },
+  "final_pending": false,
+  "production_source_unchanged": true,
+  "unique_selected_methods": 24,
+  "do_not_add_overlapping_counts": true,
+  "final_stages": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\test-maintenance-final-frozen24\\status.json",
+      "methods": 24,
+      "successes": 24,
+      "source_unchanged": true,
+      "test_unchanged": true,
+      "scope": "Final correctness/fixture stage; later5same Combined methods supersede its gas scope. Other19selected methods and their own test input files remain unchanged."
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last24h-audit-20261105\\contract-agent\\test-maintenance-combined-final-cold\\status.json",
+      "methods": 5,
+      "successes": 5,
+      "source_unchanged": true,
+      "test_unchanged": true,
+      "scope": "Final actual-ProtocolPolicy-cooled five Combined methods. Same5methods, not additional successes."
+    }
+  ],
+  "retained_intermediate_stages": {
+    "test-maintenance-current-royalty4": "3pass/1failure:20M insufficient; missing opening remained.",
+    "test-maintenance-launch-and-capacity-final": "9pass/1setUpfailure: real-access payee constructor initialization was unauthorized. Prior five gas cases preallocated receipts, weakening pending stress; superseded.",
+    "test-maintenance-incumbent-pending-and-canonical": "0EVM methods: concurrent CollectionScale private-getter compile error; corrected by owner.",
+    "test-maintenance-incumbent-pending-and-canonical-attempt2": "Interrupted own early compile to finish newly requested post-handoff mint fixture review. No EVM result claimed."
+  },
+  "additional_repairs": [
+    "CanonicalPreparation initializes actual ProtocolPolicy payee before the child Vault constructor, preserving governance authorization. All7affected methods pass.",
+    "CanonicalHandoff mint extras dormant before close, finalize original two-incumbent rights, then activate extra buckets with unchanged prior claims and zero past rewards for extras.1000NFT, max-domain and max-prefund cases pass.",
+    "Closed-sale handoff preserves remaining quotas and full1000-entry artwork draw-map checksum without reopening source/replacement mint; nonzero mutated map entries prove nonvacuity.",
+    "Second replacement now grows/activates an existing dormant NFT, preserving the closed mint end; empty replacement remains empty and cannot reopen.",
+    "Negative pending-reveal and live-LP freeze tests first satisfy the opening rule, so rejection cannot be accidentally caused by an unrelated closed-window gate.",
+    "RoyaltyAudit has only a factual comment correction about Vm.cool; executable logic is unchanged."
+  ],
+  "final_combined_local_gas": {
+    "activation": 6635250,
+    "fully_indexed_activation": 7716244,
+    "growth": 4259039,
+    "fully_indexed_growth": 5686743,
+    "rejected_12M_sixteen_faults": 10921854,
+    "successful_24M_LOCAL_sixteen_faults": 21913087
+  },
+  "open_aggregate_capacity_limit": "Sixteen1M optional faults exceed12M; many healthy worst-prefix allocations may also exceed aggregate12M despite each fitting1M.24M is only a test-local probe; no production/API gas limit changed. Initial16andexpandable64currencies are not blanket target-qualified. Separate sync(asset) calls can reduce healthy backlog; actual broken-token operating capacity requires review."
+}

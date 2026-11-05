@@ -59,8 +59,9 @@ contract DynamicAccountingTest is PooledVaultFixture {
     }
     function testRepeatedReplacementTransferRoyaltiesAndFailedRebalanceRollback() public {
         (uint256 id,)=_fivePercent();venue.setFees(1000,0);vault.collectFees(_bucket(),block.timestamp+100);
+        _finishRoyaltyWindow();
         (bool ok,)=address(nft.royaltyRewards()).call{value:1 ether}("");require(ok);
-        uint256 royalty=nft.royaltyRewards().claimable(id,address(0));uint256 share=vault.sharesOf(id);
+        uint256 royalty=nft.royaltyRewards().claimable(id,address(0));assertGt(royalty,0,"funded royalty preservation must not be vacuous");uint256 share=vault.sharesOf(id);
         for(uint256 i;i<4;++i){
             uint256 old=_record(id).lpTokenId;vault.rebalance(_bucket(),1,block.timestamp+100);
             assertGt(_record(id).lpTokenId,old);assertEq(vault.sharesOf(id),share);

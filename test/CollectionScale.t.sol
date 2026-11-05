@@ -2,6 +2,7 @@
 pragma solidity 0.8.26;
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {MockToken} from "./mocks/Mocks.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "../src/ZZZClaimRouter.sol";
@@ -16,12 +17,14 @@ import {Ids, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 contract CollectionScaleTest is PooledVaultFixture {
     uint256 private constant COUNT = 1000;
     uint256 private constant LOCAL_GAS_BUDGET = 12_000_000;
-    // Fixed regression allowance for constant-size paths, not permission for
-    // an NFT-count loop. Cold access and zero/nonzero storage cases can differ.
+    // Compare two INCUMBENT paths, never first creation versus growth. The
+    // allowance is a regression budget, not permission for an NFT-count loop.
     uint256 private constant SCALING_ALLOWANCE = 100_000;
     uint256[] private ids;
     address[] private holders;
     uint256[] private principal;
+    uint256[] private weightOffsets;
+    uint256[3] private openingRoyalties;
     bytes32[] private traits;
     MockToken private stable;
     ZZZRoyaltyRewards private royalties;
@@ -71,6 +74,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         uint256 amount = varied ? 50 + (ordinal % 10) * 50 : 100;
         principal.push(amount * 2);
         totalPrincipal += amount * 2;
+        weightOffsets.push(totalWeight);
         totalWeight += uint256(nft.rarityOf(id)) + 1;
         assertEq(vault.nftBucket(id), 0);
         assertEq(vault.sharesOf(id), 0);
@@ -110,7 +114,30 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(_traits(id), traits[ordinal]);
         assertTrue(membership.eligible(id));
         assertEq(royalties.weightOf(id), uint256(nft.rarityOf(id)) + 1);
+        assertEq(royalties.ticketStart(id),weightOffsets[ordinal]+1);
         assertEq(uint256(vault.nftStatus(id)), uint256(PositionStatus.Active));
+    }
+
+    // Independent whole-unit opening allocation: full weight rounds plus the
+    // overlap with the initial cursor-zero remainder, without ledger previews.
+    function _openingShare(uint256 ordinal,uint256 amount) private view returns(uint256) {
+        uint256 weight = uint256(nft.rarityOf(ids[ordinal])) + 1;
+        uint256 remainder = amount % totalWeight;
+        uint256 first = weightOffsets[ordinal];
+        uint256 extra = remainder > first ? remainder-first : 0;
+        if(extra > weight) extra = weight;
+        return (amount/totalWeight)*weight + extra;
+    }
+
+    function _closeWindowWithCohort(uint256 count,uint256 weight) private {
+        vm.recordLogs();_finishRoyaltyWindow();Vm.Log[] memory logs=vm.getRecordedLogs();
+        uint256 found;
+        for(uint256 i;i<logs.length;++i) if(logs[i].emitter==address(royalties) &&
+            logs[i].topics.length!=0 && logs[i].topics[0]==keccak256("RoyaltyOpeningFinalized(uint256,uint256,uint256)")) {
+            (uint256 cutoff,uint256 actualCount,uint256 actualWeight)=abi.decode(logs[i].data,(uint256,uint256,uint256));
+            assertEq(cutoff,royalties.royaltiesOpenAt());assertEq(actualCount,count);assertEq(actualWeight,weight);++found;
+        }
+        assertEq(found,1,"exactly one observed opening cutoff");
     }
 
     function _expected(uint256 ordinal) private view returns (uint256[5] memory amounts) {
@@ -119,9 +146,9 @@ contract CollectionScaleTest is PooledVaultFixture {
         // Algebra is independent of on-chain index/checkpoint implementation.
         amounts[0] = principal[ordinal] * 32 + totalPrincipal * 4 / COUNT;
         amounts[1] = principal[ordinal] * 48 + totalPrincipal * 6 / COUNT;
-        amounts[2] = weight * 100;
-        amounts[3] = weight * 1e6;
-        amounts[4] = weight * 1e12;
+        amounts[2] = weight * 100 + _openingShare(ordinal,openingRoyalties[0]);
+        amounts[3] = weight * 1e6 + _openingShare(ordinal,openingRoyalties[1]);
+        amounts[4] = weight * 1e12 + _openingShare(ordinal,openingRoyalties[2]);
     }
 
     function _assertEntitlement(uint256 ordinal) private view {
@@ -169,6 +196,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         // payout-loop gas is not a claim that 1,000 claims fit one transaction.
         vm.pauseGasMetering();
         _prepareRoyaltyAssets();
+        openingRoyalties = [uint256(23),uint256(41),uint256(17)];
         t0.mint(address(royalties), 23); stable.mint(address(royalties), 41); _payNative(17);
         uint256[3] memory rarityCounts;
         for (uint256 i; i < COUNT; ++i) {
@@ -185,9 +213,24 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(vault.bucketTotalShares(bucket), totalPrincipal * 1e18);
         assertEq(vault.group(bucket).depositUSD, totalPrincipal * 1e18);
         assertEq(venue.next(), 2); assertEq(treasury.balance, COUNT * 0.05 ether);
-        assertEq(royalties.orphaned(address(t0)), 23); assertEq(royalties.orphaned(address(stable)), 41);
-        assertEq(royalties.orphaned(address(0)), 17);
+        // Receipts during minting belong to the eventual opening cohort, not
+        // an orphan pool and not the first activation alone.
+        assertEq(royalties.openingPool(address(t0)),23);
+        assertEq(royalties.openingPool(address(stable)),41);
+        assertEq(royalties.openingPool(address(0)),17);
+        assertEq(royalties.orphaned(address(t0)),0);
+        assertEq(royalties.orphaned(address(stable)),0);assertEq(royalties.orphaned(address(0)),0);
+        assertEq(royalties.claimable(ids[0],address(t0)),0);
+        vm.prank(holders[0]);vm.expectRevert(ZZZRoyaltyRewards.InvalidState.selector);
+        royalties.claim(ids[0],address(t0));
+        // Prove supply exhaustion while the sale is still open, rather than
+        // accidentally passing because minting has already closed.
         bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(_holder(0)); vm.expectRevert(); vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
+        _closeWindowWithCohort(COUNT,totalWeight);
+        assertEq(royalties.openingPool(address(t0)),0);assertEq(royalties.openingPool(address(stable)),0);
+        assertEq(royalties.openingPool(address(0)),0);
+        assertEq(royalties.liabilities(address(t0)),23);assertEq(royalties.liabilities(address(stable)),41);
+        assertEq(royalties.liabilities(address(0)),17);
 
         // Actual venue receipts preserve the same 40/60 gross fee vector;
         // no optional creator-payment path is part of this candidate.
@@ -236,14 +279,14 @@ contract CollectionScaleTest is PooledVaultFixture {
         for (uint256 i; i < COUNT; ++i) { _assertIdentity(i, bucket); _assertEntitlement(i); }
         uint256[5] memory paid = _claimEveryNFT();
         assertEq(paid[0], totalPrincipal * 36); assertEq(paid[1], totalPrincipal * 54);
-        assertEq(paid[2], totalWeight * 100); assertEq(paid[3], totalWeight * 1e6);
-        assertEq(paid[4], totalWeight * 1e12);
+        assertEq(paid[2], totalWeight * 100 + 23); assertEq(paid[3], totalWeight * 1e6 + 41);
+        assertEq(paid[4], totalWeight * 1e12 + 17);
         assertEq(rewards.liabilities(address(t0)), 0); assertEq(rewards.liabilities(address(t1)), 0);
         assertEq(t0.balanceOf(address(rewards)), 0); assertEq(t1.balanceOf(address(rewards)), 0);
         assertEq(royalties.liabilities(address(t0)), 0); assertEq(royalties.liabilities(address(stable)), 0);
         assertEq(royalties.liabilities(address(0)), 0);
-        assertEq(t0.balanceOf(address(royalties)), 23); assertEq(stable.balanceOf(address(royalties)), 41);
-        assertEq(address(royalties).balance, 17);
+        assertEq(t0.balanceOf(address(royalties)), 0); assertEq(stable.balanceOf(address(royalties)), 0);
+        assertEq(address(royalties).balance, 0);
         assertEq(t0.balanceOf(address(fees)), fees.accounted(address(t0)));
         assertEq(t1.balanceOf(address(fees)), fees.accounted(address(t1)));
         assertEq(fees.accounted(address(t0)), 0); assertEq(fees.accounted(address(t1)), totalPrincipal * 3);
@@ -251,7 +294,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         Position memory p = vault.group(bucket);
         // Per-asset equality includes actual balances once, not liabilities plus
         // their backing. Principal, compounded revenue, paid fees, pending burn
-        // reserve, burned supply and separate royalty quarantine all reconcile.
+        // reserve, burned supply and exact original-currency opening rights all reconcile.
         assertEq(venue.a0(p.lpTokenId) + p.idle0 + t0.balanceOf(address(fees)) +
             t0.balanceOf(address(rewards)) + t0.balanceOf(address(royalties)) + paid[0] + paid[2] + burned,
             totalPrincipal / 2 + totalPrincipal * 40 + totalWeight * 100 + 23);
@@ -262,6 +305,34 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(address(router).balance, 0); assertEq(t0.balanceOf(address(router)), 0);
         assertEq(t1.balanceOf(address(router)), 0); assertEq(stable.balanceOf(address(router)), 0);
         vm.resumeGasMetering();
+    }
+
+
+    function testZeroOpeningCohortKeepsUnallocatedSeparateFromFutureEarnings() public {
+        _prepareRoyaltyAssets();_mintScale(0,false);
+        t0.mint(address(royalties),23);stable.mint(address(royalties),41);_payNative(17);
+        royalties.syncAll();
+        assertEq(royalties.openingPool(address(t0)),23);assertEq(royalties.openingPool(address(stable)),41);
+        assertEq(royalties.openingPool(address(0)),17);assertEq(royalties.orphaned(address(t0)),0);
+        _closeWindowWithCohort(0,0);
+        // Actual post-opening receipts with no eligible NFT also remain
+        // unallocated; a later activation cannot silently capture either pool.
+        t0.mint(address(royalties),7);stable.mint(address(royalties),11);_payNative(13);royalties.syncAll();
+        assertEq(royalties.orphaned(address(t0)),30);assertEq(royalties.orphaned(address(stable)),52);
+        assertEq(royalties.orphaned(address(0)),30);
+        _activateScale(0);
+        assertEq(royalties.claimable(ids[0],address(t0)),0);assertEq(royalties.claimable(ids[0],address(stable)),0);
+        assertEq(royalties.claimable(ids[0],address(0)),0);
+        _fundRoyalties();
+        vm.startPrank(holders[0]);
+        assertEq(royalties.claim(ids[0],address(t0)),totalWeight*100);
+        assertEq(royalties.claim(ids[0],address(stable)),totalWeight*1e6);
+        assertEq(royalties.claim(ids[0],address(0)),totalWeight*1e12);
+        vm.stopPrank();
+        assertEq(t0.balanceOf(address(royalties)),30);assertEq(stable.balanceOf(address(royalties)),52);
+        assertEq(address(royalties).balance,30);
+        assertEq(royalties.liabilities(address(t0)),0);assertEq(royalties.liabilities(address(stable)),0);
+        assertEq(royalties.liabilities(address(0)),0);
     }
 
     function _cool(address owner) private {
@@ -277,13 +348,14 @@ contract CollectionScaleTest is PooledVaultFixture {
         vm.cool(address(nft));
         vm.cool(ac.module(Ids.CANONICAL)); vm.cool(ac.module(Ids.NFT_CANONICAL));
         vm.cool(ac.module(Ids.VAULT_CANONICAL)); vm.cool(ac.module(Ids.FEES_CANONICAL));
-        // Reading companion bindings warms the controller; cool it last.
-        vm.cool(address(ac));
+        // policy above is the synthetic LP strategy; cool the ACTUAL shared
+        // ProtocolPolicy too. Reading its binding warms Access, so cool it last.
+        vm.cool(ac.protocolPolicy());vm.cool(address(ac));
     }
 
     function _measureAt(uint256 size) private returns (GasMeasurements memory result) {
         vm.pauseGasMetering();
-        delete ids; delete holders; delete principal; delete traits;
+        delete ids; delete holders; delete principal; delete traits;delete weightOffsets;delete openingRoyalties;
         totalPrincipal = 0; totalWeight = 0;
         _fixture(treasury); _prepareRoyaltyAssets();
         for (uint256 i; i < size; ++i) { _mintScale(i, false); if (i + 1 != size) _activateScale(i); }
@@ -292,6 +364,13 @@ contract CollectionScaleTest is PooledVaultFixture {
         uint256 start = gasleft();
         vault.activate(ids[last], poolId, 100, 100, 1, block.timestamp + 100);
         result.activation = start - gasleft(); vm.pauseGasMetering();
+        emit log_named_uint("collection.shape.nfts",size);
+        emit log_named_uint("collection.shape.claimed-nft-royalty-weight",royalties.weightOf(ids[last]));
+        emit log_named_uint("collection.shape.claimed-nft-first-ticket",royalties.ticketStart(ids[last]));
+        emit log_named_uint("collection.shape.eligible-weight",royalties.totalWeight());
+        // The measured activation remains a pre-opening entry. Open only
+        // after every fixture mint/activation, and refresh its real mock feeds.
+        _closeWindowWithCohort(size,totalWeight);
         uint256 bucket = vault.poolBucket(poolId);
         venue.setFees(totalPrincipal * 20, totalPrincipal * 20); vault.collectFees(bucket, block.timestamp + 100);
         _fundRoyalties();
@@ -318,11 +397,15 @@ contract CollectionScaleTest is PooledVaultFixture {
         vm.resumeGasMetering();
     }
 
-    function _bounded(string memory operation, uint256 single, uint256 full) private {
-        emit log_named_uint(string.concat("collection.1.", operation), single);
-        emit log_named_uint(string.concat("collection.1000.", operation), full);
-        assertLt(single, LOCAL_GAS_BUDGET); assertLt(full, LOCAL_GAS_BUDGET);
-        assertLe(full, single + SCALING_ALLOWANCE, "NFT population unexpectedly increases bounded path gas");
+    function _absoluteBound(string memory operation,uint256 initial,uint256 incumbent,uint256 full) private {
+        emit log_named_uint(string.concat("collection.1.",operation),initial);
+        emit log_named_uint(string.concat("collection.2.",operation),incumbent);
+        emit log_named_uint(string.concat("collection.1000.",operation),full);
+        assertLt(initial,LOCAL_GAS_BUDGET);assertLt(incumbent,LOCAL_GAS_BUDGET);assertLt(full,LOCAL_GAS_BUDGET);
+    }
+    function _bounded(string memory operation,uint256 initial,uint256 incumbent,uint256 full) private {
+        _absoluteBound(operation,initial,incumbent,full);
+        assertLe(full,incumbent+SCALING_ALLOWANCE,"Same-path population regression exceeds allowance");
     }
 
     function _maximumMixedBatch() private {
@@ -356,16 +439,23 @@ contract CollectionScaleTest is PooledVaultFixture {
         vm.resumeGasMetering();
     }
 
-    /// @notice Cold execution-gas deltas exclude fixture/loop setup, intrinsic
-    /// and calldata gas and refunds. Fake venue fees are not real Uniswap costs.
+    /// @notice Selected-account-and-slot-cooled local deltas exclude fixture
+    /// setup, intrinsic/calldata gas and refunds. Unlisted helpers can remain
+    /// warm; these are not target costs. Venue fees are synthetic.
     function testColdOperationsAtOneAnd1000NFTsStayBounded() public {
         GasMeasurements memory single = _measureAt(1);
+        GasMeasurements memory incumbent = _measureAt(2);
         GasMeasurements memory full = _measureAt(COUNT);
-        _bounded("activation", single.activation, full.activation);
-        _bounded("claim-one-asset", single.oneAssetClaim, full.oneAssetClaim);
-        _bounded("claim-five-mixed", single.mixedBatch, full.mixedBatch);
-        _bounded("shared-rebalance", single.rebalance, full.rebalance);
-        _bounded("shared-compound", single.compound, full.compound);
+        _bounded("activation",single.activation,incumbent.activation,full.activation);
+        _bounded("claim-one-asset",single.oneAssetClaim,incumbent.oneAssetClaim,full.oneAssetClaim);
+        // Royalty4 consumes bounded tree paths. These measured NFTs differ
+        // in rarity and prefix/tag geometry, so an O(1) delta comparison would
+        // conflate state shape with population. Keep the SAME absolute budget,
+        // actual funded payouts and explicit shape logs; do not invent a larger
+        // relative allowance or call these shapes a universal worst case.
+        _absoluteBound("claim-five-mixed",single.mixedBatch,incumbent.mixedBatch,full.mixedBatch);
+        _bounded("shared-rebalance",single.rebalance,incumbent.rebalance,full.rebalance);
+        _bounded("shared-compound",single.compound,incumbent.compound,full.compound);
         _maximumMixedBatch();
     }
 }

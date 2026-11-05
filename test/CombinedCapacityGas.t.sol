@@ -86,7 +86,7 @@ contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
 
 /// @notice Combined permitted limits, rather than independent one-axis tests:
 /// Four historical buckets with actual LP fee receipts, 32 admitted LP reward assets,
-/// and the maximum 16 ERC20 royalty assets plus native ETH. Real core accounting;
+/// and the default 16 ERC20 royalty assets plus native ETH. Real core accounting;
 /// mocked access, tokens, oracle feeds, randomness, strategy and liquidity venue.
 /// Cold gasleft deltas exclude construction, intrinsic/calldata gas and refunds.
 contract CombinedCapacityGasTest is Test {
@@ -194,8 +194,18 @@ contract CombinedCapacityGasTest is Test {
             venue.setFees(poolIds[i], 1000);
             vault.collectFees(vault.nftBucket(incumbents[i]), block.timestamp + 100);
         }
+        // All fixture NFTs are already minted. Close the actual sale and wait
+        // its real 1-hour grace with four incumbents and a dormant entrant.
+        nft.setMintEnd(uint64(block.timestamp+1));
+        vm.warp(block.timestamp+3601);
+        feed.set(1e8,block.timestamp,block.timestamp);
+        royalties.syncAll();
+        assertTrue(royalties.royaltiesOpen());
+        // Leave receipts PENDING for the measured operation: healthy activation
+        // must allocate to incumbents, and fault recovery must exclude entrant.
         for (uint256 i; i < 16; ++i) tokens[i].mint(address(royalties), 1600);
         vm.deal(address(royalties), 16 ether);
+        assertEq(royalties.pending(address(0)),16 ether);
         assertEq(vault.bucketCount(), SUPPORTED_BUCKETS);
         assertEq(rewards.assetCount(), 33);
         assertEq(royalties.assetCount(), 17);
@@ -221,7 +231,9 @@ contract CombinedCapacityGasTest is Test {
         vm.cool(address(nft));
         vm.cool(access.module(Ids.CANONICAL)); vm.cool(access.module(Ids.NFT_CANONICAL));
         vm.cool(access.module(Ids.VAULT_CANONICAL)); vm.cool(access.module(Ids.FEES_CANONICAL));
-        // Reading companion bindings warms the controller; cool it last.
+        // The strategy mock and actual gas/terms policy are different contracts.
+        vm.cool(access.protocolPolicy());
+        // Reading companion/policy bindings warms the controller; cool it last.
         vm.cool(address(access));
         vm.cool(address(oracle));
     }
@@ -335,10 +347,10 @@ contract CombinedCapacityGasTest is Test {
     function testColdActivationWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(true); }
     function testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(false); }
 
-    /// @notice Bounded optional-currency isolation still has a finite total gas
-    /// cost. This scenario fits the unchanged 12M call budget while preserving
-    /// earlier earnings; it does not qualify actual venue or worst-case native gas.
-    function testMaximumOptionalRoyaltyGasFaultsFitReviewedActivationBudget() public {
+    /// @notice Sixteen full-budget faults at the current 1M per-currency default
+    /// exceed 12M. Underfunded execution must roll back; a larger LOCAL fixture
+    /// call verifies isolation without qualifying live API/provider/chain budgets.
+    function testSixteenOptionalFaultsRejectTwelveMillionAndIsolateWithLargerLocalBudget() public {
         faultCurrencyFixture = true;
         _fixture();
         vm.pauseGasMetering();
@@ -362,11 +374,31 @@ contract CombinedCapacityGasTest is Test {
         _cool();
         vm.prank(ENTRANT);
         uint256 start = gasleft();
-        (bool executed, bytes memory result) = address(vault).call{gas: LOCAL_GAS_BUDGET}(payload);
-        uint256 completedGas = start-gasleft();
-        emit log_named_uint("maximum-royalty-faults.12M-attempt.gas", completedGas);
+        (bool executed,) = address(vault).call{gas: LOCAL_GAS_BUDGET}(payload);
+        emit log_named_uint("maximum-royalty-faults.12M-rejected.gas", start-gasleft());
+        assertFalse(executed,"Sixteen 1M faults must not be labeled 12M-qualified");
+        assertEq(vault.nftBucket(entrant),0);
+        assertEq(vault.sharesOf(entrant),0);
+        assertEq(vault.bucketTotalShares(bucket),previousShares);
+        assertEq(vault.group(bucket).lpTokenId,previousLP);
+        assertEq(membership.totalEligible(),SUPPORTED_BUCKETS);
+        assertEq(royalties.activationCount(),SUPPORTED_BUCKETS);
+        assertEq(royalties.weightOf(entrant),0);
+        assertEq(IERC20(first).balanceOf(ENTRANT),balance0);
+        assertEq(IERC20(second).balanceOf(ENTRANT),balance1);
+        for(uint256 i;i<16;++i) assertEq(royalties.eligibleCount(address(tokens[i])),SUPPORTED_BUCKETS);
+        // 24M is a test-local envelope, not a changed service limit or target
+        // qualification. Production must simulate and review aggregate capacity.
+        uint256 localFaultBudget=24_000_000;
+        _cool();
+        vm.prank(ENTRANT);
+        start=gasleft();
+        bytes memory result;
+        (executed,result)=address(vault).call{gas:localFaultBudget}(payload);
+        uint256 completedGas=start-gasleft();
+        emit log_named_uint("maximum-royalty-faults.24M-local-attempt.gas",completedGas);
         if (!executed) assembly ("memory-safe") { revert(add(result,32),mload(result)) }
-        assertLt(completedGas,LOCAL_GAS_BUDGET,"Requalify optional-currency gas before changing the review");
+        assertLt(completedGas,localFaultBudget,"Local fault-envelope regression");
         assertEq(vault.nftBucket(entrant),bucket);
         assertGt(vault.sharesOf(entrant),0);
         assertEq(vault.bucketTotalShares(bucket),previousShares+vault.sharesOf(entrant));

@@ -25,7 +25,7 @@ not upgrade deployed storage, journals or ownership.
 | Replace the ZZZ token contract | No setter or issuer-exchange call exists. Governance may return actual ETH/ZZZ to holders; any later token exchange/new deployment is separate, without automatic continuity. |
 | Return LP principal to NFT holders | Governance starts irreversible collective retirement while paused. Operator closes/allocates bounded batches and directly pays current NFT owners. Normal recipients take no action; rejected payouts remain backed for retry or exceptional owner-only fallback. |
 | Hand assets to an operator/custodian for external work | Removed. No external custody address, all-ZZZ conversion exit, arbitrary transfer or funded local return path remains. |
-| Replace the complete collection on this chain | Before collective exit only: reviewed compatible accounting6/canonicalV6 handoff carries ownership, both ledgers, shares and backing after all main/residual legs close into parked custody. Checked retirement/activation or funded abort; permanently blocked after LP exit begins. |
+| Replace the complete collection on this chain | Before collective exit only: reviewed compatible accounting6/canonicalV8 handoff carries ownership, both ledgers, shares and backing after all main/residual legs close into parked custody. Checked retirement/activation or funded abort; permanently blocked after LP exit begins. |
 | Relocate canonical ownership/rewards to another chain or recover after chain halt | Not implemented. Moving tokens externally is not movement or revocation of the original NFT/accounting system. |
 
 Native ETH and WETH are distinct assets. Reversed currency slots, unrelated

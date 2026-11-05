@@ -20,10 +20,29 @@ interface ICanonicalVaultState is IZZZVault {
     function canonicalBarrier() external;
 }
 interface ICanonicalPortfolio { function PORTFOLIO_VERSION() external view returns(uint256); }
-interface ICanonicalVaultNFT { function tokenAtOrdinal(uint256 ordinal) external view returns (uint256); }
+interface ICanonicalVaultNFT {
+    function tokenAtOrdinal(uint256 ordinal) external view returns (uint256);
+    function royaltyRewards() external view returns (address);
+}
+interface ICanonicalMintRoyalty {
+    function mintEnd() external view returns (uint64);
+    function mintEndRevision() external view returns (uint64);
+}
 interface ICanonicalVaultRewards {
     function assetCount() external view returns (uint256);
     function assets(uint256 index) external view returns (address);
+}
+
+interface ICanonicalRecoveryRoute {
+    function SCHEMA() external view returns(bytes32);
+    function access() external view returns(address);
+    function phase() external view returns(uint8);
+    function incomingSource() external view returns(address);
+    function destinationController() external view returns(address);
+    function stateRoot() external view returns(bytes32);
+    function exportRoot(uint256) external view returns(bytes32);
+    function importRoot(uint256) external view returns(bytes32);
+    function cancelledRoyaltyReturnController() external view returns(address);
 }
 
 /// @notice Immutable Vault companion. No configurable executor or delegatecall.
@@ -115,14 +134,23 @@ contract ZZZVaultCanonical {
     function mintProceedsRecipient() external view returns(address) {
         return IZZZProtocolPolicy(access.protocolPolicy()).salePolicy().recipient;
     }
+    /// @notice Bind the reviewed sale/VRF policy, exact collection and receiver,
+    /// and its local sale-end epoch through the final proceeds callback.
     function mintPolicyFingerprint() external view returns(bytes32) {
-        return IZZZProtocolPolicy(access.protocolPolicy()).mintFingerprint();
+        return _mintPolicyFingerprint(IZZZProtocolPolicy(access.protocolPolicy()));
+    }
+    function _mintPolicyFingerprint(IZZZProtocolPolicy policy) private view returns(bytes32) {
+        address collection = access.module(Ids.NFT);
+        address receiver = ICanonicalVaultNFT(collection).royaltyRewards();
+        ICanonicalMintRoyalty ledger = ICanonicalMintRoyalty(receiver);
+        return keccak256(abi.encode(keccak256("ZZZ_MINT_POLICY_WITH_ROYALTY_END_V2"),
+            policy.mintFingerprint(),collection,receiver,ledger.mintEnd(),ledger.mintEndRevision()));
     }
     function validateMint(uint256 value,uint256 ordinal,bytes32 expectedPolicy) external view onlyVault returns (uint256,address) {
         if (block.chainid != vault.canonicalChainId()) revert InvalidState();
         IZZZProtocolPolicy policy = IZZZProtocolPolicy(access.protocolPolicy());
         IZZZProtocolPolicy.SalePolicy memory sale = policy.salePolicy();
-        if(value != sale.mintPrice || expectedPolicy == bytes32(0) || expectedPolicy != policy.mintFingerprint()) revert InvalidAmount();
+        if(value != sale.mintPrice || expectedPolicy == bytes32(0) || expectedPolicy != _mintPolicyFingerprint(policy)) revert InvalidAmount();
         return (uint256(keccak256(abi.encode(originChain,originVault,ordinal))),sale.recipient);
     }
     function bucketIdentity(bytes32 pool) external view returns (uint256) {
@@ -308,5 +336,33 @@ contract ZZZVaultCanonical {
         address manager = access.module(Ids.LIQUIDITY);
         if (ICanonicalPortfolio(manager).PORTFOLIO_VERSION() != 2 ||
             IZZZLiquidity(manager).activeSecondaryCount() != 0) revert InvalidState();
+    }
+
+    /// @notice Read-only ONE-hop proof for this controller's cancelled handoff.
+    /// It accepts no route/recipient input and cannot move funds or set a cursor.
+    function validateCancelledRoyaltyHop() external view onlyHandoff returns(address next) {
+        if(access.canonicalState() != 4 || ICanonicalRecoveryRoute(msg.sender).phase() != 7) revert InvalidState();
+        address previous = ICanonicalRecoveryRoute(msg.sender).cancelledRoyaltyReturnController();
+        ICanonicalRecoveryRoute from = _recoveryPeer(previous);
+        next = from.destinationController();
+        if(IZZZAccess(previous).canonicalState() != 3 || from.phase() != 3 ||
+            next == address(0) || next == previous || next == address(access) || !IZZZAccess(next).isSealed())
+            revert InvalidState();
+        uint8 state = IZZZAccess(next).canonicalState();
+        ICanonicalRecoveryRoute to = _recoveryPeer(next);
+        if((state != 0 && state != 3) || to.incomingSource() != previous ||
+            (state == 0 ? to.phase() != 5 : to.phase() != 3)) revert InvalidState();
+        // These domain chains are immutable after retirement/first import.
+        // Later source snapshots or aborts may replace the successor's current
+        // root, but cannot replace its original imported record chains.
+        if(from.stateRoot() == bytes32(0)) revert InvalidState();
+        for(uint8 slot;slot<6;++slot) {
+            if(from.exportRoot(slot) != to.importRoot(slot)) revert InvalidState();
+        }
+    }
+    function _recoveryPeer(address controller) private view returns(ICanonicalRecoveryRoute peer) {
+        peer = ICanonicalRecoveryRoute(IZZZAccess(controller).canonicalHandoff());
+        if(peer.SCHEMA() != keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8") ||
+            peer.access() != controller) revert InvalidState();
     }
 }

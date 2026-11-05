@@ -1,0 +1,114 @@
+{
+  "scope": "Exact scoped reuse of five unaffected passing contexts after benchmark-only change. No financial assertions, fixture funding or invariant logic changed; final benchmark stage remains separate.",
+  "previous_stage": "after-idle-and-same-path/status.json",
+  "previous_production_unchanged": true,
+  "production_still_unchanged": true,
+  "NFTRights_entire_file_unchanged": true,
+  "shared_VaultAccounting_fixture_unchanged": true,
+  "collection_changed_functions": [
+    "_bounded",
+    "_measureAt",
+    "testColdOperationsAtOneAnd1000NFTsStayBounded"
+  ],
+  "collection_added_functions": [
+    "_absoluteBound"
+  ],
+  "collection_unchanged_function_sha256": {
+    "_holder": "38210347326fd4d0fee72404fa2e14a9d91b5ee65a4148060432ac75d594819d",
+    "_traits": "7b6a018121ea088c9580100072b09194f272ac1a68a1cdbe5a596d2131610c5f",
+    "_prepareRoyaltyAssets": "687dca384d44e40e4c7216fc10b6f4e3cf951b28295d823f5dfe152940debb80",
+    "_mintScale": "2c6f8ff07889c3378501f5a478b0f385177e1b53926bd478ed152e941296868c",
+    "_activateScale": "9f3d72c287b69944f456c5f6b5e24824ad47a1b48001884a23ce2ebbc6347098",
+    "_payNative": "c243c0a72664be713c997e053f8097a2c98d4bc5a8359d5d28f2c8f46767f888",
+    "_fundRoyalties": "2a18bb3018cad8f532b3286314af02fa2a9483f4deca555ab55998804b12f15c",
+    "_mixed": "c51918a41ebe0bf3bca128cc90ed0c2f63bfd8c365efc645e44f15940fa22566",
+    "_assertIdentity": "da4c15ffdf2ce9ed07ae500b525fd292ddc8388fdc05a02f093939fbd7e467cb",
+    "_openingShare": "3ed46c4fdada549f9e8551656443ee42630326d2752a58b1e5edfee3ebe91f21",
+    "_closeWindowWithCohort": "ffe44b3f38aacd6bd0f3318e976b91afb82911bad90eae15510faeba818ed0a9",
+    "_expected": "f95fb26c6bfa1ad6c7e64f968320906ddf1d3db034e60a698413cfe35c8747b6",
+    "_assertEntitlement": "95d2c12b9f6fb4123a5bdf6d65b2599c16a319c497e64b52aa2f90257cb9c0e3",
+    "_claimEveryNFT": "7f4fdf7b6fd07526d862cb99783e4d7b06547978c10e36d3046a6c4f04a28163",
+    "testAll1000NFTsPreserveIndependentRightsAndFundedConservation": "0d8229c20d9bd8d72376fcce22c927067a533eecc9ba1e4404c021dba4ebf645",
+    "testZeroOpeningCohortKeepsUnallocatedSeparateFromFutureEarnings": "0bd047615edb5e8187308ce58900a8d714c2033527c22054cd6c7bea3b6279d7",
+    "_cool": "46ced272f243a7ce59c2109bb35d856cb86ea0e1243ca83422bc3df785f05710",
+    "_maximumMixedBatch": "6804e2da239af8b1c7daea805347617b293379d6070526e3dfef02f1a48a4d25"
+  },
+  "five_passed_contexts_reused": [
+    "test/CollectionScale.t.sol:CollectionScaleTest::testAll1000NFTsPreserveIndependentRightsAndFundedConservation()",
+    "test/CollectionScale.t.sol:CollectionScaleTest::testZeroOpeningCohortKeepsUnallocatedSeparateFromFutureEarnings()",
+    "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::invariant_rightsAndActualFundingConserved()",
+    "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::testMinimumBoundTopUpActuallyExecutesAndConservesRights()",
+    "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest::testReceiptActivationTransferPauseAndMixedClaimSequence()"
+  ],
+  "invariant_record": {
+    "Invariant": {
+      "runs": 32,
+      "calls": 4096,
+      "reverts": 0,
+      "metrics": {
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.maintain": {
+          "calls": 350,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.synchronizeRoyalty": {
+          "calls": 326,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.harvest": {
+          "calls": 352,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.finishRoyaltyWindow": {
+          "calls": 330,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.receiveRoyalty": {
+          "calls": 339,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimRoyalty": {
+          "calls": 349,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.transfer": {
+          "calls": 369,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimMixed": {
+          "calls": 328,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.activate": {
+          "calls": 356,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.pause": {
+          "calls": 322,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimLP": {
+          "calls": 336,
+          "reverts": 0,
+          "discards": 0
+        },
+        "test/NFTRightsInvariants.t.sol:NFTRightsHandler.topUp": {
+          "calls": 339,
+          "reverts": 0,
+          "discards": 0
+        }
+      },
+      "failed_corpus_replays": 0
+    }
+  },
+  "all_nonfunction_declarations_and_imports_unchanged": true
+}
