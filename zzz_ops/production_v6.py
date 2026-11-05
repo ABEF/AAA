@@ -461,7 +461,7 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
@@ -474,7 +474,7 @@ def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILE
     g.check(hard is not None and operating is not None and operating<=hard,path,'buyback.ceiling',
         'Retain constructor provenance separately; operating spend must not exceed the reviewed current maximum.')
     g.proof(ctor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
-    native=dict(version=6,asset=ZERO,decimals=18,runtime_hash=None,canonical_schema=SCHEMA_HASH,
+    native=dict(version=6,asset=ZERO,decimals=18,runtime_hash=None,canonical_schema=canonical_schema_hash,
         wrapper_independent=True,eth_weth_principal_boundary=False,legacy_v1_import=False)
     g.check(V._equal(chain.get('native_accounting'),native),path+'.native_accounting','native.profile','Use exact accounting6 native identity/canonical V6.')
     _authority(g,chain,path)
@@ -497,7 +497,7 @@ def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILE
     history=g.obj(chain.get('inventory_history'),path+'.inventory_history')
     g.check(history.get('complete') is True,path+'.inventory_history','history.incomplete','Retain complete creation-to-anchor pools/routes/source/asset/role history.')
     V._bound_proof(g,history.get('evidence'),path+'.inventory_history.evidence',chain,kind='complete_deployment_inventory',exact_block=True)
-    _nft(g,chain,path,tokens,royalty_conversion=royalty_conversion)
+    _nft(g,chain,path,tokens,royalty_conversion=royalty_conversion,royalty_max_assets=royalty_max_assets)
     services=g.obj(chain.get('services'),path+'.services');g.keys(services,service_profiles,path+'.services')
     for role,profile in service_profiles.items():
         sp=path+'.services.'+role;s=g.obj(services.get(role),sp)
@@ -514,12 +514,13 @@ def validate(config, *, expected_commit=None, now=None):
 
 
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
-              service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens):
+              service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
+              canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
     for key,value in versions.items():g.check(type(cfg.get(key)) is int and cfg.get(key)==value,key,'schema.unsupported','Use the exact selected inventory/Entry capability profile.')
-    g.check(cfg.get('canonical_schema')==SCHEMA_NAME,'canonical_schema','schema.canonical','Do not reinterpret an earlier canonical schema.')
+    g.check(cfg.get('canonical_schema')==canonical_schema_name,'canonical_schema','schema.canonical','Do not reinterpret an earlier canonical schema.')
     g.check(set(cfg)-{'_notes'}==TOP_FIELDS,'config','schema.keys','Use exact selected inventory fields; no removed custody recipient or bridge inventory.')
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Use the exact independently reviewed source revision.')
     home=g.num(cfg.get('canonical_chain_id'),'canonical_chain_id',1)
@@ -565,7 +566,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
@@ -735,7 +736,7 @@ def _pools(g,chain,path,tokens,deps):
         'Read Budget3 compoundInterval for each pool at the same block.','bindings')
     return pools
 
-def _nft(g,chain,path,tokens,*,royalty_conversion=True):
+def _nft(g,chain,path,tokens,*,royalty_conversion=True,royalty_max_assets=17):
     """Reuse current draw/content/VRF checks, with explicit custody3 asset semantics."""
     # Common checks are source-copied to keep historical validator behavior fixed.
     np=path+'.nft_inventory';nft=g.obj(chain.get('nft_inventory'),np);ctor=V._obj(chain.get('constructor'))
@@ -770,8 +771,22 @@ def _nft(g,chain,path,tokens,*,royalty_conversion=True):
         integration.get('original_request_recovery_tested') is True and V._numeric(integration.get('fulfilled_request_id')) not in (None,0) and
         V._numeric(integration.get('finalized_token_id')) not in (None,0),np,'randomness.integration','Retain actual original-request fulfillment/recovery evidence.')
     V._ledger_assets(g,chain,path+'.reward_assets',chain.get('reward_assets'),tokens,33)
-    inv=g.obj(nft.get('royalty_assets'),np+'.royalty_assets');entries=g.items(inv.get('assets'),np+'.royalty_assets.assets',17,1)
+    inv=g.obj(nft.get('royalty_assets'),np+'.royalty_assets');entries=g.items(inv.get('assets'),np+'.royalty_assets.assets',royalty_max_assets,1)
     g.check(type(inv.get('asset_count')) is int and inv.get('asset_count')==len(entries) and inv.get('observed_asset_count')==len(entries) and inv.get('complete_admission_history') is True,np,'royalty.assets_complete','Read the exact admitted currency inventory.')
+    if royalty_max_assets > 17:
+        capacity=g.num(inv.get('capacity'),np+'.royalty_assets.capacity',16,64)
+        g.check(capacity is not None and capacity >= len(entries)-1 and inv.get('observed_capacity')==capacity,
+                np,'royalty.capacity','Authenticate configured capacity and preserve all existing currencies.')
+        if capacity is not None and capacity > 16:
+            proof=g.proof(inv.get('capacity_review_evidence'),np+'.royalty_assets.capacity_review_evidence')
+            g.check(proof.get('worst_case_activation_gas_tested') is True and proof.get('capacity')==capacity,
+                    np,'royalty.capacity_gas','Qualify cold/faulted maximum activation and API/history workloads before expansion.')
+        window=g.obj(nft.get('royalty_window'),np+'.royalty_window')
+        end=g.num(window.get('mint_end'),np+'.royalty_window.mint_end',1,2**64-1)
+        g.check(end is not None and window.get('claims_open_at')==end+3600,np,'royalty.window','Configure final sale end and fixed1-hour activation window.')
+        proof=g.proof(window.get('marketplace_schedule_evidence'),np+'.royalty_window.marketplace_schedule_evidence')
+        g.check(proof.get('final_stage_end')==end and proof.get('all_mint_paths_bound') is True,
+                np,'royalty.marketplace_end','Match the final OpenSea stage and qualify schedule changes across both contracts.')
     seen=set()
     for i,asset in enumerate(entries):
         address=g.hex(asset.get('address'),np+'.royalty_assets.address',20,zero=True)

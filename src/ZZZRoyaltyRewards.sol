@@ -31,20 +31,28 @@ interface IZZZRoyaltyNFTOwner {
 /// administrator holder-claim or weight override exists.
 contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     uint256 public constant SCALE = 1e36;
-    uint256 public constant MAX_ERC20_ASSETS = 16;
+    uint256 public constant MAX_ERC20_ASSETS = 64;
     uint256 public constant MAX_ASSETS = MAX_ERC20_ASSETS + 1;
+    uint8 public assetCapacity = 16;
     address public immutable nft;
     address private immutable creator;
     address public canonicalController;
-    uint256 public constant ROYALTY_SETTLEMENT_VERSION = 2;
+    uint256 public constant ROYALTY_SETTLEMENT_VERSION = 3;
     uint256 public constant ROYALTY_RECOVERY_VERSION = 2;
+    uint256 public constant ACTIVATION_WINDOW = 1 hours;
+    uint64 public mintEnd;
+    bool private openingFinalized;
+    uint256 private openingCount;
+    uint256 private openingWeight;
+    mapping(address => bool) private initialAllocated;
+    mapping(address => uint256) public openingPool;
     // Address zero denotes native ETH and is always the first admitted asset.
     address[] public assets;
     mapping(address => bool) public isAsset;
     mapping(uint256 => uint256) public weightOf;
     uint256 public totalWeight;
     mapping(address => uint256) public index;
-    // Accounted = liabilities + orphaned. Raw, unprocessed receipts are above it.
+    // Accounted = liabilities + orphaned + openingPool. Raw receipts are above it.
     mapping(address => uint256) public accounted;
     mapping(address => uint256) public liabilities;
     mapping(address => uint256) public orphaned;
@@ -71,6 +79,10 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     event RoyaltyEligibilityRecovered(address indexed asset, uint256 firstOrdinal, uint256 lastOrdinal);
     event UnallocatedRoyaltiesAllocated(address indexed asset, uint256 amount,
         uint256 activeWeight, bytes32 reviewHash);
+    event MintEndConfigured(uint64 mintEnd, uint256 royaltiesOpenAt);
+    event RoyaltyOpeningFinalized(uint256 cutoff, uint256 count, uint256 weight);
+    event InitialRoyaltiesAllocated(address indexed asset, uint256 amount, uint256 count, uint256 weight);
+    event AssetCapacityIncreased(uint8 capacity, bytes32 reviewHash);
 
     constructor(address nftController) {
         // The NFT may deploy this receiver from its own constructor.
@@ -102,21 +114,68 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
 
     function assetCount() external view returns (uint256) { return assets.length; }
 
+    /// @notice Expand reviewed capacity without dropping any admitted currency.
+    /// A review hash records operator gas qualification; it is not a gas proof.
+    function increaseAssetCapacity(uint8 capacity, bytes32 reviewHash) external onlyNFT nonReentrant economic {
+        if (capacity <= assetCapacity || capacity > MAX_ERC20_ASSETS || reviewHash == bytes32(0))
+            revert InvalidConfiguration();
+        assetCapacity = capacity;
+        emit AssetCapacityIncreased(capacity, reviewHash);
+    }
+
+    /// @notice Mirror the final marketplace sale end. Changes are allowed only
+    /// while the old sale is still open; they never shorten the 1-hour window.
+    function setMintEnd(uint64 end) external onlyNFT nonReentrant economic {
+        if (end <= block.timestamp || (mintEnd != 0 && block.timestamp > mintEnd) || openingFinalized)
+            revert InvalidState();
+        mintEnd = end;
+        emit MintEndConfigured(end, uint256(end) + ACTIVATION_WINDOW);
+    }
+    function royaltiesOpenAt() public view returns (uint256) {
+        return mintEnd == 0 ? 0 : uint256(mintEnd) + ACTIVATION_WINDOW;
+    }
+    function royaltiesOpen() public view returns (bool) {
+        return mintEnd != 0 && block.timestamp >= royaltiesOpenAt();
+    }
+    /// @dev Seal the cutoff before ANY post-deadline activation joins. A late
+    /// first transaction cannot extend the eligible cohort or award late entrants.
+    function _finalizeOpening() private {
+        if (!openingFinalized && royaltiesOpen()) {
+            openingFinalized = true;
+            openingCount = activationCount;
+            openingWeight = totalWeight;
+            emit RoyaltyOpeningFinalized(royaltiesOpenAt(), openingCount, openingWeight);
+        }
+    }
+
     /// @notice Allocate reviewed unallocated receipts in their ORIGINAL currency.
     /// Existing earned/deferred/fraction liabilities never enter this amount.
     /// Admission is separate and bounded; no swap, approval or external recipient.
     function allocateUnallocated(address asset, uint256 amount, bytes32 reviewHash)
         external nonReentrant economic {
+        _allocateUnallocated(asset,amount,reviewHash,false);
+    }
+    /// @notice Allocate every currently unallocated whole unit of ONE currency;
+    /// existing earned/fraction backing is never included. No holder loop.
+    function allocateAllUnallocated(address asset, bytes32 reviewHash)
+        external nonReentrant economic returns (uint256 amount) {
+        return _allocateUnallocated(asset,0,reviewHash,true);
+    }
+    function _allocateUnallocated(address asset,uint256 amount,bytes32 reviewHash,bool all)
+        private returns(uint256) {
         _recoveryAuthority();
-        if (!isAsset[asset] || amount == 0 || reviewHash == bytes32(0) || totalWeight == 0)
+        if (!royaltiesOpen()) revert InvalidState();
+        if (!isAsset[asset] || (!all && amount == 0) || reviewHash == bytes32(0) || totalWeight == 0)
             revert InvalidConfiguration();
         _sync(asset);
+        if(all) amount=orphaned[asset];
         if (amount > orphaned[asset]) revert InvalidConfiguration();
         orphaned[asset] -= amount;
         liabilities[asset] += amount;
         index[asset] += Math.mulDiv(amount, SCALE, totalWeight);
-        emit UnallocatedRoyaltiesAllocated(asset, amount, totalWeight, reviewHash);
+        if(amount!=0)emit UnallocatedRoyaltiesAllocated(asset, amount, totalWeight, reviewHash);
         _recoveryAuthority();
+        return amount;
     }
 
     function _recoveryAuthority() private view {
@@ -131,7 +190,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     /// tokens. Balance observation cannot distinguish a positive rebase from a
     /// donation; a negative rebase fails closed, and taxed claims revert.
     function addAsset(address token) external onlyNFT nonReentrant economic {
-        if (token == address(0) || token.code.length == 0 || isAsset[token] || assets.length == MAX_ASSETS) {
+        if (token == address(0) || token.code.length == 0 || isAsset[token] || assets.length >= uint256(assetCapacity)+1) {
             revert InvalidConfiguration();
         }
         uint256 balance = IERC20(token).balanceOf(address(this));
@@ -140,6 +199,10 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         accounted[token] = balance;
         orphaned[token] = balance;
         eligibleCount[token] = activationCount; eligibleWeight[token] = totalWeight;
+        // Post-opening admission keeps the explicit current-weight recovery rule;
+        // it cannot silently rewrite the original cutoff cohort.
+        _finalizeOpening();
+        initialAllocated[token] = openingFinalized;
         emit AssetAdded(token, balance);
     }
 
@@ -148,6 +211,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     /// retains its old cohort; later recovery assigns unseen receipts to that
     /// cohort before enrolling the waiting activations. ETH cannot fail via ERC20.
     function activate(uint256 id, uint256 weight) external onlyNFT nonReentrant economic {
+        _finalizeOpening();
         if (weight == 0 || weight > 3 || weightOf[id] != 0) revert InvalidConfiguration();
         if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) == address(0)) revert InvalidState();
         if (activationCount == 1000) revert InvalidConfiguration();
@@ -185,7 +249,14 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         _sync(asset);
     }
     function eligibleFor(uint256 id, address asset) public view returns (bool) {
-        return isAsset[asset] && activationOrdinal[id] != 0 && activationOrdinal[id] <= eligibleCount[asset];
+        uint256 ordinal = activationOrdinal[id];
+        return isAsset[asset] && ordinal != 0 && ordinal <= effectiveEligibleCount(asset);
+    }
+    /// @notice Include the sealed opening cohort even before a faulted currency
+    /// can materialize its initial index. This does not enroll late activations.
+    function effectiveEligibleCount(address asset) public view returns (uint256) {
+        uint256 cutoff = openingFinalized ? openingCount : activationCount;
+        return !initialAllocated[asset] && royaltiesOpen() ? Math.max(eligibleCount[asset], cutoff) : eligibleCount[asset];
     }
     function _enrollWaiting(address asset) private {
         uint256 old = eligibleCount[asset];
@@ -214,9 +285,40 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     }
 
     function _sync(address asset) private returns (uint256 amount) {
+        _finalizeOpening();
         uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         amount = balance - accounted[asset];
+        if (!openingFinalized) {
+            accounted[asset] = balance;
+            openingPool[asset] += amount;
+            if (amount != 0) emit RoyaltiesReceived(asset, amount, false);
+            _enrollWaiting(asset);
+            return amount;
+        }
+        if (!initialAllocated[asset]) {
+            initialAllocated[asset] = true;
+            // A currency fault during the grace window must not exclude NFTs
+            // which DID activate before cutoff. Its initial index is still zero.
+            uint256 old = eligibleCount[asset];
+            if (old < openingCount) {
+                deferredJoins[asset].push(Join(old + 1, openingCount, 0));
+                emit RoyaltyEligibilityRecovered(asset, old + 1, openingCount);
+            }
+            eligibleCount[asset] = openingCount;
+            eligibleWeight[asset] = openingWeight;
+            accounted[asset] = balance;
+            uint256 initial = openingPool[asset] + amount;
+            openingPool[asset] = 0;
+            if (amount != 0) emit RoyaltiesReceived(asset, amount, false);
+            if (openingWeight != 0) {
+                liabilities[asset] += initial;
+                index[asset] += Math.mulDiv(initial, SCALE, openingWeight);
+            } else orphaned[asset] += initial;
+            emit InitialRoyaltiesAllocated(asset, openingWeight == 0 ? 0 : initial, openingCount, openingWeight);
+            _enrollWaiting(asset);
+            return amount;
+        }
         if (amount == 0) { _enrollWaiting(asset); return 0; }
         accounted[asset] = balance;
         uint256 supply = eligibleWeight[asset];
@@ -272,6 +374,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
 
     function _claim(uint256 id, address asset, address owner) private returns (uint256 amount) {
         if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) != owner) revert Unauthorized();
+        if (!royaltiesOpen()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
         _sync(asset);
         _checkpoint(id, asset);
@@ -299,12 +402,20 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         // balance during a token, router or recipient callback.
         if (_reentrancyGuardEntered()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
+        if (!royaltiesOpen()) return 0;
         uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         uint256 currentIndex = index[asset];
         if (!eligibleFor(id, asset)) return accrued[id][asset];
         uint256 supply = eligibleWeight[asset];
-        if (supply != 0 && _state() == 0) currentIndex += Math.mulDiv(balance - accounted[asset], SCALE, supply);
+        if (!initialAllocated[asset]) {
+            uint256 count = openingFinalized ? openingCount : activationCount;
+            if (activationOrdinal[id] > count) return accrued[id][asset];
+            supply = openingFinalized ? openingWeight : totalWeight;
+            if (supply != 0 && _state() == 0)
+                currentIndex += Math.mulDiv(openingPool[asset] + balance - accounted[asset], SCALE, supply);
+        } else if (supply != 0 && _state() == 0)
+            currentIndex += Math.mulDiv(balance - accounted[asset], SCALE, supply);
         uint256 delta = currentIndex - _paid(id, asset);
         uint256 weight = weightOf[id];
         return accrued[id][asset] + Math.mulDiv(weight, delta, SCALE)
@@ -320,6 +431,9 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     uint256[] private canonicalPending;
     bool private canonicalCutoffSettled;
     function canonicalCapture() external canonicalOnly {
+        // The unchanged per-NFT canonical rows flatten a completed opening only.
+        // Do not discard a live initial cohort or silently reopen a grace window.
+        if (!royaltiesOpen() || !openingFinalized) revert CanonicalState();
         _canonicalBeginCapture();
         delete canonicalPending;
         canonicalCutoffSettled = false;
@@ -328,6 +442,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         canonicalWeight = totalWeight;
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
+            if (!initialAllocated[asset]) revert CanonicalState();
             uint256 balance = _canonicalBalance(asset);
             if (balance < accounted[asset]) revert CanonicalState();
             canonicalPending.push(balance - accounted[asset]);
@@ -352,7 +467,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     }
     function canonicalExport(uint256 row) external view returns (bytes memory) {
         if ((_state() != 1 && _state() != 3) || !canonicalCutoffSettled || row >= canonicalCount()) revert CanonicalState();
-        if (row == 0) return abi.encode(canonicalAssetTotal, canonicalNFTs, totalWeight);
+        if (row == 0) return abi.encode(canonicalAssetTotal, canonicalNFTs, totalWeight, mintEnd,assetCapacity);
         --row;
         if (row < canonicalAssetTotal) {
             address asset = assets[row];
@@ -370,8 +485,12 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         _canonicalNext(row);
         if (row == 0) {
             if (totalWeight != 0) revert CanonicalState();
-            (canonicalAssetTotal, canonicalNFTs, canonicalWeight) = abi.decode(record, (uint256,uint256,uint256));
+            if (record.length != 160) revert CanonicalState();
+            (canonicalAssetTotal, canonicalNFTs, canonicalWeight, mintEnd,assetCapacity) = abi.decode(record, (uint256,uint256,uint256,uint64,uint8));
+            if (!royaltiesOpen()) revert CanonicalState();
+            openingFinalized = true;
             if (canonicalAssetTotal == 0 || canonicalAssetTotal > MAX_ASSETS || canonicalNFTs > 1000 ||
+                assetCapacity<16 || assetCapacity>MAX_ERC20_ASSETS || canonicalAssetTotal>uint256(assetCapacity)+1 ||
                 canonicalWeight > 3 * canonicalNFTs || (assets.length != 1 && assets.length != canonicalAssetTotal)) revert CanonicalState();
             return;
         }
@@ -387,6 +506,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             uint256 prefund = _canonicalBalance(asset);
             _canonicalAdd(asset, backing, prefund);
             index[asset] = ix; liabilities[asset] = liability;
+            initialAllocated[asset] = true;
             accounted[asset] = acc + prefund; orphaned[asset] = orphan + prefund;
             return;
         }

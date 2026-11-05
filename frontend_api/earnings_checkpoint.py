@@ -25,7 +25,8 @@ SOURCE_FILES = ('frontend_api/earnings_checkpoint.py', 'frontend_api/earnings_ch
     'zzz_ops/log_provenance.py')
 SHARED = ('mints', 'shares', 'supply', 'members', 'weights', 'activation_order',
           'cohorts', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust',
-          'fee_keys', 'events', 'last_timestamp', 'frozen', 'retired')
+          'fee_keys', 'events', 'last_timestamp', 'frozen', 'retired',
+          'royalty_mint_end', 'royalty_opening', 'initial_royalty_allocations')
 DEFAULT_MAPS = ('supply', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust')
 
 
@@ -225,7 +226,7 @@ class Checkpoint:
                 all(type(i) is int for i in v['accounts']), 'Incomplete checkpoint fraction inventory')
         def uint(n):return type(n) is int and 0<=n<1<<256
         def currency(a):return a in engine.descriptors
-        for name,maximum in (('lp_assets',33),('royalty_assets',17)):
+        for name,maximum in (('lp_assets',33),('royalty_assets',65)):
             a=v[name]
             require(isinstance(a,list) and len(a)<=maximum and len(set(a))==len(a) and all(currency(x) for x in a),
                     'Invalid checkpoint currency inventory')
@@ -250,6 +251,14 @@ class Checkpoint:
         order=s['activation_order']
         require(isinstance(order,list) and len(set(order))==len(order) and set(order)==s['members'] and all(type(i) is int for i in order),
                 'Invalid checkpoint activation order')
+        end, opening = s['royalty_mint_end'], s['royalty_opening']
+        require(end is None or (type(end) is int and 0<end<2**64), 'Invalid checkpoint royalty sale end')
+        require(opening is None or (isinstance(opening,tuple) and len(opening)==3 and end is not None and
+                all(uint(n) for n in opening) and opening[0]==end+3600 and opening[0]<=anchor['timestamp'] and
+                opening[1]<=len(order) and opening[2]==sum(s['weights'][i] for i in order[:opening[1]])),
+                'Invalid checkpoint initial royalty cohort')
+        require(isinstance(s['initial_royalty_allocations'],set) and s['initial_royalty_allocations']<=set(v['royalty_assets']) and
+                (not s['initial_royalty_allocations'] or opening is not None), 'Invalid checkpoint initial currency allocations')
         require(isinstance(s['cohorts'],dict) and set(s['cohorts'])==set(v['royalty_assets']) and
                 all(isinstance(c,set) and c<=s['members'] and c==set(order[:len(c)]) and
                     all(type(i) is int for i in c) for c in s['cohorts'].values()),

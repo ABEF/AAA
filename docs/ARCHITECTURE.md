@@ -124,12 +124,12 @@ keeps its ordinary keeper/unpause/execution controls. [Procedure](OPERATOR_MANUA
 
 ## NFT royalties and metadata
 
-Fresh royalty settlement2/recovery2 pays each admitted currency as received.
+Fresh royalty settlement3/recovery2 pays each admitted currency as received.
 There is no royalty converter, swap or unwrap. Governance may allocate only
 reviewed admitted unallocated units in the SAME currency at current active
 rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
 earned/deferred/fractional rights remain excluded. Unsupported currencies require
-review/admission first;16ERC20 slots plus ETH remain. Original-currency claims
+review/admission first;ERC20 capacity starts16 and can be increased up to64 plus ETH after review. Original-currency claims
 need no price feed; optional USD reporting and LP reward conversion are separate.
 See [current settlement](ROYALTY_SETTLEMENT.md).
 
@@ -212,7 +212,7 @@ on seal. Governance approval cannot prove replacement code or dependencies safe;
 immediate governance remains an accepted trust boundary. No arbitrary custody
 recipient is available in the current source.
 
-The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
+The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
 permanently blocked after collective LP exit begins. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
 
 Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.

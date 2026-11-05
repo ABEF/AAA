@@ -120,7 +120,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         assertEq(IStateViewMinimal(STATE).poolManager(), CORE);
 
         access = new MockAccess(); ProtocolPolicyFixture.bind(address(access));
-        canonicalNFT = new ZZZNFT(address(access), "ipfs://");
+        canonicalNFT = new ZZZNFT(address(access), "ipfs://"); canonicalNFT.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(canonicalNFT.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         pools = new ZZZPoolRegistry(address(access));

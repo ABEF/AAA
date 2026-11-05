@@ -34,7 +34,7 @@ claim is a payout, not new income or an artwork evolution.
 ## Fresh6 integration still required
 
 A new explicitly versioned frontend profile must verify accounting6/custody5/portfolio2,
-canonical `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`, Manager/typed LP child/Balancer/math/policy,
+canonical `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`, Manager/typed LP child/Balancer/math/policy,
 execution-quality1/maintenance3/compound4/confirmation3 capabilities, exact runtimes
 and both physical LP IDs/owners/keys/ticks at one canonical block. Desired-disabled
 residuals remain included until merged; eight Position words alone are not compatibility.

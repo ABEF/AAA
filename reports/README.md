@@ -51,3 +51,5 @@ forms of evidence. Never sum overlapping counts or relabel old sources as a fres
 pass. Frozen-release compiler advisories/analysis must be refreshed when needed.
 No report grants public signing, deployment, sealing, site/service changes or
 permission to discard an existing pending transaction journal.
+
+[Royalty window/capacity](royalty-launch-window-20261105/REVIEW.md) — current royalty3/canonicalV7 source; earlier royalty2 reports retain their exact historical scope.

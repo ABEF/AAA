@@ -114,14 +114,14 @@ contract HolderCollectiveExitTest is Test {
     event MetadataUpdate(uint256 tokenId);
     MockAccess ac;HolderExitCallbackToken token;MockPools pools;HolderExitVenue venue;ZZZVault vault;ZZZNFT nft;
     ZZZMigration migration;ZZZMembership membership;ZZZRewards rewards;ZZZFeeController fees;ZZZOracle oracle;MockVRF vrf;
-    bytes32 poolId;bytes32 review=keccak256("reviewed holder exit fixture");
+    bytes32 poolId;bytes32 review=keccak256("reviewed holder exit fixture");MockFeed private royaltyClockFeed;
     address alice=address(0xA11CE);address bob=address(0xB0B);address payable treasury=payable(address(0x7EA5));
     receive() external payable {}
     function setUp() public {
         vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(token);
-        oracle=new ZZZOracle(address(ac),address(0));MockFeed feed=new MockFeed(8,1e8);
+        oracle=new ZZZOracle(address(ac),address(0));MockFeed feed=new MockFeed(8,1e8);royaltyClockFeed=feed;
         oracle.setTestFeed(address(0),address(feed),1 hours);oracle.setTestFeed(address(token),address(feed),1 hours);
-        vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/");
+        vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));
@@ -321,6 +321,8 @@ contract HolderCollectiveExitTest is Test {
         vm.prank(alice);vault.increase{value:50 ether}(ids[1],50 ether,50 ether,1,block.timestamp+100);
         for(uint256 i;i<4;++i){(bool available,uint8 stage)=nft.evolution(ids[i]);assertTrue(available);assertEq(stage,i);}
         ZZZRoyaltyRewards royalty=nft.royaltyRewards();assertEq(royalty.weightOf(ids[0]),0);
+        nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+        royaltyClockFeed.set(1e8,block.timestamp,block.timestamp);royalty.syncAll();
         uint256 bucket=vault.nftBucket(ids[1]);venue.setFees(100 ether,100 ether);vault.collectFees(bucket,block.timestamp+100);
         (bool sent,)=address(royalty).call{value:8 ether}("");assertTrue(sent);
         vm.prank(alice);assertGt(rewards.claim(ids[1],address(0)),0);

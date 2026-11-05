@@ -8,10 +8,11 @@ Reviewed 2026-11-05. This records implemented source, not another task list.
 
 Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
 custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
-policy2, direct governance2 and fee intake1. The eight-word Position and compatible
-parked same-chain canonical V6 wire remain; they do not imply old runtime compatibility.
+policy2, direct governance2 and fee intake1. The eight-word Position remains;
+fresh royalty3/canonicalV7 carries sale end/capacity and rejects old V6 peers.
+Tuple shape does not imply runtime compatibility.
 [Profile](POSITION_V6.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema11 with18 helper pins. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+Production inventory is schema12 with18 helper pins. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -55,7 +56,7 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Confirmed reads | Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. |
-| Inventory | Schema11/custody5 validates18helpers, both physical legs and original-currency royalty2. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema12/custody5 validates18helpers, both physical legs and original-currency royalty3. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
 | Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; same-currency unallocated first allocation is counted once. Missing data stays unavailable. |
 
@@ -140,3 +141,5 @@ bounds; Entry3/review-policy2 binds scoped contribution terms before callbacks.
 setter from a new runtime/worker/site rollout. Retired architecture and old
 journals remain separate. Real providers/authorities/OpenSea, source8 services/
 website, storage/operations, economics/gas and independent audit remain open.
+
+Current royalty3 adds the [1-hour sale-close activation window]( ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.

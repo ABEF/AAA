@@ -67,6 +67,8 @@ contract NFTRoyaltiesTest is Test {
     function setUp() public {
         nft = new RoyaltyNFTFixture();
         royalties = nft.royalties();
+        vm.prank(address(nft));royalties.setMintEnd(uint64(block.timestamp+1));
+        vm.warp(block.timestamp+3601);royalties.syncAll();
         token = new MockToken(18);
         nft.addAsset(address(token));
         nft.mint(alice, 1);
@@ -332,8 +334,10 @@ contract NFTRoyaltiesTest is Test {
         ZZZRoyaltyRewards receiver = new ZZZRoyaltyRewards(address(nft));
         assertEq(address(receiver), predicted);
         assertEq(receiver.orphaned(ETH), 4 ether);
+        vm.prank(address(nft));receiver.setMintEnd(uint64(block.timestamp+1));
         vm.prank(address(nft));
         receiver.activate(1, 1);
+        vm.warp(block.timestamp+3601);
         assertEq(receiver.claimable(1, ETH), 0);
         vm.prank(alice);
         assertEq(receiver.claim(1, ETH), 0);
@@ -346,8 +350,8 @@ contract NFTRoyaltiesTest is Test {
         nft.addAsset(ETH);
         vm.expectRevert(ZZZRoyaltyRewards.InvalidConfiguration.selector);
         nft.addAsset(alice);
-        for (uint256 i = 1; i < royalties.MAX_ERC20_ASSETS(); ++i) nft.addAsset(address(new MockToken(18)));
-        assertEq(royalties.assetCount(), royalties.MAX_ASSETS());
+        for (uint256 i = 1; i < royalties.assetCapacity(); ++i) nft.addAsset(address(new MockToken(18)));
+        assertEq(royalties.assetCount(), uint256(royalties.assetCapacity())+1);
         MockToken last = new MockToken(18);
         vm.expectRevert(ZZZRoyaltyRewards.InvalidConfiguration.selector);
         nft.addAsset(address(last));

@@ -127,7 +127,7 @@ contract CanonicalHandoffTest is Test {
         s.pools = new PreparationPools(address(s.ac));
         s.venue = new PreparationVenue(address(s.ac), address(token0), address(token1));
         s.vault = new AccountingVaultHarness(address(s.ac), homeChain, TREASURY, address(new ZZZMigrationBudget(address(s.ac))));
-        s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/");
+        s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days));
         s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.ac)); s.membership = new ZZZMembership(address(s.ac));
         s.fees = new ZZZFeeController(address(s.ac)); s.migration = new ZZZMigration(address(s.ac));
@@ -202,6 +202,7 @@ contract CanonicalHandoffTest is Test {
         source.venue.setFees(103, 107); source.vault.collectFees(source.vault.nftBucket(first), block.timestamp + 100);
         token0.mint(address(source.royalties), 101);
         (bool ok,) = address(source.royalties).call{value: 1 ether + 3}(""); assertTrue(ok);
+        source.nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);source.royalties.syncAll();_fresh();
     }
     function _prepare() private {
         ZZZAccessController.PreparationNotice memory notice = ZZZAccessController.PreparationNotice(

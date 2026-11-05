@@ -32,8 +32,8 @@ This file is current instructions, not a report timeline.
 - Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/
   confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
-  compatible parked same-chain canonical V6 wire does not imply runtime compatibility.
-  Schema11 inventory has18helpers and original-currency royalty2. Historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
+  fresh canonicalV7 carries sale end/capacity and rejects V6 peers; tuple shape is not runtime identity.
+  Schema12 inventory has18helpers and original-currency royalty3 with canonicalV7. Historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -100,7 +100,7 @@ This file is current instructions, not a report timeline.
 - Both legs close for same-pair movement, parking and terminal holder return.
   Source controls compare captured sourcePool during movement. Stable geometry
   fingerprint excludes L; parking/emergency fingerprint includes both IDs/ticks/L.
-  Canonical V6 capture/import/activation requires zero registered live residuals.
+  Canonical V7 capture/import/activation requires zero registered live residuals.
 - Collective exit is paused-governance-triggered, terminal, no swaps required.
   Close actual ETH/ZZZ and designated compound; allocate by NFT shares, pay current
   owners through bounded isolated direct batches. Rewards/buyback backing stay
@@ -137,7 +137,7 @@ Gas bounds100k–1m are engineering limits, not provider/chain qualification.
 Provider rotation requires all draws finalized, no pending reroll/retargeting.
 Coordinator runtime is pinned for new requests; original-address callbacks may
 drain before planned rotation. Codehash does not freeze proxy implementations.
-Canonical V6 rejects old schemas early and binds helper/runtime/config commitment;
+Canonical V7 rejects old schemas early and binds helper/runtime/config commitment;
 threshold VALUES must match during source/import lifecycle, not local revisions.
 Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantees
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
@@ -163,7 +163,7 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review now defaults to the royalties-in-kind strict466-record review. Earlier471-record evidence remains source-scoped.
+- CI/check-slither-review now defaults to the royalty-window strict479-record review (103current contexts/376exact referenced-source reuse). Earlier471-record evidence remains source-scoped.
  44focused Python methods verify that repair; no analyzer/contract rerun. Update
   full review/default together after relevant source changes; preserve old pins.
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
@@ -188,19 +188,22 @@ the November3 authority report below remains historical for those contexts.
 
 ## Royalty original-currency source boundary
 
-User selected original-currency claims5November2026. Fresh royalty settlement2/
-recovery2 removes swaps, unwrap, converter storage/binding and converter child.
+User selected original-currency claims5November2026. Fresh royalty settlement3/
+recovery2 removes royalty swaps, unwrap, converter storage/binding and converter child.
 Royalties remain ETH/WETH/USDC/etc as received. No oracle or route is needed for
-raw claims; LP conversion remains separate. Governance allocateUnallocated uses
-only admitted orphaned units, allocating SAME currency at active weights now,
-without payout or arbitrary recipient. Protect earned/deferred/fraction liabilities.
-Unsupported tokens need review/admission; append-only16ERC20 plusETH remains.
-Fresh schema11/18helpers, reporting3/converter:null, keeper explicit
-royalty_settlement_version2 and no enabled royalty conversion. Preserve legacy
-conversion1 readers/events/tests/journals separately; do not relabel old runtimes.
-New royalty storage/runtime/event pins require fresh authentication and checkpoint
-rebuild/review. Current reference36/797/36/12; normal42gates; strict466contexts
-(25current/441exact referenced-source reuse). No deployment/site/service reset.
+raw claims; LP conversion remains separate. One-hour opening and exact cutoff
+cohort are described in [the launch rule](docs/ROYALTY_LAUNCH_WINDOW.md).
+Governance partial/all unallocated allocation uses only admitted orphaned units
+at active weights now, without payout or arbitrary recipient. Protect earned,
+deferred, opening-pool and fraction liabilities. Capacity starts16ERC20 plusETH;
+reviewed governance increases are bounded at64ERC20, not unlimited safe admission.
+Fresh schema12/18helpers/reporting4/converter:null and explicit keeper
+royalty_settlement_version3. No enabled royalty conversion. Preserve legacy
+readers/events/tests/journals separately; never relabel old runtimes. New storage,
+runtime/event pins require fresh authentication and checkpoint rebuild/review.
+Current reference36/809/36/12 and857operator examples;42normal gates. Current
+strict479contexts include103reviewed and376exact referenced-source reuse. Prior
+settlement2 evidence retains its original scope. No deployment/site/service reset.
 
 ## Operator documentation maintenance
 
@@ -245,8 +248,8 @@ No environment rollout or independent approval. See the single operator procedur
   and rejects actual5. Each fresh lineage peer states its own version. Schema10
   observer/validator8 preserves old schema9/custody4 behind historical inspection.
   Disable keeper principal_distribution on5; never put governance key on its host.
-  No deployment/journal/service is upgraded by publication. Current wire remains
-  accounting6/custody4-format/canonicalV6; see [permissions](docs/ACCESS_PERMISSIONS.md).
+  No deployment/journal/service is upgraded by publication. Current principal wire remains
+  accounting6/custody4-format; current royalty header uses canonicalV7; see [permissions](docs/ACCESS_PERMISSIONS.md).
 - [Exit assurance supplement](reports/holder-exit-assurance-20261103/REVIEW.md)
   changes tests/guidance only; production pins remain e26fc74.10distinct selected
   successes across explicit stages include1000fuzz inputs,1000distinct holders,
@@ -295,3 +298,28 @@ necessarily50/50USD. Large idle can be intentional recovery state; never bypass
 later entrant/deployment floors. Both-leg park/holder return remain fallbacks.
 Preserve exact pre/post checks and caller/error semantics. See the [complete
 controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
+
+## Royalty launch and capacity source boundary
+
+Fresh royalty3/recovery2 uses canonicalV7/schema12/reporting4,18helpers. Configure
+NFT.setMintEnd to the final OpenSea stage before minting. Governance may revise
+it only while the OLD end has not passed. Fixed3600-second activation window;
+strict pre-cutoff NFT cohort, lazy automatic original-currency initial allocation,
+late activations future-only, zero cohort leaves unallocated for governance.
+openingPool is separate from constructor/preadmission prefunds and earned/fraction
+backing. allocateAllUnallocated distributes all eligible unallocated raw units of
+one admitted currency; no sweep, swap or payout. Operator capacity starts16ERC20,
+may only increase to64 after gas/service review. Review hash is not a gas proof;
+actual maximum target qualification remains open. Preserve all currency rights.
+
+CanonicalV7 royalty header has five words including mintEnd/assetCapacity; capture
+waits for an open/finalized window and every initial currency sync. No old peer,
+runtime, checkpoint or journal is relabeled. Emergency/terminal LP paths remain
+independent. Matching profiles explicitly select reporting4 and keeper royalty3.
+See [royalty window](docs/ROYALTY_LAUNCH_WINDOW.md) and the
+royalty-launch-window-20261105 report. Current125selected one-hour EVM successes,183affected Python/71reference checks,157website cases and42normal/479static records are scoped there; earlier
+report counts/source pins remain historical. Production, deployment, site/server,
+signer/public payment, Anvil state/journals and heartbeat boundaries unchanged.
+
+Do not display the royalty deadline on dormant NFT cards. The final grace is
+3600seconds; prior24-hour task drafts are historical only.

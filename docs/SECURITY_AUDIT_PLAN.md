@@ -229,7 +229,7 @@ Recovery2 allocates only reviewed admitted unallocated royalty units in their
 original currency at current active weights. Audit prior earned/deferred/fraction
 exclusion, governance pre/post lifecycle checks, same-currency backing and one-time
 event replay. No swap, unwrap, price feed or converter remains for royalties.
-Review the16ERC20 admission bound, pathological-token liveness, current-owner
+Review the16default/64hard ERC20 admission capacity, governance expansion evidence and cold/faulted gas budgets, pathological-token liveness, current-owner
 claims and fixed-successor forwarding. [Current scope](../reports/royalties-in-kind-20261105/REVIEW.md).
 
 **Current controls:** exact balance deltas, admitted assets and selected runtime/

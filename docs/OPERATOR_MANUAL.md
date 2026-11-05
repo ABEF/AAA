@@ -137,7 +137,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
-`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")`.
+`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V6.md).
 Normal size/runtime gates, scoped offline checks and local actual-v4-core
 integration pass within their [current Entry3 source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
@@ -192,16 +192,16 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema10 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema12 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 helpers; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
-second release history in this manual. The [current October31 analysis](../reports/day-audit-20261031/VERIFICATION.md)
+second release history in this manual. The historical [October31 analysis](../reports/day-audit-20261031/VERIFICATION.md)
 has463 contextually dispositioned findings at the unchanged final source closure;
-this manual-operation review reuses those exact production pins. Older analyzer
+its source scope does not verify later window/capacity code. Current source evidence is the [royalty-window review](../reports/royalty-launch-window-20261105/VERIFICATION.md). Older analyzer
 and handwritten body reports retain their original scopes. Refresh analysis
 after source changes and qualify actual dependencies, target-chain gas/operations
 and independent audit before release; internal triage is not release approval.
@@ -1684,7 +1684,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema11 production observation is separate from keeper live configuration.
+Schema12 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1695,18 +1695,54 @@ Changing the example does not alter any installed service or saved journal.
 
 ### Marketplace currency and ETH payouts
 
-Fresh royalty settlement2 pays original currencies: ETH, WETH, USDC or another
+Fresh royalty settlement3 pays original currencies: ETH, WETH, USDC or another
 reviewed admitted token. No royalty converter, unwrap, route, feed or conversion
 worker is involved. Use [settlement steps](ROYALTY_SETTLEMENT.md) and the complete
 call tables. LP rewards keep their separate ETH-conversion policy.
 
 Governance admits a reviewed token through `NFT.addRoyaltyAsset(token)`, including
-after sealing, within16ERC20 slots plus ETH. The current owner uses
+after sealing, within configured capacity (initial16, reviewed maximum64ERC20 plus ETH). The current owner uses
 `RoyaltyRewards.claim(id,asset)` or mixed `ClaimRouter.claimBatch` with at most32
 NFT/asset/ledger entries. No approvals are required. Failed selected currencies
 revert a batch; simulate/review healthy entries separately. Fractions, prior
 rights, current ownership and outage cohorts remain protected. Operators can
 call permissionless `sync(asset)` after a token outage to enroll waiting NFTs.
+
+### Royalty opening and capacity controls
+
+Follow [the complete window/capacity procedure](ROYALTY_LAUNCH_WINDOW.md).
+Set NFT.setMintEnd(end) to the final OpenSea stage Unix end BEFORE minting; match
+all mint paths. Governance can revise it while the previous sale remains open.
+After closing it is fixed. Royalty claims open1hour later, independent of LP
+claims. An activation at the deadline is late. Source's initial allocation is
+lazy and automatic on healthy sync/claim/activation; no keeper opening job.
+Zero initial participants and constructor/preadmission prefunds retain explicit
+governance allocation. NFT ownership carries the rights, not an old wallet list.
+
+For all reviewed unallocated units call RoyaltyRewards.allocateAllUnallocated
+(asset,reviewHash). Read the exact return/event and remaining orphaned balance.
+This never sweeps openingPool, earned/fraction backing or principal. For a partial
+allocation keep allocateUnallocated(asset,amount,reviewHash). Both are irreversible
+allocations under current active weights, require an open window/current sealed
+lifecycle/unpaused/no preparation, and perform no payout or swap.
+
+Changing end/capacity on-chain needs confirmed-state refresh, not an automatic
+keeper restart. New currency admission additionally requires reviewed API/client
+asset descriptors and the documented configuration reload procedure. Do not
+relabel an old service or journal.
+
+To exceed16ERC20 currencies, rehearse maximum cold/faulted activation and
+API/history/canonical workloads, then governance calls
+NFT.increaseRoyaltyAssetCapacity(newCapacity,capacityReviewHash), at most64.
+Read assetCapacity and AssetCapacityIncreased; separately admit tokens and update
+reviewed descriptors/worker profiles. Capacity cannot decrease or remove a token.
+A review hash is not a gas proof. No public-chain expansion is qualified here.
+
+Use reporting4 and explicit keeper royalty_settlement_version3 (no royalty swaps).
+Old profiles/journals remain separate. CanonicalV7 requires initial allocation of
+every admitted currency complete before capture; sync each after opening first.
+Emergency LP/terminal return remains independent. No server restart/deployment is
+implied by a source/config edit; deploy reviewed matching services separately.
 
 ### Recover unexpected royalty currencies
 
@@ -1721,13 +1757,15 @@ unchanged; source-currency orphaned decreases and liabilities/index increase.
 Existing earned/deferred/fraction funds are excluded. Verify
 `UnallocatedRoyaltiesAllocated`, then holders claim the SAME asset. Success is
 irreversible; failure reverts. No service restart is needed for the contract call.
-Admission capacity16 and pathological tokens remain limits, not a sweep permit.
+Operating capacity starts16ERC20 and can increase after review to64;
+pathological tokens remain a limit, not a sweep permit.
 
 ### Read royalty status and conversion history
 
-Use [reporting schema3](ROYALTY_REPORTING.md):
-`"royalty_reporting":{"schema":3,"converter":null}`. Authenticate exact runtime
-and `ROYALTY_SETTLEMENT_VERSION()==2`. Each currency has a separate raw claim,
+Use [reporting schema4](ROYALTY_REPORTING.md):
+`"royalty_reporting":{"schema":4,"converter":null}`. Authenticate exact runtime
+and `ROYALTY_SETTLEMENT_VERSION()==3`, sale end and one-hour opening state.
+Historical reporting3/settlement2 remains separately pinned. Each currency has a separate raw claim,
 eligibility and optional current-price USD value. Non-ETH funds are claimable in
 their original currency, never pending ETH. Missing prices/metadata stay explicit.
 Claims alone increase lifetime paid amounts. Old conversion history remains
@@ -1840,7 +1878,7 @@ slots do not bound lifetime aliases. Recover exact next cursors/roots after an
 interruption; never skip rows or relax backing to fit a transaction budget.
 This sizing review needs no service restart or on-chain configuration change.
 
-A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V6 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
+A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V7 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
 ## Stop controls
 
@@ -2322,7 +2360,7 @@ One-host browser/demo locks do not establish production wallet authorization or
 
 ## Holder payout currencies
 
-Royalties are claimed in their original currencies under settlement2; WETH
+Royalties are claimed in their original currencies under settlement3; WETH
 remains WETH. LP holder rewards retain their separate approved ETH-conversion
 path. [Royalty settlement](ROYALTY_SETTLEMENT.md), [LP settlement](LP_ETH_SETTLEMENT.md).
 Never sum raw currencies or call a missing price zero. A source token claim uses
@@ -2612,7 +2650,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **797 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **809 functions, 36 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3389,12 +3427,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `H` [RoyaltyRewards.claim](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claim(NFT_ID, 0x0000000000000000000000000000000000000000)` | Claim current owner's rewards |
 | `P` [RoyaltyRewards.forwardLate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `forwardLate(ASSET_ADDRESS)` | Forward receipts to successor |
 | `P` [RoyaltyRewards.fund](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`amount: uint256` | `fund(ASSET_ADDRESS, AMOUNT)` | Fund actual received royalties |
+| `G` [RoyaltyRewards.allocateAllUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`reviewHash: bytes32` | `allocateAllUnallocated(ADMITTED_ROYALTY_ASSET, REVIEW_HASH)` | Allocate all unallocated royalties |
 
 <details>
-<summary>Read functions and constants (31)</summary>
+<summary>Read functions and constants (38)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [RoyaltyRewards.ACTIVATION_WINDOW](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ACTIVATION_WINDOW()` | Read activation grace duration |
 | `R` [RoyaltyRewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ASSETS()` | Read max assets |
 | `R` [RoyaltyRewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
 | `R` [RoyaltyRewards.ROYALTY_RECOVERY_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_RECOVERY_VERSION()` | Read royalty recovery version |
@@ -3404,6 +3444,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
 | `R` [RoyaltyRewards.activationCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `activationCount()` | Read activation count |
 | `R` [RoyaltyRewards.activationOrdinal](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `activationOrdinal(NFT_ID)` | Read activation ordinal |
+| `R` [RoyaltyRewards.assetCapacity](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCapacity()` | Read operating currency capacity |
 | `R` [RoyaltyRewards.assetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCount()` | Read asset count |
 | `R` [RoyaltyRewards.assets](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `assets(0)` | Read assets |
 | `R` [RoyaltyRewards.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalAssetCount()` | Read canonical asset count |
@@ -3413,6 +3454,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.canonicalExport](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
 | `R` [RoyaltyRewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalValidate()` | Validate imported classified backing |
 | `R` [RoyaltyRewards.claimable](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claimable(NFT_ID, ASSET_ADDRESS)` | Read funded claimable balance |
+| `R` [RoyaltyRewards.effectiveEligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `effectiveEligibleCount(ADMITTED_ROYALTY_ASSET)` | Read effective eligible prefix |
 | `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
 | `R` [RoyaltyRewards.eligibleFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `eligibleFor(NFT_ID, ASSET_ADDRESS)` | Read eligible for |
 | `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
@@ -3420,17 +3462,21 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.index](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `index(TARGET_ADDRESS)` | Read index |
 | `R` [RoyaltyRewards.isAsset](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
 | `R` [RoyaltyRewards.liabilities](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
+| `R` [RoyaltyRewards.mintEnd](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `mintEnd()` | Read official sale end |
 | `R` [RoyaltyRewards.nft](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `nft()` | Read nft |
+| `R` [RoyaltyRewards.openingPool](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `openingPool(ADMITTED_ROYALTY_ASSET)` | Read initial royalty pool |
 | `R` [RoyaltyRewards.orphaned](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `orphaned(TARGET_ADDRESS)` | Read orphaned |
 | `R` [RoyaltyRewards.paidIndex](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `paidIndex(NFT_ID, TARGET_ADDRESS)` | Read paid index |
 | `R` [RoyaltyRewards.pending](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `pending(ASSET_ADDRESS)` | Read unprocessed royalty receipts |
+| `R` [RoyaltyRewards.royaltiesOpen](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `royaltiesOpen()` | Check royalty claim opening |
+| `R` [RoyaltyRewards.royaltiesOpenAt](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `royaltiesOpenAt()` | Read royalty opening time |
 | `R` [RoyaltyRewards.totalWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `totalWeight()` | Read total weight |
 | `R` [RoyaltyRewards.weightOf](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `weightOf(NFT_ID)` | Read weight of |
 
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (12)</summary>
+<summary>Contract-only calls: use the parent workflow (14)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3445,6 +3491,8 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [RoyaltyRewards.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
 | `M` [RoyaltyRewards.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalSettle()` | Settle captured reward indexes |
 | `M` [RoyaltyRewards.claimFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address`<br>`owner: address` | `claimFor(NFT_ID, 0x0000000000000000000000000000000000000000, OWNER_ADDRESS)` | Forward authenticated owner claim |
+| `M` [RoyaltyRewards.increaseAssetCapacity](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `capacity: uint8`<br>`reviewHash: bytes32` | `increaseAssetCapacity(32, CAPACITY_REVIEW_HASH)` | Increase authenticated currency capacity |
+| `M` [RoyaltyRewards.setMintEnd](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `end: uint64` | `setMintEnd(OFFICIAL_MINT_END_UNIX_SECONDS)` | Set authenticated sale end |
 | `M` [RoyaltyRewards.syncForActivation](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `syncForActivation(ASSET_ADDRESS)` | Isolate optional currency synchronization |
 
 </details>
@@ -3654,12 +3702,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [NFT.addRoyaltyAsset](CONTRACT_FUNCTIONS.md#zzznft) | `token: address` | `addRoyaltyAsset(ROYALTY_TOKEN_ADDRESS)` | Admit royalty payment currency |
 | `H` [NFT.approve](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`tokenId: uint256` | `approve(TO_ADDRESS, NFT_ID)` | Approve one NFT transfer |
 | `P` [NFT.finalizeTraits](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `finalizeTraits(NFT_ID)` | Finalize original artwork draw |
+| `G` [NFT.increaseRoyaltyAssetCapacity](CONTRACT_FUNCTIONS.md#zzznft) | `capacity: uint8`<br>`reviewHash: bytes32` | `increaseRoyaltyAssetCapacity(32, CAPACITY_REVIEW_HASH)` | Increase reviewed currency capacity |
 | `P` [NFT.refreshMetadata](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `refreshMetadata(NFT_ID)` | Refresh one NFT metadata |
 | `P` [NFT.refreshMetadataRange](CONTRACT_FUNCTIONS.md#zzznft) | `firstOrdinal: uint256`<br>`lastOrdinal: uint256` | `refreshMetadataRange(1, LAST_ORDINAL)` | Refresh bounded metadata range |
 | `H` [NFT.safeTransferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256` | `safeTransferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID)` | Safely transfer NFT ownership |
 | `H` [NFT.safeTransferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256`<br>`data: bytes` | `safeTransferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID, 0x)` | Safely transfer NFT ownership |
 | `H` [NFT.setApprovalForAll](CONTRACT_FUNCTIONS.md#zzznft) | `operator: address`<br>`approved: bool` | `setApprovalForAll(OPERATOR_ADDRESS, false)` | Set NFT operator approval |
 | `B` [NFT.setBaseURI](CONTRACT_FUNCTIONS.md#zzznft) | `baseURI: string` | `setBaseURI(IPFS_BASE_URI)` | Bind permanent artwork base |
+| `G` [NFT.setMintEnd](CONTRACT_FUNCTIONS.md#zzznft) | `end: uint64` | `setMintEnd(OFFICIAL_MINT_END_UNIX_SECONDS)` | Set official sale end |
 | `G` [NFT.setMintPaused](CONTRACT_FUNCTIONS.md#zzznft) | `state: bool` | `setMintPaused(true)` | Pause or resume minting |
 | `H` [NFT.transferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256` | `transferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID)` | Transfer NFT ownership |
 

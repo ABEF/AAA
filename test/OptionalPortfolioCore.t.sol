@@ -150,7 +150,7 @@ contract OptionalPortfolioCoreTest is Test {
         manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit),
             address(new ZZZLPBalancer(address(access),address(core),address(state))));
         vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        nft=new ZZZNFT(address(access),"ipfs://TEST-ONLY/");membership=new ZZZMembership(address(access));
+        nft=new ZZZNFT(address(access),"ipfs://TEST-ONLY/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));membership=new ZZZMembership(address(access));
         rewards=new ZZZRewards(address(access));fees=new ZZZFeeController(address(access));migration=new ZZZMigration(address(access));
         policy=new ZZZPortfolioPolicy(address(access));
         strategy=new ZZZStrategy(address(access),address(policy),address(new ZZZRebalanceConfirmation(address(access))));

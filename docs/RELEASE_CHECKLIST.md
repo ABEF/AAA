@@ -7,9 +7,9 @@ authorized by documentation or source publication.
 
 ## Evidence and approval boundary
 
-Pre-settlement2 task baseline: main `bce897c480cd7df67e4936d278d51908d3d7885f`.
+Pre-window task baseline: main `c7dad14ba1f35a230a2380f9db94f66734e62285`.
 Current royalty source extends the historical manual-safeguard baseline. The
-[royalty normal/static record](../reports/royalties-in-kind-20261105/VERIFICATION.md)
+[royalty normal/static record](../reports/royalty-launch-window-20261105/VERIFICATION.md)
 binds42normal gates and466strict detector contexts; old records remain historical.
 Those two views differ from historical authority e26fc74. No approved
 deployment or release-specific configuration exists.
@@ -41,7 +41,7 @@ actual release record below remain required.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; current margins are Balancer360/Vault635/Budget237/Migration39 at the current custody5 compiler-output pins; none qualifies target gas or future edits. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema11/direct Entry3/original-currency royalty2 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema12/direct Entry3/original-currency royalty3 graph and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | Current466-record static disposition(25reviewed contexts/441exact reuse) is internal and source-bound; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 ## Release identity
@@ -103,3 +103,5 @@ accounting6/custody5. Qualify exact four-module getters/runtimes and all callbac
 nonce, idle, reward and terminal-holder-return composition before release. Historical
 accounting5/4 binaries do not gain new source6 policy through a manifest label. Both old portfolio
 and current residual reports retain source/failure scope; neither is deployment approval.
+
+Current royalty3 adds the [1-hour sale-close activation window]( ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.

@@ -106,7 +106,7 @@ contract RandomnessRequestSettingsTest is Test {
         s.access = new ZZZAccessController(GOVERNANCE, address(this), GUARDIAN);
         s.policy = new ZZZProtocolPolicy(address(s.access),address(0x7EA5));
         s.access.bindProtocolPolicy(address(s.policy));
-        s.nft = new ZZZNFT(address(s.access), "ipfs://request-settings-fixture/");
+        s.nft = new ZZZNFT(address(s.access), "ipfs://request-settings-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days));
         s.coordinator = new RecordedRequestCoordinator();
         s.policy.configureRandomness(address(s.coordinator),address(s.coordinator).codehash,keccak256("fixed gas lane"),17,confirmations,gasLimit,true,REVIEW);
         s.vault = new RequestSettingsVault(address(s.access), s.nft);
@@ -207,7 +207,7 @@ contract RandomnessRequestSettingsTest is Test {
     }
 
     function testTuningRequiresConfigurationAndWorksBeforeSealWithoutProviderReplacement() public {
-        MockAccess unconfiguredAccess = new MockAccess(); ZZZNFT unconfigured = new ZZZNFT(address(unconfiguredAccess), "");
+        MockAccess unconfiguredAccess = new MockAccess(); ZZZNFT unconfigured = new ZZZNFT(address(unconfiguredAccess), ""); unconfigured.setMintEnd(uint64(block.timestamp + 3650 days));
         ZZZProtocolPolicy unconfiguredPolicy=new ZZZProtocolPolicy(address(unconfiguredAccess),address(0x7EA5));
         unconfiguredAccess.setProtocolPolicy(address(unconfiguredPolicy));
         vm.expectRevert(ZZZModule.InvalidConfiguration.selector);unconfiguredPolicy.setRandomnessRequestSettings(3,500000,REVIEW);

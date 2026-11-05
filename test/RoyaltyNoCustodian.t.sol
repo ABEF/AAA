@@ -15,6 +15,7 @@ contract RoyaltyNoCustodianTest is PooledVaultFixture {
         ledger = nft.royaltyRewards();
         nft.addRoyaltyAsset(address(t0));
         nftId = activatedPosition();
+        nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);ledger.syncAll();
         t0.mint(address(ledger), 100);
         ledger.sync(address(t0));
     }

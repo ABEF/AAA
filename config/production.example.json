@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "accounting_model": "shared-pools-native-v6",
   "accounting_version": 6,
   "routing_version": 3,
@@ -308,8 +308,11 @@
           "bindings": {
             "nft": null,
             "canonicalController": null,
-            "ROYALTY_SETTLEMENT_VERSION": 2,
-            "ROYALTY_RECOVERY_VERSION": 2
+            "ROYALTY_SETTLEMENT_VERSION": 3,
+            "ROYALTY_RECOVERY_VERSION": 2,
+            "assetCapacity": 16,
+            "mintEnd": null,
+            "ACTIVATION_WINDOW": 3600
           }
         },
         "metadata_renderer": {
@@ -566,7 +569,7 @@
         "decimals": 18,
         "runtime_hash": null,
         "version": 6,
-        "canonical_schema": "0x0d5e1dc9dd446c57a6c00ee26b443e08b324e1decfca4b9729d790420a257ee7",
+        "canonical_schema": "0x2e58e2b0cb8bde6fa076616a784e8670f703495044a2107f6e83304e07bee62e",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -830,7 +833,15 @@
           "complete_admission_history": null,
           "asset_count": null,
           "observed_asset_count": null,
-          "assets": []
+          "assets": [],
+          "capacity": 16,
+          "observed_capacity": null,
+          "capacity_review_evidence": null
+        },
+        "royalty_window": {
+          "mint_end": null,
+          "claims_open_at": null,
+          "marketplace_schedule_evidence": null
         }
       },
       "activation_sources": [],
@@ -870,7 +881,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_custody5_holder_exit_v6_portfolio2_confirmation3_entry3_royalty2_original_currency",
+          "profile": "accounting6_policy1_custody5_holder_exit_v6_portfolio2_confirmation3_entry3_royalty3_launch_window",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -1040,6 +1051,6 @@
   "rebalance_confirmation_version": 3,
   "emergency_rebalance_version": 2,
   "portfolio_version": 2,
-  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6",
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7",
   "protocol_policy_version": 1
 }

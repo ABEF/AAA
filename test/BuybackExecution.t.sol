@@ -172,7 +172,7 @@ contract BuybackExecutionTest is Test {
         oracle.setTestFeed(address(zzz), address(zzzFeed), 3600);
         rewards = new ZZZRewards(address(access)); membership = new ZZZMembership(address(access));
         fees = new ZZZFeeController(address(access)); vault = new RewardsVaultFixture(rewards);
-        nft = new ZZZNFT(address(access), "ipfs://test-only/");
+        nft = new ZZZNFT(address(access), "ipfs://test-only/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false);
         pools = new ZZZPoolRegistry(address(access)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         core = new BuybackCoreFixture(); state = new BuybackStateFixture(address(core));

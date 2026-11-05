@@ -25,6 +25,9 @@ SPECS = {
  ('royalties', 'RoyaltiesReceived(address,uint256,bool)'): (1, 2),
  ('royalties', 'UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)'): (1, 4),
  ('royalties', 'UnallocatedRoyaltiesAllocated(address,uint256,uint256,bytes32)'): (1, 3),
+ ('royalties', 'MintEndConfigured(uint64,uint256)'): (0, 2),
+ ('royalties', 'RoyaltyOpeningFinalized(uint256,uint256,uint256)'): (0, 3),
+ ('royalties', 'InitialRoyaltiesAllocated(address,uint256,uint256,uint256)'): (1, 3),
  ('handoff', 'Frozen(bytes32,address)'): (2, 0),
  ('handoff', 'Aborted(bytes32)'): (1, 0),
  ('handoff', 'Retired(bytes32,address,bytes32)'): (2, 1),
@@ -66,6 +69,9 @@ class Replay:
         self.cohorts = {}
         self.deferred = defaultdict(set)
         self.pending_recovery = {}
+        self.royalty_mint_end = None
+        self.royalty_opening = None
+        self.initial_royalty_allocations = set()
         self.royalty_custody = {}
         self.custody_ids = set()
         self.owner_index = defaultdict(int)
@@ -239,10 +245,39 @@ class Replay:
                 self.pending_lp_transaction = None
 
     def royalty(self, name, topics, t, d, timestamp, transaction):
-        if name == 'AssetAdded':
+        if name == 'MintEndConfigured':
+            end, deadline = d
+            require(not self.frozen and self.royalty_opening is None and timestamp < end < 2**64 and
+                    deadline == end+3600 and (self.royalty_mint_end is None or timestamp <= self.royalty_mint_end),
+                    'Invalid royalty sale closing schedule')
+            self.royalty_mint_end = end
+        elif name == 'RoyaltyOpeningFinalized':
+            cutoff, count, weight = d
+            require(self.royalty_opening is None and self.royalty_mint_end is not None and
+                    cutoff == self.royalty_mint_end+3600 and timestamp >= cutoff and
+                    count == len(self.activation_order) and weight == sum(self.weights.values()),
+                    'Invalid initial royalty cutoff cohort')
+            self.royalty_opening = (cutoff, count, weight)
+        elif name == 'InitialRoyaltiesAllocated':
+            asset = _topic_address(topics[1]); amount, count, weight = d
+            require(asset in self.cohorts and asset not in self.initial_royalty_allocations and
+                    self.royalty_opening is not None and (count,weight) == self.royalty_opening[1:],
+                    'Invalid or repeated initial royalty allocation')
+            cohort = set(self.activation_order[:count])
+            require(self.cohorts[asset] == cohort and sum(self.weights[i] for i in cohort) == weight and
+                    (weight != 0 or amount == 0), 'Initial royalty allocation has wrong cohort')
+            self.initial_royalty_allocations.add(asset)
+            self.add('royalties_allocated', asset, amount, timestamp)
+            delta = amount*SCALE//weight if weight else 0
+            self.royalty_index[asset] += delta
+            for identifier in self.selected:
+                self.earn('royalties',asset,delta*self.weights[identifier] if identifier in cohort else 0,timestamp,identifier)
+        elif name == 'AssetAdded':
             asset = _topic_address(topics[1])
             require(asset in self.royalty_assets and asset not in self.cohorts, 'Duplicate/unreviewed royalty admission')
             self.cohorts[asset] = set(self.weights)
+            if self.royalty_opening is not None:
+                self.initial_royalty_allocations.add(asset)
             # Constructor/admission prefunds are quarantined, not earned receipts.
         elif name == 'RoyaltyAssetDeferred':
             identifier, asset = t[0], _topic_address(topics[2])
@@ -265,7 +300,7 @@ class Replay:
         elif name == 'RoyaltyEligibilityRecovered':
             asset = _topic_address(topics[1]); first, last = d
             require(asset in self.cohorts and asset not in self.royalty_custody and
-                    first == len(self.cohorts[asset])+1 and last == len(self.activation_order)
+                    first == len(self.cohorts[asset])+1 and last <= len(self.activation_order)
                     and first <= last and asset not in self.pending_recovery, 'Invalid royalty recovery prefix')
             require(self.cohorts[asset] == set(self.activation_order[:first-1]), 'Non-prefix royalty cohort')
             if self.frozen:
@@ -273,7 +308,7 @@ class Replay:
                 # the latter used the OLD eligible weight. Normal sync reverses it.
                 self.pending_recovery[asset] = transaction
             else:
-                self.cohorts[asset] = set(self.weights)
+                self.cohorts[asset] = set(self.activation_order[:last])
         elif name == 'UnallocatedRoyaltiesAllocated':
             asset = _topic_address(topics[1])
             amount, supply, review = d
@@ -324,10 +359,12 @@ class Replay:
                     'Unknown royalty currency/eligibility or external custody')
             cohort = self.cohorts[asset]
             supply = sum(self.weights[i] for i in cohort)
-            require(bool(eligible) == bool(supply), 'Royalty receipt has inconsistent cohort weight')
+            window_receipt = self.royalty_mint_end is not None and asset not in self.initial_royalty_allocations
+            require(bool(eligible) == bool(supply) or (not eligible and window_receipt),
+                    'Royalty receipt has inconsistent cohort weight')
             self.add('royalties_received', asset, amount, timestamp)
             self.add('royalties_allocated' if eligible else 'royalties_quarantined', asset, amount, timestamp)
-            delta = amount*SCALE//supply if supply else 0
+            delta = amount*SCALE//supply if eligible and supply else 0
             self.royalty_index[asset] += delta
             for identifier in self.selected:
                 self.earn('royalties', asset, delta*self.weights[identifier] if identifier in cohort else 0, timestamp, identifier)

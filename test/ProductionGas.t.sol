@@ -55,7 +55,7 @@ contract ProductionGasTest is Test {
         for (uint256 i; i < assetCount; ++i) tokens.push(new MockToken(0));
         venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
         vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
-        nft = new ZZZNFT(address(access), "");
+        nft = new ZZZNFT(address(access), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         membership = new ZZZMembership(address(access));

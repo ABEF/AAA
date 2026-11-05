@@ -142,7 +142,7 @@ class History:
             raise HistoryError('Confirmed history timestamp exceeds supported bounds')
         if type(minted_count) is not int or not 0 <= minted_count <= 1000:
             raise HistoryError('Canonical NFT supply exceeds the bounded collection')
-        if len(lp_assets - {ZERO}) > 32 or len(royalty_assets) > 17 or ZERO not in royalty_assets:
+        if len(lp_assets - {ZERO}) > 32 or len(royalty_assets) > 65 or ZERO not in royalty_assets:
             raise HistoryError('Unsupported history reward asset inventory')
         target_hash = _hash(block_hash)
         emitters = sorted({self.nft, self.rewards, self.royalties, *(address(a) for a in extra_emitters)})

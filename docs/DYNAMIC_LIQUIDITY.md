@@ -273,7 +273,7 @@ stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 
 Fresh accounting6/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. After a bucket closes for holder return,
+`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. After a bucket closes for holder return,
 Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
 retaining royalty eligibility. Pending 5% compound joins returned principal;
 earned LP/royalties, buyback reserves and unrelated funds do not. Principal

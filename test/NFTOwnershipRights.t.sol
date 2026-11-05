@@ -61,6 +61,7 @@ contract NFTOwnershipRightsTest is PooledVaultFixture {
         _ledgers(); nft.addRoyaltyAsset(address(t0));
         venue.setFees(100, 200);
         vault.collectFees(vault.nftBucket(id), block.timestamp + 100);
+        _finishRoyaltyWindow();
         t0.mint(address(royalties), 70);
         (bool ok,) = address(royalties).call{value: 3 ether}("");
         require(ok);
@@ -128,6 +129,7 @@ contract NFTOwnershipRightsTest is PooledVaultFixture {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id);
         _ledgers(); nft.addRoyaltyAsset(address(t0));
         venue.setFees(200, 0); vault.collectFees(bucket, block.timestamp + 100);
+        _finishRoyaltyWindow();
         t0.mint(address(royalties), 50);
         (bool ok,) = address(royalties).call{value: 2 ether}(""); require(ok);
         assertEq(rewards.claimable(id, address(t0)), 180);
@@ -178,11 +180,10 @@ contract NFTOwnershipRightsTest is PooledVaultFixture {
     }
 
     function testUnavailableRoyaltyCurrencyDefersOnlyItsEligibilityWhileActualLPActivates() public {
-        uint256 active = activatedPosition(); _fundRights(active);
+        uint256 active = activatedPosition();uint256 next = _mint(bob);_fundRights(active);
         UnavailableRoyaltyToken unavailable = new UnavailableRoyaltyToken();
         nft.addRoyaltyAsset(address(unavailable));
         unavailable.mint(address(royalties), 100);
-        uint256 next = _mint(bob);
         uint256 before0 = t0.balanceOf(bob); uint256 before1 = t1.balanceOf(bob);
         uint256 bucket = vault.nftBucket(active);
         uint256 oldShares = vault.sharesOf(active); uint256 totalShares = vault.bucketTotalShares(bucket);

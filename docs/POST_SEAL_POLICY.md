@@ -119,5 +119,5 @@ remain [release requirements](RELEASE_CHECKLIST.md).
 Recovery2 governance may allocate admitted orphaned royalty units in their ORIGINAL
 currency at active rarity weights at execution. Earned/deferred balances, fractions
 and LP principal are excluded; no recipient, converter, swap or oracle is involved.
-Unsupported currencies require review/admission within16ERC20 slots plus ETH. See the [exact
+Unsupported currencies require review/admission within operating capacity, initially16 and governance-expandable to64ERC20 plus ETH after gas/service review. See the [exact
 procedure and inputs](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery).

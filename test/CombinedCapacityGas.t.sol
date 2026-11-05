@@ -133,7 +133,7 @@ contract CombinedCapacityGasTest is Test {
         venue = new CombinedCapacityVenue(pools);
         vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
         assertEq(vault.MAX_BUCKETS(), SUPPORTED_BUCKETS, "Requalify combined gas before changing capacity");
-        nft = new ZZZNFT(address(access), "");
+        nft = new ZZZNFT(address(access), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         membership = new ZZZMembership(address(access));

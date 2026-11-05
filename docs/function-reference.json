@@ -8,7 +8,7 @@
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
       "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
-      "src/ZZZCanonicalHandoff.sol": "f1a38365013d839a28badf7a4b2a503b07878608cae94659ecdbf0bed50ded06",
+      "src/ZZZCanonicalHandoff.sol": "342dc5409dab25f034023fd93a5fd81535045e356a1e2b89a72554f449fe205b",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
@@ -23,7 +23,7 @@
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
       "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
-      "src/ZZZNFT.sol": "9f673b4e441c449c45ffe71537565ff4c73a32cf75df88f78fb3f03af206c829",
+      "src/ZZZNFT.sol": "d31242720b76cf042604e3825764e3b976dbc4ae519046bd8b586fbd72b80ccd",
       "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
       "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
       "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
@@ -34,7 +34,7 @@
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
-      "src/ZZZRoyaltyRewards.sol": "f62c9cda816f1f18be45f3b4d6ac1536f750257a58891b76c087b1dcd906ccb6",
+      "src/ZZZRoyaltyRewards.sol": "a532088d522a077c4d645cb71ff5c56813f5c81dbc1de69bb2f17a1fa9c76c81",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
@@ -219,9 +219,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "87912f70068021308b16827c2028989844110c2b4b574e208b44eed81b2da8eb",
-    "compiler_output_sha256": "b8b92b8b54b198f01539c1460e4a6f1bff8930cbc2d05fd8ba184ee24c2e3f90",
-    "size_evidence_sha256": "74dfa250eb5f39e99902a960d66b6f46cdd92f9bed68d767c1b1388eaeeed315",
+    "compiler_input_sha256": "aa46b2707a3bee549159f248bd0ca71ff564d91faa35a901dadcecfe3c5ae8a4",
+    "compiler_output_sha256": "859d50a8d33b270fd7212fa80462c82771b50c0b038585c332e00da57f97bb31",
+    "size_evidence_sha256": "c6cee0dfcd69f1a2719f4a3d610da58affdc0987c6862fba4b044a4d044fb73d",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -12371,6 +12371,24 @@
         {
           "inputs": [
             {
+              "internalType": "uint8",
+              "name": "capacity",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "increaseRoyaltyAssetCapacity",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "owner",
               "type": "address"
@@ -12914,6 +12932,19 @@
         {
           "inputs": [
             {
+              "internalType": "uint64",
+              "name": "end",
+              "type": "uint64"
+            }
+          ],
+          "name": "setMintEnd",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "bool",
               "name": "state",
               "type": "bool"
@@ -13050,7 +13081,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "062b4994f142882bfa8b855edea86b0b6a9bd954be7bb28f2d3a50216d608c33"
+      "abi_sha256": "a2b88fdd0002d8378cb2ae5fb77ce00aded559c673aba5a58236d1529a879ebf"
     },
     "ZZZNFTCanonical": {
       "source": "src/ZZZNFTCanonical.sol",
@@ -18819,6 +18850,25 @@
           "anonymous": false,
           "inputs": [
             {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "capacity",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "AssetCapacityIncreased",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
               "indexed": true,
               "internalType": "uint256",
               "name": "id",
@@ -18856,6 +18906,37 @@
               "type": "address"
             },
             {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "count",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            }
+          ],
+          "name": "InitialRoyaltiesAllocated",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
               "indexed": true,
               "internalType": "address",
               "name": "receiver",
@@ -18869,6 +18950,25 @@
             }
           ],
           "name": "LateRoyaltiesForwarded",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "mintEnd",
+              "type": "uint64"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "royaltiesOpenAt",
+              "type": "uint256"
+            }
+          ],
+          "name": "MintEndConfigured",
           "type": "event"
         },
         {
@@ -18944,6 +19044,31 @@
           "anonymous": false,
           "inputs": [
             {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "cutoff",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "count",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            }
+          ],
+          "name": "RoyaltyOpeningFinalized",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
               "indexed": true,
               "internalType": "address",
               "name": "asset",
@@ -18970,6 +19095,19 @@
           ],
           "name": "UnallocatedRoyaltiesAllocated",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "ACTIVATION_WINDOW",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -19150,6 +19288,30 @@
               "type": "address"
             },
             {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "allocateAllUnallocated",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            },
+            {
               "internalType": "uint256",
               "name": "amount",
               "type": "uint256"
@@ -19163,6 +19325,19 @@
           "name": "allocateUnallocated",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "assetCapacity",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -19473,6 +19648,25 @@
           "inputs": [
             {
               "internalType": "address",
+              "name": "asset",
+              "type": "address"
+            }
+          ],
+          "name": "effectiveEligibleCount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
               "name": "",
               "type": "address"
             }
@@ -19595,6 +19789,24 @@
         {
           "inputs": [
             {
+              "internalType": "uint8",
+              "name": "capacity",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "increaseAssetCapacity",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "",
               "type": "address"
@@ -19651,12 +19863,44 @@
         },
         {
           "inputs": [],
+          "name": "mintEnd",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "nft",
           "outputs": [
             {
               "internalType": "address",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "openingPool",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
             }
           ],
           "stateMutability": "view",
@@ -19722,6 +19966,45 @@
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "royaltiesOpen",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "royaltiesOpenAt",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint64",
+              "name": "end",
+              "type": "uint64"
+            }
+          ],
+          "name": "setMintEnd",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -19800,7 +20083,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "720d43933bfd6c233bd140ba123480190c4675c523da057036b3c0abd03acfe8"
+      "abi_sha256": "0fa3b3aeca56b8ea1e3e2e22646e390ef75c5e56d585f78ca3a020403e23dfe5"
     },
     "ZZZStrategy": {
       "source": "src/ZZZStrategy.sol",
@@ -23055,7 +23338,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "8988214bb9e2786118b5f442ac7a0afbbca8ab2e1c1c33c6bae8d046006c4c2e",
+  "notes_sha256": "6611389f8a1e371e20f6c18d31f93c8646f59e1869ecf0bf7dac98d712203a8b",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -39369,6 +39652,38 @@
           "notes": null
         },
         {
+          "signature": "increaseRoyaltyAssetCapacity(uint8,bytes32)",
+          "kind": "function",
+          "name": "increaseRoyaltyAssetCapacity",
+          "state_mutability": "nonpayable",
+          "purpose": "Increase reviewed royalty currency capacity.",
+          "access": "Before sealing: bootstrap. After sealing: current governance; pre/post canConfigure checks.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "capacity",
+              "label": "capacity",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "New ERC20 capacity greater than current, at most64."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero exact review fingerprint after gas/API/history/canonical capacity rehearsal."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "No currency removal, transfer, swap or reweighting. Default16 stays until explicitly increased. Additional admissions are separate calls."
+        },
+        {
           "signature": "isApprovedForAll(address,address)",
           "kind": "function",
           "name": "isApprovedForAll",
@@ -40324,6 +40639,29 @@
           "outputs": [],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "setMintEnd(uint64)",
+          "kind": "function",
+          "name": "setMintEnd",
+          "state_mutability": "nonpayable",
+          "purpose": "Match the official final OpenSea sale end.",
+          "access": "Before sealing: bootstrap. After sealing: current governance; pre/post canConfigure checks.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "end",
+              "label": "end",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "Future final sale end in Unix seconds. Changes only while the previous sale remains open."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Mirror final OpenSea stages; this does not configure OpenSea. Stops NFT mints after end; royalties open1hour later. No sellout assumption. Callback changes cause mint rollback."
         },
         {
           "signature": "setMintPaused(bool)",
@@ -48094,6 +48432,29 @@
           "notes": null
         },
         {
+          "signature": "ACTIVATION_WINDOW()",
+          "kind": "function",
+          "name": "ACTIVATION_WINDOW",
+          "state_mutability": "view",
+          "purpose": "Read the fixed1-hour activation grace window.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "3600seconds."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "MAX_ASSETS()",
           "kind": "function",
           "name": "MAX_ASSETS",
@@ -48110,7 +48471,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The bounded royalty-currency inventory size including native ETH."
+              "explanation": "65 including native ETH; not automatic admission or qualified target gas."
             }
           ],
           "native_value": null,
@@ -48133,7 +48494,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The maximum admitted ERC20 royalty currencies, separate from the native slot."
+              "explanation": "64 hard engineering ceiling; operating capacity starts16. Expansion requires operator gas qualification."
             }
           ],
           "native_value": null,
@@ -48179,7 +48540,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "2 for original-currency-only royalties; authenticate exact runtime."
+              "explanation": "3 for original-currency royalties with the launch window and reviewed capacity; earlier profiles are historical."
             }
           ],
           "native_value": null,
@@ -48395,6 +48756,48 @@
           "notes": "No retrospective royalty rights; native ETH is admitted separately. Taxes/rebases/freeze behavior require review."
         },
         {
+          "signature": "allocateAllUnallocated(address,bytes32)",
+          "kind": "function",
+          "name": "allocateAllUnallocated",
+          "state_mutability": "nonpayable",
+          "purpose": "Allocate all currently unallocated units in one admitted currency.",
+          "access": "Current governance; sealed current canonical NFT, unpaused/no preparation; royalty window open.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Admitted original currency, zero for ETH."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero review fingerprint of classification and current active beneficiaries."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact raw units allocated;0 if no eligible unallocated units remain."
+            }
+          ],
+          "native_value": null,
+          "notes": "Syncs first. Never spends openingPool, earned/fraction liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
+        },
+        {
           "signature": "allocateUnallocated(address,uint256,bytes32)",
           "kind": "function",
           "name": "allocateUnallocated",
@@ -48410,7 +48813,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Admitted original currency address, or zero for ETH. Unsupported tokens first require review/admission;16ERC20 limit remains."
+              "explanation": "Admitted original currency, zero for ETH. Unsupported receipts require review/admission; current configured capacity applies."
             },
             {
               "position": 1,
@@ -48433,7 +48836,30 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "No swap, unwrap, approval, price feed, route, payout, arbitrary beneficiary or principal access. Accounted backing stays unchanged; orphaned units become liabilities. Owners later claim the original currency. Failed sync/authority/lifecycle reverts."
+          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned/fraction backing is excluded."
+        },
+        {
+          "signature": "assetCapacity()",
+          "kind": "function",
+          "name": "assetCapacity",
+          "state_mutability": "view",
+          "purpose": "Read the current admitted ERC20 currency capacity.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Starts16; governance may only increase, up to64; native ETH is additional."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "assetCount()",
@@ -48635,7 +49061,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Requires the canonical freeze lifecycle; no ordinary admin snapshot/write."
+          "notes": "Requires an open, finalized initial window and sync of every admitted initial currency. No live initial cohort is discarded. CanonicalV7 header carries sale end/capacity; old V6 is incompatible. LP terminal exit remains independent."
         },
         {
           "signature": "canonicalController()",
@@ -48878,7 +49304,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Ordinary pause and collective LP exit do not revoke royalty rights. A failed currency or receiver can still make this claim revert; actual paid raw units are not new earnings."
+          "notes": "Royalty claims are locked until official sale end plus1hour. Current-owner and canonical guards, original currencies, exact backing and rollback remain. LP claims are independent."
         },
         {
           "signature": "claimFor(uint256,address,address)",
@@ -48929,7 +49355,7 @@
             }
           ],
           "native_value": null,
-          "notes": "No arbitrary payout recipient and no transfer-operator claim privilege."
+          "notes": "Royalty claims are locked until official sale end plus1hour. Current-owner and canonical guards, original currencies, exact backing and rollback remain. LP claims are independent."
         },
         {
           "signature": "claimable(uint256,address)",
@@ -48972,6 +49398,39 @@
           ],
           "native_value": null,
           "notes": "Includes receipt/cohort policy, not merely stored accrued; unavailable/failed currencies may revert."
+        },
+        {
+          "signature": "effectiveEligibleCount(address)",
+          "kind": "function",
+          "name": "effectiveEligibleCount",
+          "state_mutability": "view",
+          "purpose": "Read the effective currency cohort including pending initial allocation.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "asset",
+              "label": "asset",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Original admitted currency; zero for native ETH."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Activation prefix; includes pre-cutoff NFTs after opening, even before recovery materializes its index."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "eligibleCount(address)",
@@ -49189,6 +49648,38 @@
           "notes": "Plain transfers also work. Only actual funds can back liabilities; not an activation payment."
         },
         {
+          "signature": "increaseAssetCapacity(uint8,bytes32)",
+          "kind": "function",
+          "name": "increaseAssetCapacity",
+          "state_mutability": "nonpayable",
+          "purpose": "Increase reviewed ERC20 currency capacity.",
+          "access": "Immutable NFT only through its governance wrapper.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "capacity",
+              "label": "capacity",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "New capacity strictly greater than current and <=64. Native ETH is additional."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero hash of exact gas/service capacity review."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Review hash is a fingerprint, not an on-chain gas proof. No automatic admission, currency deletion or entitlement change."
+        },
+        {
           "signature": "index(address)",
           "kind": "function",
           "name": "index",
@@ -49288,6 +49779,29 @@
           "notes": null
         },
         {
+          "signature": "mintEnd()",
+          "kind": "function",
+          "name": "mintEnd",
+          "state_mutability": "view",
+          "purpose": "Read the official final marketplace sale end.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "uint64 Unix seconds;0 means unconfigured and royalties/minting remain locked."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "nft()",
           "kind": "function",
           "name": "nft",
@@ -49305,6 +49819,39 @@
               "canonical_type": "address",
               "internal_type": "address",
               "explanation": "The immutable NFT collection whose owners and rarity weights this ledger serves."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "openingPool(address)",
+          "kind": "function",
+          "name": "openingPool",
+          "state_mutability": "view",
+          "purpose": "Read received royalties held for the initial cutoff cohort.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "input0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Original admitted currency; zero for native ETH."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Raw original units held during mint/grace. Separate from earned liabilities and prefunds."
             }
           ],
           "native_value": null,
@@ -49417,6 +49964,75 @@
           ],
           "native_value": null,
           "notes": "Rejects custody-in-transit and unsafe reentrant reads; not all balance is distributable income."
+        },
+        {
+          "signature": "royaltiesOpen()",
+          "kind": "function",
+          "name": "royaltiesOpen",
+          "state_mutability": "view",
+          "purpose": "Check whether the royalty claim window is open.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only after a configured sale end plus1hour."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "royaltiesOpenAt()",
+          "kind": "function",
+          "name": "royaltiesOpenAt",
+          "state_mutability": "view",
+          "purpose": "Read the royalty claim opening timestamp.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "mintEnd plus3600;0 if unconfigured."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "setMintEnd(uint64)",
+          "kind": "function",
+          "name": "setMintEnd",
+          "state_mutability": "nonpayable",
+          "purpose": "Record or revise the final sale end during minting.",
+          "access": "Immutable NFT only through its governance wrapper.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "end",
+              "label": "end",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "Future final OpenSea sale end in Unix seconds; match all mint stages."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Cannot revise after the existing end has passed. Claim opening is always1hour later. No funding or LP effect."
         },
         {
           "signature": "sync(address)",
@@ -54000,7 +54616,7 @@
   "gaps": [],
   "counts": {
     "contracts": 36,
-    "functions": 797,
+    "functions": 809,
     "constructors": 36,
     "receive_hooks": 12,
     "fallback_hooks": 0,

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "b153736fa572fdee91b7c86966f4dd953a68cc6f3cb8896b83e725a5e2040076",
+  "reference_sha256": "5f195359f07d70f0d1f783ba671ce877977e5cad6796b86fa8ee1778d607d05b",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -6758,6 +6758,95 @@
       "arguments": [
         "$ADMITTED_ROYALTY_ASSET",
         "$UNALLOCATED_RAW_AMOUNT",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.ACTIVATION_WINDOW()": {
+      "role": "R",
+      "short": "Read activation grace duration",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.mintEnd()": {
+      "role": "R",
+      "short": "Read official sale end",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.royaltiesOpenAt()": {
+      "role": "R",
+      "short": "Read royalty opening time",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.royaltiesOpen()": {
+      "role": "R",
+      "short": "Check royalty claim opening",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.assetCapacity()": {
+      "role": "R",
+      "short": "Read operating currency capacity",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.openingPool(address)": {
+      "role": "R",
+      "short": "Read initial royalty pool",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.effectiveEligibleCount(address)": {
+      "role": "R",
+      "short": "Read effective eligible prefix",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.setMintEnd(uint64)": {
+      "role": "M",
+      "short": "Set authenticated sale end",
+      "arguments": [
+        "$OFFICIAL_MINT_END_UNIX_SECONDS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.setMintEnd(uint64)": {
+      "role": "G",
+      "short": "Set official sale end",
+      "arguments": [
+        "$OFFICIAL_MINT_END_UNIX_SECONDS"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.increaseAssetCapacity(uint8,bytes32)": {
+      "role": "M",
+      "short": "Increase authenticated currency capacity",
+      "arguments": [
+        32,
+        "$CAPACITY_REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZNFT.increaseRoyaltyAssetCapacity(uint8,bytes32)": {
+      "role": "G",
+      "short": "Increase reviewed currency capacity",
+      "arguments": [
+        32,
+        "$CAPACITY_REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.allocateAllUnallocated(address,bytes32)": {
+      "role": "G",
+      "short": "Allocate all unallocated royalties",
+      "arguments": [
+        "$ADMITTED_ROYALTY_ASSET",
         "$REVIEW_HASH"
       ],
       "value": null

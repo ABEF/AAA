@@ -25,7 +25,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current royalty verification](reports/royalties-in-kind-20261105/VERIFICATION.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current royalty verification](reports/royalty-launch-window-20261105/VERIFICATION.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -71,7 +71,7 @@ before new work. [Read API](docs/FRONTEND_API.md) and [indexer](indexer/monitor.
 authenticate ownership, both LP legs, balances and earnings at pinned blocks.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema11/direct Entry3/royalty2; historical profiles remain separate.
+Fresh inventory is schema12/direct Entry3/royalty3; historical profiles remain separate.
 [Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) bounds selected history replay;
 lineage/other readers and live workload qualification remain open. [OpenSea
 qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
@@ -230,3 +230,5 @@ production defaults, loss settings or rights. Local substitutes qualify no provi
 Update [task ledger](docs/project-todo.json), generated Todo, features/evidence,
 operator/callable procedures and context together using the
 [maintenance procedure](docs/TODO_WORKFLOW.md). Publication and deployment are separate.
+
+Current royalty3 adds the [1-hour sale-close activation window]( docs/ROYALTY_LAUNCH_WINDOW.md): initial cohort, separate openingPool, zero-participant governance allocation, allocate-all and expandable16→64currency capacity. CanonicalV7 rejects old V6 peers and requires initial allocations synchronized. Actual OpenSea/time binding and expanded gas/service qualification remain open.

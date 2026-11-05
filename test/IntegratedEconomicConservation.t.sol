@@ -134,7 +134,7 @@ contract IntegratedEconomicConservationTest is Test {
             IPositionDescriptor(address(0)),IWETH9(address(0)));
         manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        nft=new ZZZNFT(address(access),"ipfs://integrated-test/");
+        nft=new ZZZNFT(address(access),"ipfs://integrated-test/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(access));rewards=new ZZZRewards(address(access));
         fees=new ZZZFeeController(address(access));compounder=new ZZZCompounder(address(access));
         access.bind(Ids.VAULT,address(vault));access.bind(Ids.NFT,address(nft));
@@ -230,6 +230,10 @@ contract IntegratedEconomicConservationTest is Test {
         core.unlock(abi.encode(uint8(0),true,uint256(1_800_000 ether)));
     }
     function _royalty(uint256 amount) private {
+        if(!royalties.royaltiesOpen()){
+            nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+            _matchFreshMarketPrices();royalties.syncAll();
+        }
         royaltyFunded+=amount;(bool ok,)=payable(address(royalties)).call{value:amount}("");assertTrue(ok);
     }
     function _observe() private {

@@ -144,6 +144,13 @@ contract ReentrantMintTreasury is IERC721Receiver {
     }
 }
 abstract contract PooledVaultFixture is Test {
+    MockFeed private _royaltyFixtureFeed;
+    function _finishRoyaltyWindow() internal {
+        if(!nft.royaltyRewards().royaltiesOpen()){
+            nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+            _royaltyFixtureFeed.set(1e8,block.timestamp,block.timestamp);nft.royaltyRewards().syncAll();
+        }
+    }
     MockAccess ac;MockToken t0;MockToken t1;MockPools pools;VaultPolicyMock policy;VaultLiquidityMock venue;
     ZZZVault vault;ZZZNFT nft;ZZZMembership membership;MockVRF vrf;ZZZRewards rewards;ZZZFeeController fees;ZZZCompounder compounder;ZZZOracle oracle;
     bytes32 poolId;address alice=address(0xA11CE);address bob=address(0xB0B);address payable treasury=payable(address(0x7EA5));
@@ -158,10 +165,10 @@ abstract contract PooledVaultFixture is Test {
     function setUp() public virtual { _fixture(treasury); }
     function _fixture(address payable recipient) internal {
         vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));t0=new MockToken(0);t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
-        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new AccountingVaultHarness(address(ac),block.chainid,recipient, address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"");
+        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new AccountingVaultHarness(address(ac),block.chainid,recipient, address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         compounder=new ZZZCompounder(address(ac));oracle=new ZZZOracle(address(ac),address(0));
-        MockFeed feed=new MockFeed(8,1e8);oracle.setTestFeed(address(t0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
+        MockFeed feed=new MockFeed(8,1e8);_royaltyFixtureFeed=feed;oracle.setTestFeed(address(t0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));ac.bind(Ids.REWARDS,address(rewards));
         ac.bind(Ids.FEES,address(fees));ac.bind(Ids.COMPOUNDER,address(compounder));ac.bind(Ids.LIQUIDITY,address(venue));
         ac.bind(Ids.STRATEGY,address(policy));ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.ORACLE,address(oracle));

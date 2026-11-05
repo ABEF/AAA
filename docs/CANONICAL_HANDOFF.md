@@ -1,3 +1,16 @@
+# Current royalty-window compatibility boundary
+
+Fresh source now uses canonicalV7, ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7.
+The royalty header is five words: asset count, NFT count, total weight, mintEnd,
+assetCapacity. Older V6 peers/headers are rejected; all other domain records retain
+their typed formats. Source capture requires an opened/finalized royalty window
+and every admitted currency initial allocation synchronized. This adds a temporary
+first-hour handoff restriction; LP parking/emergency/terminal exit is independent.
+Import retains the closed sale/capacity, all earned rights and classified prefunds;
+it does not reopen minting or the grace period. Follow [the procedure](ROYALTY_LAUNCH_WINDOW.md).
+The detailed procedures below retain the typed handoff steps; use the V7
+identity/header and the royalty-opening prerequisites above.
+
 # Canonical handoff: same-chain implementation
 
 
@@ -13,7 +26,7 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")`, matching
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")`, matching
 fresh accounting6 eight-word local Positions and LP-only fee intake1. Both peers must
 expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and

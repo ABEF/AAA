@@ -1201,6 +1201,25 @@
           "purpose": "Emit collection-wide ERC4906 metadata invalidation after cosmetic threshold changes.",
           "access": "Only fixed Access.protocolPolicy address; event only,no economic state or ownership mutation.",
           "notes": "BatchMetadataUpdate(0,uint256 max) requests external refresh; no marketplace cache timing guarantee."
+        },
+        "setMintEnd(uint64)": {
+          "purpose": "Match the official final OpenSea sale end.",
+          "access": "Before sealing: bootstrap. After sealing: current governance; pre/post canConfigure checks.",
+          "inputs": {
+            "0": "Future final sale end in Unix seconds. Changes only while the previous sale remains open."
+          },
+          "outputs": {},
+          "notes": "Mirror final OpenSea stages; this does not configure OpenSea. Stops NFT mints after end; royalties open1hour later. No sellout assumption. Callback changes cause mint rollback."
+        },
+        "increaseRoyaltyAssetCapacity(uint8,bytes32)": {
+          "purpose": "Increase reviewed royalty currency capacity.",
+          "access": "Before sealing: bootstrap. After sealing: current governance; pre/post canConfigure checks.",
+          "inputs": {
+            "0": "New ERC20 capacity greater than current, at most64.",
+            "1": "Nonzero exact review fingerprint after gas/API/history/canonical capacity rehearsal."
+          },
+          "outputs": {},
+          "notes": "No currency removal, transfer, swap or reweighting. Default16 stays until explicitly increased. Additional admissions are separate calls."
         }
       },
       "constructor": {
@@ -3361,14 +3380,14 @@
           "purpose": "Read the bounded royalty-currency inventory size including native ETH.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The bounded royalty-currency inventory size including native ETH."
+            "0": "65 including native ETH; not automatic admission or qualified target gas."
           }
         },
         "MAX_ERC20_ASSETS()": {
           "purpose": "Read the maximum admitted ERC20 royalty currencies, separate from the native slot.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The maximum admitted ERC20 royalty currencies, separate from the native slot."
+            "0": "64 hard engineering ceiling; operating capacity starts16. Expansion requires operator gas qualification."
           }
         },
         "SCALE()": {
@@ -3497,7 +3516,7 @@
         "canonicalCapture()": {
           "purpose": "Capture the immutable cutoff for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Requires the canonical freeze lifecycle; no ordinary admin snapshot/write."
+          "notes": "Requires an open, finalized initial window and sync of every admitted initial currency. No live initial cohort is discarded. CanonicalV7 header carries sale end/capacity; old V6 is incompatible. LP terminal exit remains independent."
         },
         "canonicalController()": {
           "purpose": "Identify the bound controller providing this royalty receiver\u2019s lifecycle authority.",
@@ -3566,7 +3585,7 @@
         "claim(uint256,address)": {
           "purpose": "Synchronize and pay one NFT\u2019s funded royalty balance to its current owner.",
           "access": "Current NFT owner; active economic state.",
-          "notes": "Ordinary pause and collective LP exit do not revoke royalty rights. A failed currency or receiver can still make this claim revert; actual paid raw units are not new earnings.",
+          "notes": "Royalty claims are locked until official sale end plus1hour. Current-owner and canonical guards, original currencies, exact backing and rollback remain. LP claims are independent.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Actual currency address; zero denotes native ETH in native-aware paths."
@@ -3578,7 +3597,7 @@
         "claimFor(uint256,address,address)": {
           "purpose": "Forward a router-authorized royalty claim directly to the rechecked current NFT owner.",
           "access": "Only the NFT\u2019s immutable ClaimRouter.",
-          "notes": "No arbitrary payout recipient and no transfer-operator claim privilege.",
+          "notes": "Royalty claims are locked until official sale end plus1hour. Current-owner and canonical guards, original currencies, exact backing and rollback remain. LP claims are independent.",
           "inputs": {
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID.",
             "1": "Actual currency address; zero denotes native ETH in native-aware paths.",
@@ -3786,19 +3805,110 @@
           "purpose": "Read the explicit royalty settlement version.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "2 for original-currency-only royalties; authenticate exact runtime."
+            "0": "3 for original-currency royalties with the launch window and reviewed capacity; earlier profiles are historical."
           }
         },
         "allocateUnallocated(address,uint256,bytes32)": {
           "purpose": "Allocate only admitted unallocated royalty units to currently active rarity weights, in the same currency.",
           "access": "Current governance only; sealed current canonical NFT, unpaused/no preparation. Authority checked before and after.",
           "inputs": {
-            "0": "Admitted original currency address, or zero for ETH. Unsupported tokens first require review/admission;16ERC20 limit remains.",
+            "0": "Admitted original currency, zero for ETH. Unsupported receipts require review/admission; current configured capacity applies.",
             "1": "Positive raw units no greater than orphaned(asset) after synchronization. Excludes earned/deferred/fraction liabilities.",
             "2": "Nonzero bytes32 review fingerprint of asset, amount, classification and current beneficiaries."
           },
           "outputs": {},
-          "notes": "No swap, unwrap, approval, price feed, route, payout, arbitrary beneficiary or principal access. Accounted backing stays unchanged; orphaned units become liabilities. Owners later claim the original currency. Failed sync/authority/lifecycle reverts."
+          "notes": "Royalty window must be open. Only orphaned/unallocated units are allocated at current active weights. Initial pool allocates automatically to cutoff participants; earned/fraction backing is excluded."
+        },
+        "ACTIVATION_WINDOW()": {
+          "purpose": "Read the fixed1-hour activation grace window.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "3600seconds."
+          }
+        },
+        "mintEnd()": {
+          "purpose": "Read the official final marketplace sale end.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "uint64 Unix seconds;0 means unconfigured and royalties/minting remain locked."
+          }
+        },
+        "royaltiesOpenAt()": {
+          "purpose": "Read the royalty claim opening timestamp.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "mintEnd plus3600;0 if unconfigured."
+          }
+        },
+        "royaltiesOpen()": {
+          "purpose": "Check whether the royalty claim window is open.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "True only after a configured sale end plus1hour."
+          }
+        },
+        "assetCapacity()": {
+          "purpose": "Read the current admitted ERC20 currency capacity.",
+          "access": "Anyone; read-only.",
+          "inputs": {},
+          "outputs": {
+            "0": "Starts16; governance may only increase, up to64; native ETH is additional."
+          }
+        },
+        "openingPool(address)": {
+          "purpose": "Read received royalties held for the initial cutoff cohort.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original admitted currency; zero for native ETH."
+          },
+          "outputs": {
+            "0": "Raw original units held during mint/grace. Separate from earned liabilities and prefunds."
+          }
+        },
+        "effectiveEligibleCount(address)": {
+          "purpose": "Read the effective currency cohort including pending initial allocation.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original admitted currency; zero for native ETH."
+          },
+          "outputs": {
+            "0": "Activation prefix; includes pre-cutoff NFTs after opening, even before recovery materializes its index."
+          }
+        },
+        "setMintEnd(uint64)": {
+          "purpose": "Record or revise the final sale end during minting.",
+          "access": "Immutable NFT only through its governance wrapper.",
+          "inputs": {
+            "0": "Future final OpenSea sale end in Unix seconds; match all mint stages."
+          },
+          "outputs": {},
+          "notes": "Cannot revise after the existing end has passed. Claim opening is always1hour later. No funding or LP effect."
+        },
+        "increaseAssetCapacity(uint8,bytes32)": {
+          "purpose": "Increase reviewed ERC20 currency capacity.",
+          "access": "Immutable NFT only through its governance wrapper.",
+          "inputs": {
+            "0": "New capacity strictly greater than current and <=64. Native ETH is additional.",
+            "1": "Nonzero hash of exact gas/service capacity review."
+          },
+          "outputs": {},
+          "notes": "Review hash is a fingerprint, not an on-chain gas proof. No automatic admission, currency deletion or entitlement change."
+        },
+        "allocateAllUnallocated(address,bytes32)": {
+          "purpose": "Allocate all currently unallocated units in one admitted currency.",
+          "access": "Current governance; sealed current canonical NFT, unpaused/no preparation; royalty window open.",
+          "inputs": {
+            "0": "Admitted original currency, zero for ETH.",
+            "1": "Nonzero review fingerprint of classification and current active beneficiaries."
+          },
+          "outputs": {
+            "0": "Exact raw units allocated;0 if no eligible unallocated units remain."
+          },
+          "notes": "Syncs first. Never spends openingPool, earned/fraction liabilities, principal or another currency. No payout or swap. Zero active weight rejects."
         }
       },
       "constructor": {

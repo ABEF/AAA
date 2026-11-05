@@ -46,11 +46,13 @@ contract OriginalCurrencyRoyaltyTest is Test {
         a.bind(Ids.NFT,address(nft));a.seal();
         nft.mint(alice,1,0);nft.mint(bob,2,1);nft.mint(carol,3,2);
         vm.deal(address(this),10 ether);
+        vm.prank(address(nft));r.setMintEnd(uint64(block.timestamp+1));
+        vm.warp(block.timestamp+3601);r.syncAll();
     }
     function pay(uint256 n) internal {(bool ok,)=address(r).call{value:n}("");assertTrue(ok);}
     function activateAll() internal {nft.activate(1);nft.activate(2);nft.activate(3);}
     function testFreshRoyaltyProfileHasNoSwapOrApprovalEntrypoint() public {
-        assertEq(r.ROYALTY_SETTLEMENT_VERSION(),2);assertEq(r.ROYALTY_RECOVERY_VERSION(),2);
+        assertEq(r.ROYALTY_SETTLEMENT_VERSION(),3);assertEq(r.ROYALTY_RECOVERY_VERSION(),2);
         bytes[4] memory calls=[abi.encodeWithSignature("converter()"),
             abi.encodeWithSignature("bindConverter(address)",alice),
             abi.encodeWithSignature("convertBatch(address,uint256[],bytes32,uint256,uint256)",address(usdc),new uint256[](1),REVIEW,1,block.timestamp),

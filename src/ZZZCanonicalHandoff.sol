@@ -29,7 +29,7 @@ interface ICanonicalHelpers {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;

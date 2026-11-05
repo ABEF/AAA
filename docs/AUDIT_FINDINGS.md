@@ -131,3 +131,12 @@ bypass, dependency/proxy behavior, sampled rather than continuous evidence,
 bounded routing/lifetime capacity and absent post-halt recovery. Retired
 requirements are superseded, not “successfully implemented.” Actual external
 qualification and independent audit remain open.
+
+## Current royalty window and capacity follow-up
+
+[Scoped royalty3 review](../reports/royalty-launch-window-20261105/REVIEW.md) adds
+the final3600second window, initial-cohort/prefund separation, allocate-all and
+reviewed16→64capacity; it does not close broader release findings. CanonicalV7
+and reporting4 are explicit incompatible boundaries. Actual marketplace/time,
+expanded gas/services/restore and independent review remain open. Earlier
+royalty2/24-hour artifacts are not current source proof. No dormant deadline UI.

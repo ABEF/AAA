@@ -1,100 +1,104 @@
 # PoPL current project context
 
-Reviewed5November2026. Pre-settlement2 task baseline main
-`bce897c480cd7df67e4936d278d51908d3d7885f`; verify actual local/remote heads before
-claiming publication. Read [instructions](AGENTS.md), [README](README.md),
-[sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and
-[Operator manual](docs/OPERATOR_MANUAL.md). **Undeployed; production NOT APPROVED.**
-Repository memory is not a background synchronization service.
+Reviewed5November2026. Pre-window baseline main c7dad14; verify actual local/remote
+heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
+docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
-## Product, rights and source identity
+## Current architecture and economics
 
-1,000 transferable ERC721 NFTs, exact final600Commun/300Rare/100Legendary quotas.
-Fixed artwork draw/reveal, one fixed ZZZ token and native ETH for contributions.
-Default activation$100/growth$5; future policy minima>=1USD and growth<=activation,
-with stronger admitted limits. Current owners inherit all unpaid rights.
+1,000 ERC721 NFTs; fixed600Commun/300Rare/100Legendary draw quotas. Native ETH and
+one fixed ZZZ for contributions/LP/buyback/holder return. Default activation100USD,
+growth5USD/direct mint0.05ETH; future minima/payout policy remain bounded and
+governed. Two independent USD sources per priced asset,3% agreement. Default
+contribution2%/LP conversion1%/maintenance3%, governed ceilings10%, gas separate;
+additional execution loss1% after known directional fees and default5% idle are
+different guards. Fixed80/10/5/5 actual LP receipts: owner/equal active collective/
+compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
-Fresh accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/
-custody5/emergency2/LP-routing2, pricing2/direct Entry3/review2/governance2/fee1,
-royalty settlement2/recovery2. Schema11 inventory17modules/18helpers. Position is eight words;
-parked same-chain canonicalV6 wire compatibility never implies runtime compatibility.
-[Exact profile](docs/POSITION_V6.md). Preserve historical codecs/readers/journals.
+Accounting6/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
+LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
+words. Fresh royalty3/recovery2/canonicalV7/schema12/reporting4;17modules/18helpers.
+Old V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
-## LP operation and economics
+One contribution pool at a time, <=4logical historical buckets. One main or
+optional main+ONE residual in same ETH/ZZZ pool, Vault owns both NFTs. At replacement
+main>=60%/residual<=40%, not perpetual target; residual half-side5000bps, positive
+spacing gap, desired mode OFF by default. Both legs always count in valuation/
+harvest/closure. Entrants fund MAIN only; no incumbent/residual/compound subsidy,
+recenter or clock reset; actual marginal LP and aggregate shares must reconcile.
 
-One contribution pool at a time, at most4historical custody buckets. Each bucket
-has one main or optional one residual in the same ETH/fixed-ZZZ pool; both LP NFTs
-stay Vault-owned. Default single mode. At replacement main>=60% and residual<=40%,
-not a continuous target; initial residual half-side5000bps with positive spacing.
-Both legs remain valued/harvested/closed until a guarded merge succeeds.
+Ordinary85%centre-to-boundary same-side physical+independent reference,600second
+sample/300maxgap/240source polling, durable60–300jitter after initial hard12hours.
+Paid enrollment begins near eligibility; pending-first recovery, reset receipts
+and provenance remain. Hourly harvest independent. Compound interval independent
+after max(lastCompound,lastRebalance); automation waits for in-range/below-trigger
+main/no pending geometry. Existing authenticated internal-harvest coalescing stays.
 
-Activation/growth checkpoint incumbents, deploy entrant funds to MAIN only, prove
-actual marginal LP and issue shares from aggregate NAV. No clock reset, recenter,
-residual change or subsidy from earlier LP/idle/compound. Two reviewed independent
-USD sources must agree within3%. Contribution/conversion/maintenance defaults
-2%/1%/3%, ceilings10%, gas separate. Additional1%loss after known fees, default5%
-idle, caller minima and placement floors are distinct controls.
+One human operator/governance, separate limited keeper key. Direct governance,
+no timelock. Sealed implementations/parents/token identities fixed; bounded
+policies/routes remain governed. Paused manual emergency2 can optionally bypass
+financial guards and risk nearly all principal, never an automated fallback.
+Terminal governance holder return closes both legs into actual ETH+ZZZ and pays
+current NFT owners in bounded direct batches; no custody-address exit/bridge or
+principal reopening. Claims/royalties/transfers remain. Canonical replacement is
+separate, same-chain, reviewed verified source retirement/backing, never post-exit.
 
-Ordinary85%centre-to-boundary human ZZZ-in-ETH threshold requires same-side physical
-and independent corroboration,600seconds sampled persistence/maxgap300,
-240-second raw checks and durable60–300jitter after initial hard12hours. Paid
-sample enrollment begins near eligibility; contribution liquidity does not reset
-stable geometry. Samples do not prove uninterrupted history or MEV immunity.
+## Royalty opening and currency capacity
 
-Hourly actual harvest allocates fixed80/10/5/5: individual/equal active collective/
-compound/fixed-ZZZ buyback-burn. Compound has its own interval and service waits
-for in-range/below-trigger/no-pending-geometry state. Harvest, conversion,
-compounding, burn and claims remain separate; no holder loop at harvest.
+Final user choice: ONE HOUR (3600seconds), superseding the24-hour draft. Governance
+NFT.setMintEnd mirrors final OpenSea sale stage. Unset/past end rejects minting;
+future revisions allowed only while the OLD end has not passed. No mint after
+close, no sellout assumption, no clock pause or administrator extension afterward.
+Claims open at end+3600. NFTs whose activation finishes strictly before cutoff
+share the initial admitted-currency pool at rarity1/2/3. Late activations get only
+future receipts. A delayed first transaction cannot change the cutoff cohort.
+Normal sync/claim/activation materializes allocation: no keeper/opening transaction
+prerequisite. LP claims are independent. No deadline on DORMANT cards by user choice.
 
-## Royalties and manual allocation
+openingPool is separate from constructor/preadmission prefunds, earned liabilities
+and fractions. Zero initial participants leave funds unallocated for later
+explicit governance decision. allocateAllUnallocated(asset,reviewHash) allocates
+all eligible unallocated whole units of ONE admitted currency at current active
+weights; no swap/payout/recipient/sweep. Partial allocation remains. Unsupported
+receipts require review/admission; no reconstructed receipt-time entitlement.
 
-Fresh settlement2/recovery2 removes royalty swapping, unwrap, converter binding
-and keeper conversion. Each admitted currency remains itself; owner mixed claims
-support32total NFT/asset/ledger operations. Rarity1/2/3, incumbent receipts,
-outage cohorts, fractions and transferred unpaid rights remain. Governance
-allocateUnallocated(asset,amount,reviewHash) only allocates admitted orphaned
-units in that SAME currency at active weights now; earned/deferred liabilities
-are excluded. Unsupported tokens require review/admission within16ERC20 plusETH.
-No price feed is needed for original claims; missing USD reporting stays unknown.
-LP conversion stays separate. Reporting3/converter:null and keeper explicit
-royalty_settlement_version2 select fresh behavior; old profiles remain historical.
-New ledger storage/runtime and event semantics require fresh bindings and reviewed
-checkpoint rebuild, never a relabeled deployment/journal.
+Original currencies only: ETH stays ETH, WETH stays WETH, USDC stays USDC. No
+royalty converter/unwrap/approval/price route; separate LP conversion preserved.
+Current owner inherits all unpaid rights.32total NFT/asset/ledger claim entries,
+selected healthy currencies avoid one failed payout reverting an atomic batch.
+Per-currency failure cohorts/fractions preserved. Default16ERC20+ETH capacity can
+only increase through governance to64ERC20+ETH after gas/service review. Review
+hash is NOT a gas proof. No unlimited/frozen-token/zero-rounding-reserve promise.
 
-## Documentation and verification
+CanonicalV7 royalty header five words includes end/capacity; source requires open/
+finalized window and every initial currency synchronized before capture. Old V6
+peers rejected early. Import never reopens sale/grace; parked/principal wire shapes
+do not imply runtime compatibility. Emergency/terminal LP recovery is independent.
 
-[Operator tables](docs/OPERATOR_MANUAL.md#operator-call-tables) cover797functions,
-36constructors and12receivers. Four columns, <=5word descriptions, complete typed
-input examples with unresolved live values. Reads/callbacks/module-only hooks are
-separate from human actions. Never treat these as simulated wallet transactions.
-Notes/ABI/examples and generated tables must update together; normal verification
-checks both generators. Historical plans now link their exact original Git text.
+## Evidence, records and environments
 
-[Current original-currency verification](reports/royalties-in-kind-20261105/VERIFICATION.md)
-binds51production/31dependency sources,42normal size gates and466static contexts
-(25current/441exact reuse).58selected EVM methods pass, including1000NFT mixed
-wallets and1000-input conservation fuzz;144affected Python methods pass at their
-recorded stage. Migration39/Vault635/Budget237/Balancer360runtime margins remain;
-royalty18580/factory20127bytes are smaller. No independent or actual target-gas approval.
+Current scoped report: reports/royalty-launch-window-20261105/VERIFICATION.md.
+51production/31dependency sources,42normal gates,479internal static contexts
+(103current/376exact reuse).125distinct selected EVM successes across explicit
+one-hour stages, including1000NFT/fuzz and actual local-v4/canonical cases.
+183affected Python checks and71reference/static/publication checks at recorded
+stages;157website read/unsigned tests. Counts/scopes not casually summed.
+36contracts/809functions/36constructors/12receivers;857operator examples,0gaps.
+No whole-suite/public CI/actual target gas/marketplace/uptime/independent approval.
 
+One Todo ledger docs/project-todo.json generates TODO.md. Keep feature/roadmap/
+release/operator/context linked with source/evidence. Original reports immutable;
+repository memory is not global personal memory or a background synchronization.
+Source/checkpoint semantics changed: reviewed rebuild/re-pin, never relabel old
+artifacts. Older research/failures retain original scope.
 
-Checkpoint1 is implemented only for opt-in fresh6/5/1single-deployment earnings.
-Other history readers/lineage/archive/rotation/workload qualification remain open;
-semantic parser changes require reviewed checkpoint rebuild/re-pin. Claims,
-conversion/import and returned principal are not new earned income; first
-unallocated recovery is income only at its explicit allocation event.
+Main only. Preserve four protected dirty files in handoff, all Anvil8902 holdings,
+dist overlays, pending/nonce/receipt/spend journals, shared signer and user-paused
+heartbeat. Popldemo is simulation; separately served poplint is current3/unconfigured,
+not fresh source8/accounting6. Public DEPLOYMENT null; browser signing Anvil-only.
+No deployment/seal/public transaction/site/server/service/reset/signing change.
 
-## Preserved environments and next work
-
-Main only. Preserve the four protected tracked dirty files, original Anvil8902
-NFTs/LP/balances, pending/nonce/receipt/spend journals and dist overlays. Popldemo
-is simulation; separately served poplint is current3/unconfigured read/unsigned
-integration, not fresh source8/accounting6. Public DEPLOYMENT null; browser signing
-Anvil-only. User-paused heartbeat stays paused. No deployment, transaction,
-sealing, service/site restart, journal migration or signer expansion is authorized.
-
-Actual dual feeds, routes, VRF, authorities, OpenSea primary integration and any
-transfer-enforcement decision, matching services/site, metadata hosting, operating
-rehearsals/restore, economics/target gas and independent audit/remediation remain
-under the [sole Todo](TODO.md). Keep source implementation, local evidence,
-published code and operating qualification distinct.
+Open release gates: actual OpenSea drop/all mint-path/final-end binding, currencies,
+dual feeds/routes/VRF/authorities, expanded gas/API/history/checkpoint workloads,
+matching source8 services/site, storage/restore/long-lived history, independent
+audit/remediation. Capacity64 and current source tests do not close these gates.

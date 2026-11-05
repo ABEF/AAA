@@ -1,9 +1,9 @@
 # Original-currency royalty balances and history
 
-Fresh reporting schema3 authenticates `ROYALTY_SETTLEMENT_VERSION()==2` and the
-reviewed ledger runtime. Use `"royalty_reporting":{"schema":3,"converter":null}`.
-A converter pin is rejected. Legacy schemas1/2 remain explicit readers for older
-deployments and historical conversion events; never relabel them as schema3.
+Fresh reporting schema4 authenticates `ROYALTY_SETTLEMENT_VERSION()==3` and the
+reviewed ledger runtime. Use `"royalty_reporting":{"schema":4,"converter":null}`.
+A converter pin is rejected. Legacy schemas1/2/3 remain explicit readers for older
+deployments and historical conversion events; never relabel them as schema4.
 
 The API returns separate raw balances/decimals/symbols and currency eligibility.
 Fresh balances say `settlement_mode:original_currency`, `claim_asset:<address>`
@@ -38,8 +38,30 @@ No running API/site/service is changed by source publication.
 
 ## Native eligibility and historical custody
 
-Fresh settlement2 native ETH eligibility cannot be deferred: reporting3 rejects
+Fresh settlement3 native ETH eligibility cannot be deferred: reporting4 rejects
 a native eligible-count/activation-count mismatch without probing an old custody
 getter. Optional ERC20 eligibility remains per currency. Legacy reporting1/2
 retains its authenticated native-custody history checks for older runtimes; those
 fields neither enable custody exits nor change the fresh profile.
+
+## Sale-end window and expanded capacity
+
+Reporting4 includes opening.configured, mint_end, claims_open_at, claims_open,
+activation_window_seconds3600 and status open/locked/unconfigured. Locked
+royalty balances must be zero spendable units; inconsistent responses fail
+closed. LP balances remain independent. The reader authenticates capability3
+and uses effectiveEligibleCount for the initial cohort during a currency fault.
+Original raw claims need no price feed, conversion or keeper.
+
+Fresh profile12/canonicalV7 allows at most65royalty currencies including ETH,
+and97combined descriptors; old reporting3/legacy limits remain unchanged.
+Work/RPC/checkpoint/transaction budgets are NOT automatically increased. An
+operator must qualify expanded capacity workloads and update exact descriptors.
+Mixed claims retain32entries; review selected currencies in multiple batches.
+
+Earnings replay records the initial allocation once, not as a second receipt or
+conversion. Claim reconciliation includes the backed pending opening pool only
+after the deadline and only for the cutoff cohort. Event-credit history still
+distinguishes processed credits from pending claimable receipts. Checkpoint
+state includes the sale end, initial cutoff and allocated currencies; source
+identity changes require reviewed rebuild/re-pin. See [window](ROYALTY_LAUNCH_WINDOW.md).

@@ -563,6 +563,27 @@
     "name": "ZZZIdentityConfigured",
     "signature": "ZZZIdentityConfigured(address,bytes32,bytes32)"
   },
+  "0x24270a8eecc50f3c23e8ce862dc0e4af7eed2183890ef24652d497d9bfedf80a": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "cutoff",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyOpeningFinalized",
+    "signature": "RoyaltyOpeningFinalized(uint256,uint256,uint256)"
+  },
   "0x255d9461222a8a158eada0b4467a6921d765c79d919f6d425ee64c2e894ba6d8": {
     "fields": [
       {
@@ -1615,6 +1636,32 @@
     "name": "CustodyApproved",
     "signature": "CustodyApproved(bytes32,uint256,address,uint256)"
   },
+  "0x6dc296596a04d741d96a4798b55ab36c8b40f00ac61b6e47bd22d1ee2b625c5d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "InitialRoyaltiesAllocated",
+    "signature": "InitialRoyaltiesAllocated(address,uint256,uint256,uint256)"
+  },
   "0x72942b4c3efc1a2771bb79910fa8aa483d516aa4ca981905a646efd020af6db6": {
     "fields": [
       {
@@ -2585,6 +2632,22 @@
     "name": "PolicyRegistered",
     "signature": "PolicyRegistered(bytes32,bytes32,uint256,uint256,address,address,address,address,bytes32)"
   },
+  "0xaab6cb7596cdcb0b49c16aaf2082b05255e7c98e226e8c001a597f75975d40a3": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "mintEnd",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "royaltiesOpenAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "MintEndConfigured",
+    "signature": "MintEndConfigured(uint64,uint256)"
+  },
   "0xab28f1dc14e6649dc315cbd6494da981dad5c9fed10743419b3e7b6a44e2e297": {
     "fields": [
       {
@@ -2884,6 +2947,22 @@
     ],
     "name": "FeedConfigured",
     "signature": "FeedConfigured(address,address,uint32)"
+  },
+  "0xc22e338c6b386be9473afa7ba5139bcb8056a9697e77e22374cfe2657c334033": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "capacity",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AssetCapacityIncreased",
+    "signature": "AssetCapacityIncreased(uint8,bytes32)"
   },
   "0xc627b6d8d741877196965816d8bcfd02cfbed8827cbae3271b301ca1547fbf42": {
     "fields": [

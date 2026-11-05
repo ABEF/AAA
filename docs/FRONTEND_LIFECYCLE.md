@@ -8,7 +8,7 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 
 Configuration and read responses use **schema 2**. The current release explicitly
 selects `accounting_version: 4`, `fee_intake_version: 1`, direct governance V2
-and `ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Its Position codec has eight
+and `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Its Position codec has eight
 words and terminal Exited5 in addition to Dormant3/Parked4. Legacy accounting1/2/3
 readers keep their original profile; no old journal is upgraded or reinterpreted.
 Existing schema-1

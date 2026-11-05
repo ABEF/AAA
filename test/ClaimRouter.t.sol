@@ -89,7 +89,7 @@ contract ClaimRouterTest is Test {
 
     function setUp() public {
         access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); vrf = new MockVRF(); token = new MockToken(18); other = new MockToken(6);
-        nft = new ZZZNFT(address(access), "ipfs://example/"); rewards = new ZZZRewards(address(access));
+        nft = new ZZZNFT(address(access), "ipfs://example/"); nft.setMintEnd(uint64(block.timestamp + 3650 days)); rewards = new ZZZRewards(address(access));
         royalties = nft.royaltyRewards(); router = nft.claimRouter(); membership = new ZZZMembership(address(access));
         vault = new ClaimVaultFixture(nft, rewards, membership);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.REWARDS, address(rewards));
@@ -112,9 +112,22 @@ contract ClaimRouterTest is Test {
         rewards.creditPool(1, address(asset), personal, collective);
     }
     function _fund() private {
+        if(!royalties.royaltiesOpen()){nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);royalties.syncAll();}
         _credit(token, 1500, 1500); _credit(other, 3000, 3000);
         token.mint(address(royalties), 900); other.mint(address(royalties), 1800);
         (bool ok,) = address(royalties).call{value: 3 ether}(""); require(ok);
+    }
+
+    function _openRoyaltyWindow() private {
+        if(!royalties.royaltiesOpen()){nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);royalties.syncAll();}
+    }
+    function testLockedRoyaltyBatchRollsBackLPButLPAloneRemainsClaimable() public {
+        _credit(token,1500,0);uint256 expected=rewards.claimable(1,address(token));
+        ZZZClaimRouter.Claim[] memory both=new ZZZClaimRouter.Claim[](2);
+        both[0]=ZZZClaimRouter.Claim(1,address(token),false);both[1]=ZZZClaimRouter.Claim(1,address(0),true);
+        vm.prank(ALICE);vm.expectRevert();router.claimBatch(both);
+        assertEq(rewards.claimable(1,address(token)),expected);assertEq(token.balanceOf(ALICE),0);
+        vm.prank(ALICE);uint256[] memory paid=router.claimBatch(_one(1,address(token),false));assertEq(paid[0],expected);
     }
     function _one(uint256 id, address asset, bool royalty) private pure returns (ZZZClaimRouter.Claim[] memory list) {
         list = new ZZZClaimRouter.Claim[](1); list[0] = ZZZClaimRouter.Claim(id, asset, royalty);
@@ -203,7 +216,7 @@ contract ClaimRouterTest is Test {
     }
 
     function testUnsealedOrNoncanonicalBindingRejected() public {
-        MockAccess unsealed = new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed)); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), "");
+        MockAccess unsealed = new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed)); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), ""); otherNFT.setMintEnd(uint64(block.timestamp + 3650 days));
         ZZZClaimRouter unsealedRouter = otherNFT.claimRouter();
         vm.expectRevert(ZZZClaimRouter.InvalidConfiguration.selector); unsealedRouter.claimBatch(_both(1));
         access.bind(Ids.NFT, address(otherNFT));
@@ -295,6 +308,7 @@ contract ClaimRouterTest is Test {
         uint256[] memory ids = new uint256[](16); ids[0] = 1; ids[1] = 2;
         for (uint256 i = 2; i < 16; ++i) { ids[i] = i + 10; _mint(ALICE, ids[i], 100); }
         _credit(token, 1900, 0);
+        _openRoyaltyWindow();
         (bool ok,) = address(royalties).call{value: 17 ether}(""); require(ok);
         ZZZClaimRouter.Claim[] memory list = new ZZZClaimRouter.Claim[](32);
         for (uint256 i; i < ids.length; ++i) {
@@ -314,6 +328,7 @@ contract ClaimRouterTest is Test {
     function testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96 personal, uint96 shared, uint96 royalty) public {
         personal = uint96(bound(personal, 1, 1e24)); shared = uint96(bound(shared, 1, 1e24));
         royalty = uint96(bound(royalty, 1, 1e24)); _credit(token, personal, shared);
+        _openRoyaltyWindow();
         token.mint(address(royalties), royalty);
         uint256 lpExpected = rewards.claimable(1, address(token)); uint256 royaltyExpected = royalties.claimable(1, address(token));
         ZZZClaimRouter.Claim[] memory list = new ZZZClaimRouter.Claim[](2);

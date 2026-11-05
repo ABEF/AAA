@@ -84,7 +84,9 @@ def read(engine, wallet_address, block_number, offset):
                            'activation_cutoff': None if lower is None else {'block': lower[0], 'transaction': lower[1]}})
     for i in selected:
         account = SimpleNamespace(nft_id=i, totals=model.account_totals[i], scaled=model.accounts[i],
-                                  cohorts=model.cohorts, weights=model.weights)
+                                  cohorts=model.cohorts, weights=model.weights,
+                                  activation_order=model.activation_order,royalty_opening=model.royalty_opening,
+                                  initial_royalty_allocations=model.initial_royalty_allocations)
         financial = {'previously_claimed': {'assets': [dict(asset=a, lp_raw=str(claims[i, a][0]),
                      royalties_raw=str(claims[i, a][1])) for a in engine.descriptors]},
                      'lp_conversions': conversion_report(lp_conversions, i, engine.descriptors, {}),

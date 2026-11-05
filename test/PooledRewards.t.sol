@@ -20,7 +20,7 @@ contract PooledRewardsTest is Test {
     address constant FOREIGN_VAULT = address(0xF001); address constant CANONICAL0 = address(0xC001); address constant CANONICAL1 = address(0xC002);
     function setUp() public {
         ac = new MockAccess(); ProtocolPolicyFixture.bind(address(ac)); token0 = new MockToken(18); token1 = new MockToken(18); pools = new MockPools();
-        nft = new ZZZNFT(address(ac), "ipfs://"); membership = new ZZZMembership(address(ac)); rewards = new ZZZRewards(address(ac));
+        nft = new ZZZNFT(address(ac), "ipfs://"); nft.setMintEnd(uint64(block.timestamp + 3650 days)); membership = new ZZZMembership(address(ac)); rewards = new ZZZRewards(address(ac));
         fees = new ZZZFeeController(address(ac)); vault = new RewardsVaultFixture(rewards);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));

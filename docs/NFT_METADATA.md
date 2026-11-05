@@ -51,7 +51,7 @@ display-only positive increasing USD18 values; losses or threshold changes may a
 Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
 Fresh accounting6/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. Confirmed collective closure marks
+`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Confirmed collective closure marks
 Exited5 and `currentLPValue` returns available/zero without a price-feed read.
 `evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
 the existing Activated image, not a new fifth artwork evolution or a Dormant NFT.
@@ -74,12 +74,12 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 
 `royaltyInfo` requests 5% of sale value, payable entirely to the immutable `ZZZRoyaltyRewards` helper. ERC-2981 reports a royalty request; it does not enforce payment. All actually received eligible funds are distributed to activated Commun/Rare/Legendary at 1/2/3, regardless of LP size/evolution. Dormant NFTs get zero weight. LP owner/collective rewards remain a separate ledger.
 
-Fresh royalty settlement2/recovery2 pays each admitted currency as received.
+Fresh royalty settlement3/recovery2 pays each admitted currency as received.
 There is no royalty converter, swap or unwrap. Governance may allocate only
 reviewed admitted unallocated units in the SAME currency at current active
 rarity weights using `allocateUnallocated(asset,amount,reviewHash)`. Previously
 earned/deferred/fractional rights remain excluded. Unsupported currencies require
-review/admission first;16ERC20 slots plus ETH remain. Original-currency claims
+review/admission first;ERC20 capacity starts16 and can be increased up to64 plus ETH after review. Original-currency claims
 need no price feed; optional USD reporting and LP reward conversion are separate.
 See [current settlement](ROYALTY_SETTLEMENT.md).
 

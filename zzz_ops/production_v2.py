@@ -584,10 +584,10 @@ def _dual_price(g,chain,token,path,addresses):
         pp+'.review_evidence','pricing.independence','Independently qualify the pair, market coverage, disagreement/freshness bounds and fail-closed outage behavior.','pricing')
 
 
-def _tokens(g,chain,path,now,addresses,*,raw_royalty_assets=frozenset()):
+def _tokens(g,chain,path,now,addresses,*,raw_royalty_assets=frozenset(),maximum_tokens=33):
     result = {}
     stamp = _obj(chain.get('observed_block')).get('timestamp')
-    for i,item in enumerate(g.items(chain.get('tokens'),path+'.tokens',33,2)):
+    for i,item in enumerate(g.items(chain.get('tokens'),path+'.tokens',maximum_tokens,2)):
         tp = f'{path}.tokens[{i}]'; token = g.obj(item,tp)
         address = g.hex(token.get('address'),tp+'.address',20,zero=True)
         decimals = g.num(token.get('decimals'),tp+'.decimals',0,18)

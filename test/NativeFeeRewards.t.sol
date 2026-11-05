@@ -89,7 +89,7 @@ contract NativeFeeRewardsTest is Test {
     function setUp() public {
         ac = new NativeFeeAccess(); token = new MockToken(18); pools = new MockPools();
         rewards = new NativeConvertedCreditFixture(address(ac));
-        vault = new NativeFeeVault(rewards); nft = new ZZZNFT(address(ac), "ipfs://");
+        vault = new NativeFeeVault(rewards); nft = new ZZZNFT(address(ac), "ipfs://"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership = new ZZZMembership(address(ac)); fees = new ZZZFeeController(address(ac));
         canonical = new ZZZFeesCanonical(address(ac), address(fees));
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));

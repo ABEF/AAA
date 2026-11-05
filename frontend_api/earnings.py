@@ -175,7 +175,17 @@ class Earnings:
             converted=int(conversions.get(asset,{}).get('source_converted_raw','0'))
             credited=int(financial['royalty_conversions']['total_eth_credited_raw']) if asset==ZERO else 0
             pending=p._uint('royalties','pending(address)',asset,block=block)
-            cohort=model.cohorts[asset];weight=sum(model.weights[i] for i in cohort)
+            cohort=model.cohorts[asset]
+            if getattr(p,'royalty_reporting',None) is not None and p.royalty_reporting.schema == 4:
+                opened=int(p._call(p.contracts['royalties'].address,'royaltiesOpen()',block=block)[0],16)
+                require(opened in (0,1),'Invalid royalty opening state')
+                if not opened:
+                    pending=0
+                elif asset not in model.initial_royalty_allocations:
+                    count=model.royalty_opening[1] if model.royalty_opening is not None else len(model.activation_order)
+                    cohort=set(model.activation_order[:count])
+                    pending+=p._uint('royalties','openingPool(address)',asset,block=block)
+            weight=sum(model.weights[i] for i in cohort)
             delta=pending*SCALE//weight if weight else 0
             scaled=model.scaled['royalties',asset]
             extra=(scaled%SCALE+delta*model.weights[model.nft_id])//SCALE if model.nft_id in cohort else 0

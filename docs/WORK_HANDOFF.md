@@ -1,78 +1,73 @@
 # Work handoff
 
-Reviewed5November2026. Pre-settlement2 task baseline main
-`bce897c480cd7df67e4936d278d51908d3d7885f`; verify actual local/remote Git heads.
-Read [instructions](../AGENTS.md), [context](../PROJECT_CONTEXT.md),
-[README](../README.md), [sole Todo](../TODO.md),
-[Operator manual](OPERATOR_MANUAL.md) and [profile](POSITION_V6.md).
-**Production NOT APPROVED.** Publication is not deployment or rollout.
+Reviewed5November2026. Pre-window baseline main c7dad14. Inspect actual Git heads
+before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
+../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
-## Current task result
+## Current result
 
-User selected original-currency royalties. Fresh settlement2/recovery2 removes
-the royalty converter and ledger swap/binding/approval entrypoints. Governance
-allocateUnallocated(asset,amount,reviewHash) changes only admitted orphaned units
-to liabilities in the SAME currency at active weights. No earned/deferred/fraction
-backing, LP conversion, principal, weight or current-owner right is changed.
+ONE-HOUR royalty grace after final sale end;24-hour drafts superseded. Governed
+NFT.setMintEnd can revise a future end only during the OLD sale. Unset/past end
+rejects minting. Strict pre-cutoff activated NFT cohort, rarity1/2/3, original
+currencies, lazy automatic allocation; late activations future-only. LP claims
+independent. No deadline displayed on dormant NFT cards. Zero initial participants
+keep unallocated funds for explicit governance allocation.
 
-Fresh schema11 has18helpers; reporting3/converter:null and explicit keeper
-royalty_settlement_version2/no royalty conversion authenticate the new boundary.
-Legacy schemas/events/conversion tests stay separate. This is a new royalty
-runtime/storage layout, never an upgrade or relabeled journal. Source website
-claims/displays raw royalty currencies; public signing and actual sites unchanged.
+Separate openingPool from constructor/preadmission prefunds and earned/fraction
+backing. New allocateAllUnallocated(asset,reviewHash) allocates every eligible
+unallocated unit in ONE currency at current active weights. No swap/payout/sweep.
+Capacity starts16ERC20+ETH; governance can increase to64 after gas/service review,
+never remove currencies/rights. Review hash is not an on-chain gas proof.
 
-Current short tables cover797functions/36constructors/12receivers with845rows.
-[Verification](../reports/royalties-in-kind-20261105/VERIFICATION.md) records
-normal42gates, static466contexts and focused EVM/Python/website checks. Initial
-fixture failures remain archived; no security guard was relaxed.
+Fresh royalty3/recovery2/canonicalV7/schema12/reporting4/keeper royalty3,18helpers.
+V7 header five words carries sale end/capacity; capture waits for finalized opening
+and each initial currency sync. Old V6 peers/runtime/storage are not compatible
+by tuple shape. No journal/checkpoint adoption. Emergency LP paths remain separate.
 
-## Verify documentation without repeating contract suites
+## Verification and remaining gates
+
+See ../reports/royalty-launch-window-20261105/VERIFICATION.md and evidence.json:
+42normal gates at51production/31dependency pins;479static contexts,103current/
+376exact reuse;125distinct scoped one-hour EVM successes across explicit stages;
+183affected Python checks,71reference/static/publication checks and157website
+cases. Failures/24-hour drafts retained externally. This is not whole-suite,
+public CI/target gas/marketplace or independent approval. Source cannot deploy,
+seal, turn on public signing or update running services/sites by publication.
+
+Real OpenSea/all mint-path/end binding, token/price/VRF/routes/authorities,
+maximum gas/expanded API/history/canonical workloads, fresh source8 clients,
+storage/recovery and independent audit remain open in the sole Todo.
+
+## Required maintenance
 
 ```text
 python scripts/generate-function-reference.py --check
 python scripts/generate-operator-reference.py --check
 python scripts/sync-project-todo.py --check
+python scripts/check-python-publication.py --index
 ```
 
-For ABI/behavior changes first regenerate the source-bound ABI/notes, review all
-changed examples/roles/tuple/value semantics, then regenerate the tables. Never
-re-pin automatically just to pass. The source-bound [full reference](CONTRACT_FUNCTIONS.md)
-owns exact outputs/permissions; the manual owns procedures/recovery/reversal.
-Inspect actual IDs: NFT_ID is not BUCKET_ID, and portfolioFingerprint takes the
-main LP_TOKEN_ID. Contribution policy, mint policy and offline reviewHash differ.
+The last check reads EXACT staged blobs; repeat against committed HEAD before
+publication. Preserve source-bound notes/examples/evidence; do not repin to hide
+drift. Current reference36contracts/809functions/36constructors/12receivers and
+857short examples has no input/output/explanation gaps. Operator tables are NOT
+live snapshots, simulations or signing approval. Update manual/procedures and
+reverse/restart/irreversible boundaries with every behavior change.
 
-## Exact source evidence and remaining work
+## Preserve actual state
 
-[Royalty verification](../reports/royalties-in-kind-20261105/VERIFICATION.md) owns the
-current42normal gates/466strict static contexts and58selected EVM methods;
-Python stages overlap. Current source is accounting6/custody5/portfolio2/direct
-Entry3 plus royalty settlement2/recovery2; compatible parked canonicalV6 wire is not runtime identity.
-Earlier [reports](../reports/README.md) retain their original pins/failures/scope.
-Documentation work does not rerun unchanged Solidity suites or establish CI/live
-provider/gas/hosting/marketplace or independent approval.
-
-Real feeds/routes/VRF/authorities, OpenSea primary integration, source8 matching
-site/services, metadata, history longevity/restore, operating economics and
-independent audit/remediation remain open under the [roadmap](ROADMAP.md) and sole
-Todo. Do not revive retired bridges/creator inboxes/third contribution inputs or
-external custody-address exits. Existing earned/deferred royalties remain distinct
-from current-weight unallocated recovery. Review actual admitted royalty currencies before seal; no royalty converter is bound. LP conversion is separate. Source publication changes no worker.
-
-## Preserve actual environments and unrelated work
-
-Anvil8902, minted NFTs/LP/balances/journals and website overlays remain unchanged.
-Popldemo is simulation; separately served poplint remains current3/unconfigured,
-not the new source8/accounting6consumer. Public DEPLOYMENT null; signing Anvil-only;
-heartbeat remains user-paused. No public transaction, deployment/seal, reset,
-service/site restart or journal conversion was authorized.
+Main only; source/docs publication is not rollout. Anvil8902, all NFTs/LP/balances,
+dist overlays, pending/nonce/receipt/spend journals and shared browser signer stay
+unchanged. Popldemo simulation and separately served poplint current3 remain;
+fresh source8/config12 is not the served site. Public DEPLOYMENT null, signing
+Anvil-only; heartbeat remains user-paused. No public transactions or service reset.
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-`operator-docs-20261105/BASELINE.json` archives109original maintained files, full
-source/report pins and the four protected dirty files below. Earlier royalty and
-manual/authority evidence remains in its original linked directories. Preserve
-unrelated untracked drafts; stage only owned changes and verify index/HEAD Python
-publication closure before claiming published.
+Task royalty-launch-window-20261105 archives original source/docs/protected bytes,
+all failures/draft24-hour artifacts, final one-hour compiler/EVM/Python/site/static
+evidence. Prior2727tracked report files remain byte-identical. Preserve unrelated
+untracked drafts and the four tracked dirty files below; never stage them here.
 
 | Protected tracked file | Original SHA256 |
 | --- | --- |

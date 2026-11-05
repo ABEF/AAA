@@ -144,7 +144,7 @@ class OriginalCurrencyInventoryTests(unittest.TestCase):
         with self.assertRaises(ValueError):O.observe(c,object())
     def test_current_template_remains_unapproved_with_no_royalty_converters(self):
         c=json.loads((Path(__file__).resolve().parents[1]/'config/production.example.json').read_text())
-        self.assertEqual(c['schema_version'],11);self.assertEqual(set(c['chains'][0]['helpers']),set(P.HELPERS))
+        self.assertEqual(c['schema_version'],12);self.assertEqual(set(c['chains'][0]['helpers']),set(P.HELPERS))
         self.assertFalse(P.validate(c,now=F.NOW)['ready'])
 
 if __name__=='__main__':unittest.main()

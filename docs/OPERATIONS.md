@@ -41,7 +41,7 @@ need matching worker/checker rollout and a controlled journal-preserving restart
 
 Use explicit accounting6, portfolio2, maintenance3, confirmation3, Budget4,
 LP routing2, fee intake1, governance2, custody5, pricing2, Entry routing3 and
-`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6` with actual bindings. The historical accounting4
+`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7` with actual bindings. The historical accounting4
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
 not a working deployment. Review the distinct fresh accounting6/schema10 inventory,
 its exact supported observer bindings, assets/routes/feeds/authorities and gas policy

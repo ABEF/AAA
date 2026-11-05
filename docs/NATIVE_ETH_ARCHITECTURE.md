@@ -4,7 +4,7 @@
 
 The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==6`, custody5,
 direct governance2 and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6`. [Profile6](POSITION_V6.md) is explicit;
+`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. [Profile6](POSITION_V6.md) is explicit;
 older native/wrapped deployments and journals are not upgraded. Production is
 **NOT APPROVED**. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md)
 retains its original source scope.

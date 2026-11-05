@@ -243,7 +243,7 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 ## Native accounting and canonical version inventory
 
 Record `Vault.ACCOUNTING_VERSION() == 6` and `ProtocolPolicy.PROTOCOL_POLICY_VERSION() == 1` and the canonical coordinator's
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6")` with their exact
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
 with the fresh20-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier

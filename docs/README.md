@@ -12,7 +12,7 @@ The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
 caller/value notes. These are documentation templates, never transaction approval.
 
 Current source is accounting6/custody5/portfolio2/direct Entry3 plus royalty
-settlement2/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
+settlement3/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
 their original meaning. Use [the report map](../reports/README.md) for exact source
 scope; a historical audit is not a current operating procedure or release sign-off.
 
@@ -95,3 +95,5 @@ take precedence over early unpinned upstream links.
 replace fresh accounting5 assumptions. [Operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
 and [callable reference](CONTRACT_FUNCTIONS.md) describe exact procedures. Existing
 runtimes, source-scoped evidence and served websites retain their own boundaries.
+
+[Royalty launch window and currency capacity](ROYALTY_LAUNCH_WINDOW.md) owns sale end,1-hour initial cohort, locked receipts, allocate-all and reviewed expansion.

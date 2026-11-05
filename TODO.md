@@ -38,7 +38,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Settlement2 removes royalty swaps/unwraps and the converter. Holders claim each admitted original currency through direct or mixed claims. Recovery2 allocates only reviewed admitted unallocated units in that same currency at current active weights. Verify actual currencies, marketplace payments, schema11/runtime/API/site integration, gas and independent audit.
+- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Royalty3 pays original currencies after final sale end plus1hour. The cutoff cohort, separate initial pool, zero-participant/manual allocate-all and expandable16→64capacity are implemented in the source candidate. Qualify actual OpenSea timing/currencies, profile12/canonicalV7/reporting4 integration, gas/workloads and independent audit.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -46,12 +46,16 @@ Custody, ownership and reward accounting.
   - User decision5November2026: no royalty swaps or unwraps; keep LP conversion separate. ETH, WETH, USDC and every admitted currency retain their own amounts and exact decimals. No route/feed is needed merely to claim original units.
   - Preserve activated rarity1/2/3, pending-receipt/incumbent checkpoints, earlier outage cohorts, fractions, current-owner transfers, claim atomicity and zero dormant dilution.
   - Recovery2 requires reviewed admission first and governance allocateUnallocated(asset,amount,reviewHash), bounded by actual orphaned backing. Allocate the original currency at active weights at recovery; never consume earned/deferred/index-dust liabilities or choose a custody recipient.
-  - Admission remains append-only16ERC20 plus ETH. Review full-capacity/unconventional token recovery before sealing; there is no unlimited-token or universal recoverability promise.
   - Authenticate schema11/18-helper fresh inventory and settlement2/recovery2, API reporting3/converter:null, and fresh keeper royalty_settlement_version2 with royalty conversion disabled. Do not reinterpret legacy runtimes, event histories or journals.
   - Source website reviews original-currency claims and separate quantities;32 total NFT/asset/ledger operations maximum. Simulate exact mixed claims and surface unavailable currencies. Public signing remains disabled and actual source/site/API rollout is separate.
   - Rebuild/review earnings checkpoints after original-currency allocation event semantics change; preserve old conversion/recovery events as history, never new income or additional paid totals.
   - Qualify actual OpenSea recipient/order/offer/checkout payments, approved token transfer behavior, gas/capacity, outage recovery and independent audit/remediation. Local tests are not live approval.
   - [Current implementation and evidence](reports/royalties-in-kind-20261105/REVIEW.md). Historical converter/recovery1 reports retain their source scope; those features are deliberately removed from the fresh release.
+  - [Royalty window/capacity](docs/ROYALTY_LAUNCH_WINDOW.md): governance may change final sale end during the old sale; claims open1hour later. Strict pre-deadline activation cohort, current-owner rights, original currencies, no keeper/swap; late activations do not receive the initial pool. Zero participants keep unallocated funds for explicit governance allocation.
+  - Keep openingPool separate from constructor/preadmission prefunds and earned/fraction backing. allocateAllUnallocated allocates every eligible unallocated whole unit in one currency at current active weights; no payout/sweep. Unknown-token recovery does not reconstruct historical receipt-time entitlements.
+  - Capacity starts16ERC20 plusETH; governance can increase to64 with review hash. BEFORE expansion qualify cold/faulted target-chain activation, gas headroom, full API/history/checkpoint/claims/canonical workloads and recovery. Work budgets remain bounded; no unlimited-token/no-dust/frozen-token guarantee.
+  - Qualify matching final OpenSea sale stages and every mint path; schedule changes must update both controls. Current custom NFT is not yet a supported SeaDrop integration. Test sale under-subscription, early sellout, pauses/VRF failures, exact cutoff, no activations, tokens received before admission and matching profile12/canonicalV7/reporting4 consumers.
+  - [Source evidence](reports/royalty-launch-window-20261105/VERIFICATION.md) retains failing/corrected fixtures and source-scoped checks. Actual marketplace, maximum target gas/expanded workloads, site/services/checkpoint rollout and independent approval remain open.
 
   </details>
 
@@ -1456,4 +1460,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `452d97b96cbf4e1dad6432b217efda529d055227df13670d385986a1d955e458`.
+Snapshot SHA-256: `364e1930a10e4a894ad7e6a1d94d00096d94076ae721fbbec44ab202e0664c39`.

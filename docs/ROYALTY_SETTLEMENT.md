@@ -1,10 +1,30 @@
 # Marketplace royalty settlement: original currencies
 
-Fresh **royalty settlement2/recovery2**, accounting6/custody5/Entry3, schema11.
+Fresh **royalty settlement3/recovery2**, accounting6/custody5/Entry3, schema12.
 User decision5November2026: holders claim each royalty currency as received.
 **No royalty swap, unwrap, converter binding, price-feed dependency or keeper
 conversion job remains in this fresh ledger.** LP reward conversion is separate.
 Existing runtimes/journals retain their original profiles. Production NOT APPROVED.
+
+## Initial activation window
+
+The [sale-close/window procedure](ROYALTY_LAUNCH_WINDOW.md) is part of this fresh
+release: governance configures the final OpenSea sale end; royalties stay locked
+through the next1hour. Admitted receipts accumulate separately in openingPool,
+then allocate automatically to NFTs activated strictly before the deadline.
+Late activations earn future receipts only. Zero initial participants leaves
+funds unallocated for explicit governance allocation. LP claims are independent.
+Unconfigured mint end rejects minting/royalty claims. No keeper is required.
+
+`allocateAllUnallocated(asset,reviewHash)` distributes every eligible unallocated
+whole unit of one admitted currency at current active weights. It cannot spend
+the locked initial pool, earned/fraction backing, LP funds or another currency.
+Constructor/preadmission prefunds retain their separate review/allocation rule.
+
+Governance can increase operating ERC20 capacity from16 up to64 using the NFT
+wrapper after a measured gas/service review. Exact entitlements remain; no
+unlimited external-call loop or deferred-by-default enrollment is introduced.
+The hard ceiling is not target-chain qualification or a universal-token promise.
 
 ## Accepted direction
 
@@ -52,8 +72,8 @@ not universally supported. Review conventional exact-transfer token behavior.
 | Claim one currency | Current owner `RoyaltyRewards.claim(NFT_ID,ASSET)` | Owner receives the same asset; only its selected liability decreases. No token approval is needed. |
 | Claim LP plus several royalty currencies | Owner `ClaimRouter.claimBatch([(NFT_ID,ASSET,false/true),...])` | At most32 NFT/asset/ledger entries, no duplicates. `false` LP, `true` royalties. Every NFT must belong to caller. |
 | Recover unallocated receipts | Governance `allocateUnallocated(ASSET,RAW_AMOUNT,REVIEW_HASH)` | See restricted allocation below; no conversion, recipient or price arguments. |
-| Configure API | `royalty_reporting: {schema:3, converter:null}` | Exact runtime and ROYALTY_SETTLEMENT_VERSION2, separate raw balances, unavailable prices never guessed zero. |
-| Configure fresh keeper | `royalty_settlement_version:2`, omit royalty_conversion or set only `{enabled:false}` | No royalty swaps/unwraps. LP conversion remains separately opt-in. Preserve legacy pending recovery under its original runtime/config. |
+| Configure API | `royalty_reporting: {schema:4, converter:null}` | Exact runtime and ROYALTY_SETTLEMENT_VERSION3, separate raw balances, unavailable prices never guessed zero. |
+| Configure fresh keeper | `royalty_settlement_version:3`, omit royalty_conversion or set only `{enabled:false}` | No royalty swaps/unwraps. LP conversion remains separately opt-in. Preserve legacy pending recovery under its original runtime/config. |
 
 One failed selected payout reverts the entire router batch. Simulate exact claims;
 review healthy currencies separately if another is broken. No automatic skipping,
@@ -64,7 +84,7 @@ Before admitting a new currency, prepare its reviewed API asset descriptor and
 website reward_assets entry, then qualify that coordinated configuration rollout.
 An on-chain admission does not reload a server or populate client metadata.
 No USD feed is required for the raw claim; missing USD prices stay unavailable.
-In schema11, declare an admitted non-ETH royalty currency's strategy as
+In schema12, declare an admitted non-ETH royalty currency's strategy as
 `claim_original`. A royalty-only token may explicitly have `price_policy:null`;
 token identity/decimals/transfer-behavior/admission checks still apply. ETH, ZZZ,
 LP reward assets, contribution assets and conversion sources retain required
@@ -75,7 +95,7 @@ independent price policies. The observer uses the same narrow distinction.
 `ROYALTY_RECOVERY_VERSION()==2` identifies original-currency allocation, not the
 old six-argument recovery1 swap. Review the receipt's provenance and classification.
 For an unsupported token, review/admit it first; its existing balance is recorded
-as unallocated. Admission is append-only and bounded to16ERC20 currencies plus
+as unallocated. Admission is append-only: operating capacity starts16, governance can increase it up to64ERC20 currencies plus
 ETH. Do not fill slots with spam. No unlimited-token guarantee or arbitrary sweep
 is introduced; full capacity/unconventional tokens remain explicit release risks.
 
@@ -103,13 +123,13 @@ successor, never a selected custody wallet. That successor separately reviews
 admission/allocation. Exact unreadable backing can still block handoff.
 
 Legacy conversion/recovery1 events, readers and tests remain explicitly historical;
-they do not enable swaps on settlement2. Canonical parked V6 wire compatibility
+they do not enable swaps on settlement3. CanonicalV7 carries the closed sale/capacity and requires the initial window complete; older V6 wire compatibility
 is not runtime/storage compatibility. Authenticate current hashes/capabilities;
 never relabel a deployed contract or rewrite an old transaction journal.
 
 ## Qualification boundary
 
-[Current change/evidence](../reports/royalties-in-kind-20261105/REVIEW.md),
+[Current change/evidence](../reports/royalty-launch-window-20261105/REVIEW.md),
 [mixed claims](CLAIM_ROUTER.md), [reporting](ROYALTY_REPORTING.md).
 Actual token behavior, marketplace payment, API/site configuration, gas and
 independent audit remain open in the [sole task](../TODO.md#task-royalty-eth-settlement).

@@ -99,7 +99,7 @@ contract CanonicalPreparationTest is Test {
         venue = new PreparationVenue(address(ac), address(t0), address(t1));
         treasury = new PreparationTreasuryCallback();
         vault = new AccountingVaultHarness(address(ac), block.chainid, payable(address(treasury)), address(new ZZZMigrationBudget(address(ac))));
-        nft = new ZZZNFT(address(ac), "");
+        nft = new ZZZNFT(address(ac), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         rewards = new ZZZRewards(address(ac)); membership = new ZZZMembership(address(ac));
         fees = new ZZZFeeController(address(ac)); compounder = new ZZZCompounder(address(ac));
         buyback = new ZZZBuyback(address(ac), address(t0), 1e30);

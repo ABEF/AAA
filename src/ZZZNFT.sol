@@ -122,8 +122,21 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         emit MintPauseChanged(state);
     }
 
+    /// @notice Match the final OpenSea stage; governance can revise it during
+    /// the sale. Its close starts the fixed 1-hour royalty activation window.
+    function setMintEnd(uint64 end) external onlyGovernance {
+        royaltyRewards.setMintEnd(end);
+    }
+    /// @notice Increase royalty currency capacity after reviewed gas rehearsal.
+    /// No currency is removed and no earned entitlement changes.
+    function increaseRoyaltyAssetCapacity(uint8 capacity,bytes32 reviewHash) external onlyGovernance {
+        royaltyRewards.increaseAssetCapacity(capacity,reviewHash);
+    }
+
     function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating principalOperating nonReentrant {
         if (mintPaused) revert Paused();
+        uint64 end = royaltyRewards.mintEnd();
+        if (end == 0 || block.timestamp > end) revert NotReady();
         IZZZProtocolPolicy policy = _policy();
         IZZZProtocolPolicy.VrfPolicy memory vrf = policy.vrfPolicy();
         uint64 revision = policy.vrfRevision();
@@ -148,6 +161,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         requestOf[id] = requestId;
         _safeMint(to, id);
         if (mintPaused) revert Paused();
+        if (royaltyRewards.mintEnd() != end) revert InvalidState();
         if(policy.vrfRevision() != revision || vrf.coordinator.codehash != vrf.expectedCodeHash) revert InvalidState();
         emit RandomnessRequested(id, requestId, ordinal);
     }

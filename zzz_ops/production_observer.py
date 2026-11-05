@@ -568,7 +568,7 @@ class Observer:
     def ledgers(self):
         for name, inventory, ledger, maximum in (
                 ('reward_assets', self.chain['reward_assets'], self.chain['modules']['rewards']['address'], 33),
-                ('royalty_assets', self.chain['nft_inventory']['royalty_assets'], self.chain['helpers']['royalty_rewards']['address'], 17)):
+                ('royalty_assets', self.chain['nft_inventory']['royalty_assets'], self.chain['helpers']['royalty_rewards']['address'], getattr(self,'royalty_asset_maximum',17))):
             if not isinstance(inventory,dict) or not isinstance(inventory.get('assets'),list) or len(inventory['assets']) > maximum:
                 raise ValueError('Unbounded ledger asset inventory')
             count = self.attempt(name, 'ledger_assets.unavailable', lambda: int(self.read(ledger,'assetCount()')[0],16))

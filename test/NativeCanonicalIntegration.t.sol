@@ -114,7 +114,7 @@ contract NativeCanonicalIntegrationTest is Test {
         s.access = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.access));
         s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access), address(token));
         s.vault = new ZZZVault(address(s.access),block.chainid,address(new ZZZMigrationBudget(address(s.access))));
-        s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/"); s.royalties = s.nft.royaltyRewards();
+        s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.access)); s.fees = new ZZZFeeController(address(s.access));
         s.migration = new ZZZMigration(address(s.access)); ZZZOracle oracle = new ZZZOracle(address(s.access), address(0));
         s.access.bind(Ids.VAULT, address(s.vault)); s.access.bind(Ids.NFT, address(s.nft));
@@ -154,6 +154,7 @@ contract NativeCanonicalIntegrationTest is Test {
         (bool ok,) = address(source.fees).call{value: 7}(""); assertTrue(ok);
         (ok,) = address(source.royalties).call{value: 1 ether + 3}(""); assertTrue(ok);
         token.mint(address(source.royalties), 13 ether + 2);
+        source.nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);source.royalties.syncAll();
         vm.prank(ALICE); source.nft.transferFrom(ALICE, BOB, id);
     }
     function _freezeExportImport(uint256 id) private {

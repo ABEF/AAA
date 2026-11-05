@@ -182,7 +182,7 @@ class Projection:
             self.contracts[role] = Contract(address(item['address']), _hash(item['code_hash']))
         if len({x.address for x in self.contracts.values()}) != len(self.roles):
             raise ValueError('Each configured contract must have a distinct address')
-        if not isinstance(config['assets'], list) or len(config['assets']) > 49:
+        if not isinstance(config['assets'], list) or len(config['assets']) > (97 if isinstance(config.get('royalty_reporting'),dict) and config['royalty_reporting'].get('schema') == 4 else 49):
             raise ValueError('Bounded asset descriptor list is required')
         self.assets = {}
         for item in config['assets']:
@@ -245,6 +245,8 @@ class Projection:
         native_slots = {
             'claimable(uint256,address)': {1}, 'eligibleFor(uint256,address)': {1},
             'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},
+            'effectiveEligibleCount(address)': {0},
+            'openingPool(address)': {0},
             'dust(uint256,address)': {1},
             'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
             'custodyNonce(address)': {0},
@@ -301,7 +303,9 @@ class Projection:
         if self.accounting_version in (2, 3, 4, 5, 6):
             if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != self.accounting_version:
                 raise ProjectionError('Native accounting profile differs from the deployed Vault version')
-            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6' if self.accounting_version==6 else
+            launch = self.royalty_reporting is not None and self.royalty_reporting.schema == 4
+            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7' if self.accounting_version==6 and launch else
+                      b'ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6' if self.accounting_version==6 else
                       b'ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5' if self.accounting_version in (4,5) else
                       b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4' if self.accounting_version == 3 else
                       b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3' if self.fee_intake_version == 1
@@ -373,7 +377,7 @@ class Projection:
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:
         admitted = []
-        for role, maximum in (('rewards', 33), ('royalties', 17)):
+        for role, maximum in (('rewards', 33), ('royalties', 65 if self.royalty_reporting is not None and self.royalty_reporting.schema == 4 else 17)):
             count = self._uint(role, 'assetCount()', block=block)
             if count > maximum:
                 raise ProjectionError('Contract asset count exceeds reviewed bound')
@@ -587,7 +591,7 @@ class Projection:
                           'default_settlement': 'native_eth' if ZERO in lp_assets else 'source_assets',
                           'royalties': royalty_balances,
                           'lp_scope': 'Already allocated funded LP rewards; unharvested venue fees are not simulated.',
-                          'royalty_scope': ('Contract view includes pending admitted receipts at this currency\'s eligible membership weights. Royalties are claimed in each original currency.' if self.royalty_reporting is not None and self.royalty_reporting.schema == 3 else 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes historical unclaimed conversion credits.')},
+                          'royalty_scope': ('Contract view includes pending admitted receipts at this currency\'s eligible membership weights. Royalties are claimed in each original currency.' if self.royalty_reporting is not None and self.royalty_reporting.schema >= 3 else 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes historical unclaimed conversion credits.')},
             'royalty_reporting': settlement or {'available': False,
                 'reason': 'Current royalty-ledger reporting profile is not configured; no per-currency eligibility or conversion status is inferred.'},
             'unavailable_metrics': dict(UNAVAILABLE),
