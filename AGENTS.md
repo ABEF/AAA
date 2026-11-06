@@ -388,6 +388,13 @@ later entrant/deployment floors. Both-leg park/holder return remain fallbacks.
 Preserve exact pre/post checks and caller/error semantics. See the [complete
 controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
 
+Fixed main tick bounds do not drift with swaps or entrant growth; slot0 and
+composition do. Before manual consolidation confirm pause, read one canonical
+snapshot and simulate the exact call against fresh state. Custody identity is
+not a price quote or a commitment to every governed setting. Re-read IDs after
+replacement, refresh reviews after settings/reorg/expiry and recover the same
+pending hash before retry. See [focused review](reports/consolidation-races-20261106/REVIEW.md).
+
 ## Royalty launch and capacity source boundary
 
 ONE-hour3600-second final grace, not24hours. Configure NFT.setMintEnd to final

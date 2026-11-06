@@ -47,6 +47,8 @@ separate exact permission/output notes; it is documentation, not execution appro
 | Recovery | Governed same-pair move/resume can create a residual under destination mode ON, without ordinary keeper timing; financial/custody guards remain. Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Custody5 allocation/distribution is governance-only; holder LP/royalty/fallback claims remain. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |
 
+The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md) clarifies fixed bounds/live price, coherent snapshots and stale review handling. It changes tests/procedures only; normal/static production pins remain those of the same-main implementation.
+
 ## Backend and operations
 
 Confirmed-read and preparation boundaries remain explicit. RPC endpoints are a

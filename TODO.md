@@ -292,6 +292,7 @@ Custody, ownership and reward accounting.
   - For portfolio operations use the complete [management matrix](docs/OPERATOR_MANUAL.md#portfolio-management-controls): enable/disable desired residual, raw residual-only close, urgent single consolidation, same-mode reviewed reapply, mixed/filled inventory, failed feeds/routes, idle recovery, parking, terminal return and pending-hash/restart. Settings alone do not move assets, enable implicit force or reopen terminal exit.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): global PoPL pause is distinct from external Uniswap trading, residual mode, pool flags and Parked/terminal states. Exact stop/reverse inputs and normal unpaused mode-off merge are documented. maxGap0 stops only sampled-market readiness, not deliberate geometry changes. Converter and Entry source stops remain separate. Actual operator/wallet rehearsal is not closed by documentation.
   - [Same-main consolidation](docs/OPERATOR_MANUAL.md#same-main-residual-consolidation) adds paused governance guarded/forced reinvestment without closing main; raw close/full replacement/park/resume/terminal return remain distinct. Review exact inputs, modeOFF completion, clock/nonces and recovery. [Evidence](reports/residual-main-consolidation-20261106/VERIFICATION.md).
+  - [Moving-market preparation](docs/OPERATOR_MANUAL.md#fixed-bounds-moving-markets-and-fresh-reviews): confirmed pause, one canonical block for custody/main/bounds, fresh exact-call simulation/floors and pending-hash recovery. Bounds are fixed perLP ID, spot is live, and custodyHash does not commit every governance setting. [Focused evidence](reports/consolidation-races-20261106/VERIFICATION.md); actual operator/provider/gas qualification remains open.
 
   </details>
 
@@ -455,6 +456,7 @@ Custody, ownership and reward accounting.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
   - [Lifecycle matrix](reports/residual-lifecycle-20261106/LIFECYCLE.md) covers desired/applied/physical states, fills/reversals, raw residual close and one/two merges. New actual-core cases prove destination-hybrid move/resume and infeasible destination rollback. These governed custody operations do not require ordinary keeper timing; financial guards remain. Maximum-state gas/actual operating acceptance stay open.
   - Governance residual-reinvest1 consolidates live/mixed/converted residual or prior attributed idle into SAME main ID/ticks; no designated compound release, no share/centre/rebalance-clock reset; positive added L, compound clock and atomic OFF acknowledgment. Separate main width remains pending. Guarded auto route or explicit force; not keeper fallback. [Source review](reports/residual-main-consolidation-20261106/REVIEW.md).
+  - [Read-to-execution supplement](reports/consolidation-races-20261106/REVIEW.md) checks swaps after preparation, live boundary semantics and stale contribution identity, without changing production code or modes. Re-read current main after replacements; same-main consolidation is not recentering or a promise to remain active in future blocks.
 
   </details>
 
@@ -1498,4 +1500,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e4a8942cd4bf123408feaf01929bf22505a05db6cd5fac608cd6fa1c97e49499`.
+Snapshot SHA-256: `96f08c203d97e25de5b3c9c9de52cfee1ad8c1c8be1b4c30c11175949f2c18b6`.

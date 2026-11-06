@@ -43,6 +43,13 @@ current NFT owners in bounded direct batches; no custody-address exit/bridge or
 principal reopening. Claims/royalties/transfers remain. Canonical replacement is
 separate, same-chain, reviewed verified source retirement/backing, never post-exit.
 
+Fixed main tick bounds do not drift with swaps or entrant growth; slot0 and
+composition do. Before manual consolidation confirm pause, read one canonical
+snapshot and simulate the exact call against fresh state. Custody identity is
+not a price quote or a commitment to every governed setting. Re-read IDs after
+replacement, refresh reviews after settings/reorg/expiry and recover the same
+pending hash before retry. See [focused review](reports/consolidation-races-20261106/REVIEW.md).
+
 ## Royalty opening and currency capacity
 
 Final user choice: ONE HOUR (3600seconds), superseding the24-hour draft. Governance

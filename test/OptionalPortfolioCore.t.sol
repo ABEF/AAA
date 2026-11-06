@@ -1680,4 +1680,67 @@ contract OptionalPortfolioCoreTest is Test {
         (uint256 main,uint256 aux)=_residualAuditPhysical(bucket,true);assertTrue(main!=originalMain);assertGt(aux,0);
         r=_consolidationReview(bucket,false);access.setPaused(true);_consolidateAndAssert(id,bucket,r,false);
     }
+
+    function testConsolidationRacePausedReviewUsesLiveInventoryAfterExternalSwap() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();access.setPaused(true);
+        EmergencyRebalance memory reviewed=_consolidationReview(bucket,false);
+        uint128 mainL=positions.getPositionLiquidity(main);uint128 auxL=positions.getPositionLiquidity(aux);
+        (uint256 old0,uint256 old1)=manager.amounts(aux);assertEq(old1,0);assertGt(old0,0);
+        bytes32 physical=manager.executionPortfolioFingerprint(main);(int24 lower,int24 upper)=manager.ticks(aux);
+        vm.warp(block.timestamp+30);_move(TickMath.getSqrtPriceAtTick(int24((int256(lower)+int256(upper))/2)));
+        (uint256 live0,uint256 live1)=manager.amounts(aux);assertGt(live0,0);assertGt(live1,0);
+        assertTrue(live0!=old0 || live1!=old1);assertEq(positions.getPositionLiquidity(main),mainL);assertEq(positions.getPositionLiquidity(aux),auxL);
+        assertEq(manager.executionPortfolioFingerprint(main),physical);
+        assertEq(migration.consolidationCustodyHash(bucket),reviewed.custodyHash,"market inventory drift is not custody mutation");
+        uint256 liveValue=_residualAuditPrincipalValue(bucket);_consolidateAndAssert(id,bucket,reviewed,false);
+        assertGe(_residualAuditPrincipalValue(bucket),Math.mulDiv(liveValue,9700,10000),"retention starts at execution inventory, not old preview");
+        (lower,upper)=manager.ticks(aux);assertEq(lower,0);assertEq(upper,0,"raw burned-ID metadata is not current-main authentication");
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(positions.ownerOf(main),address(vault));
+    }
+    function testConsolidationRaceCapturedReviewRejectsBothExternalBoundaryCrossingsAtomically() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();access.setPaused(true);
+        EmergencyRebalance memory reviewed=_consolidationReview(bucket,false);(int24 lower,int24 upper)=manager.ticks(main);
+        uint256 snapshot=vm.snapshotState();
+        for(uint256 i;i<2;++i){
+            if(i!=0)assertTrue(vm.revertToState(snapshot));
+            vm.warp(block.timestamp+20);uint160 boundary=TickMath.getSqrtPriceAtTick(i==0?lower:upper);_move(boundary);
+            (uint160 actual,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));assertEq(actual,boundary);
+            assertEq(tick,i==0?lower-1:upper,"actual v4 downward/upward exact-boundary stored tick");
+            assertEq(migration.consolidationCustodyHash(bucket),reviewed.custodyHash);
+            bytes32 beforeState=_consolidationStateHash(id,bucket);uint128 mainL=positions.getPositionLiquidity(main);uint128 auxL=positions.getPositionLiquidity(aux);
+            vm.expectRevert(ZZZModule.InvalidState.selector);migration.consolidateResidual(reviewed,false);
+            assertEq(_consolidationStateHash(id,bucket),beforeState);assertEq(positions.getPositionLiquidity(main),mainL);assertEq(positions.getPositionLiquidity(aux),auxL);
+            assertEq(positions.ownerOf(main),address(vault));assertEq(positions.ownerOf(aux),address(vault));assertEq(manager.secondaryId(main),aux);
+            (actual,tick,,)=state.getSlot0(PoolId.wrap(pool));assertEq(actual,boundary);assertEq(tick,i==0?lower-1:upper);
+        }
+    }
+    function testConsolidationRaceGrowthActivationTransferClaimAndExpiryRequireCorrectFreshness() public {
+        (uint256 alice,uint256 bucket,uint256 main,uint256 aux)=_hybrid();uint256 bob=_mint(BOB);
+        core.unlock(abi.encode(uint8(2),Q96));EmergencyRebalance memory staleGrowth=_consolidationReview(bucket,false);
+        uint128 auxL=positions.getPositionLiquidity(aux);_contribute(ALICE,alice,100 ether,true);
+        assertTrue(migration.consolidationCustodyHash(bucket)!=staleGrowth.custodyHash);assertEq(positions.getPositionLiquidity(aux),auxL);
+        access.setPaused(true);bytes32 expected=_consolidationStateHash(alice,bucket);
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);migration.consolidateResidual(staleGrowth,false);assertEq(_consolidationStateHash(alice,bucket),expected);
+        access.setPaused(false);EmergencyRebalance memory staleActivation=_consolidationReview(bucket,false);_contribute(BOB,bob,500 ether,false);
+        assertTrue(migration.consolidationCustodyHash(bucket)!=staleActivation.custodyHash);assertEq(positions.getPositionLiquidity(aux),auxL);
+        assertEq(rewards.claimable(bob,address(0)),0,"new activation cannot claim earlier native fees");
+        assertEq(rewards.claimable(bob,address(token)),0,"new activation cannot claim earlier ZZZ fees");
+        assertGt(rewards.claimable(alice,address(0)),0);access.setPaused(true);expected=_consolidationStateHash(alice,bucket);
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);migration.consolidateResidual(staleActivation,false);assertEq(_consolidationStateHash(alice,bucket),expected);
+        EmergencyRebalance memory reviewed=_consolidationReview(bucket,false);uint256 aliceShares=vault.sharesOf(alice);uint256 bobShares=vault.sharesOf(bob);
+        vm.prank(ALICE);nft.transferFrom(ALICE,BOB,alice);assertEq(migration.consolidationCustodyHash(bucket),reviewed.custodyHash);
+        vm.prank(ALICE);vm.expectRevert(ZZZModule.Unauthorized.selector);rewards.claim(alice,address(0));
+        assertGt(_claimExactly(alice,BOB,address(0)),0);assertEq(rewards.claimable(bob,address(0)),0);
+        assertEq(migration.consolidationCustodyHash(bucket),reviewed.custodyHash,"current-owner claims are separate from principal review");
+        uint256[2] memory input=_reviewGrowth(main,100 ether);uint256 ownerETH=BOB.balance;uint256 ownerZZZ=token.balanceOf(BOB);
+        vm.startPrank(BOB);token.approve(address(vault),input[1]);vm.expectRevert(ZZZModule.Paused.selector);
+        vault.increase{value:input[0]}(bob,input[0],input[1],1,block.timestamp+100);vm.stopPrank();
+        assertEq(BOB.balance,ownerETH);assertEq(token.balanceOf(BOB),ownerZZZ);
+        vm.warp(reviewed.deadline+1);expected=_consolidationStateHash(alice,bucket);
+        vm.expectRevert(ZZZModule.Expired.selector);migration.consolidateResidual(reviewed,false);assertEq(_consolidationStateHash(alice,bucket),expected);
+        reviewed=_consolidationReview(bucket,false);_consolidateAndAssert(alice,bucket,reviewed,false);
+        assertEq(vault.sharesOf(alice),aliceShares);assertEq(vault.sharesOf(bob),bobShares);assertEq(vault.group(bucket).lpTokenId,main);
+        assertGt(rewards.claimable(bob,address(0)),0,"later harvested swap fees belong to current active cohort");
+        _claimExactly(alice,BOB,address(0));_claimExactly(bob,BOB,address(0));
+    }
 }

@@ -1,0 +1,21 @@
+{
+  "baseline": "7cc0f55b5e77a1da1ba931e4d11fed5b3db602aa",
+  "status": "evm-initial/status.json",
+  "abi": "abi-initial/status.json",
+  "distinct_new_successes": 3,
+  "expected_set_exact": true,
+  "test_setup_failures": false,
+  "elapsed_seconds": 215.56200000000172,
+  "test_file": "test/OptionalPortfolioCore.t.sol",
+  "test_sha256": "34e912ddd29c9f654e580d7a87d6d180595a6b37b4552d0d67a97bc165345e27",
+  "diff": "63additions,0deletions",
+  "production_unchanged": true,
+  "production_pins": 53,
+  "closed_source_pins": 188,
+  "source_test_config_toolchain_frozen": true,
+  "old20_rerun": false,
+  "normal_or_analyzer_rerun": false,
+  "all_original73_method_bodies_preserved": true,
+  "producer": "Rootfinalized from exact frozen actual-stage output and independent child report; no new test execution",
+  "scope": "Three new isolated offline actual-v4 read-to-execute cases. Local EVM snapshots separate boundary branches; no existing Anvil state touched. Mock Access, correlated USD feeds, native admission, token, VRF and Permit2. Fixture minL1 is not a production review floor. No RPC/services/journals/signing or unchanged suite/normal/analyzer reruns."
+}

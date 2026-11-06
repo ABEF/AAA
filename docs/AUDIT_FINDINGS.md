@@ -13,8 +13,19 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The current pointer now selects the new royalty review with the same strict
-matching rules. No installed environment changed.
+The current strict pointer selects the [same-main static record](../reports/residual-main-consolidation-20261106/static-review.json)
+with unchanged matching rules. No installed environment changed.
+
+The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
+found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,
+while current spot/composition and meaningful floors are checked at execution.
+The operator procedure now requires confirmed pause, a coherent canonical
+snapshot and fresh review after configuration/reorg/expiry. Raw ticks for an old
+or burned ID do not authenticate a live main. The custody hash is not a price
+quote or every governed-setting commitment. New focused race cases supplement
+existing exact-source evidence; they do not establish months of uptime or MEV
+immunity. Production code, runtime profiles and all environment boundaries stay
+unchanged.
 The [provenance map](../reports/full-history-reconciliation-20261104/FINDINGS.json)
 records the recurring static issue and materially changed original dispositions.
 

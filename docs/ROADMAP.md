@@ -11,10 +11,13 @@ Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/depen
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) and
-[source-scoped manual review](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) have exact
-source scope, retained failed attempts and explicit reuse. Normal Migration has
-39bytes runtime headroom; further code changes need new exact-source gates.
+The [same-main source review](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
+records the current normal compiler/static pins; the [moving-market supplement](../reports/consolidation-races-20261106/REVIEW.md)
+changes tests/operator procedure only. Earlier [royalty](../reports/last24h-audit-20261105/REVIEW.md)
+and [manual](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) evidence keep their exact source scopes.
+Normal runtime headroom is746bytes for Migration and107 for Vault. Further
+production code changes require new exact-source gates; this test/doc supplement
+reuses unchanged production pins rather than rerunning the compiler/analyzer.
 The [factory/claim improvement](../reports/factory-claims-20261105/REVIEW.md) adds
 immutable code-data storage2 and next-batch unsigned claim planning without
 changing the royalty ledger bytes or normal economic rules.

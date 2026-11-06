@@ -1,0 +1,118 @@
+{
+  "baseline": "7cc0f55b5e77a1da1ba931e4d11fed5b3db602aa",
+  "distinct_new_EVM_successes": 3,
+  "prior20_not_rerun": true,
+  "production_changed": false,
+  "test_sha256": "34e912ddd29c9f654e580d7a87d6d180595a6b37b4552d0d67a97bc165345e27",
+  "artifacts": [
+    {
+      "source": "accounting-agent\\existing-test-preservation.json",
+      "raw_sha256": "3b088cb6ce088cf857c0a1d84ffbc570e9562567d551002e4384bc27a2e5d053",
+      "raw_bytes": 6280,
+      "published": "accounting\\existing-test-preservation.json",
+      "sha256": "3b088cb6ce088cf857c0a1d84ffbc570e9562567d551002e4384bc27a2e5d053",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\FINAL_TEST_REVIEW.json",
+      "raw_sha256": "09e77aff7cf6ebea7dbca63967da3cb23e14af3d5d7a41bcaff91b9776e363ac",
+      "raw_bytes": 1184,
+      "published": "accounting\\FINAL_TEST_REVIEW.json",
+      "sha256": "09e77aff7cf6ebea7dbca63967da3cb23e14af3d5d7a41bcaff91b9776e363ac",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\abi-initial\\input.json",
+      "raw_sha256": "ea0ef8b8ffbb4d4b0ed899ebc3b4956cf9e6c90da2a3933edc9416c5628b603f",
+      "raw_bytes": 2038362,
+      "published": "accounting\\abi-initial\\input.json.gz",
+      "sha256": "07dff36c05e2be865ccb4e8c566d3f0583724ea6af187c81e42b92b41fb1ff33",
+      "compressed": true
+    },
+    {
+      "source": "accounting-agent\\abi-initial\\output.json",
+      "raw_sha256": "2ecae04c3ff79a1af7b2f113c6b5af2cd946f903aa3ed1869dc665941e5ac74e",
+      "raw_bytes": 899115,
+      "published": "accounting\\abi-initial\\output.json.gz",
+      "sha256": "9804d1b845474b612e121fcc2fcc787db0e22a5d7cdd0b46a85a5acc39e6ac9d",
+      "compressed": true
+    },
+    {
+      "source": "accounting-agent\\abi-initial\\status.json",
+      "raw_sha256": "030a57bf43fbd304e6f7189d312a59ecb216d3f8915e259326ae52055ff0cfc0",
+      "raw_bytes": 47276,
+      "published": "accounting\\abi-initial\\status.json",
+      "sha256": "030a57bf43fbd304e6f7189d312a59ecb216d3f8915e259326ae52055ff0cfc0",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\abi-initial\\stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "published": "accounting\\abi-initial\\stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\evm-initial\\process.json",
+      "raw_sha256": "036377c650136ae60c96d4c212ff6535e971990e2bd3fccbd533748a1910cd6f",
+      "raw_bytes": 44,
+      "published": "accounting\\evm-initial\\process.json",
+      "sha256": "036377c650136ae60c96d4c212ff6535e971990e2bd3fccbd533748a1910cd6f",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\evm-initial\\START.json",
+      "raw_sha256": "24f586390de7027c11ba368a6b4b866552f5e3f1905bf962071f5384012dc7d2",
+      "raw_bytes": 43771,
+      "published": "accounting\\evm-initial\\START.json",
+      "sha256": "24f586390de7027c11ba368a6b4b866552f5e3f1905bf962071f5384012dc7d2",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\evm-initial\\status.json",
+      "raw_sha256": "8c72c517f454b9b9cff5dab6b126452b5ccdb17a7e8a1d33e16891e29a4056cb",
+      "raw_bytes": 84977,
+      "published": "accounting\\evm-initial\\status.json",
+      "sha256": "8c72c517f454b9b9cff5dab6b126452b5ccdb17a7e8a1d33e16891e29a4056cb",
+      "compressed": false
+    },
+    {
+      "source": "accounting-agent\\evm-initial\\stderr.log",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "published": "accounting\\evm-initial\\stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "compressed": true
+    },
+    {
+      "source": "accounting-agent\\evm-initial\\stdout.json",
+      "raw_sha256": "baa958c499f8146580e78bac4e0dd0dabe58caad550a750ab0accbabf54bd2fa",
+      "raw_bytes": 200966,
+      "published": "accounting\\evm-initial\\stdout.json.gz",
+      "sha256": "0850de2d147c4174fcdcbd5e31cbccac0b9ee58a8ec48ad13bcc2e0d70383cc7",
+      "compressed": true
+    },
+    {
+      "source": "document-checks.json",
+      "raw_sha256": "1c1de823efa1c1ee8729a58bd00db7458addc31bc2651bf9bdfc42f30c586a1f",
+      "raw_bytes": 1458,
+      "published": "checks\\document-checks.json",
+      "sha256": "1c1de823efa1c1ee8729a58bd00db7458addc31bc2651bf9bdfc42f30c586a1f",
+      "compressed": false
+    },
+    {
+      "source": "preservation-current.json",
+      "raw_sha256": "11d49b990c4725ef25f8468fa34636bdc2352ee2a04f1f0f7d300563e84d6cb8",
+      "raw_bytes": 11055,
+      "published": "preservation.json",
+      "sha256": "11d49b990c4725ef25f8468fa34636bdc2352ee2a04f1f0f7d300563e84d6cb8",
+      "compressed": false
+    }
+  ],
+  "limitations": [
+    "No independent audit",
+    "No operating/deployment/maximum target gas qualification",
+    "No runtime/profile/environment/signer/journal change"
+  ]
+}

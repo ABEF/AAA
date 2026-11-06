@@ -51,6 +51,13 @@ royalties return only after full abort restoration to the verified active ledger
 with its CURRENT governance review and stable cohort; authenticated hops are
 read-only validated by the existing companion. No arbitrary custody address.
 
+Fixed main tick bounds do not drift with swaps or entrant growth; slot0 and
+composition do. Before manual consolidation confirm pause, read one canonical
+snapshot and simulate the exact call against fresh state. Custody identity is
+not a price quote or a commitment to every governed setting. Re-read IDs after
+replacement, refresh reviews after settings/reorg/expiry and recover the same
+pending hash before retry. See [focused review](../reports/consolidation-races-20261106/REVIEW.md).
+
 ## Verification and remaining gates
 
 See ../reports/factory-claims-20261105/REVIEW.md and VERIFICATION.md for changed

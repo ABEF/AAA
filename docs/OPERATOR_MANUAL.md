@@ -1099,6 +1099,75 @@ the next eligible whole adjustment (or governed park/resume under destination
 mode) may create one. Fresh readiness is required; old residual reviews cannot
 qualify the new physical association.
 
+#### Fixed bounds, moving markets and fresh reviews
+
+`Manager.ticks(mainPositionId)` returns the main's fixed lower/upper bounds,
+not the pool's moving current tick. Trading changes the current price, token
+composition and fees. Activation/growth increases main liquidity without
+recentering it. A full rebalance/move replaces the main; discover the current
+bucket/main ID for every operation rather than retaining an old ID for months.
+Read `Vault.group(bucket).lpTokenId` first and authenticate its current custody;
+do not use a PoPL NFT ID. Raw ticks alone do not prove a live LP: a burned or
+invalid ID may return default zero bounds, which are not a usable range.
+
+1. Reconcile pending work, call `Access.setPaused(true)`, and confirm the successful
+   pause receipt at the deployment's reviewed canonical confirmation depth. Do
+   not prepare the final operation from a merely submitted pause.
+2. At one recorded canonical block hash, read the bucket/main ID, actual ticks,
+   both liquidities/residual/idle and `consolidationCustodyHash(bucket)`. Use a
+   provider that supports the reviewed pinned-block reads; if separate explorer
+   reads cannot establish a coherent snapshot, use the approved read tooling.
+   The offline review helper does not fetch such a snapshot.
+3. Use the existing main ticks, not the moving pool tick or newly centred ticks.
+   Choose meaningful positive added-L floors and a short valid deadline, then
+   simulate the complete exact call from current governance against fresh
+   canonical state. Guarded mode chooses its route at execution; its zero swap
+   fields are not a promise of no swap or an old fixed quote.
+4. Refresh reads, review and simulation after custody/geometry/configuration
+   changes, changed quoted outcomes or expiry. Reorgs invalidate their old
+   snapshot evidence. A failed hash/floor/price guard is not permission to weaken
+   the limits or automatically enable force.
+
+Pause blocks ordinary PoPL activation/growth/harvest/compound/rebalance. It does
+not pause Uniswap trading, freeze fees/prices or block every governance action.
+LP/royalty claims and NFT transfers retain their own permissions. A contribution
+mined before the pause can change shares/L and invalidate an earlier review;
+one mined after the confirmed pause fails its live gate until unpaused.
+
+The custody hash binds physical/share/idle/recovery and selected portfolio
+controls. It is **not** a market-price lock, a quote or a commitment to every
+Registry/router/oracle/Budget setting. Price-only changes and accumulated fees
+do not needlessly invalidate custody identity. Financial policies are read and
+checked during execution; a governance configuration change before submission
+still requires a fresh explicit operator review even if this hash is unchanged.
+
+Guarded mode verifies actual main activity before and after the complete call,
+using stored-tick semantics `lower <= tick < upper`. Near a downward exact lower
+boundary the stored tick can be below lower although sqrt price is at the bound;
+use actual slot0/physical checks, not only a chart or sqrt comparison.
+It re-quotes/rebalances actual recovered inventory and checks current prices,
+outputs, added L, accounting, custody and post-callback state. Other transactions
+cannot interleave inside the transaction. Relevant callbacks remain checked.
+
+The market may change after simulation or immediately after a successful call.
+A failed guarded consolidation rolls back its close/swap/increase; prior external
+trades, separately mined pause/settings and network gas are not rolled back.
+If main is now outside, keeping its old ticks cannot make it active: review a
+full recenter/replacement, wait for a suitable market, or deliberately use an
+explicit emergency operation. Force may add one-sided inactive LP and may waive
+financial guards; it is never an automatic retry. No finite execution check
+guarantees that a position remains active in later blocks.
+
+Recover pending or ambiguous submissions by the existing transaction hash before
+preparing another transaction. After confirmed success, verify the same main ID,
+ticks, actual L increase, zero residual and modeOFF before explicit unpause.
+Normal entrant-only growth/activation then resumes; the residual is not recreated
+until governance enables it and a later eligible whole adjustment deploys one.
+Repeated months of operation require fresh IDs/state/reviews and preserved
+receipts/journals, not replaying an old manifest. Target gas/provider/operating
+and independent audit qualification remain open. See the
+[focused read-to-execution review](../reports/consolidation-races-20261106/REVIEW.md).
+
 <a id="forced-consolidation-and-exceptional-markets"></a>
 
 #### Full emergency replacement and exceptional markets

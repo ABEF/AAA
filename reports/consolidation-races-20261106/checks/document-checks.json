@@ -1,0 +1,46 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "name": "todo",
+      "chunk_id": "bd60df",
+      "wall_time_seconds": 0.2020716,
+      "exit_code": 0,
+      "original_token_count": 6,
+      "output": "Project Todo verified.\r\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "name": "functions",
+      "chunk_id": "9eba2f",
+      "wall_time_seconds": 0.4235001,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "{\"checked\": true, \"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "name": "operator",
+      "chunk_id": "badf75",
+      "wall_time_seconds": 0.5288714,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 888, \"ready_for_submission\": false}\r\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "name": "static",
+      "chunk_id": "a85e2b",
+      "wall_time_seconds": 0.3678709,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\r\n"
+    }
+  }
+]
