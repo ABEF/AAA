@@ -1,0 +1,36 @@
+{
+  "stage": "untouched b76dfcc operation-review retry negative",
+  "source_sha256": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+  "cases": {
+    "harvest": {
+      "state": "simulated",
+      "reasons": [
+        "typed_simulation_and_estimate_succeeded"
+      ],
+      "simulation_state": "succeeded",
+      "saved_retry_after": 1793996270,
+      "snapshot_timestamp": 1793992670,
+      "retry_diagnostic_present": false
+    },
+    "compound": {
+      "state": "simulated",
+      "reasons": [
+        "typed_simulation_and_estimate_succeeded"
+      ],
+      "simulation_state": "succeeded",
+      "saved_retry_after": 1793996273,
+      "snapshot_timestamp": 1793992673,
+      "retry_diagnostic_present": false
+    },
+    "rebalance": {
+      "state": "simulated",
+      "reasons": [
+        "typed_simulation_and_estimate_succeeded"
+      ],
+      "simulation_state": "succeeded",
+      "saved_retry_after": 1793996277,
+      "snapshot_timestamp": 1793992677,
+      "retry_diagnostic_present": false
+    }
+  }
+}

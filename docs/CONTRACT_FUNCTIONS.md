@@ -1764,4 +1764,4 @@ python scripts/generate-function-reference.py --compiler-input reviewed/compiler
 python scripts/generate-function-reference.py --check
 ```
 
-7 current internal-only libraries have no callable ABI and are excluded: `ExactAsset`, `ExactRoyaltyAllocation`, `ExactToken`, `Ids`, `ZZZArtwork`, `ZZZPriceMath`, `ZZZV3VenueValidation`.
+8 current internal-only libraries have no callable ABI and are excluded: `ExactAsset`, `ExactLPAllocation`, `ExactRoyaltyAllocation`, `ExactToken`, `Ids`, `ZZZArtwork`, `ZZZPriceMath`, `ZZZV3VenueValidation`.

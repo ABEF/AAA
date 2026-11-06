@@ -50,6 +50,7 @@
       "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
       "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
@@ -211,6 +212,7 @@
       "src/interfaces/IZZZProtocolPolicy.sol",
       "src/interfaces/IZZZV3Route.sol",
       "src/libraries/ExactAsset.sol",
+      "src/libraries/ExactLPAllocation.sol",
       "src/libraries/ExactRoyaltyAllocation.sol",
       "src/libraries/ExactToken.sol",
       "src/libraries/ZZZArtwork.sol",
@@ -223,9 +225,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "eb3be695ad4ad94a9fb798e3ebb252d5f2959218f944dd547ec35131c38b62f3",
-    "compiler_output_sha256": "af9415fc20791550a4c93d7e859850477c9541ff9ae0b2a90b5787de8a47bfd2",
-    "size_evidence_sha256": "fa0e6a7a8735f30ad0be67034451720d25f84b6980fc1e6011eaef051a2dc3ea",
+    "compiler_input_sha256": "6473e5e036030d5e5d68c1305c7e5305cf812f908f7072cbc5927185b7c6b04b",
+    "compiler_output_sha256": "7074fb0bf36b0d1c1455b903fce07d57bbea01bf025caf6847d33d58ed75dec0",
+    "size_evidence_sha256": "527d6e871dc7e815e12df222c48e7ab2ea277900f163b14fcbdc47c11225ac57",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -24381,6 +24383,11 @@
     {
       "contract": "ExactAsset",
       "source": "src/libraries/ExactAsset.sol",
+      "reason": "Internal-only library; no callable ABI."
+    },
+    {
+      "contract": "ExactLPAllocation",
+      "source": "src/libraries/ExactLPAllocation.sol",
       "reason": "Internal-only library; no callable ABI."
     },
     {

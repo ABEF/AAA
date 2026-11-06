@@ -27,6 +27,8 @@ closes only the residual, reinvests attributed idle and applies modeOFF without
 changing main ID/ticks/shares/centre/rebalance clock. New residual-reinvest1
 participants and inventory15 require matching runtime review; old14 stays explicit.
 
+The [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is a separate implemented internal component for the approved next ledger upgrade. It is not deployed, linked into current Rewards or an additional module/helper address; current accounting6/V8 rights remain.
+
 ## Shared implementation boundaries
 
 Fresh maintenance3/confirmation3 distinguishes the 85%-of-centre-to-boundary

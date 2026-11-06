@@ -1,0 +1,44 @@
+{
+  "baseline_event": "COLD_GAS_INITIAL.json",
+  "optimized_event": [
+    {
+      "method": "testExactLPCold1000OrdinalEngineGasSamples()",
+      "raw": "0x00000000000000000000000000000000000000000000000000000000000003e800000000000000000000000000000000000000000000000000000000000028bf00000000000000000000000000000000000000000000000000000000000b6b67000000000000000000000000000000000000000000000000000000000016a4e700000000000000000000000000000000000000000000000000000000002de6f5",
+      "values": [
+        1000,
+        10431,
+        748391,
+        1484007,
+        3008245
+      ]
+    }
+  ],
+  "comparison": {
+    "root_credit": {
+      "baseline_raw": 10431,
+      "optimized_raw": 10431,
+      "raw_saved": 0,
+      "percent_raw_saved": 0.0
+    },
+    "one_book_take": {
+      "baseline_raw": 961229,
+      "optimized_raw": 748391,
+      "raw_saved": 212838,
+      "percent_raw_saved": 22.142278270838688
+    },
+    "two_book_weight_change": {
+      "baseline_raw": 1838225,
+      "optimized_raw": 1484007,
+      "raw_saved": 354218,
+      "percent_raw_saved": 19.269567109575814
+    },
+    "batch32_engine_entries": {
+      "baseline_raw": 3808651,
+      "optimized_raw": 3008245,
+      "raw_saved": 800406,
+      "percent_raw_saved": 21.015472407421946
+    }
+  },
+  "cooling": "vm.cool(h) marks account and ALL storage slots cold before each measurement.",
+  "scope": "RAW external harness call plus internal engine. Refunds/intrinsic gas/real host ownership,funding,second reward component,token transfers and ClaimRouter are excluded. Batch32=16ordinals*2logical books, not32full holder claims. Not target-chain/economic/12Mqualification."
+}

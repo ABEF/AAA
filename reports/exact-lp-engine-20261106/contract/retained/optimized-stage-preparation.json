@@ -1,0 +1,11 @@
+{
+  "prepared_utc": "2026-11-06T21:30:25.011469+00:00",
+  "scope": "Final optimized selected-child-in-memory engine, awaiting source freeze",
+  "original_engine_source_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "original_stage_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9",
+  "original_stage_static": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42",
+  "original_manifest": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\CONTRACT_VERIFICATION.json",
+  "original_manifest_sha256": "839d6a964a121c85d85165efdb4881a88eab282bb80630c369775a9bc4be544f",
+  "old_gates_preserved": true,
+  "no_normal_or_static_yet": true
+}

@@ -13,9 +13,7 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 existing contracts, services, journals or websites. Public signing remains disabled.
 
 
-Current [moving-market LP review](reports/moving-market-flows-20261106/REVIEW.md) covers automatic replacement, two-to-one merges and manual consolidation, with complete [input](reports/moving-market-flows-20261106/INPUT_MATRIX.md) and [recovery](reports/moving-market-flows-20261106/BLOCKERS.md) maps. Source only; no environment rollout.
-
-Current [harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) fixes keeper deadline/recovery clocks and verifies both-leg fee flows. The approved [exact-unit LP upgrade](reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md) remains design-only; royalty4 completion does not fix LP index rounding.
+Current [LP execution](reports/moving-market-flows-20261106/REVIEW.md) and [harvest](reports/harvesting-audit-20261106/REVIEW.md) reviews retain their source scopes. The [exact-unit LP engine](docs/EXACT_LP_ALLOCATION.md) is now implemented and optimized, alongside accurate backend retry diagnostics. Current Rewards still uses fractions until the remaining ledger/canonical/consumer integration; see [implementation evidence](reports/exact-lp-engine-20261106/REVIEW.md). Source publication changes no running environment.
 
 ## Project navigation
 

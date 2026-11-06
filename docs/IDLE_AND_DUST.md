@@ -57,8 +57,8 @@ See [holder return and recovery boundaries](HOLDER_COLLECTIVE_EXIT.md).
 
 The [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) measures
 current finite-unit and upstream collection rounding separately. The
-[LP exact-unit design](../reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md)
-is accepted follow-up, not an implemented replacement for current LP fractions.
+[LP exact-unit engine](EXACT_LP_ALLOCATION.md) is now implemented as an internal
+component, not a wired replacement for current LP fractions.
 
 ## Reinvest idle without a new fee receipt
 

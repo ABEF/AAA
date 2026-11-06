@@ -6,6 +6,8 @@ APPROVED**. Use [features/evidence](IMPLEMENTATION_STATUS.md) for scoped checks,
 the [sole Todo](../TODO.md) for work and the [operator manual](OPERATOR_MANUAL.md)
 for action procedures. Historical codecs and report bytes retain their scope.
 
+The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented and reviewed separately; current Rewards/Vault/canonical consumers do not use it yet. It introduces no deployed helper or current profile change.
+
 ## Ownership, entry and custody
 
 | Component | Current job | Remaining qualification |

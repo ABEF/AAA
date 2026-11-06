@@ -1,5 +1,7 @@
 # Consolidated audit findings and evidence
 
+[Allocator implementation](../reports/exact-lp-engine-20261106/REVIEW.md) completes the bounded internal Solidity engine, improves genuine-growth rounding-phase continuity and removes transient selected-path storage writes. All old module ABI/bytecode remains unchanged; current LP ledger integration is still open. The backend report now exposes per-action journal retry waits with null/unavailable when unknown. [Scope](../reports/exact-lp-engine-20261106/VERIFICATION.md).
+
 [Harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) fixes due-deadline freshness and mismatched restored harvest clocks, with paid recovery preserved. New actual-core checks measure both-leg receipts, rollback and finite rounding. The user approved [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation); its design/prototype is complete but current LP Solidity still uses fractions. Upstream core flooring, incumbent dust and compromised-dependency close fees remain distinct limits.
 
 [Both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md): fix guarded

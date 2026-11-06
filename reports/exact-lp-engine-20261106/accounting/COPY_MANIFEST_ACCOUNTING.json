@@ -1,0 +1,620 @@
+{
+  "format": 1,
+  "scope": "Final17 internal-engine evidence, baseline15, combined16 failure/10bdiagnosis and split2DEFAULT-budget fix. No current Rewards/Vault/canonical wiring.",
+  "compression": "Deterministic gzip.compress(level9,mtime0); identical raw snapshots share one copy.",
+  "omitted": "Full tool binaries/buildcache/normal-productionoutputs are not duplicated. Normal/static evidence is owned by the separate contract report package.",
+  "files": [
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\BASELINE15_REVIEW.json",
+      "original_sha256": "f37def502cff8dcc616a765b7b2569a2ded1ebaada15d2de786f685071ba2fc0",
+      "original_bytes": 26244,
+      "copy_relative": "BASELINE15_REVIEW.json",
+      "copy_sha256": "f37def502cff8dcc616a765b7b2569a2ded1ebaada15d2de786f685071ba2fc0",
+      "copy_bytes": 26244,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\COLD_GAS_COMPARISON.json",
+      "original_sha256": "1d6f1d655224e78b9e03af99544ecd48e36ebe047828f8a7c290db0ddaca81e9",
+      "original_bytes": 1694,
+      "copy_relative": "COLD_GAS_COMPARISON.json",
+      "copy_sha256": "1d6f1d655224e78b9e03af99544ecd48e36ebe047828f8a7c290db0ddaca81e9",
+      "copy_bytes": 1694,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\COLD_GAS_INITIAL.json",
+      "original_sha256": "c31e3c6fcffd75a5992fbb1d59e2c10407ab2ec0a2ef5033d891dea945b00c5b",
+      "original_bytes": 514,
+      "copy_relative": "COLD_GAS_INITIAL.json",
+      "copy_sha256": "c31e3c6fcffd75a5992fbb1d59e2c10407ab2ec0a2ef5033d891dea945b00c5b",
+      "copy_bytes": 514,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\COLD_GAS_OPTIMIZED.json",
+      "original_sha256": "ea77a14933311dfd47971fe738f61d90a3634a9c122a593b0b9907ff5a088eea",
+      "original_bytes": 514,
+      "copy_relative": "COLD_GAS_OPTIMIZED.json",
+      "copy_sha256": "ea77a14933311dfd47971fe738f61d90a3634a9c122a593b0b9907ff5a088eea",
+      "copy_bytes": 514,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\DEFAULT_SPLIT_REUSE_PROOF.json",
+      "original_sha256": "aaf14c2f6aec3c7470832c0d15558aecd865eebe7df7e86ced39453d0e8b4f36",
+      "original_bytes": 7219,
+      "copy_relative": "DEFAULT_SPLIT_REUSE_PROOF.json",
+      "copy_sha256": "aaf14c2f6aec3c7470832c0d15558aecd865eebe7df7e86ced39453d0e8b4f36",
+      "copy_bytes": 7219,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\FINAL_TEST_REVIEW.combined16.json",
+      "original_sha256": "551e2df0dd4a1b0eddc809b0f9b1c3f3d691c825e7f0c01210d083c34cbf0194",
+      "original_bytes": 17447,
+      "copy_relative": "FINAL_TEST_REVIEW.combined16.json",
+      "copy_sha256": "551e2df0dd4a1b0eddc809b0f9b1c3f3d691c825e7f0c01210d083c34cbf0194",
+      "copy_bytes": 17447,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\FINAL_TEST_REVIEW.json",
+      "original_sha256": "b896cf07c9bcb1f2ac60ca4ff7223420e7db7b120da92b1600910e649ae67587",
+      "original_bytes": 18659,
+      "copy_relative": "FINAL_TEST_REVIEW.json",
+      "copy_sha256": "b896cf07c9bcb1f2ac60ca4ff7223420e7db7b120da92b1600910e649ae67587",
+      "copy_bytes": 18659,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\SOURCE_TEST_PRESERVATION.json",
+      "original_sha256": "6debf74affdd13a4731c30082adfc412af0cb00cdc009aefef1c55203702c403",
+      "original_bytes": 3815,
+      "copy_relative": "SOURCE_TEST_PRESERVATION.json",
+      "copy_sha256": "6debf74affdd13a4731c30082adfc412af0cb00cdc009aefef1c55203702c403",
+      "copy_bytes": 3815,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-initial\\input.json",
+      "original_sha256": "12479c38c6549881b057e9e2e765b4ea44001859153234dcfed780f6f518a80f",
+      "original_bytes": 882317,
+      "copy_relative": "abi-initial/input.json.gz",
+      "copy_sha256": "34d5c756940d9dfe308bc58e06c5be926ac3a68de2bf584939d30c0ffb3bec0d",
+      "copy_bytes": 72636,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-initial\\output.json",
+      "original_sha256": "dfc30aa0b73d66497009e8e2e0b89852f94a4fb7e014a8570bdf92048c4bc286",
+      "original_bytes": 536,
+      "copy_relative": "abi-initial/output.json.gz",
+      "copy_sha256": "673e41b6660bdced9c354ae337f0dfa1794f80e7f9740dfcc67f58da703fdd47",
+      "copy_bytes": 323,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-initial\\status.json",
+      "original_sha256": "a4fc138db04896724764ac25aa10cc8b908820791e18116cb2fea1f364ca1f7c",
+      "original_bytes": 5790,
+      "copy_relative": "abi-initial/status.json",
+      "copy_sha256": "a4fc138db04896724764ac25aa10cc8b908820791e18116cb2fea1f364ca1f7c",
+      "copy_bytes": 5790,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-initial\\stderr.txt",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "abi-initial/stderr.txt",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-corrected\\input.json",
+      "original_sha256": "a03a347a24b8b7fd74a6307fe31fd0d32879375e95edb98c6ba9d177c7935ae0",
+      "original_bytes": 882333,
+      "copy_relative": "abi-corrected/input.json.gz",
+      "copy_sha256": "c2cbaffb51a0bcc52a64f378ba6bdc887bd0ad2f1cdc1bdfe3a18ba95ed52f2b",
+      "copy_bytes": 72637,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-corrected\\output.json",
+      "original_sha256": "911cecdee69e0f9d27d897cb59e45f49453d5f5216cf7a7d134bf567c73f59f1",
+      "original_bytes": 272668,
+      "copy_relative": "abi-corrected/output.json.gz",
+      "copy_sha256": "98e334975a73d2be28495fbbf608438db5d30f0479da5f6038541827faf41835",
+      "copy_bytes": 14840,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-corrected\\status.json",
+      "original_sha256": "4333548e0169b4b3b2eddbc341464fc8240d91e8d4c1f364d45b8688af4a9be8",
+      "original_bytes": 5515,
+      "copy_relative": "abi-corrected/status.json",
+      "copy_sha256": "4333548e0169b4b3b2eddbc341464fc8240d91e8d4c1f364d45b8688af4a9be8",
+      "copy_bytes": 5515,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-corrected\\stderr.txt",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "abi-corrected/stderr.txt",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-optimized\\input.json",
+      "original_sha256": "e439bdc854a6791bf27183d73759401f9947725ffd8e6dba2258ae5123e5cfc2",
+      "original_bytes": 895919,
+      "copy_relative": "abi-optimized/input.json.gz",
+      "copy_sha256": "a4e175f9bf5324f6868a6ff2c7a8efc6d471716ae4bfbde965f0372c55be5618",
+      "copy_bytes": 76133,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-optimized\\output.json",
+      "original_sha256": "fa2eed3c93e12b4918542ce9e15aa1ab6245e4bff72bf68cf413d5aae83fd29a",
+      "original_bytes": 274547,
+      "copy_relative": "abi-optimized/output.json.gz",
+      "copy_sha256": "5625094bbbf05df42813d2751d93833c856fb6b426d78f83180654462505fb47",
+      "copy_bytes": 14955,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-optimized\\status.json",
+      "original_sha256": "7477aa79a2e4d19af76007c88294ed024f5859be57b09f64380b7b9352f10cab",
+      "original_bytes": 5753,
+      "copy_relative": "abi-optimized/status.json",
+      "copy_sha256": "7477aa79a2e4d19af76007c88294ed024f5859be57b09f64380b7b9352f10cab",
+      "copy_bytes": 5753,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\abi-optimized\\stderr.txt",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "abi-optimized/stderr.txt",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-initial\\process.json",
+      "original_sha256": "9ea334e1dbe4c9c58a9e25558e7f225cd50f446249736e2c8f6887badb54bf2a",
+      "original_bytes": 44,
+      "copy_relative": "evm-initial/process.json",
+      "copy_sha256": "9ea334e1dbe4c9c58a9e25558e7f225cd50f446249736e2c8f6887badb54bf2a",
+      "copy_bytes": 44,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-initial\\START.json",
+      "original_sha256": "0793ed41ac6c4fe1332aee4d1d7f8dd6efd474d3e6e47b8aa61a7076ed4396d1",
+      "original_bytes": 23679,
+      "copy_relative": "evm-initial/START.json",
+      "copy_sha256": "0793ed41ac6c4fe1332aee4d1d7f8dd6efd474d3e6e47b8aa61a7076ed4396d1",
+      "copy_bytes": 23679,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-initial\\status.json",
+      "original_sha256": "eb0ae8a90eae1b634e548ab7e66f3a7ea96d51b5f4dbc28d056c7aa2c120a989",
+      "original_bytes": 48847,
+      "copy_relative": "evm-initial/status.json",
+      "copy_sha256": "eb0ae8a90eae1b634e548ab7e66f3a7ea96d51b5f4dbc28d056c7aa2c120a989",
+      "copy_bytes": 48847,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-initial\\stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "evm-initial/stderr.log",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-initial\\stdout.json",
+      "original_sha256": "14c7db49cb553f44de774028d966d887a99382a1a24d4cc935c9233983c9c204",
+      "original_bytes": 5145,
+      "copy_relative": "evm-initial/stdout.json.gz",
+      "copy_sha256": "e02e7581b2619563ba5b7f7397eb7dbbb84442012387a8a6353d29fab722daed",
+      "copy_bytes": 1160,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-wide-rebase\\process.json",
+      "original_sha256": "33d2071ec6eb394891dfdb75e1e54a5fe7d723b4472d970eb8431452f46900bc",
+      "original_bytes": 44,
+      "copy_relative": "evm-wide-rebase/process.json",
+      "copy_sha256": "33d2071ec6eb394891dfdb75e1e54a5fe7d723b4472d970eb8431452f46900bc",
+      "copy_bytes": 44,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-wide-rebase\\START.json",
+      "original_sha256": "16b7c82b5692bfe4b5b9ec1f69636bea0a66d28f41597ada3181d20851b9d6f9",
+      "original_bytes": 22924,
+      "copy_relative": "evm-wide-rebase/START.json",
+      "copy_sha256": "16b7c82b5692bfe4b5b9ec1f69636bea0a66d28f41597ada3181d20851b9d6f9",
+      "copy_bytes": 22924,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-wide-rebase\\status.json",
+      "original_sha256": "5045c46cd266e17dfd82d4b57d6937ff4f25a1f421e8e9ef1b1ad001baede35d",
+      "original_bytes": 43443,
+      "copy_relative": "evm-wide-rebase/status.json",
+      "copy_sha256": "5045c46cd266e17dfd82d4b57d6937ff4f25a1f421e8e9ef1b1ad001baede35d",
+      "copy_bytes": 43443,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-wide-rebase\\stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "evm-wide-rebase/stderr.log",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-wide-rebase\\stdout.json",
+      "original_sha256": "c3543d523d59fb09f7e732d6199d3af9e9065263e8d9c83f7a7833efaee1c472",
+      "original_bytes": 397,
+      "copy_relative": "evm-wide-rebase/stdout.json.gz",
+      "copy_sha256": "613c86864857133f238cdc84bc3f9cf8b6087d3e50b4ab6766a7109a51c3041c",
+      "copy_bytes": 283,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-optimized\\process.json",
+      "original_sha256": "a4138312ed329ce415d7114d35f75c8c8cfeeef5e888271d24d70b0e40885d18",
+      "original_bytes": 43,
+      "copy_relative": "evm-optimized/process.json",
+      "copy_sha256": "a4138312ed329ce415d7114d35f75c8c8cfeeef5e888271d24d70b0e40885d18",
+      "copy_bytes": 43,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-optimized\\START.json",
+      "original_sha256": "8257834f0ec02c751db378184c1f58a9883007bd501f0c9e04b52f6ffcbe3f6f",
+      "original_bytes": 24085,
+      "copy_relative": "evm-optimized/START.json",
+      "copy_sha256": "8257834f0ec02c751db378184c1f58a9883007bd501f0c9e04b52f6ffcbe3f6f",
+      "copy_bytes": 24085,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-optimized\\status.json",
+      "original_sha256": "99bd772a7a1b7a14b884a47bdca35bd2a23e2b6dc48e8d4185954f2ba68735ac",
+      "original_bytes": 50235,
+      "copy_relative": "evm-optimized/status.json",
+      "copy_sha256": "99bd772a7a1b7a14b884a47bdca35bd2a23e2b6dc48e8d4185954f2ba68735ac",
+      "copy_bytes": 50235,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-optimized\\stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "evm-optimized/stderr.log",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-optimized\\stdout.json",
+      "original_sha256": "579a2cf8920434fd3be58eebbf7b50a6c49cf38b07f0890c00a9e6c73ad093d9",
+      "original_bytes": 5732,
+      "copy_relative": "evm-optimized/stdout.json.gz",
+      "copy_sha256": "7e87db931111d2e9b71b89128a7ec8ac6d69d7772c914da31da1336371469bb6",
+      "copy_bytes": 1292,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-differential-budget\\process.json",
+      "original_sha256": "8bd1c42b3e9d76786d9feb416f801c85b5465a2b7a398ed944e15e84d1ce996f",
+      "original_bytes": 44,
+      "copy_relative": "evm-differential-budget/process.json",
+      "copy_sha256": "8bd1c42b3e9d76786d9feb416f801c85b5465a2b7a398ed944e15e84d1ce996f",
+      "copy_bytes": 44,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-differential-budget\\START.json",
+      "original_sha256": "ddc5a8eebd387e9d2973974b84978f96d981f131f749faa1a67ee26db5729b0c",
+      "original_bytes": 23256,
+      "copy_relative": "evm-differential-budget/START.json",
+      "copy_sha256": "ddc5a8eebd387e9d2973974b84978f96d981f131f749faa1a67ee26db5729b0c",
+      "copy_bytes": 23256,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-differential-budget\\status.json",
+      "original_sha256": "da90651ab990b50961428670735fe635ec2ef077d34e31c0de1d6d416c49fd92",
+      "original_bytes": 44128,
+      "copy_relative": "evm-differential-budget/status.json",
+      "copy_sha256": "da90651ab990b50961428670735fe635ec2ef077d34e31c0de1d6d416c49fd92",
+      "copy_bytes": 44128,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-differential-budget\\stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "evm-differential-budget/stderr.log",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-differential-budget\\stdout.json",
+      "original_sha256": "8dec481c187d43b7495ec3cb72e95a917dc9a41b6c6479d0fdef802335f09e95",
+      "original_bytes": 420,
+      "copy_relative": "evm-differential-budget/stdout.json.gz",
+      "copy_sha256": "da6e90997978c090b7dfe91bbdc04d28cb372765810b674da77b4f52e38bc9dc",
+      "copy_bytes": 299,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-split-default\\process.json",
+      "original_sha256": "9d5a326bf599e89673d889c3a468a241910368b6e87a6d11db62dcc8e2487471",
+      "original_bytes": 44,
+      "copy_relative": "evm-split-default/process.json",
+      "copy_sha256": "9d5a326bf599e89673d889c3a468a241910368b6e87a6d11db62dcc8e2487471",
+      "copy_bytes": 44,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-split-default\\START.json",
+      "original_sha256": "1e79d1839eddb737e3302b4d0c1cbadcf680c57e8e62856be363e6412428a838",
+      "original_bytes": 23304,
+      "copy_relative": "evm-split-default/START.json",
+      "copy_sha256": "1e79d1839eddb737e3302b4d0c1cbadcf680c57e8e62856be363e6412428a838",
+      "copy_bytes": 23304,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-split-default\\status.json",
+      "original_sha256": "5677ca6160d8c6a83fd8843c09d2e96610311bf42051daf013593cddff057b6b",
+      "original_bytes": 44504,
+      "copy_relative": "evm-split-default/status.json",
+      "copy_sha256": "5677ca6160d8c6a83fd8843c09d2e96610311bf42051daf013593cddff057b6b",
+      "copy_bytes": 44504,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-split-default\\stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "copy_relative": "evm-split-default/stderr.log",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_bytes": 0,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\evm-split-default\\stdout.json",
+      "original_sha256": "658912579e87a8eb2f4a4dd5be8a37e9060911c956920bf96afdb722fa555415",
+      "original_bytes": 714,
+      "copy_relative": "evm-split-default/stdout.json.gz",
+      "copy_sha256": "884ec6384847d4c65cd4bd98c7e8b9b35ac5bec4209e73bddf0fe69becd1b36f",
+      "copy_bytes": 344,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\library-baseline.sol",
+      "original_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+      "original_bytes": 7848,
+      "copy_relative": "sources/library-baseline.sol",
+      "copy_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+      "copy_bytes": 7848,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\library-final.sol",
+      "original_sha256": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+      "original_bytes": 8391,
+      "copy_relative": "sources/library-final.sol",
+      "copy_sha256": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+      "copy_bytes": 8391,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\test-baseline15.sol",
+      "original_sha256": "6004572840dc2b7960f699ce03bdea17ac341147fe38384aff36cd8d601bb494",
+      "original_bytes": 15737,
+      "copy_relative": "sources/test-baseline15.sol",
+      "copy_sha256": "6004572840dc2b7960f699ce03bdea17ac341147fe38384aff36cd8d601bb494",
+      "copy_bytes": 15737,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\test-combined16-before-split.sol",
+      "original_sha256": "ea1da192ba63aa57fffc2608c2e1f4df4d5a2eb79e0aa91b0601a41b50067a7a",
+      "original_bytes": 19479,
+      "copy_relative": "sources/test-combined16-before-split.sol",
+      "copy_sha256": "ea1da192ba63aa57fffc2608c2e1f4df4d5a2eb79e0aa91b0601a41b50067a7a",
+      "copy_bytes": 19479,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\test-final16.sol",
+      "original_sha256": "ea1da192ba63aa57fffc2608c2e1f4df4d5a2eb79e0aa91b0601a41b50067a7a",
+      "original_bytes": 19479,
+      "copy_relative": "sources/test-combined16-before-split.sol",
+      "copy_sha256": "ea1da192ba63aa57fffc2608c2e1f4df4d5a2eb79e0aa91b0601a41b50067a7a",
+      "copy_bytes": 19479,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\test-final17.sol",
+      "original_sha256": "b88100bfe45912a99811822e13eb800dd41b6176e4b8e85a34275dd5e5ea155e",
+      "original_bytes": 19597,
+      "copy_relative": "sources/test-final17.sol",
+      "copy_sha256": "b88100bfe45912a99811822e13eb800dd41b6176e4b8e85a34275dd5e5ea155e",
+      "copy_bytes": 19597,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\test-initial14.sol",
+      "original_sha256": "4dd418634ee338e2529efb3b36a3dcb186d68a240f390d8683909cb7ffadda3b",
+      "original_bytes": 14678,
+      "copy_relative": "sources/test-initial14.sol",
+      "copy_sha256": "4dd418634ee338e2529efb3b36a3dcb186d68a240f390d8683909cb7ffadda3b",
+      "copy_bytes": 14678,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\test\\helpers\\ExactLPAllocationBaseline.sol",
+      "original_sha256": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+      "original_bytes": 7945,
+      "copy_relative": "sources/ExactLPAllocationBaseline.sol",
+      "copy_sha256": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+      "copy_bytes": 7945,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\finalize_baseline.py",
+      "original_sha256": "2ebe69b23877027bd9574e45fcad796c5feedda99ac7d76087824c5b1a7b048e",
+      "original_bytes": 2184,
+      "copy_relative": "tools/finalize_baseline.py",
+      "copy_sha256": "2ebe69b23877027bd9574e45fcad796c5feedda99ac7d76087824c5b1a7b048e",
+      "copy_bytes": 2184,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\finalize_engine.py",
+      "original_sha256": "daa83d2a386e26542e70c2cea45f82df3209e4f9a4792c0b1f11028f9ee6ae2c",
+      "original_bytes": 7934,
+      "copy_relative": "tools/finalize_engine.py",
+      "copy_sha256": "daa83d2a386e26542e70c2cea45f82df3209e4f9a4792c0b1f11028f9ee6ae2c",
+      "copy_bytes": 7934,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\finalize_split.py",
+      "original_sha256": "9842ea3303c594042634e8c25a4e57d0d4a463d089c57a11c7edf589525c12ad",
+      "original_bytes": 6070,
+      "copy_relative": "tools/finalize_split.py",
+      "copy_sha256": "9842ea3303c594042634e8c25a4e57d0d4a463d089c57a11c7edf589525c12ad",
+      "copy_bytes": 6070,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\run_differential_budget.py",
+      "original_sha256": "0a033ff2cffc48027ef429d65f097e539ab62da6f4599149cc090fa0de7948d1",
+      "original_bytes": 4965,
+      "copy_relative": "tools/run_differential_budget.py",
+      "copy_sha256": "0a033ff2cffc48027ef429d65f097e539ab62da6f4599149cc090fa0de7948d1",
+      "copy_bytes": 4965,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\run_engine.py",
+      "original_sha256": "153c1bffb8ae421d3adbbb1f3aaefd248ef22af5927237701038383b4ef986eb",
+      "original_bytes": 4663,
+      "copy_relative": "tools/run_engine.py",
+      "copy_sha256": "153c1bffb8ae421d3adbbb1f3aaefd248ef22af5927237701038383b4ef986eb",
+      "copy_bytes": 4663,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\run_optimized.py",
+      "original_sha256": "42ebd2198a8baa0a9d4a7e1a79e18cfc799cb33c1a18c39760451d8b88177655",
+      "original_bytes": 4827,
+      "copy_relative": "tools/run_optimized.py",
+      "copy_sha256": "42ebd2198a8baa0a9d4a7e1a79e18cfc799cb33c1a18c39760451d8b88177655",
+      "copy_bytes": 4827,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\run_split_default.py",
+      "original_sha256": "6ef39766c7fb78a85043683fe01fabca66800aebbf1fb95ec7490630e85f0289",
+      "original_bytes": 5012,
+      "copy_relative": "tools/run_split_default.py",
+      "copy_sha256": "6ef39766c7fb78a85043683fe01fabca66800aebbf1fb95ec7490630e85f0289",
+      "copy_bytes": 5012,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\run_wide.py",
+      "original_sha256": "b3e9c3f1dd0471ba0aa5bdc8edd24ce8c30b20c8382cdd7e121cb418822b61c5",
+      "original_bytes": 4703,
+      "copy_relative": "tools/run_wide.py",
+      "copy_sha256": "b3e9c3f1dd0471ba0aa5bdc8edd24ce8c30b20c8382cdd7e121cb418822b61c5",
+      "copy_bytes": 4703,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\typecheck.py",
+      "original_sha256": "3f765b2cd74c4aa971f8c764f56fb92b0fe2fa40b934ad7e84bbe8e70c393fb8",
+      "original_bytes": 2129,
+      "copy_relative": "tools/typecheck.py",
+      "copy_sha256": "3f765b2cd74c4aa971f8c764f56fb92b0fe2fa40b934ad7e84bbe8e70c393fb8",
+      "copy_bytes": 2129,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\typecheck_corrected.py",
+      "original_sha256": "849a81888af44dcea9942a1744707be5406127b2ddb6ea1aa7f721dabeae0c62",
+      "original_bytes": 2131,
+      "copy_relative": "tools/typecheck_corrected.py",
+      "copy_sha256": "849a81888af44dcea9942a1744707be5406127b2ddb6ea1aa7f721dabeae0c62",
+      "copy_bytes": 2131,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\typecheck_optimized.py",
+      "original_sha256": "623404bddd309de70f205a88b7268bcbdf1b1cae37485b0368ab79f913f07d2b",
+      "original_bytes": 2131,
+      "copy_relative": "tools/typecheck_optimized.py",
+      "copy_sha256": "623404bddd309de70f205a88b7268bcbdf1b1cae37485b0368ab79f913f07d2b",
+      "copy_bytes": 2131,
+      "transform": "identity"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\harness-initial14-artifact.json",
+      "original_sha256": "8c7dac28d5727ca4e6ef2a8a2b849da8b80619e84ab0fe12b7b260987e8a66af",
+      "original_bytes": 59331,
+      "copy_relative": "artifacts/harness-initial14.json.gz",
+      "copy_sha256": "13b7fa1ee6ae8f22f6d257c55ed7deae44002c708c8b160081fc61af7d9fba59",
+      "copy_bytes": 13466,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\build\\out\\ExactLPAllocation.t.sol\\ExactLPAllocationHarness.json",
+      "original_sha256": "0dfa464f474a002e588ea20497795482627c2fdd5b75c1651a61eda032c7e94e",
+      "original_bytes": 60433,
+      "copy_relative": "artifacts/harness-final17.json.gz",
+      "copy_sha256": "637f430c366a9697354ac9b0cb0008ebe5ca0f8d6d9101e0a647435e0e73bd0b",
+      "copy_bytes": 13797,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\build\\out\\ExactLPAllocation.t.sol\\ExactLPAllocationTest.json",
+      "original_sha256": "31083f668662a505c13508b781bd258b0be093c11d4bf3ba2727806e48e7c938",
+      "original_bytes": 253611,
+      "copy_relative": "artifacts/test-final17.json.gz",
+      "copy_sha256": "02747d1529381b83a512de31b52988b29b6bc2b6bb8c7ee3b3fe9a4fd10f6172",
+      "copy_bytes": 57113,
+      "transform": "gzip_mtime0"
+    },
+    {
+      "original": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\accounting-agent\\verify_packaged.py",
+      "original_sha256": "cfbeac4ee48e87b9a8250ca58a4942eb670f4dca038910084d1d248b0f572842",
+      "original_bytes": 4462,
+      "copy_relative": "verify-package.py",
+      "copy_sha256": "cfbeac4ee48e87b9a8250ca58a4942eb670f4dca038910084d1d248b0f572842",
+      "copy_bytes": 4462,
+      "transform": "identity"
+    }
+  ]
+}

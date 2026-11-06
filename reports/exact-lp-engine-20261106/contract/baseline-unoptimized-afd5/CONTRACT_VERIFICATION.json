@@ -1,0 +1,137 @@
+{
+  "baseline_commit": "b76dfcc5d1a2513ce6b277e43a6254eb63a74640",
+  "finished_utc": "2026-11-06T21:24:46.144130+00:00",
+  "scope": "New unintegrated internal two-currency exact-LP engine; source-only normal and actual static evidence",
+  "new_source_sha256": {
+    "src/libraries/ExactLPAllocation.sol": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915"
+  },
+  "new_library_unwired": true,
+  "prior84_sources_raw_identical": true,
+  "prior44_ABI_runtime_creation_objects_exact_identical": true,
+  "existing_module_graph_profile6_unchanged": true,
+  "no_current_deployment_identity_upgrade": true,
+  "normal_record": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\production-size-gates.json",
+  "normal_compile_seconds": 81.48,
+  "normal_closed_sources": 85,
+  "normal_production_sources": 54,
+  "normal_dependency_sources": 31,
+  "normal_objects_pass": 45,
+  "actual_carrier_gates_pass": 2,
+  "normal_profile_limits_not_raised": true,
+  "new_library_shell_runtime": 62,
+  "new_library_shell_creation": 93,
+  "library_shell_not_future_integrated_host_size_or_gas_proof": true,
+  "normal_comparison": "NORMAL_COMPARISON.json",
+  "independent_bounded_source_review": "IMPLEMENTATION_REVIEW.json",
+  "actual_static_execution": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\EXECUTION.json",
+  "static_normal_no_recompile": true,
+  "static_records": 497,
+  "static_unique_exact_reused": 497,
+  "new_source_detector_contexts": 0,
+  "new_source_functions_manually_reviewed": 11,
+  "static_json_success": true,
+  "static_raw_exit": 4294967295,
+  "strict_candidate": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\candidate-static\\static-review.json",
+  "strict_coverage_pass": true,
+  "source_frozen_through_normal_static": true,
+  "no_tests_run_by_this_agent": true,
+  "functional_consumer_harness_and_gas_owned_separately": true,
+  "protected_four_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "no_rpc": true,
+  "no_deployment": true,
+  "no_service_site_Anvil_journal_signing_change": true,
+  "independent_approval": false,
+  "limits": [
+    "Current LP Rewards still uses fractional indices until future explicit host integration.",
+    "Tree conservation does not authenticate funding/owner/ordinal/bucket/lifecycle; typed future host must supply these.",
+    "High/low carry bounds fairness phase loss, not whole payout differences or manipulation absence.",
+    "Future explicit ledger/canonical consumer/checkpoint integration and maximum actual host gas remain open."
+  ],
+  "evidence_artifacts": {
+    "normal-final-c5967be9f9/compiler-input.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\compiler-input.json",
+      "sha256": "11a0264fe3ec89746be355fcf3b43b9f4f3a3c9c2229d67a207dfbea56a113e1",
+      "bytes": 793513
+    },
+    "normal-final-c5967be9f9/compiler-output.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\compiler-output.json",
+      "sha256": "ff3cc27fd0265986d29809c61a1b37deeceaa12e3a9d716cfa059f9a824aba16",
+      "bytes": 22621985
+    },
+    "normal-final-c5967be9f9/production-size-gates.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\production-size-gates.json",
+      "sha256": "b17364a30b24880ad290e7527a63d6ec5b4ee4ca4852bad58f6e8873a52d76cd",
+      "bytes": 43758
+    },
+    "normal-final-c5967be9f9/START.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\START.json",
+      "sha256": "806d4f0d22c4cf4afb9c73df6c41c808fb2d640bfa75e4e798dc6bab4bd569e2",
+      "bytes": 10427
+    },
+    "normal-final-c5967be9f9/solc-stderr.txt": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\solc-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "NORMAL_COMPARISON.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\NORMAL_COMPARISON.json",
+      "sha256": "7986fef6d0de4100ce524900041aa657ad992c6550dea0ff1dcca25daa35e66c",
+      "bytes": 10890
+    },
+    "IMPLEMENTATION_REVIEW.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\IMPLEMENTATION_REVIEW.json",
+      "sha256": "4fdcb30d124bab050d231ed72b2b4116a48f8dffbc07ddc832656e9a367a0157",
+      "bytes": 3561
+    },
+    "static-91bfe2be42/EXECUTION.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\EXECUTION.json",
+      "sha256": "fcdff12acbc743ce2a6b1ac6f5356a07a58fd1204fec6c5052fc4c28169e59b9",
+      "bytes": 15124
+    },
+    "static-91bfe2be42/START.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\START.json",
+      "sha256": "042cd4345fef2fbb039a8fca132098ca5908b5273b94fb657e7684fa296e24a1",
+      "bytes": 7935
+    },
+    "static-91bfe2be42/slither.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\slither.json",
+      "sha256": "17745b236b7525c75de446454de5cbacd023634bcbcca6da74881b47a3f9924b",
+      "bytes": 101069989
+    },
+    "static-91bfe2be42/detectors-only.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\detectors-only.json",
+      "sha256": "62b22fccb7eb195eec1a42ad36fdbbc52181c5008f7b2571daecf29f62995066",
+      "bytes": 39885816
+    },
+    "static-91bfe2be42/slither.log": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-91bfe2be42\\slither.log",
+      "sha256": "2a24feafe2faca085e80507dc27f86b45b0bd76160c0b24b2142fee3b2ce3d2f",
+      "bytes": 257982
+    },
+    "candidate-static/static-review.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\candidate-static\\static-review.json",
+      "sha256": "21b4587c2524f6c66cc6858a5228df25df2959114f710609fe84d01de61bc12b",
+      "bytes": 754157
+    },
+    "candidate-static/static-detectors.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\candidate-static\\static-detectors.json",
+      "sha256": "c8f96e3c0847cc323d3f3ac88a792194802ed87ac9bb68340d32e8e69da224ed",
+      "bytes": 326580
+    },
+    "candidate-static/static-coverage.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\candidate-static\\static-coverage.json",
+      "sha256": "166d96212cea2dd4d113bba9834e2278c6fccf3551558179d5faa8a99a4c957e",
+      "bytes": 790
+    },
+    "static-inventory-exact.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\static-inventory-exact.json",
+      "sha256": "ea68a115c7cab8af89bf211d5e75766a4c02840ea242a369b8f63742f38b4fc7",
+      "bytes": 166101
+    }
+  }
+}

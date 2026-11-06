@@ -1,0 +1,96 @@
+{
+  "scope": "Frozen backend retry-report evidence copy, not a new test run",
+  "baseline": "b76dfcc5d1a2513ce6b277e43a6254eb63a74640",
+  "raw_copy_count": 10,
+  "final_unique_methods": 40,
+  "new_methods": 10,
+  "existing_affected": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "counts_note": "40 final includes earlier cases; do not sum baseline/stages/repeated runs.",
+  "preservation": "Raw bytes copied without newline, path, encoding, source or result changes. Original source/results, negative baseline and failed initial stage retained.",
+  "no_execution": "No tests, RPCs, live service, site, journal, deployment or signer operation executed during packaging.",
+  "files": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\BACKEND_EVIDENCE.json",
+      "copy": "reports/exact-lp-engine-20261106/backend/BACKEND_EVIDENCE.json",
+      "bytes": 5610,
+      "raw_sha256": "91c64a044b69d88378b478bdfccfaa52324f5cd44252a90c833f15751e5b34fb",
+      "copy_sha256": "91c64a044b69d88378b478bdfccfaa52324f5cd44252a90c833f15751e5b34fb",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\baseline-retry-negative.json",
+      "copy": "reports/exact-lp-engine-20261106/backend/baseline-retry-negative.json",
+      "bytes": 1074,
+      "raw_sha256": "0ab029ae5d4f06761ba719b0ae5bab0b23a5987f888d1bc0c9b117f1ac774129",
+      "copy_sha256": "0ab029ae5d4f06761ba719b0ae5bab0b23a5987f888d1bc0c9b117f1ac774129",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\current6-decimal-stage2.log",
+      "copy": "reports/exact-lp-engine-20261106/backend/current6-decimal-stage2.log",
+      "bytes": 519,
+      "raw_sha256": "11385363d6f3ffc2f4ae25d44900cf24fc06b737680cb92ca611c84020de47a7",
+      "copy_sha256": "11385363d6f3ffc2f4ae25d44900cf24fc06b737680cb92ca611c84020de47a7",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\final-review-focused.json",
+      "copy": "reports/exact-lp-engine-20261106/backend/final-review-focused.json",
+      "bytes": 6056,
+      "raw_sha256": "bf574a89311817312213918c0b9edaaa40a26eef68c5396421ad030cce689949",
+      "copy_sha256": "bf574a89311817312213918c0b9edaaa40a26eef68c5396421ad030cce689949",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\final-review-focused.log",
+      "copy": "reports/exact-lp-engine-20261106/backend/final-review-focused.log",
+      "bytes": 8348,
+      "raw_sha256": "227d7c109c59c3c12d1cdf077fccfbcfbb8c51d68447fe03b1dd3144fe5d9ba6",
+      "copy_sha256": "227d7c109c59c3c12d1cdf077fccfbcfbb8c51d68447fe03b1dd3144fe5d9ba6",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\new-retry-stage1.log",
+      "copy": "reports/exact-lp-engine-20261106/backend/new-retry-stage1.log",
+      "bytes": 3629,
+      "raw_sha256": "a501ebec01130b126566dc22e2b3de46ad023f163b4b88ffc76809999a7f5032",
+      "copy_sha256": "a501ebec01130b126566dc22e2b3de46ad023f163b4b88ffc76809999a7f5032",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\operation_review-baseline.py",
+      "copy": "reports/exact-lp-engine-20261106/backend/operation_review-baseline.py",
+      "bytes": 39501,
+      "raw_sha256": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+      "copy_sha256": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\operation_review-stage1.py",
+      "copy": "reports/exact-lp-engine-20261106/backend/operation_review-stage1.py",
+      "bytes": 40391,
+      "raw_sha256": "52c93f630c7d787eb3176539784beef1804e69669aaa4c5ef4d61a15fc417009",
+      "copy_sha256": "52c93f630c7d787eb3176539784beef1804e69669aaa4c5ef4d61a15fc417009",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\run-review-focused.py",
+      "copy": "reports/exact-lp-engine-20261106/backend/run-review-focused.py",
+      "bytes": 1904,
+      "raw_sha256": "adb72fe213e07eed02bf8480eada1cdcab8007e195507840b8a7dbf6c4a511b2",
+      "copy_sha256": "adb72fe213e07eed02bf8480eada1cdcab8007e195507840b8a7dbf6c4a511b2",
+      "byte_identical": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\backend-2d7b\\test_keeper_review_retry-stage1.py",
+      "copy": "reports/exact-lp-engine-20261106/backend/test_keeper_review_retry-stage1.py",
+      "bytes": 7008,
+      "raw_sha256": "0316fd0e93d4b99d4341718d12298f6f4c0627145dd0ebf49ef85dcdc4ba5078",
+      "copy_sha256": "0316fd0e93d4b99d4341718d12298f6f4c0627145dd0ebf49ef85dcdc4ba5078",
+      "byte_identical": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "package_verified": true,
+  "copied_entries": 68,
+  "current_distinct_methods": 17,
+  "reused_unchanged_successes": 15,
+  "new_default_split_passes": 2,
+  "default_gas_limit": 1073741824,
+  "source_closure_proof": true,
+  "fuzz_runs_each": [
+    1000,
+    1000
+  ],
+  "scope": "Recorded isolated evidence only; no builds/EVM/tests/services/signing executed by this verifier."
+}

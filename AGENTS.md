@@ -27,12 +27,13 @@ This file is current instructions, not a report timeline.
   tests_python/test_frontend_history.py. Original hashes/evidence locations are in
   the [handoff](docs/WORK_HANDOFF.md). Do not stage unrelated untracked drafts.
 
-[Harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) fixes keeper
-deadline freshness and standalone receipt-clock proof, with no Solidity/profile
-change. Both-leg actual receipts, entrant checkpoints and rollback are measured.
-The user-approved exact-unit LP allocation is DESIGN/prototype only and remains
-an open implementation task; royalty4 exact units do not fix LP indices. Preserve
-that decision, old fractions and all deployment/service/journal boundaries.
+[Exact-unit LP engine](docs/EXACT_LP_ALLOCATION.md) is implemented as an internal,
+unwired Solidity component. It settles both fixed-pair books before weight
+changes, preserves high/low fairness phase and carries selected paths in memory.
+Current Rewards/Vault/canonical6/V8 still use LP fractions; full ledger/consumer
+integration remains the accepted open task, not a new decision to ask again.
+[Current evidence](reports/exact-lp-engine-20261106/REVIEW.md) also fixes read-only
+retry diagnostics. No deployment/profile/journal/site/service/signing changes.
 
 ## Fresh architecture and rules
 
@@ -170,8 +171,11 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [both-flow review](reports/moving-market-flows-20261106/static-review.json):497records,
- 44 individually reassessed contexts/453 unique exact referenced-source reuse. Prior495 remains source-scoped.
+- CI/check-slither-review selects the strict current [engine review](reports/exact-lp-engine-20261106/static-review.json):497records,
+ 3 individually reassessed contexts/494 unique exact referenced-source reuse,
+ with the new internal engine separately reviewed.
+ The full85-source normal graph has45objects plus2actual carrier gates; old44 ABI/creation/runtime objects stay identical.
+ Earlier both-flow44individually reassessed/453reuse and prior495 remain source-scoped.
  Earlier factory489 records retain their own exact source scope.
  Earlier487/479/471 records stay source-scoped and historical.
   Update current default/full record together after relevant source changes.

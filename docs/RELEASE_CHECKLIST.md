@@ -12,7 +12,7 @@ royalty/Factory records retain their payload/accounting scope. There is no new
 approved deployment or service adoption, and running-source/gas/recovery/independent
 qualification remains required.
 
-The [harvesting audit](../reports/harvesting-audit-20261106/VERIFICATION.md) adds focused source-only keeper and accounting evidence, reusing unchanged normal/static pins. The approved [exact-unit LP upgrade](../TODO.md#task-lp-exact-unit-allocation) is a pre-freeze implementation requirement; its prototype is not a release artifact or a gas approval. Current accounting6 LP fractions remain.
+The [engine milestone](../reports/exact-lp-engine-20261106/VERIFICATION.md) adds actual Solidity allocator, normal/static and backend evidence. All existing module ABI/bytecode remains unchanged. The approved [exact-unit LP upgrade](../TODO.md#task-lp-exact-unit-allocation) still requires host/canonical/consumer integration and measured full-host gas before freeze; an internal library shell or harness measurement is not that approval. Current accounting6 LP fractions remain.
 
 ## Evidence and approval boundary
 

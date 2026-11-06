@@ -1,0 +1,100 @@
+{
+  "scope": "Read-only operation-review per-action confirmed-revert retry diagnostic",
+  "baseline": "b76dfcc5d1a2513ce6b277e43a6254eb63a74640",
+  "owned_whitelist": {
+    "keeper/operation_review.py": "daa2e86dd62007254a7f772a301764f82c473490338bb83cee8a47c67b16cdee",
+    "tests_python/test_keeper_review_retry.py": "4ad7c479e5d6715b839fcb865b15cb31b67f7ac454df791244aca862887b277f"
+  },
+  "baseline_owned_sha256": {
+    "keeper/operation_review.py": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+    "tests_python/test_keeper_review_retry.py": null
+  },
+  "frozen_hashes_verified": {
+    "keeper/monitor.py": "a5cbfa8d283bf2667b9e372e07a4ad8908cf0e69316ed67ce4717fd2a3a03305",
+    "tests_python/test_keeper_standalone_harvest_review.py": "1daa3be042a623b92ef53aae321342d079b8d1f2af42866fe2da569253a69a0b",
+    "tests_python/test_exact_lp_tree_design.py": "3e80fd02e6256f09b866765d4f3be9dcf490d993236c627b4c71723ae505dfa7",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "finding": {
+    "before": "Despite a matching journal retry_after3600seconds ahead, harvest/compound/rebalance each reported simulated and exposed no retry blocker.",
+    "after": "Per-action checks.local_retry shows localrecord state/deadline/remaining; known future retry yields not_due/confirmed_revert_retry before simulation. Pending/lifecycle/authority blockers retain priority."
+  },
+  "output_contract": {
+    "field": "checks.local_retry",
+    "rows_bound": 12,
+    "actions_per_bucket": 3,
+    "maximum_buckets": 4,
+    "states": [
+      "unavailable",
+      "not_recorded",
+      "waiting",
+      "elapsed"
+    ],
+    "missing_journal": "availablefalse; retry_after and remaining_seconds null; sourcejournal_unavailable; no inferredzero",
+    "known_empty_matching_journal": "availabletrue; not_recorded; null deadline/remaining; absence explicitly recorded",
+    "provenance": "Matching local journal means existing chain/sender/contracts/accounting/fee-intake/schema validation and stable exactfile bytes at review start/end; no new receipt or consensus proof.",
+    "limits_unchanged": {
+      "rpc_calls": 512,
+      "seconds": 25,
+      "posts": 1024
+    },
+    "new_rpc": 0,
+    "new_signer_capability": false,
+    "new_journal_writes": false,
+    "no_execution_promise": "A passed read-only view/simulation never guarantees worker execution or inclusion."
+  },
+  "verification_stages": [
+    {
+      "artifact": "baseline-retry-negative.json",
+      "scope": "untouched baseline",
+      "negative_cases": 3,
+      "result": "all3 incorrect simulated results reproduced"
+    },
+    {
+      "artifact": "new-retry-stage1.log",
+      "methods": 8,
+      "errors": 1,
+      "failures": 0,
+      "explanation": "Diagnostic compared int timestamp against valid decimal-string retry counter; initial negative test also incorrectly classified decimalintegerstring as invalid. Source captured in operation_review-stage1.py, test captured in test_keeper_review_retry-stage1.py."
+    },
+    {
+      "artifact": "current6-decimal-stage2.log",
+      "methods": 2,
+      "errors": 0,
+      "failures": 0,
+      "explanation": "Reuse existing integer() normalization; explicit decimal-string compatibility and genuinely explicit accounting6 config pass."
+    },
+    {
+      "artifact": "final-review-focused.json",
+      "unique_methods": 40,
+      "new_methods": 10,
+      "existing_affected": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "explanation": "10new retry methods +29 existing read-only operation-review methods +1 current6 price-outage harvest report. No unrelated fullsuite."
+    }
+  ],
+  "counts_note": "Final40 includes the2 stage2 cases and overlaps stage1 methods. Do not sum runs or subcases.",
+  "limits": [
+    "Source-only diagnostics; no real RPC/provider/hosting/gas/uptime qualification",
+    "Local journal counters are operator-maintained scheduling evidence, not cryptographic receipt proof",
+    "Worker scheduling/signing/deadlines/caps/pending recovery unchanged",
+    "No full-ledger exact-LP integration or current6/V8 completion claim",
+    "No deployment/service/site/Anvil/journal/signer/Git mutation by this agent"
+  ],
+  "evidence_files": {
+    "baseline-retry-negative.json": "0ab029ae5d4f06761ba719b0ae5bab0b23a5987f888d1bc0c9b117f1ac774129",
+    "current6-decimal-stage2.log": "11385363d6f3ffc2f4ae25d44900cf24fc06b737680cb92ca611c84020de47a7",
+    "final-review-focused.json": "bf574a89311817312213918c0b9edaaa40a26eef68c5396421ad030cce689949",
+    "final-review-focused.log": "227d7c109c59c3c12d1cdf077fccfbcfbb8c51d68447fe03b1dd3144fe5d9ba6",
+    "new-retry-stage1.log": "a501ebec01130b126566dc22e2b3de46ad023f163b4b88ffc76809999a7f5032",
+    "operation_review-baseline.py": "e820de9fc6d4ec57e4d8ee985c606b75374c13e49a4f3d06b68c3ccd6bae3680",
+    "operation_review-stage1.py": "52c93f630c7d787eb3176539784beef1804e69669aaa4c5ef4d61a15fc417009",
+    "run-review-focused.py": "adb72fe213e07eed02bf8480eada1cdcab8007e195507840b8a7dbf6c4a511b2",
+    "test_keeper_review_retry-stage1.py": "0316fd0e93d4b99d4341718d12298f6f4c0627145dd0ebf49ef85dcdc4ba5078"
+  }
+}

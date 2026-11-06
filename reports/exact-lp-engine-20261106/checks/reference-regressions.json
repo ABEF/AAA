@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tests_python.test_slither_review",
+    "tests_python.test_function_reference",
+    "tests_python.test_operator_reference",
+    "-v"
+  ],
+  "started_utc": "2026-11-06T21:49:57.619622+00:00",
+  "elapsed_seconds": 7.28099999999904,
+  "exit_code": 0,
+  "log": "reference-regressions.log",
+  "log_sha256": "b23b367bd0457b29889c709acf5fda7152e84c1ccfb127d7079fe64b25c8977b"
+}

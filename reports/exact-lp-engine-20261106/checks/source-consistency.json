@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/source_checks.py",
+    "--output",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\exact-lp-engine-20261106\\checks\\source-consistency-evidence.json"
+  ],
+  "started_utc": "2026-11-06T21:49:12.852608+00:00",
+  "elapsed_seconds": 0.2820000000028813,
+  "exit_code": 0,
+  "log": "source-consistency.log",
+  "log_sha256": "135cf8239bc026ea627a92ebfcf19c26b07f3e5905a9ad12d78a38869318c869"
+}

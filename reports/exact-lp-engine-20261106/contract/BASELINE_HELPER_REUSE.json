@@ -1,0 +1,14 @@
+{
+  "baseline_test_helper": "test/helpers/ExactLPAllocationBaseline.sol",
+  "baseline_test_helper_raw_sha256": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+  "original_normal_source_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "exact_original_source_after_library_identifier_and_testonly_comment_restore": true,
+  "explicit_transformations": [
+    "ExactLPAllocationBaseline -> ExactLPAllocation",
+    "Remove exactly one explicit added TEST ONLY comment; no executable changes"
+  ],
+  "initial_exact_after_identifier_only_attempt": "retained failed assertion in tool output; sole diff was explicit TEST ONLY comment; not counted as source identity pass",
+  "original_normal": "../normal-final-c5967be9f9/compiler-input.json",
+  "no_actual_test_run_by_this_check": true,
+  "scope": "The differential baseline has the exact original executable engine source, with a test-only name/comment; no newly authored expected algorithm."
+}

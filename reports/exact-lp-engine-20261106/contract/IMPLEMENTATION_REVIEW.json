@@ -1,0 +1,42 @@
+{
+  "reviewed_utc": "2026-11-06T21:32:41.910202+00:00",
+  "review_scope": "Independent final source review of unintegrated selected-child-in-memory exact LP allocation engine",
+  "source": "src/libraries/ExactLPAllocation.sol",
+  "source_sha256": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+  "independent_audit": false,
+  "no_tests_run_by_this_review": true,
+  "no_current_ledger_profile_change": true,
+  "new_concrete_defect_found": false,
+  "functions": {
+    "setWeight": "Checks ordinal/aggregate overflow and strict no-op. Settles each OLD-weight asset path, persists inherited whole leaf units in addition to preexisting rights, then mutates leaf and bottom-up weights/rebases. Both books finish under old weights before any weight changes.",
+    "credit": "Constant root writes and checked outstanding/pending addition; positive funding needs nonempty root; zero is no-op; no lifetime accumulator that could block repeated credit/drain cycles. Does not verify actual asset backing.",
+    "claimable": "Adds existing pending plus incoming parent split on each selected path; skips zero total amount before division; final leaf includes old whole rights even when current weight is zero. No real state writes.",
+    "take": "Validates ordinal, settles selected path without transient selected-child storage, combines inherited amount with preexisting leaf, clears only preexisting leaf and debits outstanding. No external calls/payout/owner logic.",
+    "totalWeight/weightOf/outstanding": "Read only currently stored internal counters; ordinal validation on leaf lookup. No external NFT, share, token or lifecycle verification.",
+    "split": "Math.mulDiv/mulmod keep full precision. Valid low<W and uint128 high<Q. Low gap fold never adds an overflowing sum. Phase<2Q; if L=W or0 no extra allocation; otherwise floor quotient<=A-1 so carry increment<=A. Right=A-left exact whole conservation.",
+    "_rebase": "For valid state low<oldW, floor(low*newW/oldW)<newW; high retained even through empty weight. Fractional fairness-phase reduction <1/(Q*newW) for positive target or<1/Q when target0. Not an integer payout bound.",
+    "_leaf": "Explicit ordinal1..1000, maps into1024..2023; padding2024..2047 never receives an admitted positive leaf weight.",
+    "_settlePath": "At each fixed-depth node merges checked stored+inherited, clears only preexisting node pending, splits/updates carry only for positive total, writes only sibling allocation and passes selected amount in memory. Final leaf is untouched. This reproduces original final pending/carry state without transient selected writes; no external call can observe in-flight missing pending."
+  },
+  "critical_policy_limits": [
+    "Hierarchical allocation is not identical to flat proportional/largest-remainder rounding.",
+    "High+low carry limits weight-update FAIRNESS PHASE truncation, not whole-unit payout differences. The exact-threshold1/3 -> total4 -> total6, credit4 vector can defer one unit.",
+    "Fixed-weight batching/claim-order invariance is relative to the stored phase; dynamic weight changes need explicit reviewed semantics.",
+    "Two enum books are logical ETH/ZZZ identities only; host must bind actual assets, authenticate funding/ordinals/buckets/current owners, synchronize exact Vault denominators and retain lifecycles.",
+    "Internal storage invariants presume all ordinary writers use this engine. Future canonical import must validate weights, low denominators, carry bounds, pending/outstanding and restore weights BEFORE carry/money without replaying resets.",
+    "No fixed-point money reserve exists in this engine. Carry is future rounding phase; only pending/outstanding are money.",
+    "New internal-library shell normal size is not future integrated Rewards/Vault code size or operating gas approval."
+  ],
+  "prior_review_source_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "prior_stage_preserved": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6",
+  "optimization_reasoning": {
+    "behavioral_scope": "Final complete tree state should equal baseline after every valid operation, not merely current claim amounts.",
+    "before": "Selected child allocation was stored, read at next level, then deleted during path push.",
+    "after": "Selected allocation stays in a local variable until final leaf; only sibling needs persistence.",
+    "checked_merge": "The original selected-child SSTORE addition and new next-node local addition contain the same nonnegative terms; any overflow still reverts whole operation.",
+    "zero_case": "No merged amount means no split/division/carry change, including dormant zero-weight paths.",
+    "leaf_case": "take consumes inherited plus old leaf; setWeight persists inherited plus old leaf before changing weight, including new weight zero.",
+    "evidence_boundary": "Actual full-node old/new differential and cold execution gas tests are owned separately by accounting agent; this record itself is source reasoning only.",
+    "gas_boundary": "Execution gasleft samples/refunds are not full host/intrinsic/network fee qualification."
+  }
+}

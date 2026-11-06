@@ -331,6 +331,17 @@ class Review:
 
     def operations(self, bucket, controls):
         rows = [_row(action, bucket) for action in ACTIONS]
+        for row in rows:
+            key=f"{row['operation']}:{bucket}"
+            retry=self.k.state.get('retry_after',{}).get(key) if self.journal else None
+            if retry is not None:retry=integer(retry,'retry_after',minimum=0)
+            row['checks']['local_retry'] = {
+                'available': self.journal, 'action_key': key, 'retry_after': retry,
+                'state': ('unavailable' if not self.journal else 'not_recorded' if retry is None else
+                          'waiting' if self.stamp < retry else 'elapsed'),
+                'remaining_seconds': max(0,retry-self.stamp) if retry is not None else None,
+                'source': 'matching_local_journal' if self.journal else 'journal_unavailable',
+                'scope': 'Validated local scheduling evidence; no execution or inclusion approval.'}
         reset = self.k.state.get(CONFIRMATION_RESETS,{}).get(str(bucket),False) if self.journal else None
         clear = self.k.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket)) if self.journal else None
         local = {'available': self.journal, 'reset_required': reset,
@@ -383,6 +394,8 @@ class Review:
                 _set(row, 'unavailable', authorization['reason']); continue
             if not authorization['value']: blockers.append('worker_sender_not_authorized')
             if blockers: row.update(state='blocked', reasons=blockers); continue
+            if row['checks']['local_retry']['state']=='waiting':
+                _set(row,'not_due','confirmed_revert_retry');continue
             if action == 'harvest':
                 row['checks']['physical_custody'] = custody
                 if not custody['available']: _set(row,'unavailable',custody['reason']); continue

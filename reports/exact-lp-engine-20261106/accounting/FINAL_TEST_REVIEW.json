@@ -1,0 +1,349 @@
+{
+  "scope": "Standalone INTERNAL exact-unit LP engine milestone; current Rewards/Vault/canonical/profile6 NOT integrated.",
+  "library_sha256": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+  "test_sha256": "b88100bfe45912a99811822e13eb800dd41b6176e4b8e85a34275dd5e5ea155e",
+  "baseline_helper_sha256": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+  "current_source85": {
+    "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+    "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+    "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZCustodyValidation.sol": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
+    "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+    "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+    "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+    "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
+    "src/ZZZNFT.sol": "d31242720b76cf042604e3825764e3b976dbc4ae519046bd8b586fbd72b80ccd",
+    "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
+    "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
+    "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+    "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+    "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+    "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "77f076ae8ad11d1c5df76f2a6b19fed826889c4a22e0d18b4f723dd16838eaeb",
+    "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/interfaces/IZZZ.sol": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+    "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+    "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2"
+  },
+  "closed_test_source25": {
+    "test/ExactLPAllocation.t.sol": "b88100bfe45912a99811822e13eb800dd41b6176e4b8e85a34275dd5e5ea155e",
+    "lib/forge-std/src/Test.sol": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+    "lib/forge-std/src/console.sol": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+    "lib/forge-std/src/console2.sol": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+    "lib/forge-std/src/safeconsole.sol": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+    "lib/forge-std/src/StdAssertions.sol": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+    "lib/forge-std/src/Vm.sol": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+    "lib/forge-std/src/StdChains.sol": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+    "lib/forge-std/src/StdCheats.sol": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+    "lib/forge-std/src/StdStorage.sol": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+    "lib/forge-std/src/StdConstants.sol": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+    "lib/forge-std/src/interfaces/IMulticall3.sol": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+    "lib/forge-std/src/StdError.sol": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+    "lib/forge-std/src/StdInvariant.sol": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+    "lib/forge-std/src/StdJson.sol": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+    "lib/forge-std/src/StdMath.sol": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+    "lib/forge-std/src/StdStyle.sol": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+    "lib/forge-std/src/StdToml.sol": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+    "lib/forge-std/src/StdUtils.sol": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+    "lib/forge-std/src/Base.sol": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+    "test/helpers/ExactLPAllocationBaseline.sol": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a"
+  },
+  "final_distinct_successful_methods": 17,
+  "fuzz_properties_and_runs": {
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testFuzzExactLPMixedSequenceMatchesIndependentEagerOracle(uint256)": 1000,
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testFuzzExactLPSplitMatchesIndependentRationalExpression(uint64,uint48,uint48,uint128,uint48)": 1000
+  },
+  "methods": {
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLP1000OrdinalsConserveBothBooksWithoutPadding()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 448263170
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPActivationGrowthSettlesBothOldAssetPaths()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 81947562
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPCold1000OrdinalEngineGasSamples()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 132974351
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPFinalUnitsForBothBooks101Shares()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 76804832
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPFixedWeightsBatchingAndClaimOrder()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 11704248
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPInvalidAndOverflowOperationsRollBack()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 88286613
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPLifetimeCanExceedUint256WithBoundedOutstanding()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1062976
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPNoopLeavesPendingAndPhaseIdentical()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 46308238
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPPhaseApproximationCanDelayOneUnitAtIntegerBoundary()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1081793
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPPreservesPhaseAcrossGenuineGrowthInsteadOfResetStarvation()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 21330126
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPSplitFullWidthAndInvalidBounds()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 55590
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPWideRebasePreservesBothBookRightsAndHighPhase()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1794975
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPZeroWeightsPreserveOldWholeRightsAndHighPhase()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 78625024
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testFuzzExactLPMixedSequenceMatchesIndependentEagerOracle(uint256)": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x2bd0f50f0000000000000000000000000000000006296f2d07dd60be7f0202e3fa1b0aa0",
+            "gas": 11977091,
+            "stipend": 21384
+          },
+          "runs": 1000,
+          "mean_gas": 11826638,
+          "median_gas": 11730104,
+          "failed_corpus_replays": 0
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testFuzzExactLPSplitMatchesIndependentRationalExpression(uint64,uint48,uint48,uint128,uint48)": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xffe5700b000000000000000000000000000000000000000000000000000000000000006c0000000000000000000000000000000000000000000000000000000000000c6500000000000000000000000000000000000000000000000000000000000027f70000000000000000000000000000000000000000000000000000000000004fdd0000000000000000000000000000000000000000000000000000000000005628",
+            "gas": 43245,
+            "stipend": 21812
+          },
+          "runs": 1000,
+          "mean_gas": 21405,
+          "median_gas": 21380,
+          "failed_corpus_replays": 0
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPOptimizedMatchesFrozenBaselineFullWidthCompleteStorage()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 401664650
+        }
+      },
+      "counterexample": null
+    },
+    "test/ExactLPAllocation.t.sol:ExactLPAllocationTest::testExactLPOptimizedMatchesFrozenBaselineOrdinaryLifecycleCompleteStorage()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 689488274
+        }
+      },
+      "counterexample": null
+    }
+  },
+  "final_evm_status": [
+    "evm-optimized/status.json",
+    "evm-split-default/status.json"
+  ],
+  "retained_preoptimization15": "BASELINE15_REVIEW.json",
+  "counts_not_summed": "Current17distinct methods=15unchanged exact-source successes+2default split successes. Old combined16, diagnostic1, baseline15 overlap and are not added. Two preserved fuzzproperties each1000inputs.",
+  "evm_failures_retained": 1,
+  "failure_explanation": "Historical combined scanner exceeded default2^30 test envelope and passed diagnostic10b. It was then split at its existing second fresh-pair boundary so BOTH current scanner methods pass the DEFAULT limit; all actions/assertions retained. Combined failure/diagnostic source stages are historical, not current default acceptance.",
+  "retained_parser_failure": "abi-initial/status.json: test-only reserved identifier after, renamed before EVM; no library correction.",
+  "gas_comparison": "COLD_GAS_COMPARISON.json",
+  "source_test_preservation": "DEFAULT_SPLIT_REUSE_PROOF.json",
+  "full_state_differential": "Current ordinary/fullwidth split tests compare ALL2047node weights/pending/high/low and both outstanding books after every action/preview; exact original sequences retained.",
+  "functional_scope": [
+    "whole final unit both books",
+    "full-width split and safe carry",
+    "fixed-weight batching/claim order",
+    "independent eager mixed sequence",
+    "both old-asset paths before activation/growth",
+    "no-op state preservation",
+    "growth starvation phase improvement",
+    "integer-boundary unit-delay limitation",
+    "zero-weight old rights and phase",
+    "MAXoutstanding repeated lifetimes",
+    "overflow/invalid rollback",
+    "1000ordinals/no padding",
+    "actual512bit nonzero-low rebase"
+  ],
+  "current_behavior_changed": false,
+  "new_internal_component_only": true,
+  "remaining": [
+    "Real Rewards/Vault/Membership share synchronization",
+    "liabilities,funding,owner checks,conversions and separate compound/buyback/royalty barriers",
+    "fresh accounting/canonical/consumer identities and import/export",
+    "full-host runtime/initcode/static/gas integration",
+    "target-chain qualifications and independent audit"
+  ],
+  "normal_final_basis": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\START.json",
+  "historical_combined16_record": "FINAL_TEST_REVIEW.combined16.json",
+  "final_current_stages": {
+    "reused15unchanged": {
+      "status": "evm-optimized/status.json",
+      "success": 15,
+      "default_gas_limit": 1073741824,
+      "proof": "DEFAULT_SPLIT_REUSE_PROOF.json"
+    },
+    "split2default": {
+      "status": "evm-split-default/status.json",
+      "success": 2,
+      "default_gas_limit": 1073741824,
+      "gas_override": false
+    }
+  },
+  "historical_combined_stages": {
+    "evm-optimized": {
+      "success": 15,
+      "failure": 1,
+      "default_test_gas_limit": 1073741824
+    },
+    "evm-differential-budget": {
+      "success": 1,
+      "selected_only": true,
+      "explicit_test_gas_limit": 10000000000
+    }
+  },
+  "default_ci_test_compatibility": "Both full-state scanners now pass separately below default2^30 gas. No foundry.toml or production/operating budget change. Entire repository suite/CI not rerun.",
+  "default_split_reuse_proof": "DEFAULT_SPLIT_REUSE_PROOF.json",
+  "source_test_preservation_original": "SOURCE_TEST_PRESERVATION.json"
+}

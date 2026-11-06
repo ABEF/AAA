@@ -12,19 +12,22 @@ remains107. No new ABI/profile/journal/deployment boundary is inferred.
 
 ## 1. Freeze the correct source and integration boundary
 
-Before a production freeze, implement the accepted [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation) under its explicit fresh compatibility boundary. The [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) delivers keeper fixes and a bounded design/prototype; it does not upgrade current fractional LP contracts or close this requirement.
+The accepted [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation) now has an implemented, optimized internal [Solidity engine](EXACT_LP_ALLOCATION.md). Next wire authenticated shares/membership, claims/conversion, canonical records and matching consumers under an explicit fresh boundary before production freeze. Current fractional LP contracts remain; the engine milestone does not close the whole requirement.
 
 Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/dependency
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [same-main source review](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
-records the current normal compiler/static pins; the [moving-market supplement](../reports/consolidation-races-20261106/REVIEW.md)
+The [engine source review](../reports/exact-lp-engine-20261106/VERIFICATION.md)
+records current normal compiler/static pins, preserves every earlier production
+runtime and separately verifies the new internal engine. The earlier
+[same-main source review](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
+and [moving-market supplement](../reports/consolidation-races-20261106/REVIEW.md)
 changes tests/operator procedure only. Earlier [royalty](../reports/last24h-audit-20261105/REVIEW.md)
 and [manual](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) evidence keep their exact source scopes.
 Normal runtime headroom is746bytes for Migration and107 for Vault. Further
-production code changes require new exact-source gates; this test/doc supplement
-reuses unchanged production pins rather than rerunning the compiler/analyzer.
+production code changes require new exact-source gates; that earlier test/doc
+supplement reused unchanged production pins without a compiler/analyzer rerun.
 The [factory/claim improvement](../reports/factory-claims-20261105/REVIEW.md) adds
 immutable code-data storage2 and next-batch unsigned claim planning without
 changing the royalty ledger bytes or normal economic rules.

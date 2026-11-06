@@ -164,6 +164,19 @@ not that an operation is ready or authorized. A timing lower bound is not a
 promised execution time, and a
 missing local scheduling record is not a fabricated future jitter deadline.
 
+Each rebalance, compound and harvest row includes `checks.local_retry`: the
+exact action key, available journal status, normalized Unix `retry_after`,
+remaining seconds and `waiting`/`elapsed`/`not_recorded`/`unavailable` state.
+A future matching local retry record for enabled, active work yields `not_due` with
+`confirmed_revert_retry` before simulation. Pending recovery, lifecycle and
+worker-authority blockers retain priority; disabled/inactive work keeps its
+earlier `unconfigured`/`not_needed` classification. Missing journal data is null and
+unavailable, never a guessed zero or approval to resend. This is validated local
+scheduling evidence, not a newly proved historical receipt or execution promise.
+Wait/review again, restore/reconcile missing original state through the recovery
+procedure, and never delete retry/pending records to force a green result. The
+report adds no RPC call, journal write or transaction authority.
+
 Harvest custody diagnostics read `LiquidityManager.ticks(lpId)`
 for the main and any residual. Each stored range must have canonical signed tick
 bounds/order/spacing and match the PositionManager's packed identity. Manager

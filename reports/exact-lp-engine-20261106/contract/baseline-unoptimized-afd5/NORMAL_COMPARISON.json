@@ -1,0 +1,345 @@
+{
+  "old_closed_source_count": 84,
+  "new_closed_source_count": 85,
+  "old_sources_raw_byte_identical": true,
+  "new_sources": [
+    "src/libraries/ExactLPAllocation.sol"
+  ],
+  "previous_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\moving-market-flows-20261106-e1e736\\contract-agent\\normal-final-7db12e78d6",
+  "new_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9",
+  "old44_normal_objects": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "abi_identical": true,
+      "creation_template_identical": true,
+      "runtime_template_identical": true
+    }
+  ],
+  "new_internal_library_shell_gate": [
+    {
+      "name": "ExactLPAllocation",
+      "runtime": 62,
+      "creation": 93,
+      "minimum_args": 0,
+      "runtime_margin": 24514,
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "static_argument_bytes": 0,
+      "constructor_types": [],
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false,
+      "runtime_ok": true,
+      "creation_ok": true
+    }
+  ],
+  "new_library_unwired": true,
+  "library_shell_does_not_prove_future_integrated_consumer_size_or_gas": true,
+  "actual_factory_carrier_gates_unchanged": true,
+  "royalty_payload_identical": true,
+  "no_module_profile_or_runtime_upgrade": true,
+  "no_deployment": true,
+  "no_rpc": true,
+  "normal_input_sha256": "11a0264fe3ec89746be355fcf3b43b9f4f3a3c9c2229d67a207dfbea56a113e1",
+  "normal_output_sha256": "ff3cc27fd0265986d29809c61a1b37deeceaa12e3a9d716cfa059f9a824aba16"
+}

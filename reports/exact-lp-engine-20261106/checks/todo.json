@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/sync-project-todo.py",
+    "--check"
+  ],
+  "started_utc": "2026-11-06T21:49:12.163398+00:00",
+  "elapsed_seconds": 0.18699999999807915,
+  "exit_code": 1,
+  "log": "todo.log",
+  "log_sha256": "41bcb6b3a09e933a279037727dfce3064f8ab7f24f0bf0bba67275630c4168c5"
+}

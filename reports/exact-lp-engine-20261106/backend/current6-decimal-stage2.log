@@ -1,0 +1,7 @@
+test_explicit_current6_profile_reports_each_saved_retry_without_relabel (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_explicit_current6_profile_reports_each_saved_retry_without_relabel) ... ok
+test_decimal_retry_strings_follow_existing_worker_integer_policy (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_decimal_retry_strings_follow_existing_worker_integer_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 9.505s
+
+OK

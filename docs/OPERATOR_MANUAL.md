@@ -1711,7 +1711,19 @@ setting change is required for multiple NFTs per wallet.
 
 Changing off-chain code hashes to whatever is currently deployed is not a review. Verify proxy implementation and external control as well as runtime bytecode. Governance configuration during canonical preparation is blocked; cancel preparation only if reopening is intended, not to bypass a migration freeze.
 
+The [read-only LP report](KEEPER_COORDINATION.md#read-only-operation-review)
+now shows `checks.local_retry` for each selected action. A matching future retry
+deadline reports `not_due` for enabled, active work; disabled/inactive jobs keep
+their earlier classification. Missing journal data remains null/unavailable.
+Pending/lifecycle/authority blockers stay first. Wait and review again, or recover
+the original journal; do not clear a retry or resend a saved transaction.
+
 ## Revenue operations
+
+The [exact-unit LP allocator](EXACT_LP_ALLOCATION.md) is an implemented INTERNAL
+source component for the next ledger integration. There is no explorer call or
+operator switch to enable it on current contracts. Current claims still use the
+existing ledger; adding this source file does not upgrade a sealed deployment.
 
 A real `PoolManager.donate` becomes funded fee growth and is allocated at harvest
 like other actual LP receipts. An unsolicited raw Vault balance remains a prefund,

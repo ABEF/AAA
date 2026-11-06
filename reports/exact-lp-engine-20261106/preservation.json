@@ -1,0 +1,52 @@
+{
+  "baseline": "b76dfcc5d1a2513ce6b277e43a6254eb63a74640",
+  "frozen_tested_files": {
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+    "test/ExactLPAllocation.t.sol": "b88100bfe45912a99811822e13eb800dd41b6176e4b8e85a34275dd5e5ea155e",
+    "test/helpers/ExactLPAllocationBaseline.sol": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+    "keeper/operation_review.py": "daa2e86dd62007254a7f772a301764f82c473490338bb83cee8a47c67b16cdee",
+    "tests_python/test_keeper_review_retry.py": "4ad7c479e5d6715b839fcb865b15cb31b67f7ac454df791244aca862887b277f"
+  },
+  "normal_closed_sources": 85,
+  "prior_production_sources_unchanged": 53,
+  "historical_reports_preserved": 3071,
+  "protected_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "baseline_dirty_docs_bytes": 0,
+  "document_local_links": 2455,
+  "broken_local_targets": [],
+  "copy_entries_verified_here": 46,
+  "accounting_package_verification": "checks/accounting-package.json",
+  "all_task_ids_and_statuses_preserved": true,
+  "all_operator_example_rows_preserved": true,
+  "only_operator_reference_digest_changed": true,
+  "source_publication_is_not_deployment": true,
+  "document_sha256": {
+    "AGENTS.md": "7279870c7f4ef37e3d28883c6d6051b801c608e08c88375390b91476582869b4",
+    "PROJECT_CONTEXT.md": "805adf7ca2d6c4a4b91df5d8a673f11541e64cab837ab3b965b1bedc3c1508a1",
+    "README.md": "8760e866648b3ef0ad016a8644d11cec4d2aa415a8597e952aaee8250f50e91d",
+    "TODO.md": "6d95509d030e6bc82d47b599f093f5d2d4c1ff024b8641734e15f0ec90885b73",
+    "docs/ARCHITECTURE.md": "a9ba2c4a14b5c4cc8660e3e9f5b03339e14deecc69d90e749e3f57495c80f51c",
+    "docs/AUDIT_FINDINGS.md": "7d312dc7b0642a0017509285c2092ea957208351ff6947d599d627e4f823d652",
+    "docs/COMPONENT_STATUS.md": "e14a3b82f6d4752254a19dc7d21b08c520717cc3207ebc1f8dabf888d0594af7",
+    "docs/CONTRACT_FUNCTIONS.md": "0d9fd43818c7f25433df4e89f3d90d1c79a640c0e78e706ee3df39f20f7570c1",
+    "docs/ECONOMICS.md": "64560dd7928015ee802d4be87c254afd80e61019c9623c663a2dc80b26f111f0",
+    "docs/IDLE_AND_DUST.md": "211b91df56df57e6a892205b9ceef0d81b30021e509c5c2a6133233308e0e270",
+    "docs/IMPLEMENTATION_STATUS.md": "0ad5f6d1ddea8e28550877b0a0fa1e4ee3cce2a924d3aafb98b852a5a24d8f3a",
+    "docs/KEEPER_COORDINATION.md": "f3e157c6d92612c2e97e3233e022bba0152a160e6ccdae223ffd4a2653321acd",
+    "docs/OPERATOR_MANUAL.md": "e53f75819e1d76ee2609ea490ebc7b1484dde26411b1161caac031ca9501f18a",
+    "docs/README.md": "597eedecfb92b8c8885454a68907e53beb63d355e3649c51313655909ad73748",
+    "docs/RELEASE_CHECKLIST.md": "e7e3be478705658073cf0ade7dc6d8636affc35e34f775d0b1124d78ac5c9c78",
+    "docs/ROADMAP.md": "2bf0a91cecd9c536b0a36280f7b0b5894559694625f0e11416fb1792871f9689",
+    "docs/WORK_HANDOFF.md": "16e036c4d2fbe38e69be29996ee1f98eb116cef44a5b5f4a8028da7203d46a07",
+    "reports/README.md": "d1173d68c5a052cfabf17743987a841ca5d36a226a52d568a91573a160e5e50b",
+    "docs/EXACT_LP_ALLOCATION.md": "594224f0f35c4028b0bffa38b8b8f059c08f540ac587b730cd091e6a7842e537",
+    "reports/exact-lp-engine-20261106/PLAN.md": "c267f075997f33dd66b8ce79f18ec59c5f345d68800ca611178da555e6e859b4",
+    "reports/exact-lp-engine-20261106/REVIEW.md": "453c81ab92770ede7fa661bf49a1027f1d2562b1cafd6179d7154efe9a2a865e",
+    "reports/exact-lp-engine-20261106/VERIFICATION.md": "4eae3164ee65740ed44c25ec8ff93a8d9d9b91912cb350e5392224559b3ee348"
+  }
+}

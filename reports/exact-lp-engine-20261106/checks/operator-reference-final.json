@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/generate-operator-reference.py",
+    "--check"
+  ],
+  "started_utc": "2026-11-06T21:49:56.146482+00:00",
+  "elapsed_seconds": 0.5940000000009604,
+  "exit_code": 0,
+  "log": "operator-reference-final.log",
+  "log_sha256": "eb9765e4dad408df35a2664e7c67e353299171249ebcf20fe61b8aa92c484463"
+}

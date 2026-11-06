@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/check-slither-review.py",
+    "reports/exact-lp-engine-20261106/static-detectors.json"
+  ],
+  "started_utc": "2026-11-06T21:49:56.894001+00:00",
+  "elapsed_seconds": 0.2819999999992433,
+  "exit_code": 0,
+  "log": "static-coverage.log",
+  "log_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734"
+}

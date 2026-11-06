@@ -1,0 +1,26 @@
+[
+  {
+    "index": 17,
+    "current_fingerprint": "8a3504c487a95e0f71439a4705690d9bea6f3cd6f95ec0cb963aa628701759b4",
+    "prior_fingerprint": "4c8e457f67e52198c92a340c9c1c438793f81789daed301d8c94623dfbf0e3bc",
+    "source_unchanged": true,
+    "normalized_description_diff": "--- prior\n+++ current\n@@ -2,8 +2,8 @@\n \tExternal call allowing reentrancy:\n \t- _harvest(bucketId,deadline) (src/ZZZVault.sol#316)\n \t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#351)\n+\t\t- manager.collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#371)\n \t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#351)\n-\t\t- manager.collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#371)\n \t\t- manager.close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#372)\n \t\t- IVaultResidualLiquidity(address(manager)).closeSecondary(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#373)\n \tBalance read before the call:\n",
+    "not_automatically_equated": true
+  },
+  {
+    "index": 47,
+    "current_fingerprint": "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0",
+    "prior_fingerprint": "d9c49c40c67bdd23b46269cda3e097b07535bbca38376b412cb6e69f164f8372",
+    "source_unchanged": true,
+    "normalized_description_diff": "--- prior\n+++ current\n@@ -13,8 +13,8 @@\n \t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n \tState variables written after the call(s):\n \t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n+\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n \t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n-\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n \tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n \t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n \t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#294)\n",
+    "not_automatically_equated": true
+  },
+  {
+    "index": 58,
+    "current_fingerprint": "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e",
+    "prior_fingerprint": "6c0ca77c93af04040b316714e0b0f5f523a0b851582613e254ae508c5a93b6be",
+    "source_unchanged": true,
+    "normalized_description_diff": "--- prior\n+++ current\n@@ -13,7 +13,7 @@\n \t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n \tState variables written after the call(s):\n \t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n+\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n \t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n-\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n \tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n \t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n",
+    "not_automatically_equated": true
+  }
+]

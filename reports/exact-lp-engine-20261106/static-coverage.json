@@ -1,0 +1,27 @@
+{
+  "strict_records": 497,
+  "current_contexts_individually_reviewed": 3,
+  "current_dispositions": {
+    "false_positive": 3
+  },
+  "unique_exact_fingerprint_and_referenced_source_reused": 494,
+  "new_source_analyzed": "src/libraries/ExactLPAllocation.sol",
+  "new_source_detector_contexts": 0,
+  "new_internal_engine_functions_independently_source_reviewed": 11,
+  "analyzed_contracts_reported": 189,
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "raw_analyzer_exit": 4294967295,
+  "analyzer_json_success": true,
+  "source_unchanged": true,
+  "no_default_record_changed_by_agent": true,
+  "no_checker_normalization_changed": true,
+  "original_unoptimized_stage_preserved": true,
+  "failed_first_final_strict_candidate_preserved": "../candidate-static/FAILED.json",
+  "no_deployment": true,
+  "no_rpc": true,
+  "limits": [
+    "No detector flags is not proof of correctness or future host integration.",
+    "New library is internal/unwired; actual consumer-harness functional/gas evidence remains separate."
+  ]
+}

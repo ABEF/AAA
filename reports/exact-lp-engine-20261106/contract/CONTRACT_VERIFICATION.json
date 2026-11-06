@@ -1,0 +1,173 @@
+{
+  "baseline_commit": "b76dfcc5d1a2513ce6b277e43a6254eb63a74640",
+  "finished_utc": "2026-11-06T21:39:50.256521+00:00",
+  "scope": "Final optimized unintegrated internal two-currency exact-LP engine; source-only normal and actual static evidence",
+  "new_source_sha256": {
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72"
+  },
+  "new_library_unwired": true,
+  "prior84_sources_raw_identical": true,
+  "prior44_ABI_runtime_creation_objects_exact_identical": true,
+  "existing_module_graph_profile6_unchanged": true,
+  "no_current_deployment_identity_upgrade": true,
+  "normal_record": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\production-size-gates.json",
+  "normal_compile_seconds": 116.14,
+  "normal_closed_sources": 85,
+  "normal_production_sources": 54,
+  "normal_dependency_sources": 31,
+  "normal_objects_pass": 45,
+  "actual_carrier_gates_pass": 2,
+  "normal_profile_limits_not_raised": true,
+  "new_library_shell_runtime": 62,
+  "new_library_shell_creation": 93,
+  "library_shell_not_future_integrated_host_size_or_gas_proof": true,
+  "normal_comparison": "NORMAL_COMPARISON.json",
+  "independent_bounded_source_review": "IMPLEMENTATION_REVIEW.json",
+  "actual_static_execution": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\EXECUTION.json",
+  "static_normal_no_recompile": true,
+  "static_records": 497,
+  "static_unique_exact_reused": 494,
+  "new_source_detector_contexts": 0,
+  "new_source_functions_manually_reviewed": 11,
+  "static_json_success": true,
+  "static_raw_exit": 4294967295,
+  "strict_candidate": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-review.json",
+  "strict_coverage_pass": true,
+  "source_frozen_through_normal_static": true,
+  "no_tests_run_by_this_agent": true,
+  "functional_consumer_harness_and_gas_owned_separately": true,
+  "protected_four_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "no_rpc": true,
+  "no_deployment": true,
+  "no_service_site_Anvil_journal_signing_change": true,
+  "independent_approval": false,
+  "limits": [
+    "Current LP Rewards still uses fractional indices until future explicit host integration.",
+    "Tree conservation does not authenticate funding/owner/ordinal/bucket/lifecycle; typed future host must supply these.",
+    "High/low carry bounds fairness phase loss, not whole payout differences or manipulation absence.",
+    "Future explicit ledger/canonical consumer/checkpoint integration and maximum actual host gas remain open."
+  ],
+  "evidence_artifacts": {
+    "normal-final-f73ef50a44/compiler-input.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\compiler-input.json",
+      "sha256": "6473e5e036030d5e5d68c1305c7e5305cf812f908f7072cbc5927185b7c6b04b",
+      "bytes": 794061
+    },
+    "normal-final-f73ef50a44/compiler-output.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\compiler-output.json",
+      "sha256": "7074fb0bf36b0d1c1455b903fce07d57bbea01bf025caf6847d33d58ed75dec0",
+      "bytes": 22626587
+    },
+    "normal-final-f73ef50a44/production-size-gates.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\production-size-gates.json",
+      "sha256": "527d6e871dc7e815e12df222c48e7ab2ea277900f163b14fcbdc47c11225ac57",
+      "bytes": 43759
+    },
+    "normal-final-f73ef50a44/START.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\START.json",
+      "sha256": "92ebac7ed209945a8beab1f446118738fd7ed3cc865fc4257d664d1a8ce09703",
+      "bytes": 10427
+    },
+    "normal-final-f73ef50a44/solc-stderr.txt": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\normal-final-f73ef50a44\\solc-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "NORMAL_COMPARISON.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\NORMAL_COMPARISON.json",
+      "sha256": "423dc965ed144167052662de85706a88e1368e1b4e6a7de0cd8c79aee4b64d97",
+      "bytes": 10912
+    },
+    "IMPLEMENTATION_REVIEW.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\IMPLEMENTATION_REVIEW.json",
+      "sha256": "659826650e83eb1ff64b43c636e31a87c1a109081f7b2d72d8f6ee10bd542e39",
+      "bytes": 5287
+    },
+    "BASELINE_HELPER_REUSE.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\BASELINE_HELPER_REUSE.json",
+      "sha256": "256020c48a80b89152a7bf2179f0f79821af701e29b4f16550e3186eb6950e53",
+      "bytes": 1001
+    },
+    "static-ff6eb88a00/EXECUTION.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\EXECUTION.json",
+      "sha256": "4e0d6ded1d8e7e035b403935d34bdbc5438767137c0630044a3d2c4efff805c2",
+      "bytes": 15212
+    },
+    "static-ff6eb88a00/START.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\START.json",
+      "sha256": "3dde65acc50b3ab43bdf50d050926667d633a0b4bbf66d7d8b4c7adeada56baa",
+      "bytes": 8023
+    },
+    "static-ff6eb88a00/slither.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\slither.json",
+      "sha256": "7866f0c52811fc98f6a0c0f9770cb98704f6135925569e109f2839b80e8ce121",
+      "bytes": 101090465
+    },
+    "static-ff6eb88a00/detectors-only.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\detectors-only.json",
+      "sha256": "1dc62c58af8f056a09b3c43ba6384c9e9c9f39d5a2d10d73bc0cd3d150c78817",
+      "bytes": 39885816
+    },
+    "static-ff6eb88a00/slither.log": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-ff6eb88a00\\slither.log",
+      "sha256": "827b8b1ec65744148a09be402c84cb33eb2f06e113fbfb1e827b00fa73e44979",
+      "bytes": 257982
+    },
+    "candidate-static-final/static-review.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-review.json",
+      "sha256": "77596e783120cba327ab44026527b25027980fa758d8eb93cd2925a7a61c05e3",
+      "bytes": 755498
+    },
+    "candidate-static-final/static-detectors.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-detectors.json",
+      "sha256": "c4b305b74f829d0242b76c719bff7f7ac09f69775df243a6c393ae9be507a1e8",
+      "bytes": 326580
+    },
+    "candidate-static-final/static-coverage.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-coverage.json",
+      "sha256": "be8c81bf6be62fa95f618dd161b9727ec2bb6503189e211e8d059b51aa20b9cd",
+      "bytes": 1034
+    },
+    "candidate-static-final/static-current-rationales.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-current-rationales.json",
+      "sha256": "09bf01a484b65cbf1c79f169ec81f7f355c493124b71bead073859466a8380b9",
+      "bytes": 3496
+    },
+    "candidate-static-final/static-presentation-review.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static-final\\static-presentation-review.json",
+      "sha256": "f3a6517acbdcd72c72c440d9ec20766e56beab75a7a3ee8ebe2d1f573dc6f6b2",
+      "bytes": 3020
+    },
+    "static-final-inventory.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\static-final-inventory.json",
+      "sha256": "20a402f57abd7c8eb8734bc2afbe18f52e2fc32603dd471d9db31e0b28594017",
+      "bytes": 373846
+    },
+    "candidate-static/FAILED.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\candidate-static\\FAILED.json",
+      "sha256": "62125c42842ee14bbd587a9c5f45090c029632626c8b42e446eb021c9ec4bba3",
+      "bytes": 277
+    },
+    "PREPARED.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\optimized-c60489c8e6\\PREPARED.json",
+      "sha256": "c0e28ead883fba23426c028f92259a675b638b736627248cb9db7cafe13cb5ac",
+      "bytes": 999
+    }
+  },
+  "static_current_contexts_individually_reassessed": 3,
+  "static_current_dispositions": {
+    "false_positive": 3
+  },
+  "original_stage_preserved": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6",
+  "original_source_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "original_stage_normal_record": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-solidity-20261106\\physical-d7f78dc7d6\\normal-final-c5967be9f9\\production-size-gates.json",
+  "no_checker_normalization_changed": true,
+  "failed_first_final_strict_candidate_retained": "candidate-static/FAILED.json",
+  "optimization": "Selected-child allocation stays in memory until leaf; siblings persist; exact final-state equivalence must be verified by separately owned full-node differential.",
+  "gas_scope": "Gasleft execution measurements/refund context are not full host/intrinsic/network fee qualification."
+}

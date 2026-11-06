@@ -1,0 +1,9 @@
+{
+  "scope": "Root evidence-assembly validation; no build, EVM or backend behavior failure",
+  "successful": false,
+  "reason": "The first validator incorrectly required extracted-source bytes to equal the entire compiler-input JSON hash.",
+  "artifact": "contract/baseline-unoptimized-afd5/ExactLPAllocation.sol.txt",
+  "recorded_action": "derived_exact_original_source",
+  "correction": "Validate original compiler-input bytes, extract the named source content, then compare exact source bytes and original afd5 SHA. Raw/gzip copies still require exact byte equality.",
+  "source_or_artifact_modified_to_pass": false
+}

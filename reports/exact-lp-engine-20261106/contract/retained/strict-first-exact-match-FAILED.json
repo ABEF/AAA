@@ -1,0 +1,5 @@
+{
+  "reason": "Strict exact matcher correctly rejected analyzer presentation changes; not a new source finding or pass",
+  "first_unmatched_index": 17,
+  "next_step": "Individually review every unmatched context and retain exact unchanged reuse only for unique matches"
+}

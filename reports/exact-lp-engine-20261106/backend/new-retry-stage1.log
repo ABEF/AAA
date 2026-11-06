@@ -1,0 +1,32 @@
+test_expired_retry_and_exact_boundary_allow_existing_review (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_expired_retry_and_exact_boundary_allow_existing_review) ... ok
+test_future_retry_blocks_only_selected_action_before_simulation (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_future_retry_blocks_only_selected_action_before_simulation) ... ok
+test_malformed_retry_or_mismatched_journal_rejected_before_rpc (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_malformed_retry_or_mismatched_journal_rejected_before_rpc) ... 
+  test_malformed_retry_or_mismatched_journal_rejected_before_rpc (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_malformed_retry_or_mismatched_journal_rejected_before_rpc) (change={'retry_after': {'harvest:7': '1'}}) ... ERROR
+test_matching_empty_journal_is_explicitly_no_retry_record (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_matching_empty_journal_is_explicitly_no_retry_record) ... ok
+test_missing_journal_retry_is_unavailable_never_guessed_zero (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_missing_journal_retry_is_unavailable_never_guessed_zero) ... ok
+test_other_bucket_and_action_retry_do_not_leak_into_selected_action (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_other_bucket_and_action_retry_do_not_leak_into_selected_action) ... ok
+test_pending_and_lifecycle_blockers_keep_priority_over_retry (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_pending_and_lifecycle_blockers_keep_priority_over_retry) ... ok
+test_retry_diagnostic_adds_no_rpc_and_never_checks_nonce_or_sends (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_retry_diagnostic_adds_no_rpc_and_never_checks_nonce_or_sends) ... ok
+
+======================================================================
+ERROR: test_malformed_retry_or_mismatched_journal_rejected_before_rpc (tests_python.test_keeper_review_retry.KeeperReviewRetryTests.test_malformed_retry_or_mismatched_journal_rejected_before_rpc) (change={'retry_after': {'harvest:7': '1'}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_review_retry.py", line 113, in test_malformed_retry_or_mismatched_journal_rejected_before_rpc
+    with self.assertRaises(ValueError):self.f.read()
+                                       ^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_operation_review.py", line 116, in read
+    return review(self.cfg,[7],rpc=self.rpc,simulate=simulate,now=lambda:self.rpc.now)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\operation_review.py", line 556, in review
+    operations = [row for bucket in buckets for row in report.operations(bucket, observed_controls)]
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\operation_review.py", line 340, in operations
+    'waiting' if self.stamp < retry else 'elapsed'),
+                 ^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'int' and 'str'
+
+----------------------------------------------------------------------
+Ran 8 tests in 52.496s
+
+FAILED (errors=1)

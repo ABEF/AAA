@@ -127,3 +127,7 @@ reports/residual-main-consolidation-20261106/** -text whitespace=cr-at-eol,-blan
 reports/harvesting-audit-20261106/** -text whitespace=cr-at-eol
 reports/harvesting-audit-20261106/services/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 reports/harvesting-audit-20261106/design/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact engine/compiler/static/retry evidence and native diagnostic spacing.
+reports/exact-lp-engine-20261106/** -text whitespace=cr-at-eol
+reports/exact-lp-engine-20261106/**/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

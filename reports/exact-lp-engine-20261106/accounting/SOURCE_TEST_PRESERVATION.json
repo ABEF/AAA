@@ -1,0 +1,47 @@
+{
+  "original_harness_body_preserved": true,
+  "all_baseline15_test_and_helper_bodies_preserved": true,
+  "old_method_helper_normalized_sha256": {
+    "setUp": "09f6be23b4d6b088497d68792acb8c4384573a8647234a68af7b9a3bf4484eaf",
+    "_refWeight": "a4432f5b178790499b1cb54676d2547e52e3ccc232196acfb505d44d0d4b8638",
+    "_weight": "e63e9af574adda73ec65f19f0392ece8808e7d048ad41e71dd59b9cc46a49e33",
+    "_refCredit": "3a4965715ac9cb54afe7696780d00ec519e2339ba4a833217aed72c6cff4146c",
+    "_credit": "940f75de75d1cce46d9fd095bee4985f5b8ea08280dbdd29ae2da04c90b6f714",
+    "_take": "2896be8d7d034c0d0be74f83e3c39a0ea87b39fa6d83eedceae7b41e1bbd172a",
+    "_reference": "9e9f68ce52079ce79b3e582b274f4058ef37c2d9b42835188714e7cdd9ffdd91",
+    "_treeInvariant": "40a0628dd9e3c7127201267fbf0d3bbab0be72d3a4284d1055301a9491dc12e1",
+    "testExactLPFinalUnitsForBothBooks101Shares": "27420fe36241b21978351f587bed7b419f858ff4197fd2765ee88ba479a6bd44",
+    "testExactLPSplitFullWidthAndInvalidBounds": "52a29cba84a6f9059241254827cf0fcbd1813aaf83284ff4381b71fcc842c9bc",
+    "testExactLPWideRebasePreservesBothBookRightsAndHighPhase": "791a46d3fc54fff256fd7f075311efc4282f09fd0e07c99b87ec25a2adb7ebed",
+    "testFuzzExactLPSplitMatchesIndependentRationalExpression": "f0b583c64b0df1aeeba266df6953961c54257986539fd2100f954e29e2fa4d16",
+    "testExactLPFixedWeightsBatchingAndClaimOrder": "50273abf6ea24523c893e6bf5bac75d8152b324dd1af12bc86b338dd04b99b30",
+    "testExactLPActivationGrowthSettlesBothOldAssetPaths": "e16aa70240af4a19a18f45cc83aefd904d2e6dfaa2a15893c04dd0e7b7d7ba7a",
+    "testExactLPNoopLeavesPendingAndPhaseIdentical": "54d4c882f6dfaf1bbb0de8ac5e4f4705ab441b3691642de3a5175a90c9831901",
+    "testExactLPPreservesPhaseAcrossGenuineGrowthInsteadOfResetStarvation": "b9905d7b55afbdf4e2e52c81e41ea4ebb2781f27a26c59b1659e77602f6d858a",
+    "testExactLPPhaseApproximationCanDelayOneUnitAtIntegerBoundary": "cca00b198c3c08632329a0d2e617cf002241d9e9b2e70ca876a288103e455ee0",
+    "testExactLPZeroWeightsPreserveOldWholeRightsAndHighPhase": "0e4f33b004c7762c157adec4ace875bbdcf0dc6e4aa0f6ff1822e0f97cde2340",
+    "testExactLPLifetimeCanExceedUint256WithBoundedOutstanding": "6b9e15464015538040ee1dfb3fcc69ce15863c34c37cc26cc9bddabbe40fe0a9",
+    "testExactLPInvalidAndOverflowOperationsRollBack": "90e90b16e12f47b0dc0263b4829b64345e7e9440e4089eda526ff28d6b213f7e",
+    "testExactLP1000OrdinalsConserveBothBooksWithoutPadding": "dd74b865a125c1c1c75deb24504a12b66b877b4a740841029c3c0964b74e1f8f",
+    "testExactLPCold1000OrdinalEngineGasSamples": "242c5050d8d255dd30d17a1527b3eae01fcc1f7fa0e316c41356c023f2c52506",
+    "testFuzzExactLPMixedSequenceMatchesIndependentEagerOracle": "c62a713ed6e196b9bc1650c5b03ecc4417eda05879f7bad0cc8484470688ac84"
+  },
+  "only_added_test_helpers": [
+    "_baselineCredit",
+    "_baselineSame",
+    "_baselineTake",
+    "_baselineWeight",
+    "testExactLPOptimizedMatchesFrozenBaselineCompleteStorageAfterEveryAction"
+  ],
+  "test_only_baseline_copy_exact_after_name_comment_substitution": true,
+  "baseline_library_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "test_only_baseline_helper_sha256": "e165eadc22cb7902f66fbcf80c25df21c5c55efb42788df9468f74bda7482c8a",
+  "prior84_source_files_unchanged": true,
+  "all_preexisting_test_files_unchanged": true,
+  "protected4_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  }
+}

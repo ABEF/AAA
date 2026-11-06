@@ -1,0 +1,35 @@
+[
+  {
+    "index": 17,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "ZZZVault._join is private and reached only through nonReentrant activate/increase while operating/principalOperating enforce lifecycle before and after callbacks. Its captured supply is intentionally the pre-entrant denominator; _harvest only measures fee receipts and updates FeeController/Rewards reserves and indices, not Vault shares. The only ordinary bucketTotalShares write follows final contributionResult; canonicalWrite requires the fixed canonical companion and inert import state2, incompatible with this operating entry. Manager/child paths are fixed-module and guarded. Reordered Slither callee leaves do not supply a reachable reentrant share writer. This is bounded to the reviewed module/token trust model, not proof against corrupted upstream governance or dependencies.",
+    "sources": [
+      "src/ZZZVault.sol"
+    ],
+    "current_fingerprint": "8a3504c487a95e0f71439a4705690d9bea6f3cd6f95ec0cb963aa628701759b4",
+    "nearest_prior_fingerprint": "4c8e457f67e52198c92a340c9c1c438793f81789daed301d8c94623dfbf0e3bc"
+  },
+  {
+    "index": 47,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "ZZZLPPositionExecutor.close is fixed immutable-Manager only, requires the sealed current Manager binding, and is nonReentrant; Manager.close itself admits only Vault and is guarded. Both LPs and pool keys authenticate Vault custody. _settleTakePair accepts native payment only from the current fixed core; _finishNativeCredit clears nativeSender/nativeReceived before sending exact received ETH to the fixed Vault. That recipient receive path performs authenticated static sender validation, not an attacker-chosen payout. No reentrant mutating child entry can clear/remap the live residual; mappings/count change only after actual successful burns and failure reverts both legs. Read-only intermediate getters do not grant mutation or withdrawal. The two nativeReceived=0 leaves are presentation-order changes; no new execution order is inferred.",
+    "sources": [
+      "src/ZZZLPPositionExecutor.sol"
+    ],
+    "current_fingerprint": "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0",
+    "nearest_prior_fingerprint": "d9c49c40c67bdd23b46269cda3e097b07535bbca38376b412cb6e69f164f8372"
+  },
+  {
+    "index": 58,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "ZZZLPPositionExecutor.collect is fixed immutable-Manager only, sealed-binding checked and nonReentrant; Manager.collect is fixed-Vault only and guarded. It performs zero-liquidity decreases on authenticated main/residual positions, not principal mutation. Core ETH receipts are accepted only while nativeSender is that fixed core; the counter/sender are cleared before exact forwarding to fixed Vault, whose receive path authenticates a liquidity credit without arbitrary calls. Reentry cannot invoke another mutating child operation. A failure in either leg reverts the whole collection. Reordering reset writes in analyzer output adds no new reachable actor path; compromised token/core qualification remains outside this false-positive disposition.",
+    "sources": [
+      "src/ZZZLPPositionExecutor.sol"
+    ],
+    "current_fingerprint": "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e",
+    "nearest_prior_fingerprint": "6c0ca77c93af04040b316714e0b0f5f523a0b851582613e254ae508c5a93b6be"
+  }
+]

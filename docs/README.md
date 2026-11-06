@@ -21,6 +21,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Topic | Current guide |
 | --- | --- |
 | Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
+| Exact-unit LP upgrade | [Implemented internal engine and integration boundary](EXACT_LP_ALLOCATION.md); current LP fraction ledger remains until full wiring. |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |

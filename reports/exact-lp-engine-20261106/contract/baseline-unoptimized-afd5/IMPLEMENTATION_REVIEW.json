@@ -1,0 +1,30 @@
+{
+  "reviewed_utc": "2026-11-06T19:24:20.948285+00:00",
+  "review_scope": "Independent source-level review of unintegrated internal bounded allocation engine",
+  "source": "src/libraries/ExactLPAllocation.sol",
+  "source_sha256": "afd5d5c3db633045d2eb6bad5443633f4a5497cc64dbdc05c098c48bc7f7e915",
+  "independent_audit": false,
+  "no_tests_run_by_this_review": true,
+  "no_current_ledger_profile_change": true,
+  "new_concrete_defect_found": false,
+  "functions": {
+    "setWeight": "Checks immutable ordinal bound, rejects aggregate overflow before writes, strict unchanged-weight return, pushes BOTH asset books along OLD-weight path before leaf mutation; then bottom-up each old denominator is captured before child-sum/new denominator and low-only rebase.",
+    "credit": "Constant root writes and checked outstanding/pending addition; positive funding needs nonempty root; zero is no-op; no lifetime accumulator that could block repeated credit/drain cycles. Does not verify actual asset backing.",
+    "claimable": "Adds existing pending plus incoming parent split on each selected path; skips zero total amount before division; final leaf includes old whole rights even when current weight is zero. No real state writes.",
+    "take": "At most ten pushes before consuming only selected leaf pending and decrementing book outstanding. Host, not library, authenticates owner and payout.",
+    "totalWeight/weightOf/outstanding": "Read only currently stored internal counters; ordinal validation on leaf lookup. No external NFT, share, token or lifecycle verification.",
+    "split": "Math.mulDiv/mulmod keep full precision. Valid low<W and uint128 high<Q. Low gap fold never adds an overflowing sum. Phase<2Q; if L=W or0 no extra allocation; otherwise floor quotient<=A-1 so carry increment<=A. Right=A-left exact whole conservation.",
+    "_push": "Consumes one node pending into disjoint children, changes only that book carry, leaves outstanding invariant. Nonzero invalid zero-weight node fails split.",
+    "_rebase": "For valid state low<oldW, floor(low*newW/oldW)<newW; high retained even through empty weight. Fractional fairness-phase reduction <1/(Q*newW) for positive target or<1/Q when target0. Not an integer payout bound.",
+    "_leaf": "Explicit ordinal1..1000, maps into1024..2023; padding2024..2047 never receives an admitted positive leaf weight."
+  },
+  "critical_policy_limits": [
+    "Hierarchical allocation is not identical to flat proportional/largest-remainder rounding.",
+    "High+low carry limits weight-update FAIRNESS PHASE truncation, not whole-unit payout differences. The exact-threshold1/3 -> total4 -> total6, credit4 vector can defer one unit.",
+    "Fixed-weight batching/claim-order invariance is relative to the stored phase; dynamic weight changes need explicit reviewed semantics.",
+    "Two enum books are logical ETH/ZZZ identities only; host must bind actual assets, authenticate funding/ordinals/buckets/current owners, synchronize exact Vault denominators and retain lifecycles.",
+    "Internal storage invariants presume all ordinary writers use this engine. Future canonical import must validate weights, low denominators, carry bounds, pending/outstanding and restore weights BEFORE carry/money without replaying resets.",
+    "No fixed-point money reserve exists in this engine. Carry is future rounding phase; only pending/outstanding are money.",
+    "New internal-library shell normal size is not future integrated Rewards/Vault code size or operating gas approval."
+  ]
+}

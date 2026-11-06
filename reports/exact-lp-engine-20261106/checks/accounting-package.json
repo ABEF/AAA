@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "reports/exact-lp-engine-20261106/accounting/verify-package.py"
+  ],
+  "started_utc": "2026-11-06T21:52:05.251085+00:00",
+  "elapsed_seconds": 0.18699999999807915,
+  "exit_code": 0,
+  "log": "accounting-package.log",
+  "log_sha256": "1d5adbb5c546e806751fbd3fb1db8dc2c7eb4229093f80250f45d871c6ebd2d5"
+}
