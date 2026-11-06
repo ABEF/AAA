@@ -2536,7 +2536,7 @@
             "1": "Exact remaining ZZZ budget, including actual swap output if ETH was input."
           },
           "value": "Exactly amount0 native wei. Network gas is separate.",
-          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate."
+          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate. Guarded paused same-main consolidation uses the existing active-aware route solver for current main bounds, mainFloor10000 and ordinary price marks. Only the fixed Migration active context selects it. Ordinary full replacement keeps its existing active solver; other growth/compound existing-ID paths retain ordinary planning; explicit emergency routing/mask remains unchanged."
         },
         "EXECUTION_QUALITY_VERSION()": {
           "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
@@ -6891,7 +6891,7 @@
           "outputs": {
             "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill."
           },
-          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate."
+          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate. Also used for authenticated guarded same-main consolidation with current bounds, mainFloor10000 and zero replacement marks (ordinary prices are the valuation basis). No LP replacement or new keeper authority is implied by using this solver."
         },
         "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
           "purpose": "Evaluate one reviewed same-pair venue using bounded actual-core quotes and full/partial objective.",

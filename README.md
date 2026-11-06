@@ -13,6 +13,8 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 existing contracts, services, journals or websites. Public signing remains disabled.
 
 
+Current [moving-market LP review](reports/moving-market-flows-20261106/REVIEW.md) covers automatic replacement, two-to-one merges and manual consolidation, with complete [input](reports/moving-market-flows-20261106/INPUT_MATRIX.md) and [recovery](reports/moving-market-flows-20261106/BLOCKERS.md) maps. Source only; no environment rollout.
+
 ## Project navigation
 
 [Consolidated audit findings](docs/AUDIT_FINDINGS.md) explains past findings against

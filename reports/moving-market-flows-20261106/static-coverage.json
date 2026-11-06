@@ -1,0 +1,16 @@
+{
+  "strict_records": 497,
+  "current_contexts_individually_reviewed": 44,
+  "exact_unique_reused": 453,
+  "current_dispositions": {
+    "false_positive": 20,
+    "informational": 24
+  },
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "raw_analyzer_exit": 4294967295,
+  "source_unchanged": true,
+  "no_default_record_changed": true,
+  "no_deployment": true,
+  "no_rpc": true
+}

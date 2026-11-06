@@ -1,0 +1,11 @@
+{
+  "head": "e1a85a2899dd703072a87623122fde9f066c9fd0",
+  "production_changes": [
+    "src/ZZZLiquidityManager.sol"
+  ],
+  "manager_sha256": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
+  "line_endings": "CRLF preserved",
+  "no_new_abi_or_storage": true,
+  "no_rpc": true,
+  "no_deployment": true
+}

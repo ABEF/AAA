@@ -196,6 +196,9 @@ contract OptionalPortfolioCoreTest is Test {
         require(msg.sender==address(core));(uint8 mode,uint160 q)=abi.decode(data,(uint8,uint160));BalanceDelta delta;
         if(mode==0 || mode==3)(delta,)=core.modifyLiquidity(mode==0?key:targetKey,ModifyLiquidityParams(-60000,60000,int256(1_000_000 ether),bytes32(0)),"");
         else if(mode==2)delta=core.donate(key,10 ether,10 ether,"");
+        // TEST ONLY: the external seed provider removes its OWN position. The
+        // Vault's physical main, idle and permissions are not modified here.
+        else if(mode==4)(delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,-int256(999_999 ether),bytes32(0)),"");
         else { (uint160 current,,,)=state.getSlot0(PoolId.wrap(pool));delta=core.swap(key,SwapParams(q<current,-int256(1_000_000 ether),q),""); }
         _settle(address(0),delta.amount0());_settle(address(token),delta.amount1());return "";
     }
@@ -1742,5 +1745,91 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(vault.sharesOf(alice),aliceShares);assertEq(vault.sharesOf(bob),bobShares);assertEq(vault.group(bucket).lpTokenId,main);
         assertGt(rewards.claimable(bob,address(0)),0,"later harvested swap fees belong to current active cohort");
         _claimExactly(alice,BOB,address(0));_claimExactly(bob,BOB,address(0));
+    }
+
+    event MovingMarketRouteProof(bytes encoded);
+    /// @dev A reachable, deliberately guarded-bypass recovery setup. Existing
+    /// full emergency creates a SMALL active main and LARGE attributed idle;
+    /// it does not forge balances or relax the later normal operation's guards.
+    function _movingRecoveryMain() private returns(uint256 id,uint256 bucket,uint256 main) {
+        (id,bucket,main,)=_hybrid();(int24 oldLower,)=manager.ticks(main);
+        _move(TickMath.getSqrtPriceAtTick(oldLower-200));(,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));
+        int24 aligned=(tick/200)*200;EmergencyRebalance memory r;
+        r.bucket=bucket;r.custodyHash=migration.emergencyCustodyHash(bucket);r.lower=aligned-200;r.upper=aligned+200;
+        r.swapPool=pool;r.zeroForOne=true;r.amountIn=1 ether;r.minimumOut=1;r.minimumLiquidity=1;
+        r.deadline=block.timestamp+100;r.reviewHash=keccak256("TEST ONLY DELIBERATE PARTIAL RECOVERY BEFORE NORMAL REINVEST");
+        access.setPaused(true);migration.emergencyRebalance(r);main=vault.group(bucket).lpTokenId;
+        assertEq(manager.secondaryId(main),0);assertGt(vault.group(bucket).idle0,100 ether);
+        uint128 mainL=positions.getPositionLiquidity(main);core.unlock(abi.encode(uint8(4),Q96));assertEq(positions.getPositionLiquidity(main),mainL);
+        (int24 lower,)=manager.ticks(main);uint160 epsilon=uint160(uint256(Q96)*201/(2*1e18));
+        _move(TickMath.getSqrtPriceAtTick(lower)+epsilon);(,tick,,)=state.getSlot0(PoolId.wrap(pool));assertEq(tick,lower);
+    }
+    function _movingAlternate() private returns(bytes32 destination) {
+        destination=registry.admitTarget();targetKey=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),3000,200,IHooks(address(0)));
+        core.initialize(targetKey,manager.spot(pool));core.unlock(abi.encode(uint8(3),Q96));strategy.setRangeOrientation(destination,1);
+        bytes32[] memory venues=new bytes32[](2);venues[0]=pool;venues[1]=destination;
+        manager.balancingRouter().configureExecutionPools(venues,keccak256("TEST ONLY TWO ACTUAL REVIEWED VENUES"));
+    }
+    function _movingRebuildFees(uint256 bucket,Vm.Log[] memory logs,uint256[4] memory e,uint256[4] memory z)
+        private view returns(uint256 released0,uint256 released1) {
+        uint256 count;uint256 a0;uint256 a1;
+        for(uint256 i;i<logs.length;++i)if(logs[i].emitter==address(vault) && logs[i].topics.length==2 &&
+            logs[i].topics[0]==keccak256("FeesCollected(uint256,uint256,uint256)") && uint256(logs[i].topics[1])==bucket){
+            ++count;(uint256 f0,uint256 f1)=abi.decode(logs[i].data,(uint256,uint256));a0+=f0;a1+=f1;
+        }
+        assertEq(count,1);uint256 u0=(e[0]+a0)/20;uint256 u1=(z[0]+a1)/20;
+        assertEq(fees.dust(bucket,address(0)),(e[0]+a0)%20);assertEq(fees.dust(bucket,address(token)),(z[0]+a1)%20);
+        assertEq(fees.buybackBalance(address(0)),e[2]+u0);assertEq(fees.buybackBalance(address(token)),z[2]+u1);
+        assertEq(rewards.liabilities(address(0)),e[3]+18*u0);assertEq(rewards.liabilities(address(token)),z[3]+18*u1);
+        assertEq(fees.compoundBalance(bucket,address(0)),0);assertEq(fees.compoundBalance(bucket,address(token)),0);
+        return(e[1]+u0,z[1]+u1);
+    }
+    function testMovingMarketOffRebuildUsesExecutionStateAfterPriceAndContributionChanges() public {
+        (uint256 alice,uint256 bucket,uint256 oldMain,uint256 oldAux)=_hybrid();uint256 bob=_mint(BOB);
+        policy.setMode(pool,false,keccak256("TEST ONLY PENDING WHOLE SINGLE MERGE"));
+        vm.warp(uint256(vault.group(bucket).lastRebalance)+43200);_prices();assertTrue(strategy.rebalanceReady(bucket));
+        bytes memory prepared=abi.encodeCall(ZZZVault.rebalance,(bucket,uint128(1),block.timestamp+300));
+        uint64 oldClock=vault.group(bucket).lastRebalance;uint128 auxL=positions.getPositionLiquidity(oldAux);
+        vm.warp(block.timestamp+30);_move(uint160(uint256(manager.spot(pool))*101/100));
+        uint256[2] memory amount=_reviewGrowth(oldMain,500 ether);vm.startPrank(BOB);token.approve(address(vault),amount[1]);
+        vault.activate{value:amount[0]}(bob,pool,amount[0],amount[1],1,block.timestamp+100);vm.stopPrank();
+        _contribute(ALICE,alice,100 ether,true);assertEq(vault.group(bucket).lastRebalance,oldClock);assertEq(positions.getPositionLiquidity(oldAux),auxL);
+        uint256 aliceShares=vault.sharesOf(alice);uint256 bobShares=vault.sharesOf(bob);assertGt(bobShares,0);
+        core.unlock(abi.encode(uint8(2),Q96));
+        uint256[4] memory e=_allocationBefore(bucket,address(0));uint256[4] memory z=_allocationBefore(bucket,address(token));
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);vm.recordLogs();
+        (bool ok,bytes memory reason)=address(vault).call(prepared);if(!ok)assembly("memory-safe"){revert(add(reason,32),mload(reason))}
+        (uint256 c0,uint256 c1)=_movingRebuildFees(bucket,vm.getRecordedLogs(),e,z);
+        assertGt(c0+c1,0,"funded compounding actually enters the rebuilt principal");
+        uint256 starting=deployed+idle+oracle.value(address(0),c0)+oracle.value(address(token),c1);
+        (uint256 afterLP,uint256 afterIdle)=vault.migrationBudget().nav(bucket);assertGe(afterLP+afterIdle,Math.mulDiv(starting,9700,10000,Math.Rounding.Ceil));
+        (uint256 main,)=_residualAuditPhysical(bucket,false);assertTrue(main!=oldMain);assertEq(manager.secondaryId(oldMain),0);
+        (int24 lower,int24 upper)=manager.ticks(main);(,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));assertGe(tick,lower);assertLt(tick,upper);
+        assertEq(vault.sharesOf(alice),aliceShares);assertEq(vault.sharesOf(bob),bobShares);assertEq(vault.bucketTotalShares(bucket),aliceShares+bobShares);
+        assertEq(vault.group(bucket).lastRebalance,block.timestamp);assertFalse(policy.configurationPending(bucket));
+        vm.expectRevert();positions.ownerOf(oldMain);vm.expectRevert();positions.ownerOf(oldAux);
+    }
+    function testMovingMarketManualSelectsActiveAlternateInsteadOfInactiveLegacyCandidate() public {
+        (uint256 id,uint256 bucket,uint256 main)=_movingRecoveryMain();bytes32 alternative=_movingAlternate();
+        Position memory p=vault.group(bucket);(int24 lower,int24 upper)=manager.ticks(main);ZZZLPBalancer router=manager.balancingRouter();
+        vm.prank(address(manager));ZZZLPBalancer.Plan memory legacy=router.plan(pool,lower,upper,p.idle0,p.idle1);
+        uint256[4] memory marks;vm.prank(address(manager));ZZZLPBalancer.Plan memory active=router.planReplacement(pool,lower,upper,p.idle0,p.idle1,10000,marks);
+        emit MovingMarketRouteProof(abi.encode(manager.spot(pool),lower,upper,p.idle0,p.idle1,legacy,active,alternative));
+        assertEq(legacy.poolId,pool);assertLt(legacy.targetSqrtAfter,TickMath.getSqrtPriceAtTick(lower));
+        assertEq(active.poolId,alternative);assertEq(active.targetSqrtAfter,manager.spot(pool));
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);
+        vm.expectCall(address(router),abi.encodePacked(ZZZLPBalancer.planReplacement.selector));_consolidateAndAssert(id,bucket,r,false);
+        (,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));assertGe(tick,lower);assertLt(tick,upper);
+    }
+    function testMovingMarketNoActiveFeasibleRouteRestoresPrincipalFeesAndReview() public {
+        (uint256 id,uint256 bucket,uint256 main)=_movingRecoveryMain();Position memory p=vault.group(bucket);
+        (int24 lower,int24 upper)=manager.ticks(main);ZZZLPBalancer router=manager.balancingRouter();
+        vm.prank(address(manager));ZZZLPBalancer.Plan memory legacy=router.plan(pool,lower,upper,p.idle0,p.idle1);
+        emit MovingMarketRouteProof(abi.encode(manager.spot(pool),lower,upper,p.idle0,p.idle1,legacy));
+        assertEq(legacy.poolId,pool);assertLt(legacy.targetSqrtAfter,TickMath.getSqrtPriceAtTick(lower));
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);bytes32 beforeState=_consolidationStateHash(id,bucket);
+        vm.expectCall(address(router),abi.encodePacked(ZZZLPBalancer.planReplacement.selector));vm.expectRevert();migration.consolidateResidual(r,false);
+        assertEq(_consolidationStateHash(id,bucket),beforeState);assertEq(migration.consolidationCustodyHash(bucket),r.custodyHash);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),0);assertTrue(access.paused());
     }
 }

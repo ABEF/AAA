@@ -13,6 +13,7 @@ class FakeRpc:
         if method=='eth_getBlockByNumber':return {'number':'0x64' if params[0]=='latest' else params[0],'timestamp':hex(self.now),'hash':H}
         if method=='eth_call':
             if self.error:raise RpcError('simulation failed')
+            if 'from' in params[0]:return '0x'
             return '0x'+'0'*64
         if method=='eth_estimateGas':return hex(self.gas)
         if method=='eth_gasPrice':return hex(self.gas_price)

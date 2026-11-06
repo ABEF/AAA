@@ -245,6 +245,18 @@ The successful observation adds one logical latest-header read; adapter chain
 checks/retries and actual provider latency still need qualification. These
 diagnostic changes do not add transaction authority or guarantee strict cadence.
 
+## Late ordinary-LP review
+
+The [moving-market audit](../reports/moving-market-flows-20261106/REVIEW.md)
+adds one late full rebalance/compound simulation with the captured gas/gasPrice
+envelope and exact void return. Original calldata, minL and deadline are retained.
+Final service/lifecycle readiness, nonce/funding and stop checks remain; the
+final head/deadline/current-day/retry proof follows the slow reads, before durable
+intent. Nothing new can bypass pending recovery or automatically force execution.
+Earlier and final tests are separately scoped; no running worker was updated.
+The [manual](OPERATOR_MANUAL.md#both-moving-market-flows-and-overlapping-controls)
+lists diagnostic reasons and distinguishes guarded same-main from full replacement.
+
 ## Rollout and recovery
 
 Install matching reviewed source through the controlled service procedure, then

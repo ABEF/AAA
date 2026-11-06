@@ -26,6 +26,11 @@ retain their original source scope; they do not verify this fresh portfolio.
 | Compound | Separate interval; reinvest attributed idle/designated reserve in the existing main. Service waits at the adjustment threshold or a pending configuration change. |
 | Limits | Default contribution 2%, conversion 1%, maintenance 3%; each governed maximum 10%, separate gas and stronger caller/venue floors. |
 
+Guarded manual same-main consolidation now uses active-aware route candidates
+for the preserved bounds, including the quote's projected target tick. Normal
+full replacement already used this solver; ordinary growth/compound and explicit
+force keep their existing paths. See the [input/control audit](../reports/moving-market-flows-20261106/INPUT_MATRIX.md).
+
 ## Requested rebalance confirmation buffer
 
 Fresh `REBALANCE_CONFIRMATION_VERSION()==3` distinguishes the market condition,

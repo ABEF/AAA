@@ -19,6 +19,7 @@ interface INativePoolAssets {
 }
 interface IEmergencyOutput { function minimumOutputForExit(bytes32,bool,uint256) external view returns(uint256); }
 interface IPortfolioVault { function migrationBudget() external view returns(address); }
+interface IGuardedConsolidation { function consolidationActive() external view returns(bool); }
 interface IPortfolioBudget {
     function maintenanceBucket() external view returns(uint256);
     function maintenancePrices() external view returns(uint256,uint256,uint256,uint256);
@@ -266,6 +267,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
                 IPortfolioBudget(IPortfolioVault(access.module(Ids.VAULT)).migrationBudget()).maintenancePrices();
             p=balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,
                 _portfolioPolicy().enabled(targetPool)?_portfolioPolicy().minimumMainBps(targetPool):10000,marks);
+        } else if(existingLpId!=0 && access.paused() &&
+            IGuardedConsolidation(access.module(Ids.MIGRATION)).consolidationActive()) {
+            // Guarded same-main reinvestment promises active placement too.
+            // Filter the quoted destination tick before choosing a route; only
+            // the fixed Migration's paused context receives this restriction.
+            // Single-main scoring uses current Prices, not replacement marks.
+            uint256[4] memory marks;
+            p=balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks);
         } else p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1);
         balanced0 = amount0; balanced1 = amount1;
         uint256 refund0 = amount0; uint256 refund1 = amount1;

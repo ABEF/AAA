@@ -1,8 +1,19 @@
 # Work handoff
 
-Reviewed6November2026. Same-main management baseline main9025735. Inspect actual Git heads
+Reviewed6November2026. Moving-market flow baseline maine1a85a2. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
+
+Both moving-market paths are audited in [current review](../reports/moving-market-flows-20261106/REVIEW.md).
+Manager alone changes runtime: paused authenticated guarded consolidation uses
+active-aware quote selection; existing automatic replacement/growth/compound/
+explicit force paths stay distinct. ABI/storage/profile shapes remain; exact
+fresh runtime pins and497strict static record replace only changed source scope.
+Ordinary keeper LP submission adds one bounded late full call, final service/
+lifecycle/nonce/funding checks and LAST head/deadline/UTC-day/retry proof before
+durable intent. Calldata/minL/deadline/cost limits are never rewritten. Pending
+recovery, journal schema, signer restrictions and all live environments remain.
+Local I/O/inclusion can still age a review; no always-executable/MEV guarantee.
 
 ## Current result
 
@@ -99,7 +110,7 @@ current verification record instead of a second mutable checklist.
 Main only; source/docs publication is not rollout. Anvil8902, all NFTs/LP/balances,
 dist overlays, pending/nonce/receipt/spend journals and shared browser signer stay
 unchanged. Popldemo simulation and separately served poplint current3 remain;
-fresh source8/config14 is not the served site. Public DEPLOYMENT null, signing
+fresh source8/config15 is not the served site. Public DEPLOYMENT null, signing
 Anvil-only; heartbeat remains user-paused. No public transactions or service reset.
 
 External evidence root:

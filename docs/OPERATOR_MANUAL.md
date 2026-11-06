@@ -76,7 +76,7 @@ become mixed as price moves; its current actual tokens always remain accounted.
 Keep the existing main: **pause → reviewed consolidateResidual → inspect → unpause**.
 To replace the main at the next ordinary adjustment: **set mode false → wait for
 eligible successful rebalance → verify one active main**. Immediate full replacement is:
-**set mode false → pause → reviewed emergency consolidation → inspect → unpause**.
+**set mode false → pause → reviewed full emergency replacement → inspect → unpause**.
 There is no holder-facing principal withdrawal in either sequence.
 
 Governance same-pair `Migration.moveFunds` and parked `Migration.resume` are
@@ -1098,6 +1098,57 @@ To re-enable optional hybrid management later, governance calls
 the next eligible whole adjustment (or governed park/resume under destination
 mode) may create one. Fresh readiness is required; old residual reviews cannot
 qualify the new physical association.
+
+#### Both moving-market flows and overlapping controls
+
+Use the [complete input matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
+and [blocker/recovery table](../reports/moving-market-flows-20261106/BLOCKERS.md)
+when diagnosing a failure. They separate fixed identity, live market, captured
+budgets, service scheduling and receipt recovery; no guard is a general override.
+
+| Intent | Actual operation and moving-input behavior |
+| --- | --- |
+| Automatic full rebalance, one or two positions | Keeper calls Vault.rebalance(bucket,minL,deadline), without old ticks or an off-chain swap quote. The atomic call captures current NAV/shares/controls, harvests both, includes released compound, closes both and calculates a new approved reference-based range/live route. Actual output and active new-main placement are checked. External swaps may run before/after, not between its internal steps. |
+| Automatic two-to-one merge | Read enabled(pool); setMode(pool,false,reviewHash) if currently ON. After ordinary cooldown/applicable readiness, full replacement creates one new active main and acknowledges OFF. Old main need not stay in range to be replaced. Contributions before execution are included at current NAV and do not recenter/reset its clock or stable samples. |
+| Manual keep the existing main | Confirm pause; use consolidateResidual(request,false) with current custody hash and exact existing bounds. Guarded routing now filters for an active resulting main, including our own projected swap. It still cannot promise activity if the market already left those immutable bounds. It advances compound/control/recovery state but preserves lastRebalance and leaves independent width changes pending. |
+| Manual same-main force | consolidateResidual(request,true) uses the exact explicit swap/retained mask. With checks14 it keeps price/value/operation protections but can accept inactive one-sided LP; it does not recenter. No automatic conversion from guarded to forced request. |
+| Manual full replacement | Use separately reviewed emergencyRebalance(request), or ordinary Vault.rebalance if your wallet has actual keeper permission and its on-chain guards pass. Emergency takes reviewed NEW ticks/route and has optional protections; even checks14 does not itself promise an active main. It closes both and releases designated compound. Keep desired mode OFF if future residual creation is not wanted. |
+
+For ordinary keeper rebalance/compound, ONE additional complete eth_call runs
+late inside the already-reviewed gas/gasPrice envelope, after the earlier
+simulation/estimate and code/route checks. The known void ABI must return exactly
+0x. Final service/lifecycle/stop checks still apply: a successful compound call
+alone does not prove the service's stricter in-range/below-threshold policy.
+Expected pending/latest nonce and gas funding are rechecked, then a final fresh
+head checks the ORIGINAL deadline, retreat/invalid time, current UTC-day budget
+and retry limit. No further RPC follows that final time/day proof. Only then
+does the existing durable intent and signer path proceed. No floor, calldata,
+deadline or spending limit is rewritten; this is not a simulation loop.
+
+| Safe diagnostic | Meaning / action |
+| --- | --- |
+| lp_final_simulation_unavailable | Full call/gas/provider evidence failed or void reply was contradictory. No new intent/sign/spend; inspect the original response safely and re-review. An opaque revert is not a proved exact slippage cause. |
+| lp_submission_head_invalid | Head/time retreated or cannot form a valid UTC date. Stop and verify provider/canonical evidence. |
+| lp_submission_deadline_invalid | Original inclusion deadline expired or is outside the contract window. Let a new eligible cycle prepare new calldata; never silently extend it. |
+| lp_submission_retry_cooldown | Existing per-action retry still applies. Preflight deferral is not a confirmed paid revert. |
+| lp_submission_nonce_changed | Another same-key operation or inconsistent RPC state. Reconcile exact transactions/journal; never guess adoption. |
+| lp_submission_balance_insufficient | Gas funding fell below the captured bounded cost. Fund the limited keeper gas wallet, not a new principal recipient. |
+| cost_cap | Per-transaction or current-day budget is exhausted, including midnight during slow reads. Review configured budgets; no automatic increase. |
+
+Confirmed reverts charge actual gas and retain the existing configurable
+revert_cooldown_seconds (default3600, allowed60..86400). Independent healthy jobs
+continue; pending/ambiguous transactions always recover first. Read-only
+preflight faults send nothing. A running host still needs qualified provider
+latency and crash/restore procedures. Local fsync/signing/network/inclusion can
+age even the final check: inclusion-time contract guards remain necessary.
+
+No new keeper authority, manual adaptive whole-bucket fallback, public wallet
+signing, journal schema or live configuration is added. Apply matching reviewed
+source/config/runtime pins through the existing controlled rollout and restart
+procedure; source publication itself does not restart a service or upgrade a
+sealed Manager. The offline reviewHash helper still does not fetch live inputs,
+choose meaningful floors or simulate manual operations. Actual manual/provider/
+target-gas rehearsals and independent approval remain open.
 
 #### Fixed bounds, moving markets and fresh reviews
 

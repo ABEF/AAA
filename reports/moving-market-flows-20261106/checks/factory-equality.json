@@ -1,0 +1,8 @@
+{
+  "complete_normal_royalty_creation_bytes_equal": true,
+  "bytes_compared": 25522,
+  "sha256": "1e2f2f84e8c2075830c8bd6ef1cb63297e3b7d28d7580c2db8cb4be09234adf2",
+  "frozen_factory_payload_validation": true,
+  "normal_source": "contract-agent/normal-final-7db12e78d6",
+  "historical_factory_sources_artifacts_unchanged": true
+}

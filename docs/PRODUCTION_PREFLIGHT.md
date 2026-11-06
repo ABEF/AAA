@@ -1,5 +1,12 @@
 # Current production inventory and read-only preflight
 
+The [moving-market source follow-up](../reports/moving-market-flows-20261106/VERIFICATION.md)
+retains existing ABI/storage/capability/profile shapes and changes the exact
+Manager runtime/creation pins. Guarded paused same-main routing filters active
+candidates; ordinary growth/compound/force remain distinct. Authenticate current
+compiler/runtime bindings before any fresh deployment; do not relabel existing
+Anvil, service, inventory or journal identities as this source.
+
 Fresh source: [accounting6 / custody5 / portfolio2](POSITION_V6.md), canonical
 same-chain exact-royalty V8. **Undeployed; production NOT APPROVED.** Current
 factory storage and scoped claim-planning changes are recorded in the

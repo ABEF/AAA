@@ -1,0 +1,7 @@
+{
+  "normal_source": "contract-agent/normal-final-7db12e78d6",
+  "stdout": "{\"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 888, \"ready_for_submission\": false}\n",
+  "ABI_input_output_permission_value_changes": false,
+  "current_source_runtime_pins": true,
+  "initial_rejected_attempt": "Example digest used raw bytes instead of canonical reference JSON; strict checker rejected. Corrected only the digest, with all888 explicit rows preserved."
+}

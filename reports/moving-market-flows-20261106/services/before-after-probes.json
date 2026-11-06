@@ -1,0 +1,68 @@
+{
+  "kind": "Three deterministic original-source acceptance probes, not live execution or full tests",
+  "baseline_monitor_sha256": "d0b6dff9c766f47d135e3c535b88dae4628473f93023f75ff9f0ae19b5d0aa0f",
+  "corrected_monitor_sha256": "fb1072c6f85c551088fa370eb95bfc4e0ac46094d009088aa7f0a9bbdf2aae96",
+  "rows": {
+    "market_after_balance": {
+      "before": {
+        "accepted": true,
+        "signer_calls": 1,
+        "simulations": 1,
+        "pending_saved": true,
+        "original_state_preserved": false,
+        "spend_unchanged": true,
+        "error_type": null
+      },
+      "after": {
+        "accepted": false,
+        "signer_calls": 0,
+        "simulations": 2,
+        "pending_saved": false,
+        "original_state_preserved": true,
+        "spend_unchanged": true,
+        "error_type": "RpcError"
+      }
+    },
+    "expired_after_balance": {
+      "before": {
+        "accepted": true,
+        "signer_calls": 1,
+        "simulations": 1,
+        "pending_saved": true,
+        "original_state_preserved": false,
+        "spend_unchanged": true,
+        "error_type": null
+      },
+      "after": {
+        "accepted": false,
+        "signer_calls": 0,
+        "simulations": 2,
+        "pending_saved": false,
+        "original_state_preserved": true,
+        "spend_unchanged": true,
+        "error_type": null
+      }
+    },
+    "midnight_budget": {
+      "before": {
+        "accepted": true,
+        "signer_calls": 1,
+        "simulations": 1,
+        "pending_saved": true,
+        "original_state_preserved": false,
+        "spend_unchanged": true,
+        "error_type": null
+      },
+      "after": {
+        "accepted": false,
+        "signer_calls": 0,
+        "simulations": 2,
+        "pending_saved": false,
+        "original_state_preserved": true,
+        "spend_unchanged": true,
+        "error_type": null
+      }
+    }
+  },
+  "boundary": "Isolated original module from exact HEAD bytes; inert RPC and mocked signer. No real signing, journal, service or chain."
+}

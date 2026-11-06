@@ -5,6 +5,13 @@ Reviewed2026-11-06. This approves one frozen release; it is not a second Todo.
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
 
+The [current both-flow follow-up](../reports/moving-market-flows-20261106/VERIFICATION.md)
+records the Manager-only source/runtime change and keeper late review. Its new
+normal/static/callable evidence supersedes only changed source scope; historical
+royalty/Factory records retain their payload/accounting scope. There is no new
+approved deployment or service adoption, and running-source/gas/recovery/independent
+qualification remains required.
+
 ## Evidence and approval boundary
 
 Pre-audit published royalty3 baseline: main `967370f6d2de36c3e852a90f1458a7782edd7765`.

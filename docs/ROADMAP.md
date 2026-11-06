@@ -5,6 +5,11 @@ work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
+[Both moving-market flows](../reports/moving-market-flows-20261106/REVIEW.md)
+now have scoped improvements to manual active-route selection and ordinary
+keeper late submission review. Manager runtime headroom is2165bytes; Vault
+remains107. No new ABI/profile/journal/deployment boundary is inferred.
+
 ## 1. Freeze the correct source and integration boundary
 
 Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/dependency

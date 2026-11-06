@@ -1,0 +1,8 @@
+{
+  "stage": "initial shell runner-preparation attempt",
+  "shell_parse_failed": true,
+  "missing_file_attempt": true,
+  "EVM_started": false,
+  "counts_as_test": false,
+  "correction": "Structured Python file preparation avoids shell-escaping ambiguity; Solidity/test source unchanged."
+}

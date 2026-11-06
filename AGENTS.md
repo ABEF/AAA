@@ -163,8 +163,8 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [same-main review](reports/residual-main-consolidation-20261106/static-review.json):495records,
- 133 individually reassessed contexts/362 unique exact referenced-source reuse.
+- CI/check-slither-review selects the strict current [both-flow review](reports/moving-market-flows-20261106/static-review.json):497records,
+ 44 individually reassessed contexts/453 unique exact referenced-source reuse. Prior495 remains source-scoped.
  Earlier factory489 records retain their own exact source scope.
  Earlier487/479/471 records stay source-scoped and historical.
   Update current default/full record together after relevant source changes.
@@ -259,6 +259,17 @@ keeper-only, governance, module/callback and deployment roles distinct. Template
 are unresolved documentation, never a simulation, live snapshot or transaction.
 Historical source plans are exact-Git pointers; preserve source-scoped reports,
 versioned codecs, old journals, original failures and actual environment boundaries.
+
+Both moving-market paths are audited in [current review](reports/moving-market-flows-20261106/REVIEW.md).
+Manager alone changes runtime: paused authenticated guarded consolidation uses
+active-aware quote selection; existing automatic replacement/growth/compound/
+explicit force paths stay distinct. ABI/storage/profile shapes remain; exact
+fresh runtime pins and497strict static record replace only changed source scope.
+Ordinary keeper LP submission adds one bounded late full call, final service/
+lifecycle/nonce/funding checks and LAST head/deadline/UTC-day/retry proof before
+durable intent. Calldata/minL/deadline/cost limits are never rewritten. Pending
+recovery, journal schema, signer restrictions and all live environments remain.
+Local I/O/inclusion can still age a review; no always-executable/MEV guarantee.
 
 ## Governance same-main management
 

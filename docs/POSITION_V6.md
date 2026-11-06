@@ -1,5 +1,12 @@
 # Accounting6: adaptable policy with bounded LP custody
 
+The [moving-market source follow-up](../reports/moving-market-flows-20261106/VERIFICATION.md)
+retains existing ABI/storage/capability/profile shapes and changes the exact
+Manager runtime/creation pins. Guarded paused same-main routing filters active
+candidates; ordinary growth/compound/force remain distinct. Authenticate current
+compiler/runtime bindings before any fresh deployment; do not relabel existing
+Anvil, service, inventory or journal identities as this source.
+
 Fresh undeployed source; **production NOT APPROVED**. This extends the explicit
 [accounting5 shape](POSITION_V5.md), not its deployed runtime, configuration or
 saved transaction profile. Existing Anvil services and journals remain unchanged.

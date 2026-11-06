@@ -315,7 +315,7 @@ class KeeperCompoundRangePolicyTests(unittest.TestCase):
                 patch('subprocess.run', side_effect=sign) as signer:
             self.assertTrue(self.k.submit('compounder', 'compound(uint256,uint128,uint256)',
                 (7, 1, self.rpc.now + 180), 'compound:7'))
-        self.assertEqual(2, physical.call_count); signer.assert_called_once()
+        self.assertEqual(3, physical.call_count); signer.assert_called_once()
         self.assertEqual(basic.H, self.k.state['pending']['hash'])
         self.assertEqual({}, self.k.state['spent'])
 

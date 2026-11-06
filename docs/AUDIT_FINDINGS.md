@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+[Both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md): fix guarded
+manual active-candidate selection and late ordinary-LP simulation/time/day
+revalidation. [Every input](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
+and [blocker/recovery](../reports/moving-market-flows-20261106/BLOCKERS.md) are
+mapped. Separate retained guards are not removed as duplicates. Future-boundary,
+RPC honesty, operating latency and independent approval limits remain.
+
 Reviewed6November2026; consolidation baseline main096fd2b. Production
 **NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
 [features](IMPLEMENTATION_STATUS.md) record source and
@@ -13,7 +20,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The current strict pointer selects the [same-main static record](../reports/residual-main-consolidation-20261106/static-review.json)
+The current strict pointer selects the [both-flow static record](../reports/moving-market-flows-20261106/static-review.json)
 with unchanged matching rules. No installed environment changed.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)

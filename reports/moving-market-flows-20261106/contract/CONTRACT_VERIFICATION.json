@@ -1,0 +1,57 @@
+{
+  "source_base_commit": "e1a85a2899dd703072a87623122fde9f066c9fd0",
+  "production_changed_sources_sha256": {
+    "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6"
+  },
+  "source_frozen_through_normal_and_static": true,
+  "manager_abi_identical": true,
+  "manager_storage_identical_excluding_ast_ids": true,
+  "runtime_template_changes_only": [
+    "src/ZZZLiquidityManager.sol:ZZZLiquidityManager"
+  ],
+  "compiled_runtime_template_before_keccak": "0x04e58a0aa99295fc90f9b5582a5bf028c3db65f57d8c377dcf15ea661df22ced",
+  "compiled_runtime_template_after_keccak": "0xed3de61a09ebb2ff49bc2c5ffe69d106620d6145730ed675a78134bee2bd7f8a",
+  "runtime_template_not_a_deployed_codehash": true,
+  "manager_runtime_before": 21943,
+  "manager_runtime_after": 22411,
+  "manager_runtime_delta": 468,
+  "manager_runtime_margin": 2165,
+  "manager_creation": 46073,
+  "constructor_static_args": 192,
+  "manager_initcode_plus_static_args": 46265,
+  "manager_initcode_margin": 2887,
+  "normal_record": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\moving-market-flows-20261106-e1e736\\contract-agent\\normal-final-7db12e78d6\\production-size-gates.json",
+  "normal_objects": 44,
+  "factory_actual_data_gates": 2,
+  "normal_pass": true,
+  "static_execution": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\moving-market-flows-20261106-e1e736\\contract-agent\\static-5d8fdd113f\\EXECUTION.json",
+  "strict_candidate": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\moving-market-flows-20261106-e1e736\\contract-agent\\candidate-static\\static-review.json",
+  "static_records": 497,
+  "current_reassessed": 44,
+  "unique_exact_reuse": 453,
+  "protected_four_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "patch_scope": "Only guarded paused existing-main consolidation uses existing active-aware candidate search; automatic creation, explicit emergency and unpaused grow/compound retain their branches.",
+  "invariants": [
+    "No new public ABI/storage/custody or generic execution authority.",
+    "Original fixed-Migration active context and pause are both required for new branch.",
+    "Emergency explicit plan remains first and does not gain implicit active restriction.",
+    "Ordinary id0 replacement keeps captured allocation marks and current mode floor.",
+    "Consolidation full mainFloor10000 uses ordinary validated Prices, so zeroMarks are intentional.",
+    "No change to actual quote/output/spot, callback, fixed bounds/L, prefund or final Vault proofs.",
+    "No force fallback, main replacement, reserve release or silent no-op introduced."
+  ],
+  "limits": [
+    "Finite reviewed venue search is not a global optimality/feasibility guarantee.",
+    "Initial outside main still rejects guarded consolidation; explicit force/inactive or full replacement remains a distinct review.",
+    "No target chain/provider/gas qualification, independent audit or deployment approval."
+  ],
+  "no_rpc": true,
+  "no_deployment": true,
+  "no_service_signer_site_journal_or_anvil_change": true,
+  "evidence_scope": "Normal compile/static/ABI-storage/source checks only; actual EVM campaign owned separately by accounting agent."
+}

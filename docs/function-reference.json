@@ -19,7 +19,7 @@
       "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
       "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
-      "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
+      "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
       "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
       "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
@@ -223,9 +223,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "d4291393c11b2aeb8cac60a9f840ee112f67376094901463e9f22e91d2e0de47",
-    "compiler_output_sha256": "9b22efadaeb1486a44870e6a74dd0eca2f0128ce43e355fa70f5515dd226d743",
-    "size_evidence_sha256": "f79f1a10d506f542f3adaa130a6b27fa114f3407de58cb6b375fcc5e1d3c7c55",
+    "compiler_input_sha256": "eb3be695ad4ad94a9fb798e3ebb252d5f2959218f944dd547ec35131c38b62f3",
+    "compiler_output_sha256": "af9415fc20791550a4c93d7e859850477c9541ff9ae0b2a90b5787de8a47bfd2",
+    "size_evidence_sha256": "fa0e6a7a8735f30ad0be67034451720d25f84b6980fc1e6011eaef051a2dc3ea",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -24414,7 +24414,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "f9df922b478cae0bbd7ab907985cd4d0c209835f8a4cdda58d2cc0494f5a2e36",
+  "notes_sha256": "cf124529a34eee6de4502117a0d1a36bb309354eb2035218daad82d0d2884c81",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -32959,7 +32959,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate."
+          "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate. Also used for authenticated guarded same-main consolidation with current bounds, mainFloor10000 and zero replacement marks (ordinary prices are the valuation basis). No LP replacement or new keeper authority is implied by using this solver."
         },
         {
           "signature": "policyFingerprint(bytes32,bytes32)",
@@ -35995,7 +35995,7 @@
             }
           ],
           "native_value": "Exactly amount0 native wei. Network gas is separate.",
-          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate."
+          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate. Guarded paused same-main consolidation uses the existing active-aware route solver for current main bounds, mainFloor10000 and ordinary price marks. Only the fixed Migration active context selects it. Ordinary full replacement keeps its existing active solver; other growth/compound existing-ID paths retain ordinary planning; explicit emergency routing/mask remains unchanged."
         },
         {
           "signature": "balanceContext(bytes32)",

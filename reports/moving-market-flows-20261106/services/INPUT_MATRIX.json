@@ -1,0 +1,95 @@
+{
+  "rows": [
+    {
+      "input": "Saved hash or hashless pending intent",
+      "existing": "Pending-first recovery; no new review or signer",
+      "late": "Unchanged and explicitly covered",
+      "status": "recover_only"
+    },
+    {
+      "input": "Chain/runtime/helper/capability/config identity",
+      "existing": "Existing exact admitted pins and post-first-simulation routing validation",
+      "late": "Not bypassed or promoted by the economic simulation",
+      "status": "mismatch_unavailable"
+    },
+    {
+      "input": "Method, sender, target, calldata, value, minL and original expiry",
+      "existing": "Ordinary typed worker call and full initial simulation",
+      "late": "Exact same bytes and caller; no automatic extension, lowering or force",
+      "status": "same_reviewed_inputs"
+    },
+    {
+      "input": "Main/residual custody, shares and desired one/two-leg mode",
+      "existing": "Existing physical/policy proof and atomic contract accounting",
+      "late": "Whole ordinary operation is re-executed against latest state",
+      "status": "simulation_advisory"
+    },
+    {
+      "input": "85%/reference/sample/cooldown/jitter and compound in-range policy",
+      "existing": "Service and on-chain policies retain different roles",
+      "late": "Service readiness re-run after slow late call; no readiness inferred from local clocks",
+      "status": "fresh_policy_required"
+    },
+    {
+      "input": "Swap venue/size/new ticks",
+      "existing": "Computed on-chain at execution for ordinary replacement; worker supplies no stale quote",
+      "late": "No new off-chain economic planner or adaptive branch",
+      "status": "guarded_onchain_selection"
+    },
+    {
+      "input": "Gas estimate, gas price, gas/L1/per-tx/day budgets",
+      "existing": "Existing estimate+25% padding and captured exact caps",
+      "late": "One extra eth_call bounded by SAME gas and gasPrice; no second estimate or increased cap",
+      "status": "same_cost_envelope"
+    },
+    {
+      "input": "Head/time and deadline",
+      "existing": "Strict head shape and wall-time validation",
+      "late": "LAST fresh client head after final policy, nonce, funding and lifecycle reads rejects review retreat and original expired/>600s deadline; UTC conversion errors are RPC errors.",
+      "status": "invalid_defer_or_unavailable"
+    },
+    {
+      "input": "New UTC day and action retry",
+      "existing": "Paid receipt and durable retry accounting unchanged",
+      "late": "Recheck current day spend/retry after potentially slow final policy reads and before durable pending; no original deadline extension.",
+      "status": "blocked_without_spend"
+    },
+    {
+      "input": "Signer nonce and funding",
+      "existing": "Expected next nonce and exact sender gas funding",
+      "late": "Repeat latest/pending nonce and funding after new RPC latency",
+      "status": "reconciliation_or_insufficient_funds"
+    },
+    {
+      "input": "Stop/preparation/canonical/terminal lifecycle",
+      "existing": "Existing live/source and lifecycle checks",
+      "late": "Stop/lifecycle rechecked after late reads, plus stop after final service read",
+      "status": "defer_no_intent"
+    },
+    {
+      "input": "RPC return shape",
+      "existing": "Initial call behavior retained for unrelated methods",
+      "late": "Known void LP ABIs require exact0x; provider exception payloads never become diagnostics",
+      "status": "unavailable_sanitized"
+    },
+    {
+      "input": "Receipt/reorg/fee recovery",
+      "existing": "Canonical receipt/transaction/depth/actual-cost checks before durable mutation",
+      "late": "Unchanged; saved broadcast never blindly resubmitted",
+      "status": "recover_same_intent"
+    },
+    {
+      "input": "Confirmed paid failure",
+      "existing": "Per-action default3600s retry with original bounds and independent jobs",
+      "late": "No changed retry setting or automatic forced fallback",
+      "status": "existing_retry_policy"
+    },
+    {
+      "input": "External price after sign versus own-swap/callback inside atomic call",
+      "existing": "Inclusion-time and final physical/accounting guards remain authoritative",
+      "late": "Cannot guarantee zero reverts, honest RPCs or future activity",
+      "status": "economic_residual_risk"
+    }
+  ],
+  "scope": "Source/targeted deterministic keeper review; not deployment qualification."
+}

@@ -351,5 +351,7 @@ def summary(data):
              'gas_price_cap_wei', 'maximum_cost_wei', 'transaction_cost_cap_wei', 'daily_cost_cap_wei')}
         reason = review.get('reason')
         result['gas_review']['reason'] = reason if reason in (None, 'estimate_or_price_unavailable',
-            'gas_limit_cap', 'gas_price_cap', 'conversion_uneconomic', 'cost_cap') else 'unknown'
+            'gas_limit_cap', 'gas_price_cap', 'conversion_uneconomic', 'cost_cap',
+            'lp_final_simulation_unavailable','lp_submission_head_invalid','lp_submission_deadline_invalid',
+            'lp_submission_retry_cooldown','lp_submission_nonce_changed','lp_submission_balance_insufficient') else 'unknown'
     return result

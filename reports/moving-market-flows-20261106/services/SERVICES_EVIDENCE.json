@@ -1,0 +1,114 @@
+{
+  "kind": "Keeper ordinary LP late full-call review",
+  "final_distinct_methods": 67,
+  "new_methods": 21,
+  "explicit_affected_methods": 46,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "final_result": "focused-final-after-timing.json",
+  "final_log": "focused-final-after-timing.log",
+  "unique_test_ids": true,
+  "imported_source_before_after_unchanged": true,
+  "owned_file_sha256": {
+    "keeper/monitor.py": "7f0cb622a7b0d663a65dfebe2116360e2f32bdd4fe30935dcf29a8ddd2c51e09",
+    "keeper/health.py": "db84451e0e45ec5b18e7a72458d4811ae97289141850535ec2b8f0fe649ddc16",
+    "tests_python/test_keeper_late_lp_review.py": "b031b7e74fb72d530723265cd215391e87c7b90a5821510e3f0c5808e7ae5111",
+    "tests_python/test_keeper.py": "1e1fa0f34f6e7f2748e85eddb588572520c68d9fedeae10606eb52fc3975c438",
+    "tests_python/test_keeper_compound_range_policy.py": "773604fc6be1816c0f0cf28f1f26264d3458f6c54fa1c6bfb168030fc9c01877"
+  },
+  "protected_dirty4_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "finite_before_after_probes": "before-after-probes.json",
+  "probe_baseline_monitor_sha256": "d0b6dff9c766f47d135e3c535b88dae4628473f93023f75ff9f0ae19b5d0aa0f",
+  "probe_corrected_monitor_sha256": "fb1072c6f85c551088fa370eb95bfc4e0ac46094d009088aa7f0a9bbdf2aae96",
+  "probe_scope": "Three original-source bad acceptances and corresponding corrected no-intent outcomes, preceding the final additional UTC-error normalization. No live execution.",
+  "stages": [
+    {
+      "file": "new-first.log",
+      "methods": 16,
+      "passed_methods": 15,
+      "subtest_setup_errors": 4,
+      "scope": "One compound transport fixture omitted required actual-currency thresholds; setup corrected, guard unchanged."
+    },
+    {
+      "file": "compound-fixture-corrected.log",
+      "methods": 1,
+      "successful": true,
+      "scope": "Four policy scenarios reached the real service gate after valid thresholds supplied."
+    },
+    {
+      "file": "affected-first.json",
+      "methods": 64,
+      "passed_methods": 63,
+      "failures": 1,
+      "scope": "Existing successful compound assertion expected2 reads; required final policy recheck makes3. Only count updated, no guard relaxed."
+    },
+    {
+      "file": "focused-final.json",
+      "methods": 65,
+      "successful": true,
+      "scope": "Final19new and46 explicitly selected affected methods, no imported fixture duplication or skips."
+    },
+    {
+      "file": "final-policy-timing-before.log",
+      "methods": 2,
+      "failures": 2,
+      "scope": "Independent follow-up after65-stage found actual mocked-signer acceptance: original deadline expiry/current UTC-day budget change during final policy reads."
+    },
+    {
+      "file": "final-policy-timing-corrected.log",
+      "methods": 2,
+      "successful": true,
+      "scope": "Approved reorder only; both formerly accepted late-policy races now defer without intent/sign/spend."
+    },
+    {
+      "file": "focused-final-after-timing.json",
+      "methods": 67,
+      "successful": true,
+      "scope": "Final21new plus46explicit affected. Exact last-client-read head precedes durable pending; earlier65count remains source-scoped and overlapping."
+    }
+  ],
+  "counts_are_not_additive": true,
+  "input_matrix": "INPUT_MATRIX.json",
+  "behavior_changes": [
+    "One extra exact gas-enveloped full LP eth_call in live ordinary rebalance/compound before durable pending.",
+    "Final service policy/lifecycle and nonce/funding reads precede LAST fresh original-deadline/day/retry/head check; no original bytes/floors/expiry are rewritten.",
+    "Strict void result and static allowlisted health reasons; pending/receipt/retry policy unchanged."
+  ],
+  "fixture_changes": [
+    "Only from-transaction replies in shared FakeRpc now match void0x ABI; getter words unchanged.",
+    "One affected success assertion changes2 to3 policy reads."
+  ],
+  "unchanged_boundaries": {
+    "no_production_solidity_or_abi_change": true,
+    "no_profile_or_journal_format_change": true,
+    "no_config_change": true,
+    "no_service_or_site_change": true,
+    "no_signer_or_public_browser_signing_change": true,
+    "no_existing_anvil_or_journal_mutation": true,
+    "no_git_mutation": true,
+    "no_public_transaction_or_deployment": true
+  },
+  "costs_and_limits": [
+    "One extra full eth_call plus bounded fresh head/nonce/funding/lifecycle/service-policy reads; exact RPC cost depends profile.",
+    "No second estimate, simulation loop, automatic force, adaptive recenter fallback or expanded spending limit.",
+    "Latest-state simulation is advisory and does not prove Byzantine RPC honesty or inclusion-time feasibility.",
+    "Actual providers, latency/fees, target gas, uptime/recovery and independent audit remain open.",
+    "Final client head is followed by local fee/save/signing work. Filesystem/signer/network/inclusion latency can still expire the original deadline; preserve ambiguous intents and on-chain rollback rather than promise zero reverts."
+  ],
+  "late_stage_order": [
+    "One exact gas-enveloped whole LP eth_call, requiring void0x",
+    "Final fixed rebalance/compound readiness, lifecycle and stop",
+    "Expected latest/pending nonce and current gas funding",
+    "Final lifecycle/stop, then LAST fresh client head",
+    "Original deadline, head/time, current UTC-day budget and retry checks",
+    "Local stop, captured fee review, durable pending, external signer"
+  ],
+  "previous_evidence": "SERVICES_EVIDENCE.pre-timing.json",
+  "previous_evidence_sha256": "9f42b3b6bca9bdcee25b9f7eb1305a5f6f9f5cacaf2c75ee15a76641c0a5164b"
+}

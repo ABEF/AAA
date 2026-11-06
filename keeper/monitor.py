@@ -1624,6 +1624,76 @@ class Keeper:
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
 
+    def _late_lp_submission_review(self, name: str, signature: str, tx: dict[str,Any], args: tuple, key: str, *,
+            review_head: int, reviewed_at: int, gas_limit: int, gas_price: int,
+            cost: int, nonce: int, gas_review: dict[str,Any]) -> str | None:
+        """One final whole-call check inside the original reviewed gas envelope.
+
+        The two ordinary LP methods have void return ABIs. No calldata, floor,
+        deadline, budget or saved intent is rewritten, and this is not a promise
+        about later inclusion. Non-LP actions keep their separate review paths.
+        """
+        gas_review.update(state='unavailable',reason='lp_final_simulation_unavailable')
+        result=self.rpc.call('eth_call',[{**tx,'gas':hex(gas_limit),'gasPrice':hex(gas_price)},'latest'])
+        if result != '0x':
+            raise RpcError('Unexpected return data from void LP submission simulation')
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        if self._defer_for_lifecycle(name,signature):return None
+        if name=='vault' and not self._rebalance_submission_ready(args):return None
+        if name=='compounder' and not self._compound_submission_ready(args):return None
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        gas_review.update(state='unavailable',reason='lp_submission_nonce_changed')
+        pending_nonce=rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
+        latest_nonce=rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
+        if pending_nonce!=nonce or latest_nonce!=nonce or self.state.get('next_nonce')!=nonce:
+            self._cycle_error=True
+            log('nonce_reconciliation_required',action=key,expected_nonce=self.state.get('next_nonce'),
+                latest_nonce=latest_nonce,pending_nonce=pending_nonce)
+            raise RpcError('Unreconciled keeper nonce after LP submission review')
+        gas_review['reason']='lp_submission_balance_insufficient'
+        balance=rpc_quantity(self.rpc.call('eth_getBalance',[self.sender,'latest']),'keeper balance')
+        if balance<cost:
+            log('keeper_balance_insufficient',action=key,balance_wei=str(balance),required_wei=str(cost))
+            raise RpcError('Keeper native balance is below the bounded transaction cost')
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        if self._defer_for_lifecycle(name,signature):return None
+        # Keep the deadline/day proof AFTER the potentially slow policy, nonce,
+        # funding and lifecycle reads. No further RPC follows this final head.
+        gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+        head,timestamp=self._head()
+        if head<review_head or timestamp<reviewed_at:
+            raise RpcError('LP submission head or timestamp retreated after review')
+        deadline=positive(args[2],'LP submission deadline',zero=True)
+        if not timestamp<=deadline<=timestamp+600:
+            gas_review.update(state='blocked',reason='lp_submission_deadline_invalid')
+            self.blocked_actions+=1
+            log('lp_submission_deferred',action=key,reason='deadline_invalid')
+            return None
+        retry_after=positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
+        if timestamp<retry_after:
+            gas_review.update(state='blocked',reason='lp_submission_retry_cooldown')
+            self.blocked_actions+=1
+            log('action_cooldown',action=key,retry_after=retry_after)
+            return None
+        try:day=dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        except (OverflowError,OSError,ValueError) as exc:
+            raise RpcError('LP submission head timestamp cannot form a UTC date') from exc
+        if cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
+                int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
+            gas_review.update(state='blocked',reason='cost_cap')
+            self.blocked_actions+=1
+            log('cost_cap_exceeded',action=key)
+            return None
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        return day
+
     def submit(self, name: str, signature: str, args: tuple[int|str|list[int],...], key: str, *, value: int = 0,
                metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
         if self.state.get('pending'): return False
@@ -1729,6 +1799,11 @@ class Keeper:
         if self._defer_for_lifecycle(name,signature): return False
         if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
         if name == 'compounder' and signature == 'compound(uint256,uint128,uint256)' and not self._compound_submission_ready(args): return False
+        if lp_balance_action:
+            final_day=self._late_lp_submission_review(name,signature,tx,args,key,review_head=review_head,reviewed_at=timestamp,
+                gas_limit=gas_limit,gas_price=gas_price,cost=cost,nonce=nonce,gas_review=gas_review)
+            if final_day is None:return False
+            day=final_day
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
             'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
