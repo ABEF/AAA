@@ -3403,6 +3403,32 @@
     "name": "MintPauseChanged",
     "signature": "MintPauseChanged(bool)"
   },
+  "0xe01e8006efbcaac5fd5a21996cb72fdad2c97f90c8c001bbbdb7cf1108fe44d3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "forced",
+        "type": "bool"
+      },
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ResidualConsolidated",
+    "signature": "ResidualConsolidated(uint256,bool,bytes32,bytes32)"
+  },
   "0xe045ba3da819552536723fc6e859bd077201e06022bfee8e17aa628f32894b84": {
     "fields": [
       {

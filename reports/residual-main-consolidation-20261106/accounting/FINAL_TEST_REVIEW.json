@@ -1,0 +1,124 @@
+{
+  "scope": "Same-main residual consolidation accounting/operator-cycle tests, plus targeted regression controls after shared-path refactoring",
+  "base_commit": "9025735fca5a6011bce3772f981881d66d3ea082",
+  "production_edits_by_accounting_agent": false,
+  "test_file": "test/OptionalPortfolioCore.t.sol",
+  "final_test_raw_sha256": "5a535616e32d280bb6dcc88c19647680fe71be8df6778f68c91e123d114f9a75",
+  "new_selected_methods": 12,
+  "existing_targeted_controls": 8,
+  "distinct_selected_EVM_successes": 20,
+  "actual_core_stage": "evm-initial/status.json",
+  "identity_stage": "evm-binding/status.json",
+  "elapsed_seconds": {
+    "actual_core": 253.79599999999846,
+    "identity_bindings": 96.84400000000096
+  },
+  "selected_method_sets_exact": true,
+  "all_production_test_and_config_frozen_during_both_runs": true,
+  "normal_source_stage": "normal-final-f907546a3c",
+  "normal_production_pins_matched": 53,
+  "normal_dependency_closure_pins_matched_current": 84,
+  "normal_limits_not_changed": true,
+  "test_fixture_code_size_limit": 1000000,
+  "owned_cache": "Fresh accounting-agent/build copied from preceding child-owned cache; sequential runs, no shared cache mutation",
+  "artifacts_after_same_source_runs": {
+    "ZZZVault": {
+      "artifact_sha256": "882b7e46b2c7a0c2c97642924f624f28509e41c1bf484ed61e5b7eb09a50331f",
+      "creation_length": 25895,
+      "creation_keccak256": "0xdeca5dec5f1ab548520621792b623b4bc11eb14af0b4b8ffd8edccd4cf653900",
+      "unbound_runtime_length": 24469
+    },
+    "ZZZMigration": {
+      "artifact_sha256": "93d89d57f818a51929685c9f90eefc84efbca5875965dab2b4ab9d4b1b9acd5c",
+      "creation_length": 43473,
+      "creation_keccak256": "0x111007c7c3458530c9918e2879bd88e14097cc5d98a50f0c27292a164e9e8ccc",
+      "unbound_runtime_length": 23830
+    },
+    "ZZZMigrationBudget": {
+      "artifact_sha256": "6c85f46d7a8599c7ffc5296afb77ae0de9b812eb537d6ab80f5a1b6c781df470",
+      "creation_length": 24814,
+      "creation_keccak256": "0x29a3c31f83b576b0d3defce31d41dd24724707f3093a1502b74de539db42d564",
+      "unbound_runtime_length": 24018
+    },
+    "ZZZContributionPricing": {
+      "artifact_sha256": "5b319688b1537e682cd87773c3900ff3780d66787433017ec10d9d95fdbdbbb8",
+      "creation_length": 24641,
+      "creation_keccak256": "0xef04198366d5954118a6647f78209d68707c58587cf7509849b78c5e6201c2bb",
+      "unbound_runtime_length": 23756
+    },
+    "ZZZPortfolioPolicy": {
+      "artifact_sha256": "44031c093264a072aa11b6ed3ce3902ab401a9e97d354704b051e6849433f6a0",
+      "creation_length": 19848,
+      "creation_keccak256": "0x6b09e7f79def577ba57b361a098b686d58aa9d087a9fffb51a26ddb7502c19ba",
+      "unbound_runtime_length": 19315
+    },
+    "ZZZCustodyValidation": {
+      "artifact_sha256": "f25922b16ca9dd53fc2eb05e7b716b884e22a8704295b44653e5fcef35a73a6a",
+      "creation_length": 18897,
+      "creation_keccak256": "0xd675c6699879b63cf0631b64fa05358f2e656fa35b3522defb4381af98898c7f",
+      "unbound_runtime_length": 18196
+    },
+    "ZZZRoyaltyRewards": {
+      "artifact_sha256": "4f2d6961ba774498d6fac0b66a7fcbda705d3b047fbead310c687ce1533985a1",
+      "creation_length": 25522,
+      "creation_keccak256": "0xee61b40298c3a075124538647c141c5d4a92a761fabc17b61960f883d42eb3ee",
+      "unbound_runtime_length": 24524
+    },
+    "ZZZRoyaltyFactory": {
+      "artifact_sha256": "fb19788a8e395d5a80c26ca845e1387b3a7d163511a2d742dc3c0bddf6742913",
+      "creation_length": 28983,
+      "creation_keccak256": "0xfd5170fb70b01140a91a7e4cd78588e6a384feebb0a20c8cf36d0fdca3c915fd",
+      "unbound_runtime_length": 1893
+    }
+  },
+  "normal_and_Forge_creation_families_not_relabelled": true,
+  "existing_test_method_bodies_preserved": 61,
+  "protected_four_unchanged": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "typecheck_stages": [
+    {
+      "path": "abi-initial/status.json",
+      "result": "test-only direct Policy call used former3argument signature; retained failure"
+    },
+    {
+      "path": "abi-corrected/status.json",
+      "result": "188sources pass at exact recorded earlier source stage"
+    },
+    {
+      "path": "abi-dispatch/status.json",
+      "result": "188sources pass after zero-argument Policy and existing Vault dispatcher API; later test-only funding assertion and private/source-size refactors remain explicitly separate"
+    }
+  ],
+  "verified": [
+    "Normal consolidation succeeds before ordinary/compound timing gates, automatically ends desired modeOFF and preserves main ID/full info/bounds/centre/clock/shares/deposit",
+    "Positive delta-L and actual same-bucket idle repair with no release of a nonzero designated compound reserve",
+    "Actual pre-close and post-balancing fee receipts conserve80/10/5/5 with raw dust; funded claims remain available",
+    "Mixed, unfilled and fully converted residual inventories; next ON adjustment creates only one residual and can consolidate again",
+    "AlreadyOFF idle-only completion changes control identity; genuinely mature old sample cannot be reused although trigger remains true",
+    "Positive retained bit16 consolidation and full-emergency30 calls use authorized Budget confirmation boundary",
+    "Normal individual price and operations faults revert; force0 may preserve inactive geometry with both fault types; explicit forced swap14 retains financial checks",
+    "Malformed/replayed/unauthorized/canonical/preparation inputs and impossible floors or mode/nonce/policy callbacks roll back physical legs, rewards/reserves and reviews",
+    "Existing raw close/outage, full emergency, parking/reentry, six-day compound and terminal holder-return controls remain successful",
+    "Real bootstrap binding accepts matching fixed ZZZ and rejects missing/mismatched buyback; legacy retargeting remains unavailable"
+  ],
+  "limits": [
+    "Isolated offline actual-v4 EVM. Mock Access, correlated USD feeds, native Registry admission, test token, VRF and Permit2. No public chain, service/site/journal/signing or existing Anvil state changes. Normal production size/static evidence remains separate.",
+    "Selected existing real Access/Registry/Migration/Buyback identity setup and seal regressions after read-only predicate extraction. Other roles/tokens/prices are bootstrap fixture substitutes. No chain/service/site/journal/signing changes or gas qualification.",
+    "Finite deterministic cases, not exhaustive state-space or attack-freedom proof; mocked correlated USD sources do not qualify independent live feeds.",
+    "Normal active-main checks are source-reviewed and successful normal paths exercise them; the inactive force case is intentional, not an earning guarantee.",
+    "Actual target gas/economics, deployed identities, live routes/feeds/providers, service/operator rehearsal and independent review remain open.",
+    "Broken or malicious tokens/core/chain remain upstream recovery boundaries; raw attributed dust is retained, never swept."
+  ],
+  "not_performed": [
+    "public RPC or transactions",
+    "service/site/signer changes",
+    "existing Anvil resets",
+    "journal changes",
+    "unchanged whole contract suite",
+    "new deployment or sealing"
+  ]
+}

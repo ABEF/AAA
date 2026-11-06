@@ -1,0 +1,24 @@
+test_manifest_flags_cannot_self_certify_new_inventory (tests_python.test_custody_inventory.CustodyInventoryTests.test_manifest_flags_cannot_self_certify_new_inventory) ... ok
+test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge (tests_python.test_custody_inventory.CustodyInventoryTests.test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge) ... FAIL
+test_updated_template_declares_layout_and_does_not_redeploy_retired_modules (tests_python.test_custody_inventory.CustodyInventoryTests.test_updated_template_declares_layout_and_does_not_redeploy_retired_modules) ... FAIL
+
+======================================================================
+FAIL: test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge (tests_python.test_custody_inventory.CustodyInventoryTests.test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_custody_inventory.py", line 14, in test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge
+    self.assertEqual(result['schema_version'],13)
+AssertionError: 15 != 13
+
+======================================================================
+FAIL: test_updated_template_declares_layout_and_does_not_redeploy_retired_modules (tests_python.test_custody_inventory.CustodyInventoryTests.test_updated_template_declares_layout_and_does_not_redeploy_retired_modules)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_custody_inventory.py", line 26, in test_updated_template_declares_layout_and_does_not_redeploy_retired_modules
+    self.assertEqual(config['schema_version'],13)
+AssertionError: 15 != 13
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (failures=2)

@@ -291,6 +291,7 @@ Custody, ownership and reward accounting.
   - [Scoped verification and internal review](reports/operator-controls/VERIFICATION.md) cover authority, outage/reopen, callback rollback and economic continuity. Production service/authority rehearsals and independent audit remain required; no retroactive change to sealed contracts.
   - For portfolio operations use the complete [management matrix](docs/OPERATOR_MANUAL.md#portfolio-management-controls): enable/disable desired residual, raw residual-only close, urgent single consolidation, same-mode reviewed reapply, mixed/filled inventory, failed feeds/routes, idle recovery, parking, terminal return and pending-hash/restart. Settings alone do not move assets, enable implicit force or reopen terminal exit.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): global PoPL pause is distinct from external Uniswap trading, residual mode, pool flags and Parked/terminal states. Exact stop/reverse inputs and normal unpaused mode-off merge are documented. maxGap0 stops only sampled-market readiness, not deliberate geometry changes. Converter and Entry source stops remain separate. Actual operator/wallet rehearsal is not closed by documentation.
+  - [Same-main consolidation](docs/OPERATOR_MANUAL.md#same-main-residual-consolidation) adds paused governance guarded/forced reinvestment without closing main; raw close/full replacement/park/resume/terminal return remain distinct. Review exact inputs, modeOFF completion, clock/nonces and recovery. [Evidence](reports/residual-main-consolidation-20261106/VERIFICATION.md).
 
   </details>
 
@@ -437,7 +438,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-passive-inventory"></a>
 
-- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting6: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema13 are integrated; actual release qualification remains separate.
+- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting6: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema15 are integrated; actual release qualification remains separate.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -453,6 +454,7 @@ Custody, ownership and reward accounting.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Four new actual-core journeys succeed across recorded stages: six virtual days, repeated one/two-leg mode cycles, trends/reversals, filled/mixed/both-outside inventory and guarded recovery. Residual geometry is nested in main; enabled mode does not force a40% allocation. Production sources unchanged.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
   - [Lifecycle matrix](reports/residual-lifecycle-20261106/LIFECYCLE.md) covers desired/applied/physical states, fills/reversals, raw residual close and one/two merges. New actual-core cases prove destination-hybrid move/resume and infeasible destination rollback. These governed custody operations do not require ordinary keeper timing; financial guards remain. Maximum-state gas/actual operating acceptance stay open.
+  - Governance residual-reinvest1 consolidates live/mixed/converted residual or prior attributed idle into SAME main ID/ticks; no designated compound release, no share/centre/rebalance-clock reset; positive added L, compound clock and atomic OFF acknowledgment. Separate main width remains pending. Guarded auto route or explicit force; not keeper fallback. [Source review](reports/residual-main-consolidation-20261106/REVIEW.md).
 
   </details>
 
@@ -570,7 +572,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema13 validates accounting6/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,18helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
+- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema15 validates accounting6/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,18helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -582,6 +584,7 @@ The data and services behind the app.
   - Preserve original [native inventory evidence](reports/native-preflight/VERIFICATION.md), older schema6 observations and failures at their original source scope. New source publication neither deploys nor approves a mainnet/testnet binding.
   - [Current buyback admission](reports/improvement-audit-20261102/REVIEW.md): fresh schema8 requires chains[].buyback_maximum_usd18 matched to the pinned live getter. Constructor maximum remains immutable creation provenance, not the current policy or a missing-value fallback. Old incomplete fresh records require reviewed recollection; malformed object/value input fails before RPC. Historical profiles remain unchanged.
   - New validator/observer8 and explicit custody5 read/keeper binding reject old or missing identities. Preserve per-peer lineage versions, history and pending records; keeper principal_distribution cannot be enabled on5. [Evidence](reports/authority-audit-20261103/VERIFICATION.md).
+  - Fresh schema15 independently binds reinvest1 on Migration/Vault/Budget/Policy/Pricing and rawExit1 on the typed closure graph. Archive14 unchanged; exact fresh runtimes/source metadata and target gas need qualification. Existing Anvil/site/journals are not relabeled.
 
   </details>
 
@@ -1318,6 +1321,7 @@ Decisions and rehearsals before real funds.
   - Current [original-currency recovery2](docs/ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery) forwards unsupported late receipts only to an authenticated successor. Reviewed admission then allocates only unallocated raw units at current GCD-normalized rarity tickets; no conversion or chosen-recipient sweep. Prior recovery1 swap evidence is historical.
   - Exact settlement4 assigns every allocated whole royalty unit; this does not remove token freeze/blacklist/rebase/transfer failure or unknown-currency admission/capacity limits. Preserve earned/deferred/opening liabilities and classify unallocated funds separately. LP scaled fractions and sub-20 raw dust remain separate.
   - Rehearse raw residual close→attributed idle→guarded reinvestment/parking/terminal return, with destination mode checked before resume. A large idle balance can intentionally block new entry; no sweep or entrant subsidy is permitted. Broken token/core/chain recovery is not universally guaranteed.
+  - Use new governance same-main consolidation for earlier raw-close idle when viable. Broken tokens/core and uneconomic/zero-L dust still require explicit recovery decisions; no arbitrary sweep, forced active placement or universal transfer guarantee.
 
   </details>
 
@@ -1494,4 +1498,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `1d68e896bbff88ea07c607cb2dd90f9bb5da97865f6dec78636b28dad45539de`.
+Snapshot SHA-256: `e4a8942cd4bf123408feaf01929bf22505a05db6cd5fac608cd6fa1c97e49499`.

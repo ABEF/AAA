@@ -33,7 +33,7 @@ This file is current instructions, not a report timeline.
   confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
   fresh canonicalV8 carries sale end/capacity and exact royalty tickets; rejects older peers; tuple shape is not runtime identity.
-  Schema14 inventory has18 callable helpers plus2 inert RoyaltyFactory data children and exact original-currency royalty4 with canonicalV8. Historical schema13 royalty4/SSTORE Factory, schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
+  Schema15/residual-reinvest1 inventory has18 callable helpers plus2 inert RoyaltyFactory data children and exact original-currency royalty4 with canonicalV8. Historical schema14 code-storage2 without reinvest; schema13 royalty4/SSTORE Factory, schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -163,8 +163,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [factory/claim review](reports/factory-claims-20261105/static-review.json):489records,
- 20 individually reassessed contexts/469 unique exact referenced-source reuse.
+- CI/check-slither-review selects the strict current [same-main review](reports/residual-main-consolidation-20261106/static-review.json):495records,
+ 133 individually reassessed contexts/362 unique exact referenced-source reuse.
+ Earlier factory489 records retain their own exact source scope.
  Earlier487/479/471 records stay source-scoped and historical.
   Update current default/full record together after relevant source changes.
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
@@ -189,7 +190,7 @@ the November3 authority report below remains historical for those contexts.
 
 ## Royalty exact-unit source boundary
 
-Fresh royalty4/recovery2/reporting5/schema14/canonicalV8 has18 callable helpers
+Fresh royalty4/recovery2/reporting5/schema15/canonicalV8 has18 callable helpers
 plus2 inert Factory code-data children;
 ExactRoyaltyAllocation is internal code. Original currencies remain unchanged,
 without royalty swaps/unwraps/converter. LP conversion/fractions stay separate.
@@ -258,6 +259,26 @@ keeper-only, governance, module/callback and deployment roles distinct. Template
 are unresolved documentation, never a simulation, live snapshot or transaction.
 Historical source plans are exact-Git pointers; preserve source-scoped reports,
 versioned codecs, old journals, original failures and actual environment boundaries.
+
+## Governance same-main management
+
+[Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md)
+adds residual-reinvest1 on Migration/Vault/Budget/PortfolioPolicy/ContributionPricing,
+inventory15 with explicit raw-exit1 admission. Paused governance
+consolidateResidual(request,forced) harvests/closes only the residual (or recovers
+prior attributed idle), balances and increases the SAME main. No designated
+compound release or share/centre/lastRebalance change. Guarded false uses checks14
+and auto reviewed routing without keeper timing; forced true uses explicit
+swap/mask. Exact structure/control proofs remain, modeOFF is applied atomically,
+per-pool controls invalidate old samples even alreadyOFF/idle-only, compound clock
+and recovery nonce/epoch advance. Independent pending main width remains.
+Existing module-only Vault.emergencyRebalance is a typed fixed-Migration
+dispatcher under cap1; old full emergency2 behavior stays separate. No extra
+Vault selector/generic executor. Matching all5 capabilities/runtimes is mandatory
+pre-seal inventory work; Access.seal does not prove the whole extension graph.
+Raw close/full replace/park/resume/holder return remain. Check full operator
+inputs and reverse/pause steps. Source publication does not upgrade old runtimes,
+journals/services/sites/signers/Anvil or restart the paused heartbeat.
 
 ## Fresh6 residual-read integrity
 

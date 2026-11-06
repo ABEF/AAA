@@ -1,0 +1,39 @@
+{
+  "kind": "Exact complete normal royalty creation-byte equality; metadata included",
+  "current_normal_build": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\residual-main-20261106-c932\\normal-final-f907546a3c",
+  "historical_normal_build": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\factory-claims-20261105-a71c\\normal-final-18b5d496ff",
+  "current_compiler_output_sha256": "9b22efadaeb1486a44870e6a74dd0eca2f0128ce43e355fa70f5515dd226d743",
+  "historical_compiler_output_sha256": "eb12abe40e198d7b17e264d4c1b310847637d494c88a740db75fa39ad6476220",
+  "complete_bytes_equal": true,
+  "bytes_compared": 25522,
+  "complete_creation_keccak256": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+  "complete_creation_sha256": "1e2f2f84e8c2075830c8bd6ef1cb63297e3b7d28d7580c2db8cb4be09234adf2",
+  "frozen_spec_creation_keccak256": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+  "frozen_artifact_sha256": "080cb03574db7467c6eb811a469a20ac7110749202fed805006acce5fe3f7c9c",
+  "parts": [
+    {
+      "observed_data_length": 24573,
+      "observed_runtime_length": 24576,
+      "observed_runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+      "observed_prefix": "0x5f5ffd"
+    },
+    {
+      "observed_data_length": 949,
+      "observed_runtime_length": 952,
+      "observed_runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+      "observed_prefix": "0x5f5ffd"
+    }
+  ],
+  "whole": {
+    "observed_creation_code_length": 25522,
+    "observed_creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831"
+  },
+  "source_carrier_abis": [
+    "ZZZMigration",
+    "ZZZVault",
+    "ZZZMigrationBudget",
+    "ZZZPortfolioPolicy",
+    "ZZZContributionPricing"
+  ],
+  "boundary": "Frozen factory payload pins reused exactly. Its historical84-source receipt was not rewritten or called a new build; current normal source/size evidence is separate."
+}

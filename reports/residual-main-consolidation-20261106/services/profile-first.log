@@ -1,0 +1,14 @@
+test_archived14_is_exact_published_template_not_a_relabel (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_archived14_is_exact_published_template_not_a_relabel) ... ok
+test_current15_preserves_wire_and_remains_unqualified (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_current15_preserves_wire_and_remains_unqualified) ... ok
+test_current_gate_rejects14_and_malformed_identity_without_relabel (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_current_gate_rejects14_and_malformed_identity_without_relabel) ... ok
+test_explicit_bindings_cover_every_forwarder_and_raw_exit (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_explicit_bindings_cover_every_forwarder_and_raw_exit) ... ok
+test_historical14_cli_requires_explicit_flag_and_keeps_approval_false (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_historical14_cli_requires_explicit_flag_and_keeps_approval_false) ... ok
+test_missing_wrong_or_boolean_capability_never_matches_observed_binding (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_missing_wrong_or_boolean_capability_never_matches_observed_binding) ... ok
+test_observer_capabilities_use_code_owned_unsigned_types (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_observer_capabilities_use_code_owned_unsigned_types) ... ok
+test_observer_cli_dispatches_only_explicit_current_or_historical (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_observer_cli_dispatches_only_explicit_current_or_historical) ... ok
+test_observer_rejects14_and_wrong_versions_before_any_rpc (tests_python.test_residual_reinvest_profile.ResidualReinvestProfileTests.test_observer_rejects14_and_wrong_versions_before_any_rpc) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.164s
+
+OK

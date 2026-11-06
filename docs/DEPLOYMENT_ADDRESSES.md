@@ -36,7 +36,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema14 production manifest](../config/production.example.json)
+public addresses. Complete the [schema15 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -120,7 +120,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Creation/binding | Helper addresses and verification |
 | --- | --- |
 | Separate policy companion | `ZZZProtocolPolicy(controller,initialMintRecipient)` before consumers, bind-once Access.protocolPolicy, version1/runtime/scoped values and fingerprints. No custody. |
-| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside18 callable helpers; verify source-derived prefix/length/part/whole hashes using schema14. [Procedure](FACTORY_CODE_STORAGE.md). |
+| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside18 callable helpers; verify source-derived prefix/length/part/whole hashes using schema15. [Procedure](FACTORY_CODE_STORAGE.md). |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
 | NFT construction | `ZZZRoyaltyRewards`, `ZZZClaimRouter`, `ZZZNFTMetadata`; exact NFT/controller/ledger relationships. |
 | Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and entry-review-policy2 bindings; inactive capture context at anchor. |

@@ -1,13 +1,13 @@
 # Who can call PoPL functions
 
-Fresh **accounting6 / custody5 / schema10 / direct Entry3** candidate; undeployed,
+Fresh **accounting6 / custody5 / schema15 / residual-reinvest1 / direct Entry3** candidate; undeployed,
 production **NOT APPROVED**. One human operator controls governance. This does not
 make every callable function operator-only: NFT owners must retain their rights,
 the keeper its limited work and dependencies their authenticated callbacks.
 
 | Caller | Allowed purpose | Important limits |
 | --- | --- | --- |
-| Governance/operator wallet | Reviewed configuration, role grants/revocation, pause/unpause, same-pair movement, parking/residual close, emergency and terminal LP return | Immediate authority with no timelock; sealed identities and lifecycle remain. Explicit emergency financial bypass can lose nearly all principal. |
+| Governance/operator wallet | Reviewed configuration, role grants/revocation, pause/unpause, same-pair movement, parking/residual close, same-main residual consolidation, emergency and terminal LP return | Immediate authority with no timelock; sealed identities and lifecycle remain. Explicit emergency financial bypass can lose nearly all principal. |
 | Bootstrap | Initial one-time graph/policy configuration and seal | Erased permanently at seal. Preseal configuration is not permission for a distinct governance address. |
 | Guardian | Emergency pause | Cannot unpause, change strategy, move LP or claim holder funds. |
 | Authorized keeper | Guarded rebalance, compound, buyback, observation and applicable reward conversions | Not governance. Cannot approve new dependencies, initiate/close terminal exit, allocate its principal or distribute it in custody5. |
@@ -53,7 +53,10 @@ native receivers are separate inventory counts, not executed tests. The
 
 ## Fresh versus historical profiles
 
-Fresh inventory schema10 requires custody5. Read/keeper configurations explicitly
+Fresh inventory schema15 requires custody5 and explicitly authenticates the
+residual-reinvest1/raw-exit1 capabilities. Schema14 and earlier inventories retain
+their original profiles. Governance-only consolidation is never a keeper action.
+[Exact procedure](OPERATOR_MANUAL.md#same-main-residual-consolidation). Read/keeper configurations explicitly
 set custody_version:5 and check the actual getter/runtime. Omission retains the
 historical default4 for accounting6/5; it fails against a fresh5 deployment.
 Each predecessor in a fresh5 lineage declares its own custody_version; successor

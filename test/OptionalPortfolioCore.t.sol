@@ -1500,4 +1500,184 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(mixed.stableHash,unfilled.stableHash);assertEq(mixed.executionHash,unfilled.executionHash);
         emit ResidualAuditVectorProduced(1,abi.encode(mixed));
     }
+
+    struct ConsolidationSnapshot {
+        Position position;bytes32 mainStructure;bytes32 control;uint128 mainL;uint256 shares;uint256 supply;
+        uint64 nonce;uint64 epoch;uint64 lastCompound;uint256[4] ethAllocation;uint256[4] zzzAllocation;
+        uint256 operatorETH;uint256 operatorZZZ;
+    }
+    /// @dev The main may gain L and attributed idle may change, but none of its
+    /// geometry, ownership, clock or accounting identity is replaced.
+    function _consolidationMainStructure(uint256 bucket) private view returns(bytes32) {
+        Position memory p=vault.group(bucket);p.idle0=0;p.idle1=0;
+        (CoreKey memory actual,PositionInfo info)=positions.getPoolAndPositionInfo(p.lpTokenId);
+        return keccak256(abi.encode(p,positions.ownerOf(p.lpTokenId),actual,PositionInfo.unwrap(info)));
+    }
+    function _consolidationSnapshot(uint256 id,uint256 bucket) private view returns(ConsolidationSnapshot memory s) {
+        s.position=vault.group(bucket);s.mainStructure=_consolidationMainStructure(bucket);s.control=policy.controlFingerprint(pool);
+        s.mainL=positions.getPositionLiquidity(s.position.lpTokenId);s.shares=vault.sharesOf(id);s.supply=vault.bucketTotalShares(bucket);
+        s.nonce=migration.parkingNonce(bucket);s.epoch=migration.custodyEpoch(bucket);s.lastCompound=vault.migrationBudget().lastCompound(bucket);
+        s.ethAllocation=_allocationBefore(bucket,address(0));s.zzzAllocation=_allocationBefore(bucket,address(token));
+        s.operatorETH=address(this).balance;s.operatorZZZ=token.balanceOf(address(this));
+    }
+    function _consolidationReview(uint256 bucket,bool forced) private view returns(EmergencyRebalance memory r) {
+        r.bucket=bucket;r.custodyHash=migration.consolidationCustodyHash(bucket);r.checks=forced?0:14;
+        (r.lower,r.upper)=manager.ticks(vault.group(bucket).lpTokenId);r.minimumLiquidity=1;
+        r.deadline=block.timestamp+100;r.reviewHash=keccak256("TEST ONLY UNCHANGED MAIN CONSOLIDATION");
+    }
+    function _consolidationExplicitReview(uint256 bucket,uint8 checks) private returns(EmergencyRebalance memory r) {
+        r=_consolidationReview(bucket,true);r.checks=checks;Position memory p=vault.group(bucket);
+        uint256 aux=manager.secondaryId(p.lpTokenId);uint256 a0;uint256 a1;if(aux!=0)(a0,a1)=manager.amounts(aux);
+        ZZZLPBalancer router=manager.balancingRouter();vm.prank(address(manager));
+        ZZZLPBalancer.Plan memory plan=router.plan(pool,r.lower,r.upper,a0+p.idle0,a1+p.idle1);
+        r.swapPool=plan.poolId;r.zeroForOne=plan.zeroForOne;r.amountIn=uint128(plan.amountIn);r.minimumOut=uint128(plan.minimumOut);
+    }
+    function _consolidationStateHash(uint256 id,uint256 bucket) private view returns(bytes32) {
+        uint256 main=vault.group(bucket).lpTokenId;
+        return keccak256(abi.encode(_consolidationSnapshot(id,bucket),manager.executionPortfolioFingerprint(main),
+            manager.activeSecondaryCount(),policy.controlFingerprint(pool),policy.appliedRevision(main),
+            fees.accounted(address(0)),fees.accounted(address(token)),rewards.orphaned(address(0)),rewards.orphaned(address(token))));
+    }
+    function _consolidateAndAssert(uint256 id,uint256 bucket,EmergencyRebalance memory r,bool forced) private {
+        ConsolidationSnapshot memory s=_consolidationSnapshot(id,bucket);uint256 aux=manager.secondaryId(s.position.lpTokenId);
+        vm.recordLogs();migration.consolidateResidual(r,forced);Vm.Log[] memory logs=vm.getRecordedLogs();
+        uint256 receipts;uint256 received0;uint256 received1;
+        for(uint256 i;i<logs.length;++i)if(logs[i].emitter==address(vault) && logs[i].topics.length==2 &&
+            logs[i].topics[0]==keccak256("FeesCollected(uint256,uint256,uint256)") && uint256(logs[i].topics[1])==bucket){
+            ++receipts;(uint256 a0,uint256 a1)=abi.decode(logs[i].data,(uint256,uint256));received0+=a0;received1+=a1;
+        }
+        assertEq(receipts,2,"harvest before close and after balancing existing main");
+        _assertAllocation(bucket,address(0),received0,s.ethAllocation);_assertAllocation(bucket,address(token),received1,s.zzzAllocation);
+        assertEq(_consolidationMainStructure(bucket),s.mainStructure,"unchanged main identity/geometry/clock");
+        assertGt(positions.getPositionLiquidity(s.position.lpTokenId),s.mainL,"positive main L delta");
+        assertEq(vault.sharesOf(id),s.shares);assertEq(vault.bucketTotalShares(bucket),s.supply);
+        assertEq(manager.secondaryId(s.position.lpTokenId),0);assertEq(manager.activeSecondaryCount(),0);
+        if(aux!=0){vm.expectRevert();positions.ownerOf(aux);}
+        assertFalse(policy.enabled(pool));assertFalse(policy.configurationPending(bucket));
+        assertTrue(policy.controlFingerprint(pool)!=s.control,"manual reinvest invalidates prior sampled evidence even already OFF");
+        assertEq(policy.appliedRevision(s.position.lpTokenId),policy.geometryRevision(pool));
+        assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp,"coordinate later compound");
+        assertEq(migration.parkingNonce(bucket),s.nonce+1);assertEq(migration.custodyEpoch(bucket),s.epoch+1);
+        assertTrue(access.paused());assertFalse(vault.migrationBudget().emergencyActive());assertFalse(migration.consolidationActive());
+        assertEq(address(this).balance,s.operatorETH);assertEq(token.balanceOf(address(this)),s.operatorZZZ);
+        assertEq(token.allowance(address(vault),address(manager)),0);assertEq(token.allowance(address(vault),manager.positionOperator()),0);
+        _residualAuditPhysical(bucket,false);
+    }
+    function testResidualConsolidationNormalMergesModeOnBeforeCooldownAndKeepsFundedClaims() public {
+        (uint256 alice,uint256 bucket,uint256 main,)=_hybrid();uint256 bob=_mint(BOB);_contribute(BOB,bob,500 ether,false);
+        uint256 bobShares=vault.sharesOf(bob);core.unlock(abi.encode(uint8(2),Q96));
+        uint256 principal=_residualAuditPrincipalValue(bucket);EmergencyRebalance memory r=_consolidationReview(bucket,false);
+        assertLt(block.timestamp,uint256(vault.group(bucket).lastRebalance)+43200);assertTrue(policy.enabled(pool));
+        assertFalse(vault.migrationBudget().compoundReady(bucket));assertFalse(strategy.rebalanceReady(bucket));
+        access.setPaused(true);_consolidateAndAssert(alice,bucket,r,false);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(vault.sharesOf(bob),bobShares);
+        assertGe(_residualAuditPrincipalValue(bucket),Math.mulDiv(principal,9700,10000));
+        assertGt(rewards.claimable(alice,address(0)),0);assertGt(rewards.claimable(bob,address(0)),0);
+        _claimExactly(alice,ALICE,address(0));_claimExactly(bob,BOB,address(0));
+    }
+    function testResidualConsolidationAcknowledgesOffButPreservesIndependentPendingMainWidth() public {
+        (uint256 id,uint256 bucket,,)=_hybrid();policy.setMode(pool,false,keccak256("TEST PRE-DISABLED MODE"));
+        registry.setRange(2500);assertTrue(policy.configurationPending(bucket));assertTrue(strategy.rangeUpdatePending(bucket));
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);access.setPaused(true);_consolidateAndAssert(id,bucket,r,false);
+        assertTrue(strategy.rangeUpdatePending(bucket),"unchanged main cannot apply different desired width");
+    }
+    function _consolidateInventory(bool converted) private {
+        (uint256 id,uint256 bucket,,uint256 aux)=_hybrid();(int24 lower,int24 upper)=manager.ticks(aux);
+        _move(TickMath.getSqrtPriceAtTick(converted?upper+200:int24((int256(lower)+int256(upper))/2)));
+        (uint256 a0,uint256 a1)=manager.amounts(aux);if(converted){assertEq(a0,0);assertGt(a1,0);}else{assertGt(a0,0);assertGt(a1,0);}
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);access.setPaused(true);_consolidateAndAssert(id,bucket,r,false);
+    }
+    function testResidualConsolidationHandlesMixedResidualInventory() public {_consolidateInventory(false);}
+    function testResidualConsolidationHandlesFullyConvertedResidualInventory() public {_consolidateInventory(true);}
+    function testResidualConsolidationRepairsIdleFromEarlierRawCloseWithoutCompoundRelease() public {
+        (uint256 id,uint256 bucket,uint256 main,)=_hybrid();core.unlock(abi.encode(uint8(2),Q96));
+        ZZZMigration.ParkingRequest memory raw=_residualReview(bucket);
+        access.setPaused(true);migration.closeResidual(raw);assertEq(manager.secondaryId(main),0);
+        assertGt(fees.compoundBalance(bucket,address(0))+fees.compoundBalance(bucket,address(token)),0,"nonvacuous retained compound reserve");
+        Position memory p=vault.group(bucket);assertGt(p.idle0+p.idle1,0);uint128 oldL=positions.getPositionLiquidity(main);
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);_consolidateAndAssert(id,bucket,r,false);
+        assertGt(positions.getPositionLiquidity(main),oldL);assertLt(vault.group(bucket).idle0+vault.group(bucket).idle1,p.idle0+p.idle1);
+    }
+    function testResidualConsolidationForcedExplicitlyAcceptsInactiveMainWithUnavailableFeedsAndDisabledOperations() public {
+        (uint256 id,uint256 bucket,uint256 main,)=_hybrid();access.setPaused(true);
+        ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
+        EmergencyRebalance memory r=_consolidationReview(bucket,false);bytes32 beforeState=_consolidationStateHash(id,bucket);
+        vm.expectCall(address(oracle),abi.encodeCall(ZZZOracle.price,(address(0))));vm.expectRevert();migration.consolidateResidual(r,false);
+        assertEq(_consolidationStateHash(id,bucket),beforeState);_prices();registry.setOperations(false);
+        r=_consolidationReview(bucket,false);beforeState=_consolidationStateHash(id,bucket);
+        vm.expectCall(address(strategy),abi.encodeCall(ZZZStrategy.target,(pool)));vm.expectRevert();migration.consolidateResidual(r,false);
+        assertEq(_consolidationStateHash(id,bucket),beforeState);
+        (,int24 upper)=manager.ticks(main);_move(TickMath.getSqrtPriceAtTick(upper+200));
+        ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
+        zzzA.set(0,block.timestamp,block.timestamp);zzzB.set(0,block.timestamp,block.timestamp);
+        r=_consolidationReview(bucket,true);_consolidateAndAssert(id,bucket,r,true);
+        (,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));assertGe(tick,upper,"force does not pretend to recenter the unchanged main");
+    }
+    function testResidualConsolidationForcedExplicitSwapRetainsChosenFinancialChecks() public {
+        (uint256 id,uint256 bucket,,)=_hybrid();EmergencyRebalance memory r=_consolidationExplicitReview(bucket,14);
+        assertGt(r.amountIn,0);
+        access.setPaused(true);_consolidateAndAssert(id,bucket,r,true);
+    }
+    function testResidualConsolidationRetainedSampleWorksAndIdleOnlyOffCompletionInvalidatesOldEvidence() public {
+        (uint256 id,uint256 bucket,,uint256 aux)=_hybrid();(int24 lower,int24 upper)=manager.ticks(aux);
+        _move(TickMath.getSqrtPriceAtTick(int24((int256(lower)+int256(upper))/2)));
+        EmergencyRebalance memory r=_consolidationReview(bucket,true);access.setPaused(true);_consolidateAndAssert(id,bucket,r,true);
+        assertGt(vault.group(bucket).idle0+vault.group(bucket).idle1,0,"forced no-swap leaves meaningful same-bucket idle");
+        access.setPaused(false);_move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_longReady(bucket);
+        (uint8 side,bytes32 oldIdentity,bool manual)=strategy.rebalanceConfirmation().condition(bucket);
+        assertGt(side,0);assertFalse(manual);assertTrue(strategy.rebalanceConfirmation().ready(bucket));
+        r=_consolidationExplicitReview(bucket,16);access.setPaused(true);_consolidateAndAssert(id,bucket,r,true);access.setPaused(false);
+        bytes32 nextIdentity;(side,nextIdentity,manual)=strategy.rebalanceConfirmation().condition(bucket);
+        assertGt(side,0);assertFalse(manual);assertTrue(nextIdentity!=oldIdentity);
+        assertFalse(strategy.rebalanceConfirmation().ready(bucket),"old sample cannot survive manual idle reinvest");
+    }
+    function testResidualConsolidationControlFullEmergencyRetainsPositiveSampleThroughBudgetCaller() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();uint256 shares=vault.sharesOf(id);
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_longReady(bucket);
+        assertTrue(strategy.rebalanceConfirmation().ready(bucket));EmergencyRebalance memory r=_reviewForcedSingle(bucket);r.checks=30;
+        uint256 earned=rewards.claimable(id,address(0));access.setPaused(true);migration.emergencyRebalance(r);
+        uint256 replacement=vault.group(bucket).lpTokenId;assertTrue(replacement!=main);assertEq(manager.secondaryId(replacement),0);
+        assertEq(manager.activeSecondaryCount(),0);assertEq(vault.sharesOf(id),shares);assertGe(rewards.claimable(id,address(0)),earned);
+        vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
+        assertFalse(vault.migrationBudget().emergencyActive());assertTrue(access.paused());
+    }
+    function testResidualConsolidationRejectsAuthorityMalformedReviewAndReplay() public {
+        (uint256 id,uint256 bucket,,)=_hybrid();EmergencyRebalance memory r=_consolidationReview(bucket,false);
+        vm.expectRevert();migration.consolidateResidual(r,false);access.setPaused(true);bytes32 expected=_consolidationStateHash(id,bucket);
+        vm.prank(ALICE);vm.expectRevert();migration.consolidateResidual(r,false);assertEq(_consolidationStateHash(id,bucket),expected);
+        vm.expectRevert();vault.emergencyRebalance(bucket,1,r.deadline);
+        vm.expectRevert();policy.completeConsolidation();
+        r.checks=0;vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.lower+=200;vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.custodyHash=bytes32(uint256(123));vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.amountIn=1;vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.minimumLiquidity=0;vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.reviewHash=bytes32(0);vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        r.deadline=block.timestamp-1;vm.expectRevert();migration.consolidateResidual(r,false);r=_consolidationReview(bucket,false);
+        access.setPreparation(true);vm.expectRevert();migration.consolidateResidual(r,false);access.setPreparation(false);
+        access.setCanonicalState(1);vm.expectRevert();migration.consolidateResidual(r,false);access.setCanonicalState(0);
+        assertEq(_consolidationStateHash(id,bucket),expected);_consolidateAndAssert(id,bucket,r,false);
+        vm.expectRevert();migration.consolidateResidual(r,false);
+    }
+    function testResidualConsolidationFloorOrCallbackFailureRollsBackBurnModeFeesAndNonce() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();core.unlock(abi.encode(uint8(2),Q96));
+        access.setPaused(true);EmergencyRebalance memory r=_consolidationReview(bucket,false);bytes32 expected=_consolidationStateHash(id,bucket);
+        r.minimumLiquidity=type(uint128).max;vm.expectRevert();migration.consolidateResidual(r,false);
+        assertEq(_consolidationStateHash(id,bucket),expected);assertEq(positions.ownerOf(aux),address(vault));
+        r=_consolidationReview(bucket,false);residualCallbackBucket=bucket;uint8[3] memory kinds=[uint8(1),uint8(2),uint8(4)];
+        bytes32 maintenance=ProtocolPolicyFixture.bind(address(access)).maintenanceFingerprint();
+        for(uint256 i;i<kinds.length;++i){positions.configureBurnCallback(address(this),aux,kinds[i]);
+            vm.expectCall(address(this),abi.encodeCall(this.residualBurnCallback,(kinds[i])));vm.expectRevert();migration.consolidateResidual(r,false);
+            assertEq(_consolidationStateHash(id,bucket),expected);assertEq(manager.secondaryId(main),aux);
+            assertEq(ProtocolPolicyFixture.bind(address(access)).maintenanceFingerprint(),maintenance);
+        }
+    }
+    function testResidualConsolidationCanReenableThenCreateAndConsolidateOnlyOneNewResidual() public {
+        (uint256 id,uint256 bucket,uint256 originalMain,)=_hybrid();EmergencyRebalance memory r=_consolidationReview(bucket,false);
+        access.setPaused(true);_consolidateAndAssert(id,bucket,r,false);access.setPaused(false);
+        _contribute(ALICE,id,100 ether,true);policy.setMode(pool,true,keccak256("TEST REENABLE AFTER CONSOLIDATION"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_longReady(bucket);vault.rebalance(bucket,1,block.timestamp+100);
+        (uint256 main,uint256 aux)=_residualAuditPhysical(bucket,true);assertTrue(main!=originalMain);assertGt(aux,0);
+        r=_consolidationReview(bucket,false);access.setPaused(true);_consolidateAndAssert(id,bucket,r,false);
+    }
 }

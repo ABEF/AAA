@@ -68,7 +68,10 @@ royalties and buyback reserve stay separate. Failed recipients retain backed
 rights and an owner-only fallback. [Complete operator steps](HOLDER_COLLECTIVE_EXIT.md).
 Unpause cannot reopen minting, contributions, maintenance or canonical replacement.
 
-No `exit` to a chosen address, all-ZZZ consolidation, `completeLocal`, `recover`,
+Paused governance may consolidate residual principal/attributed idle into the
+unchanged main via [the typed management operation](OPERATOR_MANUAL.md#same-main-residual-consolidation),
+with guarded auto routing or an explicit forced manifest. Main range changes
+remain separate. No `exit` to a chosen address, all-ZZZ consolidation, `completeLocal`, `recover`,
 royalty-custody drain, bridge or generic sweep remains. A token issuer migration
 cannot be executed on holders' behalf by a custody wallet: holders receive the
 actual old ETH/ZZZ and handle any issuer exchange themselves. New ZZZ or another

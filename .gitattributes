@@ -119,3 +119,6 @@ reports/holder-exit-assurance-20261103/** -text whitespace=cr-at-eol
 
 # Preserve the original diagnostic spacing in this audit's failed fixture log.
 reports/residual-lifecycle-20261106/services/affected-first.log -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact residual-consolidation evidence and native diagnostic spacing.
+reports/residual-main-consolidation-20261106/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -21,6 +21,7 @@ import {
 } from "./interfaces/IZZZ.sol";
 interface IVaultPositionOperator { function positionOperator() external view returns(address); }
 interface IVaultResidualLiquidity { function closeSecondary(bytes32,uint256,uint256) external; }
+interface IVaultManualContext { function consolidationActive() external view returns(bool); }
 
 /// @notice Non-upgradeable custody. No holder redemption during operation.
 /// Governance may irreversibly settle actual principal to NFT holders.
@@ -48,6 +49,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     ZZZMigrationBudget public immutable migrationBudget;
     uint256 public constant ACCOUNTING_VERSION = 6;
     uint256 public constant RESIDUAL_EXIT_VERSION = 1;
+    uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
     event Activated(
         uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1
@@ -289,7 +291,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     ) private {
         _deadline(deadline);
         Position storage p = positions[bucketId];
-        IZZZFees fees = IZZZFees(_moduleFees());
         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
         (address token0, address token1, uint32 limits) = migrationBudget.validateContribution(
             nftId, bucketId, inputUSD, amount0 | (amount1 << 128), minimumLiquidity, activation
@@ -300,8 +301,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust();
         if (supply != 0) {
             _harvest(bucketId, deadline);
-            fees.flushDust(bucketId, token0);
-            fees.flushDust(bucketId, token1);
+            _flushDust(bucketId,token0,token1);
             _pullCompound(bucketId);
         }
         (uint256 oldLP, uint256 oldIdle) = _nav(bucketId);
@@ -314,8 +314,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (supply != 0) {
             // Fees earned by the entry swap belong to pre-entry membership.
             _harvest(bucketId, deadline);
-            fees.flushDust(bucketId, token0);
-            fees.flushDust(bucketId, token1);
+            _flushDust(bucketId,token0,token1);
             (uint256 f0, uint256 f1) = _pullCompound(bucketId);
             freshCompound = _valueBucket(bucketId, f0, f1);
         }
@@ -399,6 +398,12 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         amount1 = fees.releaseCompound(bucketId, token1);
         _idle(bucketId, p.idle0 + amount0, p.idle1 + amount1);
     }
+    /// @dev Keep these external calls in Vault so Fees sees its exact authorized
+    /// caller. Entry checkpoints and terminal exit retain their original order.
+    function _flushDust(uint256 bucketId,address token0,address token1) private {
+        IZZZFees fees=IZZZFees(_moduleFees());
+        fees.flushDust(bucketId,token0); fees.flushDust(bucketId,token1);
+    }
 
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline)
         external
@@ -408,15 +413,25 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         principalOperating
         nonReentrant
     {
-        _deadline(deadline);
-        _active(id);
-        _migrationCheckpoint(id, 3);
-        _harvest(id, deadline);
-        (uint256 amount0, uint256 amount1) = _pullCompound(id);
-        _migrationCheckpoint(id, 1);
-        _redeploy(id, minimumLiquidity, deadline);
-        _migrationCheckpoint(id, 2);
+        (uint256 amount0,uint256 amount1)=_reinvest(id,minimumLiquidity,deadline,3);
         emit Compounded(id, amount0, amount1);
+    }
+
+    /// @dev Both paths reuse identical actual-receipt, balancing and LP proofs.
+    /// Phase4 consumes already-attributed idle and residual principal only.
+    function _reinvest(uint256 id,uint128 minimumLiquidity,uint256 deadline,uint8 phase)
+        private returns(uint256 amount0,uint256 amount1) {
+        _deadline(deadline); _active(id);
+        _migrationCheckpoint(id,phase);
+        _harvest(id,deadline);
+        if(phase==3) (amount0,amount1)=_pullCompound(id);
+        // Residual principal is already in the starting denominator. Include
+        // released compound BEFORE closing it, never count proceeds twice.
+        _migrationCheckpoint(id,1);
+        if(phase==4 && IZZZLiquidity(_moduleLiquidity()).secondaryId(positions[id].lpTokenId)!=0)
+            _receiveVenue(id,deadline,2);
+        _redeploy(id,minimumLiquidity,deadline);
+        _migrationCheckpoint(id,2);
     }
 
     function _close(uint256 bucketId, uint256 deadline) private {
@@ -486,13 +501,25 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _rebalance(id,minimumLiquidity,deadline,false);
         if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();
     }
-    /// @notice Only the sealed Migration module can forward paused-governance
-    /// emergency. No keeper, holder, arbitrary executor or recipient is admitted.
+    /// @notice Fixed Migration's typed manual dispatcher. Its active reviewed
+    /// context chooses same-main reinvestment; otherwise the original scoped
+    /// emergency replaces the portfolio. No arbitrary selector or recipient.
     function emergencyRebalance(uint256 id,uint128 minimumLiquidity,uint256 deadline)
         external onlyModule(Ids.MIGRATION) operating principalOperating nonReentrant {
-        IZZZEmergencyLiquidity(_moduleLiquidity()).beginEmergency();
-        _rebalance(id,minimumLiquidity,deadline,true);
-        IZZZEmergencyLiquidity(_moduleLiquidity()).endEmergency();
+        bool consolidation=IVaultManualContext(msg.sender).consolidationActive();
+        bool forced=migrationBudget.emergencyActive();
+        IZZZEmergencyLiquidity manager=IZZZEmergencyLiquidity(_moduleLiquidity());
+        if(forced) manager.beginEmergency();
+        if(consolidation) {
+            if(!access.paused() || positions[id].lpTokenId==0 || minimumLiquidity==0) revert InvalidState();
+            if(forced) migrationBudget.validateRebalance(id,minimumLiquidity);
+            _reinvest(id,minimumLiquidity,deadline,4);
+            if(!access.paused()) revert InvalidState();
+        } else {
+            if(!forced) revert InvalidState();
+            _rebalance(id,minimumLiquidity,deadline,true);
+        }
+        if(forced) manager.endEmergency();
     }
     function _rebalance(uint256 id,uint128 minimumLiquidity,uint256 deadline,bool emergency) private {
         _deadline(deadline);
@@ -528,9 +555,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         (address token0, address token1) = migrationBudget.validateHolderExit(id,msg.sender);
         // Final harvest runs while Active, as required by funded fee allocation.
         if (p.status == PositionStatus.Active) _harvest(id, deadline);
-        IZZZFees fees = IZZZFees(_moduleFees());
-        fees.flushDust(id, token0);
-        fees.flushDust(id, token1);
+        _flushDust(id,token0,token1);
         _pullCompound(id);
         if (p.status == PositionStatus.Active) _close(id, deadline);
         if (p.lpTokenId != 0) revert InvalidState();

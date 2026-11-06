@@ -1,0 +1,13 @@
+{
+  "strict_records": 495,
+  "current_contexts_individually_reviewed": 133,
+  "exact_unique_reused": 362,
+  "current_dispositions": {
+    "false_positive": 76,
+    "informational": 29,
+    "accepted_risk": 28
+  },
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "raw_analyzer_exit": 4294967295
+}

@@ -34,11 +34,16 @@ can remain available during USD outages; missing post-action reads never justify
 resubmitting a confirmed operation. Final independent audit/remediation and the
 actual release record below remain required.
 
+The new [same-main management source](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
+adds residual-reinvest1 and inventory15. Its exact final compiler/static/reference
+evidence supersedes only its changed source scope; old unchanged-source reuse
+does not verify these new contracts. No service/site/deployment is upgraded.
+
 ## Current candidate and evidence limits
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory14/reporting5/canonicalV8. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V6.md). |
+| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory15/reporting5/canonicalV8. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V6.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
@@ -46,7 +51,7 @@ actual release record below remain required.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; check exact margins in the current normal compiler record; royalty factory/constructor changes require fresh runtime and initcode checks, not fixture limits or historical headroom. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema14/direct Entry3/exact-unit original-currency royalty4 graph with18 callable helpers plus2 inert Factory data children, reporting5 and canonicalV8 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema15/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with18 callable helpers plus2 inert Factory data children, reporting5 and canonicalV8 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)

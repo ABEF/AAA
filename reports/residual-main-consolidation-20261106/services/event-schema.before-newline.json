@@ -1,0 +1,4114 @@
+{
+  "0x0090deea5c482d3b459dc25cf38fedf37ca7d84c3456e8e7d00705c7ddaf1e3d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "secondaryId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "principal0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "principal1",
+        "type": "uint256"
+      }
+    ],
+    "name": "ResidualClosed",
+    "signature": "ResidualClosed(bytes32,uint256,uint256,uint64,uint256,uint256)"
+  },
+  "0x032f462be2c006dc0ea332169d7b3b165cb4f107760d79b1ba6ec30fb7117a63": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "deliveryId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "kind",
+        "type": "uint8"
+      }
+    ],
+    "name": "Received",
+    "signature": "Received(bytes32,bytes32,uint256,uint8)"
+  },
+  "0x033fb217977fa0c59b7971f8b091631cb602cf51990b47bc4e37271d0fb131ca": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "beforeUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "deployedUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "idleUSD",
+        "type": "uint256"
+      }
+    ],
+    "name": "MigrationValueChecked",
+    "signature": "MigrationValueChecked(uint256,uint256,uint256,uint256)"
+  },
+  "0x035ce0d8566fc11c9155a6b7670caab30d312ca03fa937bd0b0c409567913a57": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint8"
+      }
+    ],
+    "name": "RangeOrientationChanged",
+    "signature": "RangeOrientationChanged(bytes32,uint8,uint8)"
+  },
+  "0x062a097cb1aaff0fc14f4995579e726e2d0cc1ca460604f79ec411cde485c3f8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "distributed",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "carriedDust",
+        "type": "uint256"
+      }
+    ],
+    "name": "FeesAllocated",
+    "signature": "FeesAllocated(uint256,address,uint256,uint256)"
+  },
+  "0x07b62cbc6a4efa76b81782e9dbc283fd706caf591466a61d560e44554f7a1633": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "depositsEnabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "operationsEnabled",
+        "type": "bool"
+      }
+    ],
+    "name": "PoolDisabled",
+    "signature": "PoolDisabled(bytes32,bool,bool)"
+  },
+  "0x084db70deeccf6fa32645575c7b3e115fcf775e58be7aaa0cd24cf7605fc74d8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyActivated",
+    "signature": "WrapperPolicyActivated(bytes32,bytes32)"
+  },
+  "0x08a301fe34854e26415a7d6d158412f4e7e2cc61bcbdd0c5d92d66513d5a4af1": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "destination",
+        "type": "address"
+      }
+    ],
+    "name": "Frozen",
+    "signature": "Frozen(bytes32,address)"
+  },
+  "0x09dea7dba19f2080ee37b19654b28abc3e323c329cdc223fa0e51baebd1dec78": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "MembershipDustSettled",
+    "signature": "MembershipDustSettled(uint256,address,uint256)"
+  },
+  "0x0a01aa3720ec96a52c0ada9bee0d361401583226065e4b1ce5c9cb601902c1b3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ImportFinalized",
+    "signature": "ImportFinalized(uint256,uint256)"
+  },
+  "0x0b7799b44b2fea7595e7c3227a0d4457e298ff7304e8068aaec078f1d4ed76e0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAsset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "grossUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "outputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "increase",
+        "type": "bool"
+      }
+    ],
+    "name": "SourceContributed",
+    "signature": "SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)"
+  },
+  "0x0d8c7681cbe8368b07c345e4cd1e6f44cf162aaab770261bb24fcd001b6ee81f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "retainedChecks",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "EmergencyRebalanced",
+    "signature": "EmergencyRebalanced(uint256,uint8,bytes32,bytes32)"
+  },
+  "0x0d9e8200abf8556438eea9469b6d71fe067bb43d008d3f123dc547e4043c41fd": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "newBase",
+        "type": "string"
+      }
+    ],
+    "name": "MetadataBaseChanged",
+    "signature": "MetadataBaseChanged(string)"
+  },
+  "0x0e3c58ebfb2e7465fbb1c32e6b4f40c3c4f5ca77e8218a386aff8617831260d7": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "AssetAdded",
+    "signature": "AssetAdded(address)"
+  },
+  "0x1087d3196d0fd618e2eb1ab4b4b2f79b2c081dd2d6109655e72e7569bf2ddeaf": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "required",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ReferenceExitConfigured",
+    "signature": "ReferenceExitConfigured(bool,uint64,bytes32)"
+  },
+  "0x110fde9853f67e31a87dff7323b4030d2af37a27ac65ac038cef110e70a7bccb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "rarity",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "color",
+        "type": "uint8"
+      }
+    ],
+    "name": "TraitsFinalized",
+    "signature": "TraitsFinalized(uint256,uint8,uint8)"
+  },
+  "0x14d762f8cf0c57520ffe51600f91fe1f83d482fa56ced7029ce92aa9fb491c02": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "geometryRevision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PortfolioModeConfigured",
+    "signature": "PortfolioModeConfigured(bytes32,bool,uint64,uint64,bytes32)"
+  },
+  "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "approved",
+        "type": "bool"
+      }
+    ],
+    "name": "ApprovalForAll",
+    "signature": "ApprovalForAll(address,address,bool)"
+  },
+  "0x1b1795da00a40b05a00b2b41491c601b9763f8a722a848b05acce8e0364b4648": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "duration",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "maxObservationGap",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ConfirmationConfigured",
+    "signature": "ConfirmationConfigured(uint32,uint32,uint64,bytes32)"
+  },
+  "0x1cf892622deaf3baa98c77c1a49ef92ccaef9f6a8db08af1183119a38be2bca8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "OutboundEnabled",
+    "signature": "OutboundEnabled(bytes32,bool)"
+  },
+  "0x1d2e285e80bbc4843999840aeb2fc3209e7ae9b3444c62861aa62f14a418b6d3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "canonicalToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "individual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "collective",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "canonical",
+        "type": "bool"
+      }
+    ],
+    "name": "RemoteAccountingImported",
+    "signature": "RemoteAccountingImported(uint256,address,uint256,uint256,bool)"
+  },
+  "0x1f9419d9541ced6d1dc665bb98795f8032ace8a40b7c0d91715ea72fb37f56cc": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "handoffId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalExited",
+    "signature": "PrincipalExited(uint256,bytes32,uint256,uint256)"
+  },
+  "0x1f9a280b429e275456caba36ae05580d4846000396d10ea85b8a4f756f22df8a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalBridged",
+    "signature": "PrincipalBridged(uint256,bytes32,uint256,uint256)"
+  },
+  "0x21bb0e30918ff3a95214cfdb2066c88f751c1b10307f34ec69a9b9f463f85c4f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ZZZIdentityConfigured",
+    "signature": "ZZZIdentityConfigured(address,bytes32,bytes32)"
+  },
+  "0x24270a8eecc50f3c23e8ce862dc0e4af7eed2183890ef24652d497d9bfedf80a": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "cutoff",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyOpeningFinalized",
+    "signature": "RoyaltyOpeningFinalized(uint256,uint256,uint256)"
+  },
+  "0x255d9461222a8a158eada0b4467a6921d765c79d919f6d425ee64c2e894ba6d8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "inputLowerUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "inputUpperUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "marginalDeployedUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "netUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "spotX96",
+        "type": "uint160"
+      },
+      {
+        "indexed": false,
+        "name": "basisHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ContributionVerified",
+    "signature": "ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)"
+  },
+  "0x29d647091aed56a3ac526b0fe16b864f369d39a66cbdeeef79b767d2999af6ae": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "ConversionLossLimitChanged",
+    "signature": "ConversionLossLimitChanged(uint16,uint16)"
+  },
+  "0x2bddd8f58a6133908776d5052ff3ce5fc8444f2e866ad2392152000a8323ce91": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "input",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeOutput",
+        "type": "uint256"
+      }
+    ],
+    "name": "Converted",
+    "signature": "Converted(address,bytes32,uint256,uint256)"
+  },
+  "0x2d9380e23bde3c37c5c401d3fb19b9c26c1fd87b7efdc375af7eb443db593916": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "shares",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "netUSD",
+        "type": "uint256"
+      }
+    ],
+    "name": "SharesAdded",
+    "signature": "SharesAdded(uint256,uint256,uint256,uint256)"
+  },
+  "0x2e0a7b715c2cf3eeb57a143a7ee8ebcfce56dd56a969706b989b195dc0ed2342": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "earliest",
+        "type": "uint64"
+      }
+    ],
+    "name": "Scheduled",
+    "signature": "Scheduled(bytes32,uint256,bytes32,uint64)"
+  },
+  "0x2e125cc8a61920c78e25125bcdf5c78e92c591e249c0de7b6cad501625f7ea17": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "destinationVault",
+        "type": "address"
+      }
+    ],
+    "name": "LocationConfirmed",
+    "signature": "LocationConfirmed(uint256,uint256,address)"
+  },
+  "0x2f0ff3aa3d022c8597f8a6bd839c79611875a7ed49d0f71ec0258d45b066614d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "mintPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "DormantMinted",
+    "signature": "DormantMinted(uint256,address,uint256)"
+  },
+  "0x2f4e1bc8891173724266b2249bc625d5f1e3569d2d8c4ae47c5c6e6db26a379e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyCompleted",
+    "signature": "CustodyCompleted(bytes32,uint256,uint256)"
+  },
+  "0x3250e278e36a79630802af2a047d997852a9e1f1048d715606c2b7f79d5ea98c": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "MaintenanceLossLimitChanged",
+    "signature": "MaintenanceLossLimitChanged(uint16,uint16)"
+  },
+  "0x33e79962e8d633cf34bd5e370ee8d12f6c74799825aa236c2d51338fb3e54a42": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligible",
+        "type": "bool"
+      }
+    ],
+    "name": "RoyaltiesReceived",
+    "signature": "RoyaltiesReceived(address,uint256,bool)"
+  },
+  "0x34e010a4ef37e7b53b3d02e76e84b745a250daa244a2768dabaf7c0c1947963e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "requestId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "ordinal",
+        "type": "uint256"
+      }
+    ],
+    "name": "RandomnessRequested",
+    "signature": "RandomnessRequested(uint256,uint256,uint256)"
+  },
+  "0x351984f67cc457fc7405c63c4941e2fd9b1e332c8cee9dd34e549dfeef77f147": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "implementation",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "codeHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ProtocolPolicyBound",
+    "signature": "ProtocolPolicyBound(address,bytes32)"
+  },
+  "0x35f2c394d2dc25fafb1b477d5744e3903afd28415142c68afc549eca0193181c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalAccepted",
+    "signature": "PrincipalAccepted(bytes32,uint256)"
+  },
+  "0x3a735c9e2e60f8e6c627746f2cd2079fe7749afec0b365bcb38247cb68a21cc4": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "targetPool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "executionPool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "zeroForOne",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "amountIn",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "expectedOutput",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      }
+    ],
+    "name": "BalancePlanned",
+    "signature": "BalancePlanned(bytes32,bytes32,bool,uint256,uint256,uint64)"
+  },
+  "0x3aa39da67cd8832cc5ac2c6ba14c1c1060018a7e9c4a705734a3f42c6197e009": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "epoch",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "vault",
+        "type": "address"
+      }
+    ],
+    "name": "LocationRecorded",
+    "signature": "LocationRecorded(uint256,uint64,uint256,address)"
+  },
+  "0x3cf0e0730d97aaa1328a5d722e1603ee7b2518dc9c3889da97195522751e9b82": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "V4RouteRecorded",
+    "signature": "V4RouteRecorded(bytes32,address,bytes32)"
+  },
+  "0x4276fe3074a38534d4534118ffe3b6cbe0ca537bbf6d888614312ea9dff380da": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "main",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "geometryRevision",
+        "type": "uint64"
+      }
+    ],
+    "name": "PortfolioApplied",
+    "signature": "PortfolioApplied(uint256,bytes32,uint64)"
+  },
+  "0x4331fc1f78bb5740f84cc57fb5b1b754cf963cc944edc2c7e60bd7db1f9ca2b8": {
+    "fields": [],
+    "name": "LPExitStarted",
+    "signature": "LPExitStarted()"
+  },
+  "0x443cd17b7342bda213402fca498a8599e264e79286ff96387bd98b0008232318": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      }
+    ],
+    "name": "ConfirmationInvalidated",
+    "signature": "ConfirmationInvalidated(uint64)"
+  },
+  "0x465cc2dc0625be46d859c4c26505717b9f6a4a8ef6ff7d72fb3afb8669c92244": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      }
+    ],
+    "name": "RoyaltyAssetDeferred",
+    "signature": "RoyaltyAssetDeferred(uint256,address)"
+  },
+  "0x47f5dcfecba71178168914ded6ac2e1f53cbb8746feb4316bbb6b7475c6ce1cf": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MintPriceConfigured",
+    "signature": "MintPriceConfigured(uint128,uint128,uint64,bytes32)"
+  },
+  "0x4867887a5b0bebacccb6e4c9c656b3a6b2fe478e226ea1fa5230d9b4bdabc26e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "Activated",
+    "signature": "Activated(uint256,uint256)"
+  },
+  "0x49c6ff63ba90c8bdc36d3ffa536ce42d9b92a72727348f9587641938f79a1381": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalPaid",
+    "signature": "PrincipalPaid(uint256,address,address,uint256,uint256)"
+  },
+  "0x4bda33d198725cbe85036110b83cb80b958bcc6838a00e4b5ee9897bc36f770e": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previousConfirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "previousCallbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      }
+    ],
+    "name": "RandomnessRequestSettingsChanged",
+    "signature": "RandomnessRequestSettingsChanged(uint16,uint32,uint16,uint32)"
+  },
+  "0x4c2a5dbed875c71a9bc5efcc41693a5d0a073d5be29010d0f46b4f5be2bc2146": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "SequencerPolicyActivated",
+    "signature": "SequencerPolicyActivated(bytes32,bytes32)"
+  },
+  "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "KeeperChanged",
+    "signature": "KeeperChanged(address,bool)"
+  },
+  "0x4f9da6a7e022cf8b647c0e7081de9755744c61d6d1bdc467b0b71e4319eaf6e6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExternalRewardsFunded",
+    "signature": "ExternalRewardsFunded(uint256,address,uint256)"
+  },
+  "0x4fd871ae0e102485e83c9bc77282872198a7eebcdab4f51e45d706c21a498a53": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "primary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "secondary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "primaryIndependenceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "secondaryIndependenceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "maxDeviationBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DualPolicyRecorded",
+    "signature": "DualPolicyRecorded(bytes32,address,address,address,bytes32,bytes32,uint16,bytes32)"
+  },
+  "0x50e2b2b9ab2f28ec350dfef5f8d85818a1dd022acedec4f760ffd3638be6b30a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "palette",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "pattern",
+        "type": "uint8"
+      }
+    ],
+    "name": "ArtworkFinalized",
+    "signature": "ArtworkFinalized(uint256,uint8,uint8)"
+  },
+  "0x5380fbb57cd387b316d7af0b35d147f9b8e513047a3b6660516534da1883a808": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "configurationHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "KeeperRangePolicyChanged",
+    "signature": "KeeperRangePolicyChanged(bytes32,bool,bytes32,bytes32)"
+  },
+  "0x541d2af57c89150ea20c0c7b30bd53aa85503de2b8bfae8f5d2cf585df10303d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previousRequest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "newRequest",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "destinationPool",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DestinationBound",
+    "signature": "DestinationBound(bytes32,bytes32,bytes32,bytes32)"
+  },
+  "0x54ca1f89aee2b8d11c89b7813c6aa99caa0f8c55c8eccf8b70c3bb42029fa134": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "Enabled",
+    "signature": "Enabled(bool)"
+  },
+  "0x573ecbd82bb44aa34b4cfe9a63c5beccf84cfbdbe01028c886f25d5c3183e725": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "NativeRewardWrapped",
+    "signature": "NativeRewardWrapped(uint256,address,uint256)"
+  },
+  "0x5978f2026a782bb024c4e8fb6eab5d94109f9cd960e9c88f799fc8a77d5e4803": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "router",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
+        "type": "uint24"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,address,address,address,uint24,bytes32)"
+  },
+  "0x5e8dc571e9e440e188581441abecafea8827b60e94428d01f5d0a46997e0f6e4": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PortfolioTriggerConfigured",
+    "signature": "PortfolioTriggerConfigured(uint16,uint16,uint64,bytes32)"
+  },
+  "0x606eecb31d18a2b915e97b5c7696afbdd899610ad12dbe5d806a75be4dd5d0ab": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "expectedCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "bootstrapAdmission",
+        "type": "bool"
+      }
+    ],
+    "name": "SequencerPolicyRecorded",
+    "signature": "SequencerPolicyRecorded(bytes32,address,bytes32,bytes32,bool)"
+  },
+  "0x6086d04720865134c110e57853bbb0e37458616cb11ced4a673351c939675bed": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperConfigured",
+    "signature": "WrapperConfigured(bytes32,bytes32)"
+  },
+  "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "homeChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "homeVault",
+        "type": "address"
+      }
+    ],
+    "name": "ImportPending",
+    "signature": "ImportPending(uint256,uint256,address)"
+  },
+  "0x634cfec248f825718064d5e1b53bdb5adac343bc794418e90e8c5b4f6142926c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Completed",
+    "signature": "Completed(bytes32,uint256)"
+  },
+  "0x64e9ee5e2142f631ba8cb49a0c5b2c947766588b1ddef39a2e5c8b9676c8c7b6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "slot",
+        "type": "uint8"
+      }
+    ],
+    "name": "DomainSettled",
+    "signature": "DomainSettled(bytes32,uint8)"
+  },
+  "0x65b707affc3bbcf89c28f64704be42897a33f0351822b5757016d857ab0d3b0c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "destinationChain",
+        "type": "uint256"
+      }
+    ],
+    "name": "RouteRegistered",
+    "signature": "RouteRegistered(bytes32,uint256,uint256)"
+  },
+  "0x66ace591f7c88075839f4a0246420d0cc8a34cbe9a924cd0e1ca63c336344f4b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "quarantined",
+        "type": "uint256"
+      }
+    ],
+    "name": "AssetAdded",
+    "signature": "AssetAdded(address,uint256)"
+  },
+  "0x6798b16963626b4e151e09277cfe1d068e55f63f8a5fef33f171e9415af99a94": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "operations",
+        "type": "uint256"
+      }
+    ],
+    "name": "BatchClaimed",
+    "signature": "BatchClaimed(address,uint256)"
+  },
+  "0x6a6d1ba684804417c9f9397574713c5d48626964e9c276d705d2788475adec3d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previous",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      }
+    ],
+    "name": "GovernanceAccepted",
+    "signature": "GovernanceAccepted(address,address)"
+  },
+  "0x6a8647c0ce95597269047ae2b6080bab49f7544a9958874c2e1ebb410abbeb13": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "slot",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "BackingReturned",
+    "signature": "BackingReturned(bytes32,uint8,uint256)"
+  },
+  "0x6b2c4df89f34286d100b43c77eda363ba003b1a70ffdedd2c8ae29621bbcdf19": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "slot",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "row",
+        "type": "uint256"
+      }
+    ],
+    "name": "RecordImported",
+    "signature": "RecordImported(bytes32,uint8,uint256)"
+  },
+  "0x6bd5c950a8d8df17f772f5af37cb3655737899cbf903264b9795592da439661c": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "fromTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "toTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "BatchMetadataUpdate",
+    "signature": "BatchMetadataUpdate(uint256,uint256)"
+  },
+  "0x6c14af358924863cae69834eaf828a9888cedddd9b2cf5c37d3b418ab020c20d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationChain",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,uint256)"
+  },
+  "0x6dc296596a04d741d96a4798b55ab36c8b40f00ac61b6e47bd22d1ee2b625c5d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "InitialRoyaltiesAllocated",
+    "signature": "InitialRoyaltiesAllocated(address,uint256,uint256,uint256)"
+  },
+  "0x72942b4c3efc1a2771bb79910fa8aa483d516aa4ca981905a646efd020af6db6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UnallocatedRoyaltiesRecovered",
+    "signature": "UnallocatedRoyaltiesRecovered(address,uint256,uint256,uint256,bytes32)"
+  },
+  "0x74c86b4771882a858100c05cb152701493afca53ac4f8af8a3abd03cd3b5fdd0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "token1",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "rawExit",
+        "type": "bool"
+      }
+    ],
+    "name": "CustodyAssetsSent",
+    "signature": "CustodyAssetsSent(bytes32,address,uint256,address,uint256,bool)"
+  },
+  "0x750bec14b00588affd885c4d2d63b5f94b25436ffecad5bfe4b3a71ba50e164b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyCustodyReturned",
+    "signature": "RoyaltyCustodyReturned(bytes32,address,uint256)"
+  },
+  "0x769614360bcedd6ba1e21f781fd77c85f666e68c145f3832cff020646b214f4b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "LateRoyaltiesForwarded",
+    "signature": "LateRoyaltiesForwarded(address,address,uint256)"
+  },
+  "0x78a48f6ba5eb1448c8a143d52a6565b5b740029c6eca903482865789dff0985d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "slot",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "BackingTransferred",
+    "signature": "BackingTransferred(bytes32,uint8,uint256,address,uint256)"
+  },
+  "0x7944ce879045beea193a1ee058a451f76ebda3f907378c7c2ebda760acce4d90": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "principal0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "principal1",
+        "type": "uint256"
+      }
+    ],
+    "name": "ParkingExecuted",
+    "signature": "ParkingExecuted(bytes32,uint256,uint64,uint256,uint256)"
+  },
+  "0x7b5b7c1ebe4e90fc422312f59d74eb9b34d2182ec7c521387e623f588e0c6199": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "side",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "identity",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "firstSeen",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "lastSeen",
+        "type": "uint64"
+      }
+    ],
+    "name": "Observed",
+    "signature": "Observed(uint256,uint8,bytes32,uint64,uint64)"
+  },
+  "0x7ba23be9189f8ae1184a411b958e9993e217a63818ceefdb0fccfbc4456b5edf": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "transportId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "kind",
+        "type": "uint8"
+      }
+    ],
+    "name": "Sent",
+    "signature": "Sent(bytes32,bytes32,uint256,uint8)"
+  },
+  "0x7c4d96924f12913ea4497be340c588e727913bc71595eb2f44cdb892bdc6f337": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "governance",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "pending",
+        "type": "address"
+      }
+    ],
+    "name": "GovernanceProposed",
+    "signature": "GovernanceProposed(address,address)"
+  },
+  "0x7fe300b33b19dde90c9453f43bacc5f6fd4c3baced6906ea7df18ca516dbd716": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "slot",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "row",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "record",
+        "type": "bytes"
+      }
+    ],
+    "name": "RecordExported",
+    "signature": "RecordExported(bytes32,uint8,uint256,bytes)"
+  },
+  "0x8248b84a4340fead02fa0d0934983325866898a1d6f3c4f6433f167bb9928c03": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "Activated",
+    "signature": "Activated(uint256,address,bytes32,uint256,uint256)"
+  },
+  "0x83e5ec060c98f40f146ea90000e56e8b9728caced63c545598e844cd036d8777": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoyaltyCustodyExited",
+    "signature": "RoyaltyCustodyExited(bytes32,address,address,uint256,bytes32)"
+  },
+  "0x85495d98695c16ed1252f88cb011d0f4130384396d6db30b5203bbaf7eb9b0d5": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "successor",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "stateRoot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Retired",
+    "signature": "Retired(bytes32,address,bytes32)"
+  },
+  "0x884cd9cebd382d81877b2cf14d09f70ea21f3c26c12e891063084a524cb96426": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AssetPolicyActivated",
+    "signature": "AssetPolicyActivated(address,bytes32,bytes32)"
+  },
+  "0x89061f4bfdd9191afcf528528e108c25eb4ab3549fe84aa58f20816c7ef7407f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint32"
+      }
+    ],
+    "name": "CompoundIntervalChanged",
+    "signature": "CompoundIntervalChanged(bytes32,uint32,uint32)"
+  },
+  "0x89f2af0f430b21b7a79356f44177d1d7e37de5e2adee55b97c146ff5de201fcc": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "oldLpTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "newLpTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "centerX96",
+        "type": "uint160"
+      }
+    ],
+    "name": "Rebalanced",
+    "signature": "Rebalanced(uint256,uint256,uint256,uint160)"
+  },
+  "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "approved",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "signature": "Approval(address,address,uint256)"
+  },
+  "0x8c70bbb2de92aa79534e6efdef63c7a4dfcb60c10a52f3d80299d8265d9a508f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousController",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "nextController",
+        "type": "address"
+      }
+    ],
+    "name": "CancelledRoyaltyReturnAdvanced",
+    "signature": "CancelledRoyaltyReturnAdvanced(address,address)"
+  },
+  "0x8cf8bdee38d1f77a80e9d022ed87c849557d2289a2e7271026ace74860afd2de": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyConverted",
+    "signature": "RoyaltyConverted(uint256,address,uint256,uint256)"
+  },
+  "0x8d705c20e993c2fbca837c9fb3e20eef6ac5a6a5641b37287de60154ea7da8a8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "mintedCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "bucketCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CollectiveExitStarted",
+    "signature": "CollectiveExitStarted(bytes32,uint256,uint256)"
+  },
+  "0x8f76021ad32ade2d458f62ee3fe48b296cc8859b41bb6e46325eb46250784330": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "KeeperRangeSelected",
+    "signature": "KeeperRangeSelected(bytes32,uint16,uint16,bytes32)"
+  },
+  "0x8f77a04c51b7b8d5b61599ed8628264a4a06ff6cfd296c76096ca350db64a77f": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AdditionalLossLimitChanged",
+    "signature": "AdditionalLossLimitChanged(uint16,uint16,uint64,bytes32)"
+  },
+  "0x8f9097b22724d0030e4200c3c7b4d34414be658e8218fe8d713b19dfb945d577": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ModuleBound",
+    "signature": "ModuleBound(bytes32,address)"
+  },
+  "0x8fb6c181ee25a520cf3dd6565006ef91229fcfe5a989566c2a3b8c115570cec5": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "paused",
+        "type": "bool"
+      }
+    ],
+    "name": "PauseChanged",
+    "signature": "PauseChanged(bool)"
+  },
+  "0x906e5c2a5da54d2af5a8c402c4a9035d97a3742b44a5e391da95d561a84bf7a6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "deliveryId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "TransportReceived",
+    "signature": "TransportReceived(bytes32,bytes32,uint256,bytes32)"
+  },
+  "0x90eab0652802d25f0d8b0650a031079837818e03489d63dec6a7b7b249827cac": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "pools",
+        "type": "bytes32[]"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ExecutionPoolsConfigured",
+    "signature": "ExecutionPoolsConfigured(uint64,bytes32[],bytes32)"
+  },
+  "0x922d1331e9145784c570ad99ef0fcca782ecbffaba33736c0299bec8705ab17b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PoolReserved",
+    "signature": "PoolReserved(bytes32,uint256)"
+  },
+  "0x933c034ac152d1fa525bc864e15e3f26fa0e4728ade73d99fa617ca94aecb651": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ZZZConfigured",
+    "signature": "ZZZConfigured(address,bytes32,bytes32)"
+  },
+  "0x94b27f9f2c3bbe6cb94ae0fe80f0e16829c3f3ab02e133862802bd2269f34865": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "payoutGas",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceCallGas",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "royaltySyncGas",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "GasPolicyConfigured",
+    "signature": "GasPolicyConfigured(uint32,uint32,uint32,uint64,bytes32)"
+  },
+  "0x94ce596172b9e09c39761fa5c18994d4758b1d99845c10da3ad20b86b7b8a8af": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "canonicalToken",
+        "type": "address"
+      }
+    ],
+    "name": "RemoteAssetBound",
+    "signature": "RemoteAssetBound(uint256,address,address)"
+  },
+  "0x9770e7e60e77545ebb37a2156abdafdcbd2769484e4acd08d5e778183120251c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "converter",
+        "type": "address"
+      }
+    ],
+    "name": "ConverterBound",
+    "signature": "ConverterBound(address)"
+  },
+  "0x988ee065d38ad534405e167016c5cbd6bbe0811ae4e52dcce374fde02e86f999": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "commitment",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CustodyRemoteVerified",
+    "signature": "CustodyRemoteVerified(bytes32,bytes32)"
+  },
+  "0x99461677cc923ad044c1a2c7d1b9488062387ce456e829818c2d717e21853273": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UnallocatedRoyaltiesAllocated",
+    "signature": "UnallocatedRoyaltiesAllocated(address,uint256,uint256,bytes32)"
+  },
+  "0x9b20a1d7d889cb00887b51eabc4dc07e0ba78ad7421d9a2a92fa30e6e0711f89": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "expectedCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "decimals",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "poolAdmission",
+        "type": "bool"
+      }
+    ],
+    "name": "AssetPolicyRecorded",
+    "signature": "AssetPolicyRecorded(bytes32,address,bool,bytes32,bytes32,uint8,bool)"
+  },
+  "0x9ba5d54ef8921888adb4b023ca4f849533a99e05e94b762008e435d86833e6bb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "token1",
+        "type": "address"
+      }
+    ],
+    "name": "PoolConfigured",
+    "signature": "PoolConfigured(bytes32,address,address)"
+  },
+  "0x9cc6954a7fc84f5c2faa5fbfe5fd13c33f359727534f032ad494df4d8de74523": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligibleCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligibleWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "cursorBefore",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "cursorAfter",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltiesAllocated",
+    "signature": "RoyaltiesAllocated(address,uint256,uint256,uint256,uint256,uint256)"
+  },
+  "0x9d56d8f39966c4aec41faeb2d0f38767003bb6e271dcd691ef0fc5c1616a77f0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceIndividual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "sourceCollective",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeIndividual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeCollective",
+        "type": "uint256"
+      }
+    ],
+    "name": "LPRewardsConverted",
+    "signature": "LPRewardsConverted(uint256,address,uint256,uint256,uint256,uint256)"
+  },
+  "0xa01c9086afe07a794ba190ad8a40ec1f62e395273c75e0ae7278ddf079f31c71": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CustodyCancelled",
+    "signature": "CustodyCancelled(bytes32)"
+  },
+  "0xa0607ea4fcecc0b00a929dfab2de403e82ed0217d30e157663e2bc3f055e0ebe": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,bytes32)"
+  },
+  "0xa3f81bbd3aa95507a476e060c61d620846dd098c485c00e7af8876d328c2a792": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "requestId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RandomnessReceived",
+    "signature": "RandomnessReceived(uint256)"
+  },
+  "0xa54e6c2fc0861aa9c991b26891d71059d517983b9e84b91020f42609c452eb9d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "FeesCollected",
+    "signature": "FeesCollected(uint256,uint256,uint256)"
+  },
+  "0xa8456eb5cd823feca8f5635ef5c39ef504d80aba38683292cc84b8913924a8bb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "providerId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "destinationChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "sourceRouter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationRouter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceProvider",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationProvider",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PolicyRegistered",
+    "signature": "PolicyRegistered(bytes32,bytes32,uint256,uint256,address,address,address,address,bytes32)"
+  },
+  "0xaab6cb7596cdcb0b49c16aaf2082b05255e7c98e226e8c001a597f75975d40a3": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "mintEnd",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "royaltiesOpenAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "MintEndConfigured",
+    "signature": "MintEndConfigured(uint64,uint256)"
+  },
+  "0xab28f1dc14e6649dc315cbd6494da981dad5c9fed10743419b3e7b6a44e2e297": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "maxIdleBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MaintenancePolicyConfigured",
+    "signature": "MaintenancePolicyConfigured(uint16,uint64,bytes32)"
+  },
+  "0xab72d65e85a7117889b49b5c0f68e05b6e640e7e112ed128210ccc9a8a3bb406": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "spacings",
+        "type": "uint24"
+      },
+      {
+        "indexed": false,
+        "name": "geometryRevision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ResidualGapConfigured",
+    "signature": "ResidualGapConfigured(bytes32,uint24,uint64,bytes32)"
+  },
+  "0xac0cf95d84e5ee01e37ba2c0c3aab21917003766b08d856b32310b6fc44abf8c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "transportId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Bridged",
+    "signature": "Bridged(bytes32,bytes32)"
+  },
+  "0xae91a2cf129d5eacd0414380a6b626b754af93b54a3a38c6d54dcad6ef69fab7": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,address,bytes32)"
+  },
+  "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "GuardianChanged",
+    "signature": "GuardianChanged(address,bool)"
+  },
+  "0xb01c6808c5813e6fe4b52e04099dee378c2e5746ea4644a5211bfcfa8fe7ae48": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "pending",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MintRecipientProposed",
+    "signature": "MintRecipientProposed(address,address,uint64,bytes32)"
+  },
+  "0xb099ac95b255f26cf7b0af58f96f504e89a59b3884752afe19b69b06cc83a74a": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "enhancedUSD",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "singularityUSD",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "EvolutionThresholdsConfigured",
+    "signature": "EvolutionThresholdsConfigured(uint128,uint128,uint64,bytes32)"
+  },
+  "0xb11ad1e7eddb5d475279e30a30e8580b78e8f7417a169ac42d626c06bc94f923": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalActivated",
+    "signature": "PrincipalActivated(bytes32,uint256)"
+  },
+  "0xb22e2c4d889445d25de97cc2b7ef93a994f15db4f6e69ef3128464eb40b62b7e": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "totalETH",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalZZZ",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalDistributionReady",
+    "signature": "PrincipalDistributionReady(uint256,uint256)"
+  },
+  "0xb25823483ce218e984d1f3e1e31b375af0182b859381e050fb54597002af4bba": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "RouteEnabled",
+    "signature": "RouteEnabled(bytes32,bool)"
+  },
+  "0xb32328f4699dd00219677ca822325c15d7c2a37c9091872ce0358aa07a6b404c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalAllocated",
+    "signature": "PrincipalAllocated(uint256,uint256,uint256,uint256)"
+  },
+  "0xb969f0ab9501336670614935773c380be93ea2f2b43a9f7e94f036c299b79afc": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "Compounded",
+    "signature": "Compounded(uint256,uint256,uint256)"
+  },
+  "0xbaa1eb22f2a492ba1a5fea61b8df4d27c6c8b5f3971e63bb58fa14ff72eedb70": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Cancelled",
+    "signature": "Cancelled(bytes32)"
+  },
+  "0xbbcee41c7443b0fdb8c58d11d2366c0c369c31939a94c568462b87443df60b2c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "currentPool",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ContributionPoolChanged",
+    "signature": "ContributionPoolChanged(bytes32,bytes32)"
+  },
+  "0xbec38d5c557a9d03c3351219f69425cac909678d25a05e382f9bde53719a0b59": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "maxAge",
+        "type": "uint32"
+      }
+    ],
+    "name": "FeedConfigured",
+    "signature": "FeedConfigured(address,address,uint32)"
+  },
+  "0xc22e338c6b386be9473afa7ba5139bcb8056a9697e77e22374cfe2657c334033": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "capacity",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AssetCapacityIncreased",
+    "signature": "AssetCapacityIncreased(uint8,bytes32)"
+  },
+  "0xc627b6d8d741877196965816d8bcfd02cfbed8827cbae3271b301ca1547fbf42": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previous",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      }
+    ],
+    "name": "MintRecipientAccepted",
+    "signature": "MintRecipientAccepted(address,address,uint64)"
+  },
+  "0xc65b5f7efa8dc64afd7b12f2d443113f5dcb463b7b892d280b4bca5bf9cd72b5": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "ContributionLossLimitChanged",
+    "signature": "ContributionLossLimitChanged(uint16,uint16)"
+  },
+  "0xcb2b99b8db573d53242a46f147b62926d703660f3d9bfcd6ddefe0d70c87d950": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "receipt",
+        "type": "bytes32"
+      }
+    ],
+    "name": "TransportSent",
+    "signature": "TransportSent(bytes32,bytes32,uint256,bytes32)"
+  },
+  "0xcd50e7617b09e1e631ecc9419225b35b1e5c140810dff1016eb47343d9ea015f": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "sourceController",
+        "type": "address"
+      }
+    ],
+    "name": "ImportPrepared",
+    "signature": "ImportPrepared(address)"
+  },
+  "0xcd911564741857c562bf296d30e1f89765b7392ad09e5ebdcb852acc12f11069": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DualPolicyActivated",
+    "signature": "DualPolicyActivated(address,bytes32,bytes32)"
+  },
+  "0xcde340ce0756a8ebf322a0334529985972ad721a290b22b36bdee458feadd91b": {
+    "fields": [],
+    "name": "SystemSealed",
+    "signature": "SystemSealed()"
+  },
+  "0xce3bcb6e219596cf26007ffdfaae8953bc3f76e3f36c0a79b23e28020da3222e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Claimed",
+    "signature": "Claimed(uint256,address,address,uint256)"
+  },
+  "0xcedec81f3f012d2915063601f70397807b26384a162e654fd13575a2aa1806ab": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previous",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "BuybackTargetChanged",
+    "signature": "BuybackTargetChanged(address,address,bytes32)"
+  },
+  "0xd1d97bcb9d35b49bde445ee9a275adba90e46d9941fe4ec565b0dc7b5700c46c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodySent",
+    "signature": "CustodySent(bytes32,uint256,address,uint256)"
+  },
+  "0xd2be5953426407e79d42608bb76bb75c5c665102042c6c4279d64a4e414b17aa": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "individual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "collective",
+        "type": "uint256"
+      }
+    ],
+    "name": "PoolRewardsCredited",
+    "signature": "PoolRewardsCredited(uint256,address,uint256,uint256)"
+  },
+  "0xd455e36d4fa65ae16987b05e612a42d9166f8c43dc484f3931fab3fa332d2f58": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "stateRoot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "SnapshotCommitted",
+    "signature": "SnapshotCommitted(bytes32,bytes32)"
+  },
+  "0xd5e5acb35934c38181b37c27887d94aa6253d7d1dcf11f05fc7960c3186fb322": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "coordinator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "generation",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RandomnessConfigured",
+    "signature": "RandomnessConfigured(address,uint64,uint64,bytes32)"
+  },
+  "0xd77fefcff6c6a2055ac77c5d88c24dd225c24fb6e2952124eea82e0a4f5c3775": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "iterations",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "gasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "SolverConfigured",
+    "signature": "SolverConfigured(uint64,uint8,uint32,bytes32)"
+  },
+  "0xd7f28048575eead8851d024ead087913957dfb4fd1a02b4d1573f5352a5a2be3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "LiquidityAdded",
+    "signature": "LiquidityAdded(uint256,uint256,uint256)"
+  },
+  "0xd8cf78f898ccbc2968a59798772d9cfeac50c373434084170b1211fba8f6fa61": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "geometryRevision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ResidualSideConfigured",
+    "signature": "ResidualSideConfigured(bytes32,uint16,uint16,uint64,uint64,bytes32)"
+  },
+  "0xd99b076a34941b2d36ccab51cfc066547e4fcb8750f0451a2c58806038b56c1d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token1",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wrappedNative",
+        "type": "address"
+      }
+    ],
+    "name": "RewardReceiverCreated",
+    "signature": "RewardReceiverCreated(uint256,address,address,address,address)"
+  },
+  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "signature": "Transfer(address,address,uint256)"
+  },
+  "0xdfba112dadae7a5b945215d9bb808bbf3c77f2a0f1160326a725f3847e2dbb97": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "paused",
+        "type": "bool"
+      }
+    ],
+    "name": "MintPauseChanged",
+    "signature": "MintPauseChanged(bool)"
+  },
+  "0xe01e8006efbcaac5fd5a21996cb72fdad2c97f90c8c001bbbdb7cf1108fe44d3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "forced",
+        "type": "bool"
+      },
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ResidualConsolidated",
+    "signature": "ResidualConsolidated(uint256,bool,bytes32,bytes32)"
+  },
+  "0xe045ba3da819552536723fc6e859bd077201e06022bfee8e17aa628f32894b84": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "transportId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RemoteRewardsSent",
+    "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
+  },
+  "0xe0adb6330ec6ca898950d0f9bc22d7aa76d47f6645842f3d4d75b3a5223b4b5d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "mainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "secondaryId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PortfolioCreated",
+    "signature": "PortfolioCreated(uint256,uint256,bytes32)"
+  },
+  "0xe140fc8528dd1eef4cffca8c168a4756957e43d8147c46e8cc62a6f7b8e4a34b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AbortStarted",
+    "signature": "AbortStarted(bytes32)"
+  },
+  "0xe3f06f0fe4117c235fee63575a13cfdc5efd6100731ca42ea9c3d275d3279f11": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "stateRoot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Activated",
+    "signature": "Activated(bytes32,address,bytes32)"
+  },
+  "0xe44a4d0f9fc4587d20c3a42f0e0980c30b3a6b993d81cea87a9531b9a41489e5": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "coordinator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "keyHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "subscriptionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "nativePayment",
+        "type": "bool"
+      }
+    ],
+    "name": "RandomnessConfigured",
+    "signature": "RandomnessConfigured(address,bytes32,uint256,uint16,uint32,bool)"
+  },
+  "0xe526d2750025ebbffc215a343d9e3fa278750766ec73fc5c37008bade52c4edf": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RandomnessSettingsConfigured",
+    "signature": "RandomnessSettingsConfigured(uint16,uint32,uint64,bytes32)"
+  },
+  "0xe53edf2852da5a3653826967fb08e041122ab93e188083b70b4172d484f6e230": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "activationUSD",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "growthUSD",
+        "type": "uint128"
+      },
+      {
+        "indexed": false,
+        "name": "maxIdleBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "revision",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "EntryPolicyConfigured",
+    "signature": "EntryPolicyConfigured(uint128,uint128,uint16,uint64,bytes32)"
+  },
+  "0xe5cf04452d692bb32619df453d25e83f48fb36b0c38de5fb2c73cb8db4d82ca3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "oldLpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalParked",
+    "signature": "PrincipalParked(uint256,uint256)"
+  },
+  "0xe5d942b649f508b8ef8553b0650b7c006eeb644f86fb90241ed787ea38fb704c": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MaximumTradeLimitChanged",
+    "signature": "MaximumTradeLimitChanged(uint256,uint256,bytes32)"
+  },
+  "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "RewardPaymentProcessed",
+    "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
+  },
+  "0xe71c14a372c863a6eabc7116ceae3649565c2a724ae99f091ab4dc9e0ae98efd": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalShares",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "BucketClosed",
+    "signature": "BucketClosed(uint256,uint256,uint256,uint256)"
+  },
+  "0xe996334639a327187c0dce394ffb19b1a9be37bfd557edee542668683a8526f8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalDeferred",
+    "signature": "PrincipalDeferred(uint256)"
+  },
+  "0xead2d22dd54e6d3db7ec6836aca3d4307e591a6a933d12cddcdf06ad59efede8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nextNonce",
+        "type": "uint64"
+      }
+    ],
+    "name": "ParkingInvalidated",
+    "signature": "ParkingInvalidated(uint256,uint64)"
+  },
+  "0xed377ef7177931bf925f7a5af408042d8f521d3cc984d24f9e401c0e49461fee": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reason",
+        "type": "uint8"
+      }
+    ],
+    "name": "ObservationReset",
+    "signature": "ObservationReset(uint256,uint8)"
+  },
+  "0xefbf7be57ead0884d74cfd2ee0a42498139602022acb086a97a39a6b3b36b62e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "noticeHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PreparationCancelled",
+    "signature": "PreparationCancelled(bytes32)"
+  },
+  "0xefdc04937cb176f9e57ed71502bb583bb69fdaf9bf426036c356a1f66ef14a0c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      }
+    ],
+    "name": "MembershipActivated",
+    "signature": "MembershipActivated(uint256)"
+  },
+  "0xf04377ec608a4bbb0d427fc9e7329fd3350e839e65ae8548532c7fe9fae4dd1b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteTransportBound",
+    "signature": "RouteTransportBound(bytes32,bytes32)"
+  },
+  "0xf2c1b7aa697c2640f4e119e61e2dd6f4a345faeae93d020d34f2d8f23229f7cb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "deployed",
+        "type": "bool"
+      }
+    ],
+    "name": "PrincipalReturned",
+    "signature": "PrincipalReturned(uint256,uint256,bool)"
+  },
+  "0xf3ad8d7f3eed8b3d3483d448c73239c4d90dc4952650619674daa28fd44830f0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyRecovered",
+    "signature": "CustodyRecovered(bytes32,uint256,uint256)"
+  },
+  "0xf44f003891fd42177d22e4243a6425e97281130ce19d4483bbea70365a1a1eb4": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "controller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "activeWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CancelledRoyaltiesRecovered",
+    "signature": "CancelledRoyaltiesRecovered(address,address,address,uint256,uint256,uint256,bytes32)"
+  },
+  "0xf5a85f6bd22231f5f3fc3492eb53e86cafdea16c71ca2726359e7a885ba87d0a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationCustody",
+        "type": "address"
+      }
+    ],
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,address)"
+  },
+  "0xf7125f47bfec080d93292ccc76a20bf0cb1b51903f5188cbf5909e05fbd258d9": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "firstOrdinal",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lastOrdinal",
+        "type": "uint256"
+      }
+    ],
+    "name": "RoyaltyEligibilityRecovered",
+    "signature": "RoyaltyEligibilityRecovered(address,uint256,uint256)"
+  },
+  "0xf7b198dd7c47d69f265d36501b9b7a07a0a471c476b0149777f1155fb640f677": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "noticeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "destinationChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "successorController",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "deploymentCommitment",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PreparationStarted",
+    "signature": "PreparationStarted(bytes32,uint256,uint256,address,bytes32,bytes32)"
+  },
+  "0xf7fe6a2a9810864c5fce35c9d3c75940da5f9612d43350b505aa0aa4c6494d99": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "handoff",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Aborted",
+    "signature": "Aborted(bytes32)"
+  },
+  "0xf887dacc92cb9c4a8ce46c0aaef10c7a85f7758495f717c5e568259998610ed3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "input",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "inputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "zzzBurned",
+        "type": "uint256"
+      }
+    ],
+    "name": "BoughtAndBurned",
+    "signature": "BoughtAndBurned(address,uint256,uint256)"
+  },
+  "0xf8e1a15aba9398e019f0b49df1a4fde98ee17ae345cb5f6b5e2c27f5033e8ce7": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "MetadataUpdate",
+    "signature": "MetadataUpdate(uint256)"
+  },
+  "0xf8f096471a5070499ae5551c135981b0e7eb40e993e2b115ca5500b9c98725c7": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint256"
+      }
+    ],
+    "name": "OperatingTradeLimitChanged",
+    "signature": "OperatingTradeLimitChanged(uint256,uint256)"
+  },
+  "0xf8f19355b2bfacc2dc140f80edf3d4f7b4e6d3fec471304871b4ecc719bfaf9a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amountETH",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amountZZZ",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalReturnedToHolders",
+    "signature": "PrincipalReturnedToHolders(uint256,uint256,uint256)"
+  },
+  "0xf9cb9b4fad87b001dca2d59f0febf806ed5c57c8afa002693f4ce1b0873a009c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "minimumMainBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "geometryRevision",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MainAllocationConfigured",
+    "signature": "MainAllocationConfigured(bytes32,uint16,uint64,bytes32)"
+  },
+  "0xfa52367867acff4a12c8d11f2c1e1eee45f2d0be3b36d754b7a70241df84bace": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "implementation",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "implementationCodeHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyApproved",
+    "signature": "WrapperPolicyApproved(bytes32,address,address,address,bytes32,bytes32)"
+  },
+  "0xfc4f5fcc8d06289fc47194fce7eb3a1a1b253724834a7f6eb882419f4679011d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "migrationId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "transportId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AcknowledgementSent",
+    "signature": "AcknowledgementSent(bytes32,bytes32)"
+  },
+  "0xfe95c3832c12555e6bdb94254f0062f3fef9fb21554e39a02734ac465105930b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "input",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "output",
+        "type": "uint256"
+      }
+    ],
+    "name": "Executed",
+    "signature": "Executed(bytes32,uint256,uint256)"
+  }
+}

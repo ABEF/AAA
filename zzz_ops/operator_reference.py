@@ -37,7 +37,7 @@ WRITE_ORDER = {
     'ZZZProtocolPolicy': ('setEntryPolicy', 'setMaintenancePolicy', 'setGasPolicy', 'setMintPrice',
                          'proposeMintRecipient', 'acceptMintRecipient', 'setEvolutionThresholds',
                          'configureRandomness', 'setRandomnessRequestSettings', 'rotateRandomness'),
-    'ZZZMigration': ('park', 'closeResidual', 'resume', 'moveFunds', 'emergencyRebalance',
+    'ZZZMigration': ('park', 'closeResidual', 'consolidateResidual', 'resume', 'moveFunds', 'emergencyRebalance',
                     'beginCollectiveExit', 'closeBucket', 'allocatePrincipal', 'distributePrincipal',
                     'claimPrincipal', 'invalidateParking', 'configureZZZ'),
     'ZZZRoyaltyRewards': ('sync', 'syncAll', 'allocateUnallocated', 'claim', 'forwardLate', 'fund'),

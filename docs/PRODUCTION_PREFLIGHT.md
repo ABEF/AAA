@@ -7,7 +7,7 @@ factory storage and scoped claim-planning changes are recorded in the
 retain their original source scope.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema14 example](../config/production.example.json) is deliberately
+The [schema15 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
@@ -29,7 +29,7 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema14 explicitly requires royalty settlement4/recovery2/reporting5,
+Schema15 explicitly requires royalty settlement4/recovery2/reporting5,
 accounting6, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
 LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
@@ -73,7 +73,7 @@ helpers, dependencies, tokens or the future mint-payment recipient.
 
 Keep the factory-code qualification review and full independently reviewed
 runtime pins. Canonical V8's existing commitment does not explicitly enumerate
-the factory/data-child hashes; the full schema14 release graph authenticates
+the factory/data-child hashes; the full schema15 release graph authenticates
 them separately. Ordinary mint, LP and claim operations add no child-code reads.
 These inert children are neither authorities nor royalty recipients. See the
 [fixed code-storage procedure](FACTORY_CODE_STORAGE.md) for exact format,
@@ -81,7 +81,7 @@ constructor boundaries, failure handling and actual target-gas qualifications.
 
 ## Current buyback maximum and creation history
 
-Fresh schema14 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema15 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
@@ -110,10 +110,13 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema14 observation and offline validation
+## Current schema15 observation and offline validation
 
-[Validator](../zzz_ops/production_v12.py) and [observer](../zzz_ops/production_observer_v12.py)
-operate directly on the fresh layout; no manifest is rewritten as accounting4
+[Validator](../zzz_ops/production_v13.py) and [observer](../zzz_ops/production_observer_v13.py)
+authenticate residual-reinvest1 on Migration/Vault/Budget/Policy/Pricing and
+raw-exit1 on the fixed closure graph. The current seal function does not prove
+this entire semantic/runtime graph; preflight it before irreversible binding.
+They operate directly on the fresh layout; no manifest is rewritten as accounting4
 to obtain a historical pass. All contract/code/native-balance reads share one
 EIP-1898 block hash with `requireCanonical`. Genesis, confirmation depth, final
 canonical anchor/time and runtime/parent bindings must remain coherent.
@@ -196,8 +199,8 @@ supply actual addresses/pins/source commit, confirmed anchor and review records.
 Keep credentials, keys and endpoints outside the manifest. Then run:
 
 ```bash
-python3 scripts/observe-production-config.py --config reviewed-schema14.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema14.json
-python3 scripts/validate-production-config.py --config observed-schema14.json --expected-commit RELEASE_COMMIT --output preflight-schema14.json
+python3 scripts/observe-production-config.py --config reviewed-schema15.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema15.json
+python3 scripts/validate-production-config.py --config observed-schema15.json --expected-commit RELEASE_COMMIT --output preflight-schema15.json
 ```
 
 `POPL_RELEASE_RPC_URL` names a read-only endpoint environment variable; its

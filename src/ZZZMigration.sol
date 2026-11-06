@@ -7,10 +7,11 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZVault, IZZZPools, IZZZRewards, IZZZNFT, IZZZLiquidity} from "./interfaces/IZZZ.sol";
+import {IZZZVault, IZZZPools, IZZZNFT, IZZZLiquidity} from "./interfaces/IZZZ.sol";
 import {EmergencyRebalance, IZZZEmergencyVault} from "./interfaces/IZZZEmergency.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
-import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+interface IResidualCompletion { function completeConsolidation() external; }
+interface IResidualStrategy { function portfolioPolicy() external view returns(address); }
 
 interface IHolderExitVault is IZZZVault {
     function beginLPExit() external;
@@ -22,8 +23,6 @@ interface IHolderExitNFT is IZZZNFT {
     function tokenAtOrdinal(uint256) external view returns(uint256);
     function refreshMetadata(uint256) external;
 }
-interface IExitTokenRegistry { function activationAssets() external view returns(address); }
-interface IExitTokenIdentity { function zzz() external view returns(address); }
 
 /// @notice Live same-pair movement/parking, or irreversible collective principal
 /// return to NFT owners. No external custody address, conversion exit or sweep.
@@ -32,6 +31,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     uint8 public constant CUSTODY_VERSION = 5;
     uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
     uint256 public constant RESIDUAL_EXIT_VERSION = 1;
+    uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     uint256 public constant MAX_BATCH = 32;
     enum ExitPhase { Operating, Closing, Allocating, Ready }
     struct ParkingRequest {
@@ -70,6 +70,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     mapping(uint256 => uint64) public parkingNonce;
     ZZZCustodyValidation public immutable validation;
     EmergencyRebalance private emergency;
+    bool public consolidationActive;
     event ZZZConfigured(address indexed token,bytes32 codeHash,bytes32 reviewHash);
     event CollectiveExitStarted(bytes32 indexed reviewHash,uint256 mintedCount,uint256 bucketCount);
     event BucketClosed(uint256 indexed bucketId,uint256 totalShares,uint256 ethAmount,uint256 zzzAmount);
@@ -82,6 +83,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     event ResidualClosed(bytes32 indexed requestHash,uint256 indexed bucketId,uint256 indexed secondaryId,
         uint64 nonce,uint256 principal0,uint256 principal1);
     event EmergencyRebalanced(uint256 indexed bucket,uint8 retainedChecks,bytes32 indexed requestHash,bytes32 indexed reviewHash);
+    event ResidualConsolidated(uint256 indexed bucket,bool forced,bytes32 indexed requestHash,bytes32 indexed reviewHash);
 
     constructor(address controller) ZZZModule(controller) {
         validation = new ZZZCustodyValidation(controller);
@@ -101,30 +103,48 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function emergencyRebalance(EmergencyRebalance calldata request)
         external onlyGovernance operating principalOperating nonReentrant {
         _deadline(request.deadline);
-        if(!access.isSealed() || !access.paused() || request.checks > 31 || request.bucket == 0 ||
-            request.custodyHash != emergencyCustodyHash(request.bucket) ||
-            request.amountIn > uint128(type(int128).max) || request.minimumOut > uint128(type(int128).max) ||
-            request.minimumLiquidity == 0 || request.lower < TickMath.MIN_TICK || request.upper > TickMath.MAX_TICK ||
-            request.lower >= request.upper || request.reviewHash == bytes32(0) ||
-            (request.amountIn == 0 ? request.swapPool != bytes32(0) || request.minimumOut != 0 :
-                request.swapPool == bytes32(0) || request.minimumOut == 0)) revert InvalidConfiguration();
-        ZZZMigrationBudget budget = ZZZMigrationBudget(IZZZEmergencyVault(address(_vault())).migrationBudget());
-        emergency = request;
-        budget.beginEmergency(request.bucket,request.checks);
-        bytes32 context = budget.emergencyFingerprint();
-        IZZZEmergencyVault(address(_vault())).emergencyRebalance(request.bucket,request.minimumLiquidity,request.deadline);
-        if(budget.emergencyFingerprint() != context) revert InvalidState();
-        budget.endEmergency();
-        delete emergency;
+        validation.validateEmergency(request);
+        _executeManual(request,true);
         emit EmergencyRebalanced(request.bucket,request.checks,
             keccak256(abi.encode(block.chainid,address(this),address(_vault()),request)),request.reviewHash);
+    }
+    /// @notice Close the residual and reinvest attributed idle into the SAME
+    /// main. Guarded execution routes automatically; forced execution uses the
+    /// reviewed explicit swap/mask. Neither releases the Fees compound reserve.
+    function consolidateResidual(EmergencyRebalance calldata request,bool forced)
+        external onlyGovernance operating principalOperating nonReentrant {
+        _deadline(request.deadline);
+        ZZZCustodyValidation.Consolidation memory beforeState=validation.captureConsolidation(request,forced);
+        consolidationActive=true;
+        _executeManual(request,forced);
+        validation.verifyConsolidation(request,forced,beforeState);
+        IResidualCompletion(IResidualStrategy(access.module(Ids.STRATEGY)).portfolioPolicy())
+            .completeConsolidation();
+        ++parkingNonce[request.bucket]; ++custodyEpoch[request.bucket];
+        consolidationActive=false;
+        delete emergency;
+        emit ResidualConsolidated(request.bucket,forced,
+            keccak256(abi.encode(block.chainid,address(this),address(_vault()),request,forced)),request.reviewHash);
+    }
+    function _executeManual(EmergencyRebalance calldata request,bool forced) private {
+        IZZZEmergencyVault vault=IZZZEmergencyVault(address(_vault()));
+        ZZZMigrationBudget budget = ZZZMigrationBudget(vault.migrationBudget());
+        emergency = request;
+        bytes32 context;
+        if(forced) { budget.beginEmergency(request.bucket,request.checks); context=budget.emergencyFingerprint(); }
+        vault.emergencyRebalance(request.bucket,request.minimumLiquidity,request.deadline);
+        if(forced) {
+            if(budget.emergencyFingerprint()!=context) revert InvalidState();
+            budget.endEmergency();
+        }
+        if(!consolidationActive) delete emergency;
     }
     function emergencyFingerprint() external view returns(bytes32 result) {
         ZZZMigrationBudget budget = ZZZMigrationBudget(IZZZEmergencyVault(address(_vault())).migrationBudget());
         if(msg.sender != address(budget)) revert Unauthorized();
         EmergencyRebalance memory request = emergency;
         budget.validateEmergency(request.bucket);
-        return validation.emergencyFingerprint(request);
+        return consolidationActive ? validation.consolidationEmergencyFingerprint(request) : validation.emergencyFingerprint(request);
     }
     function emergencyRequest() external view returns(EmergencyRebalance memory) { return emergency; }
     function emergencyTarget() external view returns(int24,int24) { return(emergency.lower,emergency.upper); }
@@ -132,6 +152,9 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     /// not replace the LP, but a top-up, park, move or share change invalidates it.
     function emergencyCustodyHash(uint256 bucket) public view returns(bytes32) {
         return validation.emergencyCustodyHash(bucket);
+    }
+    function consolidationCustodyHash(uint256 bucket) external view returns(bytes32) {
+        return validation.consolidationCustodyHash(bucket);
     }
     /// @notice Compatibility read for ordinary same-chain canonical snapshots.
     /// No external-custody plans exist in this implementation.
@@ -143,12 +166,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     /// @notice Bootstrap-only binding of the same fixed ZZZ used by contributions
     /// and buybacks. This is not an external recipient or a replaceable token.
     function configureZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
-        if(access.isSealed() || currentZZZ != address(0) || token.code.length == 0 || token.codehash != codeHash ||
-            reviewHash == bytes32(0) || !IZZZRewards(access.module(Ids.REWARDS)).isAsset(token)) revert InvalidConfiguration();
-        address buyback = access.module(Ids.BUYBACK);
-        address source = IExitTokenRegistry(access.module(Ids.POOLS)).activationAssets();
-        if(buyback.code.length == 0 || IExitTokenIdentity(buyback).zzz() != token ||
-            IExitTokenIdentity(source).zzz() != token) revert InvalidConfiguration();
+        validation.validateZZZ(token,codeHash,reviewHash);
         currentZZZ = token;
         zzzCodeHash = codeHash;
         emit ZZZConfigured(token,codeHash,reviewHash);
@@ -336,25 +354,14 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function closeResidual(ParkingRequest calldata r)
         external onlyGovernance operating principalOperating nonReentrant {
         _deadline(r.deadline);
-        validation.validateParking(abi.encode(r));
+        ZZZCustodyValidation.ResidualClose memory beforeState=validation.captureResidualClose(abi.encode(r));
         IHolderExitVault vault=_vault();
-        IZZZLiquidity manager=IZZZLiquidity(access.module(Ids.LIQUIDITY));
-        uint256 secondary=manager.secondaryId(r.lpTokenId);
-        if(secondary==0)revert InvalidState();
-        Position memory beforePosition=vault.group(r.bucketId);
-        bytes32 mainState=validation.residualMainFingerprint(r.bucketId);
         ++parkingNonce[r.bucketId];
         vault.closeResidual(r.bucketId,r.deadline);
-        Position memory afterPosition=vault.group(r.bucketId);
-        uint256 a0=afterPosition.idle0-beforePosition.idle0;
-        uint256 a1=afterPosition.idle1-beforePosition.idle1;
-        if(!access.isSealed() || !access.paused() ||
-            validation.residualMainFingerprint(r.bucketId)!=mainState ||
-            parkingNonce[r.bucketId]!=r.nonce+1 || custodyEpoch[r.bucketId]!=r.custodyEpoch ||
-            manager.secondaryId(r.lpTokenId)!=0 || a0<r.minimum0 || a1<r.minimum1)revert Slippage();
+        (uint256 a0,uint256 a1)=validation.verifyResidualClose(abi.encode(r),beforeState);
         ++custodyEpoch[r.bucketId];
         emit ResidualClosed(keccak256(abi.encode(block.chainid,address(this),address(vault),r)),
-            r.bucketId,secondary,r.nonce,a0,a1);
+            r.bucketId,beforeState.secondary,r.nonce,a0,a1);
     }
     function invalidateParking(uint256 id) external onlyDrainGovernance principalOperating {
         ++parkingNonce[id]; emit ParkingInvalidated(id,parkingNonce[id]);

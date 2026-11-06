@@ -1,20 +1,30 @@
 # Work handoff
 
-Reviewed6November2026. Residual lifecycle baseline main5d70b4b. Inspect actual Git heads
+Reviewed6November2026. Same-main management baseline main9025735. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
 ## Current result
 
-Main/residual lifecycle audit: reports/residual-lifecycle-20261106/REVIEW.md and
-VERIFICATION.md. Fresh6 shared readers independently prove per-leg amounts,
-containment and stable/L-sensitive identity; contribution context reuses the
-verified hash. No production Solidity change. Ordinary move/resume destination
-hybrid behavior is tested/documented separately from keeper timing. Preserve
-actual token/upstream callback qualification and normal/static reuse scope.
+[Same-main governance consolidation](../reports/residual-main-consolidation-20261106/REVIEW.md)
+adds residual-reinvest1 on Migration/Vault/Budget/PortfolioPolicy/ContributionPricing,
+inventory15 with explicit raw-exit1 admission. Paused governance
+consolidateResidual(request,forced) harvests/closes only the residual (or recovers
+prior attributed idle), balances and increases the SAME main. No designated
+compound release or share/centre/lastRebalance change. Guarded false uses checks14
+and auto reviewed routing without keeper timing; forced true uses explicit
+swap/mask. Exact structure/control proofs remain, modeOFF is applied atomically,
+per-pool controls invalidate old samples even alreadyOFF/idle-only, compound clock
+and recovery nonce/epoch advance. Independent pending main width remains.
+Existing module-only Vault.emergencyRebalance is a typed fixed-Migration
+dispatcher under cap1; old full emergency2 behavior stays separate. No extra
+Vault selector/generic executor. Matching all5 capabilities/runtimes is mandatory
+pre-seal inventory work; Access.seal does not prove the whole extension graph.
+Raw close/full replace/park/resume/holder return remain. Check full operator
+inputs and reverse/pause steps. Source publication does not upgrade old runtimes,
+journals/services/sites/signers/Anvil or restart the paused heartbeat.
 
-
-Fresh royalty4/recovery2/reporting5/schema14/canonicalV8,18 callable helpers
+Fresh royalty4/recovery2/reporting5/schema15/canonicalV8,18 callable helpers
 plus2 inert Factory data children; accounting6,
 custody5 and all LP/economic policies unchanged. User-approved exact-unit royalty
 allocation removes permanently stranded ALLOCATED rounding units. GCD-normalized
@@ -28,7 +38,7 @@ require reviewed allocation, unknown currencies admission; frozen tokens cannot 
 guaranteed transferable. No royalty conversion/keeper worker. LP conversion stays.
 Optional sync default1m; capacity16→64 still needs target gas qualification.
 Factory code-storage2 replaces SSTORE payload with two immutable REVERT-prefix
-children and preserves exact royalty creation bytes. New schema14 authenticates
+children and preserves exact royalty creation bytes. Schema15 authenticates
 source-derived length/hash/part bytes; schema13 stays historical.
 Opt-in claims/plan prepares one bounded exact unsigned batch and retains every
 blocked/unresolved selection. Replan after confirmation; existing fee/gas/work
@@ -87,8 +97,10 @@ Anvil-only; heartbeat remains user-paused. No public transactions or service res
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-Task residual-lifecycle-20261106-f63a archives this audit's baseline, source
-reviews, fresh checks and preservation. Prior factory-claims-20261105-a71c retains its compiler/static,
+Task residual-main-20261106-c932 archives this change's baseline, retained
+failed/intermediate normal builds, final normalf907/static495,20selected EVM
+passes, focused Python checks and preservation. Prior residual-lifecycle-20261106-f63a
+retains its unchanged-source physical-reader audit scope. Prior factory-claims-20261105-a71c retains its compiler/static,
 profile/planner tests, gas and preservation evidence. Prior last24h-audit-20261105
 retains its own failed/intermediate stages and actual accounting wire proofs.
 Earlier report bytes remain immutable; the final preservation record checks them. Preserve unrelated

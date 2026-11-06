@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-Fresh **royalty settlement4/recovery2**, accounting6/custody5/Entry3, schema14.
+Fresh **royalty settlement4/recovery2**, accounting6/custody5/Entry3, schema15 (schema14 remains historical).
 User decision5November2026: holders claim each royalty currency as received.
 **No royalty swap, unwrap, converter binding, price-feed dependency or keeper
 conversion job remains in this fresh ledger.** LP reward conversion is separate.
@@ -87,7 +87,7 @@ Before admitting a new currency, prepare its reviewed API asset descriptor and
 website reward_assets entry, then qualify that coordinated configuration rollout.
 An on-chain admission does not reload a server or populate client metadata.
 No USD feed is required for the raw claim; missing USD prices stay unavailable.
-In schema14, declare an admitted non-ETH royalty currency's strategy as
+In schema15, declare an admitted non-ETH royalty currency's strategy as
 `claim_original`. A royalty-only token may explicitly have `price_policy:null`;
 token identity/decimals/transfer-behavior/admission checks still apply. ETH, ZZZ,
 LP reward assets, contribution assets and conversion sources retain required

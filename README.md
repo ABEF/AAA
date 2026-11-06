@@ -25,7 +25,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Main/residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md), [factory/claim improvements](reports/factory-claims-20261105/REVIEW.md), [royalty audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md), [Main/residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md), [factory/claim improvements](reports/factory-claims-20261105/REVIEW.md), [royalty audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -74,7 +74,7 @@ Fresh6 verifies each physical principal amount and exact portfolio identities;
 opening, fills, operator recovery and merging.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema14/direct Entry3/royalty4 with18 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 and canonicalV8 stay unchanged. Schema13 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
+Fresh inventory is schema15/residual-reinvest1/direct Entry3/royalty4 with18 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 and canonicalV8 stay unchanged. Schema14 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
 [Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) bounds selected history replay;
 lineage/other readers and live workload qualification remain open. [OpenSea
 qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
@@ -115,7 +115,10 @@ side of the main, with a default full tick-spacing gap from spot. Governance may
 change its width and positive spacing count within feasible geometry. These are placement-time limits, not continuously maintained weights.
 Disabling mode keeps both legs accounted until a guarded atomic merge succeeds.
 Paused governance can instead close only the residual into the same bucket's
-attributed Vault idle, preserving the main and NFT shares. Existing emergency
+attributed Vault idle, preserving the main and NFT shares. The new governance
+`consolidateResidual` instead reinvests that idle into the SAME main, atomically
+applies mode OFF and preserves shares/centre/rebalance clock. Guarded auto routing
+and explicitly forced manifests remain separate. [Inputs](docs/OPERATOR_MANUAL.md#same-main-residual-consolidation). Existing emergency
 rebalancing consolidates into one main; desired mode must be disabled separately
 to keep future adjustments single. See [exact controls](docs/OPERATOR_MANUAL.md#portfolio-management-controls).
 

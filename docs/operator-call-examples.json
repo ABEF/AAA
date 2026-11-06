@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "aac3bad163df84d86c0a60ebf53b9232d4bfea8d9d0476eb20310daf0d7be8f9",
+  "reference_sha256": "8beac6cd0ebc7b85b96b0b63ed8caa3d787f671de6e3716b6154ded4234e935a",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -6292,7 +6292,7 @@
     },
     "ZZZVault.emergencyRebalance(uint256,uint128,uint256)": {
       "role": "M",
-      "short": "Force reviewed emergency consolidation",
+      "short": "Execute typed manual LP operation",
       "arguments": [
         "$BUCKET_ID",
         "$MINIMUM_LIQUIDITY",
@@ -6925,6 +6925,230 @@
       "arguments": [
         "$SOURCE_BOUND_CREATION_SLICE"
       ],
+      "value": null
+    },
+    "ZZZContributionPricing.RESIDUAL_REINVEST_VERSION()": {
+      "role": "R",
+      "short": "Read residual reinvest capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.validateRebalance(uint256,uint128,bool,uint8)": {
+      "role": "R",
+      "short": "Validate public rebalance timing",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$EMERGENCY_ACTIVE",
+        "$RETAINED_CHECKS"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.validateResidualClose(uint256,bool)": {
+      "role": "R",
+      "short": "Validate raw residual closure",
+      "arguments": [
+        "$BUCKET_ID",
+        "$BUDGET_BUSY"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.captureConsolidation((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool)": {
+      "role": "R",
+      "short": "Capture same-main consolidation proof",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CONSOLIDATION_CUSTODY_HASH",
+          14,
+          "$CURRENT_MAIN_LOWER_TICK",
+          "$CURRENT_MAIN_UPPER_TICK",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          false,
+          0,
+          0,
+          "$MINIMUM_ADDED_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ],
+        false
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.captureResidualClose(bytes)": {
+      "role": "R",
+      "short": "Capture raw residual-close proof",
+      "arguments": [
+        "$ENCODED_PARKING_REQUEST"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.consolidationCustodyHash(uint256)": {
+      "role": "R",
+      "short": "Read consolidation custody hash",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.consolidationEmergencyFingerprint((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))": {
+      "role": "R",
+      "short": "Read forced consolidation context",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CONSOLIDATION_CUSTODY_HASH",
+          14,
+          "$CURRENT_MAIN_LOWER_TICK",
+          "$CURRENT_MAIN_UPPER_TICK",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          false,
+          0,
+          0,
+          "$MINIMUM_ADDED_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.validateEmergency((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))": {
+      "role": "R",
+      "short": "Validate full emergency request",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CUSTODY_HASH",
+          31,
+          "$LOWER_TICK",
+          "$UPPER_TICK",
+          "$SWAP_POOL",
+          "$ZERO_FOR_ONE",
+          "$AMOUNT_IN",
+          "$MINIMUM_OUT",
+          "$MINIMUM_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.validateZZZ(address,bytes32,bytes32)": {
+      "role": "R",
+      "short": "Validate fixed ZZZ binding",
+      "arguments": [
+        "$FIXED_ZZZ_ADDRESS",
+        "$TOKEN_CODE_HASH",
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.verifyConsolidation((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool,(bytes32,uint128,uint256,uint256))": {
+      "role": "R",
+      "short": "Verify same-main consolidation result",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CONSOLIDATION_CUSTODY_HASH",
+          14,
+          "$CURRENT_MAIN_LOWER_TICK",
+          "$CURRENT_MAIN_UPPER_TICK",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          false,
+          0,
+          0,
+          "$MINIMUM_ADDED_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ],
+        false,
+        [
+          "$CAPTURED_MAIN_HASH",
+          "$CAPTURED_MAIN_LIQUIDITY",
+          "$CAPTURED_SECONDARY_ID",
+          "$CAPTURED_RESIDUAL_COUNT"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZCustodyValidation.verifyResidualClose(bytes,(bytes32,uint256,uint256,uint256))": {
+      "role": "R",
+      "short": "Verify raw residual-close receipts",
+      "arguments": [
+        "$ENCODED_PARKING_REQUEST",
+        [
+          "$CAPTURED_MAIN_HASH",
+          "$PREVIOUS_IDLE_ETH",
+          "$PREVIOUS_IDLE_ZZZ",
+          "$RESIDUAL_ID"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZMigration.RESIDUAL_REINVEST_VERSION()": {
+      "role": "R",
+      "short": "Read residual reinvest capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.consolidateResidual((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool)": {
+      "role": "G",
+      "short": "Reinvest residual into same main",
+      "arguments": [
+        [
+          "$BUCKET_ID",
+          "$CONSOLIDATION_CUSTODY_HASH",
+          14,
+          "$CURRENT_MAIN_LOWER_TICK",
+          "$CURRENT_MAIN_UPPER_TICK",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          false,
+          0,
+          0,
+          "$MINIMUM_ADDED_LIQUIDITY",
+          "$UNIX_DEADLINE",
+          "$REVIEW_HASH"
+        ],
+        false
+      ],
+      "value": null
+    },
+    "ZZZMigration.consolidationActive()": {
+      "role": "R",
+      "short": "Read transient consolidation context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZMigration.consolidationCustodyHash(uint256)": {
+      "role": "R",
+      "short": "Read consolidation custody hash",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZMigrationBudget.RESIDUAL_REINVEST_VERSION()": {
+      "role": "R",
+      "short": "Read residual reinvest capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.RESIDUAL_REINVEST_VERSION()": {
+      "role": "R",
+      "short": "Read residual reinvest capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZPortfolioPolicy.completeConsolidation()": {
+      "role": "M",
+      "short": "Complete verified single-main policy",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVault.RESIDUAL_REINVEST_VERSION()": {
+      "role": "R",
+      "short": "Read residual reinvest capability",
+      "arguments": [],
       "value": null
     }
   }

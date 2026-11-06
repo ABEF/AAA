@@ -1,0 +1,147 @@
+{
+  "kind": "Fresh schema15 manual residual reinvestment downstream verification",
+  "final_distinct_methods": 107,
+  "new_methods": 13,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "final_result": "profile-final.json",
+  "final_log": "profile-final.log",
+  "test_ids_unique": true,
+  "imported_source_before_after_unchanged": true,
+  "manifest_case": "tests_python.test_operator_review.OperatorReviewTests.test_residual_consolidation_manifest_binds_capability_force_and_exact_tuple",
+  "stages": [
+    {
+      "file": "profile-first.log",
+      "distinct_methods": 9,
+      "scope": "Initial4-carrier profile scaffold; not final"
+    },
+    {
+      "file": "profile-affected-first.json",
+      "distinct_methods": 60,
+      "scope": "Earlier4-carrier profile/current-default stage; overlaps final"
+    },
+    {
+      "file": "profile-events-first.json",
+      "distinct_methods": 85,
+      "scope": "Earlier4-carrier profile/event stage; overlaps final"
+    },
+    {
+      "file": "custody-stale-before.log",
+      "tests": 3,
+      "failures": 2,
+      "scope": "Retained preexisting stale schema13 current-default assertions; corrected to15 without changing historical fixtures"
+    },
+    {
+      "file": "profile-final.json",
+      "distinct_methods": 107,
+      "scope": "Final5-carrier schema15, explicit schema14, current defaults, event and source-bound manifest consumers"
+    },
+    {
+      "file": "event-newline.json",
+      "distinct_methods": 25,
+      "scope": "Post-final artifact CRLF-only normalization to existing baseline convention; event-only methods at new raw hash, subset of original107."
+    }
+  ],
+  "counts_are_not_additive": true,
+  "historical_preservation": {
+    "zzz_ops/production_v12.py": {
+      "sha256": "344f93fd0cf34f7bc70a0d387ec81d10c6b2ee266e805b797dd00c693cba400b",
+      "byte_equal_to_published_head": true
+    },
+    "zzz_ops/production_observer_v12.py": {
+      "sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5",
+      "byte_equal_to_published_head": true
+    },
+    "zzz_ops/production_v11.py": {
+      "sha256": "4d0df8fe0dfd623b1dd5fac540e33552c4dce4d529991db51676f610abc16473",
+      "byte_equal_to_published_head": true
+    },
+    "zzz_ops/production_observer_v11.py": {
+      "sha256": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b",
+      "byte_equal_to_published_head": true
+    },
+    "zzz_ops/factory_code_v2.py": {
+      "sha256": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df",
+      "byte_equal_to_published_head": true
+    },
+    "config/factory-code-storage-v2.json": {
+      "sha256": "080cb03574db7467c6eb811a469a20ac7110749202fed805006acce5fe3f7c9c",
+      "byte_equal_to_published_head": true
+    },
+    "config/production.schema14.example.json": {
+      "sha256": "32cb99572ad0aee158ca42a6262bd1875777588f3f0baa2209144238f13089a5",
+      "original_schema14_template_bytes_preserved": true
+    }
+  },
+  "factory_byte_equality": "factory-byte-equality.json",
+  "owned_file_sha256": {
+    "zzz_ops/production_v13.py": "cf4d0e76c7583cebab8234f46c722dde4d4e25fa43d49afde2f8add65cdd7b2f",
+    "zzz_ops/production_observer_v13.py": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10",
+    "zzz_ops/operator_review.py": "c28a68face67ba175a2ddfbb17b9542fca1b7b1ea9387f6d57d785b0cc39765b",
+    "scripts/validate-production-config.py": "3afd820b5d5bdbe06ad72fcd778f578bbd73d48db4d134d9ca4fa369201309b0",
+    "scripts/observe-production-config.py": "4128c0380fdc83ade19a079e9cdd9f4bb43ef3feef656986289fb2b8c1f06306",
+    "config/production.example.json": "3fb9071f631fb3664b15c580514fac1a61f887c787837caa7077054cac72881c",
+    "config/production.schema14.example.json": "32cb99572ad0aee158ca42a6262bd1875777588f3f0baa2209144238f13089a5",
+    "indexer/event_schema.json": "4ea1e78e2c39f851a46ac8041041e7081d34d6c68457fb0ecde9b84a57a525c7",
+    "tests_python/test_residual_reinvest_profile.py": "c52ddec2b0f0ba73485d922dfb7b3227c6832d1b496439ea68f6d1e20aa33634",
+    "tests_python/test_residual_reinvest_events.py": "b2acf89dacd20267a9a2da2f134f584aa59a82c053178e81562d9e706252d95b",
+    "tests_python/test_production_preflight_cli.py": "4234455bffe91b1f47c3e4316f23f8549e44e68e8ee909c78c921a9cdc1eeeab",
+    "tests_python/test_exact_royalty_profile.py": "168b2b52fddb5635469d62ede64f340ac84d34b86a3e1802d8815f6b7eb69250",
+    "tests_python/test_mint_integration_qualification.py": "32cbc5218162930e6648d5d98a90aad7659dbd580e6c3dd95b34406075291dfb",
+    "tests_python/test_factory_code_profile.py": "b5b74fabadb2a3b2c327324e7d91a37357cb291bd56ba96cf1b18a828b36f9bf",
+    "tests_python/test_custody_inventory.py": "5c71046f741e06d0a7b8df949605c1687c0341c583379e5928028ede37a5021b",
+    "tests_python/test_operator_review.py": "d9fc3992c5956604dcd26b176b415a450e76b47aa8e07a4dc3ccbe05d5ce7b5d"
+  },
+  "final_catalog_sha256": "8f52802c8073f64c78fde05f74bc86aca3b21e065da2fe17d3c2676277d9ba01",
+  "final_operator_examples_sha256": "e30e67aecf205706cf056d6d7f16cec5b6d7ed42da01d28a91c18ed69f17cf69",
+  "capability_roles": [
+    [
+      "modules",
+      "migration"
+    ],
+    [
+      "modules",
+      "vault"
+    ],
+    [
+      "helpers",
+      "migration_budget"
+    ],
+    [
+      "helpers",
+      "portfolio_policy"
+    ],
+    [
+      "helpers",
+      "contribution_pricing"
+    ]
+  ],
+  "boundaries": {
+    "no_service_change": true,
+    "no_website_change": true,
+    "no_signer_change": true,
+    "no_anvil_or_journal_change": true,
+    "no_git_mutation": true,
+    "no_deployment": true,
+    "source_publication_is_not_operating_or_independent_approval": true
+  },
+  "limits": [
+    "Deterministic fixtures do not qualify real runtime deployments, providers, target gas or uptime.",
+    "The ABI-catalog tool remains offline with false readiness flags; it does not verify authority/snapshot or simulate/sign.",
+    "Inventory qualification detects coherent selected capabilities and exact pins; Access.seal does not prove every module capability on-chain.",
+    "Existing accounting6/portfolio2/Position wire and automatic keeper action allowlist remain unchanged."
+  ],
+  "post_final_newline_stage": {
+    "result": "event-newline.json",
+    "log": "event-newline.log",
+    "prior_evidence": "SERVICES_EVIDENCE.pre-newline.json",
+    "prior_evidence_sha256": "7441c2d1b217c3af448896c1a64650ee7d0315b104a1173aa7a0b48b8e686430",
+    "original107_schema_sha256": "19cf5a4fd0a78690615e5cdd71c83c10fe95559273c672bc809391147eed425e",
+    "current_schema_sha256": "4ea1e78e2c39f851a46ac8041041e7081d34d6c68457fb0ecde9b84a57a525c7",
+    "original107_not_rerun_at_current_raw_hash": true,
+    "no_behavior_or_descriptor_changes": true,
+    "other15_owned_files_unchanged": true,
+    "counts_not_additive": true
+  }
+}

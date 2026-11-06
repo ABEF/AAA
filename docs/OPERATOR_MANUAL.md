@@ -56,6 +56,10 @@ become mixed as price moves; its current actual tokens always remain accounted.
   in-range Uniswap trading fees continue; residual proceeds become attributed
   Vault idle. This operation neither puts those proceeds into the main nor pays
   them to a wallet. Later guarded deployment is a separate operation.
+- **Reinvest residual without closing main:** paused governance calls
+  `Migration.consolidateResidual(request,forced)`. It closes only the residual,
+  reinvests attributed idle into the same main and atomically applies mode OFF.
+  [Exact inputs and recovery](#same-main-residual-consolidation).
 - **PoPL global pause:** `Access.setPaused(true)` temporarily blocks ordinary
   PoPL live mint/contribution/harvest/maintenance work. It does not pause the
   external Uniswap pool, remove either LP or erase fees. Funded claims and NFT
@@ -69,8 +73,9 @@ become mixed as price moves; its current actual tokens always remain accounted.
   `Migration.resume` does that under fresh deployment guards. External traders
   may still use other liquidity in the permissionless pool.
 
-Normal return to one main is: **set mode false → wait for eligible successful
-ordinary rebalance → verify one active main**. Immediate exceptional return is:
+Keep the existing main: **pause → reviewed consolidateResidual → inspect → unpause**.
+To replace the main at the next ordinary adjustment: **set mode false → wait for
+eligible successful rebalance → verify one active main**. Immediate full replacement is:
 **set mode false → pause → reviewed emergency consolidation → inspect → unpause**.
 There is no holder-facing principal withdrawal in either sequence.
 
@@ -199,7 +204,7 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema14 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema15 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
@@ -208,7 +213,7 @@ exit does not gain a conversion/buyback dependency.
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
 second release history in this manual. The historical [October31 analysis](../reports/day-audit-20261031/VERIFICATION.md)
 has463 contextually dispositioned findings at the unchanged final source closure;
-its source scope does not verify later window/capacity code. Current source evidence is the [royalty-window review](../reports/royalty-launch-window-20261105/VERIFICATION.md). Older analyzer
+its source scope does not verify later window/capacity code. Current source evidence is the [same-main consolidation review](../reports/residual-main-consolidation-20261106/VERIFICATION.md); earlier royalty records retain their exact source scope. Older analyzer
 and handwritten body reports retain their original scopes. Refresh analysis
 after source changes and qualify actual dependencies, target-chain gas/operations
 and independent audit before release; internal triage is not release approval.
@@ -216,7 +221,7 @@ and independent audit before release; internal triage is not release approval.
 
 ## Liquidity placement and keeper policy
 
-For post-exit automatic payouts, configure the [principal worker and retry interval](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). Repeated rejected batches default to hourly retry; serial-job priority alternates durably. Apply JSON changes through controlled restart, preserve the journal and refresh config-bound health; no contract update/resealing or new authority is required.
+For current custody5 post-exit payouts, use governance-only allocation/distribution batches described in [collective holder return](#custody-and-lp-migration). Keep the keeper principal-distribution worker disabled; never place the governance key on its host. The [optional worker](KEEPER_RECOVERY.md#optional-automatic-principal-delivery) is historical custody4 behavior only.
 
 Read [keeper safeguards](KEEPER_SAFEGUARDS.md) for the full protection inventory
 and the distinction between on-chain enforcement and bypassable service policy.
@@ -402,7 +407,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema14 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema15 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -986,8 +991,10 @@ still enforce their actual marginal deployment and total-idle guards; new users
 cannot subsidize recovery. They may be blocked until existing funds are deployed.
 Do not disable those checks or sweep the idle to an arbitrary wallet.
 
-To reinvest, use a complete guarded adjustment, the separately eligible compound
-path, or a reviewed paused emergency. Compounding still waits for a healthy,
+To reinvest while preserving the main, use the dedicated
+[governance consolidation](#same-main-residual-consolidation) below. Full guarded
+adjustment or explicit emergency replacement instead rebuilds the main. The
+separately eligible compound path remains conditional: compounding still waits for a healthy,
 in-range main below the adjustment threshold with no pending geometry. A pending
 mode/width change, cooldown or price disagreement can require ordinary waiting
 or the explicit emergency procedure. Governed same-pair move/resume is a
@@ -998,7 +1005,106 @@ Fresh confirmation/jitter must reflect the changed physical association. A new
 residual must never inherit a previous position's readiness. Existing claim,
 royalty and direct holder-return accounting continue independently.
 
-#### Forced consolidation and exceptional markets
+#### Same-main residual consolidation
+
+Use **`Migration.consolidateResidual(request, forced)`** when you want the
+residual's capital invested in the **existing main**, preserving its LP ID,
+ticks, centre and rebalance clock. It also recovers positive attributed idle
+after an earlier raw residual close, even when no residual remains.
+
+This is paused **governance-only**, with `RESIDUAL_REINVEST_VERSION()==1` on
+Migration, Vault, Budget, PortfolioPolicy and ContributionPricing. No keeper grant is needed. It is
+not an automated keeper action. Use fresh schema15/runtime bindings; older
+deployments and journals do not gain this function through publication.
+
+The transaction harvests both legs, closes only the residual if present,
+balances the attributed idle and increases that same main. Fees earned by its
+balancing swap are harvested separately before the increase. No FeeController
+compound reserve is released; it and holder rewards/buyback/royalty backing stay
+separate. Existing idle of the same bucket is included. Raw prefunds are not.
+On success it disables future residual creation and acknowledges that OFF state.
+An independent pending main-range change stays pending. The compound clock is
+updated to avoid immediate redundant compounding; lastRebalance is unchanged.
+
+| Input | Exact meaning / how to obtain it |
+| --- | --- |
+| `request.bucket` | Current shared bucket ID from the confirmed Vault state; not the PoPL NFT ID. |
+| `request.custodyHash` | Read **`Migration.consolidationCustodyHash(bucket)` after pausing**. This new operation-specific hash includes current physical/accounting identity, shared recovery nonce/epoch and policy controls. Do not substitute emergencyCustodyHash or reviewHash. |
+| `request.checks` | Guarded `forced=false`: exactly **14** (2+4+8). Forced `true`: explicit retained mask0–31, described below. |
+| `request.lower`, `request.upper` | Read `Manager.ticks(currentMainId)`. Both must equal the existing main's actual ticks. This operation cannot change range or pool. |
+| `request.swapPool`, `zeroForOne`, `amountIn`, `minimumOut` | Guarded: zero bytes32, false,0,0; the existing reviewed router chooses zero/one trade. Forced: reviewed exact admitted swap pool, direction, raw input and positive raw output floor; or all zero/false for no swap. The input must fit the recovered/attributed idle, never main principal or reserves. |
+| `request.minimumLiquidity` | Positive minimum **ADDED** Uniswap liquidity delta, not existing total L or USD. Obtain from a fresh complete simulation. |
+| `request.deadline` | Unix seconds, now≤deadline≤now+600 at inclusion. |
+| `request.reviewHash` | Nonzero source-bound review commitment from the operator review tool. It is public review data, not a secret, permission or simulation. |
+| `forced` | false for guarded automatic routing; true only for the explicitly reviewed manual manifest and retained-check mask. |
+
+Illustrative unresolved template, in tuple ABI order:
+
+```text
+consolidateResidual(
+  [BUCKET_ID, CONSOLIDATION_CUSTODY_HASH, 14, CURRENT_LOWER, CURRENT_UPPER,
+   ZERO_BYTES32, false, 0, 0, MINIMUM_ADDED_LIQUIDITY, UNIX_DEADLINE, REVIEW_HASH],
+  false
+)
+```
+
+These symbols are **not executable values**. Simulate the exact chain, current
+governance sender, Migration destination, zero transaction value and full call.
+No holder payment, token approval or ETH transfer is required from governance.
+
+1. Reconcile pending transactions and conflicting keeper work without deleting
+   journals; pause using governance `Access.setPaused(true)`.
+2. Read actual main/residual/idle, current controls and the operation-specific
+   hash. No earlier `setMode(false)` is required. It is also supported if already
+   OFF with a pending residual-mode change. An empty no-residual/no-idle call fails.
+3. Choose guarded or explicit force, calculate minimum added L, and simulate the
+   complete harvest→close→swap→increase→OFF acknowledgment. Guarded requires the
+   main physically in range before and after, fresh prices, operations enabled
+   and financial limits. It has no keeper cooldown, sample, jitter or standalone
+   compound-interval prerequisite.
+4. Submit **once** from governance. Failure rolls back the close, fees, swap,
+   increase, mode acknowledgment, nonce/epoch, clocks and temporary contexts.
+   Earlier separately mined pause/configuration transactions remain; gas is spent.
+5. Verify `ResidualConsolidated`, actual zero residual/appropriate count decrement,
+   same main ID/owner/full info/ticks/centre/lastRebalance, positive L delta,
+   unchanged shares/deposit, attributed balances/reserve backing, OFF applied,
+   successful clock/nonce/epoch advances and cleared transient context. The
+   operational event is not income. Only actual fee allocations credit earnings.
+6. The protocol remains paused. Separately review `Access.setPaused(false)` and
+   ordinary service recovery. On-chain setting changes alone need no host restart;
+   a new runtime/capability needs a separately reviewed fresh deployment/config. The current
+   seal checks do not independently prove every new capability/runtime binding;
+   use the complete schema15 preflight before sealing, never mixed generations.
+
+Force retains the existing mask meanings:1 raw rebalance trigger/cooldown,
+2 independent spot/reference agreement,4 USD retention/venue quality/idle caps,
+8 operations-enabled flags,16 applicable sampled confirmation (with its existing explicit-geometry exception). A retained bit can itself
+block the operation; bits2/4 can require healthy prices and a restored sample
+must still be valid. Mask0 deliberately bypasses these policies, **not** exact
+caller custody, fixed pair, accounting, positive caller floors, approvals,
+callbacks, canonical/preparation/terminal locks or the deadline. Financial bypass
+can lose nearly all principal. Forced input is explicit; no oracle-failing
+automatic quote or unsafe fallback is invented.
+
+Force may increase an inactive unchanged main: that adds one-sided liquidity
+inside its old ticks and does **not** restore active fee earning. To recenter or
+change destination use whole replacement/move instead. Broken core/tokens can
+still prevent execution. Tiny idle may fail positive delta-L rounding; it stays
+attributed and must not be swept. Small normal rounding idle may remain within
+the reviewed ceiling; this is not a zero-dust guarantee.
+
+To re-enable optional hybrid management later, governance calls
+`PortfolioPolicy.setMode(pool,true,reviewHash)`. No residual opens immediately;
+the next eligible whole adjustment (or governed park/resume under destination
+mode) may create one. Fresh readiness is required; old residual reviews cannot
+qualify the new physical association.
+
+<a id="forced-consolidation-and-exceptional-markets"></a>
+
+#### Full emergency replacement and exceptional markets
+
+This section describes **Migration.emergencyRebalance(request)**, which replaces
+the main. For keeping the main, use [same-main consolidation](#same-main-residual-consolidation).
 
 The existing [emergency procedure](EMERGENCY_REBALANCE.md) accepts explicit ticks,
 one reviewed swap venue/input/output floor, minimum deployed liquidity, custody
@@ -1301,7 +1407,7 @@ child**. Three separate controls must not be confused:
 | --- | --- | --- |
 | Accept/stop ETH or fixed ZZZ as new contribution input | `ActivationAssets.setAsset` | Changes source admission; no swap or movement of existing principal. |
 | Where Vault balances ETH/ZZZ for entry or maintenance | `Balancer.configureExecutionPools` | Changes the bounded reviewed venue list; LP destination/ownership remain separate. See [execution venue admission](#add-or-remove-an-execution-pool-after-sealing). |
-| How already-earned LP rewards or royalties convert to ETH | The specific LP or royalty converter's route functions | Converts that ledger's existing funded credits; does not add an Entry route or new principal input. |
+| How already-earned LP rewards convert to ETH | LP reward converter's reviewed route functions | Converts that LP ledger's funded credits; royalties are claimed in original currencies and have no converter. Neither adds an Entry route or principal input. |
 
 The exact fresh Request and policy inputs are in [direct Entry](ACTIVATION_ENTRY.md).
 Changing one control never implicitly re-enables another stopped source/pool/route.
@@ -1409,7 +1515,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema14 observer checks these facts;
+pre-populate the replacement. The current schema15 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1508,7 +1614,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ reviewed `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and collective holder return. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires collective holder return and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
-| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay unallocated until separately reviewed recovery1; earned/deferred entitlements remain protected. |
+| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | ETH and independently reviewed ERC20 payment currencies are claimed as received; no royalty swap/oracle/route. Default16ERC20+ETH capacity can expand through reviewed governance to64ERC20+ETH after gas qualification. Pre-admission/no-cohort receipts require reviewed original-currency allocation; earned/deferred/opening rights remain protected. Admission does not restrict marketplace sales. |
 | Synchronize/claim royalties | Permissionless `RoyaltyRewards.sync(asset)`/`syncAll`; actual owner calls ledger `claim` or bounded ClaimRouter | Direct royalty claim synchronizes pending admitted receipts. LP claim does not harvest new venue fees. Use current owner and actual funded amounts. |
 
 A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**, or claim individually. One failed operation reverts the whole batch; simulate and split by asset/NFT if needed. No operator can choose a different beneficiary or claim just because it holds ERC721 approval. All unclaimed rights follow the current NFT owner; already paid funds do not travel with it. An escrow that owns the NFT is the contract-level holder. Lifetime claimed display requires complete confirmed index history, including predecessors after replacement.
@@ -1709,7 +1815,7 @@ Prepare a separately reviewed configuration with accounting6, protocol_policy_ve
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema14 production observation is separate from keeper live configuration.
+Schema15 production observation is separate from keeper live configuration.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and
@@ -1832,7 +1938,7 @@ Use the [fixed code-data procedure](FACTORY_CODE_STORAGE.md). Match
 RoyaltyFactory.CODE_STORAGE_VERSION()==2, creationCodeLength/royaltyCodeHash,
 part0/part1 and both partCodeHash getters against independent final compiler
 bytes. Authenticate both actual REVERT-prefixed data runtimes at one pinned
-block using schema14; never accept self-reported pins. Construction creates
+block using schema15; never accept self-reported pins. Construction creates
 both children automatically. They have no operator call, funding or sweep.
 Factory.create reconstructs the same ledger and binds its fixed controller.
 Qualify exact constructor inputs and target gas; no deployment is authorized.
@@ -2098,9 +2204,10 @@ still uses the controlled restart and pending-recovery procedure below.
 
 | Intended outcome | Ordered calls and caller | Restart and failed-step handling |
 | --- | --- | --- |
-| Keep main, stop using a residual at the next safe adjustment | Governance reads `enabled(pool)`; if true calls `PortfolioPolicy.setMode(pool,false,reviewHash)`. An authorized keeper later calls `Vault.rebalance(bucket,minimumLiquidity,deadline)` after cooldown and execution guards. | No global pause. Both old legs close atomically and one active main is created. A failed replacement preserves both old legs; desired mode stays false/pending. Normal price/caller/retention/idle checks remain; small attributed idle may remain. |
+| Replace both legs with one main at the next safe adjustment | Governance reads `enabled(pool)`; if true calls `PortfolioPolicy.setMode(pool,false,reviewHash)`. An authorized keeper later calls `Vault.rebalance(bucket,minimumLiquidity,deadline)` after cooldown and execution guards. | No global pause. Both old legs close atomically and one active main is created. A failed replacement preserves both old legs; desired mode stays false/pending. Normal price/caller/retention/idle checks remain; small attributed idle may remain. |
 | Close only residual immediately; main keeps trading | Reconcile pending work; pause; optionally set modefalse first; rebuild snapshot; governance calls `Migration.closeResidual(ParkingRequest)`. Verify main unchanged/residual0 and exact attributed idle, then governance `Access.setPaused(false)`. | Main was never removed. In-range underlying fees can accrue during the temporary PoPL pause. Unpause restores live PoPL actions, not deployment of returned idle. Large idle can block fresh contributions under the5%guard; perform separately guarded maintenance rather than bypassing it. |
-| Urgently consolidate both into one main | Set modefalse if necessary; pause; read new custody hash; governance simulates/submits `Migration.emergencyRebalance(request)` with explicitly chosen retained checks; inspect one main/no residual; unpause when safe. | Emergency does not change desired mode. Failed trade/deployment reverts that operation but leaves earlier separately mined pause/policy calls in effect. Repair/resimulate; choose deliberately whether to remain paused. Never retry by silently dropping safeguards. |
+| Preserve the current main and reinvest the residual/idle | Pause; governance `Migration.consolidateResidual(request,false)` with checks14 and actual main ticks, or explicitly reviewed forced manifest. | Same ID/ticks/centre/clock; positive added L; no designated compound release; atomic modeOFF acknowledgment. No keeper timing. See [inputs](#same-main-residual-consolidation). |
+| Urgently replace both with one new main | Set modefalse if necessary; pause; read new custody hash; governance simulates/submits `Migration.emergencyRebalance(request)` with explicitly chosen retained checks; inspect one main/no residual; unpause when safe. | Emergency does not change desired mode. Failed trade/deployment reverts that operation but leaves earlier separately mined pause/policy calls in effect. Repair/resimulate; choose deliberately whether to remain paused. Never retry by silently dropping safeguards. |
 | Stop all our deployed LP temporarily | Pause; governance explicitly disables intended deposits with `disablePool(pool,true,false)`, reads fresh snapshots, then parks each active shared bucket using its own `ParkingRequest`; verify both legs closed and classified idle. | Parking/pause do not clear deposit flags themselves. After fixing actual dependencies, unpause before normal `Migration.resume(bucket,pool,minimumLiquidity,deadline)`; inspect successful deployment before full validated re-enable of intended deposits. A failed resume leaves that bucket Parked; unpause alone cannot restart it. |
 | Stop deposits only / stop one execution venue | `disablePool(pool,true,false)` for input stop; separately remove the unwanted swap venue through the reviewed Balancer catalog if swaps are the concern. | Copy/full-validate the intended pool config to re-enable. Pool flags and execution venue lists are different; disabling one must not be treated as disabling both. Empty execution list blocks swaps but a valid no-swap operation can remain possible. |
 | Permanently return principal to holders | Paused governance `beginCollectiveExit(reviewHash)`; close every captured bucket, then advance bounded allocation/delivery with exact phase/cursors. | **No restart/unpause reversal.** Do not use terminal exit for a temporary pause, a residual merge or a routine fee-tier change. NFTs retain their separate transfer/royalty/old-reward rights. |
@@ -2148,7 +2255,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema14 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema15 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2346,7 +2453,7 @@ is unavailable/error, never zero or permission to bypass guards.
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema14
+retain their declared sets), helper pins and admitted assets first. The schema15
 release inventory separately observes18 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
@@ -2414,9 +2521,11 @@ Retired `forwardLate(asset)` accepts admitted or unsupported currencies and send
 only to the authenticated immediate successor. The successor separately admits or
 recovers unknown currencies; forwarding does not choose an entitlement cohort.
 Current governance can use restricted [unallocated recovery](ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery),
-with exact inputs and source classification, to convert only genuinely unallocated
-value into ETH at current active weights. Existing/deferred entitlements stay
-separate. Broken/illiquid/unpriced tokens can still fail; no arbitrary sweep exists.
+with exact inputs and source classification, to allocate genuinely unallocated
+raw units of the SAME admitted currency at current active rarity weights. No
+conversion or payout occurs in allocation. Existing/deferred/opening entitlements
+stay separate. Broken/frozen/unreadable token behavior can still block transfer;
+raw claims require no USD price or swap liquidity, and no arbitrary sweep exists.
 
 
 ## Disposable local testing
@@ -2709,7 +2818,7 @@ policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
 On-chain policy changes need no service restart only for a **matching** source8
-worker that reads them dynamically. Adopting direct Entry3/accounting6/schema14/new runtime pins
+worker that reads them dynamically. Adopting direct Entry3/accounting6/schema15/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,
@@ -2780,7 +2889,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **820 functions, 37 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **839 functions, 37 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -2887,13 +2996,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [Vault.reservePool](CONTRACT_FUNCTIONS.md#zzzvault) | `pool: bytes32`<br>`bucket: uint256` | `reservePool(POOL_ID, BUCKET_ID)` | Reserve historical custody capacity |
 
 <details>
-<summary>Read functions and constants (22)</summary>
+<summary>Read functions and constants (23)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [Vault.ACCOUNTING_VERSION](CONTRACT_FUNCTIONS.md#zzzvault) | None | `ACCOUNTING_VERSION()` | Read accounting version |
 | `R` [Vault.MAX_BUCKETS](CONTRACT_FUNCTIONS.md#zzzvault) | None | `MAX_BUCKETS()` | Read max buckets |
 | `R` [Vault.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzvault) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [Vault.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzvault) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [Vault.access](CONTRACT_FUNCTIONS.md#zzzvault) | None | `access()` | Read access |
 | `R` [Vault.bucketAt](CONTRACT_FUNCTIONS.md#zzzvault) | `index: uint256` | `bucketAt(0)` | Read bucket at |
 | `R` [Vault.bucketCount](CONTRACT_FUNCTIONS.md#zzzvault) | None | `bucketCount()` | Read bucket count |
@@ -2927,7 +3037,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [Vault.canonicalWrite](CONTRACT_FUNCTIONS.md#zzzvault) | `kind: uint8`<br>`row: bytes` | `canonicalWrite(KIND, ROW)` | Write authenticated imported accounting |
 | `M` [Vault.closeResidual](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`deadline: uint256` | `closeResidual(BUCKET_ID, UNIX_DEADLINE)` | Close residual; retain main |
 | `M` [Vault.compound](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `compound(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Reinvest designated LP reserves |
-| `M` [Vault.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `emergencyRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Force reviewed emergency consolidation |
+| `M` [Vault.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `emergencyRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Execute typed manual LP operation |
 | `M` [Vault.exitBucketToHolders](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumETH: uint256`<br>`minimumZZZ: uint256`<br>`deadline: uint256` | `exitBucketToHolders(BUCKET_ID, MINIMUM_ETH_WEI, MINIMUM_ZZZ, UNIX_DEADLINE)` | Return bucket principal internally |
 | `M` [Vault.movePool](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`newPool: bytes32`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `movePool(BUCKET_ID, POOL_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Execute authenticated pool movement |
 | `C` [Vault.onERC721Received](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: address`<br>`input1: address`<br>`input2: uint256`<br>`input3: bytes` | `onERC721Received(TARGET_ADDRESS, TARGET_ADDRESS, INPUT2, ENCODED_BYTES)` | Read on erc721 received |
@@ -3157,7 +3267,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [PortfolioPolicy.setTriggerBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `next: uint16`<br>`reviewed: bytes32` | `setTriggerBps(8500, REVIEW_HASH)` | Configure portfolio adjustment threshold |
 
 <details>
-<summary>Read functions and constants (25)</summary>
+<summary>Read functions and constants (26)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3165,6 +3275,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [PortfolioPolicy.HARD_MAXIMUM_RESIDUAL_BPS](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `HARD_MAXIMUM_RESIDUAL_BPS()` | Read hard maximum residual bps |
 | `R` [PortfolioPolicy.HARD_MINIMUM_MAIN_BPS](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `HARD_MINIMUM_MAIN_BPS()` | Read hard minimum main bps |
 | `R` [PortfolioPolicy.PORTFOLIO_VERSION](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `PORTFOLIO_VERSION()` | Read portfolio version |
+| `R` [PortfolioPolicy.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [PortfolioPolicy.access](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `access()` | Read access |
 | `R` [PortfolioPolicy.appliedRevision](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: uint256` | `appliedRevision(LP_TOKEN_ID)` | Read applied revision |
 | `R` [PortfolioPolicy.configurationPending](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `bucket: uint256` | `configurationPending(BUCKET_ID)` | Read configuration pending |
@@ -3190,10 +3301,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (1)</summary>
+<summary>Contract-only calls: use the parent workflow (2)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `M` [PortfolioPolicy.completeConsolidation](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | None | `completeConsolidation()` | Complete verified single-main policy |
 | `M` [PortfolioPolicy.recordApplied](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `main: uint256`<br>`pool: bytes32` | `recordApplied(LP_TOKEN_ID, POOL_ID)` | Record applied portfolio policy |
 
 </details>
@@ -3343,7 +3455,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [MigrationBudget.setLossLimits](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `contribution: uint16`<br>`maintenance: uint16` | `setLossLimits(200, 300)` | Set contribution/maintenance loss limits |
 
 <details>
-<summary>Read functions and constants (41)</summary>
+<summary>Read functions and constants (42)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3352,6 +3464,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [MigrationBudget.IDLE_COMPOUNDING_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `IDLE_COMPOUNDING_VERSION()` | Read idle compounding version |
 | `R` [MigrationBudget.MAX_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `MAX_LOSS_BPS()` | Read max loss bps |
 | `R` [MigrationBudget.REBALANCE_CONFIRMATION_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `REBALANCE_CONFIRMATION_VERSION()` | Read rebalance confirmation version |
+| `R` [MigrationBudget.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [MigrationBudget.access](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `access()` | Read access |
 | `R` [MigrationBudget.assertDeployed](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `assertDeployed(BUCKET_ID)` | Read assert deployed |
 | `R` [MigrationBudget.assertIdle](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `assertIdle(BUCKET_ID)` | Read assert idle |
@@ -3702,6 +3815,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | --- | --- | --- | --- |
 | `G` [Migration.park](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `park(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close LP into attributed idle |
 | `G` [Migration.closeResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `closeResidual(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close residual; retain main |
+| `G` [Migration.consolidateResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool` | `consolidateResidual(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false)` | Reinvest residual into same main |
 | `G` [Migration.resume](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `resume(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Redeploy parked LP principal |
 | `G` [Migration.moveFunds](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `moveFunds(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Move LP between admitted pools |
 | `G` [Migration.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyRebalance(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Force reviewed emergency consolidation |
@@ -3714,7 +3828,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `B` [Migration.configureZZZ](CONTRACT_FUNCTIONS.md#zzzmigration) | `token: address`<br>`codeHash: bytes32`<br>`reviewHash: bytes32` | `configureZZZ(ZZZ_ADDRESS, CODE_HASH, REVIEW_HASH)` | Bind fixed ZZZ identity |
 
 <details>
-<summary>Read functions and constants (28)</summary>
+<summary>Read functions and constants (31)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3722,11 +3836,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [Migration.EMERGENCY_REBALANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `EMERGENCY_REBALANCE_VERSION()` | Read emergency rebalance version |
 | `R` [Migration.MAX_BATCH](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `MAX_BATCH()` | Read max batch |
 | `R` [Migration.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
+| `R` [Migration.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [Migration.access](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `access()` | Read access |
 | `R` [Migration.activePlan](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `activePlan(BUCKET_ID)` | Read active plan |
 | `R` [Migration.allocationCursor](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `allocationCursor()` | Read allocation cursor |
 | `R` [Migration.bucketSettlement](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `bucketSettlement(BUCKET_ID)` | Read bucket settlement |
 | `R` [Migration.claimablePrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256` | `claimablePrincipal(NFT_ID)` | Read claimable principal |
+| `R` [Migration.consolidationActive](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `consolidationActive()` | Read transient consolidation context |
+| `R` [Migration.consolidationCustodyHash](CONTRACT_FUNCTIONS.md#zzzmigration) | `bucket: uint256` | `consolidationCustodyHash(BUCKET_ID)` | Read consolidation custody hash |
 | `R` [Migration.currentZZZ](CONTRACT_FUNCTIONS.md#zzzmigration) | None | `currentZZZ()` | Read current zzz |
 | `R` [Migration.custodyEpoch](CONTRACT_FUNCTIONS.md#zzzmigration) | `input0: uint256` | `custodyEpoch(BUCKET_ID)` | Read custody epoch |
 | `R` [Migration.emergencyCustodyHash](CONTRACT_FUNCTIONS.md#zzzmigration) | `bucket: uint256` | `emergencyCustodyHash(BUCKET_ID)` | Read emergency custody identity |
@@ -3963,11 +4080,12 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### ContributionPricing
 
 <details>
-<summary>Read functions and constants (14)</summary>
+<summary>Read functions and constants (17)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [ContributionPricing.ENTRY_REVIEW_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `ENTRY_REVIEW_VERSION()` | Read entry review version |
+| `R` [ContributionPricing.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [ContributionPricing.access](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `access()` | Read access |
 | `R` [ContributionPricing.active](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `active()` | Read active |
 | `R` [ContributionPricing.assertDeployed](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`maxIdleBps: uint16` | `assertDeployed(BUCKET_ID, MAX_IDLE_BPS)` | Read assert deployed |
@@ -3980,6 +4098,8 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [ContributionPricing.markMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `markMaintenance(BUCKET_ID)` | Read mark maintenance |
 | `R` [ContributionPricing.nav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `nav(BUCKET_ID)` | Read nav |
 | `R` [ContributionPricing.oracle](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `oracle()` | Read oracle |
+| `R` [ContributionPricing.validateRebalance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`minimumLiquidity: uint128`<br>`emergency: bool`<br>`checks: uint8` | `validateRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, EMERGENCY_ACTIVE, RETAINED_CHECKS)` | Validate public rebalance timing |
+| `R` [ContributionPricing.validateResidualClose](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`busy: bool` | `validateResidualClose(BUCKET_ID, BUDGET_BUSY)` | Validate raw residual closure |
 | `R` [ContributionPricing.valueBucket](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`amount0: uint256`<br>`amount1: uint256` | `valueBucket(BUCKET_ID, AMOUNT0, AMOUNT1)` | Read value bucket |
 
 </details>
@@ -4147,16 +4267,24 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### CustodyValidation
 
 <details>
-<summary>Read functions and constants (6)</summary>
+<summary>Read functions and constants (14)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [CustodyValidation.access](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `access()` | Read access |
+| `R` [CustodyValidation.captureConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool` | `captureConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false)` | Capture same-main consolidation proof |
+| `R` [CustodyValidation.captureResidualClose](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `captureResidualClose(ENCODED_PARKING_REQUEST)` | Capture raw residual-close proof |
+| `R` [CustodyValidation.consolidationCustodyHash](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `consolidationCustodyHash(BUCKET_ID)` | Read consolidation custody hash |
+| `R` [CustodyValidation.consolidationEmergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `consolidationEmergencyFingerprint(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read forced consolidation context |
 | `R` [CustodyValidation.emergencyCustodyHash](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `emergencyCustodyHash(BUCKET_ID)` | Read emergency custody identity |
 | `R` [CustodyValidation.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyFingerprint(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read emergency fingerprint |
 | `R` [CustodyValidation.migration](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `migration()` | Read migration |
 | `R` [CustodyValidation.residualMainFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `residualMainFingerprint(BUCKET_ID)` | Read residual main fingerprint |
+| `R` [CustodyValidation.validateEmergency](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance) | `validateEmergency(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Validate full emergency request |
 | `R` [CustodyValidation.validateParking](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `validateParking(ENCODED)` | Read validate parking |
+| `R` [CustodyValidation.validateZZZ](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `token: address`<br>`codeHash: bytes32`<br>`reviewHash: bytes32` | `validateZZZ(FIXED_ZZZ_ADDRESS, TOKEN_CODE_HASH, REVIEW_HASH)` | Validate fixed ZZZ binding |
+| `R` [CustodyValidation.verifyConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool`<br>`beforeState` [ZZZCustodyValidation.Consolidation](#input-zzzcustodyvalidation-consolidation) | `verifyConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false, ["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"])` | Verify same-main consolidation result |
+| `R` [CustodyValidation.verifyResidualClose](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes`<br>`beforeState` [ZZZCustodyValidation.ResidualClose](#input-zzzcustodyvalidation-residualclose) | `verifyResidualClose(ENCODED_PARKING_REQUEST, ["CAPTURED_MAIN_HASH", "PREVIOUS_IDLE_ETH", "PREVIOUS_IDLE_ZZZ", "RESIDUAL_ID"])` | Verify raw residual-close receipts |
 
 </details>
 
@@ -4374,17 +4502,17 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 | Field | ABI type | Example input |
 | --- | --- | --- |
-| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` |
 | `request.bucket` | `uint256` | `BUCKET_ID` |
-| `request.custodyHash` | `bytes32` | `CUSTODY_HASH` |
-| `request.checks` | `uint8` | `31` |
-| `request.lower` | `int24` | `LOWER_TICK` |
-| `request.upper` | `int24` | `UPPER_TICK` |
-| `request.swapPool` | `bytes32` | `SWAP_POOL` |
-| `request.zeroForOne` | `bool` | `ZERO_FOR_ONE` |
-| `request.amountIn` | `uint128` | `AMOUNT_IN` |
-| `request.minimumOut` | `uint128` | `MINIMUM_OUT` |
-| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` |
+| `request.custodyHash` | `bytes32` | `CONSOLIDATION_CUSTODY_HASH` |
+| `request.checks` | `uint8` | `14` |
+| `request.lower` | `int24` | `CURRENT_MAIN_LOWER_TICK` |
+| `request.upper` | `int24` | `CURRENT_MAIN_UPPER_TICK` |
+| `request.swapPool` | `bytes32` | `0x0000000000000000000000000000000000000000000000000000000000000000` |
+| `request.zeroForOne` | `bool` | `false` |
+| `request.amountIn` | `uint128` | `0` |
+| `request.minimumOut` | `uint128` | `0` |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` |
 | `request.deadline` | `uint256` | `UNIX_DEADLINE` |
 | `request.reviewHash` | `bytes32` | `REVIEW_HASH` |
 
@@ -4498,6 +4626,36 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | `claims[0].nftId` | `uint256` | `NFT_ID` |
 | `claims[0].asset` | `address` | `0x0000000000000000000000000000000000000000` |
 | `claims[0].royalty` | `bool` | `false` |
+
+</details>
+
+<details>
+<summary>ZZZCustodyValidation.Consolidation</summary>
+
+<a id="input-zzzcustodyvalidation-consolidation"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `beforeState` | `(bytes32,uint128,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"]` |
+| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` |
+| `beforeState.liquidity` | `uint128` | `CAPTURED_MAIN_LIQUIDITY` |
+| `beforeState.secondary` | `uint256` | `CAPTURED_SECONDARY_ID` |
+| `beforeState.count` | `uint256` | `CAPTURED_RESIDUAL_COUNT` |
+
+</details>
+
+<details>
+<summary>ZZZCustodyValidation.ResidualClose</summary>
+
+<a id="input-zzzcustodyvalidation-residualclose"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `beforeState` | `(bytes32,uint256,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "PREVIOUS_IDLE_ETH", "PREVIOUS_IDLE_ZZZ", "RESIDUAL_ID"]` |
+| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` |
+| `beforeState.idle0` | `uint256` | `PREVIOUS_IDLE_ETH` |
+| `beforeState.idle1` | `uint256` | `PREVIOUS_IDLE_ZZZ` |
+| `beforeState.secondary` | `uint256` | `RESIDUAL_ID` |
 
 </details>
 

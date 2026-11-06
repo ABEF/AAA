@@ -7,7 +7,7 @@ from deployment, services, websites and public transactions.
 
 ## 1. Freeze the correct source and integration boundary
 
-Use [accounting6/Entry3/schema14](POSITION_V6.md) and exact runtime/helper/dependency
+Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/dependency
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not
 reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
@@ -44,7 +44,7 @@ Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
 
 ## 3. Integrate matching services and site without changing old profiles
 
-Build reviewed schema14/source8 configs for API/indexer/keeper/health writer-checker
+Build reviewed schema15/source8 configs for API/indexer/keeper/health writer-checker
 and a matching accounting6/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.

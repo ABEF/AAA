@@ -22,6 +22,11 @@ and its [source-scoped evidence](../reports/architecture-evolution/VERIFICATION.
 
 Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.05 ETH dormant mint; $100 original gross source activation with the captured contribution floor (98% at default 2%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
 
+Paused governance [same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation)
+closes only the residual, reinvests attributed idle and applies modeOFF without
+changing main ID/ticks/shares/centre/rebalance clock. New residual-reinvest1
+participants and inventory15 require matching runtime review; old14 stays explicit.
+
 ## Shared implementation boundaries
 
 Fresh maintenance3/confirmation3 distinguishes the 85%-of-centre-to-boundary
@@ -234,7 +239,7 @@ rehearsals and independent audit/remediation remain open. Production NOT APPROVE
 
 ## Exact royalty source boundary
 
-Royalty4/reporting5/schema14/canonicalV8 uses internal whole-unit allocation.
+Royalty4/reporting5/schema15/canonicalV8 uses internal whole-unit allocation.
 The allocator adds no deployed helper; Factory storage2 adds exactly two inert
 code-data children outside the18 callable-helper roles. RoyaltyFactory stores only fixed
 compiled creation bytes, authenticates them with immutable royaltyCodeHash,

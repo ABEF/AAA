@@ -130,7 +130,10 @@ selection independently of the LP target, bounded depth-aware sizing and entrant
 isolation. [Scoped review](../reports/atomic-routing-20261028/REVIEW.md) distinguishes
 these source changes from real economic/route qualification. Contributions keep
 the current LP ID/ticks and preserve old fee membership/share value. Attributed
-idle remains reinvestable through the guarded compound path above; no generic
+idle can be reinvested through conditional ordinary compounding or the new
+[paused governance same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation).
+The latter resolves residual OFF atomically without closing the main or waiting
+for keeper timing; it does not release designated compound reserves. No generic
 sweep is needed or authorized. Enabled keeper scheduling must include reviewed
 idle thresholds if contribution-released reserves are to be picked up while no
 fresh fees arrive. Actual thresholds/gas remain to be qualified.

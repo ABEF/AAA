@@ -11,8 +11,8 @@
       "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "c53160a273a50b28c4aa27b856a6ae0962124e421bb652b8f2fb4fe19c023bb6",
-      "src/ZZZCustodyValidation.sol": "951284cdbea10587f611027549dd67029c2dc3533a9dcf3ef1323a4557aa5b9c",
+      "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+      "src/ZZZCustodyValidation.sol": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
       "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
@@ -21,14 +21,14 @@
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
       "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
       "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
-      "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
-      "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
+      "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+      "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
       "src/ZZZNFT.sol": "d31242720b76cf042604e3825764e3b976dbc4ae519046bd8b586fbd72b80ccd",
       "src/ZZZNFTCanonical.sol": "40be978cdc4764ae01e9c06fc5350dbfca755ef6d6309ae18b7bef48f159714b",
       "src/ZZZNFTMetadata.sol": "7dc7d9e8a82e9256004163ac5375c64abe34a7a02d96de6b2a01eeb41b897328",
       "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
-      "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
+      "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
       "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
@@ -38,7 +38,7 @@
       "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+      "src/ZZZVault.sol": "77f076ae8ad11d1c5df76f2a6b19fed826889c4a22e0d18b4f723dd16838eaeb",
       "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
@@ -223,9 +223,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "6351de61067e29416e221a10c9aa3a7df2084e07a2407a1acb074fd80c0f3cc7",
-    "compiler_output_sha256": "eb12abe40e198d7b17e264d4c1b310847637d494c88a740db75fa39ad6476220",
-    "size_evidence_sha256": "065d38d727dd5b80eaa41148c51cf434c2006e6f506ab69fe56d6ad89cfc5a25",
+    "compiler_input_sha256": "d4291393c11b2aeb8cac60a9f840ee112f67376094901463e9f22e91d2e0de47",
+    "compiler_output_sha256": "9b22efadaeb1486a44870e6a74dd0eca2f0128ce43e355fa70f5515dd226d743",
+    "size_evidence_sha256": "f79f1a10d506f542f3adaa130a6b27fa114f3407de58cb6b375fcc5e1d3c7c55",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -3574,6 +3574,19 @@
         },
         {
           "inputs": [],
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "access",
           "outputs": [
             {
@@ -4072,6 +4085,52 @@
               "type": "uint256"
             },
             {
+              "internalType": "uint128",
+              "name": "minimumLiquidity",
+              "type": "uint128"
+            },
+            {
+              "internalType": "bool",
+              "name": "emergency",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint8",
+              "name": "checks",
+              "type": "uint8"
+            }
+          ],
+          "name": "validateRebalance",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "busy",
+              "type": "bool"
+            }
+          ],
+          "name": "validateResidualClose",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
               "internalType": "uint256",
               "name": "amount0",
               "type": "uint256"
@@ -4094,7 +4153,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "004d7ad9510557c14995f63281cddee9747dfdb6fd767b3d6a6c137350671dc8"
+      "abi_sha256": "b647b3bf13f5d192eb43566a4cd77e6e8e61752cc65a40df706a4421d4f73bc1"
     },
     "ZZZCustodyValidation": {
       "source": "src/ZZZCustodyValidation.sol",
@@ -4112,7 +4171,17 @@
         },
         {
           "inputs": [],
+          "name": "InvalidConfiguration",
+          "type": "error"
+        },
+        {
+          "inputs": [],
           "name": "InvalidState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Slippage",
           "type": "error"
         },
         {
@@ -4128,6 +4197,255 @@
               "internalType": "contract IZZZAccess",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "r",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bool",
+              "name": "forced",
+              "type": "bool"
+            }
+          ],
+          "name": "captureConsolidation",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "mainHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "secondary",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "count",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ZZZCustodyValidation.Consolidation",
+              "name": "s",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "encoded",
+              "type": "bytes"
+            }
+          ],
+          "name": "captureResidualClose",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "mainHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "secondary",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ZZZCustodyValidation.ResidualClose",
+              "name": "s",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "consolidationCustodyHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "request",
+              "type": "tuple"
+            }
+          ],
+          "name": "consolidationEmergencyFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
             }
           ],
           "stateMutability": "view",
@@ -4268,6 +4586,81 @@
         {
           "inputs": [
             {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "r",
+              "type": "tuple"
+            }
+          ],
+          "name": "validateEmergency",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "bytes",
               "name": "encoded",
               "type": "bytes"
@@ -4277,9 +4670,190 @@
           "outputs": [],
           "stateMutability": "view",
           "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "codeHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "validateZZZ",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "r",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bool",
+              "name": "forced",
+              "type": "bool"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "mainHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "secondary",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "count",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ZZZCustodyValidation.Consolidation",
+              "name": "beforeState",
+              "type": "tuple"
+            }
+          ],
+          "name": "verifyConsolidation",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "encoded",
+              "type": "bytes"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "mainHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "idle1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "secondary",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ZZZCustodyValidation.ResidualClose",
+              "name": "beforeState",
+              "type": "tuple"
+            }
+          ],
+          "name": "verifyResidualClose",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         }
       ],
-      "abi_sha256": "20d77c77e94751337a5a01469a5a770800c8b405b8aaa01d10ccb3a0af6f9b98"
+      "abi_sha256": "3d44ede8503e4601f73b06d8959052100dda0cb8777534e0721deac0ddf49698"
     },
     "ZZZFeeController": {
       "source": "src/ZZZFeeController.sol",
@@ -9495,6 +10069,37 @@
           "inputs": [
             {
               "indexed": true,
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "forced",
+              "type": "bool"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "requestHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ResidualConsolidated",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
               "internalType": "address",
               "name": "token",
               "type": "address"
@@ -9557,6 +10162,19 @@
         {
           "inputs": [],
           "name": "RESIDUAL_EXIT_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "RESIDUAL_REINVEST_VERSION",
           "outputs": [
             {
               "internalType": "uint256",
@@ -9863,6 +10481,118 @@
           "name": "configureZZZ",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "custodyHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint8",
+                  "name": "checks",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "lower",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "upper",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "swapPool",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "zeroForOne",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "amountIn",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumOut",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "minimumLiquidity",
+                  "type": "uint128"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "reviewHash",
+                  "type": "bytes32"
+                }
+              ],
+              "internalType": "struct EmergencyRebalance",
+              "name": "request",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bool",
+              "name": "forced",
+              "type": "bool"
+            }
+          ],
+          "name": "consolidateResidual",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "consolidationActive",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "consolidationCustodyHash",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -10490,7 +11220,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "29323879fbba636a3f03577351eb39c334ac96d9759ef62b9c17637f349f4133"
+      "abi_sha256": "2334d10ad33cf0aa26dbaf22d4b2d0259521af36c20b49e4c1c19c8f635869b7"
     },
     "ZZZMigrationBudget": {
       "source": "src/ZZZMigrationBudget.sol",
@@ -10695,6 +11425,19 @@
         {
           "inputs": [],
           "name": "REBALANCE_CONFIRMATION_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "RESIDUAL_REINVEST_VERSION",
           "outputs": [
             {
               "internalType": "uint256",
@@ -11630,7 +12373,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "6544faffdab98fc9b73ac9e3a36e0455a88849f14154805bee2ee5abe98b0e77"
+      "abi_sha256": "1510740989909503018016789881f11315d6fac6d7f1de96f6796e00a3582f38"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -15331,6 +16074,19 @@
         },
         {
           "inputs": [],
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "access",
           "outputs": [
             {
@@ -15359,6 +16115,13 @@
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "completeConsolidation",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -15955,7 +16718,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "e50a80a87f86f6a857a6a40c7c5467c023bfe1a36deac1c531223e56b4fe3d53"
+      "abi_sha256": "bb7f3675cca4720cd51a61330fc319914015a6c5c85254372af3bc7b88368360"
     },
     "ZZZProtocolPolicy": {
       "source": "src/ZZZProtocolPolicy.sol",
@@ -22235,6 +22998,19 @@
         },
         {
           "inputs": [],
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "access",
           "outputs": [
             {
@@ -23002,7 +23778,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "b959ccc1812d953eadfbd772147f22b16fb9554ecaabd7e7dba6d5b3ae5252d2"
+      "abi_sha256": "2c6be1c04e76e5c8dc51b03f89632e71fbb002bce232195964b32fbc924d7501"
     },
     "ZZZVaultCanonical": {
       "source": "src/ZZZVaultCanonical.sol",
@@ -23638,7 +24414,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "13c659919aa7da0f5801dca68b805f10750c379d33fd21663e6f6861ab5fa62f",
+  "notes_sha256": "f9df922b478cae0bbd7ab907985cd4d0c209835f8a4cdda58d2cc0494f5a2e36",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -27456,6 +28232,29 @@
           "notes": null
         },
         {
+          "signature": "RESIDUAL_REINVEST_VERSION()",
+          "kind": "function",
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit same-main residual-reinvestment capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -28326,6 +29125,88 @@
           "notes": null
         },
         {
+          "signature": "validateRebalance(uint256,uint128,bool,uint8)",
+          "kind": "function",
+          "name": "validateRebalance",
+          "state_mutability": "view",
+          "purpose": "Validate public Strategy timing predicates without moving custody or granting execution.",
+          "access": "Only fixed Vault-owned Budget; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID; not a PoPL NFT ID or physical Uniswap LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "minimumLiquidity",
+              "label": "minimumLiquidity",
+              "type": "uint128",
+              "canonical_type": "uint128",
+              "internal_type": "uint128",
+              "explanation": "Caller minimum Uniswap L; positive for ordinary replacement."
+            },
+            {
+              "position": 2,
+              "name": "emergency",
+              "label": "emergency",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Actual Budget emergency context flag supplied by the authenticated Budget, not user input."
+            },
+            {
+              "position": 3,
+              "name": "checks",
+              "label": "checks",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Actual retained-check mask supplied by Budget; bit1 retains raw trigger/cooldown."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Ordinary requires rebalanceReady; emergency bit1 requires needsRebalance. Caller-sensitive sampled bit16 remains DIRECT in Budget because Confirmation admits only that caller."
+        },
+        {
+          "signature": "validateResidualClose(uint256,bool)",
+          "kind": "function",
+          "name": "validateResidualClose",
+          "state_mutability": "view",
+          "purpose": "Validate raw residual closure eligibility using read-only public dependency reads.",
+          "access": "Only fixed Vault-owned Budget; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID; not a PoPL NFT ID or physical Uniswap LP token ID."
+            },
+            {
+              "position": 1,
+              "name": "busy",
+              "label": "busy",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Budget-local emergencyActive OR nonempty maintenance snapshot; true rejects the raw-close path."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Requires sealed/paused/nonterminal Active main and actual residual; no USD or swap lookup. This read-only predicate does not authorize a wallet to close anything."
+        },
+        {
           "signature": "valueBucket(uint256,uint256,uint256)",
           "kind": "function",
           "name": "valueBucket",
@@ -28381,7 +29262,7 @@
     {
       "name": "ZZZCustodyValidation",
       "source": "src/ZZZCustodyValidation.sol",
-      "purpose": "Immutable Migration-created read-only parking/emergency validation. Bind both physical identities/current L; no recipient,token approval,execution or custody authority.",
+      "purpose": "Immutable Migration-created read-only validation for fixed-token bootstrap, raw parking/residual close and typed governance same-main/full-emergency custody proofs. No custody, executor or arbitrary recipient.",
       "category": "Project contract",
       "functions": [
         {
@@ -28429,6 +29310,443 @@
           ],
           "native_value": null,
           "notes": "Reading the controller address grants no authority."
+        },
+        {
+          "signature": "captureConsolidation((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool)",
+          "kind": "function",
+          "name": "captureConsolidation",
+          "state_mutability": "view",
+          "purpose": "Validate exact same-main manifest and capture mandatory custody/control plus L/count baseline.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "r",
+              "label": "r",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "forced",
+              "label": "forced",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "False requires guarded checks14 and zero explicit-swap fields; true deliberately selects the exact swap/mask. Caller remains current paused governance in both modes."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "s",
+              "label": "s",
+              "type": "tuple",
+              "canonical_type": "(bytes32,uint128,uint256,uint256)",
+              "internal_type": "struct ZZZCustodyValidation.Consolidation",
+              "explanation": "Consolidation snapshot in exact ABI order: mainHash(mandatory unchanged pool/main/full-info/owner/centre/clock/shares/deposit/registry/policy/governance/nonce/epoch proof), liquidity(pre-operation uint128 main L), secondary(actual prior residual ID or0), count(prior global registered residual count). Only capture immediately before this same atomic call; never synthesize a proof.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "mainHash",
+                  "label": "mainHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "secondary",
+                  "label": "secondary",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "count",
+                  "label": "count",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": "Guarded main must be physically active. Force can accept inactive geometry; neither changes ticks, lets empty work through, releases compound or chooses a recipient."
+        },
+        {
+          "signature": "captureResidualClose(bytes)",
+          "kind": "function",
+          "name": "captureResidualClose",
+          "state_mutability": "view",
+          "purpose": "Validate and snapshot the existing raw residual-only closure.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "encoded",
+              "label": "encoded",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "ABI-encoded ParkingRequest in its documented exact field order, with current main/pool/shares/deposit/tokens/nonce/epoch/portfolio fingerprint, raw residual minimum0/1, deadline and reviewHash. It is not a raw selector or arbitrary transaction."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "s",
+              "label": "s",
+              "type": "tuple",
+              "canonical_type": "(bytes32,uint256,uint256,uint256)",
+              "internal_type": "struct ZZZCustodyValidation.ResidualClose",
+              "explanation": "Raw-close snapshot in exact ABI order: mainHash(exact unchanged main/control including L), idle0(previous attributed ETH wei), idle1(previous attributed ZZZ units), secondary(actual nonzero residual ID). Returned by captureResidualClose inside the same atomic parent call.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "mainHash",
+                  "label": "mainHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "idle0",
+                  "label": "idle0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "idle1",
+                  "label": "idle1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "secondary",
+                  "label": "secondary",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": "Preserves original raw-close permissions/error semantics; no executor, token movement or new bypass."
+        },
+        {
+          "signature": "consolidationCustodyHash(uint256)",
+          "kind": "function",
+          "name": "consolidationCustodyHash",
+          "state_mutability": "view",
+          "purpose": "Read the domain-bound physical/control/recovery identity for same-main consolidation.",
+          "access": "Only immutable creating Migration; read-only. Use the Migration facade from a wallet.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID; not a PoPL NFT ID or physical Uniswap LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Hash binds chain/Vault/current Position/total shares/both-leg execution fingerprint, parking nonce, custody epoch and PortfolioPolicy controls. Read fresh after pause. Not emergencyCustodyHash or reviewHash; no authority or readiness guarantee."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "consolidationEmergencyFingerprint((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))",
+          "kind": "function",
+          "name": "consolidationEmergencyFingerprint",
+          "state_mutability": "view",
+          "purpose": "Bind forced same-main execution to its operation domain and mandatory PortfolioPolicy controls.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "request",
+              "label": "request",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Domain-separated existing emergency fingerprint plus same-main policy controls, including when optional financial checks are all disabled. Not readiness or permission."
+            }
+          ],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "emergencyCustodyHash(uint256)",
@@ -28663,6 +29981,139 @@
           "notes": "Excludes attributed idle because closing the residual intentionally increases it. No USD read or claim that the actual price remains fixed; caller separately verifies exact residual receipts, current auxiliary removal, raw minima and governance/pause."
         },
         {
+          "signature": "validateEmergency((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))",
+          "kind": "function",
+          "name": "validateEmergency",
+          "state_mutability": "view",
+          "purpose": "Check the original full-replacement emergency request without changing its semantics.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "r",
+              "label": "r",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "Existing whole-replacement EmergencyRebalance tuple in exact ABI order; preserve its original raw tick, optional swap, retained-mask and new-L floor semantics. CustodyHash is emergencyCustodyHash for full replacement, not the consolidation hash.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Parent retains deadline/authority/reentrancy. Same sealed/pause/mask/tick/raw amount/minimum and original emergency custody-hash checks, with exact InvalidConfiguration selector."
+        },
+        {
           "signature": "validateParking(bytes)",
           "kind": "function",
           "name": "validateParking",
@@ -28684,6 +30135,325 @@
           "outputs": [],
           "native_value": null,
           "notes": "Requires sealed, paused, nonterminal LP operation. Does not transfer principal or query USD prices."
+        },
+        {
+          "signature": "validateZZZ(address,bytes32,bytes32)",
+          "kind": "function",
+          "name": "validateZZZ",
+          "state_mutability": "view",
+          "purpose": "Check the existing bootstrap-only fixed ZZZ/exit/buyback identity before immutable commitment.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Intended fixed deployment ZZZ address; must have code and be admitted to Rewards."
+            },
+            {
+              "position": 1,
+              "name": "codeHash",
+              "label": "codeHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact current token runtime code hash."
+            },
+            {
+              "position": 2,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero reviewed fixed-token commitment."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Requires unsealed and unset parent currentZZZ; source Assets.zzz and Buyback.zzz must match. Parent retains governance pre/post, writes and event. No token retargeting or new recipient."
+        },
+        {
+          "signature": "verifyConsolidation((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool,(bytes32,uint128,uint256,uint256))",
+          "kind": "function",
+          "name": "verifyConsolidation",
+          "state_mutability": "view",
+          "purpose": "Verify the actual same-main result and mandatory unchanged controls after reinvestment.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "r",
+              "label": "r",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "forced",
+              "label": "forced",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "False requires guarded checks14 and zero explicit-swap fields; true deliberately selects the exact swap/mask. Caller remains current paused governance in both modes."
+            },
+            {
+              "position": 2,
+              "name": "beforeState",
+              "label": "beforeState",
+              "type": "tuple",
+              "canonical_type": "(bytes32,uint128,uint256,uint256)",
+              "internal_type": "struct ZZZCustodyValidation.Consolidation",
+              "explanation": "Consolidation snapshot in exact ABI order: mainHash(mandatory unchanged pool/main/full-info/owner/centre/clock/shares/deposit/registry/policy/governance/nonce/epoch proof), liquidity(pre-operation uint128 main L), secondary(actual prior residual ID or0), count(prior global registered residual count). Only capture immediately before this same atomic call; never synthesize a proof.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "mainHash",
+                  "label": "mainHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "secondary",
+                  "label": "secondary",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "count",
+                  "label": "count",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Requires same main immutable/accounting/control proof, mainL>=oldL+positive caller delta, zero auxiliary and exact global-count decrement. Guarded main remains active; proof does not rely on USD when force bypasses it."
+        },
+        {
+          "signature": "verifyResidualClose(bytes,(bytes32,uint256,uint256,uint256))",
+          "kind": "function",
+          "name": "verifyResidualClose",
+          "state_mutability": "view",
+          "purpose": "Verify unchanged main/current authority controls, residual removal, recovery freshness and exact raw receipt floors.",
+          "access": "Only immutable creating Migration; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "encoded",
+              "label": "encoded",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "ABI-encoded ParkingRequest in its documented exact field order, with current main/pool/shares/deposit/tokens/nonce/epoch/portfolio fingerprint, raw residual minimum0/1, deadline and reviewHash. It is not a raw selector or arbitrary transaction."
+            },
+            {
+              "position": 1,
+              "name": "beforeState",
+              "label": "beforeState",
+              "type": "tuple",
+              "canonical_type": "(bytes32,uint256,uint256,uint256)",
+              "internal_type": "struct ZZZCustodyValidation.ResidualClose",
+              "explanation": "Raw-close snapshot in exact ABI order: mainHash(exact unchanged main/control including L), idle0(previous attributed ETH wei), idle1(previous attributed ZZZ units), secondary(actual nonzero residual ID). Returned by captureResidualClose inside the same atomic parent call.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "mainHash",
+                  "label": "mainHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "idle0",
+                  "label": "idle0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "idle1",
+                  "label": "idle1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "secondary",
+                  "label": "secondary",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "amount0",
+              "label": "amount0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual attributed ETH idle increase, excluding old idle/fees."
+            },
+            {
+              "position": 1,
+              "name": "amount1",
+              "label": "amount1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual attributed fixed-ZZZ idle increase, excluding old idle/fees."
+            }
+          ],
+          "native_value": null,
+          "notes": "Original Slippage semantics retained. Snapshot has original main L; raw close never increases/replaces it."
         }
       ]
     },
@@ -35773,6 +37543,29 @@
           "notes": null
         },
         {
+          "signature": "RESIDUAL_REINVEST_VERSION()",
+          "kind": "function",
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit same-main residual-reinvestment capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -36301,6 +38094,204 @@
           "notes": "No post-seal token replacement or external beneficiary is configured. No Oracle price call is required by this identity binding."
         },
         {
+          "signature": "consolidateResidual((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32),bool)",
+          "kind": "function",
+          "name": "consolidateResidual",
+          "state_mutability": "nonpayable",
+          "purpose": "Close only the residual/recover attributed idle and increase the SAME main, then atomically apply residual OFF.",
+          "access": "Current governance only; sealed/paused, operating, no preparation/canonical/terminal lock; nonreentrant and rechecked after callbacks.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "request",
+              "label": "request",
+              "type": "tuple",
+              "canonical_type": "(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)",
+              "internal_type": "struct EmergencyRebalance",
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "custodyHash",
+                  "label": "custodyHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "checks",
+                  "label": "checks",
+                  "type": "uint8",
+                  "canonical_type": "uint8",
+                  "internal_type": "uint8",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lower",
+                  "label": "lower",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "upper",
+                  "label": "upper",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "swapPool",
+                  "label": "swapPool",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "zeroForOne",
+                  "label": "zeroForOne",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "amountIn",
+                  "label": "amountIn",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minimumOut",
+                  "label": "minimumOut",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "minimumLiquidity",
+                  "label": "minimumLiquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                },
+                {
+                  "position": 10,
+                  "name": "deadline",
+                  "label": "deadline",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 11,
+                  "name": "reviewHash",
+                  "label": "reviewHash",
+                  "type": "bytes32",
+                  "canonical_type": "bytes32",
+                  "internal_type": "bytes32",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "forced",
+              "label": "forced",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "False requires guarded checks14 and zero explicit-swap fields; true deliberately selects the exact swap/mask. Caller remains current paused governance in both modes."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "No keeper grant/timer/compound interval for guarded manual execution. Both-leg fees are separated before close; post-swap main fees are harvested. Same main ID/ticks/centre/rebalance clock/shares; positive added L and exact counts/balances. No designated compound release. OFF completion invalidates old samples even alreadyOFF; separate range mismatch remains. Shared recovery nonce/epoch and compound clock advance; context clears; pause remains. Full failure atomically rolls back; network gas separate. Force may lose nearly all value or increase an inactive main without recentering."
+        },
+        {
+          "signature": "consolidationActive()",
+          "kind": "function",
+          "name": "consolidationActive",
+          "state_mutability": "view",
+          "purpose": "Inspect the transient typed same-main governance context.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only inside the nonreentrant consolidation wrapper; false after success or an atomic revert. Not permission to call a module hook."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "consolidationCustodyHash(uint256)",
+          "kind": "function",
+          "name": "consolidationCustodyHash",
+          "state_mutability": "view",
+          "purpose": "Read the domain-bound physical/control/recovery identity for same-main consolidation.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared Vault custody bucket ID; not a PoPL NFT ID or physical Uniswap LP token ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Hash binds chain/Vault/current Position/total shares/both-leg execution fingerprint, parking nonce, custody epoch and PortfolioPolicy controls. Read fresh after pause. Not emergencyCustodyHash or reviewHash; no authority or readiness guarantee."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "currentZZZ()",
           "kind": "function",
           "name": "currentZZZ",
@@ -36416,7 +38407,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "keccak256(chainid,Vault,bucket,full Position,total shares). Contributions/park/move/idle/share changes invalidate it; price changes alone do not."
+              "explanation": "Hash of chain/Vault/bucket/full Position/total shares AND both-leg execution fingerprint. Used for full emergency replacement; same-main consolidation uses its separate consolidationCustodyHash including recovery nonce/epoch and policy controls."
             }
           ],
           "native_value": null,
@@ -36583,7 +38574,7 @@
           "kind": "function",
           "name": "emergencyRequest",
           "state_mutability": "view",
-          "purpose": "Inspect the temporary emergency request; zero fields outside its atomic call.",
+          "purpose": "Inspect the temporary full-emergency or same-main manual request; zero fields outside its atomic call.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -37556,6 +39547,29 @@
           "notes": null
         },
         {
+          "signature": "RESIDUAL_REINVEST_VERSION()",
+          "kind": "function",
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit same-main residual-reinvestment capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -37803,7 +39817,7 @@
           "kind": "function",
           "name": "checkpoint",
           "state_mutability": "nonpayable",
-          "purpose": "Capture/extend/verify one atomic maintenance budget using fixed starting prices and stable governance/source-policy controls across the complete close/swap/deploy operation.",
+          "purpose": "Capture/extend/check one exact maintenance valuation, with typed normal/compound/manual phases.",
           "access": "Only fixed Vault.",
           "status": "documented",
           "inputs": [
@@ -37823,7 +39837,7 @@
               "type": "uint8",
               "canonical_type": "uint8",
               "internal_type": "uint8",
-              "explanation": "Internal maintenance checkpoint phase:0start,1compound,2verify,3idle-compoundstart."
+              "explanation": "Phase0 whole replacement capture;1 include released designated compound BEFORE closure;2 final retention/idle/control proof;3 standalone compound capture/eligibility/clock;4 governance same-main capture/clock without standalone interval. No released compound is added in new manual flow."
             }
           ],
           "outputs": [],
@@ -38307,7 +40321,7 @@
           "kind": "function",
           "name": "lastCompound",
           "state_mutability": "view",
-          "purpose": "Read last successful standalone compound timestamp; compound4 also uses physical replacement and its independent interval/priority.",
+          "purpose": "Read last successful standalone compound or governed same-main reinvestment time.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -38329,7 +40343,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": "Last successful standalone compound time; zero before one. Local operating state, not an imported NFT entitlement."
+              "explanation": "Unix seconds, zero before either operation. Local operating clock, not an imported NFT economic right. A failed operation rolls back the update; ordinary lastRebalance remains separate."
             }
           ],
           "native_value": null,
@@ -39008,7 +41022,7 @@
           "kind": "function",
           "name": "validateRebalance",
           "state_mutability": "view",
-          "purpose": "Require a positive LP minimum and Strategy buffered rebalanceReady, preserving the raw-guarded deliberate range-change exception.",
+          "purpose": "Require ordinary buffered readiness, or the explicitly retained predicates of a validated paused emergency.",
           "access": "Only fixed Vault.",
           "status": "documented",
           "inputs": [
@@ -39033,7 +41047,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Raw needsRebalance alone is insufficient. No arbitrary keeper range, cooldown bypass or observation writes; failed readiness reverts before fee collection/LP close."
+          "notes": "Caller-sensitive sampled bit16 remains a DIRECT Budget→Confirmation call; only public Strategy predicates are factored into the immutable pricing child. Ordinary calls retain cooldown/confirmation; explicit force selects its own mask. This read grants no execution authority."
         },
         {
           "signature": "validateReservation(bytes32,uint256)",
@@ -43881,6 +45895,29 @@
           "notes": null
         },
         {
+          "signature": "RESIDUAL_REINVEST_VERSION()",
+          "kind": "function",
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit same-main residual-reinvestment capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -43935,6 +45972,19 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "completeConsolidation()",
+          "kind": "function",
+          "name": "completeConsolidation",
+          "state_mutability": "nonpayable",
+          "purpose": "Authenticate actual no-residual main, disable residual mode and acknowledge successful same-main management.",
+          "access": "Only fixed Migration inside its active sealed/paused reviewed consolidation context; operating and principal lifecycle checked.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Derives request/main/pool/reviewHash from fixed parent/current Vault, checks actual Vault owner/nonzero L/no residual. Mode geometry increments only ON→OFF; control/global revision increments on every success to invalidate old sampled evidence/jitter. Does not erase separate pending Registry main-width mismatch. No asset movement or caller-selected ID/recipient."
         },
         {
           "signature": "configurationPending(uint256)",
@@ -52854,6 +54904,29 @@
           "notes": null
         },
         {
+          "signature": "RESIDUAL_REINVEST_VERSION()",
+          "kind": "function",
+          "name": "RESIDUAL_REINVEST_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the explicit same-main residual-reinvestment capability.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "access()",
           "kind": "function",
           "name": "access",
@@ -53321,7 +55394,7 @@
           "kind": "function",
           "name": "emergencyRebalance",
           "state_mutability": "nonpayable",
-          "purpose": "Forward the fixed Migration manual emergency into actual shared LP harvest/close/budgeted swap/mint.",
+          "purpose": "Execute fixed Migration manual context: same-main consolidation when consolidationActive, otherwise original full emergency replacement.",
           "access": "Fixed Migration module only, operating/before terminal exit/nonreentrant; Budget validates sealed paused-governance context.",
           "status": "documented",
           "inputs": [
@@ -53341,7 +55414,7 @@
               "type": "uint128",
               "canonical_type": "uint128",
               "internal_type": "uint128",
-              "explanation": "Minimum actual MAIN physical liquidity units added/minted; not aggregate L,token units or USD."
+              "explanation": "Positive minimum actual new liquidity: ADDED delta for authenticated same-main consolidation, or minted main floor for full emergency replacement. The fixed Migration validates the exact request and chosen context."
             },
             {
               "position": 2,
@@ -53355,7 +55428,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Internal module boundary, not the operator entry. Use Migration.emergencyRebalance(request). Parked custody may recover; NFT shares/contributions/earned rewards stay. Manager temporary context is cleared atomically and lastRebalance anchors new LP."
+          "notes": "Only the fixed Migration may call. New residual-reinvest1 authenticates dispatch semantics; no arbitrary selector. Guarded consolidation does not arm emergency; forced/manual full paths arm the fixed Budget/Manager scope. Default full emergency behavior is unchanged outside consolidation context."
         },
         {
           "signature": "exitBucketToHolders(uint256,uint256,uint256,uint256)",
@@ -55200,7 +57273,7 @@
   "gaps": [],
   "counts": {
     "contracts": 37,
-    "functions": 820,
+    "functions": 839,
     "constructors": 37,
     "receive_hooks": 12,
     "fallback_hooks": 0,

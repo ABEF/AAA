@@ -1,4 +1,4 @@
-"""Bounded factory-data authentication; fixtures never establish release approval."""
+"""Explicit schema14 factory-data authentication; never current release approval."""
 import copy
 import json
 from pathlib import Path
@@ -10,7 +10,7 @@ from zzz_ops import factory_code_v2 as F, production_v11 as OLD, production_v12 
 from zzz_ops import production_observer_v12 as O
 
 ROOT=Path(__file__).resolve().parents[1]
-def current():return json.loads((ROOT/'config/production.example.json').read_text())
+def current():return json.loads((ROOT/'config/production.schema14.example.json').read_text())
 def address(n):return '0x'+format(n,'040x')
 
 

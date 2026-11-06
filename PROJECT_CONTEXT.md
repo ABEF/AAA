@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed6November2026. Residual lifecycle baseline main5d70b4b; verify actual local/remote
+Reviewed6November2026. Same-main management baseline main9025735; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -17,7 +17,7 @@ compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
 Accounting6/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
 LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
-words. Fresh royalty4/recovery2/canonicalV8/schema14/reporting5;17modules/18 callable helpers plus2 inert Factory data children (code-storage2). Historical schema13 preserves old SSTORE Factory.
+words. Fresh royalty4/recovery2/canonicalV8/schema15/reporting5;17modules/18 callable helpers plus2 inert Factory data children (code-storage2). Historical schema14 preserves pre-reinvestment code-storage2; schema13 preserves SSTORE Factory.
 Old V7/V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
 One contribution pool at a time, <=4logical historical buckets. One main or
@@ -103,12 +103,26 @@ optional royalty sync gas1m, not a fixed charge. Expanding to64 currencies needs
 worst-case gas/service/API qualification, even though inventory14 accepts97 token
 records. No source publication is operating or independent approval.
 
-Current backend/lifecycle record: reports/residual-lifecycle-20261106/VERIFICATION.md.
-Fresh6 physically recomputes both legs and exact fingerprints; proof reuse keeps
-contribution payloads unchanged. Historical5/fee-only harvest retain semantics.
-No Solidity/economics change; governed move/resume may recreate a residual under
-destination mode without ordinary keeper timing. Dependency callback qualification
-remains open. Prior changed-source record: reports/factory-claims-20261105/VERIFICATION.md.
+[Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md)
+adds residual-reinvest1 on Migration/Vault/Budget/PortfolioPolicy/ContributionPricing,
+inventory15 with explicit raw-exit1 admission. Paused governance
+consolidateResidual(request,forced) harvests/closes only the residual (or recovers
+prior attributed idle), balances and increases the SAME main. No designated
+compound release or share/centre/lastRebalance change. Guarded false uses checks14
+and auto reviewed routing without keeper timing; forced true uses explicit
+swap/mask. Exact structure/control proofs remain, modeOFF is applied atomically,
+per-pool controls invalidate old samples even alreadyOFF/idle-only, compound clock
+and recovery nonce/epoch advance. Independent pending main width remains.
+Existing module-only Vault.emergencyRebalance is a typed fixed-Migration
+dispatcher under cap1; old full emergency2 behavior stays separate. No extra
+Vault selector/generic executor. Matching all5 capabilities/runtimes is mandatory
+pre-seal inventory work; Access.seal does not prove the whole extension graph.
+Raw close/full replace/park/resume/holder return remain. Check full operator
+inputs and reverse/pause steps. Source publication does not upgrade old runtimes,
+journals/services/sites/signers/Anvil or restart the paused heartbeat.
+
+Prior physical-read record: reports/residual-lifecycle-20261106/VERIFICATION.md.
+Prior changed-source record: reports/factory-claims-20261105/VERIFICATION.md.
 Prior accounting audit: reports/last24h-audit-20261105/VERIFICATION.md and evidence.
 It distinguishes prior failures/empty attempts, final source runs, actual source
 producer/consumer evidence, exact unchanged reuse and missing live qualification.

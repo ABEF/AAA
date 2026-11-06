@@ -22,6 +22,7 @@ retain their original source scope; they do not verify this fresh portfolio.
 | Operator changes | Deliberate width, mode or active residual-geometry changes apply at a guarded replacement after cooldown, including while the old main remains active. |
 | Contributions | Balance/deploy only entrant funds into existing main ticks; preserve incumbent main/residual NAV, fee rights, centre and rebalance clock. |
 | Harvest | Independent hourly service schedule; actual receipts allocate 80/10/5/5 without swaps. |
+| Same-main consolidation | Paused governance closes only residual/reinvests attributed idle into unchanged main; guarded auto route or explicit force; no keeper timer. Atomically OFF; independent range change remains pending. |
 | Compound | Separate interval; reinvest attributed idle/designated reserve in the existing main. Service waits at the adjustment threshold or a pending configuration change. |
 | Limits | Default contribution 2%, conversion 1%, maintenance 3%; each governed maximum 10%, separate gas and stronger caller/venue floors. |
 

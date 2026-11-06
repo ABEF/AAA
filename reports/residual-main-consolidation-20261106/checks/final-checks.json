@@ -1,0 +1,53 @@
+{
+  "scope": "Final current generated docs/Todo/static disposition checker and task-whitelist whitespace; no contract/analyzer/test suite rerun",
+  "checks": [
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/generate-operator-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 888, \"ready_for_submission\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/check-slither-review.py",
+        "reports/residual-main-consolidation-20261106/static-detectors.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "task-whitelist"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "production_source_frozen": true
+}

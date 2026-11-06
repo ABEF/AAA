@@ -1,0 +1,800 @@
+[
+  {
+    "index": 5,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Vault._balanceUsing intentionally captures before0 before Manager.balance, then proves actual final native/token deltas equal explicit input and typed output. Financial callers hold Vault nonReentrant and balanceContext is rechecked; refreshing this baseline would remove the receipt proof, not fix a stale-price use."
+  },
+  {
+    "index": 8,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "The supply used after the second private _flushDust is the incumbent share denominator. activate/increase are nonReentrant and fixed Fees.flushDust cannot issue shares. The helper preserves Vault caller/token order; NAV is separately reread before issuing entrant shares."
+  },
+  {
+    "index": 14,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Collect mode0 uses before0 as its intentional receipt baseline. Cached token0 is the fixed pool currency, not a mutable balance. Native receipts must equal nativeReceived from authenticated venue senders; locked financial callers prevent source custody replacement during collection."
+  },
+  {
+    "index": 16,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "The post-entry-swap harvest must retain incumbent supply while crediting their fees. It is collect mode0 despite Slither flattening close branches. Activation/growth locks prevent nested share writes; NAV and actual marginal LP are rechecked before issuing shares."
+  },
+  {
+    "index": 18,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Post-swap _pullCompound deliberately adds incumbent compound without changing supply. Fixed Fees debits only its designated reserve, Vault remains locked, and returned compound is explicitly valued into incumbentNAV before entrant share issuance."
+  },
+  {
+    "index": 19,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "The close helper caches fixed pool currency0, not a current token balance. Actual close receipts are measured afterward and native deltas must match authenticated nativeReceived. Vault financial reentry is locked and the admitted source key cannot become another currency pair."
+  },
+  {
+    "index": 21,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "before1 is the required pre-balance ZZZ baseline for the native-payment branch. Vault verifies actual ERC20/native net change against explicit input/returned output, resets approvals and rechecks execution context. Locked callers prevent reuse of intermediate idle."
+  },
+  {
+    "index": 22,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "contributionNav cannot authorize a nested share mutation: it is Budget/Pricing-bound and the original basis remains captured. Vault activate/increase hold the lock. Cached supply is pre-entry by design while deployed NAV is recomputed after the swap to preserve incumbent repricing."
+  },
+  {
+    "index": 26,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Residual closure is a typed Manager/child operation to fixed Vault. Cached token0 remains the source native identity and principal is attributed only after exact balance/nativeReceived checks. Paused context plus Migration snapshot/nonce/epoch/main proof protect this path."
+  },
+  {
+    "index": 27,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Collect mode0 retains before1 as the ERC20 receipt baseline while token0 stays the admitted native identity. Callback financial entry is locked and actual deltas are allocated once through Fees, rather than trusting returned numbers or refreshed baselines."
+  },
+  {
+    "index": 28,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "This native-payment before0 snapshot is intentional: amount0 is an explicit attributed budget, actual refund/output reconciles and balanceContext must remain equal. Vault locks prevent callback consumption of interim idle; this is not an old market quote."
+  },
+  {
+    "index": 29,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "The zero-native-payment variant still needs before1 to detect ERC20 shortfall/prefund subsidy. Actual asset deltas and exact approval reset are checked. This snapshot is not a current price; financial callers hold the Vault lock."
+  },
+  {
+    "index": 30,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Full close compares actual post-close native change with the pre-close balance and authenticated nativeReceived. currency0 is fixed by source key, and the callback cannot replace the bucket through another financial entry. Broken external dependencies remain qualification risks."
+  },
+  {
+    "index": 31,
+    "check": "reentrancy-balance",
+    "disposition": "false_positive",
+    "rationale": "Residual close retains its ERC20 baseline while checking authenticated native credits. Fixed typed recipients, paused context, Vault lock and Migration raw-close/consolidation postproof prevent callback custody substitution; no stale USD value is used."
+  },
+  {
+    "index": 40,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "The _join idle update after balancing is reached only through locked activate/increase. Manager consumes entrant funds only, actual net balances/context are verified before _idle, and active canonicalWrite cannot be invoked from the callback to change accounting."
+  },
+  {
+    "index": 41,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Vault.park is fixed-Migration-only and nonReentrant. It harvests, closes actual LP and attributes verified receipts before Parked. Migration authenticates paused snapshot/raw floors; callbacks cannot run another financial operation or substitute the main."
+  },
+  {
+    "index": 42,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "The second _join compound release remains inside activation/growth lock. Its exact reserve amount belongs to incumbents and is valued before share issuance. Fees authenticates/debits Vault's reserve; private _flushDust did not change that caller."
+  },
+  {
+    "index": 43,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_balanceUsing writes idle after external execution so actual outputs can first be verified. Both asset deltas, explicit budget bounds and context equality are checked. Financial entrypoints hold nonReentrant; public views grant neither principal spending nor share writes."
+  },
+  {
+    "index": 44,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_join calls _put under its activation/growth lock. New main/centre/clock are written only for initial deployment; increases retain geometry. Typed ownership, exact spend/marginal LP and Budget result proofs prevent refund callbacks from reusing intermediate accounting."
+  },
+  {
+    "index": 46,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "resume is fixed-Migration-only, live/operating/principal-guarded and nonReentrant. Same-pair redeployment uses captured budgets and actual LP proof before Active is committed. A callback cannot resume/exit/contribute against this intermediate state."
+  },
+  {
+    "index": 47,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Final _join share/deposit writes follow actual deployment and owner checkpoint. Cached supply is locked and Budget computes issue from marginal LP/aggregate NAV. Canonical writes require inert authenticated lifecycle; callbacks cannot rewrite active shares."
+  },
+  {
+    "index": 48,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_put updates idle only after actual Manager spends/refunds and approval reset pass Budget.assertPut. Its caller is a locked Vault operation and LP ownership/per-ID approvals are checked. A callback cannot enter another operation to reuse old idle."
+  },
+  {
+    "index": 49,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Late _join compound is deliberately valued for incumbents before final NAV and cannot subsidize entrant LP floors. Outer activation/growth lock and fixed Fees reserve permissions prevent a second issue during this release."
+  },
+  {
+    "index": 50,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_movePool is private to locked fixed-Migration paths. Source controls are captured, both actual legs close, ordered native/fixed-ZZZ currencies are checked, and target execution is frozen before new main/clock/idle commit. Callback control changes abort."
+  },
+  {
+    "index": 51,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_redeploy is private to locked principal flows. Its post-swap _harvest is collect mode0; flattened full-close writes are unreachable here. Existing-main swap fees are allocated separately before increase and actual idle-loss/spend proofs precede writes."
+  },
+  {
+    "index": 53,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_redeploy creates a main only after authorized unwind or from parked custody. Actual ID/ticks/owner/spends/active placement and aggregate deployment budgets are checked under the lock. Increasing an existing main never writes a new ID or rebalance clock."
+  },
+  {
+    "index": 54,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Initial _join incumbent harvest/release occurs under the Vault lock before entrant receipt. Existing idle/compound remain incumbent NAV, while only entrant post-swap funds reach _put. Fee callbacks cannot mutate shares or satisfy entrant floors with incumbent assets."
+  },
+  {
+    "index": 55,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Private _reinvest has only phase3/phase4 locked callers. Phase4 closes residual mode2 and increases a nonzero unchanged main; flattened full-close/new-main branches are unreachable. Phase3 also requires a nonzero active main through compound eligibility."
+  },
+  {
+    "index": 56,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_rebalance is inside ordinary keeper or scoped Migration emergency nonReentrant wrappers. Principal writes deliberately follow actual unwind/redeploy with captured Budget controls and typed callbacks. Retained ordinary/selected emergency guards and postproof prevent interim reuse."
+  },
+  {
+    "index": 57,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Terminal Vault exit is fixed-Migration-only/nonReentrant. It harvests separately, releases designated compound, closes actual principal and checks raw minima before fixed settlement transfer. Terminal locking and Migration exact receipt/share proof prevent duplicate exit accounting."
+  },
+  {
+    "index": 58,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Raw closeResidual is fixed-Migration-only/nonReentrant with paused eligibility. It harvests both and closes residual mode2 only; flattened main-close paths are unreachable. Migration checks unchanged main/L/controls, nonce/epoch and raw floors. This does not certify malicious token/core behavior."
+  },
+  {
+    "index": 59,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_join never full-closes: harvest uses mode0 and _put creates only at initial supply0 or increases main. Slither flattened mode1 into this path. Outer lock, marginal deployment proof and incumbent checkpoints protect idle and shares across real callbacks."
+  },
+  {
+    "index": 60,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Private _unwind runs only within locked rebalance/move flows. Harvest, designated compound release, checkpoint1 and full close intentionally occur in that order. Exact actual principal receipts and captured budgets are proved; a callback cannot start another financial operation."
+  },
+  {
+    "index": 62,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_reinvest phase4 only closes the registered residual after checkpoint1, while phase3 has no close. Reported lpTokenId=0/full-close transitive branches are infeasible. Both wrappers lock financial entry and actual receipt/deployment proofs cover reachable callbacks."
+  },
+  {
+    "index": 63,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_put records centre/lastRebalance only after typed mint and individual LP approvals. Budget/child verify actual owner/key/ticks/L/spends after callbacks. The enclosing lock prevents exploiting the not-yet-written clock; increases keep it unchanged."
+  },
+  {
+    "index": 64,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_join settlement/NAV/owner checkpoints hold the activation/growth lock. _idle updates aggregate and bucket attribution together and asserts backing. Actual marginal LP and captured contribution checks precede shares; canonical financial writes are unavailable while active."
+  },
+  {
+    "index": 65,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Parked-to-Active assignment is only the explicit emergency parked branch after actual redeployment under scoped Budget/Manager/Vault locks. Ordinary keeper cannot use Parked. Post-lifecycle/custody proofs prevent callback premature activation of unrelated principal."
+  },
+  {
+    "index": 66,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Phase3 _reinvest releases exact designated Fees compound then attributes it under lock; phase4 skips this entirely. Arbitrary callback balances are not the returned reserve amounts, and financial/deployment proofs complete before the transaction commits."
+  },
+  {
+    "index": 67,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_movePool changes poolId only inside locked module-authorized move/resume. Ordered currencies and original sourcePool controls are captured, with target context independently frozen. Callback Registry/policy/lifecycle changes reject instead of committing a confused source/destination."
+  },
+  {
+    "index": 69,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "_unwind full-close is intentional atomic principal movement under locked callers. Fees are separated and compound included before closure; actual receipts, fixed NFT custody and captured budgets are verified. No holder redemption or callback share-writing path is exposed."
+  },
+  {
+    "index": 71,
+    "check": "reentrancy-eth",
+    "disposition": "false_positive",
+    "rationale": "Terminal exit commits Exited/cleared idle after actual closure/compound receipts and raw minima. It is fixed-Migration-only/nonReentrant and access already terminal. Fixed settlement receiver plus exact delta/share proof prevent another payout from interim Vault state."
+  },
+  {
+    "index": 72,
+    "check": "divide-before-multiply",
+    "disposition": "false_positive",
+    "rationale": "PortfolioPolicy._floor intentionally divides by admitted positive spacing, corrects negative nonmultiples down, then multiplies to a tick grid. This is discrete floor quantization, not lost financial precision. Callers validate TickMath bounds and invalid rounded geometry fails closed."
+  },
+  {
+    "index": 85,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "_pullCompound is private to locked entry/maintenance/exit. Fees debits only designated reserve for authenticated Vault; exact returned amounts are attributed and backing checked. Phase4 manual reinvestment never calls it, so shared logic does not release reserves."
+  },
+  {
+    "index": 86,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "_receiveVenue is private typed mode0/1/2 under locked financial callers. It measures actual balances and authenticated nativeReceived, clears main only for explicit mode1 and keeps it for residual closure. Active canonical writes and nested financial operations are not authorized."
+  },
+  {
+    "index": 88,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "_rebalance retains release/idle writes inside ordinary/emergency locks. Captured value/control guards and exact Manager receipts precede redeploy. Public group/idle getters provide no spending capability and canonical write requires an inert authenticated lifecycle."
+  },
+  {
+    "index": 89,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "Migration consolidation holds governance pre/post, operating/principal and nonReentrant while temporary consolidationActive authenticates fixed Policy completion. Main/control/nonce proof precedes acknowledgment and final cleanup. Any fault rolls back that temporary state rather than leaving a usable context."
+  },
+  {
+    "index": 90,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "allocatePrincipal is governance-only/nonReentrant with batch<=32 and terminal phase. Ordinal/share reads are static; refreshMetadata only checks ownership/emits ERC4906 without receiver callbacks. Exact cumulative totals finish before Ready enables payout, preventing use of partial allocations."
+  },
+  {
+    "index": 91,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "_movePool is private to locked fixed-Migration move/resume. Exact compound/idle and backing are booked before whole captured-value/deployment checks. A token callback cannot call this helper or change active custody through canonicalWrite."
+  },
+  {
+    "index": 93,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "activate is live/operating/principal-guarded/nonReentrant. Its immutable only-Vault registerAlias callee makes no mutable external call. Fresh group state precedes the intended zero-share checkpoint; callback callers cannot replace active financial records."
+  },
+  {
+    "index": 97,
+    "check": "reentrancy-no-eth",
+    "disposition": "false_positive",
+    "rationale": "closeBucket is governance-only/nonReentrant and requires terminal Closing, pause and captured shares. Settlement writes follow exact ETH/ZZZ receipts, Vault Exited and unchanged supply. A callback cannot close or advance the same bucket twice."
+  },
+  {
+    "index": 101,
+    "check": "uninitialized-local",
+    "disposition": "false_positive",
+    "rationale": "assertPortfolioUtilization deliberately uses Solidity-default residual0 when no secondary exists, assigning actual residual value otherwise. Retained capital then sums actual main/residual/idle at captured prices. No undefined memory or phantom residual backing is used."
+  },
+  {
+    "index": 115,
+    "check": "uninitialized-local",
+    "disposition": "false_positive",
+    "rationale": "_join freshCompound deliberately defaults0 for initial supply0; the incumbent branch assigns actual post-swap compound before recomputing NAV. Solidity initializes the scalar, and it is never an undefined C-style value."
+  },
+  {
+    "index": 116,
+    "check": "uninitialized-local",
+    "disposition": "false_positive",
+    "rationale": "_beforeMove zero-initializes Snapshot then sets source/value/prices/scales/idle/caps. Portfolio revision/replacement are assigned only for ordinary context; emergency intentionally leaves replacement=false to prohibit hybrid creation. Required starting value is checked before storage."
+  },
+  {
+    "index": 125,
+    "check": "uninitialized-local",
+    "disposition": "false_positive",
+    "rationale": "_executeManual context defaults0 only for guarded normal consolidation, where it is not compared. Forced execution sets the fingerprint before Vault call and compares afterward. An uninitialized forced snapshot is never accepted."
+  },
+  {
+    "index": 128,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "The second ledger.sync in recoverCancelledRoyalties is required accounting after authenticated cancelled-source transfer. Its numeric return is not used as authority/income; actual recovered amount is returned separately and final target/receiver/cohort equality is checked."
+  },
+  {
+    "index": 144,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "validateUnwind uses validateExitPrice for revert-on-invalid-price behavior, not its returned sqrt. Actual raw closure and starting valuation are proved separately; explicit emergency skip2 intentionally omits it. Discarding the unused return does not skip validation."
+  },
+  {
+    "index": 146,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "validateReservation invokes Registry.get to enforce admission/dependency checks by reverting, then only needs the existing poolBucket alias value. No arithmetic uses the discarded config, so this is an intentional validation call."
+  },
+  {
+    "index": 149,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "_consolidation reads the actual stored tick to test lower<=tick<upper, including downward exact-boundary semantics. sqrt/fees are not needed in this physical check; normal execution separately validates prices/core fees. Force may waive price quality, while key/owner/full-info/L remain checked."
+  },
+  {
+    "index": 152,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "_emergencyFingerprint uses currency1 priceBounds for freshness/agreement and its round/policy fingerprint, not arithmetic. Oracle fingerprints commit complete rounds/policies; Budget captures numeric prices when bit4 is retained and Manager applies retained price guards. Invalid feeds still revert."
+  },
+  {
+    "index": 161,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "The native priceBounds call similarly contributes a validated source-round fingerprint. Numeric bounds are unnecessary in this hash; Budget/Manager handle retained financial/price checks. No user price or guessed zero replaces the ignored numeric return."
+  },
+  {
+    "index": 163,
+    "check": "unused-return",
+    "disposition": "false_positive",
+    "rationale": "The first ledger.sync checkpoints existing target receipts before cancelled recovery, then a positive cohort is captured/rechecked. Sync is called for ledger effects; actual transfer amount and authenticated target/receiver govern recovery, not its discarded return."
+  },
+  {
+    "index": 175,
+    "check": "events-maths",
+    "disposition": "informational",
+    "rationale": "beginEmergency stores only atomic fixed-Migration scoped context, validated sealed/paused/current governance/lifecycle, then endEmergency clears it in the same successful transaction. Outer completed-operation events plus calldata/review hash provide provenance; it is not an unlogged persistent policy setter."
+  },
+  {
+    "index": 182,
+    "check": "missing-zero-check",
+    "disposition": "false_positive",
+    "rationale": "mintDormant payee comes from fixed VaultCanonical and reviewed ProtocolPolicy. Constructor rejects zero, nominee acceptance/_validRecipient and Access.seal validate it, and the full mint fingerprint is rechecked after payment. A rejecting payee reverts mint/payment."
+  },
+  {
+    "index": 183,
+    "check": "missing-zero-check",
+    "disposition": "false_positive",
+    "rationale": "configureZZZ delegates to immutable parent-only validateZZZ. Nonzero code length excludes zero/EOA; codehash, Rewards admission and fixed buyback/contribution identities must match. Parent retains governance pre/post checks and one-time binding writes."
+  },
+  {
+    "index": 184,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "historicalValue scans admitted Rewards assets only after compositionEpoch>0 and enforces count<=33. compoundBalance is a fixed Fees getter; only positive historical reserves require valuation. Work is bounded, but unavailable genuine assets/feeds can still make valuation unavailable; gas/provider approval remains open."
+  },
+  {
+    "index": 189,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "_mark is deduplicated and rejects assets.length==34 before append. The decimals getter belongs to fixed Oracle policy and scale/full bounds are captured. The surrounding historical scan is<=33; faulty dependencies still reject and real gas/provider qualification remains necessary."
+  },
+  {
+    "index": 196,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "priceBounds in _mark performs required independent-source checks with deduplicated mark cap34 and historical scan<=33. Bad/stale feeds deliberately reject rather than omit backing. Bounded external-call gas/availability is not yet production-qualified."
+  },
+  {
+    "index": 202,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "beginCollectiveExit scans explicit count<=MAX_BUCKETS4, reading each totalShares before terminal locking. Governance, pause, nonReentrant and full bucket validation apply. Four static calls are bounded; unusable fixed dependencies remain a genuine safe-start availability limit."
+  },
+  {
+    "index": 214,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "allocatePrincipal limits each governance-only transaction to32 NFTs and snapshots mintedCount<=1000. Static shares reads feed exact cumulative floors and final totals before Ready. Work is bounded; actual target batch gas still needs qualification."
+  },
+  {
+    "index": 224,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "Registry.accounting in beginCollectiveExit covers at most4 buckets and validates native ETH/current fixed ZZZ before the terminal transition. It is a static fixed-module call, not an attacker-length traversal. Broken dependencies can still block safe exit initiation."
+  },
+  {
+    "index": 227,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "_historicalMarks skips epoch0 and limits admitted assets<=33. It reads only noncurrent positive compound reserves and deduplicates/caps marks34. Real reserve metadata/feed failures may reject truthful valuation and require remediation; no arbitrary spending occurs in this loop."
+  },
+  {
+    "index": 236,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "_unchanged revalidates at most34 frozen marks via static priceBounds and requires identical bounds/fingerprints after execution. The array cannot grow through these calls. Repeated bounded feed cost and availability remain actual operating qualification."
+  },
+  {
+    "index": 238,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "The _unchanged decimals comparison covers<=34 marks and prevents callback policy/asset-decimal changes from changing the original scale. Oracle policy reads are static, not user callbacks. Bounded gas still needs target measurement."
+  },
+  {
+    "index": 240,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This alternate _unchanged priceBounds path uses the same captured deduplicated<=34 list and exact post-call equality checks. Missing/changed feed components must revert instead of being silently skipped. Bounded dependency cost is not a universal availability guarantee."
+  },
+  {
+    "index": 247,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This _unchanged tokenDecimals path verifies each stored scale under cap34. Static reads cannot mutate the list and changed scale rejects. Production gas/provider approval remains separate even though unbounded attacker traversal is absent."
+  },
+  {
+    "index": 251,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "Vault.group in beginCollectiveExit is read for at most4 buckets and checked with captured shares/status/IDs before terminal access writes. Migration/Vault barriers protect transition. Fixed-contract failure may still prevent safe initiation; boundedness alone is not availability proof."
+  },
+  {
+    "index": 257,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "historicalValue enumerates admitted.assets only after count<=33 and nonzero composition epoch. The list belongs to fixed Rewards, not caller-supplied arbitrary currencies. Static lookups cannot mutate financial state; real reserve pricing/read failures remain visible errors."
+  },
+  {
+    "index": 261,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This _historicalMarks path reads Fees.compoundBalance for<=33 admitted noncurrent assets and marks only positive reserves. It cannot spend funds or skip required value. An unreadable genuine component rejects preparation instead of fabricating zero."
+  },
+  {
+    "index": 262,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "_historicalMarks admitted-assets lookup is bounded33, skips pair assets, and deduplicates marks with hard34 cap. No permissionless unbounded enumeration exists. Faulty admitted metadata or feeds remain reviewed integration risks."
+  },
+  {
+    "index": 263,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "distributePrincipal bounds ids<=32 and each self-call by payoutGas with remaining-gas headroom. Self-only payCurrentOwner debits paid/liabilities before transfer; try/catch isolates rejecting owners and preserves backed retry/fallback rights. Bad tokens or inadequate gas still need recovery."
+  },
+  {
+    "index": 274,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This historical admitted-assets path retains count<=33, epoch0 skip and exact captured contribution basis. All list lookups are static and cannot change the list. Bounded feed/metadata work still needs real gas/service qualification."
+  },
+  {
+    "index": 279,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This alternate historical compoundBalance context remains within<=33 admitted nonpair assets and only marks positive reserves. It neither distributes nor transfers reserves. Unreadable backing correctly prevents truthful preparation rather than being omitted."
+  },
+  {
+    "index": 284,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This _unchanged scale check has hard34 marks and compares numeric bounds, fingerprint and exact decimal scale. Static reads cannot extend the list; failures reject the operation. Bounded repeated cost remains an operating qualification."
+  },
+  {
+    "index": 291,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "historicalValue assets lookup is limited33 after a nonzero composition epoch and uses fixed Rewards inventory. It is not a token-controlled iterator. Reserve/feed faults remain visible fail-closed valuation errors, not proved away by this review."
+  },
+  {
+    "index": 294,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This historicalMarks enumeration retains admitted count33, pair skip and _mark deduplication/cap34. Snapshot basis plus Vault lock prevent entry-time list substitution. Unavailable dependencies may still reject, without silently omitting old backing."
+  },
+  {
+    "index": 301,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This final historicalValue compoundBalance context is a fixed Fees getter scan<=33 with valuation only for positive historical reserves. It calls no arbitrary recipient. Gas and failed-feed recovery remain release work despite bounded iteration."
+  },
+  {
+    "index": 307,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "allocatePrincipal calls fixed NFT.refreshMetadata at most32 times; its implementation only checks ownership/emits MetadataUpdate, with no price/receiver callback. Governance/nonReentrant and final exact totals remain. Actual target batch gas must still be rehearsed."
+  },
+  {
+    "index": 308,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "tokenAtOrdinal is a static fixed NFT lookup in a<=32 batch over snapshotted mintedCount<=1000. Each unique nonzero NFT is allocated once, including zero-share dormant entries. Deterministic bounded traversal still requires actual gas qualification."
+  },
+  {
+    "index": 314,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "nftBucket is a static Vault getter inside the<=32 allocation batch. Shares/bucket consistency and each closed bucket total are checked; terminal state blocks new LP changes. Actual deployment gas remains unqualified despite bounded accounting work."
+  },
+  {
+    "index": 315,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "beginCollectiveExit enumerates bucketAt only under count<=4 and validates every group before terminal Closing/Vault barrier. No user-length inventory exists. Broken fixed dependencies remain genuine recovery/availability limits."
+  },
+  {
+    "index": 325,
+    "check": "calls-loop",
+    "disposition": "accepted_risk",
+    "rationale": "This _unchanged priceBounds instance rechecks at most34 captured marks for identical bounds/fingerprints after callbacks. It deliberately aborts re-pricing rather than accepting it. Bounded oracle cost and provider availability need separate qualification."
+  },
+  {
+    "index": 327,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "totalIdle writes after Manager.balance are paired with bucket idle only after actual two-asset delta/context proofs. Financial callers hold the Vault lock and assertIdle verifies aggregate backing. Post-call attribution is required accounting, not a callback credit path."
+  },
+  {
+    "index": 329,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "closeBucket increments remaining totals/decrements buckets only after exact fixed-Vault receipts and Exited/share checks. Governance/nonReentrant/Closing guards remain, and claims require Ready. A callback cannot double-decrement or pay partially captured principal."
+  },
+  {
+    "index": 332,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "activate sets homePool/nftBucket under lock before zero-share checkpointing. Reservation reaches only immutable alias writes with no outbound mutable callback. Active canonicalWrite is unavailable and nested activation/increase cannot replace these accounting domains."
+  },
+  {
+    "index": 339,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "_put changes totalIdle after actual spends/refunds, exact approval reset and fixed LP ownership proof. It is private to locked operations; aggregate backing and deployed value checks follow. No callback can reuse prior attribution for another financial operation."
+  },
+  {
+    "index": 340,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "_executeManual is private to nonReentrant governance wrappers. Manifest storage intentionally survives fixed Budget/Manager callbacks until post-fingerprint/endEmergency; deleting early would break proof. No arbitrary caller obtains or mutates that scoped context."
+  },
+  {
+    "index": 344,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "Nonce/epoch advance under Migration lock after exact main/control/source-nonce proof and context-only Policy completion. The latter makes static reads/local writes. Callback invalidateParking changes are detected before commit and cannot be silently adopted."
+  },
+  {
+    "index": 349,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "_join writes NFT shares/contribution only after owner checkpoint and actual Budget result. Outer financial lock plus incumbent supply/NAV guard prevent dilution. Remaining membership/metadata callbacks are covered by operating/principal postguards and atomic rollback."
+  },
+  {
+    "index": 353,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "_receiveVenue changes aggregate idle only for actual close modes following net balance/nativeReceived proof. Collect allocates funded fees instead. Fixed recipients, locked callers and assertIdle prevent a callback return from fabricating unbacked principal."
+  },
+  {
+    "index": 356,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "_pullCompound updates aggregate idle from exact designated Fees returns while Vault is locked; Fees debits/authenticates first. Phase4 explicitly skips the release. No new reserve-ownership or entrant-subsidy path arises from post-call writes."
+  },
+  {
+    "index": 358,
+    "check": "reentrancy-benign",
+    "disposition": "false_positive",
+    "rationale": "Raw closeResidual holds governance/operating/principal/nonReentrant. After Vault returns, immutable validation checks exact unchanged main/L/controls, nonce+1, same epoch, absent residual and raw floors before epoch advances. Callback nonce invalidation causes rollback."
+  },
+  {
+    "index": 362,
+    "check": "reentrancy-events",
+    "disposition": "false_positive",
+    "rationale": "_reserve emits after immutable only-Vault registerAlias, whose body only validates/writes aliases without outbound mutable calls. It cannot reorder this event through a receiver callback. Public reservation is governance-only/bounded; financial callers additionally lock."
+  },
+  {
+    "index": 364,
+    "check": "reentrancy-events",
+    "disposition": "false_positive",
+    "rationale": "_pay uses locked owner fallback or self-only calls inside locked governance distribution. It marks paid/debits liabilities before transfers, rechecks backing then emits PrincipalPaid. Rejection rolls back the isolated child call and emits Deferred outside, avoiding duplicate payments/events."
+  },
+  {
+    "index": 370,
+    "check": "timestamp",
+    "disposition": "accepted_risk",
+    "rationale": "compoundReady uses timestamp only for governed600-second-to-7-day interval after max(lastCompound,lastRebalance), not randomness/price. Block-time granularity may shift boundary eligibility slightly; independent custody/execution guards remain and actual timing/liveness rehearsal stays open."
+  },
+  {
+    "index": 421,
+    "check": "low-level-calls",
+    "disposition": "false_positive",
+    "rationale": "mintDormant intentionally value-calls the reviewed Policy payee. Minted state is set under nonReentrant/live/operating/principal guards, success is required and full mint fingerprint rechecked afterward. Rejection rolls back mint/payment; caller supplies no arbitrary destination."
+  },
+  {
+    "index": 430,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Migration exposes the emergencyRequest getter consumed through narrow IZZZEmergencyController. Explicit inheritance is optional ABI typing, not authorization. Fixed-module/runtime/capability admission must still identify the intended implementation; this is not a missing-permission finding."
+  },
+  {
+    "index": 431,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "PortfolioPolicy implements completeConsolidation() with IResidualCompletion's selector. Its fixed Migration/active paused context checks remain. Explicit inheritance is optional compile-time documentation and grants no extra runtime protection."
+  },
+  {
+    "index": 432,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "ActivationEntry exposes pricingContext with IPricingEntry's signature for its immutable Registry/Pricing binding and reviewed operation. The detector recommends explicit inheritance only, not a missing method or absent operation authentication."
+  },
+  {
+    "index": 434,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "PortfolioPolicy provides controlFingerprint(bytes32) for the child narrow IResidualPolicyControl interface. Avoiding full policy import is deliberate. Explicit inheritance is optional; correct target/runtime admission remains necessary and separately pinned."
+  },
+  {
+    "index": 435,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "PortfolioPolicy exposes governed bounded minimumMainBps(bytes32) for IPricingPortfolio. This is a deliberately narrow view interface, not an unimplemented accounting callback. Inheriting it would not change permissions or the hard allocation floor."
+  },
+  {
+    "index": 437,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Vault implements Entry.IActivationVault's payable activate/increase selectors. Holder/Entry permissions and exact contribution accounting live in the implementations, not interface inheritance. No payable execution path is missing."
+  },
+  {
+    "index": 438,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Position child has closeSecondary, but IVaultResidualLiquidity describes Vault-to-Manager calls, not required child inheritance. Child remains only immutable Manager. Matching selectors do not imply interchangeable authority or runtime identity."
+  },
+  {
+    "index": 441,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "VaultCanonical provides the validateOwner/validateHolderExit/validateContribution methods targeted by Budget.IBudgetVaultValidation. Fixed Vault/controller parents authenticate these reads. Explicit inheritance is optional and cannot replace wiring/runtime verification."
+  },
+  {
+    "index": 447,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Budget implements Manager.IPortfolioBudget maintenanceBucket/maintenancePrices, exposing only a valid captured normal replacement context and rejecting missing snapshots. They confer no mint permission; explicit interface inheritance adds typing only."
+  },
+  {
+    "index": 449,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Confirmation.controlFingerprint structurally resembles IResidualPolicyControl, but confirmation and portfolio policy have distinct semantic targets. This warning does not make the contracts interchangeable; fixed address/runtime graph and correct interface use still matter."
+  },
+  {
+    "index": 450,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Migration implements Budget.IEmergencyManifest fingerprint/target methods. The fingerprint authenticates exact fixed Budget and active scoped request. Optional explicit inheritance adds no generic manifest-caller permission."
+  },
+  {
+    "index": 451,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "IBudgetVaultValidation is intentionally for VaultCanonical, not a mandatory Budget base. Budget's similar validateContribution returns captured uint32 limits, versus companion uint16. Do not infer semantic equivalence or add inheritance from structural name overlap."
+  },
+  {
+    "index": 452,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Manager implements the narrow closeSecondary selector used by Vault, remains only-Vault and paused, and forwards to fixed child. Explicit inheritance is optional; it cannot substitute for these caller/phase checks."
+  },
+  {
+    "index": 454,
+    "check": "missing-inheritance",
+    "disposition": "informational",
+    "rationale": "Budget implements Metadata.IHistoricalCompound.historicalCompoundValue and delegates valuation to fixed Pricing. Interface inheritance is optional. Missing feed data can still reject valuation and must not be rendered as zero."
+  },
+  {
+    "index": 477,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "CanonicalLedger._canonicalAdd scans a bounded derived asset list to reject duplicates before append: LP lists<=33 and royalty<=65. No external call or length mutation occurs during scan. Caching length is a minor optional gas change, not correctness/security repair."
+  },
+  {
+    "index": 478,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "CanonicalLedger backing validation reads the bounded derived inventory using static balance calls. Canonical lifecycle/static context prevents list mutation. Length caching may save gas but cannot repair an unavailable asset; backing/recovery qualification remains open."
+  },
+  {
+    "index": 480,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Final allocatePrincipal reconciliation scans at most4 settlement buckets after the last<=32 NFT batch and makes no external call in that totals loop. Caching length is optional; cumulative shares/ETH/ZZZ equality proofs must remain."
+  },
+  {
+    "index": 481,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Royalty canonicalActivate scans<=65 admitted assets in authenticated state2, classifies extra balances as orphan/prefund and sets eligibility. Static balance reads cannot append. Cached length is optional and cannot replace fail-closed token/backing validation."
+  },
+  {
+    "index": 482,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Royalty canonicalValidate scans<=65 imported assets for exact claim liabilities and cursor divisibility before backing validation. View context cannot change membership/list. Cache-array-length is a minor gas suggestion, not a missing allocation proof."
+  },
+  {
+    "index": 483,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "FeesCanonical capture clears accepted flags from its previous<=33-asset snapshot before resetting arrays. Fixed handoff authorization and Fees barrier apply; this deletion loop has no external call. Stable length caching is optional optimization only."
+  },
+  {
+    "index": 484,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Rewards.checkpointAll loops<=33 assets after one eligibility snapshot. Per-asset ledger arithmetic has no mutable external callback. Caching stable length can save gas but is not needed to preserve active-count/collective entitlement during this loop."
+  },
+  {
+    "index": 485,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Rewards canonicalCapture scans<=33 assets and verifies backing before recording. Balance calls are static and canonical lifecycle blocks normal admission. Cached length is optional; unreadable real backing must still block unsafe capture rather than be omitted."
+  },
+  {
+    "index": 486,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Rewards.checkpointOwner captures bucket/shares then loops<=33 before Vault increases shares. Dependencies are static, assets cannot grow and Vault financial lock holds. Length caching is optional without changing owner/share-accounting semantics."
+  },
+  {
+    "index": 487,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Royalty capture scans<=65 currencies only after opening finalized and initial allocations settled, recording actual backing/pending receipts. Economic canonical lifecycle/static reads block admission changes. Caching is optional; entitlement/backing conditions must remain."
+  },
+  {
+    "index": 488,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Pricing._clear locally deletes marks for its deduplicated<=34 temporary assets, then deletes array/basis. The list length stays stable and there are no external calls. Caching is a small optional gas change, not a missing fund/refund path."
+  },
+  {
+    "index": 489,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "FeesCanonical.validate scans<=33 captured/imported assets and checks actual Fees backing with static reads. There is no append and lifecycle/handoff bounds inventory. Cache length is optional; insufficient backing must still reject."
+  },
+  {
+    "index": 490,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "Pricing._unchanged checks<=34 captured marks for exact bounds/fingerprint/decimal equality through static calls. The list cannot mutate. Caching may save gas but must preserve all callback re-pricing checks and does not qualify actual providers."
+  },
+  {
+    "index": 492,
+    "check": "cache-array-length",
+    "disposition": "informational",
+    "rationale": "CanonicalLedger beginCapture clears delivered/accepted flags for a bounded prior snapshot in state1 before deleting arrays. No external call or length mutation occurs during that loop. Caching is optional gas work, not stale ownership or missing backing proof."
+  }
+]

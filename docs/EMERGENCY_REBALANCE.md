@@ -1,5 +1,11 @@
 # Manual emergency LP recovery
 
+This guide is the **full-replacement** path. To close only the residual and
+increase the unchanged main, use [governance same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation).
+The new source requires residual-reinvest1 peers and fresh schema15 admission;
+old emergency2 runtimes keep their original dispatcher and profile.
+
+
 Fresh accounting6 source candidate; production NOT APPROVED. Current normal
 gates, scoped offline checks and local actual-v4-core integration pass within
 their [source scope](../reports/residual-operations-20261031/VERIFICATION.md);

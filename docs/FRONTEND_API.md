@@ -127,7 +127,7 @@ Entry v4 helper. Source rows carry only pool_id/source_asset/asset_policy_id.
 Read accounting6 semantics and the existing schema2 envelope are unchanged.
 Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
 
-Production inventory schema14 is separate from read schema2 and activation schema1;
+Production inventory schema15/reinvest1 is separate from read schema2 and activation schema1;
 it authenticates17 modules/18 callable helpers plus2 inert Factory data children.
 The Factory data verification is constructor/release-only, not extra per-holder
 RPC work. Historical schema13/12/10/9/8/7/6 stay tied
@@ -455,4 +455,4 @@ helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
 `claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
 are read at the same confirmed block; missing policy never becomes guessed
 defaults. Stage1 means actual activation, not a persistent100USD value floor.
-Inventory is schema14; public signing remains disabled. [Exact profile](POSITION_V6.md).
+Inventory is schema15/reinvest1; public signing remains disabled. [Exact profile](POSITION_V6.md).

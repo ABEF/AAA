@@ -96,6 +96,29 @@ class OperatorReviewTests(unittest.TestCase):
             with self.subTest(key=key,value=value),self.assertRaises(ValueError):self.catalog.prepare(req)
         req=self.parking();req['arguments']['r']['token0']=O.MARKER
         with self.assertRaises(ValueError):self.catalog.prepare(req)
+
+    def test_residual_consolidation_manifest_binds_capability_force_and_exact_tuple(self):
+        self.assertTrue(O.PROFILE.endswith('/residual-reinvest1'))
+        hashes=[]
+        for forced in (False,True):
+            req=self.request('ZZZMigration','consolidateResidual')
+            req['arguments']={'request':self.emergency()['arguments']['request'],'forced':forced}
+            artifact=self.catalog.prepare(req)
+            self.assertEqual(artifact['explorer']['argument_order'],['request','forced'])
+            values=artifact['explorer']['arguments']
+            self.assertEqual(values[0][:5],['7',H,'14','-887000','887000'])
+            self.assertEqual(values[0][-1],artifact['review_hash'])
+            self.assertIs(values[1],forced)
+            self.assertTrue(self.catalog.check(artifact)['artifact_matches'])
+            self.assertFalse(artifact['boundaries']['ready_for_submission'])
+            hashes.append(artifact['review_hash'])
+        self.assertNotEqual(*hashes)
+        req=self.request('ZZZMigration','consolidateResidual')
+        req['arguments']={'request':self.emergency()['arguments']['request'],'forced':1}
+        with self.assertRaises(ValueError):self.catalog.prepare(req)
+        req['arguments']['forced']=False
+        req['profile']=O.PROFILE.removesuffix('/residual-reinvest1')
+        with self.assertRaises(ValueError):self.catalog.prepare(req)
         req=self.parking();req['arguments']['r']['token1']='0x'+'A'*40
         with self.assertRaises(ValueError):self.catalog.prepare(req)
         req=self.parking();req['arguments']['r']['missing']=False

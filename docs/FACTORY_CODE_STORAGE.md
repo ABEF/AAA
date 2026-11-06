@@ -61,7 +61,8 @@ fixed receiver or obtain its rights.
 
 ## Fresh inventory boundary
 
-Use the explicit **schema14** deployment inventory. Keep **18 logical callable
+Use the explicit **schema15** deployment inventory; schema14 retains the prior
+source scope for historical inspection. Format2/data payload is unchanged. Keep **18 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
 module records,18 helper records and2 code-data records, with external dependency
@@ -69,7 +70,7 @@ records separate. The data children have no getter ABI; authenticate them with
 bounded `eth_getCode`, not invented `access()` or `controller()` calls.
 
 Royalty settlement4/recovery2, reporting5, accounting6 and canonicalV8 remain
-separate unchanged behavior/wire identities. Schema13 and older runtime/config
+separate unchanged behavior/wire identities. Schema14 and older runtime/config
 profiles remain historical; do not add mandatory data-child fields by silently
 relabeling a deployed instance or saved configuration.
 
@@ -85,14 +86,14 @@ local example addresses are not production addresses.
 Canonical `deploymentCommitment()` binds module/domain runtimes, the Access
 runtime containing its immutable factory address and ProtocolPolicy. It does
 not explicitly enumerate factory/data-child runtime hashes. The separate source-
-bound schema14 constructor/release verification must inspect that full fixed
+bound schema15 constructor/release verification must inspect that full fixed
 graph. This code-storage change introduces no new canonical wire version or
 coordinator bypass. Reviewed different-code replacements retain their existing
 governance trust boundary.
 
 ## Exact compiler artifact family
 
-The schema14 source artifact pins the closed normal compiler output: royalty
+The preserved historical schema14 source artifact pins the closed normal compiler output: royalty
 creation length25,522 and hash
 `0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831`.
 An independent Forge build can normalize source line endings or add unused
@@ -111,7 +112,7 @@ the current inventory merely to obtain consistency. No deployment is authorized.
 2. Use the typed controller/NFT deployment workflow. The factory constructs both
    data children itself; no separate manual data deployment, funding or binding
    call is needed. This guide does not authorize deployment or sealing.
-3. Read the returned factory/part addresses and authenticate the full schema14
+3. Read the returned factory/part addresses and authenticate the full schema15
    graph at one confirmed block against independently reviewed pins. Inspect the
    typed constructor's exact receiver NFT/controller binding too.
 4. Verify actual target initcode/runtime limits, constructor arguments, transaction

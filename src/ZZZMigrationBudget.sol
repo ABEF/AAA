@@ -47,6 +47,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
     uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
+    uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     bool public emergencyActive;
     uint256 public emergencyBucket;
     uint8 public emergencyChecks;
@@ -70,8 +71,8 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
-    /// @notice Last successful standalone compound. Local operating state, not
-    /// an NFT entitlement/imported ledger; LP replacement time is kept by Vault.
+    /// @notice Last successful compound or governed same-main reinvestment.
+    /// Local operating state; LP replacement time remains separately in Vault.
     mapping(uint256 => uint64) public lastCompound;
     mapping(uint256 => uint64) public compositionEpoch;
     mapping(bytes32 => uint32) private compoundIntervals;
@@ -198,6 +199,10 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     /// @dev Called before fee settlement, token callbacks or closing the old LP.
     /// Only attributed assets enter the starting denominator.
     function checkpoint(uint256 id, uint8 phase) external onlyVault {
+        // Manual same-main reinvestment is not a rebalance and has no automatic
+        // compound interval. Its successful clock update rolls back on failure,
+        // including when governance deliberately disables the value guard.
+        if (phase == 4) lastCompound[id] = uint64(block.timestamp);
         if(emergencyActive) {
             validateEmergency(id);
             if(_skip(4)) return;
@@ -210,6 +215,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
             _beforeMove(id,false);
             lastCompound[id] = uint64(block.timestamp);
         }
+        else if (phase == 4) _beforeMove(id,false);
         else revert InvalidState();
     }
     /// @notice Only a normal whole-position replacement may mint a residual.
@@ -377,20 +383,16 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     /// @notice No USD/spot/operations-enabled dependency is required to remove
     /// only the registered residual. The fixed main and all rights remain.
     function validateResidualClose(uint256 id) external view onlyVault {
-        Position memory p=IZZZVault(vault()).group(id);
-        if(!access.isSealed() || !access.paused() || access.lpExitStarted() || emergencyActive || snapshot.value!=0 ||
-            p.status!=PositionStatus.Active || p.lpTokenId==0 ||
-            IZZZLiquidity(access.module(Ids.LIQUIDITY)).secondaryId(p.lpTokenId)==0) revert InvalidState();
+        _pricing().validateResidualClose(id,emergencyActive || snapshot.value!=0);
     }
     function validateRebalance(uint256 id, uint128 minimumLiquidity) external view onlyVault {
-        if(emergencyActive) {
-            validateEmergency(id);
-            if(!_skip(1) && !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
-            if(!_skip(16) && !IConfirmationControl(IZZZStrategy(access.module(Ids.STRATEGY)).rebalanceConfirmation())
-                .emergencyReady(id)) revert InvalidState();
-            return;
-        }
-        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).rebalanceReady(id)) revert InvalidState();
+        if(emergencyActive) validateEmergency(id);
+        _pricing().validateRebalance(id,minimumLiquidity,emergencyActive,emergencyChecks);
+        // Confirmation authenticates this exact Budget caller. Keep that
+        // boundary here; the read-only pricing child must never impersonate it.
+        if(emergencyActive && !_skip(16) &&
+            !IConfirmationControl(IZZZStrategy(access.module(Ids.STRATEGY)).rebalanceConfirmation()).emergencyReady(id))
+            revert InvalidState();
     }
     function _confirmationControl(uint256 id,bytes32 poolId) private view returns(bytes32) {
         IConfirmationControl confirmation = IConfirmationControl(

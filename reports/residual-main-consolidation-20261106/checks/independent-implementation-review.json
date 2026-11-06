@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "reviewer": "residual_physical_audit",
+  "time_utc": "2026-11-06T01:03:58.171558+00:00",
+  "base_commit": "9025735fca5a6011bce3772f981881d66d3ea082",
+  "source_whitelist_sha256": {
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZCustodyValidation.sol": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+    "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+    "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
+    "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+    "src/ZZZVault.sol": "77f076ae8ad11d1c5df76f2a6b19fed826889c4a22e0d18b4f723dd16838eaeb"
+  },
+  "normal_source_hashes_match": true,
+  "normal_record": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\residual-main-20261106-c932\\normal-final-f907546a3c\\production-size-gates.json",
+  "normal_all_pass": true,
+  "unchanged_vs_HEAD": [
+    "src/ZZZLiquidityManager.sol",
+    "src/ZZZLPPositionExecutor.sol",
+    "src/interfaces/IZZZEmergency.sol"
+  ],
+  "protected_four_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "newline_styles": {
+    "src/ZZZContributionPricing.sol": {
+      "crlf": 0,
+      "lf": 365,
+      "head_crlf": 0,
+      "head_lf": 347
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "crlf": 0,
+      "lf": 217,
+      "head_crlf": 0,
+      "head_lf": 80
+    },
+    "src/ZZZMigration.sol": {
+      "crlf": 370,
+      "lf": 370,
+      "head_crlf": 363,
+      "head_lf": 363
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "crlf": 0,
+      "lf": 432,
+      "head_crlf": 0,
+      "head_lf": 430
+    },
+    "src/ZZZPortfolioPolicy.sol": {
+      "crlf": 0,
+      "lf": 310,
+      "head_crlf": 0,
+      "head_lf": 280
+    },
+    "src/ZZZVault.sol": {
+      "crlf": 0,
+      "lf": 712,
+      "head_crlf": 0,
+      "head_lf": 687
+    }
+  },
+  "flow_invariants_reviewed": [
+    "Governance-only pre/post authorization and paused atomic operating/principal lifecycle wrappers.",
+    "New custody hash is domain-separated and binds physical/accounting state, shared nonce/epoch, and source policy controls.",
+    "Guarded manifest checks14, exact main ticks, all-zero explicit swap fields; current main must be physically active before and after.",
+    "Forced manifest retains optional mask0..31 and explicit exact swap; custody, fixed assets, actual spends and positive main delta remain mandatory.",
+    "Vault dispatch is typed by authenticated fixed Migration context and fixed Budget state, with no selector/recipient supplied by caller.",
+    "Capture principal before harvest; phase1 before residual closure prevents counting returned residual principal as released compound.",
+    "Harvest both, close only registered auxiliary, reinvest only attributed idle; no designated Fees compound reserve release.",
+    "Balancing swap fees are harvested separately before the actual existing-main increase.",
+    "Existing main ID, full packed information, key, ticks, owner, centre, lastRebalance, depositUSD, status and total shares remain unchanged.",
+    "Main liquidity grows by at least minimumLiquidity delta; residual absent and global count decrements exactly once iff residual existed.",
+    "Auxiliary0 repair requires already-attributed idle; no new LP NFT, third leg, payout, external custody recipient or generic sweep.",
+    "Policy OFF/applied acknowledgment occurs only after financial/custody success, in fixed Migration active context.",
+    "Per-pool control/global revision always advance after manual reinvestment, invalidating prior sample/jitter while preserving independent main-width pending status.",
+    "lastCompound records successful manual action, including force skip4; lastRebalance is not reset.",
+    "Caller-specific Confirmation.emergencyReady remains DIRECT from Budget; extracted Strategy/raw-close/bootstrap reads are public/caller-independent.",
+    "Vault private flushDust helper preserves exact Vault caller and original ordering at both entrant checkpoints and terminal exit."
+  ],
+  "limitations": [
+    "Agent performed source/caller/conservation review, not an independent external audit or production approval.",
+    "Parent owns actual EVM tests/static/reference verification; no new tests rerun by this reviewer.",
+    "Guarded existing-range solver may reject its chosen route near a boundary despite another feasible reviewed route; no global-route feasibility guarantee.",
+    "Force can intentionally bypass financial safeguards and lose principal; cannot repair broken tokens/core/periphery or activate immutable outside ticks.",
+    "Access.seal does not authenticate every extension marker/runtime; fresh schema15 must admit coherent cap1 Migration/Vault/Budget/Policy/ContributionPricing and exact graph.",
+    "Vault runtime headroom107bytes remains tight; target-chain gas, feeds/routes and operating qualification remain open."
+  ],
+  "helper_descriptions_1_to_5_words": {
+    "RESIDUAL_REINVEST_VERSION": "Same-main reinvestment capability",
+    "Migration.consolidateResidual": "Merge into unchanged main",
+    "Migration.consolidationCustodyHash": "Read exact consolidation identity",
+    "Migration.consolidationActive": "Read active manual context",
+    "PortfolioPolicy.completeConsolidation": "Acknowledge governed single position",
+    "CustodyValidation.validateZZZ": "Validate fixed token setup",
+    "CustodyValidation.validateEmergency": "Validate full emergency manifest",
+    "CustodyValidation.consolidationCustodyHash": "Read exact consolidation identity",
+    "CustodyValidation.captureConsolidation": "Capture consolidation custody proof",
+    "CustodyValidation.verifyConsolidation": "Verify unchanged main reinvestment",
+    "CustodyValidation.consolidationEmergencyFingerprint": "Read scoped consolidation controls",
+    "CustodyValidation.captureResidualClose": "Capture raw residual closure",
+    "CustodyValidation.verifyResidualClose": "Verify raw residual closure",
+    "ContributionPricing.validateRebalance": "Validate public timing conditions",
+    "ContributionPricing.validateResidualClose": "Validate raw residual eligibility"
+  }
+}

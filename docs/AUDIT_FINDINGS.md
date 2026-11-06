@@ -54,6 +54,12 @@ reuse. No production Solidity or economic rule changes. Governed move/resume
 creation/timing and conditional token-callback fee classification are explicit;
 actual dependency and operating qualification stay open.
 
+The [same-main operator improvement](../reports/residual-main-consolidation-20261106/REVIEW.md)
+fixes the close→idle→pending-mode management gap with typed paused governance
+consolidation. It retains exact shares/rights, separates guarded and explicitly
+forced execution, and authenticates a fresh inventory capability. Old reports
+remain source-scoped; no operating/independent approval is implied.
+
 ## Current conclusions by project layer
 
 | Area | Current mechanism | Remaining boundary / owning tasks |

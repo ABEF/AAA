@@ -23,6 +23,7 @@ interface IPricingPortfolio {function minimumMainBps(bytes32) external view retu
 /// setter, arbitrary call or sweep. A whole contribution uses one price vector.
 contract ZZZContributionPricing {
     uint256 public constant ENTRY_REVIEW_VERSION = 2;
+    uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     IZZZAccess public immutable access;
     IZZZOracle public immutable oracle;
     // Oracle USD18 prices are at most 1e36, below uint128.max. Packing the
@@ -72,6 +73,23 @@ contract ZZZContributionPricing {
         if (!access.isSealed() || access.paused() || access.preparationActive() || access.canonicalState() != 0) revert InvalidState();
     }
     function active() external view returns(bool) { return basis.phase != 0; }
+    /// @notice Read-only timing extraction. Budget still authenticates Vault
+    /// and any active emergency; no caller receives execution authority here.
+    function validateRebalance(uint256 bucket,uint128 minimumLiquidity,bool emergency,uint8 checks)
+        external view onlyBudget {
+        IZZZStrategy strategy=IZZZStrategy(access.module(Ids.STRATEGY));
+        if(emergency) {
+            if((checks&1)!=0 && !strategy.needsRebalance(bucket)) revert InvalidState();
+        } else if(minimumLiquidity==0 || !strategy.rebalanceReady(bucket)) revert InvalidState();
+    }
+    /// @notice Read-only raw-close checks, with Budget's local busy state.
+    /// All dependency reads are public; caller-specific authority stays Budget.
+    function validateResidualClose(uint256 bucket,bool busy) external view onlyBudget {
+        Position memory p=IZZZVault(access.module(Ids.VAULT)).group(bucket);
+        if(!access.isSealed() || !access.paused() || access.lpExitStarted() || busy ||
+            p.status!=PositionStatus.Active || p.lpTokenId==0 ||
+            IZZZLiquidity(access.module(Ids.LIQUIDITY)).secondaryId(p.lpTokenId)==0) revert InvalidState();
+    }
     function _protocolPolicy() private view returns(IZZZProtocolPolicy){return IZZZProtocolPolicy(access.protocolPolicy());}
     /// @notice The fixed Budget may only use the contribution cap captured
     /// before external input movement, never a guessed current/default value.

@@ -7,16 +7,19 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZVault, IZZZLiquidity, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
 import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
+import {EmergencyRebalance,IZZZEmergencyController} from "./interfaces/IZZZEmergency.sol";
 
 interface IPortfolioAssociation {
     function secondaryId(uint256 main) external view returns(uint256);
 }
 interface IPortfolioParent { function portfolioPolicy() external view returns(address); }
+interface IPortfolioConsolidation { function consolidationActive() external view returns(bool); }
 
 /// @notice Fixed, noncustodial policy for one main and at most one residual LP.
 /// Desired mode never moves assets. Only an atomic guarded adjustment applies it.
 contract ZZZPortfolioPolicy is ZZZModule {
     uint256 public constant PORTFOLIO_VERSION = 2;
+    uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     uint16 public constant HARD_MINIMUM_MAIN_BPS = 6000;
     uint16 public constant HARD_MAXIMUM_RESIDUAL_BPS = 4000;
     uint16 public constant DEFAULT_RESIDUAL_SIDE_BPS = 5000;
@@ -142,6 +145,33 @@ contract ZZZPortfolioPolicy is ZZZModule {
             _position(posm,secondary,pool);
         }
         appliedRevision[main] = geometryRevision[pool];
+        emit PortfolioApplied(main,pool,geometryRevision[pool]);
+    }
+
+    /// @notice Only the fixed paused Migration's active, reviewed same-main
+    /// operation may disable residual mode AND acknowledge its physical result.
+    /// An independent main-range width update remains pending in Strategy.
+    function completeConsolidation()
+        external operating principalOperating {
+        address migration=access.module(Ids.MIGRATION);
+        if(msg.sender!=migration || !access.isSealed() || !access.paused() ||
+            !IPortfolioConsolidation(migration).consolidationActive()) revert Unauthorized();
+        EmergencyRebalance memory request=IZZZEmergencyController(migration).emergencyRequest();
+        Position memory p=IZZZVault(access.module(Ids.VAULT)).group(request.bucket);
+        uint256 main=p.lpTokenId; bytes32 pool=p.poolId; bytes32 reviewed=request.reviewHash;
+        address manager=access.module(Ids.LIQUIDITY);
+        if(reviewed==bytes32(0) || p.status!=PositionStatus.Active ||
+            IPortfolioAssociation(manager).secondaryId(main)!=0) revert InvalidState();
+        _position(IPositionManagerMinimal(IZZZLiquidity(manager).positionManager()),main,pool);
+        if(enabled[pool]) {
+            enabled[pool]=false; modeReviewHash[pool]=reviewed;
+            ++geometryRevision[pool];
+            emit PortfolioModeConfigured(pool,false,geometryRevision[pool],revision+1,reviewed);
+        }
+        // Manual reinvestment invalidates old samples/jitter even when mode was
+        // already OFF and only previously closed attributed idle was consumed.
+        ++controlRevision[pool]; ++revision;
+        appliedRevision[main]=geometryRevision[pool];
         emit PortfolioApplied(main,pool,geometryRevision[pool]);
     }
 

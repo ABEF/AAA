@@ -1,16 +1,17 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "accounting_model": "shared-pools-native-v6",
   "accounting_version": 6,
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Fresh schema14/accounting6/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV8.18 logical callable helpers plus exactly2 inert code-data children. Schema13 is preserved in production.schema13.example.json for explicit historical inspection.",
+    "Fresh schema15/accounting6/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV8 with governed residual-reinvest1.18 logical callable helpers plus exactly2 inert code-data children. The exact prior schema14 template is preserved in production.schema14.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
     "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
     "One-hour royalty opening after the final sale end; exact whole-unit allocation, strict initial cohort, no deadline on dormant cards. Zero participants/preadmission funds remain separate reviewed allocation cases.",
     "Source defaults are not observations: two independently qualified USD sources agree within3%; contributions2%, LP conversion1%, maintenance3%, hard10% ceilings; gas separate.",
     "Main/residual geometry remains optional at most2 physical legs per logical bucket. Both remain Vault-owned and accounted; source85% trigger/600-second sampled evidence/300-second max gap/240-second checks/60-300-second jitter/12-hour cooldown remain.",
+    "Residual reinvestment1 is a paused governance-only operation that closes the residual and increases the unchanged main. It is not an automated keeper action, accounting upgrade, service rollout or journal relabel.",
     "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized."
   ],
   "release_commit": null,
@@ -279,7 +280,8 @@
             "IDLE_COMPOUNDING_VERSION": 4,
             "REBALANCE_CONFIRMATION_VERSION": 3,
             "EMERGENCY_REBALANCE_VERSION": 2,
-            "emergencyActive": false
+            "emergencyActive": false,
+            "RESIDUAL_REINVEST_VERSION": 1
           }
         },
         "custody_validation": {
@@ -394,7 +396,8 @@
             "access": null,
             "oracle": null,
             "active": false,
-            "ENTRY_REVIEW_VERSION": 1
+            "ENTRY_REVIEW_VERSION": 2,
+            "RESIDUAL_REINVEST_VERSION": 1
           }
         },
         "activation_assets_factory": {
@@ -461,12 +464,12 @@
           "bindings": {
             "access": null,
             "strategy": null,
-            "PORTFOLIO_VERSION": 1,
+            "PORTFOLIO_VERSION": 2,
             "thresholdBps": 8500,
             "revision": null,
-            "minimumMainBps": 6000,
-            "maximumResidualBps": 4000,
-            "DEFAULT_RESIDUAL_SIDE_BPS": 5000
+            "triggerRevision": null,
+            "DEFAULT_RESIDUAL_SIDE_BPS": 5000,
+            "RESIDUAL_REINVEST_VERSION": 1
           }
         },
         "lp_balance_math": {
@@ -496,7 +499,8 @@
             "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
             "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3",
             "balancingRouter": null,
-            "LP_POSITION_EXECUTOR_VERSION": 1
+            "LP_POSITION_EXECUTOR_VERSION": 1,
+            "RESIDUAL_EXIT_VERSION": 1
           }
         },
         "protocol_policy": {
