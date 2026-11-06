@@ -231,7 +231,12 @@ Fresh snapshots bind the separately deployed Budget/Balancer/Policy/Confirmation
 to the sealed controller's fixed parent modules, and the typed physical executor
 and arithmetic child to exact parents/dependencies. `portfolioFingerprint`
 excludes changing liquidity; `executionPortfolioFingerprint` includes it for
-custody manifests. Source hashes are not remote attestation.
+custody manifests. Fresh6 shared observations now independently recompute
+each leg's principal and both exact hashes from already captured sqrt/ticks/
+PosM L, while requiring residual containment. One extra same-block structural
+getter per bucket verifies the execution hash; contribution review reuses it.
+No market/feed request is added and fee-only harvest remains separate. Source
+hashes are not remote attestation. See the [lifecycle audit](../reports/residual-lifecycle-20261106/REVIEW.md).
 
 Execution telemetry additionally rechecks the final latest head, depth,
 chronology, canonical anchor and freshness before publishing `last_confirmed`.

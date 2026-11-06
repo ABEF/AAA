@@ -1,0 +1,143 @@
+test_actual_mint_preparation_uses_dynamic_price_recipient_and_combined_fingerprint (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_actual_mint_preparation_uses_dynamic_price_recipient_and_combined_fingerprint) ... ok
+test_dynamic_evolution_follows_captured_metadata_terms_not_old_constants (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_dynamic_evolution_follows_captured_metadata_terms_not_old_constants) ... ok
+test_mint_rejects_stale_combined_vrf_fingerprint_before_simulation (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_mint_rejects_stale_combined_vrf_fingerprint_before_simulation) ... ok
+test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage) ... ok
+test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) ... 
+  test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=200) ... FAIL
+  test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=201) ... FAIL
+  test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=202) ... FAIL
+  test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=203) ... FAIL
+test_inconsistent_residual_inventory_cannot_become_an_empty_single_position (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_inconsistent_residual_inventory_cannot_become_an_empty_single_position) ... FAIL
+test_missing_residual_after_healthy_read_never_reuses_previous_backing (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_missing_residual_after_healthy_read_never_reuses_previous_backing) ... ok
+test_reference_outage_and_recovery_preserve_dual_custody_and_raw_claims (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_reference_outage_and_recovery_preserve_dual_custody_and_raw_claims) ... ok
+{"bucket_id": "7", "event": "compound_waiting", "reason": "waiting_range_change", "scope": "keeper_policy_not_contract_eligibility", "time": "2026-11-05T23:37:57.202230+00:00"}
+{"bucket_id": "7", "event": "compound_waiting", "reason": "waiting_adjustment_threshold", "scope": "keeper_policy_not_contract_eligibility", "time": "2026-11-05T23:38:00.840400+00:00"}
+{"bucket_id": "7", "event": "compound_waiting", "reason": "waiting_outside_range", "scope": "keeper_policy_not_contract_eligibility", "time": "2026-11-05T23:38:04.101473+00:00"}
+test_compound_decisions_follow_mode_threshold_and_range_across_restart (tests_python.test_market_lifecycle_keeper.MarketLifecycleKeeperTests.test_compound_decisions_follow_mode_threshold_and_range_across_restart) ... ok
+test_current_profile_pending_recovery_precedes_broken_fresh_reads (tests_python.test_market_lifecycle_keeper.MarketLifecycleKeeperTests.test_current_profile_pending_recovery_precedes_broken_fresh_reads) ... ok
+test_reference_fault_blocks_compound_but_both_leg_harvest_review_survives (tests_python.test_market_lifecycle_keeper.MarketLifecycleKeeperTests.test_reference_fault_blocks_compound_but_both_leg_harvest_review_survives) ... ok
+test_actual_mint_preparation_uses_dynamic_price_recipient_and_combined_fingerprint (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_actual_mint_preparation_uses_dynamic_price_recipient_and_combined_fingerprint) ... ok
+test_dynamic_evolution_follows_captured_metadata_terms_not_old_constants (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_dynamic_evolution_follows_captured_metadata_terms_not_old_constants) ... ok
+test_mint_rejects_stale_combined_vrf_fingerprint_before_simulation (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_mint_rejects_stale_combined_vrf_fingerprint_before_simulation) ... ok
+test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage (tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage) ... ok
+test_active_share_numerator_above_bucket_denominator_rejects_every_projection (tests_python.test_inventory_custody.InventoryCustodyTests.test_active_share_numerator_above_bucket_denominator_rejects_every_projection) ... ok
+test_bucket_reads_are_cached_but_each_nft_share_is_checked (tests_python.test_inventory_custody.InventoryCustodyTests.test_bucket_reads_are_cached_but_each_nft_share_is_checked) ... ok
+test_distinct_partial_shares_cannot_exceed_bucket_total_in_any_local_state (tests_python.test_inventory_custody.InventoryCustodyTests.test_distinct_partial_shares_cannot_exceed_bucket_total_in_any_local_state) ... ok
+test_parked_nft_cannot_reuse_an_active_bucket_even_when_lp_value_unavailable (tests_python.test_inventory_custody.InventoryCustodyTests.test_parked_nft_cannot_reuse_an_active_bucket_even_when_lp_value_unavailable) ... ok
+test_price_outage_keeps_exact_funded_balances_and_collection_ownership (tests_python.test_inventory_custody.InventoryCustodyTests.test_price_outage_keeps_exact_funded_balances_and_collection_ownership) ... ok
+test_terminal_return_remains_separate_from_rewards_and_has_no_stale_idle (tests_python.test_inventory_custody.InventoryCustodyTests.test_terminal_return_remains_separate_from_rewards_and_has_no_stale_idle) ... ok
+test_corrupt_missing_or_misbound_idle_policy_cannot_report_healthy (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_corrupt_missing_or_misbound_idle_policy_cannot_report_healthy) ... ok
+test_fresh_profile_cannot_disable_required_health_evidence (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_fresh_profile_cannot_disable_required_health_evidence) ... ok
+test_health_command_cannot_call_downgraded_current_profile_healthy (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_health_command_cannot_call_downgraded_current_profile_healthy) ... ok
+test_healthy_financial_policy_keeps_principal_report_available_without_writes (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_healthy_financial_policy_keeps_principal_report_available_without_writes) ... ok
+test_malformed_nested_health_config_is_rejected_without_attribute_errors (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_malformed_nested_health_config_is_rejected_without_attribute_errors) ... ok
+test_unknown_financial_idle_policy_prevents_principal_simulation_but_not_harvest (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_unknown_financial_idle_policy_prevents_principal_simulation_but_not_harvest) ... ok
+test_unknown_or_ambiguous_accounting_cannot_select_historical_health (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_unknown_or_ambiguous_accounting_cannot_select_historical_health) ... ok
+test_valid_governed_bounds_and_historical_profile_remain_supported (tests_python.test_keeper_policy_integrity.KeeperPolicyIntegrityTests.test_valid_governed_bounds_and_historical_profile_remain_supported) ... ok
+test_default_keeper_observation_still_requires_healthy_reference (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_default_keeper_observation_still_requires_healthy_reference) ... ok
+test_full_nft_projection_keeps_owner_and_funded_claims_when_prices_fail (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_full_nft_projection_keeps_owner_and_funded_claims_when_prices_fail) ... ok
+test_physical_only_read_still_rejects_invalid_main_tick_geometry (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_physical_only_read_still_rejects_invalid_main_tick_geometry) ... ok
+test_physical_read_does_not_require_strategy_diagnostics_or_grant_readiness (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_physical_read_does_not_require_strategy_diagnostics_or_grant_readiness) ... ok
+test_price_outage_does_not_hide_inconsistent_aggregate_principal (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_price_outage_does_not_hide_inconsistent_aggregate_principal) ... ok
+test_price_outage_does_not_hide_invalid_secondary_custody (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_price_outage_does_not_hide_invalid_secondary_custody) ... ok
+test_price_outage_does_not_hide_runtime_mismatch (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_price_outage_does_not_hide_runtime_mismatch) ... ok
+test_wallet_projection_keeps_eth_total_independent_of_missing_usd (tests_python.test_portfolio_price_outage.PortfolioPriceOutageTests.test_wallet_projection_keeps_eth_total_independent_of_missing_usd) ... ok
+test_boundaries_preserve_lower_inclusive_upper_exclusive_and_downward_tick (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_boundaries_preserve_lower_inclusive_upper_exclusive_and_downward_tick) ... ok
+test_exited_positions_cannot_retain_idle_principal (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_exited_positions_cannot_retain_idle_principal) ... ok
+test_false_raw_candidate_cannot_hide_cooled_outside_lp (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_false_raw_candidate_cannot_hide_cooled_outside_lp) ... ok
+test_foreign_pool_key_cannot_qualify_with_valid_owner_liquidity_and_ticks (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_foreign_pool_key_cannot_qualify_with_valid_owner_liquidity_and_ticks) ... ok
+test_inside_lp_cannot_report_an_ordinary_outside_candidate (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_inside_lp_cannot_report_an_ordinary_outside_candidate) ... ok
+test_manual_exception_requires_a_real_recorded_centre_range_change (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_manual_exception_requires_a_real_recorded_centre_range_change) ... ok
+test_no_physical_ticks_are_invented_for_parked_or_dormant_principal (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_no_physical_ticks_are_invented_for_parked_or_dormant_principal) ... ok
+test_noncanonical_or_unaligned_physical_ticks_are_rejected (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_noncanonical_or_unaligned_physical_ticks_are_rejected) ... ok
+test_observer_reads_physical_ticks_and_pending_at_the_same_pinned_hash (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_observer_reads_physical_ticks_and_pending_at_the_same_pinned_hash) ... ok
+test_old_schema6_observations_require_reobservation_without_defaults (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_old_schema6_observations_require_reobservation_without_defaults) ... ok
+test_opposite_condition_and_stored_side_cannot_relabel_physical_exit (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_opposite_condition_and_stored_side_cannot_relabel_physical_exit) ... ok
+test_packed_pool_prefix_and_subscriber_match_installed_layout (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_packed_pool_prefix_and_subscriber_match_installed_layout) ... ok
+test_packed_position_ticks_must_equal_manager_ticks (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_packed_position_ticks_must_equal_manager_ticks) ... ok
+test_paused_helper_keeps_raw_history_without_range_pending_dependency (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_paused_helper_keeps_raw_history_without_range_pending_dependency) ... ok
+test_physical_pool_key_requires_exact_canonical_static_abi (tests_python.test_production_physical_confirmation.PhysicalConfirmationTests.test_physical_pool_key_requires_exact_canonical_static_abi) ... ok
+
+======================================================================
+FAIL: test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_market_lifecycle_projection.py", line 46, in test_current_projection_tracks_single_dual_pending_disable_and_residual_close
+    self.assertEqual(list(map(str, aggregate)), portfolio["principal_amounts_raw"])
+AssertionError: Lists differ: ['100', '200'] != ['2', '2']
+
+First differing element 0:
+'100'
+'2'
+
+- ['100', '200']
+?   ^^^     --
+
++ ['2', '2']
+?   ^
+
+
+======================================================================
+FAIL: test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=201)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_market_lifecycle_projection.py", line 46, in test_current_projection_tracks_single_dual_pending_disable_and_residual_close
+    self.assertEqual(list(map(str, aggregate)), portfolio["principal_amounts_raw"])
+AssertionError: Lists differ: ['130', '240'] != ['3', '2']
+
+First differing element 0:
+'130'
+'3'
+
+- ['130', '240']
+?   - -     --
+
++ ['3', '2']
+
+======================================================================
+FAIL: test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=202)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_market_lifecycle_projection.py", line 46, in test_current_projection_tracks_single_dual_pending_disable_and_residual_close
+    self.assertEqual(list(map(str, aggregate)), portfolio["principal_amounts_raw"])
+AssertionError: Lists differ: ['145', '225'] != ['3', '2']
+
+First differing element 0:
+'145'
+'3'
+
+- ['145', '225']
+?   ^^^     --
+
++ ['3', '2']
+?   ^
+
+
+======================================================================
+FAIL: test_current_projection_tracks_single_dual_pending_disable_and_residual_close (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_current_projection_tracks_single_dual_pending_disable_and_residual_close) (step=203)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_market_lifecycle_projection.py", line 46, in test_current_projection_tracks_single_dual_pending_disable_and_residual_close
+    self.assertEqual(list(map(str, aggregate)), portfolio["principal_amounts_raw"])
+AssertionError: Lists differ: ['110', '190'] != ['2', '2']
+
+First differing element 0:
+'110'
+'2'
+
+- ['110', '190']
++ ['2', '2']
+
+======================================================================
+FAIL: test_inconsistent_residual_inventory_cannot_become_an_empty_single_position (tests_python.test_market_lifecycle_projection.MarketLifecycleProjectionTests.test_inconsistent_residual_inventory_cannot_become_an_empty_single_position)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_market_lifecycle_projection.py", line 77, in test_inconsistent_residual_inventory_cannot_become_an_empty_single_position
+    with self.assertRaises(ProjectionError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+----------------------------------------------------------------------
+Ran 52 tests in 77.486s
+
+FAILED (failures=5)

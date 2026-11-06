@@ -47,6 +47,13 @@ next-batch unsigned claim planning. Schema14 authenticates the new deployment
 graph; settlement4/reporting5/V8 and royalty creation bytes remain unchanged.
 No live configuration, service, site, journal or independent approval changed.
 
+The [main/residual lifecycle audit](../reports/residual-lifecycle-20261106/REVIEW.md)
+fixes fresh6 off-chain physical admission: independent per-leg amount math,
+containment and exact stable/L-sensitive identities, with contribution proof
+reuse. No production Solidity or economic rule changes. Governed move/resume
+creation/timing and conditional token-callback fee classification are explicit;
+actual dependency and operating qualification stay open.
+
 ## Current conclusions by project layer
 
 | Area | Current mechanism | Remaining boundary / owning tasks |

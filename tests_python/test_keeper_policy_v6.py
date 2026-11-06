@@ -20,6 +20,11 @@ class PolicyRPC(PortfolioRPC):
         self.cfg['code_hashes']['protocol_policy']=self.pin
         self.cfg.update(accounting_version=6,protocol_policy_version=1,portfolio_version=2)
         self.minimum_main=7000;self.residual_gap=3
+        # Current6 physical replies use real per-leg amounts and full hashes;
+        # inherited historical5 fixtures retain their original synthetic values.
+        from tests_python.residual_physical_fixture import attach_current_physical
+        self.aux_ticks=(20,80)
+        attach_current_physical(self)
     def read(self,target,signature,*args,count=1):
         if (target,signature) in self.overrides:return super().read(target,signature,*args,count=count)
         if target==self.policy.target or signature=='protocolPolicy()':return self.policy.read(target,signature,*args,count=count)

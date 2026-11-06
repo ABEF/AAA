@@ -19,6 +19,7 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
 import {PositionManager} from "@uniswap/v4-periphery/src/PositionManager.sol";
+import {PositionInfo} from "@uniswap/v4-periphery/src/libraries/PositionInfoLibrary.sol";
 import {IPositionDescriptor} from "@uniswap/v4-periphery/src/interfaces/IPositionDescriptor.sol";
 import {IWETH9} from "@uniswap/v4-periphery/src/interfaces/external/IWETH9.sol";
 import {IAllowanceTransfer} from "permit2/src/interfaces/IAllowanceTransfer.sol";
@@ -1365,5 +1366,138 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(manager.secondaryId(replacement),0);assertEq(manager.activeSecondaryCount(),0);
         assertEq(vault.sharesOf(id),shares);assertTrue(policy.enabled(pool));assertTrue(access.paused());
         vm.expectRevert();positions.ownerOf(main);vm.expectRevert();positions.ownerOf(aux);
+    }
+
+    // Destination-mode creation is a replacement context too: movement/resume
+    // must not silently revert to a main-only accounting view.
+    function _residualAuditPrincipalValue(uint256 bucket) private view returns(uint256) {
+        Position memory p=vault.group(bucket);uint256 a0;uint256 a1;
+        if(p.lpTokenId!=0)(a0,a1)=manager.portfolioAmounts(p.lpTokenId);
+        return oracle.value(address(0),a0+p.idle0+fees.compoundBalance(bucket,address(0)))+
+            oracle.value(address(token),a1+p.idle1+fees.compoundBalance(bucket,address(token)));
+    }
+    function _residualAuditPhysical(uint256 bucket,bool wantResidual) private view returns(uint256 main,uint256 aux) {
+        Position memory p=vault.group(bucket);main=p.lpTokenId;aux=manager.secondaryId(main);
+        assertEq(positions.ownerOf(main),address(vault));assertGt(positions.getPositionLiquidity(main),0);
+        (CoreKey memory actual,)=positions.getPoolAndPositionInfo(main);assertEq(keccak256(abi.encode(actual)),p.poolId);
+        (uint256 a0,uint256 a1)=manager.amounts(main);
+        if(wantResidual){
+            assertGt(aux,0);assertTrue(aux!=main);assertEq(positions.ownerOf(aux),address(vault));
+            assertGt(positions.getPositionLiquidity(aux),0);assertEq(manager.secondaryId(aux),0);
+            // The reverse association is private; the authenticated full
+            // portfolio read below checks it without inventing a public getter.
+            assertTrue(manager.portfolioFingerprint(main)!=bytes32(0));
+            (actual,)=positions.getPoolAndPositionInfo(aux);assertEq(keccak256(abi.encode(actual)),p.poolId);
+            (uint256 b0,uint256 b1)=manager.amounts(aux);a0+=b0;a1+=b1;
+            (int24 ml,int24 mu)=manager.ticks(main);(int24 al,int24 au)=manager.ticks(aux);
+            assertGe(al,ml);assertLe(au,mu);
+        }else assertEq(aux,0);
+        assertEq(manager.activeSecondaryCount(),wantResidual?1:0);
+        (uint256 total0,uint256 total1)=manager.portfolioAmounts(main);assertEq(total0,a0);assertEq(total1,a1);
+        assertGe(address(vault).balance,vault.totalIdle(address(0)));assertGe(token.balanceOf(address(vault)),vault.totalIdle(address(token)));
+        assertGe(address(fees).balance,fees.accounted(address(0)));assertGe(token.balanceOf(address(fees)),fees.accounted(address(token)));
+        assertGe(address(rewards).balance,rewards.liabilities(address(0))+rewards.orphaned(address(0)));
+        assertGe(token.balanceOf(address(rewards)),rewards.liabilities(address(token))+rewards.orphaned(address(token)));
+    }
+    function testResidualAuditEnabledDestinationMoveCreatesTrackedPortfolioAndPreservesEarnedRights() public {
+        (uint256 id,uint256 bucket,uint256 oldMain,uint256 oldAux)=_hybrid();
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        uint256[2] memory claims=[rewards.claimable(id,address(0)),rewards.claimable(id,address(token))];
+        uint256 shares=vault.sharesOf(id);uint256 value=_residualAuditPrincipalValue(bucket);
+        bytes32 destination=registry.admitTarget();
+        targetKey=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),3000,200,IHooks(address(0)));
+        core.initialize(targetKey,manager.spot(pool));core.unlock(abi.encode(uint8(3),Q96));
+        strategy.setRangeOrientation(destination,1);policy.setMode(destination,true,keccak256("TEST DESTINATION HYBRID"));
+        migration.moveFunds(bucket,destination,1,block.timestamp+100);
+        (uint256 main,)=_residualAuditPhysical(bucket,true);assertTrue(main!=oldMain);
+        assertEq(vault.group(bucket).poolId,destination);assertEq(vault.poolBucket(destination),bucket);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
+        assertEq(rewards.claimable(id,address(0)),claims[0]);assertEq(rewards.claimable(id,address(token)),claims[1]);
+        assertGe(_residualAuditPrincipalValue(bucket),Math.mulDiv(value,9700,10000));
+        vm.expectRevert();positions.ownerOf(oldMain);vm.expectRevert();positions.ownerOf(oldAux);
+        assertEq(manager.secondaryId(oldMain),0);assertFalse(policy.configurationPending(bucket));
+    }
+    function testResidualAuditEnabledResumeThenGrowthThenSingleMergeKeepsAllBacking() public {
+        (uint256 alice,uint256 bucket,uint256 oldMain,uint256 oldAux)=_hybrid();
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        uint256 shares=vault.sharesOf(alice);uint256 value=_residualAuditPrincipalValue(bucket);
+        ZZZMigration.ParkingRequest memory r=_residualReview(bucket);r.minimum0=0;r.minimum1=0;
+        access.setPaused(true);migration.park(r);assertEq(manager.activeSecondaryCount(),0);
+        vm.expectRevert();positions.ownerOf(oldMain);vm.expectRevert();positions.ownerOf(oldAux);
+        access.setPaused(false);migration.resume(bucket,pool,1,block.timestamp+100);
+        (uint256 main,uint256 aux)=_residualAuditPhysical(bucket,true);
+        assertEq(vault.sharesOf(alice),shares);assertGe(_residualAuditPrincipalValue(bucket),Math.mulDiv(value,9700,10000));
+        uint64 clock=vault.group(bucket).lastRebalance;uint128 auxL=positions.getPositionLiquidity(aux);
+        uint256 bob=_mint(BOB);_contribute(BOB,bob,1000 ether,false);_contribute(ALICE,alice,250 ether,true);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),aux);
+        assertEq(positions.getPositionLiquidity(aux),auxL);assertEq(vault.group(bucket).lastRebalance,clock);
+        assertEq(membership.totalEligible(),2);assertGt(vault.sharesOf(alice),shares);
+        uint256 aliceShares=vault.sharesOf(alice);uint256 bobShares=vault.sharesOf(bob);
+        policy.setMode(pool,false,keccak256("TEST POST RESUME SINGLE"));assertTrue(policy.configurationPending(bucket));
+        vm.warp(uint256(clock)+43200);_prices();vault.rebalance(bucket,1,block.timestamp+100);
+        _residualAuditPhysical(bucket,false);assertEq(manager.secondaryId(main),0);
+        assertEq(vault.sharesOf(alice),aliceShares);assertEq(vault.sharesOf(bob),bobShares);
+        assertEq(vault.bucketTotalShares(bucket),aliceShares+bobShares);
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        assertGt(rewards.claimable(alice,address(0)),0);assertGt(rewards.claimable(bob,address(0)),0);
+        _claimExactly(alice,ALICE,address(0));_claimExactly(bob,BOB,address(0));
+    }
+    function testResidualAuditInfeasibleDestinationRollsBackBothSourceLegsAndReservation() public {
+        (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();core.unlock(abi.encode(uint8(2),Q96));
+        bytes32 destination=registry.admitTarget();
+        targetKey=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),3000,200,IHooks(address(0)));
+        core.initialize(targetKey,manager.spot(pool));core.unlock(abi.encode(uint8(3),Q96));
+        strategy.setRangeOrientation(destination,1);policy.setMode(destination,true,keccak256("TEST DESTINATION MODE"));
+        policy.configureResidualGap(destination,4000,keccak256("TEST IMPOSSIBLE DESTINATION GEOMETRY"));
+        bytes32 beforeState=keccak256(abi.encode(_residualSnapshot(id,bucket,main,aux)));
+        uint256[6] memory reserves=[fees.accounted(address(0)),fees.accounted(address(token)),
+            rewards.liabilities(address(0)),rewards.liabilities(address(token)),fees.dust(bucket,address(0)),fees.dust(bucket,address(token))];
+        assertEq(vault.poolBucket(destination),0);assertEq(vault.canonicalModule().aliasBucket(destination),0);
+        vm.expectRevert();migration.moveFunds(bucket,destination,1,block.timestamp+100);
+        assertEq(keccak256(abi.encode(_residualSnapshot(id,bucket,main,aux))),beforeState);
+        assertEq(vault.poolBucket(destination),0);assertEq(vault.canonicalModule().aliasBucket(destination),0);
+        assertEq(fees.accounted(address(0)),reserves[0]);assertEq(fees.accounted(address(token)),reserves[1]);
+        assertEq(rewards.liabilities(address(0)),reserves[2]);assertEq(rewards.liabilities(address(token)),reserves[3]);
+        assertEq(fees.dust(bucket,address(0)),reserves[4]);assertEq(fees.dust(bucket,address(token)),reserves[5]);
+        _residualAuditPhysical(bucket,true);assertTrue(policy.enabled(destination));assertTrue(policy.configurationPending(bucket)==false);
+    }
+
+    struct ResidualAuditProducerVector {
+        uint256 schema;address executor;address positionManager;address vaultAddress;bytes32 poolId;
+        uint256 mainId;uint256 secondaryId;uint256 mainInfo;uint256 secondaryInfo;uint128 mainLiquidity;uint128 secondaryLiquidity;
+        uint160 sqrtPriceX96;int24 storedTick;uint160 centreX96;
+        uint256 mainAmount0;uint256 mainAmount1;uint256 secondaryAmount0;uint256 secondaryAmount1;
+        bytes32 stableHash;bytes32 executionHash;
+        address currency0;address currency1;uint24 fee;int24 tickSpacing;address hooks;
+    }
+    event ResidualAuditVectorProduced(uint8 indexed phase,bytes encoded);
+    function _residualAuditProduce(uint256 bucket) private view returns(ResidualAuditProducerVector memory v) {
+        Position memory p=vault.group(bucket);v.schema=1;
+        v.executor=manager.positionOperator();v.positionManager=address(positions);v.vaultAddress=address(vault);v.poolId=p.poolId;
+        v.mainId=p.lpTokenId;v.secondaryId=manager.secondaryId(p.lpTokenId);assertGt(v.secondaryId,0);
+        (CoreKey memory actual,PositionInfo mainInfo)=positions.getPoolAndPositionInfo(v.mainId);
+        (CoreKey memory auxiliary,PositionInfo secondaryInfo)=positions.getPoolAndPositionInfo(v.secondaryId);
+        v.mainInfo=PositionInfo.unwrap(mainInfo);v.secondaryInfo=PositionInfo.unwrap(secondaryInfo);
+        assertEq(keccak256(abi.encode(actual)),keccak256(abi.encode(auxiliary)));
+        v.currency0=Currency.unwrap(actual.currency0);v.currency1=Currency.unwrap(actual.currency1);
+        v.fee=actual.fee;v.tickSpacing=actual.tickSpacing;v.hooks=address(actual.hooks);
+        v.mainLiquidity=positions.getPositionLiquidity(v.mainId);v.secondaryLiquidity=positions.getPositionLiquidity(v.secondaryId);
+        (v.sqrtPriceX96,v.storedTick,,)=state.getSlot0(PoolId.wrap(p.poolId));v.centreX96=p.centerX96;
+        (v.mainAmount0,v.mainAmount1)=manager.amounts(v.mainId);(v.secondaryAmount0,v.secondaryAmount1)=manager.amounts(v.secondaryId);
+        v.stableHash=manager.portfolioFingerprint(v.mainId);v.executionHash=manager.executionPortfolioFingerprint(v.mainId);
+    }
+    function testResidualAuditProducerVectorsFromActualUnfilledAndMixedPortfolio() public {
+        (,uint256 bucket,uint256 main,uint256 auxiliary)=_hybrid();
+        ResidualAuditProducerVector memory unfilled=_residualAuditProduce(bucket);
+        assertTrue((unfilled.secondaryAmount0==0)!=(unfilled.secondaryAmount1==0));
+        emit ResidualAuditVectorProduced(0,abi.encode(unfilled));
+        (int24 lower,int24 upper)=manager.ticks(auxiliary);
+        _move(TickMath.getSqrtPriceAtTick(int24((int256(lower)+int256(upper))/2)));
+        ResidualAuditProducerVector memory mixed=_residualAuditProduce(bucket);
+        assertGt(mixed.secondaryAmount0,0);assertGt(mixed.secondaryAmount1,0);
+        assertEq(mixed.mainId,main);assertEq(mixed.secondaryId,auxiliary);
+        assertEq(mixed.mainLiquidity,unfilled.mainLiquidity);assertEq(mixed.secondaryLiquidity,unfilled.secondaryLiquidity);
+        assertEq(mixed.stableHash,unfilled.stableHash);assertEq(mixed.executionHash,unfilled.executionHash);
+        emit ResidualAuditVectorProduced(1,abi.encode(mixed));
     }
 }

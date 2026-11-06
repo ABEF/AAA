@@ -55,6 +55,11 @@ def verify_profile(p, block):
 
 
 def read_bucket(p, bucket, block):
+    """Keep the public payload while retaining private verified manifest reuse."""
+    return _read_bucket_proof(p,bucket,block)[0]
+
+
+def _read_bucket_proof(p, bucket, block):
     """Reuses the same read-only physical adapter as keeper diagnostics.
 
     It authenticates both actual LP keys, owners, ticks and nonzero liquidity,
@@ -73,7 +78,7 @@ def read_bucket(p, bucket, block):
             contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=6, physical_only=True)
     except (ValueError, TypeError, KeyError) as exc:
         raise ProjectionError('Accounting6 portfolio identity or aggregate principal is inconsistent') from exc
-    return {'version': 2, 'minimum_main_bps':result['minimum_main_bps'],
+    payload={'version': 2, 'minimum_main_bps':result['minimum_main_bps'],
             'maximum_residual_bps':result['maximum_residual_bps'], 'residual_gap_spacings':result['residual_gap_spacings'], 'bucket_id':str(bucket),'pool_id':result['pool_id'],
             'main_lp_token_id': str(result['lp_token_id']),
             'secondary_lp_token_id': str(result['secondary_id']) if result['secondary_id'] else None,
@@ -84,6 +89,7 @@ def read_bucket(p, bucket, block):
             'configuration_pending': result['portfolio_configuration_pending'],
             'residual_side_bps': result['residual_side_bps'],
             'scope': 'Both physical LPs at the same confirmed canonical block; rewards and reserves are separate.'}
+    return payload,result['execution_portfolio_fingerprint']
 
 
 def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range_policy_version,
@@ -115,7 +121,7 @@ def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range
     if int(policy_fingerprint,16)==0 or not 0<threshold<=10000:
         raise ProjectionError('Accounting6 portfolio policy is missing or malformed')
     if existing:
-        portfolio=read_bucket(p,bucket,block);lp=int(position[1],16)
+        portfolio,execution_fingerprint=_read_bucket_proof(p,bucket,block);lp=int(position[1],16)
         if portfolio['pool_id']!=pool or int(portfolio['main_lp_token_id'])!=lp:
             raise ProjectionError('Accounting6 contribution portfolio differs from its bucket')
         lower,upper=map(signed_tick,read('liquidity','ticks(uint256)',lp,count=2))
@@ -133,8 +139,6 @@ def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range
         except (ValueError,TypeError,KeyError) as exc:
             raise ProjectionError('Accounting6 threshold evidence or cooldown is inconsistent') from exc
         eligible=confirmation['ready_at_snapshot'];trigger=bool(confirmation['physical_threshold_side'])
-        execution_fingerprint='0x'+read('liquidity','executionPortfolioFingerprint(uint256)',lp)[0]
-        if int(execution_fingerprint,16)==0:raise ProjectionError('Accounting6 execution portfolio identity is empty')
         portfolio['execution_portfolio_fingerprint']=execution_fingerprint
         reason='operator_geometry_update' if manual else 'threshold_distance' if trigger else None
         status='eligible_now' if eligible else 'cooldown' if not confirmation['cooldown_elapsed'] else confirmation['status']

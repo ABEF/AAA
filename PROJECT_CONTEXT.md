@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed6November2026. Factory/claim baseline main4f7436a; verify actual local/remote
+Reviewed6November2026. Residual lifecycle baseline main5d70b4b; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -103,7 +103,12 @@ optional royalty sync gas1m, not a fixed charge. Expanding to64 currencies needs
 worst-case gas/service/API qualification, even though inventory14 accepts97 token
 records. No source publication is operating or independent approval.
 
-Current changed-source record: reports/factory-claims-20261105/VERIFICATION.md.
+Current backend/lifecycle record: reports/residual-lifecycle-20261106/VERIFICATION.md.
+Fresh6 physically recomputes both legs and exact fingerprints; proof reuse keeps
+contribution payloads unchanged. Historical5/fee-only harvest retain semantics.
+No Solidity/economics change; governed move/resume may recreate a residual under
+destination mode without ordinary keeper timing. Dependency callback qualification
+remains open. Prior changed-source record: reports/factory-claims-20261105/VERIFICATION.md.
 Prior accounting audit: reports/last24h-audit-20261105/VERIFICATION.md and evidence.
 It distinguishes prior failures/empty attempts, final source runs, actual source
 producer/consumer evidence, exact unchanged reuse and missing live qualification.

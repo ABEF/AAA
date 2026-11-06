@@ -1,0 +1,35 @@
+test_consistent_wrong_leg_and_aggregate_amounts_are_rejected (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_consistent_wrong_leg_and_aggregate_amounts_are_rejected) ... FAIL
+test_noncontained_residual_is_rejected_even_with_matching_amounts (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_noncontained_residual_is_rejected_even_with_matching_amounts) ... FAIL
+test_nonzero_but_wrong_stable_fingerprint_is_rejected (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_nonzero_but_wrong_stable_fingerprint_is_rejected) ... FAIL
+
+======================================================================
+FAIL: test_consistent_wrong_leg_and_aggregate_amounts_are_rejected (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_consistent_wrong_leg_and_aggregate_amounts_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_residual_physical_integrity.py", line 28, in test_consistent_wrong_leg_and_aggregate_amounts_are_rejected
+    with self.assertRaisesRegex(ValueError,'physical principal'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_noncontained_residual_is_rejected_even_with_matching_amounts (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_noncontained_residual_is_rejected_even_with_matching_amounts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_residual_physical_integrity.py", line 38, in test_noncontained_residual_is_rejected_even_with_matching_amounts
+    with self.assertRaisesRegex(ValueError,'contain'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_nonzero_but_wrong_stable_fingerprint_is_rejected (tests_python.test_residual_physical_integrity.ResidualPhysicalIntegrityTests.test_nonzero_but_wrong_stable_fingerprint_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_residual_physical_integrity.py", line 33, in test_nonzero_but_wrong_stable_fingerprint_is_rejected
+    with self.assertRaisesRegex(ValueError,'fingerprint'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.109s
+
+FAILED (failures=3)

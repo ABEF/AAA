@@ -1,0 +1,6 @@
+test_actual_unfilled_and_mixed_outputs_match_independent_python_consumer (tests_python.test_residual_producer_vectors.ResidualProducerVectorTests.test_actual_unfilled_and_mixed_outputs_match_independent_python_consumer) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+OK

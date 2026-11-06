@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "sources": 188,
+  "errors": [
+    "TypeError: Type tuple(struct PoolKey memory,PositionInfo) is not implicitly convertible to expected type tuple(struct PoolKey memory,uint256).\n    --> test/OptionalPortfolioCore.t.sol:1477:51:\n     |\n1477 |         CoreKey memory actual;(actual,v.mainInfo)=positions.getPoolAndPositionInfo(v.mainId);\n     |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+    "TypeError: Type tuple(struct PoolKey memory,PositionInfo) is not implicitly convertible to expected type tuple(struct PoolKey memory,uint256).\n    --> test/OptionalPortfolioCore.t.sol:1478:62:\n     |\n1478 |         CoreKey memory auxiliary;(auxiliary,v.secondaryInfo)=positions.getPoolAndPositionInfo(v.secondaryId);\n     |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n"
+  ],
+  "abi_typecheck_only": true,
+  "not_an_EVM_pass": true
+}

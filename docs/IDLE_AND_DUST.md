@@ -1,9 +1,10 @@
 # Attributed idle, dust and reinvestment
 
-The undeployed candidate uses a contribution default of **2%**, LP/royalty
+The undeployed candidate uses a contribution default of **2%**, LP
 conversion **1%**, ordinary maintenance **3%**; gas is separate. Governance may
 change each within its existing hard 10% maximum. These are ceilings, not targets,
-market-loss insurance or permission to sweep balances. Read actual deployed
+market-loss insurance or permission to sweep balances. Fresh royalties are
+claimed in their original currency and have no swap/conversion budget. Read actual deployed
 settings and preserve captured operation and raw-output minima.
 
 ## Reduce idle before accepting it

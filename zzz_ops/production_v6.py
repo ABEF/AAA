@@ -99,15 +99,8 @@ def _execution(g,chain,path,pools):
 
 def physical_amounts(price,ticks,liquidity):
     """Exact floor principal amounts, independent of Manager-reported totals."""
-    from zzz_ops.tick_math import sqrt_price_at_tick,MIN_SQRT,MAX_SQRT
-    if (type(price) is not int or not MIN_SQRT<=price<MAX_SQRT or type(liquidity) is not int or
-            not 0<liquidity<2**128 or not isinstance(ticks,list) or len(ticks)!=2 or
-            any(type(t) is not int for t in ticks) or not -887272<=ticks[0]<ticks[1]<=887272):
-        raise ValueError('Invalid physical principal inputs')
-    a,b=map(sqrt_price_at_tick,ticks)
-    first=0 if price>=b else ((liquidity<<96)*(b-max(price,a))//b)//max(price,a)
-    second=0 if price<=a else liquidity*(min(price,b)-a)//(1<<96)
-    return [first,second]
+    from zzz_ops.physical_portfolio import physical_amounts as calculate
+    return calculate(price,ticks,liquidity)
 
 
 def threshold_side(center,ticks,price,threshold):

@@ -69,12 +69,18 @@ wallet, signing authority, generic executor or custody recipient is introduced.
 
 Active positions authenticate the actual main and optional residual owners,
 full PoolKeys, ticks and positive liquidity at the same canonical block.
-`Manager.amounts(actualId)` remains physical; `portfolioAmounts(main)` must equal
-the exact two-leg sum. `position.local_custody.portfolio` exposes both IDs/bounds,
+Fresh6 independently recomputes floor principal from each actual L/tick range
+and captured sqrt price, compares each `Manager.amounts(actualId)` and their
+aggregate, proves residual containment, and reconstructs complete packed-info
+stable and L-sensitive fingerprints. A coherent reported total alone is not
+physical proof. This constrains contradictory provider/view data; it is not
+Byzantine-RPC consensus or independent stored geometry. Historical5 is unchanged. `position.local_custody.portfolio` exposes both IDs/bounds,
 raw physical principal, desired mode and pending geometry. NFT LP USD value also
 includes attributed idle/compound through the existing on-chain share valuation.
 Collection/wallet chunks reuse a verified bucket only within that request; there
-is no cross-user/latest-state cache. A missing or contradictory leg fails closed.
+is no cross-user/latest-state cache. A missing or contradictory leg fails closed. The fresh structural hash check
+adds one same-block getter per bucket; contribution preparation reuses it and
+keeps the public portfolio payload unchanged. See the [scoped audit](../reports/residual-lifecycle-20261106/VERIFICATION.md).
 Desired single mode does not erase a residual awaiting atomic merging.
 
 Accounting6 uses an explicit physical-only observation for this authentication.

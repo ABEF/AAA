@@ -1,0 +1,66 @@
+{
+  "scope": "Assigned main/residual accounting/custody review with three new actual-local-v4 integration cases",
+  "production_source_changed": false,
+  "test_file": "test/OptionalPortfolioCore.t.sol",
+  "test_sha256": "5ab1a1bfab393c8f486c2ddbfcf8bedf3c931a6ab2d24db11b3606d1e39cc7bc",
+  "selected_distinct_successes": 3,
+  "selected_methods": [
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualAuditEnabledDestinationMoveCreatesTrackedPortfolioAndPreservesEarnedRights()",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualAuditEnabledResumeThenGrowthThenSingleMergeKeepsAllBacking()",
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualAuditInfeasibleDestinationRollsBackBothSourceLegsAndReservation()"
+  ],
+  "new_evm_stage": "evm-first/status.json",
+  "production_test_and_config_unchanged_during_execution": true,
+  "artifacts": {
+    "ZZZRoyaltyRewards": {
+      "artifact_sha256": "e220c65468399e5e5bad6533d6477234990a29f1ab17bc89d68ee0f1982913bb",
+      "creation_length": 25522,
+      "creation_keccak256": "0xee61b40298c3a075124538647c141c5d4a92a761fabc17b61960f883d42eb3ee"
+    },
+    "ZZZRoyaltyFactory": {
+      "artifact_sha256": "2051336d0cd307736ee6f0b5b3e193409afedda82ccd75d38783358808bb9f4d",
+      "creation_length": 28983,
+      "creation_keccak256": "0xfd5170fb70b01140a91a7e4cd78588e6a384feebb0a20c8cf36d0fdca3c915fd"
+    },
+    "ZZZVault": {
+      "artifact_sha256": "eff73d96ca41a0bc4c7a0e84f5a11a63c0af8a169557648e5c71947361ec9df6",
+      "creation_length": 25339,
+      "creation_keccak256": "0x14477693b13fa14849aaa5edd5296e57750b9be94bb6271c0648519300f18a5f"
+    }
+  },
+  "normal_source_owned_pin_is_not_relabelled": true,
+  "abi_typecheck": {
+    "initial": "abi-typecheck/status.json",
+    "initial_test_error": "Attempted unavailable private mapping getter; no production visibility change",
+    "corrected": "abi-typecheck-corrected/status.json",
+    "closed_sources": 188,
+    "not_a_separate_EVM_pass": true
+  },
+  "protected_files": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "ordinary_accounting_bug_confirmed": false,
+  "retained_threat": "Late close fees can mix with principal only under malicious/reentrant/upgraded token or periphery callbacks; actual token/core qualification remains required; no normal outsider interleaving was established.",
+  "new_coverage": [
+    "Target modeON movement recreates bounded physical residual and preserves earned rewards/NFT shares",
+    "ModeON parked resume then new activation and main-only growth then modeOFF guarded merge preserves both-leg accounting",
+    "Infeasible target residual geometry atomically preserves source IDs/L/fees/reserves/shares and rolls back destination alias/reservation"
+  ],
+  "remaining_qualification": [
+    "Actual independent feeds/venues/ZZZ token semantics",
+    "Target chain gas/economics",
+    "Live keeper/service/site behavior",
+    "Independent audit"
+  ],
+  "not_performed": [
+    "public RPC or transactions",
+    "service/site/signer changes",
+    "Anvil reset or journal change",
+    "unchanged broad contract suites",
+    "new normal compiler/static run"
+  ],
+  "documents": "ACCOUNTING_REVIEW.md"
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "Retained full external stage artifacts; not another verification run",
+  "files": {
+    "process.json": {
+      "sha256": "c0ee2423b3f14275989e437eb7eefb1db2a041a35aef915b17300ea629d8229b",
+      "bytes": 44
+    },
+    "START.json": {
+      "sha256": "11cd5036f52f4dfb7d00557af34c23f245badee7066aec131e71eb4fee6b6a3c",
+      "bytes": 19356
+    },
+    "status.json": {
+      "sha256": "1ef51cb4745920e262156dd686506879344a0f6b9535e00d564d34b2941a2e1e",
+      "bytes": 37077
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stdout.json": {
+      "sha256": "3957a3b9204a305d867e42a77721173ee33dc9dfcd1674d9b6a6ef6649be9121",
+      "bytes": 49931
+    }
+  }
+}

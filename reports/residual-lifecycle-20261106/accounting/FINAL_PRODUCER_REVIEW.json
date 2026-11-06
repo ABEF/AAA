@@ -1,0 +1,79 @@
+{
+  "scope": "Separate actual-EVM producer for independently checking Python both-leg physical amounts and portfolio fingerprints",
+  "base_commit": "5d70b4b5a3ade066ec46a6dd81ed172cf50bc16e",
+  "production_source_changed": false,
+  "test_file": "test/OptionalPortfolioCore.t.sol",
+  "final_test_raw_sha256": "aed5e0511e3abb0dee655d90f27bd20d8920e15e5453bc8a5dedfe37d2c609c2",
+  "earlier_three_tests_scope": "FINAL_ACCOUNTING_REVIEW.json; their exact five helper/test bodies preserved, not rerun",
+  "new_distinct_EVM_successes": 1,
+  "new_selected_methods": [
+    "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest::testResidualAuditProducerVectorsFromActualUnfilledAndMixedPortfolio()"
+  ],
+  "producer_stage": "evm-producer-corrected/status.json",
+  "elapsed_seconds": 175.3279999999977,
+  "source_test_configuration_frozen_during_execution": true,
+  "vectors_file": "actual-physical-vectors.json",
+  "vectors_file_sha256": "a08c4665f3cb03d2f914a5914b0da7a9c0842f0118843fe2cd1e7bc2050a093f",
+  "vector_count": 2,
+  "actual_states": [
+    "unfilled residual immediately after replacement",
+    "same residual mixed after an actual v4 trade"
+  ],
+  "fields": [
+    "schema",
+    "executor",
+    "position_manager",
+    "vault",
+    "pool_id",
+    "main_id",
+    "secondary_id",
+    "main_info",
+    "secondary_info",
+    "main_liquidity",
+    "secondary_liquidity",
+    "sqrt_price_x96",
+    "stored_tick",
+    "centre_x96",
+    "main_amount0",
+    "main_amount1",
+    "secondary_amount0",
+    "secondary_amount1",
+    "stable_hash",
+    "execution_hash",
+    "currency0",
+    "currency1",
+    "fee",
+    "tick_spacing",
+    "hooks"
+  ],
+  "encoding": "ResidualAuditVectorProduced(uint8 indexed phase,bytes) containing abi.encode(static 25-word struct)",
+  "includes_raw_ABI_events": true,
+  "python_export_computes_expected_amounts_or_hashes": false,
+  "consumer_verification": "Root owns independent Python calculations against these raw EVM-produced getters",
+  "ABI_typecheck": {
+    "initial": "abi-producer/status.json",
+    "initial_error": "PositionInfo is a value type; producer-only correction uses PositionInfo.unwrap",
+    "corrected": "abi-producer-corrected/status.json",
+    "closed_sources": 188
+  },
+  "retained_empty_EVM_attempt": {
+    "record": "evm-producer/status.json",
+    "exit_code": 0,
+    "selected_tests": 0,
+    "counts_as_pass": false,
+    "reason": "End-anchored selector did not match method signature; corrected selector only reran the new producer method"
+  },
+  "royalty_creation_artifact_keccak256": "0xee61b40298c3a075124538647c141c5d4a92a761fabc17b61960f883d42eb3ee",
+  "artifact_family_not_relabelled_as_normal": true,
+  "fixture_code_size_override": 1000000,
+  "protected_four_unchanged": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "limitations": [
+    "Isolated offline actual-v4 test EVM. Mock Access, correlated USD feeds, native Registry admission, test token, VRF and Permit2. No public chain, services or journal changes; normal production limits/evidence remain separate.",
+    "Selected producer is not a full suite, target gas qualification, live deployment, provider validation or independent audit. No services, RPC, journals, signing or existing Anvil state touched."
+  ]
+}

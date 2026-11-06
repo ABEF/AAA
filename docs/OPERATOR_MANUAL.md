@@ -74,6 +74,13 @@ ordinary rebalance → verify one active main**. Immediate exceptional return is
 **set mode false → pause → reviewed emergency consolidation → inspect → unpause**.
 There is no holder-facing principal withdrawal in either sequence.
 
+Governance same-pair `Migration.moveFunds` and parked `Migration.resume` are
+separate live custody operations. They can also mint a residual under destination
+mode ON. They retain financial/route/deployment guards but do not use ordinary
+keeper cooldown, sampled confirmation or service jitter. Do not automate them as
+a keeper shortcut. Before resume, re-read the destination mode: parking/unpause
+does not promise that only one position will be reopened.
+
 ## Reconcile principal and reward rounding
 
 For each NFT, value its shares of the actual main+residual holdings plus
@@ -853,6 +860,23 @@ automatically widening loss caps. The explicit paused-governance emergency is a
 separate manual procedure, never a keeper fallback. Initial/growth outside-range
 policy is unchanged. [Audit and remaining route-ranking limit](../reports/day-audit-20261031/REVIEW.md).
 
+### Portfolio creation contexts
+
+| Action | Can create a new residual? | Timing/control boundary |
+| --- | --- | --- |
+| First activation, growth, standalone compound | No; initial main or main increase only. | Entrant/compound rules remain separate. |
+| Ordinary Vault.rebalance | Yes when desired mode ON, useful excess and feasible geometry. | Configured on-chain cooldown(initial12h), applicable sampled evidence; automation also waits jitter. Manual geometry has its explicit sample exception. |
+| Governance moveFunds/resume | Yes under destination mode ON. | Live governance custody operation; no ordinary keeper timing gate. Normal financial/custody/deployment guards remain. |
+| Paused emergencyRebalance | No; one explicit emergency main. | Governance manifest selects optional financial checks; desired mode is not changed. |
+
+A useful-size skip or zero representable residual liquidity can validly leave
+mode ON with one main. Infeasible positive geometry instead reverts. The global
+activeSecondaryCount counts registered legs even when filled/outside; it is not
+a count of fee-active ranges. At count4, a normal replacement first closes its
+old residual before adding its new one, so it needs no fifth slot.
+
+See the complete [market/lifecycle/recovery matrix](../reports/residual-lifecycle-20261106/LIFECYCLE.md).
+
 ### Portfolio management controls
 
 This is the single operator procedure for the main and optional residual.
@@ -966,7 +990,8 @@ To reinvest, use a complete guarded adjustment, the separately eligible compound
 path, or a reviewed paused emergency. Compounding still waits for a healthy,
 in-range main below the adjustment threshold with no pending geometry. A pending
 mode/width change, cooldown or price disagreement can require ordinary waiting
-or the explicit emergency procedure. Raw close does not reset the rebalance clock
+or the explicit emergency procedure. Governed same-pair move/resume is a
+separate intended custody workflow, not ordinary keeper rebalance timing. Raw close does not reset the rebalance clock
 or silently mark a pending desired configuration applied.
 
 Fresh confirmation/jitter must reflect the changed physical association. A new
@@ -2300,6 +2325,20 @@ For contract reverts, decode using the exact release ABI. `Unauthorized` means i
 ### Restart checklist for an actual incident
 
 Record the cause, affected block/time/object, containment and exact state; verify recovered authority and dependencies; reconcile every in-flight transaction and classified balance; resimulate fresh intended work; restore the narrowest controls in order; execute a monitored bounded operation; verify finalized receipts, user claims and off-host health. Only then reopen normal UI/keeper work. Do not treat a green process status as economic/accounting recovery. Update the incident evidence, task ledger and this procedure if the incident revealed a missing case.
+
+### Inspect current physical portfolio data
+
+Fresh6 read/keeper policy checks independently recalculate each leg's raw
+principal from captured sqrt price, ticks and actual PosM liquidity; require
+residual containment; and match exact stable and liquidity-sensitive identities.
+A matching aggregate alone is insufficient. Stable identity excludes changing L;
+the custody manifest includes it. This adds one bounded structural read per
+bucket; contribution preparation reuses that verified value, not a second read.
+It adds no USD/reference dependency to physical-only reads or fee-only harvest.
+No new operator function, contract input, approval or service restart is triggered
+by source publication. A later source rollout needs the existing pending-first
+reconcile/dry-run/restart procedure with original journals. Wrong physical data
+is unavailable/error, never zero or permission to bypass guards.
 
 ### Unsigned mint and claim service
 

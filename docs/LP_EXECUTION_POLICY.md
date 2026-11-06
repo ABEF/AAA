@@ -129,7 +129,10 @@ exception. Configuring an unused residual width while mode is off likewise
 does not force a single-mode replacement.
 
 Ordinary `Vault.rebalance` closes the existing one/two legs and atomically rebuilds
-the selected bounded portfolio. Hybrid sizing seeks the smallest qualifying swap
+the selected bounded portfolio. Governance same-pair movement and parked resume
+also enter this replacement execution context: destination mode ON can create
+a residual. They are live governance custody actions, without ordinary keeper
+cooldown/samples/service jitter; financial and deployment guards still apply. Hybrid sizing seeks the smallest qualifying swap
 among bounded reviewed samples that meets minimumMainBps(pool), default60%, of retained principal in
 the main. It does not maximize turnover or force a 40% residual. Actual final main
 must meet the configured main floor6000–9999bps, with complementary residual ceiling, using Budget's captured starting price
@@ -158,7 +161,9 @@ the ideal residual spans75–100 or100–125 before spot-gap and tick rounding.
 Actual rounded ticks, available inventory and deployment guards decide
 whether a useful residual can exist. Tiny leftovers stay attributed idle; there
 is no third position to absorb them. A filled/mixed residual remains accounted
-until the next whole adjustment, including on reversals.
+until the next whole adjustment, including on reversals. activeSecondaryCount
+counts registered residuals, not currently fee-active positions. A tiny/zero-L
+skip can leave one main; infeasible positive geometry rejects atomically.
 
 The residual range is contained within the main range. An active residual with
 an inactive main is not a normal reachable state; price outside the main leaves

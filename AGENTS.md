@@ -259,6 +259,24 @@ are unresolved documentation, never a simulation, live snapshot or transaction.
 Historical source plans are exact-Git pointers; preserve source-scoped reports,
 versioned codecs, old journals, original failures and actual environment boundaries.
 
+## Fresh6 residual-read integrity
+
+[Residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md) changes
+only read/keeper validation and tests/docs, not production Solidity. Shared
+compound_policy current6 verifies each leg from captured sqrt/ticks/PosM L,
+residual containment and exact packed-info stable/L-sensitive identities. The
+neutral physical_portfolio helper preserves preflight math; historical5 stays
+explicit. One extra same-block hash getter per bucket; contribution_context
+reuses private verified proof with unchanged publicportfolio payload. Fee-only
+harvest remains without spot/USD dependence. FullRPC honesty is not proved.
+Governed move/resume may create residuals in destinationON execution without
+ordinary keeper cooldown/samples/jitter; financial/custody guards remain. Raw
+close may leave substantial attributed idle and keeps desired mode unchanged.
+Retain actual ZZZ/upstream callback qualification: late fees generated after
+preclose collection may mix into burn principal under compromised dependencies.
+Never silently redesign that economics or call it an ordinary outside exploit.
+No service/site/chain/journal/signer rollout or heartbeat restart.
+
 ## Verification and records
 
 Current test maintenance must distinguish actual royalty4/V8 consumers from

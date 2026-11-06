@@ -452,6 +452,7 @@ Custody, ownership and reward accounting.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Enable-disable-enable retains monotonic pending geometry; applied enabled mode may validly have no residual when natural main allocation is sufficient. Disable keeps both legs harvested/valued and NFTs activated until guarded merge. Exact operator lifecycle states and failure handling are documented; composed local EVM sequences pass. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Four new actual-core journeys succeed across recorded stages: six virtual days, repeated one/two-leg mode cycles, trends/reversals, filled/mixed/both-outside inventory and guarded recovery. Residual geometry is nested in main; enabled mode does not force a40% allocation. Production sources unchanged.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
+  - [Lifecycle matrix](reports/residual-lifecycle-20261106/LIFECYCLE.md) covers desired/applied/physical states, fills/reversals, raw residual close and one/two merges. New actual-core cases prove destination-hybrid move/resume and infeasible destination rollback. These governed custody operations do not require ordinary keeper timing; financial guards remain. Maximum-state gas/actual operating acceptance stay open.
 
   </details>
 
@@ -630,6 +631,7 @@ The data and services behind the app.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): RPC bodies use bounded available fragments with attempt/request progress checks. Chain/envelope/size validation remains. Affected price-outage projections preserve ownership/raw claims without fabricated zero valuations. Source publication is not source6 service/site rollout.
   - [Three-audit consolidation](reports/consolidation-20261103/VERIFICATION.md): Shared RPC snapshots validated endpoints; convenience contract reads consume the same call/expiry budget. Injected-transport hardening does not qualify actual providers or rollout.
   - [Current-profile lifecycle reads](reports/market-lifecycle-20261104/COVERAGE.md): four new accounting6/portfolio2/custody5 Projection methods follow changing main/residual inventory, unavailable USD and restored reads. Three worker decision/restart/pending-first methods pass with inert RPCs and temporary journals. Not browser or deployed-service acceptance.
+  - [Residual lifecycle audit](reports/residual-lifecycle-20261106/VERIFICATION.md): fresh6 verifies each leg from captured sqrt/ticks/actual L, aggregate, containment and stable/L-sensitive fingerprints. Contribution proof reuse preserves publicportfolio shape; historical5/raw price-outage claims remain. No RPC-honesty, running-service or website qualification is implied.
 
   </details>
 
@@ -1192,6 +1194,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Qualify the actual fixed ZZZ burn(uint256) ABI, exact holder-balance/totalSupply reduction, upgrade/blacklist controls and target route before enabling buyback. The immutable target and successful pool ERC20 transfers alone do not establish burn compatibility. A failed burn reverts; do not substitute an arbitrary transfer-to-wallet as proof of burn.
   - [Exact slot0 input checks](reports/market-adversarial-20261026/REVIEW.md) reject contradictory pool state and malformed fees in unsigned reviews/release observations. A consistent fabricated RPC result or correlated USD sources remain external qualification risks; no single-source fallback is introduced.
   - [Updated exact-source compiler assessment](reports/direct-entry-v3-20261103/compiler-assessment.json) refreshes the83-source/1011-body AST against the previously captured official six-disclosure snapshot. Fresh43normal size gates and471static detector records retain separate source-bound triage. No compiler proof, independent audit or live-service approval is implied; refresh official disclosures before release.
+  - Qualify actual fixed ZZZ transfer/approval callbacks, code/proxy/admin powers and periphery provenance. A compromised dependency can generate late fees between pre-close harvest and either burn; current burn receipts can classify them as principal rather than80/10/5/5. No ordinary external transaction interleaving was established. If that token behavior must be supported, review explicit close-receipt accounting instead of assuming runtime pins freeze upstream behavior. [Boundary](reports/residual-lifecycle-20261106/REVIEW.md).
 
   </details>
 
@@ -1314,6 +1317,7 @@ Decisions and rehearsals before real funds.
   - [Historical venue outage cases](reports/daily-security-20261025/VERIFICATION.md) verify healthy new entry with zero dust, funded incumbent-only dust payout, atomic failure for current venue or old dust payment. No sweep or skipped unbacked reward is permitted.
   - Current [original-currency recovery2](docs/ROYALTY_SETTLEMENT.md#unexpected-currencies-and-unallocated-recovery) forwards unsupported late receipts only to an authenticated successor. Reviewed admission then allocates only unallocated raw units at current GCD-normalized rarity tickets; no conversion or chosen-recipient sweep. Prior recovery1 swap evidence is historical.
   - Exact settlement4 assigns every allocated whole royalty unit; this does not remove token freeze/blacklist/rebase/transfer failure or unknown-currency admission/capacity limits. Preserve earned/deferred/opening liabilities and classify unallocated funds separately. LP scaled fractions and sub-20 raw dust remain separate.
+  - Rehearse raw residual close→attributed idle→guarded reinvestment/parking/terminal return, with destination mode checked before resume. A large idle balance can intentionally block new entry; no sweep or entrant subsidy is permitted. Broken token/core/chain recovery is not universally guaranteed.
 
   </details>
 
@@ -1490,4 +1494,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `9eded27b675627c355ed524b3a32ed8331fec9f9bc24b3b13d8c30222411f9d7`.
+Snapshot SHA-256: `1d68e896bbff88ea07c607cb2dd90f9bb5da97865f6dec78636b28dad45539de`.

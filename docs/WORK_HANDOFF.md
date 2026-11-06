@@ -1,10 +1,18 @@
 # Work handoff
 
-Reviewed6November2026. Factory/claim baseline main4f7436a. Inspect actual Git heads
+Reviewed6November2026. Residual lifecycle baseline main5d70b4b. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
 ## Current result
+
+Main/residual lifecycle audit: reports/residual-lifecycle-20261106/REVIEW.md and
+VERIFICATION.md. Fresh6 shared readers independently prove per-leg amounts,
+containment and stable/L-sensitive identity; contribution context reuses the
+verified hash. No production Solidity change. Ordinary move/resume destination
+hybrid behavior is tested/documented separately from keeper timing. Preserve
+actual token/upstream callback qualification and normal/static reuse scope.
+
 
 Fresh royalty4/recovery2/reporting5/schema14/canonicalV8,18 callable helpers
 plus2 inert Factory data children; accounting6,
@@ -79,7 +87,8 @@ Anvil-only; heartbeat remains user-paused. No public transactions or service res
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-Task factory-claims-20261105-a71c archives this change's baseline, compiler/static,
+Task residual-lifecycle-20261106-f63a archives this audit's baseline, source
+reviews, fresh checks and preservation. Prior factory-claims-20261105-a71c retains its compiler/static,
 profile/planner tests, gas and preservation evidence. Prior last24h-audit-20261105
 retains its own failed/intermediate stages and actual accounting wire proofs.
 Earlier report bytes remain immutable; the final preservation record checks them. Preserve unrelated

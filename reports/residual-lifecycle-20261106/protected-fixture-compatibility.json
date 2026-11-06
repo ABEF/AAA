@@ -1,0 +1,11 @@
+{
+  "path": "tests_python/test_frontend_history.py",
+  "used_fixture_AST_identical": {
+    "h": true,
+    "HistoryRPC": true
+  },
+  "protected_working_sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+  "published_blob_sha256": "fc9028d56b41cbc03ea9161c19d775cc1edf1f831bf06dcd571e97ab42db6e20",
+  "protected_additional_tests_not_selected": true,
+  "note": "Original dirty file unchanged and unstaged; exact published fixture declarations match only the used helpers."
+}

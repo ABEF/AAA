@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-06",
+  "recorded_utc": "2026-11-05T23:32:37.032995+00:00",
+  "review_kind": "Fresh manual source/path/dependency review; no new compile/EVM/test run",
+  "base_commit": "5d70b4b5a3ade066ec46a6dd81ed172cf50bc16e",
+  "source_sha256": {
+    "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+    "src/ZZZLiquidityManager.sol": "12873c25305934e8efd4c0f037221946030cba1f68e46815c0420fa5b7fc88a3",
+    "src/ZZZPortfolioPolicy.sol": "81a6030c9e70c061ec2d320510f6ec0f8b5965af9a9aba7d42ed0e9b47bd732d",
+    "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+    "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+    "src/ZZZVault.sol": "13cf625bdc299ad516158764b9127f183c4eb9d3fb80862df83de54c56dc897a",
+    "src/ZZZMigrationBudget.sol": "ee057e36f4179b9a2b541ebb16772cf53c8279e77ac603d8073bb79c2e01101a",
+    "src/ZZZMigration.sol": "2d0577a01c1cd5ed13b0ba4753fdcc20293f4f7fe8b5b8551580873534ee3dd7",
+    "node_modules/@uniswap/v4-periphery/src/PositionManager.sol": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+    "node_modules/@uniswap/v4-core/src/libraries/Pool.sol": "59c493035ad25d56f24a457e8b40d9d1e3784504b8ff13d171db1eb25c6f128e",
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf"
+  },
+  "confirmed_contract_defects": [],
+  "lifecycle": [
+    {
+      "id": "P01",
+      "case": "First activation; desired OFF or ON",
+      "expected": "No replacement snapshot; mint one main; record desired geometry as applied. ON permits no residual.",
+      "source": "Vault._join/_put; Manager._ordinaryReplacement; child._mintOrIncrease"
+    },
+    {
+      "id": "P02",
+      "case": "Growth in one/two legs; inside/mixed/fully outside",
+      "expected": "Increase main only; both-leg aggregate valuation/shares handled upstream; residual ID/L/ticks and clock stay unchanged.",
+      "source": "Vault._join/_put; child.increase/_mintOrIncrease"
+    },
+    {
+      "id": "P03",
+      "case": "Standalone compound in one/two legs",
+      "expected": "Budget replacement=false; increase existing main only; no aux minted, no continuously enforced60/40 floor.",
+      "source": "Budget.checkpoint phase3; Vault.compound/_redeploy; child.increase"
+    },
+    {
+      "id": "P04",
+      "case": "Normal rebalance; desired OFF",
+      "expected": "Harvest/close every existing leg; snapshot replacement=true; route/mint active single main atomically; delete old association/count.",
+      "source": "Vault._rebalance/_unwind; Manager.balance; child.close/mint"
+    },
+    {
+      "id": "P05",
+      "case": "Normal rebalance; desired ON",
+      "expected": "Same whole-close; at most one side excess can mint aux if useful. Main floor is replacement-only captured valuation, not forced residual40%.",
+      "source": "Manager._hybridReplacement; child._auxiliaryPlan; Budget._afterMove"
+    },
+    {
+      "id": "P06",
+      "case": "Governed same-pair move; destination ON/OFF",
+      "expected": "Budget phase0 is ordinary replacement context too; destination policy controls new one/two legs. Source both close; no old residual retained.",
+      "source": "Vault._movePool; Budget.checkpoint/maintenanceBucket; child.mint/close"
+    },
+    {
+      "id": "P07",
+      "case": "Park then governed resume; destination ON/OFF",
+      "expected": "Park closes both; resume starts from attributed idle plus compound and same ordinary replacement context, may create destination aux if enabled.",
+      "source": "Vault.park/resume/_movePool; Budget._beforeMove"
+    },
+    {
+      "id": "P08",
+      "case": "Paused emergency from Active/Parked",
+      "expected": "Emergency excludes ordinary/hybrid permission even if desiredON. Closes any current legs and creates one main. Mode remains unchanged.",
+      "source": "Manager._ordinaryReplacement/_emergencyBudget; Vault.emergencyRebalance/_rebalance"
+    },
+    {
+      "id": "P09",
+      "case": "Residual-only close; desired ON/OFF; unfilled/mixed/converted",
+      "expected": "Harvest both then burn only aux into same-bucket attributed idle; clear association/count. Main/shares/clock/mode unchanged. Return may contain both currencies.",
+      "source": "Migration.closeResidual; Vault.closeResidual; child.closeSecondary"
+    },
+    {
+      "id": "P10",
+      "case": "Desired OFF but old aux exists",
+      "expected": "Physical aux stays authenticated/valued/collected until actual successful close/merge. Setter does not move capital.",
+      "source": "Policy.setMode/configurationPending; child.portfolioAmounts/collect"
+    },
+    {
+      "id": "P11",
+      "case": "Residual close while desiredON then later rebuild wanted",
+      "expected": "No forced immediate recreation. Same-value enabled configureResidualSide advances geometry for a later guarded whole replacement.",
+      "source": "Policy.configureResidualSide; Strategy.rangeUpdatePending"
+    },
+    {
+      "id": "P12",
+      "case": "Terminal holder exit",
+      "expected": "Every leg closes; no residual count/association survives; exact attributed principal is distinct from earned rewards/buyback. No reopening.",
+      "source": "Vault.exitBucketToHolders; child.close"
+    },
+    {
+      "id": "P13",
+      "case": "Canonical source/import/activation",
+      "expected": "No legitimate live residual allowed at handoff boundary; ordinary resume after compatible parked import can later create aux.",
+      "source": "CanonicalV8 admission; Manager.activeSecondaryCount; Vault.resume"
+    },
+    {
+      "id": "P14",
+      "case": "Failure on first/second mint/burn/transfer/refund or final condition",
+      "expected": "Full EVM rollback preserves old IDs/ownership/backing/mappings/count/nonce; governance policy setter mined earlier remains changed.",
+      "source": "child._mintOrIncrease/close/closeSecondary and Vault wrappers"
+    },
+    {
+      "id": "P15",
+      "case": "No feasible residual geometry or size",
+      "expected": "<=0.1% leftovers or zero computedL deliberately skip mint; infeasible positive gap/range rejects guarded adjustment atomically; change reviewed policy or use existing raw recovery.",
+      "source": "child._auxiliaryPlan; Policy.residualRange"
+    }
+  ],
+  "physical_invariants": [
+    "secondaryId(main) and private primaryOfSecondary(aux) are assigned together only after actual owners/keys/ticks/L match planned mint; deleted together only after burn succeeds.",
+    "activeSecondaryCount counts registered residuals regardless of in-range/fill state; cap4 matches maximum four custody buckets; fills/reversals do not change it.",
+    "At all legitimate creation contexts the residual lies inside main bounds; main-outside/residual-active and both-outside-opposite-sides are unreachable absent corrupt/malicious dependency observations.",
+    "Main/residual token amounts are summed, never rawL. LP token ranges do not mutate when prices or desired policy change.",
+    "Both typed mint actions precede SETTLE_PAIR; IDs are read after approvals. Pinned hookless PositionManager increments IDs synchronously, and postconditions reject altered owner/key/ticks/L.",
+    "Ordinary final mint checks stored tick, not only sqrt, before/after callbacks. Residual initial gap remains strictly outside spot, including downward exact-tick semantics.",
+    "Only fixed Manager can call typed child; only Vault owns/approves LP IDs. No generic executor, caller-chosen recipient, direct principal claim or new governance sweep is introduced."
+  ],
+  "legitimate_market_classes": [
+    "Price below main: both positions inactive on same asset side.",
+    "Price inside main and outside residual: main active; residual one-sided/inactive.",
+    "Price in residual: both active; residual mixed as it traverses.",
+    "Price beyond residual but inside main: main active; residual fully converted/inactive.",
+    "Price above main: both inactive on same asset side.",
+    "Trend/reversal alters inventory and values, not IDs/L/count; next adjustment harvests/closes/rebuilds all actual legs."
+  ],
+  "known_limits": [
+    "A deliberately infeasible gap/width/mainfloor can block ordinary replacement but raw residual close/parking/terminal exit remain separate paths if token/core dependencies work.",
+    "Raw close cannot recover through a permanently broken token/core/chain; no universal liveness claim.",
+    "Malicious/upgradable token or compromised core may generate late fees between harvest and burn; accounting agent is reproducing this separately with explicit upstream-compromise scope.",
+    "No claim that partial residual allocation prevents all MEV or reduces IL in every market.",
+    "Normal core/periphery behavior and local fixture behavior must not be conflated; current public docs reference newer website structure but pinned installed source is authoritative."
+  ],
+  "useful_missing_composition_tests": [
+    "Destination hybridON during same-pair move (source closes both, destination can create aux).",
+    "Parked resume hybridON after residual-filled/mixed/closed state.",
+    "Late-fee callback between main burn and residual burn: distinguish supported pinned token behavior from external-dependency compromise."
+  ],
+  "existing_evidence": [
+    "reports/market-lifecycle-20261104/COVERAGE.md",
+    "reports/portfolio-long-horizon-20261102/CASE_MATRIX.md",
+    "reports/residual-operations-20261031/VERIFICATION.md",
+    "reports/optional-portfolio-20261030/VERIFICATION.md",
+    "test/OptionalPortfolioCore.t.sol",
+    "test/PortfolioPolicy.t.sol",
+    "test/PortfolioAccounting.t.sol"
+  ],
+  "official_references": [
+    "https://developers.uniswap.org/docs/get-started/concepts/liquidity-providers/concentrated-liquidity",
+    "https://developers.uniswap.org/docs/protocols/v4/guides/position-manager"
+  ],
+  "production_edits": false,
+  "tests_run": false,
+  "service_or_chain_actions": false
+}

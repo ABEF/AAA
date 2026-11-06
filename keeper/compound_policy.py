@@ -113,9 +113,11 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
     verify_position_identity(physical[:5], physical[5], int(pool, 16), ticks)
     if number(posm, 'ownerOf(uint256)', lp) != int(targets['vault'], 16):
         raise ValueError('Compound policy physical LP custody differs')
-    if not 0 < number(posm, 'getPositionLiquidity(uint256)', lp) < 1 << 128:
+    main_liquidity=number(posm, 'getPositionLiquidity(uint256)', lp)
+    if not 0 < main_liquidity < 1 << 128:
         raise ValueError('Compound policy physical LP is empty')
-    _, tick, _, _ = decode_slot0(words('state_view', 'getSlot0(bytes32)', pool, count=4),
+    main_info=int(physical[5],16)
+    price, tick, _, _ = decode_slot0(words('state_view', 'getSlot0(bytes32)', pool, count=4),
                                 expected_fee=int(config[2], 16))
     manual = 0
     if physical_only:
@@ -152,27 +154,51 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
         # Disabling desired mode never makes an existing residual disappear.
         # Its actual identity/custody remains required until atomic merging.
         legs=[{'lp_token_id':lp,'tick_lower':ticks[0],'tick_upper':ticks[1]}]
+        auxiliary=None
         if secondary:
             secondary_ticks=[int(word,16) for word in words('liquidity','ticks(uint256)',secondary,count=2)]
             secondary_ticks=[value-2**256 if value>=2**255 else value for value in secondary_ticks]
             if (not MIN_TICK<=secondary_ticks[0]<secondary_ticks[1]<=MAX_TICK or
                     any(value%spacing for value in secondary_ticks)):
                 raise ValueError('Compound residual tick geometry differs')
+            if accounting_version==6 and not ticks[0]<=secondary_ticks[0]<secondary_ticks[1]<=ticks[1]:
+                raise ValueError('Compound residual is not contained in its main')
             physical=words(posm,'getPoolAndPositionInfo(uint256)',secondary,count=6)
             verify_position_identity(physical[:5],physical[5],int(pool,16),secondary_ticks)
+            auxiliary_liquidity=number(posm,'getPositionLiquidity(uint256)',secondary)
             if (number(posm,'ownerOf(uint256)',secondary)!=int(targets['vault'],16) or
-                    not 0<number(posm,'getPositionLiquidity(uint256)',secondary)<2**128):
+                    not 0<auxiliary_liquidity<2**128):
                 raise ValueError('Compound residual custody/liquidity differs')
+            auxiliary=(secondary,int(physical[5],16),auxiliary_liquidity)
             legs.append({'lp_token_id':secondary,'tick_lower':secondary_ticks[0],'tick_upper':secondary_ticks[1]})
         fingerprint=number('liquidity','portfolioFingerprint(uint256)',lp)
         if fingerprint==0:raise ValueError('Empty physical portfolio fingerprint')
         principal=words('liquidity','portfolioAmounts(uint256)',lp,count=2)
-        amounts=[int(word,16) for word in words('liquidity','amounts(uint256)',lp,count=2)]
+        main_amounts=[int(word,16) for word in words('liquidity','amounts(uint256)',lp,count=2)]
+        amounts=list(main_amounts)
         if secondary:
             extra=[int(word,16) for word in words('liquidity','amounts(uint256)',secondary,count=2)]
             amounts=[a+b for a,b in zip(amounts,extra)]
         if any(value>=2**256 for value in amounts) or amounts!=[int(word,16) for word in principal]:
             raise ValueError('Compound portfolio amounts omit or duplicate a physical leg')
+        if accounting_version==6:
+            from zzz_ops.physical_portfolio import physical_amounts,portfolio_fingerprints
+            expected=physical_amounts(price,ticks,main_liquidity)
+            if main_amounts!=expected:
+                raise ValueError('Compound main physical principal differs from stored ticks and liquidity')
+            if secondary:
+                expected_auxiliary=physical_amounts(price,secondary_ticks,auxiliary_liquidity)
+                if extra!=expected_auxiliary:
+                    raise ValueError('Compound residual physical principal differs from stored ticks and liquidity')
+                expected=[a+b for a,b in zip(expected,expected_auxiliary)]
+            if amounts!=expected:
+                raise ValueError('Compound physical principal differs from stored ticks and liquidity')
+            stable,execution=portfolio_fingerprints(executor=targets['lp_position_executor'],
+                position_manager=posm,vault=targets['vault'],pool=pool,
+                main=(lp,main_info,main_liquidity),secondary=auxiliary)
+            if fingerprint!=int(stable,16) or number('liquidity','executionPortfolioFingerprint(uint256)',lp)!=int(execution,16):
+                raise ValueError('Compound physical portfolio fingerprint differs')
+            result['execution_portfolio_fingerprint']=execution
         result.update(portfolio_version=2 if accounting_version==6 else 1,secondary_id=secondary,active_secondary_count=count,
             portfolio_fingerprint='0x'+f'{fingerprint:064x}',physical_legs=legs,
             portfolio_amounts=[str(int(word,16)) for word in principal],

@@ -1,0 +1,27 @@
+{
+  "status": "final_frozen",
+  "owned_files": {
+    "keeper/compound_policy.py": "024084f0ffc94eb18c29fe8bcb998c5c6271eed3dce822d9b90d963bda752201",
+    "frontend_api/portfolio_v6.py": "f146887b8afadc90f3e23a7a05a3cf37cb6288e156ac88efa802461be219301d",
+    "zzz_ops/physical_portfolio.py": "76cd7537c26359fcd1bb09abb9b64ae1c9c0bfe59799352d396b035045c117a2",
+    "zzz_ops/production_v6.py": "0a18ef26c60b18bfde72dc0c57dfba73c441ab13e430f9a889d76410c533d71e",
+    "tests_python/residual_physical_fixture.py": "dec35613c8c1f77d2c92a2ca34075f5cdc8166071b074b625a7813d3c1d4c5c4",
+    "tests_python/test_residual_physical_integrity.py": "3eda6f7ab55060b2561138ba36cc5ece11d1a78fcdf39e887b56cbac06cac735",
+    "tests_python/test_keeper_policy_v6.py": "74962b1a953a18ff31ec4ebd68399b13986ebd2942e7631fbbe2b765b204c455",
+    "tests_python/test_frontend_policy_v6.py": "242f356fe8325ccf2ea73b3a8971fd0b028f55eba7e3107f49443a173af26d03",
+    "tests_python/test_market_lifecycle_projection.py": "e9800ed0fbd0bae98b616b66e626fb89373506fece6dee8685524369698e4734"
+  },
+  "new_test_methods": 13,
+  "distinct_final_affected_methods": 66,
+  "skips": 0,
+  "final_result": "focused-final.json",
+  "retained_pre_fix_negative": "integrity-before.log",
+  "retained_fixture_transition": "affected-first.log",
+  "final_source_stable": true,
+  "extra_rpc": "one same-block executionPortfolioFingerprint getter per fresh6 shared read; contribution context reuses that proof so no extra execution-hash read there",
+  "historic5_reader_unchanged": true,
+  "public_read_bucket_payload_unchanged": true,
+  "neutral_math_extraction_behavior_preserving": true,
+  "no_solidity_service_site_signer_chain_journal_or_git_change": true,
+  "no_public_provider_or_full_suite_qualification": true
+}

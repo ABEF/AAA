@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "sources": 188,
+  "errors": [
+    "TypeError: Member \"primaryOfSecondary\" not found or not visible after argument-dependent lookup in contract ZZZLPPositionExecutor.\n    --> test/OptionalPortfolioCore.t.sol:1386:22:\n     |\n1386 |             assertEq(ZZZLPPositionExecutor(payable(manager.positionOperator())).primaryOfSecondary(aux),main);\n     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n"
+  ],
+  "abi_typecheck_only": true,
+  "not_an_EVM_pass": true
+}

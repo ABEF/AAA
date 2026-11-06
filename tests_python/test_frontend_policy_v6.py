@@ -33,10 +33,15 @@ class FrontendPolicyV6Tests(unittest.TestCase):
             self.rpc.put(c['portfolio_policy'],getter,(self.q.pool,),(value,))
         self.q.overrides[c['vault'],'ACCOUNTING_VERSION()']=[f'{6:064x}']
         for method,words in self.policy.values.items():self.rpc.put(target,method,values=tuple(int(w,16) for w in words))
+        from tests_python.residual_physical_fixture import attach_current_physical
+        self.q.aux_ticks=(20,80)
+        attach_current_physical(self.q)
+        method='executionPortfolioFingerprint(uint256)'
+        self.rpc.responses.selected[c['liquidity'],calldata(method,123)]=(c['liquidity'],method,(123,))
         self.p=Projection(self.config,self.rpc,clock=lambda:1000);self.c=c
 
     def test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage(self):
-        self.base.outage();self.q.secondary=124;self.q.secondary_count=1;self.q.summed=(130,240)
+        self.base.outage();self.q.secondary=124;self.q.secondary_count=1
         result=self.p.nft(self.rpc.nft_id)
         self.assertEqual(addr(30),result['owner']);self.assertFalse(result['position']['current_lp_value']['available'])
         portfolio=result['position']['local_custody']['portfolio']

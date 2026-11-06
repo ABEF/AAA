@@ -49,6 +49,12 @@ actual release record below remain required.
 | Services/site | Schema14/direct Entry3/exact-unit original-currency royalty4 graph with18 callable helpers plus2 inert Factory data children, reporting5 and canonicalV8 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
+The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)
+strengthens fresh6 off-chain physical proof without changing Solidity. Its
+normal/static evidence is exact unchanged reuse, not a new analyzer run. New
+local-core vectors/scenarios and injected-RPC cases do not qualify actual
+ZZZ/token callbacks, periphery provenance, gas, providers or operating rollout.
+
 ## Release identity
 
 | Approval field | Recorded value |

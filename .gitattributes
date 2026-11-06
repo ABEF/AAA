@@ -116,3 +116,6 @@ reports/authority-audit-20261103/** -text whitespace=cr-at-eol
 
 # Preserve exact holder-exit assurance diagnostics and evidence.
 reports/holder-exit-assurance-20261103/** -text whitespace=cr-at-eol
+
+# Preserve the original diagnostic spacing in this audit's failed fixture log.
+reports/residual-lifecycle-20261106/services/affected-first.log -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

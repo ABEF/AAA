@@ -1,0 +1,3918 @@
+{
+  "kind": "source-bound residual lifecycle audit evidence",
+  "baseline": "5d70b4b5a3ade066ec46a6dd81ed172cf50bc16e",
+  "production_solidity_changed": false,
+  "services_distinct_methods": 66,
+  "new_services_methods": 13,
+  "new_consumer_methods": 1,
+  "new_actual_core_lifecycle_successes": 3,
+  "separate_actual_core_producer_successes": 1,
+  "skipped_or_empty_attempts_counted_as_pass": false,
+  "source_test_pins": {
+    "frontend_api/portfolio_v6.py": "f146887b8afadc90f3e23a7a05a3cf37cb6288e156ac88efa802461be219301d",
+    "keeper/compound_policy.py": "024084f0ffc94eb18c29fe8bcb998c5c6271eed3dce822d9b90d963bda752201",
+    "test/OptionalPortfolioCore.t.sol": "aed5e0511e3abb0dee655d90f27bd20d8920e15e5453bc8a5dedfe37d2c609c2",
+    "tests_python/residual_physical_fixture.py": "dec35613c8c1f77d2c92a2ca34075f5cdc8166071b074b625a7813d3c1d4c5c4",
+    "tests_python/test_frontend_policy_v6.py": "242f356fe8325ccf2ea73b3a8971fd0b028f55eba7e3107f49443a173af26d03",
+    "tests_python/test_keeper_policy_v6.py": "74962b1a953a18ff31ec4ebd68399b13986ebd2942e7631fbbe2b765b204c455",
+    "tests_python/test_market_lifecycle_projection.py": "e9800ed0fbd0bae98b616b66e626fb89373506fece6dee8685524369698e4734",
+    "tests_python/test_residual_physical_integrity.py": "3eda6f7ab55060b2561138ba36cc5ece11d1a78fcdf39e887b56cbac06cac735",
+    "tests_python/test_residual_producer_vectors.py": "1a286b614b9327c443a4a5f966fd249cec3a85bb852a1526cad681788300152d",
+    "zzz_ops/physical_portfolio.py": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+    "zzz_ops/production_v6.py": "0a18ef26c60b18bfde72dc0c57dfba73c441ab13e430f9a889d76410c533d71e"
+  },
+  "published_artifacts": {
+    "accounting/abi-producer/external-artifacts.json": {
+      "sha256": "15e390b719d9ddbe05f47b193bde392ba49e9fa4ee841cba92452e2196c56b77",
+      "bytes": 649
+    },
+    "accounting/abi-producer/output.json": {
+      "sha256": "67c6bd7849c25f30b36f0711f07a06a40c65010bcc3dba4edc4b0f16b0c28b41",
+      "bytes": 7701
+    },
+    "accounting/abi-producer/status.json": {
+      "sha256": "6fbc98064ba5db51baf83b782428859587750778e88061493da0aff8e738df86",
+      "bytes": 983
+    },
+    "accounting/abi-producer-corrected/external-artifacts.json": {
+      "sha256": "d3524f5279ea8be8562bac42f49fbdeca915315e9e7f97ae323a0bd42be185ad",
+      "bytes": 651
+    },
+    "accounting/abi-producer-corrected/status.json": {
+      "sha256": "e31efda91d21811c7bed3c08b8226db77db02ddda8df5b07d3a75bdb8d049057",
+      "bytes": 114
+    },
+    "accounting/abi-typecheck/external-artifacts.json": {
+      "sha256": "04ad47d0694fec9c1fada54cd459277ac93898533f9fb4a4728a62a7809c5e44",
+      "bytes": 649
+    },
+    "accounting/abi-typecheck/output.json": {
+      "sha256": "96765d318f7891886a03890477acc1fc7866e10deb772c767691bb920e975a1a",
+      "bytes": 6928
+    },
+    "accounting/abi-typecheck/status.json": {
+      "sha256": "0a8603e7881780eb35b0cc9f151248faf5909a88913b6784d4b3e6dfa1837847",
+      "bytes": 547
+    },
+    "accounting/abi-typecheck-corrected/external-artifacts.json": {
+      "sha256": "a43ab1a5dcb8df2d411ab23f52b1d3553e44f5c39f95dbaf3b66a5940a99e732",
+      "bytes": 651
+    },
+    "accounting/abi-typecheck-corrected/status.json": {
+      "sha256": "e31efda91d21811c7bed3c08b8226db77db02ddda8df5b07d3a75bdb8d049057",
+      "bytes": 114
+    },
+    "accounting/ACCOUNTING_REVIEW.md": {
+      "sha256": "232979c870614de822c02c0611b545a3ce6326f472106b7573bcee282ef012fc",
+      "bytes": 9357
+    },
+    "accounting/evm-first/external-artifacts.json": {
+      "sha256": "9099d5b455c3d142a01bb9ce3f21b928d96923bc2a1019618f4400be62c106b5",
+      "bytes": 786
+    },
+    "accounting/evm-first/START.json": {
+      "sha256": "9241506480d9f3037718f2e6640f1b9af3c8f156e364836f35e0ebaa822300e6",
+      "bytes": 19323
+    },
+    "accounting/evm-first/status.json": {
+      "sha256": "bea245d16f2f0caccd06e847b4be83d50ba325c6eb81633029fb11384bd622e4",
+      "bytes": 37598
+    },
+    "accounting/evm-first/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting/evm-first/stdout.json": {
+      "sha256": "8bd6562d9b116c8251a906b3e08981e9b694a45314ca441c01743686477ffdbe",
+      "bytes": 237249
+    },
+    "accounting/evm-producer/external-artifacts.json": {
+      "sha256": "9dfc830ebcf863b5701cc47cf2402d8fc92a967cafadba61205002017604ebd1",
+      "bytes": 782
+    },
+    "accounting/evm-producer/START.json": {
+      "sha256": "70944820b439c33148b85276a09973b709777a4a8fefbd7f4300adf190199998",
+      "bytes": 19392
+    },
+    "accounting/evm-producer/status.json": {
+      "sha256": "df0b1149bd07532e831c4672253527c63c3ec6c83b55112e67a17cf8b32109d1",
+      "bytes": 36878
+    },
+    "accounting/evm-producer/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting/evm-producer/stdout.json": {
+      "sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "bytes": 76
+    },
+    "accounting/evm-producer-corrected/external-artifacts.json": {
+      "sha256": "19fcc499be16d5def8e78cf6eddb98eee6c92415e3558598e0f2f10281a9fa3a",
+      "bytes": 785
+    },
+    "accounting/evm-producer-corrected/START.json": {
+      "sha256": "11cd5036f52f4dfb7d00557af34c23f245badee7066aec131e71eb4fee6b6a3c",
+      "bytes": 19356
+    },
+    "accounting/evm-producer-corrected/status.json": {
+      "sha256": "1ef51cb4745920e262156dd686506879344a0f6b9535e00d564d34b2941a2e1e",
+      "bytes": 37077
+    },
+    "accounting/evm-producer-corrected/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting/evm-producer-corrected/stdout.json": {
+      "sha256": "3957a3b9204a305d867e42a77721173ee33dc9dfcd1674d9b6a6ef6649be9121",
+      "bytes": 49931
+    },
+    "accounting/FINAL_ACCOUNTING_REVIEW.json": {
+      "sha256": "aaef035ed4c2935decc2e32202fff4759c7c6ae117567584446f81d4609120c0",
+      "bytes": 3420
+    },
+    "accounting/FINAL_PRODUCER_REVIEW.json": {
+      "sha256": "e59598f8ecca526bb24818dabc8853e3b08b5737d6c70f096134ee8444dea91b",
+      "bytes": 3458
+    },
+    "actual-physical-vectors.json": {
+      "sha256": "a08c4665f3cb03d2f914a5914b0da7a9c0842f0118843fe2cd1e7bc2050a093f",
+      "bytes": 18042
+    },
+    "documentation-checks.json": {
+      "sha256": "85affbab419927f4f49cfd669607237b9700988d4d564286ba24898310313d17",
+      "bytes": 899
+    },
+    "LIFECYCLE.md": {
+      "sha256": "22caa7ed32d1eb657e471f2f2367f5b10d41c5325b6389702029b312eff162b5",
+      "bytes": 13523
+    },
+    "physical-review.json": {
+      "sha256": "a53b09dedc25c0267537397737f7545761dbf7c2a86eb6852e06e118b89322e8",
+      "bytes": 10200
+    },
+    "PLAN.md": {
+      "sha256": "341c3d3a5dfb07c7e33d0439ee7308a5f4623cad23c47225e9530a4f620dcb42",
+      "bytes": 3600
+    },
+    "preservation.json": {
+      "sha256": "443b22ef221d01e29c6fda80eb16023292608dec4cd8e33ec4c311c7079577cc",
+      "bytes": 9314
+    },
+    "producer-consumer.log": {
+      "sha256": "450dd48ca04979c33dc68ad11fd32b1a0cf32598ddfaba9176d2ce68f6cc2673",
+      "bytes": 330
+    },
+    "protected-fixture-compatibility.json": {
+      "sha256": "b39429682802242673c9dc2d547eb18e233a15b6e11ca974b4056d39b12e8654",
+      "bytes": 509
+    },
+    "publication-index.json": {
+      "sha256": "73c77df97ce1f12beddc9338dd02af676e232bed14f73f7474b2fe497b24afcc",
+      "bytes": 35933
+    },
+    "REVIEW.md": {
+      "sha256": "1b57a5727a2cafa82203772726e7c1c6dc22813ee3c21f8c2c3119d1e08628e5",
+      "bytes": 6159
+    },
+    "services/affected-first.log": {
+      "sha256": "0acbb447e6c99f76396d1bb48ee0cc4e19535f7fb8be642587b3f261ec55d426",
+      "bytes": 17338
+    },
+    "services/comment-only-follow-up.json": {
+      "sha256": "6fd733f93c0da93e309cc6ab5d4e7e65bd7d9e2b606c089031098c50be525d93",
+      "bytes": 394
+    },
+    "services/focused-final.json": {
+      "sha256": "fdd30fc4d6a6323b8cf3fa20b026cdbdfa83259c3139ae649c5b72b25696d3b0",
+      "bytes": 30494
+    },
+    "services/focused-final.log": {
+      "sha256": "00e49d96611345341aa19285709af08129bc27ab624e6261e88b2b52b48c3d71",
+      "bytes": 14774
+    },
+    "services/integrity-before.log": {
+      "sha256": "4ab8f5ba3582c8f5efb4d91fec80bd5a198b7dffa1dd8893bb05e9205cfe21ac",
+      "bytes": 3020
+    },
+    "services/SERVICES_EVIDENCE.json": {
+      "sha256": "cef4a0e47570f7738e2302f9f06e06f5848492a8390b74ffaceeff7eab01205f",
+      "bytes": 1787
+    },
+    "services/SERVICES_REVIEW.md": {
+      "sha256": "1f328b3dca6be03d6d02557eaa12745cd36e1fb70a338c5d8921747a4a3c7fb8",
+      "bytes": 4581
+    },
+    "solidity-reuse.json": {
+      "sha256": "b3b77ee3e91022317068cfa20dd546843ed394972387d8b14ced6fa17430f7c0",
+      "bytes": 8525
+    },
+    "VERIFICATION.md": {
+      "sha256": "1a8bc52841aaa4cfe8b86011550bb47c886a0c78211176f6308ccd936684adbf",
+      "bytes": 6636
+    }
+  },
+  "external_retained_artifacts": {
+    "accounting-agent/abi-producer/input.json": {
+      "sha256": "bf6937b31cbcfe94808cfdf68a04d4dedc8acbf6f72c6650e032394e6995d6d1",
+      "bytes": 1999520
+    },
+    "accounting-agent/abi-producer/output.json": {
+      "sha256": "67c6bd7849c25f30b36f0711f07a06a40c65010bcc3dba4edc4b0f16b0c28b41",
+      "bytes": 7701
+    },
+    "accounting-agent/abi-producer/status.json": {
+      "sha256": "6fbc98064ba5db51baf83b782428859587750778e88061493da0aff8e738df86",
+      "bytes": 983
+    },
+    "accounting-agent/abi-producer/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/abi-producer-corrected/input.json": {
+      "sha256": "d6185b8788660bd8c8726b70859d290f1cff36a49a1a1c8c24d1a9403af7978b",
+      "bytes": 1999720
+    },
+    "accounting-agent/abi-producer-corrected/output.json": {
+      "sha256": "a6f159e0941cacb39ad8459d12be220cff7b484734af7047d41ec675fd4b4cd0",
+      "bytes": 886108
+    },
+    "accounting-agent/abi-producer-corrected/status.json": {
+      "sha256": "e31efda91d21811c7bed3c08b8226db77db02ddda8df5b07d3a75bdb8d049057",
+      "bytes": 114
+    },
+    "accounting-agent/abi-producer-corrected/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/abi-typecheck/input.json": {
+      "sha256": "d11443415bac19bec2234f7fbaa8ec68411f62f199d55a7a36e4f99479697991",
+      "bytes": 1996249
+    },
+    "accounting-agent/abi-typecheck/output.json": {
+      "sha256": "96765d318f7891886a03890477acc1fc7866e10deb772c767691bb920e975a1a",
+      "bytes": 6928
+    },
+    "accounting-agent/abi-typecheck/status.json": {
+      "sha256": "0a8603e7881780eb35b0cc9f151248faf5909a88913b6784d4b3e6dfa1837847",
+      "bytes": 547
+    },
+    "accounting-agent/abi-typecheck/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/abi-typecheck-corrected/input.json": {
+      "sha256": "dd4a486911d312803315c17ac71839399bec02166c4f7708ba098e8423236d11",
+      "bytes": 1996367
+    },
+    "accounting-agent/abi-typecheck-corrected/output.json": {
+      "sha256": "575e51de9f520a51fb7efeb2273bd832e6c4ae64e3813c87550410cb372dbdec",
+      "bytes": 885729
+    },
+    "accounting-agent/abi-typecheck-corrected/status.json": {
+      "sha256": "e31efda91d21811c7bed3c08b8226db77db02ddda8df5b07d3a75bdb8d049057",
+      "bytes": 114
+    },
+    "accounting-agent/abi-typecheck-corrected/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/ACCOUNTING_REVIEW.md": {
+      "sha256": "232979c870614de822c02c0611b545a3ce6326f472106b7573bcee282ef012fc",
+      "bytes": 9357
+    },
+    "accounting-agent/actual-physical-vectors.json": {
+      "sha256": "a08c4665f3cb03d2f914a5914b0da7a9c0842f0118843fe2cd1e7bc2050a093f",
+      "bytes": 18042
+    },
+    "accounting-agent/build/cache/solidity-files-cache.json": {
+      "sha256": "72cb02cc250c4ccefb77e77a4b4cd9acc786f58b0ad611ac539288fc82286f04",
+      "bytes": 183153
+    },
+    "accounting-agent/build/out/AccountingVaultHarness.sol/AccountingVaultHarness.json": {
+      "sha256": "03cb710a0c7a892a0ccd86292bcdaa601d0c72256ffef04fddeee576988a1ac1",
+      "bytes": 221486
+    },
+    "accounting-agent/build/out/ActionConstants.sol/ActionConstants.json": {
+      "sha256": "b37642c3a8ba5fcd188a82319f2033791233510a1cf324fa66048289ea2f8293",
+      "bytes": 4221
+    },
+    "accounting-agent/build/out/Actions.sol/Actions.json": {
+      "sha256": "5e914a9bfd9616a55094d91b300eb5b88551e26783bc02f46ec1f12e3c7f528d",
+      "bytes": 4355
+    },
+    "accounting-agent/build/out/BalanceDelta.sol/BalanceDeltaLibrary.json": {
+      "sha256": "bf756fecd3a4a9121fca08c487f9aedef2bfa8f540a6e0e4e2bd5623a5ebc1d3",
+      "bytes": 6680
+    },
+    "accounting-agent/build/out/Base.sol/CommonBase.json": {
+      "sha256": "b09e9517c9f3e1d5c7329033bddb5b983a19e6ba772415172d8fce677ed88d3c",
+      "bytes": 5829
+    },
+    "accounting-agent/build/out/Base.sol/ScriptBase.json": {
+      "sha256": "b0a010355f8aefea2e93f92f8b66366de9863ee8aea76d026b16c8fd5b5eca43",
+      "bytes": 4678
+    },
+    "accounting-agent/build/out/Base.sol/TestBase.json": {
+      "sha256": "6e49f81e2216f538557d4f5c7916c4518ac391bf415f04514754b05f032db7e7",
+      "bytes": 4674
+    },
+    "accounting-agent/build/out/Base64.sol/Base64.json": {
+      "sha256": "9a79987c69048100543d07044b973c9b154f837f2c6b53f4bce762cdcbe7fa90",
+      "bytes": 4209
+    },
+    "accounting-agent/build/out/BaseActionsRouter.sol/BaseActionsRouter.json": {
+      "sha256": "fff77c2a0ed1e62d70fce1a63f9471adc14b263a13f0aad856ea78199acc0b0c",
+      "bytes": 23760
+    },
+    "accounting-agent/build/out/BeforeSwapDelta.sol/BeforeSwapDeltaLibrary.json": {
+      "sha256": "ef5748466011338f7fb5aa5c13cccbe60af764f34f7d174f566fc44044b7f81b",
+      "bytes": 5458
+    },
+    "accounting-agent/build/out/BitMath.sol/BitMath.json": {
+      "sha256": "e8e55ad146ebafa5b52a1d6593db69d8f64e37cc9414d46d89720acd114aeff9",
+      "bytes": 4246
+    },
+    "accounting-agent/build/out/build-info/0cb1f151c0348186.json": {
+      "sha256": "b88d46b02ce7b4b89863cd16f8d133f060e0270c1e481dfa8594f8ef9a9f3299",
+      "bytes": 4568
+    },
+    "accounting-agent/build/out/build-info/31192263e8d6448d.json": {
+      "sha256": "e18f351a6bbb5ad675445824452b232e8854a17e165ca5a287ab7f311fe23730",
+      "bytes": 4642
+    },
+    "accounting-agent/build/out/build-info/443c27f070306d89.json": {
+      "sha256": "cc5056564806cfbccaddf919925c24bf6c04b2afb2110cf4bffeae6a74bab133",
+      "bytes": 4319
+    },
+    "accounting-agent/build/out/build-info/4a477189c4bb3582.json": {
+      "sha256": "6d9ec772c4ce4711746a400a7e4d8368381dd8e083dafee657bd275e7e07fe47",
+      "bytes": 4422
+    },
+    "accounting-agent/build/out/build-info/55d7765441772f90.json": {
+      "sha256": "46121b8ef7b3c9c94cf905de86985f9735dcb2e571f8f62bb38074167d1d5e00",
+      "bytes": 4944
+    },
+    "accounting-agent/build/out/build-info/58cc6c6463a5a57c.json": {
+      "sha256": "16d8dd526dcf17863362709d924b22fba057046afc0e86b0251125f98d8ff4e2",
+      "bytes": 4422
+    },
+    "accounting-agent/build/out/build-info/77c44e49e45a1930.json": {
+      "sha256": "7d68cd7cfb9fe7b4f551a1a02932c637f0379f0083546b58ba8b5398b8f3376a",
+      "bytes": 10821
+    },
+    "accounting-agent/build/out/build-info/7ef6a4923263a615.json": {
+      "sha256": "0c6428514aa34dcf6fed8202f6c68593408fb0a5c30c21fc4b3e6b000e2f51f3",
+      "bytes": 4895
+    },
+    "accounting-agent/build/out/build-info/8afc8abb94739f95.json": {
+      "sha256": "16445a63fe26c23566770e3ceb87270ba72f943b95341facbf40e82972d67387",
+      "bytes": 11223
+    },
+    "accounting-agent/build/out/build-info/98d201f81583a159.json": {
+      "sha256": "eefcbd45f0662e0ce707c088b6e0a796a5560d0f0073ce3d495c39ce153f6f0e",
+      "bytes": 4567
+    },
+    "accounting-agent/build/out/build-info/a552bbbff758e790.json": {
+      "sha256": "cfed379f9210152ece8134f781bb3c952b55dee1b6bbc220a38158d00d7d73d7",
+      "bytes": 4488
+    },
+    "accounting-agent/build/out/build-info/ad26924a23afbbe3.json": {
+      "sha256": "80463e9785e6c2d8c242346779fb521d4808a179f75160f7864d5c721bc6b470",
+      "bytes": 4529
+    },
+    "accounting-agent/build/out/build-info/b1b40d5e5fed30b6.json": {
+      "sha256": "01596635c8338a44bedd2179ac002c7624bd3fb7e71e6a69f8a0f011612af2f6",
+      "bytes": 5406
+    },
+    "accounting-agent/build/out/build-info/b4d28eac9a6a8858.json": {
+      "sha256": "d71debf8869b134e3e39f83c9407303792004cdf9eff2f29d83b586859be9463",
+      "bytes": 4642
+    },
+    "accounting-agent/build/out/build-info/b7b7206ab988efc5.json": {
+      "sha256": "72aca324910d6cf8ab96dab87c320660f1c74803341fe32645d326b06410349a",
+      "bytes": 4473
+    },
+    "accounting-agent/build/out/build-info/cb9bffca80d1b0c5.json": {
+      "sha256": "e7eb79c11f3c67bb0ee67a3f967cda8e1eca9829b7a7337a5d85d5e0e91b187a",
+      "bytes": 4399
+    },
+    "accounting-agent/build/out/build-info/e01e5ed9f51cde29.json": {
+      "sha256": "a7dfcfd45363c01a65cb46386f0b1208e450a6ca156fd20ab4c2f5e1d96a3bfa",
+      "bytes": 4894
+    },
+    "accounting-agent/build/out/build-info/e8c04eaa0fe684af.json": {
+      "sha256": "6f6966b7cc43ae0d19365362122d3868c50b5dbb0dadac3e39f995a8e2efa84f",
+      "bytes": 4273
+    },
+    "accounting-agent/build/out/CalldataDecoder.sol/CalldataDecoder.json": {
+      "sha256": "9298e4d841cd6d8385abb4b40eec04ecfd96db7a885471599412702fde11b727",
+      "bytes": 15976
+    },
+    "accounting-agent/build/out/CanonicalFixture.sol/CanonicalFixture.json": {
+      "sha256": "13d46a1fe60417f122c1a7ce5b6667796431724756aac113b0979dc628769e5f",
+      "bytes": 19555
+    },
+    "accounting-agent/build/out/CanonicalFixture.sol/ICanonicalFixtureBinder.json": {
+      "sha256": "13ad3cdbda2b508e3abeeefeeb5898e5d86dd80004eb4a69958ba5fb39b7553c",
+      "bytes": 19659
+    },
+    "accounting-agent/build/out/CanonicalHandoff.t.sol/CanonicalHandoffTest.json": {
+      "sha256": "d8006083908112db667a82a243a1300c753dd5c99dde812efb0e5d13afdb23ca",
+      "bytes": 2389387
+    },
+    "accounting-agent/build/out/CanonicalHandoff.t.sol/HandoffNativeWrapper.json": {
+      "sha256": "b5f0406a07a5075202ae9bb39870492862290dff03772fca8b4b45fb3d26f65e",
+      "bytes": 98718
+    },
+    "accounting-agent/build/out/CanonicalHandoff.t.sol/HandoffTransitionToken.json": {
+      "sha256": "919433517a54442af562c187f650eade6bb4e357009ef0b8ca85cc2743ff9005",
+      "bytes": 105747
+    },
+    "accounting-agent/build/out/CanonicalHandoff.t.sol/ICancelledRoyaltyHandoffTest.json": {
+      "sha256": "4ee024fa37113fd06d339d42780b0b574e561b72262f1085639a8dbd756c5fd7",
+      "bytes": 62582
+    },
+    "accounting-agent/build/out/CanonicalInterface.sol/ICanonicalHandoffTest.json": {
+      "sha256": "1d5ad508b8578dff219d1e54ddfce4e5095d08db8e2553b2f28b80ea8df311c5",
+      "bytes": 13672
+    },
+    "accounting-agent/build/out/CanonicalPreparation.t.sol/CanonicalPreparationTest.json": {
+      "sha256": "d9808cc880a91e0bb90116437ba058a20c17fa37f35476a58fba6c49d8d2f72e",
+      "bytes": 1808240
+    },
+    "accounting-agent/build/out/CanonicalPreparation.t.sol/PreparationMintCallback.json": {
+      "sha256": "2df4b9a5875aab97f94bd5b57e8b14d931ae4ea9bc8f8c4da5416dd057b7e337",
+      "bytes": 75315
+    },
+    "accounting-agent/build/out/CanonicalPreparation.t.sol/PreparationTreasuryCallback.json": {
+      "sha256": "32bddead95f62fe57b7ce4c14f7ea36503c25bbbcbc8331d0709caacac3da1b4",
+      "bytes": 69958
+    },
+    "accounting-agent/build/out/CanonicalPreparationFixtures.sol/PreparationPolicy.json": {
+      "sha256": "17908cdfb7e22c3182160744d583bc6b6a5fc5915682c662fd1c83054079f356",
+      "bytes": 88577
+    },
+    "accounting-agent/build/out/CanonicalPreparationFixtures.sol/PreparationPools.json": {
+      "sha256": "5032f7d7b5366b004ec3240bd19252b3b9a4313fff6fd0fc2e20bda707fe9ab8",
+      "bytes": 97315
+    },
+    "accounting-agent/build/out/CanonicalPreparationFixtures.sol/PreparationVenue.json": {
+      "sha256": "152bbcdbd88d72ed1ea3bdee0af0fdf8fcfa96ae314cb4fc4a13cdab40785498",
+      "bytes": 179584
+    },
+    "accounting-agent/build/out/ClaimRouter.t.sol/ClaimRouterOwner.json": {
+      "sha256": "3f923281999ed61fdb1c0f1baf33245e50e2edacd8442abb6cdc360e2544bef2",
+      "bytes": 79308
+    },
+    "accounting-agent/build/out/ClaimRouter.t.sol/ClaimRouterTest.json": {
+      "sha256": "a75af4117da1be1df01316a627222cd2fd28d0b4745b2f0d44b442847e334769",
+      "bytes": 872569
+    },
+    "accounting-agent/build/out/ClaimRouter.t.sol/ClaimVaultFixture.json": {
+      "sha256": "f44936485b88e92962f0c1877f4dfae865248b93ed7a3396c5bced4e0d75b586",
+      "bytes": 62414
+    },
+    "accounting-agent/build/out/CombinedCapacityGas.t.sol/CapacityRoyaltyFaultToken.json": {
+      "sha256": "4514c31b37ca3a0866d4f7fc78086874b526aedc826e8603e637d37d373f9181",
+      "bytes": 94602
+    },
+    "accounting-agent/build/out/CombinedCapacityGas.t.sol/CombinedCapacityGasTest.json": {
+      "sha256": "945727a29de988926a8006758910f7383ffc601a06018db3662d9bbbbe66f3eb",
+      "bytes": 1611958
+    },
+    "accounting-agent/build/out/CombinedCapacityGas.t.sol/CombinedCapacityVenue.json": {
+      "sha256": "b25a3fcc1c29c89eeda7acc2203aec3e0c80235b48b862908dff8d2d74b08477",
+      "bytes": 148471
+    },
+    "accounting-agent/build/out/console.sol/console.json": {
+      "sha256": "ca26388a5e61272c752a45f6af8f20726e9624ba2edd4203b295e5c983744d0b",
+      "bytes": 3888
+    },
+    "accounting-agent/build/out/Context.sol/Context.json": {
+      "sha256": "2e8cc0d253ae517440f659fd86f72f0ad12a8cfb90be0e66f96c021466748281",
+      "bytes": 4097
+    },
+    "accounting-agent/build/out/Currency.sol/CurrencyLibrary.json": {
+      "sha256": "f06235367d764439eae6c20308617e6199b7c5075191dd2f678207393c0e259d",
+      "bytes": 7752
+    },
+    "accounting-agent/build/out/CurrencyDelta.sol/CurrencyDelta.json": {
+      "sha256": "e27517a664062e679dd827fd6ab4538fcc2f1c23f26649ce6d0ca6831f029a36",
+      "bytes": 6142
+    },
+    "accounting-agent/build/out/CurrencyReserves.sol/CurrencyReserves.json": {
+      "sha256": "ccef91dbdc00a0ff5a0edc9085fad3e4bf31b612d96ca768f6f27db0e7eae4b4",
+      "bytes": 5958
+    },
+    "accounting-agent/build/out/CustomRevert.sol/CustomRevert.json": {
+      "sha256": "4d27ac8098cd5d523fce81d534b5044ee17d42fe9002e715ecc4f3fcce8fa69b",
+      "bytes": 5494
+    },
+    "accounting-agent/build/out/DeltaResolver.sol/DeltaResolver.json": {
+      "sha256": "149ed588061c43819ab5f01d81db3de8a43bec26a58b6c381a4ce6b71c4776c7",
+      "bytes": 19936
+    },
+    "accounting-agent/build/out/draft-IERC6093.sol/IERC1155Errors.json": {
+      "sha256": "3ae48dc36af1497860da5a657d6f9a03037c35d17f74065f4b095078b7cc9a89",
+      "bytes": 9434
+    },
+    "accounting-agent/build/out/draft-IERC6093.sol/IERC20Errors.json": {
+      "sha256": "ae96c9413294161647ee93d23b28b7f632d9fe5892107fcb04a184a376f001ef",
+      "bytes": 8484
+    },
+    "accounting-agent/build/out/draft-IERC6093.sol/IERC721Errors.json": {
+      "sha256": "a9bb65287e4b5240ff9f361cdbbeb381159e0354805fa922bf1b6de8589b2269",
+      "bytes": 9351
+    },
+    "accounting-agent/build/out/DualOracleFixture.sol/CorrelatedFixtureFeed.json": {
+      "sha256": "dfb24da2117328e4b4671422c38a19b79fbcc061eb87654299496cbb3a47a329",
+      "bytes": 17565
+    },
+    "accounting-agent/build/out/DualOracleFixture.sol/DualOracleFixture.json": {
+      "sha256": "11918141b019af82025ecabc92691000487fdd0506016b21b3029d4b138a1034",
+      "bytes": 9755
+    },
+    "accounting-agent/build/out/EIP712_v4.sol/EIP712_v4.json": {
+      "sha256": "da0559558543950643d0cbda3ccf7691bf109e83ca069f3df5a22207232218d0",
+      "bytes": 11248
+    },
+    "accounting-agent/build/out/ERC165.sol/ERC165.json": {
+      "sha256": "0225a84b5dfc2d0e1be9907b58836826186241d7f765e8210555d6894f78d532",
+      "bytes": 6117
+    },
+    "accounting-agent/build/out/ERC20.sol/ERC20.json": {
+      "sha256": "c93267f23b6e3a2e11a96112a0da939a86e9f1ff39ee5df56496e2aab7ce6a2e",
+      "bytes": 24448
+    },
+    "accounting-agent/build/out/ERC6909.sol/ERC6909.json": {
+      "sha256": "504a4960523176e6ed15adbefe3fbd9d606201c3e44f2020de2f25e4a5176854",
+      "bytes": 19641
+    },
+    "accounting-agent/build/out/ERC6909Claims.sol/ERC6909Claims.json": {
+      "sha256": "4d64166c8ac22121aec492dac31ad583104083b198323cc700de9b4f8922bd0b",
+      "bytes": 19341
+    },
+    "accounting-agent/build/out/ERC721.sol/ERC721.json": {
+      "sha256": "eaf7006a47035abd997d32550e6b534252d27c086cf79f3f90eb2b0026ae5b85",
+      "bytes": 37876
+    },
+    "accounting-agent/build/out/ERC721.sol/ERC721TokenReceiver.json": {
+      "sha256": "6b7becebc387fb30d7f0cb83dde6222539d79b80434e4e6a088747685622eb00",
+      "bytes": 5114
+    },
+    "accounting-agent/build/out/ERC721Permit_v4.sol/ERC721Permit_v4.json": {
+      "sha256": "c8309c0a7572d310e124878fb7a30596e769410f6825634fceaa82ed93c29ef7",
+      "bytes": 35222
+    },
+    "accounting-agent/build/out/ERC721PermitHash.sol/ERC721PermitHash.json": {
+      "sha256": "0414b643ca29347f977eeff1bcd12c9ed61096d31d7078a3a80294e39d440727",
+      "bytes": 4395
+    },
+    "accounting-agent/build/out/ERC721Utils.sol/ERC721Utils.json": {
+      "sha256": "74bc8b6c02807d503d22b8be32aee68d30d5f17a346b008a06e94bccfcbbcdda",
+      "bytes": 5506
+    },
+    "accounting-agent/build/out/ExactAsset.sol/ExactAsset.json": {
+      "sha256": "2ccd649f09494c3f43805dadb5743bcfcef75823b61fb4439cd73c192c49fb5f",
+      "bytes": 8623
+    },
+    "accounting-agent/build/out/ExactRoyaltyAllocation.sol/ExactRoyaltyAllocation.json": {
+      "sha256": "33e023831c8f632ae65b6be7ba49dfa67c9764d0f1bd52920a026ac2f4efae8c",
+      "bytes": 4376
+    },
+    "accounting-agent/build/out/ExactToken.sol/ExactToken.json": {
+      "sha256": "3e4d7b2d7a9e0ea42901dc5f0abbf2212afdf5c011481690689accc1739729d4",
+      "bytes": 8225
+    },
+    "accounting-agent/build/out/Extsload.sol/Extsload.json": {
+      "sha256": "a9f3b5dd78a682923208f08b147b0e36f7b3ccbabdc85a9957633b1a5f637a40",
+      "bytes": 8074
+    },
+    "accounting-agent/build/out/Exttload.sol/Exttload.json": {
+      "sha256": "adc809eaf6267ba263f90c881ea3cec1f6e13b5f6aed9223ef5c6edc98cc59d4",
+      "bytes": 6632
+    },
+    "accounting-agent/build/out/FixedPoint128.sol/FixedPoint128.json": {
+      "sha256": "3ecaac9dd35b33056d38331e1529bccde24ad5caac83042cb1e813eeb520f5ae",
+      "bytes": 4170
+    },
+    "accounting-agent/build/out/FixedPoint96.sol/FixedPoint96.json": {
+      "sha256": "c753af6ed7d08d19f56c86d15fce37c2f392d9c8e0fadb4bc50d9f70ac558acb",
+      "bytes": 4207
+    },
+    "accounting-agent/build/out/FullMath.sol/FullMath.json": {
+      "sha256": "49c448c8c1f5019aebd12a422b042bbefcd32d9947bc72d50e1b9333ea7a91a4",
+      "bytes": 4314
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/ExitScaleAssets.json": {
+      "sha256": "947b6421e0d1cf01be91d5edd4b7c4fadecbee918a896f32a1c554cb4a358249",
+      "bytes": 58704
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/ExitScaleLiquidity.json": {
+      "sha256": "433c4273c5dcd84d30f346d602a85f93c0e551744bb097472152c18f5973b3cc",
+      "bytes": 59769
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/ExitScaleNFT.json": {
+      "sha256": "bbccb068f1c3ab86de07cb4b576e2b55c7dca62d421decad03343a504cde1ea8",
+      "bytes": 68180
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/ExitScaleVault.json": {
+      "sha256": "25006dcccef6a891f03ab23b97e836186c93c0a3e741e754b921726407c666e1",
+      "bytes": 108894
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/GasBudgetHolderETH.json": {
+      "sha256": "d09e9b6f77ef5d8c99ad94a960b3c49973848bda13b2b39614dcd5f319eeb773",
+      "bytes": 58414
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/GasConsumingHolderETH.json": {
+      "sha256": "27758303ded4df20ba69287d5ee8fd429404fa33ee615c932d3bfda0a2b98602",
+      "bytes": 57658
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderCollectiveExitTest.json": {
+      "sha256": "2ad7dea143d8f74b88e01e244112e7120f69f5a47e4d00b2bb600c33863d80b7",
+      "bytes": 1891309
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderExitCallbackToken.json": {
+      "sha256": "2a477e50cd964eaf49b01d8aed0ed35a67d384a0e44799353da5ac2a5339a826",
+      "bytes": 97689
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderExitIdentity.json": {
+      "sha256": "6ed1486c82d9888027c5498acefa0a10070724004b09081cf72cb43f634add21",
+      "bytes": 59415
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderExitPolicy.json": {
+      "sha256": "ac2eb81440632706cfabd56bfe7d506192519950e69e722177cf0ad69cfa43eb",
+      "bytes": 77119
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderExitScaleTest.json": {
+      "sha256": "b139d12837fb986c39e4ba0a73f430db77a03653bed21153186df068992a66e2",
+      "bytes": 616753
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/HolderExitVenue.json": {
+      "sha256": "a46ca54dd2ccf905a515030b4bc23c11ab07b3c32a9a54b5d2822ca02ca6b2b7",
+      "bytes": 164232
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/IHolderExitCallback.json": {
+      "sha256": "541b11233624b17c70c2bdc808413cd64d85634a5b3cb99590ad08fdcc616725",
+      "bytes": 57386
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/ReenterHolderETH.json": {
+      "sha256": "de129b95cbc03c6bc7a5d2834a1dca897c8bf7a5cf850afb7deba374045fca05",
+      "bytes": 65496
+    },
+    "accounting-agent/build/out/HolderCollectiveExit.t.sol/RejectHolderETH.json": {
+      "sha256": "56b3095615b4733cf5365cc46818153a505864a41465e7d1ca27c76c2c081327",
+      "bytes": 63705
+    },
+    "accounting-agent/build/out/Hooks.sol/Hooks.json": {
+      "sha256": "0c484dc553d6cfd625c74d5717e99fc1aa2a3a1c5acb8116c746b4752205654a",
+      "bytes": 16545
+    },
+    "accounting-agent/build/out/IAllowanceTransfer.sol/IAllowanceTransfer.json": {
+      "sha256": "eeb2b9353389b844f35fe714f4602639f4a7fa7c645196aec8c2cb92c807a50f",
+      "bytes": 32368
+    },
+    "accounting-agent/build/out/IEIP712.sol/IEIP712.json": {
+      "sha256": "60d634d90c815c69847c3657be1e8385cb9a64415de8f2520507b20a0c5d3aa2",
+      "bytes": 4200
+    },
+    "accounting-agent/build/out/IEIP712_v4.sol/IEIP712_v4.json": {
+      "sha256": "a15f5d92b70216bd378ddd186d178e825d076339d7180cc92ea5c51907ceb640",
+      "bytes": 4569
+    },
+    "accounting-agent/build/out/IERC1271.sol/IERC1271.json": {
+      "sha256": "0b1ef129961c26880d45b0294bfba16a189359b31909bfffe990f8b3a1a310be",
+      "bytes": 5219
+    },
+    "accounting-agent/build/out/IERC1363.sol/IERC1363.json": {
+      "sha256": "65886814a1bca21df4d6570d0bc4a120b536826d04823bda1d31e4361c7cbe98",
+      "bytes": 29877
+    },
+    "accounting-agent/build/out/IERC165.sol/IERC165.json": {
+      "sha256": "48c7469ed39a91fd33acc77231a04c8b7f3dbefb4553fceb84f90d867e2fd330",
+      "bytes": 5285
+    },
+    "accounting-agent/build/out/IERC20.sol/IERC20.json": {
+      "sha256": "6873ed3e6bcbc04801ceee99066e929aa33e618cd1148d183cc2c4c72afbe62f",
+      "bytes": 13755
+    },
+    "accounting-agent/build/out/IERC20Metadata.sol/IERC20Metadata.json": {
+      "sha256": "4aa4e93581cb5ff36b8b34504320de4db25a9f7bb5c0970665e3c649658713d2",
+      "bytes": 16250
+    },
+    "accounting-agent/build/out/IERC20Minimal.sol/IERC20Minimal.json": {
+      "sha256": "e7a486f8f0b570612311a34d8aca226a4277ac0047c731dd762167859544dda7",
+      "bytes": 14600
+    },
+    "accounting-agent/build/out/IERC6909Claims.sol/IERC6909Claims.json": {
+      "sha256": "e9553efcf48adafe16d3b65f09140e0ebe4d9a266455c266d0d7cf25f59579ff",
+      "bytes": 18559
+    },
+    "accounting-agent/build/out/IERC721.sol/IERC721.json": {
+      "sha256": "7811b4ccc5b6ea63dad8bfee040dcc89312d5b920528d1e2899362d8e4e02601",
+      "bytes": 22315
+    },
+    "accounting-agent/build/out/IERC721Metadata.sol/IERC721Metadata.json": {
+      "sha256": "cd96681a45f13b14ef7aef8a791b96527c45cc1299f608ea0bb99bea0556ef19",
+      "bytes": 25152
+    },
+    "accounting-agent/build/out/IERC721Permit_v4.sol/IERC721Permit_v4.json": {
+      "sha256": "c1f09974318e1e037a33b38c3f899edf047c34d0fbd37c82edd658e49688b708",
+      "bytes": 10438
+    },
+    "accounting-agent/build/out/IERC721Receiver.sol/IERC721Receiver.json": {
+      "sha256": "e0de124a3e2cf5946929cfd76a122e64f7bff2c52c721cd018903e466e4b24e0",
+      "bytes": 6135
+    },
+    "accounting-agent/build/out/IExtsload.sol/IExtsload.json": {
+      "sha256": "d63e54073a429b49cc560ba7a1cb417654a02093d8aef61ae12443e933bd63c7",
+      "bytes": 7501
+    },
+    "accounting-agent/build/out/IExttload.sol/IExttload.json": {
+      "sha256": "6ad5b8eb5b77aedd0479e5aeaff19322c951c1a882a62c5b7395059e26d78419",
+      "bytes": 6033
+    },
+    "accounting-agent/build/out/IHooks.sol/IHooks.json": {
+      "sha256": "ea4b2636dadc675970409bc20c25a804278e4644b4ecd11f6b768b322f038d57",
+      "bytes": 54929
+    },
+    "accounting-agent/build/out/IImmutableState.sol/IImmutableState.json": {
+      "sha256": "5ffcf22a82bfbcd3b08be95df3373de8820eb0c4620ea3578ccb9d6f54f46169",
+      "bytes": 13880
+    },
+    "accounting-agent/build/out/ImmutableState.sol/ImmutableState.json": {
+      "sha256": "ce3b21571e3f175308279cebd9a4598e1990a9e99f4263d3d245820cfc2a0841",
+      "bytes": 17272
+    },
+    "accounting-agent/build/out/IMsgSender.sol/IMsgSender.json": {
+      "sha256": "b2a080095cf1f9a4706a1fe54ddc3350b986cd87b4eff57a4b83d8858fb3fb65",
+      "bytes": 5029
+    },
+    "accounting-agent/build/out/IMulticall3.sol/IMulticall3.json": {
+      "sha256": "7496e562caa102e9c7c36ee596c183a853cfccf95499f5a1cc62ef6030b216fe",
+      "bytes": 21088
+    },
+    "accounting-agent/build/out/IMulticall_v4.sol/IMulticall_v4.json": {
+      "sha256": "0c68a3da0eae291434c8784e29bb3b7c27d40b9fdca5f3cf4e944269ab269cdd",
+      "bytes": 5578
+    },
+    "accounting-agent/build/out/INotifier.sol/INotifier.json": {
+      "sha256": "ea50942f495d28816769ef95a8aaf8bc4183f00ecd267ababcbe82936bd4f934",
+      "bytes": 22488
+    },
+    "accounting-agent/build/out/IntegratedEconomicConservation.t.sol/EconomicForcedETH.json": {
+      "sha256": "075fd78faf91718d0f48731f03ad1a333bc02b234ed5a9292d7d43894f73aa9b",
+      "bytes": 116461
+    },
+    "accounting-agent/build/out/IntegratedEconomicConservation.t.sol/EconomicNativeRegistry.json": {
+      "sha256": "3ecfdd752f73bbb3ceb3ebb6e4fa9b99fe04251f4a6809c14a09ad35a6479d79",
+      "bytes": 175520
+    },
+    "accounting-agent/build/out/IntegratedEconomicConservation.t.sol/IntegratedEconomicConservationTest.json": {
+      "sha256": "0464868e3cb9de9c2a5ec5620dc6361c67f5e776f5850202d1a0964c5a6e40bb",
+      "bytes": 2676977
+    },
+    "accounting-agent/build/out/IPermit2Forwarder.sol/IPermit2Forwarder.json": {
+      "sha256": "5cfb23a5bd3f4cedede5fc8a1ac4283a0d51f873f6ebed624324b1170979ae37",
+      "bytes": 12858
+    },
+    "accounting-agent/build/out/IPoolInitializer_v4.sol/IPoolInitializer_v4.json": {
+      "sha256": "c07d27d6a6030220294e0745e11e3676e52bc848fb05993f91f5304b0f84ca38",
+      "bytes": 13180
+    },
+    "accounting-agent/build/out/IPoolManager.sol/IPoolManager.json": {
+      "sha256": "a3dd2549b963fc46258493e91eeda31dfad0719f05b37853a07783bb68abdfd8",
+      "bytes": 90574
+    },
+    "accounting-agent/build/out/IPositionDescriptor.sol/IPositionDescriptor.json": {
+      "sha256": "73538c46b6493f63cb921fe4b799859c2b9d79837de1ccbb33720cfec2a63670",
+      "bytes": 29050
+    },
+    "accounting-agent/build/out/IPositionManager.sol/IPositionManager.json": {
+      "sha256": "19bb21c59094742d3d2cb857ea83a285660c9b0bb1f32f903807178c6f1e945c",
+      "bytes": 66468
+    },
+    "accounting-agent/build/out/IProtocolFees.sol/IProtocolFees.json": {
+      "sha256": "68283cc8ccdc4a777c9bad9c36ce3d2c54b0f6534202d887fcb1f30aee2ff129",
+      "bytes": 20393
+    },
+    "accounting-agent/build/out/IStateView.sol/IStateView.json": {
+      "sha256": "c30d9ac50d1b36d1cc7350a967ed2f5174360146537f9fe2f8fd47e597aded7b",
+      "bytes": 42859
+    },
+    "accounting-agent/build/out/ISubscriber.sol/ISubscriber.json": {
+      "sha256": "5eddfb38c55619abc0ff54ee752e2b8acab9a3267d39144f6da2a1b3f047ec46",
+      "bytes": 17900
+    },
+    "accounting-agent/build/out/IUnlockCallback.sol/IUnlockCallback.json": {
+      "sha256": "0d241ec976059fa47e82875da2bb6c0cc3a58f80eecf9a9f0386813ed6604b79",
+      "bytes": 5058
+    },
+    "accounting-agent/build/out/IUnorderedNonce.sol/IUnorderedNonce.json": {
+      "sha256": "271125ed76818a57af501e9c028817b884e8e6c8f74d69aa4077a2bb583d3674",
+      "bytes": 6413
+    },
+    "accounting-agent/build/out/IV4Router.sol/IV4Router.json": {
+      "sha256": "7d034bb9d861d5ddb10846b90fcc1041216b8129e426c3361f4e58bcc45413d9",
+      "bytes": 16641
+    },
+    "accounting-agent/build/out/IWETH9.sol/IWETH9.json": {
+      "sha256": "0d976362f2bda0395bf63c0bb5d832c23ea130f658c55023b85dd0589768aa5d",
+      "bytes": 15426
+    },
+    "accounting-agent/build/out/IZZZ.sol/IBurnable.json": {
+      "sha256": "e31f78f48663c18bcbc395a74b8efcf2e88f9ef0770f0238ad82ccfb66fd9b06",
+      "bytes": 5038
+    },
+    "accounting-agent/build/out/IZZZ.sol/IPermit2Minimal.json": {
+      "sha256": "1412a92bf928a1d6216e0e1c02aff25dc0b091547dfbbfec1f43961650fd041a",
+      "bytes": 5180
+    },
+    "accounting-agent/build/out/IZZZ.sol/IPoolManagerMinimal.json": {
+      "sha256": "40d60be00d587016c8fde64db199d0df11ec5646b6e16771ee8195d8368969ec",
+      "bytes": 9487
+    },
+    "accounting-agent/build/out/IZZZ.sol/IPositionManagerMinimal.json": {
+      "sha256": "997e2f080e4fe7922069af3752f632ee5446cdb3976e77c3fadce18cb9826a08",
+      "bytes": 10327
+    },
+    "accounting-agent/build/out/IZZZ.sol/IPriceFeed.json": {
+      "sha256": "c8a59aad3b694cb2b57462a80904061c97102b0826c973d1950631cc38e0f472",
+      "bytes": 5708
+    },
+    "accounting-agent/build/out/IZZZ.sol/IStateViewMinimal.json": {
+      "sha256": "a00d42345fdbdfb7aba8942ca101372694a86d91cc67ee1b1a1034ab25918baa",
+      "bytes": 5734
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZAccess.json": {
+      "sha256": "dc07e9e3ec4d854fa66e07f3255d803b5b9e8cf04839257ef4fdd8b338ec5294",
+      "bytes": 13276
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZActivationEntry.json": {
+      "sha256": "0c3ce96f9b831b2a293437f2c464b8d25c55b2c0b2c29a696934a2407b168cb0",
+      "bytes": 5887
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZBound.json": {
+      "sha256": "2ab8cf0a31aaee510372b8dc2d22cad34986761e1d0d88e47636aacfa3a707c3",
+      "bytes": 4565
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZFees.json": {
+      "sha256": "1843ec9c911cc9b95cdc987094f546da3980022cd737e755ac78182e996aa4a7",
+      "bytes": 8147
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZLiquidity.json": {
+      "sha256": "98941c0bdf68ad0059af9079d112e32b467f6eb8fa4c257bfd10854acfb96b77",
+      "bytes": 21846
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZMembership.json": {
+      "sha256": "d95daab4fd1ff3056b4fb6c999f59ed28e721331655c741a38716836cf6d8c6e",
+      "bytes": 6018
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZMigration.json": {
+      "sha256": "b01a6042db4cc7f5bbb79978e2b7540b42e509cd0566d31e05cf534fc932c362",
+      "bytes": 5907
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZNFT.json": {
+      "sha256": "19567fc694c174b1047cb8c0eb6fbdef3c236de3f46f3b629d66a18a310a0a3c",
+      "bytes": 7556
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZOracle.json": {
+      "sha256": "e7ad1bb5e4a31b5d6e5d150f2a3ea8b29f35d308a23f8baec938a238583b6c8e",
+      "bytes": 9805
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZPools.json": {
+      "sha256": "83bde6e275f15f0d22bee57fcd42348a4e0afc0358b4103649ec84084f423499",
+      "bytes": 13682
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZRewards.json": {
+      "sha256": "fe60aa95c22e7d9a6d942ee12db07bb4f0304aaca120ba07c47fe6af8f834263",
+      "bytes": 6877
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZStrategy.json": {
+      "sha256": "76f48afdc6f7a1ff9db9f020048429101449a46e20ad71f875a8f09a564b66fb",
+      "bytes": 15708
+    },
+    "accounting-agent/build/out/IZZZ.sol/IZZZVault.json": {
+      "sha256": "9ec889f5820a5925ec4e7134f5c33a2f6649e9d6cc2ec09a50721ffa1d4128af",
+      "bytes": 23546
+    },
+    "accounting-agent/build/out/IZZZCanonical.sol/IZZZCanonicalAccess.json": {
+      "sha256": "92fa280b0213017a8e4f7f86bd99eacf04c2d74bf83fcefab074a857c01dd1fc",
+      "bytes": 5041
+    },
+    "accounting-agent/build/out/IZZZCanonical.sol/IZZZCanonicalModule.json": {
+      "sha256": "2c884e1745290e2ebe85e556978295ad71c6a50b3a8c770c2104a72f8949116f",
+      "bytes": 10573
+    },
+    "accounting-agent/build/out/IZZZEmergency.sol/IZZZEmergencyBudget.json": {
+      "sha256": "9dd42cf4096148556c8021dc59097d3987390d8a5da1ed1a8fc1e7dcb0c5dc71",
+      "bytes": 6079
+    },
+    "accounting-agent/build/out/IZZZEmergency.sol/IZZZEmergencyController.json": {
+      "sha256": "78a913714ca9a794e4a5646ea93d5b80037e33b5084ebb98d2b1cc9ee2abf0b8",
+      "bytes": 6507
+    },
+    "accounting-agent/build/out/IZZZEmergency.sol/IZZZEmergencyLiquidity.json": {
+      "sha256": "b0eba7bb9ea6471af5aaf1f1db93dad09abb5075c2f9e7d741c3a004b9f1b307",
+      "bytes": 4218
+    },
+    "accounting-agent/build/out/IZZZEmergency.sol/IZZZEmergencyVault.json": {
+      "sha256": "b62c986d37af3265baf03a3aa13ede3e3973576d1d6bed9c2dc168a889adb723",
+      "bytes": 5036
+    },
+    "accounting-agent/build/out/IZZZNFTCanonical.sol/IZZZNFTCanonicalState.json": {
+      "sha256": "7933e48a36dcddf802ab07b9007e1bbd9c4c58c802ab32b92caed26ec001bd44",
+      "bytes": 20229
+    },
+    "accounting-agent/build/out/IZZZProtocolPolicy.sol/IZZZProtocolPolicy.json": {
+      "sha256": "b8e85a8d26955539a92fefa934e07813f2bf47aa9872f00a0ce23e347b0c5d2f",
+      "bytes": 19823
+    },
+    "accounting-agent/build/out/IZZZV3Route.sol/IV3RouteFactory.json": {
+      "sha256": "778adc93b120638aa9cf3e3a8eec536f7582e1d224309b1fa648a9a09ec74162",
+      "bytes": 4544
+    },
+    "accounting-agent/build/out/IZZZV3Route.sol/IV3RoutePool.json": {
+      "sha256": "a063558f7fea4b9cb91926ee2eca842c308270b270273dfa96aa8180a3ba581a",
+      "bytes": 5386
+    },
+    "accounting-agent/build/out/IZZZV3Route.sol/IV3RouteRouter.json": {
+      "sha256": "05bc52fdb468a297a6acdbb4d2240966824a4bd8e2e74d1a88b715d74ea2bfe8",
+      "bytes": 6412
+    },
+    "accounting-agent/build/out/libraries/SafeCast.sol/SafeCast.json": {
+      "sha256": "e0fc07c8df9823cb956fd0a5bb3d5309e11bac22c64f51f167f1696009627da1",
+      "bytes": 4902
+    },
+    "accounting-agent/build/out/LiquidityAmounts.sol/LiquidityAmounts.json": {
+      "sha256": "4d6f44229e02fbda6715834e3f9e3b211cb44305615c3e8a3cc89889600f44ea",
+      "bytes": 6677
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/FactualPermit.json": {
+      "sha256": "e49064a43fb10425672340baa20f6f75a676d262b99434ab2011f76ac59b9fdf",
+      "bytes": 112257
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/FactualPools.json": {
+      "sha256": "9320855de4d7f6c67ec4934e5f19dd73f311aaf42718f2a3ac27a05149299b6a",
+      "bytes": 139434
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/FactualReference.json": {
+      "sha256": "9544c220d61d3f5fd1883cb780912d656b4eccbf8bedf5d71a52bcaa60ec4921",
+      "bytes": 102325
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/FactualToken.json": {
+      "sha256": "6c3d598e177783210c51ae505c445a53f2c6e1b1084e573bacdbd98521dd3c1b",
+      "bytes": 149599
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/FactualTrader.json": {
+      "sha256": "3c3136f0c79d577d1c422bec2e745366cb78c72f1c78b6746eac06551670962d",
+      "bytes": 119998
+    },
+    "accounting-agent/build/out/LiquidityFactualChecks.t.sol/LiquidityFactualChecksTest.json": {
+      "sha256": "b273a8926aeaf9f3df739509bda9f2b3107d0084978aa9ac3833ffece0220b7f",
+      "bytes": 1280715
+    },
+    "accounting-agent/build/out/LiquidityMath.sol/LiquidityMath.json": {
+      "sha256": "7101bc17e3d52e59ed8c76bbfd3c83b381456b5ad7ace79a9bbeb9215b1f5609",
+      "bytes": 4065
+    },
+    "accounting-agent/build/out/Lock.sol/Lock.json": {
+      "sha256": "4fcb70c374fa0b8b034ae9d1eb3c8cd1873805fd158d3c7faa6c5b8f7b6b6095",
+      "bytes": 4170
+    },
+    "accounting-agent/build/out/Locker.sol/Locker.json": {
+      "sha256": "e44eb7c6e829cb53a5debf2d968d172c6cbcfae0bb1270c8f7d07bb233d2cf1e",
+      "bytes": 4195
+    },
+    "accounting-agent/build/out/LPFeeLibrary.sol/LPFeeLibrary.json": {
+      "sha256": "e144ea6bc0b1423c2634e14b449d6d1de8166f5ece98556e9df699498810f44f",
+      "bytes": 9900
+    },
+    "accounting-agent/build/out/Math.sol/Math.json": {
+      "sha256": "b5f2726d359d4ddb83554a2192f2683dd41cd387bb63b88de488510b9c0b2cf5",
+      "bytes": 5314
+    },
+    "accounting-agent/build/out/Mocks.sol/BoundDummy.json": {
+      "sha256": "10b9329381d3c1e8ffaa44e0f458657d0ebe7640397470f8b5e70864bce1e2da",
+      "bytes": 41282
+    },
+    "accounting-agent/build/out/Mocks.sol/ExtraTaxToken.json": {
+      "sha256": "f4747da6569c214985c7c9b52f5b4783e7e2548499f86581cb200a7fa41e90fc",
+      "bytes": 62671
+    },
+    "accounting-agent/build/out/Mocks.sol/IMockCallerAccess.json": {
+      "sha256": "b680eaaeac478065e498a9d2a7e84e1fb105081b260b46e70190a628926a343c",
+      "bytes": 25973
+    },
+    "accounting-agent/build/out/Mocks.sol/IMockSealIdentity.json": {
+      "sha256": "59dd6bc6f4e46889fdaff2f2c74e3e8380c385d223199a4d57d44eb70cb407f0",
+      "bytes": 25961
+    },
+    "accounting-agent/build/out/Mocks.sol/IMockSealRegistry.json": {
+      "sha256": "3f14da0de2a989baf21fee2087232be7f968f3729046d6056088d3bb9abd486d",
+      "bytes": 26013
+    },
+    "accounting-agent/build/out/Mocks.sol/MockAccess.json": {
+      "sha256": "886649581b201c67b57097c73797c6e6d6481ec918789dcb04c740a69e04b657",
+      "bytes": 129435
+    },
+    "accounting-agent/build/out/Mocks.sol/MockFeed.json": {
+      "sha256": "d1b3864c4e901b0baaabe7c442ce1681513487178ea04842f81681ffcf8b0d3d",
+      "bytes": 39461
+    },
+    "accounting-agent/build/out/Mocks.sol/MockPools.json": {
+      "sha256": "523f3315de22e92a14295f31315613bc6472154f6ea083d53115bf15a1f210f2",
+      "bytes": 60855
+    },
+    "accounting-agent/build/out/Mocks.sol/MockToken.json": {
+      "sha256": "e880452fdad5b630dc84817dd83de26db16474a586d23f884bddd6913926bde0",
+      "bytes": 61708
+    },
+    "accounting-agent/build/out/Mocks.sol/MockVaultRecord.json": {
+      "sha256": "7c8e9edfc21fa7909a463aa27ad56c7de89c9fa9852d8b06371c5a546a27bf78",
+      "bytes": 38866
+    },
+    "accounting-agent/build/out/Mocks.sol/TaxToken.json": {
+      "sha256": "373fb2cbca86ee94828d5b12f2a04a7b90333990731c4a063ccb3561e6666f96",
+      "bytes": 62911
+    },
+    "accounting-agent/build/out/MockVRF.sol/IMockVRFConsumer.json": {
+      "sha256": "afd9fe724d62d6ecbcde75b1254a39e0af61fc3cfffee4e4d5ef895c6a8b8ffc",
+      "bytes": 28403
+    },
+    "accounting-agent/build/out/MockVRF.sol/MockVRF.json": {
+      "sha256": "ad663a409e9a8f3a0ed3a822637eea0215327370f8254e6472702ba33345c45d",
+      "bytes": 55330
+    },
+    "accounting-agent/build/out/Multicall_v4.sol/Multicall_v4.json": {
+      "sha256": "9106623456e288c630462652842032f1d24e364b888bc568663530ea127ffe55",
+      "bytes": 6219
+    },
+    "accounting-agent/build/out/NativeCanonicalIntegration.t.sol/CanonicalNativeVenue.json": {
+      "sha256": "77803dc8769f2018d4d392ad47198200ef748eb9815bff3f536ff58e35558e8a",
+      "bytes": 153927
+    },
+    "accounting-agent/build/out/NativeCanonicalIntegration.t.sol/NativeCanonicalIntegrationTest.json": {
+      "sha256": "ecf5c8858c98cdf9c95383fdd79e96dbae16069f71eb583277410af47ea744a2",
+      "bytes": 1771877
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeCanonicalFundingTest.json": {
+      "sha256": "14bb08bda3aeddf6b39306a9bab064d76f72e974d72227f27fd5ddbe817171fe",
+      "bytes": 764240
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeCanonicalVault.json": {
+      "sha256": "06cce1a16a7b94de1454734ee51c5346d4873937ceeb9b1249b81cacc70ae2b7",
+      "bytes": 61955
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeClosedPortfolio.json": {
+      "sha256": "6583ace5922db79bf8a02fbca27de7f288c40c0db04a039ea5ce45cdb41ea7ba",
+      "bytes": 45651
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeCustodyAssets.json": {
+      "sha256": "eb0597df2f6092b053f6e427a931bd7c59b06862563cf17b684ec7be9471230f",
+      "bytes": 47877
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeCustodyOracle.json": {
+      "sha256": "d6f53233cde73150cb54b3edd9eb52a6e86613a12d0a25c7549b731bed5897e5",
+      "bytes": 97684
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeHistoricalAssets.json": {
+      "sha256": "d72cd793ef20d0a6928963944a49c8e73cbbac58c6e393294989abba1e9d9569",
+      "bytes": 50713
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeLedgerHarness.json": {
+      "sha256": "d8fe45160f27e100e6ce242a52e753a7731f94c6bfdefd451b896e8bc2071d61",
+      "bytes": 80061
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeMigrationBudgetTest.json": {
+      "sha256": "7540a2ace53a1a1cb1a5557b06233dea426c8c454b556dfbd76975eb4e69f2d6",
+      "bytes": 573934
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/NativeVersionAccess.json": {
+      "sha256": "d475b1337ad2cdbad7c74294c5e8c286bf496ad16eb481041877531438fa7941",
+      "bytes": 146772
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/OldCanonicalSchema.json": {
+      "sha256": "93f60d6755ea36693c4cc07dd250c00786589e3e005329310fc31b126def86b0",
+      "bytes": 44715
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/OldNativeFeeSchema.json": {
+      "sha256": "a8b9877b5a833dda64e340c5e4d37c1010989e7d7115132d892e022f5840becd",
+      "bytes": 44715
+    },
+    "accounting-agent/build/out/NativeCustody.t.sol/RejectNativeCustody.json": {
+      "sha256": "3d6e4d125dc3730dc440ce01508da2669ff17cf16e18bfa348c8ddf4abc792d3",
+      "bytes": 44288
+    },
+    "accounting-agent/build/out/NativeWrapper.sol/NativeWrapper.json": {
+      "sha256": "344dfaec1f5578dd33d19dfdbbcf9e2eaaa02110193628ad32c813839cea7ae9",
+      "bytes": 18341
+    },
+    "accounting-agent/build/out/NFTMetadata.t.sol/MetadataFeesMock.json": {
+      "sha256": "9130bf63ddde9aaa1cd80d67e1a8d08bec63fb9a91e0cf9abfa3d9081d475c6b",
+      "bytes": 48671
+    },
+    "accounting-agent/build/out/NFTMetadata.t.sol/MetadataPricePolicyMock.json": {
+      "sha256": "df47e155458f25ac21da180784a8f63c62c544850a2bf60ed356ef7c6d183c10",
+      "bytes": 48938
+    },
+    "accounting-agent/build/out/NFTMetadata.t.sol/MetadataVaultMock.json": {
+      "sha256": "044caa8e8ea9f1880f0941618498b47660688e703766c8a5be7b9957ecf9588a",
+      "bytes": 73782
+    },
+    "accounting-agent/build/out/NFTMetadata.t.sol/MetadataVenueMock.json": {
+      "sha256": "a4e5ecc245869c64c99cf14bb6a54924b56af7fb509025766c6b527cdc856fac",
+      "bytes": 60191
+    },
+    "accounting-agent/build/out/NFTMetadata.t.sol/NFTMetadataTest.json": {
+      "sha256": "73e1b01889f996640db08c3ba38ce90236fa6d683349e8eb25c2e576cd2497bc",
+      "bytes": 1054325
+    },
+    "accounting-agent/build/out/NFTOwnershipRights.t.sol/ImmediateRightsReceiver.json": {
+      "sha256": "fe6f624715af062402de16b52393ada6a1ad6b163e48da6a82f57a3d56839142",
+      "bytes": 72974
+    },
+    "accounting-agent/build/out/NFTOwnershipRights.t.sol/NFTOwnershipRightsTest.json": {
+      "sha256": "416c03d3be446d0fa285281bfb3900cc533dd7de910567318972e4c27edac5eb",
+      "bytes": 1605217
+    },
+    "accounting-agent/build/out/NFTOwnershipRights.t.sol/UnavailableRoyaltyToken.json": {
+      "sha256": "fde4036cfac663e1f0302bd8a2f675c197afb2d8749b8be56a5e8fe64b6bf48e",
+      "bytes": 95168
+    },
+    "accounting-agent/build/out/NFTRoyalties.t.sol/NFTRoyaltiesTest.json": {
+      "sha256": "7f2c8110c6ab70fea3a415723611319f1300a559da1d3e72b7419e25318748ed",
+      "bytes": 731271
+    },
+    "accounting-agent/build/out/NFTRoyalties.t.sol/RoyaltyLowGasPayer.json": {
+      "sha256": "5ca29b723efaa8505cf4e4724654d102d660e721121b739cfbd75ac54d1e5f47",
+      "bytes": 39593
+    },
+    "accounting-agent/build/out/NFTRoyalties.t.sol/RoyaltyNativeOwner.json": {
+      "sha256": "40dc156dd01360947ad502937e2f4b556991b788fb636a6892591f40848f3cd0",
+      "bytes": 53429
+    },
+    "accounting-agent/build/out/NFTRoyalties.t.sol/RoyaltyNFTFixture.json": {
+      "sha256": "30bcda42af855080ac265c905ce78f70b45a50ff9660d522b5340bfbf7a3f80f",
+      "bytes": 269864
+    },
+    "accounting-agent/build/out/NFTRoyalties.t.sol/RoyaltyRebaseToken.json": {
+      "sha256": "4912ff984f59bacc0bd4bd11f639ffb7cdd6e56c123592712cdeba9c473fb8bd",
+      "bytes": 74496
+    },
+    "accounting-agent/build/out/NoDelegateCall.sol/NoDelegateCall.json": {
+      "sha256": "69395edf724941c517cc009acf15c0cbba6ebdd5e2e0b398b26caa1a2be1d400",
+      "bytes": 4702
+    },
+    "accounting-agent/build/out/NonzeroDeltaCount.sol/NonzeroDeltaCount.json": {
+      "sha256": "7ff88f364ce5097861d6d51618d4a7eb9fdbb1a3829e2cf08e0efdb9fef9e4a8",
+      "bytes": 4279
+    },
+    "accounting-agent/build/out/Notifier.sol/Notifier.json": {
+      "sha256": "520fb80830564f4c37d0c6fe58da128320e6510b1dd93a6ca4e7818c5e551199",
+      "bytes": 23059
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/IOptionalResidualBurnCallback.json": {
+      "sha256": "9996cda274d3392edad8171b708005862cac56002b596c6087d924cba089eb91",
+      "bytes": 118051
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/OptionalPermit.json": {
+      "sha256": "67dd4fa16d242f594d58ebc74d8ab2fe3498dab150b0f68818bb94a102139f2c",
+      "bytes": 129648
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/OptionalPortfolioCoreTest.json": {
+      "sha256": "9ec21d7a4cbd6f7373369d6124f75177b347cce3fe0140187b46c52dd6dccaa4",
+      "bytes": 3477186
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/OptionalPositions.json": {
+      "sha256": "209516e33f48023423e8dbab4333787b06965ba17d9a0748ae135619deae7f4a",
+      "bytes": 348496
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/OptionalRegistry.json": {
+      "sha256": "9144864a6cce106c74fce75903a9fa9f5a35d5fa45332822419a37afe4457be2",
+      "bytes": 188080
+    },
+    "accounting-agent/build/out/OptionalPortfolioCore.t.sol/OptionalToken.json": {
+      "sha256": "63f799b5947d1e476aad79b75b07044bd47e5bc521af804286dfe75d3b372f94",
+      "bytes": 152152
+    },
+    "accounting-agent/build/out/Owned.sol/Owned.json": {
+      "sha256": "235ca3c6569414bfe503d7b7ccdf242015b657e7726dc96703a1fc4ce2840161",
+      "bytes": 5538
+    },
+    "accounting-agent/build/out/Panic.sol/Panic.json": {
+      "sha256": "2e7c68169b3fb3e70a1146582f736ca6b7cc7b27641a291e92385c9cae5bd570",
+      "bytes": 5129
+    },
+    "accounting-agent/build/out/ParseBytes.sol/ParseBytes.json": {
+      "sha256": "eaf278ec1bf63d9bf546830508ed822deb00c4c106a4cebf9aa6803b53028b69",
+      "bytes": 4325
+    },
+    "accounting-agent/build/out/PathKey.sol/PathKeyLibrary.json": {
+      "sha256": "bf57c8f3063938a4d5e6e410e8b01ff93cfbff8bb7278d8422f2603ac213822f",
+      "bytes": 10362
+    },
+    "accounting-agent/build/out/Permit2Forwarder.sol/Permit2Forwarder.json": {
+      "sha256": "408f1988ce508dd750f632a56eb625c2816159cdaa438996a59b47d1018cb9a6",
+      "bytes": 25131
+    },
+    "accounting-agent/build/out/Pool.sol/Pool.json": {
+      "sha256": "37cb068e9f6d4475b13833306b7ba81b3ea6e9e9125808055dca917eca3556a0",
+      "bytes": 20013
+    },
+    "accounting-agent/build/out/PoolId.sol/PoolIdLibrary.json": {
+      "sha256": "20206b9c22ac69c890db20badeb0989b0fe73eb800f399d1dd95f9adff494d83",
+      "bytes": 9678
+    },
+    "accounting-agent/build/out/PoolInitializer_v4.sol/PoolInitializer_v4.json": {
+      "sha256": "165ea8bc120fefb0f2d33975bf9da84479f0d05975cbd25c302b22c11817bf79",
+      "bytes": 19278
+    },
+    "accounting-agent/build/out/PoolManager.sol/PoolManager.json": {
+      "sha256": "c135d7249d2204c0b6f43b3562f3fa821f1322f17975e8ba9ef3615094c31a76",
+      "bytes": 272796
+    },
+    "accounting-agent/build/out/PortfolioFixture.sol/IFixtureExecutionIdentity.json": {
+      "sha256": "f5120100c7db634f8718fea22f6be231698d2ca448da352721d026c990b7ac1e",
+      "bytes": 4307
+    },
+    "accounting-agent/build/out/PortfolioFixture.sol/IFixturePhysicalAmounts.json": {
+      "sha256": "4e71d759be304a031ddd9e053b2b231f0795a948b4f2556f762ee42eef83a4dc",
+      "bytes": 4389
+    },
+    "accounting-agent/build/out/PortfolioFixture.sol/NoHybridPolicyFixture.json": {
+      "sha256": "c056a5f72a0021ff3effc3a59da0daa5168e16c2d9a44ef0a3cdcf188f21f894",
+      "bytes": 5320
+    },
+    "accounting-agent/build/out/PortfolioFixture.sol/PortfolioFixture.json": {
+      "sha256": "9a4ebc04272311c974c511d6a6185f2f64a1e6a710d44948cf29e3d5fe537fde",
+      "bytes": 3925
+    },
+    "accounting-agent/build/out/PortfolioFixture.sol/SinglePositionFixture.json": {
+      "sha256": "414a08cc35757e15f92613b5adcf432ccae420d14612759b0260d8c455a307b8",
+      "bytes": 8233
+    },
+    "accounting-agent/build/out/Position.sol/Position.json": {
+      "sha256": "271cae9bca8d57d775650382e2b7474e2f564edf239d629132bb05bdcd8cfb4b",
+      "bytes": 7052
+    },
+    "accounting-agent/build/out/PositionInfoLibrary.sol/PositionInfoLibrary.json": {
+      "sha256": "205145e9fb83b5df43eb12f4b9f79711199ad394c5f251b58f5ba1dd61e1fca4",
+      "bytes": 10343
+    },
+    "accounting-agent/build/out/PositionManager.sol/PositionManager.json": {
+      "sha256": "2a74288fd712209fbc112ed1e231364943052e6749f90b103d5953e0ae7028fe",
+      "bytes": 270916
+    },
+    "accounting-agent/build/out/ProtocolFeeLibrary.sol/ProtocolFeeLibrary.json": {
+      "sha256": "c29760991cf1c01b146c97e30b87fa0efee253fe4a102bb32d78611c2200cc16",
+      "bytes": 5502
+    },
+    "accounting-agent/build/out/ProtocolFees.sol/ProtocolFees.json": {
+      "sha256": "57b4b0fe009e70f8d512708598a63cf43070283deba6b5d9536ae458a78e05ad",
+      "bytes": 33327
+    },
+    "accounting-agent/build/out/ProtocolPolicy.t.sol/PolicyNFTContext.json": {
+      "sha256": "8f24316ac35a58cb923fdb5bb2ed6ead53451b3e3112d086c25ac89699f05550",
+      "bytes": 46939
+    },
+    "accounting-agent/build/out/ProtocolPolicy.t.sol/PolicyProviderIdentity.json": {
+      "sha256": "980d182cd461d552c316448b78326202753ea6b0432e19be24bf25409aecf006",
+      "bytes": 37368
+    },
+    "accounting-agent/build/out/ProtocolPolicy.t.sol/ProtocolPolicyTest.json": {
+      "sha256": "ee8f5538dd9406eb22a8a379fd9ebb2173cffe9eae4ffe2117c7d494320d3ed0",
+      "bytes": 388369
+    },
+    "accounting-agent/build/out/ProtocolPolicyFixture.sol/ProtocolPolicyFixture.json": {
+      "sha256": "fd36b3928515adbdd18933b57e7b6e3f5a1e938818304d86d089c7ca47120646",
+      "bytes": 8102
+    },
+    "accounting-agent/build/out/ReentrancyGuard.sol/ReentrancyGuard.json": {
+      "sha256": "863ba245bfc9c1ac9f546fdc39fa42b788144e95720cefc85354276b41713719",
+      "bytes": 4821
+    },
+    "accounting-agent/build/out/ReentrancyLock.sol/ReentrancyLock.json": {
+      "sha256": "40b8355d584fdfe90add753fbadd53cac5203d4a9fe4ba33ceb56e870758456c",
+      "bytes": 4908
+    },
+    "accounting-agent/build/out/RoyaltyAudit20261105.t.sol/MintSaleEndReviewAudit20261105Test.json": {
+      "sha256": "8f5e314a95ec9d3d43bda4b04d0c35a0c6dc1b7d94836c6bc426646fe1aeb092",
+      "bytes": 872337
+    },
+    "accounting-agent/build/out/RoyaltyAudit20261105.t.sol/RoyaltyAudit20261105Test.json": {
+      "sha256": "86fc95b06c45893aa179f23691a19983fe3083a3800e28d93cf4f92e2deea3e5",
+      "bytes": 835857
+    },
+    "accounting-agent/build/out/RoyaltyAudit20261105.t.sol/RoyaltyFactoryAudit20261105Test.json": {
+      "sha256": "cc490e5bdd4ddbdf48de0da74d736b0930873f097b1bbb9c8c56f34baae28a6c",
+      "bytes": 782250
+    },
+    "accounting-agent/build/out/RoyaltyAudit20261105.t.sol/RoyaltyFactoryAuditCaller.json": {
+      "sha256": "50d6762c8c9c38e7696c6f8523bceaee52cbaf25cd7eb7e19028185db58eb7e5",
+      "bytes": 50308
+    },
+    "accounting-agent/build/out/RoyaltyFactoryCodeData.t.sol/RoyaltyFactoryCodeDataTest.json": {
+      "sha256": "d88ab875405e077112f111ca441bd106c16f2f06af2cfc22a1d011f9936e91c7",
+      "bytes": 330419
+    },
+    "accounting-agent/build/out/RoyaltyLaunchWindow.t.sol/RoyaltyLaunchWindowTest.json": {
+      "sha256": "b72229ec148df3606cfe8fc29fe484b8dd4aec19aebb8d87674042ecb352d023",
+      "bytes": 615781
+    },
+    "accounting-agent/build/out/RoyaltyLaunchWindow.t.sol/RoyaltySaleEndAuthorityTest.json": {
+      "sha256": "6affc18957be5b34288fa4ad70f8d9c7a3d23f039e2a5393df4841a1812f9fe3",
+      "bytes": 541038
+    },
+    "accounting-agent/build/out/RoyaltyNoCustodian.t.sol/RoyaltyNoCustodianTest.json": {
+      "sha256": "86cbefa701af5be7741e687eb27155fb214f9db6b288922e85c34ed57f96ec5c",
+      "bytes": 1507924
+    },
+    "accounting-agent/build/out/RoyaltyRecovery.t.sol/InKindFaultToken.json": {
+      "sha256": "4516b2f60cf765ccb0837323c17196fe54711440587969769d8c91727abeaf25",
+      "bytes": 77287
+    },
+    "accounting-agent/build/out/RoyaltyRecovery.t.sol/InKindNFT.json": {
+      "sha256": "bd826a6e81ff5b75cc889544240ca9dfd434cc6b15e0533d4159ef2a0be9a9de",
+      "bytes": 205756
+    },
+    "accounting-agent/build/out/RoyaltyRecovery.t.sol/OriginalCurrencyRoyaltyTest.json": {
+      "sha256": "508bed4b24272b20271b8920376bf3f7fe3825c71033b31e4cef6a28b54c2f28",
+      "bytes": 594303
+    },
+    "accounting-agent/build/out/SafeCallback.sol/SafeCallback.json": {
+      "sha256": "2534a63a0fbd72e0d353d2c8ad0fead84ae685a603a2d624a24e897bee0ace5b",
+      "bytes": 17575
+    },
+    "accounting-agent/build/out/SafeCast.sol/SafeCast.json": {
+      "sha256": "eebf5adf0aa78d9bfa9c393f91d36e0a65e52feb004531f04560151126717c02",
+      "bytes": 6929
+    },
+    "accounting-agent/build/out/safeconsole.sol/safeconsole.json": {
+      "sha256": "8cc26fb848abacfe8d8d4dcdcb99be6c6568533698a46550e08027850b7943ca",
+      "bytes": 4024
+    },
+    "accounting-agent/build/out/SafeERC20.sol/SafeERC20.json": {
+      "sha256": "2c5ef7dca1a5a8beee6afe78ff6ad601252ba95443d85999514396c07d63e7ff",
+      "bytes": 9151
+    },
+    "accounting-agent/build/out/SignatureVerification.sol/SignatureVerification.json": {
+      "sha256": "ebea511b16fac5637ec1a79120e1c88f179fa27cb455ead780af20ac54608ca9",
+      "bytes": 5970
+    },
+    "accounting-agent/build/out/SignedMath.sol/SignedMath.json": {
+      "sha256": "1596ff6627b1c78f9abdf938f83cbf861c06443ff795a105d74523ae7541b057",
+      "bytes": 4739
+    },
+    "accounting-agent/build/out/SlippageCheck.sol/SlippageCheck.json": {
+      "sha256": "c90763fc3dfa09c175ae0e1c665fe2c87f6f80865fe1a875758fd14d8778f49c",
+      "bytes": 7320
+    },
+    "accounting-agent/build/out/Slot0.sol/Slot0Library.json": {
+      "sha256": "3ba80a78fde0e61f30a9dc990cc7f0d3c26ea6931e3f8a4cd9f4eb59019f3a76",
+      "bytes": 4052
+    },
+    "accounting-agent/build/out/SqrtPriceMath.sol/SqrtPriceMath.json": {
+      "sha256": "7fd3bac1e7d00bbdefd0d28881c743241b5c256d5dab2b1eafd82f1d2ecdcc9f",
+      "bytes": 8046
+    },
+    "accounting-agent/build/out/StateLibrary.sol/StateLibrary.json": {
+      "sha256": "1e0e6cd1f6861e55b78d5927e5b952f704a2f3f6d985811ef42a65556e57e309",
+      "bytes": 22481
+    },
+    "accounting-agent/build/out/StateView.sol/StateView.json": {
+      "sha256": "06d1d29a27ca8d59ffa1302828690dafa4eb97beea7883068693c67a6a2d8cbb",
+      "bytes": 69301
+    },
+    "accounting-agent/build/out/StdAssertions.sol/StdAssertions.json": {
+      "sha256": "326505a06dfc7c87b5bce7d9852fe4dfae469be9b586988920bff5d2d038702b",
+      "bytes": 17394
+    },
+    "accounting-agent/build/out/StdChains.sol/StdChains.json": {
+      "sha256": "e6d038f7a6e2e5194016a0778f12ef5ed93b3711dc4fc15e71183f2fe3039eb0",
+      "bytes": 5849
+    },
+    "accounting-agent/build/out/StdCheats.sol/StdCheats.json": {
+      "sha256": "979a775fca5774dea1f3f25f6c8a0536da731aba494b6711f5a6281967560f9f",
+      "bytes": 5838
+    },
+    "accounting-agent/build/out/StdCheats.sol/StdCheatsSafe.json": {
+      "sha256": "a9656672578a62abb887b629f5e97391f2be6b08b04c6f3b2f5d118f5b5967d4",
+      "bytes": 5846
+    },
+    "accounting-agent/build/out/StdConstants.sol/StdConstants.json": {
+      "sha256": "73c0021a50187ac7ebb461e6723faac8f8b1447ce55c4d2eec963280b0ec1b22",
+      "bytes": 6246
+    },
+    "accounting-agent/build/out/StdError.sol/stdError.json": {
+      "sha256": "b0d896c78c0b3fc6bcaad316b3cd9c6ced4438eccd7138c363993d8c25fe6468",
+      "bytes": 12993
+    },
+    "accounting-agent/build/out/StdInvariant.sol/StdInvariant.json": {
+      "sha256": "d2f3487a63960a418087c4d3ae894e21ba2fb15e7f05e99b798062c4e6dc3d18",
+      "bytes": 11344
+    },
+    "accounting-agent/build/out/StdJson.sol/stdJson.json": {
+      "sha256": "cc6141228df65c648e63cc17dc621140497a0dc7c58eebe5c4a8db712d9b0bf7",
+      "bytes": 4473
+    },
+    "accounting-agent/build/out/StdMath.sol/stdMath.json": {
+      "sha256": "049275248865e6d06a77e9027c67d5ff0d77e89d72777b554370fb0c8c2072bb",
+      "bytes": 3883
+    },
+    "accounting-agent/build/out/StdStorage.sol/stdStorage.json": {
+      "sha256": "f2b22b441d530089a154152cb89f0085d2c7283f7d49bd99e7df5b6d95bd7bb8",
+      "bytes": 4495
+    },
+    "accounting-agent/build/out/StdStorage.sol/stdStorageSafe.json": {
+      "sha256": "1bb8f06b14ea98daa4491aeb8dc9a97acad51804b9be6dee1bffb4d8c7b68472",
+      "bytes": 6361
+    },
+    "accounting-agent/build/out/StdStyle.sol/StdStyle.json": {
+      "sha256": "64149f4a32a7b390c418c95a5aab4cb77e5d3abf0813abef817e437b56a95072",
+      "bytes": 4484
+    },
+    "accounting-agent/build/out/StdToml.sol/stdToml.json": {
+      "sha256": "b4922b5af0965f4a173258936db432ceeb3f30aab8712d9c8782844387c0b961",
+      "bytes": 4476
+    },
+    "accounting-agent/build/out/StdUtils.sol/StdUtils.json": {
+      "sha256": "165530ff4aa35e03527aa1127b95fdcfe62abbe8bd0419b44dcb0f68bc1d26c4",
+      "bytes": 4715
+    },
+    "accounting-agent/build/out/Strings.sol/Strings.json": {
+      "sha256": "ab2d2a88a61977d74f302ecd4e2b6b3f221a213419f90e85ba0998fe83646c18",
+      "bytes": 7894
+    },
+    "accounting-agent/build/out/SwapMath.sol/SwapMath.json": {
+      "sha256": "dbcc680eef57f2e2b7f77af7b5bfd7f3b471c2d9f191206f135a6c9ba16bce79",
+      "bytes": 8083
+    },
+    "accounting-agent/build/out/Test.sol/Test.json": {
+      "sha256": "8c97462ded054ebb20b6d013df4e9a67cc94b34973a169d115b572cab67b5c5c",
+      "bytes": 35368
+    },
+    "accounting-agent/build/out/TickBitmap.sol/TickBitmap.json": {
+      "sha256": "a30707397bf29fa945aff604f72eace5dcb9acecfc2c2982ab59b29299f6d215",
+      "bytes": 5684
+    },
+    "accounting-agent/build/out/TickMath.sol/TickMath.json": {
+      "sha256": "c231720d36b20a40e65d03cdedbc71822f1e02ab13e40c29f7ba3c4ec1cf8693",
+      "bytes": 7763
+    },
+    "accounting-agent/build/out/tokens/ERC721.sol/ERC721.json": {
+      "sha256": "9d83884042ce180caf7726f59838f24f4e2ea0755afd2ca047105941743cfdf5",
+      "bytes": 16010
+    },
+    "accounting-agent/build/out/TransientStateLibrary.sol/TransientStateLibrary.json": {
+      "sha256": "a8d9602903dd2e80755efc82835c2e7f7b53b563602621cd607bfd4b32d76d8e",
+      "bytes": 15515
+    },
+    "accounting-agent/build/out/UnorderedNonce.sol/UnorderedNonce.json": {
+      "sha256": "96b836178b8faf62a81979995309eca447643d4f20cd5bd4b27f37429ce1eeac",
+      "bytes": 10886
+    },
+    "accounting-agent/build/out/UnsafeMath.sol/UnsafeMath.json": {
+      "sha256": "04a2058f102863811cb1acc47c5b02cfef3accab519ac50df99ee8ec8c13fb16",
+      "bytes": 4187
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/PooledVaultFixture.json": {
+      "sha256": "d3fcffa93e0a63188999578a3ba4583fa195526bf5d7694f2b98a6100143a3c9",
+      "bytes": 79507
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/ReentrantMintReceiver.json": {
+      "sha256": "fcb7e52f4292cd5c2c4433db13a43803dcd6a9798d2b916a29ac439a07cfd81a",
+      "bytes": 72411
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/ReentrantMintTreasury.json": {
+      "sha256": "7fd8cea1891068b43ec29aaf357b1ac2ca2a7c41ca64a795d18c67756ceb26a8",
+      "bytes": 70600
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/RejectingMintReceiver.json": {
+      "sha256": "25c543236ec60af958192e39a8d53250757add53eb92092451990ac8950efd35",
+      "bytes": 60942
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/RejectingMintTreasury.json": {
+      "sha256": "e7d83876131f8e5f500af59a00cb58f6dec401c9e64a022cfb9bed3133179f68",
+      "bytes": 57905
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/VaultAccountingTest.json": {
+      "sha256": "9fe0a9a95cb53e4bf7859374931ae01839af48ea6d9fed2b12119c9cd77147c4",
+      "bytes": 1779914
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/VaultLiquidityMock.json": {
+      "sha256": "89d4c40bc45c27643b196c9e02a325a5faedd0663ac904fc2c55ef67bcf123e3",
+      "bytes": 177626
+    },
+    "accounting-agent/build/out/VaultAccounting.t.sol/VaultPolicyMock.json": {
+      "sha256": "96b781c012b2630037a300cbf0d1ef33b806f887e1f0875083caaa2ca3a342fd",
+      "bytes": 85493
+    },
+    "accounting-agent/build/out/Vm.sol/Vm.json": {
+      "sha256": "0dbe81f74780eb29cac622ac1a726e1e5ff9f5c22ece639628d83bbfd4be7437",
+      "bytes": 605012
+    },
+    "accounting-agent/build/out/Vm.sol/VmSafe.json": {
+      "sha256": "b004593bb47e37fa2635557a86c27ba41ca1ce19797b8aa0e2c09ade6b70e44c",
+      "bytes": 468355
+    },
+    "accounting-agent/build/out/ZZZAccessController.sol/ICanonicalOwnerBinding.json": {
+      "sha256": "e14a96f0ca62b1808afe937b18832aa3af307a165868af5c79842ce719e16e8f",
+      "bytes": 18579
+    },
+    "accounting-agent/build/out/ZZZAccessController.sol/IContributionIdentity.json": {
+      "sha256": "f18fca92c5a3ea06c638798f847fffecb4f78fe19a0bb1c2fc19fd636bbe549e",
+      "bytes": 17655
+    },
+    "accounting-agent/build/out/ZZZAccessController.sol/IContributionRegistry.json": {
+      "sha256": "fb737d8d92f1a4388ad420b2fdff01192c2bcfe3affc52fe5d563c8b2bb90eb5",
+      "bytes": 17776
+    },
+    "accounting-agent/build/out/ZZZAccessController.sol/IExitIdentity.json": {
+      "sha256": "41369d796e006e753a5af8d7deaa41b1f188ccfe7ed4b7cd3b7193d97d37e06a",
+      "bytes": 17667
+    },
+    "accounting-agent/build/out/ZZZAccessController.sol/ZZZAccessController.json": {
+      "sha256": "3533aec7d02253b9db62297ef12d4f998df6bc4c48656695b192fe7f7e5f70b9",
+      "bytes": 188063
+    },
+    "accounting-agent/build/out/ZZZActivationAssets.sol/IActivationAssetsFactoryIdentity.json": {
+      "sha256": "7577d038c4c86f3b3bcc89130a10ebec3c4795dabf5ce1e9371cfd666e2e7cd3",
+      "bytes": 7003
+    },
+    "accounting-agent/build/out/ZZZActivationAssets.sol/ZZZActivationAssets.json": {
+      "sha256": "504374d6230954e23ea0298457ed5b3966274ea460d007040c5918ea725b236f",
+      "bytes": 63122
+    },
+    "accounting-agent/build/out/ZZZActivationAssetsFactory.sol/ZZZActivationAssetsFactory.json": {
+      "sha256": "45e937aa9b25691a69e94a55f949d4046555b2f2335c477ee2f9a5a2dd7e4f79",
+      "bytes": 40564
+    },
+    "accounting-agent/build/out/ZZZActivationEntry.sol/IActivationVault.json": {
+      "sha256": "e0c8147e75aa7f8330705aa5c766bfd92e7a01283969ce8ebe827ce186c5c660",
+      "bytes": 17648
+    },
+    "accounting-agent/build/out/ZZZActivationEntry.sol/ZZZActivationEntry.json": {
+      "sha256": "efc6aa7a86823b0dbc18f02e300a3ab70f8dc4ac7fff6d6b767d6c0f5bd8ae03",
+      "bytes": 93801
+    },
+    "accounting-agent/build/out/ZZZArtwork.sol/ZZZArtwork.json": {
+      "sha256": "12afdb9996a30c67dc17348e11a2dad6645a6c9028743023250e94dccb3bf35f",
+      "bytes": 4319
+    },
+    "accounting-agent/build/out/ZZZBuyback.sol/ZZZBuyback.json": {
+      "sha256": "9813de13c548664c85bf43266bb811631bda5c6971165382c510d8fd6bad9ab0",
+      "bytes": 74042
+    },
+    "accounting-agent/build/out/ZZZCanonicalHandoff.sol/ICancelledRoyaltyHop.json": {
+      "sha256": "be9bb8e829e2aa918c297313a6f5a507ab937bb31fa25682ea25f8b161ac7f7d",
+      "bytes": 7637
+    },
+    "accounting-agent/build/out/ZZZCanonicalHandoff.sol/ICancelledRoyaltyLedger.json": {
+      "sha256": "a31ff4cf5a9611668a242de450bea4ee9cf0880adc911fc6c86f09a559da8a87",
+      "bytes": 10766
+    },
+    "accounting-agent/build/out/ZZZCanonicalHandoff.sol/ICanonicalController.json": {
+      "sha256": "49977d2f63e12ff7d9b27e0bfe22376c125b0e874355354cff7ecdc356c86779",
+      "bytes": 19772
+    },
+    "accounting-agent/build/out/ZZZCanonicalHandoff.sol/ICanonicalHelpers.json": {
+      "sha256": "c7c7ca69c91480c87cea58c5e0b96b91498f55ed8b41837649cb39a9fe260064",
+      "bytes": 8419
+    },
+    "accounting-agent/build/out/ZZZCanonicalHandoff.sol/ZZZCanonicalHandoff.json": {
+      "sha256": "9919d5f34ce93817d19564c1d50057d56dd0f7ac25343b8b5b28c83786506589",
+      "bytes": 192884
+    },
+    "accounting-agent/build/out/ZZZCanonicalLedger.sol/ZZZCanonicalLedger.json": {
+      "sha256": "10890923ebee34132cfd25695fb47615677ab37719dc607efecb02455c977fb5",
+      "bytes": 14312
+    },
+    "accounting-agent/build/out/ZZZClaimRouter.sol/IZZZClaimLedger.json": {
+      "sha256": "4f389082789d9e0e70c119e96ff7c4bc34c3433ba8c8e24c4e804f7f6cc705f6",
+      "bytes": 6335
+    },
+    "accounting-agent/build/out/ZZZClaimRouter.sol/ZZZClaimRouter.json": {
+      "sha256": "5ce79c9352cd98a98c2089db4b7dd4c38d45cafbb4d551e28f1e78965ca9fc98",
+      "bytes": 31083
+    },
+    "accounting-agent/build/out/ZZZCompounder.sol/ZZZCompounder.json": {
+      "sha256": "5adb9e50cb70ad0c371405d82cfca338a42b2c6e953ed619bf65a10f56c97f83",
+      "bytes": 22900
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/IPricingAssets.json": {
+      "sha256": "a2f57482fef810aac94554dfcb87f9cd8a0778dc8976455dac72b3c12181cfbe",
+      "bytes": 8244
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/IPricingBudget.json": {
+      "sha256": "8fa69af8c19c8c0fdad040a511f33c8698ac02a06aa6dff3ef3f66e9d8c52091",
+      "bytes": 9650
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/IPricingEntry.json": {
+      "sha256": "825f34151eab59dc8fe54531d581f29e383d5dc5bdb3c3e97cd2e23c27f274b9",
+      "bytes": 8319
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/IPricingPortfolio.json": {
+      "sha256": "a5d61615e25a0eb8a290e232a0bf257d6c39172e5c7a4d74e8ee1ccf4cc1a9a6",
+      "bytes": 7793
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/IPricingVault.json": {
+      "sha256": "dd243326f1a88101b4c9b86afc5f3843b0a29e619183d9c9e8ea672dc31a5ac8",
+      "bytes": 7617
+    },
+    "accounting-agent/build/out/ZZZContributionPricing.sol/ZZZContributionPricing.json": {
+      "sha256": "dd2504e427a16142e8302852e1c7adf302cdce7b02eee148d561b17a09d62f9b",
+      "bytes": 171310
+    },
+    "accounting-agent/build/out/ZZZCustodyValidation.sol/ICustodyExecutionFingerprint.json": {
+      "sha256": "54d9d8bd2854d506ca9875aaa93b58d7d125cf552623f782f473c9a981e9312c",
+      "bytes": 5991
+    },
+    "accounting-agent/build/out/ZZZCustodyValidation.sol/ICustodyRegistryRevision.json": {
+      "sha256": "6a9cbcbd97676b896683307252746f1b54bf0fad17e4e5d13b47d13fce1f183f",
+      "bytes": 5767
+    },
+    "accounting-agent/build/out/ZZZCustodyValidation.sol/ILocalParkingState.json": {
+      "sha256": "7ed809067aeeec6f7b4bc6a7c9bfdb45c7e8f5bd42be28bd36e409c6008d3512",
+      "bytes": 6560
+    },
+    "accounting-agent/build/out/ZZZCustodyValidation.sol/IResidualPolicyControl.json": {
+      "sha256": "c74de79c9c63689e403188863ea54caf2278f5443fa06aad48a77b3a5bd386c1",
+      "bytes": 5935
+    },
+    "accounting-agent/build/out/ZZZCustodyValidation.sol/ZZZCustodyValidation.json": {
+      "sha256": "ac5fa646e071c61a2250b92969bcc61d2ccba5b6afb4bc4d81d0b5b31dbbabe1",
+      "bytes": 64300
+    },
+    "accounting-agent/build/out/ZZZFeeController.sol/ICanonicalFeeAssets.json": {
+      "sha256": "cf18b5bdf3a00cbc071a92d7f839ec63907ffff34fb898919ee9b8426345287c",
+      "bytes": 11348
+    },
+    "accounting-agent/build/out/ZZZFeeController.sol/ICanonicalFeeCutoff.json": {
+      "sha256": "d45183b9fd2c460f970704fb1485c52f7422cd9bbe84b5564a5305e2c6a53916",
+      "bytes": 11359
+    },
+    "accounting-agent/build/out/ZZZFeeController.sol/ZZZFeeController.json": {
+      "sha256": "d38ccfa44be1f872ae368cb3fc2478231c0a86733ec0ca2207f409f1dcc61adc",
+      "bytes": 88436
+    },
+    "accounting-agent/build/out/ZZZFeesCanonical.sol/ZZZFeesCanonical.json": {
+      "sha256": "6034900d297321999104e7d9850b9d42fecb07fc60df980c005d56bb2bc528ce",
+      "bytes": 85762
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/IEmergencyOutput.json": {
+      "sha256": "64d1c2c238daa8344d0044c751d271ce8c9451eb5ffb15515fb687befaf61c14",
+      "bytes": 21644
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/IManagerPortfolioPolicy.json": {
+      "sha256": "cbb4a06f04700d8dff99d618e8248b767c79c66c6d9e95350602f9b3cf652daa",
+      "bytes": 24107
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/INativePoolAssets.json": {
+      "sha256": "1e265046a6688bab910c0a6fb45b0a89a5be3fb715af33e6c5743d0dc1e272db",
+      "bytes": 21271
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/IPortfolioBudget.json": {
+      "sha256": "9329f2d0cd8f75accdd89c88d4ef94833898754bebbcda06ee02613f475e08a3",
+      "bytes": 22144
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/IPortfolioVault.json": {
+      "sha256": "9b4ad5fe4237c31bf18b1a537c879f40b92e129b9c482263f2f52abcb0270a7e",
+      "bytes": 21101
+    },
+    "accounting-agent/build/out/ZZZLiquidityManager.sol/ZZZLiquidityManager.json": {
+      "sha256": "2f47a5b86d931ae2f6cd86a98c23e9b57f83dd6af03bb42da87e1f22eb3dd8ff",
+      "bytes": 239426
+    },
+    "accounting-agent/build/out/ZZZLPBalanceMath.sol/ZZZLPBalanceMath.json": {
+      "sha256": "4a18b82578e052f25bbc4b415ec51151f26ec95215a0e4095a6600efdb8271e1",
+      "bytes": 82331
+    },
+    "accounting-agent/build/out/ZZZLPBalancer.sol/ILPRegistryRevision.json": {
+      "sha256": "f1992d7fa847261a39a23a9cb1a0a4da1b074c8b90da28f0f50eee97bdac4d7d",
+      "bytes": 14383
+    },
+    "accounting-agent/build/out/ZZZLPBalancer.sol/IPortfolioRoutePolicy.json": {
+      "sha256": "67573d838133f0f1c2db8b656d529741b0f18a4516322aa7ca821f1878fc6866",
+      "bytes": 14559
+    },
+    "accounting-agent/build/out/ZZZLPBalancer.sol/ZZZLPBalancer.json": {
+      "sha256": "cb90a8d375f9670babffac1262f6ed808d6ba01be4b73d737e3cf72dc880c92c",
+      "bytes": 221998
+    },
+    "accounting-agent/build/out/ZZZLPPositionExecutor.sol/IPositionExecutionParent.json": {
+      "sha256": "5249dce18f2a8b8e43decc7bb9d6ed8da775c27eafe0b3489aca8078e1caa279",
+      "bytes": 26083
+    },
+    "accounting-agent/build/out/ZZZLPPositionExecutor.sol/IPositionPortfolioPolicy.json": {
+      "sha256": "30f6f1a0841483f1e8f095e49612e8d9fb65fff925ccf48ea198c932be81a5bb",
+      "bytes": 21611
+    },
+    "accounting-agent/build/out/ZZZLPPositionExecutor.sol/ZZZLPPositionExecutor.json": {
+      "sha256": "c785618ee7f8e37b502e26bdaf7075b7d59db28ce229598581d15ae306f47b32",
+      "bytes": 166434
+    },
+    "accounting-agent/build/out/ZZZLPRewardConverter.sol/ZZZLPRewardConverter.json": {
+      "sha256": "27abd6453e21dd1cfb3348ce938e5c3cd2f25cd4d705430b2a5b77414edeb117",
+      "bytes": 178223
+    },
+    "accounting-agent/build/out/ZZZMembership.sol/IZZZMembershipOrdinals.json": {
+      "sha256": "04364686e8b58c89bd8957836a5cc2c2a467194cf96483c75230de69367a5a2b",
+      "bytes": 11794
+    },
+    "accounting-agent/build/out/ZZZMembership.sol/ZZZMembership.json": {
+      "sha256": "496e1b2e79b7e4df726a1ba0244a172f077f901a9d7a2795f2d25b51cbd6d50a",
+      "bytes": 63868
+    },
+    "accounting-agent/build/out/ZZZMigration.sol/IExitTokenIdentity.json": {
+      "sha256": "283f5858329e9f2b538855646d1d096ef20ab16386bdb0d9c72da54ce472f7fd",
+      "bytes": 18417
+    },
+    "accounting-agent/build/out/ZZZMigration.sol/IExitTokenRegistry.json": {
+      "sha256": "6509659408714a799b0fc1212ec08fbe6a02f8e46761b4733b8aeb59dda0ad62",
+      "bytes": 18469
+    },
+    "accounting-agent/build/out/ZZZMigration.sol/IHolderExitNFT.json": {
+      "sha256": "652868124ae298e0f646fb9c4d727dbcb22b571116fa521364939c9b749c8ec1",
+      "bytes": 23131
+    },
+    "accounting-agent/build/out/ZZZMigration.sol/IHolderExitVault.json": {
+      "sha256": "841182df0cbc752917e000ac75d410693744bd95ad67adf4664b993a16dbd858",
+      "bytes": 37987
+    },
+    "accounting-agent/build/out/ZZZMigration.sol/ZZZMigration.json": {
+      "sha256": "2715c95028fb6507266aab12b40c31212c0e4ad8eab26b7676c28ddc9b26b5d1",
+      "bytes": 243704
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IBudgetPortfolioPolicy.json": {
+      "sha256": "b62b7194c0bacde08a81e3d7e3a6a76907b52114fae566ac01427ebf06473bcf",
+      "bytes": 10630
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IBudgetPortfolioStrategy.json": {
+      "sha256": "83ddd289449fb92f8c96e6db3f8cff238628e9168d2a97c7a0b6cc8cd1252768",
+      "bytes": 10037
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IBudgetPositionOperator.json": {
+      "sha256": "0f80f0deb21c68cc5d43c36ee8c6492e971b8eca4acd8670e37640af63b9c2c4",
+      "bytes": 10039
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IBudgetVaultValidation.json": {
+      "sha256": "5be460e1c43dcfe8ea324c9a3450b67e816cde8d3c06f168a8315654f39ac55d",
+      "bytes": 13688
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IConfirmationControl.json": {
+      "sha256": "2eb9cac219b7f413a8cfac5e32fdea134450e145af0fba30e0b562013bf3637a",
+      "bytes": 12936
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IEmergencyManifest.json": {
+      "sha256": "9824a5374a9ff0174ad1f79f827bdf18e7399d59d1c4b7a10103ecc794cfa21a",
+      "bytes": 10698
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IMigrationIdle.json": {
+      "sha256": "e8d75a9d912a5c475e9fe7b7254cf61f75bb6a49bab4776b9241d3fdae14e9fb",
+      "bytes": 10171
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IPairAssets.json": {
+      "sha256": "d5cff30c08821e37647233568d3209768069e1fe5c17cd8a43c000b99450706a",
+      "bytes": 10636
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/IPairVault.json": {
+      "sha256": "b8c72aadb0ec9a736f36ad458a8d87d442b6234b133e3fe6acb544bb1706c03a",
+      "bytes": 10069
+    },
+    "accounting-agent/build/out/ZZZMigrationBudget.sol/ZZZMigrationBudget.json": {
+      "sha256": "bf7e1177798e0b890210535ba893f03ed2baabca6ea75951d8bd3cd04fcd4269",
+      "bytes": 204598
+    },
+    "accounting-agent/build/out/ZZZModule.sol/ZZZModule.json": {
+      "sha256": "d2cf87c41d0a70a2272e842e27340b80af8179089ac40ff1a2157db078b875e9",
+      "bytes": 6882
+    },
+    "accounting-agent/build/out/ZZZNFT.sol/IZZZNFTSuccessor.json": {
+      "sha256": "4c34aed2e1c691c24cf4a3fd8da0126c6223c62f2a6a12564ee9fb08bec7764a",
+      "bytes": 27581
+    },
+    "accounting-agent/build/out/ZZZNFT.sol/IZZZVRFCoordinator.json": {
+      "sha256": "5439e91f70542177eac71a9d6daecf7748724351e2835c1129d36796f7af8195",
+      "bytes": 29442
+    },
+    "accounting-agent/build/out/ZZZNFT.sol/ZZZNFT.json": {
+      "sha256": "8b992c5ebfb75d48f4ea428886efdb0a256e3812d546aa2dec03cfd9ba85ae83",
+      "bytes": 289162
+    },
+    "accounting-agent/build/out/ZZZNFTCanonical.sol/INFTPolicyHandoff.json": {
+      "sha256": "f039fa0b0a8d644374a07c4bf5dc0380498c7eaf59f52fe4617e4a1f832af2b8",
+      "bytes": 7954
+    },
+    "accounting-agent/build/out/ZZZNFTCanonical.sol/ZZZNFTCanonical.json": {
+      "sha256": "106ba0b504bb54075230481ff0dafc483ecaf19018fd49e21de41a2825fa3304",
+      "bytes": 84152
+    },
+    "accounting-agent/build/out/ZZZNFTMetadata.sol/IHistoricalCompound.json": {
+      "sha256": "1c5abdc089cca441ce86d09c56754850b4bf69d4f1d71e11db2bea2f469c722d",
+      "bytes": 13233
+    },
+    "accounting-agent/build/out/ZZZNFTMetadata.sol/ZZZNFTMetadata.json": {
+      "sha256": "a2aa9a9eb4bf4d1b977178d48ff6c1eb016d16e9ce29d90c7c0d40d9a9afe082",
+      "bytes": 111100
+    },
+    "accounting-agent/build/out/ZZZOracle.sol/ZZZOracle.json": {
+      "sha256": "5248dff9e2aa55f13da535f148b7800dce6b747c61fdd2580223b023685104cc",
+      "bytes": 162901
+    },
+    "accounting-agent/build/out/ZZZPoolRegistry.sol/ICollectiveExitPhase.json": {
+      "sha256": "89d79aabc9ff963c5fc5dc6dec36ac6cd59e0ec4719be1970de2a36ae22640c8",
+      "bytes": 16661
+    },
+    "accounting-agent/build/out/ZZZPoolRegistry.sol/INativeVenueBindings.json": {
+      "sha256": "a0cb5810072ec6db4f45c02704dfd8e5518f3dd3b8706663c466595f3da4a8ba",
+      "bytes": 17631
+    },
+    "accounting-agent/build/out/ZZZPoolRegistry.sol/ZZZPoolRegistry.json": {
+      "sha256": "54fdc28cb6174f6be5cdcd609c21412c59ccba64aa9ba1c44b3c2d320a1668c6",
+      "bytes": 130060
+    },
+    "accounting-agent/build/out/ZZZPortfolioPolicy.sol/IPortfolioAssociation.json": {
+      "sha256": "d672085bd8d37e1a0005a87e96b252338c04f703aaf3e40e1ffcdf71a4d08975",
+      "bytes": 10225
+    },
+    "accounting-agent/build/out/ZZZPortfolioPolicy.sol/IPortfolioParent.json": {
+      "sha256": "9828b54a8e752668d28bf87426fb2eada80ef64d625a39b897f90eab31696718",
+      "bytes": 10041
+    },
+    "accounting-agent/build/out/ZZZPortfolioPolicy.sol/ZZZPortfolioPolicy.json": {
+      "sha256": "dc6f6f87d58b3e8c29f7242393d5c9f5e21cf67174a3e467bca90d3692d541dd",
+      "bytes": 159799
+    },
+    "accounting-agent/build/out/ZZZPriceMath.sol/ZZZPriceMath.json": {
+      "sha256": "f44e529a67b805af94be7a145e12e81e76e7d22b2d31ad09703066858d9d048d",
+      "bytes": 6209
+    },
+    "accounting-agent/build/out/ZZZProtocolPolicy.sol/IPolicyNFT.json": {
+      "sha256": "a401ada220040119c66d9bc3b31b9ada43a8a167ac856b239634cba1a722c727",
+      "bytes": 8254
+    },
+    "accounting-agent/build/out/ZZZProtocolPolicy.sol/ZZZProtocolPolicy.json": {
+      "sha256": "4f7db04d18b2d4368630e72b0c965369b7d1d99148cde0a7eeaa683354c17dc9",
+      "bytes": 146379
+    },
+    "accounting-agent/build/out/ZZZPythPriceFeed.sol/ZZZPythPriceFeed.json": {
+      "sha256": "21361da433d07c7b80f8a1c937dc8653d26d1992c892cc092afd41346c223b7b",
+      "bytes": 28350
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/IConfirmationLiquidity.json": {
+      "sha256": "f9f79c60507e81e8121d9991607f52ae645bd4ae1541d9b0e6e8141a8e77cae9",
+      "bytes": 11886
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/IConfirmationOracle.json": {
+      "sha256": "f891f813c068cc32ac79e4363752aa5fbc9960aa867ba01cd42400a885f1699a",
+      "bytes": 12540
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/IConfirmationPortfolio.json": {
+      "sha256": "fe58a0b71439d0eff897eb23d4da0152dc64c6626f7236a60872aa2766ad2468",
+      "bytes": 12051
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/IConfirmationRegistry.json": {
+      "sha256": "b0ad09bb7d88d38035f3676498bf74bf876020d4c83338c3bc83a3d671b674b4",
+      "bytes": 11869
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/IConfirmationStrategy.json": {
+      "sha256": "d061c0d2c1c0c02a5118601909fc249b3eb730e3633e38a3458963198fb6bee5",
+      "bytes": 16358
+    },
+    "accounting-agent/build/out/ZZZRebalanceConfirmation.sol/ZZZRebalanceConfirmation.json": {
+      "sha256": "f42a45821b5e2617e7f7077e27cd2e9a7802f88a60e968634eade620dbc7c4a0",
+      "bytes": 125577
+    },
+    "accounting-agent/build/out/ZZZRewardConverter.sol/IRewardProxyAdmin.json": {
+      "sha256": "7a3466bded92dfac287332f263a9f6145ec232c751cc17d5cea019d3e179ae97",
+      "bytes": 18161
+    },
+    "accounting-agent/build/out/ZZZRewardConverter.sol/IRewardWrapper.json": {
+      "sha256": "c61e0b76af9ba6792da89e71f996a90b5f804e5a03156de427daa1c7b2e2a4e5",
+      "bytes": 16785
+    },
+    "accounting-agent/build/out/ZZZRewardConverter.sol/ZZZRewardConverter.json": {
+      "sha256": "2c7fc6f73b1857fc6bb0de2f5a3c3b76a45889c2fee6b79702ce3d29fd0f9bc0",
+      "bytes": 52315
+    },
+    "accounting-agent/build/out/ZZZRewards.sol/IZZZRewardNFTOrdinals.json": {
+      "sha256": "f1ba2bd2ac0dc491ea9ad2dd00182ffdb0fc30ced406488fc472b8092fedede6",
+      "bytes": 19698
+    },
+    "accounting-agent/build/out/ZZZRewards.sol/ZZZRewards.json": {
+      "sha256": "6b4d88b481c1c58fdaf13d127ece6576371f3669fd9a126f2314a6ab32ad9483",
+      "bytes": 191842
+    },
+    "accounting-agent/build/out/ZZZRoyaltyCodeData.sol/ZZZRoyaltyCodeData.json": {
+      "sha256": "f88e98b067385a7101e2addb2e5e03804b57200997e48399bbac74e59ff8d74c",
+      "bytes": 6094
+    },
+    "accounting-agent/build/out/ZZZRoyaltyFactory.sol/ZZZRoyaltyFactory.json": {
+      "sha256": "2051336d0cd307736ee6f0b5b3e193409afedda82ccd75d38783358808bb9f4d",
+      "bytes": 85572
+    },
+    "accounting-agent/build/out/ZZZRoyaltyRewards.sol/IZZZRoyaltyNFTOwner.json": {
+      "sha256": "46a3fcaab7c0b73ec8ae3b132702b499a06707e2897a1eb8b1df6b11fd98c119",
+      "bytes": 13706
+    },
+    "accounting-agent/build/out/ZZZRoyaltyRewards.sol/IZZZRoyaltyOrdinals.json": {
+      "sha256": "e81a43cd7106f372dbe8844207028fe89cf490a0de4579d33752d892b1a86646",
+      "bytes": 14868
+    },
+    "accounting-agent/build/out/ZZZRoyaltyRewards.sol/IZZZRoyaltySuccessor.json": {
+      "sha256": "8804a260e53beda735f075b383fb48e6c46d132243dd247cfccb0feae85c84f2",
+      "bytes": 13093
+    },
+    "accounting-agent/build/out/ZZZRoyaltyRewards.sol/ZZZRoyaltyRewards.json": {
+      "sha256": "e220c65468399e5e5bad6533d6477234990a29f1ab17bc89d68ee0f1982913bb",
+      "bytes": 230689
+    },
+    "accounting-agent/build/out/ZZZStrategy.sol/IRangeRegistry.json": {
+      "sha256": "d0f824bf7ec24771e1b2aed7f34434e2bb0b4815b1aa2e3a785bdd0d4c1fe5ea",
+      "bytes": 16308
+    },
+    "accounting-agent/build/out/ZZZStrategy.sol/IV4FeeState.json": {
+      "sha256": "6c593fdab8eaa2faee177ec7443bcfed37925304785c572e68d665465e281277",
+      "bytes": 16102
+    },
+    "accounting-agent/build/out/ZZZStrategy.sol/ZZZStrategy.json": {
+      "sha256": "7790c24b8beb1a0bccbcf94b00d27183a3415b4bf81647acc6069ca940509f43",
+      "bytes": 203707
+    },
+    "accounting-agent/build/out/ZZZTypes.sol/Ids.json": {
+      "sha256": "c66771b63fffda03b25489881ca2a4ccdbe30e0a519b1d72326596c43fbb9895",
+      "bytes": 3869
+    },
+    "accounting-agent/build/out/ZZZV3VenueValidation.sol/ZZZV3VenueValidation.json": {
+      "sha256": "0cc072e44b45de4c8718ed2fc8c9767772ef3df5e14f3961306e5bcb4005da42",
+      "bytes": 6439
+    },
+    "accounting-agent/build/out/ZZZV4RouteExecutor.sol/ZZZV4RouteExecutor.json": {
+      "sha256": "23ae53d5c64a8a8ebf439f9ac4d3502a8d4fdcdab80a08322de139828ab0b899",
+      "bytes": 102673
+    },
+    "accounting-agent/build/out/ZZZVault.sol/IVaultPositionOperator.json": {
+      "sha256": "a44d4c540ea6d9f95d4f322fdbf6bee2eaa103973192ed7bafe0b895deef2d36",
+      "bytes": 17227
+    },
+    "accounting-agent/build/out/ZZZVault.sol/IVaultResidualLiquidity.json": {
+      "sha256": "a7c2544968098133d1865be961d18e1ce41cfdb2d30b74c2dcb919d5ae67f22e",
+      "bytes": 17597
+    },
+    "accounting-agent/build/out/ZZZVault.sol/ZZZVault.json": {
+      "sha256": "eff73d96ca41a0bc4c7a0e84f5a11a63c0af8a169557648e5c71947361ec9df6",
+      "bytes": 215615
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalMintRoyalty.json": {
+      "sha256": "c39bd2c3e2697c7c16e19b6a3a8dbd31c2276a41d33dcbc5e3cd76ac50ced987",
+      "bytes": 15372
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalPortfolio.json": {
+      "sha256": "05d35d127c0e48f6551671e08f150501d74ea56de082803cbe7a946fcf19023a",
+      "bytes": 14917
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalRecoveryRoute.json": {
+      "sha256": "84aaddf3e8c02a7da0c088a70a10da0795259c01a0280aa3e10394d08f15bf65",
+      "bytes": 19197
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalVaultNFT.json": {
+      "sha256": "2662125a9daeab8d432304da6c21317a9dc16cdd63d1fa593d245ae81c2eab05",
+      "bytes": 15601
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalVaultRewards.json": {
+      "sha256": "3d535e5361abcb6d271e0a46e38b7558d797f2640729b98b8c46d2c0bdc0a2ff",
+      "bytes": 15555
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ICanonicalVaultState.json": {
+      "sha256": "96d637ae7a2c4a518578c0c7b1762989dbba4ab1793d52e5a045f2a382f6217b",
+      "bytes": 38768
+    },
+    "accounting-agent/build/out/ZZZVaultCanonical.sol/ZZZVaultCanonical.json": {
+      "sha256": "3ac4d49711beb2b7589a36f8b22c715d6235aea8704b09f501beccb0fd59a303",
+      "bytes": 185525
+    },
+    "accounting-agent/build-producer/cache/solidity-files-cache.json": {
+      "sha256": "f534eee98adc0219a9bb6f85e69a2df4c73b205f2ae8f35a95cffc3b5df21e0f",
+      "bytes": 183197
+    },
+    "accounting-agent/build-producer/out/AccountingVaultHarness.sol/AccountingVaultHarness.json": {
+      "sha256": "03cb710a0c7a892a0ccd86292bcdaa601d0c72256ffef04fddeee576988a1ac1",
+      "bytes": 221486
+    },
+    "accounting-agent/build-producer/out/ActionConstants.sol/ActionConstants.json": {
+      "sha256": "b37642c3a8ba5fcd188a82319f2033791233510a1cf324fa66048289ea2f8293",
+      "bytes": 4221
+    },
+    "accounting-agent/build-producer/out/Actions.sol/Actions.json": {
+      "sha256": "5e914a9bfd9616a55094d91b300eb5b88551e26783bc02f46ec1f12e3c7f528d",
+      "bytes": 4355
+    },
+    "accounting-agent/build-producer/out/BalanceDelta.sol/BalanceDeltaLibrary.json": {
+      "sha256": "bf756fecd3a4a9121fca08c487f9aedef2bfa8f540a6e0e4e2bd5623a5ebc1d3",
+      "bytes": 6680
+    },
+    "accounting-agent/build-producer/out/Base.sol/CommonBase.json": {
+      "sha256": "b09e9517c9f3e1d5c7329033bddb5b983a19e6ba772415172d8fce677ed88d3c",
+      "bytes": 5829
+    },
+    "accounting-agent/build-producer/out/Base.sol/ScriptBase.json": {
+      "sha256": "b0a010355f8aefea2e93f92f8b66366de9863ee8aea76d026b16c8fd5b5eca43",
+      "bytes": 4678
+    },
+    "accounting-agent/build-producer/out/Base.sol/TestBase.json": {
+      "sha256": "6e49f81e2216f538557d4f5c7916c4518ac391bf415f04514754b05f032db7e7",
+      "bytes": 4674
+    },
+    "accounting-agent/build-producer/out/Base64.sol/Base64.json": {
+      "sha256": "d5a22ad57cb94e782a34d1c602afea1645c561ff5972ece10a4018619c345c20",
+      "bytes": 4209
+    },
+    "accounting-agent/build-producer/out/BaseActionsRouter.sol/BaseActionsRouter.json": {
+      "sha256": "fff77c2a0ed1e62d70fce1a63f9471adc14b263a13f0aad856ea78199acc0b0c",
+      "bytes": 23760
+    },
+    "accounting-agent/build-producer/out/BeforeSwapDelta.sol/BeforeSwapDeltaLibrary.json": {
+      "sha256": "ef5748466011338f7fb5aa5c13cccbe60af764f34f7d174f566fc44044b7f81b",
+      "bytes": 5458
+    },
+    "accounting-agent/build-producer/out/BitMath.sol/BitMath.json": {
+      "sha256": "41a2793294a19b54ced03402db7b6be22509963a6ad656842f201a3839d62d33",
+      "bytes": 4246
+    },
+    "accounting-agent/build-producer/out/build-info/0cb1f151c0348186.json": {
+      "sha256": "b88d46b02ce7b4b89863cd16f8d133f060e0270c1e481dfa8594f8ef9a9f3299",
+      "bytes": 4568
+    },
+    "accounting-agent/build-producer/out/build-info/31192263e8d6448d.json": {
+      "sha256": "e18f351a6bbb5ad675445824452b232e8854a17e165ca5a287ab7f311fe23730",
+      "bytes": 4642
+    },
+    "accounting-agent/build-producer/out/build-info/443c27f070306d89.json": {
+      "sha256": "cc5056564806cfbccaddf919925c24bf6c04b2afb2110cf4bffeae6a74bab133",
+      "bytes": 4319
+    },
+    "accounting-agent/build-producer/out/build-info/4a477189c4bb3582.json": {
+      "sha256": "6d9ec772c4ce4711746a400a7e4d8368381dd8e083dafee657bd275e7e07fe47",
+      "bytes": 4422
+    },
+    "accounting-agent/build-producer/out/build-info/55d7765441772f90.json": {
+      "sha256": "46121b8ef7b3c9c94cf905de86985f9735dcb2e571f8f62bb38074167d1d5e00",
+      "bytes": 4944
+    },
+    "accounting-agent/build-producer/out/build-info/58cc6c6463a5a57c.json": {
+      "sha256": "16d8dd526dcf17863362709d924b22fba057046afc0e86b0251125f98d8ff4e2",
+      "bytes": 4422
+    },
+    "accounting-agent/build-producer/out/build-info/77c44e49e45a1930.json": {
+      "sha256": "7d68cd7cfb9fe7b4f551a1a02932c637f0379f0083546b58ba8b5398b8f3376a",
+      "bytes": 10821
+    },
+    "accounting-agent/build-producer/out/build-info/7ef6a4923263a615.json": {
+      "sha256": "0c6428514aa34dcf6fed8202f6c68593408fb0a5c30c21fc4b3e6b000e2f51f3",
+      "bytes": 4895
+    },
+    "accounting-agent/build-producer/out/build-info/8afc8abb94739f95.json": {
+      "sha256": "16445a63fe26c23566770e3ceb87270ba72f943b95341facbf40e82972d67387",
+      "bytes": 11223
+    },
+    "accounting-agent/build-producer/out/build-info/98d201f81583a159.json": {
+      "sha256": "eefcbd45f0662e0ce707c088b6e0a796a5560d0f0073ce3d495c39ce153f6f0e",
+      "bytes": 4567
+    },
+    "accounting-agent/build-producer/out/build-info/a552bbbff758e790.json": {
+      "sha256": "cfed379f9210152ece8134f781bb3c952b55dee1b6bbc220a38158d00d7d73d7",
+      "bytes": 4488
+    },
+    "accounting-agent/build-producer/out/build-info/ad26924a23afbbe3.json": {
+      "sha256": "80463e9785e6c2d8c242346779fb521d4808a179f75160f7864d5c721bc6b470",
+      "bytes": 4529
+    },
+    "accounting-agent/build-producer/out/build-info/b1b40d5e5fed30b6.json": {
+      "sha256": "01596635c8338a44bedd2179ac002c7624bd3fb7e71e6a69f8a0f011612af2f6",
+      "bytes": 5406
+    },
+    "accounting-agent/build-producer/out/build-info/b4d28eac9a6a8858.json": {
+      "sha256": "d71debf8869b134e3e39f83c9407303792004cdf9eff2f29d83b586859be9463",
+      "bytes": 4642
+    },
+    "accounting-agent/build-producer/out/build-info/b7b7206ab988efc5.json": {
+      "sha256": "72aca324910d6cf8ab96dab87c320660f1c74803341fe32645d326b06410349a",
+      "bytes": 4473
+    },
+    "accounting-agent/build-producer/out/build-info/c5808994d7f7617b.json": {
+      "sha256": "62cb3ade38a22b28703d6ed0b95631648a7b28f61e6e955afb415df26fb4c6f1",
+      "bytes": 4020
+    },
+    "accounting-agent/build-producer/out/build-info/c6c21508052545f4.json": {
+      "sha256": "ab49f82d4f3d35d1e4f97c40756bae5386551f5ea22c15891b67122fb8be02f8",
+      "bytes": 10720
+    },
+    "accounting-agent/build-producer/out/build-info/cb9bffca80d1b0c5.json": {
+      "sha256": "e7eb79c11f3c67bb0ee67a3f967cda8e1eca9829b7a7337a5d85d5e0e91b187a",
+      "bytes": 4399
+    },
+    "accounting-agent/build-producer/out/build-info/e01e5ed9f51cde29.json": {
+      "sha256": "a7dfcfd45363c01a65cb46386f0b1208e450a6ca156fd20ab4c2f5e1d96a3bfa",
+      "bytes": 4894
+    },
+    "accounting-agent/build-producer/out/build-info/e8c04eaa0fe684af.json": {
+      "sha256": "6f6966b7cc43ae0d19365362122d3868c50b5dbb0dadac3e39f995a8e2efa84f",
+      "bytes": 4273
+    },
+    "accounting-agent/build-producer/out/CalldataDecoder.sol/CalldataDecoder.json": {
+      "sha256": "9298e4d841cd6d8385abb4b40eec04ecfd96db7a885471599412702fde11b727",
+      "bytes": 15976
+    },
+    "accounting-agent/build-producer/out/CanonicalFixture.sol/CanonicalFixture.json": {
+      "sha256": "c669e6a6d95ef5d2bc1380855c217fe8d2bc7b51305070963e6e093e0df932cf",
+      "bytes": 19555
+    },
+    "accounting-agent/build-producer/out/CanonicalFixture.sol/ICanonicalFixtureBinder.json": {
+      "sha256": "4faf61af0c9e26dde5c1ce1e6bb451413ae115fab97b470287e0588988e347c3",
+      "bytes": 19659
+    },
+    "accounting-agent/build-producer/out/CanonicalHandoff.t.sol/CanonicalHandoffTest.json": {
+      "sha256": "d8006083908112db667a82a243a1300c753dd5c99dde812efb0e5d13afdb23ca",
+      "bytes": 2389387
+    },
+    "accounting-agent/build-producer/out/CanonicalHandoff.t.sol/HandoffNativeWrapper.json": {
+      "sha256": "b5f0406a07a5075202ae9bb39870492862290dff03772fca8b4b45fb3d26f65e",
+      "bytes": 98718
+    },
+    "accounting-agent/build-producer/out/CanonicalHandoff.t.sol/HandoffTransitionToken.json": {
+      "sha256": "919433517a54442af562c187f650eade6bb4e357009ef0b8ca85cc2743ff9005",
+      "bytes": 105747
+    },
+    "accounting-agent/build-producer/out/CanonicalHandoff.t.sol/ICancelledRoyaltyHandoffTest.json": {
+      "sha256": "4ee024fa37113fd06d339d42780b0b574e561b72262f1085639a8dbd756c5fd7",
+      "bytes": 62582
+    },
+    "accounting-agent/build-producer/out/CanonicalInterface.sol/ICanonicalHandoffTest.json": {
+      "sha256": "1d5ad508b8578dff219d1e54ddfce4e5095d08db8e2553b2f28b80ea8df311c5",
+      "bytes": 13672
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparation.t.sol/CanonicalPreparationTest.json": {
+      "sha256": "d9808cc880a91e0bb90116437ba058a20c17fa37f35476a58fba6c49d8d2f72e",
+      "bytes": 1808240
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparation.t.sol/PreparationMintCallback.json": {
+      "sha256": "2df4b9a5875aab97f94bd5b57e8b14d931ae4ea9bc8f8c4da5416dd057b7e337",
+      "bytes": 75315
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparation.t.sol/PreparationTreasuryCallback.json": {
+      "sha256": "32bddead95f62fe57b7ce4c14f7ea36503c25bbbcbc8331d0709caacac3da1b4",
+      "bytes": 69958
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparationFixtures.sol/PreparationPolicy.json": {
+      "sha256": "17908cdfb7e22c3182160744d583bc6b6a5fc5915682c662fd1c83054079f356",
+      "bytes": 88577
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparationFixtures.sol/PreparationPools.json": {
+      "sha256": "5032f7d7b5366b004ec3240bd19252b3b9a4313fff6fd0fc2e20bda707fe9ab8",
+      "bytes": 97315
+    },
+    "accounting-agent/build-producer/out/CanonicalPreparationFixtures.sol/PreparationVenue.json": {
+      "sha256": "152bbcdbd88d72ed1ea3bdee0af0fdf8fcfa96ae314cb4fc4a13cdab40785498",
+      "bytes": 179584
+    },
+    "accounting-agent/build-producer/out/ClaimRouter.t.sol/ClaimRouterOwner.json": {
+      "sha256": "3f923281999ed61fdb1c0f1baf33245e50e2edacd8442abb6cdc360e2544bef2",
+      "bytes": 79308
+    },
+    "accounting-agent/build-producer/out/ClaimRouter.t.sol/ClaimRouterTest.json": {
+      "sha256": "a75af4117da1be1df01316a627222cd2fd28d0b4745b2f0d44b442847e334769",
+      "bytes": 872569
+    },
+    "accounting-agent/build-producer/out/ClaimRouter.t.sol/ClaimVaultFixture.json": {
+      "sha256": "f44936485b88e92962f0c1877f4dfae865248b93ed7a3396c5bced4e0d75b586",
+      "bytes": 62414
+    },
+    "accounting-agent/build-producer/out/CombinedCapacityGas.t.sol/CapacityRoyaltyFaultToken.json": {
+      "sha256": "4514c31b37ca3a0866d4f7fc78086874b526aedc826e8603e637d37d373f9181",
+      "bytes": 94602
+    },
+    "accounting-agent/build-producer/out/CombinedCapacityGas.t.sol/CombinedCapacityGasTest.json": {
+      "sha256": "945727a29de988926a8006758910f7383ffc601a06018db3662d9bbbbe66f3eb",
+      "bytes": 1611958
+    },
+    "accounting-agent/build-producer/out/CombinedCapacityGas.t.sol/CombinedCapacityVenue.json": {
+      "sha256": "b25a3fcc1c29c89eeda7acc2203aec3e0c80235b48b862908dff8d2d74b08477",
+      "bytes": 148471
+    },
+    "accounting-agent/build-producer/out/console.sol/console.json": {
+      "sha256": "ca26388a5e61272c752a45f6af8f20726e9624ba2edd4203b295e5c983744d0b",
+      "bytes": 3888
+    },
+    "accounting-agent/build-producer/out/Context.sol/Context.json": {
+      "sha256": "dddac96d45476ed5922c126e8dbf10bd9992f3864a99f7f8904c1cf73ea6906e",
+      "bytes": 4097
+    },
+    "accounting-agent/build-producer/out/Currency.sol/CurrencyLibrary.json": {
+      "sha256": "f06235367d764439eae6c20308617e6199b7c5075191dd2f678207393c0e259d",
+      "bytes": 7752
+    },
+    "accounting-agent/build-producer/out/CurrencyDelta.sol/CurrencyDelta.json": {
+      "sha256": "e27517a664062e679dd827fd6ab4538fcc2f1c23f26649ce6d0ca6831f029a36",
+      "bytes": 6142
+    },
+    "accounting-agent/build-producer/out/CurrencyReserves.sol/CurrencyReserves.json": {
+      "sha256": "ccef91dbdc00a0ff5a0edc9085fad3e4bf31b612d96ca768f6f27db0e7eae4b4",
+      "bytes": 5958
+    },
+    "accounting-agent/build-producer/out/CustomRevert.sol/CustomRevert.json": {
+      "sha256": "490d71049dadf5111f70cd256abbaa724b755ffb01d59832b232372c7d2e016e",
+      "bytes": 5494
+    },
+    "accounting-agent/build-producer/out/DeltaResolver.sol/DeltaResolver.json": {
+      "sha256": "149ed588061c43819ab5f01d81db3de8a43bec26a58b6c381a4ce6b71c4776c7",
+      "bytes": 19936
+    },
+    "accounting-agent/build-producer/out/draft-IERC6093.sol/IERC1155Errors.json": {
+      "sha256": "e22dbdfde8e6ae42567643cb129ca336fbfa1ba4a83f891efa2e03822c4804f6",
+      "bytes": 9433
+    },
+    "accounting-agent/build-producer/out/draft-IERC6093.sol/IERC20Errors.json": {
+      "sha256": "9f2f4c520d16c2df0f9ef714ddf31f7feff56465eda1710dd6bc108ce7c86692",
+      "bytes": 8483
+    },
+    "accounting-agent/build-producer/out/draft-IERC6093.sol/IERC721Errors.json": {
+      "sha256": "d40b5d5fde2a57efc5107cce7b1a93de292ef1e83ea65671424e9dee91c22b0b",
+      "bytes": 9350
+    },
+    "accounting-agent/build-producer/out/DualOracleFixture.sol/CorrelatedFixtureFeed.json": {
+      "sha256": "dfb24da2117328e4b4671422c38a19b79fbcc061eb87654299496cbb3a47a329",
+      "bytes": 17565
+    },
+    "accounting-agent/build-producer/out/DualOracleFixture.sol/DualOracleFixture.json": {
+      "sha256": "11918141b019af82025ecabc92691000487fdd0506016b21b3029d4b138a1034",
+      "bytes": 9755
+    },
+    "accounting-agent/build-producer/out/EIP712_v4.sol/EIP712_v4.json": {
+      "sha256": "da0559558543950643d0cbda3ccf7691bf109e83ca069f3df5a22207232218d0",
+      "bytes": 11248
+    },
+    "accounting-agent/build-producer/out/ERC165.sol/ERC165.json": {
+      "sha256": "5d73a235f89a80e75f8b4369731d993ef809055ead43786b09e5639ff9152217",
+      "bytes": 6117
+    },
+    "accounting-agent/build-producer/out/ERC20.sol/ERC20.json": {
+      "sha256": "c93267f23b6e3a2e11a96112a0da939a86e9f1ff39ee5df56496e2aab7ce6a2e",
+      "bytes": 24448
+    },
+    "accounting-agent/build-producer/out/ERC6909.sol/ERC6909.json": {
+      "sha256": "504a4960523176e6ed15adbefe3fbd9d606201c3e44f2020de2f25e4a5176854",
+      "bytes": 19641
+    },
+    "accounting-agent/build-producer/out/ERC6909Claims.sol/ERC6909Claims.json": {
+      "sha256": "4d64166c8ac22121aec492dac31ad583104083b198323cc700de9b4f8922bd0b",
+      "bytes": 19341
+    },
+    "accounting-agent/build-producer/out/ERC721.sol/ERC721.json": {
+      "sha256": "5a46f573e4670946be342d231da7330b9a7adb4c527850625d07752c0c19515b",
+      "bytes": 37875
+    },
+    "accounting-agent/build-producer/out/ERC721.sol/ERC721TokenReceiver.json": {
+      "sha256": "6b7becebc387fb30d7f0cb83dde6222539d79b80434e4e6a088747685622eb00",
+      "bytes": 5114
+    },
+    "accounting-agent/build-producer/out/ERC721Permit_v4.sol/ERC721Permit_v4.json": {
+      "sha256": "c8309c0a7572d310e124878fb7a30596e769410f6825634fceaa82ed93c29ef7",
+      "bytes": 35222
+    },
+    "accounting-agent/build-producer/out/ERC721PermitHash.sol/ERC721PermitHash.json": {
+      "sha256": "0414b643ca29347f977eeff1bcd12c9ed61096d31d7078a3a80294e39d440727",
+      "bytes": 4395
+    },
+    "accounting-agent/build-producer/out/ERC721Utils.sol/ERC721Utils.json": {
+      "sha256": "eab767f121725cc0c02929f168cd5a2ebbb1fce7a96f494fcff4cef063cb615d",
+      "bytes": 5506
+    },
+    "accounting-agent/build-producer/out/ExactAsset.sol/ExactAsset.json": {
+      "sha256": "fc4f8913671acbed8e159d948205bd65d996e3c73c894d345606ef79cd8aad0e",
+      "bytes": 8620
+    },
+    "accounting-agent/build-producer/out/ExactRoyaltyAllocation.sol/ExactRoyaltyAllocation.json": {
+      "sha256": "c67459775e40f54470118be716041850ddcdb54eb70c90c6f175631460c4ded5",
+      "bytes": 4373
+    },
+    "accounting-agent/build-producer/out/ExactToken.sol/ExactToken.json": {
+      "sha256": "412511e460b72c9e4accd1e6f89c0598c383e77f6b6edb4f522ea1955697297f",
+      "bytes": 8222
+    },
+    "accounting-agent/build-producer/out/Extsload.sol/Extsload.json": {
+      "sha256": "a9f3b5dd78a682923208f08b147b0e36f7b3ccbabdc85a9957633b1a5f637a40",
+      "bytes": 8074
+    },
+    "accounting-agent/build-producer/out/Exttload.sol/Exttload.json": {
+      "sha256": "adc809eaf6267ba263f90c881ea3cec1f6e13b5f6aed9223ef5c6edc98cc59d4",
+      "bytes": 6632
+    },
+    "accounting-agent/build-producer/out/FixedPoint128.sol/FixedPoint128.json": {
+      "sha256": "3ecaac9dd35b33056d38331e1529bccde24ad5caac83042cb1e813eeb520f5ae",
+      "bytes": 4170
+    },
+    "accounting-agent/build-producer/out/FixedPoint96.sol/FixedPoint96.json": {
+      "sha256": "9e1b8b599a532da1c62699e76bbf13c975513a415777aae3d92db239fef9c8ff",
+      "bytes": 4207
+    },
+    "accounting-agent/build-producer/out/FullMath.sol/FullMath.json": {
+      "sha256": "629b077e4a06622b37b0cfdd31f0ccbb570202e07bc3f078b062f00835d35aa3",
+      "bytes": 4314
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/ExitScaleAssets.json": {
+      "sha256": "947b6421e0d1cf01be91d5edd4b7c4fadecbee918a896f32a1c554cb4a358249",
+      "bytes": 58704
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/ExitScaleLiquidity.json": {
+      "sha256": "433c4273c5dcd84d30f346d602a85f93c0e551744bb097472152c18f5973b3cc",
+      "bytes": 59769
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/ExitScaleNFT.json": {
+      "sha256": "bbccb068f1c3ab86de07cb4b576e2b55c7dca62d421decad03343a504cde1ea8",
+      "bytes": 68180
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/ExitScaleVault.json": {
+      "sha256": "25006dcccef6a891f03ab23b97e836186c93c0a3e741e754b921726407c666e1",
+      "bytes": 108894
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/GasBudgetHolderETH.json": {
+      "sha256": "d09e9b6f77ef5d8c99ad94a960b3c49973848bda13b2b39614dcd5f319eeb773",
+      "bytes": 58414
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/GasConsumingHolderETH.json": {
+      "sha256": "27758303ded4df20ba69287d5ee8fd429404fa33ee615c932d3bfda0a2b98602",
+      "bytes": 57658
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderCollectiveExitTest.json": {
+      "sha256": "2ad7dea143d8f74b88e01e244112e7120f69f5a47e4d00b2bb600c33863d80b7",
+      "bytes": 1891309
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderExitCallbackToken.json": {
+      "sha256": "2a477e50cd964eaf49b01d8aed0ed35a67d384a0e44799353da5ac2a5339a826",
+      "bytes": 97689
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderExitIdentity.json": {
+      "sha256": "6ed1486c82d9888027c5498acefa0a10070724004b09081cf72cb43f634add21",
+      "bytes": 59415
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderExitPolicy.json": {
+      "sha256": "ac2eb81440632706cfabd56bfe7d506192519950e69e722177cf0ad69cfa43eb",
+      "bytes": 77119
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderExitScaleTest.json": {
+      "sha256": "b139d12837fb986c39e4ba0a73f430db77a03653bed21153186df068992a66e2",
+      "bytes": 616753
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/HolderExitVenue.json": {
+      "sha256": "a46ca54dd2ccf905a515030b4bc23c11ab07b3c32a9a54b5d2822ca02ca6b2b7",
+      "bytes": 164232
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/IHolderExitCallback.json": {
+      "sha256": "541b11233624b17c70c2bdc808413cd64d85634a5b3cb99590ad08fdcc616725",
+      "bytes": 57386
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/ReenterHolderETH.json": {
+      "sha256": "de129b95cbc03c6bc7a5d2834a1dca897c8bf7a5cf850afb7deba374045fca05",
+      "bytes": 65496
+    },
+    "accounting-agent/build-producer/out/HolderCollectiveExit.t.sol/RejectHolderETH.json": {
+      "sha256": "56b3095615b4733cf5365cc46818153a505864a41465e7d1ca27c76c2c081327",
+      "bytes": 63705
+    },
+    "accounting-agent/build-producer/out/Hooks.sol/Hooks.json": {
+      "sha256": "0c484dc553d6cfd625c74d5717e99fc1aa2a3a1c5acb8116c746b4752205654a",
+      "bytes": 16545
+    },
+    "accounting-agent/build-producer/out/IAllowanceTransfer.sol/IAllowanceTransfer.json": {
+      "sha256": "eeb2b9353389b844f35fe714f4602639f4a7fa7c645196aec8c2cb92c807a50f",
+      "bytes": 32368
+    },
+    "accounting-agent/build-producer/out/IEIP712.sol/IEIP712.json": {
+      "sha256": "60d634d90c815c69847c3657be1e8385cb9a64415de8f2520507b20a0c5d3aa2",
+      "bytes": 4200
+    },
+    "accounting-agent/build-producer/out/IEIP712_v4.sol/IEIP712_v4.json": {
+      "sha256": "a15f5d92b70216bd378ddd186d178e825d076339d7180cc92ea5c51907ceb640",
+      "bytes": 4569
+    },
+    "accounting-agent/build-producer/out/IERC1271.sol/IERC1271.json": {
+      "sha256": "0b1ef129961c26880d45b0294bfba16a189359b31909bfffe990f8b3a1a310be",
+      "bytes": 5219
+    },
+    "accounting-agent/build-producer/out/IERC1363.sol/IERC1363.json": {
+      "sha256": "88c50817b08717dd0ced0bb019d23c29ad47f4d1d29d91aa0b33309b6e208ce1",
+      "bytes": 29876
+    },
+    "accounting-agent/build-producer/out/IERC165.sol/IERC165.json": {
+      "sha256": "07a22cea0caff93a05364ece19019971e8b3a206bb265d0f1a728cd63fbe5dfc",
+      "bytes": 5285
+    },
+    "accounting-agent/build-producer/out/IERC20.sol/IERC20.json": {
+      "sha256": "141c59a4d7a83889febe7b2cd2eaf9a4c11df5309d1240c3077fe5d5e548e134",
+      "bytes": 13754
+    },
+    "accounting-agent/build-producer/out/IERC20Metadata.sol/IERC20Metadata.json": {
+      "sha256": "263c9e0c0dbcfb3275cb1514c0830d466c4257bd35d1d5318ed076ffb3247b84",
+      "bytes": 16249
+    },
+    "accounting-agent/build-producer/out/IERC20Minimal.sol/IERC20Minimal.json": {
+      "sha256": "e7a486f8f0b570612311a34d8aca226a4277ac0047c731dd762167859544dda7",
+      "bytes": 14600
+    },
+    "accounting-agent/build-producer/out/IERC6909Claims.sol/IERC6909Claims.json": {
+      "sha256": "e9553efcf48adafe16d3b65f09140e0ebe4d9a266455c266d0d7cf25f59579ff",
+      "bytes": 18559
+    },
+    "accounting-agent/build-producer/out/IERC721.sol/IERC721.json": {
+      "sha256": "cd9966bf86aba13b2ea5122bfa5ac91b964bd893f1ff9b714047a12e755a14f7",
+      "bytes": 22314
+    },
+    "accounting-agent/build-producer/out/IERC721Metadata.sol/IERC721Metadata.json": {
+      "sha256": "fcb392cb1a8687f6c678bde830e5391041b8a39e5a17d1a1f587c008c3319401",
+      "bytes": 25152
+    },
+    "accounting-agent/build-producer/out/IERC721Permit_v4.sol/IERC721Permit_v4.json": {
+      "sha256": "c1f09974318e1e037a33b38c3f899edf047c34d0fbd37c82edd658e49688b708",
+      "bytes": 10438
+    },
+    "accounting-agent/build-producer/out/IERC721Receiver.sol/IERC721Receiver.json": {
+      "sha256": "c0863490dbeff8575463c539195198d21ced701ca5fdc875f9ce628682912088",
+      "bytes": 6134
+    },
+    "accounting-agent/build-producer/out/IExtsload.sol/IExtsload.json": {
+      "sha256": "d63e54073a429b49cc560ba7a1cb417654a02093d8aef61ae12443e933bd63c7",
+      "bytes": 7501
+    },
+    "accounting-agent/build-producer/out/IExttload.sol/IExttload.json": {
+      "sha256": "6ad5b8eb5b77aedd0479e5aeaff19322c951c1a882a62c5b7395059e26d78419",
+      "bytes": 6033
+    },
+    "accounting-agent/build-producer/out/IHooks.sol/IHooks.json": {
+      "sha256": "ea4b2636dadc675970409bc20c25a804278e4644b4ecd11f6b768b322f038d57",
+      "bytes": 54929
+    },
+    "accounting-agent/build-producer/out/IImmutableState.sol/IImmutableState.json": {
+      "sha256": "5ffcf22a82bfbcd3b08be95df3373de8820eb0c4620ea3578ccb9d6f54f46169",
+      "bytes": 13880
+    },
+    "accounting-agent/build-producer/out/ImmutableState.sol/ImmutableState.json": {
+      "sha256": "ce3b21571e3f175308279cebd9a4598e1990a9e99f4263d3d245820cfc2a0841",
+      "bytes": 17272
+    },
+    "accounting-agent/build-producer/out/IMsgSender.sol/IMsgSender.json": {
+      "sha256": "b2a080095cf1f9a4706a1fe54ddc3350b986cd87b4eff57a4b83d8858fb3fb65",
+      "bytes": 5029
+    },
+    "accounting-agent/build-producer/out/IMulticall3.sol/IMulticall3.json": {
+      "sha256": "7496e562caa102e9c7c36ee596c183a853cfccf95499f5a1cc62ef6030b216fe",
+      "bytes": 21088
+    },
+    "accounting-agent/build-producer/out/IMulticall_v4.sol/IMulticall_v4.json": {
+      "sha256": "0c68a3da0eae291434c8784e29bb3b7c27d40b9fdca5f3cf4e944269ab269cdd",
+      "bytes": 5578
+    },
+    "accounting-agent/build-producer/out/INotifier.sol/INotifier.json": {
+      "sha256": "ea50942f495d28816769ef95a8aaf8bc4183f00ecd267ababcbe82936bd4f934",
+      "bytes": 22488
+    },
+    "accounting-agent/build-producer/out/IntegratedEconomicConservation.t.sol/EconomicForcedETH.json": {
+      "sha256": "075fd78faf91718d0f48731f03ad1a333bc02b234ed5a9292d7d43894f73aa9b",
+      "bytes": 116461
+    },
+    "accounting-agent/build-producer/out/IntegratedEconomicConservation.t.sol/EconomicNativeRegistry.json": {
+      "sha256": "3ecfdd752f73bbb3ceb3ebb6e4fa9b99fe04251f4a6809c14a09ad35a6479d79",
+      "bytes": 175520
+    },
+    "accounting-agent/build-producer/out/IntegratedEconomicConservation.t.sol/IntegratedEconomicConservationTest.json": {
+      "sha256": "0464868e3cb9de9c2a5ec5620dc6361c67f5e776f5850202d1a0964c5a6e40bb",
+      "bytes": 2676977
+    },
+    "accounting-agent/build-producer/out/IPermit2Forwarder.sol/IPermit2Forwarder.json": {
+      "sha256": "5cfb23a5bd3f4cedede5fc8a1ac4283a0d51f873f6ebed624324b1170979ae37",
+      "bytes": 12858
+    },
+    "accounting-agent/build-producer/out/IPoolInitializer_v4.sol/IPoolInitializer_v4.json": {
+      "sha256": "c07d27d6a6030220294e0745e11e3676e52bc848fb05993f91f5304b0f84ca38",
+      "bytes": 13180
+    },
+    "accounting-agent/build-producer/out/IPoolManager.sol/IPoolManager.json": {
+      "sha256": "a3dd2549b963fc46258493e91eeda31dfad0719f05b37853a07783bb68abdfd8",
+      "bytes": 90574
+    },
+    "accounting-agent/build-producer/out/IPositionDescriptor.sol/IPositionDescriptor.json": {
+      "sha256": "73538c46b6493f63cb921fe4b799859c2b9d79837de1ccbb33720cfec2a63670",
+      "bytes": 29050
+    },
+    "accounting-agent/build-producer/out/IPositionManager.sol/IPositionManager.json": {
+      "sha256": "19bb21c59094742d3d2cb857ea83a285660c9b0bb1f32f903807178c6f1e945c",
+      "bytes": 66468
+    },
+    "accounting-agent/build-producer/out/IProtocolFees.sol/IProtocolFees.json": {
+      "sha256": "68283cc8ccdc4a777c9bad9c36ce3d2c54b0f6534202d887fcb1f30aee2ff129",
+      "bytes": 20393
+    },
+    "accounting-agent/build-producer/out/IStateView.sol/IStateView.json": {
+      "sha256": "c30d9ac50d1b36d1cc7350a967ed2f5174360146537f9fe2f8fd47e597aded7b",
+      "bytes": 42859
+    },
+    "accounting-agent/build-producer/out/ISubscriber.sol/ISubscriber.json": {
+      "sha256": "5eddfb38c55619abc0ff54ee752e2b8acab9a3267d39144f6da2a1b3f047ec46",
+      "bytes": 17900
+    },
+    "accounting-agent/build-producer/out/IUnlockCallback.sol/IUnlockCallback.json": {
+      "sha256": "0d241ec976059fa47e82875da2bb6c0cc3a58f80eecf9a9f0386813ed6604b79",
+      "bytes": 5058
+    },
+    "accounting-agent/build-producer/out/IUnorderedNonce.sol/IUnorderedNonce.json": {
+      "sha256": "271125ed76818a57af501e9c028817b884e8e6c8f74d69aa4077a2bb583d3674",
+      "bytes": 6413
+    },
+    "accounting-agent/build-producer/out/IV4Router.sol/IV4Router.json": {
+      "sha256": "7d034bb9d861d5ddb10846b90fcc1041216b8129e426c3361f4e58bcc45413d9",
+      "bytes": 16641
+    },
+    "accounting-agent/build-producer/out/IWETH9.sol/IWETH9.json": {
+      "sha256": "0d976362f2bda0395bf63c0bb5d832c23ea130f658c55023b85dd0589768aa5d",
+      "bytes": 15426
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IBurnable.json": {
+      "sha256": "1a0be8c637a1fd05b13c92945dfca48df32ba1b998435b58ef81c5710258981d",
+      "bytes": 5037
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IPermit2Minimal.json": {
+      "sha256": "dc66f9c5a33d103184553d5e2e3684f958f642b479f0d352d3bf86866860af06",
+      "bytes": 5179
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IPoolManagerMinimal.json": {
+      "sha256": "5ada9068bf1416ab3b69319f37108a9fa5e69551c8f117b537395a01f80dad7e",
+      "bytes": 9486
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IPositionManagerMinimal.json": {
+      "sha256": "c26f87861ffad7bc0126d8966844ecf735603bad8c3a1be14de60c25138c26ac",
+      "bytes": 10326
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IPriceFeed.json": {
+      "sha256": "258d02625a6b8e6c0969bfe9f999a312f5623681c2001c514093c2e387048825",
+      "bytes": 5707
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IStateViewMinimal.json": {
+      "sha256": "69b0781ef059f3c3e1047450a0d3b51bae121fd04be04591dd5860bc1541dd5e",
+      "bytes": 5733
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZAccess.json": {
+      "sha256": "428c0b9d2223e7e585441d01c991a4158bb3037489548a6e3cf4fd59effa2f87",
+      "bytes": 13275
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZActivationEntry.json": {
+      "sha256": "8ad4a6168cda5cc094a3ecf8b24a686c82ac8fcfae4e256a2c4de6d536d29e0c",
+      "bytes": 5886
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZBound.json": {
+      "sha256": "2f68c40b1aeaed49b525590ccb158c81ce7c39ccc4a7340d7f2b8058c2c02e05",
+      "bytes": 4564
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZFees.json": {
+      "sha256": "b14c3c845d59f430c7f2ae03614a3f44b4d41df85b5712183dd96cb41c63f359",
+      "bytes": 8146
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZLiquidity.json": {
+      "sha256": "cdb6bb482f968de465755cd7e2c3bc52d6586997b512778883ed46afb81f2a53",
+      "bytes": 21845
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZMembership.json": {
+      "sha256": "1b1f352301bfee9cdaf308f5ab16d79f896d7bfb1faf7b524262372853a793c9",
+      "bytes": 6017
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZMigration.json": {
+      "sha256": "962f97ddf2b92c006b191e184dcb31acb20c3498260cc303fcb56ba4f4ba3fb0",
+      "bytes": 5906
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZNFT.json": {
+      "sha256": "45da9204fff6a6cf119c05a532b8099b52af1b2623f50e2a657ae7459b8ffc2f",
+      "bytes": 7555
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZOracle.json": {
+      "sha256": "a58c2adb6192efdba8408da1fae6c9586250d202f2e5a83bcf29365bf81ca89d",
+      "bytes": 9804
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZPools.json": {
+      "sha256": "6716bd6d0d053819094dce93a752f8f87660719c61314618e02773e618e385f2",
+      "bytes": 13681
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZRewards.json": {
+      "sha256": "6b6ea7252429f1cd71eb0b128efb9940eeba486d3d180f526948c0fa6711a0d4",
+      "bytes": 6876
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZStrategy.json": {
+      "sha256": "af4efa0311af07843c4e648badee3d9ba79a326993191f6368154f463b59196c",
+      "bytes": 15707
+    },
+    "accounting-agent/build-producer/out/IZZZ.sol/IZZZVault.json": {
+      "sha256": "0a057be3d3e28bd7f156bd5242d757c02d98caa438d8d91c77fe1abeea3737c9",
+      "bytes": 23545
+    },
+    "accounting-agent/build-producer/out/IZZZCanonical.sol/IZZZCanonicalAccess.json": {
+      "sha256": "e2a3ec04078207585073a367e7f16001032364831c14d055b699b0524998f355",
+      "bytes": 5040
+    },
+    "accounting-agent/build-producer/out/IZZZCanonical.sol/IZZZCanonicalModule.json": {
+      "sha256": "93eaf867739f93df22c898ddd39d6cd7740b70d46aac0731955d53dcf8e53a6e",
+      "bytes": 10572
+    },
+    "accounting-agent/build-producer/out/IZZZEmergency.sol/IZZZEmergencyBudget.json": {
+      "sha256": "8eeea2e28c83727713a5519e5f04dbdc7e6f412b2358f2e3858c0b5bd5fc026b",
+      "bytes": 6078
+    },
+    "accounting-agent/build-producer/out/IZZZEmergency.sol/IZZZEmergencyController.json": {
+      "sha256": "b99f4d9c6586670167ef6e522427b332340117ebec898bf14df81be03a0f1d58",
+      "bytes": 6506
+    },
+    "accounting-agent/build-producer/out/IZZZEmergency.sol/IZZZEmergencyLiquidity.json": {
+      "sha256": "92384c2513731ec9cabbaef18621bec0283b08f5e0b64e546c9c65fefcba841e",
+      "bytes": 4217
+    },
+    "accounting-agent/build-producer/out/IZZZEmergency.sol/IZZZEmergencyVault.json": {
+      "sha256": "d43e5492c93e6a6a096a0314bc5dfd646c18a61b11f1f72cce37eba97b255a4b",
+      "bytes": 5035
+    },
+    "accounting-agent/build-producer/out/IZZZNFTCanonical.sol/IZZZNFTCanonicalState.json": {
+      "sha256": "5abdaed30512f8673a8c64b09ebae8ec57ae60e80c57ff7fd6f66de448dd656a",
+      "bytes": 20228
+    },
+    "accounting-agent/build-producer/out/IZZZProtocolPolicy.sol/IZZZProtocolPolicy.json": {
+      "sha256": "aacd83cfd11c61243852909ad3ad3f1c7393f4e05bc35416be38e39952d96ad5",
+      "bytes": 19822
+    },
+    "accounting-agent/build-producer/out/IZZZV3Route.sol/IV3RouteFactory.json": {
+      "sha256": "184e44c71ed2897580713c65a61ba6b631bc8e752e08c156852ef50dbccdfadb",
+      "bytes": 4543
+    },
+    "accounting-agent/build-producer/out/IZZZV3Route.sol/IV3RoutePool.json": {
+      "sha256": "155b1475b6fb1f18f0b82806758cdd686fab1e5a61e80e3305d9c892f69d64e9",
+      "bytes": 5385
+    },
+    "accounting-agent/build-producer/out/IZZZV3Route.sol/IV3RouteRouter.json": {
+      "sha256": "1b7da52cc3e600cb83b121d35722c16bd59c2e5b553a932e05340a757d290a30",
+      "bytes": 6411
+    },
+    "accounting-agent/build-producer/out/libraries/SafeCast.sol/SafeCast.json": {
+      "sha256": "7bf94e6eb227e7dfac782b0f93da0838822ff1456b23c025446d42e8b7fbc933",
+      "bytes": 4902
+    },
+    "accounting-agent/build-producer/out/LiquidityAmounts.sol/LiquidityAmounts.json": {
+      "sha256": "edb26dd567c9365144badb81d9baa15df00b0643576baa0d92dbe2fb7aac3ed0",
+      "bytes": 6674
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/FactualPermit.json": {
+      "sha256": "e49064a43fb10425672340baa20f6f75a676d262b99434ab2011f76ac59b9fdf",
+      "bytes": 112257
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/FactualPools.json": {
+      "sha256": "9320855de4d7f6c67ec4934e5f19dd73f311aaf42718f2a3ac27a05149299b6a",
+      "bytes": 139434
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/FactualReference.json": {
+      "sha256": "9544c220d61d3f5fd1883cb780912d656b4eccbf8bedf5d71a52bcaa60ec4921",
+      "bytes": 102325
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/FactualToken.json": {
+      "sha256": "6c3d598e177783210c51ae505c445a53f2c6e1b1084e573bacdbd98521dd3c1b",
+      "bytes": 149599
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/FactualTrader.json": {
+      "sha256": "3c3136f0c79d577d1c422bec2e745366cb78c72f1c78b6746eac06551670962d",
+      "bytes": 119998
+    },
+    "accounting-agent/build-producer/out/LiquidityFactualChecks.t.sol/LiquidityFactualChecksTest.json": {
+      "sha256": "b273a8926aeaf9f3df739509bda9f2b3107d0084978aa9ac3833ffece0220b7f",
+      "bytes": 1280715
+    },
+    "accounting-agent/build-producer/out/LiquidityMath.sol/LiquidityMath.json": {
+      "sha256": "7101bc17e3d52e59ed8c76bbfd3c83b381456b5ad7ace79a9bbeb9215b1f5609",
+      "bytes": 4065
+    },
+    "accounting-agent/build-producer/out/Lock.sol/Lock.json": {
+      "sha256": "4fcb70c374fa0b8b034ae9d1eb3c8cd1873805fd158d3c7faa6c5b8f7b6b6095",
+      "bytes": 4170
+    },
+    "accounting-agent/build-producer/out/Locker.sol/Locker.json": {
+      "sha256": "e44eb7c6e829cb53a5debf2d968d172c6cbcfae0bb1270c8f7d07bb233d2cf1e",
+      "bytes": 4195
+    },
+    "accounting-agent/build-producer/out/LPFeeLibrary.sol/LPFeeLibrary.json": {
+      "sha256": "e144ea6bc0b1423c2634e14b449d6d1de8166f5ece98556e9df699498810f44f",
+      "bytes": 9900
+    },
+    "accounting-agent/build-producer/out/Math.sol/Math.json": {
+      "sha256": "63d08b27e80856d68585e3b8ebc346d62e4fcced79f4ae4bdf489ee5b5c2742c",
+      "bytes": 5314
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/BoundDummy.json": {
+      "sha256": "10443e5ab433d4455bbfd627eed2456ab5f36892c9c6c6c35a4eceb1a1bcf031",
+      "bytes": 41282
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/ExtraTaxToken.json": {
+      "sha256": "73d5425fa2562e1604afb6b55d23781685e76e4d88ad3469319c690e37fdfeb7",
+      "bytes": 62671
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/IMockCallerAccess.json": {
+      "sha256": "f2f0047cd58a5eee5626707f1d426a9e07fa72f872f360595f5d9000398f5f9d",
+      "bytes": 25973
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/IMockSealIdentity.json": {
+      "sha256": "94a125a3dd77ade9d289ded35ea8861d6487599be040ade5be00761875c1c7bc",
+      "bytes": 25961
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/IMockSealRegistry.json": {
+      "sha256": "e92c910098ea0065842e73a144e900a5c3d8d662bbf891cc6e114136bee81ef3",
+      "bytes": 26013
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/MockAccess.json": {
+      "sha256": "cc5ddd1f04485fdf678b314a13fcc3de78beb9a421d53641e41dc117ff43fbe8",
+      "bytes": 129435
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/MockFeed.json": {
+      "sha256": "ca668c14d5a87f36bae1ed84cb8d384b2cf51813da0f5a37dd9be2ec79648cf6",
+      "bytes": 39461
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/MockPools.json": {
+      "sha256": "0a3cc330df62318399cb1dcfe40e0b6983e2ec910b2615527bf7845241747f84",
+      "bytes": 60855
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/MockToken.json": {
+      "sha256": "a2d85af31ae7e8092360d0d11ded0236dde6897d90a357339f54e6959e3fd4f5",
+      "bytes": 61708
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/MockVaultRecord.json": {
+      "sha256": "fa5800c3f2615a59635a4fb2a3db037c7b47a51401fa1f968ef4beb39feff46e",
+      "bytes": 38866
+    },
+    "accounting-agent/build-producer/out/Mocks.sol/TaxToken.json": {
+      "sha256": "94cdac749bc57818ec6e546aaf8373965fdd8aeb624762a7150be65e4b578e11",
+      "bytes": 62911
+    },
+    "accounting-agent/build-producer/out/MockVRF.sol/IMockVRFConsumer.json": {
+      "sha256": "631fd26aa5c8c2991899127e22d0fba70b5d960bf26c351043b283241e780be2",
+      "bytes": 28403
+    },
+    "accounting-agent/build-producer/out/MockVRF.sol/MockVRF.json": {
+      "sha256": "7a691acd6d95a975bf75e97ed275acaecd93fbd9b50202bc85d637d3d4487061",
+      "bytes": 55330
+    },
+    "accounting-agent/build-producer/out/Multicall_v4.sol/Multicall_v4.json": {
+      "sha256": "9106623456e288c630462652842032f1d24e364b888bc568663530ea127ffe55",
+      "bytes": 6219
+    },
+    "accounting-agent/build-producer/out/NativeCanonicalIntegration.t.sol/CanonicalNativeVenue.json": {
+      "sha256": "77803dc8769f2018d4d392ad47198200ef748eb9815bff3f536ff58e35558e8a",
+      "bytes": 153927
+    },
+    "accounting-agent/build-producer/out/NativeCanonicalIntegration.t.sol/NativeCanonicalIntegrationTest.json": {
+      "sha256": "ecf5c8858c98cdf9c95383fdd79e96dbae16069f71eb583277410af47ea744a2",
+      "bytes": 1771877
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeCanonicalFundingTest.json": {
+      "sha256": "14bb08bda3aeddf6b39306a9bab064d76f72e974d72227f27fd5ddbe817171fe",
+      "bytes": 764240
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeCanonicalVault.json": {
+      "sha256": "06cce1a16a7b94de1454734ee51c5346d4873937ceeb9b1249b81cacc70ae2b7",
+      "bytes": 61955
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeClosedPortfolio.json": {
+      "sha256": "6583ace5922db79bf8a02fbca27de7f288c40c0db04a039ea5ce45cdb41ea7ba",
+      "bytes": 45651
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeCustodyAssets.json": {
+      "sha256": "eb0597df2f6092b053f6e427a931bd7c59b06862563cf17b684ec7be9471230f",
+      "bytes": 47877
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeCustodyOracle.json": {
+      "sha256": "d6f53233cde73150cb54b3edd9eb52a6e86613a12d0a25c7549b731bed5897e5",
+      "bytes": 97684
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeHistoricalAssets.json": {
+      "sha256": "d72cd793ef20d0a6928963944a49c8e73cbbac58c6e393294989abba1e9d9569",
+      "bytes": 50713
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeLedgerHarness.json": {
+      "sha256": "d8fe45160f27e100e6ce242a52e753a7731f94c6bfdefd451b896e8bc2071d61",
+      "bytes": 80061
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeMigrationBudgetTest.json": {
+      "sha256": "7540a2ace53a1a1cb1a5557b06233dea426c8c454b556dfbd76975eb4e69f2d6",
+      "bytes": 573934
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/NativeVersionAccess.json": {
+      "sha256": "d475b1337ad2cdbad7c74294c5e8c286bf496ad16eb481041877531438fa7941",
+      "bytes": 146772
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/OldCanonicalSchema.json": {
+      "sha256": "93f60d6755ea36693c4cc07dd250c00786589e3e005329310fc31b126def86b0",
+      "bytes": 44715
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/OldNativeFeeSchema.json": {
+      "sha256": "a8b9877b5a833dda64e340c5e4d37c1010989e7d7115132d892e022f5840becd",
+      "bytes": 44715
+    },
+    "accounting-agent/build-producer/out/NativeCustody.t.sol/RejectNativeCustody.json": {
+      "sha256": "3d6e4d125dc3730dc440ce01508da2669ff17cf16e18bfa348c8ddf4abc792d3",
+      "bytes": 44288
+    },
+    "accounting-agent/build-producer/out/NativeWrapper.sol/NativeWrapper.json": {
+      "sha256": "344dfaec1f5578dd33d19dfdbbcf9e2eaaa02110193628ad32c813839cea7ae9",
+      "bytes": 18341
+    },
+    "accounting-agent/build-producer/out/NFTMetadata.t.sol/MetadataFeesMock.json": {
+      "sha256": "9130bf63ddde9aaa1cd80d67e1a8d08bec63fb9a91e0cf9abfa3d9081d475c6b",
+      "bytes": 48671
+    },
+    "accounting-agent/build-producer/out/NFTMetadata.t.sol/MetadataPricePolicyMock.json": {
+      "sha256": "df47e155458f25ac21da180784a8f63c62c544850a2bf60ed356ef7c6d183c10",
+      "bytes": 48938
+    },
+    "accounting-agent/build-producer/out/NFTMetadata.t.sol/MetadataVaultMock.json": {
+      "sha256": "044caa8e8ea9f1880f0941618498b47660688e703766c8a5be7b9957ecf9588a",
+      "bytes": 73782
+    },
+    "accounting-agent/build-producer/out/NFTMetadata.t.sol/MetadataVenueMock.json": {
+      "sha256": "a4e5ecc245869c64c99cf14bb6a54924b56af7fb509025766c6b527cdc856fac",
+      "bytes": 60191
+    },
+    "accounting-agent/build-producer/out/NFTMetadata.t.sol/NFTMetadataTest.json": {
+      "sha256": "73e1b01889f996640db08c3ba38ce90236fa6d683349e8eb25c2e576cd2497bc",
+      "bytes": 1054325
+    },
+    "accounting-agent/build-producer/out/NFTOwnershipRights.t.sol/ImmediateRightsReceiver.json": {
+      "sha256": "fe6f624715af062402de16b52393ada6a1ad6b163e48da6a82f57a3d56839142",
+      "bytes": 72974
+    },
+    "accounting-agent/build-producer/out/NFTOwnershipRights.t.sol/NFTOwnershipRightsTest.json": {
+      "sha256": "416c03d3be446d0fa285281bfb3900cc533dd7de910567318972e4c27edac5eb",
+      "bytes": 1605217
+    },
+    "accounting-agent/build-producer/out/NFTOwnershipRights.t.sol/UnavailableRoyaltyToken.json": {
+      "sha256": "fde4036cfac663e1f0302bd8a2f675c197afb2d8749b8be56a5e8fe64b6bf48e",
+      "bytes": 95168
+    },
+    "accounting-agent/build-producer/out/NFTRoyalties.t.sol/NFTRoyaltiesTest.json": {
+      "sha256": "7f2c8110c6ab70fea3a415723611319f1300a559da1d3e72b7419e25318748ed",
+      "bytes": 731271
+    },
+    "accounting-agent/build-producer/out/NFTRoyalties.t.sol/RoyaltyLowGasPayer.json": {
+      "sha256": "5ca29b723efaa8505cf4e4724654d102d660e721121b739cfbd75ac54d1e5f47",
+      "bytes": 39593
+    },
+    "accounting-agent/build-producer/out/NFTRoyalties.t.sol/RoyaltyNativeOwner.json": {
+      "sha256": "40dc156dd01360947ad502937e2f4b556991b788fb636a6892591f40848f3cd0",
+      "bytes": 53429
+    },
+    "accounting-agent/build-producer/out/NFTRoyalties.t.sol/RoyaltyNFTFixture.json": {
+      "sha256": "30bcda42af855080ac265c905ce78f70b45a50ff9660d522b5340bfbf7a3f80f",
+      "bytes": 269864
+    },
+    "accounting-agent/build-producer/out/NFTRoyalties.t.sol/RoyaltyRebaseToken.json": {
+      "sha256": "4912ff984f59bacc0bd4bd11f639ffb7cdd6e56c123592712cdeba9c473fb8bd",
+      "bytes": 74496
+    },
+    "accounting-agent/build-producer/out/NoDelegateCall.sol/NoDelegateCall.json": {
+      "sha256": "69395edf724941c517cc009acf15c0cbba6ebdd5e2e0b398b26caa1a2be1d400",
+      "bytes": 4702
+    },
+    "accounting-agent/build-producer/out/NonzeroDeltaCount.sol/NonzeroDeltaCount.json": {
+      "sha256": "7ff88f364ce5097861d6d51618d4a7eb9fdbb1a3829e2cf08e0efdb9fef9e4a8",
+      "bytes": 4279
+    },
+    "accounting-agent/build-producer/out/Notifier.sol/Notifier.json": {
+      "sha256": "520fb80830564f4c37d0c6fe58da128320e6510b1dd93a6ca4e7818c5e551199",
+      "bytes": 23059
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/IOptionalResidualBurnCallback.json": {
+      "sha256": "c7970ddcbef93d114970d81831a66590acc6f55ea5894ceaa01232c4b9456738",
+      "bytes": 118051
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/OptionalPermit.json": {
+      "sha256": "ed0e15d99d17bd2f76ac775d613c0bc90bfd6a70f755727caa6cbd3a172d6cac",
+      "bytes": 129648
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/OptionalPortfolioCoreTest.json": {
+      "sha256": "7f5234270aeba27e4b436b7751f6509c3f547ae39d5af21f2be8db0c27af97a5",
+      "bytes": 3498185
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/OptionalPositions.json": {
+      "sha256": "40e87b8886993a9b5e4bfa2d94287c291472d4312cdbbd5049c5da4b30a0c0c9",
+      "bytes": 348496
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/OptionalRegistry.json": {
+      "sha256": "73a299bfa0af8f609efc2c31e8acddac135bf3563582d57d0ed3f696d9c70003",
+      "bytes": 188080
+    },
+    "accounting-agent/build-producer/out/OptionalPortfolioCore.t.sol/OptionalToken.json": {
+      "sha256": "cd46c00237b062937dc3f545080337633a807a3bb989fbee615973feca2a4ab7",
+      "bytes": 152152
+    },
+    "accounting-agent/build-producer/out/Owned.sol/Owned.json": {
+      "sha256": "235ca3c6569414bfe503d7b7ccdf242015b657e7726dc96703a1fc4ce2840161",
+      "bytes": 5538
+    },
+    "accounting-agent/build-producer/out/Panic.sol/Panic.json": {
+      "sha256": "9df5a4cb4a72950818d2f9ad6fb38b462f9b26ebabe9c8229ec3439fc25191a1",
+      "bytes": 5129
+    },
+    "accounting-agent/build-producer/out/ParseBytes.sol/ParseBytes.json": {
+      "sha256": "eaf278ec1bf63d9bf546830508ed822deb00c4c106a4cebf9aa6803b53028b69",
+      "bytes": 4325
+    },
+    "accounting-agent/build-producer/out/PathKey.sol/PathKeyLibrary.json": {
+      "sha256": "bf57c8f3063938a4d5e6e410e8b01ff93cfbff8bb7278d8422f2603ac213822f",
+      "bytes": 10362
+    },
+    "accounting-agent/build-producer/out/Permit2Forwarder.sol/Permit2Forwarder.json": {
+      "sha256": "408f1988ce508dd750f632a56eb625c2816159cdaa438996a59b47d1018cb9a6",
+      "bytes": 25131
+    },
+    "accounting-agent/build-producer/out/Pool.sol/Pool.json": {
+      "sha256": "37cb068e9f6d4475b13833306b7ba81b3ea6e9e9125808055dca917eca3556a0",
+      "bytes": 20013
+    },
+    "accounting-agent/build-producer/out/PoolId.sol/PoolIdLibrary.json": {
+      "sha256": "20206b9c22ac69c890db20badeb0989b0fe73eb800f399d1dd95f9adff494d83",
+      "bytes": 9678
+    },
+    "accounting-agent/build-producer/out/PoolInitializer_v4.sol/PoolInitializer_v4.json": {
+      "sha256": "165ea8bc120fefb0f2d33975bf9da84479f0d05975cbd25c302b22c11817bf79",
+      "bytes": 19278
+    },
+    "accounting-agent/build-producer/out/PoolManager.sol/PoolManager.json": {
+      "sha256": "c135d7249d2204c0b6f43b3562f3fa821f1322f17975e8ba9ef3615094c31a76",
+      "bytes": 272796
+    },
+    "accounting-agent/build-producer/out/PortfolioFixture.sol/IFixtureExecutionIdentity.json": {
+      "sha256": "f5120100c7db634f8718fea22f6be231698d2ca448da352721d026c990b7ac1e",
+      "bytes": 4307
+    },
+    "accounting-agent/build-producer/out/PortfolioFixture.sol/IFixturePhysicalAmounts.json": {
+      "sha256": "4e71d759be304a031ddd9e053b2b231f0795a948b4f2556f762ee42eef83a4dc",
+      "bytes": 4389
+    },
+    "accounting-agent/build-producer/out/PortfolioFixture.sol/NoHybridPolicyFixture.json": {
+      "sha256": "c056a5f72a0021ff3effc3a59da0daa5168e16c2d9a44ef0a3cdcf188f21f894",
+      "bytes": 5320
+    },
+    "accounting-agent/build-producer/out/PortfolioFixture.sol/PortfolioFixture.json": {
+      "sha256": "9a4ebc04272311c974c511d6a6185f2f64a1e6a710d44948cf29e3d5fe537fde",
+      "bytes": 3925
+    },
+    "accounting-agent/build-producer/out/PortfolioFixture.sol/SinglePositionFixture.json": {
+      "sha256": "414a08cc35757e15f92613b5adcf432ccae420d14612759b0260d8c455a307b8",
+      "bytes": 8233
+    },
+    "accounting-agent/build-producer/out/Position.sol/Position.json": {
+      "sha256": "271cae9bca8d57d775650382e2b7474e2f564edf239d629132bb05bdcd8cfb4b",
+      "bytes": 7052
+    },
+    "accounting-agent/build-producer/out/PositionInfoLibrary.sol/PositionInfoLibrary.json": {
+      "sha256": "205145e9fb83b5df43eb12f4b9f79711199ad394c5f251b58f5ba1dd61e1fca4",
+      "bytes": 10343
+    },
+    "accounting-agent/build-producer/out/PositionManager.sol/PositionManager.json": {
+      "sha256": "2a74288fd712209fbc112ed1e231364943052e6749f90b103d5953e0ae7028fe",
+      "bytes": 270916
+    },
+    "accounting-agent/build-producer/out/ProtocolFeeLibrary.sol/ProtocolFeeLibrary.json": {
+      "sha256": "c29760991cf1c01b146c97e30b87fa0efee253fe4a102bb32d78611c2200cc16",
+      "bytes": 5502
+    },
+    "accounting-agent/build-producer/out/ProtocolFees.sol/ProtocolFees.json": {
+      "sha256": "57b4b0fe009e70f8d512708598a63cf43070283deba6b5d9536ae458a78e05ad",
+      "bytes": 33327
+    },
+    "accounting-agent/build-producer/out/ProtocolPolicy.t.sol/PolicyNFTContext.json": {
+      "sha256": "8f24316ac35a58cb923fdb5bb2ed6ead53451b3e3112d086c25ac89699f05550",
+      "bytes": 46939
+    },
+    "accounting-agent/build-producer/out/ProtocolPolicy.t.sol/PolicyProviderIdentity.json": {
+      "sha256": "980d182cd461d552c316448b78326202753ea6b0432e19be24bf25409aecf006",
+      "bytes": 37368
+    },
+    "accounting-agent/build-producer/out/ProtocolPolicy.t.sol/ProtocolPolicyTest.json": {
+      "sha256": "ee8f5538dd9406eb22a8a379fd9ebb2173cffe9eae4ffe2117c7d494320d3ed0",
+      "bytes": 388369
+    },
+    "accounting-agent/build-producer/out/ProtocolPolicyFixture.sol/ProtocolPolicyFixture.json": {
+      "sha256": "00db389a7bdbc3287bf3f1e085f7699e6f4bb0cb7fec68205d99fb48e6acc822",
+      "bytes": 8102
+    },
+    "accounting-agent/build-producer/out/ReentrancyGuard.sol/ReentrancyGuard.json": {
+      "sha256": "751d26651270c3ceaef280d5236c6b16d9a3e73c8b334a8abbd6ac251144da21",
+      "bytes": 4821
+    },
+    "accounting-agent/build-producer/out/ReentrancyLock.sol/ReentrancyLock.json": {
+      "sha256": "40b8355d584fdfe90add753fbadd53cac5203d4a9fe4ba33ceb56e870758456c",
+      "bytes": 4908
+    },
+    "accounting-agent/build-producer/out/RoyaltyAudit20261105.t.sol/MintSaleEndReviewAudit20261105Test.json": {
+      "sha256": "8f5e314a95ec9d3d43bda4b04d0c35a0c6dc1b7d94836c6bc426646fe1aeb092",
+      "bytes": 872337
+    },
+    "accounting-agent/build-producer/out/RoyaltyAudit20261105.t.sol/RoyaltyAudit20261105Test.json": {
+      "sha256": "86fc95b06c45893aa179f23691a19983fe3083a3800e28d93cf4f92e2deea3e5",
+      "bytes": 835857
+    },
+    "accounting-agent/build-producer/out/RoyaltyAudit20261105.t.sol/RoyaltyFactoryAudit20261105Test.json": {
+      "sha256": "cc490e5bdd4ddbdf48de0da74d736b0930873f097b1bbb9c8c56f34baae28a6c",
+      "bytes": 782250
+    },
+    "accounting-agent/build-producer/out/RoyaltyAudit20261105.t.sol/RoyaltyFactoryAuditCaller.json": {
+      "sha256": "50d6762c8c9c38e7696c6f8523bceaee52cbaf25cd7eb7e19028185db58eb7e5",
+      "bytes": 50308
+    },
+    "accounting-agent/build-producer/out/RoyaltyFactoryCodeData.t.sol/RoyaltyFactoryCodeDataTest.json": {
+      "sha256": "d88ab875405e077112f111ca441bd106c16f2f06af2cfc22a1d011f9936e91c7",
+      "bytes": 330419
+    },
+    "accounting-agent/build-producer/out/RoyaltyLaunchWindow.t.sol/RoyaltyLaunchWindowTest.json": {
+      "sha256": "b72229ec148df3606cfe8fc29fe484b8dd4aec19aebb8d87674042ecb352d023",
+      "bytes": 615781
+    },
+    "accounting-agent/build-producer/out/RoyaltyLaunchWindow.t.sol/RoyaltySaleEndAuthorityTest.json": {
+      "sha256": "6affc18957be5b34288fa4ad70f8d9c7a3d23f039e2a5393df4841a1812f9fe3",
+      "bytes": 541038
+    },
+    "accounting-agent/build-producer/out/RoyaltyNoCustodian.t.sol/RoyaltyNoCustodianTest.json": {
+      "sha256": "86cbefa701af5be7741e687eb27155fb214f9db6b288922e85c34ed57f96ec5c",
+      "bytes": 1507924
+    },
+    "accounting-agent/build-producer/out/RoyaltyRecovery.t.sol/InKindFaultToken.json": {
+      "sha256": "4516b2f60cf765ccb0837323c17196fe54711440587969769d8c91727abeaf25",
+      "bytes": 77287
+    },
+    "accounting-agent/build-producer/out/RoyaltyRecovery.t.sol/InKindNFT.json": {
+      "sha256": "bd826a6e81ff5b75cc889544240ca9dfd434cc6b15e0533d4159ef2a0be9a9de",
+      "bytes": 205756
+    },
+    "accounting-agent/build-producer/out/RoyaltyRecovery.t.sol/OriginalCurrencyRoyaltyTest.json": {
+      "sha256": "508bed4b24272b20271b8920376bf3f7fe3825c71033b31e4cef6a28b54c2f28",
+      "bytes": 594303
+    },
+    "accounting-agent/build-producer/out/SafeCallback.sol/SafeCallback.json": {
+      "sha256": "2534a63a0fbd72e0d353d2c8ad0fead84ae685a603a2d624a24e897bee0ace5b",
+      "bytes": 17575
+    },
+    "accounting-agent/build-producer/out/SafeCast.sol/SafeCast.json": {
+      "sha256": "bb8dbc52b5776acfed7a64d3b9d424c40770c3ec0728452809c2462c3f15eb37",
+      "bytes": 6929
+    },
+    "accounting-agent/build-producer/out/safeconsole.sol/safeconsole.json": {
+      "sha256": "8cc26fb848abacfe8d8d4dcdcb99be6c6568533698a46550e08027850b7943ca",
+      "bytes": 4024
+    },
+    "accounting-agent/build-producer/out/SafeERC20.sol/SafeERC20.json": {
+      "sha256": "a1816b7fbf59af37a0e1a6287f58573dbdb9f7955b576060709fbdd347f078ff",
+      "bytes": 9148
+    },
+    "accounting-agent/build-producer/out/SignatureVerification.sol/SignatureVerification.json": {
+      "sha256": "ebea511b16fac5637ec1a79120e1c88f179fa27cb455ead780af20ac54608ca9",
+      "bytes": 5970
+    },
+    "accounting-agent/build-producer/out/SignedMath.sol/SignedMath.json": {
+      "sha256": "e8fa838889926c461678033c8167367eff972bb4923ef4541f8937580eefe436",
+      "bytes": 4739
+    },
+    "accounting-agent/build-producer/out/SlippageCheck.sol/SlippageCheck.json": {
+      "sha256": "c90763fc3dfa09c175ae0e1c665fe2c87f6f80865fe1a875758fd14d8778f49c",
+      "bytes": 7320
+    },
+    "accounting-agent/build-producer/out/Slot0.sol/Slot0Library.json": {
+      "sha256": "3ba80a78fde0e61f30a9dc990cc7f0d3c26ea6931e3f8a4cd9f4eb59019f3a76",
+      "bytes": 4052
+    },
+    "accounting-agent/build-producer/out/SqrtPriceMath.sol/SqrtPriceMath.json": {
+      "sha256": "4e14cc985ea6f14fd030dfe7ac55ea89d900618e10ae7892f8c947e5d24950b9",
+      "bytes": 8046
+    },
+    "accounting-agent/build-producer/out/StateLibrary.sol/StateLibrary.json": {
+      "sha256": "1e0e6cd1f6861e55b78d5927e5b952f704a2f3f6d985811ef42a65556e57e309",
+      "bytes": 22481
+    },
+    "accounting-agent/build-producer/out/StateView.sol/StateView.json": {
+      "sha256": "06d1d29a27ca8d59ffa1302828690dafa4eb97beea7883068693c67a6a2d8cbb",
+      "bytes": 69301
+    },
+    "accounting-agent/build-producer/out/StdAssertions.sol/StdAssertions.json": {
+      "sha256": "326505a06dfc7c87b5bce7d9852fe4dfae469be9b586988920bff5d2d038702b",
+      "bytes": 17394
+    },
+    "accounting-agent/build-producer/out/StdChains.sol/StdChains.json": {
+      "sha256": "e6d038f7a6e2e5194016a0778f12ef5ed93b3711dc4fc15e71183f2fe3039eb0",
+      "bytes": 5849
+    },
+    "accounting-agent/build-producer/out/StdCheats.sol/StdCheats.json": {
+      "sha256": "979a775fca5774dea1f3f25f6c8a0536da731aba494b6711f5a6281967560f9f",
+      "bytes": 5838
+    },
+    "accounting-agent/build-producer/out/StdCheats.sol/StdCheatsSafe.json": {
+      "sha256": "a9656672578a62abb887b629f5e97391f2be6b08b04c6f3b2f5d118f5b5967d4",
+      "bytes": 5846
+    },
+    "accounting-agent/build-producer/out/StdConstants.sol/StdConstants.json": {
+      "sha256": "73c0021a50187ac7ebb461e6723faac8f8b1447ce55c4d2eec963280b0ec1b22",
+      "bytes": 6246
+    },
+    "accounting-agent/build-producer/out/StdError.sol/stdError.json": {
+      "sha256": "b0d896c78c0b3fc6bcaad316b3cd9c6ced4438eccd7138c363993d8c25fe6468",
+      "bytes": 12993
+    },
+    "accounting-agent/build-producer/out/StdInvariant.sol/StdInvariant.json": {
+      "sha256": "d2f3487a63960a418087c4d3ae894e21ba2fb15e7f05e99b798062c4e6dc3d18",
+      "bytes": 11344
+    },
+    "accounting-agent/build-producer/out/StdJson.sol/stdJson.json": {
+      "sha256": "cc6141228df65c648e63cc17dc621140497a0dc7c58eebe5c4a8db712d9b0bf7",
+      "bytes": 4473
+    },
+    "accounting-agent/build-producer/out/StdMath.sol/stdMath.json": {
+      "sha256": "049275248865e6d06a77e9027c67d5ff0d77e89d72777b554370fb0c8c2072bb",
+      "bytes": 3883
+    },
+    "accounting-agent/build-producer/out/StdStorage.sol/stdStorage.json": {
+      "sha256": "f2b22b441d530089a154152cb89f0085d2c7283f7d49bd99e7df5b6d95bd7bb8",
+      "bytes": 4495
+    },
+    "accounting-agent/build-producer/out/StdStorage.sol/stdStorageSafe.json": {
+      "sha256": "1bb8f06b14ea98daa4491aeb8dc9a97acad51804b9be6dee1bffb4d8c7b68472",
+      "bytes": 6361
+    },
+    "accounting-agent/build-producer/out/StdStyle.sol/StdStyle.json": {
+      "sha256": "64149f4a32a7b390c418c95a5aab4cb77e5d3abf0813abef817e437b56a95072",
+      "bytes": 4484
+    },
+    "accounting-agent/build-producer/out/StdToml.sol/stdToml.json": {
+      "sha256": "b4922b5af0965f4a173258936db432ceeb3f30aab8712d9c8782844387c0b961",
+      "bytes": 4476
+    },
+    "accounting-agent/build-producer/out/StdUtils.sol/StdUtils.json": {
+      "sha256": "165530ff4aa35e03527aa1127b95fdcfe62abbe8bd0419b44dcb0f68bc1d26c4",
+      "bytes": 4715
+    },
+    "accounting-agent/build-producer/out/Strings.sol/Strings.json": {
+      "sha256": "f2aa0e4d4425988cd1556dadd27b7f120f884f71e135933cd130fe5693e6ebbb",
+      "bytes": 7894
+    },
+    "accounting-agent/build-producer/out/SwapMath.sol/SwapMath.json": {
+      "sha256": "dbcc680eef57f2e2b7f77af7b5bfd7f3b471c2d9f191206f135a6c9ba16bce79",
+      "bytes": 8083
+    },
+    "accounting-agent/build-producer/out/Test.sol/Test.json": {
+      "sha256": "8c97462ded054ebb20b6d013df4e9a67cc94b34973a169d115b572cab67b5c5c",
+      "bytes": 35368
+    },
+    "accounting-agent/build-producer/out/TickBitmap.sol/TickBitmap.json": {
+      "sha256": "a30707397bf29fa945aff604f72eace5dcb9acecfc2c2982ab59b29299f6d215",
+      "bytes": 5684
+    },
+    "accounting-agent/build-producer/out/TickMath.sol/TickMath.json": {
+      "sha256": "6801be747323b27250e64c3948514c9a1cfd76fbc9e8178a414c0cc555a17dc5",
+      "bytes": 7763
+    },
+    "accounting-agent/build-producer/out/tokens/ERC721.sol/ERC721.json": {
+      "sha256": "9d83884042ce180caf7726f59838f24f4e2ea0755afd2ca047105941743cfdf5",
+      "bytes": 16010
+    },
+    "accounting-agent/build-producer/out/TransientStateLibrary.sol/TransientStateLibrary.json": {
+      "sha256": "a8d9602903dd2e80755efc82835c2e7f7b53b563602621cd607bfd4b32d76d8e",
+      "bytes": 15515
+    },
+    "accounting-agent/build-producer/out/UnorderedNonce.sol/UnorderedNonce.json": {
+      "sha256": "96b836178b8faf62a81979995309eca447643d4f20cd5bd4b27f37429ce1eeac",
+      "bytes": 10886
+    },
+    "accounting-agent/build-producer/out/UnsafeMath.sol/UnsafeMath.json": {
+      "sha256": "864ad10a18481ed4b602d0ecd119846df3a178564a60ec2b012ee30f864b3fe6",
+      "bytes": 4187
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/PooledVaultFixture.json": {
+      "sha256": "d3fcffa93e0a63188999578a3ba4583fa195526bf5d7694f2b98a6100143a3c9",
+      "bytes": 79507
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/ReentrantMintReceiver.json": {
+      "sha256": "fcb7e52f4292cd5c2c4433db13a43803dcd6a9798d2b916a29ac439a07cfd81a",
+      "bytes": 72411
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/ReentrantMintTreasury.json": {
+      "sha256": "7fd8cea1891068b43ec29aaf357b1ac2ca2a7c41ca64a795d18c67756ceb26a8",
+      "bytes": 70600
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/RejectingMintReceiver.json": {
+      "sha256": "25c543236ec60af958192e39a8d53250757add53eb92092451990ac8950efd35",
+      "bytes": 60942
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/RejectingMintTreasury.json": {
+      "sha256": "e7d83876131f8e5f500af59a00cb58f6dec401c9e64a022cfb9bed3133179f68",
+      "bytes": 57905
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/VaultAccountingTest.json": {
+      "sha256": "9fe0a9a95cb53e4bf7859374931ae01839af48ea6d9fed2b12119c9cd77147c4",
+      "bytes": 1779914
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/VaultLiquidityMock.json": {
+      "sha256": "89d4c40bc45c27643b196c9e02a325a5faedd0663ac904fc2c55ef67bcf123e3",
+      "bytes": 177626
+    },
+    "accounting-agent/build-producer/out/VaultAccounting.t.sol/VaultPolicyMock.json": {
+      "sha256": "96b781c012b2630037a300cbf0d1ef33b806f887e1f0875083caaa2ca3a342fd",
+      "bytes": 85493
+    },
+    "accounting-agent/build-producer/out/Vm.sol/Vm.json": {
+      "sha256": "0dbe81f74780eb29cac622ac1a726e1e5ff9f5c22ece639628d83bbfd4be7437",
+      "bytes": 605012
+    },
+    "accounting-agent/build-producer/out/Vm.sol/VmSafe.json": {
+      "sha256": "b004593bb47e37fa2635557a86c27ba41ca1ce19797b8aa0e2c09ade6b70e44c",
+      "bytes": 468355
+    },
+    "accounting-agent/build-producer/out/ZZZAccessController.sol/ICanonicalOwnerBinding.json": {
+      "sha256": "a5b39c0ee45e72d58860214976e123d928a255d71392ae4a09f3d3811c0fffe8",
+      "bytes": 18578
+    },
+    "accounting-agent/build-producer/out/ZZZAccessController.sol/IContributionIdentity.json": {
+      "sha256": "284e55cf14dec38dc7b114ec8311aac14b4c7bea30d686095a5f1f3a345c98ca",
+      "bytes": 17654
+    },
+    "accounting-agent/build-producer/out/ZZZAccessController.sol/IContributionRegistry.json": {
+      "sha256": "33d661f3c9963dff0f7206267649e6f3dbd50926413de63a3acb865fb35a5169",
+      "bytes": 17775
+    },
+    "accounting-agent/build-producer/out/ZZZAccessController.sol/IExitIdentity.json": {
+      "sha256": "2c760432e36de6ab0aef6ffb6e1d1acfbce84b49da8d434e2af00cc9947aeb7e",
+      "bytes": 17666
+    },
+    "accounting-agent/build-producer/out/ZZZAccessController.sol/ZZZAccessController.json": {
+      "sha256": "b66c096844fb17aa425381822a1d2bce4dace6dc9c9c99d262171896e2e09090",
+      "bytes": 187997
+    },
+    "accounting-agent/build-producer/out/ZZZActivationAssets.sol/IActivationAssetsFactoryIdentity.json": {
+      "sha256": "9af4c93267ed5fef915f6bb63b3876b584b2b2b372645520362ad85cd93cbe69",
+      "bytes": 7002
+    },
+    "accounting-agent/build-producer/out/ZZZActivationAssets.sol/ZZZActivationAssets.json": {
+      "sha256": "eaa1b392052233d7ed28148321d6d593d85c8f2444e35c1677169bd38ad33c64",
+      "bytes": 63062
+    },
+    "accounting-agent/build-producer/out/ZZZActivationAssetsFactory.sol/ZZZActivationAssetsFactory.json": {
+      "sha256": "150b5eab812729fd8fd4485060229fdadbaaf799743cef7087b3034dbf67ab96",
+      "bytes": 40555
+    },
+    "accounting-agent/build-producer/out/ZZZActivationEntry.sol/IActivationVault.json": {
+      "sha256": "4a11669bb27698b1cb9d6151fd771387d997c7b7519b5f70a4b101a8b5944109",
+      "bytes": 17647
+    },
+    "accounting-agent/build-producer/out/ZZZActivationEntry.sol/ZZZActivationEntry.json": {
+      "sha256": "3c27541699c84308a144ca4f937595369d021680be3bf190c7f5deddc9a805f3",
+      "bytes": 93663
+    },
+    "accounting-agent/build-producer/out/ZZZArtwork.sol/ZZZArtwork.json": {
+      "sha256": "65756ffa25cc995fef8d4820789181c7a5008fb5f3fa1aa8a2371570b74e89be",
+      "bytes": 4316
+    },
+    "accounting-agent/build-producer/out/ZZZBuyback.sol/ZZZBuyback.json": {
+      "sha256": "e81383d98ae0ebdceda49b2d422c1e453947f5e8d536a343d33b6650356caf43",
+      "bytes": 73866
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalHandoff.sol/ICancelledRoyaltyHop.json": {
+      "sha256": "ac663da01066d805b347f1e6eef4c692304852906e55dbdf89b2dc3176506654",
+      "bytes": 7636
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalHandoff.sol/ICancelledRoyaltyLedger.json": {
+      "sha256": "035f04193604f319ef1b4bf94154785b27c8fd1aca464305492d877a8ed9658e",
+      "bytes": 10765
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalHandoff.sol/ICanonicalController.json": {
+      "sha256": "aa078289050bc73dea5d6de6bcade74465a085dfc2edc65bc2ce1fe16d6dc386",
+      "bytes": 19771
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalHandoff.sol/ICanonicalHelpers.json": {
+      "sha256": "902784cfa4aa94b30d486dd4b4fc1a9a52550eb5b221f5eb0784226fa3f105b0",
+      "bytes": 8418
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalHandoff.sol/ZZZCanonicalHandoff.json": {
+      "sha256": "aef7f1571d06db52b6781599773eba04975d05404df980901a4920039f21e7aa",
+      "bytes": 192705
+    },
+    "accounting-agent/build-producer/out/ZZZCanonicalLedger.sol/ZZZCanonicalLedger.json": {
+      "sha256": "8455ea45cfd723678e5ea604be1ed98a44303db9b2206e5b363d19b79b8f2466",
+      "bytes": 14311
+    },
+    "accounting-agent/build-producer/out/ZZZClaimRouter.sol/IZZZClaimLedger.json": {
+      "sha256": "48c186b002b82a2579ff7e0baf72a0cb8c0c3b7a78fc1fdaa95fbd1afe559d6d",
+      "bytes": 6334
+    },
+    "accounting-agent/build-producer/out/ZZZClaimRouter.sol/ZZZClaimRouter.json": {
+      "sha256": "0c6c3e44c506b2942b4050523f8585c7a6173197fdc81de98490f24001558e5b",
+      "bytes": 31024
+    },
+    "accounting-agent/build-producer/out/ZZZCompounder.sol/ZZZCompounder.json": {
+      "sha256": "5eaf5a69b800e8d0a9aa67c3f60b10fc10da8432b830c59a1b0b104b2a4b2eac",
+      "bytes": 22809
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/IPricingAssets.json": {
+      "sha256": "2347fd4fb9a1794f1e5522222ab78a5d1be35535642460b4689e863cd1ba287e",
+      "bytes": 8243
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/IPricingBudget.json": {
+      "sha256": "ac56075d12c4b45dece0d0eaf81accdf0a3e1263eaa11019fcca8233b5d6cf77",
+      "bytes": 9649
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/IPricingEntry.json": {
+      "sha256": "d2dc4d64b5f13a6197d98edcdfdd68f0a32af07af721fa822a52c0652b4fb000",
+      "bytes": 8318
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/IPricingPortfolio.json": {
+      "sha256": "bd0e1c0f0c49bf3e32d08957aed27a348811ea1c5b3e1a22229d7864f1273a81",
+      "bytes": 7792
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/IPricingVault.json": {
+      "sha256": "31c154bc7fecf289932a61865765e740f10b1c3aa315191797be1eaf2068a80f",
+      "bytes": 7616
+    },
+    "accounting-agent/build-producer/out/ZZZContributionPricing.sol/ZZZContributionPricing.json": {
+      "sha256": "3834e59e63ee57579db6096325108d5c139702f3975f61157c9d6e9aa36c11b1",
+      "bytes": 171050
+    },
+    "accounting-agent/build-producer/out/ZZZCustodyValidation.sol/ICustodyExecutionFingerprint.json": {
+      "sha256": "37763206dc0aac9dedcbc9441ea5bf5758701b530700d905c361f86ab0fa03f5",
+      "bytes": 5990
+    },
+    "accounting-agent/build-producer/out/ZZZCustodyValidation.sol/ICustodyRegistryRevision.json": {
+      "sha256": "362722306ba42bd3f5f91373b400aa8820fc44aef88baea6d2cb083d889e3001",
+      "bytes": 5766
+    },
+    "accounting-agent/build-producer/out/ZZZCustodyValidation.sol/ILocalParkingState.json": {
+      "sha256": "a57d1cf6b0b575c64cb737c40120181e1af560557fe59dbf4356dfd243361b22",
+      "bytes": 6559
+    },
+    "accounting-agent/build-producer/out/ZZZCustodyValidation.sol/IResidualPolicyControl.json": {
+      "sha256": "4e4f3caedf021c161ad921b6c70a9f4aa1b38ca87376c4cde08f14873977ce57",
+      "bytes": 5934
+    },
+    "accounting-agent/build-producer/out/ZZZCustodyValidation.sol/ZZZCustodyValidation.json": {
+      "sha256": "cbc2096dff97e8c4e12493194d86e336ce07df8f3018964940dc929b1878374d",
+      "bytes": 64137
+    },
+    "accounting-agent/build-producer/out/ZZZFeeController.sol/ICanonicalFeeAssets.json": {
+      "sha256": "8551c4537c2763b7db5f3576067f649201e0bd21900f3193d73e75b1a32934a7",
+      "bytes": 11347
+    },
+    "accounting-agent/build-producer/out/ZZZFeeController.sol/ICanonicalFeeCutoff.json": {
+      "sha256": "5fe384a54ca9a7fabadeb83d4cc85c5591fb4eaf8c0225ebaa3db72306789ce9",
+      "bytes": 11358
+    },
+    "accounting-agent/build-producer/out/ZZZFeeController.sol/ZZZFeeController.json": {
+      "sha256": "103f0b13569bef713c00eaf6cb11661919045de99b06311a29a3c81a4b54e559",
+      "bytes": 88257
+    },
+    "accounting-agent/build-producer/out/ZZZFeesCanonical.sol/ZZZFeesCanonical.json": {
+      "sha256": "65169d9e983647ac57d1cc13c182f5c3dd01562df5578863e4b8fbb1820b7b3d",
+      "bytes": 85651
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/IEmergencyOutput.json": {
+      "sha256": "cec54fda1696ed4764af49b56291b64e556988fd4b69bf59c04b6458c24401e0",
+      "bytes": 21643
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/IManagerPortfolioPolicy.json": {
+      "sha256": "44a397c755d6985511e006129a597f02ad4b54386875aee050b3724f591da876",
+      "bytes": 24106
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/INativePoolAssets.json": {
+      "sha256": "9ff1715e39185f1f02a23830d5cf30199bee240db244441d96f681e2b4e84e78",
+      "bytes": 21270
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/IPortfolioBudget.json": {
+      "sha256": "b1fb1874c649e4a698baaa2f81b18779ac01e36d88092ec77f49eacb3c6c6e45",
+      "bytes": 22143
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/IPortfolioVault.json": {
+      "sha256": "06d20a702f3ebca9e4e7497ee6072daeb4b54dde40ed350cf7cc7e8d43e8324c",
+      "bytes": 21100
+    },
+    "accounting-agent/build-producer/out/ZZZLiquidityManager.sol/ZZZLiquidityManager.json": {
+      "sha256": "f8017e9850b8e1fa2eb35ad3a7d9260a7de76f20001009f038d55f50152a2924",
+      "bytes": 239185
+    },
+    "accounting-agent/build-producer/out/ZZZLPBalanceMath.sol/ZZZLPBalanceMath.json": {
+      "sha256": "706f5c087a38e46b4438913e313366497226cfc35efaf7f0087f2d8e7a398e87",
+      "bytes": 82285
+    },
+    "accounting-agent/build-producer/out/ZZZLPBalancer.sol/ILPRegistryRevision.json": {
+      "sha256": "3dfa0a211fe79e5234ccb078e7dae6c536cd0c6a3f1ab9f4c4ff9647fa0eb6d5",
+      "bytes": 14382
+    },
+    "accounting-agent/build-producer/out/ZZZLPBalancer.sol/IPortfolioRoutePolicy.json": {
+      "sha256": "44dc97664f5520e12692d6e666c943a7bb4253638a9bd49d694f2060eb017edb",
+      "bytes": 14558
+    },
+    "accounting-agent/build-producer/out/ZZZLPBalancer.sol/ZZZLPBalancer.json": {
+      "sha256": "5d24260a9102a6990d1a6f5a93878c6edf0d75ae0bf7d02c95bd072df6bf5b86",
+      "bytes": 221690
+    },
+    "accounting-agent/build-producer/out/ZZZLPPositionExecutor.sol/IPositionExecutionParent.json": {
+      "sha256": "579a0c23b7423589e5f06b60c095372188057b7a8ce486867f0e9c9c46d59745",
+      "bytes": 26082
+    },
+    "accounting-agent/build-producer/out/ZZZLPPositionExecutor.sol/IPositionPortfolioPolicy.json": {
+      "sha256": "39293c571736d9d3c9d7bf9a784ab890487d24c193394cd7a4a386cb6c245888",
+      "bytes": 21610
+    },
+    "accounting-agent/build-producer/out/ZZZLPPositionExecutor.sol/ZZZLPPositionExecutor.json": {
+      "sha256": "749ea8c4a91683ebc7fae2e1893d92b00e0073a46021ee10c43123f5a033242a",
+      "bytes": 166275
+    },
+    "accounting-agent/build-producer/out/ZZZLPRewardConverter.sol/ZZZLPRewardConverter.json": {
+      "sha256": "0d7bd4d14aff51d2895b32d6338b4563f46892169d95922756e65cf751a704b5",
+      "bytes": 177862
+    },
+    "accounting-agent/build-producer/out/ZZZMembership.sol/IZZZMembershipOrdinals.json": {
+      "sha256": "c4b0a2128767d85c775c4ea3c042be2bdb5ca6cb384f91b27ef29a628d9ae79f",
+      "bytes": 11793
+    },
+    "accounting-agent/build-producer/out/ZZZMembership.sol/ZZZMembership.json": {
+      "sha256": "58d561d5fc92de1279fbc7b3cc5cf7ead5a7883ee183e32474dfccc83b5d770a",
+      "bytes": 63765
+    },
+    "accounting-agent/build-producer/out/ZZZMigration.sol/IExitTokenIdentity.json": {
+      "sha256": "5641844c5dc5ea5a32a19449552c816ed7fe090f50d7c1b3e7b1701bc563dc96",
+      "bytes": 18416
+    },
+    "accounting-agent/build-producer/out/ZZZMigration.sol/IExitTokenRegistry.json": {
+      "sha256": "4600f94835cbd1ebaf103f5295902aa0776262809be514c0e18819a71bf1dc0d",
+      "bytes": 18468
+    },
+    "accounting-agent/build-producer/out/ZZZMigration.sol/IHolderExitNFT.json": {
+      "sha256": "36d895e3f067a20034a2772a27b730ba30c336392837a2af7bbaaeed7d4d9584",
+      "bytes": 23130
+    },
+    "accounting-agent/build-producer/out/ZZZMigration.sol/IHolderExitVault.json": {
+      "sha256": "f304cc060dbbecbf22e78e39746a7b227213901003f23219b85a37d00505645d",
+      "bytes": 37986
+    },
+    "accounting-agent/build-producer/out/ZZZMigration.sol/ZZZMigration.json": {
+      "sha256": "35e3c12f988937cdfe095b012e2c6e3def26b0a90616a3e8314ddeade9e6417a",
+      "bytes": 243458
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IBudgetPortfolioPolicy.json": {
+      "sha256": "aa696446e6a8821baa4b391a590f30182a757eb6ee8b107496acbcd47517bc8a",
+      "bytes": 10629
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IBudgetPortfolioStrategy.json": {
+      "sha256": "42e2011ad2b4450f54098341977ea7836a4c29ef1e5f9f306b9b8b79bffa7ca6",
+      "bytes": 10036
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IBudgetPositionOperator.json": {
+      "sha256": "99bf9820ee760c45006ff4db5d99aed2024453d42acedfb32de1e44143b3e4f1",
+      "bytes": 10038
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IBudgetVaultValidation.json": {
+      "sha256": "ddd5aa970ba548e88fa3d9ec09f7f1d61bc04d29ee250a500ff9dd4f6ba64bf8",
+      "bytes": 13687
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IConfirmationControl.json": {
+      "sha256": "1f65e8a879d0154fca162a4a7fa22aa2a7f472f2f66177d7fc5bea80ddb850f4",
+      "bytes": 12935
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IEmergencyManifest.json": {
+      "sha256": "11170ad007978bd84f0c981a6c7806f06999602c66d2add157061905c5ad5bd7",
+      "bytes": 10697
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IMigrationIdle.json": {
+      "sha256": "044f01832148867b0d12e7a261e06a84091b9f9c6a4dc2bb2e1b1c59f4c00944",
+      "bytes": 10170
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IPairAssets.json": {
+      "sha256": "cae3546d2938b4df1f76044d5eff517b03a76aaa56324e9a333d842b9ebe5e40",
+      "bytes": 10635
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/IPairVault.json": {
+      "sha256": "6f0b0f534cbcb80f9888f571f895469b06ae76ec4d2b512957c8568e3352436a",
+      "bytes": 10068
+    },
+    "accounting-agent/build-producer/out/ZZZMigrationBudget.sol/ZZZMigrationBudget.json": {
+      "sha256": "67e0e595dc4e9057c2ca7671998251affae9004828dfcf23a2bc71cb21877cb9",
+      "bytes": 204436
+    },
+    "accounting-agent/build-producer/out/ZZZModule.sol/ZZZModule.json": {
+      "sha256": "c9cb66d554cc9ab603d20bc590a2a444b52b74ab81e8c1b4d4eb8e265247f189",
+      "bytes": 6881
+    },
+    "accounting-agent/build-producer/out/ZZZNFT.sol/IZZZNFTSuccessor.json": {
+      "sha256": "627071d3805d6dc1e42369aa340aab883b8194f8ead8ac46214e0f6b2396b988",
+      "bytes": 27580
+    },
+    "accounting-agent/build-producer/out/ZZZNFT.sol/IZZZVRFCoordinator.json": {
+      "sha256": "cab1fe894f5073d8958ab19204881fe0aed17ff9680e30ef4d72b1cded1c5bb0",
+      "bytes": 29441
+    },
+    "accounting-agent/build-producer/out/ZZZNFT.sol/ZZZNFT.json": {
+      "sha256": "bc0ab975c079727d54c8e5ab8062b2bd55812e33549146f7cc037ec3e01644ad",
+      "bytes": 288884
+    },
+    "accounting-agent/build-producer/out/ZZZNFTCanonical.sol/INFTPolicyHandoff.json": {
+      "sha256": "bb853fa47a8b3f1c43d60d2e3718fbfee44297792e944601c7cbde85b83935e5",
+      "bytes": 7953
+    },
+    "accounting-agent/build-producer/out/ZZZNFTCanonical.sol/ZZZNFTCanonical.json": {
+      "sha256": "581ed5af536d8d87f9f666ba28c3aa4dc18bd0f88aba2b9d0c1b4ab9540fe0d6",
+      "bytes": 84068
+    },
+    "accounting-agent/build-producer/out/ZZZNFTMetadata.sol/IHistoricalCompound.json": {
+      "sha256": "3cb2c99e46ee27c2ec10a6dcb52cc9e9cfa9ac6705d1ac38d5bb854dd9139011",
+      "bytes": 13232
+    },
+    "accounting-agent/build-producer/out/ZZZNFTMetadata.sol/ZZZNFTMetadata.json": {
+      "sha256": "c6c79bbf6d1594d312ddf93566213feba689e06af51f0aa0db1eac2b15113eff",
+      "bytes": 110845
+    },
+    "accounting-agent/build-producer/out/ZZZOracle.sol/ZZZOracle.json": {
+      "sha256": "37849ada2eded50cb8a7dfc472a0ec3432c08589267d3b20d8a995b0f165b14d",
+      "bytes": 162766
+    },
+    "accounting-agent/build-producer/out/ZZZPoolRegistry.sol/ICollectiveExitPhase.json": {
+      "sha256": "b8382b9419575839bca24f488b7a205747c5f919593c0305f37217d9930c8819",
+      "bytes": 16660
+    },
+    "accounting-agent/build-producer/out/ZZZPoolRegistry.sol/INativeVenueBindings.json": {
+      "sha256": "cdda05737615b2ddf8b7ad79401138c503e6dc0ae68ce7b094e29e5a133c4581",
+      "bytes": 17630
+    },
+    "accounting-agent/build-producer/out/ZZZPoolRegistry.sol/ZZZPoolRegistry.json": {
+      "sha256": "209511625594dbec409016e9a9b76c1f22854f42d269cba75a056d02bd3260c2",
+      "bytes": 129919
+    },
+    "accounting-agent/build-producer/out/ZZZPortfolioPolicy.sol/IPortfolioAssociation.json": {
+      "sha256": "64b88bb6db2325eb2f164eae81727096f78efc53ebd2e707cc38e1d6da0a7b9f",
+      "bytes": 10224
+    },
+    "accounting-agent/build-producer/out/ZZZPortfolioPolicy.sol/IPortfolioParent.json": {
+      "sha256": "2fe132d72080764a65c5c75a698e076ae822a3d03726292046105a89729a4bb2",
+      "bytes": 10040
+    },
+    "accounting-agent/build-producer/out/ZZZPortfolioPolicy.sol/ZZZPortfolioPolicy.json": {
+      "sha256": "1c2773155ba0937158cb73ac9d54aa611cfba76f9769853d69af2623e25ea875",
+      "bytes": 159608
+    },
+    "accounting-agent/build-producer/out/ZZZPriceMath.sol/ZZZPriceMath.json": {
+      "sha256": "1e3d2fb49985aa7743c2a73e91ca3b64037b1b25479fac8f14d0e096be259fc3",
+      "bytes": 6206
+    },
+    "accounting-agent/build-producer/out/ZZZProtocolPolicy.sol/IPolicyNFT.json": {
+      "sha256": "96de698276b7f4177dde41c9dad939c14b5835b00abfae0af573b7aa38fe3e19",
+      "bytes": 8253
+    },
+    "accounting-agent/build-producer/out/ZZZProtocolPolicy.sol/ZZZProtocolPolicy.json": {
+      "sha256": "ff56310c24402eb2c2204ab6f92dbd062fb2bc8d05dae1b42754b14d500cf82c",
+      "bytes": 146236
+    },
+    "accounting-agent/build-producer/out/ZZZPythPriceFeed.sol/ZZZPythPriceFeed.json": {
+      "sha256": "ebf1f9797e1ad4397bac1c1fff7074ba20276f6372ba5c100d6181d183f29cb2",
+      "bytes": 28318
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/IConfirmationLiquidity.json": {
+      "sha256": "3a189399640d7ae039c1edda7dad0f47094a4f8ce5888dcfce2f74ccc1fc2f35",
+      "bytes": 11885
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/IConfirmationOracle.json": {
+      "sha256": "8e93c66b05f2bbb7a65b3d720e79177788efc400d5ba0c9101680e4f52fd98d1",
+      "bytes": 12539
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/IConfirmationPortfolio.json": {
+      "sha256": "05a2810d1d6101231b2b4c8251103c80e339597bc71678d161f043799cbfb28c",
+      "bytes": 12050
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/IConfirmationRegistry.json": {
+      "sha256": "6cae6e94edf5f0dda4d24e80dff00aa7bf31c4601328a0f32599a5bd39186a5e",
+      "bytes": 11868
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/IConfirmationStrategy.json": {
+      "sha256": "4a0d4ec035d7c270cc1a6a8d348419f9309be51b709478680bc90a55025c9529",
+      "bytes": 16357
+    },
+    "accounting-agent/build-producer/out/ZZZRebalanceConfirmation.sol/ZZZRebalanceConfirmation.json": {
+      "sha256": "71664aaa45332f6e6a6cbebe3c1768eaf7f3c4ddfa8ec98322b810243a59c43a",
+      "bytes": 125377
+    },
+    "accounting-agent/build-producer/out/ZZZRewardConverter.sol/IRewardProxyAdmin.json": {
+      "sha256": "74ec6f718e0d8530b3dd3ae26f9b0ddec39286492a6e544bd72009f1e549aacc",
+      "bytes": 18160
+    },
+    "accounting-agent/build-producer/out/ZZZRewardConverter.sol/IRewardWrapper.json": {
+      "sha256": "88c43064ff91870fe513af671c72e5597dd8208ce8535e7317342f69132e42ef",
+      "bytes": 16784
+    },
+    "accounting-agent/build-producer/out/ZZZRewardConverter.sol/ZZZRewardConverter.json": {
+      "sha256": "65b125a44ce0db1ff6eabae692f0aa803983908042087f7bb5a5152bc8b7b296",
+      "bytes": 52314
+    },
+    "accounting-agent/build-producer/out/ZZZRewards.sol/IZZZRewardNFTOrdinals.json": {
+      "sha256": "067ea0138a550d8a80d182fb02d0575c5cff1b5f07a3dbfd4c2bc1dbec4198ec",
+      "bytes": 19697
+    },
+    "accounting-agent/build-producer/out/ZZZRewards.sol/ZZZRewards.json": {
+      "sha256": "a0ae1fdc50ed401d3d79681d31ae2368d9bc013bc25777396795cc6d4e47c0fd",
+      "bytes": 191526
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyCodeData.sol/ZZZRoyaltyCodeData.json": {
+      "sha256": "b290ea95f103a36623d50bc1fb5b376d50b90446401ab4897eabf6319726fa3d",
+      "bytes": 6084
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyFactory.sol/ZZZRoyaltyFactory.json": {
+      "sha256": "73a52d43ac98ca69ff2c56ba3dd64a529493c7625b5ce669a768f228c8dd0b9e",
+      "bytes": 85542
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyRewards.sol/IZZZRoyaltyNFTOwner.json": {
+      "sha256": "94fba6da087596322dc8589aa304df4757915e1a8e1b89536fd23f4768d9e768",
+      "bytes": 13705
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyRewards.sol/IZZZRoyaltyOrdinals.json": {
+      "sha256": "59bede50a6d91aab41bb0d3e043549060b4aec43845fba329757027c23454bbc",
+      "bytes": 14867
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyRewards.sol/IZZZRoyaltySuccessor.json": {
+      "sha256": "5786e6e563892e475eed51c2654d4c1d467fd1029051fb1b1247d9b40d75c1fe",
+      "bytes": 13092
+    },
+    "accounting-agent/build-producer/out/ZZZRoyaltyRewards.sol/ZZZRoyaltyRewards.json": {
+      "sha256": "a2d59061b10c536173f19eb9da11a9d51a6e7b921999002b1b898daedbd4bac6",
+      "bytes": 230453
+    },
+    "accounting-agent/build-producer/out/ZZZStrategy.sol/IRangeRegistry.json": {
+      "sha256": "fdbf1a304263255678a88d9ef4e89e3e4cb5aaf738c5a083bac29611c8802b46",
+      "bytes": 16307
+    },
+    "accounting-agent/build-producer/out/ZZZStrategy.sol/IV4FeeState.json": {
+      "sha256": "1992611440b9961ef870683cc2058b2c84ca00b7dd4aaf4ad97fc38e56282599",
+      "bytes": 16101
+    },
+    "accounting-agent/build-producer/out/ZZZStrategy.sol/ZZZStrategy.json": {
+      "sha256": "389581c945318ade1e4800ad889c6f5ba5442175169fff8829a13d5dc428eb32",
+      "bytes": 203398
+    },
+    "accounting-agent/build-producer/out/ZZZTypes.sol/Ids.json": {
+      "sha256": "24cb074bbb7cdef9d7a9f6dfc88abc23b4fcbaf011398784fcceeeecc273efb2",
+      "bytes": 3866
+    },
+    "accounting-agent/build-producer/out/ZZZV3VenueValidation.sol/ZZZV3VenueValidation.json": {
+      "sha256": "fdf1415067ff7e7039bef012b8195b07615d1208e1d615e786f4254fc408f427",
+      "bytes": 6436
+    },
+    "accounting-agent/build-producer/out/ZZZV4RouteExecutor.sol/ZZZV4RouteExecutor.json": {
+      "sha256": "1cd7b1df83aa021ea151c069acba68eca099bffea9aaf30bb51e2a3541bf4110",
+      "bytes": 102558
+    },
+    "accounting-agent/build-producer/out/ZZZVault.sol/IVaultPositionOperator.json": {
+      "sha256": "90d45bac18ceef0060d7f2c8b12df6954adea92aeb79d137e45e54bed6a81636",
+      "bytes": 17226
+    },
+    "accounting-agent/build-producer/out/ZZZVault.sol/IVaultResidualLiquidity.json": {
+      "sha256": "2b377fcf630c0450780a81f0ef70c9d18087ff898f3dfc7c817fd81c02e42df5",
+      "bytes": 17596
+    },
+    "accounting-agent/build-producer/out/ZZZVault.sol/ZZZVault.json": {
+      "sha256": "0c7f2b91076522ff0f9845a4eabe080d542316175596dd8d32690120f781eef2",
+      "bytes": 215296
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalMintRoyalty.json": {
+      "sha256": "1734686030ed8b6af2c55273229df2351165bfd9f42eed202f01294a6ffa9a78",
+      "bytes": 15371
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalPortfolio.json": {
+      "sha256": "72eec976e110da3ed343601277b12f5ff026df78f863d8f31c86f5df9f16e836",
+      "bytes": 14916
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalRecoveryRoute.json": {
+      "sha256": "01250cbe9b0b6cf44bd50325e4920e0916793a6acffa1e850f901233e3fcf765",
+      "bytes": 19196
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalVaultNFT.json": {
+      "sha256": "8fd0ad07971ac789004a43cd02db382ce57deeb79a0a25199c328763ce263ea2",
+      "bytes": 15600
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalVaultRewards.json": {
+      "sha256": "ad416ca8536b1559b883a615b455bff5781be25c97c470abc94f9c15a587f80a",
+      "bytes": 15554
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ICanonicalVaultState.json": {
+      "sha256": "d9fc9955880b7e6d62a11c512497589c81db2a01ca99e135159b5bcc78ee9256",
+      "bytes": 38767
+    },
+    "accounting-agent/build-producer/out/ZZZVaultCanonical.sol/ZZZVaultCanonical.json": {
+      "sha256": "524cc595cb3297a9d5c640eaebd03d2cd702f274c5219c52d13c82933839b537",
+      "bytes": 185331
+    },
+    "accounting-agent/evm-first/process.json": {
+      "sha256": "f5482514c3135291518d47a8a6521a39e07cd4cff516aa7fae034ebdba5cd711",
+      "bytes": 44
+    },
+    "accounting-agent/evm-first/START.json": {
+      "sha256": "9241506480d9f3037718f2e6640f1b9af3c8f156e364836f35e0ebaa822300e6",
+      "bytes": 19323
+    },
+    "accounting-agent/evm-first/status.json": {
+      "sha256": "bea245d16f2f0caccd06e847b4be83d50ba325c6eb81633029fb11384bd622e4",
+      "bytes": 37598
+    },
+    "accounting-agent/evm-first/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/evm-first/stdout.json": {
+      "sha256": "8bd6562d9b116c8251a906b3e08981e9b694a45314ca441c01743686477ffdbe",
+      "bytes": 237249
+    },
+    "accounting-agent/evm-producer/process.json": {
+      "sha256": "59f9eb5e1690166353bf68a958b86bf7d995ca08c4bc7f2d32283dbe4435135c",
+      "bytes": 44
+    },
+    "accounting-agent/evm-producer/START.json": {
+      "sha256": "70944820b439c33148b85276a09973b709777a4a8fefbd7f4300adf190199998",
+      "bytes": 19392
+    },
+    "accounting-agent/evm-producer/status.json": {
+      "sha256": "df0b1149bd07532e831c4672253527c63c3ec6c83b55112e67a17cf8b32109d1",
+      "bytes": 36878
+    },
+    "accounting-agent/evm-producer/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/evm-producer/stdout.json": {
+      "sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "bytes": 76
+    },
+    "accounting-agent/evm-producer-corrected/process.json": {
+      "sha256": "c0ee2423b3f14275989e437eb7eefb1db2a041a35aef915b17300ea629d8229b",
+      "bytes": 44
+    },
+    "accounting-agent/evm-producer-corrected/START.json": {
+      "sha256": "11cd5036f52f4dfb7d00557af34c23f245badee7066aec131e71eb4fee6b6a3c",
+      "bytes": 19356
+    },
+    "accounting-agent/evm-producer-corrected/status.json": {
+      "sha256": "1ef51cb4745920e262156dd686506879344a0f6b9535e00d564d34b2941a2e1e",
+      "bytes": 37077
+    },
+    "accounting-agent/evm-producer-corrected/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "accounting-agent/evm-producer-corrected/stdout.json": {
+      "sha256": "3957a3b9204a305d867e42a77721173ee33dc9dfcd1674d9b6a6ef6649be9121",
+      "bytes": 49931
+    },
+    "accounting-agent/export_producer.py": {
+      "sha256": "7bfcf4f3ceca737fd178ec177d5b98ebf54b643a7dce8cb32273c2f84b9606f0",
+      "bytes": 4573
+    },
+    "accounting-agent/FINAL_ACCOUNTING_REVIEW.json": {
+      "sha256": "aaef035ed4c2935decc2e32202fff4759c7c6ae117567584446f81d4609120c0",
+      "bytes": 3420
+    },
+    "accounting-agent/FINAL_PRODUCER_REVIEW.json": {
+      "sha256": "e59598f8ecca526bb24818dabc8853e3b08b5737d6c70f096134ee8444dea91b",
+      "bytes": 3458
+    },
+    "accounting-agent/finalize.py": {
+      "sha256": "c430ad2f0eef880315c90c10e83d26fccfe7dda9908e0dbca63077791ff11c37",
+      "bytes": 3534
+    },
+    "accounting-agent/finalize_producer.py": {
+      "sha256": "3f9d6f8ed53891cd17b3719c1c7f16e43638d118159fb0f51e7aa19fcca27c0e",
+      "bytes": 3735
+    },
+    "accounting-agent/producer-preservation.json": {
+      "sha256": "2c65b60889831a7acae2567f88a2030d00884416f09464d069f114aae49faa2b",
+      "bytes": 930
+    },
+    "accounting-agent/producer_preservation.py": {
+      "sha256": "65f9c9a6f45925d3c3cea85cc63c7f91b71288d4cab1b35d56282390c458c7f7",
+      "bytes": 1752
+    },
+    "accounting-agent/run_evm.py": {
+      "sha256": "6fd544adf49ece0831ae5de86f715eb2c8f487dbcc15157ee8aea777ac27fa3d",
+      "bytes": 3743
+    },
+    "accounting-agent/run_producer.py": {
+      "sha256": "8f3be0ed8e6130428a6b32632eda0e9a30b324aaf49bc528ed168a9a06f483f9",
+      "bytes": 3798
+    },
+    "accounting-agent/run_producer_corrected.py": {
+      "sha256": "cc1a0d124f58309ccf9ec62dbdc88e5596c54a9399a1eaf8ce93772877861347",
+      "bytes": 3795
+    },
+    "accounting-agent/typecheck-producer-corrected.py": {
+      "sha256": "ab744076b6b6ec7a895b1fb2ef07d465d4c6c0c43f2e7021dde36188c4a68554",
+      "bytes": 1934
+    },
+    "accounting-agent/typecheck-producer.py": {
+      "sha256": "25508a2eedbac9e232466947d605e1bcf824f7f7212d0fd28246c93f525f476a",
+      "bytes": 1924
+    },
+    "accounting-agent/typecheck.py": {
+      "sha256": "f64b7619c42cd52fd428aa7a02ac640dfcf84ab422f5ef27d7f366158637bc0f",
+      "bytes": 1919
+    },
+    "bundle-final.py": {
+      "sha256": "a501ff1e8eaec86920bb8ad9db7db4d509b66fb40bf5f87e2a10f2ac5542afd5",
+      "bytes": 7126
+    },
+    "check-docs.py": {
+      "sha256": "55d022a7e5d758d17dd80cef24ac4eba33f00438b345f7b3de8add724e3ed243",
+      "bytes": 2141
+    },
+    "check-publication.py": {
+      "sha256": "d4096f88f8283303e233e820a5848c5a9195065f002300080af4ef5ae6ec8db4",
+      "bytes": 1723
+    },
+    "physical-agent/PHYSICAL_REVIEW.json": {
+      "sha256": "a53b09dedc25c0267537397737f7545761dbf7c2a86eb6852e06e118b89322e8",
+      "bytes": 10200
+    },
+    "prepare-website-docs.py": {
+      "sha256": "7d8a96f5e8358d6b8665924859946423a6a64b44ccfa1d6dd266f53ce1dcad78",
+      "bytes": 1564
+    },
+    "producer-consumer.log": {
+      "sha256": "450dd48ca04979c33dc68ad11fd32b1a0cf32598ddfaba9176d2ce68f6cc2673",
+      "bytes": 330
+    },
+    "proposed-website/PROJECT_CONTEXT.md": {
+      "sha256": "7b15aa1f53df6d3ecdfc1e07c9faac293015636733dde4d16aa1cd0791e2eb2d",
+      "bytes": 8620
+    },
+    "proposed-website/README.md": {
+      "sha256": "a01a94dfaf5dcedb2cc7658343ad28f2981e04d86646a52815b1eb285b8c58f9",
+      "bytes": 27586
+    },
+    "services-agent/affected-first.log": {
+      "sha256": "0acbb447e6c99f76396d1bb48ee0cc4e19535f7fb8be642587b3f261ec55d426",
+      "bytes": 17338
+    },
+    "services-agent/current6-first-affected.log": {
+      "sha256": "a6f121e57b5e23ef14f6db1b0b96a6f4098940f5dd4ad4ce7f9e3021cefeb052",
+      "bytes": 2618
+    },
+    "services-agent/focused-final.json": {
+      "sha256": "fdd30fc4d6a6323b8cf3fa20b026cdbdfa83259c3139ae649c5b72b25696d3b0",
+      "bytes": 30494
+    },
+    "services-agent/focused-final.log": {
+      "sha256": "00e49d96611345341aa19285709af08129bc27ab624e6261e88b2b52b48c3d71",
+      "bytes": 14774
+    },
+    "services-agent/integrity-before.log": {
+      "sha256": "4ab8f5ba3582c8f5efb4d91fec80bd5a198b7dffa1dd8893bb05e9205cfe21ac",
+      "bytes": 3020
+    },
+    "services-agent/integrity-expanded-first.log": {
+      "sha256": "227b0654d79260409ae921a29565bb5b4901cfe7c5f30929b5ac23c616f76730",
+      "bytes": 2837
+    },
+    "services-agent/integrity-first-fix.log": {
+      "sha256": "cbb5b265ff514e5cf6bd3e65f32ae1899357afdbc202e33546731314dc656082",
+      "bytes": 726
+    },
+    "services-agent/market-projection-corrected.log": {
+      "sha256": "a9ea6ae8beb2563749ad46438c4fd68ac8607c9dcfdb9867d7989f444ba8d672",
+      "bytes": 1045
+    },
+    "services-agent/run_final.py": {
+      "sha256": "5484f5635b603d14e5912c1d9023509eaf2e473b937f970c0a9b412c9cbbd2b3",
+      "bytes": 2416
+    },
+    "services-agent/SERVICES_EVIDENCE.json": {
+      "sha256": "cef4a0e47570f7738e2302f9f06e06f5848492a8390b74ffaceeff7eab01205f",
+      "bytes": 1787
+    },
+    "services-agent/SERVICES_REVIEW.md": {
+      "sha256": "1f328b3dca6be03d6d02557eaa12745cd36e1fb70a338c5d8921747a4a3c7fb8",
+      "bytes": 4581
+    },
+    "SOLIDITY_REUSE.json": {
+      "sha256": "b3b77ee3e91022317068cfa20dd546843ed394972387d8b14ced6fa17430f7c0",
+      "bytes": 8525
+    },
+    "stage-contract.py": {
+      "sha256": "124e209a0644d0810fc99a271c476cd4e2f0da08908a1d02d7d6ed6f30e727d7",
+      "bytes": 1531
+    },
+    "update-docs.py": {
+      "sha256": "4ad3508b13901a72116b44d34a2f85c04717a09ffeafe45a9f468c9b54c88c8c",
+      "bytes": 15342
+    },
+    "website-docs-proposal.diff": {
+      "sha256": "d021a310d0283e1cb40050392bd47bc8c4a5039ec09f875abcc861de4e90e810",
+      "bytes": 3769
+    }
+  },
+  "qualification": false,
+  "deployment_or_rollout": false
+}

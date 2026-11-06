@@ -23,6 +23,11 @@ Owning work: [release freeze/audit](../TODO.md#task-audit-release),
 [deployment size/gas](../TODO.md#task-deployment-initcode),
 [reviewed contributions](../TODO.md#task-reviewed-contribution-policy).
 
+The [residual lifecycle follow-up](../reports/residual-lifecycle-20261106/REVIEW.md)
+adds fresh6 physical read admission and missing destination-hybrid composition
+evidence. Production Solidity/normal/static pins remain unchanged. Actual token/
+periphery callbacks, maximum workload and source rollout remain qualification.
+
 ## 2. Qualify real dependencies and market execution
 
 Select and authenticate independent ETH/ZZZ USD sources, feed/proxy/update controls,

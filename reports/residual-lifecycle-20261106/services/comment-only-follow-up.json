@@ -1,0 +1,8 @@
+{
+  "file": "zzz_ops/physical_portfolio.py",
+  "tested_sha256": "76cd7537c26359fcd1bb09abb9b64ae1c9c0bfe59799352d396b035045c117a2",
+  "published_sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+  "difference": "Module docstring: no RPC or USD feeds; physical sqrt price is an input",
+  "executable_AST_identical": true,
+  "unchanged_tests_not_rerun": true
+}

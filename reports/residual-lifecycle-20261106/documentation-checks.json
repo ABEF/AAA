@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-11-06T00:05:29.174561+00:00",
+  "scope": "Changed maintained Markdown, new report Markdown and two changed website docs; local file targets only",
+  "files_checked": 23,
+  "local_targets_checked": 2137,
+  "missing": [],
+  "not_verified": "External URL availability and Markdown heading anchors are not checked",
+  "other_checks": {
+    "todo": "scripts/sync-project-todo.py --check passed",
+    "function_reference": {
+      "check": true,
+      "contracts": 37,
+      "functions": 820,
+      "constructors": 37,
+      "receives": 12,
+      "gaps": 0
+    },
+    "operator_reference": {
+      "check": true,
+      "example_rows": 869,
+      "ready_for_submission": false
+    },
+    "tracked_whitespace": "git -c core.whitespace=cr-at-eol diff --check on explicit task paths passed; native original newline styles retained"
+  },
+  "success": true
+}
