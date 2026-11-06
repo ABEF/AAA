@@ -1,0 +1,39 @@
+test_slow_successful_maintenance_prepares_fresh_harvest_deadline (tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestTimingTests.test_slow_successful_maintenance_prepares_fresh_harvest_deadline) ... FAIL
+test_restored_wrong_bucket_key_cannot_publish_unrelated_clock (tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestRecoveryTests.test_restored_wrong_bucket_key_cannot_publish_unrelated_clock) ... FAIL
+
+======================================================================
+FAIL: test_slow_successful_maintenance_prepares_fresh_harvest_deadline (tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestTimingTests.test_slow_successful_maintenance_prepares_fresh_harvest_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_standalone_harvest_review.py", line 34, in test_slow_successful_maintenance_prepares_fresh_harvest_deadline
+    submit.assert_called_once_with('vault','collectFees(uint256,uint256)',
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 961, in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 949, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: expected call not found.
+Expected: submit('vault', 'collectFees(uint256,uint256)', (7, 1793990729), 'harvest:7')
+  Actual: submit('vault', 'collectFees(uint256,uint256)', (7, 1793990489), 'harvest:7')
+
+======================================================================
+FAIL: test_restored_wrong_bucket_key_cannot_publish_unrelated_clock (tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestRecoveryTests.test_restored_wrong_bucket_key_cannot_publish_unrelated_clock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_standalone_harvest_review.py", line 103, in test_restored_wrong_bucket_key_cannot_publish_unrelated_clock
+    self.assertEqual(before,self.k.state['last'])
+AssertionError: {'com[35 chars]1793986310, 'harvest:2': 1793985310, 'rebalance:1': 1793947110} != {'com[35 chars]1793986310, 'harvest:2': 1793990310, 'rebalance:1': 1793947110}
+  {'compound:1': 1793986710,
+   'harvest:1': 1793986310,
+-  'harvest:2': 1793985310,
+?                    ^^
+
++  'harvest:2': 1793990310,
+?                    ^^
+
+   'rebalance:1': 1793947110}
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.298s
+
+FAILED (failures=2)

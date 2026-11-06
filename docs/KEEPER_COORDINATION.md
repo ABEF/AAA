@@ -114,8 +114,9 @@ Standalone harvesting remains hourly by default for accounting6. Harvesting
 collects actual LP fees from both live legs and applies the allocation/dust rules; it does
 not itself convert rewards, compound, buy back, burn or pay a holder claim.
 
-The worker can also collect fees inside a successful compound/rebalance. When
-recovering its own saved transaction, it advances that bucket's harvest clock
+The worker can also collect fees inside a successful compound/rebalance. For
+accounting4/5/6, standalone and internal collection share the same clock proof.
+When recovering its own saved transaction, it advances that bucket's harvest clock
 only after the canonical successful receipt proves a matching `FeesCollected`
 event from the actual Vault. The saved action, calldata bucket and event's
 inclusion identity must agree. A valid zero-fee collection also counts as a
@@ -127,6 +128,19 @@ optional event evidence leaves the harvest clock unchanged and produces a safe
 diagnostic; it must not strand an otherwise verified paid transaction or cause
 a resend. Manual transactions made outside the worker journal are not silently
 adopted. A redundant later harvest is safer than guessing that one occurred.
+
+A restored standalone key must identify the same bucket as the exact
+`collectFees(uint256,uint256)` calldata and Vault event; the correct paid receipt
+alone does not authenticate a different bucket label. Unproved standalone
+metadata cannot advance that clock, while canonical gas/nonce/receipt recovery
+still completes. Historical accounting1/2/3 behavior stays explicit.
+
+The due standalone operation reads a fresh head AFTER other maintenance work to
+prepare its180-second deadline, including when those earlier reads succeeded
+slowly. Failure of that read defers collection instead of sending an old deadline.
+Skipped/not-due harvests add no such head read. A further delay before inclusion
+can still expire the call; recover pending work, never automatically resend it.
+See the [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md).
 
 ## Read-only operation review
 

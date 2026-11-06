@@ -12,6 +12,8 @@ remains107. No new ABI/profile/journal/deployment boundary is inferred.
 
 ## 1. Freeze the correct source and integration boundary
 
+Before a production freeze, implement the accepted [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation) under its explicit fresh compatibility boundary. The [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) delivers keeper fixes and a bounded design/prototype; it does not upgrade current fractional LP contracts or close this requirement.
+
 Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/dependency
 pins. Direct Entry removal, residual management, active-main candidate filtering,
 cooldown observation and authenticated harvest coalescing are implemented; do not

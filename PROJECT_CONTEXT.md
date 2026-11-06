@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed6November2026. Moving-market flow baseline maine1a85a2; verify actual local/remote
+Reviewed6November2026. Harvesting-audit baseline main11e0157; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -14,6 +14,13 @@ lifecycle/nonce/funding checks and LAST head/deadline/UTC-day/retry proof before
 durable intent. Calldata/minL/deadline/cost limits are never rewritten. Pending
 recovery, journal schema, signer restrictions and all live environments remain.
 Local I/O/inclusion can still age a review; no always-executable/MEV guarantee.
+
+[Harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) fixes keeper
+deadline freshness and standalone receipt-clock proof, with no Solidity/profile
+change. Both-leg actual receipts, entrant checkpoints and rollback are measured.
+The user-approved exact-unit LP allocation is DESIGN/prototype only and remains
+an open implementation task; royalty4 exact units do not fix LP indices. Preserve
+that decision, old fractions and all deployment/service/journal boundaries.
 
 ## Current architecture and economics
 

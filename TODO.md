@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 27 Implemented locally | 1 Not planned**
+**8 To do | 40 In progress | 27 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,6 +15,22 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
+
+<a id="task-lp-exact-unit-allocation"></a>
+
+- [ ] **[Assign every allocated LP reward unit](reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md)** - In progress. User-approved exact-unit LP upgrade is designed, not implemented. Current accounting6 LP indices can leave a finite final raw unit backed but unclaimable. Royalty4 exact tickets fix a different ledger. A bounded lazy weighted tree and isolated prototype establish a design direction; fresh contract/canonical/consumer integration and gas review remain.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Decision2026-11-06: design exact-unit LP allocation; do not ask again whether final allocated LP rounding units may remain stranded. Preserve actual-receipt80/10/5/5, individual NFT shares, equal active collective membership, current-owner claims and separate principal/compound/buyback/royalty backing.
+  - Current actual Rewards/Fees regression:20raw fee units create18holder liability; sole101-share NFT claims17, leaving1backed unit without future revenue. Do not reuse royalty4 completion or a solvency inequality as proof this LP issue is fixed. [Measured review](reports/harvesting-audit-20261106/REVIEW.md).
+  - Implement and verify bounded whole-unit allocation with old-weight settlement for every admitted currency before any share/membership change. Synchronize the new Vault leaf/denominator atomically; the existing pre-update checkpoint alone is insufficient. No1000NFT write loop per harvest, unbounded lifetime claim scan, raw-share royalty-ticket shortcut or arbitrary sweep.
+  - The hierarchical tree prototype is NONPRODUCTION and uses explicit carry/branch rounding, not identical flat proportional rounding. Quantify tiny-unit bias, growth/carry-reset grinding and claim-order/batching behavior. Correct no-op updates and full-precision uint256 overflow before adopting a policy.
+  - Use explicit new LP-allocation/accounting/canonical/API/replay/checkpoint identities and exact source/runtime bindings. Preserve historical6/V8 books and journals; a future conversion of legacy fractional rights requires a reviewed fully backed cutover, not relabelling.
+  - Verify final-unit payouts for ETH and fixedZZZ, shares/growth/activations/transfers, LP conversion, both-position lifecycle, terminal return, canonical export/import/abort and exact earnings replay. Measure1000NFT/4bucket/max-asset/32claim gas under actual unchanged work limits, run normal size/static/reference checks for implementation changes and retain independent release qualification.
+
+  </details>
 
 <a id="task-lp-eth-settlement"></a>
 
@@ -320,7 +336,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-reward-ledgers"></a>
 
-- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares. These ledgers currently preserve payout currencies; ETH-only LP settlement is a separate open task.
+- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80/10/5/5 funded LP allocation with documented raw-unit carry and incumbent flush; equal collective shares. Fresh royalty4 assigns exact original-currency units at rarity1/2/3. Current LP indices still retain final fractional units; the accepted exact-unit LP upgrade is a separate open task. ETH-only LP conversion remains separately qualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -332,6 +348,7 @@ Custody, ownership and reward accounting.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Exact ETH/ZZZ actual-receipt80/10/5/5, split dust, reward liabilities and compound/buyback reserve conservation verified across hybrid entry, mode disable, partial claims, merge and later claims. Membership remains2; no duplicate income or NFT deactivation caused by mode controls. This is scoped verification of existing economics, not a policy change. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Multi-day Entry/growth/harvest/compound/partial-claim composition preserves exact80/10/5/5 receipts, carried split dust, shares, membership and funded reserves. Newly activated NFTs earn subsequent receipts, not old funded balances. Existing economics unchanged.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
+  - [Harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) verifies actual both-leg receipts, entry/growth/current-owner claims and second-leg atomic rollback, quantifies upstream fragmentation and finite LP-index rounding, and preserves the separate approved exact-unit LP implementation task. No production Solidity or split changed.
 
   </details>
 
@@ -1328,6 +1345,7 @@ Decisions and rehearsals before real funds.
   - Exact settlement4 assigns every allocated whole royalty unit; this does not remove token freeze/blacklist/rebase/transfer failure or unknown-currency admission/capacity limits. Preserve earned/deferred/opening liabilities and classify unallocated funds separately. LP scaled fractions and sub-20 raw dust remain separate.
   - Rehearse raw residual close→attributed idle→guarded reinvestment/parking/terminal return, with destination mode checked before resume. A large idle balance can intentionally block new entry; no sweep or entrant subsidy is permitted. Broken token/core/chain recovery is not universally guaranteed.
   - Use new governance same-main consolidation for earlier raw-close idle when viable. Broken tokens/core and uneconomic/zero-L dust still require explicit recovery decisions; no arbitrary sweep, forced active placement or universal transfer guarantee.
+  - Keep actual received-unit LP allocation distinct from upstream core collection rounding. The measured64fragmented-vs-one-harvest fixture differs52raw units per asset; it does not justify new harvest locks or claim an economically viable attack. Finite current LP-index leftovers are handled by the approved exact-unit LP upgrade task, not a reserve sweep. [Audit](reports/harvesting-audit-20261106/REVIEW.md).
 
   </details>
 
@@ -1418,6 +1436,7 @@ Decisions and rehearsals before real funds.
   - [Current-profile recovery composition](reports/market-lifecycle-20261104/VERIFICATION.md): compound waits through pending geometry, threshold and outside states across a restart; a price fault blocks compound while raw both-leg harvest review survives; pending recovery precedes broken fresh reads. These are inert worker tests, not sustained Unix operation.
   - [Confirmation timing/recovery audit](reports/confirmation-audit-20261104/VERIFICATION.md):100distinct selected Python methods pass, including14new wake-up/clear-priority regressions. Actual daemon sleep now honors saved maturity/cooldown/jitter deadlines and accounts for elapsed work; queued incident clear precedes unrelated router metadata. Existing guards, journals, pending/global-error polling and normal600/240/300 policy remain. Retain negative controls; actual matching service rollout, receipt latency/cost and independent qualification remain open.
   - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
+  - [Harvesting follow-up](reports/harvesting-audit-20261106/VERIFICATION.md) refreshes a due180-second collection deadline after successful slow maintenance reads. Current4/5/6 standalone clocks require matching key/calldata/bucket and canonical Vault event; missing proof logs a sanitized warning and preserves paid nonce/spend/receipt recovery without advancing the wrong clock. Historical profiles, journals and live services remain unchanged.
 
   </details>
 
@@ -1505,4 +1524,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `9c7529228039c4ff087c5afc401d1b3f5a9b87e4d89f4f3d86e269d16f1aa4ac`.
+Snapshot SHA-256: `27cb61c8f1a184a6c0841ef4cf4314ebea36afadc6988e83461026d32515df81`.

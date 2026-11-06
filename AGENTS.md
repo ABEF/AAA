@@ -27,6 +27,13 @@ This file is current instructions, not a report timeline.
   tests_python/test_frontend_history.py. Original hashes/evidence locations are in
   the [handoff](docs/WORK_HANDOFF.md). Do not stage unrelated untracked drafts.
 
+[Harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) fixes keeper
+deadline freshness and standalone receipt-clock proof, with no Solidity/profile
+change. Both-leg actual receipts, entrant checkpoints and rollback are measured.
+The user-approved exact-unit LP allocation is DESIGN/prototype only and remains
+an open implementation task; royalty4 exact units do not fix LP indices. Preserve
+that decision, old fractions and all deployment/service/journal boundaries.
+
 ## Fresh architecture and rules
 
 - Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/

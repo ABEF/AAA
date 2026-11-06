@@ -1,0 +1,23 @@
+{
+  "stage": "pre-review oracle negative",
+  "prototype_sha256": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222",
+  "weights": {
+    "1": 1,
+    "1000": 2
+  },
+  "steps": [
+    "credit1",
+    "set_weight(1,1) no-op",
+    "credit2"
+  ],
+  "lazy": [
+    1,
+    2
+  ],
+  "eager": [
+    0,
+    3
+  ],
+  "mismatch_expected": true,
+  "cause": "Eager no-op reset discarded carry stream; lazy correctly retained it."
+}

@@ -1,0 +1,8 @@
+{
+  "successful": false,
+  "stage": "local artifact assembly and link checks",
+  "cause": "The report links the two manifests this script writes only after validation; first link check ran before those outputs existed.",
+  "missing": ["local-checks.json", "preservation.json"],
+  "source_or_test_failure": false,
+  "correction": "Admit only these two declared generated outputs during validation, assert they exist after final exclusive creation, and byte-verify any already copied artifact rather than overwrite it."
+}

@@ -1,0 +1,320 @@
+{
+  "copies": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\baseline-negative-methods.json",
+      "source_sha256": "f09c68cdb1e3fedb8340373da5aacec3650dc29a947ca491cdd7ebb5a59f4175",
+      "published": "reports/harvesting-audit-20261106/services/baseline-negative-methods.json",
+      "published_sha256": "f09c68cdb1e3fedb8340373da5aacec3650dc29a947ca491cdd7ebb5a59f4175",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\baseline-negative-methods.log",
+      "source_sha256": "1c4215b999f3befc18a6ec2e62bcb8e4374c612293bd37d4b19c7fe5dd06f0b8",
+      "published": "reports/harvesting-audit-20261106/services/baseline-negative-methods.log",
+      "published_sha256": "1c4215b999f3befc18a6ec2e62bcb8e4374c612293bd37d4b19c7fe5dd06f0b8",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\final-diagnostic-focused.json",
+      "source_sha256": "1ef0714d819f286b41ad40db8bb39b38ebe2b2972cf28cb6537fdae811415889",
+      "published": "reports/harvesting-audit-20261106/services/final-diagnostic-focused.json",
+      "published_sha256": "1ef0714d819f286b41ad40db8bb39b38ebe2b2972cf28cb6537fdae811415889",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\final-diagnostic-focused.log",
+      "source_sha256": "7ea1001e6a6958d0c4fe654b9c0fe81b81886a5096965cf11d3d2d9375d574c4",
+      "published": "reports/harvesting-audit-20261106/services/final-diagnostic-focused.log",
+      "published_sha256": "7ea1001e6a6958d0c4fe654b9c0fe81b81886a5096965cf11d3d2d9375d574c4",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\final-focused.json",
+      "source_sha256": "4190e4f1562578acb910b323f8aa0ce6c0cfb40a0cae12ac7f5e358d12d15aed",
+      "published": "reports/harvesting-audit-20261106/services/final-focused.json",
+      "published_sha256": "4190e4f1562578acb910b323f8aa0ce6c0cfb40a0cae12ac7f5e358d12d15aed",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\final-focused.log",
+      "source_sha256": "e6c1e30c6d08cd419bce8d1d3fe356dfdb9cd18d14f68a4c211ab154f42098d2",
+      "published": "reports/harvesting-audit-20261106/services/final-focused.log",
+      "published_sha256": "e6c1e30c6d08cd419bce8d1d3fe356dfdb9cd18d14f68a4c211ab154f42098d2",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\initial-negative-probes.json",
+      "source_sha256": "c3fbe7528aed34e0118399e18e63f49c2879ee5440f37721a9369dd9500ccca8",
+      "published": "reports/harvesting-audit-20261106/services/initial-negative-probes.json",
+      "published_sha256": "c3fbe7528aed34e0118399e18e63f49c2879ee5440f37721a9369dd9500ccca8",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\new-cases-stage1.log",
+      "source_sha256": "9ccb0b7f64d32753c31c80ca9dbf5ce518fb80ed3bcae545d61d54e7fc26552d",
+      "published": "reports/harvesting-audit-20261106/services/new-cases-stage1.log",
+      "published_sha256": "9ccb0b7f64d32753c31c80ca9dbf5ce518fb80ed3bcae545d61d54e7fc26552d",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\new-cases-stage2.log",
+      "source_sha256": "b7f92d08ddc365ed80c7811dc7668aed9009c9f8f78a9fe77fed6540a43359d8",
+      "published": "reports/harvesting-audit-20261106/services/new-cases-stage2.log",
+      "published_sha256": "b7f92d08ddc365ed80c7811dc7668aed9009c9f8f78a9fe77fed6540a43359d8",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\SERVICES_EVIDENCE.json",
+      "source_sha256": "bc0a1e0b521d1fd26552c0ff71b81d30130ea03ea689b49062d96066c29a7a42",
+      "published": "reports/harvesting-audit-20261106/services/SERVICES_EVIDENCE.json",
+      "published_sha256": "bc0a1e0b521d1fd26552c0ff71b81d30130ea03ea689b49062d96066c29a7a42",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-service-a19e\\SERVICES_EVIDENCE.pre-diagnostic.json",
+      "source_sha256": "e38a881a136a750a9caa7751bc5646ca25e804e4b56e78ba728b79cf024833ae",
+      "published": "reports/harvesting-audit-20261106/services/SERVICES_EVIDENCE.pre-diagnostic.json",
+      "published_sha256": "e38a881a136a750a9caa7751bc5646ca25e804e4b56e78ba728b79cf024833ae",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\design-final.log",
+      "source_sha256": "f04345c681ee11131e7f7a4c03f96cfa20199e0015a0b25435f5bbfc67e5c058",
+      "published": "reports/harvesting-audit-20261106/design/design-final.log",
+      "published_sha256": "f04345c681ee11131e7f7a4c03f96cfa20199e0015a0b25435f5bbfc67e5c058",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\design-review-final20.log",
+      "source_sha256": "8f6d797e7c6763e687fd6d03afcc8bb89fabfaebef3544fd4f3816ad6263a630",
+      "published": "reports/harvesting-audit-20261106/design/design-review-final20.log",
+      "published_sha256": "8f6d797e7c6763e687fd6d03afcc8bb89fabfaebef3544fd4f3816ad6263a630",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\design-stage1.log",
+      "source_sha256": "cf8f35e1a67ba0ae40d58ca31f2e31104706eaaf9d89d7447d1e655d3c8d9733",
+      "published": "reports/harvesting-audit-20261106/design/design-stage1.log",
+      "published_sha256": "cf8f35e1a67ba0ae40d58ca31f2e31104706eaaf9d89d7447d1e655d3c8d9733",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\design-stage2.log",
+      "source_sha256": "48685e00aa9f7d672e5e9c703bd12bc3f0c783c041ab54ccd2264e3990e9f0d4",
+      "published": "reports/harvesting-audit-20261106/design/design-stage2.log",
+      "published_sha256": "48685e00aa9f7d672e5e9c703bd12bc3f0c783c041ab54ccd2264e3990e9f0d4",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\DESIGN_EVIDENCE.json",
+      "source_sha256": "b9d8148dd41821956161f89e6f8280a2d699116eb8c7f3f54b96c73a2bdfa087",
+      "published": "reports/harvesting-audit-20261106/design/DESIGN_EVIDENCE.json",
+      "published_sha256": "b9d8148dd41821956161f89e6f8280a2d699116eb8c7f3f54b96c73a2bdfa087",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\DESIGN_EVIDENCE.pre-review.json",
+      "source_sha256": "83bd5cbb813622bededa564ec18e7e4c6081aad3a3cdba9f55c37643167e4649",
+      "published": "reports/harvesting-audit-20261106/design/DESIGN_EVIDENCE.pre-review.json",
+      "published_sha256": "83bd5cbb813622bededa564ec18e7e4c6081aad3a3cdba9f55c37643167e4649",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\oracle-noop-negative.json",
+      "source_sha256": "ff28ca249843d9ad1982e3eee56c1c8d00d9c3db5f7df37d8d4c4da3cf3924b9",
+      "published": "reports/harvesting-audit-20261106/design/oracle-noop-negative.json",
+      "published_sha256": "ff28ca249843d9ad1982e3eee56c1c8d00d9c3db5f7df37d8d4c4da3cf3924b9",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-tree-design-20261106-service-6c2a\\prototype-pre-review.py",
+      "source_sha256": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222",
+      "published": "reports/harvesting-audit-20261106/design/prototype-pre-review.py",
+      "published_sha256": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\FINAL_TEST_REVIEW.json",
+      "source_sha256": "7a0952dd967617c76d4e2305c51c7df4a14bc539328e989590f07f2ce3d8a873",
+      "published": "reports/harvesting-audit-20261106/accounting/FINAL_TEST_REVIEW.json",
+      "published_sha256": "7a0952dd967617c76d4e2305c51c7df4a14bc539328e989590f07f2ce3d8a873",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\INITIAL_SUCCESS_REUSE_PROOF.json",
+      "source_sha256": "f8ed16b326e1f15354e5fb5c65578bb6357777fcd66e23767dd4a7c2a4d7936a",
+      "published": "reports/harvesting-audit-20261106/accounting/INITIAL_SUCCESS_REUSE_PROOF.json",
+      "published_sha256": "f8ed16b326e1f15354e5fb5c65578bb6357777fcd66e23767dd4a7c2a4d7936a",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\body-preservation.json",
+      "source_sha256": "0f38dbf75a9a9a63d12b9aa35d438695910ede08e9d14b9a4a575d6488708851",
+      "published": "reports/harvesting-audit-20261106/accounting/body-preservation.json",
+      "published_sha256": "0f38dbf75a9a9a63d12b9aa35d438695910ede08e9d14b9a4a575d6488708851",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\MEASUREMENTS_INITIAL.json",
+      "source_sha256": "a3ca7d016a57d50dbf89b5d00088f41832c3c12053c8487633db96cc5199e3ae",
+      "published": "reports/harvesting-audit-20261106/accounting/MEASUREMENTS_INITIAL.json",
+      "published_sha256": "a3ca7d016a57d50dbf89b5d00088f41832c3c12053c8487633db96cc5199e3ae",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\BASELINE.json",
+      "source_sha256": "10b5eda5f1ccefeda6bc711ce32e6c02f65bc1673e1accd7c53bea9c392b70b0",
+      "published": "reports/harvesting-audit-20261106/accounting/BASELINE.json",
+      "published_sha256": "10b5eda5f1ccefeda6bc711ce32e6c02f65bc1673e1accd7c53bea9c392b70b0",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\test-source-initial.sol",
+      "source_sha256": "7cd4b2e2f98d3953a628599dfd98134ee079c16e7ce418ce79eb758ce23bc16d",
+      "published": "reports/harvesting-audit-20261106/accounting/test-source-initial.sol",
+      "published_sha256": "7cd4b2e2f98d3953a628599dfd98134ee079c16e7ce418ce79eb758ce23bc16d",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\test-source-final.sol",
+      "source_sha256": "f9cffaccf3e17046034f674e16e4561bf0e5bc4827d6825ccf88db21cb12c38f",
+      "published": "reports/harvesting-audit-20261106/accounting/test-source-final.sol",
+      "published_sha256": "f9cffaccf3e17046034f674e16e4561bf0e5bc4827d6825ccf88db21cb12c38f",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-initial\\START.json",
+      "source_sha256": "905fabb0ee123c22899d3d113b3c36d2121ff0d2896a1f5fc163c9bc41e0cc44",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-initial/START.json",
+      "published_sha256": "905fabb0ee123c22899d3d113b3c36d2121ff0d2896a1f5fc163c9bc41e0cc44",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-initial\\status.json",
+      "source_sha256": "a70a7393feef76213d1354fc14e244cd643b664901f05e4d6008473117830c86",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-initial/status.json",
+      "published_sha256": "a70a7393feef76213d1354fc14e244cd643b664901f05e4d6008473117830c86",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-initial\\process.json",
+      "source_sha256": "fadf8730ecc242ab1f51179e7e189ca4a9a0a7fc96804274bc94b6f5ae5d497a",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-initial/process.json",
+      "published_sha256": "fadf8730ecc242ab1f51179e7e189ca4a9a0a7fc96804274bc94b6f5ae5d497a",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-initial\\stdout.json",
+      "source_sha256": "f32e66c2d7858b83e647c011b745bd28d4401a86d80d18625bbea2cd2c90925b",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-initial/stdout.json.gz",
+      "published_sha256": "e8b46f603149a8e8123eca0f9da7e7c35b4f21f3ff42c220052cd70eb819d11b",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-initial\\stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-initial/stderr.log.gz",
+      "published_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected\\START.json",
+      "source_sha256": "848d7a2722638d7c9efc06999d21715dbf16dd5c195e27a42bd3025ba27bf073",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected/START.json",
+      "published_sha256": "848d7a2722638d7c9efc06999d21715dbf16dd5c195e27a42bd3025ba27bf073",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected\\status.json",
+      "source_sha256": "a5fc38cee84d7e7b9968cd29e476269fe087e1e124ab7565af9d7a7cc9ad9d47",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected/status.json",
+      "published_sha256": "a5fc38cee84d7e7b9968cd29e476269fe087e1e124ab7565af9d7a7cc9ad9d47",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected\\process.json",
+      "source_sha256": "8429f1c079afb8afed90c2c8a278d78a45be2b2d1eebb8242238eee2a7c475d9",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected/process.json",
+      "published_sha256": "8429f1c079afb8afed90c2c8a278d78a45be2b2d1eebb8242238eee2a7c475d9",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected\\stdout.json",
+      "source_sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected/stdout.json.gz",
+      "published_sha256": "6b76b58efbb5ed890ed639e1f250e401fb784b1da653e258582c07938e454c91",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected\\stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected/stderr.log.gz",
+      "published_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected-selected\\START.json",
+      "source_sha256": "3ad5305c8ae6ea4f4ee96424e3fe1834f1d26920e9dc30debd451f616b38de1b",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected-selected/START.json",
+      "published_sha256": "3ad5305c8ae6ea4f4ee96424e3fe1834f1d26920e9dc30debd451f616b38de1b",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected-selected\\status.json",
+      "source_sha256": "c2c831a76a6c5c31e7756d1aac87ffece07a662431bc86f2286e3f05ac5c2930",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected-selected/status.json",
+      "published_sha256": "c2c831a76a6c5c31e7756d1aac87ffece07a662431bc86f2286e3f05ac5c2930",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected-selected\\process.json",
+      "source_sha256": "6a0761b0286c19b9d05ed07aa1b3a3061b6d6d68b3681e1fe06c6d9bc1b9a691",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected-selected/process.json",
+      "published_sha256": "6a0761b0286c19b9d05ed07aa1b3a3061b6d6d68b3681e1fe06c6d9bc1b9a691",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected-selected\\stdout.json",
+      "source_sha256": "c87e266cc15feb38c447be8bd441df30fec0621191210a3f54112dcc47e5cfc8",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected-selected/stdout.json.gz",
+      "published_sha256": "9f7ef623645bdd96e7b7f8510620fb6fe7fb065dc3a189b96ca85e4921042d37",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\evm-corrected-selected\\stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/harvesting-audit-20261106/accounting/evm-corrected-selected/stderr.log.gz",
+      "published_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\abi-initial\\status.json",
+      "source_sha256": "8aacac6176ea96b04438da7424dd75df7b4ca60aa85cee8d30e1ea045e65711c",
+      "published": "reports/harvesting-audit-20261106/accounting/abi-initial/status.json",
+      "published_sha256": "8aacac6176ea96b04438da7424dd75df7b4ca60aa85cee8d30e1ea045e65711c",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\abi-initial\\stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/harvesting-audit-20261106/accounting/abi-initial/stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\abi-initial\\input.json",
+      "source_sha256": "85966344eebd681e48121a1b024a6a3fc32d9948f7cec10a78af06321a49d4e5",
+      "published": "reports/harvesting-audit-20261106/accounting/abi-initial/input.json.gz",
+      "published_sha256": "5940f71e7beffb3b20807db1c9f701f07bc63c2b6bf63b23021031d4b24ca985",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106\\accounting-agent\\abi-initial\\output.json",
+      "source_sha256": "c8d19579b73e8bc2198316f413886f8204096570502fa6a9529ebd1079b1941c",
+      "published": "reports/harvesting-audit-20261106/accounting/abi-initial/output.json.gz",
+      "published_sha256": "15498de3390ae695c0249078f58e45a3b8949ee752da5120ca1c1cd19de1c8aa",
+      "gzip": true
+    }
+  ],
+  "exclusive_new_paths": true
+}

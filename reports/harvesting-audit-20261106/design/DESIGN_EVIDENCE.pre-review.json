@@ -1,0 +1,124 @@
+{
+  "scope": "NONPRODUCTION isolated exact-unit LP allocation design model",
+  "production_implemented": false,
+  "owned_whitelist": {
+    "tests_python/test_exact_lp_tree_design.py": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222"
+  },
+  "model": {
+    "leaves": 1024,
+    "maximum_nfts": 1000,
+    "ordinals": "immutable1-based slots, not ERC721 IDs",
+    "assets": [
+      "ETH",
+      "ZZZ"
+    ],
+    "root_credit": "constant tree work",
+    "claim": "10 push checks for1024 leaves",
+    "weight_mutation": "push old pending along path for ALL admitted assets, then mutate and reset affected carry",
+    "rounding": "hierarchical quotient plus per-node carry; exactleft+right; overflow-safe gap addition",
+    "reference": "independent eager per-node cumulative input/left-floor differences under SAME declared rounding policy; no reuse of lazy split implementation"
+  },
+  "stages": [
+    {
+      "artifact": "design-stage1.log",
+      "methods_run": 18,
+      "failures": 1,
+      "explanation": "Intended carry-overflow vector actually equaled uintmax; assertion caught inadequate negative vector. No model logic correction; changed amountMAX-2 toMAX-1."
+    },
+    {
+      "artifact": "design-stage2.log",
+      "methods_run": 18,
+      "failures": 0
+    },
+    {
+      "artifact": "design-final.log",
+      "methods_run": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "explanation": "Added explicit non-equivalence to flat proportional rounding; final19 includes earlier18."
+    }
+  ],
+  "final_unique_methods": 19,
+  "methods": [
+    "test_final_one_unit_with101_shares_is_fully_claimable",
+    "test_split_matches_full_precision_without_unsafe_carry_overflow",
+    "test_empty_left_or_right_branch_routes_every_unit",
+    "test_fixed_weights_batching_and_claim_order_match_eager_reference",
+    "test_hierarchical_rounding_is_explicitly_not_flat_proportional_rounding",
+    "test_intermediate_claims_do_not_change_later_allocation",
+    "test_new_activation_never_receives_old_pending_funds",
+    "test_growth_pushes_old_weights_for_both_assets_and_preserves_sibling",
+    "test_counterexample_updating_weights_before_push_gives_old_money_to_newcomer",
+    "test_raw_weight_ticket_array_is_not_bounded_by1000_nfts",
+    "test_fee_components_exact_split_and_reserved_dust_stay_separate",
+    "test_collective_equal_membership_ignores_lp_share_growth",
+    "test_transfer_preserves_unclaimed_rights_for_current_owner_and_repeat_claims_zero",
+    "test_activation_then_growth_then_harvest_preserves_all_components",
+    "test1000_nft_bound_all_units_assignable_no_padding_payee",
+    "test_invalid_ordinal_and_uint_bounds_reject_without_mutating_tree",
+    "test_pending_and_node_arithmetic_overflow_rejected_before_credit",
+    "test_no_cohort_credit_rejected_no_later_activation_steals_it",
+    "test_deterministic_mixed_sequence_matches_eager_at_every_checkpoint"
+  ],
+  "counterexamples": {
+    "current_index_final_unit": {
+      "shares": 101,
+      "credit": 1,
+      "scale": 1000000000000000000000000000,
+      "index_based_whole_claim": 0,
+      "tree_whole_claim": 1
+    },
+    "mutate_before_old_push": {
+      "old_only_ordinal": 1,
+      "old_credit": 1,
+      "new_ordinal": 1000,
+      "correct_newcomer_old_income": 0,
+      "incorrect_newcomer_old_income": 1
+    },
+    "hierarchical_not_flat": {
+      "ordinals": [
+        1,
+        2,
+        1000
+      ],
+      "weights": [
+        2,
+        1,
+        2
+      ],
+      "credit": 3,
+      "hierarchical": [
+        0,
+        1,
+        2
+      ],
+      "flat_cumulative": [
+        1,
+        0,
+        2
+      ]
+    },
+    "raw_weight_tickets": "twoNFTs with10**30+1 total shares still need only fixed2048 tree entries; a raw share ticket array would be unbounded"
+  },
+  "limits": [
+    "No Solidity design implementation or target-chain gas/storage/size approval",
+    "No production backend/API/checkpoint/canonical codec changes",
+    "Hierarchical rounding is an explicit engineering choice, not exact rational or flat pro-rata payout per finite batch",
+    "Resetting fractional fairness carry on growth can affect future tiny-unit rounding; already credited whole units remain assigned before mutation",
+    "FeeDesign simulates component receipt split/reserves, not all current entrant-dust flush/LP conversion/canonical handoff/claims integration",
+    "Python arbitrary-precision models fullMath/mulmod; Solidity must implement and independently verify equivalent checked operations",
+    "No-cohort credit rejects in this model; live orphan/dust/lifecycle policy integration remains unimplemented",
+    "Tests are deterministic finite evidence, not exhaustive or economic optimality proof"
+  ],
+  "preservation": [
+    "No frozen keeper file edit during prototype task",
+    "No deployment/service/site/journal/signer/Git change",
+    "No production exact-unit LP completion claim"
+  ],
+  "evidence_sha256": {
+    "design-final.log": "f04345c681ee11131e7f7a4c03f96cfa20199e0015a0b25435f5bbfc67e5c058",
+    "design-stage1.log": "cf8f35e1a67ba0ae40d58ca31f2e31104706eaaf9d89d7447d1e655d3c8d9733",
+    "design-stage2.log": "48685e00aa9f7d672e5e9c703bd12bc3f0c783c041ab54ccd2264e3990e9f0d4"
+  }
+}

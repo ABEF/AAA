@@ -1,5 +1,7 @@
 # Consolidated audit findings and evidence
 
+[Harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) fixes due-deadline freshness and mismatched restored harvest clocks, with paid recovery preserved. New actual-core checks measure both-leg receipts, rollback and finite rounding. The user approved [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation); its design/prototype is complete but current LP Solidity still uses fractions. Upstream core flooring, incumbent dust and compromised-dependency close fees remain distinct limits.
+
 [Both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md): fix guarded
 manual active-candidate selection and late ordinary-LP simulation/time/day
 revalidation. [Every input](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)

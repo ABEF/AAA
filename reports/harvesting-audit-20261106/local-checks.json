@@ -1,0 +1,51 @@
+{
+  "utc": "2026-11-06T19:00:00.267218+00:00",
+  "commands": [
+    {
+      "name": "todo",
+      "chunk_id": "cba0c1",
+      "wall_time_seconds": 2.57e-05,
+      "exit_code": 0,
+      "original_token_count": 6,
+      "output": "Project Todo verified.\r\n"
+    },
+    {
+      "name": "function-reference",
+      "chunk_id": "f6d656",
+      "wall_time_seconds": 2.39e-05,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "{\"checked\": true, \"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n"
+    },
+    {
+      "name": "operator-reference",
+      "chunk_id": "0aca14",
+      "wall_time_seconds": 0.5023348,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\"contracts\": 37, \"functions\": 839, \"constructors\": 37, \"receive_hooks\": 12, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 888, \"ready_for_submission\": false}\r\n"
+    },
+    {
+      "name": "static-binding",
+      "chunk_id": "ca67f0",
+      "wall_time_seconds": 0.3562202,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\r\n"
+    }
+  ],
+  "normal_static_rerun": false,
+  "normal_basis": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\moving-market-flows-20261106-e1e736\\contract-agent\\normal-final-7db12e78d6\\START.json",
+  "normal_basis_sha256": "6b0367c053527db6ca906e81477bdb8960c7a9584524b89561d80c10442cfac3",
+  "exact_closed_solidity_sources_matched": 84,
+  "exact_build_files_matched": 4,
+  "source_drift": {},
+  "maintained_markdown_files_checked": 20,
+  "local_link_targets_checked": 2243,
+  "broken_local_link_targets": [],
+  "whitespace_check": {
+    "exit_code": 0,
+    "cr_at_eol_is_line_ending": true
+  },
+  "note": "Binding checks reuse old44normal+2carrier/497static evidence; no new analyzer/build/full suite."
+}

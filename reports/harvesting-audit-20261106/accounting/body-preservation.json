@@ -1,0 +1,17 @@
+{
+  "initial_test_sha256": "7cd4b2e2f98d3953a628599dfd98134ee079c16e7ce418ce79eb758ce23bc16d",
+  "final_test_sha256": "f9cffaccf3e17046034f674e16e4561bf0e5bc4827d6825ccf88db21cb12c38f",
+  "changed_functions": [
+    "testHarvestAuditBothLegEntryCheckpointsAndSecondLegFailureRollback"
+  ],
+  "added_functions": [
+    "_entryCredits"
+  ],
+  "prior_two_successful_method_bodies_preserved": {
+    "testHarvestAuditSparseVersusFragmentedActualBothLegReceipts": "c7b12f59bf0c607aacd62555c1572351aa3975aabec3c3c9340e07d0183b4e1d",
+    "testHarvestAuditFiniteFinalIndexUnitRemainsBackedWithoutFutureReceipts": "2b7beac232d793c874a7aeec45dae6470fe9aa02eb26d23f2bdb82424deb52c0"
+  },
+  "other_existing_fixture_and_helper_bodies_preserved": true,
+  "all_preexisting_test_files_preserved": true,
+  "production_solidity_preserved": true
+}

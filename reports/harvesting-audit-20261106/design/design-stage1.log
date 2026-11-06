@@ -1,0 +1,31 @@
+test1000_nft_bound_all_units_assignable_no_padding_payee (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test1000_nft_bound_all_units_assignable_no_padding_payee) ... ok
+test_activation_then_growth_then_harvest_preserves_all_components (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_activation_then_growth_then_harvest_preserves_all_components) ... ok
+test_collective_equal_membership_ignores_lp_share_growth (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_collective_equal_membership_ignores_lp_share_growth) ... ok
+test_counterexample_updating_weights_before_push_gives_old_money_to_newcomer (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_counterexample_updating_weights_before_push_gives_old_money_to_newcomer) ... ok
+test_deterministic_mixed_sequence_matches_eager_at_every_checkpoint (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_deterministic_mixed_sequence_matches_eager_at_every_checkpoint) ... ok
+test_empty_left_or_right_branch_routes_every_unit (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_empty_left_or_right_branch_routes_every_unit) ... ok
+test_fee_components_exact_split_and_reserved_dust_stay_separate (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_fee_components_exact_split_and_reserved_dust_stay_separate) ... ok
+test_final_one_unit_with101_shares_is_fully_claimable (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_final_one_unit_with101_shares_is_fully_claimable) ... ok
+test_fixed_weights_batching_and_claim_order_match_eager_reference (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_fixed_weights_batching_and_claim_order_match_eager_reference) ... ok
+test_growth_pushes_old_weights_for_both_assets_and_preserves_sibling (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_growth_pushes_old_weights_for_both_assets_and_preserves_sibling) ... ok
+test_intermediate_claims_do_not_change_later_allocation (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_intermediate_claims_do_not_change_later_allocation) ... ok
+test_invalid_ordinal_and_uint_bounds_reject_without_mutating_tree (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_invalid_ordinal_and_uint_bounds_reject_without_mutating_tree) ... ok
+test_new_activation_never_receives_old_pending_funds (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_new_activation_never_receives_old_pending_funds) ... ok
+test_no_cohort_credit_rejected_no_later_activation_steals_it (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_no_cohort_credit_rejected_no_later_activation_steals_it) ... ok
+test_pending_and_node_arithmetic_overflow_rejected_before_credit (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_pending_and_node_arithmetic_overflow_rejected_before_credit) ... ok
+test_raw_weight_ticket_array_is_not_bounded_by1000_nfts (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_raw_weight_ticket_array_is_not_bounded_by1000_nfts) ... ok
+test_split_matches_full_precision_without_unsafe_carry_overflow (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_split_matches_full_precision_without_unsafe_carry_overflow) ... FAIL
+test_transfer_preserves_unclaimed_rights_for_current_owner_and_repeat_claims_zero (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_transfer_preserves_unclaimed_rights_for_current_owner_and_repeat_claims_zero) ... ok
+
+======================================================================
+FAIL: test_split_matches_full_precision_without_unsafe_carry_overflow (tests_python.test_exact_lp_tree_design.ExactLPTreeDesignTests.test_split_matches_full_precision_without_unsafe_carry_overflow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_tree_design.py", line 218, in test_split_matches_full_precision_without_unsafe_carry_overflow
+    self.assertGreater(remainder+carry,UINT256)
+AssertionError: 115792089237316195423570985008687907853269984665640564039457584007913129639935 not greater than 115792089237316195423570985008687907853269984665640564039457584007913129639935
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.182s
+
+FAILED (failures=1)

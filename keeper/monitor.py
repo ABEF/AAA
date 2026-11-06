@@ -1415,9 +1415,9 @@ class Keeper:
         return number,timestamp
 
     def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
-        """Optional accounting4 clock proof; never a substitute for paid recovery."""
+        """Accounting4+ collection-clock proof; never replace paid recovery."""
         if self.accounting_version not in (4,5,6):return None
-        match=re.fullmatch(r'(compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
+        match=re.fullmatch(r'(harvest|compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
         if match is None or pending['value']!=0:return None
         action,bucket=match[1],int(match[2])
         target=self.contracts['compounder' if action=='compound' else 'vault']
@@ -1425,7 +1425,9 @@ class Keeper:
         try:
             data=pending['data'].lower()
             words=decode_words('0x'+data[10:])
-            if len(words)!=3 or data!=calldata(action+'(uint256,uint128,uint256)',
+            if action=='harvest':
+                if len(words)!=2 or data!=calldata('collectFees(uint256,uint256)',bucket,int(words[1],16)):return None
+            elif len(words)!=3 or data!=calldata(action+'(uint256,uint128,uint256)',
                     bucket,int(words[1],16),int(words[2],16)):return None
         except (ValueError,TypeError):return None
         try:
@@ -1560,7 +1562,13 @@ class Keeper:
         updated = copy.deepcopy(previous_state)
         updated['spent'][day] = positive(updated['spent'].get(day,0),'recorded daily spend',zero=True) + cost
         if success:
-            updated['last'][pending['key']] = timestamp
+            # A recovered paid transaction may carry stale action metadata.
+            # Only the exact call and canonical event can advance a fresh
+            # harvest clock; unverifiable telemetry must not strand recovery.
+            if self.accounting_version in (4,5,6) and pending['key'].startswith('harvest:') and harvest_bucket is None:
+                log('harvest_clock_unverified',action=pending['key'],reason='saved_call_or_receipt_not_proved')
+            if self.accounting_version not in (4,5,6) or not pending['key'].startswith('harvest:'):
+                updated['last'][pending['key']] = timestamp
             if harvest_bucket is not None:updated['last'][f'harvest:{harvest_bucket}']=timestamp
             updated.setdefault('retry_after',{}).pop(pending['key'],None)
             reset=re.fullmatch(r'rebalance_reset:([1-9][0-9]{0,77})',pending['key'])
@@ -2449,7 +2457,6 @@ class Keeper:
                 if status == 'active' and not lp_exit:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
-                    maintenance_failed = False
                     if not preparing:
                         try:
                             self._validate_lp_routing(use_cache=True)
@@ -2477,7 +2484,6 @@ class Keeper:
                             # proceed to its separately guarded due harvest.
                             # Config/ABI ValueError stays fail-closed outside.
                             if self.state.get('pending'): raise
-                            maintenance_failed = True
                             self.blocked_actions += 1
                             log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
                     # Fresh accounting4 defaults to hourly independent collection;
@@ -2485,8 +2491,10 @@ class Keeper:
                     default_harvest = 3600 if self.accounting_version in (4,5,6) else 14400
                     interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
-                        if maintenance_failed:
-                            _,fresh = self._head(); deadline = fresh+180
+                        # Successful maintenance reads can be slow too. Prepare
+                        # this new operation from a fresh head, never an earlier
+                        # deadline captured before unrelated maintenance work.
+                        _,fresh = self._head(); deadline = fresh+180
                         if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
             except (ValueError,RpcError) as exc:
                 if self.state.get('pending'): raise

@@ -1,0 +1,134 @@
+{
+  "scope": "Keeper standalone harvesting preparation and canonical receipt clock recovery",
+  "baseline": "11e01571a20068d624d8f8a55076cf5068db6281",
+  "created_utc": "2026-11-06T18:39:53.854941+00:00",
+  "owned_whitelist": {
+    "keeper/monitor.py": "a5cbfa8d283bf2667b9e372e07a4ad8908cf0e69316ed67ce4717fd2a3a03305",
+    "tests_python/test_keeper_standalone_harvest_review.py": "1daa3be042a623b92ef53aae321342d079b8d1f2af42866fe2da569253a69a0b"
+  },
+  "owned_before": {
+    "keeper/monitor.py": "7f0cb622a7b0d663a65dfebe2116360e2f32bdd4fe30935dcf29a8ddd2c51e09",
+    "tests_python/test_keeper_standalone_harvest_review.py": null
+  },
+  "protected_files_unchanged": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "findings": [
+    {
+      "id": "SVC-H01",
+      "severity": "medium availability",
+      "before": "240 seconds of successful maintenance reads yielded due standalone harvest deadline60 seconds in the past",
+      "fix": "Obtain one fresh head only when standalone harvest is due and prepare its new180-second deadline",
+      "negative_proof": "initial-negative-probes.json; baseline-negative-methods.json"
+    },
+    {
+      "id": "SVC-H02",
+      "severity": "medium recovery/scheduling integrity",
+      "before": "Restored harvest:2 metadata with verified collectFees(1) plus canonical nonzero FeesCollected(1) incorrectly advanced bucket2 clock",
+      "fix": "For explicit accounting4/5/6 require saved harvest key, zero value, Vault target, exact typed call and included canonical event to advance standalone clock; paid nonce/spend/anchor recovery still completes without optional telemetry",
+      "negative_proof": "initial-negative-probes.json; baseline-negative-methods.json"
+    }
+  ],
+  "verification_stages": [
+    {
+      "stage": "initial ad-hoc negative probes",
+      "artifact": "initial-negative-probes.json",
+      "pre_fix_defects_reproduced": 2
+    },
+    {
+      "stage": "new cases stage1",
+      "artifact": "new-cases-stage1.log",
+      "methods_run": 15,
+      "failures": 2,
+      "errors": 0,
+      "explanation": "Both failing subcases belonged to one test method: intended wrong block/transaction hashes equaled fixture canonical H. Changed only negative fixture hash ab\u2192cd; no production change."
+    },
+    {
+      "stage": "new cases stage2",
+      "artifact": "new-cases-stage2.log",
+      "methods_run": 16,
+      "failures": 0,
+      "errors": 0,
+      "explanation": "Corrected fixture controls and added late canonical header-change rollback regression."
+    },
+    {
+      "stage": "exact baseline source loaded in isolated process",
+      "artifact": "baseline-negative-methods.json",
+      "unique_methods": 2,
+      "expected_failing_methods": 2,
+      "errors": 0,
+      "explanation": "Actual git11e0157 monitor bytes, no checkout replacement; both regressions detect old behavior."
+    },
+    {
+      "stage": "final affected set",
+      "artifact": "final-focused.json",
+      "unique_methods": 73,
+      "new_methods": 16,
+      "affected_existing_methods": 57,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "stage": "root-requested sanitized clock warning follow-up",
+      "artifact": "final-diagnostic-focused.json",
+      "unique_methods": 73,
+      "new_methods": 16,
+      "affected_existing_methods": 57,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "explanation": "One sanitized harvest_clock_unverified warning after final canonical proof for successful current4\u20136 harvest:* without proof; wrong-bucket test asserts exactlyone. No additionalRPC/schema/recovery behavior change. Prior final73 retained with its exact earlier file hashes."
+    }
+  ],
+  "counts_note": "Final diagnostic73 includes the same16new+57affected methods; overlaps prior73/new-only/baseline stages.19 separate nonproduction LP-design methods live in separate evidence. Do not sum repeated runs or claim prior73 ran at later diagnostic hashes.",
+  "coverage": [
+    "hourly boundary/overrides/historical14400 default",
+    "successful slow maintenance/fresh failed head/no extra head for skipped jobs",
+    "explicit current5/6 recovery configs and historical1\u20133 preserved",
+    "zero and nonzero fee receipt; key/bucket/selector/target/value/envelope mismatch",
+    "malformed/missing/duplicate/foreign logs",
+    "revert/pending/hashless/reorg/depth/failed atomic save/restart/idempotence",
+    "price failure isolation/paused/canonical/preparation behavior",
+    "physical both-leg fee collection without spot or USD dependence",
+    "canonical gas/fee/recovery accounting"
+  ],
+  "limits": [
+    "Inert RPC/temp journals only; no target-chain/provider/uptime/gas qualification",
+    "Not a journal authentication mechanism; constrains inconsistent restored action metadata",
+    "Missing optional proof can cause a later redundant harvest; preserve paid recovery rather than fabricate telemetry",
+    "Fresh preparation does not guarantee inclusion before expiry; no auto resend",
+    "Unjournaled manual/public/contribution/consolidation collections are not silently adopted",
+    "Known compromised-dependency late collect/burn fee issue remains separate; no economics changed",
+    "No new Solidity execution or broad unchanged suite rerun"
+  ],
+  "preserved": [
+    "All contract/runtime/ABI/profile/journal schemas and old deployment identities",
+    "pending-first recovery and exact signed transaction validation",
+    "inclusive/separate gas accounting and durable atomic recovery",
+    "Anvil-only browser signer; public signing disabled",
+    "all services/sites/Anvil/journals/heartbeat unchanged",
+    "no Git mutation/publication by this agent"
+  ],
+  "evidence_files": {
+    "baseline-negative-methods.json": "f09c68cdb1e3fedb8340373da5aacec3650dc29a947ca491cdd7ebb5a59f4175",
+    "baseline-negative-methods.log": "1c4215b999f3befc18a6ec2e62bcb8e4374c612293bd37d4b19c7fe5dd06f0b8",
+    "final-diagnostic-focused.json": "1ef0714d819f286b41ad40db8bb39b38ebe2b2972cf28cb6537fdae811415889",
+    "final-diagnostic-focused.log": "7ea1001e6a6958d0c4fe654b9c0fe81b81886a5096965cf11d3d2d9375d574c4",
+    "final-focused.json": "4190e4f1562578acb910b323f8aa0ce6c0cfb40a0cae12ac7f5e358d12d15aed",
+    "final-focused.log": "e6c1e30c6d08cd419bce8d1d3fe356dfdb9cd18d14f68a4c211ab154f42098d2",
+    "initial-negative-probes.json": "c3fbe7528aed34e0118399e18e63f49c2879ee5440f37721a9369dd9500ccca8",
+    "monitor-baseline.py": "7f0cb622a7b0d663a65dfebe2116360e2f32bdd4fe30935dcf29a8ddd2c51e09",
+    "new-cases-stage1.log": "9ccb0b7f64d32753c31c80ca9dbf5ce518fb80ed3bcae545d61d54e7fc26552d",
+    "new-cases-stage2.log": "b7f92d08ddc365ed80c7811dc7668aed9009c9f8f78a9fe77fed6540a43359d8",
+    "run-focused.py": "99077a684533f272f9532b7f307cc460c847d300a5ef34f3025a3d40587baf97",
+    "SERVICES_EVIDENCE.pre-diagnostic.json": "e38a881a136a750a9caa7751bc5646ca25e804e4b56e78ba728b79cf024833ae"
+  },
+  "prior_whitelist_before_diagnostic": {
+    "keeper/monitor.py": "d5544a318fea6b96e9c23e6a616ed21032cd52492978379660c487452ed527e6",
+    "tests_python/test_keeper_standalone_harvest_review.py": "ba16f50147b6a7a5793d328ef23d792bce3a5987a821f754356f812ca9716011"
+  }
+}

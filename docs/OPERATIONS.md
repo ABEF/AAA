@@ -274,11 +274,18 @@ For the exact JSON field, per-bucket override precedence and controlled
 config/restart/health procedure, use [change the harvesting interval](OPERATOR_MANUAL.md#change-the-standalone-harvesting-interval).
 Editing the sample file does not reconfigure an installed keeper. Its standalone
 timer tracks successful standalone harvest receipts plus its own compound/
-rebalance receipts with exact canonical Vault collection proof. It does not infer
+rebalance receipts, both with exact saved bucket/calldata and canonical Vault
+collection proof on current4/5/6. It does not infer
 harvesting from contributions, unjournaled/manual activity, submissions, NAV or
 reverts. Missing optional proof preserves paid recovery and leaves this clock
 unchanged. Valid zero-fee collection needs no allocation event. See
 [coordination and review](KEEPER_COORDINATION.md).
+
+Due collection prepares a fresh180-second deadline after unrelated maintenance
+reads, even if those reads succeeded slowly. Missing/mismatched standalone
+clock proof preserves paid recovery and leaves the clock unchanged; repair
+receipt metadata rather than editing a journal. [Scoped audit](../reports/harvesting-audit-20261106/VERIFICATION.md)
+does not qualify a running service or exact hourly execution.
 
 One submitted transaction uses the serial nonce/receipt path per cycle. LP and
 royalty conversions retain their existing three-way turn with maintenance.

@@ -1,0 +1,183 @@
+{
+  "scope": "NONPRODUCTION isolated exact-unit LP allocation design model",
+  "production_implemented": false,
+  "owned_whitelist": {
+    "tests_python/test_exact_lp_tree_design.py": "3e80fd02e6256f09b866765d4f3be9dcf490d993236c627b4c71723ae505dfa7"
+  },
+  "model": {
+    "leaves": 1024,
+    "maximum_nfts": 1000,
+    "ordinals": "immutable1-based slots, not ERC721 IDs",
+    "assets": [
+      "ETH",
+      "ZZZ"
+    ],
+    "root_credit": "constant tree work",
+    "claim": "10 push checks for1024 leaves",
+    "weight_mutation": "push old pending along path for ALL admitted assets, then mutate and reset affected carry",
+    "rounding": "hierarchical quotient plus per-node carry; exactleft+right; overflow-safe gap addition",
+    "reference": "independent eager per-node cumulative input/left-floor differences under SAME declared rounding policy; no reuse of lazy split implementation"
+  },
+  "stages": [
+    {
+      "artifact": "design-stage1.log",
+      "methods_run": 18,
+      "failures": 1,
+      "explanation": "Intended carry-overflow vector actually equaled uintmax; assertion caught inadequate negative vector. No model logic correction; changed amountMAX-2 toMAX-1."
+    },
+    {
+      "artifact": "design-stage2.log",
+      "methods_run": 18,
+      "failures": 0
+    },
+    {
+      "artifact": "design-final.log",
+      "methods_run": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "explanation": "Added explicit non-equivalence to flat proportional rounding; final19 includes earlier18."
+    },
+    {
+      "artifact": "oracle-noop-negative.json",
+      "stage": "independent design-review counterexample before correction",
+      "pre_review_prototype_sha256": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222",
+      "lazy": [
+        1,
+        2
+      ],
+      "eager": [
+        0,
+        3
+      ],
+      "explanation": "Eager reference incorrectly cleared its cumulative rounding stream on unchanged weight; lazy prototype correctly preserved it."
+    },
+    {
+      "artifact": "design-review-final20.log",
+      "methods_run": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "explanation": "Eager no-op return plus explicit state-unchanged/claim1+2 regression; illustration now uses actual current SCALE1e36. Same lazy allocation logic. Prior19-stage preserved, not relabeled as final20."
+    }
+  ],
+  "final_unique_methods": 20,
+  "methods": [
+    "test_final_one_unit_with101_shares_is_fully_claimable",
+    "test_split_matches_full_precision_without_unsafe_carry_overflow",
+    "test_empty_left_or_right_branch_routes_every_unit",
+    "test_fixed_weights_batching_and_claim_order_match_eager_reference",
+    "test_hierarchical_rounding_is_explicitly_not_flat_proportional_rounding",
+    "test_intermediate_claims_do_not_change_later_allocation",
+    "test_new_activation_never_receives_old_pending_funds",
+    "test_growth_pushes_old_weights_for_both_assets_and_preserves_sibling",
+    "test_unchanged_weight_does_not_reset_old_rounding_stream",
+    "test_counterexample_updating_weights_before_push_gives_old_money_to_newcomer",
+    "test_raw_weight_ticket_array_is_not_bounded_by1000_nfts",
+    "test_fee_components_exact_split_and_reserved_dust_stay_separate",
+    "test_collective_equal_membership_ignores_lp_share_growth",
+    "test_transfer_preserves_unclaimed_rights_for_current_owner_and_repeat_claims_zero",
+    "test_activation_then_growth_then_harvest_preserves_all_components",
+    "test1000_nft_bound_all_units_assignable_no_padding_payee",
+    "test_invalid_ordinal_and_uint_bounds_reject_without_mutating_tree",
+    "test_pending_and_node_arithmetic_overflow_rejected_before_credit",
+    "test_no_cohort_credit_rejected_no_later_activation_steals_it",
+    "test_deterministic_mixed_sequence_matches_eager_at_every_checkpoint"
+  ],
+  "counterexamples": {
+    "current_index_final_unit": {
+      "shares": 101,
+      "credit": 1,
+      "scale": 1000000000000000000000000000000000000,
+      "index_based_whole_claim": 0,
+      "tree_whole_claim": 1
+    },
+    "mutate_before_old_push": {
+      "old_only_ordinal": 1,
+      "old_credit": 1,
+      "new_ordinal": 1000,
+      "correct_newcomer_old_income": 0,
+      "incorrect_newcomer_old_income": 1
+    },
+    "hierarchical_not_flat": {
+      "ordinals": [
+        1,
+        2,
+        1000
+      ],
+      "weights": [
+        2,
+        1,
+        2
+      ],
+      "credit": 3,
+      "hierarchical": [
+        0,
+        1,
+        2
+      ],
+      "flat_cumulative": [
+        1,
+        0,
+        2
+      ]
+    },
+    "raw_weight_tickets": "twoNFTs with10**30+1 total shares still need only fixed2048 tree entries; a raw share ticket array would be unbounded",
+    "eager_noop_oracle_bug": {
+      "weights": [
+        1,
+        2
+      ],
+      "sequence": [
+        "credit1",
+        "same-weight update",
+        "credit2"
+      ],
+      "correct": [
+        1,
+        2
+      ],
+      "old_eager_wrong": [
+        0,
+        3
+      ],
+      "fixed_eager": [
+        1,
+        2
+      ]
+    }
+  },
+  "limits": [
+    "No Solidity design implementation or target-chain gas/storage/size approval",
+    "No production backend/API/checkpoint/canonical codec changes",
+    "Hierarchical rounding is an explicit engineering choice, not exact rational or flat pro-rata payout per finite batch",
+    "Resetting fractional fairness carry on growth can affect future tiny-unit rounding; already credited whole units remain assigned before mutation",
+    "FeeDesign simulates component receipt split/reserves, not all current entrant-dust flush/LP conversion/canonical handoff/claims integration",
+    "Python arbitrary-precision models fullMath/mulmod; Solidity must implement and independently verify equivalent checked operations",
+    "No-cohort credit rejects in this model; live orphan/dust/lifecycle policy integration remains unimplemented",
+    "Tests are deterministic finite evidence, not exhaustive or economic optimality proof",
+    "Actual Vault hook sequencing/checkpoint-before-share mutation is NOT integrated or verified. Typed hook protocol/storage design and all reader/API/history/conversion/V8 implications need separate production design and verification."
+  ],
+  "preservation": [
+    "No frozen keeper file edit during prototype task",
+    "No deployment/service/site/journal/signer/Git change",
+    "No production exact-unit LP completion claim"
+  ],
+  "evidence_sha256": {
+    "design-final.log": "f04345c681ee11131e7f7a4c03f96cfa20199e0015a0b25435f5bbfc67e5c058",
+    "design-review-final20.log": "8f6d797e7c6763e687fd6d03afcc8bb89fabfaebef3544fd4f3816ad6263a630",
+    "design-stage1.log": "cf8f35e1a67ba0ae40d58ca31f2e31104706eaaf9d89d7447d1e655d3c8d9733",
+    "design-stage2.log": "48685e00aa9f7d672e5e9c703bd12bc3f0c783c041ab54ccd2264e3990e9f0d4",
+    "DESIGN_EVIDENCE.pre-review.json": "83bd5cbb813622bededa564ec18e7e4c6081aad3a3cdba9f55c37643167e4649",
+    "oracle-noop-negative.json": "ff28ca249843d9ad1982e3eee56c1c8d00d9c3db5f7df37d8d4c4da3cf3924b9",
+    "prototype-pre-review.py": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222"
+  },
+  "prior19_owned_whitelist": {
+    "tests_python/test_exact_lp_tree_design.py": "a31905825a40d25b37168c00a756cf7234facb8edce9e4bedca1070613439222"
+  },
+  "keeper_frozen_hashes_verified": {
+    "keeper/monitor.py": "a5cbfa8d283bf2667b9e372e07a4ad8908cf0e69316ed67ce4717fd2a3a03305",
+    "tests_python/test_keeper_standalone_harvest_review.py": "1daa3be042a623b92ef53aae321342d079b8d1f2af42866fe2da569253a69a0b"
+  },
+  "counts_note": "Final20 methods include prior19 plus no-op oracle regression. Do not sum stages; prior19 source/hash and original failures remain preserved."
+}

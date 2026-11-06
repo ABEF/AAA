@@ -1741,7 +1741,7 @@ A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**
 
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees and UI estimates.
 
-Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. LP/royalty conversion uses its separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. Creator-payment inboxes and measurement jobs are retired. See [royalty/claim behavior](CLAIM_ROUTER.md).
+Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Only LP reward conversion uses its separately bound guarded converter; royalties are claimed in their original currencies without a converter. LP payouts and the fixed 80/10/5/5 allocation are unchanged. Creator-payment inboxes and measurement jobs are retired. See [royalty/claim behavior](CLAIM_ROUTER.md).
 
 Before enabling automated revenue operations, review the actual
 [schedule and reserve checks](OPERATIONS.md#reward-timing-and-maintenance-schedule).
@@ -1762,6 +1762,25 @@ ETH receipts fund ETH claims immediately; ZZZ portions still use their separate
 reviewed conversion path for ETH settlement. Reserving the 5% allocations does
 not execute compounding or buybacks. Sealed/live active custody and other guards
 remain; no harvesting after terminal LP exit.
+
+For that manual call, resolve `bucketId` from `Vault.nftBucket(actualNftId)` or
+the authenticated bucket inventory, not the LP NFT ID or pool hash. Dormant
+NFTs have no attached bucket to harvest. Read a fresh chain timestamp and choose
+a deadline from that time through ten minutes ahead (the keeper uses180seconds).
+Simulate the exact call from the sending wallet; it pays gas. One transaction
+collects both registered legs, including a filled/mixed/outside residual, and
+leaves their IDs, liquidity and NFT shares unchanged. Verify the canonical
+`FeesCollected` and per-currency funded allocations;0/0is valid and needs no
+allocation log. If either leg fails, the entire call reverts. Pending receipts
+must be recovered by the same hash before retry; a manual call is not silently
+adopted into the keeper's own harvest clock.
+
+Small receipts carry to20raw-unit baskets. A share/membership barrier assigns
+remaining<=19raw units to incumbent individual rewards; it is a documented
+exception to the four-way split, not a second collection. Current LP indices
+can retain a final raw unit after all available claims; exact-unit royalties do
+not fix that separate ledger. See the [harvesting review](../reports/harvesting-audit-20261106/REVIEW.md)
+and [approved LP redesign](../reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md).
 
 ### Coordinate compounding with rebalancing
 
@@ -1811,8 +1830,9 @@ or keeper revocation, reconcile pending hashes, and reopen only after fresh chec
 
 ### Change the standalone harvesting interval
 
-The fresh worker coalesces this clock with its own successful compound/rebalance
-only when canonical receipt logs prove a matching Vault `FeesCollected` event.
+The fresh worker advances a successful standalone clock, or coalesces its own
+successful compound/rebalance, only when exact saved calldata and canonical
+receipt logs prove a matching bucket's Vault `FeesCollected` event.
 A zero-fee collection counts; submission, reverts, ambiguous work, NAV changes
 and unjournaled manual transactions do not. Missing optional proof preserves
 paid recovery but leaves the clock unchanged. The next hourly collection is
@@ -1862,7 +1882,13 @@ The threshold uses the receipt block time of the last confirmed successful
 into that clock. The latter requires matching canonical Vault event proof;
 zero-fee collection is valid. Missing optional proof leaves the clock unchanged
 while preserving paid recovery. Contributions, unjournaled manual activity,
-submission, reverts and ambiguous work are not silently adopted. A shorter
+submission, reverts and ambiguous work are not silently adopted. A restored
+bucket label that disagrees with calldata/event cannot advance that clock.
+Missing/mismatched optional proof still permits canonical paid nonce, spend and
+receipt recovery; it may cause a redundant later harvest. Repair receipt-provider
+metadata rather than changing the journal or resending paid work. A due harvest
+gets a fresh180-second deadline after unrelated maintenance reads; a failed
+fresh-head read does not submit an older deadline. A shorter
 interval or no prior worker success record can make harvesting due at the next
 eligible cycle. Restart does not reset the clock. Polling uses the
 separate `interval_seconds` setting. Historical examples use 600 seconds; fresh

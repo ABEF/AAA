@@ -127,7 +127,7 @@ see [operating schedule](OPERATIONS.md#reward-timing-and-maintenance-schedule).
 An off/failed keeper leaves funded rights and purpose reserves on-chain, but does
 not promise timely reinvestment, conversion or burn.
 
-Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global index dust stays reserved; per-NFT fractions carry separately for individual and collective rewards. Do not add their sub-unit fractions into an extra spendable raw unit. Mark principal by summing each asset across LP/idle/designated compound before USD rounding; separately rounded subtotals can differ by one raw unit. The [independent receipt model](../reports/market-lifecycle-20261104/REVIEW.md) verifies these distinctions across composed journeys. No administrator can sweep reward or orphan reserves. Collection allocation
+Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global LP index dust stays reserved; per-NFT fractions carry separately for individual and collective rewards. A finite last LP receipt can leave a whole raw unit backed but unclaimable without future revenue; this differs from exact-unit royalties. The approved [LP exact-unit upgrade design](../reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md) is not implemented in the current ledger. Do not add sub-unit fractions into an extra spendable raw unit. Mark principal by summing each asset across LP/idle/designated compound before USD rounding; separately rounded subtotals can differ by one raw unit. The [independent receipt model](../reports/market-lifecycle-20261104/REVIEW.md) verifies these distinctions across composed journeys. No administrator can sweep reward or orphan reserves. Collection allocation
 accumulators may include carried/index rounding amounts; they are not the exact
 sum of all NFT claimable balances.
 
@@ -167,15 +167,20 @@ see [history semantics](FRONTEND_HISTORY.md).
 
 ERC-2981 requests **5% of a marketplace sale** payable to the immutable NFT-owned royalty receiver. Payment cannot be forced by this interface. **100% of distributable receipts** is reserved for eligible activated NFTs in weights Commun x1 / Rare x2 / Legendary x3, independently of LP revenue allocations. LP size and evolution do not change royalty weight. Current owners claim all their NFT's accrued balances.
 
-Native ETH and up to16reviewed exact-transfer/non-rebasing ERC20s have separate
-rarity-weighted original-currency claims. WETH remains WETH; no royalty swaps,
-unwraps, oracle quotes or converter binding remain. New activation checkpoints
-incumbents; currency faults defer only that currency and protect its earlier
-cohort. Current owners inherit unpaid rights; fractions carry and global division
-dust remains backed. Reviewed unallocated units require admission and governance
-`allocateUnallocated(asset,amount,reviewHash)`; they join the SAME currency's index
-at active weights at allocation. Earned/deferred/fraction liabilities are excluded.
-See [settlement and limits](ROYALTY_SETTLEMENT.md). LP fee conversion is separate.
+Native ETH and initially16reviewed exact-transfer/non-rebasing ERC20s have separate
+rarity-weighted original-currency claims; reviewed capacity may increase to64.
+WETH remains WETH; no royalty swaps, unwraps, oracle quotes or converter binding
+remain. New activation checkpoints incumbents; currency faults defer only that
+currency and protect its earlier cohort. Current owners inherit unpaid rights.
+Fresh royalty4 assigns every allocated raw unit to whole NFT tickets, with
+GCD-normalized weights and rotating indivisible units; it has no royalty index
+or monetary fraction reserve. Reviewed unallocated units require admission and
+governance `allocateUnallocated(asset,amount,reviewHash)` or
+`allocateAllUnallocated(asset,reviewHash)`. They are assigned at current active
+weights without consuming earned, deferred or opening-pool backing.
+See [exact allocation](EXACT_ROYALTY_ALLOCATION.md),
+[opening and capacity](ROYALTY_LAUNCH_WINDOW.md) and
+[settlement limits](ROYALTY_SETTLEMENT.md). LP fee conversion/fractions are separate.
 
 Revealed metadata reports the fixed Commun x1 / Rare x2 / Legendary x3 trait even while
 Dormant. Unrevealed weight is `Unrevealed`, not an invented rarity. The economic

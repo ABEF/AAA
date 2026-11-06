@@ -1,0 +1,21 @@
+{
+  "baseline_head": "11e01571a20068d624d8f8a55076cf5068db6281",
+  "branch": "main",
+  "protected_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_files_byte_identical": true,
+  "original_report_files_checked": 3015,
+  "original_report_drift": [],
+  "production_and_dependencies_unchanged": true,
+  "old_test_files_unchanged": true,
+  "all_original_dirty_documentation_archived": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-root\\baseline-dirty-docs.patch",
+  "baseline_tracked_manifest": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\harvesting-audit-20261106-root\\baseline-tracked-sha256.json",
+  "no_public_transaction_or_deployment": true,
+  "no_sealing": true,
+  "no_site_service_signer_anvil_journal_or_heartbeat_change": true,
+  "no_operating_or_independent_approval": true
+}

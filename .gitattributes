@@ -122,3 +122,8 @@ reports/residual-lifecycle-20261106/services/affected-first.log -text whitespace
 
 # Preserve exact residual-consolidation evidence and native diagnostic spacing.
 reports/residual-main-consolidation-20261106/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact harvesting evidence and native negative-test diagnostics.
+reports/harvesting-audit-20261106/** -text whitespace=cr-at-eol
+reports/harvesting-audit-20261106/services/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/harvesting-audit-20261106/design/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

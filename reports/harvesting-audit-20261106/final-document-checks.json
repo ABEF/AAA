@@ -1,0 +1,42 @@
+{
+  "frozen_tested_files": {
+    "keeper/monitor.py": "a5cbfa8d283bf2667b9e372e07a4ad8908cf0e69316ed67ce4717fd2a3a03305",
+    "tests_python/test_keeper_standalone_harvest_review.py": "1daa3be042a623b92ef53aae321342d079b8d1f2af42866fe2da569253a69a0b",
+    "tests_python/test_exact_lp_tree_design.py": "3e80fd02e6256f09b866765d4f3be9dcf490d993236c627b4c71723ae505dfa7",
+    "test/HarvestAudit20261106.t.sol": "f9cffaccf3e17046034f674e16e4561bf0e5bc4827d6825ccf88db21cb12c38f"
+  },
+  "raw_hashes_match": true,
+  "python_syntax_parse": true,
+  "production_dependency_build_pins_match": true,
+  "local_markdown_targets_checked": 2244,
+  "broken_local_targets": [],
+  "protected_files_match": true,
+  "original_reports_preserved": true,
+  "document_sha256": {
+    "AGENTS.md": "843e43e947e8a1d57b659010d4d3d8ec5de998b314e8f2100de83e0e20e07784",
+    "PROJECT_CONTEXT.md": "754f593c6be36bcb475d1c2ebf7b2bb15d664f1849db7ffe5ec31a82b8583a22",
+    "README.md": "97750ffe0674c362bf73150bab6042cc7691c4ef30f4d847ba955596183a4e88",
+    "TODO.md": "4c408bab50932def177eadeca9eb9756b832c7c61291e4168edef9dae4e09319",
+    "docs/AUDIT_FINDINGS.md": "561f19aae74e52f3fa9768c0d30443221691024d7ad0d5fd1b23bca85f3a599f",
+    "docs/ECONOMICS.md": "c58e0032a8dcf5a55baeec263f4b91b175a96088e4536d771a37573c2fe06e73",
+    "docs/IDLE_AND_DUST.md": "9f6c85c429de5ca79d1a213b354aac62789de5d30c79f5ad9d8b6578912928e1",
+    "docs/IMPLEMENTATION_STATUS.md": "247fbc68c132f8c19d3ca83231845f1881bfec199c78c54c2286b0f6797f4724",
+    "docs/KEEPER_COORDINATION.md": "6299d6f68dc351620e2a533606c2f46c23515681bea41476057187a05430aa55",
+    "docs/OPERATIONS.md": "f7c46a054f9df94c17accedbef9406ae2add25b1858460dce48877bf754631ee",
+    "docs/OPERATOR_MANUAL.md": "849390f935ddb3e0b727e8854e8459a46b130dcf9b2db45ab4efb3cfef55cbe6",
+    "docs/RELEASE_CHECKLIST.md": "28acc7c8c22cb108378638d57557a3b33460143779d2544a10045ba4263b7b1a",
+    "docs/ROADMAP.md": "6ead1b656de6c43f6c0cf46faf7847c2b2dc5f52eae0943d9fa075eaa1134311",
+    "docs/WORK_HANDOFF.md": "505d697510d1cf9765f347c7d43b313d8ab20318a0d0e93c0fe8ecdf7ee74f01",
+    "reports/README.md": "7ffe27a6d3acec5c664d55b314ca9e4cbc172c2ffcee18d2a8e694cb5a319b50",
+    "reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md": "9e1b4373b0ae198bb00912984a8b9bb4ca157169c79b8671b8c01f5c96258b99",
+    "reports/harvesting-audit-20261106/LIFECYCLE.md": "5c716d2f6468b1f46c4de93179b1cb77e0ae17f7abbf2537dd630144f38f0377",
+    "reports/harvesting-audit-20261106/PROMPT.md": "0491b9da470678f273c47562e2abfb54119444efc75a571681b554d6dda25e82",
+    "reports/harvesting-audit-20261106/REVIEW.md": "7c7fc8484536050e50909502c3b2f50e656c9f844a4de19d6cb3e94d778c9b48",
+    "reports/harvesting-audit-20261106/VERIFICATION.md": "b5c86f34e06abef63e9415324952a867952f1b4ce7f0f0cc17627269c82491b9"
+  },
+  "assembly_negative": "assembly-attempt1.json",
+  "website_head_observed": "759a46847528458101177837ca6972cca36e3e33",
+  "website_tracked_status_observed_clean": true,
+  "remote_main_before_publication": "11e01571a20068d624d8f8a55076cf5068db6281",
+  "source_publication_is_not_deployment": true
+}

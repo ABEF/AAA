@@ -27,6 +27,8 @@ Current capabilities and exact evidence are in the tables below and the
 [complete short call catalog](OPERATOR_MANUAL.md#operator-call-tables), with
 separate exact permission/output notes; it is documentation, not execution approval.
 
+The [harvesting follow-up](../reports/harvesting-audit-20261106/REVIEW.md) corrects keeper deadline and standalone clock proof. Current Solidity LP allocation is unchanged and can retain a finite final fractional unit. The accepted [exact-unit LP upgrade](../TODO.md#task-lp-exact-unit-allocation) has a bounded design/prototype, not production implementation or new deployed profile.
+
 ## Smart contracts
 
 | Capability | Implemented behavior | Reference |

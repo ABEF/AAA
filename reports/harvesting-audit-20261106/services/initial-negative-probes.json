@@ -1,0 +1,29 @@
+{
+  "slow_successful_checks": {
+    "signature": "collectFees(uint256,uint256)",
+    "deadline": 1793990240,
+    "now": 1793990300,
+    "remaining_seconds": -60,
+    "expected_at_least": 1
+  },
+  "restored_wrong_harvest_key": {
+    "last_before": {
+      "compound:1": 1793986460,
+      "harvest:1": 1793986060,
+      "harvest:2": 1793985060,
+      "rebalance:1": 1793946860
+    },
+    "last_after": {
+      "compound:1": 1793986460,
+      "harvest:1": 1793986060,
+      "harvest:2": 1793990060,
+      "rebalance:1": 1793946860
+    },
+    "pending": false,
+    "next_nonce": 8,
+    "paid_cost": 500,
+    "signer_calls": 0,
+    "receipt_bucket": 1,
+    "saved_key": "harvest:2"
+  }
+}
