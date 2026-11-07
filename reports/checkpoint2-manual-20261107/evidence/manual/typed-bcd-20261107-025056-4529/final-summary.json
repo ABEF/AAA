@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "baseline_head": "bf2cc72adbed74e12e64b6b987cdd669eb30ce90",
+  "source_scope": "Only four new files; no edits to shared existing files. All owned source bytes frozen for final affected run.",
+  "owned_files": {
+    "zzz_ops/manual_lp_review.py": "4a99bbbebe0feda73a82039f38ecb8058629e08fe92b7c556d3b205b1644748a",
+    "scripts/prepare-manual-lp.py": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+    "tests_python/test_manual_lp_review.py": "b3bdaa5a379a4df0b0622d4cab63617367936e68d716afc893e5c887efc39c16",
+    "docs/MANUAL_LP_PREPARATION.md": "edb12f79124fa7bd42185e2fe2dc7024c1556901c21a8420d949f7c18464e1e8"
+  },
+  "baseline_paths_absent": true,
+  "baseline_git_ls_tree_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "protected_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "verification": {
+    "final_log": "attempt4-final-affected.log",
+    "distinct_methods": 89,
+    "passed": 89,
+    "skipped": 0,
+    "new_manual_methods": 28,
+    "not_sum_of_overlapping_runs": true,
+    "final_wall_seconds": 191.431
+  },
+  "attempts": [
+    {
+      "log": "attempt1-initial.log",
+      "result": "19 methods;18 pass,1 final-head/reorg assertion failed. Initial source before moving-market/final-head revision; retained as failure, not counted as final evidence."
+    },
+    {
+      "log": "attempt2-moving-market.log",
+      "result": "24 methods pass at corrected moving-market/two-simulation/headroom scope, before final chain/labels/publication/D-lower-bound polish; not added to final counts."
+    },
+    {
+      "log": "attempt3-current.log",
+      "result": "27 methods pass before final D-preharvest-lower-bound and CLI/public pins polish; not added to final counts."
+    },
+    {
+      "log": "attempt4-final-affected.log",
+      "result": "89 distinct methods pass, including28 new manual methods, at the final owned source pins."
+    },
+    {
+      "log": "causal-negative-controls.log",
+      "result": "Intentional ephemeral monkeypatches only, source unchanged: disabled final control comparison causes5 assertion failures; reinstated false D preharvest ceiling causes1 expected error. expected_red=true. Not counted as passes."
+    }
+  ],
+  "boundaries": {
+    "read_only": true,
+    "signing": false,
+    "broadcasting": false,
+    "arbitrary_call_targets": false,
+    "nonce_or_journal_work": false,
+    "running_config_changes": false,
+    "service_site_chain_changes": false,
+    "actual_target_gas_or_provider_qualification": false,
+    "source_runtime_build_provenance_approved": false,
+    "operator_wallet_rehearsal_performed": false,
+    "supported_actions": "Explicit Active-state B/C/D only; Parked emergency unsupported."
+  },
+  "methodological_limits": [
+    "Initial confirmation-depth snapshot plus separately labeled later canonical-tip control snapshot; latter is not claimed confirmed.",
+    "Exactly two full void simulations and estimates at pinned hashes, original calldata/floors/deadline/reviewHash unchanged; last head/deadline check, no loop or inclusion guarantee.",
+    "Healthy composition/price rounds may move, but custody/L/shares/nonces/config/policy identities remain committed. Forced0 skips price/policy/operations-readiness/automatic-route dependencies.",
+    "D captured availability excludes future harvest and is informative lower bound; unchanged complete source-call simulations decide spendability. B/C cannot spend main or designated compound.",
+    "Tests use real Projection/physical/Catalog implementations with injected RPC. No actual chain gas execution, independent source-build/runtime approval or provider-honesty proof."
+  ]
+}

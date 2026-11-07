@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "tests_run": 1,
+  "distinct_test_ids": [
+    "tests_python.test_earnings_checkpoint_v2.Checkpoint2APITests.test_reviewed_royalty_currency_append_preserves_exact_state_and_old_descriptors"
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skips": [],
+  "seconds": 3.6559999999990396,
+  "source_identity_before": {
+    "frontend_api/earnings_checkpoint.py": "bce929d27486c73543c81f88043322ac968ced65b95e468a55819cdfbbf3ced2",
+    "frontend_api/earnings_checkpoint_build.py": "851567ffef6f32a2107e92e0341b4f749f4f3b4b428d121e159531ed4ee6af5f",
+    "frontend_api/earnings_replay.py": "a28591ccfe03f891ccd5bc50122c975bc5204f98ac351dd7d4fdc38768eb115d",
+    "frontend_api/history.py": "45fe56e50de8e2673d54b96c80d481e11da65e28d01a614025e0f1ffb6b28599",
+    "frontend_api/earnings.py": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+    "frontend_api/service.py": "1df8010ca0609377d5a73a2a67ab0fbf6c85aa38a999f782ea41ffc07fc7167d",
+    "frontend_api/wallet_earnings.py": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/log_provenance.py": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259"
+  },
+  "source_identity_after": {
+    "frontend_api/earnings_checkpoint.py": "bce929d27486c73543c81f88043322ac968ced65b95e468a55819cdfbbf3ced2",
+    "frontend_api/earnings_checkpoint_build.py": "851567ffef6f32a2107e92e0341b4f749f4f3b4b428d121e159531ed4ee6af5f",
+    "frontend_api/earnings_replay.py": "a28591ccfe03f891ccd5bc50122c975bc5204f98ac351dd7d4fdc38768eb115d",
+    "frontend_api/history.py": "45fe56e50de8e2673d54b96c80d481e11da65e28d01a614025e0f1ffb6b28599",
+    "frontend_api/earnings.py": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+    "frontend_api/service.py": "1df8010ca0609377d5a73a2a67ab0fbf6c85aa38a999f782ea41ffc07fc7167d",
+    "frontend_api/wallet_earnings.py": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/log_provenance.py": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259"
+  },
+  "semantic_sources_unchanged": true,
+  "old_test_sha256": "713cc1a950fc1a5c502953948c6578eb72bea072183750b39b69745f820ebe76",
+  "current_test_sha256": "1c993eb2a1e965f41c71c299b135ce1b2cea40b0378954be69d8246b37c91951",
+  "old_test_declarations_identical": true,
+  "old_test_bytes_after_removing_only_new_final_method_identical": true,
+  "scope": "One added synthetic fresh7 real SQLite/Projection/Earnings test: reviewed original-currency royalty append with exact13-unit allocation, current1/3 cohort rights4/9, actual History claim9, seeded/full all-time and day equality, old descriptor mutation rejection. No old15 rerun.",
+  "development_attempt": {
+    "runs": 1,
+    "errors": 1,
+    "cause": "Test invalid old symbol exceeded display-label length before reaching checkpoint identity",
+    "correction": "Use valid different OTHERETH symbol to test checkpoint identity itself"
+  },
+  "log_sha256": "36c75492b2b2da6f38f4bf50b33e3c47a26d3294d96114552903d717667b84fe"
+}

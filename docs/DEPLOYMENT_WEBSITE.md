@@ -25,8 +25,8 @@ wallet journal or running service.
 The current schema16 source inventory pins17 modules,19 callable helpers and2
 inert RoyaltyFactory data children. Factory artifact3 retains code-storage
 FORMAT2; its new payload/runtime identities do not upgrade old artifacts.
-Fresh7 raw earnings use exact LP events/getters; checkpoint1 is historical6-only
-and exact checkpoint2 remains open. These are backend source boundaries, not a
+Fresh7 earnings use exact LP events/getters and optionally reviewed checkpoint2;
+checkpoint1 stays historical6-only. These are backend source boundaries, not a
 new served browser manifest or qualified production service.
 
 See [verification](../reports/deployment-adapter/VERIFICATION.md),

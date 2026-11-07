@@ -1,0 +1,13 @@
+{
+  "scope": "Summaries of tool-returned development outputs; these are not raw retained test logs or additional acceptance successes. Final15.log is the source-bound final execution.",
+  "attempts": [
+    {"selection": "original-wire plus API differential", "ran": 2, "failures": 1, "errors": 1, "cause": "Test compared raw direct maps after asymmetric view calls (zero entries) and omitted wallet balanceOf RPC fixture", "correction": "Read both original and resumed literal witness states symmetrically; add explicit synthetic balanceOf views"},
+    {"selection": "initial complete new file", "ran": 12, "failures": 1, "errors": 0, "cause": "Expected one conversion event although funded and all-zero dormant rows are both legitimately observed events", "correction": "Assert two observed event acknowledgements and separately prove zero row monetary values and unchanged earnings"},
+    {"selection": "expanded complete new file", "ran": 15, "failures": 1, "errors": 1, "cause": "Advanced prefix actually contains three conversion records; attempted duplicate transaction reused an existing SQLite primary key", "correction": "Assert three conversion records and positive prior paid value separately; use a distinct log index while retaining the duplicate prefix transaction hash"},
+    {"selection": "advanced checkpoint and duplicate transaction", "ran": 2, "failures": 0, "errors": 1, "cause": "Synthetic replay helper timestamp remained at day99 after extending the test to day199", "correction": "Set replay timestamp to at least the latest explicit test log timestamp"},
+    {"selection": "advanced checkpoint after fixture correction", "ran": 1, "failures": 0, "errors": 0, "acceptance": false},
+    {"selection": "two strengthened funded differentials", "ran": 2, "failures": 0, "errors": 0, "acceptance": false, "strengthening": "Unequal199/200 shares preserve nonzero high/low phase; late royalty rights independently equal6 rather than receiving earlier7"}
+  ],
+  "production_fixes_required_by_these_attempts": false,
+  "aggregate_overlapping_success_count": null
+}

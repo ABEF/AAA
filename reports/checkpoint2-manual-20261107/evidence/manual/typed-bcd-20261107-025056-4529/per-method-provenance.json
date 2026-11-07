@@ -1,0 +1,1695 @@
+{
+  "schema": 1,
+  "counting_rule": "Only final affected log supplies success counts; prior attempts and deliberately mutated negative controls add zero passes. Fully qualified test IDs are unique.",
+  "distinct_final_methods": 89,
+  "new_manual_methods": 28,
+  "passed": 89,
+  "skipped": 0,
+  "methods": [
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_checkpoint1_is_explicitly_rejected_before_any_new_model_seed",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 46,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 46,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_current7_graph_binds_actual_versions_and_typed_canonical_child",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 47,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 47,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_current7_unsigned_claim_uses_actual_claimable_and_never_sends",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 48,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 48,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_eight_word_codec_is_explicit7_not_unknown_tuple_guess",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 49,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 49,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_keeper7_authenticates_exact_ledger_and_never_adopts_saved6_state",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 50,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 50,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_keeper7_invalid_exact_ledger_pin_is_configuration_error_before_rpc",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 51,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 51,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_keeper7_read_only_operation_review_is_not_a_historical_profile",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 52,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 52,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_missing_new_authority_profile_and_reporting_are_not_inherited",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 53,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 53,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_old_v8_marker_wrong_child_or_runtime_fail_closed",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 54,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 54,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_price_fault_keeps_both_leg_custody_and_raw_funded_claims",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 55,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 55,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_exact_lp_profile7.ExactLPProfile7Tests.test_third_lp_currency_rejects_while_original_royalty_currency_is_admitted",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 56,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 56,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_actual_mint_preparation_uses_dynamic_price_recipient_and_combined_fingerprint",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 57,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 57,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_dynamic_evolution_follows_captured_metadata_terms_not_old_constants",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 58,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 58,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_mint_rejects_stale_combined_vrf_fingerprint_before_simulation",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 59,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 59,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_frontend_policy_v6.FrontendPolicyV6Tests.test_nft_policy6_preserves_raw_claims_and_both_physical_legs_during_usd_outage",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 60,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 60,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_changed_journal_or_canonical_anchor_invalidates_whole_report",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 61,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 61,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_changed_position_basis_at_same_hash_invalidates_report",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 62,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 62,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_cli_bucket_errors_are_bounded_and_never_echo_untrusted_values",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 63,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 63,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_confirmation_wait_disagreement_stale_and_disabled_are_distinct",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 64,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 64,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_empty_execution_catalog_does_not_invent_an_operation_blocker",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 65,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 65,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_financial_thresholds_are_observed_but_margins_remain_unavailable",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 66,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 66,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_generic_simulation_and_estimate_errors_do_not_invent_cause",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 67,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 67,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_harvest_contract_permission_and_worker_role_are_distinct",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 68,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 68,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_harvest_requires_custody_but_not_optional_market_readers",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 69,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 69,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_hash_pinning_and_exact_fixed_calls_without_nonce_or_broadcast",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 70,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 70,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_historical_profile_is_explicitly_unsupported",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 71,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 71,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_impossible_pool_financial_policy_is_unavailable_not_configured",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 72,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 72,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_included_fee_policy_preserves_optional_zero_allowance_default",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 73,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 73,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_inside_observation_is_not_needed_while_independent_work_is_eligible",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 74,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 74,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_local_confirmation_reset_blocks_principal_only_and_clear_ack_is_informational",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 75,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 75,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_manual_width_change_blocks_compound_before_rebalance_cooldown",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 76,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 76,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_missing_fee_configuration_is_distinct_from_unavailable_estimate",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 77,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 77,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_missing_journal_is_unavailable_and_never_created",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 78,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 78,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_mixed_case_abi_hex_keeps_pool_and_currency_threshold_identity",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 79,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 79,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_native_gas_funding_is_pinned_and_never_inferred_from_simulation",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 80,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 80,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_numeric_gas_caps_accumulate_exact_known_blockers",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 81,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 81,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_onchain_ready_does_not_invent_worker_jitter_or_next_execution",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 82,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 82,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_oracle_or_compound_guard_failure_does_not_erase_due_harvest",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 83,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 83,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_outside_during_cooldown_is_not_due_not_not_needed_and_blocks_compound",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 84,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 84,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_physical_or_compound_guard_fault_does_not_block_harvest",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 85,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 85,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_preparation_preserves_harvest_but_blocks_principal_work",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 86,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 86,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_report_never_writes_signs_reconciles_or_acquires_lock",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 87,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 87,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_selection_and_cli_are_bounded_and_read_only",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 88,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 88,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_keeper_operation_review.KeeperOperationReviewTests.test_valid_empty_journal_records_worker_defaults_without_inventing_receipt",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 89,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 89,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_all_rpc_contract_reads_use_confirmed_or_final_canonical_hash_without_latest_fallback",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 1,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 1,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 1,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 1,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 1,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_block_gas_limit_bounds_both_reviews_and_network_envelope_is_separate",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 2,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 2,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 2,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 2,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 3,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 2,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 3,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 3,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 3,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_cli_sanitizes_errors_and_never_replaces_output",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 4,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 3,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 4,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 4,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 4,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 5,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 5,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exact_b_c_d_calls_and_floor_meanings",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 6,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 4,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 5,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 5,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 6,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exclusive_atomic_output_preserves_existing_bytes_and_cleans_temporary",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 7,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 5,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 6,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 6,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 7,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_explicit_swap_cannot_spend_main_in_same_main_action",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 8,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 6,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 7,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 7,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 8,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_forced_zero_mask_has_no_usd_route_or_operations_readiness_dependency",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 9,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 7,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 8,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 8,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 9,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_full_replacement_can_include_designated_compound_but_same_main_cannot",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 10,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt3-current.log",
+          "line": 9,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 10,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_gas_price_fee_and_headroom_caps_never_widen",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 11,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 8,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 9,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 10,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 11,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_governance_pause_terminal_and_preparation_are_mandatory",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 12,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 9,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 10,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 11,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 12,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 13,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 11,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 12,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 13,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_input_mutation_and_work_limits_fail_closed",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 14,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 10,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 12,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 13,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 14,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_intrinsic_gas_and_governance_funding_are_required",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 15,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 13,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 14,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 15,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_last_head_deadline_after_final_estimate_refuses_without_resimulation",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 16,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 14,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 15,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 16,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 17,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 15,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 16,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 17,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_opaque_simulation_and_malformed_void_return_never_produce_a_draft",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 18,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 11,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 16,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 17,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 18,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_original_deadline_and_snapshot_expiry_are_never_extended",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 19,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 12,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 17,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 18,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 19,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_output_chain_and_rpc_configuration_identity_are_bound",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 20,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt3-current.log",
+          "line": 19,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 20,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_parked_state_is_explicitly_unsupported_even_for_full_emergency",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 21,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 13,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 18,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 20,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 21,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_project_getter_signatures_and_static_return_widths_match_current_catalog",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 22,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt3-current.log",
+          "line": 21,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 22,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_read_only_execution_never_touches_keeper_journals_or_signer",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 23,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 14,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 19,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 22,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 23,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_reorg_and_lost_depth_refuse",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 24,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 15,
+          "outcome": "FAIL"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 20,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 23,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 24,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_retained_value_bit_requires_usd_even_when_price_agreement_bit_is_off",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 25,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 16,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 21,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 24,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 25,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_same_main_cannot_recenter_and_b_cannot_silently_force",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 26,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 17,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 22,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 25,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 26,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_unknown_duplicate_float_oversized_and_noncanonical_inputs_refuse",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 27,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 18,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 23,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 26,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 27,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_wrong_runtime_current_profile_and_extension_capability_refuse",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 28,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt1-initial.log",
+          "line": 19,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt2-moving-market.log",
+          "line": 24,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt3-current.log",
+          "line": 27,
+          "outcome": "ok"
+        },
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 28,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_artifact_hash_arguments_and_false_qualification_flags_cannot_be_tampered",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 29,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 29,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_booleans_addresses_bytes_markers_and_nested_shape_are_strict",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 30,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 30,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_canonical_hash_and_self_reference_preserve_exact_tuple_order",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 31,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 31,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_cli_never_accesses_network_or_subprocess_and_sanitizes_rejection",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 32,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 32,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_duplicate_nonfinite_float_depth_and_size_are_rejected_before_use",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 33,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 33,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_hashless_pause_is_only_an_offline_audit_record",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 34,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 34,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_large_valid_byte_array_artifact_roundtrips_under_its_separate_bound",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 35,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 35,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_malformed_catalog_roots_and_list_shapes_refuse_explicitly",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 36,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 36,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_object_key_order_is_irrelevant_but_every_reviewed_binding_changes_hash",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 37,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 37,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_pool_config_nested_tuple_and_array_arguments_use_catalog_order",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 38,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 38,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_real_closed_reference_and_profile_have_no_deployment_claim",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 39,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 39,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_residual_consolidation_manifest_binds_capability_force_and_exact_tuple",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 40,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 40,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_signed_emergency_ticks_and_large_units_remain_exact_strings",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 41,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 41,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_source_dependency_build_and_catalog_drift_are_rejected",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 42,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 42,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_supplied_chain_runtime_and_future_timestamp_remain_unverified",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 43,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 43,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_unknown_endpoint_profile_evidence_and_callable_fields_reject",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 44,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 44,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_operator_review.OperatorReviewTests.test_utf8_output_is_exclusive_and_validation_does_not_create_files",
+      "selected_evidence": {
+        "log": "attempt4-final-affected.log",
+        "line": 45,
+        "outcome": "ok"
+      },
+      "observations": [
+        {
+          "log": "attempt4-final-affected.log",
+          "line": 45,
+          "outcome": "ok"
+        }
+      ]
+    }
+  ]
+}

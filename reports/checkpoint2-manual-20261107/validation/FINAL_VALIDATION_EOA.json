@@ -1,0 +1,50 @@
+{
+  "utc": "2026-11-07T02:27:24.000771+00:00",
+  "head": "bf2cc72adbed74e12e64b6b987cdd669eb30ce90",
+  "branch": "main",
+  "protected4": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "original_reports_unchanged": 4016,
+  "all_tracked_solidity_unchanged": true,
+  "current_source_matches_test_summary": true,
+  "markdown_files": 22,
+  "relative_file_links": 2409,
+  "missing_links": [],
+  "control_chars": [],
+  "selected_new_anchor_checks": [
+    {
+      "source": "docs/MANUAL_LP_PREPARATION.md",
+      "target": "OPERATOR_MANUAL.md#same-main-residual-consolidation",
+      "exists": true
+    }
+  ],
+  "generated_checks": [
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/generate-operator-reference.py",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "native_whitespace_pass": true,
+  "default_whitespace_note": "An earlier unredirected default git diff --check flagged native CRLF as trailing whitespace; actual native cr-at-eol review above passes. No source bytes normalized to silence diagnostics."
+}

@@ -363,5 +363,6 @@ legacy Entry selector is substituted. Activation/growth writes actual Vault shar
 then Rewards settles old-weight rights before installing the authenticated new
 weight. Membership adds one collective weight only at activation. Fresh7 does
 not query legacy LP indices/fractions; original royalty4 remains separate.
-Raw earnings replay is supported; historical6 checkpoint1 is not a7 seed and
-exact checkpoint2 remains open. [Policy semantics](ADAPTABLE_POLICY.md).
+Raw earnings replay and explicit reviewed checkpoint2 are supported; historical6
+checkpoint1 is not a7 seed. This does not change contribution/preparation reads
+to checkpoints. [Checkpoint scope](EARNINGS_CHECKPOINTS.md), [policy semantics](ADAPTABLE_POLICY.md).

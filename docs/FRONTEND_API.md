@@ -164,9 +164,10 @@ custody5/fee-intake1 only; no predecessors. Earnings endpoints report checkpoint
 block/hash/digest and suffix counts while preserving all-time/24h fields and
 current-price semantics. Missing/corrupt/new-source/too-young checkpoints fail;
 default full replay remains unchanged. [Setup and recovery](EARNINGS_CHECKPOINTS.md).
-Accounting7 rejects checkpoint1 before restoring state and uses complete bounded
-raw history. Exact-LP checkpoint2 remains open. Other history/preparation
-consumers are not silently switched to checkpoints.
+Accounting7 rejects checkpoint1 before restoring state. It supports complete
+bounded raw history or explicit reviewed checkpoint2 for earnings, retaining
+raw trees/phase/direct credits and the complete rolling-day suffix. Other
+history/preparation consumers are not silently switched to checkpoints.
 
 ## Implemented endpoint
 

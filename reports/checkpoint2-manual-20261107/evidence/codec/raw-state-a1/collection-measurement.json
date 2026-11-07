@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "tests_run": 1,
+  "measurement": {
+    "minted": 1000,
+    "active": 900,
+    "buckets": 4,
+    "encoded_state_bytes": 1738447,
+    "artifact_limit_bytes": 33554432,
+    "construction_seconds": 5.037035900000774,
+    "capture_encode_decode_restore_seconds": 1.4939453000006324,
+    "capture_seconds": 0.3070296000005328,
+    "encode_seconds": 0.12095310000222526,
+    "decode_seconds": 0.12232640000001993,
+    "validate_seconds": 0.36112040000080015,
+    "restore_seconds": 0.25405809999938356,
+    "single_nft_common_seed_restore_seconds": 0.25052949999735574,
+    "local_request_budget_seconds": 25,
+    "raw_dict_roundtrip": true,
+    "boundary": "Controlled Python event/tree workload and validated seed restore only; excludes RPC/full HTTP latency/provider/target-gas and actual lifetime qualification."
+  },
+  "source_before": {
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "frontend_api/earnings_replay.py": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+    "frontend_api/earnings_checkpoint.py": "57a6d621c51cb880ef18fa8ca867e70dc1b5aea1e050165cce7920bd488d5b87",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "source_after": {
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "frontend_api/earnings_replay.py": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+    "frontend_api/earnings_checkpoint.py": "57a6d621c51cb880ef18fa8ca867e70dc1b5aea1e050165cce7920bd488d5b87",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "source_unchanged": true
+}

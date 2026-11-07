@@ -1,0 +1,40 @@
+{
+  "copies": [
+    {
+      "path": "FINAL_VALIDATION.json",
+      "sha256": "1dffd5f6ad96a57fa9945f598045c2c099674636675e839c7a229f942317fa66"
+    },
+    {
+      "path": "VALIDATION_FIRST_ATTEMPT.json",
+      "sha256": "831212bc0a14666c342dfc5cd54edce962d11553f23a816e0c30ae0e72eecc64"
+    },
+    {
+      "path": "whitespace-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "generated-check-0.stdout",
+      "sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee"
+    },
+    {
+      "path": "generated-check-0.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "generated-check-1.stdout",
+      "sha256": "08f49758bea74a15c1b15fefab4c43972f89b2c21ac8e4a3238f7d49ec4b84ba"
+    },
+    {
+      "path": "generated-check-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "generated-check-2.stdout",
+      "sha256": "1f971f82db786099f69f4a39f9cf354f2143699ac6600f6381a099fdc8030144"
+    },
+    {
+      "path": "generated-check-2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

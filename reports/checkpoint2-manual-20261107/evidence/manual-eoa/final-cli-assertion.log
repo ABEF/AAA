@@ -1,0 +1,6 @@
+test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding (tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.109s
+
+OK

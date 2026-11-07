@@ -1,5 +1,6 @@
 """Explicit fresh7 graph fixtures; no existing runtime/journal is relabelled."""
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -9,7 +10,7 @@ from types import SimpleNamespace
 
 from frontend_api.service import Projection,ProjectionError,ZERO
 from frontend_api.transactions import Transactions
-from frontend_api.earnings_checkpoint import identity
+from frontend_api.earnings_checkpoint import Checkpoint
 from frontend_api.history import HistoryError
 from keeper.monitor import Keeper
 from keeper.operation_review import PinnedReads
@@ -146,8 +147,13 @@ class ExactLPProfile7Tests(unittest.TestCase):
         self.assertEqual('18',result['claim_operations'][0]['view_raw'])
 
     def test_checkpoint1_is_explicitly_rejected_before_any_new_model_seed(self):
-        with self.assertRaisesRegex(HistoryError,'checkpoint2'):
-            identity(SimpleNamespace(p=SimpleNamespace(accounting_version=7,history=None)))
+        p=SimpleNamespace(accounting_version=7,custody_version=5,fee_intake_version=1,
+            lineage=None,royalty_reporting=SimpleNamespace(schema=5))
+        raw=json.dumps(dict(schema=1,sources={},identity=None,anchor=None,state=None,previous_sha256=None)).encode()
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'historical1.json';path.write_bytes(raw)
+            with self.assertRaisesRegex(HistoryError,'Checkpoint2'):
+                Checkpoint(dict(path=str(path),sha256=hashlib.sha256(raw).hexdigest()),SimpleNamespace(p=p))
 
     def test_keeper7_read_only_operation_review_is_not_a_historical_profile(self):
         from keeper.operation_review import review

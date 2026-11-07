@@ -52,7 +52,8 @@ See [the exact rule](EXACT_ROYALTY_ALLOCATION.md).
 
 Historical6 checkpoint1 preserves original activation order, ticket starts,
 currency cursors, opening/cutoff state and whole royalty units. Fresh7 rejects
-checkpoint1 and uses complete raw replay; exact checkpoint2 remains open.
+checkpoint1 and uses complete raw replay or explicit reviewed checkpoint2, which
+preserves those royalty4 rights alongside exact LP trees/phase/direct credits.
 Historical scaled LP books remain historical; fresh7 LP rewards use their
 separate exact-unit trees. Compare any admitted checkpoint against raw replay
 under that checkpoint's original profile, not by relabelling its seed.

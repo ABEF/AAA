@@ -1,0 +1,7 @@
+{
+  "attempt": "First external measurement helper invocation",
+  "error": "ModuleNotFoundError: No module named tests_python",
+  "cause": "External script path omitted checkout from sys.path",
+  "source_or_test_changes": false,
+  "correction": "Explicitly add Path.cwd() to sys.path for this evidence helper only"
+}

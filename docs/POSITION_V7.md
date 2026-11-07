@@ -89,9 +89,10 @@ are rejected, rather than converting their fractions implicitly.
 
 Matching consumers replay explicit share/membership synchronization events and
 exact whole-unit allocation. Claims, conversions and import are not income.
-Old checkpoint1 is incompatible with profile7; use the admitted raw-history path
-until a separately reviewed exact-unit checkpoint format exists. Do not relabel
-an old checkpoint or journal to bypass validation.
+Old checkpoint1 is incompatible with profile7; use explicit reviewed checkpoint2
+or the admitted raw-history path. Keep operator approval, source/anchor pins and
+the complete raw rolling-day suffix. Do not relabel an old checkpoint or journal
+to bypass validation. [Procedure](EARNINGS_CHECKPOINTS.md).
 
 The [operator manual](OPERATOR_MANUAL.md) owns exact caller/input/recovery steps.
 The [integration report](../reports/exact-lp-integration-20261106/REVIEW.md) owns

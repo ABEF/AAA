@@ -1,5 +1,16 @@
 # AAA / ZZZ PoPL project instructions
 
+[Checkpoint2 and manual LP preparation](reports/checkpoint2-manual-20261107/REVIEW.md)
+add exact raw-tree earnings snapshots and typed unsigned Active-state B/C/D
+management reviews for direct empty-code governance wallets only. Contract-wallet
+envelopes are explicitly unsupported by this tool; contract authority is unchanged.
+Formats1/2 stay explicit; a complete raw rolling day and
+operator artifact approval remain required. Manual reviews preserve caller inputs,
+allow healthy market changes through a second exact simulation, and reject changed
+custody/governed controls. They never sign, send, choose floors, force a fallback
+or alter a journal. No Solidity/runtime/profile, service/site/Anvil/signing change.
+Actual providers, wallet execution, host/lineage/archive qualification stay open.
+
 [Fee-flow audit](reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
 and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
@@ -58,8 +69,8 @@ can be materially more expensive;32is a count ceiling, not a gas approval.
 Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
 all weights precede raw pending/high/low restoration. Never flatten old phase,
 reinterpret6/V8 or resume a partially funded/aborted deployment.
-Fresh7 raw earnings replay works; exact-unit checkpoint2 and lifetime archival/
-workload/recovery remain open. Old checkpoint1 is6-only. Source publication
+Fresh7 raw earnings replay and explicit exact-unit checkpoint2 are implemented;
+lifetime archival/workload/recovery qualification remains open. Old checkpoint1 is6-only. Source publication
 changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
 ## Fresh architecture and rules
@@ -209,17 +220,20 @@ the November3 authority report below remains historical for those contexts.
 
 ## Earnings checkpoint source boundary
 
-- [Checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is opt-in fresh accounting6/custody5/
-  fee-intake1, without predecessors, for earnings endpoints only. Operator-pinned
+- [Checkpoint1/2](docs/EARNINGS_CHECKPOINTS.md) explicitly serve accounting6 or
+  accounting7/LP-allocation1 respectively, each custody5/fee-intake1 without
+  predecessors, for earnings endpoints only. Operator-pinned
   immutable bytes/source/config/anchor plus bounded suffix; never automatic cache
   approval or fabricated zero. The full24-hour window remains raw; preserve
-  scaled NFT fractions, dust/cohorts, ownership/claims/conversions and today prices.
+  historical scaled NFT fractions or fresh whole units/raw tree phase, dust/cohorts,
+  ownership/claims/conversions and today prices.
 - Offline builder uses explicit bounded read-only work, all-NFT reconciliation
   and exclusive atomic candidate creation. API budgets remain unchanged. Retain
   raw/WAL backups and old artifacts; source/profile/reorg changes require reviewed
   rebuild/re-pin. No pruning, running config, signer or journal change is implied.
-- Current evidence: final24new cases, broader147affected at its recorded earlier
-  source stage. Do not sum overlaps. Lineage/other readers, actual workload/
+- Historical checkpoint1 evidence retains24new and earlier147affected cases at
+  its original source stage. Current checkpoint2/manual source evidence is linked
+  above; do not sum overlapping stages. Lineage/other readers, actual workload/
   archive/rotation/restore and independent approval stay open. OpenSea research
   does not implement or approve its exact Robinhood drop caller/payment path.
 

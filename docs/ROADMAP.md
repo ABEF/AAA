@@ -49,11 +49,16 @@ and a matching accounting7/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
+Source-only typed manual B/C/D preparation is implemented for Active buckets.
+Qualify actual operator-selected floors, provider/hash support, complete fees and
+wallet execution; extend other states/actions separately. No signing or automatic
+force/recenter fallback follows from preparation.
+
 Qualify the new explicit claim planner with actual worst-case currencies/fees,
 confirmation/replanning and no silent omission; bounded local planning is not a
 maximum-batch or live-wallet gas guarantee.
 Qualify actual preparation/trace/approval/claims and truthful complete holdings/
-history, unavailable states, account changes and pending recovery. Fresh7 uses complete raw exact-tree replay; build and qualify explicit checkpoint2 before claiming bounded lifetime replay. Checkpoint1 remains6-only. Extend lineage/other full-history consumers and review archival/rotation/source-codec evolution.
+history, unavailable states, account changes and pending recovery. Fresh7 supports complete raw exact-tree replay or explicit reviewed checkpoint2 for earnings. Qualify actual suffix workloads, archival/rotation/restore and operator approval before claiming bounded lifetime operation. Checkpoint1 remains6-only. Extend lineage/other full-history consumers and review archival/rotation/source-codec evolution.
 Fresh royalty4/reporting5/canonicalV9 needs exact-unit cursor/cohort history and
 reviewed checkpoint rebuilds. No converter or new deployed allocator is added.
 A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.

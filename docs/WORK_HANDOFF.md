@@ -1,5 +1,16 @@
 # Work handoff
 
+[Checkpoint2 and manual LP preparation](../reports/checkpoint2-manual-20261107/REVIEW.md)
+add exact raw-tree earnings snapshots and typed unsigned Active-state B/C/D
+management reviews for direct empty-code governance wallets only. Contract-wallet
+envelopes are explicitly unsupported by this tool; contract authority is unchanged.
+Formats1/2 stay explicit; a complete raw rolling day and
+operator artifact approval remain required. Manual reviews preserve caller inputs,
+allow healthy market changes through a second exact simulation, and reject changed
+custody/governed controls. They never sign, send, choose floors, force a fallback
+or alter a journal. No Solidity/runtime/profile, service/site/Anvil/signing change.
+Actual providers, wallet execution, host/lineage/archive qualification stay open.
+
 [Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
 and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
@@ -46,8 +57,8 @@ can be materially more expensive;32is a count ceiling, not a gas approval.
 Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
 all weights precede raw pending/high/low restoration. Never flatten old phase,
 reinterpret6/V8 or resume a partially funded/aborted deployment.
-Fresh7 raw earnings replay works; exact-unit checkpoint2 and lifetime archival/
-workload/recovery remain open. Old checkpoint1 is6-only. Source publication
+Fresh7 raw earnings replay and explicit exact-unit checkpoint2 are implemented;
+lifetime archival/workload/recovery qualification remains open. Old checkpoint1 is6-only. Source publication
 changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
 ## Current result

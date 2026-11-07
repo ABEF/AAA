@@ -31,19 +31,33 @@ SHARED = ('mints', 'shares', 'supply', 'members', 'weights', 'activation_order',
 DEFAULT_MAPS = ('supply', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust', 'royalty_cursors')
 
 
-def source_identity():
+EXACT_SOURCE_FILES = ('frontend_api/earnings_checkpoint_v2.py',
+    'frontend_api/earnings_exact_lp.py', 'zzz_ops/exact_lp.py')
+
+
+def schema(engine):
+    p=engine.p
+    require(p.lineage is None, 'Checkpoint profile does not support predecessor lineage')
+    require(p.accounting_version in (6,7) and p.custody_version == 5 and p.fee_intake_version == 1,
+            'Checkpoint requires explicit accounting6/7 custody5/fee-intake1')
+    if p.accounting_version==7:
+        require(royalty_profile(p)==4, 'Checkpoint2 requires exact original-currency royalty4')
+        return 2
+    return 1
+
+
+def source_identity(version=1):
+    require(type(version) is int and version in (1,2), 'Unknown checkpoint semantic profile')
     return {n: hashlib.sha256((ROOT/n).read_bytes().replace(b'\r\n', b'\n')).hexdigest()
-            for n in SOURCE_FILES}
+            for n in SOURCE_FILES+(EXACT_SOURCE_FILES if version==2 else ())}
 
 
 def identity(engine):
     p, h = engine.p, engine.p.history
-    require(p.accounting_version!=7, 'Accounting7 exact-LP checkpoint2 is not implemented; use complete raw history')
-    require(p.lineage is None, 'Checkpoint profile does not support predecessor lineage')
-    require(p.accounting_version in (6,7) and p.custody_version == 5 and p.fee_intake_version == 1,
-            'Checkpoint requires explicit accounting6/custody5/fee-intake1')
+    version=schema(engine)
     return dict(chain=p.chain, deployment_block=p.start, deployment_hash=p.start_hash,
-        accounting=6, custody=5, fee_intake=1, royalty_settlement=royalty_profile(p),
+        accounting=p.accounting_version, custody=5, fee_intake=1, royalty_settlement=royalty_profile(p),
+        **({'lp_allocation':1} if version==2 else {}),
         contracts={role:dict(address=c.address, code_hash=c.code_hash) for role,c in p.contracts.items()},
         extra={role:dict(address=c.address,code_hash=c.code_hash)
                for role,c in engine.profiles[p.contracts['access'].address].items()},
@@ -125,6 +139,7 @@ class Seed:
     bound: dict
     payload: dict
     history: HistorySnapshot
+    schema: int = 1
 
     def validate_history(self, h, db, target, timestamp, lp, royalties):
         expected=dict(start=h.start,parent=h.parent,contracts=h.contracts,
@@ -148,6 +163,12 @@ class Seed:
     def restore(self, model):
         require(isinstance(model,Replay) and not model.minted and model.events==0,
                 'Checkpoint consumer is not a fresh earnings replay')
+        if self.schema==2:
+            from frontend_api.earnings_exact_lp import ExactReplay
+            require(type(model) is ExactReplay, 'Checkpoint2 needs the exact LP allocation model')
+        else:
+            require(self.schema==1 and type(model) is Replay,
+                    'Checkpoint1 needs its historical indexed allocation model')
         require(model.roles=={v:k for k,v in self.payload['emitters'].items()} and
                 model.fee_intake_version==1, 'Checkpoint earnings emitter/profile differs')
         require(model.timestamp >= self.anchor['timestamp'], 'Checkpoint is newer than replay')
@@ -171,6 +192,9 @@ class Seed:
             model.scaled=defaultdict(int,model.accounts[model.nft_id])
         # No stored day totals: the entire actual day is in the raw suffix.
         model.day=defaultdict(int)
+        if self.schema==2:
+            from frontend_api.earnings_checkpoint_v2 import restore
+            restore(model,self.payload['exact_lp'])
 
 
 class Checkpoint:
@@ -186,9 +210,12 @@ class Checkpoint:
                     'Earnings checkpoint bytes differ from the reviewed configuration pin')
             data=_stored_json(raw.decode('utf-8'))
             require(isinstance(data,dict) and set(data)=={'schema','sources','identity','anchor','state','previous_sha256'}
-                    and type(data['schema']) is int and data['schema']==1,
+                    and type(data['schema']) is int and data['schema'] in (1,2),
                     'Unknown earnings checkpoint schema')
-            require(data['sources']==source_identity(), 'Earnings checkpoint semantic source changed')
+            expected_schema=schema(engine)
+            require(data['schema']==expected_schema,
+                    f'Checkpoint{expected_schema} is required for accounting{engine.p.accounting_version}; historical schemas cannot be reinterpreted')
+            require(data['sources']==source_identity(data['schema']), 'Earnings checkpoint semantic source changed')
             bound=decode(data['identity']);current=identity(engine)
             assets=bound.pop('assets');current_assets=current.pop('assets')
             require(encode(bound)==encode(current) and isinstance(assets,dict) and
@@ -214,8 +241,10 @@ class Checkpoint:
 
     @staticmethod
     def _validate(v, anchor, engine):
-        require(isinstance(v,dict) and set(v)=={'shared','accounts','collection','history','emitters','lp_assets','royalty_assets'},
-                'Incomplete earnings checkpoint state')
+        version=schema(engine)
+        fields={'shared','accounts','collection','history','emitters','lp_assets','royalty_assets'}
+        if version==2:fields.add('exact_lp')
+        require(isinstance(v,dict) and set(v)==fields, 'Incomplete earnings checkpoint state')
         s=v['shared']
         require(isinstance(s,dict) and set(s)==set(SHARED), 'Unknown shared earnings checkpoint state')
         require(type(s['last_timestamp']) is int and -1<=s['last_timestamp']<=anchor['timestamp'], 'Invalid checkpoint chronology')
@@ -332,9 +361,14 @@ class Checkpoint:
                 history['provenance'].get('start_parent_hash')==engine.p.history.parent and
                 history['provenance'].get('minted_count')==len(mints), 'Checkpoint history cutoff differs')
         _hash(history['provenance']['start_block_hash'])
-        probe=Replay(anchor['timestamp'],track_all=True)
+        if version==2:
+            from frontend_api.earnings_exact_lp import ExactReplay
+            from frontend_api.earnings_checkpoint_v2 import validate
+            validate(v['exact_lp'],s,v['lp_assets'],v['accounts'])
+            probe=ExactReplay(anchor['timestamp'],track_all=True)
+        else:probe=Replay(anchor['timestamp'],track_all=True)
         probe.begin(v['emitters'],v['lp_assets'],v['royalty_assets'],fee_intake_version=1,royalty_settlement_version=royalty_profile(engine.p))
-        seed=Seed('',anchor,{},v,None);seed.restore(probe);probe.finish()
+        seed=Seed('',anchor,{},v,None,version);seed.restore(probe);probe.finish()
 
     def seed(self):
         data=_stored_json(self._raw.decode('utf-8'))
@@ -342,7 +376,7 @@ class Checkpoint:
         h=payload['history']
         history=HistorySnapshot(MappingProxyType(h['owners']),MappingProxyType(h['claims']),
             MappingProxyType(h['provenance']),MappingProxyType(h['conversions']),MappingProxyType(h['lp_conversions']))
-        return Seed(self.digest,anchor,bound,payload,history)
+        return Seed(self.digest,anchor,bound,payload,history,data['schema'])
 
     def check_anchor(self,p):
         require(p._header(hex(self.anchor['number']))==dict(self.anchor),

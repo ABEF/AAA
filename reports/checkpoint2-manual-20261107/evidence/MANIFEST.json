@@ -1,0 +1,512 @@
+{
+  "schema": 1,
+  "copies": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\attempt1.log",
+      "path": "codec/raw-state-a1/attempt1.log",
+      "raw_sha256": "52c817f09c8f47b3ed6217f37aa060c3c5ef504812f052b3686f3f9059cf7319",
+      "stored_sha256": "52c817f09c8f47b3ed6217f37aa060c3c5ef504812f052b3686f3f9059cf7319",
+      "raw_bytes": 3460,
+      "stored_bytes": 3460,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\collection-expanded.log",
+      "path": "codec/raw-state-a1/collection-expanded.log",
+      "raw_sha256": "d57de993ab037787daa44bade98446e4a3a315571736473de73c7805f0f65fca",
+      "stored_sha256": "d57de993ab037787daa44bade98446e4a3a315571736473de73c7805f0f65fca",
+      "raw_bytes": 3693,
+      "stored_bytes": 3693,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\collection-measurement.json",
+      "path": "codec/raw-state-a1/collection-measurement.json",
+      "raw_sha256": "1627a6ade34c98e42e4b6ab7ee54de4e23a16f4ab45a3d315c64bbb1f994c8b4",
+      "stored_sha256": "1627a6ade34c98e42e4b6ab7ee54de4e23a16f4ab45a3d315c64bbb1f994c8b4",
+      "raw_bytes": 2660,
+      "stored_bytes": 2660,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\collection-measurement.log",
+      "path": "codec/raw-state-a1/collection-measurement.log",
+      "raw_sha256": "6a4f77ab5a786f709c46fb9adb03b23c73fb1e3e5a4e9677fc49097466a517b2",
+      "stored_sha256": "6a4f77ab5a786f709c46fb9adb03b23c73fb1e3e5a4e9677fc49097466a517b2",
+      "raw_bytes": 328,
+      "stored_bytes": 328,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\final-sources\\frontend_api\\earnings_checkpoint_v2.py",
+      "path": "codec/raw-state-a1/final-sources/frontend_api/earnings_checkpoint_v2.py",
+      "raw_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "stored_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "raw_bytes": 11878,
+      "stored_bytes": 11878,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\final-sources\\tests_python\\test_earnings_checkpoint_v2_codec.py",
+      "path": "codec/raw-state-a1/final-sources/tests_python/test_earnings_checkpoint_v2_codec.py",
+      "raw_sha256": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+      "stored_sha256": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+      "raw_bytes": 18546,
+      "stored_bytes": 18546,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\FINAL.json",
+      "path": "codec/raw-state-a1/FINAL.json",
+      "raw_sha256": "8aa741e2dbcbf94b146d62415c261a6f6fcff5a02cc1cbfb822ac12736c42e2c",
+      "stored_sha256": "8aa741e2dbcbf94b146d62415c261a6f6fcff5a02cc1cbfb822ac12736c42e2c",
+      "raw_bytes": 5650,
+      "stored_bytes": 5650,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\final17.log",
+      "path": "codec/raw-state-a1/final17.log",
+      "raw_sha256": "f7400b038385cfa92c661856a04a8d18b5bc690513760ff43b468c442ea10efd",
+      "stored_sha256": "f7400b038385cfa92c661856a04a8d18b5bc690513760ff43b468c442ea10efd",
+      "raw_bytes": 3670,
+      "stored_bytes": 3670,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\measure_collection.py",
+      "path": "codec/raw-state-a1/measure_collection.py",
+      "raw_sha256": "81eeda0cd5c073184b453d27c7e2cdbe88403b11f4ba81f251cfba3e9396561a",
+      "stored_sha256": "81eeda0cd5c073184b453d27c7e2cdbe88403b11f4ba81f251cfba3e9396561a",
+      "raw_bytes": 1265,
+      "stored_bytes": 1265,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\MEASUREMENT_IMPORT_FAILURE.json",
+      "path": "codec/raw-state-a1/MEASUREMENT_IMPORT_FAILURE.json",
+      "raw_sha256": "d9bb8d255f98d9769ee1d407366ff80ddd1219d9b3bb3e337bf49fc83da59dd0",
+      "stored_sha256": "d9bb8d255f98d9769ee1d407366ff80ddd1219d9b3bb3e337bf49fc83da59dd0",
+      "raw_bytes": 323,
+      "stored_bytes": 323,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\codec\\raw-state-a1\\run_final.py",
+      "path": "codec/raw-state-a1/run_final.py",
+      "raw_sha256": "c57a5b9814c219acfb31a02666e5a7f2f455b314abcab122fc87004b3483cd69",
+      "stored_sha256": "c57a5b9814c219acfb31a02666e5a7f2f455b314abcab122fc87004b3483cd69",
+      "raw_bytes": 2007,
+      "stored_bytes": 2007,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\APPEND1.json",
+      "path": "integration/checkpoint2-api-7c2e/APPEND1.json",
+      "raw_sha256": "4b1813fb9cc3b4e1167386edd2cf526060442f914886f3371e0313fc7aba844a",
+      "stored_sha256": "4b1813fb9cc3b4e1167386edd2cf526060442f914886f3371e0313fc7aba844a",
+      "raw_bytes": 3837,
+      "stored_bytes": 3837,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\append1.log",
+      "path": "integration/checkpoint2-api-7c2e/append1.log",
+      "raw_sha256": "36c75492b2b2da6f38f4bf50b33e3c47a26d3294d96114552903d717667b84fe",
+      "stored_sha256": "36c75492b2b2da6f38f4bf50b33e3c47a26d3294d96114552903d717667b84fe",
+      "raw_bytes": 327,
+      "stored_bytes": 327,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\DEVELOPMENT_ATTEMPTS.json",
+      "path": "integration/checkpoint2-api-7c2e/DEVELOPMENT_ATTEMPTS.json",
+      "raw_sha256": "116f415f17f73436bbba9e3af0660962492509e5a1de5191f8a31f6dd40ddae2",
+      "stored_sha256": "116f415f17f73436bbba9e3af0660962492509e5a1de5191f8a31f6dd40ddae2",
+      "raw_bytes": 2081,
+      "stored_bytes": 2081,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\FINAL15.json",
+      "path": "integration/checkpoint2-api-7c2e/FINAL15.json",
+      "raw_sha256": "f4dda98ea56fc279adc7b0548affb183aea251374b3e3ecb910cfc8fcb3fb95b",
+      "stored_sha256": "f4dda98ea56fc279adc7b0548affb183aea251374b3e3ecb910cfc8fcb3fb95b",
+      "raw_bytes": 6370,
+      "stored_bytes": 6370,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\final15.log",
+      "path": "integration/checkpoint2-api-7c2e/final15.log",
+      "raw_sha256": "2b7a9fa288675fe03b2476426f629a4df120c1e775328da6a901090eaaf9e83a",
+      "stored_sha256": "2b7a9fa288675fe03b2476426f629a4df120c1e775328da6a901090eaaf9e83a",
+      "raw_bytes": 3289,
+      "stored_bytes": 3289,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\run-append.py",
+      "path": "integration/checkpoint2-api-7c2e/run-append.py",
+      "raw_sha256": "84dfa65abd7495dc86e0c14b7fe949d0c6470256642188ea1538f2ba713bf2eb",
+      "stored_sha256": "84dfa65abd7495dc86e0c14b7fe949d0c6470256642188ea1538f2ba713bf2eb",
+      "raw_bytes": 3175,
+      "stored_bytes": 3175,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\run.py",
+      "path": "integration/checkpoint2-api-7c2e/run.py",
+      "raw_sha256": "a8dcc0eae80a696cf9d53d611bb9e2e81f0d0e7f5f3251a327d238e789fb81d8",
+      "stored_sha256": "a8dcc0eae80a696cf9d53d611bb9e2e81f0d0e7f5f3251a327d238e789fb81d8",
+      "raw_bytes": 2506,
+      "stored_bytes": 2506,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integration\\checkpoint2-api-7c2e\\test-final15.py.txt",
+      "path": "integration/checkpoint2-api-7c2e/test-final15.py.txt",
+      "raw_sha256": "713cc1a950fc1a5c502953948c6578eb72bea072183750b39b69745f820ebe76",
+      "stored_sha256": "713cc1a950fc1a5c502953948c6578eb72bea072183750b39b69745f820ebe76",
+      "raw_bytes": 30107,
+      "stored_bytes": 30107,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\attempt1-initial.log",
+      "path": "manual/typed-bcd-20261107-025056-4529/attempt1-initial.log",
+      "raw_sha256": "84917bea1a76964a0488c703bfc9800342b90322c6e0c2c4ec41e95ad159fdf0",
+      "stored_sha256": "84917bea1a76964a0488c703bfc9800342b90322c6e0c2c4ec41e95ad159fdf0",
+      "raw_bytes": 4364,
+      "stored_bytes": 4364,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\attempt2-moving-market.log",
+      "path": "manual/typed-bcd-20261107-025056-4529/attempt2-moving-market.log",
+      "raw_sha256": "2dcf2b1d1a705e7dbc1bc0d06742125aa7ef69eb30da93c4e172dc46eb121f97",
+      "stored_sha256": "2dcf2b1d1a705e7dbc1bc0d06742125aa7ef69eb30da93c4e172dc46eb121f97",
+      "raw_bytes": 4787,
+      "stored_bytes": 4787,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\attempt3-current.log",
+      "path": "manual/typed-bcd-20261107-025056-4529/attempt3-current.log",
+      "raw_sha256": "a0c849fd8e659aab367bd75a5535eef376a55e48a5ac68e0dd5cbb39569befd6",
+      "stored_sha256": "a0c849fd8e659aab367bd75a5535eef376a55e48a5ac68e0dd5cbb39569befd6",
+      "raw_bytes": 5406,
+      "stored_bytes": 5406,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\attempt4-final-affected.log",
+      "path": "manual/typed-bcd-20261107-025056-4529/attempt4-final-affected.log",
+      "raw_sha256": "ac842b33ced3468b92e79cf817df3ee7cad257f5e0a3d754f3e1282906b2ed10",
+      "stored_sha256": "ac842b33ced3468b92e79cf817df3ee7cad257f5e0a3d754f3e1282906b2ed10",
+      "raw_bytes": 18138,
+      "stored_bytes": 18138,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\causal-negative-controls.log",
+      "path": "manual/typed-bcd-20261107-025056-4529/causal-negative-controls.log",
+      "raw_sha256": "4068f8b038196836d1d907529750df1bf71985942a43966566a46732430b516f",
+      "stored_sha256": "4068f8b038196836d1d907529750df1bf71985942a43966566a46732430b516f",
+      "raw_bytes": 8277,
+      "stored_bytes": 8277,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\causal-negative-controls.py",
+      "path": "manual/typed-bcd-20261107-025056-4529/causal-negative-controls.py",
+      "raw_sha256": "23b40d2a418121803287753ac44207b9e8c0f74388c9d1cb60cf938ab2c0a42d",
+      "stored_sha256": "23b40d2a418121803287753ac44207b9e8c0f74388c9d1cb60cf938ab2c0a42d",
+      "raw_bytes": 1817,
+      "stored_bytes": 1817,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\final-summary.json",
+      "path": "manual/typed-bcd-20261107-025056-4529/final-summary.json",
+      "raw_sha256": "83cd66a5bb14a2d08b00db460eb6047feadb1b4372cd72538e181e9f5cad770b",
+      "stored_sha256": "83cd66a5bb14a2d08b00db460eb6047feadb1b4372cd72538e181e9f5cad770b",
+      "raw_bytes": 4136,
+      "stored_bytes": 4136,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\per-method-provenance.json",
+      "path": "manual/typed-bcd-20261107-025056-4529/per-method-provenance.json",
+      "raw_sha256": "49f940d4608d1e35b70a467006ac58ed78ffe0ad47cd3e83cccce486f69b44e8",
+      "stored_sha256": "49f940d4608d1e35b70a467006ac58ed78ffe0ad47cd3e83cccce486f69b44e8",
+      "raw_bytes": 48096,
+      "stored_bytes": 48096,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\scope.txt",
+      "path": "manual/typed-bcd-20261107-025056-4529/scope.txt",
+      "raw_sha256": "9deeab05ba46809cedec44f341f4cb145d38b525f78ce1a965f01090d9978164",
+      "stored_sha256": "9deeab05ba46809cedec44f341f4cb145d38b525f78ce1a965f01090d9978164",
+      "raw_bytes": 216,
+      "stored_bytes": 216,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\source-final\\docs\\MANUAL_LP_PREPARATION.md",
+      "path": "manual/typed-bcd-20261107-025056-4529/source-final/docs/MANUAL_LP_PREPARATION.md",
+      "raw_sha256": "edb12f79124fa7bd42185e2fe2dc7024c1556901c21a8420d949f7c18464e1e8",
+      "stored_sha256": "edb12f79124fa7bd42185e2fe2dc7024c1556901c21a8420d949f7c18464e1e8",
+      "raw_bytes": 8309,
+      "stored_bytes": 8309,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\source-final\\scripts\\prepare-manual-lp.py",
+      "path": "manual/typed-bcd-20261107-025056-4529/source-final/scripts/prepare-manual-lp.py",
+      "raw_sha256": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+      "stored_sha256": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+      "raw_bytes": 260,
+      "stored_bytes": 260,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\source-final\\tests_python\\test_manual_lp_review.py",
+      "path": "manual/typed-bcd-20261107-025056-4529/source-final/tests_python/test_manual_lp_review.py",
+      "raw_sha256": "b3bdaa5a379a4df0b0622d4cab63617367936e68d716afc893e5c887efc39c16",
+      "stored_sha256": "b3bdaa5a379a4df0b0622d4cab63617367936e68d716afc893e5c887efc39c16",
+      "raw_bytes": 26302,
+      "stored_bytes": 26302,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\source-final\\zzz_ops\\manual_lp_review.py",
+      "path": "manual/typed-bcd-20261107-025056-4529/source-final/zzz_ops/manual_lp_review.py",
+      "raw_sha256": "4a99bbbebe0feda73a82039f38ecb8058629e08fe92b7c556d3b205b1644748a",
+      "stored_sha256": "4a99bbbebe0feda73a82039f38ecb8058629e08fe92b7c556d3b205b1644748a",
+      "raw_bytes": 26748,
+      "stored_bytes": 26748,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\summarize-final.py",
+      "path": "manual/typed-bcd-20261107-025056-4529/summarize-final.py",
+      "raw_sha256": "a3eba229cacf76d5670bbe68b9d38b1a251dfa49ef703f3cdbc488c15733f23e",
+      "stored_sha256": "a3eba229cacf76d5670bbe68b9d38b1a251dfa49ef703f3cdbc488c15733f23e",
+      "raw_bytes": 5850,
+      "stored_bytes": 5850,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-first\\status.json",
+      "path": "root-tests-first/status.json",
+      "raw_sha256": "32185148c14541cfe4f49df2f298097c58409c355b1217e02a4b5b85e1872441",
+      "stored_sha256": "32185148c14541cfe4f49df2f298097c58409c355b1217e02a4b5b85e1872441",
+      "raw_bytes": 18316,
+      "stored_bytes": 18316,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-first\\stderr.txt",
+      "path": "root-tests-first/stderr.txt",
+      "raw_sha256": "fe617817c95653869b07bcab3259b1cca0305fad87032f1603b5da4887a43f25",
+      "stored_sha256": "fe617817c95653869b07bcab3259b1cca0305fad87032f1603b5da4887a43f25",
+      "raw_bytes": 7192,
+      "stored_bytes": 7192,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-first\\stdout.txt",
+      "path": "root-tests-first/stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "stored_bytes": 0,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-final-compat\\status.json",
+      "path": "root-tests-final-compat/status.json",
+      "raw_sha256": "3f9509efbc70db16d09cf352cc3f9dbd939be370ddc54171978af1f422f66865",
+      "stored_sha256": "3f9509efbc70db16d09cf352cc3f9dbd939be370ddc54171978af1f422f66865",
+      "raw_bytes": 18579,
+      "stored_bytes": 18579,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-final-compat\\stderr.txt",
+      "path": "root-tests-final-compat/stderr.txt",
+      "raw_sha256": "d8460c228f94bcc4bda8b535f1877d3fed29fb262680838f97a95e18e8cb95bc",
+      "stored_sha256": "d8460c228f94bcc4bda8b535f1877d3fed29fb262680838f97a95e18e8cb95bc",
+      "raw_bytes": 10780,
+      "stored_bytes": 10780,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\root-tests-final-compat\\stdout.txt",
+      "path": "root-tests-final-compat/stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "stored_bytes": 0,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\BASELINE.json",
+      "path": "root-provenance/BASELINE.json.gz",
+      "raw_sha256": "685c8f374627352806c7f9e68d7c0f064c8227e7ef820c03e820f2f63f20fc94",
+      "stored_sha256": "caf0172a410f2b82f71879fde47788a2c8b5196c7cca1d55b86f7840ba3546c8",
+      "raw_bytes": 668639,
+      "stored_bytes": 237693,
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\integrate_checkpoint.py",
+      "path": "root-provenance/integrate_checkpoint.py",
+      "raw_sha256": "d38d6cc09f060866a9a659b0ffc958cc0f186330d0a998bc0fe84d2d77736c54",
+      "stored_sha256": "d38d6cc09f060866a9a659b0ffc958cc0f186330d0a998bc0fe84d2d77736c54",
+      "raw_bytes": 6989,
+      "stored_bytes": 6989,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\run_root_checks.py",
+      "path": "root-provenance/run_root_checks.py",
+      "raw_sha256": "001fb5d35205c6a2a5c15c7f5adca5158f44692d07f6facc04276673579edd0b",
+      "stored_sha256": "001fb5d35205c6a2a5c15c7f5adca5158f44692d07f6facc04276673579edd0b",
+      "raw_bytes": 946,
+      "stored_bytes": 946,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\update_checkpoint_docs.py",
+      "path": "root-provenance/update_checkpoint_docs.py",
+      "raw_sha256": "c1ea7652ec337f87829d235acc7089131559cb6e4eb5dc378ce8507458f66d68",
+      "stored_sha256": "c1ea7652ec337f87829d235acc7089131559cb6e4eb5dc378ce8507458f66d68",
+      "raw_bytes": 3489,
+      "stored_bytes": 3489,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\update_ledger_features.py",
+      "path": "root-provenance/update_ledger_features.py",
+      "raw_sha256": "7aa0a1a6e8ddf86db251b9423075290552687598064440dfafe612576764624a",
+      "stored_sha256": "7aa0a1a6e8ddf86db251b9423075290552687598064440dfafe612576764624a",
+      "raw_bytes": 6074,
+      "stored_bytes": 6074,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\update_current_records.py",
+      "path": "root-provenance/update_current_records.py",
+      "raw_sha256": "e1aec67e255900a6e79a15150c2e241e255a3fc1805f96fcb7aa8f213ac670ee",
+      "stored_sha256": "e1aec67e255900a6e79a15150c2e241e255a3fc1805f96fcb7aa8f213ac670ee",
+      "raw_bytes": 4694,
+      "stored_bytes": 4694,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\repair_current_checkpoint_links.py",
+      "path": "root-provenance/repair_current_checkpoint_links.py",
+      "raw_sha256": "7a5103d5f51141f6285a47c73cdbb109c4417cb9dd6bd9562eb7eedea108dfc5",
+      "stored_sha256": "7a5103d5f51141f6285a47c73cdbb109c4417cb9dd6bd9562eb7eedea108dfc5",
+      "raw_bytes": 2729,
+      "stored_bytes": 2729,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\originals\\frontend_api\\earnings_checkpoint.py",
+      "path": "original-source/frontend_api/earnings_checkpoint.py",
+      "raw_sha256": "2c635fc79628e033d9dfcf5e8be86e289133c71043c5e8f1c22075bf7ef71506",
+      "stored_sha256": "2c635fc79628e033d9dfcf5e8be86e289133c71043c5e8f1c22075bf7ef71506",
+      "raw_bytes": 23249,
+      "stored_bytes": 23249,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\originals\\frontend_api\\earnings_checkpoint_build.py",
+      "path": "original-source/frontend_api/earnings_checkpoint_build.py",
+      "raw_sha256": "02477e429fa3b7c346ff8170f9eb6aa4f45aee8dd907709e432374fb3c255047",
+      "stored_sha256": "02477e429fa3b7c346ff8170f9eb6aa4f45aee8dd907709e432374fb3c255047",
+      "raw_bytes": 7582,
+      "stored_bytes": 7582,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\final-cli-assertion.log",
+      "path": "manual-eoa/final-cli-assertion.log",
+      "raw_sha256": "a7ab4835e7b879a3704999f875e09409bfa3c041b7a8086901b6d99fa5f1d14e",
+      "stored_sha256": "a7ab4835e7b879a3704999f875e09409bfa3c041b7a8086901b6d99fa5f1d14e",
+      "raw_bytes": 345,
+      "stored_bytes": 345,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\final-stage-summary.json",
+      "path": "manual-eoa/final-stage-summary.json",
+      "raw_sha256": "be962c952ed82527f4fc306b89093243ee1e4b0fca811e6f6b50a31e842f6901",
+      "stored_sha256": "be962c952ed82527f4fc306b89093243ee1e4b0fca811e6f6b50a31e842f6901",
+      "raw_bytes": 11132,
+      "stored_bytes": 11132,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\final29.log",
+      "path": "manual-eoa/final29.log",
+      "raw_sha256": "9e77e8bdc616a859cf1e90a5993804b46eff5fe9fa141fcd9a70d2e71cf7afe9",
+      "stored_sha256": "9e77e8bdc616a859cf1e90a5993804b46eff5fe9fa141fcd9a70d2e71cf7afe9",
+      "raw_bytes": 5864,
+      "stored_bytes": 5864,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\source-final\\docs\\MANUAL_LP_PREPARATION.md",
+      "path": "manual-eoa/source-final/docs/MANUAL_LP_PREPARATION.md",
+      "raw_sha256": "fe0cd14b59409ac8f87137ed5aea3bd3c1b9c12916b2ccb0d2c2cc8d68168292",
+      "stored_sha256": "fe0cd14b59409ac8f87137ed5aea3bd3c1b9c12916b2ccb0d2c2cc8d68168292",
+      "raw_bytes": 8857,
+      "stored_bytes": 8857,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\source-final\\scripts\\prepare-manual-lp.py",
+      "path": "manual-eoa/source-final/scripts/prepare-manual-lp.py",
+      "raw_sha256": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+      "stored_sha256": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+      "raw_bytes": 260,
+      "stored_bytes": 260,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\source-final\\tests_python\\test_manual_lp_review.py",
+      "path": "manual-eoa/source-final/tests_python/test_manual_lp_review.py",
+      "raw_sha256": "edaaf036c900ee76db45e0e7c33ccfaebba7f44e0d8eb115e2c084690dc0dd0b",
+      "stored_sha256": "edaaf036c900ee76db45e0e7c33ccfaebba7f44e0d8eb115e2c084690dc0dd0b",
+      "raw_bytes": 28402,
+      "stored_bytes": 28402,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\source-final\\zzz_ops\\manual_lp_review.py",
+      "path": "manual-eoa/source-final/zzz_ops/manual_lp_review.py",
+      "raw_sha256": "e6edf2022e70254c7d230f937cab61bdbd60bc8f9abea06787a6ad224b187d33",
+      "stored_sha256": "e6edf2022e70254c7d230f937cab61bdbd60bc8f9abea06787a6ad224b187d33",
+      "raw_bytes": 27606,
+      "stored_bytes": 27606,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\checkpoint2-manual-20261107-bf2\\manual\\typed-bcd-20261107-025056-4529\\governance-eoa-20261107\\summarize-stage.py",
+      "path": "manual-eoa/summarize-stage.py",
+      "raw_sha256": "bb05ac9e606aafe76b7e3dd4c06794cfb4d958ac38116783362e127b20debffb",
+      "stored_sha256": "bb05ac9e606aafe76b7e3dd4c06794cfb4d958ac38116783362e127b20debffb",
+      "raw_bytes": 3597,
+      "stored_bytes": 3597,
+      "gzip": false
+    }
+  ],
+  "raw_hashes_and_gzip_roundtrip_verified": true,
+  "summary_sha256": "dde836e684ca6bacf65ea7d580a06b9ef8520e22b36af58398b1763b4c01a24b",
+  "prior_summary_sha256": "409433e9ebb524be2093d388534adfd789ae033c24347b6d91cb0ba341dfe3f8"
+}

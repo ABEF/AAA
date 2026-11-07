@@ -4,13 +4,15 @@ This optional backend profile serves collection, NFT and wallet-chunk earnings
 from an immutable reviewed checkpoint plus raw recent events. It changes no
 contracts, funds, reward rights, signer or running service. Default configuration
 still uses full replay. Checkpoint1 supports explicit historical accounting6/
-custody5/fee-intake1 only, without predecessor lineage. Public deployments remain blocked.
+custody5/fee-intake1. Explicit checkpoint2 supports fresh accounting7/LP-allocation1/
+custody5/fee-intake1 with original-currency royalty4. Neither accepts predecessor
+lineage. Public deployments remain blocked.
 
-Accounting7/LP-allocation1 uses complete bounded raw replay and explicitly rejects
-checkpoint1 before restoring any seed. Exact-LP checkpoint2 remains open: it must
-preserve both assets, every tree pending/high-low book, direct whole credits and
-immutable ordinals, with source/configuration/canonical reconciliation. No format2
-artifact, builder, automatic conversion, pruning or live rollout is implemented.
+The builder chooses the format from the authenticated deployment profile, never
+from a caller's desired label. Accounting7 rejects checkpoint1 before restoring
+state; accounting6 likewise rejects checkpoint2. There is no artifact conversion,
+edited source-hash adoption, pruning or live rollout. Source changes require an
+independently reviewed rebuild/re-pin, including previously built format1 files.
 
 ## What is authenticated
 
@@ -38,7 +40,18 @@ fee dust, LP reward indexes and complete earnings. Royalty4 on that explicit6 pr
 whole-unit allocation books, zero-based internal ticket offsets and raw currency
 cursors, with explicit one-based source adapters. Reporting may scale whole
 royalty earnings internally, but this creates no royalty fractional liability.
-LP/historical scaled totals preserve their carried fractions. Claims,
+Checkpoint1's historical scaled LP totals preserve their carried fractions.
+Checkpoint2 additionally stores the exact ETH/fixed-ZZZ pair, immutable mint
+ordinals, all individual and collective tree weights, raw pending units,
+high/low allocation phase, outstanding units, direct credits and orphaned units.
+It validates shares/membership against the tree geometry, every assigned whole
+unit against outstanding backing, and whole-unit earnings. It never settles or
+flattens the saved phase. Each restored request owns independent tree/maps.
+The builder checks every minted NFT's current owner, ordinal, shares, royalty
+tickets, exact LP components and claimed/converted/earned reconciliation against
+the same confirmed on-chain snapshot. Those checks do not prove complete logs
+or independently reveal internal phase in an operating contract; phase remains
+derived from the complete reviewed event history. Claims,
 conversions, contributions, compounding principal and imports are not new income.
 The80/10/5/5 split and quarantine rules do not change. ETH/ZZZ remain the only
 principal inputs; separate royalty currencies retain their own admission.
@@ -82,7 +95,8 @@ overwrite fallback. Preserve failed-attempt diagnostics and use a new output nam
 
 4. Independently review source/identity/cutoff/raw completeness and reconciliation.
    Compare representative NFT, collection and current-holdings results with full
-   replay while that is practical, including dormant NFTs, fractional balances,
+   replay while that is practical, including dormant NFTs, historical fractions
+   or fresh whole-unit balances,
    prior claims/conversions, deferred royalties and transfers. Do not infer
    qualification from the candidate or a local fixture. Record approval through
    the existing review process, outside the public request path.

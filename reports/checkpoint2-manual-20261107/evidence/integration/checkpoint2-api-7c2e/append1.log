@@ -1,0 +1,6 @@
+test_reviewed_royalty_currency_append_preserves_exact_state_and_old_descriptors (tests_python.test_earnings_checkpoint_v2.Checkpoint2APITests.test_reviewed_royalty_currency_append_preserves_exact_state_and_old_descriptors) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.082s
+
+OK

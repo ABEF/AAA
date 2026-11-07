@@ -1,0 +1,81 @@
+test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) ... 
+  test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='nonce') ... FAIL
+  test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='control') ... FAIL
+  test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='liquidity') ... FAIL
+  test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='price_policy') ... FAIL
+  test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='sequencer_policy') ... FAIL
+
+======================================================================
+FAIL: test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='nonce')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 230, in test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting
+    with self.assertRaises((RpcError,ValueError)):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'zzz_ops.errors.RpcError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='control')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 230, in test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting
+    with self.assertRaises((RpcError,ValueError)):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'zzz_ops.errors.RpcError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='liquidity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 230, in test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting
+    with self.assertRaises((RpcError,ValueError)):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'zzz_ops.errors.RpcError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='price_policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 230, in test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting
+    with self.assertRaises((RpcError,ValueError)):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'zzz_ops.errors.RpcError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting (tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting) (variant='sequencer_policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 230, in test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting
+    with self.assertRaises((RpcError,ValueError)):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'zzz_ops.errors.RpcError'>, <class 'ValueError'>) not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 5.056s
+
+FAILED (failures=5)
+test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability (tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability) ... ERROR
+
+======================================================================
+ERROR: test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability (tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 191, in test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 139, in prepare
+    return M.prepare(self.config,self.policy,self.request,rpc=self.rpc,clock=lambda:self.now,catalog=self.catalog)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 285, in prepare
+    snapshot=reader.snapshot(s,governance,full=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\checkpoint2-manual-20261107-bf2\manual\typed-bcd-20261107-025056-4529\causal-negative-controls.py", line 15, in wrong_preharvest_ceiling
+    raise RpcError('Negative control: incorrect preharvest D spending ceiling')
+zzz_ops.errors.RpcError: Negative control: incorrect preharvest D spending ceiling
+
+----------------------------------------------------------------------
+Ran 1 test in 0.702s
+
+FAILED (errors=1)
+CAUSAL NEGATIVE CONTROLS: ephemeral monkeypatches only; production source unchanged; failures below are required and do not add passing-test counts.
+{"disabled_control_comparison_errors": 0, "disabled_control_comparison_failures": 5, "expected_red": true, "kind": "deliberate_ephemeral_negative_controls", "restored_false_D_ceiling_errors": 1, "restored_false_D_ceiling_failures": 0, "source_modified": false}

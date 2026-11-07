@@ -137,3 +137,6 @@ reports/exact-lp-integration-20261106/** -text whitespace=cr-at-eol,-blank-at-eo
 
 # Preserve exact fee-flow audit receipts, negative controls and native diagnostics.
 reports/fee-flow-audit-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact checkpoint/manual review evidence and causal negative controls.
+reports/checkpoint2-manual-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

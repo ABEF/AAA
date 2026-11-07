@@ -1,0 +1,6 @@
+test_full_collection_four_buckets_preserve_raw_phase_pending_and_direct (tests_python.test_earnings_checkpoint_v2_codec.EarningsCheckpointV2CodecTests.test_full_collection_four_buckets_preserve_raw_phase_pending_and_direct) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 6.794s
+
+OK

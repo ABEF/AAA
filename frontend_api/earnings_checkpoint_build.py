@@ -7,7 +7,7 @@ import tempfile
 import time
 from types import SimpleNamespace
 
-from frontend_api.earnings_checkpoint import Checkpoint, SHARED, COLLECTION, decode, encode, identity, source_identity, MAX_BYTES
+from frontend_api.earnings_checkpoint import Checkpoint, SHARED, COLLECTION, decode, encode, identity, source_identity, schema, MAX_BYTES
 from frontend_api.earnings_replay import Replay, require, royalty_profile
 from frontend_api.history import conversion_report
 from zzz_ops.work_budget import Budget, checkpoint, request_scope
@@ -37,14 +37,18 @@ def _build(engine, number):
     """
     p=engine.p;bound=identity(engine)
     require(type(number) is int and p.start<=number<1<<63, 'Invalid checkpoint block')
-    sources=source_identity()
+    version=schema(engine)
+    sources=source_identity(version)
     safe=confirmed_head(p)
     require(number<=safe['number'], 'Checkpoint block is not confirmed')
     header=p._header(hex(number));at={'blockHash':header['hash'],'requireCanonical':True}
     life=p._verify_deployment(at)
     require(life['predecessor_controller'] is None, 'Checkpoint requires original deployment history')
     lp,royalties=p._admitted(at);emitters=engine.check_profile(p,at)
-    model=Replay(header['timestamp'],track_all=True)
+    if version==2:
+        from frontend_api.earnings_exact_lp import ExactReplay
+        model=ExactReplay(header['timestamp'],track_all=True)
+    else:model=Replay(header['timestamp'],track_all=True)
     model.begin(emitters,lp,royalties,fee_intake_version=p.fee_intake_version,royalty_settlement_version=royalty_profile(p))
     history=engine.history_snapshot(p,header,at,lp,royalties,consumer=model,extra_emitters=tuple(emitters.values()))
     model.finish()
@@ -62,6 +66,13 @@ def _build(engine, number):
                 p._uint('vault','nftBucket(uint256)',i,block=at)==bucket and
                 p._uint('royalties','weightOf(uint256)',i,block=at)==model.weights.get(i,0),
                 'Checkpoint NFT rights differ from chain')
+        if version==2:
+            require(p._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,
+                    'Checkpoint exact NFT LP bucket differs from chain')
+            for asset in lp:
+                actual=tuple(int(w,16) for w in p._call(p.contracts['rewards'].address,
+                    'claimableComponents(uint256,address)',i,asset,block=at,words=2))
+                require(actual==model.components(i,asset),'Checkpoint exact NFT LP components differ from chain')
         if royalty_profile(p) == 4:
             require(p._uint('royalties','ticketStart(uint256)',i,block=at)==(model.ticket_offsets[i]+1 if i in model.weights else 0),
                     'Checkpoint exact NFT tickets differ from chain')
@@ -87,12 +98,15 @@ def _build(engine, number):
             conversions={k:(*v[:3],dict(v[3])) for k,v in history.conversions.items()},
             lp_conversions={k:(*v[:3],dict(v[3])) for k,v in history.lp_conversions.items()},
             provenance=dict(history.provenance)))
+    if version==2:
+        from frontend_api.earnings_checkpoint_v2 import capture
+        state['exact_lp']=capture(model)
     encoded=encode(state)
     # Apply the reader's exact grammar/node/depth limits before publication.
     # Successful economic replay alone must not produce an unreadable artifact.
     Checkpoint._validate(decode(encoded),header,engine)
-    require(source_identity()==sources, 'Checkpoint semantic source changed during construction')
-    payload=dict(schema=1,sources=sources,identity=encode(bound),anchor=encode(header),
+    require(source_identity(version)==sources, 'Checkpoint semantic source changed during construction')
+    payload=dict(schema=version,sources=sources,identity=encode(bound),anchor=encode(header),
                  state=encoded,previous_sha256=None if engine.checkpoint is None else engine.checkpoint.digest)
     raw=(json.dumps(payload,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode('utf-8')
     require(len(raw)<=MAX_BYTES,'Checkpoint exceeds the reviewed artifact size bound')

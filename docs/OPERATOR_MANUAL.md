@@ -1849,8 +1849,8 @@ control different subcalls. Raising one does not raise the others or the network
   recover any submitted hash. Never regenerate old books from rounded balances,
   skip a monetary record or edit a journal to appear complete. Abort requires
   all transferred backing returned before reopening; source phase/books persist.
-- Raw7 earnings replay is available; old checkpoint1 is explicitly incompatible.
-  Keep complete history until reviewed exact-unit checkpoint2 exists. Do not
+- Raw7 earnings replay and explicit reviewed checkpoint2 are available; old
+  checkpoint1 is incompatible. Keep complete raw history/WAL/backups. Do not
   relabel old6/V8 checkpoints, runtimes, Anvil accounts or saved operations.
 
 ### Coordinate compounding with rebalancing
@@ -2168,17 +2168,20 @@ current3 site or old journal as the fresh native7 profile.
 
 ### Prepare and rotate an earnings checkpoint
 
-Fresh7 uses full raw exact-tree replay; reviewed checkpoint2 is not implemented. Preserve raw logs/WAL and configure no checkpoint1 artifact for7. The following checkpoint1 procedure is explicitly historical accounting6/5/1 only.
+Fresh7 uses full raw exact-tree replay by default, or an explicitly reviewed checkpoint2. Preserve raw logs/WAL and never configure a checkpoint1 artifact for7. The same builder chooses format1 only for historical accounting6/5/1; it never converts or relabels a saved artifact.
 
-Use [the exact checkpoint1 procedure](EARNINGS_CHECKPOINTS.md). The offline
+Use [the exact checkpoint1/2 procedure](EARNINGS_CHECKPOINTS.md). The offline
 `scripts/build-earnings-checkpoint.py` takes a reviewed API `--config`, confirmed
 historical `--block` and new exclusive `--output`; optional offline budgets are
 bounded separately. It creates only a candidate, without keys or contract writes.
 Independently review its source/cutoff/raw-history evidence, then pin path/SHA-256
 in `earnings_history.checkpoint` through a separately authorized API config/restart.
-A served checkpoint must precede the complete24-hour window. It preserves exact
-fractions/cohorts, not merely rounded totals. This first profile supports fresh
-6/5/1without predecessors and accelerates earnings only; other readers stay raw.
+A served checkpoint must precede the complete24-hour window. Format1 preserves
+historical fractions/cohorts; format2 preserves whole-unit trees, pending funds,
+rounding phase, direct credits and royalty4 tickets. These formats support their
+explicit6/5/1 and7/5/1 profiles without predecessors and accelerate earnings only;
+other readers stay raw. Neither a printed digest nor a successful build approves
+its own historical completeness or installs it in a running service.
 
 On fault, preserve the artifact/config/WAL-consistent raw archive. A checkpoint
 reorg, source change or malformed file is unavailable, never guessed zero. Restore
@@ -2898,6 +2901,37 @@ Use the [short operator tables](#operator-call-tables) for quick calls and the
 and input/value explanations. Reads may revert; writes require a confirmed receipt
 and state check. A simulated return is not a transaction result. Inputs, transaction
 value and network gas are separate. ABI visibility never grants operator authority.
+
+## Prepare typed unsigned manual LP operations
+
+For an Active bucket and direct empty-code governance wallet, use the
+[B/C/D preparation procedure](MANUAL_LP_PREPARATION.md). Contract wallets and
+delegated EOAs are explicitly unsupported by this tool: use their separately
+reviewed execution envelope. Do not change protocol governance merely to use
+this utility. The contracts retain their existing governance permissions.
+
+
+| Selection | Contract call | Explicit floor | Purpose |
+| --- | --- | --- | --- |
+| B | `Migration.consolidateResidual(request,false)` | Added main liquidity | Guarded existing-main reinvestment |
+| C | `Migration.consolidateResidual(request,true)` | Added main liquidity | Forced existing-main reinvestment |
+| D | `Migration.emergencyRebalance(request)` | New position liquidity | Forced full LP replacement |
+
+Run `scripts/prepare-manual-lp.py` with reviewed `--read-config`, `--policy`,
+`--selection` and a NEW `--output`. The read-only tool supplies the exact custody
+and review hashes, ordered inputs and unsigned calldata after authenticated
+snapshots, complete simulations and separate gas review. You explicitly choose
+floors, ticks, swap and retained safeguards; failed guarded work never switches
+to force. Healthy market motion is re-simulated, not silently re-priced by
+changing your inputs. Custody/settings changes require a new preparation.
+
+No key, nonce, signer or pending journal is accessed. Output is a review candidate,
+not production approval or a submission instruction; verify the current network,
+governance, target, expiry and exact inputs before any authorized wallet action.
+After submitting elsewhere, recover that hash/receipt before preparing a repeat.
+Both operations leave the protocol paused; verify the intended main/residual and
+accounting state, then governance may unpause ordinary work deliberately.
+Parked-state recovery and other actions retain their existing manual procedures.
 
 ## Prepare and check an offline reviewHash
 

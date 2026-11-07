@@ -1,0 +1,1 @@
+Standalone read-only Active-state manual B/C/D preparation. Main bf2cc72adbed74e12e64b6b987cdd669eb30ce90. Injected RPC only. No signing, deployment, running configuration, chain, journal or protected-file changes.

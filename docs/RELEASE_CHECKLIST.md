@@ -16,7 +16,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-06. This approves one frozen release; it is not a second Todo.
+Reviewed2026-11-07. This records review of one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
@@ -29,6 +29,14 @@ approved deployment or service adoption, and running-source/gas/recovery/indepen
 qualification remains required.
 
 The [exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFICATION.md) connects real Rewards/Vault/Membership, whole claims/conversion, V9 canonical state and explicit profile7 consumers. Final normal gates pass at unchanged compiler/size settings; static532 is individually dispositioned or exact-source reused. The cold-claim, canonical-page and complete-host limits remain material; actual target gas/economics, services/site, recovery and independent audit are not approved. Earlier6/V8 fractional reports remain historical.
+
+The [checkpoint2/manual milestone](../reports/checkpoint2-manual-20261107/REVIEW.md)
+adds backend source only. Exact artifact approval, original/no-lineage scope,
+complete raw24-hour suffix and source/anchor pins remain mandatory. Manual
+Active-state B/C/D uses explicit limits/masks and two exact full simulations;
+Parked/other actions, actual provider/wallet execution and host operation remain
+unqualified. No Solidity, ABI, runtime, authority, financial right or installed
+environment changes, so unchanged normal/static contract evidence is reused.
 
 ## Evidence and approval boundary
 

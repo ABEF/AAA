@@ -1,0 +1,9 @@
+{
+  "status": "validation_scope_corrected",
+  "failure": "Relative links in an exact copied historical source-final manual snapshot were treated as current repository navigation.",
+  "paths": [
+    "reports/checkpoint2-manual-20261107/evidence/manual/typed-bcd-20261107-025056-4529/source-final/docs/MANUAL_LP_PREPARATION.md"
+  ],
+  "correction": "Check maintained root/docs and top-level new report guides; preserve source snapshots byte-identically under their manifest. No current source link or evidence byte was changed.",
+  "test_rerun": false
+}

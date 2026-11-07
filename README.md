@@ -20,6 +20,10 @@ existing contracts, services, journals or websites. Public signing remains disab
 
 Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless canonicalV9. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
 
+The [new backend tools](reports/checkpoint2-manual-20261107/REVIEW.md) add reviewed
+exact-unit earnings checkpoints and typed unsigned manual LP preparation. They
+change no contract/runtime, operating service, website or signing boundary.
+
 ## Project navigation
 
 [Consolidated audit findings](docs/AUDIT_FINDINGS.md) explains past findings against
@@ -82,7 +86,7 @@ opening, fills, operator recovery and merging.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
 Fresh inventory is schema16/residual-reinvest1/direct Entry3/royalty4 with19 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 remains; canonicalV9 carries exact LP tree state, and LP-allocation1 is authenticated explicitly. Schema14 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
-[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is historical profile6-only. Fresh7 has exact raw earnings replay; reviewed checkpoint2, lineage/other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
+[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is historical profile6-only. Fresh7 supports raw replay or explicit reviewed checkpoint2 with raw exact-tree state and a complete rolling-day suffix; lineage/other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
 
 <a id="frontend-components"></a>
 

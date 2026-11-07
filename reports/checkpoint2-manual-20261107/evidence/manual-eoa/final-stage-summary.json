@@ -1,0 +1,333 @@
+{
+  "schema": 1,
+  "stage": "direct_empty_code_governance_eoa_only",
+  "owned_files": {
+    "zzz_ops/manual_lp_review.py": "e6edf2022e70254c7d230f937cab61bdbd60bc8f9abea06787a6ad224b187d33",
+    "scripts/prepare-manual-lp.py": "7ad3bb0e7b544dbc6d14d42698c96b5a38cc62e524b1428f301f93300dc0577e",
+    "tests_python/test_manual_lp_review.py": "edaaf036c900ee76db45e0e7c33ccfaebba7f44e0d8eb115e2c084690dc0dd0b",
+    "docs/MANUAL_LP_PREPARATION.md": "fe0cd14b59409ac8f87137ed5aea3bd3c1b9c12916b2ccb0d2c2cc8d68168292"
+  },
+  "protected_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "final_results": {
+    "distinct_methods": 29,
+    "passed": 29,
+    "skipped": 0,
+    "full_manual_log": "final29.log",
+    "additional_cli_assertions": "final-cli-assertion.log",
+    "not_summed_to_30": true
+  },
+  "historical_stage": {
+    "summary_relative_path": "../final-summary.json",
+    "summary_sha256": "83cd66a5bb14a2d08b00db460eb6047feadb1b4372cd72538e181e9f5cad770b",
+    "scope": "Original89-method success source remains historical before this narrow client-wallet boundary. Files/logs/snapshots were not overwritten. Other61 existing methods were not rerun here; root owns exact unchanged-source reuse qualification."
+  },
+  "scope": [
+    "Direct empty-code governance EOA only; getCode strictly validated at each pinned snapshot. Nonempty contract or delegated code yields typed UnsupportedGovernanceEnvelope before network-funding review.",
+    "CLI maps only that local typed error to safe constant unsupported_contract_wallet_envelope. No arbitrary RPC message parsing or message echo.",
+    "Unsigned transaction still contains actual governance from, fixed Migration to, zero value, exact calldata and chainId; no outer contract-wallet envelope, gas payer guess, nonce, signing or gas fields.",
+    "Existing on-chain governance permissions and manual Explorer/Safe procedures unchanged. Direct EOA gas funding checks unchanged."
+  ],
+  "publication": "No staging, commit, push or running changes by agent. Root must restage modified source/tests/guide against this stage before publication.",
+  "per_method_provenance": [
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_all_rpc_contract_reads_use_confirmed_or_final_canonical_hash_without_latest_fallback",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 1,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_block_gas_limit_bounds_both_reviews_and_network_envelope_is_separate",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 2,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 3,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_cli_sanitizes_errors_and_never_replaces_output",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 4,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 5,
+          "outcome": "ok"
+        },
+        {
+          "log": "final-cli-assertion.log",
+          "line": 1,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 6,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exact_b_c_d_calls_and_floor_meanings",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 7,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exclusive_atomic_output_preserves_existing_bytes_and_cleans_temporary",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 8,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_explicit_swap_cannot_spend_main_in_same_main_action",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 9,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_forced_zero_mask_has_no_usd_route_or_operations_readiness_dependency",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 10,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_full_replacement_can_include_designated_compound_but_same_main_cannot",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 11,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_gas_price_fee_and_headroom_caps_never_widen",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 12,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_governance_pause_terminal_and_preparation_are_mandatory",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 13,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 14,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_input_mutation_and_work_limits_fail_closed",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 15,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_intrinsic_gas_and_governance_funding_are_required",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 16,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_last_head_deadline_after_final_estimate_refuses_without_resimulation",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 17,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 18,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_opaque_simulation_and_malformed_void_return_never_produce_a_draft",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 19,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_original_deadline_and_snapshot_expiry_are_never_extended",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 20,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_output_chain_and_rpc_configuration_identity_are_bound",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 21,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_parked_state_is_explicitly_unsupported_even_for_full_emergency",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 22,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_project_getter_signatures_and_static_return_widths_match_current_catalog",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 23,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_read_only_execution_never_touches_keeper_journals_or_signer",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 24,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_reorg_and_lost_depth_refuse",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 25,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_retained_value_bit_requires_usd_even_when_price_agreement_bit_is_off",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 26,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_same_main_cannot_recenter_and_b_cannot_silently_force",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 27,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_unknown_duplicate_float_oversized_and_noncanonical_inputs_refuse",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 28,
+          "outcome": "ok"
+        }
+      ]
+    },
+    {
+      "id": "tests_python.test_manual_lp_review.ManualLPReviewTests.test_wrong_runtime_current_profile_and_extension_capability_refuse",
+      "observations": [
+        {
+          "log": "final29.log",
+          "line": 29,
+          "outcome": "ok"
+        }
+      ]
+    }
+  ]
+}
