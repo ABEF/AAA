@@ -37,6 +37,7 @@ class RoyaltyAutomation:
     def __init__(self, keeper, *, lp=False):
         self.k = keeper
         self.lp = lp
+        self.exact_lp = lp and getattr(keeper,'accounting_version',1) == 7
         self.key = 'lp_conversion' if lp else 'royalty_conversion'
         self.ledger = 'rewards' if lp else 'royalties'
         self.converter = 'lp_converter' if lp else 'royalty_converter'
@@ -70,6 +71,10 @@ class RoyaltyAutomation:
         self.gas_bps = number(cfg.get('max_gas_to_output_bps',100),'max_gas_to_output_bps',10000)
         self.routes = cfg.get('assets')
         if not isinstance(self.routes,list) or not 1 <= len(self.routes) <= 16: raise ValueError('Royalty assets require 1-16 entries')
+        self.invalid_fixed_source_count = self.exact_lp and len(self.routes) != 1
+        if self.invalid_fixed_source_count:
+            if keeper.state.get('pending'): return
+            raise ValueError('Accounting7 LP conversion requires exactly one fixed-ZZZ asset')
         self.routes = [dict(p) for p in self.routes]
         seen=set()
         for p in self.routes:
@@ -103,6 +108,9 @@ class RoyaltyAutomation:
             if type(state.get('next_first')) is not bool: raise ValueError('Invalid royalty scheduling state')
 
     def scan_once(self):
+        if self.exact_lp and self.k.state.get('pending'): return False
+        if getattr(self,'invalid_fixed_source_count',False):
+            raise ValueError('Accounting7 LP conversion requires exactly one fixed-ZZZ asset')
         if getattr(self,'missing_explicit_profile',False):
             raise ValueError('Accounting6 conversion profile is unconfigured; review configuration before new work')
         from keeper.monitor import rpc_hash, rpc_quantity
@@ -185,12 +193,13 @@ class RoyaltyAutomation:
             values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],'data':calldata('route(bytes32)',route)},selector]))
             if len(values)!=10 or int(values[0],16)!=int(asset,16): raise RpcError('Royalty route currency mismatch')
         elif route!=ZERO: raise RpcError('WETH unwrapping must not select a swap route')
-        ids=[];total=0
+        ids=[];total=0;ordinals={}
         for ordinal in range(first,last+1):
             token=read(self.nft,'tokenAtOrdinal(uint256)',ordinal)
             if not self.lp and read(self.ledger,'weightOf(uint256)',token)==0: continue
             amount=read(self.ledger,'claimable(uint256,address)',token,asset)
-            if amount: ids.append(token);total+=amount
+            if amount:
+                ids.append(token);total+=amount;ordinals[token]=ordinal
         if len(ids)!=len(set(ids)): raise RpcError('Duplicate royalty token inventory')
         # A successful balance read can recover the waiting cohort even if no
         # currently payable whole units exist. sync never swaps or pays anyone.
@@ -206,6 +215,34 @@ class RoyaltyAutomation:
             if recover: return k.submit(self.ledger,'sync(address)',(asset,),f'royalty_sync:{asset}')
             return False
         quote_output=NATIVE if self.native_v4 else contracts[self.wrapper]
+        if self.exact_lp:
+            # The 32-ID protocol ceiling is not a gas qualification. Only a
+            # pre-send capacity or opaque execution rejection may shrink this
+            # selection; none diagnoses a bad token or an unknown balance as zero.
+            # 32 -> 16 -> 8 -> 4 -> 2 -> 1 bounds work to six preparations, each
+            # still using the ordinary serial sender and all original limits.
+            for _ in range(6):
+                total=sum(read(self.ledger,'claimable(uint256,address)',token,asset) for token in ids)
+                now=validate_snapshot()
+                if total<policy['minimum_source_units']: return False
+                expected=read('oracle','quote(address,address,uint256)',asset,quote_output,total)
+                if expected<policy['minimum_output_wei']: return False
+                minimum=(expected*(10000-loss)+9999)//10000
+                now=validate_snapshot()
+                end=ordinals[ids[-1]]
+                state['ordinal']=1 if end==count else end+1
+                k.save()  # Persist continuation before an intent can be signed.
+                capacity={}
+                if k.submit(self.ledger,BATCH,(asset,sorted(ids),route,minimum,now+180),
+                        f'{self.key}:{asset}:{first}:{end}',maximum_cost=minimum*self.gas_bps//10000,
+                        capacity_review=capacity):
+                    return True
+                if k.state.get('pending') or capacity.get('reason') not in (
+                        'gas_limit_cap','transaction_cost_cap','opaque_pre_send_rejection'):
+                    return False
+                if len(ids)==1: return False
+                ids=ids[:len(ids)//2]
+            return False
         expected=total if unwrap else read('oracle','quote(address,address,uint256)',asset,quote_output,total)
         if expected<policy['minimum_output_wei']: return False
         minimum=expected if unwrap else (expected*(10000-loss)+9999)//10000

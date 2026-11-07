@@ -1,0 +1,15 @@
+{
+  "prior": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "current": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c",
+  "normal87all_pass": true,
+  "runtime_objects_changed": [
+    "src/ZZZLPRewardConverter.sol::ZZZLPRewardConverter",
+    "src/ZZZRewards.sol::ZZZRewards"
+  ],
+  "royalty_creation_identical": true,
+  "royalty_creation_code_hash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+  "parts_identical": true,
+  "F3_source_pin_drift": [
+    "src/base/ZZZRewardConverter.sol"
+  ]
+}

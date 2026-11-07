@@ -1,5 +1,21 @@
 # Consolidated audit findings and evidence
 
+[Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
+v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
+and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
+replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
+(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
+12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
+running configuration, service/site/Anvil/journal or heartbeat is changed.
+New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
+referenced-source reuse. Converter executable changes only; Rewards metadata
+changes and all semantic storage/ABIs plus canonical object bytes are preserved.
+F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
+Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
+one-method wire producer and56API methods have separate source-scoped evidence;
+do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
+independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
+
 [Exact-unit LP integration](../reports/exact-lp-integration-20261106/REVIEW.md) replaces fresh LP index/fraction storage with whole-unit individual/equal-collective books, post-write authenticated hooks, current-owner claims and same-NFT conversion. A fixed typed RewardsCanonical companion preserves pending/phase/direct state under V9 with exact backing and funded abort. Earlier6/V8 rights stay separately interpreted; no deployed state is converted. Explicit schema16/profile7/source9 consumers and actual producer/getter/receipt fixtures reconcile the new accounting. Checkpoint1 is6-only; exact-unit checkpoint2 remains open.
 
 The earlier [engine implementation](../reports/exact-lp-engine-20261106/REVIEW.md) remains exact source-scoped evidence for the unchanged algorithm and retry diagnostics. [Harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) fixes clock freshness and distinguishes FeeController sub20 carry/incumbent dust from allocation rounding. Fresh7 assigns every ALLOCATED LP unit; upstream collection rounding, zero-cohort/orphan funds and compromised-dependency close fees remain distinct limits.
@@ -24,7 +40,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The current strict pointer selects the [exact-LP static record](../reports/exact-lp-integration-20261106/static-review.json)
+The current strict pointer selects the [fee-flow static record](../reports/fee-flow-audit-20261107/static-review.json)
 with unchanged matching rules. No installed environment changed.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)

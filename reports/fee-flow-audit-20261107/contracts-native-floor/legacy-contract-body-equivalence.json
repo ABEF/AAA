@@ -1,0 +1,7 @@
+{
+  "baseline_head": "c055684a558519eab308a24b81746bf1b9842d96",
+  "original_sha256": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+  "legacy_sha256": "3b148d3ead090ad8c61675567f7dc996db3d369e733a4e8e28a6ebcf1c90cf88",
+  "contract_declaration_and_entire_body_byte_equal": true,
+  "changes": "Only leading historical label and relative import paths; contract logic, ABI declarations and storage byte-identical."
+}

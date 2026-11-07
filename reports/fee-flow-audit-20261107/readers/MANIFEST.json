@@ -1,0 +1,204 @@
+{
+  "scope": "Exact-unit LP earnings reader no-op conversion remediation and fresh actual Vault wire refresh after converter source fix. No site, service, signer, chain or journal rollout.",
+  "changed_source_sha256": {
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "tests_python/test_exact_lp_conversion_noop.py": "5300ea87b6dfbc36a9cd6c81847a4cce969ea6bbd0da3c40e754a8f93e2fe02c",
+    "tests_python/test_exact_lp_source_wire.py": "68b626fd7857c8261483b44086e720c0a1ccf679df6eaf5d17c313dcb018c83d",
+    "tests_python/fixtures/exact-lp-source7-wire.json": "4543f84910b6cdaaac6f64e10dee1099fddbf5b869af36260d94ad59b9593876"
+  },
+  "final_production_converter_sha256": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
+  "original_28_scope": "11 new no-op +13 existing exactLP backend +4 prior actual-source wire at recorded earlier source stage; see unchanged bytes in noop-stages/manifest.json.",
+  "final_15_scope": "11 no-op +4 newly produced current-source wire consumer methods after Base8bc96c. Same methods overlap original28; final15 is not 15 additional successes.",
+  "python_method_union_count": 28,
+  "python_methods": {
+    "initial_28": [
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_claimed_active_nft_can_have_zero_conversion_row.test_claimed_active_nft_can_have_zero_conversion_row",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_funded_row_cannot_credit_an_empty_source_component.test_funded_row_cannot_credit_an_empty_source_component",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_mixed_funded_and_dormant_rows_preserve_books_and_income.test_mixed_funded_and_dormant_rows_preserve_books_and_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_cannot_hide_a_nonzero_unconverted_entitlement.test_noop_cannot_hide_a_nonzero_unconverted_entitlement",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_rejects_malformed_topics_and_data.test_noop_rejects_malformed_topics_and_data",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_requires_minted_nft_and_deployment_source.test_noop_requires_minted_nft_and_deployment_source",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_retirement_and_timestamp_guards.test_noop_retains_retirement_and_timestamp_guards",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_same_transaction_funding_acknowledgment.test_noop_retains_same_transaction_funding_acknowledgment",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_positive_source_can_round_to_zero_native_without_new_income.test_positive_source_can_round_to_zero_native_without_new_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_zero_source_cannot_credit_either_native_component.test_zero_source_cannot_credit_either_native_component",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_actual_receipt_components_final_unit_and_claim_conservation.test_actual_receipt_components_final_unit_and_claim_conservation",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_changed_claim_conversion_amount_and_third_currency_reject.test_changed_claim_conversion_amount_and_third_currency_reject",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_claim_order_repeated_claims_and_transfer_callback_are_not_income.test_claim_order_repeated_claims_and_transfer_callback_are_not_income",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_conversion_changes_backing_but_never_adds_income.test_conversion_changes_backing_but_never_adds_income",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_growth_and_late_activation_preserve_old_currency_entitlements.test_growth_and_late_activation_preserve_old_currency_entitlements",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_high_low_split_matches_independent_fraction_including_uintmax.test_high_low_split_matches_independent_fraction_including_uintmax",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_indexer_decodes_exact_syncs_and_rejects_wrong_layout.test_indexer_decodes_exact_syncs_and_rejects_wrong_layout",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_individual_buckets_and_global_collective_remain_distinct.test_individual_buckets_and_global_collective_remain_distinct",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_missing_sync_or_wrong_ordinal_previous_and_total_reject.test_missing_sync_or_wrong_ordinal_previous_and_total_reject",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_reconciliation_checks_exact_components_and_totals_without_old_indices.test_reconciliation_checks_exact_components_and_totals_without_old_indices",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_same_v9_epoch_preserves_phase_and_does_not_recredit_imports.test_same_v9_epoch_preserves_phase_and_does_not_recredit_imports",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_sync_never_counts_twice_and_unacknowledged_sync_rejects.test_sync_never_counts_twice_and_unacknowledged_sync_rejects",
+      "tests_python.test_exact_lp_backend.ExactLPBackendTests.test_uintmax_zero_cohort_overflow_and_noop_are_bounded.test_uintmax_zero_cohort_overflow_and_noop_are_bounded",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_actual_source_bytes_closure_and_four_recorded_frames_are_frozen.test_actual_source_bytes_closure_and_four_recorded_frames_are_frozen",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_actual_vault_enrollment_harvest_growth_and_claim_match_literal_getters.test_actual_vault_enrollment_harvest_growth_and_claim_match_literal_getters",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_changed_actual_claim_or_getter_component_cannot_match.test_changed_actual_claim_or_getter_component_cannot_match",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_removed_actual_ack_and_wrong_real_sync_denominator_reject.test_removed_actual_ack_and_wrong_real_sync_denominator_reject"
+    ],
+    "final_15": [
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_actual_source_bytes_closure_and_four_recorded_frames_are_frozen.test_actual_source_bytes_closure_and_four_recorded_frames_are_frozen",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_actual_vault_enrollment_harvest_growth_and_claim_match_literal_getters.test_actual_vault_enrollment_harvest_growth_and_claim_match_literal_getters",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_changed_actual_claim_or_getter_component_cannot_match.test_changed_actual_claim_or_getter_component_cannot_match",
+      "tests_python.test_exact_lp_source_wire.ExactLPSourceWireTests.test_removed_actual_ack_and_wrong_real_sync_denominator_reject.test_removed_actual_ack_and_wrong_real_sync_denominator_reject",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_claimed_active_nft_can_have_zero_conversion_row.test_claimed_active_nft_can_have_zero_conversion_row",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_funded_row_cannot_credit_an_empty_source_component.test_funded_row_cannot_credit_an_empty_source_component",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_mixed_funded_and_dormant_rows_preserve_books_and_income.test_mixed_funded_and_dormant_rows_preserve_books_and_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_cannot_hide_a_nonzero_unconverted_entitlement.test_noop_cannot_hide_a_nonzero_unconverted_entitlement",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_rejects_malformed_topics_and_data.test_noop_rejects_malformed_topics_and_data",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_requires_minted_nft_and_deployment_source.test_noop_requires_minted_nft_and_deployment_source",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_retirement_and_timestamp_guards.test_noop_retains_retirement_and_timestamp_guards",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_same_transaction_funding_acknowledgment.test_noop_retains_same_transaction_funding_acknowledgment",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_positive_source_can_round_to_zero_native_without_new_income.test_positive_source_can_round_to_zero_native_without_new_income",
+      "tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_zero_source_cannot_credit_either_native_component.test_zero_source_cannot_credit_either_native_component"
+    ]
+  },
+  "fresh_actual_producer": {
+    "method": "testExactLPRealVaultWireEnrollmentHarvestGrowthAndClaim()",
+    "status": "Success",
+    "count": 1,
+    "raw_logs": 77,
+    "snapshots": 4,
+    "snapshot_words": 26,
+    "complete_source_closure": 95,
+    "source_frozen": true
+  },
+  "evidence_failures": [
+    "noop-stages/before.log: 3 baseline no-op errors plus1 expected-message mismatch;9 methods attempted",
+    "noop-stages/after.log: Windows test-fixture SQLite connection cleanup error;corrected with explicit close;9 methods attempted",
+    "fresh-consumer/fixture-crlf-attempt.json: generated current fixture first used Windows CRLF; normal diff whitespace check failed; raw telemetry unchanged by LF normalization; first bytes retained"
+  ],
+  "boundaries": "Synthetic controlled venue/VRF/normalized prices; no actual conversion route, external provider, target gas, marketplace, public CI or independent approval. Raw original and current producer evidence remain separate.",
+  "files": {
+    "final-source/frontend_api/earnings_exact_lp.py": {
+      "sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+      "bytes": 10288
+    },
+    "final-source/tests_python/fixtures/exact-lp-source7-wire.json": {
+      "sha256": "4543f84910b6cdaaac6f64e10dee1099fddbf5b869af36260d94ad59b9593876",
+      "bytes": 92702
+    },
+    "final-source/tests_python/test_exact_lp_conversion_noop.py": {
+      "sha256": "5300ea87b6dfbc36a9cd6c81847a4cce969ea6bbd0da3c40e754a8f93e2fe02c",
+      "bytes": 10129
+    },
+    "final-source/tests_python/test_exact_lp_source_wire.py": {
+      "sha256": "68b626fd7857c8261483b44086e720c0a1ccf679df6eaf5d17c313dcb018c83d",
+      "bytes": 8140
+    },
+    "fresh-consumer/final-reader-tests.log": {
+      "sha256": "6f91e2b471aa792c047340b5bb027862273f4e3fe83211c240e71b98f11c23cf",
+      "bytes": 3060
+    },
+    "fresh-consumer/fixture-crlf-attempt.json": {
+      "sha256": "e54f73080d3e89452f7cf69ad868b83ac7e0d7e8923d4614409b8a9d06e5e5b6",
+      "bytes": 93523
+    },
+    "fresh-consumer/refresh_fixture.py": {
+      "sha256": "a83093f9dba9128d032da3504ac0bce9221967cfb105558e6f4194ae49d1686e",
+      "bytes": 3396
+    },
+    "fresh-consumer/REFRESH_PROOF-crlf-attempt.json": {
+      "sha256": "f0d4ae65263f180ca2e585f98f92e30fcf83af40bdad1330f02a5021940a9b5a",
+      "bytes": 1533
+    },
+    "fresh-consumer/REFRESH_PROOF.json": {
+      "sha256": "317902d850b5d275e582f2a71021082e40c6c2c56d6dd15f916970b97f5735eb",
+      "bytes": 1533
+    },
+    "fresh-consumer/run_real_vault_wire_current.py": {
+      "sha256": "6965cf5b4317e3c4aee499bb4f7f95cfbfef6eabd4808001b9541665fcdaed85",
+      "bytes": 4523
+    },
+    "fresh-producer/process.json": {
+      "sha256": "e02ca924a3b056b37cd717932dd2e773a60b3bc57c25749d28d30b8f2209467f",
+      "bytes": 42
+    },
+    "fresh-producer/START.json": {
+      "sha256": "433ff5575d93095ddd2ef97922f08927f290c99575a9e9ef28bd281047255313",
+      "bytes": 23980
+    },
+    "fresh-producer/status.json": {
+      "sha256": "9f106b56e0c30099937231aebe14a01062507dc98b5112a7ee905404021de3ba",
+      "bytes": 34399
+    },
+    "fresh-producer/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "fresh-producer/stdout.json": {
+      "sha256": "4ad49aaf21178afcfa2a794998f41d749417d147b0a77e804ddfb07c6690e1b8",
+      "bytes": 75268
+    },
+    "fresh-producer/test-source.sol": {
+      "sha256": "762df59b83ddeff451754421d9eb579ec4b76281f46b5acad157ffbd02beceba",
+      "bytes": 3558
+    },
+    "historical-original/exact-lp-source7-wire.json": {
+      "sha256": "0fbff68493129dfae788cfd40c36cdc835037230a7c14b2d448297f40c90cf24",
+      "bytes": 93387
+    },
+    "historical-original/prior-producer-START.json": {
+      "sha256": "4f18d303840b71455d794d8e20dc94ebe602288a768a2902e5a35d4cd042c650",
+      "bytes": 23894
+    },
+    "historical-original/prior-producer-status.json": {
+      "sha256": "7f43de6042e3bde49a2b291339ccdc60ce333a5344fab24012e747b498a38788",
+      "bytes": 34418
+    },
+    "historical-original/prior-producer-stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "historical-original/prior-producer-stdout.json": {
+      "sha256": "08a1b0b2dfc1e6d0b90438c2e68459a7bab2f27a56dce243f0efff04b9c6289a",
+      "bytes": 75268
+    },
+    "historical-original/prior-producer-test-source.sol": {
+      "sha256": "762df59b83ddeff451754421d9eb579ec4b76281f46b5acad157ffbd02beceba",
+      "bytes": 3558
+    },
+    "historical-original/sha256.json": {
+      "sha256": "5019d7a195fc27d3618806d1d279e41be29531011cae25a35e90436b5d0ab677",
+      "bytes": 716
+    },
+    "historical-original/test_exact_lp_source_wire.py": {
+      "sha256": "0e115fab75f844a62964317affe6da6b8fd7b51cad7dcd5ca9e5d7482021b4f8",
+      "bytes": 8140
+    },
+    "noop-stages/after.log": {
+      "sha256": "6c32472b2882751a1656e49d9f1600d8ca6c1ed62c3d7c6392b240910213fc1e",
+      "bytes": 4265
+    },
+    "noop-stages/before.log": {
+      "sha256": "815e73670a91dd6e4a5b714260b374bbd6f4831502fcaa48461535b8d55a8462",
+      "bytes": 8552
+    },
+    "noop-stages/final-expanded.log": {
+      "sha256": "8df138db0b9e996ec22f1c2f0b529a983d467b9430cea2e8b8225d676ff9a2c7",
+      "bytes": 5551
+    },
+    "noop-stages/final-frontend_api-earnings_exact_lp.py": {
+      "sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+      "bytes": 10288
+    },
+    "noop-stages/final-tests_python-test_exact_lp_conversion_noop.py": {
+      "sha256": "5300ea87b6dfbc36a9cd6c81847a4cce969ea6bbd0da3c40e754a8f93e2fe02c",
+      "bytes": 10129
+    },
+    "noop-stages/final.log": {
+      "sha256": "12653c883c3ed4e86ced3d7eebeeaf699f6dd28a2fef00532f4f39f68a9b7039",
+      "bytes": 5149
+    },
+    "noop-stages/manifest.json": {
+      "sha256": "c7d41ad38e0245da4cf6d78a8530cec8f1bc59a613025b846789f14260f966ba",
+      "bytes": 2953
+    }
+  }
+}

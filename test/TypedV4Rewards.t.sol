@@ -15,7 +15,7 @@ import {BalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
 import {ZZZRoyaltyConverter} from "./historical/ZZZRoyaltyConverter.sol";
-import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
+import {ZZZRewardConverter} from "./historical/ZZZRewardConverterLegacy.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
 import {ZZZV4RouteExecutor} from "../src/ZZZV4RouteExecutor.sol";
 import {ZZZRoyaltyRewards} from "./historical/ZZZRoyaltyRewards.sol";

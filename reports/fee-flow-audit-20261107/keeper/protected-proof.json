@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "observed_after_packaging_preflight": true,
+  "files": [
+    {
+      "path": "reports/source-checks.json",
+      "expected_sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "observed_sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "byte_identical": true
+    },
+    {
+      "path": "scripts/run-fork-checks.py",
+      "expected_sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "observed_sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "byte_identical": true
+    },
+    {
+      "path": "tests_python/test_fork_runner.py",
+      "expected_sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "observed_sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "byte_identical": true
+    },
+    {
+      "path": "tests_python/test_frontend_history.py",
+      "expected_sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "observed_sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "byte_identical": true
+    }
+  ]
+}

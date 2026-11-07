@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "2ffdb85abd1f0b1642ce6ebd4aa4c64c8ebad2c989c807f19a04a956c4b44d4e",
+  "files_checked": 31,
+  "all_roundtrip": true,
+  "source_matches_packaged": true,
+  "original_fixture_preserved": true
+}

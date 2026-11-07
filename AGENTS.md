@@ -1,5 +1,21 @@
 # AAA / ZZZ PoPL project instructions
 
+[Fee-flow audit](reports/fee-flow-audit-20261107/REVIEW.md) fixes
+v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
+and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
+replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
+(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
+12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
+running configuration, service/site/Anvil/journal or heartbeat is changed.
+New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
+referenced-source reuse. Converter executable changes only; Rewards metadata
+changes and all semantic storage/ABIs plus canonical object bytes are preserved.
+F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
+Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
+one-method wire producer and56API methods have separate source-scoped evidence;
+do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
+independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
+
 Reviewed2026-11-07. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
@@ -33,12 +49,10 @@ shares/membership, current-owner claims/conversion and lossless raw-phase handof
 Constructor-fixed typed RewardsCanonical adds one helper, not an arbitrary
 executor, payout recipient or configurable custody address.17modules/19callable
 helpers plus2inert Factory data children; old6/V8/F2/checkpoint1 remain explicit.
-Normal87sources pass46object+2carrier gates at unchanged compiler settings.
-Strict532actual records:222individually reassessed,310unique exact-source reuse.
-Canonical34distinct successes include funded abort/future-credit equivalence;
-backend619distinct corrected methods and actual77-log/four26-field-snapshot Vault transcript
-reconcile. See [integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md)
-for full host/gas stages, failed attempts and final evidence, never summed overlaps.
+Earlier [exact-LP integration evidence](reports/exact-lp-integration-20261106/VERIFICATION.md) retains
+its original engine/canonical/consumer source scope. Current fee-flow normal,
+static and fresh producer evidence is described above; canonical object/body
+equivalence supports scoped reuse without relabeling older source fixtures.
 Final runtime headroom:Vault133/Rewards358/CanonicalHandoff32. Exact LP claims
 can be materially more expensive;32is a count ceiling, not a gas approval.
 Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
@@ -184,9 +198,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [integration review](reports/exact-lp-integration-20261106/static-review.json):532records,
- 222individually reassessed contexts/310unique exact referenced-source reuse.
- Prior497and earlier495/489/487/479/471 remain source-scoped and historical.
+- CI/check-slither-review selects the strict current [fee-flow review](reports/fee-flow-audit-20261107/static-review.json):532records,
+ 15individually reassessed contexts/517unique exact referenced-source reuse.
+ Prior exact-LP532(222/310),497and earlier records remain source-scoped.
  Update default/full record together after relevant source changes.
 
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.

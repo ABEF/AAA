@@ -1787,6 +1787,38 @@ adopted into the keeper's own harvest clock.
 
 Small receipts carry to20raw-unit baskets. The existing share/membership barrier assigns remaining<=19raw units to incumbent individual rewards; this is a split-dust exception, not a second harvest. Fresh7 allocated LP units are wholly assigned and claimable, including the final unit. Old6 fractional receipts keep their historical semantics. [Current LP rule](EXACT_LP_ALLOCATION.md) and [integration review](../reports/exact-lp-integration-20261106/REVIEW.md) distinguish allocated books, unallocated receipts and upstream collection rounding.
 
+### LP fee conversion and claim gas operations
+
+LP fees arrive as native ETH+the SAME fixed ZZZ used by the LP. ETH is already
+payable; earned ZZZ remains visibly awaiting conversion until the separate keeper
+operation succeeds. Claiming does not force a swap. Normal ETH claims select ETH;
+the current owner can explicitly claim source ZZZ as recovery. Royalties remain
+original-currency settlement4 and never enter the LP converter.
+
+Review the [fresh7 conversion procedure](LP_ETH_SETTLEMENT.md#exact-lp7-capacity-and-recovery)
+for bounded affordable subsets, cursor continuation, strict pre-send probes and
+late deadline/day-budget stops. Do not repeatedly sign one failing large batch,
+reset journals, widen caps automatically or diagnose every EVM refusal as a token
+fault. A valid smaller batch needs its own fresh quote/simulation and saved intent.
+V3 manual conversion now requires both wrapper and native ETH references, plus
+authenticated18-decimal wrapper behavior; missing feeds correctly defer conversion.
+
+After terminal collective exit, already-earned ZZZ can still convert: governance
+explicitly calls `Access.setPaused(false)` once permitted reward work should resume.
+Keep the reviewed converter/route, usable external liquidity, prices and keeper
+budgets available. This unpause cannot reopen principal. LP conversion routes are
+separate from reserve-only PoolRegistry admission; keep custody5 keeper principal
+distribution disabled. Already-funded ETH/source claims remain available while paused.
+
+The default backend12M is policy1 software, not an on-chain governance gas cap.
+Optional [policy2](FRONTEND_TRANSACTIONS.md#reviewed-gas-policy2-operator-configuration)
+makes the operator file's `max_gas_limit` reviewable after sealing (21000–64M
+engineering range, actual confirmed-block cap may be lower). It requires matching
+schema2 consumers and full20% estimate headroom. Use the exact file/review/restart/
+rollback procedure there; no running config or wallet/signing code changes here.
+The router32 count ceiling stays fixed; ProtocolPolicy100k–1m internal-call limits
+control different subcalls. Raising one does not raise the others or the network.
+
 ### Exact LP codec, currency and recovery controls
 
 - Bind LP ZZZ once **before sealing** with `Rewards.addAsset(ZZZ_TOKEN)` after
@@ -2786,7 +2818,7 @@ One-host browser/demo locks do not establish production wallet authorization or
 
 ## Holder payout currencies
 
-Royalties are claimed in their original currencies under settlement3; WETH
+Royalties are claimed in their original currencies under settlement4; WETH
 remains WETH. LP holder rewards retain their separate approved ETH-conversion
 path. [Royalty settlement](ROYALTY_SETTLEMENT.md), [LP settlement](LP_ETH_SETTLEMENT.md).
 Never sum raw currencies or call a missing price zero. A source token claim uses

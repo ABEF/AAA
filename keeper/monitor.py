@@ -27,6 +27,7 @@ from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
 from zzz_ops.range_policy import observe as observe_range_policy, verify as verify_range_policy
 from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
+from zzz_ops.errors import RemoteRPCError
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
 from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
@@ -1716,7 +1717,15 @@ class Keeper:
         return day
 
     def submit(self, name: str, signature: str, args: tuple[int|str|list[int],...], key: str, *, value: int = 0,
-               metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
+               metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None,
+               capacity_review: dict[str,str] | None = None) -> bool:
+        # A caller-owned result belongs to this exact attempt, never a previous
+        # health observation. Only fresh LP conversion can request bounded sizing.
+        if capacity_review is not None:
+            if not isinstance(capacity_review,dict) or self.accounting_version != 7 or \
+                    name != 'rewards' or signature != ROYALTY_BATCH or value != 0:
+                raise ValueError('Capacity review requires an accounting7 LP conversion')
+            capacity_review.clear()
         if self.state.get('pending'): return False
         if getattr(self,'royalty_settlement_version',0) in (2,3,4) and name == 'royalties' and signature == ROYALTY_BATCH:
             raise ValueError('Original-currency royalties cannot be swapped')
@@ -1731,6 +1740,7 @@ class Keeper:
         if self._defer_for_lifecycle(name,signature): return False
         lp_balance_action=(name,signature) in (('vault','rebalance(uint256,uint128,uint256)'),
             ('compounder','compound(uint256,uint128,uint256)'))
+        lp_conversion_action=self.accounting_version==7 and name=='rewards' and signature==ROYALTY_BATCH
         if lp_balance_action:self._validate_lp_routing()
         confirmation_action=name=='rebalance_confirmation' and signature in ('observe(uint256)','resetObservation(uint256)')
         if confirmation_action:
@@ -1758,7 +1768,25 @@ class Keeper:
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
                 'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
-        self.rpc.call('eth_call',[tx,'latest'])
+        day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        def capacity_failure(exc, method):
+            # Opaque execution rejection proves no bad token or zero balance.
+            # It only allows a fresh bounded prefix probe BEFORE any intent or
+            # signer invocation. Transport/work/malformed errors never qualify.
+            if (capacity_review is None or self.state.get('pending') or
+                    exc.method != method or exc.code not in (3,-32000) or exc.reason != 'unclassified' or
+                    int(self.state['spent'].get(day,0)) >= positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                return False
+            capacity_review['reason']='opaque_pre_send_rejection'
+            self.blocked_actions+=1
+            log('lp_conversion_deferred',action=key,reason='opaque_pre_send_rejection',**error_context(exc))
+            return True
+        try:simulation=self.rpc.call('eth_call',[tx,'latest'])
+        except RemoteRPCError as exc:
+            if capacity_failure(exc,'eth_call'):return False
+            raise
+        if lp_conversion_action and uint_result(simulation)<args[3]:
+            raise RpcError('LP conversion simulation output is below its prepared minimum')
         gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
         price_cap=positive(self.config['max_gas_price_wei'],'max_gas_price_wei')
         gas_review={'action':name+'.'+signature,'head_number':review_head,
@@ -1770,25 +1798,33 @@ class Keeper:
             'padded_gas_required':None,'gas_price_wei':None,'state':'unavailable',
             'reason':'estimate_or_price_unavailable'}
         self.gas_review_health={'state':'reviewed_this_cycle','last_review':gas_review}
-        estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
+        try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
+        except RemoteRPCError as exc:
+            if capacity_failure(exc,'eth_estimateGas'):return False
+            raise
         gas_limit = (estimated*125+99)//100
         gas_review.update(estimated_gas=estimated,padded_gas_required=gas_limit)
         gas_price = rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
         gas_review['gas_price_wei']=gas_price
+        cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
+        within_daily = int(self.state['spent'].get(day,0))+cost <= positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')
+        can_resize = (capacity_review is not None and gas_price <= price_cap and within_daily and
+            (maximum_cost is None or cost <= positive(maximum_cost,'maximum_cost',zero=True)))
         if gas_limit > gas_cap or gas_price > price_cap:
             gas_review.update(state='blocked',reason='gas_limit_cap' if gas_limit>gas_cap else 'gas_price_cap')
+            if gas_limit > gas_cap and can_resize: capacity_review['reason']='gas_limit_cap'
             self.blocked_actions += 1
             log('gas_cap_exceeded',action=key); return False
-        cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
         if maximum_cost is not None and cost > positive(maximum_cost,'maximum_cost',zero=True):
             gas_review.update(state='blocked',reason='conversion_uneconomic',maximum_cost_wei=cost)
             self.blocked_actions += 1
             log('lp_conversion_uneconomic' if name == 'rewards' else 'royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
             return False
-        day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
-            int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
+            not within_daily:
             gas_review.update(state='blocked',reason='cost_cap',maximum_cost_wei=cost)
+            if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') and can_resize:
+                capacity_review['reason']='transaction_cost_cap'
             self.blocked_actions += 1
             log('cost_cap_exceeded',action=key); return False
         gas_review.update(state='within_configured_caps',reason=None,maximum_cost_wei=cost)
@@ -1825,6 +1861,30 @@ class Keeper:
                 gas_limit=gas_limit,gas_price=gas_price,cost=cost,nonce=nonce,gas_review=gas_review)
             if final_day is None:return False
             day=final_day
+        elif lp_conversion_action:
+            # Simulation, code, nonce and funding reads may age a conversion or
+            # cross UTC midnight. Preserve the exact reviewed intent and caps;
+            # the final head is a stop check, never permission to rewrite it.
+            gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+            head,fresh=self._head()
+            if head<review_head or fresh<timestamp:
+                raise RpcError('LP conversion head or timestamp retreated after review')
+            deadline=positive(args[4],'LP conversion deadline')
+            if not fresh<=deadline<=fresh+600:
+                gas_review.update(state='blocked',reason='lp_submission_deadline_invalid')
+                self.blocked_actions+=1
+                log('lp_conversion_deferred',action=key,reason='deadline_invalid')
+                return False
+            day=dt.datetime.fromtimestamp(fresh,dt.timezone.utc).date().isoformat()
+            if (cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or
+                    int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                gas_review.update(state='blocked',reason='cost_cap')
+                self.blocked_actions+=1
+                log('cost_cap_exceeded',action=key)
+                return False
+            gas_review.update(state='within_configured_caps',reason=None)
+            if self.stop_requested():
+                log('shutdown_before_submission',action=key);return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
             'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),

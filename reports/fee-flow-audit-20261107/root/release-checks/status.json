@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "modules": [
+    "tests_python.test_slither_review",
+    "tests_python.test_function_reference",
+    "tests_python.test_operator_reference",
+    "tests_python.test_exact_lp_inventory",
+    "tests_python.test_exact_lp_profile7",
+    "tests_python.test_production_preflight_cli",
+    "tests_python.test_frontend_policy_v6",
+    "tests_python.test_frontend_lifecycle"
+  ],
+  "elapsed": 32.36000000000058,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "846d18e5c4716fc24a3100afca097329d41c658d291a2ddfdec5dbe9614f10c0"
+}

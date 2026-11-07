@@ -1,0 +1,8 @@
+from pathlib import Path
+import json,hashlib,importlib.util
+r=Path.cwd();e=Path(__file__).parent;old=r/'reports/exact-lp-integration-20261106/static-review.json';raw=e/'static-e639dc6589/detectors-only.json'
+s=importlib.util.spec_from_file_location('c',r/'scripts/check-slither-review.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+errors=m.check(json.loads(raw.read_text()),json.loads(old.read_text()));assert errors
+assert 'Reviewed content changed: src/base/ZZZRewardConverter.sol'in errors
+d={'schema':1,'expected_rejection':True,'review_coverage_pass':False,'not_an_analyzer_failure':True,'old_review':str(old),'old_review_raw_sha256':hashlib.sha256(old.read_bytes()).hexdigest(),'new_actual_raw_detector_sha256':hashlib.sha256(raw.read_bytes()).hexdigest(),'checker_raw_sha256':hashlib.sha256((r/'scripts/check-slither-review.py').read_bytes()).hexdigest(),'errors':errors,'source_scope':'Prior532 remains valid for its original source; it must NOT silently cover the changed converter/new analyzer presentation. New full532 record independently covers15contexts and exact517reuse without broadening normalization.'}
+p=e/'EXPECTED_OLD_RECORD_REJECTION.json';assert not p.exists();p.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps({'expected_rejection':True,'errors':len(errors)},indent=2))

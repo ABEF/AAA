@@ -5,7 +5,7 @@ pragma solidity 0.8.26;
 import {RoyaltyConversionTest, ConversionNFT, ConversionToken, ConversionVenue, ConversionAccess}
     from "../RoyaltyConversion.t.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
-import {ZZZRewardConverter} from "../../src/base/ZZZRewardConverter.sol";
+import {ZZZRewardConverter} from "./ZZZRewardConverterLegacy.sol";
 import {Ids} from "../../src/libraries/ZZZTypes.sol";
 import {DualOracleFixture} from "../helpers/DualOracleFixture.sol";
 import {ZZZOracle} from "../../src/ZZZOracle.sol";

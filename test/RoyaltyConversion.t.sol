@@ -11,7 +11,7 @@ import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZRoyaltyRewards} from "./historical/ZZZRoyaltyRewards.sol";
 import {ZZZRoyaltyConverter} from "./historical/ZZZRoyaltyConverter.sol";
-import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
+import {ZZZRewardConverter} from "./historical/ZZZRewardConverterLegacy.sol";
 import {IV3RouteRouter} from "../src/interfaces/IZZZV3Route.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";

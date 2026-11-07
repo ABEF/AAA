@@ -1,0 +1,988 @@
+Compiling 51 files with Solc 0.8.26
+Solc 0.8.26 finished in 23.57s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/LPRewardNativeFloor.t.sol:64:1:
+   |
+64 | contract NativeFloorProxy {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/LPRewardNativeFloor.t.sol:81:5:
+   |
+81 |     fallback() external payable {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-11-07T00:40:03.076435Z  WARN traces::etherscan: etherscan config not found
+
+Ran 11 tests for test/LPRewardNativeFloor.t.sol:LPRewardNativeFloorTest
+[PASS] testAlignedPricesAcceptExactNinetyNinePercentAndPreserveCredits() (gas: 1164781)
+[FAIL: next call did not revert as expected] testDirectUnwrapRejectsChangedWrapperDecimals() (gas: 6653898)
+Traces:
+  [6653898] LPRewardNativeFloorTest::testDirectUnwrapRejectsChangedWrapperDecimals()
+    ├─ [428551] → new NativeFloorLedger@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 2137 bytes of code
+    ├─ [5713681] → new ZZZLPRewardConverter@0x2a07706473244BC757E10F2a9E86fB532828afe3
+    │   ├─ [2257725] → new ZZZV4RouteExecutor@0x1F88f48585ad6754e59c03debd4502399e33Ff50
+    │   │   └─ ← [Return] 11164 bytes of code
+    │   └─ ← [Return] 16830 bytes of code
+    ├─ [22852] NativeFloorLedger::bind(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3])
+    │   └─ ← [Stop]
+    ├─ [76760] ZZZLPRewardConverter::configureWrapper(WrapperPolicy({ codeHash: 0x48a9746614317da3a9852b9e6317ca0a68a31e614ba1dd149ce75976331c759a, admin: 0x0000000000000000000000000000000000000000, implementation: 0x0000000000000000000000000000000000000000, adminOwner: 0x0000000000000000000000000000000000000000, adminCodeHash: 0x0000000000000000000000000000000000000000000000000000000000000000, implementationCodeHash: 0x0000000000000000000000000000000000000000000000000000000000000000, reviewHash: 0xee480b3f4344a444ac87fd1b729eda14022f9ad7a12a8fc676ec6bf8021d40ce }))
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [2495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit WrapperConfigured(policyHash: 0xad8c8cc9c684eaf91a8d3a63ce3ffbdac887149ce840ca11bf5c7f141406bda4, reviewHash: 0xee480b3f4344a444ac87fd1b729eda14022f9ad7a12a8fc676ec6bf8021d40ce)
+    │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [33569] ZZZLPRewardConverter::setEnabled(true)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit Enabled(enabled: true)
+    │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [49044] NativeFloorWrapper::mint(NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 1000000000000000000 [1e18])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], value: 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [45428] NativeFloorLedger::credit(1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [5699] NativeFloorWrapper::setDecimals(6)
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xc31eb0e0: c52a9bd300000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [185990] NativeFloorLedger::convert(0x0000000000000000000000000000000000000000000000000000000000000000, 1000000000000000000 [1e18], 100060 [1e5])
+    │   ├─ [26139] NativeFloorWrapper::approve(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], 1000000000000000000 [1e18])
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], spender: ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], value: 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [104473] ZZZLPRewardConverter::convert(NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 1000000000000000000 [1e18], 0x0000000000000000000000000000000000000000000000000000000000000000, 1000000000000000000 [1e18], 100060 [1e5])
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [582] NativeFloorAccess::isSealed() [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [561] NativeFloorAccess::paused() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [2666] ZZZV4RouteExecutor::routeExists(0x0000000000000000000000000000000000000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [3033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C]) [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   ├─ [28350] NativeFloorWrapper::transferFrom(NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], 1000000000000000000 [1e18])
+    │   │   │   ├─ emit Transfer(from: NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], to: ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], value: 1000000000000000000 [1e18])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3]) [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [15570] NativeFloorWrapper::withdraw(1000000000000000000 [1e18])
+    │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], to: 0x0000000000000000000000000000000000000000, value: 1000000000000000000 [1e18])
+    │   │   │   ├─ [883] ZZZLPRewardConverter::receive{value: 1000000000000000000}()
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [62] NativeFloorLedger::receive{value: 1000000000000000000}()
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit Converted(source: NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], routeId: 0x0000000000000000000000000000000000000000000000000000000000000000, input: 1000000000000000000 [1e18], nativeOutput: 1000000000000000000 [1e18])
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ [4239] NativeFloorWrapper::approve(ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], 0)
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], spender: ZZZLPRewardConverter: [0x2a07706473244BC757E10F2a9E86fB532828afe3], value: 0)
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 1000000000000000000 [1e18]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at LPRewardNativeFloorTest.testDirectUnwrapRejectsChangedWrapperDecimals
+
+[PASS] testDirectWrapperUnwrapNeedsNoOracleAndKeepsOneToOne() (gas: 6538919)
+[FAIL: next call did not revert as expected] testDivergentWrapperPriceCannotWeakenFinalNativeFloor() (gas: 2069353)
+Traces:
+  [2069353] LPRewardNativeFloorTest::testDivergentWrapperPriceCannotWeakenFinalNativeFloor()
+    ├─ [131681] → new NativeFloorFeed@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [131681] → new NativeFloorFeed@0x2a07706473244BC757E10F2a9E86fB532828afe3
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [329172] ZZZOracle::setDualFeed(0x0000000000000000000000000000000000000000, SourcePolicy({ source: 0x212224D2F2d262cd093eE13240ca4873fcCBbA3C, expectedCodeHash: 0x5b7c7b1e7c9c72dcb9c74903d517b168654a81dd1cf66bcd5b5a177818a2c06f, independenceId: 0x75e253091f689d89fa024e1b81ecea8657b341d323b05b693ea0da444ea00208, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x2a07706473244BC757E10F2a9E86fB532828afe3, expectedCodeHash: 0x5b7c7b1e7c9c72dcb9c74903d517b168654a81dd1cf66bcd5b5a177818a2c06f, independenceId: 0x9959618b26d8fd172513c0810b0868143ba3dbd25150277a7924e8db3b33d5d8, maxAge: 3600, feedDecimals: 8 }), 0, 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ emit DualPolicyRecorded(id: 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd, token: 0x0000000000000000000000000000000000000000, primary: NativeFloorFeed: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], secondary: NativeFloorFeed: [0x2a07706473244BC757E10F2a9E86fB532828afe3], primaryIndependenceId: 0x75e253091f689d89fa024e1b81ecea8657b341d323b05b693ea0da444ea00208, secondaryIndependenceId: 0x9959618b26d8fd172513c0810b0868143ba3dbd25150277a7924e8db3b33d5d8, maxDeviationBps: 0, reviewHash: 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ emit DualPolicyActivated(token: 0x0000000000000000000000000000000000000000, previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd
+    ├─ [131681] → new NativeFloorFeed@0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [131681] → new NativeFloorFeed@0xD16d567549A2a2a2005aEACf7fB193851603dd70
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [331174] ZZZOracle::setDualFeed(NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], SourcePolicy({ source: 0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7, expectedCodeHash: 0x014e2c4cc85d34283de7268dc4ddd3a5a77acd56eba2ffe2986b46825e2e1082, independenceId: 0x0212a063de2c71c679f402552098534313f8469630753ed72cd9f5b69bce6703, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0xD16d567549A2a2a2005aEACf7fB193851603dd70, expectedCodeHash: 0x014e2c4cc85d34283de7268dc4ddd3a5a77acd56eba2ffe2986b46825e2e1082, independenceId: 0xf65485f233425ec33a3703ffb764bcafff4ae105f37c2a25a3034cac239e19f6, maxAge: 3600, feedDecimals: 8 }), 0, 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [2570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ emit DualPolicyRecorded(id: 0xca52a0c29b9ca434f4f3a70c66a3beff43aa84498fd6d25f1453275b4fb17552, token: NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], primary: NativeFloorFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], secondary: NativeFloorFeed: [0xD16d567549A2a2a2005aEACf7fB193851603dd70], primaryIndependenceId: 0x0212a063de2c71c679f402552098534313f8469630753ed72cd9f5b69bce6703, secondaryIndependenceId: 0xf65485f233425ec33a3703ffb764bcafff4ae105f37c2a25a3034cac239e19f6, maxDeviationBps: 0, reviewHash: 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ emit DualPolicyActivated(token: NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], previousPolicy: 0x78064446e747a0f8438c510e77ccbadca7125ea9a56ba5bec390514b5d3488ea, activePolicy: 0xca52a0c29b9ca434f4f3a70c66a3beff43aa84498fd6d25f1453275b4fb17552)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xca52a0c29b9ca434f4f3a70c66a3beff43aa84498fd6d25f1453275b4fb17552
+    ├─ [8083] NativeFloorVenue::setOutput(980000000000000000 [9.8e17], false)
+    │   └─ ← [Stop]
+    ├─ [122437] ZZZOracle::quote(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 2000000000 [2e9]) [staticcall]
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 6
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   └─ ← [Return] 980392156862745098 [9.803e17]
+    ├─ [0] VM::assertLt(970588235294117647 [9.705e17], 980000000000000000 [9.8e17]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [82261] ZZZOracle::quote(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 0x0000000000000000000000000000000000000000, 2000000000 [2e9]) [staticcall]
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 6
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   └─ ← [Return] 1000000000000000000 [1e18]
+    ├─ [0] VM::assertEq(1000000000000000000 [1e18], 1000000000000000000 [1e18]) [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(custom error 0xc31eb0e0: 7dd37f7000000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [497392] NativeFloorLedger::convert(0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 100060 [1e5])
+    │   ├─ [26058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   └─ ← [Return] true
+    │   ├─ [402037] ZZZLPRewardConverter::convert(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 2000000000 [2e9], 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 100060 [1e5])
+    │   │   ├─ [2454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [582] NativeFloorAccess::isSealed() [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [561] NativeFloorAccess::paused() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [2910] NativeFloorAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   ├─ [86937] ZZZOracle::quote(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 2000000000 [2e9]) [staticcall]
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 6
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 18
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 204000000000 [2.04e11], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   └─ ← [Return] 980392156862745098 [9.803e17]
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [3033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [30597] NativeFloorToken::transferFrom(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   │   ├─ emit Transfer(from: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [26058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [81201] NativeFloorVenue::exactInputSingle(ExactInputSingleParams({ tokenIn: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, tokenOut: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 500, recipient: 0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF, amountIn: 2000000000 [2e9], amountOutMinimum: 970588235294117648 [9.705e17], sqrtPriceLimitX96: 0 }))
+    │   │   │   ├─ [29797] NativeFloorToken::transferFrom(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [47044] NativeFloorWrapper::mint(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 980000000000000000 [9.8e17])
+    │   │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 980000000000000000 [9.8e17])
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 980000000000000000 [9.8e17]
+    │   │   ├─ [4058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 0)
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 0)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 980000000000000000 [9.8e17]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [15570] NativeFloorWrapper::withdraw(980000000000000000 [9.8e17])
+    │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: 0x0000000000000000000000000000000000000000, value: 980000000000000000 [9.8e17])
+    │   │   │   ├─ [883] ZZZLPRewardConverter::receive{value: 980000000000000000}()
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [62] NativeFloorLedger::receive{value: 980000000000000000}()
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit Converted(source: NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], routeId: 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, input: 2000000000 [2e9], nativeOutput: 980000000000000000 [9.8e17])
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 980000000000000000 [9.8e17]
+    │   ├─ [4058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 0)
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 0)
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 980000000000000000 [9.8e17]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at LPRewardNativeFloorTest.testDivergentWrapperPriceCannotWeakenFinalNativeFloor
+
+[PASS] testExistingStrongerWrapperFloorRemainsRequired() (gas: 1854761)
+[PASS] testFaultyUnwrapRollsBackSwapAndEarnedBalances() (gas: 1250599)
+[FAIL: next call did not revert as expected] testMissingNativePriceFailsClosedBeforeSpending() (gas: 592365)
+Traces:
+  [592365] LPRewardNativeFloorTest::testMissingNativePriceFailsClosedBeforeSpending()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3: 00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000024cd215006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [580392] NativeFloorLedger::convert(0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 100060 [1e5])
+    │   ├─ [26058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   └─ ← [Return] true
+    │   ├─ [482537] ZZZLPRewardConverter::convert(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 2000000000 [2e9], 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 100060 [1e5])
+    │   │   ├─ [2454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [582] NativeFloorAccess::isSealed() [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [561] NativeFloorAccess::paused() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [2910] NativeFloorAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   ├─ [153437] ZZZOracle::quote(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 2000000000 [2e9]) [staticcall]
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 6
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [2570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 18
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [3033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [30597] NativeFloorToken::transferFrom(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   │   ├─ emit Transfer(from: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [26058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [85201] NativeFloorVenue::exactInputSingle(ExactInputSingleParams({ tokenIn: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, tokenOut: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 500, recipient: 0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF, amountIn: 2000000000 [2e9], amountOutMinimum: 990000000000000000 [9.9e17], sqrtPriceLimitX96: 0 }))
+    │   │   │   ├─ [29797] NativeFloorToken::transferFrom(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [47044] NativeFloorWrapper::mint(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 990000000000000000 [9.9e17])
+    │   │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 990000000000000000 [9.9e17])
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   │   ├─ [4058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 0)
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 0)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [15570] NativeFloorWrapper::withdraw(990000000000000000 [9.9e17])
+    │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: 0x0000000000000000000000000000000000000000, value: 990000000000000000 [9.9e17])
+    │   │   │   ├─ [883] ZZZLPRewardConverter::receive{value: 990000000000000000}()
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [62] NativeFloorLedger::receive{value: 990000000000000000}()
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit Converted(source: NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], routeId: 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, input: 2000000000 [2e9], nativeOutput: 990000000000000000 [9.9e17])
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   ├─ [4058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 0)
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 0)
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 990000000000000000 [9.9e17]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at LPRewardNativeFloorTest.testMissingNativePriceFailsClosedBeforeSpending
+
+[FAIL: next call did not revert as expected] testNonEighteenDecimalWrapperCannotBeAdmitted() (gas: 67204)
+Traces:
+  [67204] LPRewardNativeFloorTest::testNonEighteenDecimalWrapperCannotBeAdmitted()
+    ├─ [5699] NativeFloorWrapper::setDecimals(6)
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xc31eb0e0: c52a9bd300000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [44260] ZZZLPRewardConverter::configureWrapper(WrapperPolicy({ codeHash: 0x48a9746614317da3a9852b9e6317ca0a68a31e614ba1dd149ce75976331c759a, admin: 0x0000000000000000000000000000000000000000, implementation: 0x0000000000000000000000000000000000000000, adminOwner: 0x0000000000000000000000000000000000000000, adminCodeHash: 0x0000000000000000000000000000000000000000000000000000000000000000, implementationCodeHash: 0x0000000000000000000000000000000000000000000000000000000000000000, reviewHash: 0xee480b3f4344a444ac87fd1b729eda14022f9ad7a12a8fc676ec6bf8021d40ce }))
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [2495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit WrapperConfigured(policyHash: 0xad8c8cc9c684eaf91a8d3a63ce3ffbdac887149ce840ca11bf5c7f141406bda4, reviewHash: 0xee480b3f4344a444ac87fd1b729eda14022f9ad7a12a8fc676ec6bf8021d40ce)
+    │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at LPRewardNativeFloorTest.testNonEighteenDecimalWrapperCannotBeAdmitted
+
+[PASS] testProxyImplementationDriftRequiresNewAuthenticatedReview() (gas: 8756255)
+[FAIL: next call did not revert as expected] testStaleNativeFeedStopsConversionWithoutChangingRights() (gas: 2519008)
+Traces:
+  [2519008] LPRewardNativeFloorTest::testStaleNativeFeedStopsConversionWithoutChangingRights()
+    ├─ [131681] → new NativeFloorFeed@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [131681] → new NativeFloorFeed@0x2a07706473244BC757E10F2a9E86fB532828afe3
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [329172] ZZZOracle::setDualFeed(0x0000000000000000000000000000000000000000, SourcePolicy({ source: 0x212224D2F2d262cd093eE13240ca4873fcCBbA3C, expectedCodeHash: 0x5b7c7b1e7c9c72dcb9c74903d517b168654a81dd1cf66bcd5b5a177818a2c06f, independenceId: 0x75e253091f689d89fa024e1b81ecea8657b341d323b05b693ea0da444ea00208, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x2a07706473244BC757E10F2a9E86fB532828afe3, expectedCodeHash: 0x5b7c7b1e7c9c72dcb9c74903d517b168654a81dd1cf66bcd5b5a177818a2c06f, independenceId: 0x9959618b26d8fd172513c0810b0868143ba3dbd25150277a7924e8db3b33d5d8, maxAge: 3600, feedDecimals: 8 }), 0, 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 100000 [1e5], 100000 [1e5], 1
+    │   ├─ emit DualPolicyRecorded(id: 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd, token: 0x0000000000000000000000000000000000000000, primary: NativeFloorFeed: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], secondary: NativeFloorFeed: [0x2a07706473244BC757E10F2a9E86fB532828afe3], primaryIndependenceId: 0x75e253091f689d89fa024e1b81ecea8657b341d323b05b693ea0da444ea00208, secondaryIndependenceId: 0x9959618b26d8fd172513c0810b0868143ba3dbd25150277a7924e8db3b33d5d8, maxDeviationBps: 0, reviewHash: 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ emit DualPolicyActivated(token: 0x0000000000000000000000000000000000000000, previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0x1c37264a2d2e87e008367687112f99978b9d66beef57420e7dc2b07908e83efd
+    ├─ [0] VM::warp(103601 [1.036e5])
+    │   └─ ← [Return]
+    ├─ [131681] → new NativeFloorFeed@0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [131681] → new NativeFloorFeed@0xD16d567549A2a2a2005aEACf7fB193851603dd70
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [329029] ZZZOracle::setDualFeed(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], SourcePolicy({ source: 0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7, expectedCodeHash: 0x0f7560e4ebb3303395bb6174316b17593209a176edd6043eb7053bcbdbfcb18c, independenceId: 0x0212a063de2c71c679f402552098534313f8469630753ed72cd9f5b69bce6703, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0xD16d567549A2a2a2005aEACf7fB193851603dd70, expectedCodeHash: 0x0f7560e4ebb3303395bb6174316b17593209a176edd6043eb7053bcbdbfcb18c, independenceId: 0xf65485f233425ec33a3703ffb764bcafff4ae105f37c2a25a3034cac239e19f6, maxAge: 3600, feedDecimals: 8 }), 0, 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 6
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   ├─ emit DualPolicyRecorded(id: 0xac82f25976b810f592256255d0fe1c97ba772650d856306a724c3a2ca9cb9fb0, token: NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], primary: NativeFloorFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], secondary: NativeFloorFeed: [0xD16d567549A2a2a2005aEACf7fB193851603dd70], primaryIndependenceId: 0x0212a063de2c71c679f402552098534313f8469630753ed72cd9f5b69bce6703, secondaryIndependenceId: 0xf65485f233425ec33a3703ffb764bcafff4ae105f37c2a25a3034cac239e19f6, maxDeviationBps: 0, reviewHash: 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ emit DualPolicyActivated(token: NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], previousPolicy: 0xa148cea39a7e59bd8ee24c79acb8c9eb672ce279762c9b903f1fa5c4650df9f7, activePolicy: 0xac82f25976b810f592256255d0fe1c97ba772650d856306a724c3a2ca9cb9fb0)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xac82f25976b810f592256255d0fe1c97ba772650d856306a724c3a2ca9cb9fb0
+    ├─ [131681] → new NativeFloorFeed@0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [131681] → new NativeFloorFeed@0x13aa49bAc059d709dd0a18D6bb63290076a702D7
+    │   └─ ← [Return] 655 bytes of code
+    ├─ [331174] ZZZOracle::setDualFeed(NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], SourcePolicy({ source: 0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758, expectedCodeHash: 0x065b9a665a2b9e9fbed4d24765ba2ddd615372f5aa0d6e60d32e46dc28f7863f, independenceId: 0x52d063b9c25b6bf7da88e607a576d6ecdcaa8d64d91591e8226945eba8d68a00, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x13aa49bAc059d709dd0a18D6bb63290076a702D7, expectedCodeHash: 0x065b9a665a2b9e9fbed4d24765ba2ddd615372f5aa0d6e60d32e46dc28f7863f, independenceId: 0xfac30d74b97afaca61e2a498872bcf48f9e796441dee2912d34b7e02500c2f8d, maxAge: 3600, feedDecimals: 8 }), 0, 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [2570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 200000000000 [2e11], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   ├─ emit DualPolicyRecorded(id: 0xd118b590479401c0ac3245cb1875536e962acb1550b129a6d8d4515730372b1b, token: NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], primary: NativeFloorFeed: [0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758], secondary: NativeFloorFeed: [0x13aa49bAc059d709dd0a18D6bb63290076a702D7], primaryIndependenceId: 0x52d063b9c25b6bf7da88e607a576d6ecdcaa8d64d91591e8226945eba8d68a00, secondaryIndependenceId: 0xfac30d74b97afaca61e2a498872bcf48f9e796441dee2912d34b7e02500c2f8d, maxDeviationBps: 0, reviewHash: 0x474181a8a4065bec5a2229113707a7cbad02a31b9fc018e6ec48c03fad3576c7)
+    │   ├─ emit DualPolicyActivated(token: NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], previousPolicy: 0x78064446e747a0f8438c510e77ccbadca7125ea9a56ba5bec390514b5d3488ea, activePolicy: 0xd118b590479401c0ac3245cb1875536e962acb1550b129a6d8d4515730372b1b)
+    │   ├─ [664] NativeFloorAccess::canConfigure(LPRewardNativeFloorTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xd118b590479401c0ac3245cb1875536e962acb1550b129a6d8d4515730372b1b
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3: 00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000024cd215006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [507892] NativeFloorLedger::convert(0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 103661 [1.036e5])
+    │   ├─ [26058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   └─ ← [Return] true
+    │   ├─ [412537] ZZZLPRewardConverter::convert(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 2000000000 [2e9], 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, 1, 103661 [1.036e5])
+    │   │   ├─ [2454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [582] NativeFloorAccess::isSealed() [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [561] NativeFloorAccess::paused() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [2910] NativeFloorAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   ├─ [90937] ZZZOracle::quote(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 2000000000 [2e9]) [staticcall]
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [425] NativeFloorToken::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 6
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [570] NativeFloorWrapper::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 18
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 200000000000 [2e11], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [364] NativeFloorFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [479] NativeFloorAccess::protocolPolicy() [staticcall]
+    │   │   │   │   └─ ← [Return] NativeFloorGasPolicy: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   │   │   ├─ [333] NativeFloorGasPolicy::sourceCallGas() [staticcall]
+    │   │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   │   ├─ [761] NativeFloorFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 200000000000 [2e11], 103601 [1.036e5], 103601 [1.036e5], 1
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [3033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [2989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [30597] NativeFloorToken::transferFrom(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2000000000 [2e9])
+    │   │   │   ├─ emit Transfer(from: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000 [2e9]
+    │   │   ├─ [989] NativeFloorToken::balanceOf(NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [26058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [85201] NativeFloorVenue::exactInputSingle(ExactInputSingleParams({ tokenIn: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, tokenOut: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 500, recipient: 0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF, amountIn: 2000000000 [2e9], amountOutMinimum: 990000000000000000 [9.9e17], sqrtPriceLimitX96: 0 }))
+    │   │   │   ├─ [29797] NativeFloorToken::transferFrom(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2000000000 [2e9])
+    │   │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 2000000000 [2e9])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [47044] NativeFloorWrapper::mint(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 990000000000000000 [9.9e17])
+    │   │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 990000000000000000 [9.9e17])
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   │   ├─ [4058] NativeFloorToken::approve(NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 0)
+    │   │   │   ├─ emit Approval(owner: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], spender: NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], value: 0)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [989] NativeFloorToken::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1432] NativeFloorVenue::getPool(NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 500) [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [479] NativeFloorVenue::factory() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorVenue: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [336] NativeFloorVenue::token0() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [501] NativeFloorVenue::token1() [staticcall]
+    │   │   │   └─ ← [Return] NativeFloorWrapper: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   │   ├─ [562] NativeFloorVenue::fee() [staticcall]
+    │   │   │   └─ ← [Return] 500
+    │   │   ├─ [15570] NativeFloorWrapper::withdraw(990000000000000000 [9.9e17])
+    │   │   │   ├─ emit Transfer(from: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], to: 0x0000000000000000000000000000000000000000, value: 990000000000000000 [9.9e17])
+    │   │   │   ├─ [883] ZZZLPRewardConverter::receive{value: 990000000000000000}()
+    │   │   │   │   └─ ← [Stop]
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [1033] NativeFloorWrapper::balanceOf(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [62] NativeFloorLedger::receive{value: 990000000000000000}()
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit Converted(source: NativeFloorToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], routeId: 0x51a207b7db3824a5fda38cff23cc68d59b6c075fa53aa1bc7f8df2aab32435c1, input: 2000000000 [2e9], nativeOutput: 990000000000000000 [9.9e17])
+    │   │   ├─ [495] NativeFloorAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [454] NativeFloorAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 990000000000000000 [9.9e17]
+    │   ├─ [4058] NativeFloorToken::approve(ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 0)
+    │   │   ├─ emit Approval(owner: NativeFloorLedger: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], spender: ZZZLPRewardConverter: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], value: 0)
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 990000000000000000 [9.9e17]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at LPRewardNativeFloorTest.testStaleNativeFeedStopsConversionWithoutChangingRights
+
+[PASS] testStrongerCallerMinimumAndLyingReturnRollback() (gas: 1719121)
+Suite result: FAILED. 6 passed; 5 failed; 0 skipped; finished in 8.47ms (36.25ms CPU time)
+
+Ran 1 test suite in 37.10ms (8.47ms CPU time): 6 tests passed, 5 failed, 0 skipped (11 total tests)
+
+Failing tests:
+Encountered 5 failing tests in test/LPRewardNativeFloor.t.sol:LPRewardNativeFloorTest
+[FAIL: next call did not revert as expected] testDirectUnwrapRejectsChangedWrapperDecimals() (gas: 6653898)
+[FAIL: next call did not revert as expected] testDivergentWrapperPriceCannotWeakenFinalNativeFloor() (gas: 2069353)
+[FAIL: next call did not revert as expected] testMissingNativePriceFailsClosedBeforeSpending() (gas: 592365)
+[FAIL: next call did not revert as expected] testNonEighteenDecimalWrapperCannotBeAdmitted() (gas: 67204)
+[FAIL: next call did not revert as expected] testStaleNativeFeedStopsConversionWithoutChangingRights() (gas: 2519008)
+
+Encountered a total of 5 failing tests, 6 tests succeeded

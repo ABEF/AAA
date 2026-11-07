@@ -54,6 +54,7 @@ contract LPRewardConversionTest is Test {
         poolRegistry=new MockPools();poolRegistry.setFixedZZZ(address(t));a.bind(Ids.POOLS,address(poolRegistry));r.addAsset(address(t));
         oracle=new ZZZOracle(address(a),address(0));sf=new MockFeed(8,1e8);ef=new MockFeed(8,2000e8);
         oracle.setTestFeed(address(t),address(sf),3600);oracle.setTestFeed(address(w),address(ef),3600);a.bind(Ids.ORACLE,address(oracle));
+        oracle.setTestFeed(address(0),address(ef),3600);
         c=new ZZZLPRewardConverter(address(a),address(r),address(w));r.bindConverter(address(c));
         c.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
         c.setEnabled(true);venue=new ConversionVenue(address(t),w);

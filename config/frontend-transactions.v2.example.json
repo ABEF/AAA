@@ -1,0 +1,12 @@
+{
+  "schema": 2,
+  "chain_id": null,
+  "projection_sha256": null,
+  "fee_policy": {
+    "estimate_includes_all_fees": false,
+    "review_hash": null,
+    "max_gas_price_wei": null,
+    "max_network_fee_wei": null,
+    "max_gas_limit": "12000000"
+  }
+}

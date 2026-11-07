@@ -1,0 +1,39 @@
+{
+  "baseline_head": "c055684a558519eab308a24b81746bf1b9842d96",
+  "production_source_sha256": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
+  "test_source_sha256": "b0d05ce3204843d71703bb56e1931229572f74451d4e06f9bc9345640ebbd256",
+  "baseline": {
+    "passed": 6,
+    "failed": 5,
+    "skipped": 0,
+    "exit": 1,
+    "meaning": "Five new guard regressions demonstrate baseline acceptance; failures intentionally retained."
+  },
+  "fixed": {
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "exit": 0
+  },
+  "typecheck": {
+    "sources": 157,
+    "errors": 0,
+    "bytecode_execution": false,
+    "historical_import_final_line_endings": "Original CRLF restored after typecheck; normalized source text exact equality recorded."
+  },
+  "scope": "Actual current converter and Oracle, controlled router/wrapper/proxy/feeds and synthetic earned-ledger accounting seam. Not full Rewards7/NFT/canonical host, actual market/authority/gas qualification or deployment acceptance.",
+  "external_raw_outputs": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\contracts-nativefloor-a2",
+  "methods": [
+    "testDivergentWrapperPriceCannotWeakenFinalNativeFloor",
+    "testMissingNativePriceFailsClosedBeforeSpending",
+    "testAlignedPricesAcceptExactNinetyNinePercentAndPreserveCredits",
+    "testExistingStrongerWrapperFloorRemainsRequired",
+    "testStrongerCallerMinimumAndLyingReturnRollback",
+    "testStaleNativeFeedStopsConversionWithoutChangingRights",
+    "testNonEighteenDecimalWrapperCannotBeAdmitted",
+    "testFaultyUnwrapRollsBackSwapAndEarnedBalances",
+    "testDirectWrapperUnwrapNeedsNoOracleAndKeepsOneToOne",
+    "testDirectUnwrapRejectsChangedWrapperDecimals",
+    "testProxyImplementationDriftRequiresNewAuthenticatedReview"
+  ]
+}

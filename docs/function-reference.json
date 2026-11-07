@@ -44,7 +44,7 @@
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
       "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
-      "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "src/base/ZZZRewardConverter.sol": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
       "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
@@ -229,9 +229,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "9bd2dd00b7350b5ade3bf5ef256e7306588647a5dab11ab069761a0c8b51cd7f",
-    "compiler_output_sha256": "851644b31874db849ee420de30ee8e586161c5715dd052a370adc8c794d6fed5",
-    "size_evidence_sha256": "a8a54e48120cff59077720ceddf93c76ea9d7bfab1ca87dc7b69a6c6ea7e07fe",
+    "compiler_input_sha256": "5f22847e1c26441bf169988ec82bf45746d2c25043442bdf522c28e136c8da87",
+    "compiler_output_sha256": "00cc2b617c806750fc2500ab7c5021fc21be1095e35db934b3a2bcae1f6da9d4",
+    "size_evidence_sha256": "c996e7aab97ac34bfc7c36eeb3156e001acf00e24798966fb274038b13d58b9e",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -24739,7 +24739,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "548b04cc34ac131b892833cf34a7b6a3d1917c203be775500027f94ca173669d",
+  "notes_sha256": "d64bbd311901a35a821302102c6e8540d6b99cfa257737d6adc44dfa08eeda34",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -35134,7 +35134,7 @@
           "kind": "function",
           "name": "configureWrapper",
           "state_mutability": "nonpayable",
-          "purpose": "Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths.",
+          "purpose": "Review the immutable18-decimal wrapper runtime/proxy policy; execution revalidates identity, implementation and decimals. Native v4-only paths need no wrapper.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "status": "documented",
           "inputs": [
@@ -35245,7 +35245,7 @@
           "kind": "function",
           "name": "convert",
           "state_mutability": "nonpayable",
-          "purpose": "Pull exact already-earned ERC20 input from the bound ledger and return measured native ETH to that same ledger.",
+          "purpose": "Convert selected earned input to measured ETH. Non-wrapper v3 swaps retain the wrapper-reference floor AND require a fresh final-native-ETH floor; authenticated wrappers must have18decimals. Direct unwrap remains exact1:1 without USD reads.",
           "access": "Only the immutable bound reward ledger.",
           "status": "documented",
           "inputs": [

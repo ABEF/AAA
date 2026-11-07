@@ -1,0 +1,39 @@
+[
+  {
+    "index": 55,
+    "prior_fp": "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0",
+    "current_fp": "d9c49c40c67bdd23b46269cda3e097b07535bbca38376b412cb6e69f164f8372",
+    "diff": [
+      "--- \n",
+      "+++ \n",
+      "@@ -13,8 +13,8 @@\n",
+      " \t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)",
+      " \tState variables written after the call(s):",
+      " \t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)",
+      "+\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)",
+      " \t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)",
+      "-\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)",
+      " \tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:",
+      " \t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)",
+      " \t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#294)"
+    ]
+  },
+  {
+    "index": 68,
+    "prior_fp": "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e",
+    "current_fp": "6c0ca77c93af04040b316714e0b0f5f523a0b851582613e254ae508c5a93b6be",
+    "diff": [
+      "--- \n",
+      "+++ \n",
+      "@@ -13,7 +13,7 @@\n",
+      " \t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)",
+      " \tState variables written after the call(s):",
+      " \t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)",
+      "+\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)",
+      " \t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)",
+      "-\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)",
+      " \tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:",
+      " \t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)"
+    ]
+  }
+]

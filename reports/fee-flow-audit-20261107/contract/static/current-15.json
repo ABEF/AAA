@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "records": [
+    {
+      "index": 3,
+      "fingerprint": "70bafc396d1e8cc491bca212369d6819a403cb5ee05c1f9d6e857908a0781e25",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_convertV4 has one constructor-fixed ledger recipient, never an operator/user-selected address. convert admits only that ledger and enabled live operating state under nonReentrant. It pulls exact selected source rights, spends only the exact approved amount, enforces captured native-ETH quote/caller minimum and exact output, then verifies native/source prefunds remain unchanged after payment. Current royalty original-currency claims do not instantiate this converter."
+    },
+    {
+      "index": 6,
+      "fingerprint": "3f578109f1e6ad4f536bf2f2bb63c2790f8f7ac17d97360c65b9a106bffda8b8",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "convert intentionally captures wrappedBefore before exact pull/router. The v3 result must increase wrapper balance by exactly returned output and leave source prefund unchanged; after unwrap wrapper must return to wrappedBefore and native must increase by exact output. The function is nonReentrant/ledger-only/lifecycle-guarded. Stronger of independent wrapper and native-ETH quote floors now applies, with live reviewed wrapper decimals18 before/after. Actual nonstandard dependency behavior still needs qualification."
+    },
+    {
+      "index": 9,
+      "fingerprint": "172a119259bb5cef598f9bd591e5fc0810fc23830f5ab652ae1d3ac7d50f5997",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_convertV4 executes only through convert nonReentrant/ledger-only/live/operating. sourceBefore intentionally proves exact complete source spend, including after native ledger callback; nativeBefore brackets exact output and final payment. Fixed executor validates reviewed route and exact approved amount; caller/native oracle floor and deadline remain. A prior raw source or ETH prefund cannot subsidize returned output."
+    },
+    {
+      "index": 10,
+      "fingerprint": "683745c979559de93954fb8940bb13d63d19dddd3df386d37ccae4698cdad8c9",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "convert sourceBefore is an intentional exact-delta snapshot. ExactToken.pull takes exactly amount from immutable ledger, exact router allowance is reset, and source balance must return to pre-pull value. NonReentrant and fixed route/source/hash checks reject cross-function writes; wrapper/native payout floors, exact received output and lifecycle postchecks remain independent."
+    },
+    {
+      "index": 16,
+      "fingerprint": "84d7d197c0313e7e00848c99814bbf428a8de690977ed593b0e983d63e43e45b",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "During unwrap nativeSender admits only configured wrapper, not an arbitrary ETH callback source. convert is nonReentrant and _checkWrapper validates pinned/proxy policy plus decimals18 before/after. Exact wrapper return to wrappedBefore and native increase==output preserve all prefunds; final output must exceed stronger captured native/wrapper/caller floor. A broken/upgradeable wrapper is still a qualification/liveness risk, not universally guaranteed safe."
+    },
+    {
+      "index": 34,
+      "fingerprint": "b5a3a19d296c7e4cf8d5bf31a5d749ebba5950f4d774d944d4d18bea5c46f129",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "The ledger callback in _convertV4 receives only measured native output at constructor-fixed address. Both converter and real Rewards entrypoint are nonReentrant; final checks require source balance==sourceBefore and native balance==nativeBefore after payout. Any rejecting callback or unmatched token movement rolls back complete conversion/rights debit."
+    },
+    {
+      "index": 55,
+      "fingerprint": "d9c49c40c67bdd23b46269cda3e097b07535bbca38376b412cb6e69f164f8372",
+      "sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Individually reassessed unchanged executor close context after Slither changed only presentation order of the two nativeReceived=0 descendants. close is fixed Manager-only/current Access binding/sealed/nonReentrant; validates main+aux Vault ownership/pool, sends exact actual ETH/ZZZ receipts only to fixed Vault, then deletes association/count after both burns succeed. receive admits only temporarily expected PoolManager. Intermediate views confer no write authority; compromised core/periphery qualification remains required. Checker normalization was not broadened."
+    },
+    {
+      "index": 68,
+      "fingerprint": "6c0ca77c93af04040b316714e0b0f5f523a0b851582613e254ae508c5a93b6be",
+      "sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Individually reassessed unchanged executor collect context after presentation-only reordering of nativeReceived reset descendants. It is fixed Manager-only/sealed/nonReentrant, validates both owned LP IDs and collects each with zero-liquidity decrease. Temporary expected native sender and exact counter/balance proof isolate each leg, actual receipts go only to fixed Vault, mappings/liquidity remain. A callback cannot invoke another typed writer. No claim of safety against arbitrary compromised dependencies."
+    },
+    {
+      "index": 127,
+      "fingerprint": "6d46ce7cd32a9736aaddb8c103972d1c096888be7a17f195f47a48d241ff0359",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "RoutePolicy p intentionally starts all-zero and is read only inside source!=wrapper branch after loading routes[routeId], route enabled/source identity and reviewed router/factory/pool validation. Direct exact unwrap uses no p fields and requires zero route ID. v4 dispatch returns before this local. No undefined memory value reaches execution."
+    },
+    {
+      "index": 366,
+      "fingerprint": "ebacce9f024c7da70e40423faf8e2ab79f19920f597a0303af0c70cf06f8a716",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "nativeSender=v4Executor is a tightly scoped receive gate around fixed executor.execute; reset to zero immediately afterward. convert outer nonReentrant/lifecycle guards prevent callback economic reentry; exact output/source/native balances and post-ledger checks detect unexpected ETH/token changes. Setting/resetting a receive gate around its required callback is intentional."
+    },
+    {
+      "index": 372,
+      "fingerprint": "7dc76d125c6ccb94ba982d256f79c9a215644cc74417bcb597e27ef42523602f",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "nativeSender resets after reviewed wrapper.withdraw under convert nonReentrant. Only that temporary wrapper may send ETH; exact wrapper debit/native credit and postwithdraw proxy/code/decimals18 validation precede payment. Router callbacks occur while sender is zero; intermediate state cannot authorize another conversion or governance write in this contract."
+    },
+    {
+      "index": 373,
+      "fingerprint": "1e0e6e2c6b800b2537297c1b6f9eec9936a71c8a05511e1ae4138663160d09b2",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "nativeSender is assigned configured wrapper only AFTER exact v3 output/floors and route checks succeed, then used solely for one withdraw. convert is ledger-only/nonReentrant/live/operating; resetting after withdraw plus exact final balance checks prevents a persistent arbitrary-ETH receiver mode. No generic recipient/executor is introduced."
+    },
+    {
+      "index": 447,
+      "fingerprint": "6724ce89744579ba2356a227a0ecc640c23db7a71fe3c0ac235ca28018576482",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "convert deliberately separates native-v4, direct exact unwrap and reviewed-v3-to-wrapper branches. v3 captures both wrapper/native ETH quotes, ceil-applies governed loss to their stronger expected output, retains caller floor, exact balances/approvals and before/after wrapper/code/proxy/decimals checks. Complexity reflects distinct trust boundaries; reducing the metric must not drop a guard. Real feeds/routes/wrapper/gas and independent approval remain open."
+    },
+    {
+      "index": 453,
+      "fingerprint": "f9e7b5d102e366b2fe3c5be2a6fbe4aed352a694b31ed8114d445a051d4397a7",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Native v4 output is intentionally sent by low-level call only to immutable ledger. Success plus final unchanged native/source prefunds are verified under nonReentrant; rejecting ledger reverts whole conversion. There is no rescue recipient, governance-selected payout or arbitrary calldata."
+    },
+    {
+      "index": 456,
+      "fingerprint": "4e0d2e792910d9a20197485d8bc0d6f6390f23f405a2304e941cee238ffe84b1",
+      "sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "v3/unwrap output uses a deliberate native call to immutable ledger under nonReentrant and exact final nativeBefore proof. Source/wrapper balances and stronger captured native/wrapper/caller floors are independently enforced. Failed ledger receiver causes atomic rollback; optional wrapper is not used by native-v4 branch."
+    }
+  ]
+}

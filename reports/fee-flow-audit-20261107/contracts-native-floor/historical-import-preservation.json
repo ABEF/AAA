@@ -1,0 +1,26 @@
+{
+  "test/historical/ZZZRoyaltyConverter.sol": {
+    "original_sha256": "d86d8a7fb3b1c5ef476913686dfb60f024c44c1a05e54a5611aeb2d23fdeff28",
+    "final_sha256": "bb2046721bc4a100148018f8d3813634816075d8ebd957560c0484c79f70592f",
+    "only_exact_import_literal_replaced": true,
+    "typechecked_text_equal_after_line_ending_normalization": true
+  },
+  "test/RoyaltyConversion.t.sol": {
+    "original_sha256": "f8236b9654e8dfe52a57101d1cc47099926a233efe0c2c81a5ce2b7bf314f04a",
+    "final_sha256": "81a90abd0953afdc7b05a11007b7aaf1ca21342306d06c1de0a4a2572af64ac4",
+    "only_exact_import_literal_replaced": true,
+    "typechecked_text_equal_after_line_ending_normalization": true
+  },
+  "test/TypedV4Rewards.t.sol": {
+    "original_sha256": "a26324d8e554e7e06d6fa39a04ee9d56106c5115e68c4c9c448668e58445274b",
+    "final_sha256": "0668fe6f99a65dce911ba077cf4cd67d1e3f6f88391b65542597d9b7e3221d97",
+    "only_exact_import_literal_replaced": true,
+    "typechecked_text_equal_after_line_ending_normalization": true
+  },
+  "test/historical/RoyaltyRecoveryLegacy.t.sol": {
+    "original_sha256": "89a1fe2f0ae338ad4a28a029065b3314184bce063fa37ede2ffbfc84a40cc9f9",
+    "final_sha256": "57c190a2205832b4278fa0f0db5ec60dab31e872b4781dd03387a251ae74f6c3",
+    "only_exact_import_literal_replaced": true,
+    "typechecked_text_equal_after_line_ending_normalization": true
+  }
+}

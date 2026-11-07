@@ -1,0 +1,31 @@
+{
+  "prior_fixture_sha256": "0fbff68493129dfae788cfd40c36cdc835037230a7c14b2d448297f40c90cf24",
+  "current_fixture_sha256": "e54f73080d3e89452f7cf69ad868b83ac7e0d7e8923d4614409b8a9d06e5e5b6",
+  "producer_stdout_sha256": "4ad49aaf21178afcfa2a794998f41d749417d147b0a77e804ddfb07c6690e1b8",
+  "normal_source_basis": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\START.json",
+  "actual_method": "testExactLPRealVaultWireEnrollmentHarvestGrowthAndClaim()",
+  "actual_status": "Success",
+  "raw_log_count": 77,
+  "complete_raw_source_count": 95,
+  "raw_logs_equal_prior": false,
+  "changed_raw_log_indices": [
+    3,
+    4,
+    28,
+    36,
+    67,
+    72
+  ],
+  "changed_closure": {
+    "test/VaultAccounting.t.sol": {
+      "previous": "2eb4918fe067806f17cf035c68d0c532fa88a852deeb89147414d68c8feab5e1",
+      "current": "d110027b063b66ba547770232d124ff8df647568c9fd7db014c6a39497f3cc5c"
+    },
+    "src/base/ZZZRewardConverter.sol": {
+      "previous": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+      "current": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232"
+    }
+  },
+  "unchanged_producer_source": true,
+  "scope": "Fresh actual production Vault/NFT/Rewards/Fees/Membership local synthetic-venue producer; no target-provider/route/gas/marketplace or release qualification. Previous bytes retained as historical-original, not relabeled."
+}

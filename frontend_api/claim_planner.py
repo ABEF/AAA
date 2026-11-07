@@ -12,7 +12,7 @@ import re
 
 from frontend_api.service import ProjectionError, _bool, _quantity
 from frontend_api.transactions import (DRAFT_LIFETIME, MAX_CLAIMS,
-    MAX_SNAPSHOT_AGE, SIMULATION_GAS_LIMIT, TransactionInputError, _parse)
+    MAX_SNAPSHOT_AGE, TransactionInputError, GasHeadroomError, _parse)
 from zzz_ops.abi import keccak256
 from zzz_ops.errors import RemoteRPCError, RpcError, WorkLimit
 from zzz_ops.work_budget import bounded_request, checkpoint, expire_at
@@ -83,6 +83,7 @@ class _SnapshotReads:
         self.rpc, self.block, self.targets = rpc, block, targets
         self.cache, self.failures, self.trial = {}, [], {}
         self.global_error = None
+        self.block_gas = None
 
     def assert_available(self):
         if self.global_error is not None:
@@ -119,6 +120,13 @@ class _SnapshotReads:
             raise
         if method in ('eth_estimateGas', 'eth_gasPrice', 'eth_getBalance'):
             self.trial[method] = _bounded_quantity(value)
+        if execution and params and isinstance(params[0], dict):
+            self.trial['gas_cap'] = _bounded_quantity(params[0].get('gas'))
+        if method == 'eth_getBlockByHash' and isinstance(value, dict):
+            identity = tuple(value.get(key) for key in ('hash', 'number', 'timestamp', 'gasLimit'))
+            if self.block_gas is not None and self.block_gas != identity:
+                raise ProjectionError('Confirmed gas policy changed inside one claim plan')
+            self.block_gas = identity
         if cacheable and len(self.cache) < MAX_METADATA and isinstance(value, str):
             valid = (re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+', value) if method == 'eth_getCode'
                      else re.fullmatch(r'0x[0-9a-fA-F]{64}', value))
@@ -138,12 +146,15 @@ def _budget_refusal(reads, config):
     estimate = reads.trial.get('eth_estimateGas')
     if estimate is None or estimate < 21000:
         return False
-    if estimate > SIMULATION_GAS_LIMIT:
-        return True
+    cap = reads.trial.get('gas_cap')
+    if cap is None or not 21000 <= cap <= config.max_gas_limit:
+        return False
     price = reads.trial.get('eth_gasPrice')
     if price is None or not 0 < price <= config.max_price:
         return False
-    cost = min(SIMULATION_GAS_LIMIT, (estimate*120+99)//100)*price
+    if estimate > cap or (config.schema == 2 and (estimate*120+99)//100 > cap):
+        return True
+    cost = min(cap, (estimate*120+99)//100)*price
     return cost > config.max_fee or (reads.trial.get('eth_getBalance') is not None and
                                     reads.trial['eth_getBalance'] < cost)
 
@@ -167,6 +178,9 @@ class ClaimPlanner:
         p.rpc = reads
         p._snapshot = lambda: (copy.deepcopy(header), head, copy.deepcopy(block))
         lifecycle = p._verify_deployment(block)
+        prepared = copy.copy(self.transactions)
+        prepared.projection = p
+        gas_review = prepared._gas_review(header)
         health = {}
         lp_assets, royalty_assets = p._admitted(block, asset_health=health)
         # The ordinary read adapter isolates optional metadata faults. A known
@@ -229,8 +243,6 @@ class ClaimPlanner:
             row.update(status='pending', reason='requires_simulation')
             eligible.append(index)
 
-        prepared = copy.copy(self.transactions)
-        prepared.projection = p
         attempts, best = [], []
         low, high, size = 1, len(eligible), len(eligible)
         while eligible and low <= high and len(attempts) < MAX_TRIALS:
@@ -242,7 +254,7 @@ class ClaimPlanner:
                 prepared.prepare(request)
             except WorkLimit:
                 raise
-            except (RpcError, TransactionInputError) as error:
+            except (RpcError, TransactionInputError, GasHeadroomError) as error:
                 reads.assert_available()
                 execution_error = reads.trial.get('error')
                 opaque = execution_error is not None and _opaque_execution(execution_error[1], execution_error[0])
@@ -281,12 +293,12 @@ class ClaimPlanner:
             raise ProjectionError('Claim plan expires before publication')
         remaining = [dict(token_id=r['token_id'],asset=r['asset'],royalty=r['royalty'],
             selection_index=r['selection_index'],status=r['status'],reason=r['reason']) for r in entries if r['status'] not in ('zero','in_next_batch')]
-        return dict(schema=1,kind='unsigned_claim_plan',wallet=owner,chain_id=p.chain,
+        return dict(schema=self.transactions.config.schema,kind='unsigned_claim_plan',wallet=owner,chain_id=p.chain,
             next_batch=draft,entries=entries,remaining_claims=remaining,
             prepared_at=now,expires_at=expires,lifecycle=lifecycle,
             planning=dict(maximum_selection=MAX_CLAIMS,maximum_trials=MAX_TRIALS,
                 trial_count=len(attempts),attempts=attempts,final_batch_revalidated=draft is not None,
-                batch_optimality_guaranteed=False,simulation_gas_cap=str(SIMULATION_GAS_LIMIT)),
+                batch_optimality_guaranteed=False,simulation_gas_cap=str(gas_review.effective)),
             provenance=dict(block_number=header['number'],block_hash=header['hash'],
                 block_timestamp=header['timestamp'],observed_head=head,configuration_sha256=p.identity,
                 transaction_configuration_sha256=self.transactions.config.identity,

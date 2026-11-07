@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) closes source
+defects in final-ETH floors, keeper conversion capacity/deadline/day handling and
+zero-noop replay. Optional gas policy2 is implemented without rollout; next qualify
+actual cheap1% routes/native feeds and matching schema2 consumers/providers/fees,
+then actual gas/recovery and independent audit. The soleTodo owns statuses.
+
 Reviewed6November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate

@@ -1,0 +1,84 @@
+test_claimed_active_nft_can_have_zero_conversion_row (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_claimed_active_nft_can_have_zero_conversion_row) ... ERROR
+test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income) ... ERROR
+test_mixed_funded_and_dormant_rows_preserve_books_and_income (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_mixed_funded_and_dormant_rows_preserve_books_and_income) ... ERROR
+test_noop_cannot_hide_a_nonzero_unconverted_entitlement (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_cannot_hide_a_nonzero_unconverted_entitlement) ... FAIL
+test_noop_rejects_malformed_topics_and_data (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_rejects_malformed_topics_and_data) ... ok
+test_noop_requires_minted_nft_and_deployment_source (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_requires_minted_nft_and_deployment_source) ... ok
+test_noop_retains_retirement_and_timestamp_guards (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_retirement_and_timestamp_guards) ... ok
+test_noop_retains_same_transaction_funding_acknowledgment (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_retains_same_transaction_funding_acknowledgment) ... ok
+test_zero_source_cannot_credit_either_native_component (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_zero_source_cannot_credit_either_native_component) ... ok
+
+======================================================================
+ERROR: test_claimed_active_nft_can_have_zero_conversion_row (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_claimed_active_nft_can_have_zero_conversion_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 72, in test_claimed_active_nft_can_have_zero_conversion_row
+    conversion(feed, IDS[0], [0, 0, 0, 0])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 28, in conversion
+    return feed.emit('rewards', CONVERTED, [identifier, source], amounts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_backend.py", line 34, in emit
+    self.model(self.roles[role],topics,raw,1,'0x'+'aa'*32,100,'0x'+f'{self.tx:064x}',self.index)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_exact_lp.py", line 110, in __call__
+    source=_topic_address(topics[2]);require(source==self.pair[1] and sum(d[:2])>0,'Invalid exact LP conversion source')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 48, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Invalid exact LP conversion source
+
+======================================================================
+ERROR: test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 139, in test_history_and_exact_replay_keep_transferred_owner_claim_and_no_new_income
+    conversion(feed, IDS[1], [0, 0, 0, 0])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 28, in conversion
+    return feed.emit('rewards', CONVERTED, [identifier, source], amounts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 43, in emit
+    result = super().emit(role, signature, indexed, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_backend.py", line 34, in emit
+    self.model(self.roles[role],topics,raw,1,'0x'+'aa'*32,100,'0x'+f'{self.tx:064x}',self.index)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_exact_lp.py", line 110, in __call__
+    source=_topic_address(topics[2]);require(source==self.pair[1] and sum(d[:2])>0,'Invalid exact LP conversion source')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 48, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Invalid exact LP conversion source
+
+======================================================================
+ERROR: test_mixed_funded_and_dormant_rows_preserve_books_and_income (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_mixed_funded_and_dormant_rows_preserve_books_and_income)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 56, in test_mixed_funded_and_dormant_rows_preserve_books_and_income
+    conversion(feed, IDS[1], [0, 0, 0, 0])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 28, in conversion
+    return feed.emit('rewards', CONVERTED, [identifier, source], amounts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_backend.py", line 34, in emit
+    self.model(self.roles[role],topics,raw,1,'0x'+'aa'*32,100,'0x'+f'{self.tx:064x}',self.index)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_exact_lp.py", line 110, in __call__
+    source=_topic_address(topics[2]);require(source==self.pair[1] and sum(d[:2])>0,'Invalid exact LP conversion source')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 48, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Invalid exact LP conversion source
+
+======================================================================
+FAIL: test_noop_cannot_hide_a_nonzero_unconverted_entitlement (tests_python.test_exact_lp_conversion_noop.ExactLPConversionNoopTests.test_noop_cannot_hide_a_nonzero_unconverted_entitlement)
+----------------------------------------------------------------------
+frontend_api.history.HistoryError: Invalid exact LP conversion source
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_noop.py", line 93, in test_noop_cannot_hide_a_nonzero_unconverted_entitlement
+    with self.assertRaisesRegex(HistoryError, 'changed source rights'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "changed source rights" does not match "Invalid exact LP conversion source"
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.122s
+
+FAILED (failures=1, errors=3)

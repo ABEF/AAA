@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
+the final ETH conversion value, size affordable keeper batches, stop stale sends
+and preserve zero-noop earnings history. Explicit unsigned gas policy2 is an
+optional reviewed backend setting after sealing; no deployed environment changes.
+
 PoPL connects transferable ERC-721 NFTs to vault-managed ETH/ZZZ liquidity.
 Activation attaches an independently accounted LP share and unlocks funded LP
 fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal

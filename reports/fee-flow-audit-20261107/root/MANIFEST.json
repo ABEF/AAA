@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "scope": "Root API/gas-policy, release/reference, whole ABI typing and Factory rebind evidence; no deployment or production qualification",
+  "baseline": "c055684a558519eab308a24b81746bf1b9842d96",
+  "copies": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\api-attempt1\\status.json",
+      "path": "api-attempt1/status.json",
+      "raw_sha256": "f01b7f1697047a31aa76fd7795d9ba62f6ea8ecccfb8a04b7703b05b105f0c80",
+      "stored_sha256": "f01b7f1697047a31aa76fd7795d9ba62f6ea8ecccfb8a04b7703b05b105f0c80",
+      "raw_bytes": 1128,
+      "stored_bytes": 1128,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\api-attempt1\\stderr.txt",
+      "path": "api-attempt1/stderr.txt",
+      "raw_sha256": "34f1f1aedd11c1a977434c39b6986b5f1d08f785df2f209edc2aef706d67fa14",
+      "stored_sha256": "34f1f1aedd11c1a977434c39b6986b5f1d08f785df2f209edc2aef706d67fa14",
+      "raw_bytes": 11450,
+      "stored_bytes": 11450,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\api-attempt1\\stdout.txt",
+      "path": "api-attempt1/stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "stored_bytes": 0,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\release-checks\\status.json",
+      "path": "release-checks/status.json",
+      "raw_sha256": "98a55994e59770ff90101d7fdadf701c7aba2f0e2ea8d723547a9376c3bb96cb",
+      "stored_sha256": "98a55994e59770ff90101d7fdadf701c7aba2f0e2ea8d723547a9376c3bb96cb",
+      "raw_bytes": 615,
+      "stored_bytes": 615,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\release-checks\\stderr.txt",
+      "path": "release-checks/stderr.txt",
+      "raw_sha256": "846d18e5c4716fc24a3100afca097329d41c658d291a2ddfdec5dbe9614f10c0",
+      "stored_sha256": "846d18e5c4716fc24a3100afca097329d41c658d291a2ddfdec5dbe9614f10c0",
+      "raw_bytes": 30211,
+      "stored_bytes": 30211,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\release-checks\\stdout.txt",
+      "path": "release-checks/stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "stored_bytes": 0,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\artifact-rebind\\config\\factory-code-storage-v3.json",
+      "path": "artifact-rebind/config/factory-code-storage-v3.json",
+      "raw_sha256": "6ae4677d6313a27bcc0d75eb05aaa82e8253d44975d269afaaf65467e70de906",
+      "stored_sha256": "6ae4677d6313a27bcc0d75eb05aaa82e8253d44975d269afaaf65467e70de906",
+      "raw_bytes": 10864,
+      "stored_bytes": 10864,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\artifact-rebind\\docs\\function-reference-notes.json",
+      "path": "artifact-rebind/docs/function-reference-notes.json.gz",
+      "raw_sha256": "dae60dd067b097ca1419fa35847c0a9f0b7fa6656f6b7709108ae7f714e16f3b",
+      "stored_sha256": "2f2344fd0181299afb27f736c96014b78a9123d55c9a0d79806c6266b7bd3fc8",
+      "raw_bytes": 509700,
+      "stored_bytes": 99303,
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\artifact-rebind\\PROOF.json",
+      "path": "artifact-rebind/PROOF.json",
+      "raw_sha256": "05372cceb80358f967297ddaeae56bf3786c2fb219e8997eb5f248d547dd7810",
+      "stored_sha256": "05372cceb80358f967297ddaeae56bf3786c2fb219e8997eb5f248d547dd7810",
+      "raw_bytes": 758,
+      "stored_bytes": 758,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\artifact-rebind\\zzz_ops\\factory_code_v3.py",
+      "path": "artifact-rebind/zzz_ops/factory_code_v3.py",
+      "raw_sha256": "8b35215dd645c090993c027b501e9325828ff630d37cc5056c287113d74212a1",
+      "stored_sha256": "8b35215dd645c090993c027b501e9325828ff630d37cc5056c287113d74212a1",
+      "raw_bytes": 5966,
+      "stored_bytes": 5966,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\abi-all-628ebdf84b\\input.json",
+      "path": "abi-all-628ebdf84b/input.json.gz",
+      "raw_sha256": "fb4d95f42689ed5034924f5addc043c71e03f9ac06a117925ca6ee8362d767b8",
+      "stored_sha256": "b841c5a89192a2711171b6fdd35238d267200bb487762ae8cd5f8e48acc41db0",
+      "raw_bytes": 3736968,
+      "stored_bytes": 637026,
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\abi-all-628ebdf84b\\output.json",
+      "path": "abi-all-628ebdf84b/output.json.gz",
+      "raw_sha256": "db9a7c13141d32e2591e6a10eb0a6866aea878568e845b93313823992f834027",
+      "stored_sha256": "063ced659273c05365e224403fe6a5f42a04931fbc57823b36dc352230ee8530",
+      "raw_bytes": 2682208,
+      "stored_bytes": 155354,
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\abi-all-628ebdf84b\\status.json",
+      "path": "abi-all-628ebdf84b/status.json",
+      "raw_sha256": "abb023731f723f3db925abb8a264cb4b54ef335bfed880c5d91f1778fe4ded89",
+      "stored_sha256": "abb023731f723f3db925abb8a264cb4b54ef335bfed880c5d91f1778fe4ded89",
+      "raw_bytes": 37258,
+      "stored_bytes": 37258,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\abi-all-628ebdf84b\\stderr.txt",
+      "path": "abi-all-628ebdf84b/stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "stored_bytes": 0,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\BASELINE.json",
+      "path": "provenance/BASELINE.json.gz",
+      "raw_sha256": "a42957e401b6550e633785b329ae85330a7fe634b92ca33e4ff89ce93aca72b3",
+      "stored_sha256": "ceb5aaf097679fdf9fc3b638b86ce74fbb959c331c9dcadc3dc4694af2595579",
+      "raw_bytes": 633018,
+      "stored_bytes": 229084,
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\initial-status.txt",
+      "path": "provenance/initial-status.txt",
+      "raw_sha256": "85e3afa1d9085fb7b173345201c1c0253efffb6b2d07b214b004b75c86b52d6d",
+      "stored_sha256": "85e3afa1d9085fb7b173345201c1c0253efffb6b2d07b214b004b75c86b52d6d",
+      "raw_bytes": 2071,
+      "stored_bytes": 2071,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\source-checks-final.json",
+      "path": "provenance/source-checks-final.json",
+      "raw_sha256": "2707d9815acba6acff220afd6ce33107e594d1e9aef093547bec1edc025e57c5",
+      "stored_sha256": "2707d9815acba6acff220afd6ce33107e594d1e9aef093547bec1edc025e57c5",
+      "raw_bytes": 5976,
+      "stored_bytes": 5976,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\run_api_tests.py",
+      "path": "provenance/run_api_tests.py",
+      "raw_sha256": "f3e7e066eaa0256e4f85b187f937a9d058d6eb464db54736bee866a1363cba72",
+      "stored_sha256": "f3e7e066eaa0256e4f85b187f937a9d058d6eb464db54736bee866a1363cba72",
+      "raw_bytes": 1013,
+      "stored_bytes": 1013,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\run_release_checks.py",
+      "path": "provenance/run_release_checks.py",
+      "raw_sha256": "48b8956b32a672ad4d0ab49ccd5d4140aaead25fc2821eb6987fc713a9298566",
+      "stored_sha256": "48b8956b32a672ad4d0ab49ccd5d4140aaead25fc2821eb6987fc713a9298566",
+      "raw_bytes": 1023,
+      "stored_bytes": 1023,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\abi_all.py",
+      "path": "provenance/abi_all.py",
+      "raw_sha256": "fa478e2644ceacb952a354a0033424cfb902f3e79c86b2dcd4c82c15fff020d8",
+      "stored_sha256": "fa478e2644ceacb952a354a0033424cfb902f3e79c86b2dcd4c82c15fff020d8",
+      "raw_bytes": 2640,
+      "stored_bytes": 2640,
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\rebind_artifact_notes.py",
+      "path": "provenance/rebind_artifact_notes.py",
+      "raw_sha256": "30bc95728aa8f0fe691119166424a249840136e6d1b1c9b793b3f567d43f56b0",
+      "stored_sha256": "30bc95728aa8f0fe691119166424a249840136e6d1b1c9b793b3f567d43f56b0",
+      "raw_bytes": 2946,
+      "stored_bytes": 2946,
+      "gzip": false
+    }
+  ],
+  "protected4_unchanged": true,
+  "original_reports_unchanged": 3881,
+  "abi_source317_unchanged": true
+}

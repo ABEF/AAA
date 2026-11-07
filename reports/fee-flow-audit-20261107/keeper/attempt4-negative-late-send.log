@@ -1,0 +1,23 @@
+test_preparation_that_expires_after_estimate_never_saves_intent_or_signs (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_preparation_that_expires_after_estimate_never_saves_intent_or_signs) ... FAIL
+test_utc_rollover_uses_new_day_budget_without_rewriting_prepared_deadline (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_utc_rollover_uses_new_day_budget_without_rewriting_prepared_deadline) ... FAIL
+
+======================================================================
+FAIL: test_preparation_that_expires_after_estimate_never_saves_intent_or_signs (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_preparation_that_expires_after_estimate_never_saves_intent_or_signs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_capacity.py", line 229, in test_preparation_that_expires_after_estimate_never_saves_intent_or_signs
+    self.assertFalse(self.k.lp_rewards.scan_once())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_utc_rollover_uses_new_day_budget_without_rewriting_prepared_deadline (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_utc_rollover_uses_new_day_budget_without_rewriting_prepared_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_capacity.py", line 238, in test_utc_rollover_uses_new_day_budget_without_rewriting_prepared_deadline
+    self.assertFalse(self.k.lp_rewards.scan_once())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.391s
+
+FAILED (failures=2)

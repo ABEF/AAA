@@ -107,10 +107,14 @@ class ExactReplay(Replay):
                 elif name=='Claimed':
                     asset=_topic_address(topics[2]);require(sum(self._take(identifier,asset))==d[0],'Exact LP claim differs from assigned components')
                 else:
-                    source=_topic_address(topics[2]);require(source==self.pair[1] and sum(d[:2])>0,'Invalid exact LP conversion source')
+                    source=_topic_address(topics[2]);require(source==self.pair[1],'Invalid exact LP conversion source')
+                    # A funded batch may include minted NFTs with no source
+                    # entitlement. Rewards emits an all-zero row for each one.
+                    require(all(d[n]!=0 or d[n+2]==0 for n in (0,1)),
+                            'Exact LP conversion credits an empty source component')
                     require(self._take(identifier,source)==d[:2],'Exact LP conversion changed source rights')
-                    self.direct[identifier,ZERO][0]=uint(self.direct[identifier,ZERO][0]+d[2])
-                    self.direct[identifier,ZERO][1]=uint(self.direct[identifier,ZERO][1]+d[3])
+                    if d[2]:self.direct[identifier,ZERO][0]=uint(self.direct[identifier,ZERO][0]+d[2])
+                    if d[3]:self.direct[identifier,ZERO][1]=uint(self.direct[identifier,ZERO][1]+d[3])
                 return
             if role=='vault' and base and base[0]=='SharesAdded':
                 identifier=int(topics[1],16);bucket=int(topics[2],16);d=[int(x,16) for x in decode_words(data)]

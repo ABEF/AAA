@@ -1,0 +1,44 @@
+from pathlib import Path
+import json,gzip,hashlib,shutil,importlib.util
+r=Path.cwd();e=Path(__file__).parent;d=r/'reports/fee-flow-audit-20261107';normal=e/'normal-final-4de5dcc67c';static=e/'static-e639dc6589';copies=[];derived=[]
+def sha(p):
+ h=hashlib.sha256()
+ with p.open('rb')as f:
+  for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+ return h.hexdigest()
+before=json.loads((normal/'START.json').read_text())['source_sha256'];assert all(sha(r/n)==h for n,h in before.items())
+def copy(p,rel,z=False):
+ p=Path(p);q=d/rel;q.parent.mkdir(parents=True,exist_ok=True);assert not q.exists(),q
+ with p.open('rb')as si,q.open('xb')as so:
+  if z:
+   with gzip.GzipFile(fileobj=so,filename='',mode='wb',mtime=0,compresslevel=9)as gz:shutil.copyfileobj(si,gz,1024*1024)
+  else:shutil.copyfileobj(si,so,1024*1024)
+ copies.append({'original_absolute_path':str(p),'original_raw_sha256':sha(p),'original_bytes':p.stat().st_size,'published_relative_path':q.relative_to(r).as_posix(),'published_sha256':sha(q),'published_bytes':q.stat().st_size,'action':'gzip_mtime0_empty_filename'if z else'byte_identical_copy'})
+for f in ['START.json','production-size-gates.json','compiler-input.json','solc-stderr.txt']:copy(normal/f,'contract/normal-final-4de5dcc67c/'+f)
+copy(normal/'compiler-output.json','contract/normal-final-4de5dcc67c/compiler-output.json.gz',True)
+for f in ['START.json','EXECUTION.json']:copy(static/f,'contract/static/'+f)
+for f in ['slither.json','detectors-only.json','slither.log']:copy(static/f,'contract/static/'+f+'.gz',True)
+for p in(static/'build-info').glob('*.json'):copy(p,'contract/static/build-info/'+p.name+'.gz',True)
+for f in ['STATIC_INVENTORY.json','STATIC_CURRENT.json']:
+ copy(e/f,'contract/static/'+f+'.gz',True)
+for f in ['STRICT_CHECK.json','EXPECTED_OLD_RECORD_REJECTION.json','PRESENTATION_DIFFERENCES.json']:
+ copy(e/f,'contract/static/'+f)
+copy(e/'CURRENT_REVIEW_15.json','contract/static/current-15.json')
+for f in ['OBJECT_AND_FACTORY_COMPARISON.json','ABI_AND_EXECUTABLE_COMPARISON.json','STORAGE_AND_CANONICAL_EQUIVALENCE.json','TOOLS.json']:
+ copy(e/f,'contract/'+f)
+for f in ['build-closed.py','run-static.py','inventory.py','build_review.py','compare_objects.py','compare_storage.py','reject_old_record.py','package.py']:
+ copy(e/f,'contract/provenance/'+f+'.txt')
+for f in ['static-review.json','static-detectors.json','static-coverage.json']:
+ p=d/f;derived.append({'published_relative_path':p.relative_to(r).as_posix(),'published_sha256':sha(p),'action':'Full exact532 source-bound review / exact4-field projection of actual raw findings / coverage summary; no normalization broadening.','inputs':[{'absolute_path':str(e/'build_review.py'),'raw_sha256':sha(e/'build_review.py')},{'absolute_path':str(static/'detectors-only.json'),'raw_sha256':sha(static/'detectors-only.json')}]})
+for row in copies:
+ p=r/row['published_relative_path'];h=hashlib.sha256()
+ if row['action'].startswith('gzip'):
+  with gzip.open(p,'rb')as f:
+   for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+  assert h.hexdigest()==row['original_raw_sha256']
+ else:assert sha(p)==row['original_raw_sha256']
+assert before=={n:sha(r/n)for n in before}
+s=importlib.util.spec_from_file_location('checker',r/'scripts/check-slither-review.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);errors=m.check(json.loads((static/'detectors-only.json').read_text()),json.loads((d/'static-review.json').read_text()));assert not errors,errors
+protected={'reports/source-checks.json':'049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4','scripts/run-fork-checks.py':'875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b','tests_python/test_fork_runner.py':'6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9','tests_python/test_frontend_history.py':'361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb'};assert all(sha(r/n)==h for n,h in protected.items())
+manifest={'schema':1,'scope':'Closed normal87/46+2, actual offline Slither532+strict15current/517exactsource reuse and compiler equivalence. Root owns prose/defaults/functionrefs/F3rebinding; contract agent owns focused11 EVM evidence.','copies':copies,'derived_artifacts':derived,'copy_roundtrips_verified':True,'all87_raw_sources_unchanged':True,'protected4_preserved':True,'strict_actual_raw_review_pass':True,'raw_analyzer_exit':4294967295,'no_limits_raised':True,'no_build_analyzer_or_EVM_rerun_during_packaging':True,'prior_compiler_evidence_referenced_not_duplicated':'reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed','external_duplicates_not_copied':[{'absolute_path':str(static/'out'),'reason':'Per-object analyzer copies can be regenerated from packaged normal compiler output and actual packaged build-info/run-static script.'}],'no_deployment_service_site_journal_signer_change':True}
+p=d/'COPY_MANIFEST_PHYSICAL.json';assert not p.exists();p.write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps({'manifest':str(p),'sha256':sha(p),'copies':len(copies),'derived':len(derived),'bytes':sum(x['published_bytes']for x in copies),'strict_pass':True},indent=2))

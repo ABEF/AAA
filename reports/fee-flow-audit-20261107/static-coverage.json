@@ -1,0 +1,28 @@
+{
+  "strict_records": 532,
+  "current_contexts_individually_reviewed": 15,
+  "unique_exact_fingerprint_and_referenced_source_reused": 517,
+  "current_dispositions": {
+    "false_positive": 11,
+    "informational": 3,
+    "accepted_risk": 1
+  },
+  "raw_analyzer_exit": 4294967295,
+  "analyzer_json_success": true,
+  "source_unchanged": true,
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "no_checker_normalization_changed": true,
+  "presentation_contexts_reassessed": [
+    55,
+    68
+  ],
+  "normal87object46_plus2carriers": true,
+  "only_production_source_changed": "src/base/ZZZRewardConverter.sol",
+  "limits": [
+    "Internal detector coverage is not absence of exploitable bugs or independent approval.",
+    "Native ETH and wrapper feeds/routes/proxy/runtime/token behavior require independent qualification; unknown dependencies can fail.",
+    "No public transaction/service/site/chain/journal/signer change.",
+    "Old integration532/royalty history evidence remains source-scoped, not silently relabeled."
+  ]
+}

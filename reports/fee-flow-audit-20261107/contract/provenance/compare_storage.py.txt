@@ -1,0 +1,31 @@
+from pathlib import Path
+import json,hashlib
+e=Path(__file__).parent;v=e.parents[1];old=v/'exact-lp-integration-20261106-64f9/normal-final-5994e91eed';new=e/'normal-final-4de5dcc67c';a=json.loads((old/'compiler-output.json').read_text());b=json.loads((new/'compiler-output.json').read_text())
+def normalized_layout(obj):
+ layout=obj.get('storageLayout',{});types=layout.get('types')or{}
+ def node(n):
+  if isinstance(n,list):return[node(x)for x in n]
+  if not isinstance(n,dict):return n
+  result={}
+  for k,x in n.items():
+   if k=='astId':continue # declaration IDs shift when new import/expressions add AST nodes
+   if k in {'type','base','key','value'}and isinstance(x,str)and x in types:result[k]=node(types[x])
+   else:result[k]=node(x)
+  return result
+ return node(layout.get('storage',[]))
+layouts=[];changed=[]
+for source,contracts in a['contracts'].items():
+ if not source.startswith('src/'):continue
+ for name,obj in contracts.items():
+  if not obj.get('evm',{}).get('bytecode',{}).get('object'):continue
+  x=normalized_layout(obj);y=normalized_layout(b['contracts'][source][name]);same=x==y
+  layouts.append({'contract':source+'::'+name,'storage_declarations_equal':same,'before_semantic_layout_sha256':hashlib.sha256(json.dumps(x,sort_keys=True).encode()).hexdigest(),'after_semantic_layout_sha256':hashlib.sha256(json.dumps(y,sort_keys=True).encode()).hexdigest()})
+  if not same:changed.append(source+'::'+name)
+assert not changed,changed
+children=[]
+for name in ['ZZZCanonicalHandoff','ZZZVaultCanonical','ZZZRewardsCanonical','ZZZNFTCanonical','ZZZFeesCanonical','ZZZMembership','ZZZNFT','ZZZRoyaltyRewards']:
+ source='src/'+name+'.sol';x=a['contracts'][source][name];y=b['contracts'][source][name]
+ ce=x['evm']['bytecode']['object']==y['evm']['bytecode']['object'];rt=x['evm']['deployedBytecode']['object']==y['evm']['deployedBytecode']['object'];assert ce and rt,name
+ children.append({'contract':source+'::'+name,'creation_object_byte_identical':ce,'runtime_object_byte_identical':rt})
+d={'schema':1,'before_normal':str(old),'after_normal':str(new),'normal46_semantic_storage_declarations_equal':True,'layout_method':'Retain ordered storage entries, names, contract, slot, byte offset and recursively resolved complete type encoding/label/byte width/member/base/key/value structure; ignore only nonsemantic astId values and replace opaque AST-numbered type identifiers by their full definitions. No storage slot/type/name or width is discarded.','layouts':layouts,'canonical_modules_and_nft_exact_object_equality':children,'converter_no_ABI_or_storage_declaration_change':True,'scope':'Compiler-object/source equivalence only, not deployed address/immutable-value equality. Combined with exact executable Rewards runtime equality after CBOR removal justifies source-scoped canonical34 reuse; its original stage hashes remain historical and are not relabeled.'}
+p=e/'STORAGE_AND_CANONICAL_EQUIVALENCE.json';assert not p.exists();p.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps({'storage_declarations_equal':not changed,'normal_objects':len(layouts),'canonical_modules_exact':len(children)},indent=2))

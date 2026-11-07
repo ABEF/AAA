@@ -1,0 +1,10 @@
+{
+  "abi_equal": true,
+  "method_identifiers_equal": true,
+  "all_contract_state_struct_event_declarations_before_constructor_byte_equal": true,
+  "v4_execution_function_byte_equal": true,
+  "baseline_runtime_bytes": 16830,
+  "fixed_runtime_bytes": 17178,
+  "compiler_settings": "0.8.26/Cancun/viaIR/optimizer runs1/yulfalse, unchanged",
+  "fixture_envelope": "code_size_limit200000/gas1B applies to composite test fixture only; not production gates"
+}

@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "before_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "after_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c",
+  "closed_source_count": 87,
+  "source_changes": [
+    "src/base/ZZZRewardConverter.sol"
+  ],
+  "all_source87_inventory_names_identical": true,
+  "all_contract_ABIs_equal": true,
+  "normal_production_objects": 46,
+  "runtime_changes": [
+    "src/ZZZLPRewardConverter.sol::ZZZLPRewardConverter",
+    "src/ZZZRewards.sol::ZZZRewards"
+  ],
+  "executable_runtime_changes_after_exact_CBOR_strip": [
+    "src/ZZZLPRewardConverter.sol::ZZZLPRewardConverter"
+  ],
+  "Rewards_runtime_difference_metadata_only": true,
+  "method": "For each differing runtime, read final2bytes as canonical Solidity metadata byte length; compare every preceding executable byte exactly. No opcode/value normalization or dropped code. Creation code may embed changed metadata; runtime identity still requires fresh pins.",
+  "new_converter_raw_sha256": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
+  "raw_compiler_input_sha256": "5f22847e1c26441bf169988ec82bf45746d2c25043442bdf522c28e136c8da87",
+  "raw_compiler_output_sha256": "00cc2b617c806750fc2500ab7c5021fc21be1095e35db934b3a2bcae1f6da9d4"
+}

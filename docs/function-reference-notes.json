@@ -3883,7 +3883,7 @@
           }
         },
         "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": {
-          "purpose": "Review the existing immutable WETH wrapper’s runtime/proxy policy for exact unwrap paths.",
+          "purpose": "Review the immutable18-decimal wrapper runtime/proxy policy; execution revalidates identity, implementation and decimals. Native v4-only paths need no wrapper.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Does not choose an arbitrary new wrapper. Native v4 conversion does not depend on an unused wrapper.",
           "inputs": {
@@ -3899,7 +3899,7 @@
           }
         },
         "convert(address,uint256,bytes32,uint256,uint256)": {
-          "purpose": "Pull exact already-earned ERC20 input from the bound ledger and return measured native ETH to that same ledger.",
+          "purpose": "Convert selected earned input to measured ETH. Non-wrapper v3 swaps retain the wrapper-reference floor AND require a fresh final-native-ETH floor; authenticated wrappers must have18decimals. Direct unwrap remains exact1:1 without USD reads.",
           "access": "Only the immutable bound reward ledger.",
           "notes": "Fresh price bounds, current captured conversion cap, stronger caller minimum and exact balance/allowance checks; no user-selected recipient. Inputs: Raw source amount, admitted route ID, minimumETH in wei and Unix deadline. Returns: Actual ETH output in wei; crediting holders remains the ledger’s job.",
           "inputs": {

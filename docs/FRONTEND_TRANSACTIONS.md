@@ -7,6 +7,42 @@ The public website remains a simulation. A separate local
 [browser-wallet profile](BROWSER_WALLET.md) implements signing and receipt recovery
 against disposable Anvil contracts. No production PoPL deployment is configured.
 
+## Reviewed gas policy2 (operator configuration)
+
+Contract sealing does not freeze backend software/configuration. Historical
+transaction policy1 keeps its exact12M ceiling and schema1 response. Optional
+policy2 adds `fee_policy.max_gas_limit` as a canonical decimal string, with
+engineering bounds21000–64000000. This is a service resource bound, not a claim
+about Robinhood's block/transaction/RPC limits. The checked-in [example](../config/frontend-transactions.v2.example.json)
+is deliberately unqualified and retains12M until an operator explicitly reviews
+the actual provider/chain, complete fees and resource policy. No automatic increase.
+
+For each policy2 review the service reads `eth_getBlockByHash` for the SAME
+confirmed monetary snapshot, verifies hash/number/time and gasLimit, then uses
+`min(operator_limit, confirmed_block_limit)`. Missing/malformed/inconsistent data
+fails closed without a latest/number fallback or guessed zero. Per-transaction
+and provider limits may be stricter; the operator must qualify those separately.
+Both simulation and estimation use this effective cap. The complete20% estimate
+headroom must fit; larger claim selections get smaller probes. Network fee,
+balance, snapshot/expiry, bounded work/ingress and final review checks remain.
+
+Policy2 emits unsigned draft/plan schema2 with configured/block/effective caps and
+an identity-bound transaction policy hash. A matching consumer must explicitly
+support it; do not silently pass it to a schema1 reviewer. No `gas`/nonce/signature
+is inserted into the wallet transaction. The wallet still verifies latest state,
+network, ownership, calldata, configuration, gas/fees and expiry before signing.
+Existing served websites, shared Anvil-only signer and public DEPLOYMENT remain
+unchanged. Backend source support alone is not consumer or production approval.
+
+To change a reviewed running limit after sealing: reconcile pending transactions,
+let outstanding reviews finish/expire, update the operator-owned policy file and
+review hash, confirm matching consumer support, dry-run/restart the authorized
+API workers, then verify schema/caps/configuration hash and exact simulations.
+No on-chain governance setter is called. Do not change financial loss caps,
+keeper gas limits or ProtocolPolicy internal-call budgets to accomplish this.
+Keep the prior file for a reviewed rollback; old signed transactions still recover
+by their saved hash. Publishing this procedure changes no actual configuration.
+
 ## Supported actions
 
 | Action | Fixed target and call | Native value | Approvals |
@@ -175,8 +211,9 @@ Royalty synchronization or legitimate recipient callbacks can affect subsequent
 operations during the simulated batch. Different assets are never added into
 one dollar figure, and simulation is not a promise of a future payout.
 
-Simulation and estimation have a **12M gas work cap**. Estimates must be
-21,000..12M; the suggested limit adds 20% headroom up to the cap. Gas price and
+Historical policy1 simulation and estimation retain a **12M gas work cap**. Estimates must be
+21,000..12M; its suggested limit adds20% up to that cap. Explicit policy2 instead
+uses its authenticated effective cap and requires full20% headroom as explained above. Gas price and
 suggested-limit cost must fit the reviewed ceilings. Wallet balance must cover
 native value plus that cost; future claim proceeds cannot pay upfront gas.
 `network_gas` reports separate estimated/suggested costs, price and units, review

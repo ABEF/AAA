@@ -1,0 +1,21 @@
+{
+  "baseline-exit.txt": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+  "baseline-forge.log": "aa02b5fbf0280f5b9ca9fe8be667d5dcfe8c24ed58695a72f65226ef7fc5d91d",
+  "baseline-source-closure.zip": "718aa00a8835ffdeb7c818c2c32b314cc59a8f1ff78a627a9699f37c321fd907",
+  "baseline-source-manifest.json": "dc11d3929b1093af22fd6e1189bff2df24bd683530c096460561435a6b900114",
+  "compiled-interface-and-declaration-equivalence.json": "f7f28372df7037d779bee40e190f26def7058aafac5a0e939901cb164eb39ab5",
+  "fixed-exit.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+  "fixed-forge.log": "c09e9c6f4383734a3ce2d98fe2ecaf48f9a26c099ac3045a7cb5f8f9ec092304",
+  "fixed-source-closure.zip": "5bc6f9268ff1b2ecfa63269467f70be62e7958a39d0a201bf324cdb0d2b6c0f3",
+  "fixed-source-manifest.json": "4cd0298b33eab1c88a45351667577c2dfa7346ad17d9631d7fe8dcf3368fd4c3",
+  "historical-import-preservation.json": "0ef15acf7c35f1e29bd1346d53051fca0a2c3474c59acc376a95aad0443f8d23",
+  "legacy-contract-body-equivalence.json": "0116d7c7943c24dcf7837d6477261b993396e4e7e825d720225db314e8b1dca4",
+  "original-ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+  "preparation-attempts.json": "3de6540a5415c54f152ff8b15f7ad85ea3ebaf614878c26ef1c28b72916769e4",
+  "SUMMARY.json": "8ab11d52fafa48dd567e7f37557ad5e85972a3bcfcf82f130be04a1680ec9a1e",
+  "typecheck-input.json.gz": "0f3896b54f65ac17670ee9fc4e8860da12f804f27f6c0afcd9556a1170c045ff",
+  "typecheck-output.json.gz": "09a53c10ef556b5fd95328745180855a3babc8edd5ab0b62d88627eae5333b12",
+  "typecheck-source-manifest.json": "452b7eda40220e6137cea452d12c9bc40fdf8c6fa3168e7ebee1133147eab0cd",
+  "typecheck-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "typecheck-summary.json": "41f3aab0a109d55d2429cd4a825680b870a890177128f35f90518fa84a6b46d9"
+}

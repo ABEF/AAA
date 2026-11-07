@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-07T01:06:16.519026+00:00",
+  "protected4": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "original_reports_unchanged": 3881,
+  "changed_original_reports": [],
+  "markdown_files": 18,
+  "relative_links": 2192,
+  "missing_links": [],
+  "control_chars": [],
+  "source317_unchanged": true,
+  "api_sources_unchanged": true,
+  "generated_checks": [
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/generate-operator-reference.py",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scope": "Current changed Markdown relative file targets/control characters; source hashes and generated references. External URLs and all historical anchors not re-probed."
+}

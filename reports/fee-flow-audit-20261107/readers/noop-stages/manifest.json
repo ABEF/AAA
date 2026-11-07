@@ -1,0 +1,50 @@
+{
+  "scope": "Read-only exact LP earnings replay no-op telemetry fix; no Solidity/runtime/environment/site changes",
+  "head": "c055684a558519eab308a24b81746bf1b9842d96",
+  "changed_source_files": [
+    "frontend_api/earnings_exact_lp.py",
+    "tests_python/test_exact_lp_conversion_noop.py"
+  ],
+  "source_sha256": {
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "frontend_api/earnings_replay.py": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+    "frontend_api/history.py": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "tests_python/test_exact_lp_conversion_noop.py": "5300ea87b6dfbc36a9cd6c81847a4cce969ea6bbd0da3c40e754a8f93e2fe02c",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338",
+    "tests_python/test_exact_lp_source_wire.py": "0e115fab75f844a62964317affe6da6b8fd7b51cad7dcd5ca9e5d7482021b4f8",
+    "tests_python/fixtures/exact-lp-source7-wire.json": "0fbff68493129dfae788cfd40c36cdc835037230a7c14b2d448297f40c90cf24",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30"
+  },
+  "protected_current_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "final_distinct_methods": 28,
+  "new_methods": 11,
+  "existing_exact_lp_methods": 13,
+  "actual_source_wire_methods": 4,
+  "checks": [
+    {
+      "log": "before.log",
+      "result": "FAILED: 9 methods; 3 no-op acceptance errors and 1 expected-message mismatch confirm baseline rejection"
+    },
+    {
+      "log": "after.log",
+      "result": "FAILED: 9 methods; Windows test fixture connection cleanup error, corrected with explicit close"
+    },
+    {
+      "log": "final.log",
+      "result": "PASS: 26 methods before two additional edge controls"
+    },
+    {
+      "log": "final-expanded.log",
+      "result": "PASS: 28 distinct methods, 11 new plus 17 existing; no summed overlaps"
+    }
+  ],
+  "limits": "New mixed zero conversion history is synthetic event/SQLite evidence. Existing four-frame actual Vault wire regression is unchanged. Not target-chain conversion, full619 suite, gas qualification, service rollout or independent audit."
+}

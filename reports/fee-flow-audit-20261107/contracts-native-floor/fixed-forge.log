@@ -1,0 +1,31 @@
+Compiling 51 files with Solc 0.8.26
+Solc 0.8.26 finished in 23.27s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/LPRewardNativeFloor.t.sol:64:1:
+   |
+64 | contract NativeFloorProxy {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/LPRewardNativeFloor.t.sol:81:5:
+   |
+81 |     fallback() external payable {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-11-07T00:41:15.933366Z  WARN traces::etherscan: etherscan config not found
+
+Ran 11 tests for test/LPRewardNativeFloor.t.sol:LPRewardNativeFloorTest
+[PASS] testAlignedPricesAcceptExactNinetyNinePercentAndPreserveCredits() (gas: 1253392)
+[PASS] testDirectUnwrapRejectsChangedWrapperDecimals() (gas: 6571557)
+[PASS] testDirectWrapperUnwrapNeedsNoOracleAndKeepsOneToOne() (gas: 6615482)
+[PASS] testDivergentWrapperPriceCannotWeakenFinalNativeFloor() (gas: 2114920)
+[PASS] testExistingStrongerWrapperFloorRemainsRequired() (gas: 1941798)
+[PASS] testFaultyUnwrapRollsBackSwapAndEarnedBalances() (gas: 1339210)
+[PASS] testMissingNativePriceFailsClosedBeforeSpending() (gas: 416644)
+[PASS] testNonEighteenDecimalWrapperCannotBeAdmitted() (gas: 111454)
+[PASS] testProxyImplementationDriftRequiresNewAuthenticatedReview() (gas: 8835355)
+[PASS] testStaleNativeFeedStopsConversionWithoutChangingRights() (gas: 2350537)
+[PASS] testStrongerCallerMinimumAndLyingReturnRollback() (gas: 1893239)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 14.65ms (63.63ms CPU time)
+
+Ran 1 test suite in 29.23ms (14.65ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)

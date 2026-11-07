@@ -1,0 +1,104 @@
+[
+  {
+    "path": ".gitattributes",
+    "original_crlf": 136,
+    "original_lf": 136,
+    "changed_raw": false
+  },
+  {
+    "path": "AGENTS.md",
+    "original_crlf": 0,
+    "original_lf": 443,
+    "changed_raw": true
+  },
+  {
+    "path": "PROJECT_CONTEXT.md",
+    "original_crlf": 191,
+    "original_lf": 191,
+    "changed_raw": false
+  },
+  {
+    "path": "README.md",
+    "original_crlf": 245,
+    "original_lf": 245,
+    "changed_raw": false
+  },
+  {
+    "path": "TODO.md",
+    "original_crlf": 0,
+    "original_lf": 1531,
+    "changed_raw": true
+  },
+  {
+    "path": "docs/AUDIT_FINDINGS.md",
+    "original_crlf": 182,
+    "original_lf": 182,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/CLAIM_PLANNING.md",
+    "original_crlf": 0,
+    "original_lf": 153,
+    "changed_raw": true
+  },
+  {
+    "path": "docs/CONTRACT_FUNCTIONS.md",
+    "original_crlf": 0,
+    "original_lf": 1801,
+    "changed_raw": true
+  },
+  {
+    "path": "docs/DEVELOPMENT.md",
+    "original_crlf": 263,
+    "original_lf": 263,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/FRONTEND_TRANSACTIONS.md",
+    "original_crlf": 285,
+    "original_lf": 285,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/IMPLEMENTATION_STATUS.md",
+    "original_crlf": 0,
+    "original_lf": 163,
+    "changed_raw": true
+  },
+  {
+    "path": "docs/LP_ETH_SETTLEMENT.md",
+    "original_crlf": 137,
+    "original_lf": 137,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/OPERATOR_MANUAL.md",
+    "original_crlf": 0,
+    "original_lf": 5226,
+    "changed_raw": true
+  },
+  {
+    "path": "docs/RELEASE_CHECKLIST.md",
+    "original_crlf": 136,
+    "original_lf": 136,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/ROADMAP.md",
+    "original_crlf": 84,
+    "original_lf": 84,
+    "changed_raw": false
+  },
+  {
+    "path": "docs/WORK_HANDOFF.md",
+    "original_crlf": 153,
+    "original_lf": 153,
+    "changed_raw": false
+  },
+  {
+    "path": "reports/README.md",
+    "original_crlf": 0,
+    "original_lf": 64,
+    "changed_raw": false
+  }
+]

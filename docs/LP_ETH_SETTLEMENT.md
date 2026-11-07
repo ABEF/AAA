@@ -34,11 +34,11 @@ Exact LP unit allocation does not eliminate currency-conversion rounding.
 | Path | Required checks |
 | --- | --- |
 | Typed static hookless v4 source-to-native swap | Reviewed immutable executor policy, current independent source/ETH quote, exact full input, measured native output and no wrapper dependency. |
-| Typed v3 source-to-WETH swap followed by unwrap | Reviewed router/factory/pool and wrapper/proxy policy; current independent quote, exact swap/output and exact native unwrap. |
+| Typed v3 source-to-WETH swap followed by unwrap | Reviewed router/factory/pool; authenticated18-decimal wrapper/proxy; BOTH wrapper-reference and final-native-ETH floors; exact output/unwrap deltas. |
 | Admitted WETH directly unwrapped | Exact 1:1 native output and reviewed wrapper behavior; no price-based swap is implied. |
 
 Swapped output must meet the greater of the caller's positive minimum and
-`ceil(oracleQuote * (10000 - conversionLossBps) / 10000)`. At the 1% default this
+`ceil(oracleQuote * (10000 - conversionLossBps) / 10000)`. For non-wrapper v3 swaps, oracleQuote is the GREATER of source→wrapper and source→nativeETH quotes; both must be positive/fresh. A wrapper feed cannot weaken the promised final ETH floor. At the 1% default this
 is 99%; it is not a permanently fixed floor. Deadline is current and at most ten
 minutes ahead. Exact approvals clear after use; prefunds cannot provide missing
 input/output. A failed swap, quote, delta, wrapper, callback or minimum reverts
@@ -100,7 +100,7 @@ Choose the actual reviewed profile explicitly:
 
 The worker validates bindings, route, policy, balances and simulation at one
 confirmed canonical hash. It scans bounded windows and rotates currencies even
-on an individual failure. LP conversion, royalty conversion and maintenance share
+on an individual failure. Historical conversion scheduling and maintenance share
 a serial sender and persistent three-way `conversion_turn` priority (0-2), with
 separate cursors. Old `next_first` fields remain for state compatibility, not
 priority selection. All existing absolute/daily gas and pending recovery limits
@@ -111,6 +111,31 @@ claimable-ETH promise. Logs distinguish `lp_conversion_deferred` from
 `lp_conversion_uneconomic` without secrets. Disable scheduling and reconcile any
 pending hash before moving hosts; restore from actual chain/journal state, not a
 new nonce counter.
+
+## Exact-LP7 capacity and recovery
+
+Fresh7 uses one fixed-ZZZ source and the explicitly supported native-v4 worker.
+It performs at most six bounded preparations (32→16→8→4→2→1), recalculating each
+subset's actual balances/quote/floor/deadline. Verified gas/per-transaction-cost
+blocks or sanitized pre-send EVM refusals can permit smaller independent probes.
+An opaque refusal diagnoses no token fault. Rate/transport/internal/work-limit,
+price/economic/daily-budget, retry and uncertain-submission failures never justify
+widening limits or retrying a signed operation. Successful subsets persist their
+ordinal continuation, so the remaining suffix is visited instead of repeatedly
+losing to an oversized prefix. Pending recovery precedes fresh configuration
+admission. Singleton failures rotate without erasing balances.
+
+Before durable intent/signing, a final head/deadline/UTC-day-budget check rejects
+an expired or newly unaffordable review. It never rewrites approved calldata,
+minimums, deadline, nonce or journals to revive it. Existing gas/economic ceilings
+and captured source policies remain. The service still cannot promise an
+affordable route, successful inclusion, permanently healthy tokens or instant
+conversion; healthy source-token claims and independent ETH claims remain.
+
+The contract's strengthened v3 manual route needs native ETH pricing IN ADDITION
+to source/wrapper policies; the fresh7 automated worker remains native-v4 only.
+Do not relabel a historical v3 worker or journal as fresh7. Source publication
+does not enable or restart any worker. [Audit/evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
 ## History, replacements and qualification
 

@@ -7,8 +7,7 @@ queues later transactions or changes a ledger. The existing
 Public signing remains disabled; the shared browser signer remains Anvil-only.
 Fresh7 admission authenticates accounting7/LP-allocation1/canonicalV9 and the
 fixed Rewards canonical companion. LP funded claims are exact whole units in
-ETH or fixed ZZZ; original royalty currencies remain separate. The schema1
-planner/router selection shape is unchanged; no historical6 runtime is relabeled.
+ETH or fixed ZZZ; original royalty currencies remain separate. Historical policy1 keeps schema1; optional policy2 returns schema2 with the same explicit claim selection; no historical6 runtime is relabeled.
 
 The exact-host cold32-entry rehearsal consumed31,085,813raw execution gas,
 above the unchanged12M service budget. It used16NFTs across four buckets and
@@ -68,14 +67,14 @@ price feed nor a liquidity valuation is needed merely to plan funded claims.
 
 ## Result and continuation
 
-The schema1 result has `kind: "unsigned_claim_plan"` and contains:
+The result has `kind: "unsigned_claim_plan"` (schema1 for historical policy1, schema2 for explicitly reviewed policy2) and contains:
 
 | Field | Use |
 | --- | --- |
 | `next_batch` | One ordinary `unsigned_transaction_draft`, or `null`. Only this object contains reviewed transaction calldata and gas/fee details. |
 | `entries` | Every original selection, its index, identity, status, reason and observed raw amount when available. Missing amounts stay `null`. |
 | `remaining_claims` | Every selection outside the next batch that still needs assessment/action, including blocked or unavailable entries. Zero-balance entries are identified in `entries` rather than silently discarded. |
-| `planning` | Trial count, exact selection indices, result categories, gas cap and bounded-work policy. It does not guarantee the mathematically largest possible batch. |
+| `planning` | Trial count, exact selection indices, result categories, actual effective gas cap and bounded-work policy. It does not guarantee the mathematically largest possible batch. |
 | `provenance` | Confirmed block/hash/time, reviewed configuration identities and explicit accounting/custody/royalty profile. |
 | `expires_at` | Client review expiry. It is not an on-chain deadline added to the claim router. |
 
@@ -127,8 +126,7 @@ requests or blocks.
 ## Strict bounds and errors
 
 - At most32 selected operations and10 planning trials, plus one final preparation.
-- Every EVM simulation retains the existing12,000,000-gas ceiling. Network fee
-  ceilings and wallet balance checks are unchanged; no automatic widening exists.
+- Policy1 retains12M. Explicit [policy2](FRONTEND_TRANSACTIONS.md#reviewed-gas-policy2-operator-configuration) uses the lesser of the reviewed operator cap and authenticated confirmed-block gas limit, with full20% estimate headroom. Changed same-hash block policy aborts the entire plan. No automatic widening, client override or change to fee/balance/work budgets.
 - Confirmed snapshots must meet the existing preparation freshness limit of at
   most120seconds; reviews last at most60seconds and never outlive that snapshot.
 - Nested work shares the ordinary25-second request budget,1024logical RPC calls

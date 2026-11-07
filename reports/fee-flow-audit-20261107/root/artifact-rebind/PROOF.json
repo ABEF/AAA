@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c",
+  "source_pin_changes": [
+    "src/base/ZZZRewardConverter.sol"
+  ],
+  "all87_input_hashes_bound": true,
+  "creation_payload_and_all_part_fields_identical": true,
+  "profile_identity": 3,
+  "code_storage_format": 2,
+  "artifact_canonical_sha256": "a887d3d80cf9355ff69d34df8bdb75b38f272bd8fe6b885798652509ddfaba29",
+  "before_artifact_sha256": "6ae4677d6313a27bcc0d75eb05aaa82e8253d44975d269afaaf65467e70de906",
+  "after_artifact_sha256": "305e85eb23e029a66c57dc3bf8b16b3753b21375eca41bcbc4dd1a9675f48d8c",
+  "verify_actual_compiler_payload": true
+}

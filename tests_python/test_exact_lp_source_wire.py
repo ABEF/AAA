@@ -17,7 +17,7 @@ from zzz_ops.abi import keccak256
 
 ROOT=Path(__file__).resolve().parents[1]
 FIXTURE=Path(__file__).parent/'fixtures/exact-lp-source7-wire.json'
-FIXTURE_SHA256='0fbff68493129dfae788cfd40c36cdc835037230a7c14b2d448297f40c90cf24'
+FIXTURE_SHA256='4543f84910b6cdaaac6f64e10dee1099fddbf5b869af36260d94ad59b9593876'
 WIRE='0x'+keccak256(b'ExactLPWire(uint8,bytes,bytes)').hex()
 SYNC='0x'+keccak256(b'ShareWeightSynchronized(uint256,uint256,uint256,uint256,uint256,uint256)').hex()
 ACK='0x'+keccak256(b'SharesAdded(uint256,uint256,uint256,uint256)').hex()

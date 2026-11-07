@@ -1,0 +1,329 @@
+{
+  "schema": 1,
+  "before_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "after_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c",
+  "normal46_semantic_storage_declarations_equal": true,
+  "layout_method": "Retain ordered storage entries, names, contract, slot, byte offset and recursively resolved complete type encoding/label/byte width/member/base/key/value structure; ignore only nonsemantic astId values and replace opaque AST-numbered type identifiers by their full definitions. No storage slot/type/name or width is discarded.",
+  "layouts": [
+    {
+      "contract": "src/ZZZAccessController.sol::ZZZAccessController",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "0db24ee093c1b84dcbe13fb418b569be27e5e9b0192c1453a72c88a5ad662fa4",
+      "after_semantic_layout_sha256": "0db24ee093c1b84dcbe13fb418b569be27e5e9b0192c1453a72c88a5ad662fa4"
+    },
+    {
+      "contract": "src/ZZZActivationAssets.sol::ZZZActivationAssets",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "7ac97785f13a5f306e6a42fd4f0e8324ab1fae361aaabde8909eb77042fc2636",
+      "after_semantic_layout_sha256": "7ac97785f13a5f306e6a42fd4f0e8324ab1fae361aaabde8909eb77042fc2636"
+    },
+    {
+      "contract": "src/ZZZActivationAssetsFactory.sol::ZZZActivationAssetsFactory",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "547e88c8885354eacd998ba93cab5314f920f346ed8f4f2d555c72439876bb4f",
+      "after_semantic_layout_sha256": "547e88c8885354eacd998ba93cab5314f920f346ed8f4f2d555c72439876bb4f"
+    },
+    {
+      "contract": "src/ZZZActivationEntry.sol::ZZZActivationEntry",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "f53cb9f4276a4f0daf1c69ac46d00b195303e8f90c2ab79c6bdc3f82ad0c6928",
+      "after_semantic_layout_sha256": "f53cb9f4276a4f0daf1c69ac46d00b195303e8f90c2ab79c6bdc3f82ad0c6928"
+    },
+    {
+      "contract": "src/ZZZBuyback.sol::ZZZBuyback",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "3042799b7ec2d77d37e555a57cb44ef6c9a585cadd7b346caca51c613c45d1c1",
+      "after_semantic_layout_sha256": "3042799b7ec2d77d37e555a57cb44ef6c9a585cadd7b346caca51c613c45d1c1"
+    },
+    {
+      "contract": "src/ZZZCanonicalHandoff.sol::ZZZCanonicalHandoff",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "7b49fed94d20a3744806031904fc6a86fb77db1d7a1105523e59f166425cd79f",
+      "after_semantic_layout_sha256": "7b49fed94d20a3744806031904fc6a86fb77db1d7a1105523e59f166425cd79f"
+    },
+    {
+      "contract": "src/ZZZClaimRouter.sol::ZZZClaimRouter",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "0b71a549a4a52236c5e51c7da72ad201800fc8bef1b6898e4a0ffc4d542be828",
+      "after_semantic_layout_sha256": "0b71a549a4a52236c5e51c7da72ad201800fc8bef1b6898e4a0ffc4d542be828"
+    },
+    {
+      "contract": "src/ZZZCompounder.sol::ZZZCompounder",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZContributionPricing.sol::ZZZContributionPricing",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "eb4e22816de6b82507ba3310bd251f041103dc1025b5ba758a20e192c0979406",
+      "after_semantic_layout_sha256": "eb4e22816de6b82507ba3310bd251f041103dc1025b5ba758a20e192c0979406"
+    },
+    {
+      "contract": "src/ZZZCustodyValidation.sol::ZZZCustodyValidation",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZFeeController.sol::ZZZFeeController",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "20f851d6e8ca7a3e50030b20a30bf75c8fa6988a84b1d6d0579d7cf571098c8c",
+      "after_semantic_layout_sha256": "20f851d6e8ca7a3e50030b20a30bf75c8fa6988a84b1d6d0579d7cf571098c8c"
+    },
+    {
+      "contract": "src/ZZZFeesCanonical.sol::ZZZFeesCanonical",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "b83288a74b4b192c2690c9d1ffb4c0a6376cb63600fc02c0e023b80e1865f4ab",
+      "after_semantic_layout_sha256": "b83288a74b4b192c2690c9d1ffb4c0a6376cb63600fc02c0e023b80e1865f4ab"
+    },
+    {
+      "contract": "src/ZZZLPBalanceMath.sol::ZZZLPBalanceMath",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZLPBalancer.sol::ZZZLPBalancer",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "43a78b07888a0295f92727bcb1eaa88ed8bc8c37d29bf3c7830a6053623320f3",
+      "after_semantic_layout_sha256": "43a78b07888a0295f92727bcb1eaa88ed8bc8c37d29bf3c7830a6053623320f3"
+    },
+    {
+      "contract": "src/ZZZLPPositionExecutor.sol::ZZZLPPositionExecutor",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "e56de9dcbcf244a64022ece5b12532ba450c721a0c8d38205a346854cff51800",
+      "after_semantic_layout_sha256": "e56de9dcbcf244a64022ece5b12532ba450c721a0c8d38205a346854cff51800"
+    },
+    {
+      "contract": "src/ZZZLPRewardConverter.sol::ZZZLPRewardConverter",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "df745b5161d82c96d48c75b4b4d58799b81d97c3e8138578d0f48fc8bb738991",
+      "after_semantic_layout_sha256": "df745b5161d82c96d48c75b4b4d58799b81d97c3e8138578d0f48fc8bb738991"
+    },
+    {
+      "contract": "src/ZZZLiquidityManager.sol::ZZZLiquidityManager",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "e8b02f2b1ad6b92af1e77cc1400220700b6dd5896991f61e2aca86cd3ef731c9",
+      "after_semantic_layout_sha256": "e8b02f2b1ad6b92af1e77cc1400220700b6dd5896991f61e2aca86cd3ef731c9"
+    },
+    {
+      "contract": "src/ZZZMembership.sol::ZZZMembership",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "1a6619657e7874aab65c42e16064f1b86f9e707175353649836049023a45f141",
+      "after_semantic_layout_sha256": "1a6619657e7874aab65c42e16064f1b86f9e707175353649836049023a45f141"
+    },
+    {
+      "contract": "src/ZZZMigration.sol::ZZZMigration",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "8d3949bb787fd321a796ce0c75667a3f4af7f4f15263a460c9c022d666553ff3",
+      "after_semantic_layout_sha256": "8d3949bb787fd321a796ce0c75667a3f4af7f4f15263a460c9c022d666553ff3"
+    },
+    {
+      "contract": "src/ZZZMigrationBudget.sol::ZZZMigrationBudget",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "87e91facdf5802f732243e1d3fab5df1992376e7ef3f8473278569924baf669c",
+      "after_semantic_layout_sha256": "87e91facdf5802f732243e1d3fab5df1992376e7ef3f8473278569924baf669c"
+    },
+    {
+      "contract": "src/ZZZNFT.sol::ZZZNFT",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "ec8cb6dcef7ea1ce52cf3094d1aaecbadb305e4255c413c13fc3873363822300",
+      "after_semantic_layout_sha256": "ec8cb6dcef7ea1ce52cf3094d1aaecbadb305e4255c413c13fc3873363822300"
+    },
+    {
+      "contract": "src/ZZZNFTCanonical.sol::ZZZNFTCanonical",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "8864af75fee8137d8d0f75dc9809921ffdb70f00d862717026678d95811c95cb",
+      "after_semantic_layout_sha256": "8864af75fee8137d8d0f75dc9809921ffdb70f00d862717026678d95811c95cb"
+    },
+    {
+      "contract": "src/ZZZNFTMetadata.sol::ZZZNFTMetadata",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZOracle.sol::ZZZOracle",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "8997f61579341209db0de627387f0b373a94ffff487b84c88e6d4713717099fa",
+      "after_semantic_layout_sha256": "8997f61579341209db0de627387f0b373a94ffff487b84c88e6d4713717099fa"
+    },
+    {
+      "contract": "src/ZZZPoolRegistry.sol::ZZZPoolRegistry",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "5576b1ed13fe37fc73ef92c02d583765dd34bc964ed7c67adbe4ff0e778044c0",
+      "after_semantic_layout_sha256": "5576b1ed13fe37fc73ef92c02d583765dd34bc964ed7c67adbe4ff0e778044c0"
+    },
+    {
+      "contract": "src/ZZZPortfolioPolicy.sol::ZZZPortfolioPolicy",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "b11d0bb9687483a3c2484cf9bce3bfc57a4ab14cc6a4967a01c53d64e97fb142",
+      "after_semantic_layout_sha256": "b11d0bb9687483a3c2484cf9bce3bfc57a4ab14cc6a4967a01c53d64e97fb142"
+    },
+    {
+      "contract": "src/ZZZProtocolPolicy.sol::ZZZProtocolPolicy",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "f881055827f6b434473a72151f6172ca1b28e92374aa418cd7ecf2a1a2acf730",
+      "after_semantic_layout_sha256": "f881055827f6b434473a72151f6172ca1b28e92374aa418cd7ecf2a1a2acf730"
+    },
+    {
+      "contract": "src/ZZZPythPriceFeed.sol::ZZZPythPriceFeed",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZRebalanceConfirmation.sol::ZZZRebalanceConfirmation",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "bad527454d13ba43dc575b86a0fa0ad352b2cf52e430d7b395d039b435530d5b",
+      "after_semantic_layout_sha256": "bad527454d13ba43dc575b86a0fa0ad352b2cf52e430d7b395d039b435530d5b"
+    },
+    {
+      "contract": "src/ZZZRewards.sol::ZZZRewards",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "ba8d2178075f5188ee02d69d7f6529f468611937ec087d303f11699cf093a11b",
+      "after_semantic_layout_sha256": "ba8d2178075f5188ee02d69d7f6529f468611937ec087d303f11699cf093a11b"
+    },
+    {
+      "contract": "src/ZZZRewardsCanonical.sol::ZZZRewardsCanonical",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "fc92a6e7190f4b18e751d49cdb2c375c1149072ed9fa05039861464aa5328d50",
+      "after_semantic_layout_sha256": "fc92a6e7190f4b18e751d49cdb2c375c1149072ed9fa05039861464aa5328d50"
+    },
+    {
+      "contract": "src/ZZZRoyaltyCodeData.sol::ZZZRoyaltyCodeData",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZRoyaltyFactory.sol::ZZZRoyaltyFactory",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/ZZZRoyaltyRewards.sol::ZZZRoyaltyRewards",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "e87f4f4b277951f40b3454e73c2391b13ee9a00916ef9e676493cd97cc4153a9",
+      "after_semantic_layout_sha256": "e87f4f4b277951f40b3454e73c2391b13ee9a00916ef9e676493cd97cc4153a9"
+    },
+    {
+      "contract": "src/ZZZStrategy.sol::ZZZStrategy",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "9d3f87192f3e6a21e4aaddbfc9e2d280237301fa1e1339b8e967dc2d4584dfac",
+      "after_semantic_layout_sha256": "9d3f87192f3e6a21e4aaddbfc9e2d280237301fa1e1339b8e967dc2d4584dfac"
+    },
+    {
+      "contract": "src/ZZZV4RouteExecutor.sol::ZZZV4RouteExecutor",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "055a23767f2a094580f8d855c2ddfae491b2df52d6778a427587acd61f07721d",
+      "after_semantic_layout_sha256": "055a23767f2a094580f8d855c2ddfae491b2df52d6778a427587acd61f07721d"
+    },
+    {
+      "contract": "src/ZZZVault.sol::ZZZVault",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "0ee84754c16c7cb9051604ca15ba97011194a56e10a71868713a0f2f3a46623d",
+      "after_semantic_layout_sha256": "0ee84754c16c7cb9051604ca15ba97011194a56e10a71868713a0f2f3a46623d"
+    },
+    {
+      "contract": "src/ZZZVaultCanonical.sol::ZZZVaultCanonical",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "8384cd63102dac9c735e3207dcb537373bc31bdf82d43dab92c79c6dfc576437",
+      "after_semantic_layout_sha256": "8384cd63102dac9c735e3207dcb537373bc31bdf82d43dab92c79c6dfc576437"
+    },
+    {
+      "contract": "src/libraries/ExactAsset.sol::ExactAsset",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ExactLPAllocation.sol::ExactLPAllocation",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ExactRoyaltyAllocation.sol::ExactRoyaltyAllocation",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ExactToken.sol::ExactToken",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ZZZArtwork.sol::ZZZArtwork",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ZZZPriceMath.sol::ZZZPriceMath",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ZZZTypes.sol::Ids",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "contract": "src/libraries/ZZZV3VenueValidation.sol::ZZZV3VenueValidation",
+      "storage_declarations_equal": true,
+      "before_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "after_semantic_layout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "canonical_modules_and_nft_exact_object_equality": [
+    {
+      "contract": "src/ZZZCanonicalHandoff.sol::ZZZCanonicalHandoff",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZVaultCanonical.sol::ZZZVaultCanonical",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZRewardsCanonical.sol::ZZZRewardsCanonical",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZNFTCanonical.sol::ZZZNFTCanonical",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZFeesCanonical.sol::ZZZFeesCanonical",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZMembership.sol::ZZZMembership",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZNFT.sol::ZZZNFT",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    },
+    {
+      "contract": "src/ZZZRoyaltyRewards.sol::ZZZRoyaltyRewards",
+      "creation_object_byte_identical": true,
+      "runtime_object_byte_identical": true
+    }
+  ],
+  "converter_no_ABI_or_storage_declaration_change": true,
+  "scope": "Compiler-object/source equivalence only, not deployed address/immutable-value equality. Combined with exact executable Rewards runtime equality after CBOR removal justifies source-scoped canonical34 reuse; its original stage hashes remain historical and are not relabeled."
+}

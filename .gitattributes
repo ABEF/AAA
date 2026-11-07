@@ -134,3 +134,6 @@ reports/exact-lp-engine-20261106/**/*.log whitespace=cr-at-eol,-blank-at-eol,-bl
 
 # Preserve exact accounting7 host/canonical/backend evidence and original failures.
 reports/exact-lp-integration-20261106/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact fee-flow audit receipts, negative controls and native diagnostics.
+reports/fee-flow-audit-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

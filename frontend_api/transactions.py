@@ -16,10 +16,12 @@ from typing import Any
 from frontend_api.service import Projection, ProjectionError, UnknownNFT, ZERO, _bool, _hash, _keys, _quantity, token_id
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.work_budget import bounded_request, expire_at
+from frontend_api.transaction_gas import (DEFAULT_GAS_LIMIT, GasReview,
+    configured_limit, observe as observe_gas_policy)
 
 MINT_PRICE = 50_000_000_000_000_000
 MAX_CLAIMS = 32
-SIMULATION_GAS_LIMIT = 12_000_000
+SIMULATION_GAS_LIMIT = DEFAULT_GAS_LIMIT  # Historical schema1 policy, unchanged.
 MAX_SNAPSHOT_AGE = 120
 DRAFT_LIFETIME = 60
 CLAIM_SIGNATURE = 'claimBatch((uint256,address,bool)[])'
@@ -29,18 +31,27 @@ class TransactionInputError(ValueError):
     """Invalid typed action; never includes a caller's raw payload."""
 
 
+class GasHeadroomError(ProjectionError):
+    """A successful estimate lacks the reviewed full20% execution headroom."""
+
+
 class TransactionConfig:
     """Operator policy bound to the exact reviewed read configuration."""
     def __init__(self, config, projection):
         _keys(config, {'schema', 'chain_id', 'projection_sha256', 'fee_policy'}, 'transaction configuration')
-        if type(config['schema']) is not int or config['schema'] != 1:
+        if type(config['schema']) is not int or config['schema'] not in (1, 2):
             raise ValueError('Unsupported transaction configuration schema')
+        self.schema = config['schema']
         if type(config['chain_id']) is not int or config['chain_id'] != projection.chain:
             raise ValueError('Transaction chain differs from the read configuration')
         if config['projection_sha256'] != projection.identity:
             raise ValueError('Transaction policy requires the exact reviewed read configuration')
         fee = config['fee_policy']
-        _keys(fee, {'estimate_includes_all_fees', 'review_hash', 'max_gas_price_wei', 'max_network_fee_wei'}, 'fee policy')
+        fields = {'estimate_includes_all_fees', 'review_hash', 'max_gas_price_wei', 'max_network_fee_wei'}
+        if self.schema == 2:
+            fields.add('max_gas_limit')
+        _keys(fee, fields, 'fee policy')
+        self.max_gas_limit = configured_limit(fee['max_gas_limit']) if self.schema == 2 else SIMULATION_GAS_LIMIT
         if fee['estimate_includes_all_fees'] is not True:
             raise ValueError('Complete network fee semantics must be reviewed')
         self.review = _hash(fee['review_hash'])
@@ -122,13 +133,22 @@ class Transactions:
         self.projection = projection
         self.config = TransactionConfig(config, projection)
 
-    def _gas(self, tx, block):
+    def _gas_review(self, header):
+        if self.config.schema == 1:
+            return GasReview(SIMULATION_GAS_LIMIT, SIMULATION_GAS_LIMIT)
+        return observe_gas_policy(self.projection, header, self.config.max_gas_limit)
+
+    def _gas(self, tx, block, review):
         p = self.projection
-        estimate = _quantity(p.rpc.call('eth_estimateGas', [{**tx, 'gas': hex(SIMULATION_GAS_LIMIT)}, block]))
+        cap = review.effective
+        estimate = _quantity(p.rpc.call('eth_estimateGas', [{**tx, 'gas': hex(cap)}, block]))
         price = _quantity(p.rpc.call('eth_gasPrice', []))
-        if not 21000 <= estimate <= SIMULATION_GAS_LIMIT or not 0 < price <= self.config.max_price:
+        if not 21000 <= estimate <= cap or not 0 < price <= self.config.max_price:
             raise ProjectionError('Gas estimate or price exceeds the reviewed bound')
-        limit = min(SIMULATION_GAS_LIMIT, (estimate * 120 + 99) // 100)
+        padded = (estimate * 120 + 99) // 100
+        if self.config.schema == 2 and padded > cap:
+            raise GasHeadroomError('Gas estimate lacks the full reviewed20% headroom')
+        limit = min(cap, padded)
         if limit * price > self.config.max_fee:
             raise ProjectionError('Network fee exceeds the reviewed bound')
         balance = _quantity(p.rpc.call('eth_getBalance', [tx['from'], block]))
@@ -138,7 +158,11 @@ class Transactions:
                 'estimated_fee_wei': str(estimate * price), 'suggested_limit_cost_wei': str(limit * price),
                 'currency': 'native', 'includes_all_network_components': True,
                 'fee_policy_review_hash': self.config.review, 'wallet_must_refresh': True,
-                'price_source': 'eth_gasPrice at preparation time'}
+                'price_source': 'eth_gasPrice at preparation time',
+                **({'policy_schema': 2, 'configured_gas_limit': str(review.configured),
+                    'confirmed_block_gas_limit': str(review.block_limit),
+                    'effective_gas_limit': str(cap), 'full_twenty_percent_headroom': True}
+                   if self.config.schema == 2 else {})}
 
     def _fresh(self, header: dict[str, Any]) -> int:
         now = int(self.projection.clock())
@@ -158,6 +182,7 @@ class Transactions:
         self._fresh(header)
         expire_at(header['timestamp'] + min(p.max_age, MAX_SNAPSHOT_AGE), p.clock)
         lifecycle = p._verify_deployment(block)
+        gas_review = self._gas_review(header)
         details = []
         mint_policy = None
         if action == 'mint':
@@ -249,7 +274,7 @@ class Transactions:
         tx = {'from': owner, 'to': target, 'data': data, 'value': hex(value)}
         # Explicit cap bounds RPC EVM work. It is NOT a gas estimate and is never
         # copied into the wallet draft. No state/balance/allowance override exists.
-        raw = p.rpc.call('eth_call', [{**tx, 'gas': hex(SIMULATION_GAS_LIMIT)}, block])
+        raw = p.rpc.call('eth_call', [{**tx, 'gas': hex(gas_review.effective)}, block])
         if action == 'mint':
             if not isinstance(raw, str) or len(raw) != 66:
                 raise ProjectionError('Unexpected mint simulation result size')
@@ -266,7 +291,7 @@ class Transactions:
                 if amount == 0:
                     raise ProjectionError('Selected claim simulation returned no funded amount')
                 detail['simulated_raw'] = str(amount)
-        gas = self._gas(tx, block)
+        gas = self._gas(tx, block, gas_review)
         p._finish(header)
         prepared_at = self._fresh(header)
         expires_at = min(prepared_at + DRAFT_LIFETIME, header['timestamp'] + min(p.max_age, MAX_SNAPSHOT_AGE))
@@ -275,7 +300,7 @@ class Transactions:
         if expires_at <= prepared_at:
             raise ProjectionError('Transaction snapshot expires before draft publication')
         return {
-            'schema': 1, 'kind': 'unsigned_transaction_draft', 'action': action,
+            'schema': self.config.schema, 'kind': 'unsigned_transaction_draft', 'action': action,
             'transaction': {**tx, 'chainId': hex(p.chain)},
             'claim_operations': details, 'prepared_at': prepared_at, 'expires_at': expires_at,
             **({'mint_policy':mint_policy} if mint_policy is not None else {}),
@@ -286,7 +311,7 @@ class Transactions:
                            'deployment_block_hash': p.start_hash, 'configuration_sha256': p.identity,
                            'transaction_configuration_sha256': self.config.identity},
             'network_gas': gas,
-            'simulation': {'succeeded': True, 'gas_cap': str(SIMULATION_GAS_LIMIT),
+            'simulation': {'succeeded': True, 'gas_cap': str(gas_review.effective),
                            'gas_estimate': gas['estimated_units'], 'balance_overrides': False},
             'wallet_revalidation_required': True, 'approvals_required': False,
             'scope': 'Unsigned confirmed-block simulation only. Expiry is a client rule, not an on-chain deadline. '

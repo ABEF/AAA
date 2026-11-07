@@ -1,5 +1,21 @@
 # Release approval record - NOT APPROVED
 
+[Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
+v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
+and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
+replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
+(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
+12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
+running configuration, service/site/Anvil/journal or heartbeat is changed.
+New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
+referenced-source reuse. Converter executable changes only; Rewards metadata
+changes and all semantic storage/ABIs plus canonical object bytes are preserved.
+F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
+Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
+one-method wire producer and56API methods have separate source-scoped evidence;
+do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
+independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
+
 Reviewed2026-11-06. This approves one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is

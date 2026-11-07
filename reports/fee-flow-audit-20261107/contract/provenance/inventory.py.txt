@@ -1,0 +1,13 @@
+from pathlib import Path
+import collections,importlib.util,json,re
+r=Path.cwd();e=Path(__file__).parent;s=e/'static-e639dc6589';spec=importlib.util.spec_from_file_location('checker',r/'scripts/check-slither-review.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+oldpath='reports/exact-lp-integration-20261106/static-review.json';old=json.loads((r/oldpath).read_text());raw=json.loads((s/'detectors-only.json').read_text());assert raw['success']and not raw.get('error');prior=collections.defaultdict(list)
+for f in old['findings']:prior[f['fingerprint']].append(f)
+rows=[]
+for i,f in enumerate(raw['results']['detectors']):
+ fp=m.fingerprint(f);refs=sorted(set(re.findall(r'src/[^\s()#]+\.sol',f['description'].replace('\\','/'))));reuse=len(prior[fp])==1 and bool(refs)and all(old['source_sha256_lf'].get(p)==m.source_hash(r/p)for p in refs)
+ rows.append({'index':i,'fingerprint':fp,'sources':refs,'reused':reuse,'prior':prior[fp][0]if reuse else None,'finding':{k:f[k]for k in('check','impact','confidence','description')}})
+cur=[x for x in rows if not x['reused']]
+for n,d in [('STATIC_INVENTORY.json',rows),('STATIC_CURRENT.json',cur)]:p=e/n;assert not p.exists();p.write_text(json.dumps(d,indent=2)+'\n')
+(e/'STATIC_CURRENT.txt').write_text(''.join(str(x['index'])+' '+x['fingerprint']+'\n'+x['finding']['description']+'\n'for x in cur))
+print(json.dumps({'total':len(rows),'reuse':len(rows)-len(cur),'current':len(cur),'checks':dict(collections.Counter(x['finding']['check']for x in cur))},indent=2))

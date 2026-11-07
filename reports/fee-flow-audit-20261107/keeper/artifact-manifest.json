@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "package": "reports/fee-flow-audit-20261107/keeper",
+  "baseline_commit": "c055684a558519eab308a24b81746bf1b9842d96",
+  "original_evidence_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744",
+  "payload_count": 20,
+  "compression_threshold_bytes": 16384,
+  "entries": [
+    {
+      "path": "attempt2.log",
+      "logical_path": "attempt2.log",
+      "raw_size": 4858,
+      "raw_sha256": "30ee93846e9eb959a5ed3b23ba45040cea248c66c7505e638c9bf2001d89a53c",
+      "stored_size": 4858,
+      "stored_sha256": "30ee93846e9eb959a5ed3b23ba45040cea248c66c7505e638c9bf2001d89a53c",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt2.log",
+        "source_relative_path": "attempt2.log"
+      }
+    },
+    {
+      "path": "attempt3-affected.log",
+      "logical_path": "attempt3-affected.log",
+      "raw_size": 14198,
+      "raw_sha256": "ed6e2d7c87f4fe7ba807a20fc844185930b4ea77daf1876abad4d19d1ae6cdec",
+      "stored_size": 14198,
+      "stored_sha256": "ed6e2d7c87f4fe7ba807a20fc844185930b4ea77daf1876abad4d19d1ae6cdec",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt3-affected.log",
+        "source_relative_path": "attempt3-affected.log"
+      }
+    },
+    {
+      "path": "attempt4-negative-late-send.log",
+      "logical_path": "attempt4-negative-late-send.log",
+      "raw_size": 2049,
+      "raw_sha256": "4c3bf0f2865e4feda21089a7c69ab172c5cbe44b264cc063b9a6b7f0330e8a4d",
+      "stored_size": 2049,
+      "stored_sha256": "4c3bf0f2865e4feda21089a7c69ab172c5cbe44b264cc063b9a6b7f0330e8a4d",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt4-negative-late-send.log",
+        "source_relative_path": "attempt4-negative-late-send.log"
+      }
+    },
+    {
+      "path": "attempt5-final-focused.log",
+      "logical_path": "attempt5-final-focused.log",
+      "raw_size": 4779,
+      "raw_sha256": "ee5a8250fe09bbb2f410592d095d3f3667fae08de68c84644f7404487ebd9b7f",
+      "stored_size": 4779,
+      "stored_sha256": "ee5a8250fe09bbb2f410592d095d3f3667fae08de68c84644f7404487ebd9b7f",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt5-final-focused.log",
+        "source_relative_path": "attempt5-final-focused.log"
+      }
+    },
+    {
+      "path": "attempt6-final-affected.log.gz",
+      "logical_path": "attempt6-final-affected.log",
+      "raw_size": 62883,
+      "raw_sha256": "1a840f2a2f8e9915311f5e21f40e769e372ded20613e002c1cbe9e44b7dd33f6",
+      "stored_size": 9349,
+      "stored_sha256": "395a29a07cbe0d395c186e88d259d2c43b06edf3a668eb0a6c7a086cda651a77",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt6-final-affected.log",
+        "source_relative_path": "attempt6-final-affected.log"
+      }
+    },
+    {
+      "path": "attempt7-final-pending-and-focused.log",
+      "logical_path": "attempt7-final-pending-and-focused.log",
+      "raw_size": 5253,
+      "raw_sha256": "94ec6c5dc606924e37c2f6e202af86faa47726783fc532eb25637c7f43c43f6b",
+      "stored_size": 5253,
+      "stored_sha256": "94ec6c5dc606924e37c2f6e202af86faa47726783fc532eb25637c7f43c43f6b",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\attempt7-final-pending-and-focused.log",
+        "source_relative_path": "attempt7-final-pending-and-focused.log"
+      }
+    },
+    {
+      "path": "baseline-negative.log",
+      "logical_path": "baseline-negative.log",
+      "raw_size": 1384,
+      "raw_sha256": "f735cdee909c9a1f8c579ef951d5a01f8b3f03058050e99fe5f54c5c9574a39f",
+      "stored_size": 1384,
+      "stored_sha256": "f735cdee909c9a1f8c579ef951d5a01f8b3f03058050e99fe5f54c5c9574a39f",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\baseline-negative.log",
+        "source_relative_path": "baseline-negative.log"
+      }
+    },
+    {
+      "path": "baseline-negative.py",
+      "logical_path": "baseline-negative.py",
+      "raw_size": 1208,
+      "raw_sha256": "206b311c9310b962938e87121833d7bd9193b68dfce70a17e2a657644cdceb09",
+      "stored_size": 1208,
+      "stored_sha256": "206b311c9310b962938e87121833d7bd9193b68dfce70a17e2a657644cdceb09",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\baseline-negative.py",
+        "source_relative_path": "baseline-negative.py"
+      }
+    },
+    {
+      "path": "final-summary.json",
+      "logical_path": "final-summary.json",
+      "raw_size": 3389,
+      "raw_sha256": "43ca44d7db87ed039753d60844e38e6c4a5e2711e17f480e3e98a8b446e2ddf2",
+      "stored_size": 3389,
+      "stored_sha256": "43ca44d7db87ed039753d60844e38e6c4a5e2711e17f480e3e98a8b446e2ddf2",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\final-summary.json",
+        "source_relative_path": "final-summary.json"
+      }
+    },
+    {
+      "path": "package-immutable-evidence.py",
+      "logical_path": "package-immutable-evidence.py",
+      "raw_size": 10260,
+      "raw_sha256": "85518a38eff1f9155ca5111e9ae905dc0b9292773634d86bebde48c7f89b7a51",
+      "stored_size": 10260,
+      "stored_sha256": "85518a38eff1f9155ca5111e9ae905dc0b9292773634d86bebde48c7f89b7a51",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\package-immutable-evidence.py",
+        "source_relative_path": "package-immutable-evidence.py"
+      }
+    },
+    {
+      "path": "scope.txt",
+      "logical_path": "scope.txt",
+      "raw_size": 178,
+      "raw_sha256": "80b70f7ff4f655a30c02b83feff043997166fe694600f75c88fc6e3da8e5db28",
+      "stored_size": 178,
+      "stored_sha256": "80b70f7ff4f655a30c02b83feff043997166fe694600f75c88fc6e3da8e5db28",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\scope.txt",
+        "source_relative_path": "scope.txt"
+      }
+    },
+    {
+      "path": "source-final/keeper/monitor.py.gz",
+      "logical_path": "source-final/keeper/monitor.py",
+      "raw_size": 179004,
+      "raw_sha256": "966236447abae9d0e9576264a57c641ca8ec1771efc3eb9476fe498abf6f36fc",
+      "stored_size": 39872,
+      "stored_sha256": "99bbde227f97c6a77932ee1a1a68647299dea574f994fbb1181f0bba18c9546e",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\source-final\\keeper\\monitor.py",
+        "source_relative_path": "source-final/keeper/monitor.py"
+      }
+    },
+    {
+      "path": "source-final/keeper/royalties.py.gz",
+      "logical_path": "source-final/keeper/royalties.py",
+      "raw_size": 17321,
+      "raw_sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+      "stored_size": 5088,
+      "stored_sha256": "2b6b11cad3cb9b2827802f37b5dfa07123a2433bad6e07e04765d0a8231ce2b1",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\source-final\\keeper\\royalties.py",
+        "source_relative_path": "source-final/keeper/royalties.py"
+      }
+    },
+    {
+      "path": "source-final/tests_python/test_exact_lp_conversion_capacity.py.gz",
+      "logical_path": "source-final/tests_python/test_exact_lp_conversion_capacity.py",
+      "raw_size": 21834,
+      "raw_sha256": "cf0382df9b8a7983eb3534c30480055eb21fdf2a0d730d84bcbb6866698da4d9",
+      "stored_size": 5168,
+      "stored_sha256": "6d3002f26e6bad071718caf66fae32853cb4b0ab997018a048683c087323c86a",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\source-final\\tests_python\\test_exact_lp_conversion_capacity.py",
+        "source_relative_path": "source-final/tests_python/test_exact_lp_conversion_capacity.py"
+      }
+    },
+    {
+      "path": "summarize.py",
+      "logical_path": "summarize.py",
+      "raw_size": 3707,
+      "raw_sha256": "7e10dbda92ffba5934ebbf9b2174125f279d373a5d16c5bbe8ce87cba2963e07",
+      "stored_size": 3707,
+      "stored_sha256": "7e10dbda92ffba5934ebbf9b2174125f279d373a5d16c5bbe8ce87cba2963e07",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_external_copy",
+        "source_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107\\keeper\\capacity-20261107-013629-8744\\summarize.py",
+        "source_relative_path": "summarize.py"
+      }
+    },
+    {
+      "path": "baseline/c055684a558519eab308a24b81746bf1b9842d96/keeper/monitor.py.gz",
+      "logical_path": "baseline/c055684a558519eab308a24b81746bf1b9842d96/keeper/monitor.py",
+      "raw_size": 174880,
+      "raw_sha256": "fb0e855767fdb8a659f336aa100e3846d9cbcee59e95da4127741c60c9729b4d",
+      "stored_size": 39000,
+      "stored_sha256": "6eebc4ba7a1f5ee7926243df2374a216c668128cb02620316b5a6bc279a04f80",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "exact_git_blob",
+        "commit": "c055684a558519eab308a24b81746bf1b9842d96",
+        "repository_path": "keeper/monitor.py",
+        "git_blob": "9543c334f2434f2049645d430c9750fe2fb47c5d"
+      }
+    },
+    {
+      "path": "baseline/c055684a558519eab308a24b81746bf1b9842d96/keeper/royalties.py",
+      "logical_path": "baseline/c055684a558519eab308a24b81746bf1b9842d96/keeper/royalties.py",
+      "raw_size": 14931,
+      "raw_sha256": "a7a0dcf72ab0e86d1cab4e359f132eba3924447023968dda3a6ba8b0c3f71a42",
+      "stored_size": 14931,
+      "stored_sha256": "a7a0dcf72ab0e86d1cab4e359f132eba3924447023968dda3a6ba8b0c3f71a42",
+      "compression": "none",
+      "origin": {
+        "kind": "exact_git_blob",
+        "commit": "c055684a558519eab308a24b81746bf1b9842d96",
+        "repository_path": "keeper/royalties.py",
+        "git_blob": "21c14c0ba57081c60ea81cafa1d49c519c3e0b1b"
+      }
+    },
+    {
+      "path": "per-method-provenance.json.gz",
+      "logical_path": "per-method-provenance.json",
+      "raw_size": 207733,
+      "raw_sha256": "75d05fb4a17b0a4e36115399382324b7f57a949615234530678caf87208d8d66",
+      "stored_size": 13037,
+      "stored_sha256": "1d313a6acbf4b26d7d636b55d6d406cb30db391a83f5d203434d069c4a3d6d0b",
+      "compression": "gzip-mtime0-filename-empty-level9",
+      "origin": {
+        "kind": "derived_from_preserved_logs",
+        "inputs": [
+          "attempt2.log",
+          "attempt3-affected.log",
+          "attempt4-negative-late-send.log",
+          "attempt5-final-focused.log",
+          "attempt6-final-affected.log",
+          "attempt7-final-pending-and-focused.log",
+          "baseline-negative.log"
+        ]
+      }
+    },
+    {
+      "path": "protected-proof.json",
+      "logical_path": "protected-proof.json",
+      "raw_size": 1186,
+      "raw_sha256": "3686adde63bdd16597240388b0d1300dd2c26853fb7d60fdb2e781b5a221c45d",
+      "stored_size": 1186,
+      "stored_sha256": "3686adde63bdd16597240388b0d1300dd2c26853fb7d60fdb2e781b5a221c45d",
+      "compression": "none",
+      "origin": {
+        "kind": "read_only_sha256_observation",
+        "no_protected_bytes_modified": true
+      }
+    },
+    {
+      "path": "packaging-notes.json",
+      "logical_path": "packaging-notes.json",
+      "raw_size": 1506,
+      "raw_sha256": "073175f9d26ce0afa405365e7875c69a99490b4f1f5d0183052c3a14f5642207",
+      "stored_size": 1506,
+      "stored_sha256": "073175f9d26ce0afa405365e7875c69a99490b4f1f5d0183052c3a14f5642207",
+      "compression": "none",
+      "origin": {
+        "kind": "generated_packaging_metadata"
+      }
+    }
+  ],
+  "manifest_exclusions": [
+    "artifact-manifest.json",
+    "package-verification.json"
+  ],
+  "verification_contract": "Every entry authenticates stored and decompressed raw bytes. Exact external copies must match the source file SHA256; Git baselines must match the named blob. Metadata manifest and verification are generated once, without rewriting source evidence."
+}

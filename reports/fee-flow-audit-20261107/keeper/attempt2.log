@@ -1,0 +1,35 @@
+test_affordable_subset_preserves_every_cap_and_persists_remainder_before_one_send (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_affordable_subset_preserves_every_cap_and_persists_remainder_before_one_send) ... ERROR
+test_claim_or_pause_race_after_first_rejection_aborts_without_further_candidate (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_claim_or_pause_race_after_first_rejection_aborts_without_further_candidate) ... ok
+test_continuation_visits_suffix_even_when_prefix_is_still_funded (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_continuation_visits_suffix_even_when_prefix_is_still_funded) ... ok
+test_disabled_route_or_failed_oracle_never_reaches_estimation (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_disabled_route_or_failed_oracle_never_reaches_estimation) ... ok
+test_fresh_capacity_result_never_reuses_health_and_historical_profile_stays_single_attempt (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_fresh_capacity_result_never_reuses_health_and_historical_profile_stays_single_attempt) ... ok
+test_global_price_daily_economy_and_retry_blocks_never_trigger_sizing (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_global_price_daily_economy_and_retry_blocks_never_trigger_sizing) ... ok
+test_pending_blocks_scan_and_ambiguous_false_result_never_retries (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_pending_blocks_scan_and_ambiguous_false_result_never_retries) ... ok
+test_per_transaction_cost_can_shrink_but_daily_and_relative_limits_stay_fixed (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_per_transaction_cost_can_shrink_but_daily_and_relative_limits_stay_fixed) ... ok
+test_single_fixed_source_configuration_and_capacity_result_are_explicit (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_single_fixed_source_configuration_and_capacity_result_are_explicit) ... ok
+test_stale_snapshot_during_sizing_stops_before_second_simulation (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_stale_snapshot_during_sizing_stops_before_second_simulation) ... ok
+test_subset_minimum_and_deadline_are_rebuilt_after_quote_time (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_subset_minimum_and_deadline_are_rebuilt_after_quote_time) ... ok
+test_unaffordable_singleton_stops_at_six_attempts_and_does_not_hide_suffix (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_unaffordable_singleton_stops_at_six_attempts_and_does_not_hide_suffix) ... ok
+test_unknown_nft_read_and_simulation_faults_are_deferred_without_isolation (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_unknown_nft_read_and_simulation_faults_are_deferred_without_isolation) ... ok
+test_zero_source_and_economic_minimum_never_fabricate_a_conversion (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_zero_source_and_economic_minimum_never_fabricate_a_conversion) ... ok
+
+======================================================================
+ERROR: test_affordable_subset_preserves_every_cap_and_persists_remainder_before_one_send (tests_python.test_exact_lp_conversion_capacity.ExactLPConversionCapacityTests.test_affordable_subset_preserves_every_cap_and_persists_remainder_before_one_send)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_exact_lp_conversion_capacity.py", line 123, in test_affordable_subset_preserves_every_cap_and_persists_remainder_before_one_send
+    self.assertTrue(self.k.lp_rewards.scan_once())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\royalties.py", line 232, in scan_once
+    if k.submit(self.ledger,BATCH,(asset,sorted(ids),route,minimum,now+180),
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1846, in submit
+    self._fee_review(pending)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 411, in _fee_review
+    raise RpcError('Pending network fee semantics are unqualified')
+zzz_ops.errors.RpcError: Pending network fee semantics are unqualified
+
+----------------------------------------------------------------------
+Ran 14 tests in 12.514s
+
+FAILED (errors=1)

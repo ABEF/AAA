@@ -1,0 +1,9 @@
+{
+  "exact-lp-source7-wire.json": "0fbff68493129dfae788cfd40c36cdc835037230a7c14b2d448297f40c90cf24",
+  "prior-producer-START.json": "4f18d303840b71455d794d8e20dc94ebe602288a768a2902e5a35d4cd042c650",
+  "prior-producer-status.json": "7f43de6042e3bde49a2b291339ccdc60ce333a5344fab24012e747b498a38788",
+  "prior-producer-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "prior-producer-stdout.json": "08a1b0b2dfc1e6d0b90438c2e68459a7bab2f27a56dce243f0efff04b9c6289a",
+  "prior-producer-test-source.sol": "762df59b83ddeff451754421d9eb579ec4b76281f46b5acad157ffbd02beceba",
+  "test_exact_lp_source_wire.py": "0e115fab75f844a62964317affe6da6b8fd7b51cad7dcd5ca9e5d7482021b4f8"
+}

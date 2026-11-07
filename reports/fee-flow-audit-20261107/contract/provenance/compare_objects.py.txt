@@ -1,0 +1,20 @@
+from pathlib import Path
+import json,hashlib
+r=Path.cwd();e=Path(__file__).parent;v=e.parents[1];old=v/'exact-lp-integration-20261106-64f9/normal-final-5994e91eed';new=e/'normal-final-4de5dcc67c';a=json.loads((old/'compiler-output.json').read_text());b=json.loads((new/'compiler-output.json').read_text());sa=json.loads((old/'START.json').read_text())['source_sha256'];sb=json.loads((new/'START.json').read_text())['source_sha256']
+def strip(text):
+ data=bytes.fromhex(text);length=int.from_bytes(data[-2:],'big');assert length+2<len(data);return data[:-length-2]
+abi_changes=[];runtime_changes=[];executable_changes=[];names=[]
+for source,contracts in a['contracts'].items():
+ for name,obj in contracts.items():
+  other=b['contracts'][source][name]
+  if obj['abi']!=other['abi']:abi_changes.append(source+'::'+name)
+  rt=obj.get('evm',{}).get('deployedBytecode',{}).get('object','');other_rt=other.get('evm',{}).get('deployedBytecode',{}).get('object','')
+  if rt!=other_rt:
+   runtime_changes.append(source+'::'+name)
+   if strip(rt)!=strip(other_rt):executable_changes.append(source+'::'+name)
+  if source.startswith('src/')and obj.get('evm',{}).get('bytecode',{}).get('object'):names.append(source+'::'+name)
+assert not abi_changes
+assert executable_changes==['src/ZZZLPRewardConverter.sol::ZZZLPRewardConverter']
+assert [n for n in sb if sa[n]!=sb[n]]==['src/base/ZZZRewardConverter.sol']
+d={'schema':1,'before_normal':str(old),'after_normal':str(new),'closed_source_count':len(sb),'source_changes':[n for n in sb if sa[n]!=sb[n]],'all_source87_inventory_names_identical':set(sa)==set(sb),'all_contract_ABIs_equal':not abi_changes,'normal_production_objects':len(names),'runtime_changes':runtime_changes,'executable_runtime_changes_after_exact_CBOR_strip':executable_changes,'Rewards_runtime_difference_metadata_only':True,'method':'For each differing runtime, read final2bytes as canonical Solidity metadata byte length; compare every preceding executable byte exactly. No opcode/value normalization or dropped code. Creation code may embed changed metadata; runtime identity still requires fresh pins.','new_converter_raw_sha256':sb['src/base/ZZZRewardConverter.sol'],'raw_compiler_input_sha256':hashlib.sha256((new/'compiler-input.json').read_bytes()).hexdigest(),'raw_compiler_output_sha256':hashlib.sha256((new/'compiler-output.json').read_bytes()).hexdigest()}
+p=e/'ABI_AND_EXECUTABLE_COMPARISON.json';assert not p.exists();p.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps(d,indent=2))

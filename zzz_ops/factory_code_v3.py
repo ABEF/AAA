@@ -11,7 +11,7 @@ VERSION=2
 PREFIX=bytes.fromhex('5f5ffd')
 PART_DATA_LIMIT=24573
 ARTIFACT=Path(__file__).resolve().parents[1]/'config/factory-code-storage-v3.json'
-ARTIFACT_CANONICAL_SHA256='690762b293d8d4344a1af6e38ad106ff2cddfddce7cde54d940e0327a8cb4374'
+ARTIFACT_CANONICAL_SHA256='a887d3d80cf9355ff69d34df8bdb75b38f272bd8fe6b885798652509ddfaba29'
 MAX_ARTIFACT_BYTES=64*1024
 SECTION_FIELDS=frozenset(('code_storage_version','creation_code_length','creation_code_hash',
     'parts','review_evidence','observed_creation_code_length','observed_creation_code_hash'))

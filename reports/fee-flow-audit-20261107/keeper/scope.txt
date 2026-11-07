@@ -1,0 +1,1 @@
+Fresh accounting7 conversion capacity worker; injected RPC and mocked signer only; no deployment/service/chain/state changes. Baseline c055684a558519eab308a24b81746bf1b9842d96.

@@ -1,0 +1,329 @@
+{
+  "schema": 1,
+  "scope": "Closed normal87/46+2, actual offline Slither532+strict15current/517exactsource reuse and compiler equivalence. Root owns prose/defaults/functionrefs/F3rebinding; contract agent owns focused11 EVM evidence.",
+  "copies": [
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\START.json",
+      "original_raw_sha256": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+      "original_bytes": 10645,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json",
+      "published_sha256": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+      "published_bytes": 10645,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\production-size-gates.json",
+      "original_raw_sha256": "c996e7aab97ac34bfc7c36eeb3156e001acf00e24798966fb274038b13d58b9e",
+      "original_bytes": 44653,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/production-size-gates.json",
+      "published_sha256": "c996e7aab97ac34bfc7c36eeb3156e001acf00e24798966fb274038b13d58b9e",
+      "published_bytes": 44653,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\compiler-input.json",
+      "original_raw_sha256": "5f22847e1c26441bf169988ec82bf45746d2c25043442bdf522c28e136c8da87",
+      "original_bytes": 815715,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/compiler-input.json",
+      "published_sha256": "5f22847e1c26441bf169988ec82bf45746d2c25043442bdf522c28e136c8da87",
+      "published_bytes": 815715,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\solc-stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/solc-stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\normal-final-4de5dcc67c\\compiler-output.json",
+      "original_raw_sha256": "00cc2b617c806750fc2500ab7c5021fc21be1095e35db934b3a2bcae1f6da9d4",
+      "original_bytes": 23584310,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/compiler-output.json.gz",
+      "published_sha256": "4b9e9d74c67fbe15da79dac179c7ace57c2fd70d877ec82cea081e796361cfdd",
+      "published_bytes": 2661051,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\START.json",
+      "original_raw_sha256": "79ecd1f9a5c1130ebeefae1f9cb9d74805356bdc344587c01dd9b60f6852f6da",
+      "original_bytes": 8143,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/START.json",
+      "published_sha256": "79ecd1f9a5c1130ebeefae1f9cb9d74805356bdc344587c01dd9b60f6852f6da",
+      "published_bytes": 8143,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\EXECUTION.json",
+      "original_raw_sha256": "cad6717516de70020bfee1684dd73066823c3946cad837cff22b949dacbff9bc",
+      "original_bytes": 15553,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/EXECUTION.json",
+      "published_sha256": "cad6717516de70020bfee1684dd73066823c3946cad837cff22b949dacbff9bc",
+      "published_bytes": 15553,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\slither.json",
+      "original_raw_sha256": "77a722381149ec07b50afd75941ec70bac433a0922828696558c985e3ed7d7d0",
+      "original_bytes": 107487840,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/slither.json.gz",
+      "published_sha256": "f38e0592412ab5d8c86185e9a428afb7272227f997d2c98fc4ae875f30b89168",
+      "published_bytes": 5315239,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\detectors-only.json",
+      "original_raw_sha256": "e8a464ab5305f452bd6f20c6e4f34e143fcf48ebc3ae09e262ea887bc6d67b65",
+      "original_bytes": 43782856,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/detectors-only.json.gz",
+      "published_sha256": "fac0de54193af7deaf00e94723f143c9affae9483eb0d5c0a8f52ad95ebd256e",
+      "published_bytes": 1459407,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\slither.log",
+      "original_raw_sha256": "eebc53e9fe846b56170cae21d05e019e36c61051776bd3f7fd4c4d1a297b7fa9",
+      "original_bytes": 276085,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/slither.log.gz",
+      "published_sha256": "03fb15eecde32ba52a23dd6422c6db768c80e50bb45d9602fd2b92ca70edd492",
+      "published_bytes": 26546,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\build-info\\5f22847e1c26441b.json",
+      "original_raw_sha256": "704f1ae2124cc3b5f9aac3bfec656c2b76d59c10c79834556cef9f766ec6660d",
+      "original_bytes": 24404846,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/build-info/5f22847e1c26441b.json.gz",
+      "published_sha256": "e966a09135432aadd8804d4ece8b57a02fe8589a6f6380ed3d828402b1944457",
+      "published_bytes": 2828886,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\STATIC_INVENTORY.json",
+      "original_raw_sha256": "8e24b1f0e293a55eebee890e8ce07d047fbf6e4b8e94a0e999b8650f9e84181f",
+      "original_bytes": 1190419,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/STATIC_INVENTORY.json.gz",
+      "published_sha256": "7270345279e51a8f8215bfb7f8ddaf7f0104b411bfa03d6674c182e83332d2e8",
+      "published_bytes": 128656,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\STATIC_CURRENT.json",
+      "original_raw_sha256": "1b844aaa89fd810c203837468b8200cdd2e49272293315de47e9f9a6375d636d",
+      "original_bytes": 15705,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/STATIC_CURRENT.json.gz",
+      "published_sha256": "6ad5f068048ee542f133d61e7eac2954280c6fc56dbbb6f22c382b0d1a011a8d",
+      "published_bytes": 2214,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\STRICT_CHECK.json",
+      "original_raw_sha256": "1a01e99868aae385fce7cbbeb360f12c5ec3964ed13e3101fdb47f1df1270dc1",
+      "original_bytes": 214,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/STRICT_CHECK.json",
+      "published_sha256": "1a01e99868aae385fce7cbbeb360f12c5ec3964ed13e3101fdb47f1df1270dc1",
+      "published_bytes": 214,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\EXPECTED_OLD_RECORD_REJECTION.json",
+      "original_raw_sha256": "36e695d26282ca7a8c0d5c5ba0e77edbc31308b4042532efc680e2dbc96a18e1",
+      "original_bytes": 3703,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/EXPECTED_OLD_RECORD_REJECTION.json",
+      "published_sha256": "36e695d26282ca7a8c0d5c5ba0e77edbc31308b4042532efc680e2dbc96a18e1",
+      "published_bytes": 3703,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\PRESENTATION_DIFFERENCES.json",
+      "original_raw_sha256": "b4890598ba87794743bd5af8ac6d42e5327db1a8c38a4c8313620b9984ef1229",
+      "original_bytes": 1993,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/PRESENTATION_DIFFERENCES.json",
+      "published_sha256": "b4890598ba87794743bd5af8ac6d42e5327db1a8c38a4c8313620b9984ef1229",
+      "published_bytes": 1993,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\CURRENT_REVIEW_15.json",
+      "original_raw_sha256": "b9a976a2a0a3cf78d25a0e2a0ca939e329da3c44860b5f076c27f319c3f9b771",
+      "original_bytes": 10138,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/static/current-15.json",
+      "published_sha256": "b9a976a2a0a3cf78d25a0e2a0ca939e329da3c44860b5f076c27f319c3f9b771",
+      "published_bytes": 10138,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\OBJECT_AND_FACTORY_COMPARISON.json",
+      "original_raw_sha256": "2df118c42ed58fdeb6d3877a9bd466a1caf2fd2846003f4811c296d803aba9d8",
+      "original_bytes": 758,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/OBJECT_AND_FACTORY_COMPARISON.json",
+      "published_sha256": "2df118c42ed58fdeb6d3877a9bd466a1caf2fd2846003f4811c296d803aba9d8",
+      "published_bytes": 758,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\ABI_AND_EXECUTABLE_COMPARISON.json",
+      "original_raw_sha256": "065e7d8ef4098ac12452d76f3f6d72c92d454ab297a1b1ca165aa75f6b7eb030",
+      "original_bytes": 1490,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/ABI_AND_EXECUTABLE_COMPARISON.json",
+      "published_sha256": "065e7d8ef4098ac12452d76f3f6d72c92d454ab297a1b1ca165aa75f6b7eb030",
+      "published_bytes": 1490,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\STORAGE_AND_CANONICAL_EQUIVALENCE.json",
+      "original_raw_sha256": "9cd1753f23375b10897e99c68922c0cd10cd082783f077b72b55abc5e91a5a6b",
+      "original_bytes": 18129,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/STORAGE_AND_CANONICAL_EQUIVALENCE.json",
+      "published_sha256": "9cd1753f23375b10897e99c68922c0cd10cd082783f077b72b55abc5e91a5a6b",
+      "published_bytes": 18129,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\TOOLS.json",
+      "original_raw_sha256": "f341f0b89ce366b936ebc21534ee9fb00b43b174886c03b0192c22d36234ae3e",
+      "original_bytes": 627,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/TOOLS.json",
+      "published_sha256": "f341f0b89ce366b936ebc21534ee9fb00b43b174886c03b0192c22d36234ae3e",
+      "published_bytes": 627,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\build-closed.py",
+      "original_raw_sha256": "de249b2c45c9ec6037080938928777c0ac9d2b181435c5bbe2e7245be8502093",
+      "original_bytes": 9499,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/build-closed.py.txt",
+      "published_sha256": "de249b2c45c9ec6037080938928777c0ac9d2b181435c5bbe2e7245be8502093",
+      "published_bytes": 9499,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\run-static.py",
+      "original_raw_sha256": "df75ff06578f08df1bcec6bbec1ace6dfeab837ac73548dd112543a5b227791f",
+      "original_bytes": 4211,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/run-static.py.txt",
+      "published_sha256": "df75ff06578f08df1bcec6bbec1ace6dfeab837ac73548dd112543a5b227791f",
+      "published_bytes": 4211,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\inventory.py",
+      "original_raw_sha256": "dbee5a201d88a0a2737a28413be6102fcb6690ce94255fe6d7121ae376a7075e",
+      "original_bytes": 1530,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/inventory.py.txt",
+      "published_sha256": "dbee5a201d88a0a2737a28413be6102fcb6690ce94255fe6d7121ae376a7075e",
+      "published_bytes": 1530,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\build_review.py",
+      "original_raw_sha256": "75a318c14a7d62af04032f12a76a06382d102e87671bc8690df7d51b5609e775",
+      "original_bytes": 10564,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/build_review.py.txt",
+      "published_sha256": "75a318c14a7d62af04032f12a76a06382d102e87671bc8690df7d51b5609e775",
+      "published_bytes": 10564,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\compare_objects.py",
+      "original_raw_sha256": "772cc1bb1d0c6ef9a7ca0653faeb4a066013b551bd8fbbc3c84d3fa378822b84",
+      "original_bytes": 2507,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/compare_objects.py.txt",
+      "published_sha256": "772cc1bb1d0c6ef9a7ca0653faeb4a066013b551bd8fbbc3c84d3fa378822b84",
+      "published_bytes": 2507,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\compare_storage.py",
+      "original_raw_sha256": "c55726864455e773042ab8336f8ad8cae063dd4763798f6c066ff7c48dc150de",
+      "original_bytes": 3131,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/compare_storage.py.txt",
+      "published_sha256": "c55726864455e773042ab8336f8ad8cae063dd4763798f6c066ff7c48dc150de",
+      "published_bytes": 3131,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\reject_old_record.py",
+      "original_raw_sha256": "efc38c849b19ae0b7de393e7c79af1a0f8a9d622cf2a82505e8cf1250b15a3e9",
+      "original_bytes": 1324,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/reject_old_record.py.txt",
+      "published_sha256": "efc38c849b19ae0b7de393e7c79af1a0f8a9d622cf2a82505e8cf1250b15a3e9",
+      "published_bytes": 1324,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\package.py",
+      "original_raw_sha256": "49629b3a3be929856cee5cbc3056d9b31a0ed72206ab9aebbb12092a602cbf33",
+      "original_bytes": 5132,
+      "published_relative_path": "reports/fee-flow-audit-20261107/contract/provenance/package.py.txt",
+      "published_sha256": "49629b3a3be929856cee5cbc3056d9b31a0ed72206ab9aebbb12092a602cbf33",
+      "published_bytes": 5132,
+      "action": "byte_identical_copy"
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "published_relative_path": "reports/fee-flow-audit-20261107/static-review.json",
+      "published_sha256": "1454a242c11c7fe6a9b3712da5b15fc34d941616d8c8a6964f712262ec908a4c",
+      "action": "Full exact532 source-bound review / exact4-field projection of actual raw findings / coverage summary; no normalization broadening.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\build_review.py",
+          "raw_sha256": "75a318c14a7d62af04032f12a76a06382d102e87671bc8690df7d51b5609e775"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\detectors-only.json",
+          "raw_sha256": "e8a464ab5305f452bd6f20c6e4f34e143fcf48ebc3ae09e262ea887bc6d67b65"
+        }
+      ]
+    },
+    {
+      "published_relative_path": "reports/fee-flow-audit-20261107/static-detectors.json",
+      "published_sha256": "518630f5540b63ac65a3434323971e8f3725ead73355095b4a4103c1ec1da92e",
+      "action": "Full exact532 source-bound review / exact4-field projection of actual raw findings / coverage summary; no normalization broadening.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\build_review.py",
+          "raw_sha256": "75a318c14a7d62af04032f12a76a06382d102e87671bc8690df7d51b5609e775"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\detectors-only.json",
+          "raw_sha256": "e8a464ab5305f452bd6f20c6e4f34e143fcf48ebc3ae09e262ea887bc6d67b65"
+        }
+      ]
+    },
+    {
+      "published_relative_path": "reports/fee-flow-audit-20261107/static-coverage.json",
+      "published_sha256": "6eef9e6df01a01c028a6385d11da73ad3d41b0238850e29ef826cf0461cf7c2d",
+      "action": "Full exact532 source-bound review / exact4-field projection of actual raw findings / coverage summary; no normalization broadening.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\build_review.py",
+          "raw_sha256": "75a318c14a7d62af04032f12a76a06382d102e87671bc8690df7d51b5609e775"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\detectors-only.json",
+          "raw_sha256": "e8a464ab5305f452bd6f20c6e4f34e143fcf48ebc3ae09e262ea887bc6d67b65"
+        }
+      ]
+    }
+  ],
+  "copy_roundtrips_verified": true,
+  "all87_raw_sources_unchanged": true,
+  "protected4_preserved": true,
+  "strict_actual_raw_review_pass": true,
+  "raw_analyzer_exit": 4294967295,
+  "no_limits_raised": true,
+  "no_build_analyzer_or_EVM_rerun_during_packaging": true,
+  "prior_compiler_evidence_referenced_not_duplicated": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed",
+  "external_duplicates_not_copied": [
+    {
+      "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\fee-flow-audit-20261107-c055\\physical-agent\\static-e639dc6589\\out",
+      "reason": "Per-object analyzer copies can be regenerated from packaged normal compiler output and actual packaged build-info/run-static script."
+    }
+  ],
+  "no_deployment_service_site_journal_signer_change": true
+}

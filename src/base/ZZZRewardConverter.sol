@@ -2,6 +2,7 @@
 pragma solidity 0.8.26;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -146,6 +147,7 @@ abstract contract ZZZRewardConverter is ZZZModule, ReentrancyGuard {
             if (admin.owner() != p.adminOwner || admin.getProxyAdmin(wrapper) != p.admin ||
                 admin.getProxyImplementation(wrapper) != p.implementation) revert InvalidConfiguration();
         }
+        if (IERC20Metadata(wrapper).decimals() != 18) revert InvalidConfiguration();
     }
     function _checkRoute(RoutePolicy memory p) private view {
         if (wrapper == address(0) || p.source == wrapper || p.reviewHash == bytes32(0) || p.fee >= 1_000_000) revert InvalidConfiguration();
@@ -173,7 +175,12 @@ abstract contract ZZZRewardConverter is ZZZModule, ReentrancyGuard {
             _checkRoute(p);
             uint256 expected = IZZZOracle(access.module(Ids.ORACLE)).quote(source, wrapper, amount);
             if (expected == 0) revert InvalidAmount();
-            floor = Math.mulDiv(expected, 10_000 - conversionLossBps, 10_000, Math.Rounding.Ceil);
+            // The final payout is native ETH. An independent wrapper policy
+            // cannot weaken that floor; retain its stronger floor as well.
+            uint256 nativeExpected = IZZZOracle(access.module(Ids.ORACLE)).quote(source, address(0), amount);
+            if (nativeExpected == 0) revert InvalidAmount();
+            floor = Math.mulDiv(Math.max(expected, nativeExpected),
+                10_000 - conversionLossBps, 10_000, Math.Rounding.Ceil);
         }
         uint256 minimum = Math.max(floor, minimumETH);
         uint256 sourceBefore = IERC20(source).balanceOf(address(this));
