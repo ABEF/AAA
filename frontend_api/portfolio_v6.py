@@ -11,7 +11,9 @@ ROLES = ('pools', 'liquidity', 'strategy', 'budget', 'portfolio_policy',
          'lp_position_executor', 'protocol_policy', 'pool_manager', 'state_view', 'position_manager', 'permit2')
 
 
-def verify_profile(p, block):
+def verify_profile(p, block, *, accounting_version=6):
+    if accounting_version not in (6,7) or p.accounting_version!=accounting_version:
+        raise ProjectionError('Explicit policy portfolio accounting profile differs')
     pins = {role: item.address for role, item in p.contracts.items()}
     def number(role, method, *args):
         return int(p._call(pins[role], method, *args, block=block)[0], 16)
@@ -42,7 +44,7 @@ def verify_profile(p, block):
             ('position_manager','permit2()','permit2')):
         binding(role, method, expected)
     for role, method, expected in (
-            ('vault','ACCOUNTING_VERSION()',6), ('strategy','MAINTENANCE_POLICY_VERSION()',3),
+            ('vault','ACCOUNTING_VERSION()',accounting_version), ('strategy','MAINTENANCE_POLICY_VERSION()',3),
             ('strategy','REBALANCE_CONFIRMATION_VERSION()',3), ('rebalance_confirmation','REBALANCE_CONFIRMATION_VERSION()',3),
             ('budget','IDLE_COMPOUNDING_VERSION()',4), ('budget','REBALANCE_CONFIRMATION_VERSION()',3),
             ('budget','EMERGENCY_REBALANCE_VERSION()',2), ('principal_exit','EMERGENCY_REBALANCE_VERSION()',2),
@@ -59,7 +61,7 @@ def read_bucket(p, bucket, block):
     return _read_bucket_proof(p,bucket,block)[0]
 
 
-def _read_bucket_proof(p, bucket, block):
+def _read_bucket_proof(p, bucket, block, *, accounting_version=6):
     """Reuses the same read-only physical adapter as keeper diagnostics.
 
     It authenticates both actual LP keys, owners, ticks and nonzero liquidity,
@@ -75,7 +77,7 @@ def _read_bucket_proof(p, bucket, block):
         result = observe(
             lambda target, method, *args, count: p._call(target, method, *args, block=block, words=count),
             lambda target: p.rpc.call('eth_getCode', [target, block]),
-            contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=6, physical_only=True)
+            contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=accounting_version, physical_only=True)
     except (ValueError, TypeError, KeyError) as exc:
         raise ProjectionError('Accounting6 portfolio identity or aggregate principal is inconsistent') from exc
     payload={'version': 2, 'minimum_main_bps':result['minimum_main_bps'],
@@ -93,7 +95,7 @@ def _read_bucket_proof(p, bucket, block):
 
 
 def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range_policy_version,
-                         range_policy,maintenance_policy_version,rebalance_confirmation_version):
+                         range_policy,maintenance_policy_version,rebalance_confirmation_version,accounting_version=6):
     """Fresh85% trigger semantics; never reinterpret historical outside-only data."""
     from datetime import datetime,timezone
     from frontend_api.service import _bool
@@ -121,7 +123,7 @@ def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range
     if int(policy_fingerprint,16)==0 or not 0<threshold<=10000:
         raise ProjectionError('Accounting6 portfolio policy is missing or malformed')
     if existing:
-        portfolio,execution_fingerprint=_read_bucket_proof(p,bucket,block);lp=int(position[1],16)
+        portfolio,execution_fingerprint=_read_bucket_proof(p,bucket,block,accounting_version=accounting_version);lp=int(position[1],16)
         if portfolio['pool_id']!=pool or int(portfolio['main_lp_token_id'])!=lp:
             raise ProjectionError('Accounting6 contribution portfolio differs from its bucket')
         lower,upper=map(signed_tick,read('liquidity','ticks(uint256)',lp,count=2))
@@ -135,7 +137,7 @@ def contribution_context(p,pins,pool,bucket,position,config,header,block,*,range
                 lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
                 strategy=pins['strategy'],budget=pins['budget'],confirmation=pins['rebalance_confirmation'],
                 access=pins['access'],bucket=bucket,timestamp=header['timestamp'],raw_eligible=raw,
-                range_pending=manual,version=3,portfolio_policy=pins['portfolio_policy'],accounting_version=6)
+                range_pending=manual,version=3,portfolio_policy=pins['portfolio_policy'],accounting_version=accounting_version)
         except (ValueError,TypeError,KeyError) as exc:
             raise ProjectionError('Accounting6 threshold evidence or cooldown is inconsistent') from exc
         eligible=confirmation['ready_at_snapshot'];trigger=bool(confirmation['physical_threshold_side'])

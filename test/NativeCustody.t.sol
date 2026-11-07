@@ -28,7 +28,7 @@ contract NativeCustodyOracle {
     function value(address,uint256 amount) external pure returns(uint256){return amount*1e18;}
 }
 contract NativeCanonicalVault {
-    uint256 public constant ACCOUNTING_VERSION=6;
+    uint256 public constant ACCOUNTING_VERSION=7;
     uint256 public immutable canonicalChainId=block.chainid;
     uint256 public constant sequence=0;
     uint256 public constant bucketCount=0;

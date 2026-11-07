@@ -1,0 +1,9 @@
+{
+  "rejected": true,
+  "reason": "Unacknowledged exact LP weight synchronization",
+  "pending_sync": [
+    10001
+  ],
+  "actual_source_fixture_sha256": "841a7f37dd577bf7b33f23078a4228c97ece1a06d0b23c43d3882ebef30256c5",
+  "limitation": "Authenticated synthetic share writer omits actual Vault SharesAdded; no events invented or replay loosened"
+}

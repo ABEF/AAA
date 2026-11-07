@@ -28,8 +28,9 @@ contract DynamicAccountingTest is PooledVaultFixture {
         assertGt(_record(id).lpTokenId,old);assertEq(venue.a0(old)+venue.a1(old),0);
         assertEq(vault.sharesOf(id),shares);assertEq(vault.contributionUSD(id),500e18);
         // No rebalance: market marks alone change the NFT value.
-        MockFeed higher=new MockFeed(8,120000000);
-        oracle.setTestFeed(address(t0),address(higher),3600);oracle.setTestFeed(address(t1),address(higher),3600);
+        MockFeed higher=new MockFeed(8,140000000);
+        // Keep normalized native feed within Oracle max; reprice ZZZ alone.
+        _setFixtureFeed(address(t1),address(higher),3600);
         assertEq(_value(id),588e18);assertEq(_value(other),11172e18);
         venue.setCloseLossBps(0);old=_record(id).lpTokenId;
         vault.rebalance(_bucket(),1,block.timestamp+100);
@@ -53,7 +54,7 @@ contract DynamicAccountingTest is PooledVaultFixture {
         assertApproxEqAbs(_value(id),valueBefore,1);assertEq(rewards.claimable(id,address(t0)),90);
         // A top-up similarly buys current NAV shares, never past receipts.
         supply=vault.bucketTotalShares(_bucket());uint256 beforeShares=vault.sharesOf(id);
-        vm.prank(alice);vault.increase(id,500,500,1,block.timestamp+100);
+        vm.prank(alice);vault.increase{value:500}(id, 500, 500, 1, block.timestamp+100);
         assertEq(vault.sharesOf(id)-beforeShares,supply*1000e18/11050e18);
         assertEq(rewards.claimable(id,address(t0)),90);
     }
@@ -74,7 +75,7 @@ contract DynamicAccountingTest is PooledVaultFixture {
         assertEq(_record(id).lpTokenId,before.lpTokenId);assertEq(venue.ownerOf(before.lpTokenId),address(vault));
         assertEq(_value(id),value);assertEq(vault.sharesOf(id),share);
         vm.prank(alice);vm.expectRevert();rewards.claim(id,address(t0));
-        uint256 balance=t0.balanceOf(bob);vm.prank(bob);rewards.claim(id,address(t0));assertEq(t0.balanceOf(bob)-balance,90);
+        uint256 balance=address(bob).balance;vm.prank(bob);rewards.claim(id,address(t0));assertEq(address(bob).balance-balance,90);
         ZZZRoyaltyRewards royaltyLedger=nft.royaltyRewards();
         uint256 ethBalance=bob.balance;vm.prank(bob);royaltyLedger.claim(id,address(0));assertEq(bob.balance-ethBalance,royalty);
     }

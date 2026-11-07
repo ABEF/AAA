@@ -1,0 +1,54 @@
+{
+  "strict_records": 532,
+  "current_contexts_individually_reviewed": 222,
+  "current_dispositions": {
+    "false_positive": 78,
+    "informational": 130,
+    "accepted_risk": 14
+  },
+  "unique_exact_fingerprint_and_referenced_source_reused": 310,
+  "exploratory_stage_counts": {
+    "analyzer": "static-0f3c8447c6",
+    "current": 224,
+    "reused": 308,
+    "not_final_record": true
+  },
+  "final_exact_additions_from_analyzer_presentation": [
+    {
+      "fingerprint": "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0",
+      "check": "reentrancy-eth",
+      "sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "description": "Reentrancy in ZZZLPPositionExecutor.close(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#286-296):\n\tExternal calls:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n\t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.primaryOfSecondary (src/ZZZLPPositionExecutor.sol#39) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor._main(uint256) (src/ZZZLPPositionExecutor.sol#86-88)\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- delete secondaryId[id] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- ZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38)\n",
+      "proof": "Final literal fingerprint equals unique old497 entry and every referenced source unchanged; exploratory set-derived presentation differed. No description normalization/comparison was broadened."
+    },
+    {
+      "fingerprint": "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e",
+      "check": "reentrancy-eth",
+      "sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "description": "Reentrancy in ZZZLPPositionExecutor.collect(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#260-267):\n\tExternal calls:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n",
+      "proof": "Final literal fingerprint equals unique old497 entry and every referenced source unchanged; exploratory set-derived presentation differed. No description normalization/comparison was broadened."
+    }
+  ],
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "raw_analyzer_exit": null,
+  "analyzer_json_success": true,
+  "analyzed_contracts_reported": 197,
+  "source_unchanged": true,
+  "no_checker_normalization_changed": true,
+  "no_analyzer_rerun_by_agent": true,
+  "new_lp_ledger_is_wired": true,
+  "canonical_actual_distinct_final_methods": 34,
+  "limits": [
+    "Internal review coverage is not absence of exploitable bugs or independent approval.",
+    "Conventional token/core/periphery/controller/source peer/runtime qualification is still required.",
+    "Bounded loops do not prove target-chain transaction gas; canonical export/import has many operator pages.",
+    "Emergency optional financial bypass can intentionally lose nearly all principal; normal constraints remain distinct.",
+    "Exact-unit allocation applies allocated LP books; prior orphan/unallocated/reserve/donation classes remain separate.",
+    "Historical497/532 exploratory stages keep original source scope; final counts do not sum overlapping records or tests."
+  ]
+}

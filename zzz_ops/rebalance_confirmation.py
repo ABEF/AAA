@@ -116,8 +116,8 @@ def _observe_portfolio(words,scalar,binding,*,strategy,budget,confirmation,acces
     for target,method,value in ((strategy,'portfolioPolicy()',policy),
             (strategy,'access()',access),(policy,'strategy()',strategy),(policy,'access()',access),(budget,'access()',access)):
         binding(target,method,value)
-    if type(accounting_version) is not int or accounting_version not in (5,6):raise ValueError('Unsupported explicit portfolio accounting')
-    portfolio_version=2 if accounting_version==6 else 1
+    if type(accounting_version) is not int or accounting_version not in (5,6,7):raise ValueError('Unsupported explicit portfolio accounting')
+    portfolio_version=2 if accounting_version in (6,7) else 1
     if (scalar(policy,'PORTFOLIO_VERSION()')!=portfolio_version or scalar(strategy,'MAINTENANCE_POLICY_VERSION()')!=3 or
             scalar(budget,'IDLE_COMPOUNDING_VERSION()')!=4):
         raise ValueError('Portfolio confirmation capability differs')
@@ -162,7 +162,7 @@ def _observe_portfolio(words,scalar,binding,*,strategy,budget,confirmation,acces
     elif type(raw_eligible) is not bool:raise ValueError('Invalid raw portfolio eligibility')
     # The same-block main checkpoint supplies an exact cooldown, not a guessed ETA.
     group=words(vault,'group(uint256)',bucket,count=8);pool='0x'+f'{group[0]:064x}'
-    if accounting_version==6:
+    if accounting_version in (6,7):
         minimum=scalar(policy,'minimumMainBps(bytes32)',pool);maximum=scalar(policy,'maximumResidualBps(bytes32)',pool)
         gap_spacings=scalar(policy,'residualGapSpacings(bytes32)',pool)
         if not 6000<=minimum<10000 or maximum!=10000-minimum or not 1<=gap_spacings<2**24:

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {Vm} from "forge-std/Vm.sol";
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {BudgetAdversarialVenue} from "./MigrationBudgetAdversarial.t.sol";
@@ -30,15 +31,16 @@ contract LossPolicyCallbackToken is MockToken {
 /// @dev TEST ONLY burned execution loss, with backed retained principal. The
 /// shared position can grow without treating undeployed idle as an actual loss.
 contract GovernedGrowthLossVenue is BudgetAdversarialVenue {
+    function vmBurn(uint256 amount)private{Vm(address(uint160(uint256(keccak256("hevm cheat code"))))).deal(address(this),address(this).balance-amount);}
     MockToken private immutable first;
     MockToken private immutable second;
     constructor(address a,address b) BudgetAdversarialVenue(a,b) {first=MockToken(a);second=MockToken(b);}
     function increase(bytes32,uint256 id,uint256 a,uint256 b,uint128,uint256)
-        external returns(uint256 used0,uint256 used1) {
+        external payable returns(uint256 used0,uint256 used1) {
         used0=a;used1=b;
-        require(first.transferFrom(msg.sender,address(this),a));require(second.transferFrom(msg.sender,address(this),b));
+        if(address(first)==address(0))require(msg.value==a);else require(first.transferFrom(msg.sender,address(this),a));require(second.transferFrom(msg.sender,address(this),b));
         amount0[id]+=a-mintLoss0;amount1[id]+=b-mintLoss1;
-        first.burn(mintLoss0);second.burn(mintLoss1);
+        if(address(first)==address(0))vmBurn(mintLoss0);else first.burn(mintLoss0);second.burn(mintLoss1);
     }
 }
 
@@ -96,18 +98,18 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(lossy.amount0(vault.group(_bucket()).lpTokenId),980);
         assertEq(vault.sharesOf(id),980e18);
         assertEq(vault.group(_bucket()).idle0,0);
-        uint256 shares=vault.sharesOf(id);uint256 before=t0.balanceOf(alice);
+        uint256 shares=vault.sharesOf(id);uint256 before=address(alice).balance;
         // A real 2% modeled execution loss satisfies the governed 2% floor,
         // but not the venue's stricter 1% net-value guard. No idle masks loss.
         _venueLimit(100);
-        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.increase(id,1000,0,1,block.timestamp+100);
-        assertEq(vault.sharesOf(id),shares);assertEq(t0.balanceOf(alice),before);
+        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.increase{value:1000}(id, 1000, 0, 1, block.timestamp+100);
+        assertEq(vault.sharesOf(id),shares);assertEq(address(alice).balance,before);
     }
     function testLaterContributionsUseSamePolicyWithoutBorrowingIncumbentIdle() public {
         _budget().setLossLimits(100,300);
         uint256 id=activatedPosition();_venueLimit(1000);venue.setSpendBps(9800);
-        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.increase(id,1000,0,1,block.timestamp+100);
-        _budget().setLossLimits(200,300);vm.prank(alice);vault.increase(id,1000,0,1,block.timestamp+100);
+        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.increase{value:1000}(id, 1000, 0, 1, block.timestamp+100);
+        _budget().setLossLimits(200,300);vm.prank(alice);vault.increase{value:1000}(id, 1000, 0, 1, block.timestamp+100);
         assertEq(vault.contributionUSD(id),3000e18);assertEq(vault.sharesOf(id),3000e18);
         assertEq(vault.group(_bucket()).idle0,20);
     }
@@ -115,14 +117,14 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         _budget().setLossLimits(100,300);
         _venueLimit(1000);uint256 id=_mint(alice);venue.setSpendBps(9800);
         LossPolicyCallbackToken implementation=new LossPolicyCallbackToken();
-        vm.etch(address(t0),address(implementation).code);
-        LossPolicyCallbackToken(address(t0)).configure(_budget(),address(vault));
-        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t0))),abi.encode(true));
-        uint256 before=t0.balanceOf(alice);
+        vm.etch(address(t1),address(implementation).code);
+        LossPolicyCallbackToken(address(t1)).configure(_budget(),address(vault));
+        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t1))),abi.encode(true));
+        uint256 before=t1.balanceOf(alice);
         // Callback successfully invokes governance, but the operation captured
         // 1% before this pull. A later 10% policy cannot make 98% LP acceptable.
-        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.activate(id,poolId,1000,0,1,block.timestamp+100);
-        assertEq(_budget().contributionLossBps(),100);assertEq(t0.balanceOf(alice),before);
+        vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.activate{value:0}(id, poolId, 0, 1000, 1, block.timestamp+100);
+        assertEq(_budget().contributionLossBps(),100);assertEq(t1.balanceOf(alice),before);
         assertEq(vault.sharesOf(id),0);assertFalse(membership.eligible(id));
         // An independently governed future policy is used by the next operation.
         _budget().setLossLimits(1000,300);_activate(alice,id,1000,0);
@@ -130,7 +132,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(venue.a0(vault.group(_bucket()).lpTokenId),980);
     }
     function testRetainedValueRoundsUpAndCannotExceedHardMaximum() public {
-        MockFeed first=new MockFeed(18,1);MockFeed second=new MockFeed(18,1);
+        MockFeed first=new MockFeed(18,1e18);MockFeed second=new MockFeed(18,1e18);
         oracle.setDualFeed(address(t0),
             ZZZOracle.SourcePolicy(address(first),address(first).codehash,keccak256("rounding-first"),3600,18),
             ZZZOracle.SourcePolicy(address(second),address(second).codehash,keccak256("rounding-second"),3600,18),
@@ -140,13 +142,13 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         // Zero-decimal token at 1 wei USD per raw unit: the real activation is
         // $100 + 1 wei USD. Venue burns execution loss; idle cannot hide it.
         uint256 input=100e18+1;uint256 loss=10e18;uint256 floor=90e18+1;
-        t0.mint(alice,input);uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);
+        _giftNative(alice, input);uint256 id=_mint(alice);uint256 before=address(alice).balance;
         vm.expectRevert(ZZZModule.InvalidConfiguration.selector);_budget().setLossLimits(1001,300);
         _budget().setLossLimits(0,300);exact.losses(0,0,1,0);
         vm.expectRevert(ZZZModule.Slippage.selector);_activate(alice,id,input,0);
         _budget().setLossLimits(1000,300);exact.losses(0,0,loss+1,0);
         vm.expectRevert(ZZZModule.Slippage.selector);_activate(alice,id,input,0);
-        assertEq(t0.balanceOf(alice),before);assertEq(vault.sharesOf(id),0);
+        assertEq(address(alice).balance,before);assertEq(vault.sharesOf(id),0);
         exact.losses(0,0,loss,0);_activate(alice,id,input,0);
         assertEq(vault.sharesOf(id),floor);assertEq(vault.contributionUSD(id),input);
         assertEq(exact.amount0(vault.group(_bucket()).lpTokenId),floor);
@@ -163,7 +165,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         vm.expectRevert(ZZZModule.Slippage.selector);m.moveFunds(_bucket(),target,1,block.timestamp+100);
         assertEq(vault.group(_bucket()).poolId,poolId);_budget().setLossLimits(100,1000);
         m.moveFunds(_bucket(),target,1,block.timestamp+100);assertEq(vault.group(_bucket()).poolId,target);
-        assertEq(vault.sharesOf(id),2000e18);assertEq(t0.allowance(address(vault),address(venue)),0);
+        assertEq(vault.sharesOf(id),2000e18);
     }
     function testGovernanceCallbackCannotWidenActiveMaintenanceSnapshot() public {
         BudgetAdversarialVenue adverse=new BudgetAdversarialVenue(address(t0),address(t1));

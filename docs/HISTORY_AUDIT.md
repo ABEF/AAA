@@ -15,9 +15,10 @@ observation, not a cryptographic proof that no event was omitted.
 
 Use the reviewed schema-2 API configuration with `history`, `earnings_history`
 and every required same-chain predecessor. Fresh deployments explicitly select
-accounting6/fee-intake1/canonical V8 with royalty reporting5; each predecessor
-declares its own authenticated accounting/canonical/royalty profile. Historical
-accounting4/V6 and3/V4 remain separate. A config version does not upgrade old deployments.
+accounting7/LP-allocation1/fee-intake1/canonicalV9 with royalty reporting5; each predecessor
+declares its own authenticated accounting/canonical/royalty profile. Fresh7 peers
+must matchV9. Historical accounting6/V8,4/V6 and3/V4 remain separate. A config
+version does not upgrade old deployments.
 The constructor verifies that each earnings profile has all seven emitters.
 The audit checks that the SQLite cursor has the
 exact configured chain/start/parent/contract identity and has fully ingested the
@@ -83,8 +84,12 @@ cutoff or the current confirmed target. Reconcile the coverage externally; this
 command does **not** aggregate receipts into a full-history certificate or verify
 retirement/activation proofs. Recheck overlapping tails after a reorg, and retain
 invalidated receipts as superseded evidence. The ordinary earnings endpoint still
-verifies lifecycle, complete predecessor lineage, on-chain indexes and NFT
+verifies lifecycle, complete predecessor lineage, profile-specific on-chain books and NFT
 entitlement/claim/conversion reconciliation. This audit never bypasses it.
+For7, the raw event inventory includes exact share/membership synchronization
+and its host acknowledgements; claims/conversions are mutations, not new income.
+Historical6/checkpoint1 remains separately pinned; fresh7 rejects that seed and
+uses complete raw replay until a reviewed exact checkpoint2 is implemented.
 
 A report for a historical window is not a current balance or price quote. No USD
 price is inferred, and an audit pass does not qualify a feed. Preserve the user's

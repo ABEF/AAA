@@ -42,7 +42,7 @@ class ExactRoyaltyProfileTest(unittest.TestCase):
             report=GATE.validate(value)
             self.assertFalse(report['ready'])
             self.assertFalse(report['deployment_authorized'])
-            self.assertEqual(report['schema_version'],15)
+            self.assertEqual(report['schema_version'],16)
 
     def test_observer_rejects_old_before_rpc(self):
         class NoRpc:

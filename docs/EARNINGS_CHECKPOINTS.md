@@ -3,8 +3,14 @@
 This optional backend profile serves collection, NFT and wallet-chunk earnings
 from an immutable reviewed checkpoint plus raw recent events. It changes no
 contracts, funds, reward rights, signer or running service. Default configuration
-still uses full replay. Fresh source supports explicit accounting6/custody5/
-fee-intake1 only, without predecessor lineage. Public deployments remain blocked.
+still uses full replay. Checkpoint1 supports explicit historical accounting6/
+custody5/fee-intake1 only, without predecessor lineage. Public deployments remain blocked.
+
+Accounting7/LP-allocation1 uses complete bounded raw replay and explicitly rejects
+checkpoint1 before restoring any seed. Exact-LP checkpoint2 remains open: it must
+preserve both assets, every tree pending/high-low book, direct whole credits and
+immutable ordinals, with source/configuration/canonical reconciliation. No format2
+artifact, builder, automatic conversion, pruning or live rollout is implemented.
 
 ## What is authenticated
 
@@ -28,7 +34,7 @@ deliberate configuration cutover, not editing or deleting the file in place.
 
 The checkpoint carries ownership, cumulative claims/conversions, minted order,
 shares/supplies, equal membership, rarity weights, royalty eligibility prefixes,
-fee dust, LP reward indexes and complete earnings. Fresh royalty4 also retains
+fee dust, LP reward indexes and complete earnings. Royalty4 on that explicit6 profile also retains
 whole-unit allocation books, zero-based internal ticket offsets and raw currency
 cursors, with explicit one-based source adapters. Reporting may scale whole
 royalty earnings internally, but this creates no royalty fractional liability.

@@ -18,7 +18,7 @@ contract BucketCapacityTest is PooledVaultFixture {
         ids = new uint256[](count);
         for (uint256 i; i < count; ++i) {
             _fundUser(alice); ids[i] = _mint(alice); bytes32 pool = _poolAt(i);
-            vm.prank(alice); vault.activate(ids[i], pool, 1000, 1000, 1, block.timestamp + 100);
+            vm.prank(alice); vault.activate{value:1000}(ids[i], pool, 1000, 1000, 1, block.timestamp + 100);
         }
     }
 
@@ -26,13 +26,13 @@ contract BucketCapacityTest is PooledVaultFixture {
         uint256[] memory ids = _canonicalBuckets(4);
         assertEq(vault.MAX_BUCKETS(), 4); assertEq(vault.bucketCount(), 4);
         uint256 entrant = _mint(bob); bytes32 extra = _poolAt(4);
-        vm.prank(bob); vm.expectRevert(); vault.activate(entrant, extra, 1000, 1000, 1, block.timestamp + 100);
+        vm.prank(bob); vm.expectRevert(); vault.activate{value:1000}(entrant, extra, 1000, 1000, 1, block.timestamp + 100);
         assertEq(vault.bucketCount(), 4); assertEq(vault.poolBucket(extra), 0); assertEq(vault.nftBucket(entrant), 0);
         assertFalse(membership.eligible(entrant));
         _activate(bob, entrant, 1000, 1000);
         assertEq(vault.bucketCount(), 4); assertEq(vault.nftBucket(entrant), vault.nftBucket(ids[0]));
         assertEq(membership.totalEligible(), 5);
-        vm.prank(alice); vault.increase(ids[0], 100, 100, 1, block.timestamp + 100);
+        vm.prank(alice); vault.increase{value:100}(ids[0], 100, 100, 1, block.timestamp + 100);
         assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);
     }
 
@@ -52,7 +52,7 @@ contract BucketCapacityTest is PooledVaultFixture {
         // The royalty-ledger getter touches the NFT; cool it after that read.
         vm.cool(address(nft));
         uint256 start = gasleft(); vm.prank(bob);
-        vault.activate(entrant, poolId, 1000, 1000, 1, block.timestamp + 100);
+        vault.activate{value:1000}(entrant, poolId, 1000, 1000, 1, block.timestamp + 100);
         uint256 used = start - gasleft(); emit log_named_uint("membership.4-distinct-funded-buckets.activation", used);
         assertLt(used, 12_000_000, "4-bucket entry exceeds local reviewed workload budget");
         assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);

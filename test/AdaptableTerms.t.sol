@@ -11,7 +11,7 @@ contract MintTermsChangingRecipient {
 }
 
 /// @notice Real policy/Vault/reward ledgers with the existing explicitly
-/// synthetic two-ERC20 transport/LP fixture; not live venue/provider qualification.
+/// synthetic native-ETH/fixed-ZZZ transport/LP fixture; not live venue/provider qualification.
 contract AdaptableTermsTest is PooledVaultFixture {
     bytes32 private constant REVIEW=keccak256("TEST_ONLY future terms review");
     ZZZProtocolPolicy private terms;
@@ -58,11 +58,11 @@ contract AdaptableTermsTest is PooledVaultFixture {
     function testActivationAndGrowthPolicyAreFutureOnlyAndPoolMinimumStillApplies() public {
         uint256 active=_mint(alice);_activate(alice,active,100,0);uint256 shares=vault.sharesOf(active);
         uint256 dormant=_mint(bob);_terms().setEntryPolicy(150e18,10e18,500,REVIEW);
-        vm.prank(bob);vm.expectRevert();vault.activate(dormant,poolId,100,0,1,block.timestamp+100);
-        vm.prank(alice);vm.expectRevert();vault.increase(active,5,0,1,block.timestamp+100);
+        vm.prank(bob);vm.expectRevert();vault.activate{value:100}(dormant, poolId, 100, 0, 1, block.timestamp+100);
+        vm.prank(alice);vm.expectRevert();vault.increase{value:5}(active, 5, 0, 1, block.timestamp+100);
         assertEq(vault.sharesOf(active),shares);assertEq(vault.sharesOf(dormant),0);
         assertTrue(membership.eligible(active));assertEq(nft.royaltyRewards().weightOf(active),1);
-        vm.prank(alice);vault.increase(active,10,0,1,block.timestamp+100);
+        vm.prank(alice);vault.increase{value:10}(active, 10, 0, 1, block.timestamp+100);
         _activate(bob,dormant,150,0);
         assertGt(vault.sharesOf(active),shares);assertEq(vault.contributionUSD(dormant),150e18);
     }

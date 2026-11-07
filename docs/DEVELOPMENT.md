@@ -203,9 +203,9 @@ actual mainnet-venue qualification in the selected fork/approved rehearsal, neve
 weaken production pins or label test dependencies real.
 See [release preflight](PRODUCTION_PREFLIGHT.md) and [sole Todo](../TODO.md).
 
-Fresh source profile: accounting6/custody5/governance2/fee1/canonicalV8 with
+Fresh source profile: accounting7/custody5/governance2/fee1/canonicalV9 with
 portfolio2/maintenance3/compound4/LP2/quality1/confirmation3 and separate manual
-emergency2. Inventory uses schema15/reinvest1/18 callable helpers plus2 inert Factory data children, royalty4/reporting5; schema6/accounting4 and
+emergency2. Inventory uses schema16/reinvest1/19 callable helpers plus2 inert Factory data children, royalty4/reporting5; schema6/accounting4 and
 schema5/accounting3 remain explicitly historical. Local actual-v4-core portfolio
 checks are source-scoped with mock external dependencies, not live qualification. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain
@@ -218,7 +218,7 @@ existing Anvil/journals; use their actual historical configuration.
 
 ## Fixed deployment artifact family
 
-Current schema15 pins the fresh closed normal compiler output; the earlier schema14 artifact remains frozen and separately scoped and its exact source bytes.
+Current schema16 pins the fresh closed normal compiler output; the earlier schema15/14 artifacts remain frozen and separately scoped and its exact source bytes.
 An independently rebuilt Forge artifact can normalize CRLF source content or
 add unused auto-detected remappings in metadata, changing creation hashes.
 Equivalent settings or Solidity source bodies
@@ -236,12 +236,12 @@ classify the assertion and its actual imports before adapting or retiring it.
 
 | Test group | Maintained purpose |
 | --- | --- |
-| ExactRoyaltyAllocation / RoyaltyAudit20261105 | Current whole-unit/GCD allocation, bounds, claims, V8, mint callbacks and source-wire producer. |
+| ExactRoyaltyAllocation / RoyaltyAudit20261105 | Current whole-unit/GCD allocation, bounds, claims, V9, mint callbacks and source-wire producer. |
 | NFTRoyalties / NFTMetadata / NativeCustody | Current economic rights, outage behavior, metadata and runtime identity. Remove old rounding-loss expectations from current imports; explicitly reject incompatible old identities. |
 | CombinedCapacityGas | Current default gas and atomic failure/isolation. A former12M success assumption is not valid evidence after changing the optional sync default to1M; target qualification stays separate. |
 | CollectionScale / NFTRightsInvariants | Explicit initial holding/cutoff/zero-cohort cases, exact whole-unit royalty conservation and real post-opening claim activity. Keep LP fractional bounds separate; a handler that only reverts is not claim coverage. |
 | Preparation / holder return / portfolio / canonical fixtures | Mint every required NFT before closing the sale; place activations deliberately before or after cutoff. Preserve earlier earned rights through transfers, pause, both LP legs, exit and import rather than relying on zero claimables. |
-| Exact royalty backend/source-wire/profile tests | Current reporting5, schema15/reinvest1, V8, exact source getters/events/export rows, replay/checkpoint and unsigned review. Synthetic models alone cannot establish source compatibility. |
+| Exact royalty backend/source-wire/profile tests | Current reporting5, schema16/reinvest1, V9, exact source getters/events/export rows, replay/checkpoint and unsigned review. Synthetic models alone cannot establish source compatibility. |
 | Original-currency2/window3, historical conversion and versioned production readers | Keep separately pinned historical fixtures/imports and negative compatibility checks. Do not relabel them current4 or remove coverage needed for old runtimes/journals. |
 | Current CLI/template tests | Exercise the actual default validator/template. Old-engine fixtures stay explicit; a current template passed into an old validator does not test current readiness. |
 
@@ -255,3 +255,9 @@ Use [operations](OPERATIONS.md), [operator manual](OPERATOR_MANUAL.md),
 [current context](../PROJECT_CONTEXT.md) and [feature evidence](IMPLEMENTATION_STATUS.md).
 Keep keys outside Git. No command here authorizes public deployment or transactions.
 No integrated bridge/creator-inbox services are required for this release.
+
+Fresh accounting7/LP-allocation1 uses the explicit schema16/source9 graph and
+constructor-fixed RewardsCanonical. Exact raw-tree replay replaces LP indices;
+checkpoint1 remains historical6-only. See [integration evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+for test maintenance, final normal/static/ABI pins and measured limits. Earlier
+source-scoped test descriptions/counts do not establish current qualification.

@@ -1,0 +1,17 @@
+{
+  "previous_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291",
+  "final_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "whole_creation_byte_equal": true,
+  "creation_bytes": 25522,
+  "creation_hash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+  "changed_source_pins": [
+    "src/libraries/ExactLPAllocation.sol"
+  ],
+  "original_artifact_sha256": "c857dd382ce568d9e17772beb082af21ae5375b9af1deb6a259c4adb9f3e4abd",
+  "final_artifact_sha256": "6ae4677d6313a27bcc0d75eb05aaa82e8253d44975d269afaaf65467e70de906",
+  "final_artifact_canonical_sha256": "690762b293d8d4344a1af6e38ad106ff2cddfddce7cde54d940e0327a8cb4374",
+  "final_compiler_input_sha256": "9bd2dd00b7350b5ade3bf5ef256e7306588647a5dab11ab069761a0c8b51cd7f",
+  "final_compiler_output_sha256": "851644b31874db849ee420de30ee8e586161c5715dd052a370adc8c794d6fed5",
+  "format_version": 2,
+  "artifact_payload_identity": 3
+}

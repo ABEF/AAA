@@ -1,0 +1,33 @@
+from pathlib import Path
+import hashlib,json
+E=Path(__file__).resolve().parent
+A=E/'normal-final-7e38e0a291';B=E/'normal-final-5994e91eed'
+def load(p):return json.loads(p.read_text())
+def strip(v):
+ if isinstance(v,dict):return {k:strip(x) for k,x in v.items() if k not in ('documentation','src','nameLocation','nameLocations','memberLocation')}
+ if isinstance(v,list):return [strip(x) for x in v]
+ return v
+ai,bi=load(A/'compiler-input.json'),load(B/'compiler-input.json')
+ao,bo=load(A/'compiler-output.json'),load(B/'compiler-output.json')
+assert ai['settings']==bi['settings'] and set(ai['sources'])==set(bi['sources'])
+changed=[n for n in ai['sources'] if ai['sources'][n]!=bi['sources'][n]]
+assert changed==['src/libraries/ExactLPAllocation.sol'],changed
+ast_diff=[n for n in ao['sources'] if strip(ao['sources'][n]['ast'])!=strip(bo['sources'][n]['ast'])]
+assert not ast_diff,ast_diff
+abi_diff=[f'{p}:{n}' for p,cs in ao['contracts'].items() for n,c in cs.items() if c['abi']!=bo['contracts'][p][n]['abi']]
+assert not abi_diff,abi_diff
+before=ai['sources'][changed[0]]['content'];after=bi['sources'][changed[0]]['content']
+assert before.replace('/// @dev Candidate engine only: current Rewards/Vault/canonical profiles do not\n/// use it. The host must authenticate immutable NFT ordinals, ETH/fixed-ZZZ\n','/// @dev Internal engine used by accounting7 Rewards and its canonical codec.\n/// The host authenticates immutable NFT ordinals, ETH/fixed-ZZZ\n')==after
+proof={'scope':'Documentary-only source rebinding; not a new functional EVM run',
+ 'before_normal':str(A),'after_normal':str(B),'changed_source':changed,
+ 'exact_two_NatSpec_lines_only':True,'all87_non_documentation_AST_equal':True,'all_ABIs_equal':True,
+ 'AST_excluded_fields':['documentation','src','nameLocation','nameLocations','memberLocation'],
+ 'AST_node_ids_and_referenced_declarations_compared':True,
+ 'initial_validator_limit':'Retained first assertion: plural nameLocations/memberLocation span fields also shift by the14-byte documentation change; executable AST was not altered to pass.',
+ 'before_library_sha256':hashlib.sha256(before.encode()).hexdigest(),
+ 'after_library_sha256':hashlib.sha256(after.encode()).hexdigest(),
+ 'settings_identical':True,'metadata_runtime_and_review_pins_require_new_identity':True,
+ 'limitations':['Earlier EVM stages retain their original raw-source hashes; this is explicit unchanged-executable-AST evidence, not a claim they executed later bytes.',
+ 'Metadata and embedded creation-code identities can change; new normal/static/config/reference pins must be used.']}
+with (E/'COMMENT_ONLY_EQUIVALENCE.json').open('x',encoding='utf-8',newline='\n') as f:json.dump(proof,f,indent=2);f.write('\n')
+print(json.dumps({'sources':87,'ast_differences':ast_diff,'abi_differences':abi_diff,'only_NatSpec_changed':True}))

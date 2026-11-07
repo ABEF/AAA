@@ -26,6 +26,7 @@ MAX_METADATA = 512
 # are deliberately absent. The ordinary preparer rereads their final values.
 _IDENTITY = (
     'access()', 'nft()', 'royalties()', 'royaltyRewards()', 'claimRouter()',
+    'LP_ALLOCATION_VERSION()', 'canonicalModule()', 'rewards()', 'moduleAt(uint8)',
     'canonicalChainId()', 'ACCOUNTING_VERSION()', 'GOVERNANCE_VERSION()',
     'CUSTODY_VERSION()', 'SCHEMA()', 'migrationBudget()', 'vault()',
     'portfolioPolicy()', 'strategy()', 'rebalanceConfirmation()',
@@ -202,7 +203,7 @@ class ClaimPlanner:
                     if p._addr('nft', 'ownerOf(uint256)', claim.token_id, block=block) != owner:
                         ownership[claim.token_id] = 'wallet_not_current_owner'
                     else:
-                        weight = p._uint('royalties', 'weightOf(uint256)', claim.token_id, block=block) if p.accounting_version in (3,4,5,6) else None
+                        weight = p._uint('royalties', 'weightOf(uint256)', claim.token_id, block=block) if p.accounting_version in (3,4,5,6,7) else None
                         if weight is not None and weight > 3:
                             raise ProjectionError('Claim planning activation weight is inconsistent')
                         ownership[claim.token_id] = weight

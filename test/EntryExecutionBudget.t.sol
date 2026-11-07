@@ -4,8 +4,10 @@ import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {PoolConfig, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
 /// @notice Gross-input UX and actual marginal LP protection, with a fake venue.
-/// Native/real venue and stable-input conversion are separate integration tests.
+/// Actual native-v4 venue execution has separate integration tests.
 contract EntryExecutionBudgetTest is PooledVaultFixture {
+    // This suite explicitly tests the narrower governed1% policy, not the2% default.
+    function setUp()public override{super.setUp();vault.migrationBudget().setLossLimits(100,300);}
     function testHundredGrossWithNinetyNineLPActivates() public {
         venue.setSpendBps(9900);
         uint256 id = _mint(alice);
@@ -19,7 +21,7 @@ contract EntryExecutionBudgetTest is PooledVaultFixture {
     function testRoundingCannotDeployLessThanNinetyNinePercent() public {
         venue.setSpendBps(9900);
         uint256 id = _mint(alice);
-        // Both zero-decimal tokens round 49.5 down to 49: only $98 is LP.
+        // Both normalized native/ZZZ raw units round 49.5 down to 49: only $98 is LP.
         vm.expectRevert(); _activate(alice, id, 50, 50);
         assertEq(uint256(vault.nftStatus(id)), uint256(PositionStatus.Dormant));
         assertEq(vault.sharesOf(id), 0); assertEq(vault.bucketCount(), 0);
@@ -27,10 +29,10 @@ contract EntryExecutionBudgetTest is PooledVaultFixture {
     function testLoosePoolSlippageCannotOverrideGlobalOnePercentLimit() public {
         PoolConfig memory c = pools.get(poolId); c.maxSlippageBps = 200; pools.set(poolId, c);
         uint256 id = _mint(alice); venue.setSpendBps(9800);
-        t0.mint(address(vault), 1000); // Unattributed donations cannot pay the shortfall.
+        _giftNative(address(vault), 1000); // Unattributed donations cannot pay the shortfall.
         vm.expectRevert(); _activate(alice, id, 1000, 0);
-        assertEq(vault.sharesOf(id), 0); assertEq(t0.balanceOf(address(vault)), 1000);
-        assertEq(t0.balanceOf(alice), 100000);
+        assertEq(vault.sharesOf(id), 0); assertEq(address(address(vault)).balance, 1000);
+        assertEq(alice.balance,1 ether-0.05 ether);
     }
     function testIncumbentIdleCannotSubsidizeNewNFTsExecutionBudget() public {
         venue.setSpendBps(9900);
@@ -45,10 +47,10 @@ contract EntryExecutionBudgetTest is PooledVaultFixture {
     function testLaterContributionsAlsoRequireNinetyNinePercentDeployed() public {
         venue.setSpendBps(10000); uint256 id = activatedPosition();
         venue.setSpendBps(9900);
-        vm.prank(alice); vault.increase(id, 1000, 0, 1, block.timestamp + 100);
+        vm.prank(alice); vault.increase{value:1000}(id, 1000, 0, 1, block.timestamp + 100);
         assertEq(vault.contributionUSD(id), 3000e18);
         venue.setSpendBps(9800);
-        vm.prank(alice); vm.expectRevert(); vault.increase(id, 1000, 0, 1, block.timestamp + 100);
+        vm.prank(alice); vm.expectRevert(); vault.increase{value:1000}(id, 1000, 0, 1, block.timestamp + 100);
         assertEq(vault.contributionUSD(id), 3000e18);
     }
 }

@@ -33,7 +33,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
         Position memory beforePosition = vault.group(bucket); uint256 secondShares = vault.sharesOf(second);
         venue.setFees(100, 100); vault.collectFees(bucket, block.timestamp + 100);
         assertEq(rewards.claimable(first, address(t0)), 45); assertEq(rewards.claimable(second, address(t0)), 45);
-        t0.mint(address(vault), 777); t1.mint(address(vault), 888);
+        _giftNative(address(vault), 777); t1.mint(address(vault), 888);
 
         bytes32 target = _poolAt(1); _migration().moveFunds(bucket, target, 1, block.timestamp + 100);
         Position memory afterPosition = vault.group(bucket);
@@ -45,11 +45,11 @@ contract PoolSwitchingTest is PooledVaultFixture {
         assertEq(venue.a0(afterPosition.lpTokenId), 2005); assertEq(venue.a1(afterPosition.lpTokenId), 2005);
         assertEq(afterPosition.idle0, 0); assertEq(afterPosition.idle1, 0);
         assertEq(vault.totalIdle(address(t0)), 0); assertEq(vault.totalIdle(address(t1)), 0);
-        assertEq(t0.balanceOf(address(vault)), 777); assertEq(t1.balanceOf(address(vault)), 888);
+        assertEq(address(address(vault)).balance, 777); assertEq(t1.balanceOf(address(vault)), 888);
         assertEq(fees.compoundBalance(bucket, address(t0)), 0); assertEq(fees.buybackBalance(address(t0)), 5);
         assertEq(rewards.claimable(first, address(t0)), 45); assertEq(rewards.claimable(second, address(t0)), 45);
         assertEq(vault.bucketCount(), 1); assertEq(vault.poolBucket(poolId), bucket); assertEq(vault.poolBucket(target), bucket);
-        assertEq(t0.allowance(address(vault), address(venue)), 0); assertEq(t1.allowance(address(vault), address(venue)), 0);
+         assertEq(t1.allowance(address(vault), address(venue)), 0);
         assertEq(membership.totalEligible(), 2);
         vm.prank(alice); nft.transferFrom(alice, bob, first);
         vm.prank(bob); assertEq(rewards.claim(first, address(t0)), 45);
@@ -100,13 +100,13 @@ contract PoolSwitchingTest is PooledVaultFixture {
         assertEq(fees.compoundBalance(_bucket(), address(t0)), 0); assertEq(fees.buybackBalance(address(t0)), 0);
         assertEq(rewards.claimable(id, address(t0)), 0); assertEq(rewards.liabilities(address(t0)), 0);
         assertEq(vault.poolBucket(target), 0); assertEq(vault.bucketCount(), 1);
-        assertEq(t0.balanceOf(address(vault)), 0); assertEq(t1.balanceOf(address(vault)), 0);
-        assertEq(t0.allowance(address(vault), address(venue)), 0); assertEq(t1.allowance(address(vault), address(venue)), 0);
+        assertEq(address(address(vault)).balance, 0); assertEq(t1.balanceOf(address(vault)), 0);
+         assertEq(t1.allowance(address(vault), address(venue)), 0);
     }
 
     function testPoolAlreadyAssignedToAnotherBucketCannotBeTakenBySwitch() public {
         uint256 first = activatedPosition(); bytes32 target = _poolAt(1);
-        uint256 second = _mint(bob); vm.prank(bob); vault.activate(second, target, 1000, 1000, 1, block.timestamp + 100);
+        uint256 second = _mint(bob); vm.prank(bob); vault.activate{value:1000}(second, target, 1000, 1000, 1, block.timestamp + 100);
         uint256 firstBucket = vault.nftBucket(first); uint256 secondBucket = vault.nftBucket(second);
         uint256 firstLP = vault.group(firstBucket).lpTokenId; uint256 secondLP = vault.group(secondBucket).lpTokenId;
         ZZZMigration migration = _migration(); vm.expectRevert(bytes4(keccak256("InvalidState()")));

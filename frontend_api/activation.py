@@ -76,7 +76,7 @@ class ActivationTransactions:
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
-        if (_address_word(policy[0],native=p.accounting_version in (2, 3, 4, 5, 6))!=source or not _bool(policy[1]) or
+        if (_address_word(policy[0],native=p.accounting_version in (2,3,4,5,6,7))!=source or not _bool(policy[1]) or
                 '0x'+policy[2]!=(NATIVE_ASSET_CODE_HASH if source==ZERO else cfg.tokens[source]['code_hash']) or
                 int(policy[3],16)==0 or int(policy[4],16)!=cfg.tokens[source]['decimals']):
             raise ProjectionError('Source asset is disabled or its admission changed')
@@ -132,7 +132,7 @@ class ActivationTransactions:
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
         req['lp_routing_version'] = cfg.lp_routing_version
-        req['portfolio_version'] = cfg.portfolio_version if p.accounting_version in (5,6) else 0
+        req['portfolio_version'] = cfg.portfolio_version if p.accounting_version in (5,6,7) else 0
         req['execution_quality_version'] = cfg.execution_quality_version
         req['pricing_version'] = cfg.pricing_version
         req['review_policy_version'] = cfg.review_policy_version
@@ -165,7 +165,7 @@ class ActivationTransactions:
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
         if not 0 < int(account[10],16) <= (1000 if cfg.lp_routing_version in (1,2) else 200):
             raise ProjectionError('Pool swap guard exceeds the explicit LP execution profile')
-        native_profile = p.accounting_version in (2, 3, 4, 5, 6)
+        native_profile = p.accounting_version in (2,3,4,5,6,7)
         req['token0'] = _address_word(account[0], native=native_profile)
         req['token1'] = _address_word(account[1])
         if req['token0']==req['token1']: raise ProjectionError('Invalid accounting pair')
@@ -204,7 +204,7 @@ class ActivationTransactions:
         if measured!=gross: raise ProjectionError('Original-source valuation mismatch')
         contributed=p._uint('vault','contributionUSD(uint256)',req['id'],block=block)
         minimum_usd = (5 if req['increase'] else 100)*10**18
-        if p.accounting_version==6:
+        if p.accounting_version in (6,7):
             from zzz_ops.protocol_policy import observe as observe_policy
             try:
                 terms=observe_policy(lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
@@ -314,7 +314,7 @@ class ActivationTransactions:
                                  if cfg.maintenance_policy_version else {}),
                               **({'review_policy_version':cfg.review_policy_version} if cfg.review_policy_version in (1,2) else {})},
                 'wallet_revalidation_required':True,'state_overrides':False,
-                **({'contribution_policy':{k:str(v) if type(v) is int else v for k,v in req['entry_policy'].items()}} if p.accounting_version==6 else {}),
+                **({'contribution_policy':{k:str(v) if type(v) is int else v for k,v in req['entry_policy'].items()}} if p.accounting_version in (6,7) else {}),
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '
                         + ('Review-policy 2 binds the scoped contribution-policy fingerprint and reviewed maximum in calldata; '

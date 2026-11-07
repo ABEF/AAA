@@ -1,0 +1,7 @@
+{
+  "status": "stopped_before_any_report_copy",
+  "reason": "Parser required test_ and omitted existing test100_equal_legendary_nfts_receive_one_unit_each_from100_units",
+  "parsed": 618,
+  "expected": 619,
+  "fix": "Accept unittest method names beginning test, preserving actual IDs; no test count inflated"
+}

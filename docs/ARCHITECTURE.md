@@ -1,9 +1,9 @@
 # Shared permanent-liquidity architecture
 
 **Undeployed candidate; production NOT APPROVED.** The current source uses native
-ETH accounting V6, direct governance V2 and the LP-only same-chain canonical V8
+ETH accounting7 / LP-allocation1, direct governance V2 and the LP-only same-chain canonical V9
 schema. This fresh-deployment ABI/storage change does not upgrade existing Anvil
-contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V6.md)
+contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V7.md)
 and [current feature/evidence boundaries](IMPLEMENTATION_STATUS.md). Earlier
 [pruning review](../reports/architecture-pruning-20261025/REVIEW.md) remains historical.
 
@@ -25,9 +25,9 @@ Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.0
 Paused governance [same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation)
 closes only the residual, reinvests attributed idle and applies modeOFF without
 changing main ID/ticks/shares/centre/rebalance clock. New residual-reinvest1
-participants and inventory15 require matching runtime review; old14 stays explicit.
+participants and inventory16 require matching runtime review; old14 stays explicit.
 
-The [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is a separate implemented internal component for the approved next ledger upgrade. It is not deployed, linked into current Rewards or an additional module/helper address; current accounting6/V8 rights remain.
+The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is connected to Rewards, post-write Vault/Membership hooks, whole claims/conversion and canonicalV9. Its immutable constructor-created [RewardsCanonical](../src/ZZZRewardsCanonical.sol) handles typed capture/import/backing outside the near-limit parent. No generic executor, arbitrary recipient or delegatecall is added. Earlier6/V8 runtimes and journals retain their original interpretation.
 
 ## Shared implementation boundaries
 
@@ -188,7 +188,7 @@ royalty currencies, not principal pool currencies.
 | --- | --- | --- |
 | Principal | Vault/manager custody, per-NFT nonredeemable shares, attributed idle/compound | Actual LP units and raw balances back NAV. Reward reserves, donations and prefunds cannot finance a newcomer. |
 | LP liabilities | Fees classification and Rewards individual/equal-collective indices | Only actual received funds create income; compound/buyback reserves are not holder claimable. |
-| Royalties | NFT-created separate receiver and rarity-weighted ledger | Only active eligibility; native/currency fractions and deferred cohorts survive transfers and conversion. |
+| Royalties | NFT-created separate receiver and rarity-weighted ledger | Only active eligibility; exact original-currency units and deferred cohorts survive transfers; no royalty conversion exists. |
 | Immediate governance | Compatible policies, roles, collective shutdown and reviewed pre-exit replacement code | A compromised quorum can approve unsafe prices/settings or replacement code. Sealing and limits do not remove this accepted trust. |
 | Keeper and services | Bounded upkeep, unsigned preparation, confirmed views | No owner claim privilege, governance configuration or public signing authority follows from running a service. RPC history and availability still need qualification. |
 | Canonical lifecycle | Preparation/freeze/settlement/import/funding/abort/retirement | Exactly one active canonical deployment; no old-schema relabel, duplicate backing, unfunded activation or finality override. |
@@ -219,7 +219,7 @@ on seal. Governance approval cannot prove replacement code or dependencies safe;
 immediate governance remains an accepted trust boundary. No arbitrary custody
 recipient is available in the current source.
 
-The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
+The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
 permanently blocked after collective LP exit begins. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
 
 Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
@@ -231,7 +231,7 @@ profiles are evidence for their recorded revision, not release approval.
 
 [Native custody](NATIVE_ETH_ARCHITECTURE.md) uses WETH only for reviewed operations
 that actually need it. Earlier [native V2 evidence](../reports/native-eth-port/VERIFICATION.md)
-predates current accounting V6 and retains that source scope. Atomic ETH/WETH
+predates current accounting7 and retains that source scope. Atomic ETH/WETH
 conversion and old-schema import are unsupported. Actual route/provider/inventory
 qualification remains open. ZZZ conversion at the default 1% needs a cheaper
 qualified route; the selected pool does not qualify at reference prices. Actual
@@ -241,9 +241,9 @@ rehearsals and independent audit/remediation remain open. Production NOT APPROVE
 
 ## Exact royalty source boundary
 
-Royalty4/reporting5/schema15/canonicalV8 uses internal whole-unit allocation.
+Royalty4/reporting5/schema16/canonicalV9 uses internal whole-unit allocation.
 The allocator adds no deployed helper; Factory storage2 adds exactly two inert
-code-data children outside the18 callable-helper roles. RoyaltyFactory stores only fixed
+code-data children outside the19 callable-helper roles. RoyaltyFactory stores only fixed
 compiled creation bytes, authenticates them with immutable royaltyCodeHash,
 then creates the typed caller's ledger and binds its fixed controller. No caller
 supplies code, salt, recipient or execution payload. Code storage reduces

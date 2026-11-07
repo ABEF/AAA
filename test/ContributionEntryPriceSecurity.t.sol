@@ -26,14 +26,14 @@ contract DirectEntryCallbackToken is MockToken {
 
 contract ContributionEntryPriceSecurityTest is DirectEntryFixture {
     function _armed(address target,bytes memory data,uint8 phase)private returns(DirectEntryCallbackToken token){
-        token=new DirectEntryCallbackToken();vm.etch(address(t0),address(token).code);
-        token=DirectEntryCallbackToken(address(t0));
-        assets.setAsset(address(t0),true,address(t0).codehash,REVIEW);
+        token=new DirectEntryCallbackToken();vm.etch(address(t1),address(token).code);
+        token=DirectEntryCallbackToken(address(t1));
+        assets.setAsset(address(t1),true,address(t1).codehash,REVIEW);
         token.configure(address(entry),target,data,phase);
     }
     function _assertPriceRollback(uint256 id,uint8 phase)private {
-        address source=oracle.policy(oracle.activePolicy(address(t0))).primary.source;
-        int256 original=MockFeed(source).answer();uint256 before=t0.balanceOf(alice);
+        address source=oracle.policy(oracle.activePolicy(address(t1))).primary.source;
+        int256 original=MockFeed(source).answer();uint256 before=t1.balanceOf(alice);
         _armed(source,abi.encodeCall(MockFeed.set,(original+1,block.timestamp,block.timestamp)),phase);
         _reject(alice,_request(id,false));assertEq(MockFeed(source).answer(),original);_unspent(id,before);
     }
@@ -41,22 +41,22 @@ contract ContributionEntryPriceSecurityTest is DirectEntryFixture {
     function testDirectPriceCaptureSurvivesVaultApprovalCallback()public realIntegration {_assertPriceRollback(_mint(alice),2);}
     function testDirectPriceCaptureSurvivesFinalResetCallback()public realIntegration {_assertPriceRollback(_mint(alice),3);}
     function testDirectWiderAndTighterLossMutationRollback()public realIntegration {
-        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);
+        uint256 id=_mint(alice);uint256 before=t1.balanceOf(alice);
         for(uint16 next=0;next<=200;next+=200){
             _armed(address(vault.migrationBudget()),abi.encodeWithSignature("setLossLimits(uint16,uint16)",next,uint16(300)),1);
-            vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t0))),abi.encode(true));
+            vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t1))),abi.encode(true));
             _reject(alice,_request(id,false));assertEq(vault.migrationBudget().contributionLossBps(),100);_unspent(id,before);
         }
     }
     function testDirectPoolControlMutationRollback()public realIntegration {
-        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);PoolConfig memory c=registry.get(poolId);c.maxSlippageBps=200;
+        uint256 id=_mint(alice);uint256 before=t1.balanceOf(alice);PoolConfig memory c=registry.get(poolId);c.maxSlippageBps=200;
         _armed(address(registry),abi.encodeCall(registry.configure,(c)),2);
-        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t0))),abi.encode(true));
+        vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(t1))),abi.encode(true));
         _reject(alice,_request(id,false));assertEq(registry.get(poolId).maxSlippageBps,100);_unspent(id,before);
     }
     function testDirectOwnerTransferDuringPullRollsBackNFTAndFunds()public realIntegration {
-        uint256 id=_mint(alice);uint256 before=t0.balanceOf(alice);
+        uint256 id=_mint(alice);uint256 before=t1.balanceOf(alice);
         _armed(address(nft),abi.encodeCall(nft.transferFrom,(alice,bob,id)),1);
-        vm.prank(alice);nft.approve(address(t0),id);_reject(alice,_request(id,false));_unspent(id,before);
+        vm.prank(alice);nft.approve(address(t1),id);_reject(alice,_request(id,false));_unspent(id,before);
     }
 }

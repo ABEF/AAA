@@ -34,6 +34,10 @@ interface ICancelledRoyaltyLedger {
     function sync(address) external returns(uint256);
     function canonicalRecoverCancelled(address,address) external returns(uint256);
 }
+interface ICanonicalExactLPProfile {
+    function ACCOUNTING_VERSION() external view returns(uint256);
+    function LP_ALLOCATION_VERSION() external view returns(uint256);
+}
 
 /// @notice Fixed, bounded handoff coordinator. This first transport is direct
 /// same-chain custody with atomic retirement/activation. It cannot attest remote
@@ -42,7 +46,7 @@ interface ICancelledRoyaltyLedger {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;
@@ -119,9 +123,9 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
 
     function moduleAt(uint8 slot) public view returns (address) {
         if (slot == DOMAIN_NFT) return access.module(Ids.NFT_CANONICAL);
-        if (slot == DOMAIN_VAULT) return ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule();
+        if (slot == DOMAIN_VAULT || slot == DOMAIN_LP_REWARDS) return ICanonicalHelpers(
+            access.module(slot == DOMAIN_VAULT ? Ids.VAULT : Ids.REWARDS)).canonicalModule();
         if (slot == DOMAIN_MEMBERSHIP) return access.module(Ids.MEMBERSHIP);
-        if (slot == DOMAIN_LP_REWARDS) return access.module(Ids.REWARDS);
         if (slot == DOMAIN_ROYALTIES) return ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards();
         if (slot == DOMAIN_FEES) return access.module(Ids.FEES_CANONICAL);
         revert InvalidState();
@@ -134,12 +138,18 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
     function _peer(address controller) private view returns (ZZZCanonicalHandoff) {
         return ZZZCanonicalHandoff(IZZZAccess(controller).canonicalHandoff());
     }
+    function _exactLPProfile(address controller) private view {
+        IZZZAccess target = IZZZAccess(controller);
+        if (ICanonicalExactLPProfile(target.module(Ids.VAULT)).ACCOUNTING_VERSION() != 7 ||
+            ICanonicalExactLPProfile(target.module(Ids.REWARDS)).LP_ALLOCATION_VERSION() != 1) revert InvalidState();
+    }
 
     /// @notice Review commitment to the exact destination controller, code,
     /// bound modules and immutable helpers. Review still has to establish that
     /// the selected implementation is safe; a code hash is not a security proof.
     function deploymentCommitment() public view returns (bytes32 result) {
         if (!access.isSealed()) revert InvalidState();
+        _exactLPProfile(address(access));
         result = keccak256(
             abi.encode(
                 SCHEMA,
@@ -193,6 +203,8 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         ) revert Unauthorized();
         if (IZZZVault(access.module(Ids.VAULT)).canonicalChainId() != block.chainid) revert UnsupportedTransport();
         if (_peer(sourceController).SCHEMA() != SCHEMA) revert UnsupportedTransport();
+        _exactLPProfile(sourceController);
+        _exactLPProfile(address(access));
         incomingSource = sourceController;
         phase = PHASE_IMPORTING;
         access.canonicalTransition(STATE_IMPORTING, false, false);

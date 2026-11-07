@@ -139,7 +139,7 @@ class Review:
         from keeper.compound_policy import observe
         return observe(self.read, lambda target: self.k.rpc.call('eth_getCode', [target, 'latest']),
             contracts=self.k.contracts, code_hashes=self.k.config.get('code_hashes', {}), bucket=bucket,
-            **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6) else {}))
+            **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6,7) else {}))
 
     def _harvest_ticks(self, lp, physical, pool, spacing):
         """Validate physical geometry and consistent getter paths, not independent sources."""
@@ -179,8 +179,8 @@ class Review:
             'owner': '0x'+f'{owner:040x}', 'pool_id': pool, 'main_ticks':ticks,
             'geometry_sources_independent':False,
             'scope': 'Pinned Manager binding, PosM custody and stored geometry only; no slot0, active-range, price or earned-fee inference.'}
-        if self.k.accounting_version in (5,6):
-            if self.uint('liquidity','PORTFOLIO_VERSION()')!=(2 if self.k.accounting_version==6 else 1):
+        if self.k.accounting_version in (5,6,7):
+            if self.uint('liquidity','PORTFOLIO_VERSION()')!=(2 if self.k.accounting_version in (6,7) else 1):
                 raise RpcError('Harvest portfolio capability differs')
             secondary=self.uint('liquidity','secondaryId(uint256)',lp)
             count=self.uint('liquidity','activeSecondaryCount()')
@@ -196,7 +196,7 @@ class Review:
                     reasons.append('residual_lp_empty')
                 legs.append(dict(lp_token_id=str(secondary),owner='0x'+f'{extra_owner:040x}',pool_id=position['pool_id'],**extra_ticks))
             if not 0<self.uint(posm,'getPositionLiquidity(uint256)',lp)<2**128:reasons.append('main_lp_empty')
-            result.update(allowed=not reasons,physical_legs=legs,secondary_id=str(secondary),portfolio_version=2 if self.k.accounting_version==6 else 1)
+            result.update(allowed=not reasons,physical_legs=legs,secondary_id=str(secondary),portfolio_version=2 if self.k.accounting_version in (6,7) else 1)
         return result
 
     def execution(self):
@@ -208,7 +208,7 @@ class Review:
 
     def budget(self):
         if self._budget is None:
-            target = self.k._compound_budget(4 if self.k.accounting_version in (5,6) else 3)
+            target = self.k._compound_budget(4 if self.k.accounting_version in (5,6,7) else 3)
             if self.uint(target, 'access()') != int(self.k.contracts['access'], 16):
                 raise RpcError('Review Budget controller differs')
             self._budget = target
@@ -220,17 +220,17 @@ class Review:
             loss = self.uint(budget, 'maintenanceLossBps()')
             if not 0 <= loss <= 1000: raise RpcError('Review maintenance loss is malformed')
             return {'budget': budget, 'runtime_code_hash': self.k.config['code_hashes']['idle_compounding_budget'],
-                    'compound_capability_version': 4 if self.k.accounting_version in (5,6) else 3, 'maintenance_loss_bps': loss}
+                    'compound_capability_version': 4 if self.k.accounting_version in (5,6,7) else 3, 'maintenance_loss_bps': loss}
         execution = self.execution()
         quality = (execution['value']['metadata'].get('execution_quality') if execution['available'] else None)
         fee,width,trigger,deviation,slip = [int(config[n],16) for n in (2,7,8,9,10)]
-        if (not 100 <= width <= (9999 if self.k.accounting_version==6 else 5000) or not 100 <= trigger < width or
+        if (not 100 <= width <= (9999 if self.k.accounting_version in (6,7) else 5000) or not 100 <= trigger < width or
                 not 1 <= slip <= 1000 or not 1 <= deviation <= 500 or deviation >= width or
                 not 0 <= fee <= 100000 or fee >= slip*100 or
                 int(config[12],16)==0 or int(config[13],16)<int(config[12],16)):
             raise RpcError('Review pool financial policy is malformed')
         idle={'bps':500,'source':'fixed_source_rule_not_a_measured_margin'}
-        if self.k.accounting_version==6:
+        if self.k.accounting_version in (6,7):
             from zzz_ops.protocol_policy import observe as observe_policy
             def current_idle():
                 terms=observe_policy(lambda target,method,*args,count:self.read(target,method,*args,count=count),
@@ -416,7 +416,7 @@ class Review:
                     _set(row, 'blocked', 'pool_operations_disabled'); continue
                 m = market['value']
                 if action == 'rebalance':
-                    fresh=self.k.accounting_version in (5,6)
+                    fresh=self.k.accounting_version in (5,6,7)
                     needed = (m['threshold_side']!=0 if fresh else not m['in_range']) or m['range_update_pending']
                     row['checks']['raw_market_condition'] = {'needed': needed,
                         'source': 'main_price_distance_and_explicit_width_or_mode' if fresh else 'physical_range_and_explicit_width'}
@@ -532,7 +532,7 @@ def review(config, buckets, *, rpc=None, simulate=False, now=None):
                            rebalance_confirmation_version=keeper.rebalance_confirmation.version)
     base['profile'].update(portfolio_version=keeper.portfolio_version,
                            protocol_policy_version=keeper.protocol_policy_version)
-    if (keeper.accounting_version,keeper.maintenance_policy_version) not in ((4,2),(5,3),(6,3)):
+    if (keeper.accounting_version,keeper.maintenance_policy_version) not in ((4,2),(5,3),(6,3),(7,3)):
         return dict(base, ok=True, provenance=None, operations=[_set(_row(a, b), 'unsupported', 'explicit_historical_profile') for b in buckets for a in ACTIONS])
     clock = time.time if now is None else now
     with request_scope(Budget(seconds=MAX_SECONDS, calls=MAX_CALLS, posts=1024)):

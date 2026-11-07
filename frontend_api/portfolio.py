@@ -44,30 +44,31 @@ def read(p, wallet_address, block_number, offset):
         # activated; eligibility is permanent. Read actual views anyway so an
         # unavailable or contradictory response is never replaced with zero.
         inactive=False
-        if p.accounting_version in (3,4,5,6):
+        if p.accounting_version in (3,4,5,6,7):
             weight=p._uint('royalties','weightOf(uint256)',identifier,block=block)
             if weight>3:raise ProjectionError('Wallet NFT royalty weight exceeds the reviewed bound')
             inactive=weight==0
         status=None
-        if p.accounting_version in (3,4,5,6):
+        if p.accounting_version in (3,4,5,6,7):
             status=p._uint('vault','nftStatus(uint256)',identifier,block=block)
-            limit=6 if p.accounting_version in (4,5,6) else 5
+            limit=6 if p.accounting_version in (4,5,6,7) else 5
             if type(status) is not int or not 1<=status<limit:
                 raise ProjectionError('Wallet NFT has unsupported canonical custody')
             if (status==p.dormant_status)!=inactive:
                 raise ProjectionError('Wallet custody and royalty eligibility disagree')
-        exited = p.accounting_version in (4,5,6) and status == 5
-        if p.accounting_version in (3,4,5,6):
+        exited = p.accounting_version in (4,5,6,7) and status == 5
+        if p.accounting_version in (3,4,5,6,7):
             bucket=p._uint('vault','nftBucket(uint256)',identifier,block=block)
             shares=p._uint('vault','sharesOf(uint256)',identifier,block=block)
             if (shares>0)!=(bucket>0) or inactive!=(shares==0):
                 raise ProjectionError('Wallet custody and shares disagree')
             read_custody(p,status,bucket,shares,block,cache=custody_buckets,totals=custody_shares)
-        if p.accounting_version in (5,6) and status == 1:
+        if p.accounting_version in (5,6,7) and status == 1:
             if bucket not in verified_buckets:
                 from frontend_api.portfolio_v5 import read_bucket as read_v5
                 from frontend_api.portfolio_v6 import read_bucket as read_v6
-                read_bucket = read_v6 if p.accounting_version == 6 else read_v5
+                from frontend_api.portfolio_v7 import read_bucket as read_v7
+                read_bucket = read_v7 if p.accounting_version==7 else read_v6 if p.accounting_version==6 else read_v5
                 read_bucket(p,bucket,block);verified_buckets.add(bucket)
         # Keep each metric independent: unreadable LP never becomes a zero sum.
         try:

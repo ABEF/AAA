@@ -10,12 +10,13 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
-import {MockAccess, MockToken, TaxToken} from "./mocks/Mocks.sol";
+import {MockAccess, MockToken, TaxToken, MockPools} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 
 /// @dev TEST ONLY: canonical shares without LP custody. Claims use the real
 /// NFT, LP ledger, equal membership, royalty ledger and immutable claim router.
 contract ClaimVaultFixture {
+    function ACCOUNTING_VERSION()external pure returns(uint256){return 7;}
     ZZZNFT private nft;
     ZZZRewards private rewards;
     ZZZMembership private membership;
@@ -29,9 +30,9 @@ contract ClaimVaultFixture {
     function mint(address owner, uint256 id) external { nft.mint(owner, id); }
     function activate(uint256 id, uint256 shares) external {
         nftBucket[id] = 1;
-        rewards.checkpointOwner(id);
         sharesOf[id] = shares;
         bucketTotalShares[1] += shares;
+        rewards.syncShares(id);
         membership.activate(id);
         nft.notifyContribution(id);
     }
@@ -95,7 +96,7 @@ contract ClaimRouterTest is Test {
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.REWARDS, address(rewards));
         access.bind(Ids.MEMBERSHIP, address(membership)); access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.FEES, address(this));
-        rewards.addAsset(address(token)); rewards.addAsset(address(other));
+        MockPools fixturePools=new MockPools();fixturePools.setFixedZZZ(address(token));access.bind(Ids.POOLS,address(fixturePools));rewards.addAsset(address(token));
         nft.addRoyaltyAsset(address(token)); nft.addRoyaltyAsset(address(other));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         access.seal();
@@ -111,9 +112,10 @@ contract ClaimRouterTest is Test {
         asset.mint(address(this), personal + collective); asset.approve(address(rewards), personal + collective);
         rewards.creditPool(1, address(asset), personal, collective);
     }
+    function _creditNative(uint256 personal,uint256 collective)private{rewards.creditPool{value:personal+collective}(1,address(0),personal,collective);}
     function _fund() private {
         if(!royalties.royaltiesOpen()){nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);royalties.syncAll();}
-        _credit(token, 1500, 1500); _credit(other, 3000, 3000);
+        _credit(token, 1500, 1500); _creditNative(3000,3000);
         token.mint(address(royalties), 900); other.mint(address(royalties), 1800);
         (bool ok,) = address(royalties).call{value: 3 ether}(""); require(ok);
     }
@@ -152,7 +154,7 @@ contract ClaimRouterTest is Test {
     function testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts() public {
         _fund(); ZZZClaimRouter.Claim[] memory list = new ZZZClaimRouter.Claim[](6);
         list[0] = ZZZClaimRouter.Claim(1, address(token), false);
-        list[1] = ZZZClaimRouter.Claim(2, address(other), false);
+        list[1] = ZZZClaimRouter.Claim(2, address(0), false);
         list[2] = ZZZClaimRouter.Claim(1, address(token), true);
         list[3] = ZZZClaimRouter.Claim(2, address(other), true);
         list[4] = ZZZClaimRouter.Claim(1, address(0), true);
@@ -160,7 +162,7 @@ contract ClaimRouterTest is Test {
         vm.prank(ALICE); uint256[] memory amounts = router.claimBatch(list);
         assertEq(amounts.length, 6); assertEq(amounts[0], 800); assertEq(amounts[1], 2800);
         assertEq(amounts[2], 300); assertEq(amounts[3], 600); assertEq(amounts[4], 1 ether); assertEq(amounts[5], 1 ether);
-        assertEq(token.balanceOf(ALICE), 1100); assertEq(other.balanceOf(ALICE), 3400); assertEq(ALICE.balance, 2 ether);
+        assertEq(token.balanceOf(ALICE), 1100); assertEq(other.balanceOf(ALICE), 600); assertEq(ALICE.balance, 2 ether+2800);
         assertEq(rewards.claimable(3, address(token)), 800); assertEq(royalties.claimable(3, address(0)), 1 ether);
     }
 

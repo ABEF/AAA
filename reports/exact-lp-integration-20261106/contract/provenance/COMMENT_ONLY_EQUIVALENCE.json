@@ -1,0 +1,28 @@
+{
+  "scope": "Documentary-only source rebinding; not a new functional EVM run",
+  "before_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291",
+  "after_normal": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "changed_source": [
+    "src/libraries/ExactLPAllocation.sol"
+  ],
+  "exact_two_NatSpec_lines_only": true,
+  "all87_non_documentation_AST_equal": true,
+  "all_ABIs_equal": true,
+  "AST_excluded_fields": [
+    "documentation",
+    "src",
+    "nameLocation",
+    "nameLocations",
+    "memberLocation"
+  ],
+  "AST_node_ids_and_referenced_declarations_compared": true,
+  "initial_validator_limit": "Retained first assertion: plural nameLocations/memberLocation span fields also shift by the14-byte documentation change; executable AST was not altered to pass.",
+  "before_library_sha256": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+  "after_library_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+  "settings_identical": true,
+  "metadata_runtime_and_review_pins_require_new_identity": true,
+  "limitations": [
+    "Earlier EVM stages retain their original raw-source hashes; this is explicit unchanged-executable-AST evidence, not a claim they executed later bytes.",
+    "Metadata and embedded creation-code identities can change; new normal/static/config/reference pins must be used."
+  ]
+}

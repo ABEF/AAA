@@ -5,6 +5,24 @@ within the existing gas and network-fee limits. It never signs, broadcasts,
 queues later transactions or changes a ledger. The existing
 `/v1/transactions/prepare` endpoint and its mint/claim behavior are unchanged.
 Public signing remains disabled; the shared browser signer remains Anvil-only.
+Fresh7 admission authenticates accounting7/LP-allocation1/canonicalV9 and the
+fixed Rewards canonical companion. LP funded claims are exact whole units in
+ETH or fixed ZZZ; original royalty currencies remain separate. The schema1
+planner/router selection shape is unchanged; no historical6 runtime is relabeled.
+
+The exact-host cold32-entry rehearsal consumed31,085,813raw execution gas,
+above the unchanged12M service budget. It used16NFTs across four buckets and
+both LP currencies in a1,000-minted/900-active fixture; this is NOT an approved
+32-entry operating batch or target-chain fee measurement. Let the planner test
+smaller prefixes, publish only a fresh successful draft and replan the remainder
+after confirmation. A direct single-currency cold claim measured1,259,505raw gas
+in its explicit fixture. Neither measurement fixes the size of future batches;
+see [source/gas evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md).
+
+The same controlled cold fixture's8entries (four NFTs/all four buckets) measured
+8,819,431raw gas. It fits that test's12M budget, but is not universal8-entry
+approval: recipient/token behavior, tree state, other currencies and transaction
+overhead differ. The ordinary exact final simulation/estimate remains mandatory.
 
 This is a local source feature, not a deployed endpoint or target-chain gas
 qualification. Enabling it on an operating service requires a separate reviewed
@@ -99,7 +117,9 @@ probed; malformed return values or gas quantities are rejected. Successful small
 simulation proves that selected batch, not the reason a larger batch failed.
 
 Successful identity/admission metadata may be reused **only within this request
-at the same block hash**. Some of those settings are configurable across blocks.
+at the same block hash**. This includes the exact LP capability and typed
+canonical-module parent links, not tree balances or claimable components. Some
+of those settings are configurable across blocks.
 Owners, claimable/wallet balances, lifecycle, simulations, estimates, fee prices,
 heads and canonicality checks are not cached. No cache is retained across users,
 requests or blocks.

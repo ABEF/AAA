@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
-import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
@@ -52,9 +52,9 @@ contract ProductionGasTest is Test {
         pools = new MockPools();
         policy = new VaultPolicyMock();
         feed = new MockFeed(8, 1e8);
-        for (uint256 i; i < assetCount; ++i) tokens.push(new MockToken(0));
+        require(assetCount==2);tokens.push(MockToken(address(0)));tokens.push(new MockToken(0));
         venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
-        vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
+        ProtocolPolicyFixture.recipient(address(access),TREASURY);vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         nft = new ZZZNFT(address(access), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
@@ -62,7 +62,7 @@ contract ProductionGasTest is Test {
         rewards = new ZZZRewards(address(access));
         fees = new ZZZFeeController(address(access));
         oracle = new ZZZOracle(address(access), address(0));
-        oracle.setTestFeed(address(tokens[0]), address(feed), 3600);
+        oracle.setTestFeed(address(0),address(new MockFeed(8,1e26)),3600);
         oracle.setTestFeed(address(tokens[1]), address(feed), 3600);
         access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.NFT, address(nft));
@@ -76,7 +76,7 @@ contract ProductionGasTest is Test {
         access.bind(Ids.MIGRATION, address(this));
         access.setKeeper(address(this),true);
         access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
-        for (uint256 i; i < assetCount; ++i) rewards.addAsset(address(tokens[i]));
+        pools.setFixedZZZ(address(tokens[1]));rewards.addAsset(address(tokens[1]));
         PoolConfig memory c;
         c.key = PoolKey(address(tokens[0]), address(tokens[1]), 3000, 60, address(0));
         c.depositsEnabled = true;
@@ -89,10 +89,10 @@ contract ProductionGasTest is Test {
         CanonicalFixture.bind(address(access));
         access.seal();
         vm.deal(OWNER, 100 ether);
-        tokens[0].mint(OWNER, 10_000_000);
+
         tokens[1].mint(OWNER, 10_000_000);
         vm.startPrank(OWNER);
-        tokens[0].approve(address(vault), type(uint256).max);
+
         tokens[1].approve(address(vault), type(uint256).max);
         vm.stopPrank();
     }
@@ -149,7 +149,7 @@ contract ProductionGasTest is Test {
             vm.stopPrank();
             _finalizeTraits(previous);
             vm.startPrank(OWNER);
-            vault.activate(previous, poolId, 1000, 1000, 1, block.timestamp + 100);
+            vault.activate{value:1000}(previous, poolId, 1000, 1000, 1, block.timestamp + 100);
             vm.stopPrank();
         }
         vm.resumeGasMetering();
@@ -171,7 +171,7 @@ contract ProductionGasTest is Test {
         _cool();
         vm.prank(OWNER);
         start = gasleft();
-        vault.activate(id, poolId, 1000, 1000, 1, block.timestamp + 100);
+        vault.activate{value:1000}(id, poolId, 1000, 1000, 1, block.timestamp + 100);
         spent = start - gasleft();
         _report(prefix, "activate", spent);
 
@@ -179,7 +179,7 @@ contract ProductionGasTest is Test {
         _cool();
         vm.prank(OWNER);
         start = gasleft();
-        vault.increase(id, 100, 100, 1, block.timestamp + 100);
+        vault.increase{value:100}(id, 100, 100, 1, block.timestamp + 100);
         spent = start - gasleft();
         _report(prefix, "topUpWithFeeCheckpoint", spent);
 
@@ -200,11 +200,11 @@ contract ProductionGasTest is Test {
 
         _cool();
         // Isolate checkpoint execution without changing equal NFT membership.
-        vm.prank(address(membership));
+
         start = gasleft();
-        rewards.checkpointAll(id);
+        rewards.claimableComponents(id,address(0));
         spent = start - gasleft();
-        _report(prefix, "checkpointAll", spent);
+        _report(prefix, "claimableComponents", spent);
 
         _cool();
         vm.prank(OWNER);
@@ -224,35 +224,20 @@ contract ProductionGasTest is Test {
         nft.finalizeTraits(id);
     }
 
-    function testGasMaximum32FundedRewardAssets() public {
-        uint256 id = _runCollectionWorkload(1000, 32);
-        // Model funded balances retained across historical pools/routes. Only the
-        // bound fee module is impersonated to fund the real reward ledger for all
-        // assets; this does not pretend one pool produces 32 different currencies.
-        for (uint256 i; i < tokens.length; ++i) {
-            tokens[i].mint(address(fees), 900_000);
-            vm.startPrank(address(fees));
-            tokens[i].approve(address(rewards), 900_000);
-            rewards.creditPool(vault.nftBucket(id), address(tokens[i]), 800_000, 100_000);
-            vm.stopPrank();
-        }
-        _cool();
-        vm.prank(address(membership));
-        uint256 start = gasleft();
-        rewards.checkpointAll(id);
-        uint256 spent = start - gasleft();
-        _report("collection.1000.assets.32.funded", "checkpointAll", spent);
-
-        _cool();
-        vm.startPrank(OWNER);
-        start = gasleft();
-        for (uint256 i; i < tokens.length; ++i) rewards.claim(id, address(tokens[i]));
-        spent = start - gasleft();
-        vm.stopPrank();
-        // This benchmark performs 32 raw calls, not the production claim router.
-        // Shared warm accesses make it cheaper than 32 separate transactions;
-        // ClaimRouter.t.sol independently measures its bounded 32-operation ABI.
-        _report("collection.1000.assets.32.funded", "claim32BatchedCalls", spent);
-        assertEq(rewards.assetCount(), 33);
+    /// @notice Fresh profile7 has exactly native ETH and fixed ZZZ, not32 LP assets.
+    function testGasMaximumTwoFundedLPBooks()public{
+        uint256 id=_runCollectionWorkload(1000,2);uint256 bucket=vault.nftBucket(id);
+        vm.deal(address(fees),address(fees).balance+900_000);
+        vm.prank(address(fees));rewards.creditPool{value:900_000}(bucket,address(0),800_000,100_000);
+        tokens[1].mint(address(fees),900_000);
+        vm.startPrank(address(fees));tokens[1].approve(address(rewards),900_000);
+        rewards.creditPool(bucket,address(tokens[1]),800_000,100_000);vm.stopPrank();
+        _cool();uint256 start=gasleft();rewards.claimableComponents(id,address(0));
+        _report("collection.1000.assets.2.funded","claimableComponents",start-gasleft());
+        _cool();vm.startPrank(OWNER);start=gasleft();
+        uint256 ethClaim=rewards.claim(id,address(0));uint256 zzzClaim=rewards.claim(id,address(tokens[1]));
+        uint256 spent=start-gasleft();vm.stopPrank();
+        assertGt(ethClaim,0);assertGt(zzzClaim,0);assertEq(rewards.assetCount(),2);
+        _report("collection.1000.assets.2.funded","claimTwoBatchedCalls",spent);
     }
 }

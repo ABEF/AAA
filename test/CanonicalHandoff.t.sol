@@ -2,7 +2,8 @@
 pragma solidity 0.8.26;
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ICanonicalHandoffTest} from "./helpers/CanonicalInterface.sol";
-import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {CanonicalNativeVenue} from "./helpers/CanonicalNativeVenue.sol";
+import {ZZZRewardsCanonical} from "../src/ZZZRewardsCanonical.sol";
 import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
@@ -75,6 +76,17 @@ interface ICancelledRoyaltyHandoffTest {
     function recoverCancelledRoyalties(address,bytes32) external returns(uint256);
 }
 
+/// @dev TEST ONLY already-converted, physically funded native credits. The
+/// converter execution itself is covered by LPRewardConversion; this verifies
+/// that its resulting direct rights survive full canonical replacement.
+contract HandoffConvertedRewardsFixture is ZZZRewards {
+    constructor(address controller)ZZZRewards(controller){}
+    function creditConverted(uint256 id,uint256 personal,uint256 shared)external payable{
+        require(msg.value==personal+shared);directIndividual[id][address(0)]+=personal;directCollective[id][address(0)]+=shared;
+        directLiabilities[address(0)]+=msg.value;liabilities[address(0)]+=msg.value;
+    }
+}
+
 contract CanonicalHandoffTest is Test {
     struct System {
         ZZZAccessController ac;
@@ -86,7 +98,7 @@ contract CanonicalHandoffTest is Test {
         ZZZFeeController fees;
         ZZZMigration migration;
         PreparationPools pools;
-        PreparationVenue venue;
+        CanonicalNativeVenue venue;
         MockVRF vrf;
         ICanonicalHandoffTest handoff;
     }
@@ -118,7 +130,8 @@ contract CanonicalHandoffTest is Test {
         destination.handoff.prepareImport(address(source.ac));
         destination.ac.seal();
         vm.deal(ALICE, 100 ether); vm.deal(BOB, 100 ether); vm.deal(address(this), 100 ether);
-        token0.mint(ALICE, 10000000); token1.mint(ALICE, 10000000);
+        token0.mint(ALICE,10000000);
+        vm.deal(address(source.venue),10000000);vm.deal(address(destination.venue),10000000);
         _approve(source); _approve(destination);
     }
 
@@ -131,11 +144,13 @@ contract CanonicalHandoffTest is Test {
     function _deploySystemWithChain(bool sealNow, bool admitAssets, uint256 homeChain) private returns (System memory s) {
         s.ac = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.ac));
         s.pools = new PreparationPools(address(s.ac));
-        s.venue = new PreparationVenue(address(s.ac), address(token0), address(token1));
-        s.vault = new AccountingVaultHarness(address(s.ac), homeChain, TREASURY, address(new ZZZMigrationBudget(address(s.ac))));
+        s.venue = new CanonicalNativeVenue(address(s.ac),address(token0));
+        vm.deal(address(s.venue),10000000);
+        s.vault = new ZZZVault(address(s.ac),homeChain,address(new ZZZMigrationBudget(address(s.ac))));
+        ProtocolPolicyFixture.recipient(address(s.ac),TREASURY);
         s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days));
         s.royalties = s.nft.royaltyRewards();
-        s.rewards = new ZZZRewards(address(s.ac)); s.membership = new ZZZMembership(address(s.ac));
+        s.rewards = new HandoffConvertedRewardsFixture(address(s.ac)); s.membership = new ZZZMembership(address(s.ac));
         s.fees = new ZZZFeeController(address(s.ac)); s.migration = new ZZZMigration(address(s.ac));
         ZZZOracle oracle = new ZZZOracle(address(s.ac), address(0));
         s.ac.bind(Ids.VAULT, address(s.vault)); s.ac.bind(Ids.NFT, address(s.nft));
@@ -146,19 +161,18 @@ contract CanonicalHandoffTest is Test {
         s.ac.bind(Ids.BUYBACK, address(new ZZZBuyback(address(s.ac), address(token0), 1e30)));
         s.ac.bind(Ids.MIGRATION, address(s.migration)); s.ac.bind(Ids.ORACLE, address(oracle));
         s.ac.bind(Ids.POOLS, address(s.pools));
-        oracle.setTestFeed(address(token0), address(feed), 3600); oracle.setTestFeed(address(token1), address(feed), 3600);
+        oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(token0),address(feed),3600);
         // The fixed launch token is required even for an empty collection.
-        s.rewards.addAsset(address(token0));
         s.pools.setTestZZZIdentity(address(token0));
+        s.rewards.addAsset(address(token0));
         s.migration.configureZZZ(address(token0),address(token0).codehash,keccak256("handoff fixed ZZZ"));
         if (admitAssets) {
-            s.rewards.addAsset(address(token1));
             s.nft.addRoyaltyAsset(address(token0));
         }
         s.vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory config;
-        config.key = PoolKey(address(token0), address(token1), 3000, 60, address(0));
+        config.key = PoolKey(address(0),address(token0),3000,60,address(0));
         config.operationsEnabled = true; config.depositsEnabled = true;
         config.minDepositUSD = 1e18; config.maxPositionUSD = 1e30; config.maxSlippageBps = 100;
         poolId = keccak256(abi.encode(config.key)); s.pools.set(poolId, config);
@@ -170,7 +184,6 @@ contract CanonicalHandoffTest is Test {
     function _approve(System memory s) private {
         vm.startPrank(ALICE);
         token0.approve(address(s.vault), type(uint256).max);
-        token1.approve(address(s.vault), type(uint256).max);
         vm.stopPrank();
     }
     function _govern(System memory s, address target, bytes memory data) private {
@@ -199,7 +212,7 @@ contract CanonicalHandoffTest is Test {
         s.vrf.fulfill(s.nft.requestOf(id), rarityWord, artworkWord); s.nft.finalizeTraits(id);
     }
     function _activate(System memory s, uint256 id, uint256 amount) private {
-        _fresh(); vm.prank(ALICE); s.vault.activate(id, poolId, amount, amount, 1, block.timestamp + 100);
+        _fresh(); vm.prank(ALICE); s.vault.activate{value:amount}(id,poolId,amount,amount,1,block.timestamp+100);
     }
     function _seed() private returns (uint256 first,uint256 second,uint256 dormant) {
         (first,second,dormant)=_seedOpen();
@@ -250,7 +263,7 @@ contract CanonicalHandoffTest is Test {
         Position memory p = source.vault.group(bucket);
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, p.poolId, p.lpTokenId,
             source.vault.bucketTotalShares(bucket), p.depositUSD, source.migration.custodyEpoch(bucket),
-            source.migration.parkingNonce(bucket), address(token0), address(token1), 1, 1,
+            source.migration.parkingNonce(bucket), address(0), address(token0), 1, 1,
             block.timestamp + 100, keccak256("handoff parking fixture"), PortfolioFixture.executionHash(source.ac.module(Ids.LIQUIDITY),p.lpTokenId));
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
     }
@@ -335,7 +348,7 @@ contract CanonicalHandoffTest is Test {
     function _coolSystem(System memory s) private {
         ZZZOracle oracle=ZZZOracle(s.ac.module(Ids.ORACLE));
         vm.cool(address(oracle.contributionPricing()));
-        address[2] memory pair=[address(token0),address(token1)];
+        address[2] memory pair=[address(0),address(token0)];
         for(uint256 i;i<pair.length;++i) {
             ZZZOracle.DualPolicy memory p=oracle.policy(oracle.activePolicy(pair[i]));
             vm.cool(p.primary.source);vm.cool(p.secondary.source);
@@ -359,10 +372,9 @@ contract CanonicalHandoffTest is Test {
         used = beforeGas - gasleft();
         assertLt(used, HANDOFF_CALL_GAS_BUDGET, "Cold canonical governance call exceeds unchanged 12M budget");
     }
-    function _rewardRowHash(ZZZRewards ledger, uint256 id, address asset) private view returns (bytes32) {
-        return keccak256(abi.encode(ledger.individual(id, asset), ledger.collective(id, asset),
-            ledger.paidIndex(id, asset), ledger.fraction(id, asset), ledger.paidOwnerIndex(id, asset),
-            ledger.ownerFraction(id, asset)));
+    function _rewardRowHash(ZZZRewards ledger,uint256 id,address asset)private view returns(bytes32){
+        (uint256 personal,uint256 shared)=ledger.claimableComponents(id,asset);
+        return keccak256(abi.encode(personal,shared,ledger.rewardBucket(id),ledger.directLiabilities(asset)));
     }
     function _royaltyRowHash(ZZZRoyaltyRewards ledger, uint256 id, address asset) private view returns (bytes32) {
         // Accrued storage is flattened from the frozen tree; the preceding
@@ -378,28 +390,13 @@ contract CanonicalHandoffTest is Test {
         assertEq(source.ac.canonicalState(), 0);
     }
 
-    function testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner() public {
-        source=_deploySystem(false);HandoffNativeWrapper wrapper=new HandoffNativeWrapper();
-        source.rewards.addAsset(address(wrapper));
-        ZZZLPRewardConverter converter=new ZZZLPRewardConverter(address(source.ac),address(source.rewards),address(wrapper));
-        source.rewards.bindConverter(address(converter));
-        converter.configureWrapper(ZZZRewardConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("test wrapper")));
-        converter.setEnabled(true);source.ac.seal();_approve(source);
-        destination=_deploySystemWithAssets(false,false);
-        destination.rewards.addAsset(address(token1));destination.rewards.addAsset(address(wrapper));
-        destination.handoff.prepareImport(address(source.ac));destination.ac.seal();
+    function testFullHandoffCarriesAlreadyConvertedNativeCreditsToCurrentOwner()public{
         uint256 id=_mint(source,0,0);_activate(source,id,1000);
-        wrapper.deposit{value:3 ether}();wrapper.transfer(address(source.fees),3 ether);
-        vm.prank(address(source.fees));wrapper.approve(address(source.rewards),3 ether);
-        uint256 bucket=source.vault.nftBucket(id);
-        vm.prank(address(source.fees));source.rewards.creditPool(bucket,address(wrapper),2 ether,1 ether);
-        uint256[] memory list=new uint256[](1);list[0]=id;
-        source.rewards.convertBatch(address(wrapper),list,0,3 ether,block.timestamp+60);
+        HandoffConvertedRewardsFixture(payable(address(source.rewards))).creditConverted{value:3 ether}(id,2 ether,1 ether);
         vm.prank(ALICE);source.nft.transferFrom(ALICE,BOB,id);
         _freeze(id);_exportAll();_importAll();_fundAll();_commit();
-        assertEq(destination.rewards.individual(id,address(0)),2 ether);
-        assertEq(destination.rewards.collective(id,address(0)),1 ether);
-        assertEq(address(destination.rewards).balance,3 ether);
+        (uint256 personal,uint256 shared)=destination.rewards.claimableComponents(id,address(0));
+        assertEq(personal,2 ether);assertEq(shared,1 ether);assertEq(address(destination.rewards).balance,3 ether);
         vm.prank(ALICE);vm.expectRevert();destination.rewards.claim(id,address(0));
         uint256 balance=BOB.balance;vm.prank(BOB);assertEq(destination.rewards.claim(id,address(0)),3 ether);
         assertEq(BOB.balance,balance+3 ether);assertEq(destination.rewards.liabilities(address(0)),0);
@@ -461,9 +458,9 @@ contract CanonicalHandoffTest is Test {
             _rewardRowHash(source.rewards, second, address(token0)));
         assertEq(_royaltyRowHash(destination.royalties, first, address(0)),
             _royaltyRowHash(source.royalties, first, address(0)));
-        assertEq(destination.rewards.index(address(token0)), source.rewards.index(address(token0)));
-        assertEq(destination.rewards.ownerIndex(destination.vault.nftBucket(first), address(token0)),
-            source.rewards.ownerIndex(source.vault.nftBucket(first), address(token0)));
+        (uint256 sw,uint256 se,uint256 sz)=source.rewards.allocationTree(source.vault.nftBucket(first));
+        (uint256 dw,uint256 de,uint256 dz)=destination.rewards.allocationTree(destination.vault.nftBucket(first));
+        assertEq(dw,sw);assertEq(de,se);assertEq(dz,sz);
         vm.prank(BOB); assertEq(destination.rewards.claim(second, address(token0)), lpSecond);
         vm.prank(BOB); assertEq(destination.royalties.claim(second, address(0)), royaltySecond);
         vm.prank(ALICE); vm.expectRevert(); source.rewards.claim(first, address(token0));
@@ -491,9 +488,9 @@ contract CanonicalHandoffTest is Test {
         assertEq(source.ac.canonicalState(), 1); assertEq(destination.ac.canonicalState(), 2);
     }
 
-    function testAccountingV5KeepsEightWordCanonicalPositionAndRejectsLegacyOrTrailingGroupRows() public {
+    function testAccountingV7KeepsEightWordCanonicalPositionAndRejectsLegacyOrTrailingGroupRows() public {
         (uint256 first,,) = _seed(); _freeze(first);
-        assertEq(source.vault.ACCOUNTING_VERSION(), 6);
+        assertEq(source.vault.ACCOUNTING_VERSION(), 7);
         IZZZCanonicalModule from = IZZZCanonicalModule(source.handoff.moduleAt(1));
         IZZZCanonicalModule to = IZZZCanonicalModule(destination.handoff.moduleAt(1));
         bytes memory header = from.canonicalExport(0);
@@ -822,9 +819,10 @@ contract CanonicalHandoffTest is Test {
     function testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() public {
         // TEST ONLY: a malicious asset is also the explicitly selected
         // governance contract, so the callback has real governance authority.
+        (uint256 first,,) = _seed();
         source.ac.proposeGovernance(address(token0));
         HandoffTransitionToken(address(token0)).acceptGovernance(source.ac);
-        (uint256 first,,) = _seed(); _freeze(first); _exportAll(); _importAll();
+        _freeze(first); _exportAll(); _importAll();
         bytes memory data = abi.encodeCall(source.handoff.abort, ());
         uint256 principal = token0.balanceOf(address(source.vault));
         HandoffTransitionToken(address(token0)).arm(address(source.handoff), data,
@@ -863,11 +861,6 @@ contract CanonicalHandoffTest is Test {
         MockToken[30] memory extra;
         for (uint256 i; i < extra.length; ++i) {
             extra[i] = new MockToken(0);
-            _govern(source, address(source.rewards), abi.encodeCall(source.rewards.addAsset, (address(extra[i]))));
-            destination.rewards.addAsset(address(extra[i]));
-            extra[i].mint(address(source.vault), i + 1);
-            extra[i].mint(address(source.rewards), i + 2);
-            extra[i].mint(address(source.fees), i + 3);
             if (i < 15) {
                 _govern(source, address(source.nft), abi.encodeCall(source.nft.addRoyaltyAsset, (address(extra[i]))));
                 destination.nft.addRoyaltyAsset(address(extra[i]));
@@ -884,21 +877,18 @@ contract CanonicalHandoffTest is Test {
         _prepare();
         for (uint256 i; i < source.vault.bucketCount(); ++i) _park(source.vault.bucketAt(i));
         uint256 freezeGas = _governColdHandoff(abi.encodeCall(source.handoff.freeze, ()));
-        emit log_named_uint("handoff.4-buckets.32-assets.17-royalties.freeze.cold", freezeGas);
+        emit log_named_uint("handoff.4-buckets.2-assets.17-royalties.freeze.cold", freezeGas);
         _settleAll();
         uint256 expectedRoyalty = source.royalties.claimable(first, address(extra[14]));
         _exportAll(); _importAll(); _fundAll();
         uint256 commitGas = _governColdHandoff(abi.encodeCall(source.handoff.commit, ()));
-        emit log_named_uint("handoff.4-buckets.32-assets.17-royalties.commit.cold", commitGas);
+        emit log_named_uint("handoff.4-buckets.2-assets.17-royalties.commit.cold", commitGas);
         assertEq(source.ac.canonicalState(), 3); assertEq(destination.ac.canonicalState(), 0);
-        assertEq(destination.vault.bucketCount(), 4); assertEq(destination.rewards.assetCount(), 33);
+        assertEq(destination.vault.bucketCount(), 4); assertEq(destination.rewards.assetCount(),2);
         assertEq(destination.royalties.assetCount(), 17);
         assertEq(destination.membership.totalEligible(), 5);
         for (uint256 i; i < extra.length; ++i) {
-            assertEq(extra[i].balanceOf(address(destination.vault)), i + 1);
-            assertEq(extra[i].balanceOf(address(destination.rewards)), i + 2);
-            assertEq(extra[i].balanceOf(address(destination.fees)), i + 3);
-            assertEq(destination.rewards.claimable(first, address(extra[i])), 0);
+            assertEq(extra[i].balanceOf(address(destination.vault)),0);assertEq(extra[i].balanceOf(address(destination.rewards)),0);assertEq(extra[i].balanceOf(address(destination.fees)),0);
         }
         assertEq(destination.royalties.claimable(first, address(extra[14])), expectedRoyalty);
         _logGasPeaks();
@@ -910,11 +900,6 @@ contract CanonicalHandoffTest is Test {
         MockToken[30] memory extra;
         for (uint256 i; i < extra.length; ++i) {
             extra[i] = new MockToken(0);
-            _govern(source, address(source.rewards), abi.encodeCall(source.rewards.addAsset, (address(extra[i]))));
-            destination.rewards.addAsset(address(extra[i]));
-            extra[i].mint(address(source.vault), i + 1);
-            extra[i].mint(address(source.rewards), i + 2);
-            extra[i].mint(address(source.fees), i + 3);
             if (i < 15) {
                 _govern(source, address(source.nft), abi.encodeCall(source.nft.addRoyaltyAsset, (address(extra[i]))));
                 destination.nft.addRoyaltyAsset(address(extra[i]));
@@ -930,8 +915,8 @@ contract CanonicalHandoffTest is Test {
         // Unsolicited one-unit balances in both source and importer companions
         // cannot increase freeze cost or substitute for authenticated funding.
         // Each importer must retain its independent prefund baseline as well.
-        address[4] memory companions = [source.handoff.moduleAt(1), source.handoff.moduleAt(5),
-            destination.handoff.moduleAt(1), destination.handoff.moduleAt(5)];
+        address[6] memory companions=[source.handoff.moduleAt(1),source.handoff.moduleAt(3),source.handoff.moduleAt(5),
+            destination.handoff.moduleAt(1),destination.handoff.moduleAt(3),destination.handoff.moduleAt(5)];
         for (uint256 i; i < source.rewards.assetCount(); ++i) {
             address asset = source.rewards.assets(i);
             for (uint256 j; j < companions.length; ++j) {
@@ -943,7 +928,7 @@ contract CanonicalHandoffTest is Test {
         _prepare();
         for (uint256 i; i < source.vault.bucketCount(); ++i) _park(source.vault.bucketAt(i));
         uint256 freezeGas = _governColdHandoff(abi.encodeCall(source.handoff.freeze, ()));
-        emit log_named_uint("handoff.prefunded.4-buckets.33-assets.freeze.cold", freezeGas);
+        emit log_named_uint("handoff.prefunded.4-buckets.2-assets.freeze.cold", freezeGas);
         _settleAll();
         uint256 expectedRoyalty = source.royalties.claimable(first, address(extra[14]));
         _exportAll(); _importAll(); _fundAll();
@@ -953,7 +938,7 @@ contract CanonicalHandoffTest is Test {
         }
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.finishAbort, ()));
         assertEq(source.ac.canonicalState(), 0); assertEq(destination.ac.canonicalState(), 4);
-        assertEq(source.vault.bucketCount(), 4); assertEq(source.rewards.assetCount(), 33);
+        assertEq(source.vault.bucketCount(), 4); assertEq(source.rewards.assetCount(),2);
         for (uint256 i; i < source.rewards.assetCount(); ++i) {
             address asset = source.rewards.assets(i);
             for (uint256 j; j < companions.length; ++j) {

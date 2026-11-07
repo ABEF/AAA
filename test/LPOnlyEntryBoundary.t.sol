@@ -37,11 +37,11 @@ contract LPOnlyEntryBoundaryTest is PooledVaultFixture {
     bool private allocationAccepted;
 
     function contributionCallback() external {
-        require(msg.sender==address(t0));
+        require(msg.sender==address(t1));
         callbackObserved=true;
         // Raw gifts cannot manufacture LP-fee accounting or change membership.
-        t0.mint(address(fees),211);
-        t0.mint(address(rewards),223);
+        t1.mint(address(fees),211);
+        t1.mint(address(rewards),223);
         (bool received,) = address(fees).call{value:17}("");require(received);
         (received,) = address(rewards).call{value:29}("");require(received);
         // Even during callbacks no public path can collect another bucket's
@@ -50,40 +50,40 @@ contract LPOnlyEntryBoundaryTest is PooledVaultFixture {
             "collectFees(uint256,uint256)",incumbentBucket,block.timestamp+100));
         (membershipAccepted,) = address(membership).call(abi.encodeWithSignature("settleDust()"));
         (allocationAccepted,) = address(fees).call(abi.encodeWithSignature(
-            "allocate(uint256,address,uint256)",incumbentBucket,address(t0),uint256(20)));
+            "allocate(uint256,address,uint256)",incumbentBucket,address(t1),uint256(20)));
     }
 
     function _donationDuringEntry(address watched) private {
         uint256 incumbent=activatedPosition();incumbentBucket=vault.nftBucket(incumbent);
         venue.setFees(19,19);vault.collectFees(incumbentBucket,block.timestamp+100);
-        assertEq(fees.dust(incumbentBucket,address(t0)),19);
-        assertEq(rewards.claimable(incumbent,address(t0)),0);
+        assertEq(fees.dust(incumbentBucket,address(t1)),19);
+        assertEq(rewards.claimable(incumbent,address(t1)),0);
         uint256 entrant=_mint(bob);
         PoolConfig memory config=pools.get(poolId);config.key.fee=500;
         bytes32 other=keccak256(abi.encode(config.key));pools.set(other,config);
         LPOnlyCallbackToken implementation=new LPOnlyCallbackToken();
-        vm.etch(address(t0),address(implementation).code);
-        LPOnlyCallbackToken(address(t0)).configure(address(this),watched);
-        vm.prank(bob);vault.activate(entrant,other,1000,1000,1,block.timestamp+100);
+        vm.etch(address(t1),address(implementation).code);
+        LPOnlyCallbackToken(address(t1)).configure(address(this),watched);
+        vm.prank(bob);vault.activate{value:1000}(entrant,other,1000,1000,1,block.timestamp+100);
 
         assertTrue(callbackObserved);
         assertFalse(collectionAccepted);assertFalse(membershipAccepted);assertFalse(allocationAccepted);
         assertEq(membership.totalEligible(),2);
-        assertEq(fees.dust(incumbentBucket,address(t0)),0);
         assertEq(fees.dust(incumbentBucket,address(t1)),0);
-        assertEq(rewards.claimable(incumbent,address(t0)),19);
+        assertEq(fees.dust(incumbentBucket,address(t0)),0);
         assertEq(rewards.claimable(incumbent,address(t1)),19);
-        assertEq(rewards.claimable(entrant,address(t0)),0);
+        assertEq(rewards.claimable(incumbent,address(t0)),19);
         assertEq(rewards.claimable(entrant,address(t1)),0);
+        assertEq(rewards.claimable(entrant,address(t0)),0);
         assertEq(rewards.claimable(entrant,address(0)),0);
-        assertEq(fees.accounted(address(t0)),0);
+        assertEq(fees.accounted(address(t1)),0);
         assertEq(fees.accounted(address(0)),0);
-        assertEq(rewards.liabilities(address(t0)),19);
+        assertEq(rewards.liabilities(address(t1)),19);
         assertEq(rewards.liabilities(address(0)),0);
-        assertEq(rewards.index(address(t0)),0);
-        assertEq(rewards.orphaned(address(t0)),0);
-        assertEq(t0.balanceOf(address(fees)),211);
-        assertEq(t0.balanceOf(address(rewards)),242);
+        (uint256 treeWeight,,)=rewards.allocationTree(0);assertEq(treeWeight,2);
+        assertEq(rewards.orphaned(address(t1)),0);
+        assertEq(t1.balanceOf(address(fees)),211);
+        assertEq(t1.balanceOf(address(rewards)),242);
         assertEq(address(fees).balance,17);assertEq(address(rewards).balance,29);
         assertGt(vault.sharesOf(entrant),0);
         assertFalse(oracle.contributionPricing().active());

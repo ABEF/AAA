@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "backend_evidence_package",
+  "distinct_verified_methods": 619,
+  "owned_source_files": 64,
+  "copied_files": 164,
+  "original_bytes": 3375254,
+  "copied_bytes": 827665,
+  "manifest": "COPY_MANIFEST_BACKEND.json",
+  "manifest_sha256": "507470fa3cf2c5cc5b21988db0dd5f0945d8b903cd69d670be7b968b87d6b63d",
+  "evidence": "evidence/SERVICES_EVIDENCE.json.gz",
+  "method_provenance": "evidence/METHOD_PROVENANCE.json.gz",
+  "actual_wire": "producer/REAL_VAULT_WIRE_PRODUCER_RAW.json.gz",
+  "historical": "evidence/HISTORICAL_PRESERVATION.json.gz",
+  "factory": "evidence/factory-comment-rebind-proof.json",
+  "limitations": [
+    "Actual provider/route/feed/VRF/OpenSea/authority qualification remains open",
+    "Real-source EVM transcript uses controlled venue/authority/VRF/correlated normalized feeds; not targetchain gas or realv4 qualification",
+    "Fresh7 long-lived checkpoint2 and workload/latency/archive/restore qualification remain open",
+    "Served source8/current3 websites and browser signer unchanged; public signing disabled",
+    "Independent audit/operating approval remains open"
+  ],
+  "validation": "PACKAGE_VALIDATION.json",
+  "validation_sha256": "58f26b64d71029b4a78c841f7f2e426774490d92f318be5aadc9119b87f04d5a"
+}

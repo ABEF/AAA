@@ -8,7 +8,7 @@
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
       "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
-      "src/ZZZCanonicalHandoff.sol": "da601a138d430f2a9b844a05c7e588ab4215cc69bd7ef0ef1d1d36979d81d67b",
+      "src/ZZZCanonicalHandoff.sol": "4be51494a66a991af7e65c37f2ab3f1a505853cd49d7a12eed87131fdc04d4c6",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
@@ -20,7 +20,7 @@
       "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
       "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
       "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
-      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMembership.sol": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
       "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
       "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
       "src/ZZZNFT.sol": "d31242720b76cf042604e3825764e3b976dbc4ae519046bd8b586fbd72b80ccd",
@@ -32,25 +32,27 @@
       "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
-      "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
       "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
       "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
       "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
       "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "77f076ae8ad11d1c5df76f2a6b19fed826889c4a22e0d18b4f723dd16838eaeb",
-      "src/ZZZVaultCanonical.sol": "3abf8a4d0330eda2f96e25714b8465f1967f94de55f9edaec7d4106d609fe760",
+      "src/ZZZVault.sol": "8e7033f854d57812cd1526da37670ebc2a75ae0237ace696092181b6a7d9cdaf",
+      "src/ZZZVaultCanonical.sol": "0c54464fc0c02d345e290ed402ee0b79f8bd9eb094134b30081f6bcd5982e112",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
       "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
       "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
-      "src/interfaces/IZZZ.sol": "322326dea86ae82ededb673deaed5fe34ed56d1dc57a3e249f35a2276c39d894",
+      "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
-      "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+      "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
       "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
@@ -195,6 +197,7 @@
       "src/ZZZPythPriceFeed.sol",
       "src/ZZZRebalanceConfirmation.sol",
       "src/ZZZRewards.sol",
+      "src/ZZZRewardsCanonical.sol",
       "src/ZZZRoyaltyCodeData.sol",
       "src/ZZZRoyaltyFactory.sol",
       "src/ZZZRoyaltyRewards.sol",
@@ -203,6 +206,7 @@
       "src/ZZZVault.sol",
       "src/ZZZVaultCanonical.sol",
       "src/base/ZZZCanonicalLedger.sol",
+      "src/base/ZZZExactLPRewardsCanonical.sol",
       "src/base/ZZZModule.sol",
       "src/base/ZZZRewardConverter.sol",
       "src/interfaces/IZZZ.sol",
@@ -225,9 +229,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "6473e5e036030d5e5d68c1305c7e5305cf812f908f7072cbc5927185b7c6b04b",
-    "compiler_output_sha256": "7074fb0bf36b0d1c1455b903fce07d57bbea01bf025caf6847d33d58ed75dec0",
-    "size_evidence_sha256": "527d6e871dc7e815e12df222c48e7ab2ea277900f163b14fcbdc47c11225ac57",
+    "compiler_input_sha256": "9bd2dd00b7350b5ade3bf5ef256e7306588647a5dab11ab069761a0c8b51cd7f",
+    "compiler_output_sha256": "851644b31874db849ee420de30ee8e586161c5715dd052a370adc8c794d6fed5",
+    "size_evidence_sha256": "a8a54e48120cff59077720ceddf93c76ea9d7bfab1ca87dc7b69a6c6ea7e07fe",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -18621,6 +18625,11 @@
         },
         {
           "inputs": [],
+          "name": "EmptyCohort",
+          "type": "error"
+        },
+        {
+          "inputs": [],
           "name": "Expired",
           "type": "error"
         },
@@ -18632,6 +18641,16 @@
         {
           "inputs": [],
           "name": "InvalidConfiguration",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidOrdinal",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidSplit",
           "type": "error"
         },
         {
@@ -18750,6 +18769,43 @@
           "inputs": [
             {
               "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "ordinal",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "previousWeight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "totalWeight",
+              "type": "uint256"
+            }
+          ],
+          "name": "CollectiveWeightSynchronized",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
               "internalType": "address",
               "name": "converter",
               "type": "address"
@@ -18833,6 +18889,62 @@
           "type": "event"
         },
         {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "bucketId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "ordinal",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "previousWeight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "totalWeight",
+              "type": "uint256"
+            }
+          ],
+          "name": "ShareWeightSynchronized",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "LP_ALLOCATION_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "MAX_ASSETS",
           "outputs": [
@@ -18873,19 +18985,6 @@
         },
         {
           "inputs": [],
-          "name": "SCALE",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
           "name": "access",
           "outputs": [
             {
@@ -18908,6 +19007,35 @@
           "name": "addAsset",
           "outputs": [],
           "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "allocationTree",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethOutstanding",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "zzzOutstanding",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -18956,38 +19084,61 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
+          "inputs": [],
+          "name": "canonicalBarrier",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalModule",
+          "outputs": [
             {
               "internalType": "address",
               "name": "",
               "type": "address"
             }
           ],
-          "name": "canonicalAccept",
-          "outputs": [],
-          "stateMutability": "payable",
+          "stateMutability": "view",
           "type": "function"
         },
         {
-          "inputs": [],
-          "name": "canonicalActivate",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "canonicalAssetCount",
-          "outputs": [
+          "inputs": [
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "node",
               "type": "uint256"
+            }
+          ],
+          "name": "canonicalNode",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "node",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256[10]",
+                  "name": "pending",
+                  "type": "uint256[10]"
+                },
+                {
+                  "internalType": "uint128[10]",
+                  "name": "high",
+                  "type": "uint128[10]"
+                },
+                {
+                  "internalType": "uint256[10]",
+                  "name": "low",
+                  "type": "uint256[10]"
+                }
+              ],
+              "internalType": "struct ZZZExactLPRewardsCanonical.CanonicalNode",
+              "name": "r",
+              "type": "tuple"
             }
           ],
           "stateMutability": "view",
@@ -18997,71 +19148,82 @@
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "i",
+              "name": "id",
               "type": "uint256"
             }
           ],
-          "name": "canonicalBacking",
+          "name": "canonicalSeed",
           "outputs": [
             {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "bucket",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "shares",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "eligible",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256[2]",
+                  "name": "personal",
+                  "type": "uint256[2]"
+                },
+                {
+                  "internalType": "uint256[2]",
+                  "name": "shared",
+                  "type": "uint256[2]"
+                }
+              ],
+              "internalType": "struct ZZZExactLPRewardsCanonical.CanonicalSeed",
+              "name": "r",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
-              "name": "",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "destination",
               "type": "address"
             },
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "amount",
               "type": "uint256"
             }
           ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "canonicalCapture",
+          "name": "canonicalSend",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
         },
         {
-          "inputs": [],
-          "name": "canonicalCount",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "row",
-              "type": "uint256"
-            }
-          ],
-          "name": "canonicalExport",
-          "outputs": [
-            {
-              "internalType": "bytes",
-              "name": "",
-              "type": "bytes"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "row",
-              "type": "uint256"
+              "internalType": "uint8",
+              "name": "kind",
+              "type": "uint8"
             },
             {
               "internalType": "bytes",
@@ -19069,83 +19231,7 @@
               "type": "bytes"
             }
           ],
-          "name": "canonicalImport",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "destination",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRelease",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRestore",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "canonicalSettle",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "canonicalValidate",
-          "outputs": [],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            }
-          ],
-          "name": "checkpointAll",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            }
-          ],
-          "name": "checkpointOwner",
+          "name": "canonicalWrite",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -19167,7 +19253,7 @@
           "outputs": [
             {
               "internalType": "uint256",
-              "name": "amount",
+              "name": "",
               "type": "uint256"
             }
           ],
@@ -19196,7 +19282,7 @@
           "outputs": [
             {
               "internalType": "uint256",
-              "name": "amount",
+              "name": "",
               "type": "uint256"
             }
           ],
@@ -19231,20 +19317,25 @@
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "id",
               "type": "uint256"
             },
             {
               "internalType": "address",
-              "name": "",
+              "name": "token",
               "type": "address"
             }
           ],
-          "name": "collective",
+          "name": "claimableComponents",
           "outputs": [
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "personal",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "shared",
               "type": "uint256"
             }
           ],
@@ -19362,60 +19453,12 @@
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
               "internalType": "address",
               "name": "",
               "type": "address"
             }
           ],
-          "name": "fraction",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "index",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "individual",
+          "name": "directLiabilities",
           "outputs": [
             {
               "internalType": "uint256",
@@ -19489,14 +19532,9 @@
               "internalType": "uint256",
               "name": "",
               "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
             }
           ],
-          "name": "ownerFraction",
+          "name": "rewardBucket",
           "outputs": [
             {
               "internalType": "uint256",
@@ -19511,7 +19549,159 @@
           "inputs": [
             {
               "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "syncMembership",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "syncShares",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "stateMutability": "payable",
+          "type": "receive"
+        }
+      ],
+      "abi_sha256": "edba3effbef8eb4a9f4c30344f0c6e9e02790b7ae9d806e59fe4864428dd706c"
+    },
+    "ZZZRewardsCanonical": {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "controller",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "name": "CanonicalLocked",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "CanonicalState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Expired",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidAmount",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidConfiguration",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "LPExitLocked",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "NativeTransferFailed",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "NotReady",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Paused",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Preparing",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "ReentrancyGuardReentrantCall",
+          "type": "error"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "SafeERC20FailedOperation",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Slippage",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Unauthorized",
+          "type": "error"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "UnsupportedToken",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "access",
+          "outputs": [
+            {
+              "internalType": "contract IZZZAccess",
               "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "index",
               "type": "uint256"
             },
             {
@@ -19520,7 +19710,21 @@
               "type": "address"
             }
           ],
-          "name": "ownerIndex",
+          "name": "canonicalAccept",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalActivate",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalAssetCount",
           "outputs": [
             {
               "internalType": "uint256",
@@ -19535,16 +19739,36 @@
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "index",
               "type": "uint256"
-            },
+            }
+          ],
+          "name": "canonicalBacking",
+          "outputs": [
             {
               "internalType": "address",
               "name": "",
               "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
             }
           ],
-          "name": "paidIndex",
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalCapture",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalCount",
           "outputs": [
             {
               "internalType": "uint256",
@@ -19559,7 +19783,62 @@
           "inputs": [
             {
               "internalType": "uint256",
+              "name": "row",
+              "type": "uint256"
+            }
+          ],
+          "name": "canonicalExport",
+          "outputs": [
+            {
+              "internalType": "bytes",
               "name": "",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "row",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "record",
+              "type": "bytes"
+            }
+          ],
+          "name": "canonicalImport",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "canonicalRelease",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "index",
               "type": "uint256"
             },
             {
@@ -19568,12 +19847,51 @@
               "type": "address"
             }
           ],
-          "name": "paidOwnerIndex",
-          "outputs": [
+          "name": "canonicalRestore",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalSettle",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "canonicalValidate",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            },
             {
               "internalType": "uint256",
-              "name": "",
+              "name": "amount",
               "type": "uint256"
+            }
+          ],
+          "name": "creditCutoff",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "rewards",
+          "outputs": [
+            {
+              "internalType": "contract IExactLPRewardsParent",
+              "name": "",
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -19584,7 +19902,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "c5f59be298b4b63403eba919b50df81e65e07dd4e5af580cb110945145b6d0f3"
+      "abi_sha256": "6e7582c2e017517d160a913cefa2d2a9111c3ca27fbe98186ca34152837a3123"
     },
     "ZZZRoyaltyCodeData": {
       "source": "src/ZZZRoyaltyCodeData.sol",
@@ -24421,7 +24739,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "cf124529a34eee6de4502117a0d1a36bb309354eb2035218daad82d0d2884c81",
+  "notes_sha256": "548b04cc34ac131b892833cf34a7b6a3d1917c203be775500027f94ca173669d",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -26854,7 +27172,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "keccak256(\"ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6\"). Eight-word records alone do not admit oldV5 deployments or terminal principal ledgers."
+              "explanation": "keccak256(\"ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9\"); rejects V8 peers rather than reinterpreting their LP fractions."
             }
           ],
           "native_value": null,
@@ -26975,7 +27293,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "No payment/input/recipient. Validates reciprocal canonicalV8 lineage, frozen old source roots versus immutable successor import roots, sealed controller/phase. Repeat one bounded hop while the route is retired; cannot skip into an unverified destination."
+          "notes": "No payment/input/recipient. Authenticates V9 reciprocal lineage, retired source roots and immutable successor import roots. One bounded hop; cannot skip into an unverified destination."
         },
         {
           "signature": "assetCount(uint256)",
@@ -27116,7 +27434,7 @@
             }
           ],
           "native_value": null,
-          "notes": "FreshV6 includes fixed ProtocolPolicy address,runtime,version and cumulative configurationHash in addition to controller/modules/helpers/source binding. This is review provenance,not a security proof,remote finality or permission."
+          "notes": "Commits reviewed controller/modules, canonical moduleAt companions and exact runtimes/configuration; includes the new RewardsCanonical child automatically. A hash is not independent approval."
         },
         {
           "signature": "destinationController()",
@@ -27579,7 +27897,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Returns: Slots0..5: NFT codec, Vault codec, Membership, Rewards, RoyaltyRewards, Fees codec."
+          "notes": "Fixed slots0NFTCanonical,1VaultCanonical,2Membership,3RewardsCanonical,4RoyaltyRewards,5FeesCanonical. Slot3 is the immutable child, while ordinary LP funds/books remain in its Rewards parent."
         },
         {
           "signature": "phase()",
@@ -27625,7 +27943,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "No ordinary mint/economic work until authenticated activation. Cross-chain transport is unsupported."
+          "notes": "Unused local importer only. Both sides require accounting7, LP-allocation1 and exact V9 schema before freezing. No older-runtime relabeling, fractional conversion or public deployment authorization."
         },
         {
           "signature": "recordCount(uint256)",
@@ -37176,7 +37494,7 @@
           "kind": "function",
           "name": "activate",
           "state_mutability": "nonpayable",
-          "purpose": "Enroll one canonical activated NFT with exactly one collective share after checkpointing old rewards.",
+          "purpose": "Record one activated NFT and synchronize its equal whole-unit collective share.",
           "access": "Only fixed Vault in active economic state.",
           "status": "documented",
           "inputs": [
@@ -37192,7 +37510,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "One-time eligibility; rarity, contribution size and age do not change its collective weight."
+          "notes": "Vault-only once. Eligibility/count are written before the typed Rewards sync; stored old weights settle old pending funds first. Any mismatch reverts the complete activation. Rarity and top-ups never increase collective weight."
         },
         {
           "signature": "canonicalActivate()",
@@ -37264,7 +37582,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Record rows are not necessarily NFTs; headers/assets/indices may add rows."
+          "notes": "Exactly one header plus one eligibility row per captured minted NFT."
         },
         {
           "signature": "canonicalExport(uint256)",
@@ -49412,7 +49730,7 @@
     {
       "name": "ZZZRewards",
       "source": "src/ZZZRewards.sol",
-      "purpose": "NFT-indexed funded personal LP and equal collective entitlements, native conversion credits and current-owner claims.",
+      "purpose": "Funded exact-unit individual LP and equal activated collective rights, same-NFT ETH conversion credits and current-owner claims; accounting7 only.",
       "category": "Project contract",
       "functions": [
         {
@@ -49420,8 +49738,8 @@
           "kind": "constructor",
           "name": "constructor",
           "state_mutability": "nonpayable",
-          "purpose": "Deploy and bind NFT-indexed funded personal LP and equal collective entitlements, native conversion credits and current-owner claims.",
-          "access": "Deployment only; required creator/controller/parent checks apply before this instance can be bound/sealed.",
+          "purpose": "Construct the whole-unit LP ledger and its immutable codec.",
+          "access": "Deployment/bootstrap transaction; codec construction is automatic.",
           "status": "documented",
           "inputs": [
             {
@@ -49431,19 +49749,19 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Fixed AccessController address for this deployment’s roles and lifecycle."
+              "explanation": "The fixed AccessController contract."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": null
+          "notes": "Fresh accounting7 only; cannot upgrade or reinterpret deployed6/V8 fractions."
         },
         {
-          "signature": "MAX_ASSETS()",
+          "signature": "LP_ALLOCATION_VERSION()",
           "kind": "function",
-          "name": "MAX_ASSETS",
+          "name": "LP_ALLOCATION_VERSION",
           "state_mutability": "view",
-          "purpose": "Read the maximum total LP reward currencies, including the native slot.",
+          "purpose": "Read the exact-unit LP allocation capability.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -49455,7 +49773,30 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The maximum total LP reward currencies, including the native slot."
+              "explanation": "1: whole-unit tree books under accounting7; not an index/fraction runtime."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "MAX_ASSETS()",
+          "kind": "function",
+          "name": "MAX_ASSETS",
+          "state_mutability": "view",
+          "purpose": "Read the fixed two-currency LP book limit.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "2: native ETH and the one deployment ZZZ."
             }
           ],
           "native_value": null,
@@ -49489,7 +49830,7 @@
           "kind": "function",
           "name": "MAX_ERC20_ASSETS",
           "state_mutability": "view",
-          "purpose": "Read the ERC20-only reward admission cap, separate from native ETH.",
+          "purpose": "Read the fixed single ERC20 LP book limit.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -49501,34 +49842,11 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The ERC20-only reward admission cap, separate from native ETH."
+              "explanation": "1: the deployment ZZZ; royalty currencies are separate."
             }
           ],
           "native_value": null,
           "notes": null
-        },
-        {
-          "signature": "SCALE()",
-          "kind": "function",
-          "name": "SCALE",
-          "state_mutability": "view",
-          "purpose": "Read the fixed-point denominator used by this reward ledger’s cumulative indices and fractions.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The fixed-point denominator used by this reward ledger’s cumulative indices and fractions."
-            }
-          ],
-          "native_value": null,
-          "notes": "Accounting precision, not an amount payable to a holder."
         },
         {
           "signature": "access()",
@@ -49558,8 +49876,8 @@
           "kind": "function",
           "name": "addAsset",
           "state_mutability": "nonpayable",
-          "purpose": "Append a reviewed LP reward currency within the bounded admission inventory.",
-          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+          "purpose": "Bind the one fixed ZZZ LP book before sealing.",
+          "access": "Bootstrap configuration only, before sealing and while operating state0.",
           "status": "documented",
           "inputs": [
             {
@@ -49569,12 +49887,63 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "Exact reviewed Pools.activationAssets().zzz() token with deployed code; not an arbitrary ERC20."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Native ETH is address zero; admission does not establish real token/feed/route qualification."
+          "notes": "Native ETH exists from construction. Cannot add a third LP currency or replace the token after sealing. Configure the fixed source ZZZ before this call, then configure matching exit identity."
+        },
+        {
+          "signature": "allocationTree(uint256)",
+          "kind": "function",
+          "name": "allocationTree",
+          "state_mutability": "view",
+          "purpose": "Read one logical reward tree's weight and outstanding whole books.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Zero selects the global equal-membership tree; a real bucket ID selects that bucket's individual tree."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "weight",
+              "label": "weight",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact share weight, or activated-NFT count for bucket zero."
+            },
+            {
+              "position": 1,
+              "name": "ethOutstanding",
+              "label": "ethOutstanding",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Outstanding native ETH wei in this tree."
+            },
+            {
+              "position": 2,
+              "name": "zzzOutstanding",
+              "label": "zzzOutstanding",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Outstanding fixed-ZZZ raw units in this tree."
+            }
+          ],
+          "native_value": null,
+          "notes": "Do not add different currencies. Direct credits and orphan balances are separate; unknown buckets return an empty tree, not proof of admission."
         },
         {
           "signature": "assetCount()",
@@ -49656,56 +50025,24 @@
           "notes": "Cannot be rebound after sealing or borrowed from the royalty ledger."
         },
         {
-          "signature": "canonicalAccept(uint256,address)",
+          "signature": "canonicalBarrier()",
           "kind": "function",
-          "name": "canonicalAccept",
-          "state_mutability": "payable",
-          "purpose": "Accept and classify actual successor funding for funded personal/collective reward indices, balances and fractions.",
-          "access": "Only fixed CanonicalHandoff.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected.",
-          "notes": "Exact asset/value and before/after accounting checks; no invented backing."
-        },
-        {
-          "signature": "canonicalActivate()",
-          "kind": "function",
-          "name": "canonicalActivate",
-          "state_mutability": "nonpayable",
-          "purpose": "Activate the validated imported funded personal/collective reward indices, balances and fractions state.",
-          "access": "Only fixed CanonicalHandoff.",
+          "name": "canonicalBarrier",
+          "state_mutability": "view",
+          "purpose": "Reject canonical capture inside an active Rewards callback.",
+          "access": "Only the immutable RewardsCanonical companion; no wallet, governance or keeper may call directly.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Requires its authenticated funded cutover; cannot be used as a generic unpause."
+          "notes": "Read-only source-frozen barrier; it neither moves funds nor approves execution."
         },
         {
-          "signature": "canonicalAssetCount()",
+          "signature": "canonicalModule()",
           "kind": "function",
-          "name": "canonicalAssetCount",
+          "name": "canonicalModule",
           "state_mutability": "view",
-          "purpose": "Count classified backing legs captured for funded personal/collective reward indices, balances and fractions.",
+          "purpose": "Read the immutable constructor-created LP canonical codec.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -49714,175 +50051,192 @@
               "position": 0,
               "name": "",
               "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Classified backing legs captured for funded personal/collective reward indices, balances and fractions."
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "RewardsCanonical companion address; verify its access/rewards bindings and runtime in the complete inventory."
             }
           ],
           "native_value": null,
           "notes": null
         },
         {
-          "signature": "canonicalBacking(uint256)",
+          "signature": "canonicalNode(uint256)",
           "kind": "function",
-          "name": "canonicalBacking",
+          "name": "canonicalNode",
           "state_mutability": "view",
-          "purpose": "Read one captured backing asset and raw amount for funded personal/collective reward indices, balances and fractions.",
-          "access": "Anyone; read-only.",
+          "purpose": "Read exact pending and phase values without materializing claims.",
+          "access": "Only the immutable RewardsCanonical companion; no wallet, governance or keeper may call directly.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "i",
-              "label": "i",
+              "name": "node",
+              "label": "node",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
+              "explanation": "Heap node ID 1..2023; not an NFT ID or mint ordinal."
             }
           ],
           "outputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "output0",
+              "name": "r",
+              "label": "r",
+              "type": "tuple",
+              "canonical_type": "(uint256,uint256[10],uint128[10],uint256[10])",
+              "internal_type": "struct ZZZExactLPRewardsCanonical.CanonicalNode",
+              "explanation": "31-word record: node plus ten pending/high/low entries, ordered collective then captured buckets, ETH then ZZZ. No virtual phase advancement.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "node",
+                  "label": "node",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "pending",
+                  "label": "pending",
+                  "type": "uint256[10]",
+                  "canonical_type": "uint256[10]",
+                  "internal_type": "uint256[10]",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "high",
+                  "label": "high",
+                  "type": "uint128[10]",
+                  "canonical_type": "uint128[10]",
+                  "internal_type": "uint128[10]",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "low",
+                  "label": "low",
+                  "type": "uint256[10]",
+                  "canonical_type": "uint256[10]",
+                  "internal_type": "uint256[10]",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "canonicalSeed(uint256)",
+          "kind": "function",
+          "name": "canonicalSeed",
+          "state_mutability": "view",
+          "purpose": "Read the assigned LP weights and direct whole credits for canonical export.",
+          "access": "Only the immutable RewardsCanonical companion; no wallet, governance or keeper may call directly.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "r",
+              "label": "r",
+              "type": "tuple",
+              "canonical_type": "(uint256,uint256,uint256,bool,uint256[2],uint256[2])",
+              "internal_type": "struct ZZZExactLPRewardsCanonical.CanonicalSeed",
+              "explanation": "Eight-word seed record: ID/bucket/shares/eligibility and two-currency personal/shared direct credits. The companion validates it against NFT/Vault/Membership before export.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "id",
+                  "label": "id",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "bucket",
+                  "label": "bucket",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "shares",
+                  "label": "shares",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "eligible",
+                  "label": "eligible",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "personal",
+                  "label": "personal",
+                  "type": "uint256[2]",
+                  "canonical_type": "uint256[2]",
+                  "internal_type": "uint256[2]",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "shared",
+                  "label": "shared",
+                  "type": "uint256[2]",
+                  "canonical_type": "uint256[2]",
+                  "internal_type": "uint256[2]",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "canonicalSend(address,address,uint256)",
+          "kind": "function",
+          "name": "canonicalSend",
+          "state_mutability": "nonpayable",
+          "purpose": "Move only authenticated frozen canonical backing through the fixed companion.",
+          "access": "Only the immutable RewardsCanonical companion; no wallet, governance or keeper may call directly.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual backing currency address; zero denotes native ETH."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "output1",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Captured exact raw backing amount for the indexed leg."
-            }
-          ],
-          "native_value": null,
-          "notes": "Recorded liability/principal backing, not the module’s unclassified live balance."
-        },
-        {
-          "signature": "canonicalCapture()",
-          "kind": "function",
-          "name": "canonicalCapture",
-          "state_mutability": "nonpayable",
-          "purpose": "Capture the immutable cutoff for funded personal/collective reward indices, balances and fractions.",
-          "access": "Only fixed CanonicalHandoff.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Requires the canonical freeze lifecycle; no ordinary admin snapshot/write."
-        },
-        {
-          "signature": "canonicalCount()",
-          "kind": "function",
-          "name": "canonicalCount",
-          "state_mutability": "view",
-          "purpose": "Read the version-specific exported record count for funded personal/collective reward indices, balances and fractions.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The version-specific exported record count for funded personal/collective reward indices, balances and fractions."
-            }
-          ],
-          "native_value": null,
-          "notes": "Record rows are not necessarily NFTs; headers/assets/indices may add rows."
-        },
-        {
-          "signature": "canonicalExport(uint256)",
-          "kind": "function",
-          "name": "canonicalExport",
-          "state_mutability": "view",
-          "purpose": "Encode one exact captured funded personal/collective reward indices, balances and fractions record.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "row",
-              "label": "row",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based versioned canonical record row, not necessarily an NFT ordinal."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Encode one exact captured funded personal/collective reward indices, balances and fractions record."
-            }
-          ],
-          "native_value": null,
-          "notes": "Versioned ABI bytes consumed by authenticated import, not a general transaction. Inputs: Input is zero-based canonical record row, not necessarily an NFT ID."
-        },
-        {
-          "signature": "canonicalImport(uint256,bytes)",
-          "kind": "function",
-          "name": "canonicalImport",
-          "state_mutability": "nonpayable",
-          "purpose": "Import the next source-authenticated funded personal/collective reward indices, balances and fractions record into an inert successor.",
-          "access": "Only fixed CanonicalHandoff.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "row",
-              "label": "row",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based versioned canonical record row, not necessarily an NFT ordinal."
-            },
-            {
-              "position": 1,
-              "name": "record",
-              "label": "record",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Exact versioned ABI-encoded canonical record authenticated against its source."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite."
-        },
-        {
-          "signature": "canonicalRelease(uint256,address)",
-          "kind": "function",
-          "name": "canonicalRelease",
-          "state_mutability": "nonpayable",
-          "purpose": "Release one exact captured backing leg for funded personal/collective reward indices, balances and fractions.",
-          "access": "Only fixed CanonicalHandoff.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             },
             {
               "position": 1,
@@ -49891,116 +50245,53 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Exact module/backing destination selected by authenticated canonical logic."
+              "explanation": "Coordinator-authenticated canonical destination module; never an operator-selected principal recipient."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact captured raw backing amount in that asset."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Supports authenticated funding/abort legs; not an ordinary holder withdrawal or sweep."
+          "notes": "Only frozen/import/cancelled states1/2/4; no ordinary-state movement or holder reward claim. Exact asset transfer and unchanged lifecycle are enforced."
         },
         {
-          "signature": "canonicalRestore(uint256,address)",
+          "signature": "canonicalWrite(uint8,bytes)",
           "kind": "function",
-          "name": "canonicalRestore",
-          "state_mutability": "payable",
-          "purpose": "Restore an actual returned backing leg for funded personal/collective reward indices, balances and fractions after abort.",
-          "access": "Only fixed CanonicalHandoff.",
+          "name": "canonicalWrite",
+          "state_mutability": "nonpayable",
+          "purpose": "Restore one of three closed typed LP record domains.",
+          "access": "Only the immutable RewardsCanonical companion; no wallet, governance or keeper may call directly.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
+              "name": "kind",
+              "label": "kind",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Exactly 0=asset record, 1=NFT seed, 2=raw node; any other kind rejects."
             },
             {
               "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected.",
-          "notes": "Restoration is not new revenue or authority to reduce original liabilities."
-        },
-        {
-          "signature": "canonicalSettle()",
-          "kind": "function",
-          "name": "canonicalSettle",
-          "state_mutability": "nonpayable",
-          "purpose": "Complete ordered cutoff settlement for funded personal/collective reward indices, balances and fractions.",
-          "access": "Only fixed CanonicalHandoff.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Some domains need no additional writes, but retain the same authenticated phase boundary."
-        },
-        {
-          "signature": "canonicalValidate()",
-          "kind": "function",
-          "name": "canonicalValidate",
-          "state_mutability": "view",
-          "purpose": "Assert complete imported/restored record and backing consistency for funded personal/collective reward indices, balances and fractions.",
-          "access": "Anyone; read-only assertion.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Reverts on inconsistency; a successful call alone does not activate a successor or approve release."
-        },
-        {
-          "signature": "checkpointAll(uint256)",
-          "kind": "function",
-          "name": "checkpointAll",
-          "state_mutability": "nonpayable",
-          "purpose": "Settle an NFT’s collective indices before its eligibility changes.",
-          "access": "Only fixed Membership; active economic state.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID."
+              "name": "record",
+              "label": "record",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Exact source-authenticated static ABI record: asset320, seed256 or node992 bytes. Use coordinator importRows; never construct an operator payout."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Protects past collective allocations from new activations."
-        },
-        {
-          "signature": "checkpointOwner(uint256)",
-          "kind": "function",
-          "name": "checkpointOwner",
-          "state_mutability": "nonpayable",
-          "purpose": "Settle an NFT’s personal LP-share indices before its shares change.",
-          "access": "Only fixed Vault; active economic state.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Not an owner-address account reset; unclaimed rights remain attached to the NFT."
+          "notes": "Import state2 only. All seed weights precede monetary nodes. Raw node/phase/zero-state checks remain. This is not arbitrary storage or execution."
         },
         {
           "signature": "claim(uint256,address)",
@@ -50033,8 +50324,8 @@
           "outputs": [
             {
               "position": 0,
-              "name": "amount",
-              "label": "amount",
+              "name": "",
+              "label": "output0",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
@@ -50084,8 +50375,8 @@
           "outputs": [
             {
               "position": 0,
-              "name": "amount",
-              "label": "amount",
+              "name": "",
+              "label": "output0",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
@@ -50100,7 +50391,7 @@
           "kind": "function",
           "name": "claimable",
           "state_mutability": "view",
-          "purpose": "Compute current funded personal plus collective rewards, including unsettled index increments.",
+          "purpose": "Read total whole LP rewards available to this NFT.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -50111,7 +50402,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID."
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
             },
             {
               "position": 1,
@@ -50120,7 +50411,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             }
           ],
           "outputs": [
@@ -50131,61 +50422,70 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Raw units of the requested currency, not USD."
+              "explanation": "Individual plus equal-collective whole units, including direct credits, in the supplied asset."
             }
           ],
           "native_value": null,
-          "notes": "Prefer this complete balance over summing stored components; no new venue harvest occurs. Returns: Raw units of the requested currency, not USD."
+          "notes": "No USD feed or automatic currency conversion. It is not principal, royalties or gross fee revenue."
         },
         {
-          "signature": "collective(uint256,address)",
+          "signature": "claimableComponents(uint256,address)",
           "kind": "function",
-          "name": "collective",
+          "name": "claimableComponents",
           "state_mutability": "view",
-          "purpose": "Read an NFT’s stored equal-membership collective component before further checkpointing.",
+          "purpose": "Read this NFT's whole individual and collective LP entitlements.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "id",
+              "label": "id",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
             },
             {
               "position": 1,
-              "name": "",
-              "label": "input1",
+              "name": "token",
+              "label": "token",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             }
           ],
           "outputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "output0",
+              "name": "personal",
+              "label": "personal",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "An NFT’s stored equal-membership collective component before further checkpointing."
+              "explanation": "Whole individual units, including same-NFT direct conversion/import credits."
+            },
+            {
+              "position": 1,
+              "name": "shared",
+              "label": "shared",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Whole equal-collective units, including same-NFT direct credits."
             }
           ],
           "native_value": null,
-          "notes": "Not rarity-weighted; use claimable() for the combined complete balance."
+          "notes": "No USD price is required. Unsupported assets or invalid ordinals reject; the two returned components have the SAME supplied currency."
         },
         {
           "signature": "convertBatch(address,uint256[],bytes32,uint256,uint256)",
           "kind": "function",
           "name": "convertBatch",
           "state_mutability": "nonpayable",
-          "purpose": "Swap selected NFTs’ already allocated ERC20 LP rewards into ETH and credit the same NFTs.",
-          "access": "Authorized keeper; live/operating economic state.",
+          "purpose": "Convert exact existing ZZZ rewards into same-NFT ETH components.",
+          "access": "Authorized keeper, sealed/live/unpaused operating state0, outside preparation.",
           "status": "documented",
           "inputs": [
             {
@@ -50195,7 +50495,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "The admitted fixed ZZZ source; native ETH is already settled."
             },
             {
               "position": 1,
@@ -50204,7 +50504,7 @@
               "type": "uint256[]",
               "canonical_type": "uint256[]",
               "internal_type": "uint256[]",
-              "explanation": "Strictly increasing NFT ID list, bounded to32; duplicate entries are rejected."
+              "explanation": "Strictly increasing unique NFT IDs, 1..32, authenticated by the real NFT."
             },
             {
               "position": 2,
@@ -50213,7 +50513,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "Exact previously admitted route hash, with kind/enabled/dependency policy rechecked."
+              "explanation": "Reviewed active conversion route ID."
             },
             {
               "position": 3,
@@ -50222,7 +50522,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Minimum actual native ETH output in wei; stronger venue/Oracle policy also applies."
+              "explanation": "Caller minimum total ETH output, raw wei."
             },
             {
               "position": 4,
@@ -50231,7 +50531,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
+              "explanation": "Deadline accepted by the fixed converter and existing execution guards."
             }
           ],
           "outputs": [
@@ -50242,11 +50542,11 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Total ETH credited in wei; current owners claim later."
+              "explanation": "Actual ETH output credited across the SAME NFTs/components using cumulative whole-unit apportionment."
             }
           ],
           "native_value": null,
-          "notes": "At most 32 strictly increasing IDs; preserves personal/collective attribution, source fractions and all output wei. This is not a payout. Returns: Total ETH credited in wei; current owners claim later."
+          "notes": "Consumes both exact source components and direct credits. Exact approvals/deltas and post-solvency/auth remain. No principal/reserve/royalty spending or new earned income. Count32 is not maximum-gas qualification."
         },
         {
           "signature": "converter()",
@@ -50276,8 +50576,8 @@
           "kind": "function",
           "name": "creditCanonicalCutoff",
           "state_mutability": "payable",
-          "purpose": "Receive the captured pre-freeze fee allocation during canonical settlement.",
-          "access": "Only fixed FeeController while the authentic handoff is settling captured state.",
+          "purpose": "Fund the captured source's final fee-dust allocation.",
+          "access": "Only bound FeeController during frozen canonical settlement, after the LP companion has captured.",
           "status": "documented",
           "inputs": [
             {
@@ -50287,7 +50587,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not a per-holder wallet account."
+              "explanation": "Captured logical bucket."
             },
             {
               "position": 1,
@@ -50296,7 +50596,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             },
             {
               "position": 2,
@@ -50305,7 +50605,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Raw already-allocated owner LP reward amount."
+              "explanation": "Final individual raw credit."
             },
             {
               "position": 3,
@@ -50314,20 +50614,20 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Raw already-allocated collective reward amount."
+              "explanation": "Final collective raw credit."
             }
           ],
           "outputs": [],
-          "native_value": "Exactly the captured personal+shared native allocation, otherwise zero with exact token funding.",
-          "notes": "Special cutoff path; cannot be used as ordinary public funding."
+          "native_value": "Native exactly personal+shared; ZZZ zero ETH with exact pull.",
+          "notes": "Extends the companion's exact captured backing and credits whole roots; this is not ordinary public funding."
         },
         {
           "signature": "creditPool(uint256,address,uint256,uint256)",
           "kind": "function",
           "name": "creditPool",
           "state_mutability": "payable",
-          "purpose": "Receive funded personal/collective allocations from FeeController and advance the correct indices.",
-          "access": "Only fixed FeeController in active economic state.",
+          "purpose": "Fund individual and collective roots from actual harvested fees.",
+          "access": "Only the sealed FeeController module in operating state0.",
           "status": "documented",
           "inputs": [
             {
@@ -50337,7 +50637,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not a per-holder wallet account."
+              "explanation": "Existing logical bucket with positive authenticated shares."
             },
             {
               "position": 1,
@@ -50346,7 +50646,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             },
             {
               "position": 2,
@@ -50355,7 +50655,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Raw already-allocated owner LP reward amount."
+              "explanation": "Already separated individual 80% raw amount (or incumbent raw-dust settlement)."
             },
             {
               "position": 3,
@@ -50364,61 +50664,19 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Raw already-allocated collective reward amount."
+              "explanation": "Already separated equal-collective 10% raw amount."
             }
           ],
           "outputs": [],
-          "native_value": "Exactly personal+shared for native currency zero; otherwise zero and exact ERC20 transfer.",
-          "notes": "No principal, royalty or unfunded income is credited."
+          "native_value": "For native ETH exactly personal+shared; for ZZZ zero ETH with exact ERC20 pull.",
+          "notes": "Both root weights must match Vault/Membership. No eligible cohort keeps shared funds separately orphaned under the existing rule. Compound/buyback/royalty reserves are excluded."
         },
         {
-          "signature": "fraction(uint256,address)",
+          "signature": "directLiabilities(address)",
           "kind": "function",
-          "name": "fraction",
+          "name": "directLiabilities",
           "state_mutability": "view",
-          "purpose": "Read an NFT’s retained collective fixed-point fractional carry.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "An NFT’s retained collective fixed-point fractional carry."
-            }
-          ],
-          "native_value": null,
-          "notes": "Backed precision residue, not a whole-unit claim or free dust."
-        },
-        {
-          "signature": "index(address)",
-          "kind": "function",
-          "name": "index",
-          "state_mutability": "view",
-          "purpose": "Read the cumulative equal-activated-membership reward index for a currency.",
+          "purpose": "Read the aggregate separately credited whole-unit liability.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -50429,7 +50687,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH in the native-aware ledger."
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
             }
           ],
           "outputs": [
@@ -50440,53 +50698,11 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "The cumulative equal-activated-membership reward index for a currency."
+              "explanation": "Direct per-NFT individual plus collective credits; excludes tree outstanding and orphaned money."
             }
           ],
           "native_value": null,
           "notes": null
-        },
-        {
-          "signature": "individual(uint256,address)",
-          "kind": "function",
-          "name": "individual",
-          "state_mutability": "view",
-          "purpose": "Read an NFT’s stored personal LP-reward component before any further index checkpoint.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "An NFT’s stored personal LP-reward component before any further index checkpoint."
-            }
-          ],
-          "native_value": null,
-          "notes": "May omit yet-uncheckpointed accrual; claimable() is the complete current view."
         },
         {
           "signature": "isAsset(address)",
@@ -50588,11 +50804,11 @@
           "notes": null
         },
         {
-          "signature": "ownerFraction(uint256,address)",
+          "signature": "rewardBucket(uint256)",
           "kind": "function",
-          "name": "ownerFraction",
+          "name": "rewardBucket",
           "state_mutability": "view",
-          "purpose": "Read an NFT’s retained personal-share fixed-point fractional carry.",
+          "purpose": "Read the immutable enrolled individual-reward bucket.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -50603,16 +50819,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
             }
           ],
           "outputs": [
@@ -50623,137 +50830,57 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "An NFT’s retained personal-share fixed-point fractional carry."
-            }
-          ],
-          "native_value": null,
-          "notes": "Preserved through checkpoints/transfers; not a redeemable LP share."
-        },
-        {
-          "signature": "ownerIndex(uint256,address)",
-          "kind": "function",
-          "name": "ownerIndex",
-          "state_mutability": "view",
-          "purpose": "Read the cumulative personal-reward index for a bucket/currency.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not an individual NFT ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH in V2."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The cumulative personal-reward index for a bucket/currency."
+              "explanation": "Authenticated bucket ID; zero before enrollment. Physical main/residual positions do not create independent reward buckets."
             }
           ],
           "native_value": null,
           "notes": null
         },
         {
-          "signature": "paidIndex(uint256,address)",
+          "signature": "syncMembership(uint256)",
           "kind": "function",
-          "name": "paidIndex",
-          "state_mutability": "view",
-          "purpose": "Read the collective index already checkpointed for an NFT/currency.",
-          "access": "Anyone; read-only.",
+          "name": "syncMembership",
+          "state_mutability": "nonpayable",
+          "purpose": "Settle old collective books and enroll one activated NFT.",
+          "access": "Only the sealed Membership module, after eligibility/count writes.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "id",
+              "label": "id",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
             }
           ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The collective index already checkpointed for an NFT/currency."
-            }
-          ],
+          "outputs": [],
           "native_value": null,
-          "notes": null
+          "notes": "Automatic one-time hook. Requires authenticated LP enrollment, previously zero collective weight and exact new eligible count. Top-ups never call this hook."
         },
         {
-          "signature": "paidOwnerIndex(uint256,address)",
+          "signature": "syncShares(uint256)",
           "kind": "function",
-          "name": "paidOwnerIndex",
-          "state_mutability": "view",
-          "purpose": "Read the bucket personal index already checkpointed for an NFT/currency.",
-          "access": "Anyone; read-only.",
+          "name": "syncShares",
+          "state_mutability": "nonpayable",
+          "purpose": "Settle old books and synchronize authenticated new Vault shares.",
+          "access": "Only the sealed Vault module, immediately after its share/total writes.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "id",
+              "label": "id",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Canonical NFT ID, not mint ordinal or bucket ID."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual reward/royalty currency address; zero denotes native ETH."
+              "explanation": "Actual canonical ERC721 token ID, not its mint ordinal or a user-selected tree slot."
             }
           ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "The bucket personal index already checkpointed for an NFT/currency."
-            }
-          ],
+          "outputs": [],
           "native_value": null,
-          "notes": null
+          "notes": "Automatic typed hook. Both old currency paths settle before the stored weight changes; no decrease or bucket reassignment. Exact new tree total must match Vault. Failure rolls back the entire contribution."
         },
         {
           "signature": "receive()",
@@ -50766,6 +50893,429 @@
           "inputs": [],
           "outputs": [],
           "native_value": "Any msg.value can arrive; holder credit requires its separately authenticated accounting path.",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "name": "ZZZRewardsCanonical",
+      "source": "src/ZZZRewardsCanonical.sol",
+      "purpose": "Immutable Rewards-owned V9 raw-tree codec and authenticated canonical backing coordination; no ordinary claim or arbitrary executor.",
+      "category": "Fixed canonical helper",
+      "functions": [
+        {
+          "signature": "constructor(address)",
+          "kind": "constructor",
+          "name": "constructor",
+          "state_mutability": "nonpayable",
+          "purpose": "Construct the immutable LP codec for its creating Rewards.",
+          "access": "Automatically created by the intended Rewards constructor. Anyone may deploy an unrelated instance, which cannot replace the immutable official child; do not deploy it separately.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "controller",
+              "label": "controller",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Same fixed AccessController as the constructing Rewards."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "msg.sender becomes immutable rewards; no parent setter or custom recipient."
+        },
+        {
+          "signature": "access()",
+          "kind": "function",
+          "name": "access",
+          "state_mutability": "view",
+          "purpose": "Read the immutable canonical authority controller.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract IZZZAccess",
+              "explanation": "Fixed AccessController address shared with Rewards."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "canonicalAccept(uint256,address)",
+          "kind": "function",
+          "name": "canonicalAccept",
+          "state_mutability": "payable",
+          "purpose": "Accept authenticated incoming backing into the parent.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "index",
+              "label": "index",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured asset index, not already accepted."
+            },
+            {
+              "position": 1,
+              "name": "",
+              "label": "input1",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Interface provenance argument; peer authenticity comes from the coordinator, not this ignored field."
+            }
+          ],
+          "outputs": [],
+          "native_value": "Zero; incoming ETH has already arrived at this companion through authenticated funding.",
+          "notes": "Inert2 only. Preserves child AND parent prefunds, forwards exactly captured amount to Rewards; no prefund substitution or new income."
+        },
+        {
+          "signature": "canonicalActivate()",
+          "kind": "function",
+          "name": "canonicalActivate",
+          "state_mutability": "nonpayable",
+          "purpose": "Acknowledge a complete inert imported LP domain.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Full imported cursor and state2 required. The coordinator separately validates all six domains/backing before the atomic canonical switch."
+        },
+        {
+          "signature": "canonicalAssetCount()",
+          "kind": "function",
+          "name": "canonicalAssetCount",
+          "state_mutability": "view",
+          "purpose": "Read the captured LP backing asset count.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "One or two LP assets; fixed ETH/ZZZ identity only."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "canonicalBacking(uint256)",
+          "kind": "function",
+          "name": "canonicalBacking",
+          "state_mutability": "view",
+          "purpose": "Read one exact captured canonical backing obligation.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "index",
+              "label": "index",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Zero-based captured asset index."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Captured native/fixed-ZZZ identity."
+            },
+            {
+              "position": 1,
+              "name": "",
+              "label": "output1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured raw backing amount; not the same as earned liability alone."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "canonicalCapture()",
+          "kind": "function",
+          "name": "canonicalCapture",
+          "state_mutability": "nonpayable",
+          "purpose": "Capture parent books and exact backing under source freeze.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Calls the parent callback barrier, authenticates accounting7/allocation1, counts/order/roots/books and captures parent balances. Source books are not deleted."
+        },
+        {
+          "signature": "canonicalCount()",
+          "kind": "function",
+          "name": "canonicalCount",
+          "state_mutability": "view",
+          "purpose": "Read the bounded number of LP canonical rows.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1+assets+NFTs+2023 nodes when NFTs exist; empty collections omit nodes. Maximum3026."
+            }
+          ],
+          "native_value": null,
+          "notes": "Only the captured/imported snapshot establishes workload; a pre-capture count does not approve readiness."
+        },
+        {
+          "signature": "canonicalExport(uint256)",
+          "kind": "function",
+          "name": "canonicalExport",
+          "state_mutability": "view",
+          "purpose": "Read a source-authenticated raw V9 LP record.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "row",
+              "label": "row",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Zero-based LP-domain row, strictly below canonicalCount."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Static ABI bytes: header256, asset320, seed256 or raw node992. No flattening or phase materialization."
+            }
+          ],
+          "native_value": null,
+          "notes": "Captured/frozen or retired source. Use coordinator export phase after ALL six domains settle; earlier direct reads can be provisional."
+        },
+        {
+          "signature": "canonicalImport(uint256,bytes)",
+          "kind": "function",
+          "name": "canonicalImport",
+          "state_mutability": "nonpayable",
+          "purpose": "Import the next exact LP snapshot row.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "row",
+              "label": "row",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Next zero-based LP row, exactly the durable import cursor."
+            },
+            {
+              "position": 1,
+              "name": "record",
+              "label": "record",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Unmodified source canonicalExport bytes validated by the coordinator root."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Inert state2 only. Header/asset/NFT seeds precede all nodes. First node requires all authenticated weights; no one-shot1000 enrollment loop."
+        },
+        {
+          "signature": "canonicalRelease(uint256,address)",
+          "kind": "function",
+          "name": "canonicalRelease",
+          "state_mutability": "nonpayable",
+          "purpose": "Release exact captured backing through the parent.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "index",
+              "label": "index",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured asset index, not already released."
+            },
+            {
+              "position": 1,
+              "name": "destination",
+              "label": "destination",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Authenticated peer canonical module from the coordinator; not a discretionary wallet."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Source frozen1, or cancelled4 only for previously accepted imported backing. Parent enforces fixed-child and lifecycle authorization."
+        },
+        {
+          "signature": "canonicalRestore(uint256,address)",
+          "kind": "function",
+          "name": "canonicalRestore",
+          "state_mutability": "payable",
+          "purpose": "Restore returned backing to the frozen source parent.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "index",
+              "label": "index",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Previously released captured asset index."
+            },
+            {
+              "position": 1,
+              "name": "",
+              "label": "input1",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Reserved provenance argument; not a payout recipient."
+            }
+          ],
+          "outputs": [],
+          "native_value": "Zero; the authenticated return already funded this companion.",
+          "notes": "Frozen1/captured/released only. Source books remain unchanged and cannot reopen until the coordinator completes fully funded abort."
+        },
+        {
+          "signature": "canonicalSettle()",
+          "kind": "function",
+          "name": "canonicalSettle",
+          "state_mutability": "nonpayable",
+          "purpose": "Acknowledge the captured LP domain settlement stage.",
+          "access": "Only the fixed controller-bound CanonicalHandoff coordinator, in the stated canonical phase.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Captured frozen state1 only. Later Fees-domain cutoff intake may extend the same snapshot before export begins."
+        },
+        {
+          "signature": "canonicalValidate()",
+          "kind": "function",
+          "name": "canonicalValidate",
+          "state_mutability": "view",
+          "purpose": "Validate complete authenticated roots, whole books and backing.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Read-only check; not independent production approval. Import requires full cursor, exact tree/direct liabilities, frozen identities and parent backing excluding prefunds."
+        },
+        {
+          "signature": "creditCutoff(address,uint256)",
+          "kind": "function",
+          "name": "creditCutoff",
+          "state_mutability": "nonpayable",
+          "purpose": "Extend captured backing for a real final LP receipt.",
+          "access": "Only immutable Rewards, frozen state1 with settling enabled and capture complete.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Native ETH as address zero, or the deployment's one fixed admitted ZZZ address; never a royalty-currency list."
+            },
+            {
+              "position": 1,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive actual raw receipt just funded into Rewards."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "No transfer or holder allocation occurs here. Existing parent intake proves funding; captured parent balance is checked."
+        },
+        {
+          "signature": "rewards()",
+          "kind": "function",
+          "name": "rewards",
+          "state_mutability": "view",
+          "purpose": "Read the immutable creating Rewards parent.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "contract IExactLPRewardsParent",
+              "explanation": "The funded ledger whose canonicalModule getter must point back here."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "receive()",
+          "kind": "receive",
+          "name": "receive",
+          "state_mutability": "payable",
+          "purpose": "Receive only native transport or unsolicited ETH.",
+          "access": "Anyone may transfer ETH; only authenticated coordinator funding is accepted as backing.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": "ETH from the exact handoff funding/return path; arbitrary donations are not new LP income.",
           "notes": null
         }
       ]
@@ -51167,7 +51717,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "4: exact whole-unit, GCD-normalized original-currency royalties, one-hour opening and V8. Earlier profiles remain historical."
+              "explanation": "4: exact original-currency whole-unit royalties and one-hour opening; carried by V9 in the current profile7 graph. Earlier peers retain their own identities."
             }
           ],
           "native_value": null,
@@ -51469,7 +52019,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; V8 preserves it."
+              "explanation": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; current V9 preserves it."
             }
           ],
           "native_value": null,
@@ -51582,7 +52132,7 @@
           "kind": "function",
           "name": "canonicalAccept",
           "state_mutability": "payable",
-          "purpose": "Accept and classify actual successor funding for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Accept and classify actual successor funding for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [
@@ -51614,7 +52164,7 @@
           "kind": "function",
           "name": "canonicalActivate",
           "state_mutability": "nonpayable",
-          "purpose": "Activate the validated imported rarity-weighted royalty cohorts, balances, fractions and quarantine state.",
+          "purpose": "Activate the validated imported rarity-weighted cohorts, exact whole rights and reviewed unallocated balances state.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [],
@@ -51627,7 +52177,7 @@
           "kind": "function",
           "name": "canonicalAssetCount",
           "state_mutability": "view",
-          "purpose": "Count classified backing legs captured for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Count classified backing legs captured for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -51650,7 +52200,7 @@
           "kind": "function",
           "name": "canonicalBacking",
           "state_mutability": "view",
-          "purpose": "Read one captured backing asset and raw amount for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Read one captured backing asset and raw amount for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -51692,13 +52242,13 @@
           "kind": "function",
           "name": "canonicalCapture",
           "state_mutability": "nonpayable",
-          "purpose": "Capture the immutable cutoff for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Capture the immutable cutoff for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. V8 rejects old peers; an unreadable currency can still block handoff. LP terminal/emergency paths stay independent."
+          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. Current V9 peers carry the unchanged royalty4 layout; an unreadable currency can still block handoff. LP emergency/terminal paths stay independent."
         },
         {
           "signature": "canonicalController()",
@@ -51728,7 +52278,7 @@
           "kind": "function",
           "name": "canonicalCount",
           "state_mutability": "view",
-          "purpose": "Read the version-specific exported record count for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Read the version-specific exported record count for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -51751,7 +52301,7 @@
           "kind": "function",
           "name": "canonicalExport",
           "state_mutability": "view",
-          "purpose": "Encode one exact captured rarity-weighted royalty cohorts, balances, fractions and quarantine record.",
+          "purpose": "Encode one exact captured rarity-weighted cohorts, exact whole rights and reviewed unallocated balances record.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -51777,14 +52327,14 @@
             }
           ],
           "native_value": null,
-          "notes": "V8:160-byte header;192-byte currency row(asset,cursor,accounted,liabilities,orphaned,backing);128-byte NFT row(id,weight,activationOrdinal,ticketStart);96-byte NFT/currency row(id,asset,whole accrued). Frozen view flattens ticket rights without deleting the source books; abort retains them."
+          "notes": "Unchanged royalty4 row format formerly carried by V8, now V9: header160,currency192,NFT128,NFT/currency96 bytes. Frozen view flattens exact ticket rights without deleting source books; abort retains them. It does not flatten LP tree phase."
         },
         {
           "signature": "canonicalImport(uint256,bytes)",
           "kind": "function",
           "name": "canonicalImport",
           "state_mutability": "nonpayable",
-          "purpose": "Import the next source-authenticated rarity-weighted royalty cohorts, balances, fractions and quarantine record into an inert successor.",
+          "purpose": "Import the next source-authenticated rarity-weighted cohorts, exact whole rights and reviewed unallocated balances record into an inert successor.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [
@@ -51809,7 +52359,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Only V8 coordinator; exact ordered rows/lengths, source roots and backing. Preserve ticket/ordinal mapping; no overlap/holes, correct rarity, cursor/GCD and exact summed claims=liabilities. Import starts empty books; source semantics are not inferred from row size."
+          "notes": "Current V9 coordinator only; unchanged ordered royalty4 row lengths, exact roots/backing, ticket/activation order, no holes/overlaps, correct rarity/GCD/cursor and summed whole claims=liabilities. No source semantics inferred from tuple size."
         },
         {
           "signature": "canonicalRecoverCancelled(address,address)",
@@ -51858,7 +52408,7 @@
           "kind": "function",
           "name": "canonicalRelease",
           "state_mutability": "nonpayable",
-          "purpose": "Release one exact captured backing leg for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Release one exact captured backing leg for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [
@@ -51890,7 +52440,7 @@
           "kind": "function",
           "name": "canonicalRestore",
           "state_mutability": "payable",
-          "purpose": "Restore an actual returned backing leg for rarity-weighted royalty cohorts, balances, fractions and quarantine after abort.",
+          "purpose": "Restore an actual returned backing leg for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances after abort.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [
@@ -51922,7 +52472,7 @@
           "kind": "function",
           "name": "canonicalSettle",
           "state_mutability": "nonpayable",
-          "purpose": "Complete ordered cutoff settlement for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Complete ordered cutoff settlement for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Only fixed CanonicalHandoff.",
           "status": "documented",
           "inputs": [],
@@ -51935,7 +52485,7 @@
           "kind": "function",
           "name": "canonicalValidate",
           "state_mutability": "view",
-          "purpose": "Assert complete imported/restored record and backing consistency for rarity-weighted royalty cohorts, balances, fractions and quarantine.",
+          "purpose": "Assert complete imported/restored record and backing consistency for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Anyone; read-only assertion.",
           "status": "documented",
           "inputs": [],
@@ -52422,7 +52972,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed V8 import has its own local revision."
+              "explanation": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed current V9 import has its own local revision."
             }
           ],
           "native_value": null,
@@ -52715,7 +53265,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in V8."
+              "explanation": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in current V9."
             }
           ],
           "native_value": null,
@@ -54858,7 +55408,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "6; explicit fresh runtime,never a relabel or upgrade of an old deployment."
+              "explanation": "7: native principal with authenticated exact-unit LP share synchronization; not a runtime6 alias."
             }
           ],
           "native_value": null,
@@ -54904,7 +55454,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+              "explanation": "1; residual-only closure remains within accounting7/portfolio2/custody5, with unchanged custody4-format principal wire. Exact peers/runtimes must match."
             }
           ],
           "native_value": null,
@@ -54927,7 +55477,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1 for this fresh implementation; accounting6 or tuple shape alone does not establish support. All five implementing module/helper peers and exact runtimes must match."
+              "explanation": "1; accounting version or tuple size alone is insufficient. Verify all five implementing peers and exact runtimes."
             }
           ],
           "native_value": null,
@@ -56329,7 +56879,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Existing accounting6 Vault already bound to this controller; no separate custody authority."
+              "explanation": "Existing accounting7 Vault with this controller; immutable parent, not a separate custody authority."
             },
             {
               "position": 2,
@@ -56510,7 +57060,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Fresh accounting6/portfolio2 requires zero registered residuals. Parked eight-word principal records use explicit ADAPTABLE_POLICY_V6 admission and reviewed fixed policy helper/configuration. OldV5 runtimes cannot be relabeled; lifecycle/backing checks remain."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
         },
         {
           "signature": "canonicalAssetCount()",
@@ -56588,7 +57138,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Fresh accounting6/portfolio2 requires zero registered residuals. Parked eight-word principal records use explicit ADAPTABLE_POLICY_V6 admission and reviewed fixed policy helper/configuration. OldV5 runtimes cannot be relabeled; lifecycle/backing checks remain."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
         },
         {
           "signature": "canonicalCount()",
@@ -56766,7 +57316,7 @@
           "inputs": [],
           "outputs": [],
           "native_value": null,
-          "notes": "Fresh accounting6/portfolio2 requires zero registered residuals. Parked eight-word principal records use explicit ADAPTABLE_POLICY_V6 admission and reviewed fixed policy helper/configuration. OldV5 runtimes cannot be relabeled; lifecycle/backing checks remain."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
         },
         {
           "signature": "mintIdentity(uint256)",
@@ -56969,7 +57519,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Checks its own cancelled controller state/phase, derives the saved route, authenticates V8 parent bindings, reciprocal source/destination, retired/active phases and immutable six export/import domain chains. It cannot move funds or write a cursor. Use coordinator.advanceCancelledRoyaltyReturn, never call this helper as governance."
+          "notes": "Authenticates its own cancelled source context, exact V9 parent bindings, reciprocal source/destination, retired/active phases and immutable six-domain roots; no writable custody route or caller-supplied receiver."
         },
         {
           "signature": "validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
@@ -57279,10 +57829,10 @@
   ],
   "gaps": [],
   "counts": {
-    "contracts": 37,
-    "functions": 839,
-    "constructors": 37,
-    "receive_hooks": 12,
+    "contracts": 38,
+    "functions": 844,
+    "constructors": 38,
+    "receive_hooks": 13,
     "fallback_hooks": 0,
     "explanation_gaps": 0,
     "unannotated_inputs": 0,

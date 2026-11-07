@@ -7,8 +7,9 @@ using DualOracleFixture for FixtureOracleType;
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {MockFeed} from "./mocks/Mocks.sol";
+import {MockFeed,MockPools} from "./mocks/Mocks.sol";
 import {ConversionAccess, ConversionToken, ConversionWrapper, ConversionVenue, ConversionReadProbe} from "./RoyaltyConversion.t.sol";
+import {ZZZRewardsCanonical} from "../src/ZZZRewardsCanonical.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
 import {ZZZRewardConverter} from "../src/base/ZZZRewardConverter.sol";
@@ -18,22 +19,24 @@ import {Ids} from "../src/libraries/ZZZTypes.sol";
 contract LPConversionNFT is ERC721 {
     uint256 public mintedCount;
     mapping(uint256=>uint256) public tokenAtOrdinal;
+    mapping(uint256=>uint256) public mintOrdinalOf;
     constructor() ERC721("LP", "LP") {}
-    function mint(address owner,uint256 id) external { _mint(owner,id); tokenAtOrdinal[++mintedCount]=id; }
+    function mint(address owner,uint256 id) external { _mint(owner,id); tokenAtOrdinal[++mintedCount]=id;mintOrdinalOf[id]=mintedCount; }
 }
 contract LPConversionShares {
+    function ACCOUNTING_VERSION()external pure returns(uint256){return 7;}
     mapping(uint256=>uint256) public sharesOf;
     mapping(uint256=>bool) public eligible;
     uint256 public totalEligible;
     uint256 public totalShares;
-    function nftBucket(uint256) external pure returns(uint256) { return 1; }
+    function nftBucket(uint256 id)external view returns(uint256){return sharesOf[id]!=0?1:0;}
     function bucketCount() external pure returns(uint256) { return 1; }
     function bucketAt(uint256 i) external pure returns(uint256) { require(i==0);return 1; }
     function bucketTotalShares(uint256) external view returns(uint256) { return totalShares; }
     function join(ZZZRewards r,uint256 id,uint256 shares) external {
-        r.checkpointOwner(id); r.checkpointAll(id);
-        if (!eligible[id]) { eligible[id]=true;totalEligible++; }
         sharesOf[id]+=shares;totalShares+=shares;
+        r.syncShares(id);
+        if (!eligible[id]) { eligible[id]=true;totalEligible++;r.syncMembership(id); }
     }
 }
 contract RejectNative { receive() external payable { revert(); } function claim(ZZZRewards r,uint256 id) external {r.claim(id,address(0));} }
@@ -41,14 +44,14 @@ contract RejectNative { receive() external payable { revert(); } function claim(
 contract LPRewardConversionTest is Test {
     ConversionAccess a; LPConversionNFT nft; LPConversionShares shares;
     ZZZRewards r; ZZZLPRewardConverter c; ConversionWrapper w; ConversionToken t;
-    ConversionVenue venue; ZZZOracle oracle; MockFeed sf; MockFeed ef; bytes32 routeId;
+    ConversionVenue venue; ZZZOracle oracle; MockFeed sf; MockFeed ef; bytes32 routeId;MockPools poolRegistry;
     address alice=address(0xa11ce); address bob=address(0xb0b); address carol=address(0xca701);
     function setUp() public {
         vm.warp(100000);a=new ConversionAccess();nft=new LPConversionNFT();shares=new LPConversionShares();
         r=new ZZZRewards(address(a));w=new ConversionWrapper();t=new ConversionToken();
         a.bind(Ids.NFT,address(nft));a.bind(Ids.VAULT,address(shares));a.bind(Ids.MEMBERSHIP,address(shares));
         a.bind(Ids.FEES,address(this));a.bind(Ids.REWARDS,address(r));a.bind(Ids.CANONICAL,address(this));a.setKeeper(address(this),true);
-        r.addAsset(address(t));r.addAsset(address(w));
+        poolRegistry=new MockPools();poolRegistry.setFixedZZZ(address(t));a.bind(Ids.POOLS,address(poolRegistry));r.addAsset(address(t));
         oracle=new ZZZOracle(address(a),address(0));sf=new MockFeed(8,1e8);ef=new MockFeed(8,2000e8);
         oracle.setTestFeed(address(t),address(sf),3600);oracle.setTestFeed(address(w),address(ef),3600);a.bind(Ids.ORACLE,address(oracle));
         c=new ZZZLPRewardConverter(address(a),address(r),address(w));r.bindConverter(address(c));
@@ -68,7 +71,7 @@ contract LPRewardConversionTest is Test {
         credit(600e6,200e6);t.mint(address(r),77e6);vm.deal(address(r),9 ether);
         shares.join(r,3,100e18);assertEq(convert(1),0.4 ether);
         assertEq(r.claimable(1,address(0)),0.25 ether);assertEq(r.claimable(2,address(0)),0.15 ether);
-        assertEq(r.individual(1,address(0)),0.2 ether);assertEq(r.collective(1,address(0)),0.05 ether);
+        (uint256 personal,uint256 collective)=r.claimableComponents(1,address(0));assertEq(personal,0.2 ether);assertEq(collective,0.05 ether);
         assertEq(r.claimable(3,address(0)),0);assertEq(r.claimable(3,address(t)),0);
         assertEq(r.liabilities(address(0)),0.4 ether);assertEq(t.balanceOf(address(r)),77e6);
         assertEq(address(r).balance,9.4 ether);assertEq(r.liabilities(address(t)),0);
@@ -97,12 +100,10 @@ contract LPRewardConversionTest is Test {
         vm.prank(alice);assertEq(r.claim(1,address(t)),500e6);c.setEnabled(true);
         assertEq(convert(1),0.15 ether);assertEq(r.claimable(1,address(0)),0);
     }
-    function testExactUnwrapWithoutPriceAndFailureRecovery() public {
-        w.mint(address(this),3 ether);w.approve(address(r),3 ether);r.creditPool(1,address(w),3 ether,0);
-        vm.warp(block.timestamp+7200);w.setFail(true);vm.expectRevert();r.convertBatch(address(w),ids(),0,1,block.timestamp+60);
-        assertEq(r.claimable(1,address(w)),2 ether);w.setFail(false);
-        assertEq(r.convertBatch(address(w),ids(),0,3 ether,block.timestamp+60),3 ether);
-        assertEq(r.claimable(1,address(0)),2 ether);
+    function testUnadmittedWrapperCannotBecomeALPRewardCurrency() public {
+        w.mint(address(this),3 ether);w.approve(address(r),3 ether);vm.expectRevert();r.creditPool(1,address(w),3 ether,0);
+        assertFalse(r.isAsset(address(w)));assertEq(r.assetCount(),2);assertEq(w.balanceOf(address(this)),3 ether);
+        vm.expectRevert();r.convertBatch(address(w),ids(),0,1,block.timestamp+60);
     }
     function testStaleOracleAndRouteDisableLeaveBalances() public {
         credit(600e6,200e6);c.setRouteEnabled(routeId,false);vm.expectRevert();convert(1);
@@ -142,6 +143,7 @@ contract LPRewardConversionTest is Test {
             list[i-1]=i;
         }
         credit(600e6,200e6);
+        vm.cool(address(r));vm.cool(address(shares));vm.cool(address(nft));vm.cool(address(a));vm.cool(address(t));vm.cool(address(c));vm.cool(address(venue));vm.cool(address(w));vm.cool(address(oracle));
         uint256 beforeGas=gasleft();uint256 out=r.convertBatch(address(t),list,routeId,1,block.timestamp+60);
         assertLt(beforeGas-gasleft(),8_000_000);
         uint256 total;for(uint256 i=1;i<=32;++i)total+=r.claimable(i,address(0));
@@ -149,7 +151,7 @@ contract LPRewardConversionTest is Test {
         uint256[] memory tooMany=new uint256[](33);
         vm.expectRevert();r.convertBatch(address(t),tooMany,routeId,1,block.timestamp+60);
     }
-    function testFuzzOutputAndSourceFractionsConserved(uint96 personal,uint96 shared) public {
+    function testFuzzOutputAndWholeSourceRightsConserved(uint96 personal,uint96 shared) public {
         vm.deal(address(w),1e12 ether); // Back the fuzz venue's largest synthetic output.
         uint256 p=bound(uint256(personal),1,1e16);uint256 s=bound(uint256(shared),1,1e16);credit(p,s);
         uint256 earned=r.claimable(1,address(t))+r.claimable(2,address(t));
@@ -160,28 +162,33 @@ contract LPRewardConversionTest is Test {
         assertEq(r.claimable(1,address(t)),0);assertEq(r.claimable(2,address(t)),0);
         credit(6e6,2e6);assertGe(r.claimable(1,address(t)),5e6);
     }
-    function imported() internal returns(ZZZRewards dest, ConversionAccess other) {
+    function imported()internal returns(ZZZRewards dest,ConversionAccess other){
         credit(600e6,200e6);convert(1);credit(60e6,20e6);
         other=new ConversionAccess();other.bind(Ids.CANONICAL,address(this));other.bind(Ids.NFT,address(nft));
-        other.bind(Ids.VAULT,address(shares));other.bind(Ids.MEMBERSHIP,address(shares));other.seal();
-        dest=new ZZZRewards(address(other));vm.deal(address(dest),1 ether);
-        a.state(1);r.canonicalCapture();other.state(2);
-        for(uint256 row;row<r.canonicalCount();++row) dest.canonicalImport(row,r.canonicalExport(row));
+        other.bind(Ids.VAULT,address(shares));other.bind(Ids.MEMBERSHIP,address(shares));other.bind(Ids.POOLS,address(poolRegistry));
+        dest=new ZZZRewards(address(other));other.bind(Ids.REWARDS,address(dest));other.seal();vm.deal(address(dest),1 ether);
+        ZZZRewardsCanonical source=ZZZRewardsCanonical(payable(r.canonicalModule()));ZZZRewardsCanonical target=ZZZRewardsCanonical(payable(dest.canonicalModule()));
+        a.state(1);source.canonicalCapture();other.state(2);
+        uint256 count=source.canonicalCount();assertEq(count,1+2+3+2023);
+        for(uint256 row;row<count;++row)target.canonicalImport(row,source.canonicalExport(row));
     }
-    function testCanonicalNativeBackingImportClaimsAndPrefunds() public {
-        (ZZZRewards dest,ConversionAccess other)=imported();vm.expectRevert();dest.canonicalValidate();
-        for(uint256 i;i<r.canonicalAssetCount();++i) {r.canonicalRelease(i,address(dest));dest.canonicalAccept(i,address(r));}
-        dest.canonicalValidate();other.state(0);
+    function testCanonicalNativeBackingImportClaimsAndPrefunds()public{
+        (ZZZRewards dest,ConversionAccess other)=imported();
+        ZZZRewardsCanonical source=ZZZRewardsCanonical(payable(r.canonicalModule()));ZZZRewardsCanonical target=ZZZRewardsCanonical(payable(dest.canonicalModule()));
+        vm.expectRevert();target.canonicalValidate();
+        for(uint256 i;i<source.canonicalAssetCount();++i){source.canonicalRelease(i,address(target));target.canonicalAccept(i,address(source));}
+        target.canonicalValidate();other.state(0);
         assertEq(address(dest).balance,1.4 ether);assertEq(dest.liabilities(address(0)),0.4 ether);
         assertEq(dest.claimable(1,address(t)),50e6);assertEq(dest.claimable(1,address(0)),0.25 ether);
         vm.prank(alice);assertEq(dest.claim(1,address(0)),0.25 ether);
     }
-    function testCanonicalAbortReturnsETHAndSourceBacking() public {
+    function testCanonicalAbortReturnsETHAndSourceBacking()public{
         (ZZZRewards dest,ConversionAccess other)=imported();
-        for(uint256 i;i<r.canonicalAssetCount();++i) {r.canonicalRelease(i,address(dest));dest.canonicalAccept(i,address(r));}
+        ZZZRewardsCanonical source=ZZZRewardsCanonical(payable(r.canonicalModule()));ZZZRewardsCanonical target=ZZZRewardsCanonical(payable(dest.canonicalModule()));
+        for(uint256 i;i<source.canonicalAssetCount();++i){source.canonicalRelease(i,address(target));target.canonicalAccept(i,address(source));}
         other.state(4);
-        for(uint256 i;i<r.canonicalAssetCount();++i) {dest.canonicalRelease(i,address(r));r.canonicalRestore(i,address(dest));}
-        r.canonicalValidate();a.state(0);assertEq(r.claimable(1,address(0)),0.25 ether);assertEq(r.claimable(1,address(t)),50e6);
+        for(uint256 i;i<source.canonicalAssetCount();++i){target.canonicalRelease(i,address(source));source.canonicalRestore(i,address(target));}
+        source.canonicalValidate();a.state(0);assertEq(r.claimable(1,address(0)),0.25 ether);assertEq(r.claimable(1,address(t)),50e6);
         assertEq(address(dest).balance,1 ether);
     }
 }

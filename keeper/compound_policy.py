@@ -29,14 +29,14 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
     """
     if type(bucket) is not int or not 0 < bucket < 1 << 256:
         raise ValueError('Invalid compound policy bucket')
-    if type(accounting_version) is not int or accounting_version not in (4,5,6):
+    if type(accounting_version) is not int or accounting_version not in (4,5,6,7):
         raise ValueError('Unsupported explicit compound physical profile')
-    if type(physical_only) is not bool or physical_only and accounting_version not in (5,6):
+    if type(physical_only) is not bool or physical_only and accounting_version not in (5,6,7):
         raise ValueError('Physical-only inventory requires explicit accounting5')
-    portfolio=accounting_version in (5,6)
+    portfolio=accounting_version in (5,6,7)
     roles = ('access', 'vault', 'strategy', 'pools', 'liquidity', 'pool_manager', 'state_view')+(
         ('portfolio_policy','rebalance_confirmation','lp_position_executor','balancing_router','lp_balance_math') if portfolio else ())+(
-        ('protocol_policy',) if accounting_version==6 and not physical_only else ())
+        ('protocol_policy',) if accounting_version in (6,7) and not physical_only else ())
     targets = {role: address(contracts[role]) for role in roles}
     for role, target in targets.items():
         raw, expected = code(target), code_hashes.get(role)
@@ -62,8 +62,8 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
             number('state_view', 'poolManager()') != int(targets['pool_manager'], 16)):
         raise ValueError('Compound policy physical reader binding differs')
     if portfolio:
-        for role,method,value in (('vault','ACCOUNTING_VERSION()',accounting_version),('liquidity','PORTFOLIO_VERSION()',2 if accounting_version==6 else 1),
-                ('liquidity','LP_ROUTING_VERSION()',2),('portfolio_policy','PORTFOLIO_VERSION()',2 if accounting_version==6 else 1),
+        for role,method,value in (('vault','ACCOUNTING_VERSION()',accounting_version),('liquidity','PORTFOLIO_VERSION()',2 if accounting_version in (6,7) else 1),
+                ('liquidity','LP_ROUTING_VERSION()',2),('portfolio_policy','PORTFOLIO_VERSION()',2 if accounting_version in (6,7) else 1),
                 ('rebalance_confirmation','REBALANCE_CONFIRMATION_VERSION()',3),
                 ('strategy','portfolioPolicy()',int(targets['portfolio_policy'],16)),
                 ('strategy','rebalanceConfirmation()',int(targets['rebalance_confirmation'],16)),
@@ -126,7 +126,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
         manual = number('strategy', 'rangeUpdatePending(uint256)', bucket)
         if manual not in (0, 1): raise ValueError('Malformed compound range-change flag')
         result = classify_range(lower=ticks[0], upper=ticks[1], tick=tick, range_update_pending=bool(manual))
-        if accounting_version==6:
+        if accounting_version in (6,7):
             from zzz_ops.protocol_policy import observe as observe_policy
             result['maintenance_policy']=observe_policy(read,policy=targets['protocol_policy'],
                 access=targets['access'],domain='maintenance')
@@ -144,7 +144,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
                 bool(pending)!=(geometry!=applied) or (not physical_only and pending and not manual) or
                 not 0<residual_side<=10000):
             raise ValueError('Compound desired/applied portfolio policy differs')
-        if accounting_version==6:
+        if accounting_version in (6,7):
             minimum=number('portfolio_policy','minimumMainBps(bytes32)',pool)
             maximum=number('portfolio_policy','maximumResidualBps(bytes32)',pool)
             gap=number('portfolio_policy','residualGapSpacings(bytes32)',pool)
@@ -161,7 +161,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
             if (not MIN_TICK<=secondary_ticks[0]<secondary_ticks[1]<=MAX_TICK or
                     any(value%spacing for value in secondary_ticks)):
                 raise ValueError('Compound residual tick geometry differs')
-            if accounting_version==6 and not ticks[0]<=secondary_ticks[0]<secondary_ticks[1]<=ticks[1]:
+            if accounting_version in (6,7) and not ticks[0]<=secondary_ticks[0]<secondary_ticks[1]<=ticks[1]:
                 raise ValueError('Compound residual is not contained in its main')
             physical=words(posm,'getPoolAndPositionInfo(uint256)',secondary,count=6)
             verify_position_identity(physical[:5],physical[5],int(pool,16),secondary_ticks)
@@ -181,7 +181,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
             amounts=[a+b for a,b in zip(amounts,extra)]
         if any(value>=2**256 for value in amounts) or amounts!=[int(word,16) for word in principal]:
             raise ValueError('Compound portfolio amounts omit or duplicate a physical leg')
-        if accounting_version==6:
+        if accounting_version in (6,7):
             from zzz_ops.physical_portfolio import physical_amounts,portfolio_fingerprints
             expected=physical_amounts(price,ticks,main_liquidity)
             if main_amounts!=expected:
@@ -199,7 +199,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
             if fingerprint!=int(stable,16) or number('liquidity','executionPortfolioFingerprint(uint256)',lp)!=int(execution,16):
                 raise ValueError('Compound physical portfolio fingerprint differs')
             result['execution_portfolio_fingerprint']=execution
-        result.update(portfolio_version=2 if accounting_version==6 else 1,secondary_id=secondary,active_secondary_count=count,
+        result.update(portfolio_version=2 if accounting_version in (6,7) else 1,secondary_id=secondary,active_secondary_count=count,
             portfolio_fingerprint='0x'+f'{fingerprint:064x}',physical_legs=legs,
             portfolio_amounts=[str(int(word,16)) for word in principal],
             desired_residual_enabled=bool(mode),portfolio_configuration_pending=bool(pending),

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-06T23:56:19.307078+00:00",
+  "tool_result_provenance": "functions.exec results00fba3 andca649f/9029ff captured during this root turn, not a repeated test run",
+  "focused_python": {
+    "command": "python -B -X utf8 -m unittest tests_python.test_slither_review tests_python.test_function_reference tests_python.test_operator_reference",
+    "methods": 95,
+    "exit_code": 0,
+    "stdout": "Ran95tests in7.134s;OK"
+  },
+  "source_consistency": {
+    "source_classes": 56,
+    "errors": 0,
+    "scope": "Narrow consistency, not a Solidity analyzer"
+  },
+  "reference": {
+    "contracts": 38,
+    "functions": 844,
+    "constructors": 38,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "operator_examples": {
+    "rows": 895,
+    "ready_for_submission": false,
+    "generated_check": true
+  },
+  "earlier_test_source_pins": {
+    "tests_python/test_slither_review.py": "0eaa0ac9b218771eb518dc5de64ca68f62ed24719a4b233360cc8365e86db54e",
+    "tests_python/test_function_reference.py": "9cea757d716f039a4bceb3b162709267def17ac2c9f800a582f6b328675a0d76",
+    "tests_python/test_operator_reference.py": "fe52ee392b4b61b2d3c29d4aebb80b3276b3973babdf6bb61d1c1685bc245e4f",
+    "scripts/check-slither-review.py": "29986f73bacc2d6692a0af38f28f17404073cd719ba508850002ba6fa869a5d1",
+    "zzz_ops/operator_reference.py": "a8b1e1c6b563763c309434e41df1d99a7f1afa8fe96bbe36716788661bc1f2fb"
+  },
+  "publication": "Exact staged/committed closure and final remote heads recorded separately after final test/source freeze; not inferred here"
+}

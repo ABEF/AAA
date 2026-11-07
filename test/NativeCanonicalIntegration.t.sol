@@ -10,7 +10,8 @@ using DualOracleFixture for FixtureOracleType;
 
 
 import {Test} from "forge-std/Test.sol";
-import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {CanonicalNativeVenue} from "./helpers/CanonicalNativeVenue.sol";
+import {ZZZRewardsCanonical} from "../src/ZZZRewardsCanonical.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
@@ -31,49 +32,6 @@ import {PreparationPools, PreparationPolicy} from "./helpers/CanonicalPreparatio
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 
-/// @dev Deterministic settlement fixture only. All custody, NFT, fee/reward,
-/// royalty, lifecycle and canonical transfer contracts in the test are real.
-contract CanonicalNativeVenue is ERC721 , SinglePositionFixture {
-    IZZZAccess public immutable access;
-    MockToken private immutable token;
-    uint256 private next = 1;
-    uint256 private fee0;
-    uint256 private fee1;
-    mapping(uint256 => uint256) private a0;
-    mapping(uint256 => uint256) private a1;
-    constructor(address controller, address asset) ERC721("Native handoff fixture", "NHF") {
-        access = IZZZAccess(controller); token = MockToken(asset);
-    }
-    receive() external payable {}
-    function positionManager() external view returns (address) { return address(this); }
-    function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
-    function balance(bytes32,uint256,uint256 x,uint256 y,uint256) external payable returns(uint256,uint256) {
-        require(msg.value==x);
-        if(x!=0){(bool ok,)=msg.sender.call{value:x}("");require(ok);}
-        return(x,y); // Canonical backing fixture; it intentionally has no swap model.
-    }
-    function spot(bytes32) external pure returns (uint160) { return uint160(1 << 96); }
-    function setFees(uint256 x, uint256 y) external { fee0 = x; fee1 = y; }
-    function mint(bytes32, int24, int24, uint256 x, uint256 y, uint128, uint256)
-        external payable returns (uint256 id, uint256 spent0, uint256 spent1) {
-        id = next++; _mint(msg.sender, id); _fund(id, x, y); return (id, x, y);
-    }
-    function increase(bytes32, uint256 id, uint256 x, uint256 y, uint128, uint256)
-        external payable returns (uint256, uint256) { _fund(id, x, y); return (x, y); }
-    function _fund(uint256 id, uint256 x, uint256 y) private {
-        require(msg.value == x); require(token.transferFrom(msg.sender, address(this), y)); a0[id] += x; a1[id] += y;
-    }
-    function amounts(uint256 id) external view returns (uint256, uint256) { return (a0[id], a1[id]); }
-    function collect(bytes32, uint256, uint256) external {
-        uint256 x = fee0; uint256 y = fee1; fee0 = 0; fee1 = 0;
-        if (x != 0) { (bool ok,) = msg.sender.call{value: x}(""); require(ok); }
-        token.mint(msg.sender, y);
-    }
-    function close(bytes32, uint256 id, uint256) external {
-        uint256 x = a0[id]; uint256 y = a1[id]; delete a0[id]; delete a1[id]; _burn(id);
-        (bool ok,) = msg.sender.call{value: x}(""); require(ok); require(token.transfer(msg.sender, y));
-    }
-}
 
 contract NativeCanonicalIntegrationTest is Test {
     struct System {
@@ -125,8 +83,8 @@ contract NativeCanonicalIntegrationTest is Test {
         s.access.bind(Ids.BUYBACK, address(new ZZZBuyback(address(s.access), address(token), 1e30)));
         s.access.bind(Ids.MIGRATION, address(s.migration)); s.access.bind(Ids.ORACLE, address(oracle)); s.access.bind(Ids.POOLS, address(s.pools));
         oracle.setTestFeed(address(0), address(feed), 3600); oracle.setTestFeed(address(token), address(feed), 3600);
-        s.rewards.addAsset(address(token)); s.nft.addRoyaltyAsset(address(token));
         s.pools.setTestZZZIdentity(address(token));
+        s.rewards.addAsset(address(token)); s.nft.addRoyaltyAsset(address(token));
         s.migration.configureZZZ(address(token),address(token).codehash,keccak256("native handoff fixed ZZZ"));
         s.vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory config; config.key = PoolKey(address(0), address(token), 3000, 60, address(0));
@@ -191,7 +149,8 @@ contract NativeCanonicalIntegrationTest is Test {
     function testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine() public {
         uint256 id = _seed(); _freezeExportImport(id); uint256 bucket = source.vault.nftBucket(id);
         uint256 nativeLP = source.rewards.claimable(id, address(0)); uint256 nativeRoyalties = source.royalties.claimable(id, address(0));
-        uint256 ownerIndex = source.rewards.ownerIndex(bucket, address(0)); uint256 collectiveIndex = source.rewards.index(address(0));
+        (uint256 ownerWeight,uint256 ownerOutstanding,uint256 zzzOutstanding)=source.rewards.allocationTree(bucket);
+        (uint256 memberWeight,uint256 collectiveOutstanding,)=source.rewards.allocationTree(0);
         uint256 principal = source.vault.totalIdle(address(0)); uint256 reserves = source.fees.accounted(address(0));
         _fundAll(); _govern(source, address(source.handoff), abi.encodeCall(source.handoff.commit, ()));
         assertEq(source.access.canonicalState(), 3); assertEq(destination.access.canonicalState(), 0);
@@ -199,7 +158,8 @@ contract NativeCanonicalIntegrationTest is Test {
         assertEq(destination.vault.sharesOf(id), source.vault.sharesOf(id));
         assertEq(destination.vault.totalIdle(address(0)), principal); assertEq(address(destination.vault).balance, principal);
         assertEq(destination.fees.accounted(address(0)), reserves); assertEq(address(destination.fees).balance, reserves + 7);
-        assertEq(destination.rewards.ownerIndex(bucket, address(0)), ownerIndex); assertEq(destination.rewards.index(address(0)), collectiveIndex);
+        (uint256 w,uint256 e,uint256 z)=destination.rewards.allocationTree(bucket);assertEq(w,ownerWeight);assertEq(e,ownerOutstanding);assertEq(z,zzzOutstanding);
+        (w,e,)=destination.rewards.allocationTree(0);assertEq(w,memberWeight);assertEq(e,collectiveOutstanding);
         assertEq(destination.rewards.claimable(id, address(0)), nativeLP); assertEq(destination.royalties.claimable(id, address(0)), nativeRoyalties);
         uint256 before = BOB.balance;
         vm.prank(BOB); assertEq(destination.rewards.claim(id, address(0)), nativeLP);

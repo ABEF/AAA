@@ -2,11 +2,11 @@
 
 This guide is the **full-replacement** path. To close only the residual and
 increase the unchanged main, use [governance same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation).
-The new source requires residual-reinvest1 peers and fresh schema15 admission;
+The new source requires residual-reinvest1 peers and fresh schema16 admission;
 old emergency2 runtimes keep their original dispatcher and profile.
 
 
-Fresh accounting6 source candidate; production NOT APPROVED. Current normal
+Fresh accounting7 source candidate; production NOT APPROVED. Current normal
 gates, scoped offline checks and local actual-v4-core integration pass within
 their [source scope](../reports/residual-operations-20261031/VERIFICATION.md);
 live operation/dependency qualification remains open. No deployment, signing or service
@@ -105,7 +105,7 @@ governance [residual-close procedure](OPERATOR_MANUAL.md#portfolio-management-co
 ## Operator procedure
 
 1. Verify the chain, sealed deployment, current governance and exact source/ABI/
-   runtime profile: accounting6/custody5, confirmation3 plus emergency capability2. Coordinate/stop the
+   runtime profile: accounting7/custody5, confirmation3 plus emergency capability2. Coordinate/stop the
    automated signer and reconcile every pending hash before manual work. Stopping
    a host does not cancel a broadcast transaction. Preserve journals.
 2. Governance pauses through `Access.setPaused(true)`. Read actual custody, shares,

@@ -21,9 +21,9 @@ contract ReservationCapacityTest is PooledVaultFixture {
     }
 
     function _fundReceiver(address receiver) private {
-        t0.mint(receiver, 1000); t1.mint(receiver, 1000);
+        _giftNative(receiver, 1000); t1.mint(receiver, 1000);
         vm.startPrank(receiver);
-        t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
+         t1.approve(address(vault), 1000);
         vm.stopPrank();
     }
 
@@ -36,11 +36,11 @@ contract ReservationCapacityTest is PooledVaultFixture {
     }
 
     function _assertReceiverUnchanged(address receiver) private view {
-        assertEq(t0.balanceOf(receiver), 1000); assertEq(t1.balanceOf(receiver), 1000);
-        assertEq(t0.allowance(receiver, address(vault)), 1000);
+        assertEq(address(receiver).balance, 1000); assertEq(t1.balanceOf(receiver), 1000);
+
         assertEq(t1.allowance(receiver, address(vault)), 1000);
         assertEq(vault.totalIdle(address(t0)), 0); assertEq(vault.totalIdle(address(t1)), 0);
-        assertEq(t0.balanceOf(address(vault)), 0); assertEq(t1.balanceOf(address(vault)), 0);
+        assertEq(address(address(vault)).balance, 0); assertEq(t1.balanceOf(address(vault)), 0);
     }
 
     function testReservationImmediatelyOwnsPermanentCapacityWithoutCustodyOrShares() public {
@@ -97,10 +97,10 @@ contract ReservationCapacityTest is PooledVaultFixture {
 
     function testForeignReservationCannotBeHijackedByLocalActivation() public {
         (uint256 bucket,) = _origin(0); vault.reservePool(poolId, bucket); uint256 id = _mint(alice);
-        vm.prank(alice); vm.expectRevert(); vault.activate(id, poolId, 1000, 1000, 1, block.timestamp + 100);
+        vm.prank(alice); vm.expectRevert(); vault.activate{value:1000}(id, poolId, 1000, 1000, 1, block.timestamp + 100);
         assertEq(vault.bucketCount(), 1); _assertEmptyReservation(poolId, bucket);
         assertEq(vault.nftBucket(id), 0); assertEq(vault.sharesOf(id), 0);
-        assertFalse(membership.eligible(id)); assertEq(t0.balanceOf(alice), 100000);
+        assertFalse(membership.eligible(id)); assertEq(alice.balance,1 ether-0.05 ether);
     }
 
     function testCanonicalActivationUsesItsReservedSlotAtFullCapacity() public {

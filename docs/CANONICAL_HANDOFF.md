@@ -1,8 +1,8 @@
 # Canonical handoff: same-chain implementation
 
-## Current exact-royalty compatibility
+## Current exact-LP and exact-royalty compatibility
 
-Fresh canonicalV8 uses ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8; V7 and older
+Fresh canonicalV9 uses ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9; V8 and older
 peers are rejected. The royalty header remains five words (currency count, NFT
 count, total weight, closed mint end, capacity). Royalty asset rows are192bytes
 (asset, raw allocation cursor, accounted, liabilities, unallocated, backing).
@@ -35,18 +35,18 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")`, matching
-fresh accounting6 eight-word local Positions and LP-only fee intake1. Both peers must
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")`, matching
+fresh accounting7 eight-word local Positions and LP-only fee intake1. Both peers must
 expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and
 reward currency remains explicit. Current Positions contain no remote location
-or composition-epoch fields. See [the profile](POSITION_V6.md). Matching wire schema is necessary, not proof
+or composition-epoch fields. See [the profile](POSITION_V7.md). Matching wire schema is necessary, not proof
 that a proposed different-code successor is economically compatible.
 
 The candidate transfers the collection and classified economic state to one
 replacement **on the same chain, before collective LP exit starts**. Every
 nonempty bucket must be parked at Vault, every physical main/residual closed,
-`LiquidityManager.activeSecondaryCount()==0`, and every draw complete. The V5
+`LiquidityManager.activeSecondaryCount()==0`, and every draw complete. The retained principal V6-format
 wire carries classified parked backing, not a live residual association. Once
 `lpExitStarted` is set, preparation/transition/freeze are permanently blocked,
 even after all holder payouts: this importer does not carry terminal principal
@@ -67,7 +67,7 @@ cannot acquire missing code by changing configuration.
 NFT, Vault, membership, LP rewards, royalty rewards and LP-only fee reserves.
 The [NFT](../src/ZZZNFTCanonical.sol), [Vault](../src/ZZZVaultCanonical.sol) and
 [Fees](../src/ZZZFeesCanonical.sol) companions are separately deployed, bound once
-and checked against their owners at sealing. They keep codecs outside the
+and checked against their owners at sealing. The new [RewardsCanonical](../src/ZZZRewardsCanonical.sol) is constructor-created and immutable in Rewards; coordinator slot3 binds that child and verifies its parent, Access and LP-allocation1. Funds stay in Rewards outside authenticated funding legs. They keep codecs outside the
 custody contracts to meet normal EVM code-size limits. They have no configurable
 executor, delegatecall, general withdrawal or arbitrary call facility.
 
@@ -104,9 +104,9 @@ does not authorize a finality, backing or source-retirement override.
 
 Exports include zero rows and the complete finite domain, rather than a relay's
 chosen Merkle snapshot. Existing IDs, mint ordinals, owners, traits, quota/draw
-inventory, VRF provenance, shares, activation, LP indexes/fractions, exact whole
+inventory, VRF provenance, shares, activation, exact LP pending/phase/direct books, exact whole
 royalty entitlements, reserves, admitted assets and protected unallocated balances
-survive. Historical request namespaces stay authenticated. V8 requires the sale
+survive. Historical request namespaces stay authenticated. V9 requires the sale
 and one-hour opening to be complete and imports that closed end; unused draw
 inventory is preserved for integrity, not permission to mint again. Neither
 replacement activation nor changing future mint-price policy reopens the sale.
@@ -127,22 +127,22 @@ Four bucket slots do not cap `L`; same-pair moves can add aliases over time.
 | NFT | `1001 + N` (fixed draw inventory plus minted rows) |
 | Vault | `1 + B + L + N + A` |
 | Membership | `1 + N` |
-| LP rewards | `1 + A * (1 + B + N)` |
+| LP rewards | `1 + A + N + K`, where `K=2023` if `N>0`, otherwise0 |
 | Royalties | `1 + R + N * (1 + R)` |
 | Fees | `1 + A + B * A` |
 
 Read coordinator `recordCount(slot)` and each bound module's `canonicalCount()`
 once captured and reconcile them to this
 schema; a future different codec requires its own calculation. Total rows are
-`1006 + 4N + N(A+R) + 3A + 2AB + B + R + L`. With separate direct calls and
+`1006 + 5N + NR + 3A + AB + B + R + L + K`. With separate direct calls and
 maximum eight rows per export/import, those two phases need at least
 `2 * sum(ceil(domainRows / 8))` calls, plus `3A+R` funding legs, freeze,
 six settlements, completeImport and commit. Zero-value legs still need their
 authenticated acknowledgment. Preparation, parking, deployment, confirmation
 waits, receipts and retries are additional work.
 
-For `N=1000, B=1, L=1, A=2, R=1`:8019rows,2012export/import calls,7funding legs
-and 9control calls, or2028direct calls before those additional operations.
+For `N=1000, B=1, L=1, A=2, R=1`:9040rows,2268export/import calls,7funding legs
+and 9control calls, or2284direct calls before those additional operations.
 These are function-call counts, not measured gas, guaranteed transaction counts
 or target-chain qualification; a reviewed batching relay would need separate
 simulation and gas bounds. Rehearse the actual dimensions and abort budget
@@ -150,17 +150,20 @@ before freezing. Preserve cursors, roots and backing; do not omit history or
 increase batch limits just to reduce the estimate. No silent lifetime-alias cap
 or emergency import override exists.
 
+### LP V9 record order
+
+The LP child exports header8words, asset10words, NFT seed8words and raw node31words. Tree0 is equal collective; trees1–4 follow captured bucket order, each with ETH/ZZZ books. Seed ALL minted ordinal weights and direct credits before restoring pending/high/low nodes. Do not flatten claimables and then import the old phase: that changes future rights. Every asset reconciles direct liabilities, per-tree outstanding and actual backing; prefunds cannot substitute. The2023node domain omits only permanently unused tree padding. It needs253node pages even with one minted NFT; target transaction/page gas and full handoff/abort budget remain unqualified. See [exact layout](POSITION_V7.md).
+
 ## Backing, cutoffs and late receipts
 
 Freeze captures every admitted ledger and classified fee-reserve balance before
 settling any domain. Settlement is split into bounded domain calls, while the original cutoffs
 remain immutable across blocks and operator outages. Only the captured pending
-amount is indexed under the frozen membership.
+amount is allocated under the frozen membership.
 Subsequent plain transfers cannot change the export root or substitute for a
 captured obligation. Native Vault principal/quarantine, native Fees reserves, native
-individual/collective indices and converted credits, and native royalties are
-separate custody/accounting domains. Native currency remains a single admitted asset per applicable ledger. LP and royalty liabilities, including division dust
-and per-NFT fractions, are carried exactly; converted ETH is not earned twice. The governed maintenance budget (default 3%, maximum 10%) does not haircut
+individual/collective whole-unit books and converted credits, and native royalties are
+separate custody/accounting domains. Native currency remains a single admitted asset per applicable ledger. LP pending/phase/direct books and royalty whole-unit liabilities are carried exactly; converted ETH is not earned twice. The governed maintenance budget (default 3%, maximum 10%) does not haircut
 claims or reserves. This direct handoff uses exact token units without conversion.
 
 Unassigned source-companion donations are not exported or stored as new per-asset
@@ -244,13 +247,13 @@ Target-chain gas, provider and operating qualification remain separate release w
 
 ## Integration and qualification
 
-Fresh API/keeper profiles explicitly select accounting6, custody5, portfolio2,
+Fresh API/keeper profiles explicitly select accounting7, custody5, portfolio2,
 maintenance3/confirmation3/Budget4/LP routing2 and fee intake1,
 and verify `Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
 predecessor epochs retain their own currency/version interpretation; saved nonce,
 receipt and pending journals cannot be reset or reinterpreted as a native upgrade.
-Historical native2/accounting3/accounting4 artifacts cannot serve accounting6 merely
-by relabeling a manifest. Accounting6 website/service acceptance remains open; public
+Historical native2/accounting3/accounting4 artifacts cannot serve accounting7 merely
+by relabeling a manifest. Accounting7 website/service acceptance remains open; public
 DEPLOYMENT is null, signing stays Anvil-only and existing fixtures are unchanged.
 
 Keeper reads `canonicalState()` strictly and stops all new transaction submissions

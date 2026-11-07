@@ -8,7 +8,7 @@ from zzz_ops.position import decode_position, is_local_position
 
 
 def read(p, status, bucket, shares, block, *, cache=None, totals=None):
-    exited = p.accounting_version in (4, 5, 6) and status == 5
+    exited = p.accounting_version in (4,5,6,7) and status == 5
     if status not in (1, p.parked_status) and not exited:
         return None
     if cache is not None and bucket in cache:

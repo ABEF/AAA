@@ -1,0 +1,16 @@
+from pathlib import Path
+import collections,importlib.util,json,re,hashlib
+r=Path.cwd();e=Path(__file__).parent;v=e.parents[1];s=v/'exact-lp-integration-20261106-64f9/static-4e89b2781d'
+spec=importlib.util.spec_from_file_location('checker',r/'scripts/check-slither-review.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+oldpath='reports/exact-lp-engine-20261106/static-review.json';old=json.loads((r/oldpath).read_text());raw=json.loads((s/'detectors-only.json').read_text());assert raw['success'] and not raw['error']
+prior=collections.defaultdict(list)
+for f in old['findings']:prior[f['fingerprint']].append(f)
+rows=[]
+for i,f in enumerate(raw['results']['detectors']):
+ fp=m.fingerprint(f);refs=sorted(set(re.findall(r'src/[^\s()#]+\.sol',f['description'].replace('\\','/'))));reused=len(prior[fp])==1 and bool(refs) and all(old['source_sha256_lf'].get(p)==m.source_hash(r/p) for p in refs)
+ rows.append({'index':i,'fingerprint':fp,'sources':refs,'reused':reused,'prior':prior[fp][0] if reused else None,'finding':{k:f[k] for k in ('check','impact','confidence','description')}})
+existing=json.loads((e/'static-owned-68.json').read_text())['records'];mapped={x['fingerprint']:x for x in existing};current=[x for x in rows if not x['reused']];remain=[x for x in current if x['fingerprint'] not in mapped]
+for name,data in [('FINAL_STATIC_INVENTORY.json',rows),('FINAL_CURRENT.json',current),('FINAL_REMAINING.json',remain)]:
+ p=e/name;assert not p.exists();p.write_text(json.dumps(data,indent=2)+'\n')
+print(json.dumps({'total':len(rows),'reused':sum(x['reused'] for x in rows),'current':len(current),'prior68_exact_fp':len(current)-len(remain),'remaining':len(remain),'remaining_checks':dict(collections.Counter(x['finding']['check'] for x in remain))},indent=2))
+(e/'FINAL_REMAINING.txt').write_text(''.join(str(x['index'])+' '+x['finding']['check']+' '+x['fingerprint']+'\n'+x['finding']['description']+'\n' for x in remain))

@@ -5,8 +5,8 @@ second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
 [components](COMPONENT_STATUS.md) maps source ownership, and the [sole Todo](../TODO.md)
 tracks unfinished work. Production is NOT APPROVED.
 
-The current profile is accounting6 / direct governance2 / fee-intake1 /
-custody5 / portfolio2 / `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Native ETH and one fixed ZZZ are the only contribution
+The current profile is accounting7 / direct governance2 / fee-intake1 /
+custody5 / portfolio2 / `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. Native ETH and one fixed ZZZ are the only contribution
 inputs. The current contracts contain no integrated bridge, creator-payment
 inbox, remote reward intake, external-custodian exit or post-seal ZZZ replacement. Historical profiles
 retain their own codecs and evidence; changing a configuration version does
@@ -25,7 +25,7 @@ not upgrade deployed storage, journals or ownership.
 | Replace the ZZZ token contract | No setter or issuer-exchange call exists. Governance may return actual ETH/ZZZ to holders; any later token exchange/new deployment is separate, without automatic continuity. |
 | Return LP principal to NFT holders | Governance starts irreversible collective retirement while paused. Operator closes/allocates bounded batches and directly pays current NFT owners. Normal recipients take no action; rejected payouts remain backed for retry or exceptional owner-only fallback. |
 | Hand assets to an operator/custodian for external work | Removed. No external custody address, all-ZZZ conversion exit, arbitrary transfer or funded local return path remains. |
-| Replace the complete collection on this chain | Before collective exit only: reviewed compatible accounting6/canonicalV8 handoff carries ownership, both ledgers, shares and backing after all main/residual legs close into parked custody. Checked retirement/activation or funded abort; permanently blocked after LP exit begins. |
+| Replace the complete collection on this chain | Before collective exit only: reviewed compatible accounting7/canonicalV9 handoff carries ownership, both ledgers, shares and backing after all main/residual legs close into parked custody. Checked retirement/activation or funded abort; permanently blocked after LP exit begins. |
 | Relocate canonical ownership/rewards to another chain or recover after chain halt | Not implemented. Moving tokens externally is not movement or revocation of the original NFT/accounting system. |
 
 Native ETH and WETH are distinct assets. Reversed currency slots, unrelated
@@ -117,7 +117,7 @@ and [idle classification](IDLE_AND_DUST.md).
 Compatible [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership
 and accounting, exports/imports all required domains and exact backing, and
 activates exactly one successor when the source retires. Source and successor
-must use reviewed compatible accounting6 and the adaptable-policy V6 schema; old remote/home
+must use reviewed compatible accounting7 and the adaptable-policy V6 schema; old remote/home
 fields are not filled with invented values. Collective exit permanently blocks
 canonical replacement because the transport does not import principal-return
 liabilities. Before retirement, pending draws, missing backing or
@@ -136,7 +136,7 @@ VRF, authority wallets, OpenSea primary mint, target-chain gas or operating and
 recovery services. The two-source price policy still needs independently
 qualified observations with the selected 3% disagreement tolerance. Public
 website deployment remains null and its signer Anvil-only; old native-2 views
-are not accounting6 wallet integration. The served unconfigured poplint artifact
+are not accounting7 wallet integration. The served unconfigured poplint artifact
 retains its accounting3 reader until a separately reviewed frontend update.
 
 The [operator manual](OPERATOR_MANUAL.md) owns stop/restart and exact call

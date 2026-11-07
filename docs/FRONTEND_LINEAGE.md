@@ -9,9 +9,10 @@ This implements the [read API task](../TODO.md#task-read-api) for the supported
 same-chain handoff. It does not implement cross-chain consensus verification,
 marketplace cutover or a hosted production indexer.
 
-For fresh accounting6/portfolio2/canonical adaptable-policy V6, every configured
-predecessor must explicitly use accounting6 and its complete helper/runtime graph
-too. Historical accounting4/V5 requires 4 throughout; accounting3/V4 similarly requires
+For fresh accounting7/LP-allocation1/portfolio2/canonicalV9, every configured
+predecessor must explicitly use7/V9 and its complete helper/runtime graph,
+including the fixed Rewards canonical companion. Historical6/V8 stays separate;
+its index/fraction state is not translated into exact7 trees. Historical accounting4/V5 requires 4 throughout; accounting3/V4 similarly requires
 accounting3 predecessors. Older1/2 readers remain for compatible historical
 lineages; changing a version cannot import another schema. Collective holder
 exit does not relocate NFT identities or reward ledgers, and permanently blocks
@@ -30,10 +31,10 @@ Every entry contains exactly these fields:
 
 | Field | Required meaning |
 | --- | --- |
-| `custody_version` | Required for each predecessor when current custody_version is5. Declare its actual4 or5 capability with accounting6; never inherit successor permissions. Historical older accounting keeps its supported version. |
-| `accounting_version` | Fresh profile6/V6 requires6 for every predecessor; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires 3. Other historical configurations retain their supported codec. |
+| `custody_version` | Required for each predecessor when current custody_version is5. Declare5 with accounting7, or its actual4/5 with historical6; never inherit successor permissions. Historical older accounting keeps its supported version. |
+| `accounting_version` | Fresh profile7/V9 requires7 for every predecessor; historical6/V8 requires6; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires 3. Other historical configurations retain their supported codec. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
-| `contracts` | Complete fresh6 address/runtime graph, including `principal_exit` plus ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
+| `contracts` | Complete fresh7 graph, including `rewards_canonical`, `principal_exit`, ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
 | `assets` | Exact historical LP/royalty asset union and descriptors at retirement, using the same API format |
 | `history` | Separate complete creation-to-retirement indexer history, using the [history configuration](FRONTEND_HISTORY.md#configuration-and-genuine-coverage) |
 | `retirement_transaction_hash` | Successful source-retirement transaction containing the matching successor activation |
@@ -91,7 +92,7 @@ and still treats its peer addresses as source commitments.
 
 ## Trust and release boundary
 
-Fresh accounting5/6 predecessor inventories may reuse only the reviewed external
+Fresh accounting5/6/7 predecessor inventories may reuse only the reviewed external
 `pool_manager`, `state_view`, `position_manager` and `permit2` identities in the
 same role with the same runtime pin. PoPL modules/helpers must remain distinct;
 cross-role collisions and different pins for one shared address are rejected.
@@ -116,9 +117,12 @@ See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).
 
 ## Exact-royalty peer declaration
 
-Every fresh V8 predecessor must declare its own royalty_reporting schema5 and
+Every fresh V9 predecessor must declare its own royalty_reporting schema5 and
 matching royalty runtime. The lineage builder must forward that declaration;
 omitting it or inheriting the current peer's value is rejected. Older declared
 schemas remain historical. Preserve exact ticket mapping/cursors and current
-owner unpaid rights; imports are not new earnings. Existing full-lineage work
+owner unpaid rights; imports are not new earnings. Historical6/V8 retains its
+explicit declaration too. Fresh7 full raw replay preserves pending whole LP units,
+high/low fairness phase and direct credits across verified epochs, without
+recrediting import events. Checkpoint1 cannot seed that state. Existing full-lineage work
 and qualification limits remain open.

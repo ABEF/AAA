@@ -1,0 +1,12 @@
+{
+  "compiler_output_sha256": "6e21fedb452559a34fe655321ffcbc283600df8b337e076881d6db5cbbc85816",
+  "actual_creation_byte_length": 25522,
+  "actual_creation_keccak": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+  "full_reconstructed_byte_equality": true,
+  "new_spec_verification": true,
+  "historical_payload_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+  "fresh_payload_hash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+  "format_version": 2,
+  "source_hashes": 87,
+  "source_comment_followup_pending": true
+}

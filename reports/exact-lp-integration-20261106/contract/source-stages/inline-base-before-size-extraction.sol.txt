@@ -1,0 +1,320 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {ZZZModule} from "./ZZZModule.sol";
+import {ZZZCanonicalLedger} from "./ZZZCanonicalLedger.sol";
+import {ExactLPAllocation} from "../libraries/ExactLPAllocation.sol";
+import {Ids} from "../libraries/ZZZTypes.sol";
+
+interface IExactLPOrdinals {
+    function mintedCount() external view returns (uint256);
+    function mintOrdinalOf(uint256 id) external view returns (uint256);
+    function tokenAtOrdinal(uint256 ordinal) external view returns (uint256);
+}
+interface IExactLPVaultState {
+    function ACCOUNTING_VERSION() external view returns (uint256);
+    function bucketCount() external view returns (uint256);
+    function bucketAt(uint256 index) external view returns (uint256);
+    function nftBucket(uint256 id) external view returns (uint256);
+    function sharesOf(uint256 id) external view returns (uint256);
+    function bucketTotalShares(uint256 bucket) external view returns (uint256);
+}
+interface IExactLPMembership {
+    function eligible(uint256 id) external view returns (bool);
+    function totalEligible() external view returns (uint256);
+}
+interface IExactLPPools { function activationAssets() external view returns (address); }
+interface IExactLPAssets { function zzz() external view returns (address); }
+
+/// @notice Fixed-pair whole-unit storage and lossless V9 canonical codec.
+/// @dev Weights are seeded before ANY raw book/phase is restored. Export does
+/// not materialize or flatten rights, so pending money advances exactly the
+/// same fairness phase after import or an abort. No source books are deleted.
+abstract contract ZZZExactLPRewardsCanonical is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
+    using ExactLPAllocation for ExactLPAllocation.Tree;
+    uint256 public constant MAX_ERC20_ASSETS = 1;
+    uint256 public constant MAX_ASSETS = 2;
+    uint256 public constant MAX_CONVERSION_NFTS = 32;
+    uint256 public constant LP_ALLOCATION_VERSION = 1;
+    uint256 private constant CANONICAL_NODES = 2023;
+
+    address[] public assets;
+    mapping(address => bool) public isAsset;
+    mapping(address => uint256) public liabilities;
+    mapping(address => uint256) public orphaned;
+    mapping(uint256 => ExactLPAllocation.Tree) internal ownerBooks;
+    ExactLPAllocation.Tree internal collectiveBook;
+    mapping(uint256 => mapping(address => uint256)) internal directIndividual;
+    mapping(uint256 => mapping(address => uint256)) internal directCollective;
+    mapping(address => uint256) public directLiabilities;
+    mapping(uint256 => uint256) public rewardBucket;
+    event AssetAdded(address indexed token);
+
+    struct CanonicalHeader {
+        uint256 version;
+        uint256 assetTotal;
+        uint256 bucketTotal;
+        uint256 nftTotal;
+        uint256[4] buckets;
+    }
+    struct CanonicalAsset {
+        address asset;
+        uint256 liability;
+        uint256 orphan;
+        uint256 backing;
+        uint256 directExpected;
+        uint256[5] treeExpected;
+    }
+    struct CanonicalSeed {
+        uint256 id;
+        uint256 bucket;
+        uint256 shares;
+        bool eligible;
+        uint256[2] personal;
+        uint256[2] shared;
+    }
+    struct CanonicalNode {
+        uint256 node;
+        uint256[10] pending;
+        uint128[10] high;
+        uint256[10] low;
+    }
+
+    uint256 private canonicalNFTs;
+    uint256 private canonicalBuckets;
+    uint256 private canonicalAssetTotal;
+    uint256[4] private canonicalBucketIds;
+    uint256[2] private canonicalExpectedDirect;
+    uint256[5][2] private canonicalExpectedTrees;
+    bool private canonicalImported;
+
+    constructor(address controller) ZZZModule(controller) {
+        assets.push(address(0));
+        isAsset[address(0)] = true;
+        emit AssetAdded(address(0));
+    }
+    function _canonicalAccess() internal view override returns (address) { return address(access); }
+    function _ordinal(uint256 id) internal view returns (uint256 ordinal) {
+        IExactLPOrdinals nft = IExactLPOrdinals(access.module(Ids.NFT));
+        ordinal = nft.mintOrdinalOf(id);
+        if (ordinal == 0 || ordinal > 1000 || nft.tokenAtOrdinal(ordinal) != id) revert InvalidState();
+    }
+    function _asset(address token) internal view returns (ExactLPAllocation.Asset) {
+        if (!isAsset[token]) revert InvalidConfiguration();
+        return token == address(0) ? ExactLPAllocation.Asset.ETH : ExactLPAllocation.Asset.ZZZ;
+    }
+    function _validateZZZ(address token) internal view {
+        if (token == address(0) || token.code.length == 0 ||
+            IExactLPAssets(IExactLPPools(access.module(Ids.POOLS)).activationAssets()).zzz() != token)
+            revert InvalidConfiguration();
+    }
+    function _canonicalTree(uint256 index) private view returns (ExactLPAllocation.Tree storage tree) {
+        if (index == 0) return collectiveBook;
+        return ownerBooks[canonicalBucketIds[index - 1]];
+    }
+    function _checkRoots() private view {
+        IExactLPVaultState vault = IExactLPVaultState(access.module(Ids.VAULT));
+        if (vault.ACCOUNTING_VERSION() != 7 || vault.bucketCount() != canonicalBuckets ||
+            IExactLPOrdinals(access.module(Ids.NFT)).mintedCount() != canonicalNFTs ||
+            collectiveBook.totalWeight() != IExactLPMembership(access.module(Ids.MEMBERSHIP)).totalEligible() ||
+            collectiveBook.totalWeight() > 1000) revert CanonicalState();
+        for (uint256 i; i < canonicalBuckets; ++i) {
+            uint256 bucket = canonicalBucketIds[i];
+            uint256 supply = vault.bucketTotalShares(bucket);
+            if (vault.bucketAt(i) != bucket || ownerBooks[bucket].totalWeight() != supply)
+                revert CanonicalState();
+        }
+    }
+    function _checkBooks(bool importing) private view {
+        for (uint256 a; a < canonicalAssetTotal; ++a) {
+            address token = assets[a];
+            uint256 total = directLiabilities[token];
+            if (importing && total != canonicalExpectedDirect[a]) revert CanonicalState();
+            for (uint256 t; t <= canonicalBuckets; ++t) {
+                uint256 pending = _canonicalTree(t).outstanding(ExactLPAllocation.Asset(a));
+                if (importing && pending != canonicalExpectedTrees[a][t]) revert CanonicalState();
+                total += pending;
+            }
+            if (total != liabilities[token] || (canonicalNFTs == 0 && total != 0)) revert CanonicalState();
+        }
+        if (canonicalAssetTotal == 1) for (uint256 t; t <= canonicalBuckets; ++t)
+            if (_canonicalTree(t).outstanding(ExactLPAllocation.Asset.ZZZ) != 0) revert CanonicalState();
+    }
+
+    function canonicalCapture() external canonicalOnly {
+        if (_reentrancyGuardEntered()) revert CanonicalState();
+        _canonicalBeginCapture();
+        canonicalImported = false;
+        canonicalNFTs = IExactLPOrdinals(access.module(Ids.NFT)).mintedCount();
+        IExactLPVaultState vault = IExactLPVaultState(access.module(Ids.VAULT));
+        canonicalBuckets = vault.bucketCount();
+        canonicalAssetTotal = assets.length;
+        if (canonicalNFTs > 1000 || canonicalBuckets > 4 || canonicalAssetTotal == 0 || canonicalAssetTotal > 2 ||
+            assets[0] != address(0)) revert CanonicalState();
+        if (canonicalAssetTotal == 2) _validateZZZ(assets[1]);
+        for (uint256 i; i < 4; ++i) canonicalBucketIds[i] = i < canonicalBuckets ? vault.bucketAt(i) : 0;
+        _checkRoots();
+        _checkBooks(false);
+        for (uint256 a; a < canonicalAssetTotal; ++a) {
+            address token = assets[a];
+            uint256 amount = _canonicalBalance(token);
+            if (amount < liabilities[token] + orphaned[token]) revert CanonicalState();
+            _canonicalAdd(token, amount, 0);
+        }
+    }
+    function canonicalSettle() external canonicalOnly {}
+    function canonicalCount() public view returns (uint256) {
+        // No minted ordinal means no possible enrolled weight or carry. Keep
+        // the truly empty case cheap, without introducing a sparse catalogue.
+        return 1 + canonicalAssetTotal + canonicalNFTs + (canonicalNFTs == 0 ? 0 : CANONICAL_NODES);
+    }
+    function canonicalExport(uint256 row) external view returns (bytes memory) {
+        if (_reentrancyGuardEntered() || (_state() != 1 && _state() != 3) ||
+            !canonicalCaptured || row >= canonicalCount()) revert CanonicalState();
+        if (row == 0) return abi.encode(CanonicalHeader(LP_ALLOCATION_VERSION, canonicalAssetTotal,
+            canonicalBuckets, canonicalNFTs, canonicalBucketIds));
+        --row;
+        if (row < canonicalAssetTotal) {
+            address token = assets[row];
+            CanonicalAsset memory r;
+            r.asset = token; r.liability = liabilities[token]; r.orphan = orphaned[token];
+            r.backing = canonicalAmounts[row]; r.directExpected = directLiabilities[token];
+            for (uint256 t; t <= canonicalBuckets; ++t)
+                r.treeExpected[t] = _canonicalTree(t).outstanding(ExactLPAllocation.Asset(row));
+            return abi.encode(r);
+        }
+        row -= canonicalAssetTotal;
+        if (row < canonicalNFTs) return abi.encode(_exportSeed(row + 1));
+        return abi.encode(_exportNode(row - canonicalNFTs + 1));
+    }
+    function _exportSeed(uint256 ordinal) private view returns (CanonicalSeed memory r) {
+        r.id = IExactLPOrdinals(access.module(Ids.NFT)).tokenAtOrdinal(ordinal);
+        if (_ordinal(r.id) != ordinal) revert CanonicalState();
+        IExactLPVaultState vault = IExactLPVaultState(access.module(Ids.VAULT));
+        r.bucket = vault.nftBucket(r.id); r.shares = vault.sharesOf(r.id);
+        r.eligible = IExactLPMembership(access.module(Ids.MEMBERSHIP)).eligible(r.id);
+        if ((r.shares != 0) != r.eligible || (r.bucket != 0) != r.eligible || rewardBucket[r.id] != r.bucket ||
+            collectiveBook.weightOf(ordinal) != (r.eligible ? 1 : 0)) revert CanonicalState();
+        for (uint256 t; t < canonicalBuckets; ++t) if (ownerBooks[canonicalBucketIds[t]].weightOf(ordinal) !=
+            (r.bucket == canonicalBucketIds[t] ? r.shares : 0)) revert CanonicalState();
+        for (uint256 a; a < canonicalAssetTotal; ++a) {
+            r.personal[a] = directIndividual[r.id][assets[a]];
+            r.shared[a] = directCollective[r.id][assets[a]];
+            if (!r.eligible && r.personal[a] + r.shared[a] != 0) revert CanonicalState();
+        }
+    }
+    function _exportNode(uint256 node) private view returns (CanonicalNode memory r) {
+        r.node = node;
+        for (uint256 t; t <= canonicalBuckets; ++t) {
+            ExactLPAllocation.Tree storage tree = _canonicalTree(t);
+            for (uint256 a; a < 2; ++a) {
+                uint256 slot = 2 * t + a;
+                ExactLPAllocation.Book storage b = tree.books[a];
+                r.pending[slot] = b.pending[node];
+                r.high[slot] = b.carry[node].high; r.low[slot] = b.carry[node].low;
+                _checkNode(node, tree.weights[node], r.pending[slot], r.high[slot], r.low[slot], a);
+            }
+        }
+    }
+    function _checkNode(uint256 node, uint256 weight, uint256 pending, uint128 high, uint256 low, uint256 a)
+        private view {
+        if (a >= canonicalAssetTotal && (pending != 0 || high != 0 || low != 0)) revert CanonicalState();
+        if (node >= 1024) {
+            if (high != 0 || low != 0 || (node - 1023 > canonicalNFTs && pending != 0)) revert CanonicalState();
+        } else if (weight == 0 ? pending != 0 || low != 0 : low >= weight) revert CanonicalState();
+    }
+
+    function canonicalImport(uint256 row, bytes calldata record) external canonicalOnly {
+        _canonicalNext(row);
+        if (row == 0) {
+            if (record.length != 256) revert CanonicalState();
+            CanonicalHeader memory h = abi.decode(record, (CanonicalHeader));
+            if (h.version != LP_ALLOCATION_VERSION || h.assetTotal == 0 || h.assetTotal > 2 || h.bucketTotal > 4 ||
+                h.nftTotal > 1000 || (assets.length != 1 && assets.length != h.assetTotal) ||
+                collectiveBook.totalWeight() != 0) revert CanonicalState();
+            canonicalAssetTotal = h.assetTotal; canonicalBuckets = h.bucketTotal; canonicalNFTs = h.nftTotal;
+            IExactLPVaultState vault = IExactLPVaultState(access.module(Ids.VAULT));
+            if (vault.ACCOUNTING_VERSION() != 7 || vault.bucketCount() != canonicalBuckets ||
+                IExactLPOrdinals(access.module(Ids.NFT)).mintedCount() != canonicalNFTs) revert CanonicalState();
+            for (uint256 i; i < 4; ++i) {
+                if (h.buckets[i] != (i < canonicalBuckets ? vault.bucketAt(i) : 0)) revert CanonicalState();
+                canonicalBucketIds[i] = h.buckets[i];
+            }
+            canonicalImported = true;
+            return;
+        }
+        if (row >= canonicalCount()) revert CanonicalState();
+        --row;
+        if (row < canonicalAssetTotal) {
+            if (record.length != 320) revert CanonicalState();
+            CanonicalAsset memory r = abi.decode(record, (CanonicalAsset));
+            if ((row == 0 ? r.asset != address(0) : r.asset == address(0)) || liabilities[r.asset] != 0 ||
+                orphaned[r.asset] != 0 || directLiabilities[r.asset] != 0 || r.backing < r.liability + r.orphan)
+                revert CanonicalState();
+            if (row != 0) _validateZZZ(r.asset);
+            if (assets.length == row) { if (isAsset[r.asset]) revert CanonicalState(); assets.push(r.asset); isAsset[r.asset] = true; }
+            if (assets[row] != r.asset) revert CanonicalState();
+            liabilities[r.asset] = r.liability; orphaned[r.asset] = r.orphan;
+            canonicalExpectedDirect[row] = r.directExpected;
+            canonicalExpectedTrees[row] = r.treeExpected;
+            for (uint256 t = canonicalBuckets + 1; t < 5; ++t) if (r.treeExpected[t] != 0) revert CanonicalState();
+            _canonicalAdd(r.asset, r.backing, _canonicalBalance(r.asset));
+            return;
+        }
+        row -= canonicalAssetTotal;
+        if (row < canonicalNFTs) {
+            if (record.length != 256) revert CanonicalState();
+            _importSeed(row + 1, abi.decode(record, (CanonicalSeed)));
+            return;
+        }
+        if (record.length != 992) revert CanonicalState();
+        CanonicalNode memory r = abi.decode(record, (CanonicalNode));
+        if (r.node != row - canonicalNFTs + 1) revert CanonicalState();
+        for (uint256 t; t < 5; ++t) for (uint256 a; a < 2; ++a) {
+            uint256 slot = 2 * t + a;
+            if (t > canonicalBuckets) {
+                if (r.pending[slot] != 0 || r.high[slot] != 0 || r.low[slot] != 0) revert CanonicalState();
+                continue;
+            }
+            ExactLPAllocation.Tree storage tree = _canonicalTree(t);
+            _checkNode(r.node, tree.weights[r.node], r.pending[slot], r.high[slot], r.low[slot], a);
+            ExactLPAllocation.Book storage book = tree.books[a];
+            if (book.pending[r.node] != 0 || book.carry[r.node].high != 0 || book.carry[r.node].low != 0)
+                revert CanonicalState();
+            book.pending[r.node] = r.pending[slot];
+            book.carry[r.node] = ExactLPAllocation.Carry(r.high[slot], r.low[slot]);
+            book.outstanding += r.pending[slot];
+        }
+    }
+    function _importSeed(uint256 ordinal, CanonicalSeed memory r) private {
+        if (_ordinal(r.id) != ordinal || rewardBucket[r.id] != 0) revert CanonicalState();
+        IExactLPVaultState vault = IExactLPVaultState(access.module(Ids.VAULT));
+        if (r.bucket != vault.nftBucket(r.id) || r.shares != vault.sharesOf(r.id) ||
+            r.eligible != IExactLPMembership(access.module(Ids.MEMBERSHIP)).eligible(r.id) ||
+            (r.shares != 0) != r.eligible || (r.bucket != 0) != r.eligible) revert CanonicalState();
+        if (r.eligible) {
+            bool found;
+            for (uint256 t; t < canonicalBuckets; ++t) if (canonicalBucketIds[t] == r.bucket) found = true;
+            if (!found) revert CanonicalState();
+            rewardBucket[r.id] = r.bucket;
+            ownerBooks[r.bucket].setWeight(ordinal, r.shares);
+            collectiveBook.setWeight(ordinal, 1);
+        }
+        for (uint256 a; a < 2; ++a) {
+            if (a >= canonicalAssetTotal) { if (r.personal[a] != 0 || r.shared[a] != 0) revert CanonicalState(); continue; }
+            if (!r.eligible && r.personal[a] + r.shared[a] != 0) revert CanonicalState();
+            address token = assets[a];
+            directIndividual[r.id][token] = r.personal[a]; directCollective[r.id][token] = r.shared[a];
+            directLiabilities[token] += r.personal[a] + r.shared[a];
+        }
+    }
+    function canonicalValidate() external view {
+        if (_reentrancyGuardEntered() || (!canonicalCaptured && !canonicalImported) ||
+            (_state() == 2 && canonicalCursor != canonicalCount()))
+            revert CanonicalState();
+        _checkRoots();
+        _checkBooks(_state() == 2);
+        _canonicalValidateBacking();
+    }
+}

@@ -1,7 +1,9 @@
 # Original-currency royalty balances and history
 
-Fresh reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4, the exact runtime
-and canonicalV8. Use `"royalty_reporting":{"schema":5,"converter":null}`.
+Fresh accounting7 reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4, the exact
+runtime and canonicalV9. Use `"royalty_reporting":{"schema":5,"converter":null}`.
+Historical accounting6/reporting5/V8 retains the same royalty allocation rules
+under its separately pinned graph; the version labels are not interchangeable.
 Royalties stay in original units: no converter, unwrap, route, feed or keeper
 is required for a raw claim. LP conversion remains independent.
 
@@ -48,21 +50,26 @@ cohort. GCD normalization preserves ideal whole-unit shares when all are integra
 nonintegral mixed cohorts use deterministic rotation, not nearest rounding per NFT.
 See [the exact rule](EXACT_ROYALTY_ALLOCATION.md).
 
-Checkpoint state preserves original activation order, ticket starts, currency
-cursors, opening/cutoff state and whole royalty units. Historical/LP scaled
-fractions remain separate. Compare raw replay against checkpoint plus suffix.
+Historical6 checkpoint1 preserves original activation order, ticket starts,
+currency cursors, opening/cutoff state and whole royalty units. Fresh7 rejects
+checkpoint1 and uses complete raw replay; exact checkpoint2 remains open.
+Historical scaled LP books remain historical; fresh7 LP rewards use their
+separate exact-unit trees. Compare any admitted checkpoint against raw replay
+under that checkpoint's original profile, not by relabelling its seed.
 Semantic source changes require reviewed rebuild/re-pin. The full rolling24-hour
 earnings period stays86,400seconds; it is not the one-hour opening window.
 
 ## Lineage, capacity and unsigned claims
 
 Each predecessor declares its OWN royalty_reporting schema and runtime pins;
-no omitted/inherited field may turn V8 into an older V6 reader. Matching new
-peers carry reporting5. Historical peers keep their own declared profiles.
+no omitted/inherited field may turn V9 into a V8 or older reader. Matching new
+peers carry accounting7/V9/reporting5. Historical peers keep their own declared profiles.
 Existing lineage/workload release limitations remain; a profile declaration is
 not operating qualification.
 
-Inventory13 permits65royalty currencies includingETH and97combined descriptors.
+Current inventory16 permits65royalty currencies includingETH and66 combined
+token records for the fixed ETH/ZZZ pair plus royalty-only currencies. Historical
+inventory13 retains its own97-record bound; neither raises the API work budget.
 Operating ERC20 capacity starts16 and can increase to64 only after review. Work,
 RPC/history/checkpoint budgets are not raised automatically. A new admission
 requires reviewed client descriptors and a separately authorized configuration
@@ -71,8 +78,10 @@ rollout; raw claims need no USD feed.
 The router still permits32selected NFT/currency/ledger entries. Simulate exact
 claims and use smaller healthy batches if gas or a currency failure prevents
 one batch. Failed selected payouts revert atomically; LP-only claims remain a
-separate choice. Source helpers understand reporting5, but complete fresh native6
-site integration/qualification remains open; public signing stays disabled.
+separate choice. Source helpers understand reporting5 and the fresh7 fixed-child
+graph; the production inventory pins19 callable helpers plus2 inert data children.
+Complete source9/fresh7 site integration/qualification remains open; the served
+current3 site is unchanged and public signing stays disabled.
 
 See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claim router](CLAIM_ROUTER.md),
 [window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).

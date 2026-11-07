@@ -51,7 +51,7 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
         assertEq(vault.sharesOf(entrant),oldShares*200/2010,"old compound stays in share price");
         assertEq(rewards.claimable(first,address(t0)),90);
         assertEq(rewards.claimable(entrant,address(t0)),0,"no past fee rights");
-        assertEq(t0.allowance(address(vault),address(venue)),0);
+
         assertEq(t1.allowance(address(vault),address(venue)),0);
 
         // The retained assets are usable later; there is no sweep or new share
@@ -78,7 +78,7 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
         // Only96 of this100 becomes LP. Deploying the old40 idle as well
         // would incorrectly hide that failure behind a larger physical LP delta.
         vm.prank(bob);vm.expectRevert(bytes4(keccak256("Slippage()")));
-        vault.activate(entrant,poolId,50,50,1,block.timestamp+100);
+        vault.activate{value:50}(entrant, poolId, 50, 50, 1, block.timestamp+100);
 
         assertEq(vault.nftBucket(entrant),0);
         assertEq(vault.sharesOf(entrant),0);
@@ -87,7 +87,7 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
         assertEq(vault.group(bucket).idle1,before.idle1);
         assertEq(venue.a0(before.lpTokenId),980);
         assertEq(venue.a1(before.lpTokenId),980);
-        assertEq(t0.balanceOf(bob),100000);
+        assertEq(bob.balance,1 ether-0.05 ether);
         assertEq(t1.balanceOf(bob),100000);
         assertFalse(membership.eligible(entrant));
     }
@@ -103,7 +103,7 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
         venue.setSpendBps(9700);
 
         vm.prank(bob);vm.expectRevert(bytes4(keccak256("Slippage()")));
-        vault.activate(entrant,poolId,50,50,1,block.timestamp+100);
+        vault.activate{value:50}(entrant, poolId, 50, 50, 1, block.timestamp+100);
 
         assertEq(vault.nftBucket(entrant),0);
         assertEq(vault.bucketTotalShares(bucket),oldShares);
@@ -125,7 +125,7 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
         // The bucket has70 of token0 after the deposit; the entrant owns only50
         // of that execution budget. A plan for51 must not borrow old principal.
         vm.prank(bob);vm.expectRevert(bytes("entrant budget"));
-        vault.activate(entrant,poolId,50,50,1,block.timestamp+100);
+        vault.activate{value:50}(entrant, poolId, 50, 50, 1, block.timestamp+100);
         assertEq(vault.group(bucket).idle0,20);
 
         policy.setSwapAmount(5);
@@ -139,15 +139,15 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
 
     function testRawPrefundCannotBackAnIncorrectBalancerReturn() public {
         uint256 entrant=_mint(bob);
-        t0.mint(address(vault),777);
+        _giftNative(address(vault), 777);
         venue.setBalanceReportExtra0(1);
 
         // The fake venue reports one extra unit without transferring it. A
         // backing-only check could incorrectly consume the pre-existing777.
         vm.prank(bob);vm.expectRevert(bytes4(keccak256("InvalidState()")));
-        vault.activate(entrant,poolId,50,50,1,block.timestamp+100);
+        vault.activate{value:50}(entrant, poolId, 50, 50, 1, block.timestamp+100);
 
-        assertEq(t0.balanceOf(address(vault)),777);
+        assertEq(address(address(vault)).balance,777);
         assertEq(vault.totalIdle(address(t0)),0);
         assertEq(vault.nftBucket(entrant),0);
         assertEq(vault.sharesOf(entrant),0);
@@ -157,15 +157,15 @@ contract ContributionBudgetIsolationTest is PooledVaultFixture {
     function testCompleteBalancingContextCoversApprovalAndResetCallbacks() public {
         uint256 entrant=_mint(bob);
         ContributionContextCallbackToken implementation=new ContributionContextCallbackToken();
-        vm.etch(address(t0),address(implementation).code);
+        vm.etch(address(t1),address(implementation).code);
         for(uint256 mode;mode<2;++mode){
-            ContributionContextCallbackToken(address(t0)).arm(venue,address(vault),mode==1);
+            ContributionContextCallbackToken(address(t1)).arm(venue,address(vault),mode==1);
             vm.prank(bob);vm.expectRevert(bytes4(keccak256("InvalidState()")));
-            vault.activate(entrant,poolId,50,50,1,block.timestamp+100);
+            vault.activate{value:50}(entrant, poolId, 50, 50, 1, block.timestamp+100);
             assertEq(venue.balanceContext(poolId),bytes32(0),"callback policy update rolled back");
             assertEq(vault.nftBucket(entrant),0);
             assertEq(vault.sharesOf(entrant),0);
-            assertEq(t0.balanceOf(bob),100000);
+            assertEq(bob.balance,1 ether-0.05 ether);
             assertFalse(membership.eligible(entrant));
         }
     }

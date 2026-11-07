@@ -128,8 +128,8 @@ contract HolderCollectiveExitTest is Test {
         ac.bind(Ids.REWARDS,address(rewards));ac.bind(Ids.FEES,address(fees));ac.bind(Ids.ORACLE,address(oracle));
         ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.LIQUIDITY,address(venue));ac.bind(Ids.STRATEGY,address(new HolderExitPolicy()));
         ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.BUYBACK,address(new ZZZBuyback(address(ac),address(token),1e30)));
-        ac.setKeeper(address(this),true);rewards.addAsset(address(token));
-        pools.setActivationAssets(address(new HolderExitIdentity(address(token))));
+        ac.setKeeper(address(this),true);
+        pools.setActivationAssets(address(new HolderExitIdentity(address(token))));rewards.addAsset(address(token));
         migration.configureZZZ(address(token),address(token).codehash,review);
         PoolConfig memory c;c.key=PoolKey(address(0),address(token),10020,60,address(0));c.operationsEnabled=true;c.depositsEnabled=true;
         c.rangeBps=1000;c.triggerBps=100;c.maxSpotDeviationBps=100;c.maxSlippageBps=200;c.minRebalanceInterval=600;

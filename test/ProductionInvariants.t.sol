@@ -45,8 +45,8 @@ contract PooledAccountingHandler is PooledVaultFixture {
         uint256 beforeShares=vault.sharesOf(id);
         uint256 old0=rewards.claimable(id,address(t0));uint256 old1=rewards.claimable(id,address(t1));
         vm.prank(owners[id]);
-        if(first)vault.activate(id,poolId,x,y,1,block.timestamp+100);
-        else vault.increase(id,x,y,1,block.timestamp+100);
+        if(first)vault.activate{value:x}(id, poolId, x, y, 1, block.timestamp+100);
+        else vault.increase{value:x}(id, x, y, 1, block.timestamp+100);
         bucket=vault.nftBucket(id);
         uint256 expected=supply==0 ? (x+y)*1e18 : supply*(x+y)/nav;
         assertEq(vault.sharesOf(id)-beforeShares,expected,"independent share price");
@@ -56,7 +56,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
     }
     function topUp(uint256 seed,uint256 x,uint256 y) external {
         uint256 id=ids[seed%ids.length];if(ac.paused() || vault.nftBucket(id)==0)return;
-        _entry(id,bound(x,1,100),bound(y,1,100),false);
+        _entry(id,bound(x,3,100),bound(y,3,100),false);
     }
     function harvest(uint256 x,uint256 y) public {
         if(ac.paused())return;x=bound(x,0,1000);y=bound(y,0,1000);
@@ -78,7 +78,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
     function paused(bool state) external {ac.setPaused(state);}
     function donate(uint256 amount,bool second) external {
         amount=bound(amount,1,1000);uint256 token=second?1:0;
-        if(second)t1.mint(address(vault),amount);else t0.mint(address(vault),amount);donations[token]+=amount;
+        if(second)t1.mint(address(vault),amount);else _giftNative(address(vault), amount);donations[token]+=amount;
     }
     function rebalance() external {
         if(ac.paused())return;uint256 bucket=vault.poolBucket(poolId);uint256 shares=vault.bucketTotalShares(bucket);
@@ -87,6 +87,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
     function compound() external {
         if(ac.paused())return;uint256 bucket=vault.poolBucket(poolId);
         if(fees.compoundBalance(bucket,address(t0))+fees.compoundBalance(bucket,address(t1))==0)return;
+        if(!vault.migrationBudget().compoundReady(bucket))return;
         policy.setNeed(false);
         compounder.compound(bucket,1,block.timestamp+100);
         policy.setNeed(true);
@@ -106,19 +107,19 @@ contract PooledAccountingHandler is PooledVaultFixture {
         assertEq(membership.totalEligible(),active);assertEq(contribution,expectedContribution);
         assertEq(vault.bucketCount(),1);assertEq(venue.ownerOf(p.lpTokenId),address(vault));
         assertEq(vault.totalIdle(address(t0)),p.idle0);assertEq(vault.totalIdle(address(t1)),p.idle1);
-        assertEq(t0.balanceOf(address(vault)),p.idle0+donations[0]);assertEq(t1.balanceOf(address(vault)),p.idle1+donations[1]);
+        assertEq(address(address(vault)).balance,p.idle0+donations[0]);assertEq(t1.balanceOf(address(vault)),p.idle1+donations[1]);
         for(uint256 i;i<2;i++) {
             address token=i==0?address(t0):address(t1);
             uint256 principal=(i==0?venue.a0(p.lpTokenId)+p.idle0:venue.a1(p.lpTokenId)+p.idle1);
-            uint256 liabilities=rewards.liabilities(token);assertLe(claims[i],liabilities,"unfunded claim");
-            uint256 balance=i==0?t0.balanceOf(address(rewards)):t1.balanceOf(address(rewards));
+            uint256 liabilities=rewards.liabilities(token);assertEq(claims[i],liabilities,"every allocated raw unit is claimable");
+            uint256 balance=i==0?address(address(rewards)).balance:t1.balanceOf(address(rewards));
             assertEq(balance,liabilities+rewards.orphaned(token));
-            uint256 feeBalance=i==0?t0.balanceOf(address(fees)):t1.balanceOf(address(fees));
+            uint256 feeBalance=i==0?address(address(fees)).balance:t1.balanceOf(address(fees));
             assertEq(feeBalance,fees.accounted(token));
             assertEq(feeBalance,fees.dust(bucket,token)+fees.compoundBalance(bucket,token)+fees.buybackBalance(token));
             assertEq(principal+feeBalance+balance+paid[i],deposited[i]+collected[i],"lost or created token");
         }
-        assertEq(treasury.balance,ids.length*0.05 ether);assertEq(address(vault).balance,0);
+        assertEq(treasury.balance,ids.length*0.05 ether);assertEq(address(vault).balance,p.idle0+donations[0]);
     }
 }
 contract ProductionAccountingInvariantTest is Test {

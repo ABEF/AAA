@@ -45,7 +45,7 @@ class ActivationConfig:
         if type(self.review_policy_version) is not int or self.review_policy_version not in (0,1,2):
             raise ValueError('Unsupported explicit activation review-policy profile')
         if 'review_policy_version' in config: fields.add('review_policy_version')
-        if self.pricing_version == 2 and self.review_policy_version != (2 if projection.accounting_version==6 else 1):
+        if self.pricing_version == 2 and self.review_policy_version != (2 if projection.accounting_version in (6,7) else 1):
             raise ValueError('Dual-price activation preparation requires explicit review_policy_version 1; update the reviewed Entry/Pricing bindings')
         if self.review_policy_version in (1,2) and self.pricing_version != 2:
             raise ValueError('Reviewed Entry requires explicit dual pricing version 2')
@@ -60,9 +60,9 @@ class ActivationConfig:
         if 'maintenance_policy_version' in config: fields.add('maintenance_policy_version')
         if projection.accounting_version == 4 and self.maintenance_policy_version not in (1,2):
             raise ValueError('Accounting4 activation requires explicit maintenance_policy_version 1 or 2')
-        if projection.accounting_version in (5,6) and self.maintenance_policy_version != 3:
+        if projection.accounting_version in (5,6,7) and self.maintenance_policy_version != 3:
             raise ValueError('Accounting5 requires explicit maintenance_policy_version3')
-        if projection.accounting_version not in (4,5,6) and self.maintenance_policy_version != 0:
+        if projection.accounting_version not in (4,5,6,7) and self.maintenance_policy_version != 0:
             raise ValueError('Maintenance-policy activation profiles require explicit accounting4')
         if self.maintenance_policy_version in (2,3) and self.range_policy_version != 1:
             raise ValueError('Outside-only maintenance requires the explicit reviewed range-policy profile')
@@ -72,12 +72,12 @@ class ActivationConfig:
         if 'lp_routing_version' in config: fields.add('lp_routing_version')
         if self.lp_routing_version == 1 and (projection.accounting_version != 4 or self.maintenance_policy_version != 2):
             raise ValueError('LP routing requires explicit accounting4 and outside-only maintenance2')
-        if self.lp_routing_version == 2 and (projection.accounting_version not in (5,6) or self.maintenance_policy_version != 3):
+        if self.lp_routing_version == 2 and (projection.accounting_version not in (5,6,7) or self.maintenance_policy_version != 3):
             raise ValueError('LP routing2 requires explicit accounting5 and threshold maintenance3')
         self.portfolio_version = config.get('portfolio_version',0)
         if 'portfolio_version' in config: fields.add('portfolio_version')
         if (type(self.portfolio_version) is not int or self.portfolio_version not in (0,1,2) or
-                self.portfolio_version != (2 if projection.accounting_version==6 else 1 if projection.accounting_version==5 else 0) or
+                self.portfolio_version != (2 if projection.accounting_version in (6,7) else 1 if projection.accounting_version==5 else 0) or
                 self.portfolio_version in (1,2) and self.lp_routing_version != 2):
             raise ValueError('Portfolio1 requires the explicit fresh accounting5/routing2 profile')
         self.execution_quality_version = config.get('execution_quality_version', 0)
@@ -93,54 +93,54 @@ class ActivationConfig:
         if self.rebalance_confirmation_version in (1,2) and (projection.accounting_version!=4 or
                 self.maintenance_policy_version!=2 or self.execution_quality_version!=1):
             raise ValueError('Confirmation requires accounting4, maintenance2 and execution quality1')
-        if projection.accounting_version in (5,6) and (self.rebalance_confirmation_version != 3 or
+        if projection.accounting_version in (5,6,7) and (self.rebalance_confirmation_version != 3 or
                 self.execution_quality_version != 1 or self.lp_routing_version != 2):
             raise ValueError('Accounting5 requires confirmation3, execution quality1 and LP routing2')
-        if self.rebalance_confirmation_version == 3 and projection.accounting_version not in (5,6):
+        if self.rebalance_confirmation_version == 3 and projection.accounting_version not in (5,6,7):
             raise ValueError('Confirmation3 cannot relabel an historical deployment')
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
-        if self.pricing_version == 2 and (self.routing_version not in (2,3) or projection.accounting_version not in (2, 3, 4, 5, 6)):
+        if self.pricing_version == 2 and (self.routing_version not in (2,3) or projection.accounting_version not in (2,3,4,5,6,7)):
             raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
-        if self.routing_version in (2,3) and projection.accounting_version not in (2, 3, 4, 5, 6):
+        if self.routing_version in (2,3) and projection.accounting_version not in (2,3,4,5,6,7):
             raise ValueError('Typed routing requires native accounting version 2')
-        if projection.accounting_version in (3, 4, 5, 6) and (self.routing_version not in (2,3) or
-                self.pricing_version != 2 or self.review_policy_version != (2 if projection.accounting_version==6 else 1)):
+        if projection.accounting_version in (3,4,5,6,7) and (self.routing_version not in (2,3) or
+                self.pricing_version != 2 or self.review_policy_version != (2 if projection.accounting_version in (6,7) else 1)):
             raise ValueError('Local Position V3 requires typed routing, dual pricing and caller-bound review')
-        if self.routing_version == 3 and (projection.accounting_version != 6 or
+        if self.routing_version == 3 and (projection.accounting_version not in (6,7) or
                 self.pricing_version != 2 or self.review_policy_version != 2 or
                 getattr(projection,'fee_intake_version',0) != 1):
-            raise ValueError('Direct Entry3 requires explicit accounting6/pricing2/review2/fee1')
+            raise ValueError('Direct Entry3 requires explicit policy accounting6/7, pricing2, review2 and fee1')
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
               ({'balancing_router'} if self.lp_routing_version in (1,2) else set()) |
               ({'portfolio_policy','lp_balance_math','lp_position_executor'} if self.portfolio_version in (1,2) else set()) |
-              ({'protocol_policy'} if projection.accounting_version==6 else set()) |
+              ({'protocol_policy'} if projection.accounting_version in (6,7) else set()) |
               ({'rebalance_confirmation'} if self.rebalance_confirmation_version in (1,2,3) else set()) |
               ({'contribution_pricing'} if self.pricing_version == 2 else set()), 'activation contracts')
         self.contracts = {}
         for role, item in config['contracts'].items():
             _keys(item, {'address', 'code_hash'}, 'activation contract')
             self.contracts[role] = Contract(address(item['address']), _hash(item['code_hash']))
-        if projection.accounting_version in (4,5,6) and self.contracts['migration'] != projection.contracts['principal_exit']:
+        if projection.accounting_version in (4,5,6,7) and self.contracts['migration'] != projection.contracts['principal_exit']:
             raise ValueError('Activation and read profiles must pin the same holder-exit module')
-        if projection.accounting_version in (5,6):
+        if projection.accounting_version in (5,6,7):
             for role in set(self.contracts) & set(projection.contracts):
                 if self.contracts[role] != projection.contracts[role]:
                     raise ValueError('Accounting5 read and preparation helper pins differ')
         addresses = [c.address for c in self.contracts.values()] + [c.address for role,c in projection.contracts.items()
-            if role != 'principal_exit' and not (projection.accounting_version in (5,6) and
+            if role != 'principal_exit' and not (projection.accounting_version in (5,6,7) and
                 role in set(self.contracts) | {'pool_manager','state_view','position_manager','permit2'})]
         if len(addresses) != len(set(addresses)):
             raise ValueError('Activation protocol bindings must have distinct addresses')
         self.accounting_version = projection.accounting_version
         self.tokens = {}
-        for token in bounded(config['tokens'], 33 if self.accounting_version in (2, 3, 4, 5, 6) else 32, 'token inventory', 2):
+        for token in bounded(config['tokens'], 2 if self.accounting_version==7 else 33 if self.accounting_version in (2,3,4,5,6) else 32, 'token inventory', 2):
             _keys(token, {'address', 'code_hash', 'decimals'} | ({'price_policy'} if self.pricing_version == 2 else
                 {'feed', 'feed_code_hash', 'feed_decimals', 'max_age'}), 'activation token')
             token = dict(token)
-            native = self.accounting_version in (2, 3, 4, 5, 6) and token['address'] == ZERO
+            native = self.accounting_version in (2,3,4,5,6,7) and token['address'] == ZERO
             token['address'] = ZERO if native else address(token['address'])
             if self.pricing_version == 1: token['feed'] = address(token['feed'])
             if native:
@@ -170,7 +170,7 @@ class ActivationConfig:
             if target in self.dependencies or target in addresses or target in self.tokens:
                 raise ValueError('Repeated or colliding dependency')
             self.dependencies[target] = _hash(item['code_hash'])
-        if projection.accounting_version in (5,6):
+        if projection.accounting_version in (5,6,7):
             for role in ('pool_manager','state_view','position_manager','permit2'):
                 pin=projection.contracts[role]
                 if self.dependencies.get(pin.address)!=pin.code_hash:
@@ -322,7 +322,7 @@ class ActivationConfig:
             for role,method in (('entry','REVIEW_POLICY_VERSION()'),('contribution_pricing','ENTRY_REVIEW_VERSION()')):
                 if int(read(role,method)[0],16) != self.review_policy_version:
                     raise ProjectionError('Reviewed Entry/Pricing version is unsupported; no legacy fallback is permitted')
-        if self.accounting_version==6:
+        if self.accounting_version in (6,7):
             from zzz_ops.protocol_policy import observe as observe_policy
             try:
                 observe_policy(lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),

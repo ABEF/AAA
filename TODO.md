@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-11-06 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-07 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 40 In progress | 27 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 28 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -16,23 +16,6 @@ Implemented means built and locally checked, not deployed or independently audit
 
 Custody, ownership and reward accounting.
 
-<a id="task-lp-exact-unit-allocation"></a>
-
-- [ ] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - In progress. The bounded two-currency Solidity allocator is implemented and optimized: whole-unit roots/claims, both-book old-weight settlement, preserved high/low fairness phase and memory-selected paths. Current Rewards/Vault/canonical consumers still use accounting6 fractions. Finish authenticated host/canonical/consumer integration and measured full-host gas before declaring the exact-unit LP upgrade complete.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Implemented engine milestone: internal ExactLPAllocation has bounded1024leaves/1000valid ordinals, ETH/fixedZZZ books, constant-work root credits, ten-level claims/previews, both-book old-weight updates, zero-weight old-right preservation, overflow guards and outstanding-only accounting. Memory-path optimization avoids transient selected-child writes with full-state equivalence checks. It is not yet wired to live/current Rewards. [Guide](docs/EXACT_LP_ALLOCATION.md), [verification](reports/exact-lp-engine-20261106/VERIFICATION.md).
-  - Decision2026-11-06: design exact-unit LP allocation; do not ask again whether final allocated LP rounding units may remain stranded. Preserve actual-receipt80/10/5/5, individual NFT shares, equal active collective membership, current-owner claims and separate principal/compound/buyback/royalty backing.
-  - Current actual Rewards/Fees regression:20raw fee units create18holder liability; sole101-share NFT claims17, leaving1backed unit without future revenue. Do not reuse royalty4 completion or a solvency inequality as proof this LP issue is fixed. [Measured review](reports/harvesting-audit-20261106/REVIEW.md).
-  - Implement and verify bounded whole-unit allocation with old-weight settlement for every admitted currency before any share/membership change. Synchronize the new Vault leaf/denominator atomically; the existing pre-update checkpoint alone is insufficient. No1000NFT write loop per harvest, unbounded lifetime claim scan, raw-share royalty-ticket shortcut or arbitrary sweep.
-  - The initial reset-carry prototype is historical. The implemented engine preserves high phase and rebases only a low remainder through real weight changes/empty transitions. Phase loss is less than2^-128 per changed node, not a cash/payout-distance or manipulation-immunity bound; floor-boundary delays remain explicit. Preserve old whole rights and no-op state. [Implementation scope](reports/exact-lp-engine-20261106/REVIEW.md).
-  - Use explicit new LP-allocation/accounting/canonical/API/replay/checkpoint identities and exact source/runtime bindings. Preserve historical6/V8 books and journals; a future conversion of legacy fractional rights requires a reviewed fully backed cutover, not relabelling.
-  - Verify final-unit payouts for ETH and fixedZZZ, shares/growth/activations/transfers, LP conversion, both-position lifecycle, terminal return, canonical export/import/abort and exact earnings replay. Measure1000NFT/4bucket/max-asset/32claim gas under actual unchanged work limits, run normal size/static/reference checks for implementation changes and retain independent release qualification.
-
-  </details>
-
 <a id="task-lp-eth-settlement"></a>
 
 - [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open. Current typed v4 native conversion is implemented; the conversion cap defaults to 1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
@@ -43,7 +26,7 @@ Custody, ownership and reward accounting.
   - Preserve the fixed 80/10/5/5 allocation. Convert only the already-earned individual and collective holder balances; never spend principal, compounding/buyback reserves, quarantines or another NFT backing. Preserve each NFT entitlement before conversion, not current shares/membership at conversion time.
   - User approved a default 1% LP conversion loss (governance maximum 10%) with gas separate on 2026-10-20. The candidate unwraps reviewed WETH exactly or uses pinned routes, fresh independent prices, exact deltas/approvals, caller minimum and deadline. Qualify actual target-chain routes, token/wrapper behavior and complete gas costs.
   - Bind the dedicated converter before sealing; the implementation supports bounded keeper execution, ETH ledger/current-owner claims and reentrancy/lifecycle guards. Qualify and record actual deployment bindings; core sealing alone does not prove conversion readiness.
-  - Define ETH-only default claim behavior and explicit source-currency outage recovery. Failed conversion must leave original backed entitlements intact; never display an unconverted token balance as ETH. Preserve dust/fractions, transfer rights, complete handoff/abort/backing and historical claims.
+  - Define ETH-only default claim behavior and explicit source-currency outage recovery. Failed conversion must leave original backed entitlements intact; never display an unconverted token balance as ETH. Preserve LP pending/phase/direct books, historical6fractions under their own profile, transfer rights, complete handoff/abort/backing and historical claims.
   - Read API, unsigned claims and today-price earnings replay include LP conversion credits without counting them as new income or payout. Qualify full ingestion/lineage, real conversion receipts and stalled/restarted keepers; measure worst-case conversion waiting time across the collection and minimum economic batches.
   - The earlier [source-only claim audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) describes the pre-conversion revision. Current candidate evidence belongs in [LP ETH verification](reports/lp-eth-settlement/VERIFICATION.md); local fixtures do not qualify public routes or independent security.
   - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
@@ -55,7 +38,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Royalty4 pays original currencies after final sale end plus1hour. GCD-normalized rarity weights and a rotating exact-unit cursor assign every allocated raw unit without an allocated rounding remainder. Initial/prefund/zero-cohort and unsupported-token recovery remain distinct. Qualify actual OpenSea timing/currencies, schema13/canonicalV8/reporting5 integration, gas/workloads and independent audit.
+- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Royalty4 pays original currencies after final sale end plus1hour. GCD-normalized rarity weights and a rotating exact-unit cursor assign every allocated raw unit without an allocated rounding remainder. Initial/prefund/zero-cohort and unsupported-token recovery remain distinct. Qualify actual OpenSea timing/currencies, schema13/canonicalV9/reporting5 integration, gas/workloads and independent audit.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -139,7 +122,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-custody-composition"></a>
 
-- [ ] **[Qualify collective LP return to NFT holders](docs/HOLDER_COLLECTIVE_EXIT.md)** - In progress. Implemented fresh accounting6/custody5: governance alone starts/closes terminal LP exit, allocates actual ETH+ZZZ by shares and submits isolated current-owner payout batches. Holders retain reward/royalty claims and exceptional principal fallback. Keeper principal_distribution is disabled on5; actual target gas/services and independent review remain open.
+- [ ] **[Qualify collective LP return to NFT holders](docs/HOLDER_COLLECTIVE_EXIT.md)** - In progress. Implemented fresh accounting7/custody5: governance alone starts/closes terminal LP exit, allocates actual ETH+ZZZ by shares and submits isolated current-owner payout batches. Holders retain reward/royalty claims and exceptional principal fallback. Keeper principal_distribution is disabled on5; actual target gas/services and independent review remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -177,14 +160,14 @@ Custody, ownership and reward accounting.
 
 <a id="task-native-custody-recovery"></a>
 
-- [ ] **[Qualify native ETH holder return and failed-payout recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native ETH/fixedZZZ accounting6 closes both physical legs to per-NFT holder backing without WETH, swaps or USD-feed dependence. Owner-selected fallback handles rejecting direct recipients; no external-custodian recovery remains.
+- [ ] **[Qualify native ETH holder return and failed-payout recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native ETH/fixedZZZ accounting7 closes both physical legs to per-NFT holder backing without WETH, swaps or USD-feed dependence. Owner-selected fallback handles rejecting direct recipients; no external-custodian recovery remains.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Verify final fees/pending compound and exact native/token deltas; no prefund subsidy or reserve mixing.
   - Qualify per-recipient gas, callback/rejection/token fault isolation, current-owner fallback and complete backing/remaining balances on the target chain.
-  - Old native-custody reports remain historical; qualify the current accounting6/custody5 code independently before approval.
+  - Old native-custody reports remain historical; qualify the current accounting7/custody5 code independently before approval.
   - After principal allocation, reserve-only venue recovery remains available without reopening custody or changing unpaid owner allocations. Keep buyback reserve, allocated principal and old reward liabilities separate; qualify pending payouts and actual venue re-admission on the target chain.
   - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
 
@@ -192,7 +175,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-post-seal-configuration"></a>
 
-- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Fresh accounting6/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Schema13/18-helper inventory, accounting6 readers and direct Entry3/review-policy2 reviews are implemented in source; real economics/provider/operating/independent qualification stays open.
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Fresh accounting7/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Schema16/19-callable-helper plus2-data-child inventory, accounting7 readers and direct Entry3/review-policy2 reviews are implemented in source; real economics/provider/operating/independent qualification stays open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -213,14 +196,14 @@ Custody, ownership and reward accounting.
 
 <a id="task-reviewed-contribution-policy"></a>
 
-- [ ] **[Qualify caller-bound activation review policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding)** - In progress. Fresh direct Entry3/review-policy2/Pricing2 bind both caller loss maximum and exact scoped entry fingerprint (minima/idle/revision), with matching accounting6 read/unsigned preparation. Stale/callback-mutated terms fail; actual website/deployment/route/provider qualification remains through poplint, with public signing disabled and old profiles preserved.
+- [ ] **[Qualify caller-bound activation review policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding)** - In progress. Fresh direct Entry3/review-policy2/Pricing2 bind both caller loss maximum and exact scoped entry fingerprint (minima/idle/revision), with matching accounting7 read/unsigned preparation. Stale/callback-mutated terms fail; actual website/deployment/route/provider qualification remains through poplint, with public signing disabled and old profiles preserved.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - [Implementation and scoped verification](reports/comprehensive-improvement-20261025/VERIFICATION.md): executeReviewed(Request,uint16), 0..1000bps caller maximum, captured governed cap <= caller maximum before pulls/conversion; tighter governance may apply, wider policy rejects. Existing final callback/price/physical-LP checks remain.
   - Current pricing-V2 activation preparation and schema-5 inventory require explicit review_policy_version1 and matching Entry/Pricing getters, runtime pins, exact selector/trace and provenance. No missing-getter, direct-Vault or old-selector fallback can claim this guarantee. Historical pricing1/local profiles and saved journals retain their original semantics.
-  - The served current3 website/unsigned-review implementation retains its historical Entry1 ABI; it does not match fresh Entry2/accounting6. For the current source, qualify actual runtime/API/provider and browser-wallet integration before any separately authorized public signing. Historical schema1 retains its original1%/old-selector semantics; published native2 supports reviewed Entry1 and a captured governed cap but is still incompatible with accounting3. Preserve explicit profile rejection. Signer remains Anvil-only, public DEPLOYMENT null; no service or chain upgraded.
+  - The served current3 website/unsigned-review implementation retains its historical Entry1 ABI; it does not match fresh Entry3/accounting7. For the current source, qualify actual runtime/API/provider and browser-wallet integration before any separately authorized public signing. Historical schema1 retains its original1%/old-selector semantics; published native2 supports reviewed Entry1 and a captured governed cap but is still incompatible with accounting3. Preserve explicit profile rejection. Signer remains Anvil-only, public DEPLOYMENT null; no service or chain upgraded.
   - The maximum does not freeze price/range/strategy/dependency configuration or remove immediate-governance/custodian trust. Keep raw caller minima, expiry, fresh two-source prices, exact actual LP/balances, conservative input/output bounds and capture checks. Do not describe direct owner-Vault calls as reviewed-Entry calls.
   - Current3 website implementation: explicit schema3 manifest, accounting3/governance2/fee1/localV4 runtime/domain bindings and ETH/fixedZZZ-only inputs; actual HTTP schema2 DTOs cover six activation/growth/approval/claim reviews. The final affected scope has451JS passes including46new methods; earlier overlapping runs are not additional coverage. Evidence: [current3 integration](reports/current3-website-20261026/VERIFICATION.md). Poplint has its own build/root/configuration; no current public deployment/API is fabricated and signing stays disabled.
   - [Source6 adaptable policy](docs/ADAPTABLE_POLICY.md) adds scoped runtime/policy observation, exact fresh mint/Entry2 expected fingerprints, per-pool Portfolio2 allocation/gap and captured idle/maintenance controls. [Verification](reports/adaptable-policy-20261031/VERIFICATION.md) is local and source-scoped; real provider/market/gas/worker/site/release qualification remains open. Preserve historical profiles/receipts and fixed economic rights.
@@ -270,7 +253,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-only-simplification"></a>
 
-- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Fresh accounting6 retains eight-word local Positions/direct governance2 and removed creator/bridge/external-custody paths. ProtocolPolicy1/Portfolio2 and canonicalV8 make current policy/implementation boundaries explicit; compatible parked handoff requires all physical legs closed. Historical deployments/readers/journals keep their original profiles.
+- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Fresh accounting7 retains eight-word local Positions/direct governance2 and removed creator/bridge/external-custody paths. ProtocolPolicy1/Portfolio2 and canonicalV9 make current policy/implementation boundaries explicit; compatible parked handoff requires all physical legs closed. Historical deployments/readers/journals keep their original profiles.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -337,7 +320,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-reward-ledgers"></a>
 
-- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80/10/5/5 funded LP allocation with documented raw-unit carry and incumbent flush; equal collective shares. Fresh royalty4 assigns exact original-currency units at rarity1/2/3. Current LP indices still retain final fractional units; the accepted exact-unit LP upgrade is a separate open task. ETH-only LP conversion remains separately qualified.
+- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. Funded80/10/5/5 LP allocation preserves raw-unit carry/incumbent flush and equal activated collective shares. Fresh accounting7 assigns every ALLOCATED LP unit through exact share/membership trees; royalty4 separately assigns original-currency rarity1/2/3 units. Current-owner claims and same-NFT conversion preserve both components; actual ETH conversion routes remain separately qualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -350,6 +333,22 @@ Custody, ownership and reward accounting.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): Multi-day Entry/growth/harvest/compound/partial-claim composition preserves exact80/10/5/5 receipts, carried split dust, shares, membership and funded reserves. Newly activated NFTs earn subsequent receipts, not old funded balances. Existing economics unchanged.
   - [Market/lifecycle campaign](reports/market-lifecycle-20261104/VERIFICATION.md):7new actual-v4 journeys plus one affected six-day control and7new current-profile API/worker methods. Receipt-derived individual/collective fractions, fair cohort shares, aggregate both-leg NAV, main-only entries, mode cycles, outages, transfers and terminal royalties/payouts are reconciled. Failed model/transcript stages are retained; no production source/configuration, service/site/journal or external release gate changes.
   - [Harvesting audit](reports/harvesting-audit-20261106/REVIEW.md) verifies actual both-leg receipts, entry/growth/current-owner claims and second-leg atomic rollback, quantifies upstream fragmentation and finite LP-index rounding, and preserves the separate approved exact-unit LP implementation task. No production Solidity or split changed.
+
+  </details>
+
+<a id="task-lp-exact-unit-allocation"></a>
+
+- [x] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - Implemented. Fresh accounting7 integrates whole-unit LP books with authenticated Vault/Membership hooks, current-owner claims, same-NFT conversion and lossless canonicalV9. Profile7/schema16/source9 readers and actual event/getter replay reconcile exact rights. Local host/canonical/consumer verification is source-scoped; target maximum-workload gas, operating rollout and independent audit remain release work.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Preserve fixed actual-receipt80/10/5/5, bucket share weights, equal activated collective membership, current-owner unpaid rights and separate principal/compound/buyback/royalty backing. Every ALLOCATED unit is assigned; zero-cohort/unallocated funds retain their explicit rules.
+  - Vault post-write syncShares and Membership post-activation syncMembership settle BOTH stored old books before installing new weights. Authenticate immutable mint ordinals, bucket identity and exact aggregate totals. No top-up collective dilution, entry subsidy or clock reset.
+  - Claims and fixed-router batches take exact whole components with atomic payout rollback. Conversion credits SAME NFT/component ETH, never current-cohort redistribution or new income. LP assets are ETH+fixedZZZ only, pre-seal binding; royalties remain original currencies.
+  - V9 preserves raw node pending/high/low phase and direct credits, seeds all weights first, checks exact roots/liabilities/backing, excludes prefunds and fully funds abort. Constructor-fixed typed RewardsCanonical adds no arbitrary executor or ordinary custody recipient. Reject old6/V8, rather than converting fractions implicitly.
+  - Explicit profile7/schema16/source9 readers, replay, claims, keeper and inventory authenticate the new graph/marker. Actual producer/consumer receipts reconcile. Historical6/V8/F2 and original journals remain unchanged. Checkpoint1 is old6-only; reviewed exact checkpoint2 remains separate performance work.
+  - [Implementation and verification](reports/exact-lp-integration-20261106/VERIFICATION.md) bind real-host size/static/EVM/gas scope and retained failures. Count32 and raw measurements are not target-chain gas approval. Keep actual provider, maximum-workload, recovery and independent audit release gates open.
 
   </details>
 
@@ -424,7 +423,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-callable-reference"></a>
 
-- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers37contracts/818functions,37constructors/13receivers with purpose, access, inputs, outputs and tuples; zero gaps. Historical counts retain source scopes. Fresh custody5 authority guide distinguishes operator controls, holder claims, keeper and authenticated module/callback work.
+- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers38contracts/844functions,38constructors/13receivers and895short example rows with purpose, permissions, exact inputs/outputs and tuples; zero gaps and readiness false. Operator controls, holder claims, limited keeper, constructor-fixed child and authenticated module/callback work remain distinct. Historical counts keep their original scope.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -443,7 +442,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-manual-emergency-rebalance"></a>
 
-- [x] **[Manual paused-governance LP recovery](docs/EMERGENCY_REBALANCE.md)** - Implemented. Implemented and locally verified in fresh accounting6/emergency capability2. Governance alone, while paused, reviews an exact custody-bound close/optional swap/redeploy with per-call retained-check mask. No ordinary keeper fallback, external recipient or terminal reopening; financial bypass expressly accepts near-total economic-loss risk.
+- [x] **[Manual paused-governance LP recovery](docs/EMERGENCY_REBALANCE.md)** - Implemented. Implemented and locally verified in fresh accounting7/emergency capability2. Governance alone, while paused, reviews an exact custody-bound close/optional swap/redeploy with per-call retained-check mask. No ordinary keeper fallback, external recipient or terminal reopening; financial bypass expressly accepts near-total economic-loss risk.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -459,7 +458,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-passive-inventory"></a>
 
-- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting6: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema15 are integrated; actual release qualification remains separate.
+- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting7: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema16 are integrated; actual release qualification remains separate.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -526,7 +525,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Bounded complete replay and opt-in reviewed checkpoint1 plus raw suffix are implemented for collection/NFT/current-holdings earnings with today-price USD. Fresh6/5/1checkpointing preserves exact fractions/dust/cohorts/claims and the entire raw24-hour window. General lineage/other full-history consumers, source-codec evolution, raw archival, rotation/restore and actual long-lived workload qualification remain open.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Fresh7 raw replay reconstructs exact LP trees, components/direct credits and original-currency royalty4 tickets; claims/conversions/imports are not income. Current-price USD and raw24-hour completeness remain explicit. Historical checkpoint1 supports only6/5/1; reviewed exact-unit checkpoint2, lineage/other consumers, raw archival/rotation/restore and real lifetime workload qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -534,7 +533,7 @@ The data and services behind the app.
   - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.
   - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
-  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Historical remote-profile credits do not prove remote gross revenue/reserves; current accounting6 has no remote ledger. The selected hookless pool has a static 1.002% LP fee; its observed approximately 1.101% total charge includes protocol fees that are not PoPL income. Demo 0.30% is illustrative.
+  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Historical remote-profile credits do not prove remote gross revenue/reserves; current accounting7 has no remote ledger. The selected hookless pool has a static 1.002% LP fee; its observed approximately 1.101% total charge includes protocol fees that are not PoPL income. Demo 0.30% is illustrative.
   - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
   - Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof.
   - NFT card totals now combine individual LP, equal collective and royalties; they exclude gross pool income and require complete same-snapshot priced components. Saved demo 24h net history remains unavailable. [Scoped evidence](reports/topup-and-reward-review/VERIFICATION.md) does not qualify live ingestion or prices.
@@ -556,6 +555,7 @@ The data and services behind the app.
   - [Four-audit follow-up](reports/four-report-consolidation-20261104/VERIFICATION.md): transactional schema/identity admission, failed-connection cleanup, early SQLite integer bounds and durable/WAL-mode verification implemented.93focused Python passes include9new startup cases with causal failures retained. Valid databases retain identity/history/cursor; no migration/rescan or host restart. Qualify actual Unix storage, consistent WAL backups, off-host restore, lifetime replay and service rollout independently.
   - [Checkpoint1 milestone](reports/earnings-checkpoints-20261104/REVIEW.md): explicit immutable source/config/anchor/digest approval plus bounded suffix, all-NFT read-only candidate build/advance, atomic exclusive file publication, unchanged API budgets.24new final cases pass after147affected checks at the earlier source stage; overlapping counts are not added. Other ownership/claim/preparation readers remain full replay; no predecessor checkpoint, pruning, unattended approval/rotation or deployed service qualification is claimed. [Exact setup/recovery](docs/EARNINGS_CHECKPOINTS.md).
   - Recovery1 first allocation uses its dedicated event/native index, counted once as royalty income at recovery. Earlier receipts and ordinary conversions/claims are not counted again. Rebuild/re-pin checkpoints after semantic source changes; qualify actual end-to-end ingestion of recovery events.
+  - Fresh7 exact LP raw replay authenticates synchronization events, per-NFT buckets, whole components, direct credits and exact tree/liability totals; conversion/claim/import is not income. Historical checkpoint1 remains6-only. Build/review explicit checkpoint2 and measure lifetime replay/archive/rotation/restore before claiming bounded long-term operation. See [integration evidence](reports/exact-lp-integration-20261106/VERIFICATION.md).
 
   </details>
 
@@ -595,7 +595,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema15 validates accounting6/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,18helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
+- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema16 validates accounting7/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,19helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -638,7 +638,7 @@ The data and services behind the app.
 
 <a id="task-read-api"></a>
 
-- [x] **[Confirmed balances & ownership API](docs/FRONTEND_LINEAGE.md)** - Implemented. Confirmed balances, lifecycle guards and complete configured same-chain predecessor claim history are implemented. Lifetime totals include LP fees, royalties and past owners. Accounting6 physical-only reads keep owners/raw funded claims available during maintenance-price outages, with missing USD valuation explicit; hosting and accounting6 frontend acceptance remain release gates. Future-chain history is deferred outside this release; the current lineage is same-chain only. Current LP ID/share denominator and historical gross contributions are exposed separately from current marked NAV; local custody mismatches fail closed.
+- [x] **[Confirmed balances & ownership API](docs/FRONTEND_LINEAGE.md)** - Implemented. Confirmed balances, lifecycle guards and complete configured same-chain predecessor claim history are implemented. Lifetime totals include LP fees, royalties and past owners. Accounting7 physical-only reads keep owners/raw funded claims available during maintenance-price outages, with missing USD valuation explicit; hosting and accounting7 frontend acceptance remain release gates. Future-chain history is deferred outside this release; the current lineage is same-chain only. Current LP ID/share denominator and historical gross contributions are exposed separately from current marked NAV; local custody mismatches fail closed.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -679,7 +679,7 @@ The data and services behind the app.
 
 <a id="task-unsigned-actions"></a>
 
-- [x] **[Prepare unsigned mint & claim requests](docs/FRONTEND_TRANSACTIONS.md)** - Implemented. Reviewed dynamic direct mint(default0.05ETH) and up to32LP/royalty claim drafts use current lifecycle controls, exact canonical-hash simulation, scoped currency isolation, bounded workers and separate gas review. Fresh6 mint_policy binds sale+VRF fingerprint; claim_operations stays empty for mint. The service never signs or broadcasts; live service/browser qualification remains open.
+- [x] **[Prepare unsigned mint & claim requests](docs/FRONTEND_TRANSACTIONS.md)** - Implemented. Reviewed dynamic direct mint(default0.05ETH) and up to32LP/royalty claim drafts use current lifecycle controls, exact canonical-hash simulation, scoped currency isolation, bounded workers and separate gas review. Fresh7 mint_policy binds sale+VRF fingerprint; claim_operations stays empty for mint. The service never signs or broadcasts; live service/browser qualification remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -974,7 +974,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting6 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance.
+- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1002,7 +1002,7 @@ Three required testing layers, with source-bound evidence.
   - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
   - Complete qualified current services, frozen-release independent audit and operating rehearsals. The hookless launch pool earns LP fees directly; creator-payment receivers/terms/measurement tools and integrated bridge/remote-proof execution are removed. Marketplace royalties retain their separate funded ledger; immediate governance and reviewed replacement-code approval remain explicit trust boundaries.
   - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including qualification of the implemented same-chain whole-collection handoff while the source works. Cross-chain canonical transport is deferred optional scope, not a current launch/sealing requirement. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
-  - Fill and independently authenticate the current schema8/accounting6/ProtocolPolicy1 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
+  - Fill and independently authenticate the current schema16/accounting7/LP-allocation1/ProtocolPolicy1 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
   - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
   - Keep fork inventory assertions aligned with actual published fixtures and preserve normal assertion failures. Earlier [CI fixture correction](reports/architecture-evolution-ci/README.md) covers historical24native/Pons plus9hookless cases only. Current fixture retirement and source profiles must not be hidden by a mock, renamed pass or stale inventory count.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
@@ -1057,7 +1057,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-dollar-rehearsal"></a>
 
-- [x] **[Isolated $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md)** - Implemented. Fresh accounting6 refuses the legacy source-patch generator before copying, compiling or creating output. A separately authorized isolated test deployment can configure ProtocolPolicy minima down to$1, subject to stronger pool minima, while preserving mint terms/loss caps/rights. Compatible historical source snapshots keep their explicit legacy generator and evidence; no current service or deployment is changed.
+- [x] **[Isolated $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md)** - Implemented. Fresh accounting7 refuses the legacy source-patch generator before copying, compiling or creating output. A separately authorized isolated test deployment can configure ProtocolPolicy minima down to$1, subject to stronger pool minima, while preserving mint terms/loss caps/rights. Compatible historical source snapshots keep their explicit legacy generator and evidence; no current service or deployment is changed.
 
 <a id="task-local-browser-stack"></a>
 
@@ -1119,7 +1119,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-security-ownership-rewards"></a>
 
-- [ ] **[Ownership, claims & allocation rules](docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution)** - In progress. Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.
+- [ ] **[Ownership, claims & allocation rules](docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution)** - In progress. Verify all unclaimed whole-unit LP/royalty balances and historical6fractions under their actual profile follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1334,7 +1334,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-asset-liveness-dust"></a>
 
-- [ ] **[Approve reward-token liveness and dust economics](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. Optional royalty-token read failures now defer only new eligibility for that currency, while exact unreadable backing can still block handoff. Sub-20-raw-unit owner dust is bounded per settlement, not cumulatively; qualify every asset before admission. The new [idle and dust guide](docs/IDLE_AND_DUST.md) distinguishes attributed principal reinvestment from reserved fractions, fee dust and quarantines; it adds no arbitrary sweep.
+- [ ] **[Approve reward-token liveness and dust economics](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. Optional royalty-token read failures now defer only new eligibility for that currency, while exact unreadable backing can still block handoff. Sub-20-raw-unit owner dust is bounded per settlement, not cumulatively; qualify every asset before admission. The new [idle and dust guide](docs/IDLE_AND_DUST.md) distinguishes attributed principal reinvestment from whole-unit LP books/nonmonetary phase and historical6fractions, fee dust and quarantines; it adds no arbitrary sweep.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1488,6 +1488,7 @@ Decisions and rehearsals before real funds.
   - [Historical reuse verification](reports/improvement-audit-20261102/VERIFICATION.md) checks exact52 production/31 dependency/build pins against final0a and reuses43 normal gates. Vault635/Budget237/Migration20 runtime margins superseded older37/59-byte claims only for that recorded source; exact constructor arguments and target gas remain open.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): 43 fresh normal gates pass at exact52 production/31 dependency closure final-a8e7dc7cc5. Balancer24216runtime/360margin; Vault635/Budget237/Migration20 margins unchanged. Initial24953-byte Balancer attempt failed and is retained. New helper ABI/runtime/constructor pins require reviewed fresh deployment; no relabelling existing code or journals. Target gas/bindings remain open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Factory/claim improvement](reports/factory-claims-20261105/VERIFICATION.md) preserves Royalty creation payload and unchanged economic code;44 normal compiler-object gates plus2 actual returned data-runtime/initcode checks. Historical20/69-byte claims above are original source scopes, not current headroom. Target construction/URI/bindings/max-state gas stay open.
+  - Fresh7 normal87-source graph passes46object and2actual carrier gates with unchanged compiler settings; runtime headroomVault133/Rewards358/Handoff32. Cold32-entry host claim measured31,085,813raw gas and exceeds12M; cold8 measured8,819,431in its controlled fixture, not universal size approval. Measure actual chain claim/pages and costs:32claim entries and8canonical rows are count limits, not gas approval. Constructor-created RewardsCanonical must match exact source/runtime/parent pins; no limit raising or older-runtime relabeling.
 
   </details>
 
@@ -1527,4 +1528,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `1ae46b1c51c94f24df92e30a94f6ab8178a6c9b10da3f7c64d0554226cf5e068`.
+Snapshot SHA-256: `d3ec04921a9a8988f0ee1f0ade38aad587d168f779be873d3a4258ef59513f90`.

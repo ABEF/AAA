@@ -16,7 +16,7 @@ import sys
 from zzz_ops import function_reference as reference
 
 ROOT=Path(__file__).resolve().parents[1]
-PROFILE=('accounting6/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/'
+PROFILE=('accounting7/LP-allocation1/canonicalV9/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/'
     'pricing2/Entry-routing3/reviewedEntry2/directgovernance2/fee-intake1/residual-reinvest1')
 DOMAIN=b'ZZZ_POPL_OPERATOR_REVIEW_V1\n'
 MARKER='$REVIEW_HASH'

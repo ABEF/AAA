@@ -1,0 +1,12 @@
+{
+  "original_commit": "64f9bfb1b0db28c9c8eafc42394afad2263637b6",
+  "file": "test/UniswapV4Fork.t.sol",
+  "retired_methods": [
+    "testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing",
+    "testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares"
+  ],
+  "reason": "FullVaultWETH/ZZZ+twoERC20LPassets incompatiblewithfreshnativeETH/fixedZZZ exact7;alltypedManager/token/oracleforkprimitivesretained",
+  "archive": "baseline/test/UniswapV4Fork.t.sol",
+  "retired_block": "RETIRED_WETH_VAULT_FORK.sol.txt",
+  "not_a_fork_pass": true
+}

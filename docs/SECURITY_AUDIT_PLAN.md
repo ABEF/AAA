@@ -1,16 +1,16 @@
 # Security audit plan
 
-Current fresh source: **accounting6 / custody5 / portfolio2 / canonical adaptable-policy V6**.
+Current fresh source: **accounting7 / custody5 / portfolio2 / canonical adaptable-policy V6**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
 ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
 No external recipient/bridge/return ingress remains. Whole-collection handoff
 is available only before exit. Earlier source-scoped evidence and accounting3
 service/inventory/website qualification remain historical to their original pins.
-See [profile6](POSITION_V6.md); new release qualification remains open.
+See [profile6](POSITION_V7.md); new release qualification remains open.
 
 
-Current threat model: native ETH/fixedZZZ, accounting6/directgovernance2/fee1/
+Current threat model: native ETH/fixedZZZ, accounting7/directgovernance2/fee1/
 custody5/portfolio2/holder-exitV5; fixed80/10/5/5 and separate eligible rarity royalties.
 Governance may irreversibly end LP and pay current holders proportionally. It
 cannot choose an external recipient through the removed custody APIs. Immediate
@@ -348,7 +348,7 @@ token balances and allowances, other-bucket/donation isolation, current and
 historical compound, entry marginal NAV, local fee dust/late venue receipts, composition
 epochs and successor import. Authenticate complete records and exact classified
 backing; native receiver protection must not be counted twice. Whole-collection
-capture rejects lpExitStarted permanently; canonical V8 does not import the
+capture rejects lpExitStarted permanently; canonical V9 does not import the
 terminal principal payout ledger. Repeated successor and
 funded-abort paths need version-compatible source/destination code and actual
 dependency qualification.

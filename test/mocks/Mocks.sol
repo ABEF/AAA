@@ -80,6 +80,9 @@ contract MockPools {
     address public activationEntry;
     address public activationAssets;
     function setActivationAssets(address helper) external {activationAssets=helper;}
+    /// @dev TEST ONLY explicit fixed-ZZZ declaration for isolated fresh7 ledgers.
+    /// It does not infer a token from an arbitrary pool or qualify a venue.
+    function setFixedZZZ(address token) external {activationAssets=address(new MockFixedLPAssetIdentity(token));}
     mapping(bytes32=>PoolConfig) private configs;
     function set(bytes32 id,PoolConfig memory c) external {configs[id]=c;}
     function get(bytes32 id) external view returns(PoolConfig memory){return configs[id];}
@@ -89,6 +92,10 @@ contract MockPools {
         IZZZOracle oracle=IZZZOracle(controller.module(Ids.ORACLE));PoolConfig memory c=configs[id];
         return oracle.value(c.key.currency0,amount0)+oracle.value(c.key.currency1,amount1);
     }
+}
+contract MockFixedLPAssetIdentity {
+    address public immutable zzz;
+    constructor(address token){require(token!=address(0));zzz=token;}
 }
 contract MockVaultRecord {
     Position private p;
@@ -100,7 +107,7 @@ contract BoundDummy {
     bool public randomnessConfigured = true;
     address public zzz;
     constructor(address a){access=IZZZAccess(a);zzz=address(this);}
-    function ACCOUNTING_VERSION() external pure returns(uint256){return 6;}
+    function ACCOUNTING_VERSION() external pure returns(uint256){return 7;}
     function royaltyRewards() external pure returns(address){return address(0);}
     // TEST ONLY: seal identity stubs. This dummy has no financial behavior.
     function FEE_INTAKE_VERSION() external pure returns(uint256){return 1;}

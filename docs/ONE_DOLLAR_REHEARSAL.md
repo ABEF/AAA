@@ -1,6 +1,6 @@
 # Isolated $1 activation rehearsal
 
-Fresh [accounting6](POSITION_V6.md) uses governed contribution minima. It needs
+Fresh [accounting7](POSITION_V7.md) uses governed contribution minima. It needs
 **no source-patched $1 build**. Its defaults remain $100 activation, $5 growth,
 0.05 ETH direct mint and the existing contribution-loss policy. No existing
 deployment, service, wallet flow or saved journal changes through this guide.
@@ -41,10 +41,10 @@ deployment remains null and browser signing remains Anvil-only.
 ## Historical source-patch tool
 
 [prepare-dollar-rehearsal.py](../scripts/prepare-dollar-rehearsal.py) is retained
-only for compatible historical source snapshots. The current accounting6+ source
+only for compatible historical source snapshots. The current accounting7+ source
 is refused **before compiler lookup, fixture copying, transformation or output
 creation**, with a redirect to the governed procedure above. Removing the policy
-source file does not bypass an accounting6+ Vault marker. Unknown or changed
+source file does not bypass an accounting7+ Vault marker. Unknown or changed
 legacy patch anchors also fail closed.
 
 For compatible older copies, the tool retains its original two activation-floor

@@ -181,7 +181,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         vm.warp(created + INTERVAL - 1);
         venue.setFees(100, 100);
         vm.prank(alice);
-        vault.increase(id, 100, 100, 1, block.timestamp + 100);
+        vault.increase{value:100}(id, 100, 100, 1, block.timestamp + 100);
         assertEq(vault.group(bucket).lastRebalance, created);
         assertEq(vault.migrationBudget().lastCompound(bucket), 0);
         assertEq(rewards.claimable(id, address(t0)), 90);
@@ -199,7 +199,7 @@ contract MaintenanceCadenceTest is PooledVaultFixture {
         vault.migrationBudget().setCompoundInterval(secondPool,uint32(INTERVAL));
         uint256 secondNFT = _mint(bob);
         vm.prank(bob);
-        vault.activate(secondNFT, secondPool, 1000, 1000, 1, block.timestamp + 100);
+        vault.activate{value:1000}(secondNFT, secondPool, 1000, 1000, 1, block.timestamp + 100);
         uint256 second = vault.nftBucket(secondNFT);
         vm.warp(block.timestamp + INTERVAL);
         venue.setFees(100, 100);

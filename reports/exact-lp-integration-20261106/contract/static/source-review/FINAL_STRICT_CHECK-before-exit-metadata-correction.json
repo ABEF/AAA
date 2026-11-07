@@ -1,0 +1,10 @@
+{
+  "review_coverage_pass": true,
+  "errors": [],
+  "independent_audit": false,
+  "checker_raw_sha256": "5ffd720b0061775a5555c902a480393003c6a61e7f4de8a5989064a1370e041e",
+  "candidate_raw_sha256": "ccf73aa4402f8b59cb1141a25465796bd0d3108350dbef63df22491cec1365fb",
+  "actual_detectors_sha256": "0637ca0632557555ed29a7a5b8af0cc037440cd922b3e412ad6540bedb19a6a1",
+  "raw_analyzer_exit": null,
+  "not_an_analyzer_rerun": true
+}

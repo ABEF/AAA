@@ -4,8 +4,8 @@ pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 
 /// @notice Bounded whole-unit allocation to mutable NFT share weights.
-/// @dev Candidate engine only: current Rewards/Vault/canonical profiles do not
-/// use it. The host must authenticate immutable NFT ordinals, ETH/fixed-ZZZ
+/// @dev Internal engine used by accounting7 Rewards and its canonical codec.
+/// The host authenticates immutable NFT ordinals, ETH/fixed-ZZZ
 /// books, actual funding, ownership and atomic canonical share synchronization.
 /// No token movement, authority or external call is implemented here.
 library ExactLPAllocation {

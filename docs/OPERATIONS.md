@@ -39,14 +39,14 @@ interrupted physical evidence uses the existing reset path; missing local
 reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
-Use explicit accounting6, portfolio2, maintenance3, confirmation3, Budget4,
+Use explicit accounting7, portfolio2, maintenance3, confirmation3, Budget4,
 LP routing2, fee intake1, governance2, custody5, pricing2, Entry routing3 and
-`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7` with actual bindings. The historical accounting4
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9` with actual bindings. The historical accounting4
 [holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the distinct fresh accounting6/schema10 inventory,
+not a working deployment. Review the distinct fresh accounting7/schema16 inventory,
 its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
 under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
-and schema6/accounting4 cannot be relabelled profile6; placeholder inventory remains blocked. LP routing2 additionally needs
+and schema6/accounting4 cannot be relabelled profile7; placeholder inventory remains blocked. LP routing2 additionally needs
 exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
 catalog; source settings do not qualify a live service.
 
@@ -256,7 +256,7 @@ together for the NFT. Compound/buyback reserves stay outside that claim ledger.
 | Job | Reviewed operating policy | Confirmed evidence |
 | --- | --- | --- |
 | Harvest | `maintenance.harvest=true`, `harvest_interval_seconds`; permissionless manual `Vault.collectFees` is also available. Contribution/rebalance/compound paths harvest as well. | Canonical `FeesCollected`; funded allocation/reserve evidence when fees are nonzero. A valid 0/0 collection needs no allocation event. Uncollected pool fees are not claimable yet. |
-| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting6 also requires the exact Budget pin, capability4 and `compoundReady` under policy3; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
+| Compound | `maintenance.compound=true`, reviewed local interval/thresholds and actual minimum LP. Fresh accounting7 also requires the exact Budget pin, capability4 and `compoundReady` under policy3; all standalone compounds yield to range maintenance. Rebalance/guarded compound can reinvest the bucket's reserve; contributions only synchronize/release it into incumbent idle/NAV and deploy entrant funds. | `Compounded` or the confirmed contribution/rebalance, actual LP/backing, unchanged NFT shares for reinvested incumbent capital. New swap fees/dust may remain for a later pass. |
 | Buyback/burn | Reviewed `buybacks` tasks with `token`, raw `amount` and `pool_id`; at most 32 unique input currencies. A direct fixed-ZZZ burn may use zero pool ID because no swap occurs; other inputs need an admitted route. Budget/prices/simulation/actual burn must pass. | `BoughtAndBurned`, actual reserve debit and verified ZZZ supply reduction; a reserve balance alone is not a burn. |
 | Claim | Current NFT owner selects funded balances; use bounded ClaimRouter for multiple LP/royalty claims. | Actual `Claimed` payouts, reduced liabilities, preserved other NFT balances/fractions and purpose reserves. No harvest, compound or buyback is triggered by an LP claim. |
 | Collective principal delivery | Historical custody4-or-earlier accounting4/5/6 only: opt-in `principal_distribution` after governance has started exit and closed all buckets. Bounded allocation and direct current-owner payouts, also while paused. No keeper initiation/closure authority. Fresh custody5 allocation/delivery is governance-only and the keeper job must remain disabled; holder reward claims are unchanged. Confirmed Ready batches have a separate default-hourly retry interval and durable first/last priority rotation so receiver deferrals cannot monopolize the transaction lane. | `PrincipalAllocated`/`PrincipalPaid`, exact ledger paid flags and pending recovery. Principal is not income or a holder reward claim. See [configuration/recovery](KEEPER_RECOVERY.md#optional-automatic-principal-delivery). |
@@ -371,7 +371,7 @@ not redraw it; a newly completed window cannot reuse an old expired delay.
 Unknown hidden movements or pause/unpause between observations are not proven.
 Hourly harvest and saved-receipt recovery remain independent. [Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 
-Fresh policy3 accounting6 standalone compounding requires Budget capability4:
+Fresh policy3 accounting7 standalone compounding requires Budget capability4:
 `now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)`, plus
 no eligible rebalance and no available preapproved adaptive-range selection.
 The rule includes no-swap compounds and the first compound after LP creation.
@@ -381,7 +381,7 @@ are unaffected; contributions release designated reserves into incumbent idle/NA
 but never use them to satisfy the entrant's LP floor. Configure reviewed idle
 compounding thresholds to pick up useful residuals without new fees.
 
-Every due accounting6 compound job, even reserve-only, authenticates
+Every due accounting7 compound job, even reserve-only, authenticates
 `idle_compounding_budget`, `code_hashes.idle_compounding_budget`, its Vault binding,
 capability4 and `compoundReady`. Current source also waits at the 85% main threshold,
 outside its physical range or pending width/mode/active geometry change, including before

@@ -133,6 +133,19 @@ class OperatorReferenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ExampleError, 'one to five words'):
             check_examples(self.reference, example)
 
+    def test_exact_lp_restricted_reads_keep_module_context(self):
+        for identity in ('ZZZRewards.canonicalBarrier()', 'ZZZRewards.canonicalSeed(uint256)',
+                         'ZZZRewards.canonicalNode(uint256)'):
+            with self.subTest(identity=identity):
+                self.assertEqual(self.examples['rows'][identity]['role'], 'M')
+        check_examples(self.reference, self.examples)
+
+    def test_module_read_exception_does_not_reclassify_public_getters(self):
+        example = copy.deepcopy(self.examples)
+        example['rows']['ZZZRewards.canonicalModule()']['role'] = 'M'
+        with self.assertRaisesRegex(ExampleError, 'A read must not'):
+            check_examples(self.reference, example)
+
 
 if __name__ == '__main__':
     unittest.main()

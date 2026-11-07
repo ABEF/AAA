@@ -8,12 +8,22 @@ incomplete history distinct from zero balances and zero earnings.
 
 Use exact emitter inventories for the selected deployment profile, not familiar
 token names or an old Anvil manifest. Earnings needs all seven reviewed emitters
-from creation. Fresh accounting6/portfolio2/canonical V8, historical4/V5,3/V4 and older codecs
-remain distinct; adding emitters or changing profiles is not a cursor-only edit. Backfill and
-verify a separate database before switching consumers. Profile6 consumers also
+from creation. Fresh accounting7/LP-allocation1/portfolio2/canonicalV9,
+historical6/V8,4/V6,3/V4 and older codecs remain distinct; adding emitters or
+changing profiles is not a cursor-only edit. Backfill and
+verify a separate database before switching consumers. Profile7 consumers also
 authenticate both physical legs and the full pinned helper graph at the selected
-block; an event alone does not establish current LP value. Backend support does
-not deploy a fresh6 browser consumer or enable public signing.
+block, including the fixed Rewards canonical child; an event alone does not
+establish current LP value. The schema16 inventory authenticates17 modules,
+19 callable helpers and2 inert Factory data children. Backend support does
+not deploy a fresh7 browser consumer or enable public signing.
+
+Retain raw `ShareWeightSynchronized` and `CollectiveWeightSynchronized` logs
+from Rewards, plus the existing Vault/Membership acknowledgements. Fresh7
+replay validates old-weight settlement before applying new weights; a bare
+`SharesAdded` is not a substitute. No child emitter is added merely because
+the immutable canonical codec moved out of Rewards. Checkpoint1 remains6-only;
+fresh7 recovery requires complete raw history until exact checkpoint2 is reviewed.
 
 The shared read-only RPC client refuses HTTP redirects, including redirects on
 the same host. Endpoint rotation uses only the configured reviewed URL list and

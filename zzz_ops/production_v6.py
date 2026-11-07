@@ -454,7 +454,7 @@ def _holder_exit(g,chain,path):
     if phase==1:g.check(remaining_buckets==sum(1 for b in buckets if b.get('total_shares',0)>0)-closed,path+'.holder_exit','exit.remaining_buckets','Read exact remaining funded bucket count.')
     V._bound_proof(g,e.get('review_evidence'),path+'.holder_exit.review_evidence',chain,kind='collective_holder_return_qualification')
 
-def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,royalty_mint_revision=False,constructor_forbidden_addresses=None):
+def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILES,royalty_conversion=True,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,royalty_mint_revision=False,constructor_forbidden_addresses=None,accounting_version=6):
     """Current authority/canonical/NFT/service qualification, without retired custody."""
     ctor=g.obj(chain.get('constructor'),path+'.constructor')
     recipient=g.hex(chain['protocol_policy']['sale'].get('recipient'),path+'.protocol_policy.sale.recipient',20)
@@ -468,9 +468,9 @@ def _release_records(g,chain,path,home,tokens,*,service_profiles=SERVICE_PROFILE
     g.check(hard is not None and operating is not None and operating<=hard,path,'buyback.ceiling',
         'Retain constructor provenance separately; operating spend must not exceed the reviewed current maximum.')
     g.proof(ctor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
-    native=dict(version=6,asset=ZERO,decimals=18,runtime_hash=None,canonical_schema=canonical_schema_hash,
+    native=dict(version=accounting_version,asset=ZERO,decimals=18,runtime_hash=None,canonical_schema=canonical_schema_hash,
         wrapper_independent=True,eth_weth_principal_boundary=False,legacy_v1_import=False)
-    g.check(V._equal(chain.get('native_accounting'),native),path+'.native_accounting','native.profile','Use exact accounting6 native identity/canonical V6.')
+    g.check(V._equal(chain.get('native_accounting'),native),path+'.native_accounting','native.profile','Use the exact selected native accounting and canonical identity.')
     _authority(g,chain,path)
     canonical=g.obj(chain.get('canonical_handoff'),path+'.canonical_handoff')
     g.num(canonical.get('state'),path+'.canonical_handoff.state',0,0)
@@ -510,16 +510,16 @@ def validate(config, *, expected_commit=None, now=None):
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
               service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
               canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,
-              royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None):
+              royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None,top_fields=TOP_FIELDS):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
     for key,value in versions.items():g.check(type(cfg.get(key)) is int and cfg.get(key)==value,key,'schema.unsupported','Use the exact selected inventory/Entry capability profile.')
     g.check(cfg.get('canonical_schema')==canonical_schema_name,'canonical_schema','schema.canonical','Do not reinterpret an earlier canonical schema.')
-    g.check(set(cfg)-{'_notes'}==TOP_FIELDS,'config','schema.keys','Use exact selected inventory fields; no removed custody recipient or bridge inventory.')
+    g.check(set(cfg)-{'_notes'}==top_fields,'config','schema.keys','Use exact selected inventory fields; no removed custody recipient or bridge inventory.')
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Use the exact independently reviewed source revision.')
     home=g.num(cfg.get('canonical_chain_id'),'canonical_chain_id',1)
-    g.check(cfg.get('accounting_model')=='shared-pools-native-v6' and cfg.get('custody_architecture')=='collective-holder-return-v4',
+    g.check(cfg.get('accounting_model')=='shared-pools-native-v'+str(versions['accounting_version']) and cfg.get('custody_architecture')=='collective-holder-return-v4',
         'config','schema.architecture','Use the native holder-return model, not external custody.')
     _safe(g,'policies',lambda:_policies(g,cfg))
     evidence=g.obj(cfg.get('evidence'),'evidence')
@@ -563,7 +563,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
-        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision,constructor_forbidden_addresses=addresses if chain_validator is not None else None))
+        _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision,constructor_forbidden_addresses=addresses if chain_validator is not None else None,accounting_version=versions['accounting_version']))
         _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
     if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):

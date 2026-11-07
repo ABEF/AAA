@@ -1,13 +1,13 @@
 # Activation and LP top-up minimums
 
-Current [profile identities](POSITION_V6.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
+Current [profile identities](POSITION_V7.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 
 The production candidate defaults to **$100 original input value to activate**
 and **$5 to grow LP**. ProtocolPolicy governs future minima (USD18), each at least
 $1 and growth no greater than activation. Existing activations/shares do not change. Values use
 reviewed Oracle prices and token decimals; five tokens do not necessarily equal
-five dollars. Current accounting6 values actual ETH at address zero using its
+five dollars. Current accounting7 values actual ETH at address zero using its
 two-source USD policy. Native ETH and fixed ZZZ are the only original inputs;
 legacy deployments retain their actual profiles.
 
@@ -17,7 +17,7 @@ and [VaultCanonical validation](../src/ZZZVaultCanonical.sol).
 Direct Vault calls cannot bypass the current governed growth minimum. The effective minimum is the larger
 of the action floor and the pool's configured `minDepositUSD`. The current
 one-contribution-pool policy, owner/lifecycle checks and cumulative maximum remain.
-Fresh6 entrants increase only the existing main ticks; incumbent residual/idle/
+Fresh7 entrants increase only the existing main ticks; incumbent residual/idle/
 compound stay in checkpointed NAV and cannot satisfy the new contribution floor.
 
 At the current 2% default, the captured execution budget requires at least
@@ -83,7 +83,7 @@ session for a newly reviewed profile; see [local setup](LOCAL_TEST_STACK.md).
 Actual routes, dual-price observations, wallet/API services and target-chain gas
 remain release work. A minimum is not a capital guarantee: current LP value can
 fall after execution, and holders cannot redeem principal during normal operation.
-Fresh accounting6/custody5/portfolio2/canonicalV8 permanently stops activation and growth
+Fresh accounting7/custody5/portfolio2/canonicalV9 permanently stops activation and growth
 once governance begins collective LP retirement, even after ordinary unpause.
 Only governance starts/closes that exit and submits later bounded allocation and
 direct delivery cannot redirect the fixed current-owner entitlements. Normal

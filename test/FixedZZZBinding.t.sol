@@ -42,8 +42,8 @@ contract FixedZZZBindingTest is Test {
         MockFeed feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(token),address(feed),3600);
         oracle.setTestFeed(address(other),address(feed),3600);
-        rewards.addAsset(address(token));rewards.addAsset(address(other));
         pools.activationAssets().configureZZZ(address(token),address(token).codehash,REVIEW);
+        rewards.addAsset(address(token));
     }
 
     function _bindBuyback(address target) private {

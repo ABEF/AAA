@@ -31,7 +31,7 @@ OBSERVER_CLI = load_script('observe-production-config')
 
 
 def config(current=True):
-    name = 'production.example.json' if current else 'production.schema14.example.json'
+    name = 'production.schema15.example.json' if current else 'production.schema14.example.json'
     return json.loads((ROOT / 'config' / name).read_text(encoding='utf8'))
 
 
@@ -51,7 +51,7 @@ class ResidualReinvestProfileTests(unittest.TestCase):
             self.assertEqual(current[field], config(False)[field])
         self.assertEqual(P.SERVICE_PROFILES, OLD.SERVICE_PROFILES)
         self.assertEqual(len(P.HELPERS), 18)
-        report = GATE.validate(current, now=1793970000)
+        report = P.validate(current, now=1793970000)
         self.assertEqual(report['schema_version'], 15)
         self.assertFalse(report['ready'])
         self.assertFalse(report['deployment_authorized'])
@@ -94,7 +94,7 @@ class ResidualReinvestProfileTests(unittest.TestCase):
             changed['schema_version'] = value
             with self.subTest(value=value):
                 result = GATE.validate(changed)
-                self.assertEqual(result['schema_version'], 15)
+                self.assertEqual(result['schema_version'], 16)
                 self.assertEqual(result['issues'][0]['code'], 'holder_exit_qualification_pending')
                 self.assertFalse(result['deployment_authorized'])
 
@@ -133,7 +133,7 @@ class ResidualReinvestProfileTests(unittest.TestCase):
                 with patch.object(sys, 'argv', args), redirect_stdout(output):
                     self.assertEqual(GATE.main(), 1)
                 report = json.loads(output.getvalue())
-                self.assertEqual(report['schema_version'], 14 if historical else 15)
+                self.assertEqual(report['schema_version'], 14 if historical else 16)
                 self.assertFalse(report['deployment_authorized'])
                 self.assertIs(report['current_release_gate'], not historical)
                 if historical:
@@ -157,10 +157,10 @@ class ResidualReinvestProfileTests(unittest.TestCase):
                         redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                     status = OBSERVER_CLI.main(args)
                     with self.subTest(current=current, historical=historical):
-                        self.assertEqual(status, 2 if current != historical else 1)
-                        self.assertEqual(new.call_count, int(current and not historical))
+                        self.assertEqual(status, 2 if historical else 1)
+                        self.assertEqual(new.call_count, int(current and historical))
                         self.assertEqual(old.call_count, int(not current and historical))
-                        self.assertEqual(write.call_count, int(current != historical))
+                        self.assertEqual(write.call_count, int(historical))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "payload_copies_verified": 164,
+  "all_original_copy_and_decompressed_hashes_verified": true,
+  "all_decompressed_bytes_equal_originals": true,
+  "gzip_reencoded_byte_equal": true,
+  "gzip_mtime": 0,
+  "gzip_filename": "",
+  "method_ids_verified": 619,
+  "owned_source_files_frozen": 64,
+  "protected_four_preserved": true,
+  "archived_baselines_equal_baseline_git": true,
+  "no_tests_rerun_for_packaging": true,
+  "manifest_sha256": "507470fa3cf2c5cc5b21988db0dd5f0945d8b903cd69d670be7b968b87d6b63d",
+  "scope": "Reports-only copy/compression validation; no deployment/service/site/signing/journal/Anvil changes. Central root REVIEW link remains for final root document validation."
+}

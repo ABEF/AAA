@@ -1,11 +1,11 @@
-# Exact-unit LP allocator: implemented engine, pending ledger integration
+# Exact-unit LP rewards: accounting7 integration
 
-The internal [Solidity engine](../src/libraries/ExactLPAllocation.sol) implements
-bounded whole-unit allocation for the approved LP reward upgrade. It is not yet
-used by the current Rewards/Vault/canonical graph. Current accounting6 still
-uses LP indices/fractions; royalty4's exact tickets are a separate completed
-implementation. The [owning task](../TODO.md#task-lp-exact-unit-allocation) remains
-open until the ledger, canonical and consumer integration is verified.
+The internal [Solidity engine](../src/libraries/ExactLPAllocation.sol) is wired
+into fresh [accounting7](POSITION_V7.md) Rewards, claims, same-NFT conversion and
+lossless canonicalV9. Current-owner rights, fixed80/10/5/5 and separate original-
+currency rarity royalties are preserved. Historical6/V8 indices and checkpoints
+remain explicit; existing runtimes/journals are never reinterpreted or upgraded.
+See [integration evidence](../reports/exact-lp-integration-20261106/REVIEW.md).
 
 ## What the engine does
 
@@ -21,8 +21,8 @@ open until the ledger, canonical and consumer integration is verified.
 - Outstanding money is bounded by uint256, without a lifetime receipt counter
   that would eventually overflow after funds have already been paid.
 
-The future individual80%ledger needs one tree per logical bucket, not one per
-physical main/residual. The10%collective ledger needs global equal activated
+The individual80%ledger uses one tree per logical bucket, not one per
+physical main/residual. The10%collective ledger uses global equal activated
 weights, separately from LP size and rarity. Compound/buyback reserves and royalty
 tickets do not become tree weights. A royalty ticket shortcut using enormous
 raw LP share intervals would be unsuitable.
@@ -56,8 +56,8 @@ manipulation immunity or fixed lifetime error is promised.
 
 ## Internal developer interface
 
-These are internal functions compiled into a future host, not explorer/operator
-write targets. The current deployment has no new module, authority or setter.
+These are internal functions compiled into Rewards, not explorer/operator
+write targets. The allocator itself is internal code. Its fixed canonical codec is a separate constructor-created companion, without ordinary payout or arbitrary execution authority.
 
 | Function | Inputs | Output / effect |
 | --- | --- | --- |
@@ -74,33 +74,43 @@ external calls and transfers nothing. The host must enforce all those boundaries
 Generic weight reduction in this primitive does not authorize normal PoPL
 principal withdrawal or deactivation.
 
-## Next integration steps
+## Host and canonical integration
 
-1. Authenticate NFT.mintOrdinalOf, actual bucket shares and global membership.
-   Settle old weights and synchronize new Vault shares/denominator atomically.
-   The current pre-update checkpoint alone cannot install a changed tree weight.
-   Evaluate moving/adapting the existing typed hook rather than adding redundant
-   calls or a generic executor. Current normal runtime margins are107bytes for
-   Vault and3,265for Rewards; the actual integrated replacement must fit after
-   removing obsolete fraction code, not by retaining two active accounting
-   algorithms or assuming the library shell measures inlined code.
-2. Preserve funded current-owner claims and exact per-NFT conversion outputs.
-   Conversion must credit the same component/owner right, never allocate by
-   current cohort a second time.
-3. Design explicit new accounting/LP-allocation/canonical/event/API/checkpoint
-   identities. Current6/V8 and all existing runtimes/journals remain unchanged.
-   Do not silently reinterpret old fractional rights as these whole books.
-4. Rebuild/authenticate weights before restoring canonical pending/phase records;
-   enrollment after restoring money would mutate imported allocation. Validate
-   node/leaf bounds, outstanding sums and phase invariants in the new format.
-5. Update earnings replay/reconciliation, claims, inventory/runtime pins and the
-   keeper conversion consumer. Initial/growth, main/residual transitions and
-   terminal return must retain the same logical rights.
-6. Measure the integrated host at maximum state. Library-shell size, internal
-   harness gas and the32-entry count limit do not qualify full activation,
-   claim/conversion/canonical gas or the existing12Mwork envelope.
+Vault writes actual new shares/totals, then calls its typed `syncShares` hook.
+The engine settles both old asset paths using stored OLD weights before installing
+the new value. NFT ordinal/bucket identity and exact aggregate totals are checked.
+Membership similarly writes eligibility/count before one-time `syncMembership`;
+top-ups never create another collective share. All changes roll back with a failed
+contribution. Neither physical residual liquidity nor rarity becomes an LP weight.
 
-See the [implementation and review record](../reports/exact-lp-engine-20261106/REVIEW.md)
-and [verification](../reports/exact-lp-engine-20261106/VERIFICATION.md).
-No deployment, sealing, website/service change, old-chain reset or signing
-capability change is implied by this source component.
+`claimableComponents` reports whole individual/collective rights plus direct
+credits. Claims take only the current owner's NFT rights; a failed payment rolls
+back every debit. LP conversion takes exact historical ZZZ components and credits
+ETH only to the SAME NFT/components, without another cohort allocation or income.
+Principal, compound, buyback and royalty backing remain separate.
+
+Rewards owns funds/books. Its immutable constructor-created RewardsCanonical
+companion handles V9 capture/import/backing. The parent accepts only three closed
+typed record domains from that child; there is no delegatecall, arbitrary storage
+writer, ordinary operator recipient or new custody-exit address. All weights seed
+before raw pending/high/low nodes. Exact per-book outstanding, direct liabilities,
+source identities and prefund-excluding backing reconcile before activation.
+Source books remain unchanged for a fully funded abort. See [record layout](POSITION_V7.md).
+
+### Consumers and remaining qualification
+
+Fresh profile7/schema16/source9 consumers use explicit synchronization events and
+exact-phase replay. Conversion, claims and import are not new income. Old
+checkpoint1 is profile6-only; fresh7 uses complete admitted raw history until
+reviewed checkpoint2 exists. Do not relabel old artifacts to avoid that boundary.
+
+Normal real-host size gates and scoped EVM/producer-consumer evidence are recorded
+in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md).
+Earlier [engine measurements](../reports/exact-lp-engine-20261106/VERIFICATION.md)
+retain their own source scope. Count limits/harness gas are not target-chain
+qualification. Fixed2023node records cost253 eight-row pages for any nonempty
+collection, plus headers/NFT/other domains; sparse optimization is deferred.
+
+Target gas/economics, long-lived checkpoint/storage/recovery, actual dependencies
+and independent audit remain open. No deployment, sealing, website/service change,
+old-chain reset or signing capability change accompanies source publication.

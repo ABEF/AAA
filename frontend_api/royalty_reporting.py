@@ -15,8 +15,8 @@ class Reporting:
         if type(config['schema']) is not int or config['schema'] not in (1, 2, 3, 4, 5):
             raise ValueError('Unsupported royalty reporting profile')
         self.schema = config['schema']
-        if self.schema == 5 and projection.accounting_version != 6:
-            raise ValueError('Exact royalty reporting requires accounting6/canonicalV8')
+        if self.schema == 5 and projection.accounting_version not in (6,7):
+            raise ValueError('Exact royalty reporting requires explicit accounting6/V8 or accounting7/V9')
         if self.schema == 2 and config['converter'] is None:
             raise ValueError('Governed converter reporting requires an explicit runtime pin')
         if self.schema >= 3 and config['converter'] is not None:
@@ -137,7 +137,7 @@ class Reporting:
             if asset == ZERO and count != total:
                 if self.schema >= 3:
                     raise ProjectionError('Original-currency native eligibility mismatch')
-                if p.accounting_version in (4,5,6):
+                if p.accounting_version in (4,5,6,7):
                     # There is no native-token read fault or external custody
                     # path in this fresh ledger. Never invoke removed selectors.
                     raise ProjectionError('Inconsistent native royalty eligibility')

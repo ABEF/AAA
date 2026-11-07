@@ -1,6 +1,6 @@
 # Dynamic contributions, LP replacement and current NFT value
 
-Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting7 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
@@ -272,8 +272,8 @@ operations are disabled. Parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 
-Fresh accounting6/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. After a bucket closes for holder return,
+Fresh accounting7/custody5 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. After a bucket closes for holder return,
 Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
 retaining royalty eligibility. Pending 5% compound joins returned principal;
 earned LP/royalties, buyback reserves and unrelated funds do not. Principal
@@ -301,8 +301,8 @@ contract safeguards still pass. Do not claim an on-chain stale-position veto.
 
 The separate popldemo website remains a labelled simulation with example amounts,
 Number-based demo IDs and no live dependency on this API. Served poplint uses
-the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh6.
-Fresh6 live integration must
+the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh7.
+Fresh7 live integration must
 use decimal-string IDs/amounts, canonical block provenance, current marked NAV,
 separate LP/royalty claim balances, full lifetime claims and unavailable states.
 An indexer `Rebalanced` event invalidates cached position identity; events alone

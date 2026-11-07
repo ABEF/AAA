@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "exact_copy_and_decompression_verified": true,
+  "records": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\baseline-tracked.json",
+      "target": "baseline-tracked.json.gz",
+      "source_sha256": "115d029d024e5510ca81e6a5f87a95f044d19aaded2fbc8bb8d1cbad957b3d55",
+      "target_sha256": "ccff89b7606e43ac61f5c1461aec92304b3d1ae5c8c13ed1947df09f01c6c53e",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\baseline-status.txt",
+      "target": "baseline-status.txt",
+      "source_sha256": "857f107e4d61308170476a08cab451086842423ab14ff186ded76ef9ec3f48c4",
+      "target_sha256": "857f107e4d61308170476a08cab451086842423ab14ff186ded76ef9ec3f48c4",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\baseline-dirty-docs.patch",
+      "target": "baseline-dirty-docs.patch",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\PRESERVATION_LINKS.json",
+      "target": "PRESERVATION_LINKS.json",
+      "source_sha256": "246dc89188c6e0d392cb5d9bebc063cd4d4d145a31919a1b320936872cc1de03",
+      "target_sha256": "246dc89188c6e0d392cb5d9bebc063cd4d4d145a31919a1b320936872cc1de03",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\source-checks-current.json",
+      "target": "source-checks-current.json",
+      "source_sha256": "f3c68f7f21c1536de92377c4431a744c460a0ce3705f4866f3c69b30fce10b6f",
+      "target_sha256": "f3c68f7f21c1536de92377c4431a744c460a0ce3705f4866f3c69b30fce10b6f",
+      "gzip": false
+    }
+  ],
+  "current_source_scope": "Final5994 production graph; no source/site/service/chain/signer mutation by packaging"
+}

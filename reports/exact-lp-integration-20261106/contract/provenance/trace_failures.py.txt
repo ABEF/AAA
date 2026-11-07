@@ -1,0 +1,9 @@
+from pathlib import Path
+import json,os,subprocess,uuid,hashlib
+r=Path.cwd();e=Path(__file__).parent;v=e.parents[1];stage=e/('trace-'+uuid.uuid4().hex[:10]);stage.mkdir()
+start=json.loads((e/'evm-canonical-c8d193044e/START.json').read_text());cmd=start['command'];cmd.remove('--json');cmd[cmd.index('-vv')]='-vvvv'
+cmd[cmd.index('--match-test')+1]='^(testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer|testNativeFeeSplitIsIndexedAndSeparatelyBacked)(\\(|$)'
+keep=('SystemRoot','WINDIR','SystemDrive','COMSPEC','PATHEXT','TEMP','TMP','USERPROFILE','LOCALAPPDATA','APPDATA','PROGRAMDATA','HOMEDRIVE','HOMEPATH');env={k:os.environ[k] for k in keep if k in os.environ};env.update(FOUNDRY_CODE_SIZE_LIMIT='1000000',FOUNDRY_OFFLINE='true',FOUNDRY_FFI='false',PYTHONDONTWRITEBYTECODE='1');env['PATH']=str(v/'foundry-v1.4.4')+os.pathsep+str(v/'toolchain-0.8.26')+os.pathsep+str(Path(os.environ.get('SystemRoot','C:/Windows'))/'System32')
+(stage/'START.json').write_text(json.dumps({'command':cmd,'basis':start},indent=2)+'\n')
+with (stage/'stdout.log').open('wb')as so,(stage/'stderr.log').open('wb')as se:p=subprocess.run(cmd,cwd=r,env=env,stdout=so,stderr=se,timeout=120)
+after={n:hashlib.sha256((r/n).read_bytes()).hexdigest() for n in start['production_before']};(stage/'status.json').write_text(json.dumps({'exit':p.returncode,'source_unchanged':after==start['production_before']},indent=2)+'\n');print(stage,p.returncode)

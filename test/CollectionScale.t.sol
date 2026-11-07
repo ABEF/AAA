@@ -53,9 +53,9 @@ contract CollectionScaleTest is PooledVaultFixture {
         royalties = nft.royaltyRewards();
         router = nft.claimRouter();
         stable = new MockToken(6);
-        // The same t0 asset enters separate LP and royalty ledgers, so their
+        // The same t1 asset enters separate LP and royalty ledgers, so their
         // backing cannot accidentally be conflated by a currency-only model.
-        nft.addRoyaltyAsset(address(t0));
+        nft.addRoyaltyAsset(address(t1));
         nft.addRoyaltyAsset(address(stable));
     }
 
@@ -91,16 +91,16 @@ contract CollectionScaleTest is PooledVaultFixture {
     }
 
     function _fundRoyalties() private {
-        t0.mint(address(royalties), totalWeight * 100);
+        t1.mint(address(royalties), totalWeight * 100);
         stable.mint(address(royalties), totalWeight * 1e6);
         _payNative(totalWeight * 1e12);
     }
 
     function _mixed(uint256 id) private view returns (ZZZClaimRouter.Claim[] memory requests) {
         requests = new ZZZClaimRouter.Claim[](5);
-        requests[0] = ZZZClaimRouter.Claim(id, address(t0), false);
-        requests[1] = ZZZClaimRouter.Claim(id, address(t1), false);
-        requests[2] = ZZZClaimRouter.Claim(id, address(t0), true);
+        requests[0] = ZZZClaimRouter.Claim(id, address(t1), false);
+        requests[1] = ZZZClaimRouter.Claim(id, address(t0), false);
+        requests[2] = ZZZClaimRouter.Claim(id, address(t1), true);
         requests[3] = ZZZClaimRouter.Claim(id, address(stable), true);
         requests[4] = ZZZClaimRouter.Claim(id, address(0), true);
     }
@@ -154,9 +154,9 @@ contract CollectionScaleTest is PooledVaultFixture {
     function _assertEntitlement(uint256 ordinal) private view {
         uint256[5] memory expected = _expected(ordinal);
         uint256 id = ids[ordinal];
-        assertEq(rewards.claimable(id, address(t0)), expected[0]);
-        assertEq(rewards.claimable(id, address(t1)), expected[1]);
-        assertEq(royalties.claimable(id, address(t0)), expected[2]);
+        assertEq(rewards.claimable(id, address(t1)), expected[0]);
+        assertEq(rewards.claimable(id, address(t0)), expected[1]);
+        assertEq(royalties.claimable(id, address(t1)), expected[2]);
         assertEq(royalties.claimable(id, address(stable)), expected[3]);
         assertEq(royalties.claimable(id, address(0)), expected[4]);
     }
@@ -165,8 +165,8 @@ contract CollectionScaleTest is PooledVaultFixture {
         for (uint256 i; i < COUNT; ++i) {
             uint256 id = ids[i]; address owner = holders[i];
             uint256[5] memory expected = _expected(i);
-            uint256 before0 = t0.balanceOf(owner);
-            uint256 before1 = t1.balanceOf(owner);
+            uint256 before0 = t1.balanceOf(owner);
+            uint256 before1 = address(owner).balance;
             uint256 beforeStable = stable.balanceOf(owner);
             uint256 beforeNative = owner.balance;
             vm.startPrank(owner);
@@ -174,9 +174,9 @@ contract CollectionScaleTest is PooledVaultFixture {
                 uint256[] memory received = router.claimBatch(_mixed(id));
                 for (uint256 a; a < 5; ++a) assertEq(received[a], expected[a]);
             } else {
-                assertEq(rewards.claim(id, address(t0)), expected[0]);
-                assertEq(rewards.claim(id, address(t1)), expected[1]);
-                assertEq(royalties.claim(id, address(t0)), expected[2]);
+                assertEq(rewards.claim(id, address(t1)), expected[0]);
+                assertEq(rewards.claim(id, address(t0)), expected[1]);
+                assertEq(royalties.claim(id, address(t1)), expected[2]);
                 assertEq(royalties.claim(id, address(stable)), expected[3]);
                 assertEq(royalties.claim(id, address(0)), expected[4]);
             }
@@ -184,10 +184,10 @@ contract CollectionScaleTest is PooledVaultFixture {
             uint256[] memory again = router.claimBatch(_mixed(id));
             vm.stopPrank();
             for (uint256 a; a < 5; ++a) { assertEq(again[a], 0); paid[a] += expected[a]; }
-            assertEq(t0.balanceOf(owner) - before0, expected[0] + expected[2]);
-            assertEq(t1.balanceOf(owner) - before1, expected[1]);
+            assertEq(t1.balanceOf(owner) - before0, expected[0] + expected[2]);
+            assertEq(owner.balance-before1,expected[1]+expected[4]);
             assertEq(stable.balanceOf(owner) - beforeStable, expected[3]);
-            assertEq(owner.balance - beforeNative, expected[4]);
+            assertEq(owner.balance-beforeNative,expected[1]+expected[4]);
         }
     }
 
@@ -197,7 +197,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         vm.pauseGasMetering();
         _prepareRoyaltyAssets();
         openingRoyalties = [uint256(23),uint256(41),uint256(17)];
-        t0.mint(address(royalties), 23); stable.mint(address(royalties), 41); _payNative(17);
+        t1.mint(address(royalties), 23); stable.mint(address(royalties), 41); _payNative(17);
         uint256[3] memory rarityCounts;
         for (uint256 i; i < COUNT; ++i) {
             uint256 id = _mintScale(i, true);
@@ -215,31 +215,31 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(venue.next(), 2); assertEq(treasury.balance, COUNT * 0.05 ether);
         // Receipts during minting belong to the eventual opening cohort, not
         // an orphan pool and not the first activation alone.
-        assertEq(royalties.openingPool(address(t0)),23);
+        assertEq(royalties.openingPool(address(t1)),23);
         assertEq(royalties.openingPool(address(stable)),41);
         assertEq(royalties.openingPool(address(0)),17);
-        assertEq(royalties.orphaned(address(t0)),0);
+        assertEq(royalties.orphaned(address(t1)),0);
         assertEq(royalties.orphaned(address(stable)),0);assertEq(royalties.orphaned(address(0)),0);
-        assertEq(royalties.claimable(ids[0],address(t0)),0);
+        assertEq(royalties.claimable(ids[0],address(t1)),0);
         vm.prank(holders[0]);vm.expectRevert(ZZZRoyaltyRewards.InvalidState.selector);
-        royalties.claim(ids[0],address(t0));
+        royalties.claim(ids[0],address(t1));
         // Prove supply exhaustion while the sale is still open, rather than
         // accidentally passing because minting has already closed.
         bytes32 reviewedPolicy2 = vault.mintPolicyFingerprint(); vm.prank(_holder(0)); vm.expectRevert(); vault.mintDormant{value: 0.05 ether}(reviewedPolicy2);
         _closeWindowWithCohort(COUNT,totalWeight);
-        assertEq(royalties.openingPool(address(t0)),0);assertEq(royalties.openingPool(address(stable)),0);
+        assertEq(royalties.openingPool(address(t1)),0);assertEq(royalties.openingPool(address(stable)),0);
         assertEq(royalties.openingPool(address(0)),0);
-        assertEq(royalties.liabilities(address(t0)),23);assertEq(royalties.liabilities(address(stable)),41);
+        assertEq(royalties.liabilities(address(t1)),23);assertEq(royalties.liabilities(address(stable)),41);
         assertEq(royalties.liabilities(address(0)),17);
 
         // Actual venue receipts preserve the same 40/60 gross fee vector;
         // no optional creator-payment path is part of this candidate.
-        venue.setFees(totalPrincipal * 40, totalPrincipal * 60);
+        venue.setFees(totalPrincipal * 60,totalPrincipal * 40);
         vault.collectFees(bucket, block.timestamp + 100);
-        assertEq(fees.compoundBalance(bucket, address(t0)), totalPrincipal * 2);
-        assertEq(fees.compoundBalance(bucket, address(t1)), totalPrincipal * 3);
-        assertEq(fees.buybackBalance(address(t0)), totalPrincipal * 2);
-        assertEq(fees.buybackBalance(address(t1)), totalPrincipal * 3);
+        assertEq(fees.compoundBalance(bucket, address(t1)), totalPrincipal * 2);
+        assertEq(fees.compoundBalance(bucket, address(t0)), totalPrincipal * 3);
+        assertEq(fees.buybackBalance(address(t1)), totalPrincipal * 2);
+        assertEq(fees.buybackBalance(address(t0)), totalPrincipal * 3);
         _fundRoyalties();
         for (uint256 i; i < COUNT; ++i) { _assertIdentity(i, bucket); _assertEntitlement(i); }
 
@@ -253,19 +253,19 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(venue.ownerOf(vault.group(bucket).lpTokenId), address(vault));
         assertEq(vault.bucketCount(), 1); assertEq(venue.next(), 3);
         assertEq(vault.bucketTotalShares(bucket), totalPrincipal * 1e18);
-        assertEq(fees.compoundBalance(bucket, address(t0)), 0);
         assertEq(fees.compoundBalance(bucket, address(t1)), 0);
+        assertEq(fees.compoundBalance(bucket, address(t0)), 0);
 
         // Direct approved ZZZ burn exercises the real burn supply check. The
         // other currency's reserve stays accounted; no swap price is invented.
-        ZZZBuyback buyback = new ZZZBuyback(address(ac), address(t0), 1e30);
+        ZZZBuyback buyback = new ZZZBuyback(address(ac), address(t1), 1e30);
         ac.bind(Ids.BUYBACK, address(buyback));
-        uint256 supplyBefore = t0.totalSupply();
+        uint256 supplyBefore = t1.totalSupply();
         uint256 burned = totalPrincipal * 2;
-        buyback.execute(address(t0), burned, poolId, block.timestamp + 100);
-        assertEq(t0.totalSupply(), supplyBefore - burned);
-        assertEq(t0.balanceOf(address(buyback)), 0);
-        assertEq(fees.buybackBalance(address(t0)), 0);
+        buyback.execute(address(t1), burned, poolId, block.timestamp + 100);
+        assertEq(t1.totalSupply(), supplyBefore - burned);
+        assertEq(t1.balanceOf(address(buyback)), 0);
+        assertEq(fees.buybackBalance(address(t1)), 0);
 
         // Transfer several still-funded NFTs to an existing multi-NFT holder.
         // Exact historical entitlement and immutable traits remain token-bound.
@@ -273,7 +273,7 @@ contract CollectionScaleTest is PooledVaultFixture {
             address previous = holders[i];
             vm.prank(previous); nft.transferFrom(previous, _holder(0), ids[i]);
             holders[i] = _holder(0);
-            vm.prank(previous); vm.expectRevert(); rewards.claim(ids[i], address(t0));
+            vm.prank(previous); vm.expectRevert(); rewards.claim(ids[i], address(t1));
             vm.prank(previous); vm.expectRevert(); royalties.claim(ids[i], address(0));
         }
         for (uint256 i; i < COUNT; ++i) { _assertIdentity(i, bucket); _assertEntitlement(i); }
@@ -281,68 +281,68 @@ contract CollectionScaleTest is PooledVaultFixture {
         assertEq(paid[0], totalPrincipal * 36); assertEq(paid[1], totalPrincipal * 54);
         assertEq(paid[2], totalWeight * 100 + 23); assertEq(paid[3], totalWeight * 1e6 + 41);
         assertEq(paid[4], totalWeight * 1e12 + 17);
-        assertEq(rewards.liabilities(address(t0)), 0); assertEq(rewards.liabilities(address(t1)), 0);
-        assertEq(t0.balanceOf(address(rewards)), 0); assertEq(t1.balanceOf(address(rewards)), 0);
-        assertEq(royalties.liabilities(address(t0)), 0); assertEq(royalties.liabilities(address(stable)), 0);
+        assertEq(rewards.liabilities(address(t1)), 0); assertEq(rewards.liabilities(address(t0)), 0);
+        assertEq(t1.balanceOf(address(rewards)), 0); assertEq(address(address(rewards)).balance, 0);
+        assertEq(royalties.liabilities(address(t1)), 0); assertEq(royalties.liabilities(address(stable)), 0);
         assertEq(royalties.liabilities(address(0)), 0);
-        assertEq(t0.balanceOf(address(royalties)), 0); assertEq(stable.balanceOf(address(royalties)), 0);
+        assertEq(t1.balanceOf(address(royalties)), 0); assertEq(stable.balanceOf(address(royalties)), 0);
         assertEq(address(royalties).balance, 0);
-        assertEq(t0.balanceOf(address(fees)), fees.accounted(address(t0)));
         assertEq(t1.balanceOf(address(fees)), fees.accounted(address(t1)));
-        assertEq(fees.accounted(address(t0)), 0); assertEq(fees.accounted(address(t1)), totalPrincipal * 3);
+        assertEq(address(address(fees)).balance, fees.accounted(address(t0)));
+        assertEq(fees.accounted(address(t1)), 0); assertEq(fees.accounted(address(t0)), totalPrincipal * 3);
 
         Position memory p = vault.group(bucket);
         // Per-asset equality includes actual balances once, not liabilities plus
         // their backing. Principal, compounded revenue, paid fees, pending burn
         // reserve, burned supply and exact original-currency opening rights all reconcile.
-        assertEq(venue.a0(p.lpTokenId) + p.idle0 + t0.balanceOf(address(fees)) +
-            t0.balanceOf(address(rewards)) + t0.balanceOf(address(royalties)) + paid[0] + paid[2] + burned,
-            totalPrincipal / 2 + totalPrincipal * 40 + totalWeight * 100 + 23);
         assertEq(venue.a1(p.lpTokenId) + p.idle1 + t1.balanceOf(address(fees)) +
-            t1.balanceOf(address(rewards)) + paid[1], totalPrincipal / 2 + totalPrincipal * 60);
+            t1.balanceOf(address(rewards)) + t1.balanceOf(address(royalties)) + paid[0] + paid[2] + burned,
+            totalPrincipal / 2 + totalPrincipal * 40 + totalWeight * 100 + 23);
+        assertEq(venue.a0(p.lpTokenId) + p.idle0 + address(address(fees)).balance +
+            address(address(rewards)).balance + paid[1], totalPrincipal / 2 + totalPrincipal * 60);
         assertEq(stable.balanceOf(address(royalties)) + paid[3], totalWeight * 1e6 + 41);
         assertEq(address(royalties).balance + paid[4], totalWeight * 1e12 + 17);
-        assertEq(address(router).balance, 0); assertEq(t0.balanceOf(address(router)), 0);
-        assertEq(t1.balanceOf(address(router)), 0); assertEq(stable.balanceOf(address(router)), 0);
+        assertEq(address(router).balance, 0); assertEq(t1.balanceOf(address(router)), 0);
+        assertEq(address(address(router)).balance, 0); assertEq(stable.balanceOf(address(router)), 0);
         vm.resumeGasMetering();
     }
 
 
     function testZeroOpeningCohortKeepsUnallocatedSeparateFromFutureEarnings() public {
         _prepareRoyaltyAssets();_mintScale(0,false);
-        t0.mint(address(royalties),23);stable.mint(address(royalties),41);_payNative(17);
+        t1.mint(address(royalties),23);stable.mint(address(royalties),41);_payNative(17);
         royalties.syncAll();
-        assertEq(royalties.openingPool(address(t0)),23);assertEq(royalties.openingPool(address(stable)),41);
-        assertEq(royalties.openingPool(address(0)),17);assertEq(royalties.orphaned(address(t0)),0);
+        assertEq(royalties.openingPool(address(t1)),23);assertEq(royalties.openingPool(address(stable)),41);
+        assertEq(royalties.openingPool(address(0)),17);assertEq(royalties.orphaned(address(t1)),0);
         _closeWindowWithCohort(0,0);
         // Actual post-opening receipts with no eligible NFT also remain
         // unallocated; a later activation cannot silently capture either pool.
-        t0.mint(address(royalties),7);stable.mint(address(royalties),11);_payNative(13);royalties.syncAll();
-        assertEq(royalties.orphaned(address(t0)),30);assertEq(royalties.orphaned(address(stable)),52);
+        t1.mint(address(royalties),7);stable.mint(address(royalties),11);_payNative(13);royalties.syncAll();
+        assertEq(royalties.orphaned(address(t1)),30);assertEq(royalties.orphaned(address(stable)),52);
         assertEq(royalties.orphaned(address(0)),30);
         _activateScale(0);
-        assertEq(royalties.claimable(ids[0],address(t0)),0);assertEq(royalties.claimable(ids[0],address(stable)),0);
+        assertEq(royalties.claimable(ids[0],address(t1)),0);assertEq(royalties.claimable(ids[0],address(stable)),0);
         assertEq(royalties.claimable(ids[0],address(0)),0);
         _fundRoyalties();
         vm.startPrank(holders[0]);
-        assertEq(royalties.claim(ids[0],address(t0)),totalWeight*100);
+        assertEq(royalties.claim(ids[0],address(t1)),totalWeight*100);
         assertEq(royalties.claim(ids[0],address(stable)),totalWeight*1e6);
         assertEq(royalties.claim(ids[0],address(0)),totalWeight*1e12);
         vm.stopPrank();
-        assertEq(t0.balanceOf(address(royalties)),30);assertEq(stable.balanceOf(address(royalties)),52);
+        assertEq(t1.balanceOf(address(royalties)),30);assertEq(stable.balanceOf(address(royalties)),52);
         assertEq(address(royalties).balance,30);
-        assertEq(royalties.liabilities(address(t0)),0);assertEq(royalties.liabilities(address(stable)),0);
+        assertEq(royalties.liabilities(address(t1)),0);assertEq(royalties.liabilities(address(stable)),0);
         assertEq(royalties.liabilities(address(0)),0);
     }
 
     function _cool(address owner) private {
         vm.cool(address(vault.migrationBudget()));
-        address feed = oracle.policy(oracle.activePolicy(address(t0))).primary.source;
+        address feed = oracle.policy(oracle.activePolicy(address(t1))).primary.source;
         vm.cool(address(ac)); vm.cool(address(vault)); vm.cool(address(membership));
         vm.cool(address(rewards)); vm.cool(address(fees)); vm.cool(address(compounder)); vm.cool(address(oracle));
         vm.cool(address(pools)); vm.cool(address(policy)); vm.cool(address(venue)); vm.cool(address(vrf));
         vm.cool(address(royalties)); vm.cool(address(router)); vm.cool(address(nft.metadataRenderer()));
-        vm.cool(address(t0)); vm.cool(address(t1)); vm.cool(address(stable)); vm.cool(feed);
+        vm.cool(address(t1)); vm.cool(address(t0)); vm.cool(address(stable)); vm.cool(feed);
         vm.cool(owner); vm.cool(treasury);
         // Helper getters above touch the NFT; cool it after those reads.
         vm.cool(address(nft));
@@ -362,7 +362,7 @@ contract CollectionScaleTest is PooledVaultFixture {
         uint256 last = size - 1;
         _cool(holders[last]); vm.prank(holders[last]); vm.resumeGasMetering();
         uint256 start = gasleft();
-        vault.activate(ids[last], poolId, 100, 100, 1, block.timestamp + 100);
+        vault.activate{value:100}(ids[last], poolId, 100, 100, 1, block.timestamp + 100);
         result.activation = start - gasleft(); vm.pauseGasMetering();
         emit log_named_uint("collection.shape.nfts",size);
         emit log_named_uint("collection.shape.claimed-nft-royalty-weight",royalties.weightOf(ids[last]));
@@ -372,11 +372,11 @@ contract CollectionScaleTest is PooledVaultFixture {
         // after every fixture mint/activation, and refresh its real mock feeds.
         _closeWindowWithCohort(size,totalWeight);
         uint256 bucket = vault.poolBucket(poolId);
-        venue.setFees(totalPrincipal * 20, totalPrincipal * 20); vault.collectFees(bucket, block.timestamp + 100);
+        venue.setFees(totalPrincipal * 20,totalPrincipal * 20); vault.collectFees(bucket, block.timestamp + 100);
         _fundRoyalties();
 
         _cool(holders[last]); vm.prank(holders[last]); vm.resumeGasMetering();
-        start = gasleft(); uint256 amount = rewards.claim(ids[last], address(t0));
+        start = gasleft(); uint256 amount = rewards.claim(ids[last], address(t1));
         result.oneAssetClaim = start - gasleft(); vm.pauseGasMetering(); assertGt(amount, 0);
         ZZZClaimRouter.Claim[] memory requests = _mixed(ids[last]);
         _cool(holders[last]); vm.prank(holders[last]); vm.resumeGasMetering();
@@ -419,13 +419,13 @@ contract CollectionScaleTest is PooledVaultFixture {
                 vm.prank(holders[i]); nft.transferFrom(holders[i], owner, ids[i]);
                 holders[i] = owner;
             }
-            requests[i * 2] = ZZZClaimRouter.Claim(ids[i], address(t0), false);
+            requests[i * 2] = ZZZClaimRouter.Claim(ids[i], address(t1), false);
             requests[i * 2 + 1] = ZZZClaimRouter.Claim(ids[i], address(0), true);
-            expectedLP += rewards.claimable(ids[i], address(t0));
+            expectedLP += rewards.claimable(ids[i], address(t1));
             expectedNative += royalties.claimable(ids[i], address(0));
         }
         assertGt(expectedLP, 0); assertGt(expectedNative, 0);
-        uint256 previousLP = t0.balanceOf(owner);
+        uint256 previousLP = t1.balanceOf(owner);
         uint256 previousNative = owner.balance;
         _cool(owner); vm.prank(owner); vm.resumeGasMetering();
         uint256 start = gasleft(); uint256[] memory paid = router.claimBatch(requests);
@@ -433,9 +433,9 @@ contract CollectionScaleTest is PooledVaultFixture {
         emit log_named_uint("collection.1000.claim-32-mixed", used);
         assertLt(used, LOCAL_GAS_BUDGET);
         assertEq(paid.length, 32);
-        assertEq(t0.balanceOf(owner) - previousLP, expectedLP);
+        assertEq(t1.balanceOf(owner) - previousLP, expectedLP);
         assertEq(owner.balance - previousNative, expectedNative);
-        assertEq(address(router).balance, 0); assertEq(t0.balanceOf(address(router)), 0);
+        assertEq(address(router).balance, 0); assertEq(t1.balanceOf(address(router)), 0);
         vm.resumeGasMetering();
     }
 

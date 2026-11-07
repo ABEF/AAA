@@ -90,7 +90,7 @@ bound cumulative turnover, impermanent loss, depegs or future price changes.
 Governance remains trusted and has no advance-warning delay.
 
 Current activation preparation uses explicit `routing_version: 2` and reviewed
-current accounting6/portfolio2/runtime pins. It reads the current contribution cap and
+current accounting7/portfolio2/runtime pins. It reads the current contribution cap and
 cross-checks the packed `contributionResult(...,uint32)` trace. Legacy profiles
 retain their old `uint16`/fixed-1% interpretation; no missing-getter fallback.
 Current conversion workers explicitly use `v4_native` or
@@ -104,7 +104,7 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 [feature evidence](IMPLEMENTATION_STATUS.md) and [central Todo](../TODO.md).
 
 The public website remains simulated. Historical native2 source/read profiles
-do not match current accounting6 merely through a configuration edit. Current
+do not match current accounting7 merely through a configuration edit. Current
 website/service qualification and public signing remain open; existing local
 deployments/journals keep their original semantics.
 
@@ -136,7 +136,7 @@ governance can still approve dangerous dependencies; this guard does not remove
 that accepted trust. Direct owner-to-Vault calls do not acquire a reviewed-Entry
 guarantee, and the preparer never silently falls back to them.
 
-Current pricing-V2 activation preparation and schema10/accounting6/Entry-routing3 release inventory require
+Current pricing-V2 activation preparation and schema16/accounting7/LP-allocation1/Entry-routing3 release inventory require
 explicit `review_policy_version: 2`, matching getters, runtime pins and exact new
 selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
 the captured `execution_limit_bps`; provenance includes the policy version.
@@ -145,6 +145,6 @@ activation configurations require an explicit source-matched replacement profile
 never mean legacy support. Read-only historical profiles remain separate.
 
 The historical Anvil profile retains its original policy and runtime; never
-reinterpret saved journals. The current read/unsigned integration must explicitly require accounting6/ProtocolPolicy1/Portfolio2/Entry-routing3/review2, the
+reinterpret saved journals. The current read/unsigned integration must explicitly require accounting7/ProtocolPolicy1/Portfolio2/Entry-routing3/review2, the
 reviewed selector and current limit checks; actual wallet/provider
 acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

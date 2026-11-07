@@ -12,23 +12,22 @@ royalty/Factory records retain their payload/accounting scope. There is no new
 approved deployment or service adoption, and running-source/gas/recovery/independent
 qualification remains required.
 
-The [engine milestone](../reports/exact-lp-engine-20261106/VERIFICATION.md) adds actual Solidity allocator, normal/static and backend evidence. All existing module ABI/bytecode remains unchanged. The approved [exact-unit LP upgrade](../TODO.md#task-lp-exact-unit-allocation) still requires host/canonical/consumer integration and measured full-host gas before freeze; an internal library shell or harness measurement is not that approval. Current accounting6 LP fractions remain.
+The [exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFICATION.md) connects real Rewards/Vault/Membership, whole claims/conversion, V9 canonical state and explicit profile7 consumers. Final normal gates pass at unchanged compiler/size settings; static532 is individually dispositioned or exact-source reused. The cold-claim, canonical-page and complete-host limits remain material; actual target gas/economics, services/site, recovery and independent audit are not approved. Earlier6/V8 fractional reports remain historical.
 
 ## Evidence and approval boundary
 
 Pre-audit published royalty3 baseline: main `967370f6d2de36c3e852a90f1458a7782edd7765`.
 The [current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) records the
-fresh royalty4/canonicalV8 candidate, exact source/configuration pins, retained
-failures and affected verification. Its final normal compiler, static and gas
-records must match the frozen release. Earlier royalty3, original-currency and
+then-fresh royalty4/canonicalV8 candidate, exact source/configuration pins, retained
+failures and affected verification. Its source-scoped records are historical; final integration records must match the frozen release. Earlier royalty3, original-currency and
 authority counts keep their historical source scope; do not reuse them as current
 gate results or sum overlapping stages. The [factory/claim improvement](../reports/factory-claims-20261105/VERIFICATION.md)
 changes Factory runtime/initcode and schema14, adding two inert data addresses
 and bounded unsigned claim planning. Royalty ledger bytes/accounting are unchanged;
-current44 normal compiler-object gates plus actual child runtimes/initcodes and
+then-current44 normal compiler-object gates plus actual child runtimes/initcodes and
 new strict static scope supersede only changed source evidence. No approved
 deployment or release-specific configuration exists.
-[Profile](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
+[Profile](POSITION_V7.md), [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md)
 and [sole Todo](../TODO.md) separate source from qualification.
 
 The callable reference, short operator tables and their source-bound examples
@@ -37,14 +36,14 @@ constructor and detector counts belong to their original reports. Internal
 verification is not a fresh full regression, public CI or independent approval.
 
 Current local actual-core/multi-day tests do not sign off sustained keeper uptime,
-actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source8 services/site,
+actual oracle/RPC behavior, Linux ownership/watchdogs/backups, source9 services/site,
 market economics, maximum populated gas or primary OpenSea minting. Funded claims
 can remain available during USD outages; missing post-action reads never justify
 resubmitting a confirmed operation. Final independent audit/remediation and the
 actual release record below remain required.
 
 The new [same-main management source](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
-adds residual-reinvest1 and inventory15. Its exact final compiler/static/reference
+adds residual-reinvest1 and inventory16. Its exact final compiler/static/reference
 evidence supersedes only its changed source scope; old unchanged-source reuse
 does not verify these new contracts. No service/site/deployment is upgraded.
 
@@ -52,7 +51,7 @@ does not verify these new contracts. No service/site/deployment is upgraded.
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory15/reporting5/canonicalV8. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V6.md). |
+| Identity | Accounting7/LP-allocation1/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory16/reporting5/canonicalV9. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V7.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
@@ -60,7 +59,7 @@ does not verify these new contracts. No service/site/deployment is upgraded.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; check exact margins in the current normal compiler record; royalty factory/constructor changes require fresh runtime and initcode checks, not fixture limits or historical headroom. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema15/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with18 callable helpers plus2 inert Factory data children, reporting5 and canonicalV8 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting6. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema16/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with19 callable helpers plus2 inert Factory data children, reporting5 and canonicalV9 and matching source/service/health/website acceptance required. Popldemo unchanged; poplint served current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)
@@ -124,7 +123,7 @@ recipient net after actual platform fee, gas separate; direct mint is not yet a
 qualified OpenSea drop. ERC-2981 does not guarantee royalty payment.
 
 Residual-only capability1 is a separate optional manual write surface within
-accounting6/custody5. Qualify exact four-module getters/runtimes and all callback,
+accounting7/custody5. Qualify exact four-module getters/runtimes and all callback,
 nonce, idle, reward and terminal-holder-return composition before release. Historical
 accounting5/4 binaries do not gain new source6 policy through a manifest label. Both old portfolio
 and current residual reports retain source/failure scope; neither is deployment approval.
@@ -133,5 +132,5 @@ Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNC
 and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+unsupported currencies and pathological-token failures remain distinct. CanonicalV9
 rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.

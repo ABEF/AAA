@@ -132,14 +132,14 @@ class MintIntegrationQualificationTests(unittest.TestCase):
                 self.assertFalse(result['ready'])
 
     def test_current_template_declares_real_implementation_and_unselected_provider(self):
-        from zzz_ops import production_v13 as current
+        from zzz_ops import production_v14 as current
         config = json.loads((Path(__file__).resolve().parents[1]/'config/production.example.json').read_text(encoding='utf8'))
         self.assertEqual(1,config['mint_integration_version'])
         chain = config['chains'][0]
         self.assertEqual('vault_direct_v1',chain['services']['opensea']['integration']['implementation_profile'])
         self.assertIsNone(chain['nft_inventory']['randomness']['coordinator'])
         result = current.validate(config,now=NOW)
-        self.assertEqual(result['schema_version'],15)
+        self.assertEqual(result['schema_version'],16)
         self.assertFalse(result['ready'])
         self.assertIn('mint.opensea_unsupported',{i['code'] for i in result['issues']})
 

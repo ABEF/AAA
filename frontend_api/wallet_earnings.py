@@ -49,7 +49,10 @@ def read(engine, wallet_address, block_number, offset):
     else:
         require(life['predecessor_controller'] is None, 'Complete predecessor history is required')
         epochs = [(p, header, None)]
-    model = Replay(header['timestamp'], selected=selected)
+    if p.accounting_version==7:
+        from frontend_api.earnings_exact_lp import ExactReplay
+        model=ExactReplay(header['timestamp'],selected=selected)
+    else:model = Replay(header['timestamp'], selected=selected)
     claims = defaultdict(lambda: [0, 0])
     conversions, lp_conversions, provenance = {}, {}, []
     for peer, cutoff, lower in epochs:
@@ -71,6 +74,12 @@ def read(engine, wallet_address, block_number, offset):
                         peer._uint('vault', 'nftBucket(uint256)', i, block=at) == bucket and
                         peer._uint('royalties', 'weightOf(uint256)', i, block=at) == model.weights.get(i, 0),
                         'Selected earnings rights differ from chain')
+                if peer.accounting_version==7:
+                    require(peer._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,'Selected exact LP bucket differs')
+                    for asset in a:
+                        actual=tuple(int(w,16) for w in peer._call(peer.contracts['rewards'].address,
+                            'claimableComponents(uint256,address)',i,asset,block=at,words=2))
+                        require(actual==model.components(i,asset),'Selected exact LP components differ')
             else:
                 require(ordinal == 0 and ordinals[i] > replayed.provenance['minted_count'],
                         'Missing predecessor NFT contradicts mint order')

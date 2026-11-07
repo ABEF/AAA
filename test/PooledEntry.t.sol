@@ -23,10 +23,10 @@ contract PooledEntryTest is PooledVaultFixture {
     }
     function testDonationDoesNotReduceSharesPurchased() public {
         uint256 first=activatedPosition();uint256 second=_mint(bob);
-        t0.mint(address(vault),1_000_000);_activate(bob,second,1000,1000);
+        _giftNative(address(vault), 1_000_000);_activate(bob,second,1000,1000);
         assertEq(vault.sharesOf(first),vault.sharesOf(second));
         Position memory p=vault.group(vault.nftBucket(first));
-        assertEq(t0.balanceOf(address(vault)),p.idle0+1_000_000);
+        assertEq(address(address(vault)).balance,p.idle0+1_000_000);
     }
     function testFeeDustSettlesToPreviousMembershipBeforeJoin() public {
         uint256 first=activatedPosition();uint256 bucket=vault.nftBucket(first);

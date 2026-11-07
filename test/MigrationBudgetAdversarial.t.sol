@@ -6,6 +6,7 @@ import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
 
 
+import {Vm} from "forge-std/Vm.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
@@ -18,6 +19,7 @@ import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
 /// reported retained amounts isolate Vault's loss budget from venue minima.
 /// Losses are removed from attributed LP amounts, never fabricated as backing.
 contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
+    Vm private constant nativeVm=Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
     MockToken private immutable token0;
     MockToken private immutable token1;
     mapping(uint256 => uint256) public amount0;
@@ -49,6 +51,11 @@ contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
     constructor(address a, address b) ERC721("Adversarial budget venue", "ABV") {
         token0 = MockToken(a); token1 = MockToken(b);
     }
+    receive()external payable{}
+    function _native()private view returns(bool){return address(token0)==address(0);}
+    function _send0(address recipient,uint256 value)private{if(value!=0){(bool ok,)=payable(recipient).call{value:value}("");require(ok);}}
+    function _burn0(uint256 value)private{if(_native())nativeVm.deal(address(this),address(this).balance-value);else token0.burn(value);}
+    function _mint0(address recipient,uint256 value)private{if(_native())nativeVm.deal(recipient,recipient.balance+value);else token0.mint(recipient,value);}
     function positionManager() external view returns (address) { return address(this); }
     function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
     function amounts(uint256 id) external view returns (uint256, uint256) { return (amount0[id], amount1[id]); }
@@ -69,29 +76,29 @@ contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
         if (address(mutateFeed) != address(0)) mutateFeed.set(replacementPrice, block.timestamp, block.timestamp);
     }
     function mint(bytes32, int24, int24, uint256 a, uint256 b, uint128, uint256)
-        external returns (uint256 id, uint256 used0, uint256 used1) {
+        external payable returns (uint256 id, uint256 used0, uint256 used1) {
         id = nextId++; _mint(msg.sender, id);
         used0 = a * spend0Bps / 10000; used1 = b * spend1Bps / 10000;
-        require(token0.transferFrom(msg.sender, address(this), used0));
+        if(_native()){require(msg.value==a);_send0(msg.sender,a-used0);}else require(token0.transferFrom(msg.sender, address(this), used0));
         require(token1.transferFrom(msg.sender, address(this), used1));
         amount0[id] = used0 - mintLoss0; amount1[id] = used1 - mintLoss1;
         // Burn modeled execution losses, ensuring final LP amounts are backed.
-        token0.burn(mintLoss0); token1.burn(mintLoss1);
+        _burn0(mintLoss0); token1.burn(mintLoss1);
         if (mutateOnMint) _mutate();
         if (displaceMintOwner) _transfer(msg.sender, address(0xBAD), id);
     }
     function collect(bytes32, uint256 id, uint256) external {
         uint256 a = fee0; uint256 b = fee1; fee0 = 0; fee1 = 0;
         amount0[id] -= harvestLoss0; amount1[id] -= harvestLoss1;
-        token0.burn(harvestLoss0); token1.burn(harvestLoss1);
+        _burn0(harvestLoss0); token1.burn(harvestLoss1);
         if (mutateOnHarvest) _mutate();
-        token0.mint(msg.sender, a); token1.mint(msg.sender, b);
+        _mint0(msg.sender,a); token1.mint(msg.sender, b);
     }
     function close(bytes32, uint256 id, uint256) external {
         uint256 a = amount0[id] - closeLoss0; uint256 b = amount1[id] - closeLoss1;
         delete amount0[id]; delete amount1[id]; _burn(id);
-        token0.burn(closeLoss0); token1.burn(closeLoss1);
-        require(token0.transfer(msg.sender, a)); require(token1.transfer(msg.sender, b));
+        _burn0(closeLoss0); token1.burn(closeLoss1);
+        if(_native())_send0(msg.sender,a);else require(token0.transfer(msg.sender, a)); require(token1.transfer(msg.sender, b));
         if (!mutateOnMint) _mutate();
         if (reentryTarget != address(0)) {
             reentryAttempted = true;
@@ -100,24 +107,23 @@ contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
             if (result.length >= 4) reentryError = bytes4(result);
         }
     }
-    function balance(bytes32 pool,uint256,uint256 a,uint256 b,uint256 deadline)
-        external returns(uint256 balanced0,uint256 balanced1) {
+    function balance(bytes32 pool,uint256,uint256 a,uint256 b,uint256)
+        external payable returns(uint256 balanced0,uint256 balanced1) {
+        require(msg.value==(_native()?a:0));
         IZZZStrategy strategy=IZZZStrategy(ZZZVault(payable(msg.sender)).access().module(Ids.STRATEGY));
-        (bool direction,uint256 input,uint256 minimum)=strategy.swapPlan(pool,a,b);
+        (bool direction,uint256 input,)=strategy.swapPlan(pool,a,b);
         balanced0=a;balanced1=b;
-        if(input!=0){
-            require(direction&&input<=a);
-            uint256 output=swap(pool,direction,input,minimum,deadline);
-            balanced0-=input;balanced1+=output;
-        }
+        if(input!=0){require(direction&&input<=a);uint256 output=_swap(input);balanced0-=input;balanced1+=output;}
+        if(_native())_send0(msg.sender,balanced0);
     }
-    function swap(bytes32, bool zeroForOne, uint256 input, uint256, uint256) public returns (uint256) {
-        require(zeroForOne);
-        ++swapCount;
-        require(token0.transferFrom(msg.sender, address(this), input));
-        token1.mint(msg.sender, swapOutput);
-        return swapOutput;
+    function swap(bytes32,bool zeroForOne,uint256 input,uint256,uint256)external payable returns(uint256){
+        require(zeroForOne&&msg.value==(_native()?input:0));return _swap(input);
     }
+    function _swap(uint256 input)private returns(uint256){
+        ++swapCount;if(!_native())require(token0.transferFrom(msg.sender,address(this),input));
+        token1.mint(msg.sender,swapOutput);return swapOutput;
+    }
+
 }
 
 contract BudgetAdversarialPolicy is NoHybridPolicyFixture {
@@ -169,7 +175,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
         assertEq(uint8(afterPosition.status), uint8(beforePosition.status));
         assertEq(vault.poolBucket(nextPool), 0); assertEq(vault.bucketCount(), 1);
         assertEq(vault.sharesOf(nftId), shares); assertEq(adversary.ownerOf(beforePosition.lpTokenId), address(vault));
-        assertEq(t0.allowance(address(vault), address(adversary)), 0);
+
         assertEq(t1.allowance(address(vault), address(adversary)), 0);
     }
     function testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry() public {
@@ -197,20 +203,20 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     function testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss() public {
         _setupAdversary(); uint256 id = activatedPosition(); bytes32 nextPool = _destination();
         adversary.setFees(1000, 1000); vault.collectFees(_bucket(), block.timestamp + 100);
-        t0.mint(address(vault), 777); t1.mint(address(vault), 888);
+        _giftNative(address(vault), 777); t1.mint(address(vault), 888);
         uint256 rewardBefore = rewards.claimable(id, address(t0));
         uint256 reserveBefore = fees.buybackBalance(address(t0));
-        uint256 vaultBefore0 = t0.balanceOf(address(vault)); uint256 vaultBefore1 = t1.balanceOf(address(vault));
+        uint256 vaultBefore0 = address(address(vault)).balance; uint256 vaultBefore1 = t1.balanceOf(address(vault));
         adversary.losses(40, 40, 0, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool);
         assertEq(rewards.claimable(id, address(t0)), rewardBefore); assertEq(fees.buybackBalance(address(t0)), reserveBefore);
         assertEq(fees.compoundBalance(_bucket(), address(t0)), 50);
-        assertEq(t0.balanceOf(address(vault)), vaultBefore0); assertEq(t1.balanceOf(address(vault)), vaultBefore1);
+        assertEq(address(address(vault)).balance, vaultBefore0); assertEq(t1.balanceOf(address(vault)), vaultBefore1);
     }
     function testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
         MockFeed feed = new MockFeed(8, 1e8);
-        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
+        _setFixtureFeed(address(t1), address(feed), 3600);
         adversary.mutatePrice(feed, 2e8, false); adversary.losses(40, 40, 0, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool);
         assertEq(feed.answer(), 1e8); assertEq(vault.group(_bucket()).poolId, poolId);
@@ -219,7 +225,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
         _setupAdversary(); uint256 id = activatedPosition(); bytes32 nextPool = _destination();
         Position memory beforePosition = vault.group(_bucket()); uint256 shares = vault.sharesOf(id);
         MockFeed feed = new MockFeed(8, 1e8);
-        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
+        _setFixtureFeed(address(t1), address(feed), 3600);
         // The initial implementation took its snapshot after this stateful call:
         // it would accept the already diminished 1920 as the starting principal.
         adversary.harvestLosses(40, 40); adversary.mutatePrice(feed, 2e8, false); adversary.mutateAtHarvest(true);
@@ -230,7 +236,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     }
     function testMintCallbackPriceChangeCannotHideExcessAttributedIdle() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
-        MockFeed feed = new MockFeed(8, 1e8); oracle.setTestFeed(address(t0), address(feed), 3600);
+        MockFeed feed = new MockFeed(8, 1e8); _setFixtureFeed(address(t0), address(feed), 3600);
         adversePolicy.setSwapAmount(899); adversary.setSwapOutput(899); adversary.spending(0, 10000);
         adversary.mutatePrice(feed, 1e6, true);
         // Dynamic prices see 1.01 idle + 1899 LP; cached prices see 101/2000 idle.
@@ -247,7 +253,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     function testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary() public {
         _setupAdversary(); uint256 id = _mint(alice); _activate(alice, id, 100, 101); bytes32 nextPool = _destination();
         MockFeed feed = new MockFeed(18, 1);
-        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
+        _setFixtureFeed(address(t0), address(feed), 3600); _setFixtureFeed(address(t1), address(feed), 3600);
         adversary.losses(4, 3, 0, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool); // 194 < ceil(201 * .97) = 195.
         adversary.losses(3, 3, 0, 0); _move(nextPool);
@@ -255,13 +261,13 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     }
     function testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
-        MockFeed dearer = new MockFeed(8, 10e8); oracle.setTestFeed(address(t0), address(dearer), 3600);
+        MockFeed dearer = new MockFeed(8, 10e8); _setFixtureFeed(address(t1), address(dearer), 3600);
         // 34 raw units are only 1.7% of token counts, but $340 exceeds the $330 budget.
-        adversary.losses(0, 0, 34, 0);
+        adversary.losses(0,0,0,34);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool);
-        adversary.losses(0, 0, 33, 0); _move(nextPool);
+        adversary.losses(0,0,0,33); _move(nextPool);
         Position memory p = vault.group(_bucket());
-        assertEq(adversary.amount0(p.lpTokenId), 967); assertEq(adversary.amount1(p.lpTokenId), 1000);
+        assertEq(adversary.amount0(p.lpTokenId),1000);assertEq(adversary.amount1(p.lpTokenId),967);
     }
     function testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint() public {
         _setupAdversary(); uint256 id = activatedPosition(); uint256 shares = vault.sharesOf(id);

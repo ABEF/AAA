@@ -1,6 +1,6 @@
 # Configuration changes and recovery boundaries
 
-The undeployed candidate uses [accounting6 / custody5 / portfolio2 / canonical V6](POSITION_V6.md).
+The undeployed candidate uses [accounting7 / custody5 / portfolio2 / canonical V6](POSITION_V7.md).
 Sealing fixes code, bindings and the single ZZZ identity. Governance changes
 supported policy directly, without a timelock; it cannot rewrite NFT rights or
 send principal/royalties to a custodian. Production is **NOT APPROVED**.
@@ -85,7 +85,7 @@ The former remote destination-capacity proposal belongs to the removed bridge
 architecture. It is not a current release feature or an unimplemented bridge
 requirement. Preserve its original reports as historical evidence.
 
-Before `lpExitStarted`, compatible [same-chain canonical V8 handoff](CANONICAL_HANDOFF.md)
+Before `lpExitStarted`, compatible [same-chain canonical V9 handoff](CANONICAL_HANDOFF.md)
 can carry NFT ownership, shares, both ledgers and exact backing to one reviewed
 replacement. It requires complete reveals, parked buckets, authenticated records,
 funded legs and atomic retirement/activation; partial failure requires exact
@@ -95,6 +95,6 @@ After collective exit starts, that handoff is permanently blocked because its
 importer does not carry the terminal principal-payout ledger. No admin-only
 reopening, post-halt recovery or cross-chain transport exists.
 
-Actual feeds/routes/VRF/authorities, OpenSea, accounting6 services/UI, target gas,
+Actual feeds/routes/VRF/authorities, OpenSea, accounting7 services/UI, target gas,
 operating rehearsals and independent review remain [open](../TODO.md). Historical
 reports and deployed Anvil profiles keep their original scope and code.

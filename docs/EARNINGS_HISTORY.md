@@ -2,9 +2,9 @@
 
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
-candidate uses accounting6/portfolio2, fee intake1 and compatible parked
-same-chain canonical V8. Both physical LPs contribute to one funded allocation
-per bucket/asset, not duplicate income streams. Explicit historical4 and3 readers
+candidate uses accounting7/exact LP1/portfolio2, fee intake1 and compatible
+parked same-chain canonicalV9. Both physical LPs contribute to one funded allocation
+per bucket/asset, not duplicate income streams. Explicit historical6/V8 and older readers
 retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
@@ -21,9 +21,25 @@ Checkpoints bind the actual source/codec: reviewed rebuild/re-pin is required.
 See [exact allocation](EXACT_ROYALTY_ALLOCATION.md) and
 [reporting](ROYALTY_REPORTING.md).
 
-## Optional checkpoint1 milestone
+## Exact LP accounting and historical checkpoints
 
-The fresh accounting6/custody5/fee-intake1 earnings path can use a reviewed,
+Fresh7 replays actual `ShareWeightSynchronized` and
+`CollectiveWeightSynchronized` events using immutable mint ordinals. Old pending
+ETH/ZZZ rights settle before each weight mutation. `SharesAdded` and
+`MembershipActivated` acknowledge those changes; they do not apply weights twice.
+A missing synchronization/acknowledgment, wrong old weight or wrong denominator
+rejects the report. One global equal-weight tree and at most four bucket share
+trees assign whole units; high/low phase is rounding fairness, not a fractional
+claim reserve. Claims and LP conversions mutate balances without new income.
+
+At each pinned epoch the replay reconciles `allocationTree`, `directLiabilities`,
+funded liabilities, orphaned money, selected `rewardBucket` and
+`claimableComponents`. V9 imports
+preserve pending whole units/phase/direct credits, not a flattened index.
+Full raw history is required on7; checkpoint1 is rejected before restoring state.
+Exact-LP checkpoint2 remains open for scalable history.
+
+The historical accounting6/custody5/fee-intake1 earnings path can use a reviewed,
 source/configuration-bound immutable checkpoint plus bounded raw suffix. It
 preserves scaled fractions, dust and eligibility rather than trusting a rounded
 total. The checkpoint must predate the complete24-hour window; USD still uses
@@ -73,7 +89,7 @@ a coherently forged database or provider and adds no RPC or financial transactio
 
 ## Historical native royalty custody compatibility
 
-Current accounting6 has no external royalty-custody exit/return function. LP
+Current accounting7 has no external royalty-custody exit/return function. LP
 holder principal return is not royalty income and never clears earned royalties.
 Historical3 replay accepts native deferral only within an authenticated custody
 exit/full-return interval. Returned backing is not royalty revenue. Ordinary
@@ -112,8 +128,8 @@ binds the wallet, NFT contract, ordered IDs, full count, inventory SHA-256, bloc
 hash and API configuration. Offsets are multiples of 16, at most 992. Missing,
 expired, reorged or mismatched chunks invalidate the entire total.
 
-One replay per epoch handles the selected NFTs together, preserving each NFT's
-fractions before summing whole units. Shares, weights, current entitlements,
+One replay per epoch handles the selected NFTs together, preserving exact7
+whole-unit books or the explicitly selected historical6 fractions before summing. Shares, weights, current entitlements,
 actual claims and conversions reconcile against the chain. Existing same-chain
 retirement/identity checks cover predecessors. Request deadlines, RPC budgets and
 isolated workers still apply; large histories/assets/lineages can exceed them.
@@ -128,7 +144,8 @@ earlier owners, not personal wallet income or remaining claimable rewards.
 Per-asset collection holder allocations sum individual LP + collective LP +
 allocated royalties. They exclude gross-receipt duplication, compound/buyback
 and quarantine,
-but include ledger rounding dust. They need not equal per-NFT whole-unit sums.
+and preserve every allocated whole unit on7. Historical indexed profiles may
+retain fractional rounding reserves; those semantics are not applied to7.
 Full collection inventory/LP aggregation remains separate.
 
 Enable through the reviewed `earnings_history` profile; no new role or
@@ -142,11 +159,11 @@ or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet
 | Metric | Meaning |
 | --- | --- |
 | `lp_processed_raw` | New receipts processed by the pinned canonical FeeController, including carried allocation dust once on receipt; never pool trading volume |
-| `lp_owner_allocated_raw`, `lp_collective_allocated_raw` | Amounts credited to the holder ledgers; integer index dust can make their sum exceed the sum of immediately claimable whole units |
+| `lp_owner_allocated_raw`, `lp_collective_allocated_raw` | Whole units credited to holder trees on7; historical indexed profiles may retain fractional reserves |
 | `lp_compounding_allocated_raw`, `lp_buyback_allocated_raw` | Amounts allocated to those reserves, not proof that compounding or a burn has executed |
 | `lp_collective_quarantined_raw` | Collective credits with no eligible membership |
 | `royalties_received_raw`, `royalties_allocated_raw`, `royalties_quarantined_raw` | Actual processed royalty receipts, separated by eligibility; admission/constructor prefunds are excluded |
-| NFT `lp_individual_raw`, `lp_collective_raw`, `royalties_raw` | LP earnings reconstructed from their 1e36 indexes/fractions; fresh royalties from exact ticket credits, with no royalty fractions |
+| NFT `lp_individual_raw`, `lp_collective_raw`, `royalties_raw` | Exact7 whole LP units and royalty4 ticket credits; historical6 LP indexes/fractions remain explicit |
 
 Do not sum gross receipts and their allocations as additional income. Current
 fee-intake 1 accepts local LP receipts; no creator-payment inbox, satellite or
@@ -156,8 +173,9 @@ gross/reserve totals from a holder-only credit.
 
 The clock is **on-chain processing/allocation time**. The 24-hour window is
 `(confirmed timestamp - 86400, confirmed timestamp]`. An unsynchronized royalty
-deposit or unharvested venue fee is not yet processed earnings. An LP fractional unit enters an NFT's period when its carry becomes a whole raw
-unit. Fresh royalty4 assigns whole units at allocation time without a fractional reserve. This distinction
+deposit or unharvested venue fee is not yet processed earnings. Exact7 LP units and royalty4 units enter NFT income at allocation, without a
+fractional monetary reserve. Historical indexed LP units enter the period when
+their fractional carry first becomes payable. This distinction
 matters for very small amounts and is returned in the response.
 
 ## USD valuation decision
@@ -168,11 +186,12 @@ historical USD revenue, realized sale proceeds, or the current value of unclaime
 funds. Display a label such as **“Earnings at current prices”** and the snapshot
 time. The amounts can rise or fall without new earnings when prices change.
 
-Royalties converted from a stablecoin into ETH remain earnings in the original
+Historical royalties converted from a stablecoin into ETH remain earnings in the original
 source currency. The conversion is a separate denomination record; its ETH credit
 must not be added as new income. Current ETH claimable already includes unclaimed
 conversion credits. Use [conversion reporting](ROYALTY_REPORTING.md) for actual
-source/output amounts and lifetime claims for payouts.
+source/output amounts and lifetime claims for payouts. Fresh royalty4 has no
+royalty swaps; LP conversion remains a separate non-income operation.
 
 Missing, stale, invalid or changed price policies return `null` USD values and a
 reason. Raw earnings remain available when only pricing fails. An aggregate is

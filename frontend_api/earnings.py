@@ -67,7 +67,9 @@ class Earnings:
                 require(int(p._call(contract.address,'FEE_INTAKE_VERSION()',block=block)[0],16) == 1,
                         'Earnings fee-intake profile differs from the actual module')
         for role in ('rewards','royalties'):
-            if role == 'royalties' and royalty_profile(p) == 4:
+            if role=='rewards' and p.accounting_version==7:
+                require(p._uint(role,'LP_ALLOCATION_VERSION()',block=block)==1,'Exact LP capability differs')
+            elif role == 'royalties' and royalty_profile(p) == 4:
                 require(p._uint(role,'ROYALTY_SETTLEMENT_VERSION()',block=block) == 4, 'Exact royalty capability differs')
             else:
                 require(p._uint(role,'SCALE()',block=block) == SCALE, 'Unsupported earnings index scale')
@@ -90,11 +92,23 @@ class Earnings:
                 require(actual == model.fee_dust[bucket, asset], 'LP fee dust history differs')
         for bucket, supply in model.supply.items():
             require(p._uint('vault','bucketTotalShares(uint256)',bucket,block=block) == supply, 'LP share history differs')
+            if p.accounting_version!=7:
+                for asset in lp_assets:
+                    require(p._uint('rewards','ownerIndex(uint256,address)',bucket,asset,block=block) == model.owner_index[bucket,asset],
+                            'Individual reward index history differs')
+        if p.accounting_version==7:
+            for bucket,tree in [(0,model.collective_tree),*sorted(model.owner_trees.items())]:
+                actual=[int(w,16) for w in p._call(p.contracts['rewards'].address,'allocationTree(uint256)',bucket,block=block,words=3)]
+                require(actual==[tree.total,*tree.outstanding],'Exact LP tree totals differ from replay')
+            for n,asset in enumerate(lp_assets):
+                direct=model.direct_liability(asset)
+                require(p._uint('rewards','directLiabilities(address)',asset,block=block)==direct,'Exact LP direct credits differ')
+                expected=direct+model.collective_tree.outstanding[n]+sum(t.outstanding[n] for t in model.owner_trees.values())
+                require(p._uint('rewards','liabilities(address)',asset,block=block)==expected,'Exact LP funded liabilities differ')
+                require(p._uint('rewards','orphaned(address)',asset,block=block)==model.lp_orphaned[asset],'Exact LP orphaned cohort differs')
+        else:
             for asset in lp_assets:
-                require(p._uint('rewards','ownerIndex(uint256,address)',bucket,asset,block=block) == model.owner_index[bucket,asset],
-                        'Individual reward index history differs')
-        for asset in lp_assets:
-            require(p._uint('rewards','index(address)',asset,block=block) == model.collective_index[asset], 'Collective index history differs')
+                require(p._uint('rewards','index(address)',asset,block=block) == model.collective_index[asset], 'Collective index history differs')
         for asset in royalty_assets:
             if royalty_profile(p) == 4:
                 require(p._uint('royalties','allocationCursor(address)',asset,block=block) == model.royalty_cursors[asset],
@@ -109,6 +123,11 @@ class Earnings:
             require(p._uint('vault','sharesOf(uint256)',identifier,block=block)==shares and
                     p._uint('vault','nftBucket(uint256)',identifier,block=block)==bucket, 'NFT share history differs')
             require(p._uint('royalties','weightOf(uint256)',identifier,block=block)==model.weights.get(identifier,0), 'NFT royalty weight differs')
+            if p.accounting_version==7:
+                require(p._uint('rewards','rewardBucket(uint256)',identifier,block=block)==bucket,'Exact NFT LP bucket differs')
+                for asset in lp_assets:
+                    actual=tuple(int(w,16) for w in p._call(p.contracts['rewards'].address,'claimableComponents(uint256,address)',identifier,asset,block=block,words=2))
+                    require(actual==model.components(identifier,asset),'Exact NFT LP components differ')
             if royalty_profile(p) == 4:
                 require(p._uint('royalties','ticketStart(uint256)',identifier,block=block)==(model.ticket_offsets[identifier]+1 if identifier in model.weights else 0),
                         'Exact NFT ticket history differs')
@@ -137,7 +156,10 @@ class Earnings:
             financial={'previously_claimed':p._claimed(history,identifier),
                        'lp_conversions':conversion_report(history.lp_conversions,identifier,p.assets,dict(history.provenance)),
                        'royalty_conversions':conversion_report(history.conversions,identifier,p.assets,dict(history.provenance))}
-        model=Replay(header['timestamp'],identifier)
+        if p.accounting_version==7:
+            from frontend_api.earnings_exact_lp import ExactReplay
+            model=ExactReplay(header['timestamp'],identifier)
+        else:model=Replay(header['timestamp'],identifier)
         provenance=[]
         for peer,cutoff,lower in epochs:
             checkpoint()

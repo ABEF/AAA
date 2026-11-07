@@ -24,9 +24,9 @@ contract PooledRewardsTest is Test {
         fees = new ZZZFeeController(address(ac)); vault = new RewardsVaultFixture(rewards);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
-        rewards.addAsset(address(token0)); rewards.addAsset(address(token1));
+        pools.setFixedZZZ(address(token0));rewards.addAsset(address(token0));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
-        PoolConfig memory c; c.key.currency0 = address(token0); c.key.currency1 = address(token1); pools.set(POOL, c);
+        PoolConfig memory c; c.key.currency0 = address(0); c.key.currency1 = address(token0); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;
         vault.set(BUCKET, p); vault.set(SECOND, p);
     }
@@ -53,7 +53,7 @@ contract PooledRewardsTest is Test {
     function testNewOwnerSharesCannotReceiveHistoricalOwnerFees() public {
         _seed(1, ALICE, BUCKET, 100, false); _credit(BUCKET, 100, 0); _seed(2, BOB, BUCKET, 100, false);
         assertEq(rewards.claimable(1, address(token0)), 100); assertEq(rewards.claimable(2, address(token0)), 0);
-        assertEq(rewards.paidOwnerIndex(2, address(token0)), rewards.ownerIndex(BUCKET, address(token0)));
+        (uint256 entrantPersonal,)=rewards.claimableComponents(2,address(token0));assertEq(entrantPersonal,0);
         _credit(BUCKET, 100, 0); assertEq(rewards.claimable(1, address(token0)), 150); assertEq(rewards.claimable(2, address(token0)), 50);
     }
     function testTopUpCheckpointDoesNotRepriceOldOwnerFees() public {
@@ -61,25 +61,25 @@ contract PooledRewardsTest is Test {
         vault.join(1, BUCKET, 200); assertEq(rewards.claimable(1, address(token0)), 50);
         _credit(BUCKET, 100, 0); assertEq(rewards.claimable(1, address(token0)), 125); assertEq(rewards.claimable(2, address(token0)), 75);
     }
-    function testOwnerFractionSurvivesClaimsAndShareIncrease() public {
+    function testWholePriorUnitAndFairnessPhaseSurviveShareIncrease() public {
         _seed(1, ALICE, BUCKET, 1, false); _seed(2, BOB, BUCKET, 3, false);
         _credit(BUCKET, 1, 0); vm.prank(ALICE); assertEq(rewards.claim(1, address(token0)), 0);
-        assertEq(rewards.ownerFraction(1, address(token0)), rewards.SCALE() / 4);
+        assertEq(rewards.claimable(2,address(token0)),1);
         vault.join(1, BUCKET, 3); _credit(BUCKET, 7, 0);
         vm.prank(ALICE); assertEq(rewards.claim(1, address(token0)), 4);
-        vm.prank(BOB); assertEq(rewards.claim(2, address(token0)), 3);
-        assertEq(token0.balanceOf(address(rewards)), 1); assertEq(rewards.liabilities(address(token0)), 1);
+        vm.prank(BOB); assertEq(rewards.claim(2, address(token0)), 4);
+        assertEq(token0.balanceOf(address(rewards)), 0); assertEq(rewards.liabilities(address(token0)), 0);
     }
-    function testIndexDivisionRemainderCannotBeCapturedByNewShares() public {
+    function testFinalWholeUnitCannotBeCapturedByNewShares() public {
         _seed(1, ALICE, BUCKET, 7, false); _seed(2, BOB, BUCKET, 11, false); _credit(BUCKET, 1, 0);
         _seed(3, CAROL, BUCKET, 100000, false);
         assertEq(rewards.claimable(3, address(token0)), 0);
-        assertEq(rewards.claimable(1, address(token0)) + rewards.claimable(2, address(token0)), 0);
+        assertEq(rewards.claimable(1, address(token0)) + rewards.claimable(2, address(token0)), 1);
         assertEq(rewards.liabilities(address(token0)), 1);
     }
-    function testDirectDonationDoesNotPublishOwnerIndex() public {
+    function testDirectDonationDoesNotPublishRewards() public {
         _seed(1, ALICE, BUCKET, 100, false); token0.mint(address(rewards), 1000);
-        assertEq(rewards.ownerIndex(BUCKET, address(token0)), 0); assertEq(rewards.claimable(1, address(token0)), 0);
+        assertEq(rewards.claimable(1, address(token0)), 0);
         assertEq(rewards.liabilities(address(token0)), 0);
     }
     function testNoEligibleNFTCollectiveFundsRemainOrphanedForFutureParticipants() public {
@@ -94,7 +94,7 @@ contract PooledRewardsTest is Test {
         _seed(1, ALICE, BUCKET, aShares, false); _credit(BUCKET, firstFees, 0); _seed(2, BOB, BUCKET, bShares, false);
         assertEq(rewards.claimable(2, address(token0)), 0); _credit(BUCKET, secondFees, 0);
         vm.prank(ALICE); uint256 paidA = rewards.claim(1, address(token0)); vm.prank(BOB); uint256 paidB = rewards.claim(2, address(token0));
-        assertLe(paidA + paidB, firstFees + secondFees);
+        assertEq(paidA + paidB, firstFees + secondFees);
         assertEq(token0.balanceOf(address(rewards)), rewards.liabilities(address(token0)));
         assertEq(firstFees + secondFees, paidA + paidB + rewards.liabilities(address(token0)));
     }

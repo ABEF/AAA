@@ -220,15 +220,15 @@ contract HarvestAuditActualV4Test is Test {
 // Focused ledger isolation: actual Rewards/Fees contracts, explicit mock Vault
 // share book. This proves the finite index limitation, not v4 or exit behavior.
 contract HarvestAuditFinalIndexTest is RewardsAndFeesTest {
-    event AuditFinalUnit(uint256 allocated,uint256 claimed,uint256 reserved,uint256 ownerFraction);
-    function testHarvestAuditFiniteFinalIndexUnitRemainsBackedWithoutFutureReceipts()public{
+    event AuditFinalUnit(uint256 allocated,uint256 claimed,uint256 reserved);
+    function testHarvestAuditFreshExactFinalUnitIsFullyClaimableWithoutFutureReceipts()public{
         vault.join(1,BUCKET,1);assertEq(vault.bucketTotalShares(BUCKET),101);
         _allocate(20);assertEq(fees.compoundBalance(BUCKET,address(token)),1);assertEq(fees.buybackBalance(address(token)),1);
-        assertEq(rewards.liabilities(address(token)),18);assertEq(rewards.claimable(1,address(token)),17);
-        vm.prank(alice);assertEq(rewards.claim(1,address(token)),17);
-        assertEq(token.balanceOf(address(rewards)),1);assertEq(rewards.liabilities(address(token)),1);
-        assertEq(rewards.claimable(1,address(token)),0);assertGt(rewards.ownerFraction(1,address(token)),0);
+        assertEq(rewards.liabilities(address(token)),18);assertEq(rewards.claimable(1,address(token)),18);
+        vm.prank(alice);assertEq(rewards.claim(1,address(token)),18);
+        assertEq(token.balanceOf(address(rewards)),0);assertEq(rewards.liabilities(address(token)),0);
+        assertEq(rewards.claimable(1,address(token)),0);
         vm.prank(alice);assertEq(rewards.claim(1,address(token)),0);
-        emit AuditFinalUnit(18,17,1,rewards.ownerFraction(1,address(token)));
+        emit AuditFinalUnit(18,18,0);
     }
 }

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "copies_verified": 100,
+  "derived_sha_verified": 4,
+  "normal_closed87_current_raw_source_sha_verified": true,
+  "strict_RAW_actual532_review_pass": true,
+  "raw_analyzer_exit_preserved": 4294967295,
+  "compressed_raw_roundtrips_verified": true,
+  "protected4_preserved": true,
+  "no_analyzer_build_or_EVM_rerun": true,
+  "COPY_MANIFEST_PHYSICAL_sha256": "c00168882f5fe418fa41a186157fac8ca3bee5dc58fe0a6e29b678f6afa4b791",
+  "static_review_sha256": "ccf73aa4402f8b59cb1141a25465796bd0d3108350dbef63df22491cec1365fb",
+  "static_detectors_sha256": "d757318c91bad6bf136c72da6b811ced25a4053777f9d76ddb967c493fc68efa",
+  "static_coverage_sha256": "3258f3b7bb14b2b5ab126c9e310f195a194b1316c050f7de7b4099ed3e28d4c2"
+}

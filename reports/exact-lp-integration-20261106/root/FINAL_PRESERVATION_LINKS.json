@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "utc": "2026-11-07T00:13:23.212556+00:00",
+  "protected4": {
+    "reports/source-checks.json": true,
+    "scripts/run-fork-checks.py": true,
+    "tests_python/test_fork_runner.py": true,
+    "tests_python/test_frontend_history.py": true
+  },
+  "original_report_files_unchanged": 3212,
+  "changed_original_reports": [],
+  "current_markdown_checked": 66,
+  "relative_file_links_checked": 2255,
+  "missing_file_links": [],
+  "scope": "file targets only; not historical external URLs or every existing anchor"
+}

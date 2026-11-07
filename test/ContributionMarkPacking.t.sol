@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
+import {IZZZProtocolPolicy}from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {MockFeed} from "./mocks/Mocks.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -24,10 +25,11 @@ contract ContributionMarkPackingTest is PooledVaultFixture {
         (uint256 low1,uint256 high1,bytes32 fp1) = oracle.priceBounds(address(t1));
         // The old wide tuple encoding is the externally verified basis format.
         // Storage packing must not change this event or its field values.
-        bytes32 expected = keccak256(abi.encode(poolId,id,usdPrice,usdPrice));
-        expected = keccak256(abi.encode(expected,address(t0),WideMark(low0,high0,1,fp0)));
+        IZZZProtocolPolicy terms=IZZZProtocolPolicy(ac.protocolPolicy());
+        bytes32 expected=keccak256(abi.encode(poolId,id,usdPrice,usdPrice,terms.entryPolicy().maxIdleBps,terms.entryFingerprint()));
+        expected = keccak256(abi.encode(expected,address(t0),WideMark(low0,high0,1e18,fp0)));
         expected = keccak256(abi.encode(expected,address(t1),WideMark(low1,high1,1,fp1)));
-        vm.recordLogs(); _activate(alice,id,1,0);
+        _giftNative(alice,1 ether);vm.recordLogs(); _activate(alice,id,1 ether,0);
         Vm.Log[] memory logs = vm.getRecordedLogs(); bool found;
         bytes32 signature = keccak256("ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)");
         for (uint256 i; i < logs.length; ++i) {

@@ -1,0 +1,11 @@
+{
+  "documents": 9,
+  "file_targets_checked": 86,
+  "missing_targets": [
+    {
+      "document": "docs\\FRONTEND_LIFECYCLE.md",
+      "target": "../reports/exact-lp-integration-20261106/REVIEW.md"
+    }
+  ],
+  "limitation": "Existing-file check only; parent performs repository-wide anchor/source/Todo checks."
+}

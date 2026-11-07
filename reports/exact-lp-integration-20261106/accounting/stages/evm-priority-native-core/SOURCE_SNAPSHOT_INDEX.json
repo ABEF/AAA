@@ -1,0 +1,14 @@
+{
+  "test-sources/test/HarvestAudit20261106.t.sol": "c11f2a4373b6248f1d31ee57262043003f55f567328df94dbd9fa378f164c44c",
+  "test-sources/test/helpers/CanonicalFixture.sol": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+  "test-sources/test/helpers/DualOracleFixture.sol": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+  "test-sources/test/helpers/PortfolioFixture.sol": "d33823f6fd16e9e27864e49833b0c9689e8c0fd52d6fdb3670b4b98f658537b5",
+  "test-sources/test/helpers/ProtocolPolicyFixture.sol": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+  "test-sources/test/IntegratedEconomicConservation.t.sol": "655b279fc45e852da14f6638eb994d5124861841d68db79f95957b173a0e1aae",
+  "test-sources/test/LiquidityFactualChecks.t.sol": "a53bb7886ba851f92b301860193756f7fa9e9aae87f647606c42d9cf10b46ca4",
+  "test-sources/test/mocks/Mocks.sol": "a849466e81ba9e84a9a81861cd5a5cfe738cc572304c6f5caecc7e840359e860",
+  "test-sources/test/mocks/MockVRF.sol": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+  "test-sources/test/OptionalPortfolioCore.t.sol": "a5f85ecf2ea5155562a0abf5c1377b062e0d98d1332b00a57f63dba9ba31f79c",
+  "test-sources/test/RewardsAndFees.t.sol": "ea89ed35d37b682c7ace7c20623b57eba44914d5ecec5577d46b99b2e1b7b43b",
+  "test-sources/test/VaultAccounting.t.sol": "d110027b063b66ba547770232d124ff8df647568c9fd7db014c6a39497f3cc5c"
+}

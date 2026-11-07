@@ -38,8 +38,8 @@ interface IZZZMembership {
 }
 interface IZZZRewards {
     function isAsset(address token) external view returns (bool);
-    function checkpointAll(uint256 id) external;
-    function checkpointOwner(uint256 id) external;
+    function syncMembership(uint256 id) external;
+    function syncShares(uint256 id) external;
     function creditPool(uint256 bucketId, address token, uint256 individual, uint256 collective) external payable;
 }
 interface IZZZFees {

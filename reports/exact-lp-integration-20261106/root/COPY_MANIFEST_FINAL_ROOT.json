@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "records": [
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\abi-all-555e4f0444\\input.json",
+      "target": "final-types/input.json.gz",
+      "source_sha256": "07d5ecea3395b4c045ef47131818c1511f9f42fa79e99b2a0efbda8f053d5710",
+      "target_sha256": "7421a48f49ec812d17438d3cd77af1628cd7bac6f06259a812814b8c0fd5205d",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\abi-all-555e4f0444\\output.json",
+      "target": "final-types/output.json.gz",
+      "source_sha256": "c46c4a0f85430503989167a1f539fe438ed16c27ff382b7e344fb8b1dc475671",
+      "target_sha256": "9797bf806125d7da2cbf8621931d1eb66f7c30293944605b6aa1d2329ed456e1",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\abi-all-555e4f0444\\stderr.txt",
+      "target": "final-types/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\abi-all-555e4f0444\\status.json",
+      "target": "final-types/status.json.gz",
+      "source_sha256": "229381a5a5756190b40d486cc9cc0f3794d5e3448d9c3f5c5dcb72a9582d224d",
+      "target_sha256": "f82e424af67b0a513678815da9cfca9562f5e265b74814958d373bbe4d106b10",
+      "gzip": true
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\PRESERVATION_LINKS.json",
+      "target": "FINAL_PRESERVATION_LINKS.json",
+      "source_sha256": "56a9624ba6d95af1268566110c2a28980bcdf1c37c82a7ae34c71c02a6781741",
+      "target_sha256": "56a9624ba6d95af1268566110c2a28980bcdf1c37c82a7ae34c71c02a6781741",
+      "gzip": false
+    },
+    {
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\DOC_NATIVE_LINES.json",
+      "target": "DOC_NATIVE_LINES.json",
+      "source_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "target_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "gzip": false
+    }
+  ],
+  "exact_copy_and_gzip_roundtrips_verified": true
+}

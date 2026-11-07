@@ -13,27 +13,27 @@ contract RoyaltyNoCustodianTest is PooledVaultFixture {
     function setUp() public override {
         super.setUp();
         ledger = nft.royaltyRewards();
-        nft.addRoyaltyAsset(address(t0));
+        nft.addRoyaltyAsset(address(t1));
         nftId = activatedPosition();
         nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);ledger.syncAll();
-        t0.mint(address(ledger), 100);
-        ledger.sync(address(t0));
+        t1.mint(address(ledger), 100);
+        ledger.sync(address(t1));
     }
 
     function testGovernanceCannotSendRoyaltyBackingToExternalCustodian() public {
         ac.setPaused(true);
-        uint256 beforeReceiver = t0.balanceOf(bob);
+        uint256 beforeReceiver = t1.balanceOf(bob);
         uint256 beforeWeight = ledger.weightOf(nftId);
         (bool ok,) = address(ledger).call(abi.encodeWithSignature(
             "exitCustody(address,address,uint256,uint256,bytes32,bytes32)",
-            address(t0), bob, 100, 0, bob.codehash, keccak256("removed custody")
+            address(t1), bob, 100, 0, bob.codehash, keccak256("removed custody")
         ));
         assertFalse(ok);
-        assertEq(t0.balanceOf(address(ledger)), 100);
-        assertEq(t0.balanceOf(bob), beforeReceiver);
+        assertEq(t1.balanceOf(address(ledger)), 100);
+        assertEq(t1.balanceOf(bob), beforeReceiver);
         assertEq(ledger.weightOf(nftId), beforeWeight);
         vm.prank(alice);
-        assertEq(ledger.claim(nftId, address(t0)), 100);
+        assertEq(ledger.claim(nftId, address(t1)), 100);
     }
 
     function testRemovedReturnSelectorCannotAcceptFundsOrAlterAccounting() public {
@@ -43,14 +43,14 @@ contract RoyaltyNoCustodianTest is PooledVaultFixture {
         ));
         assertFalse(ok);
         assertEq(address(ledger).balance, beforeNative);
-        assertEq(ledger.claimable(nftId, address(t0)), 100);
-        assertEq(ledger.liabilities(address(t0)), 100);
+        assertEq(ledger.claimable(nftId, address(t1)), 100);
+        assertEq(ledger.liabilities(address(t1)), 100);
     }
 
     function testRemovedCustodyGettersAreNotPhantomCompatibilityBindings() public {
-        (bool amount,) = address(ledger).staticcall(abi.encodeWithSignature("custodyAmount(address)", address(t0)));
-        (bool nonce,) = address(ledger).staticcall(abi.encodeWithSignature("custodyNonce(address)", address(t0)));
-        (bool id,) = address(ledger).staticcall(abi.encodeWithSignature("custodyId(address)", address(t0)));
+        (bool amount,) = address(ledger).staticcall(abi.encodeWithSignature("custodyAmount(address)", address(t1)));
+        (bool nonce,) = address(ledger).staticcall(abi.encodeWithSignature("custodyNonce(address)", address(t1)));
+        (bool id,) = address(ledger).staticcall(abi.encodeWithSignature("custodyId(address)", address(t1)));
         (bool count,) = address(ledger).staticcall(abi.encodeWithSignature("custodyCount()"));
         assertFalse(amount);
         assertFalse(nonce);
@@ -64,21 +64,21 @@ contract RoyaltyNoCustodianTest is PooledVaultFixture {
         uint256 ordinal = ledger.activationOrdinal(nftId);
         vm.prank(alice);
         nft.transferFrom(alice, bob, nftId);
-        t0.mint(address(ledger), 50);
+        t1.mint(address(ledger), 50);
         (bool funded,) = address(ledger).call{value: 1 ether}("");
         assertTrue(funded);
         assertEq(ledger.weightOf(nftId), weight);
         assertEq(ledger.activationOrdinal(nftId), ordinal);
         assertTrue(ledger.eligibleFor(nftId, address(0)));
-        assertTrue(ledger.eligibleFor(nftId, address(t0)));
+        assertTrue(ledger.eligibleFor(nftId, address(t1)));
         vm.prank(alice);
         vm.expectRevert(ZZZRoyaltyRewards.Unauthorized.selector);
-        ledger.claim(nftId, address(t0));
+        ledger.claim(nftId, address(t1));
         vm.prank(bob);
-        assertEq(ledger.claim(nftId, address(t0)), 150);
+        assertEq(ledger.claim(nftId, address(t1)), 150);
         vm.prank(bob);
         assertEq(ledger.claim(nftId, address(0)), 1 ether);
-        assertEq(ledger.claimable(nftId, address(t0)), 0);
+        assertEq(ledger.claimable(nftId, address(t1)), 0);
         assertEq(ledger.claimable(nftId, address(0)), 0);
     }
 }

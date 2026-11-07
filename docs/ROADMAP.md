@@ -5,39 +5,20 @@ work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
-[Both moving-market flows](../reports/moving-market-flows-20261106/REVIEW.md)
-now have scoped improvements to manual active-route selection and ordinary
-keeper late submission review. Manager runtime headroom is2165bytes; Vault
-remains107. No new ABI/profile/journal/deployment boundary is inferred.
+[Exact-unit LP integration](../reports/exact-lp-integration-20261106/REVIEW.md) connects the actual host, claims, lossless raw-tree handoff and explicit consumers. Final normal runtime headroom is133bytes for Vault,358 for Rewards and32 for CanonicalHandoff; normal compiler limits are unchanged. Earlier moving-market source/evidence remains historical.
 
 ## 1. Freeze the correct source and integration boundary
 
-The accepted [exact-unit LP allocation](../TODO.md#task-lp-exact-unit-allocation) now has an implemented, optimized internal [Solidity engine](EXACT_LP_ALLOCATION.md). Next wire authenticated shares/membership, claims/conversion, canonical records and matching consumers under an explicit fresh boundary before production freeze. Current fractional LP contracts remain; the engine milestone does not close the whole requirement.
+Fresh [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. Current source/size/static/consumer evidence is in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md). Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
 
-Use [accounting6/Entry3/schema15](POSITION_V6.md) and exact runtime/helper/dependency
-pins. Direct Entry removal, residual management, active-main candidate filtering,
-cooldown observation and authenticated harvest coalescing are implemented; do not
-reopen them as proposals or revive retired bridges/creator inboxes/third inputs.
-The [engine source review](../reports/exact-lp-engine-20261106/VERIFICATION.md)
-records current normal compiler/static pins, preserves every earlier production
-runtime and separately verifies the new internal engine. The earlier
-[same-main source review](../reports/residual-main-consolidation-20261106/VERIFICATION.md)
-and [moving-market supplement](../reports/consolidation-races-20261106/REVIEW.md)
-changes tests/operator procedure only. Earlier [royalty](../reports/last24h-audit-20261105/REVIEW.md)
-and [manual](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) evidence keep their exact source scopes.
-Normal runtime headroom is746bytes for Migration and107 for Vault. Further
-production code changes require new exact-source gates; that earlier test/doc
-supplement reused unchanged production pins without a compiler/analyzer rerun.
-The [factory/claim improvement](../reports/factory-claims-20261105/REVIEW.md) adds
-immutable code-data storage2 and next-batch unsigned claim planning without
-changing the royalty ledger bytes or normal economic rules.
+Preserve completed direct Entry, residual management, active-main routing, cooldown observation and authenticated harvest coalescing. Do not revive removed bridges, creator inboxes or third LP inputs. Target deployment arguments, maximum-workload gas/economics and independent review still require the exact final candidate.
 
 Owning work: [release freeze/audit](../TODO.md#task-audit-release),
 [deployment size/gas](../TODO.md#task-deployment-initcode),
 [reviewed contributions](../TODO.md#task-reviewed-contribution-policy).
 
 The [residual lifecycle follow-up](../reports/residual-lifecycle-20261106/REVIEW.md)
-adds fresh6 physical read admission and missing destination-hybrid composition
+added historical6 physical read admission and missing destination-hybrid composition
 evidence. Production Solidity/normal/static pins remain unchanged. Actual token/
 periphery callbacks, maximum workload and source rollout remain qualification.
 
@@ -57,8 +38,8 @@ Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
 
 ## 3. Integrate matching services and site without changing old profiles
 
-Build reviewed schema15/source8 configs for API/indexer/keeper/health writer-checker
-and a matching accounting6/direct Entry3 website consumer on poplint. Popldemo
+Build reviewed schema16/source9 configs for API/indexer/keeper/health writer-checker
+and a matching accounting7/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
@@ -66,10 +47,8 @@ Qualify the new explicit claim planner with actual worst-case currencies/fees,
 confirmation/replanning and no silent omission; bounded local planning is not a
 maximum-batch or live-wallet gas guarantee.
 Qualify actual preparation/trace/approval/claims and truthful complete holdings/
-history, unavailable states, account changes and pending recovery. Qualify the opt-in
-checkpoint1 implementation, then extend lineage/other full-history consumers and
-review long-lived archival/rotation/source-codec evolution.
-Fresh royalty4/reporting5/canonicalV8 needs exact-unit cursor/cohort history and
+history, unavailable states, account changes and pending recovery. Fresh7 uses complete raw exact-tree replay; build and qualify explicit checkpoint2 before claiming bounded lifetime replay. Checkpoint1 remains6-only. Extend lineage/other full-history consumers and review archival/rotation/source-codec evolution.
+Fresh royalty4/reporting5/canonicalV9 needs exact-unit cursor/cohort history and
 reviewed checkpoint rebuilds. No converter or new deployed allocator is added.
 A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.
 

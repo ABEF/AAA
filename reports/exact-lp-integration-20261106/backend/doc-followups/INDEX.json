@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "kind": "doc_followup_evidence_index",
+  "guides": 11,
+  "copied_files": 27,
+  "original_bytes": 306127,
+  "copied_bytes": 126743,
+  "manifest": "COPY_MANIFEST_DOC_FOLLOWUPS.json",
+  "manifest_sha256": "a472df19258407b381f51b44e4b978cdf3ee76163938233565b93479f8a2abee",
+  "roundtrip_validation": "ROUNDTRIP_VALIDATION.json",
+  "roundtrip_sha256": "cf61a96e00002a6c40653000d04bb7d019e511ae38deea16f88e877350b6148f",
+  "four_guides": "four-guides/FOLLOWUP_EVIDENCE.json.gz",
+  "seven_guides": "seven-guides/FOLLOWUP_EVIDENCE.json.gz",
+  "original_backend164_unchanged": true,
+  "source_or_environment_changes": false,
+  "tests_rerun": false
+}

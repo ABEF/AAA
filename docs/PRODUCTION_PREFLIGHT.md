@@ -1,20 +1,17 @@
 # Current production inventory and read-only preflight
 
-The [moving-market source follow-up](../reports/moving-market-flows-20261106/VERIFICATION.md)
-retains existing ABI/storage/capability/profile shapes and changes the exact
-Manager runtime/creation pins. Guarded paused same-main routing filters active
-candidates; ordinary growth/compound/force remain distinct. Authenticate current
-compiler/runtime bindings before any fresh deployment; do not relabel existing
-Anvil, service, inventory or journal identities as this source.
-
-Fresh source: [accounting6 / custody5 / portfolio2](POSITION_V6.md), canonical
-same-chain exact-royalty V8. **Undeployed; production NOT APPROVED.** Current
-factory storage and scoped claim-planning changes are recorded in the
-[factory/claims review](../reports/factory-claims-20261105/REVIEW.md). Older reports
-retain their original source scope.
+Fresh source: [accounting7 / exact LP1 / custody5 / portfolio2](POSITION_V7.md),
+canonicalV9 and inventory16. **Undeployed; production NOT APPROVED.** The
+[exact-LP integration record](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+binds its changed LP ledger, typed canonical companion and consumers. Earlier
+[moving-market](../reports/moving-market-flows-20261106/VERIFICATION.md) and
+[factory/claims](../reports/factory-claims-20261105/REVIEW.md) reports retain their
+original runtime/source scopes. Authenticate the complete matching graph before
+any fresh deployment; source publication never upgrades existing Anvil, service,
+website, inventory or journal identities.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema15 example](../config/production.example.json) is deliberately
+The [schema16 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
@@ -36,14 +33,14 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema15 explicitly requires royalty settlement4/recovery2/reporting5,
-accounting6, custody5, governance2, fee intake1,
+Schema16 explicitly requires royalty settlement4/recovery2/reporting5,
+accounting7, LP-allocation1, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
 LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
-canonical V8 wire does not make an old accounting profile current. Unknown,
+canonicalV9 wire does not make an old accounting profile current. Unknown,
 missing, boolean and inconsistent versions fail closed.
 
-There are 17 modules including Access, 18 logical callable helpers and exactly
+There are 17 modules including Access, 19 logical callable helpers and exactly
 2 inert factory code-data children. Optional creator inboxes, Entry conversion,
 royalty conversion and bridge helpers are removed. The LP converter and its v4
 executor remain separate from original-currency royalty claims. Budget, Balancer, PortfolioPolicy and Confirmation are
@@ -54,7 +51,19 @@ Verify its Manager/core/state/PosM/Permit2/router wiring, the Balancer arithmeti
 child, actual runtime pins and every code-owned getter. Never assume all helpers
 have the same interface or expose `access()`.
 
-Historical [schema13](../config/production.schema13.example.json), schema12,
+Rewards creates one immutable `ZZZRewardsCanonical` companion. Verify
+Rewards.canonicalModule(), child access()/rewards(), Handoff.moduleAt(3),
+Rewards.LP_ALLOCATION_VERSION()==1 and MAX_ASSETS()==2 with their exact runtime
+pins. LP reward backing remains in Rewards; principal stays Vault-managed. The
+child has only typed canonical authority.
+LP funding assets are exactly native ETH plus the fixed ZZZ, separately from
+original-currency royalties. V9 preserves pending whole units, high/low phase and
+direct credits; historical6/V8 indices are not translated or relabeled. The
+terminal holder-return record keeps the accounting6/custody4-format wire under
+custody5; it is separate from the V9 canonical LP-reward codec.
+
+Historical [schema15](../config/production.schema15.example.json),
+[schema14](../config/production.schema14.example.json), [schema13](../config/production.schema13.example.json), schema12,
 schema10/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain
 available only through explicit
 `--historical-consistency`, using its own observer and validator. The current
@@ -67,7 +76,9 @@ The current `factory_code` section declares fixed code-storage version2, whole
 creation length/hash and exactly two ordered child records. Each record contains
 its own nonzero address, source-derived data/runtime lengths and full runtime
 hash. Addresses and observations in the template remain null. The fixed source
-artifact is [factory-code-storage-v2.json](../config/factory-code-storage-v2.json);
+artifact is [factory-code-storage-v3.json](../config/factory-code-storage-v3.json):
+payload identity3, while the immutable runtime FORMAT remains2. Historical
+schema14/15 retain their separate payload2 artifact;
 it is not generated from live getter answers or adopted RPC hashes.
 
 The observer adds two bounded `eth_getCode` reads using the same canonical block
@@ -79,8 +90,8 @@ must bind those same pointers/hashes. Children cannot alias protocol modules,
 helpers, dependencies, tokens or the future mint-payment recipient.
 
 Keep the factory-code qualification review and full independently reviewed
-runtime pins. Canonical V8's existing commitment does not explicitly enumerate
-the factory/data-child hashes; the full schema15 release graph authenticates
+runtime pins. CanonicalV9 does not explicitly enumerate the factory/data-child
+hashes; the full schema16 release graph authenticates
 them separately. Ordinary mint, LP and claim operations add no child-code reads.
 These inert children are neither authorities nor royalty recipients. See the
 [fixed code-storage procedure](FACTORY_CODE_STORAGE.md) for exact format,
@@ -88,14 +99,14 @@ constructor boundaries, failure handling and actual target-gas qualifications.
 
 ## Current buyback maximum and creation history
 
-Fresh schema15 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema16 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
 rewrite it after `setMaximumTradeUSD` or use it as a fallback for missing current
 configuration. Raise/lower ordering remains in the [operator procedure](OPERATOR_MANUAL.md#future-operating-settings).
 
-Incomplete fresh14 records must be reviewed/completed and observed again;
+Incomplete records must be reviewed/completed for their actual profile and observed again;
 missing/invalid current declarations and non-object chain records fail before
 RPC. The example remains null/unqualified. Historical profiles retain their own
 formats; neither this field nor an on-chain setting change upgrades a journal,
@@ -117,9 +128,9 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema15 observation and offline validation
+## Current schema16 observation and offline validation
 
-[Validator](../zzz_ops/production_v13.py) and [observer](../zzz_ops/production_observer_v13.py)
+[Validator](../zzz_ops/production_v14.py) and [observer](../zzz_ops/production_observer_v14.py)
 authenticate residual-reinvest1 on Migration/Vault/Budget/Policy/Pricing and
 raw-exit1 on the fixed closure graph. The current seal function does not prove
 this entire semantic/runtime graph; preflight it before irreversible binding.
@@ -188,9 +199,9 @@ liabilities but cannot become fabricated income or allocated principal.
 ## Exact build provenance
 
 The current factory-code artifact is derived from the final closed normal
-compiler output and its complete84-source/settings snapshot. Its receiver
+compiler output and its complete87-source/settings snapshot. Its receiver
 creation hash is
-`0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831`.
+`0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa`.
 Forge can normalize source line endings or add unused auto-detected remappings
 to metadata, producing different
 creation bytes with equivalent settings. A different artifact family is not a
@@ -206,8 +217,8 @@ supply actual addresses/pins/source commit, confirmed anchor and review records.
 Keep credentials, keys and endpoints outside the manifest. Then run:
 
 ```bash
-python3 scripts/observe-production-config.py --config reviewed-schema15.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema15.json
-python3 scripts/validate-production-config.py --config observed-schema15.json --expected-commit RELEASE_COMMIT --output preflight-schema15.json
+python3 scripts/observe-production-config.py --config reviewed-schema16.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema16.json
+python3 scripts/validate-production-config.py --config observed-schema16.json --expected-commit RELEASE_COMMIT --output preflight-schema16.json
 ```
 
 `POPL_RELEASE_RPC_URL` names a read-only endpoint environment variable; its
@@ -241,7 +252,8 @@ python3 scripts/validate-production-config.py --config observed-historical.json 
 ```
 
 Do not relabel old contracts, journal namespaces, observed fields, provider
-rehearsals or source reports as profile6. Historical evidence keeps exact original
+rehearsals or source reports as profile7. Historical6/V8 remains explicit. Earlier
+evidence keeps exact original
 pins, failures and limitations. A fresh inventory is not automatic state migration.
 
 ## Reviewed Entry policy

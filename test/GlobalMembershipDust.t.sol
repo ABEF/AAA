@@ -15,7 +15,7 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
 
     function _activateSecond(uint256 id, bytes32 other) private {
         vm.prank(bob);
-        vault.activate(id, other, 1000, 1000, 1, block.timestamp + 100);
+        vault.activate{value:1000}(id, other, 1000, 1000, 1, block.timestamp + 100);
     }
 
     function _selectSecondAndDisableOldContributions() private returns(bytes32 other) {
@@ -57,7 +57,7 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
         assertEq(rewards.claimable(first,address(t0)),19);assertEq(rewards.claimable(first,address(t1)),19);
         assertEq(rewards.claimable(second,address(t0)),0);assertEq(rewards.claimable(second,address(t1)),0);
         assertEq(rewards.liabilities(address(t0)),19);assertEq(rewards.liabilities(address(t1)),19);
-        assertEq(fees.accounted(address(t0)),0);assertEq(t0.balanceOf(address(rewards)),19);
+        assertEq(fees.accounted(address(t0)),0);assertEq(address(address(rewards)).balance,19);
         vm.prank(alice);assertEq(rewards.claim(first,address(t0)),19);
         vm.prank(alice);assertEq(rewards.claim(first,address(t1)),19);
         assertEq(rewards.liabilities(address(t0)),0);assertEq(rewards.liabilities(address(t1)),0);
@@ -69,27 +69,27 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
         uint256 second=_mint(bob);bytes32 other=_selectSecondAndDisableOldContributions();
         bytes memory failure=abi.encodeWithSignature("CurrentVenueUnavailable()");
         vm.mockCallRevert(address(pools),abi.encodeWithSignature("accounting(bytes32)",other),failure);
-        uint256 balance0=t0.balanceOf(bob);uint256 balance1=t1.balanceOf(bob);
-        vm.prank(bob);vm.expectRevert(failure);vault.activate(second,other,1000,1000,1,block.timestamp+100);
+        uint256 balance0=address(bob).balance;uint256 balance1=t1.balanceOf(bob);
+        vm.prank(bob);vm.expectRevert(failure);vault.activate{value:1000}(second, other, 1000, 1000, 1, block.timestamp+100);
         assertEq(vault.bucketCount(),1);assertEq(vault.nftBucket(second),0);assertEq(vault.sharesOf(second),0);
         assertFalse(membership.eligible(second));assertEq(membership.totalEligible(),1);
         assertEq(fees.dust(firstBucket,address(t0)),19);assertEq(fees.dust(firstBucket,address(t1)),19);
-        assertEq(fees.accounted(address(t0)),19);assertEq(t0.balanceOf(address(fees)),19);
-        assertEq(rewards.liabilities(address(t0)),0);assertEq(t0.balanceOf(bob),balance0);assertEq(t1.balanceOf(bob),balance1);
+        assertEq(fees.accounted(address(t0)),19);assertEq(address(address(fees)).balance,19);
+        assertEq(rewards.liabilities(address(t0)),0);assertEq(address(bob).balance,balance0);assertEq(t1.balanceOf(bob),balance1);
     }
 
     function testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights() public {
         uint256 first=activatedPosition();uint256 firstBucket=vault.nftBucket(first);
-        venue.setFees(19,0);vault.collectFees(firstBucket,block.timestamp+100);
+        venue.setFees(0,19);vault.collectFees(firstBucket,block.timestamp+100);
         uint256 second=_mint(bob);bytes32 other=_selectSecondAndDisableOldContributions();
         _breakHistoricalAccounting();
         bytes memory failure=abi.encodeWithSignature("HistoricalDustPaymentUnavailable()");
-        vm.mockCallRevert(address(t0),abi.encodeWithSignature("transferFrom(address,address,uint256)",
+        vm.mockCallRevert(address(t1),abi.encodeWithSignature("transferFrom(address,address,uint256)",
             address(fees),address(rewards),uint256(19)),failure);
-        vm.prank(bob);vm.expectRevert(failure);vault.activate(second,other,1000,1000,1,block.timestamp+100);
+        vm.prank(bob);vm.expectRevert(failure);vault.activate{value:1000}(second, other, 1000, 1000, 1, block.timestamp+100);
         assertEq(vault.nftBucket(second),0);assertFalse(membership.eligible(second));assertEq(membership.totalEligible(),1);
-        assertEq(fees.dust(firstBucket,address(t0)),19);assertEq(fees.accounted(address(t0)),19);
-        assertEq(t0.balanceOf(address(fees)),19);assertEq(rewards.liabilities(address(t0)),0);
+        assertEq(fees.dust(firstBucket,address(t1)),19);assertEq(fees.accounted(address(t1)),19);
+        assertEq(t1.balanceOf(address(fees)),19);assertEq(rewards.liabilities(address(t1)),0);
     }
 
     function testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool() public {
@@ -116,12 +116,12 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
         venue.setFees(19, 19); vault.collectFees(bucket, block.timestamp + 100);
         uint256 second = _mint(bob); bytes32 other = _secondPool(); venue.setFail(true);
-        vm.prank(bob); vm.expectRevert(); vault.activate(second, other, 1000, 1000, 1, block.timestamp + 100);
+        vm.prank(bob); vm.expectRevert(); vault.activate{value:1000}(second, other, 1000, 1000, 1, block.timestamp + 100);
         assertEq(vault.bucketCount(), 1); assertEq(vault.nftBucket(second), 0); assertEq(vault.sharesOf(second), 0);
         assertFalse(membership.eligible(second)); assertEq(membership.totalEligible(), 1);
         assertEq(fees.dust(bucket, address(t0)), 19); assertEq(fees.accounted(address(t0)), 19);
         assertEq(rewards.liabilities(address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 0);
-        assertEq(t0.balanceOf(address(fees)), 19); assertEq(t0.balanceOf(address(rewards)), 0);
+        assertEq(address(address(fees)).balance, 19); assertEq(address(address(rewards)).balance, 0);
         venue.setFail(false); _activateSecond(second, other);
         assertEq(fees.dust(bucket, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 19);
         assertEq(rewards.claimable(second, address(t0)), 0);

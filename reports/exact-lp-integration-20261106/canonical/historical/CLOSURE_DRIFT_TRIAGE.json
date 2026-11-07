@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "actual_stage": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e",
+  "whole_test_closure_frozen": false,
+  "production_source_frozen": true,
+  "config_frozen": true,
+  "tools_frozen": true,
+  "changed_path": "test/VaultAccounting.t.sol",
+  "before_raw_sha256": "5c13be3b942e5f7a32f03475640777853bdb534c4385497fbce2667db07069b0",
+  "after_raw_sha256": "2eb4918fe067806f17cf035c68d0c532fa88a852deeb89147414d68c8feab5e1",
+  "retained_before_source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-d543fb0cf8\\input.json",
+  "current_raw_sha256": "2eb4918fe067806f17cf035c68d0c532fa88a852deeb89147414d68c8feab5e1",
+  "classes": {
+    "VaultPolicyMock": {
+      "old_body_sha256": "30a559b59ab03bf53b657e2e226dbf10909b5efc333a38a46348cf4964e393a1",
+      "current_body_sha256": "30a559b59ab03bf53b657e2e226dbf10909b5efc333a38a46348cf4964e393a1",
+      "identical": true
+    },
+    "VaultLiquidityMock": {
+      "old_body_sha256": "ecbde608967ba43a6d0cc0a2152a985811170ce53381e7fda6d30902f588b245",
+      "current_body_sha256": "ecbde608967ba43a6d0cc0a2152a985811170ce53381e7fda6d30902f588b245",
+      "identical": true
+    }
+  },
+  "disposition": "Qualified source-stage execution evidence only; NOT exact-frozen whole test closure or fresh runtime hash claim. All imported policy/liquidity fixture class bodies stayed identical; only other unexecuted VaultAccounting fixture/test bodies/imports changed. Production source was separately pinned to normal7e38 and unchanged. Same compiler/settings and unchanged selected economic/fixture logic support retaining the 11 actual successful methods at their explicit source stage; exact per-stage compile-input ambiguity is retained, not overwritten.",
+  "not_a_new_test_run": true
+}

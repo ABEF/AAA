@@ -34,7 +34,7 @@ contract CustodyParkingTest is PooledVaultFixture {
     }
     function _refresh() private {
         MockFeed fresh = new MockFeed(8, 1e8);
-        oracle.setTestFeed(address(t0), address(fresh), 3600); oracle.setTestFeed(address(t1), address(fresh), 3600);
+        _setFixtureFeed(address(t0), address(fresh), 3600); _setFixtureFeed(address(t1), address(fresh), 3600);
     }
     function testParkingStaleOracleKeepsPrincipalAndFundedLPClaimRights() public {
         uint256 id = activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();
@@ -94,8 +94,8 @@ contract CustodyParkingTest is PooledVaultFixture {
     function testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack() public {
         venue.setSpendBps(9900); activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();
         venue.setFees(100, 100); vault.collectFees(bucket, block.timestamp + 100);
-        t0.mint(address(vault), 777); t1.mint(address(vault), 888);
-        Position memory beforePosition = vault.group(bucket); uint256 balance0 = t0.balanceOf(address(vault));
+        _giftNative(address(vault), 777); t1.mint(address(vault), 888);
+        Position memory beforePosition = vault.group(bucket); uint256 balance0 = address(address(vault)).balance;
         uint256 balance1 = t1.balanceOf(address(vault)); ac.setPaused(true);
         for (uint256 leg; leg < 2; ++leg) {
             ZZZMigration.ParkingRequest memory r = _request(migration, bucket);
@@ -103,7 +103,7 @@ contract CustodyParkingTest is PooledVaultFixture {
             vm.expectRevert(); migration.park(r);
             assertEq(migration.parkingNonce(bucket), 0); assertEq(vault.group(bucket).lpTokenId, beforePosition.lpTokenId);
             assertEq(vault.group(bucket).idle0, 10); assertEq(vault.group(bucket).idle1, 10);
-            assertEq(t0.balanceOf(address(vault)), balance0); assertEq(t1.balanceOf(address(vault)), balance1);
+            assertEq(address(address(vault)).balance, balance0); assertEq(t1.balanceOf(address(vault)), balance1);
             assertEq(fees.compoundBalance(bucket, address(t0)), 5); assertEq(venue.ownerOf(beforePosition.lpTokenId), address(vault));
         }
     }

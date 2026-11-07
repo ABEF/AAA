@@ -1,0 +1,1555 @@
+{
+  "schema": 1,
+  "scope": "154 individually current-context exact final532 source review, fixed caller/custody/accounting proof and retained dependency/gas risks. No code/checker/analyzer changes.",
+  "records": [
+    {
+      "index": 5,
+      "fingerprint": "682bd616a2b9638b7ded8e7aec00745a2f573c2dad5543bbd766c95f22a559c7",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue full close intentionally snapshots the ZZZ balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 7,
+      "fingerprint": "91cd2f4968c56b1583e06f5879d3667ff428547a7212a9cd24ba24af5c87e9de",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue residual close intentionally snapshots the ETH balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 10,
+      "fingerprint": "b4ed2bbdd7cb96b7af23447e305fec2f96d31a22e75c84a9a0ab665feeb14f4c",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_join classified compound release intentionally retains pre-entry supply while settling incumbent receipts. Vault mutex prevents another share write; canonical writer is state2-only. It revalues incumbent NAV after entrant balancing, proves marginal deployed/retained budgets, writes shares/supply then immediately syncs exact Rewards weights before membership. Retaining supply prevents entrant capture of old funds; dependency qualification still matters.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 11,
+      "fingerprint": "2794a969b10f634d91c44bf6254fa73bec3aa3db02324b8258ea246fdaf4c112",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing native branch brackets actual ETH balances; captured balanceContext is rechecked after token approvals/typed Manager call/reset, and both actual asset equations must match return. Only explicit attributed amounts can be spent; Vault economic wrappers hold nonReentrant and canonical/terminal boundaries. The old balance is intentional exact-delta evidence, not a stale quote.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 15,
+      "fingerprint": "53a6edf9d5fa845c0bdc8d9ed734dfe373fbeaa64f9473ba5e6b2116a2e71a40",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_join entrant-swap fee harvest intentionally retains pre-entry supply while settling incumbent receipts. Vault mutex prevents another share write; canonical writer is state2-only. It revalues incumbent NAV after entrant balancing, proves marginal deployed/retained budgets, writes shares/supply then immediately syncs exact Rewards weights before membership. Retaining supply prevents entrant capture of old funds; dependency qualification still matters.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 16,
+      "fingerprint": "9a3becd9fec227955308630f38720105d838fef193bf79839c80d0f9ee3cd232",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue residual close intentionally snapshots the ZZZ balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 19,
+      "fingerprint": "28a3d8a5f18b2ba74b5ab2677e82adf53e0f4f6ab60dacd7bc040b274673132c",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing zero-native branch brackets actual ETH balances; captured balanceContext is rechecked after token approvals/typed Manager call/reset, and both actual asset equations must match return. Only explicit attributed amounts can be spent; Vault economic wrappers hold nonReentrant and canonical/terminal boundaries. The old balance is intentional exact-delta evidence, not a stale quote.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 21,
+      "fingerprint": "e30cbb53488588e5187d0c4248c78fe397f8a3956b83a56f5a2b121dcc475b98",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_join funded dust flush intentionally retains pre-entry supply while settling incumbent receipts. Vault mutex prevents another share write; canonical writer is state2-only. It revalues incumbent NAV after entrant balancing, proves marginal deployed/retained budgets, writes shares/supply then immediately syncs exact Rewards weights before membership. Retaining supply prevents entrant capture of old funds; dependency qualification still matters.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 23,
+      "fingerprint": "dee0f700ed1452a234ecc2b094faf533baf51315d1df7d6a58169d5005d9e692",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue fee collect intentionally snapshots the ZZZ balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 26,
+      "fingerprint": "5c6cdd37ce12dc965927a7e9f9ac788b38dfec3572bdf5b7f08584c386319b87",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_join post-swap incumbent NAV read intentionally retains pre-entry supply while settling incumbent receipts. Vault mutex prevents another share write; canonical writer is state2-only. It revalues incumbent NAV after entrant balancing, proves marginal deployed/retained budgets, writes shares/supply then immediately syncs exact Rewards weights before membership. Retaining supply prevents entrant capture of old funds; dependency qualification still matters.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 28,
+      "fingerprint": "cdedc2f3257dc12a96e0e14abd0e395eac301b8b06bbd82f83f32225494f4eb4",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing native branch brackets actual ZZZ balances; captured balanceContext is rechecked after token approvals/typed Manager call/reset, and both actual asset equations must match return. Only explicit attributed amounts can be spent; Vault economic wrappers hold nonReentrant and canonical/terminal boundaries. The old balance is intentional exact-delta evidence, not a stale quote.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 30,
+      "fingerprint": "00e97525569301139b2ffc62578e72e47f04417f8fd1d3a754fd8ab1c6fdddf7",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "fund is nonReentrant and checks frozen source/exporting plus matched imported peer/root/asset/amount. funded flag is written BEFORE fixed module release; beforeBalance is an intentional exact incoming delta at the fixed destination companion, not an execution price. Peer acknowledgment is reciprocal/nonReentrant; failure reverts both flags/funds. Fee/rebasing/malicious token universality is not assumed.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 31,
+      "fingerprint": "a320be370e6a2877a6aedde43dc8ec6e969ea2df235efcece159ff29516d71f6",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing zero-native branch brackets actual ZZZ balances; captured balanceContext is rechecked after token approvals/typed Manager call/reset, and both actual asset equations must match return. Only explicit attributed amounts can be spent; Vault economic wrappers hold nonReentrant and canonical/terminal boundaries. The old balance is intentional exact-delta evidence, not a stale quote.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 34,
+      "fingerprint": "777716a0fd7155424224633301095713e5a3ac0e8f90d955f80a4cd8a12ad7ae",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue full close intentionally snapshots the ETH balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 36,
+      "fingerprint": "96a1dd148c87268ff0ac3b8d1f7fec7cba1334e1bcf9d20412cea0d043557528",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue fee collect intentionally snapshots the ETH balance before fixed Manager call, then attributes only actual net delta; ETH also must equal validated nativeReceived delta. Every reachable economic wrapper holds Vault nonReentrant and lifecycle checks, while canonicalWrite admits only fixed companion in inert state2. Shared raw prefunds are not credited; actual token/core qualification remains required.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 38,
+      "fingerprint": "b27fb668c154bcd229f6d768087d87e4ada9bd9951ce11114f6fabd453f2ec13",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "returnFunds is nonReentrant and requires aborting source/cancelled peer, funded&&!returned fixed row. returned is set before reciprocal returnFunding; exact source companion incoming delta is proved before restore. A callback cannot reenter source/peer transition and source cannot reopen until all required return flags and backing validation pass.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 41,
+      "fingerprint": "1503b24c47092020869da1b2ac38a199b4e7af81862f0742143109a29448884c",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context bucketTotalShares is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 42,
+      "fingerprint": "0a8decb3dd6e36b6d2eba40571d4941fb7edbfc5d354587a8c963378fb83f0dc",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_movePool redeployed IDs/centre/clock/idle is inside fixed Migration-only live/operating/principalOperating nonReentrant wrapper. Ordered ETH/ZZZ destination, permanent alias reservation and captured source-pool/price/control checkpoints precede unwind/redeploy; exact receipts/ownership/post-budget checks finish before success. Alias helper is typed and state-only, and canonical writes require inert importer. Source and destination dependency qualification remains necessary.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 43,
+      "fingerprint": "9597d785e2b81072bc92d085719e99dd5a5c9c4c6de6c9e79bf4bb0b300b4d6b",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_unwind closed ID and idle attribution is private within already locked maintenance/movement wrappers: validateUnwind, harvest actual fees, release only designated compound, capture phase1 denominator, then close registered portfolio. Actual receipts update attributed idle only. Concurrent economic writes are blocked by Vault mutex; canonical writer requires incompatible state2. Late callback-created fees under compromised dependencies remain an explicit qualification risk, not an ordinary outsider exploit.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 44,
+      "fingerprint": "ea37363884660c99bf4674f8792fc80cea283c411512de53a3aaaed426c0f013",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing writes only this bucket idle after exact returned asset delta and captured control hash agree. Its caller holds Vault nonReentrant; old attribution is not changed during the swap. Fixed sender/module and inert-only canonical writer prevent cross-function debit; gas/route/provider liveness is separate.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 45,
+      "fingerprint": "f3927a2a4d2fd4876b17dc1faa1206834a5e35085d56b4fdfe886e83cd06aa24",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "closeResidual is fixed Migration-only/operating/principalOperating/nonReentrant, validates paused current custody, harvests both then closes ONLY registered residual into attributed idle and rechecks pause. The helper operation2 does not clear main ID. No holder payout or arbitrary recipient; share/main/nonce/control proofs live in Migration/Budget and fail atomically.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 46,
+      "fingerprint": "84439c9b65ad16dbe6a85cea2c4610138ded8d9f0c6a01467f95be30fd7e2dbe",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context late released compound idle/totalIdle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 47,
+      "fingerprint": "fb2cc76b6e7c4f9f572ea75cd9561cbac2b91277bbf7b69ee8e1a0e098153612",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context entrant-funds idle/totalIdle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 48,
+      "fingerprint": "31f422fb733a4f7300289439d5bfd160b60a1b9d9bd1cc35beb1a09843b495c6",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context post-swap harvest route shared by typed helper is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 49,
+      "fingerprint": "dec728a631fe19aa224f38ecf272be3c16559b928e6f50f0c2c3414d9aafa422",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_reinvest residual proceeds attributed idle is private under locked Compounder or typed Migration dispatcher. Phase3 releases classified compound; phase4 closes only residual and does NOT release that reserve. Checkpoints capture before residual removal, actual receipts and existing-main increase preserve accounting; Migration verifies same-main identity and financial manifest. No concurrent Vault economic write or inert canonical writer is admitted.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 50,
+      "fingerprint": "983ee64537aa15e766b7c890d22c6c17aeec9cbee87d10219f7e613f8e365274",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context depositUSD is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 53,
+      "fingerprint": "7a3121ddf31db38763549402127f5d1169d47f866ced80e043912266e982ac29",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_put idle after actual spend is private within nonReentrant economic work. Fixed operator gets exact token allowance then reset; only actual new/existing LP operations occur. Budget.assertPut proves both exact balance debits, bounded spend and Vault ownership of each registered LP; attribution/deployment checks follow. Creation alone changes centre/clock, growth does not. Compromised periphery/token behavior is not universally covered.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 54,
+      "fingerprint": "4b1e904b37926848ceca89aad1100eb1db47a8d94e514aab938c4d57123c22bd",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "resume is fixed Migration-only live/operating/principalOperating/nonReentrant, requires Parked and runs full guarded _movePool before Active status write. Static group/status getters do not bypass mutex, and canonicalWrite only works in state2; direct failure rolls restoration back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 55,
+      "fingerprint": "e85eb71ba43cb15c385de7581f98053fce7f7dfe62d0414c1b8d979a8f362871",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context initial incumbent compound idle/totalIdle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 56,
+      "fingerprint": "12f5b34bc6ec8e1fe20a4977fe38337c8e33d622833b5b7df47651bf6a17eb6a",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_reinvest phase3 designated compound idle is private under locked Compounder or typed Migration dispatcher. Phase3 releases classified compound; phase4 closes only residual and does NOT release that reserve. Checkpoints capture before residual removal, actual receipts and existing-main increase preserve accounting; Migration verifies same-main identity and financial manifest. No concurrent Vault economic write or inert canonical writer is admitted.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 57,
+      "fingerprint": "a12374f54f5ea8af029d46a70b896c627930d59a87bbd8cb4473c481c303da62",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_rebalance Parked emergency status restoration is private under keeper guarded or separately manifested fixed Migration nonReentrant wrapper. Budget checks raw/readiness/timing or explicit emergency mask, captures starting and final accounting; unwind/actual mint preserve custody. Emergency may intentionally waive financial checks but cannot create arbitrary recipients or inert canonical writes. This review does not call checks0 safe economics.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 59,
+      "fingerprint": "b60c91766af9bccf8e3995e662ca90b4fa234feeacc0e59addfe2ec7da2bc8c6",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_movePool new pool ID is inside fixed Migration-only live/operating/principalOperating nonReentrant wrapper. Ordered ETH/ZZZ destination, permanent alias reservation and captured source-pool/price/control checkpoints precede unwind/redeploy; exact receipts/ownership/post-budget checks finish before success. Alias helper is typed and state-only, and canonical writes require inert importer. Source and destination dependency qualification remains necessary.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 60,
+      "fingerprint": "57057b526a10fb37ab184ef5fa8bb96ce94ff4e68b23b0de5df2624ea8746fb5",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_unwind released compound idle is private within already locked maintenance/movement wrappers: validateUnwind, harvest actual fees, release only designated compound, capture phase1 denominator, then close registered portfolio. Actual receipts update attributed idle only. Concurrent economic writes are blocked by Vault mutex; canonical writer requires incompatible state2. Late callback-created fees under compromised dependencies remain an explicit qualification risk, not an ordinary outsider exploit.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 61,
+      "fingerprint": "bbb27069a6e53d24016b4f1019225aa274ccf822c42624084db0e7e641ee63c8",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context fresh compound idle/totalIdle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 62,
+      "fingerprint": "0bda1f80cb2e2d6fef7cba1a0f12b9058dd3bcc4ac4ab3dcb09998f60a95635f",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "VaultCanonical.canonicalRestore is only fixed Handoff in source state1 with released flag; Handoff.returnFunds holds its mutex and proves exact incoming row delta before calling restore. _forward sends only captured asset/amount to immutable Vault. Vault receive only validates sender/credits nativeReceived and cannot callback Handoff; onlyHandoff prevents a token/receiver reentering release/restore. Cleared flag afterward is atomic with transfer.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol",
+        "src/libraries/ExactAsset.sol"
+      ]
+    },
+    {
+      "index": 63,
+      "fingerprint": "7261b494f07fb04749a70c27ea8f911987e7fd4c3918394e390330f14e378484",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context actual entrant mint/increase ID, creation centre/clock and idle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 64,
+      "fingerprint": "7f2e9e2ff1857ac77ecb5e16fdcd401307495af262eca6d6ecad3402a8755402",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_put new LP ID/centre/lastRebalance is private within nonReentrant economic work. Fixed operator gets exact token allowance then reset; only actual new/existing LP operations occur. Budget.assertPut proves both exact balance debits, bounded spend and Vault ownership of each registered LP; attribution/deployment checks follow. Creation alone changes centre/clock, growth does not. Compromised periphery/token behavior is not universally covered.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 65,
+      "fingerprint": "8cbdb8792e657d4e74186d63ea82a054cdf37fce7c0afce34eb769101d031b10",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_rebalance replaced LP IDs/centre/clock/idle is private under keeper guarded or separately manifested fixed Migration nonReentrant wrapper. Budget checks raw/readiness/timing or explicit emergency mask, captures starting and final accounting; unwind/actual mint preserve custody. Emergency may intentionally waive financial checks but cannot create arbitrary recipients or inert canonical writes. This review does not call checks0 safe economics.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 66,
+      "fingerprint": "834a577e978a77841d8f788510984a4c39c17a481c731062dadedc6218c8d78e",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "exitBucketToHolders terminal ID/status/idle requires fixed Migration, operating+nonReentrant and paused terminal-state validation. Final fees/dust stay in Rewards; only actual attributed principal plus designated compound is closed, debited to zero and marked Exited before fixed settlement module transfers. Existing shares remain for allocation/old rights. Exact ETH/ZZZ receipt/caller minima and rollback remain; no arbitrary holder-selected redemption.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 67,
+      "fingerprint": "9857bb3de4d27527b9b2ec68a343a21b737dcfc3b6837ec32350c4130c9088b3",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_redeploy actual LP ID/centre/clock/idle is private within locked maintenance or governed movement. It balances explicit attributed idle once, separately harvests earned fees for an existing LP, proves idle loss, then mint/increase with exact spend/ownership checks. Existing-ID paths do not reset centre/clock; canonicalWriter is state2-only. Financial safeguards may be explicitly waived only in separate governed emergency manifest.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 68,
+      "fingerprint": "bed2047d40db61239a79842e89341878712f4e26d81fc520621986da85fb7c95",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_reinvest same-main redeployment idle is private under locked Compounder or typed Migration dispatcher. Phase3 releases classified compound; phase4 closes only residual and does NOT release that reserve. Checkpoints capture before residual removal, actual receipts and existing-main increase preserve accounting; Migration verifies same-main identity and financial manifest. No concurrent Vault economic write or inert canonical writer is admitted.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 69,
+      "fingerprint": "8abbb3fcda273d466a557136ec7174518bc356a46623cde0f55a36fb3b41e554",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "park is fixed Migration-only/nonReentrant/canonicalAccounting/principalOperating, requires paused Active live ID; exact custody request checks are in Migration. It harvests classified rewards then closes both physical legs into this Vault idle, marks Parked and sends no principal externally. View getters are not write authority; canonical writer needs state2.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 71,
+      "fingerprint": "ee5bdde7de126cdc9f9e9786b69292d203dfa5fd24bab94995fe283ab1f05db1",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_redeploy post-balancing actual fee collection is private within locked maintenance or governed movement. It balances explicit attributed idle once, separately harvests earned fees for an existing LP, proves idle loss, then mint/increase with exact spend/ownership checks. Existing-ID paths do not reset centre/clock; canonicalWriter is state2-only. Financial safeguards may be explicitly waived only in separate governed emergency manifest.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 72,
+      "fingerprint": "8401f18d39633a401c5a3f7ed7832bdddc98529dd5f191cbb685eddcc26a7e50",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "exitBucketToHolders classified compound idle requires fixed Migration, operating+nonReentrant and paused terminal-state validation. Final fees/dust stay in Rewards; only actual attributed principal plus designated compound is closed, debited to zero and marked Exited before fixed settlement module transfers. Existing shares remain for allocation/old rights. Exact ETH/ZZZ receipt/caller minima and rollback remain; no arbitrary holder-selected redemption.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 73,
+      "fingerprint": "97a816662f8a6df9ba8b2699d8e17c2bccad5ea3d73d65de401a27b9c64c854d",
+      "check": "reentrancy-eth",
+      "disposition": "false_positive",
+      "rationale": "_join write context balanced entrant idle/totalIdle is reached only through live/operating/principalOperating nonReentrant activation/growth. Fixed module calls settle old funds; entry spends only entrant budget and proves actual marginal LP+net NAV before issuing. Shares and bucket supply are updated then syncShares authenticates both totals atomically. canonicalWrite cannot run in operating state; view getters do not authorize reentrant writes. Post lifecycle checks and any failed sync roll the whole transaction back.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 88,
+      "fingerprint": "7492f49a3646286677e99519dc45201214e896f27c142cfd784bf23baec1e8c2",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "importRows nonReentrant/stateIMPORTING verifies reciprocal frozen source, nonzero snapshot and same handoff; <=8 exact source-export bytes are authenticated before fixed module import. Cursor/root updates roll back with hook failure. bindFrozen lacking mutex only admits original source during IMPORTING with handoffId0, incompatible with ongoing imported row state; public getters give no mutation authority.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 90,
+      "fingerprint": "6dc5c4e47bddde44a01dfbe37bf40f242f567730aa891dcca4a2af473d1a3657",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "activate only accepts reciprocal source coordinator after source RETIRED and same committed root. It holds nonReentrant while all6 funded/domain validations and all6 typed activation hooks run; target access stays inert state2 until final transition. bindFrozen requires importer unbound handoffId0 and wrong phase here, so no cross-function phase overwrite.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 91,
+      "fingerprint": "30ba82f8f2565378b2b0e47370cf8f99b107afee67ecf0f7687b50caaa726590",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "_movePool parked-source compound idle is inside fixed Migration-only live/operating/principalOperating nonReentrant wrapper. Ordered ETH/ZZZ destination, permanent alias reservation and captured source-pool/price/control checkpoints precede unwind/redeploy; exact receipts/ownership/post-budget checks finish before success. Alias helper is typed and state-only, and canonical writes require inert importer. Source and destination dependency qualification remains necessary.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 92,
+      "fingerprint": "8ff038528d2773e9701bb93eacc0eb3ca4a45c100c92205ceb6d4a1b7da32e4d",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "activate executes under Vault nonReentrant and pre/post live/operating/principalOperating. New bucket reservation goes to typed local companion registerAlias (no external callbacks), before exact entrant LP proof. Shares/supply then Rewards sync and Membership activate happen atomically; imported canonical writes are state2-only and cannot modify Active operation.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 94,
+      "fingerprint": "ae38254002fc0a9882467c2669b978ca3d1615879442031e8181911d1cd239a3",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "_rebalance Parked emergency compound idle is private under keeper guarded or separately manifested fixed Migration nonReentrant wrapper. Budget checks raw/readiness/timing or explicit emergency mask, captures starting and final accounting; unwind/actual mint preserve custody. Emergency may intentionally waive financial checks but cannot create arbitrary recipients or inert canonical writes. This review does not call checks0 safe economics.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 95,
+      "fingerprint": "26877f1ff9ae9a223bb6a51beb0c114328b16eef2ec50c8956a78e9aa8940786",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "settle holds Handoff nonReentrant, requires exact next slot0..5 and PHASE_SETTLING; only fixed Access canonicalTransition and fixed domain hook are called. Source is Frozen before hook, settling true only around it, cursor advances only after success. bindFrozen is unavailable in this phase/identity; export/fund/activate remain blocked until all6 settle.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 96,
+      "fingerprint": "242b1eb333966709fe98debda98a0720175a5a55c7ade19c63e511e7b3e318c1",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue only runs under locked Vault economic wrappers and captures both real balances plus authenticated ETH receipt counter. Typed operation0 distributes actual fees;1 clears main only after full close;2 retains main. Exact receipt/ownership/lifecycle proofs prevent reentrant attribution; canonicalWrite requires state2-only companion.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 97,
+      "fingerprint": "e38e54d911825e9736a0e7b7701a9c68e6f2eff3b69dc1e986821f0ecd4b22c8",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "_pullCompound only calls fixed FeeController releases for admitted two currencies; FeeController clears each classified reserve before exact transfer. Vault economic callers hold nonReentrant; resulting actual reserves become attributed idle under assertIdle. No user-chosen source, recipient or reserve category is used.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 119,
+      "fingerprint": "c9ce3a4827ea2a2c414bac40385126a5c555044d13f24f905652a647cf728cfb",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "freshCompound intentionally defaults0 when bucket supply==0; with incumbents it is set to actual post-swap classified compound value. incumbentNAV then adds only that actual value before entrant share issue; checked arithmetic and positive-NAV guards apply.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 137,
+      "fingerprint": "b1afaf34eb4e24c452d3c49c7aaa3607a9fbcb0cbba28d74fac2262ad102fa4b",
+      "check": "unused-return",
+      "disposition": "false_positive",
+      "rationale": "PoolRegistry.accounting(p.poolId) is deliberately invoked for its admission/revert guard before restoring Parked group. Subsequent Vault canonicalWrite derives exact currencies from the same admitted registry; values are not needed at this local statement. Raw row hash is source-authenticated by coordinator.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 142,
+      "fingerprint": "e37a8741d5f3732d45e58dd62a8023b74778fe8564046c797dc50fd3f9c00eef",
+      "check": "unused-return",
+      "disposition": "informational",
+      "rationale": "freeze intentionally ignores preparationNotice reviewHash field because Access has already bound/validated full preparationHash in the handoffId; exact chain, destination, deployment hash, peer source link/state/runtime commitment are checked here. It does not omit the reviewed destination authority.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 144,
+      "fingerprint": "5b011dc1ce4de920a68b13b12570637c9367c0df9cd6d0a8c4bce187df281567",
+      "check": "unused-return",
+      "disposition": "false_positive",
+      "rationale": "recoverCancelledRoyalties post-return sync is invoked for accounting side effects, not a promised return amount. Actual return comes from fixed cancelled ledger; current target governance/review/admission/open positive cohort is checked before and after, and target receiver/count/weight must remain identical. Ignoring sync return does not ignore funded money.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 151,
+      "fingerprint": "a14a0137e534f2c216be2ecd46f9e2d9f773557f23c0be0d99601c27f29e1866",
+      "check": "unused-return",
+      "disposition": "false_positive",
+      "rationale": "recoverCancelledRoyalties pre-return sync is invoked for accounting side effects, not a promised return amount. Actual return comes from fixed cancelled ledger; current target governance/review/admission/open positive cohort is checked before and after, and target receiver/count/weight must remain identical. Ignoring sync return does not ignore funded money.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 178,
+      "fingerprint": "bcc313f8c54cbfaf3c7c9b39f6e7711ab27a1a5a33ae765a7a7e135780379fc5",
+      "check": "events-maths",
+      "disposition": "informational",
+      "rationale": "Vault canonicalImport header is only fixed coordinator/state2/cursor-ordered. Source bytes and domain import root are authenticated and coordinator emits RecordImported; these are imported identities/counts, not silent live governance policy changes. Final count/shares/backing and activation checks apply.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 188,
+      "fingerprint": "dddda2ae3cd5df21954145f7db2c6d0f35e22d46d79a832f9a52cb5bc38e11e1",
+      "check": "missing-zero-check",
+      "disposition": "false_positive",
+      "rationale": "mintDormant recipient comes from fixed ProtocolPolicy salePolicy via authenticated canonical validateMint; ProtocolPolicy constructor/propose-accept enforce nonzero recipient. Vault also checks exact value, captured sale/VRF/end fingerprint after payee callback and lifecycle mutex. No arbitrary caller-supplied zero payee exists.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 198,
+      "fingerprint": "af5f1026d72f2a976d70b775d3a3779a8f7b4833d384c20c140159feb42439b2",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 199,
+      "fingerprint": "18e2adbac548c9c0d15030456568f2b1ec616c3f601fb81094fc7f2c0de79a0b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Capture visits actual Rewards.assets within fresh fixed ETH/ZZZ count2 (generic codec ceiling33), records exact parent principal backing and excludes duplicate assets; no NFT loop.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 201,
+      "fingerprint": "419cbec3433859be8e3c9db11db5b7dd9c2999d4e502fa60ed313fac90346b1c",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 205,
+      "fingerprint": "337728e2aab9185c35b0aa453ebe9518f5858a7e05269fcd4242f71bbbe0de9a",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "bindFrozen admits only original reciprocal source during unbound IMPORTING and copies exactly6 recordCount values; no user-supplied count list or money movement.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 207,
+      "fingerprint": "aa91114b6cc08bda0177ed5c968060d668287e013d1579a972703ed88c6bba6a",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "activate invokes exactly6 fixed domain activation hooks after funded/domain validation, while Access still inert; only then switches target operating. Per-hook gas/failure can block atomic activation and must be rehearsed.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 208,
+      "fingerprint": "96c7a335a518245bb27b237b4970ef8b00c45b11b0bdbc083025794a475e3f6d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "completeImport compares exactly6 domain cursor/count/asset totals and source export roots; immutable actual modules then same complete stateRoot gates funding phase.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 210,
+      "fingerprint": "1253aaae9e3d36646c8ee479daa5d20907867ad590a9b3b6fa848526ecea888d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 212,
+      "fingerprint": "2a794e49a060f62d7f83fb35ec57cc0909f5c997439e65a3691395c6410fabb2",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "importRows authenticates <=8 source export records per call via exact keccak bytes before import; bounded pages avoid processing entire1000NFT/2023node domain in one transaction.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 213,
+      "fingerprint": "59b07623bd73bfe1d361ea34d37b173887ca5588280f2a90b2b1d7e7f99a0370",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 214,
+      "fingerprint": "03f95a58f6c6e6359e50cff0e0387ffb3bc365e0b303d073f43cd3b27a979527",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 215,
+      "fingerprint": "bbbcad61f4df0c17b847f9ac5d0a30d1d6c46afdc2d757874365eefeab35ed02",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 216,
+      "fingerprint": "3422219e3e9be130294e3f8c6428e9793b8de9b491d0c3b3070f4c8bbcac87b4",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 218,
+      "fingerprint": "f66fdd4c32b2a148880d04ea085936a8fbc2cb89d9f4ab8b9680686fcc8659e8",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Capture compares exact actual Vault asset balance>=classified totalIdle for each fresh2 asset; price feeds/live LP venues are not queried and ordinary money writes already frozen.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 221,
+      "fingerprint": "3f7cb80b15cfbb169a8ec66f164ad061c642f86f408a3d15c775cacba76bd7d5",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 224,
+      "fingerprint": "0396804e9a5a9921350b048dfa142908cf179417c6c9e2c93ceee95b8a75c5e5",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 228,
+      "fingerprint": "672cf5b64f87ec3b524ec4c52c2b432f0d056ccea80bccd3906beddca5ef3b75",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Capture checks no active Migration plan for every actual registered bucket<=4 before frozen export. Combined with Parked/ID0 and zero live residual checks, no active principal movement is omitted.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 229,
+      "fingerprint": "24439e939158db0da27defd50462c1f3c8dd950d208130256214cad1c0912f26",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 232,
+      "fingerprint": "6f199737dc518e99c85811749f219dc2da35ebf212e625fa762756fd92e6eb3d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 235,
+      "fingerprint": "abad692477fb56ec73c77bb4e56dfb16f84fbf341852ae5dbd2a4930bcbbfb3b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 237,
+      "fingerprint": "9747631e7a6ebba2a602e709e722c38f7dd48188a15299c525821e37990886c2",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 238,
+      "fingerprint": "9320297df0ca84b21b9d1cd7377a93fe119f6da2b056d583aed69ca39cb96c9d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "bindFrozen copies exactly6 assetCount values only from already validated reciprocal frozen source. Source freeze separately caps each<=256; fresh LP domains have2 and royalty capacity remains reviewed separately.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 241,
+      "fingerprint": "48df119277f2d3a0cc3fce3fc03c34e178250242a1d25c876a88516813979c4e",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "validateCancelledRoyaltyHop is fixed Handoff-only read-only proof of ONE retired hop; exactly6 immutable source-export/target-import roots must match, plus V9 reciprocal controller/state/phase/sealed identity.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 242,
+      "fingerprint": "b35b313b99b1e943307b8686c935fee747d2c0dc38a6c0795fc1dfd1dd8ddade",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 243,
+      "fingerprint": "eec3856ceb768824ab4fb61312d144a6c67e2add277743eec250d39d3451f08b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 244,
+      "fingerprint": "ee11708efd54d6206ab22111851a6c19ec780c395eca3e473eed914a5211a8ff",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 247,
+      "fingerprint": "c5289af7daf6d6ba49f18a5d59a529128fa411bc7c707161f0b39cbb61439810",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 251,
+      "fingerprint": "b4b3436a199d9a63817eb7475f4221ded0bd15c9d33975080fee1ef52f96ee39",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 254,
+      "fingerprint": "75b79f391ad5d5e5a0a38ab560e35241afedc51e02ed09708102793008e69c65",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "finishAbort validates exactly6 modules only after every funded row has returned; source cannot reopen with missing principal/reward/reserve backing. Aggregate module-hook gas remains qualification work.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 255,
+      "fingerprint": "2a37748566daa3fed7d441a907a6ff624bf49c22d078e73d50f6f3da4c106ea1",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 256,
+      "fingerprint": "7a04e0f155f9b5cd1cb918ee7ea3a0c7ca92ef57c5b8c754a4683662fe394275",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 257,
+      "fingerprint": "2e343f772fcd745124b4c9e2e287b4d5c8717fd8336aa2536a88ecbdb3dc5caa",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 260,
+      "fingerprint": "5710ff02471d4b20254cc84b1c58c48c10f27d217632c1879d98c2428cdbc26a",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault canonicalValidate reconciles imported NFT share sums with exact actual supply for <=4 buckets; this bounded proof avoids1000holder scan at final activation.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 262,
+      "fingerprint": "013e092a34443779134b1186d66373d7e5b5b92ac87ece1dffca1072712e8fab",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 268,
+      "fingerprint": "1c54d15d9bb8dfede2b3bc62ac2477d83886a53b207e2cba7ec8fdf7fa7e013a",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 269,
+      "fingerprint": "ec5c4a53190ea19c896f458131adc3f21c5fee6603d6e3d5f9cb3973a2bda954",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): sealed accounting7/LPcap1 source hashes16 fixed modules plus6 canonical-domain addresses/runtimes and fixed Policy configuration; a codehash is not proxy/semantic safety. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 270,
+      "fingerprint": "7de524c9e96e803d0b116daa78a941e0a6b18f57f15acdcfde9d18d5ddfbb909",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): governance+nonReentrant ABORTING checks every funded row returned and validates all six source domains before reopening. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 273,
+      "fingerprint": "a19da810ea7aaff9c7f40473b5b477644d36a1b2b3ca85dcbee1f6c72d7e86dc",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 276,
+      "fingerprint": "e4a35d51345353de52c9775da20e556371ad961c61dc6e2051b31d54f95ce68c",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "freeze calls exactly6 fixed canonical captures AFTER Access becomes Frozen, so callbacks cannot begin ordinary economic work. Hook costs include reviewed currency capacity and must fit target gas; bounded count is not a guarantee.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 278,
+      "fingerprint": "62106e1b271768de3102fbee73851c80c8a0e9862387221ec6c7c3de1ec86415",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 280,
+      "fingerprint": "0f1be510f10b8cbc96b2471dc5dd3257fe6e14970421d255558264a19f7a613c",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "freeze reads exactly6 module asset counts and rejects>256 before resetting funding flags. Fresh LP/Vault/Fees only fixed2 assets; royalty capacity and worst-case gas remain independently reviewed limits.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 282,
+      "fingerprint": "a11fd99f1311cf2a588e7399c1d8829794648d9ad589dbc941a911161c940a47",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault capture iterates actual bucketAt up toMAX_BUCKETS4 and requires None-empty or Parked/ID0 with no active migration plan; source still owns classified backing.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 287,
+      "fingerprint": "8bb3260373a2e2db190ac6d3b1c27b6eb4e79a5cb8156bb58bf34c7a166ccc99",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 289,
+      "fingerprint": "dc6e313dea837c085cd38c1f6b5eea74a01e9ced7930226b7b9cc9ec85badd35",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 291,
+      "fingerprint": "76ec202e127fe5babd41a396234e122022ed2eb00e788139b3d72178244f17ca",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 292,
+      "fingerprint": "e6a9bd7561dddf9491f65a40b210d9526af4f557c8f750f5b4dee5b810957013",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "exportRows calls fixed module export for at most8 rows per transaction, source frozen after all6 settlement hooks. Cursor/end and row-root commitments authenticate pages; no all-domain loop.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 295,
+      "fingerprint": "3bed313ca7d02b677125790863993eb842a18c7c48e193a87614213ea8b90fd7",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 299,
+      "fingerprint": "10a3d24e0c149f20b368c0f621c0bd10b075b4c8d69845107c8ba7ca95a073ae",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): governance+nonReentrant validates sealed reviewed reciprocal destination, freezes Access BEFORE6 capture hooks and bounded delivery flag reset. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 300,
+      "fingerprint": "7be440c92d451597ec0033719318ba1f09f8392c5e5987326c953809e2996369",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "activate validates exactly6 fixed domain books/backing after all funded flags, including new raw-tree expected outstanding. Any failure reverts retirement/activation atomically; target gas still requires qualification.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 301,
+      "fingerprint": "aae72a0a6117c21197a4252779ba5f53582288e6a5afef9321c9d5f9df1c5ecf",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.REWARDS)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): six-domain completion is nonReentrant/IMPORTING, matches each cursor/count and exact source export root before changing phase. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 304,
+      "fingerprint": "6caa0bd30b34d31bba29b63bc5e3045c39b571b3587e31ca6f854c0cf69538fa",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "freeze reads exactly6 nonzero module record counts; later exports/imports page8 rather than looping count(NFT1000/rawnodes2023) during freeze. Source/peer/root agreement authenticates catalog.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 306,
+      "fingerprint": "fcd60944aea15ca933f5b45c59b7d79753bead99a9803adf52b65dc8bff243c7",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault canonicalValidate obtains bucketAt for at most4 groups then checks per-bucket imported shares; no unbounded historical alias scan at activation.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 309,
+      "fingerprint": "fb94b472699688bd9ae50d1236fd20cc20e181757ecff708d05e8a27c8ab240a",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 311,
+      "fingerprint": "f5df3bee053329686c1c4a6dd7da67909731963f372a36aa159b65f48e06b85b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "importRows imports <=8 exact authenticated source records into fixed module. Each import hook uses bounded typed rows; cursor/root changes roll back with any failure, target gas/capacity still must be qualified.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 312,
+      "fingerprint": "276dc5f853eee3dff810dc35c7f0327281aebf14d48837c7e0dacd8ff86bbc2f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 314,
+      "fingerprint": "133a77af763cbadb789464ada5e3280214a3507b92d584904f0a5251d9768c28",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#129): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 315,
+      "fingerprint": "73f21f1c8c2fbf200dcdd94ff1eb1f541642e9b1fe4a61925b20518a1601fffb",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault capture verifies None buckets have zero ID/idle/shares and otherwise requires Parked zero liveID; <=4groups. This prevents reserved capacity being mistaken for principal or live LP omitted.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 317,
+      "fingerprint": "4bdfe2691616ac17423538e73bf8946eed117e2deb4d583c4fe440a01ddfe01f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#126-127): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 318,
+      "fingerprint": "8dcc1f5038a8d05818018f5487b505c496ab5fd6e66a2f68f9bab22db90c0d53",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#125): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 322,
+      "fingerprint": "65d02ca25acc4565a427bca1b90d2fbe531a5e39350e1e5a2c54a12505b578a1",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 329,
+      "fingerprint": "15fb1ec8dfe14f8dca262d6887d842c6b9ac89afd5df651d93c2cafff1656295",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): nonReentrant EXPORTING caps each page at8 source rows plus6 completion checks; immutable domain hook, never arbitrary target. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 333,
+      "fingerprint": "526e5413bcd99d80c0aaa5efc8b30f3c1f8a3b3a431223ddb8301343fc7a5b90",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault capture reads actual group records for <=4 buckets; only empty reserved or fully parked principal is admitted. Combined zero live residual global proof prevents omitted second legs.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 335,
+      "fingerprint": "09829e7fef919b2b30e30fd637e8c7e7c17331acd6afa2dad1af351d4bfdf07e",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Vault capture assetCount loop is generic<=33 but actual fresh Rewards fixed-pair<=2. It records raw backing/classified idle without USD or live venues; conventional-token balanceOf failure still blocks this ordinary handoff.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 337,
+      "fingerprint": "b2353026add458bf93508ce09eeaaa3039c119889116fed03576fcf09efe9093",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "deploymentCommitment loops exactly16 fixed Access module IDs then6 fixed domain helpers and Policy config. Every module must have code; exact child address/runtime is pinned. Proxy/upstream behavior still needs independent qualification.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 345,
+      "fingerprint": "cd8d2de39456a7fc2550c68997b845ae4f14201142b7888c2d5ca8c11316bd6e",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#128): only reciprocal retired source/nonReentrant can validate funds+all6 domains then activate all6 while target remains inert until final transition. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 349,
+      "fingerprint": "30a6f28110db87d5568948178e463e1bd98a52bd191251ae3cf1106712ff2932",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "moduleAt lookup access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#130): nonReentrant IMPORTING caps page8; verifies each exact reciprocal source export byte hash and source/root/identity before fixed import hook. Lookup is fixed typed Access/parent STATICCALL, no dynamic address list/selector or asset transfer. New LP slot resolves immutable Rewards.canonicalModule and its exact runtime is included in commitment. Hook/target gas and dependency qualification remain separate operating acceptance.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 353,
+      "fingerprint": "62e86013215d7026b786d61dde0d1ed3481da6af9a5bb63868f91a6e322bb259",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_receiveVenue totalIdle write follows actual Manager receipt under Vault nonReentrant and typed operation; assertIdle proves real Vault balances back summed attribution. Canonical source reads are guarded/frozen and target writes state2-only. Fee and principal receipt classification remains distinct; compromised late-fee callbacks stay qualification risk.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 355,
+      "fingerprint": "c7e5e8052de22c259dc9afed0daa0e5ea62cf5e07733882bcfc25f71ed62bf14",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_join sharesOf update occurs only after actual entrant marginal LP/net NAV proof under Vault mutex. Bucket supply is written in same transaction and exact Rewards.syncShares immediately validates both against old stored weights; no mutable callback exists between Vault write and typed sync. Any failed hook rolls back deposit and swap.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 359,
+      "fingerprint": "c3d54a13b8b5ac38537fdc0d44e303c937bc4674eb899822ece39092c409bc85",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "freeze holds Handoff nonReentrant, validates reviewed peer, transitions Access Frozen BEFORE capturing modules/counts/delivery flags. Only fixed hooks and static count getters run; unbound importer bindFrozen is reciprocal-only and source wrong phase for a reentrant snapshot. Target gas for maximum capacities is separately open.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 361,
+      "fingerprint": "048a1dae78b22f18252f3ac51ad7c980cf3a7066123ff687d2a7df93eea3828a",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "activate establishes homePoolId/nftBucket under Vault nonReentrant before funding its new shares. Reservation calls fixed state-only companion; actual owner/Entry review, sole contribution pool, marginal LP and post lifecycle proofs gate whole success. No reentrant arbitrary share issuance is possible.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 362,
+      "fingerprint": "bb7b9f6fc9f775973cfbd7172ac0d3cf35dae4c11c3bef31496bc9918a95d2d8",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_join contributionUSD updates after captured contribution limits and actual marginal LP proof, under Vault mutex, then metadata notification/static owner events. Lifecycle postchecks revert if a callback starts forbidden retirement; no equivalent ordinary externally writable contribution map exists.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 366,
+      "fingerprint": "d69c395fd8258c9012ad4332e883e72fa37982c250945faa068f8b55c0ba0d7a",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_balanceUsing totalIdle update follows actual two-asset balance equations and stable control fingerprint. Economic callers are nonReentrant and explicit budget cannot spend other buckets idle; assertIdle backs total attribution. Raw public getters cannot mutate it.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 367,
+      "fingerprint": "4c307ee01580dffdb716dd3c295b1eb6342378fa518a6993a8fef57519fb9c56",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_pullCompound adjusts totalIdle only for fixed FeeController releases after reserve debit/exact transfer. Vault mutex blocks other economic writes and _idle checks aggregate actual balances. It cannot release buyback or holder-reward backing.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 369,
+      "fingerprint": "21c3ad4a7c80ebabf9d43701806f7ecb6328c1f96ac8021410346d0d1cdc82ba",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "Vault canonicalCapture is only fixed coordinator in Frozen state; canonicalBarrier rejects active Vault economic lock. Remaining external calls are bounded STATICCALL reads of immutable graph; no mutable token transfer occurs. Snapshot arrays/delivery flags reset for legitimate fully restored recapture, not custody ownership writes. Target gas qualification remains separate.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 371,
+      "fingerprint": "1fde0ae2e72710b5d613ae3ed0605cd0e3323028f3c74be5db71c86c79d882d9",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_put totalIdle after actual spend is private within nonReentrant economic work. Fixed operator gets exact token allowance then reset; only actual new/existing LP operations occur. Budget.assertPut proves both exact balance debits, bounded spend and Vault ownership of each registered LP; attribution/deployment checks follow. Creation alone changes centre/clock, growth does not. Compromised periphery/token behavior is not universally covered.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 374,
+      "fingerprint": "e38e3a2d061245f15d160fbdc89fa34700f326b698623453ad1320c2d3d5667c",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "Vault canonicalImport is fixed Handoff-only inert state2/cursor ordered; imported header is exact192bytes, counts bounded, actual portfolio closed. Parent typed canonicalWrite validates immutable companion/state2. All records are source-authenticated by nonReentrant coordinator and activation requires complete roots/shares/funding.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 391,
+      "fingerprint": "2e37b68d4baebf7843636559ce8d34c574046218e3e15b358d14b60b67115ec3",
+      "check": "reentrancy-events",
+      "disposition": "false_positive",
+      "rationale": "_reserve validates admitted pool/nonzero immutable bucket mapping then calls fixed VaultCanonical.registerAlias, a Vault-only state update with NO external callback. Public reservePool is governance pre/post guarded; internal callers hold Vault mutex. Event after fixed local companion does not enable user reentry or reassignment.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 440,
+      "fingerprint": "202b7e22c9373e9512dd0fd94fe5b0b9b70c39b399aa78bf00914acb84d83515",
+      "check": "cyclomatic-complexity",
+      "disposition": "accepted_risk",
+      "rationale": "Vault canonicalImport separates five fixed record domains with exact lengths, inert lifecycle/cursor, actual custody/admitted-pair, unique aliases/assets and share/backing checks. Complexity is reviewed validation rather than a generic executor. Import is paged8; maximum end-to-end gas/restore rehearsal remains open.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 441,
+      "fingerprint": "869bc7e4afea75bfb191f97435d22e7d1b6580109e7783a17af6bd1424c2772c",
+      "check": "cyclomatic-complexity",
+      "disposition": "accepted_risk",
+      "rationale": "Vault canonicalCapture handles empty/parked buckets, duplicate backing currencies, actual principal backing and abort recapture flags. It is fixed coordinator/Frozen with Vault barrier and <=4buckets/fresh2assets. Boundaries must not be removed to reduce complexity; maximum target gas qualification remains open.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 454,
+      "fingerprint": "fed970a1f6d5cd1fe9c81e1fd39ecdd7990e62bdc4d7b4a1e43e1148fa9198eb",
+      "check": "low-level-calls",
+      "disposition": "informational",
+      "rationale": "mintDormant intentionally forwards exact mint value to reviewed future-payment recipient under Vault mutex and live/operating/terminal pre/post checks. Nonzero payee originates fixed Policy, exact sale/VRF/end fingerprint is rechecked after callback. Failed receiver reverts complete mint/payment; not an arbitrary treasury transfer.",
+      "read_scope": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 461,
+      "fingerprint": "f0ef701bc1e15d92cd82f0200b27ce3c940b89dcdef07489ca724052240845db",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "VaultCanonical structurally implements fixed canonical module selectors; exact parent/controller/state/backing and coordinator activation checks provide authority, not optional explicit inheritance.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "index": 472,
+      "fingerprint": "4e42f038749691d0029b38d87a4d0ef96d497656fed73cc5c4cec942142eec94",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "Vault activation structurally implements native Entry interface; _requireOwner authenticates NFT current owner OR fixed Entry with exact calldata review. Interface inheritance is documentation-only.",
+      "read_scope": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 473,
+      "fingerprint": "7f66240f20e841242b8d796e6cd75c6f208e71481055fbaf333d885f465ac7b3",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "PositionExecutor implements closeSecondary through fixed parent-only typed selector; all ownership/mapping/receipt constraints live in actual implementation. Adding an interface base does not authorize callers.",
+      "read_scope": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 475,
+      "fingerprint": "f7686fe983608fc970015d7fa32f05d2bb10f728573eac01b530a07def13ecdf",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "VaultCanonical implements one-hop cancelled royalty proof with Handoff-only read permissions and exact V9 reciprocal roots; no writable route/asset executor exists.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol",
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 476,
+      "fingerprint": "c72a08f3e54601e8907188bbf00a2127d41d73a71cbdc1e89cf116b9491f009f",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "VaultCanonical read-only Budget validation selectors admit only its immutable Vault Budget. This structural interface match has actual caller checks and cannot move principal.",
+      "read_scope": [
+        "src/ZZZMigrationBudget.sol",
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 478,
+      "fingerprint": "8a032bf11dd9facb9a16dc45896dd34918cb5d21d303c592dddb442750779882",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "ActivationEntry implements reviewed native/fixed-ZZZ functions structurally; actual core owner/value/policy/callback validation remains. Explicit interface inheritance adds no economic guard.",
+      "read_scope": [
+        "src/ZZZActivationEntry.sol",
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "index": 480,
+      "fingerprint": "e16acf668d2e452cde3a7f302bb7b7d9eb106e557ea5e3b467d14c1027c7c81f",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "LiquidityManager structurally matches IZZZLiquidity, with fixed Vault-only mutating paths and immutable child/core/periphery, exact input/receipt/portfolio proofs. ABI closure verifies selectors.",
+      "read_scope": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "index": 486,
+      "fingerprint": "334f278949d895afc3dabfc2ca54675d0779b850b20455a3f50c1e1a35054ac6",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "LiquidityManager closeSecondary matches typed residual interface with Vault-only checks and child operation; no operator-selected recipient. Explicit inheritance would not change actual authorization.",
+      "read_scope": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "index": 491,
+      "fingerprint": "578575cd23d3ce1c38633c16b0a574682efdfc405f9a9f5215f40f3f9d67a085",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "MAX_BUCKETS is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "index": 492,
+      "fingerprint": "12ea3e5e348346d147789f20ab1a28c8dfff0850c359e4178a179a248f5109a4",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "PORTFOLIO_VERSION is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 493,
+      "fingerprint": "1683b125c234d98d40dbe7628460117801fe70d0ee37b24d5eaddaa3338486e0",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "LP_ALLOCATION_VERSION is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 494,
+      "fingerprint": "71af7518fed695defebabafd1325df0d0bcfc8e6ec365dbb0a5d0f9bff392ee8",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "SCHEMA is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 496,
+      "fingerprint": "a4004f2efc3f74641894c66e5d40baa08a33198f94a03d1943e1a51a7c4e196c",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "ACCOUNTING_VERSION is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "index": 497,
+      "fingerprint": "4fba6560d97d12bd8b86b7667983358df45cd830f01e43dbcbe5257dd973bc15",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "ACCOUNTING_VERSION is intentional capability/constant naming with an exact selector used by versioned typed peers. Renaming for mixedCase would break admission/runtime compatibility; it is not a missing value or permission.",
+      "read_scope": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "index": 528,
+      "fingerprint": "654465518906b4a1c5fa7657fe5b273c396de84d537fb0a9ea5ac31682e56081",
+      "check": "cache-array-length",
+      "disposition": "informational",
+      "rationale": "canonicalValidate backingAssets length is bounded generic33/fresh2 and external calls are view/STATICCALL balances of captured assets. Length is never mutated during this view; caching saves small gas but does not fix a liveness/correctness defect and no source change is justified for this style flag.",
+      "read_scope": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    }
+  ]
+}

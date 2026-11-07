@@ -1,0 +1,467 @@
+{
+  "schema": 1,
+  "final_normal_source_basis": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed",
+  "final_stages": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117",
+      "status_sha256": "5480a0146134df6a5bff1d1f34ba1319c6c8d179f97179dc84a4ed0b221c479d",
+      "stdout_sha256": "39247428c2b3f5c446ec67a2dbe2140f3ad7937e8a7ce7e0a23d77eb7d92dc25",
+      "start_sha256": "3a379a289a5267b00b7cf4e177f39fed91d5e04433d47c3c7b8ce60076fa1fcb",
+      "methods": 23,
+      "all_frozen": true
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228",
+      "status_sha256": "7326da17fa3ba55bd1594bbbe0c41d18222c34792595dd783e57843afba5749b",
+      "stdout_sha256": "4e2e75cda40eee8b97d11dc292fbe3e404b674dbfdb9cd0c51374f3643414e84",
+      "start_sha256": "3a8cd88b6a13532edfea3f3d911f9c76ecf55a467c24ef2b920cade49dbe17d5",
+      "methods": 11,
+      "all_frozen": true
+    }
+  ],
+  "deduplicated_actual_successful_methods": 34,
+  "fuzz_methods": {
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testFuzzClaimOrderAndFrequencyCannotRedistributeAnyNftRewards(uint8,uint8)": 1000,
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testFuzzNativeFeeChunkingPreservesFundsAndAllocation(uint96,uint96)": 1000
+  },
+  "methods": {
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 808098767
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testCanonicalCaptureBarrierRejectsMidReceiptCallbackWithoutBlockingTheFee()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 45334734
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testCanonicalFixedPairCompanionPrefundsSurviveAbortAndRecapture()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 16035475
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testCanonicalLPOnlyReservesAndDonationQuarantineMigrateThenRestore()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 15418331
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testConvertedNativeCreditsCoexistWithoutReindexing()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2140292
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testExactLPCanonicalRawNodeWriterRejectsInvalidFieldsBeforeFunding()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 116780867
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testExactLPCanonicalRawPhasePreservesFutureGrowthCreditsAndClaims()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 526849117
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testExactLPCanonicalTypedParentHooksRejectOtherSendersAndUnknownKinds()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 95887617
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testFixedPairDustSettlesBeforeNewMembershipAndThirdAssetIsRejected()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 3238002
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testFuzzClaimOrderAndFrequencyCannotRedistributeAnyNftRewards(uint8,uint8)": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x6bd3341000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "gas": 29632806,
+            "stipend": 21320
+          },
+          "runs": 1000,
+          "mean_gas": 33727026,
+          "median_gas": 34023373,
+          "failed_corpus_replays": 0
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testFuzzNativeFeeChunkingPreservesFundsAndAllocation(uint96,uint96)": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xcb7476ce000000000000000000000000000000000000000000000000000000000000a6e400000000000000000000000000000000000000000000000002a4014dab0d3204",
+            "gas": 2270834,
+            "stipend": 21440
+          },
+          "runs": 1000,
+          "mean_gas": 2239451,
+          "median_gas": 2249394,
+          "failed_corpus_replays": 0
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testLPOnlyFeeCodecRejectsOlderHeadersAndExpandedBucketRows()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 400823
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testLPOnlyFeesRejectInactiveBucketsAndRetiredIntakeSelectors()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 1664269
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeFeeSplitIsIndexedAndSeparatelyBacked()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2796456
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeIngressRequiresExactValueAndRejectsTokenValueEvenWithPrefunds()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 1852375
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeOrphansAndDonationsCannotRewardFutureMembership()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 1789200
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeReservesReleaseOnlyTheirClassifiedBacking()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 1821124
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeRewardCanonicalCodecPreservesRawTreesOrphansAndDirectCredits()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 507748257
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeTopUpAndLaterActivationExcludeHistoricalIncome()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 3365623
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeTransferCarriesUnclaimedRightsAndClaimStillWorksPaused()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2109346
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeWholeUnitsSurviveClaimsAndShareChanges()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2199953
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testRejectingNativeOwnerRevertsWholeClaim()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2410378
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testThreeHolderClaimsPreserveExactSplitAndDormantExclusion()": {
+      "stage": "evm-canonical-f276076117",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 6332391
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortAfterFundingRequiresExactReturnedBacking()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 810814036
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAccountingV7KeepsEightWordCanonicalPositionAndRejectsLegacyOrTrailingGroupRows()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 14779739
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 811670720
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testEmptyCollectionWithRequiredETHAndZZZCanMigrateWithoutInventingBacking()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 267131347
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFullHandoffCarriesAlreadyConvertedNativeCreditsToCurrentOwner()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 801053136
+        }
+      },
+      "counterexample": null
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testInterruptedSettlementKeepsCutoffsAndBlocksEarlyImportFundingAndClaims()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 809910060
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest::testNativePartialFundingAbortRequiresAndRestoresExactBacking()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 797248339
+        }
+      },
+      "counterexample": null
+    },
+    "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest::testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 798597951
+        }
+      },
+      "counterexample": null
+    },
+    "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest::testMembershipKeepsVaultOnlySingleEqualEnrollmentAndFreezeChecks()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 295688
+        }
+      },
+      "counterexample": null
+    },
+    "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest::testMembershipRecordHandoffPreservesOrdinalsWeightsAndAuthorization()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 14045949
+        }
+      },
+      "counterexample": null
+    },
+    "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest::testZeroAssetModulesRejectRemovedBackingHooksAndNativeFunding()": {
+      "stage": "evm-canonical-6cd7e1c228",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 2485043
+        }
+      },
+      "counterexample": null
+    }
+  },
+  "current_owned_test_sha256": {
+    "test/CanonicalHandoff.t.sol": "a719e76b428c8d5aa536c1ad923f927b31dbc7ad73e05285d185cff2c8dec461",
+    "test/NativeCanonicalIntegration.t.sol": "16880d411f86738d523e2c0aacecbc0e70cef4b8af0ba9a6922df9975678f509",
+    "test/NativeFeeRewards.t.sol": "78fcc91493fd057bed468e9e7e98957177696ccc584687d8b54b60eb0ac1756f",
+    "test/ZeroAssetCanonical.t.sol": "6da502cf69e9fa813cb69240e9dcb7a078f1876e955b42cd28947e0b3cc0679a",
+    "test/helpers/CanonicalNativeVenue.sol": "5165e99f77166fcd0c989a8ef582b20c63787f04e439ab3f182821357d420053"
+  },
+  "independent_source_review": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\IMPLEMENTATION_REVIEW.json",
+    "sha256": "dbf23966d0178ff27f77910e2a5297b9ce850050d37045f621488081d3153f9a",
+    "scope": "earlier executable-identical7e38 source before documented library NatSpec-only final rebind; not an execution result"
+  },
+  "static_owned_review": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-owned-68.json",
+    "sha256": "730d93fa959b7589a0b3ed92f9fbcc8e152f81e1c771c9fe2f03bec65a52926d",
+    "records": 68,
+    "scope": "individual current-context source review before documented NatSpec-only final rebind; parent owns strict full record"
+  },
+  "excluded_stages": [
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b",
+      "reason": "Empty test regex attempt; NOT PASS/no test method"
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e",
+      "reason": "11 coarse successful methods+one fundingcallback failure+NativeFee setup failure; test/VaultAccounting closure drift, not final acceptance. Imported mock classes verified identical but compiler-read ambiguity retained. ALL11 rerun in final6cd stage."
+    },
+    {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace-11b919a0dd",
+      "reason": "Bounded120s timeout during diagnostic recompile, no trace result; owned orphan solc26688 stopped; NOT PASS"
+    }
+  ],
+  "test_only_corrections": [
+    "NativeFeeVault mirrors post-write syncShares/accounting7 and dormant share0; destination importShares does not pre-enroll an inert Rewards tree.",
+    "NativeFee setup binds ProtocolPolicy before VRF config; source fixed ZZZ is declared before preseal addAsset.",
+    "Fundingcallback malicious-governor fixture transfers governance AFTER setup mintEnd call, retaining real governance authority at funding callback.",
+    "CanonicalHandoff uses actual native ZZZVault and controlled native venue; retired two-ERC20/33-LP-asset assumptions removed, original-currency royalty lists remain independent.",
+    "Raw complete-state tree digest and snapshot fork compare migrated versus unmigrated future growth/credits/claims without double-active production claims.",
+    "Target writer grouped negative proves valid child/context control then bad low phase, leaf phase, unminted leaf funds, unused tree and oversized128-bit phase reject before funding."
+  ],
+  "limits": [
+    "Native venue/feed/token/VRF and isolated share-record hosts are explicit fixtures; not actual public-chain/provider/economics qualification.",
+    "Aggregate test gas includes deployment plus hundreds of operator calls and may exceed hundreds of millions; it is NOT a single transaction or target-chain gas quote.",
+    "Existing local per-batch12M assertions are not exhaustive cold-slot or target gas acceptance; old cooling helper does not explicitly cool new LP child.",
+    "No deployment, public transaction, wallet signing, service/site/Anvil/journal/heartbeat change.",
+    "Not the full Solidity suite; full1000-NFT canonical workflow and maximum-domain gas method ports were typechecked but NOT executed in this selected34.",
+    "Independent audit and full operational source7/V9 rehearsal remain open."
+  ]
+}

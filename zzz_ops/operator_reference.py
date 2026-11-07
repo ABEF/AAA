@@ -13,6 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 BEGIN = '<!-- BEGIN GENERATED OPERATOR CALLS -->'
 END = '<!-- END GENERATED OPERATOR CALLS -->'
 ROLES = {'R', 'G', 'B', 'K', 'H', 'P', 'N', 'M', 'C', 'D'}
+MODULE_READS = frozenset({
+    'ZZZRewards.canonicalBarrier()',
+    'ZZZRewards.canonicalSeed(uint256)',
+    'ZZZRewards.canonicalNode(uint256)',
+})
 GROUPS = (
     ('safety', 'Safety, governance and permissions', ('ZZZAccessController',)),
     ('liquidity', 'Daily LP management', ('ZZZVault', 'ZZZStrategy', 'ZZZRebalanceConfirmation',
@@ -25,7 +30,7 @@ GROUPS = (
     ('holders', 'NFTs, contributions and metadata', ('ZZZNFT', 'ZZZActivationEntry', 'ZZZNFTMetadata')),
     ('internals', 'Bound modules, helpers and factories', ('ZZZContributionPricing', 'ZZZLiquidityManager',
      'ZZZLPPositionExecutor', 'ZZZLPBalanceMath', 'ZZZV4RouteExecutor', 'ZZZCustodyValidation',
-     'ZZZFeesCanonical', 'ZZZNFTCanonical', 'ZZZVaultCanonical', 'ZZZPythPriceFeed',
+     'ZZZFeesCanonical', 'ZZZRewardsCanonical', 'ZZZNFTCanonical', 'ZZZVaultCanonical', 'ZZZPythPriceFeed',
      'ZZZActivationAssetsFactory', 'ZZZRoyaltyFactory', 'ZZZRoyaltyCodeData')),
 )
 WRITE_ORDER = {
@@ -158,7 +163,10 @@ def check_examples(reference, examples):
             require(f['name'] in {'acceptGovernance', 'acceptMintRecipient'} and 'pending' in access,
                     'Review the new nominated caller explicitly: ' + identity)
         if f['kind'] == 'function' and f['state_mutability'] in ('view', 'pure'):
-            require(row['role'] in {'R', 'C'}, 'A read must not be presented as an ordinary transaction')
+            module_read = (identity in MODULE_READS and row['role'] == 'M' and
+                           access.startswith('only the immutable rewardscanonical companion'))
+            require(row['role'] in {'R', 'C'} or module_read,
+                    'A read must not be presented as an ordinary transaction')
         elif f['kind'] == 'constructor':
             require(row['role'] == 'D', 'Constructor must remain deployment-only')
         else:

@@ -1,6 +1,6 @@
 # Work handoff
 
-Reviewed6November2026. Exact-LP-engine baseline mainb76dfcc. Inspect actual Git heads
+Reviewed7November2026. Exact-LP-integration baseline main64f9bfb. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
@@ -15,13 +15,26 @@ durable intent. Calldata/minL/deadline/cost limits are never rewritten. Pending
 recovery, journal schema, signer restrictions and all live environments remain.
 Local I/O/inclusion can still age a review; no always-executable/MEV guarantee.
 
-[Exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented as an internal,
-unwired Solidity component. It settles both fixed-pair books before weight
-changes, preserves high/low fairness phase and carries selected paths in memory.
-Current Rewards/Vault/canonical6/V8 still use LP fractions; full ledger/consumer
-integration remains the accepted open task, not a new decision to ask again.
-[Current evidence](../reports/exact-lp-engine-20261106/REVIEW.md) also fixes read-only
-retry diagnostics. No deployment/profile/journal/site/service/signing changes.
+[Exact-unit LP integration](POSITION_V7.md) connects fresh accounting7/LP-allocation1/
+canonicalV9/schema16/source9 to whole-unit Rewards, authenticated post-write
+shares/membership, current-owner claims/conversion and lossless raw-phase handoff.
+Constructor-fixed typed RewardsCanonical adds one helper, not an arbitrary
+executor, payout recipient or configurable custody address.17modules/19callable
+helpers plus2inert Factory data children; old6/V8/F2/checkpoint1 remain explicit.
+Normal87sources pass46object+2carrier gates at unchanged compiler settings.
+Strict532actual records:222individually reassessed,310unique exact-source reuse.
+Canonical34distinct successes include funded abort/future-credit equivalence;
+backend619distinct corrected methods and actual77-log/four26-field-snapshot Vault transcript
+reconcile. See [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+for full host/gas stages, failed attempts and final evidence, never summed overlaps.
+Final runtime headroom:Vault133/Rewards358/CanonicalHandoff32. Exact LP claims
+can be materially more expensive;32is a count ceiling, not a gas approval.
+Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
+all weights precede raw pending/high/low restoration. Never flatten old phase,
+reinterpret6/V8 or resume a partially funded/aborted deployment.
+Fresh7 raw earnings replay works; exact-unit checkpoint2 and lifetime archival/
+workload/recovery remain open. Old checkpoint1 is6-only. Source publication
+changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
 ## Current result
 
@@ -43,9 +56,9 @@ Raw close/full replace/park/resume/holder return remain. Check full operator
 inputs and reverse/pause steps. Source publication does not upgrade old runtimes,
 journals/services/sites/signers/Anvil or restart the paused heartbeat.
 
-Fresh royalty4/recovery2/reporting5/schema15/canonicalV8,18 callable helpers
-plus2 inert Factory data children; accounting6,
-custody5 and all LP/economic policies unchanged. User-approved exact-unit royalty
+Fresh royalty4/recovery2/reporting5/schema16/canonicalV9,19 callable helpers
+plus2 inert Factory data children; accounting7/LP-allocation1,
+custody5 and fixed LP/economic parameters preserved; exact-unit LP rounding is now7. User-approved exact-unit royalty
 allocation removes permanently stranded ALLOCATED rounding units. GCD-normalized
 rarity tickets, outstanding books, per-currency cursor; source ticketStartONE-based,
 internal ticket_offsetsZERO-based. Claim/import/telemetry is not new income.
@@ -87,11 +100,11 @@ records remain scoped to their original source. No whole-suite/publicCI/actual
 target gas/marketplace/uptime or independent approval is claimed.
 
 Remaining actual OpenSea caller/payment/end binding, dual feeds/routes/VRF,
-authorities, maximum currency/claim/canonical/API work, fresh source8 services/site,
+authorities, maximum currency/claim/canonical/API work, fresh source9 services/site,
 storage/restore/lifetime history and independent audit/remediation are in soleTodo.
 
 Current test-maintenance follow-up is separate from production source changes:
-use real1-hour opening, exact royalty claims, current V8 identity/closed mint,
+use real1-hour opening, exact royalty claims, current V9 identity/closed mint,
 nonvacuous funded invariants and atomic rejection under existing guards. Keep
 historical imports explicit.16full1M currency faults exceed12M, so maximum actual
 activation/provider gas remains unqualified; no running service budget changed.
@@ -118,12 +131,12 @@ current verification record instead of a second mutable checklist.
 Main only; source/docs publication is not rollout. Anvil8902, all NFTs/LP/balances,
 dist overlays, pending/nonce/receipt/spend journals and shared browser signer stay
 unchanged. Popldemo simulation and separately served poplint current3 remain;
-fresh source8/config15 is not the served site. Public DEPLOYMENT null, signing
+fresh source9/config16 is not the served site. Public DEPLOYMENT null, signing
 Anvil-only; heartbeat remains user-paused. No public transactions or service reset.
 
 External evidence root:
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9`.
-Task residual-main-20261106-c932 archives this change's baseline, retained
+Task exact-lp-integration-20261106-64f9 and the published integration report archive the current source/host/static/consumer stages. Prior residual-main-20261106-c932 archives its own baseline, retained
 failed/intermediate normal builds, final normalf907/static495,20selected EVM
 passes, focused Python checks and preservation. Prior residual-lifecycle-20261106-f63a
 retains its unchanged-source physical-reader audit scope. Prior factory-claims-20261105-a71c retains its compiler/static,

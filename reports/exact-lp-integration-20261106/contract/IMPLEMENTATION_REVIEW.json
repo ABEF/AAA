@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "scope": "Independent source review of exact-unit LP canonical V9 integration and final size extraction; no deployment, public transaction, signer, service or old-runtime migration.",
+  "source_sha256": {
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+    "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+    "src/ZZZCanonicalHandoff.sol": "4be51494a66a991af7e65c37f2ab3f1a505853cd49d7a12eed87131fdc04d4c6",
+    "src/ZZZVaultCanonical.sol": "0c54464fc0c02d345e290ed402ee0b79f8bd9eb094134b30081f6bcd5982e112",
+    "src/ZZZMembership.sol": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
+    "src/ZZZVault.sol": "8e7033f854d57812cd1526da37670ebc2a75ae0237ace696092181b6a7d9cdaf",
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4"
+  },
+  "source_stages": [
+    {
+      "stage": "inline-base",
+      "normal": "normal-final-1746857ddf",
+      "result": "FAIL Rewards31068 runtime, preserved; no limit relaxation"
+    },
+    {
+      "stage": "typed-child-dynamic-parent-reads",
+      "normal": "normal-final-516eb43835",
+      "result": "FAIL Rewards25380 runtime, preserved; child16750"
+    },
+    {
+      "stage": "typed-child-static-parent-reads",
+      "normal": "normal-final-7e38e0a291",
+      "result": "PASS87 sources/46objects+2carriers; Rewards24218, child18609, Handoff24544, Vault24443"
+    }
+  ],
+  "proofs": [
+    {
+      "topic": "Source read extraction",
+      "proof": "canonicalSeed still authenticates actual minted ordinal/inverse. Child verifies returned id/bucket/assigned owner-leaf weight/global eligibility against actual NFT/Vault/Membership. Each authenticated own leaf equals Vault shares; exact nonnegative owner root==Vault total for each bucket excludes hidden additional other-bucket leaf weights. Engine ordinal bound excludes padded leaves. No requirement to scan other buckets per NFT."
+    },
+    {
+      "topic": "Raw node extraction",
+      "proof": "Only redundant SOURCE validation was removed from static canonicalNode read. All ordinary engine writes and admitted TARGET writes preserve node weights, pending, phase bounds and padding invariants; target writer independently checks every imported raw field. Source books are not virtually materialized or flattened."
+    },
+    {
+      "topic": "Ordering",
+      "proof": "Header authenticates accounting7/LPcap1, NFT/bucket count and exact actual Vault order, and verifies empty target roots. All asset rows and every NFT seed precede ANY raw book node. First node and final validate recheck complete roots against Vault/Membership."
+    },
+    {
+      "topic": "Conservation",
+      "proof": "Each asset row reports liabilities/orphan/backing plus directExpected and five actual outstanding values at export AFTER all settlement. Import sums direct credits from authenticated seeds and whole pending from every raw node; validate compares direct and each tree independently and their sum==liabilities. Frozen late Fee cutoff credits extend captured backing through parent-only source1+settling child hook."
+    },
+    {
+      "topic": "Funding",
+      "proof": "Only fixed Handoff coordinates release/accept/restore. Parent backing remains at parent; child only temporarily receives incoming funds and forwards exactly declared amount. Source books untouched on release; target/source prefunds remain separate. Handoff proves exact incoming delta and full abort restoration before source reopening. ExactAsset/ExactToken restrict conventional actual transfers; arbitrary malicious token behavior cannot be guaranteed."
+    },
+    {
+      "topic": "Typed child authority",
+      "proof": "Child constructor pins constructing parent msg.sender; no mutable parent setter. Parent accepts only immutable child and canonical state2 for three FIXED record domains(0asset/1seed/2node), not arbitrary storage/execution. Parent sends only under child authority in state1/2/4 with post-callback state equality. Ordinary claims/conversion/sync remain nonReentrant/economic."
+    },
+    {
+      "topic": "Capture/reading callbacks",
+      "proof": "Parent capture barrier rejects economic reentrancy. allocationTree and source seed/node read barriers reject parent intermediate state; child nonReentrant guards capture/import/funding/cutoff and rejects own guarded export/validate. STATICCALL token/parent reads cannot mutate contract state. Public simple mapping getters alone do not grant a write."
+    },
+    {
+      "topic": "Empty and capacity",
+      "proof": "Maximum1000NFTs,4owner trees+global,2books. Raw valid node set1..2023 includes all1023internal and1000mintable leaves; padding remains zero. Empty N0 has no enrolled weights/allocated claims, skips raw rows while validating zero root/outstanding; per-source record max1+2+1000+2023=3026."
+    },
+    {
+      "topic": "Schema and runtime",
+      "proof": "V9 Handoff requires Vault7/Rewards LPcap1 and routes LP domain3 to exact immutable companion, included automatically in existing deployment-commitment moduleAt hash loop. Old accounting6/V8 remains historical; unchanged tuple width is not new-runtime admission."
+    }
+  ],
+  "unresolved_limits": [
+    "No independent external audit or production approval.",
+    "Target-chain gas/economics and operational multi-page export/import rehearsals remain necessary.",
+    "Fixed-weight phase fairness is tree/carry policy, not a flat largest-remainder allocation or lifetime monetary-error bound.",
+    "Unknown/nonstandard/token-upgrade behavior still requires qualification; exact-unit books cannot force transfer from a broken token or payout into rejecting owner.",
+    "Root owns final doc-only metadata source rebind, actual532 static review and final publication; this review itself is not an EVM result."
+  ],
+  "concrete_unresolved_source_findings": []
+}

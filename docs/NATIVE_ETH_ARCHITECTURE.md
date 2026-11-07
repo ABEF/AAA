@@ -2,9 +2,9 @@
 
 <a id="adversarial-design-review---2026-10-24"></a>
 
-The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==6`, custody5,
+The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==7`, custody5,
 direct governance2 and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8`. [Profile6](POSITION_V6.md) is explicit;
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. [Profile7](POSITION_V7.md) is explicit;
 older native/wrapped deployments and journals are not upgraded. Production is
 **NOT APPROVED**. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md)
 retains its original source scope.
@@ -61,7 +61,7 @@ can later change both assets/values. It does not force a 40% residual allocation
 | Rebalance/move/resume | Guarded native ETH/ZZZ LP, same actual pair. Default 3% maintenance cap uses starting prices and includes released compound; stronger venue/caller and idle limits still apply. |
 | Reversible parking | Approved paused close of both legs into Vault idle, without USD prices or swaps. No external recipient. Fresh guarded same-pair deployment is required to resume. |
 | Collective holder return | Governance permanently stops LP; close each bucket, include pending compound, apportion exact actual ETH/ZZZ by shares and pay current owners. No conversion or USD-loss promise. Rejected payouts remain backed. |
-| Canonical replacement | Same-chain V6 carries ownership/accounting/backing only before LP exit starts. Both physical legs must be closed before parked export; complete funding and atomic retirement/activation or funded abort are required. |
+| Canonical replacement | Same-chain V9 carries ownership/accounting/backing only before LP exit starts. Both physical legs must be closed before parked export; complete funding and atomic retirement/activation or funded abort are required. |
 
 WETH is unnecessary for native principal, harvesting, closing or holder payout.
 A separately reviewed v3/unwrap conversion route can still depend on a wrapper;
@@ -70,7 +70,7 @@ ETH/WETH are never silently treated as the same asset.
 
 ## Terminal principal and continuing NFT rights
 
-Position6 keeps the eight-word holder-return layout, including `Exited=5`; old `Outbound=2` is reserved.
+Position7 keeps the eight-word holder-return layout, including `Exited=5`; old `Outbound=2` is reserved.
 `Access.lpExitStarted` is a separate irreversible lock, not canonical retirement
 or a reversible global pause. Contributions, minting, LP maintenance and new LP
 placement cannot resume after it. Each bucket stops earning when closed; the
@@ -85,9 +85,9 @@ Principal return is neither a fee earning nor a previously claimed reward.
 
 ## Compatibility and remaining work
 
-Versioned API/keeper/inventory readers must explicitly select accounting6,
+Versioned API/keeper/inventory readers must explicitly select accounting7,
 custody5, portfolio2, LP routing2, maintenance3, confirmation3, Budget4 and
-canonical V8; production inventory is schema13 with18 helpers, royalty4/reporting5. Eight-word length alone does not select the profile.
+canonical V9; production inventory is schema16 with19 helpers, royalty4/reporting5. Eight-word length alone does not select the profile.
 Historical profiles, deployment addresses and receipt/pending journals keep their
 original semantics. The served accounting3 poplint artifact and existing local
 chains do not acquire new payout controls from source edits; popldemo stays a
@@ -96,6 +96,6 @@ separate simulation, public DEPLOYMENT null and browser signing Anvil-only.
 Current source/runtime gates, scoped offline checks and local actual-v4-core
 integration pass within their [recorded scope](../reports/optional-portfolio-20261030/VERIFICATION.md).
 Actual feed/route/VRF qualification, authorities, OpenSea, permanent artwork,
-accounting6 service/wallet acceptance, target-chain gas and operating/receiver
+accounting7 service/wallet acceptance, target-chain gas and operating/receiver
 failure rehearsals plus independent review remain [open](../TODO.md). No public
 transaction, deployment, service restart or release approval follows from this page.

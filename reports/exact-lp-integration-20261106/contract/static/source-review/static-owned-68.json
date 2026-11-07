@@ -1,0 +1,702 @@
+{
+  "schema": 1,
+  "source_inventory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-current.json",
+  "source_inventory_sha256": "041d8f7147a0a9f38b262642438d1f0d29f9a08f31c9fcc155d17988fa551ddf",
+  "scope": "68 individually current-context Rewards/core/canonical/Membership records; no new analyzer run, no production edit. Does not claim target-chain gas, malicious-token universality or independent audit.",
+  "read_source_sha256": {
+    "src/ZZZMembership.sol": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+    "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactLPAllocation.sol": "346aec80ab734d2e4d751a48ada676b0ab1b3a14607fe13a75d336b6a30a8a72",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+  },
+  "records": [
+    {
+      "index": 4,
+      "fingerprint": "7ce6b9bf6a7d92641870562275e7fe80cd52e90b37dc89ab49bb3ed35bb0f95f",
+      "check": "arbitrary-send-eth",
+      "disposition": "false_positive",
+      "rationale": "_claim authenticates sealed current NFT owner; claimFor admits only that NFT fixed router and ownerOf equality. Amount is taken whole rights then debited before the intended owner ETH call; nonReentrant/economic postcheck and solvency retain rollback. No operator-selected arbitrary recipient.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 17,
+      "fingerprint": "4baf22797b3fa2d2a4c50d55cd225b8c6388a43e6da8501a34760b37c6751e76",
+      "check": "reentrancy-balance",
+      "disposition": "false_positive",
+      "rationale": "convertBatch is nonReentrant/economic and onlyKeeper/live/operating. sourceBefore/nativeBefore intentionally bracket the fixed converter; exact source debit and ETH output delta are checked after approval reset. Callback mutation cannot reenter economic writers; admitted-token/converter qualification remains necessary.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 93,
+      "fingerprint": "95cee8f17bf2f545efcb3f9e07c7c10c5084e3bb6d2ad6e54db0dd375969e685",
+      "check": "reentrancy-no-eth",
+      "disposition": "false_positive",
+      "rationale": "convertBatch clears source rights and debits source liability before conversion, then assigns exact received ETH by cumulative whole floors. nonReentrant rejects claims/credit/sync/conversion; claimableComponents, allocationTree and canonicalSeed read barriers reject intermediate accounting. Public mapping reads alone authorize no economic write; external token behavior is qualified separately.",
+      "read_scope": [
+        "src/ZZZRewards.sol",
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 104,
+      "fingerprint": "4c9886722a1a00d978e23b676f53cca5181743a5e61660a6ee5cba6020ee7395",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "assigned intentionally starts at Solidity zero; each own/shared cumulative output floor subtracts the prior floor then updates it. Thus components sum to exact output and previous assignment is used before each overwrite.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 105,
+      "fingerprint": "84db0ebac32a38b1aad9e8be127e1506e354528661622b082f569645d704ce31",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "total intentionally starts at zero and accumulates <=32 sorted NFT source components. Checked arithmetic and total==0 rejection precede converter approval/execution.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 110,
+      "fingerprint": "9bda90b16c67a8d3efedf8e2351ae75edf2605806821d3039bdbce1f45ead9bc",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "canonicalExport asset-row struct is zero initialized, then scalar fields and active treeExpected entries are set. Unused 5-tree slots intentionally remain zero and import rejects nonzero unused slots.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 116,
+      "fingerprint": "f3a7929608f5eb78cf6864891403f634c8cb0f2ee7755afd1975e63746a4f4be",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "_writeSeed found intentionally starts false, scans <=4 actual Vault bucket IDs and rejects if no matching bucket exists before installing any share/collective weights.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 118,
+      "fingerprint": "25a9de8a43e0a1d32eac5067354cde15dd6abba7385c1a2c05d44cfa2af6391f",
+      "check": "uninitialized-local",
+      "disposition": "informational",
+      "rationale": "cumulative intentionally starts zero for exact converter output apportionment across own/shared components. Each component advances it, ending at total; Math.mulDiv floors cumulative prefixes without leaking leftover output.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 138,
+      "fingerprint": "765c2419bfeafab1134bb86130650e0891123e0a2b5bbc752ec0c73a1a4ae894",
+      "check": "unused-return",
+      "disposition": "false_positive",
+      "rationale": "_writeSeed installs authenticated actual Vault shares into an initially empty owner leaf; no pending books exist until all seeds finish. Child _roots checks every owner root equals exact Vault supply before node1 and canonicalValidate repeats it. Immediate returned root is intentionally not final during partial seeding.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 140,
+      "fingerprint": "a3d4f2c0ca1dca41574bf9643645c6ee62e5845e3741df12cfa194cd5ab0a219",
+      "check": "unused-return",
+      "disposition": "false_positive",
+      "rationale": "_writeSeed adds collective weight1 only for exact imported Membership eligibility. All seeds precede node books; child root check before node1/final validate proves total==Membership.totalEligible. Partial seed totals need not yet equal final expected total.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 173,
+      "fingerprint": "447b00aa5095dda99f1c8f981f194ddd80d404dd028a5326cdec1482639e52db",
+      "check": "write-after-write",
+      "disposition": "false_positive",
+      "rationale": "The two assigned writes are separated by next-assigned use for ownETH/sharedETH. They implement cumulative-floor component apportionment, preserving exact total received ETH even for unequal or zero components.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 181,
+      "fingerprint": "3f9eb81dc0a05c5ccaa554a811093f8f63d96a9309bf568cee62122aaf9d1c50",
+      "check": "events-maths",
+      "disposition": "informational",
+      "rationale": "canonicalImport mutates only inert destination state2 through fixed Handoff and sequential authenticated rows. Handoff importRows emits domain/cursor/root provenance; these are imported source counts, not independently operated governance settings. Per-row duplicate event is unnecessary.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 184,
+      "fingerprint": "fe03b2a0439a1663030250d786da3f7eecc77d5d67ee88a39b960499c9f102df",
+      "check": "events-maths",
+      "disposition": "informational",
+      "rationale": "Membership canonicalImport header is inert state2, fixed coordinator-only and cursor-ordered. Handoff authenticated row events provide import provenance; final count/eligible validation gates activation. It is not a silent live membership configuration change.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 187,
+      "fingerprint": "1517c9aa1c02dbbefff7bc7a32977516557524496e9af36f89119ba93a80e841",
+      "check": "missing-zero-check",
+      "disposition": "false_positive",
+      "rationale": "Inherited ZZZModule constructor executes first and rejects controller.code.length==0, covering zero/EOA before constructing the immutable canonical child. Child independently inherits the same controller admission check.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 193,
+      "fingerprint": "4b1fcb02293e31b09326e8cadf1513058ea2b2dc4fc7156ef67d08f2ef8b2ce6",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "settleDust is Vault-only in economic state0, loops actual bucketCount<=Vault.MAX_BUCKETS(4), flushing funded currency0 dust through fixed FeeController. This is necessary entrant old-cohort settlement; qualified dependencies/gas and failure atomicity still matter.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 194,
+      "fingerprint": "9994cb256dca14d3f3ef93e8c800f823313ad8846d1b102e3b72dbbf312dfc4e",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalValidate _roots loops captured bucketTotal<=4 and STATICCALLs actual Vault bucketAt/supply. It proves every restored owner root matches frozen shares without an all-NFT activation scan.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 195,
+      "fingerprint": "ab428f31e7618153f0b804c863b8d0c20dc039828ff6bcefe568acb0fcebd1f5",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalImport empty-root and first-node proof calls allocationTree for at most5 trees. Parent is immutable constructing Rewards, uses STATICCALL and rejects entered guard; no user-controlled iteration or callback writer.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 203,
+      "fingerprint": "334e7ec2af09a7d81bc1f26ff8f8d812de33f1f77b73950eea46a35442016e31",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "_writeSeed checks imported bucket membership by <=4 actual Vault bucketAt STATICCALLs, with canonical state2 and immutable-child-only entry. Count is bounded by _counts; no unbounded per-NFT nested scan.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 209,
+      "fingerprint": "a7a375bca6ff95c7dba4282952c2b9efc2aa88f1fcdd62052839016432cf803b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust reads one fixed Vault group per <=4 bucket and skips statuses outside Active/Outbound/Parked. Read determines admitted immutable currencies, intentionally avoiding live venue/oracle dependence.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 217,
+      "fingerprint": "67d963024e72f53b63ca992605487137b72a292331470f59180296521fe261c3",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "Header import _identity compares exactly4 padded bucket slots against actual Vault order; bucketTotal<=4. STATICCALL values authenticate the earlier imported Vault domain before any LP book writes.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 219,
+      "fingerprint": "5ee90833b996c1bae12d9f4ea184cab936fa1b7f3379f2406a49553a9593fbcc",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "settleDust historical composition branch iterates Rewards assetCount, explicitly rejects >33; fresh fixed-pair Rewards admits exactly ETH/ZZZ (<=2), so actual fresh bound is2. Read/flush dependency failure atomically rejects entry; no arbitrary token list accepted here.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 226,
+      "fingerprint": "89b7d89a30c894b77cad728a2cd1ce2e93470c45d0d7df46a828ad8d4f555f6b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalNode reads at most5 trees; owner index uses actual frozen Vault bucketAt and fixed Access module. Count is _counts<=4; static source export remains bounded per992-byte row.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 227,
+      "fingerprint": "857923808a7862404a1dc934b1e3323c265260c42f59454140c8f1e8f0c37ce8",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture reads immutable Rewards assets within assetTotal<=2, records actual parent backing and prefunds separately. Fixed ETH/ZZZ identity is checked by source admission and target fixed-token writer.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 230,
+      "fingerprint": "cdc36ad22a55a0f9bc96a73b3810932255cbad9d01f42cb2138bdd3facf61184",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust reads fixed Vault migrationBudget compositionEpoch once per <=4 bucket to include historical classified dust currencies. STATICCALL does not allow user callback mutation; actual fresh currencies remain <=2.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 231,
+      "fingerprint": "63cf238313ba48468194830938cb7c2cb39d2b155476e927dd386f6dc5fa94a5",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalExport asset row calls parent allocationTree for <=5 captured trees to report EXPECTED outstanding after late FeeCanonical cutoff. It avoids stale capture-time amounts; parent view rejects economic reentrancy.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 250,
+      "fingerprint": "8725abc1e02a72eed8065822e48c00d2a5ed49523c6678926c7aaae9388c3a4f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "convertBatch performs fixed Access NFT lookup for <=32 sorted NFT entries. _ordinal authenticates minted index before tree access; bound MAX_CONVERSION_NFTS32 prevents unbounded batch work.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 252,
+      "fingerprint": "cdc725afa7cac897245ab3e914ee9aa73fc75b60a2181bf658d2b1e6e1bfa10e",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture per-asset liability/orphan STATICCALL proof runs <=2 assets. Exact actual parent balance must cover both before frozen snapshot; external token balanceOf failure rejects capture rather than inventing zero.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 253,
+      "fingerprint": "9c106e86cd4fcf9d81b33040402ded5b371abc29f21aed26e9294b7569f21a7d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust actual Vault.bucketAt runs <=4 historical/admitted buckets; count is bounded before loop. Every bucket is checked for accepted status before fee mutation.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 259,
+      "fingerprint": "b597784cbddf0f7e749c9869a03404aa4b2e87d5fd6d993f3d9489f19eea0c58",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalValidate _books visits <=2 assets and <=5 tree outstanding values, sums direct+books and proves exact liabilities; expected imported totals are separately checked. Static calls to immutable parent prevent reentrant mutation.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 265,
+      "fingerprint": "b895b52dd492fcafb0c146ae46ada0657e2ccd2a158ac2d573fdab1d35a8cdb2",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture _books compares <=2 captured addresses with fixed parent asset order (ETH then optional deployment ZZZ). Exact order prevents ETH/ZZZ books being exchanged.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 266,
+      "fingerprint": "52d48264a899cdf39c11bd469ac441ba42008dd7aad4ddc4c23772b2ee91d43f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture _books reconciles <=2 current liabilities with direct plus all<=5 outstanding books; empty collection requires zero allocated liabilities. This bounded proof complements source seed export checks.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 271,
+      "fingerprint": "621add2ea39e57f3bcfd65efdb49149baa6e2284eebfea44872a1e1b10e0cf24",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalValidate _books checks <=2 asset order against captured/imported list, preventing a different token being funded or counted under an ETH/ZZZ book.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 274,
+      "fingerprint": "e0fee01190c6a52b996d962a8c23c685c5ea61c37664fe0e821a391aa6ddbe1e",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "settleDust historical extra-asset flush is Vault-only and occurs only when compositionEpoch!=0; <=33 admitted legacy bound and fresh<=2. Only currencies different from admitted pool pair are flushed; reserve accounting remains FeeController-owned and atomic.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 277,
+      "fingerprint": "13645a1b24475b07a22bdafcec25719c5427341ff1b470227f87bf057db930a8",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture _roots verifies <=4 actual bucket roots/supplies and global eligible count. This replaces an unbounded all-holder capture loop while seed rows later prove each leaf.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 279,
+      "fingerprint": "54379576c448aa7227de00867fdb6fc9e4af815a2c696af666528415b0de95d9",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture _books starts each of <=2 totals at parent directLiabilities then adds each of<=5 book.outstanding. Direct converted credits remain separately classified instead of replayed as income.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 281,
+      "fingerprint": "996d07062afa749e89467b675881af5a9a6a26dac68597e89f20c38f6d891da7",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust reads admitted Rewards.assets(j) only in bounded composition branch; fresh asset list is fixed ETH/ZZZ. It never enumerates arbitrary tokens received at an address.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 284,
+      "fingerprint": "51f48eb1ce636ef61a1131a7528cf9ad1e7f27ab2153de766c4712851cfbbd39",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "convertBatch validates strictly increasing NFT IDs and actual ownerOf for <=32 entries before taking rights. Fixed NFT lookup is bounded; duplicates/unsorted/nonexistent IDs reject atomically.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 286,
+      "fingerprint": "377318c5bf7892fd9df194f5cd8bf23a04e4c764ae50102173fb426ca2f2bdbf",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalValidate _identity compares all4 padded bucket IDs against frozen actual Vault order before root/accounting/backing proof. Static calls; no arbitrary-address loop.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 293,
+      "fingerprint": "877910c9fe587493bc827925ca126cc03843e8bdca2252d0a4d84ce54216eb2b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "First node import _roots runs only after all NFT seeds, checks <=4 bucket supplies and collective membership. This is deliberate ordering proof before any pending or phase can be restored.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 303,
+      "fingerprint": "8042f49d2a7834d927c4757f0b45f156ed3d347072115095c390d0234f8ba0c1",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust uses admitted Pools.get for <=4 Vault groups, reading immutable pair identity without querying spot/USD. A broken live venue cannot be a new requirement for old funded dust settlement.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 305,
+      "fingerprint": "b90865199285d33042a4caab74ed66e9c44dd2336f71e5672de4dc9b512b651b",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust extra-asset branch resolves fixed Access Rewards module once per <=4 bucket, not user-selected address. Actual fixed-pair list length<=2, historical guard<=33.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 308,
+      "fingerprint": "fc068f1bc299a35a679f459cfd64025cac4c954f36cf9e0eaa63f6484a387447",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalValidate _books reads directLiabilities for <=2 assets and compares imported expected direct total before summing tree books. This preserves conversion-origin credits without double counting.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 324,
+      "fingerprint": "615a46be552e9013c8a4823bfaa688672f6862f58d2521fdc3ad94d9e9b2321f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture _identity scans exactly4 padded bucket IDs and verifies accounting7/LPcap1/counts. STATICCALL graph is fixed by Access and immutable parent; no unbounded work.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 327,
+      "fingerprint": "1a494fc45a5f87e452129cd6960ddfa5619eb21e5add5f10b6cfee60a1a57c67",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "convertBatch _ordinal verifies actual NFT inverse ordinal mapping1..1000 for each <=32 selected NFT. This prevents arbitrary IDs/padded leaves receiving or consuming someone else tree rights.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 328,
+      "fingerprint": "099e64cc02b7d0a012e031fff8f75bc59f95ba33ac7be24a0ba3e74c9f472653",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "_writeNode loops fixed5tree*2book slots, resolving owner buckets from actual imported Vault order. _counts caps bucket count4; unused slots must zero and each restore rejects preexisting state.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 334,
+      "fingerprint": "1edd4084497b847c76f61ad651da8c1eba062144170dc9b26bdc6ef52720caf1",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "settleDust explicit >33 rejection is a legacy ceiling, not fresh acceptance of arbitrary LP assets. Fresh Rewards assetCount is at most2 and immutable fixed-ZZZ policy is independently enforced.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 340,
+      "fingerprint": "0557ef46c24be209fa7c88a54f04344d8ebbe4fec8cc73e791a1ad51bd8174e1",
+      "check": "calls-loop",
+      "disposition": "accepted_risk",
+      "rationale": "settleDust currency1 flush is <=4 calls to fixed FeeController under Vault-only/economic controls. Exact old dust is assigned before new membership; a broken approved currency may revert entry, subject to project asset qualification.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 341,
+      "fingerprint": "318a27f21313d2990749e036860489f56db3c76e954210fd57c13a4cec0de01f",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture stores <=4 actual bucketAt identities padded to four. This captured ordering is later checked at source export/target import/validate and determines raw tree slots.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 346,
+      "fingerprint": "85b099e8a7c3a0fac65507e12b80867937b5e0e51b2f61b8775e3fc246cc3581",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalImport _tree lookup is at most5 fixed roots during empty-root/first-node proofs. Parent allocationTree is read-only and rejects its own economic reentrancy.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 350,
+      "fingerprint": "16fcc4492b281270d7f5b09b0a1addf721923be87a9d3976355483915b0c099d",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "convertBatch reads mintOrdinalOf for <=32 actual NFT IDs and checks inverse tokenAtOrdinal. This bounded read authenticates immutable tree leaf identity across sparse/dynamic token IDs.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 351,
+      "fingerprint": "78e8f229989833a7d2f012fe424ffee85f7ea2d1e873c1f04119075ee2a65078",
+      "check": "calls-loop",
+      "disposition": "informational",
+      "rationale": "canonicalExport _tree global root read is within <=5 tree expected-outstanding loop. Parent is immutable; static call cannot execute a state-changing economic callback.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 354,
+      "fingerprint": "e02ed767999c270a145460f03e6595364171913280148e015d8445cbafa7b049",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "_creditPool is entered only by nonReentrant public credit methods. The cutoff callback targets immutable child, admits only the same parent in source1+canonicalSettling, and only extends captured backing after exact intake. Child does not callback economic state; final state/settling and solvency proofs rollback mutation.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 379,
+      "fingerprint": "2a060420889fe4ffcfe1c1a0f1cedd974162d60d075afcbf8b505f017fb19b4e",
+      "check": "reentrancy-benign",
+      "disposition": "false_positive",
+      "rationale": "canonicalImport is fixed-Handoff-only nonReentrant/state2. Parent canonicalWrite is immutable-child-only/nonReentrant, restricted to three fixed record domains and no asset transfers. Subsequent balanceOf calls are STATICCALL. Rows/counters cannot be reentered or funds redirected by an imported record.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 394,
+      "fingerprint": "70e406a956e3c9acdc52c99e34d32b7628639e63afc6facacf2ed747490f87c5",
+      "check": "reentrancy-events",
+      "disposition": "false_positive",
+      "rationale": "activate is Vault-only/economic, marks eligible and count BEFORE fixed Rewards.syncMembership. Fresh sync uses only tree math and STATICCALL NFT/Vault/Membership reads, no mutable token/receiver callback. Reentry duplicate activation rejects eligible; final economic state check protects lifecycle. Event after successful sync intentionally represents atomic enrollment.",
+      "read_scope": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "index": 424,
+      "fingerprint": "41b25edb018dbcf99bee8b5c2e617cc4e4d09961dc44399a189e7cdaacd2f3d6",
+      "check": "costly-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture deletes accepted flags for previous list length<=2, needed for authenticated abort restoration/recapture; list size cannot grow unbounded in fixed-pair ledger.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 427,
+      "fingerprint": "e63f14f898ce2a83f0e296d5ba65dcb4c8bac200e62e748ed419cd1f891f61c4",
+      "check": "costly-loop",
+      "disposition": "informational",
+      "rationale": "canonicalCapture clears released flags for <=2 assets before a new authorized source snapshot. Retaining old flags would block restored source funding; bounded reset is intentional.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 436,
+      "fingerprint": "7d9a3c9e59cb4b7a2445be3e7d306d9106aedf06c4477de0e3b6a8200a65e549",
+      "check": "cyclomatic-complexity",
+      "disposition": "accepted_risk",
+      "rationale": "canonicalImport branches header/asset/seed/node with exact256/320/256/992 lengths, row cursor, lifecycle and typed-parent writer. Complexity expresses distinct proof domains; each bounded branch is reviewed and must be tested separately, rather than removing checks to lower metric.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 438,
+      "fingerprint": "7eb4b3e00d31a78b8b2e4a1586bc16ed67d5d5b335390a39336f8c76a7d0a46c",
+      "check": "cyclomatic-complexity",
+      "disposition": "accepted_risk",
+      "rationale": "_books independently validates asset order, expected direct/tree totals, global liability sum, empty collection and absent-ZZZ book. Fixed2assets/5trees bound the work; complexity is required conservation checking, not an arbitrary external call graph.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 439,
+      "fingerprint": "cf39537885180918426e6cf3fce180aaea79cd7cc03bc90c74abd2bd450e1841",
+      "check": "cyclomatic-complexity",
+      "disposition": "accepted_risk",
+      "rationale": "canonicalWrite has exactly3 immutable-child-only inert import domains. Asset identity/backing, authenticated seed weights, and raw node/phase bounds are separate validations; unknown kinds reject. No arbitrary storage slot/target or calldata executor exists.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 455,
+      "fingerprint": "1aff6341cad3bdac502a2aee92f58a2e18970b27dcc8ac5e6f15dad6a5e3281f",
+      "check": "low-level-calls",
+      "disposition": "informational",
+      "rationale": "Native claim deliberately calls current NFT owner and checks success, under nonReentrant/economic and debited liability. Rejecting receiver rolls back entire claim; public tokens require conventional transfer behavior, no automatic recipient override.",
+      "read_scope": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 460,
+      "fingerprint": "554db41d0332c89f205d3a7db3b0acdcc75e538cf34c11f7c39632d202bbbc8c",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "ZZZRewardsCanonical implements the exact IZZZCanonicalModule selectors through structural typing; Handoff calls typed interface. Explicit inheritance is stylistic and cannot add authority/funding protection; ABI closure was typechecked.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "index": 462,
+      "fingerprint": "b4a0fc4fce51fabf8ead1e4feece5220527f86e887ebca199f5bd0f89acd34c1",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "Rewards structurally implements creditCanonicalCutoff with exact selector and explicit fixed-FEES/state1/settling authorization. Interface inheritance is optional; actual late-cutoff accounting and child backing are reviewed separately.",
+      "read_scope": [
+        "src/ZZZFeeController.sol",
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 471,
+      "fingerprint": "09d37b672e823ab9f21089f1bba889f67320a74026b6736b31f0ba6bb64b00c3",
+      "check": "missing-inheritance",
+      "disposition": "informational",
+      "rationale": "Rewards structurally implements claimFor used by fixed NFT claim router; current NFT owner equality and exact payout checks are explicit. Inheriting IZZZClaimLedger would be documentation-only and not change callable permission.",
+      "read_scope": [
+        "src/ZZZClaimRouter.sol",
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "index": 490,
+      "fingerprint": "0296160c63cfa9498c94450e1ae60448d47412254b62e3da4eecfc91b95953d7",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "ACCOUNTING_VERSION is an intentional constant capability selector matching fresh Vault7 and source-profile admission. Renaming to mixedCase would break existing typed interface and version checks.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 495,
+      "fingerprint": "fb43cf3d2ca1eb762616b4b414f380fb14d06122ce47e9defd617d0014b67c99",
+      "check": "naming-convention",
+      "disposition": "informational",
+      "rationale": "LP_ALLOCATION_VERSION is an intentional exact capability selector matching new Rewards getter1. Case is part of typed interface/profile admission, not an uninitialized value or authority path.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 521,
+      "fingerprint": "012c75f5b6d4282cddd10c1a63d3d20bb0e4511fd5cc5082d0d9cb1b8a3381b7",
+      "check": "cache-array-length",
+      "disposition": "informational",
+      "rationale": "canonicalSeed assets.length is immutable fixed-pair admission<=2; read-only source export has no mutable callback in the loop. Caching could save tiny gas but no correctness/liveness defect warrants source drift after final size freeze.",
+      "read_scope": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 525,
+      "fingerprint": "873ae69fe8bbf16af52a58573f5eed51ccd260b6c26c9d0d326caaadf8a553c5",
+      "check": "cache-array-length",
+      "disposition": "informational",
+      "rationale": "canonicalCapture old assets.length<=2; loop clears funding flags before arrays are deleted. Length is not mutated in-loop and no external call exists, so no iteration race; caching is optional micro-optimization.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "index": 527,
+      "fingerprint": "e88902c17cb78ff7e1f00366463e63a972c4a37082f251eefa9fc3a52e849614",
+      "check": "cache-array-length",
+      "disposition": "informational",
+      "rationale": "canonicalValidate assets.length<=2 and all loop calls are view/STATICCALL balance checks; child entry guard rejects intermediate capture/import. No unbounded list or mutable callback, caching is optional efficiency only.",
+      "read_scope": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership'
 HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
 'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing','ZZZLPBalancer','ZZZRebalanceConfirmation','ZZZPortfolioPolicy',
-'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZPythPriceFeed']
+'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZRewardsCanonical','ZZZPythPriceFeed']
 CODE_DATA=['ZZZRoyaltyCodeData']
 # Required source classes, not deployed instance counts. Pyth is optional;
 # one CodeData source class produces two inert Factory data children.

@@ -24,11 +24,11 @@ contract ZeroAssetNFTFixture {
 contract ZeroAssetCheckpointFixture {
     ZZZMembership private immutable membership;
     mapping(uint256 => uint256) public checkpoints;
-    mapping(uint256 => bool) public checkpointedBeforeEnrollment;
+    mapping(uint256 => bool) public checkpointedAfterEnrollment;
     constructor(ZZZMembership member) { membership = member; }
-    function checkpointAll(uint256 id) external {
+    function syncMembership(uint256 id) external {
         ++checkpoints[id];
-        checkpointedBeforeEnrollment[id] = !membership.eligible(id);
+        checkpointedAfterEnrollment[id] = membership.eligible(id);
     }
 }
 
@@ -80,7 +80,7 @@ contract ZeroAssetCanonicalTest is Test {
         source.activate(101); source.activate(103);
         assertEq(source.totalEligible(), 2); assertTrue(source.eligible(101)); assertTrue(source.eligible(103));
         assertFalse(source.eligible(102)); assertEq(checkpoints.checkpoints(101), 1);
-        assertTrue(checkpoints.checkpointedBeforeEnrollment(101));
+        assertTrue(checkpoints.checkpointedAfterEnrollment(101));
         vm.expectRevert(ZZZModule.InvalidState.selector); source.activate(101);
         assertEq(source.totalEligible(), 2); assertEq(checkpoints.checkpoints(101), 1);
         sourceAccess.setCanonicalState(1);

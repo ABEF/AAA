@@ -1,18 +1,19 @@
 {
-  "schema_version": 15,
-  "accounting_model": "shared-pools-native-v6",
-  "accounting_version": 6,
+  "schema_version": 16,
+  "accounting_model": "shared-pools-native-v7",
+  "accounting_version": 7,
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Fresh schema15/accounting6/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV8 with governed residual-reinvest1.18 logical callable helpers plus exactly2 inert code-data children. The exact prior schema14 template is preserved in production.schema14.example.json for explicit historical inspection.",
+    "Fresh schema16/accounting7/exact LP1/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV9 with governed residual-reinvest1.19 logical callable helpers plus exactly2 inert code-data children. The exact prior schema15 template is preserved in production.schema15.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
     "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
     "One-hour royalty opening after the final sale end; exact whole-unit allocation, strict initial cohort, no deadline on dormant cards. Zero participants/preadmission funds remain separate reviewed allocation cases.",
     "Source defaults are not observations: two independently qualified USD sources agree within3%; contributions2%, LP conversion1%, maintenance3%, hard10% ceilings; gas separate.",
     "Main/residual geometry remains optional at most2 physical legs per logical bucket. Both remain Vault-owned and accounted; source85% trigger/600-second sampled evidence/300-second max gap/240-second checks/60-300-second jitter/12-hour cooldown remain.",
     "Residual reinvestment1 is a paused governance-only operation that closes the residual and increases the unchanged main. It is not an automated keeper action, accounting upgrade, service rollout or journal relabel.",
-    "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized."
+    "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized.",
+    "Exact LP whole-unit trees replace index/fraction accounting. Current source consumers require explicit7 and LP-allocation1; checkpoint1 is not supported on7 and complete bounded raw history is required. No old runtime, source8 website, journal or snapshot is relabeled."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -260,7 +261,7 @@
             "access": null,
             "registry": null,
             "activationAssets": null,
-            "REVIEW_POLICY_VERSION": 1,
+            "REVIEW_POLICY_VERSION": 2,
             "ENTRY_ROUTING_VERSION": 3
           }
         },
@@ -308,9 +309,9 @@
             "canonicalController": null,
             "ROYALTY_SETTLEMENT_VERSION": 4,
             "ROYALTY_RECOVERY_VERSION": 2,
+            "ACTIVATION_WINDOW": 3600,
             "assetCapacity": 16,
             "mintEnd": null,
-            "ACTIVATION_WINDOW": 3600,
             "mintEndRevision": null
           }
         },
@@ -348,13 +349,13 @@
           "observed_bindings": null,
           "bindings": {
             "controller": null,
-            "royaltyCodeHash": null,
+            "royaltyCodeHash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
             "CODE_STORAGE_VERSION": 2,
             "creationCodeLength": 25522,
             "part0": null,
             "part1": null,
             "part0CodeHash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
-            "part1CodeHash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0"
+            "part1CodeHash": "0x9e6d2b3e3cfbc811a6f412d20dae3348c90f492d05ff24e842f65b16562b2b12"
           }
         },
         "lp_converter": {
@@ -508,7 +509,22 @@
           "runtime_hash": null,
           "observed_runtime_hash": null,
           "immutable": true,
-          "bindings": null,
+          "bindings": {
+            "access": null,
+            "PROTOCOL_POLICY_VERSION": 1
+          },
+          "observed_bindings": null,
+          "review_evidence": null
+        },
+        "rewards_canonical": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "bindings": {
+            "access": null,
+            "rewards": null
+          },
           "observed_bindings": null,
           "review_evidence": null
         }
@@ -576,8 +592,8 @@
         "asset": "0x0000000000000000000000000000000000000000",
         "decimals": 18,
         "runtime_hash": null,
-        "version": 6,
-        "canonical_schema": "0x8286d60d37def71ff6200c43a14165e223cd2ec704c7e229da093bb10a886902",
+        "version": 7,
+        "canonical_schema": "0xd077e0d60fbbef64fe13686e9deef1d4bf95fb9f9c1e632da05a58b8db6de5e8",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -882,7 +898,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3_custody5_governance_principal_no_royalty_swaps",
+          "profile": "accounting7_lp1_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3_custody5_governance_principal_no_royalty_swaps",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -890,7 +906,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting6_policy1_custody5_holder_exit_v6_portfolio2_confirmation3_entry3_royalty4_exact_units",
+          "profile": "accounting7_lp1_policy1_custody5_holder_exit_v9_portfolio2_confirmation3_entry3_royalty4_exact_units",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -1047,7 +1063,7 @@
       "factory_code": {
         "code_storage_version": 2,
         "creation_code_length": 25522,
-        "creation_code_hash": "0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831",
+        "creation_code_hash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
         "observed_creation_code_length": null,
         "observed_creation_code_hash": null,
         "review_evidence": null,
@@ -1068,7 +1084,7 @@
             "address": null,
             "data_length": 949,
             "runtime_length": 952,
-            "runtime_hash": "0x5b6332402959637249f7d1610282b50e17831b01cf546bf2b4ad83358e23edd0",
+            "runtime_hash": "0x9e6d2b3e3cfbc811a6f412d20dae3348c90f492d05ff24e842f65b16562b2b12",
             "observed_data_length": null,
             "observed_runtime_length": null,
             "observed_runtime_hash": null,
@@ -1092,6 +1108,7 @@
   "rebalance_confirmation_version": 3,
   "emergency_rebalance_version": 2,
   "portfolio_version": 2,
-  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8",
-  "protocol_policy_version": 1
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9",
+  "protocol_policy_version": 1,
+  "lp_allocation_version": 1
 }

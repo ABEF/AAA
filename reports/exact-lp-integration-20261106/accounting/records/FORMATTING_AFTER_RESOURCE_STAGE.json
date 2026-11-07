@@ -1,0 +1,12 @@
+{
+  "scope": "only trailing whitespace on seven owned files after failed resource stage; actual typed statements unchanged",
+  "files": [
+    "BuybackExecution.t.sol",
+    "ContributionBudgetIsolation.t.sol",
+    "KeeperCompletion.t.sol",
+    "MigrationBudgetAdversarial.t.sol",
+    "ProductionGas.t.sol",
+    "RebalanceBudget.t.sol",
+    "ReservationCapacity.t.sol"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "file": "test/helpers/CanonicalNativeVenue.sol",
+  "before_sha256": "5165e99f77166fcd0c989a8ef582b20c63787f04e439ab3f182821357d420053",
+  "after_sha256": "564983ddda8294c868dedaf3f3604f75e2d257ed3fd20dc04e7b479db1bb6fa7",
+  "removed_trailing_bytes_hex": "0d0a",
+  "all_declaration_body_bytes_unchanged": true,
+  "scope": "Only extra EOF newline removed after final315ABI/canonical runs; no execution or type/ABI semantics changed; preserved original stage snapshots remain authority",
+  "other314_type_inputs_raw_exact": true
+}

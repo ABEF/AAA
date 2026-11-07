@@ -3,8 +3,8 @@
 This guide preserves the accounting2/pricing2/Entry-review1 manifest and its
 source-scoped evidence. The served poplint build has a separate
 [current3 profile](CURRENT_WEBSITE_PROFILE.md); the fresh contract candidate is
-[accounting6/ProtocolPolicy1/custody5/canonicalV8](POSITION_V6.md), with website integration
-still required. Native2 is neither the served integration profile nor fresh6
+[accounting7/ProtocolPolicy1/custody5/canonicalV9](POSITION_V7.md), with website integration
+still required. Native2 is neither the served integration profile nor fresh7
 acceptance. Do not relabel this profile or any existing Anvil journal. Public
 `DEPLOYMENT` remains null and the shared signer stays Anvil-only.
 

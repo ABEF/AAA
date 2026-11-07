@@ -18,7 +18,7 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
-// TEST ONLY ERC20 admission; production permits only native ETH/ZZZ LP.
+// Synthetic registry fixture; the fresh pair here is native ETH/fixed ZZZ.
 import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
@@ -33,6 +33,9 @@ import {FakePermit2, FakePositionManager} from "./LiquidityEncoding.t.sol";
 contract BuybackBurnToken is ERC20 {
     enum Mode { Correct, NoOp, Partial, RevertBurn }
     Mode public mode;
+    address public blockedRecipient;
+    function blockRecipient(address value)external{blockedRecipient=value;}
+    function _update(address from,address to,uint256 amount)internal override{require(to==address(0)||to!=blockedRecipient,"fixture recipient blocked");super._update(from,to,amount);}
     address public reentryTarget;
     bool public reentrySucceeded;
     bytes4 public reentryError;
@@ -50,17 +53,6 @@ contract BuybackBurnToken is ERC20 {
         }
         if (mode == Mode.Correct) _burn(msg.sender, amount);
         else if (mode == Mode.Partial) _burn(msg.sender, amount / 2);
-    }
-}
-
-/// @dev TEST ONLY: simulate an admitted token refusing one transfer destination.
-contract BuybackInputToken is MockToken {
-    address public blockedRecipient;
-    constructor() MockToken(18) {}
-    function blockRecipient(address recipient) external { blockedRecipient = recipient; }
-    function _update(address from, address to, uint256 amount) internal override {
-        require(to == address(0) || to != blockedRecipient, "fixture recipient blocked");
-        super._update(from, to, amount);
     }
 }
 
@@ -108,10 +100,9 @@ contract BuybackCoreFixture {
         delta = (int256(d0) << 128) | int256(uint256(uint128(d1)));
         if (postSwapState != address(0)) BuybackStateFixture(postSwapState).setPrice(postSwapPrice);
     }
-    function sync(address token) external { synced = token; beforeSync = IERC20(token).balanceOf(address(this)); }
+    function sync(address token)external{synced=token;beforeSync=token==address(0)?address(this).balance:IERC20(token).balanceOf(address(this));}
     function settle() external payable returns (uint256 paid) {
-        require(msg.value == 0 && synced == input, "fixture wrong input");
-        paid = IERC20(input).balanceOf(address(this)) - beforeSync;
+        if(input==address(0)){paid=msg.value;}else{require(msg.value==0&&synced==input,"fixture wrong input");paid=IERC20(input).balanceOf(address(this))-beforeSync;}
         require(paid == debt, "fixture incorrect debt");
         debt = 0;
     }
@@ -165,7 +156,7 @@ contract BuybackExecutionTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); input = new BuybackInputToken(); zzz = new BuybackBurnToken();
+        access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); input=MockToken(address(0)); zzz = new BuybackBurnToken();
         inputFeed = new MockFeed(8, 1e8); zzzFeed = new MockFeed(8, 1e8);
         oracle = new ZZZOracle(address(access), address(0));
         oracle.setTestFeed(address(input), address(inputFeed), 3600);
@@ -185,8 +176,8 @@ contract BuybackExecutionTest is Test {
         access.bind(Ids.FEES, address(fees)); access.bind(Ids.BUYBACK, address(buyback));
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.STRATEGY, address(strategy)); access.bind(Ids.LIQUIDITY, address(manager));
-        rewards.addAsset(address(input)); rewards.addAsset(address(zzz));
-        pools.activationAssets().configureZZZ(address(zzz), address(zzz).codehash, keccak256("buyback fixture fixed ZZZ"));
+
+        pools.activationAssets().configureZZZ(address(zzz), address(zzz).codehash, keccak256("buyback fixture fixed ZZZ"));rewards.addAsset(address(zzz));vm.deal(address(this),100_000 ether);
         PoolConfig memory c = _configuration(address(input), address(zzz)); pool = pools.configure(c);
         Position memory p; p.poolId = pool; p.status = PositionStatus.Active;
         vault.set(BUCKET, p); access.setKeeper(address(this), true); access.seal();
@@ -202,25 +193,25 @@ contract BuybackExecutionTest is Test {
         c.rangeBps = 1000; c.triggerBps = 500; c.maxSpotDeviationBps = 100; c.maxSlippageBps = 100;
         c.minRebalanceInterval = 600; c.minDepositUSD = 100 ether; c.maxPositionUSD = 1_000_000 ether;
     }
-    function _fund(address token, uint256 amount) private {
-        if (token == address(zzz)) zzz.mint(address(vault), amount);
-        else input.mint(address(vault), amount);
-        vm.startPrank(address(vault)); IERC20(token).approve(address(fees), amount);
-        fees.allocate(BUCKET, token, amount); vm.stopPrank();
+    function _fund(address token,uint256 amount)private{
+        if(token==address(zzz)){
+            zzz.mint(address(vault),amount);vm.startPrank(address(vault));zzz.approve(address(fees),amount);fees.allocate(BUCKET,token,amount);vm.stopPrank();
+        }else{require(token==address(0));vm.deal(address(vault),address(vault).balance+amount);vm.prank(address(vault));fees.allocate{value:amount}(BUCKET,address(0),amount);}
     }
+    function _assetBalance(address asset,address account)private view returns(uint256){return asset==address(0)?account.balance:IERC20(asset).balanceOf(account);}
     function _execute(address token, uint256 amount) private {
         buyback.execute(token, amount, pool, block.timestamp + 100);
     }
     function _ledger(address token) private view returns (bytes32) {
         bytes32 reserves = keccak256(abi.encode(fees.buybackBalance(token), fees.compoundBalance(BUCKET, token),
-            fees.accounted(token), fees.dust(BUCKET, token), IERC20(token).balanceOf(address(fees))));
+            fees.accounted(token), fees.dust(BUCKET, token), _assetBalance(token,address(fees))));
         bytes32 claims = keccak256(abi.encode(rewards.claimable(1, token), rewards.claimable(2, token),
-            rewards.liabilities(token), IERC20(token).balanceOf(address(rewards))));
+            rewards.liabilities(token), _assetBalance(token,address(rewards))));
         bytes32 execution = keccak256(abi.encode(zzz.totalSupply(), zzz.balanceOf(address(buyback)),
-            input.balanceOf(address(buyback)), input.allowance(address(buyback), address(manager)),
+            address(buyback).balance,
             zzz.allowance(address(buyback), address(manager)), core.swaps(), core.debt(), core.credit(), state.price()));
-        return keccak256(abi.encode(reserves, claims, execution, input.balanceOf(address(core)), zzz.balanceOf(address(core)),
-            input.balanceOf(address(manager)), zzz.balanceOf(address(manager))));
+        return keccak256(abi.encode(reserves, claims, execution, address(core).balance, zzz.balanceOf(address(core)),
+            address(manager).balance, zzz.balanceOf(address(manager))));
     }
     function _claimBoth(address token) private {
         vm.prank(ALICE); assertEq(rewards.claim(1, token), 450 ether);
@@ -231,10 +222,9 @@ contract BuybackExecutionTest is Test {
         assertEq(fees.buybackBalance(token), remaining);
         assertEq(fees.compoundBalance(BUCKET, token), RESERVE);
         assertEq(fees.accounted(token), RESERVE + remaining);
-        assertEq(IERC20(token).balanceOf(address(fees)), RESERVE + remaining);
-        assertEq(input.allowance(address(buyback), address(manager)), 0);
+        assertEq(_assetBalance(token,address(fees)), RESERVE + remaining);
         assertEq(zzz.allowance(address(buyback), address(manager)), 0);
-        assertEq(input.balanceOf(address(manager)), 0); assertEq(zzz.balanceOf(address(manager)), 0);
+        assertEq(address(manager).balance, 0); assertEq(zzz.balanceOf(address(manager)), 0);
     }
 
     function testAdaptableMaximumTradeChecksAuthorityReviewBoundsAndOperatingFloor() public {
@@ -293,13 +283,13 @@ contract BuybackExecutionTest is Test {
     }
     function testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances() public {
         _fund(address(input), GROSS); core.setOutputBps(9900); zzz.mint(address(buyback), 17 ether);
-        input.mint(address(buyback), 13 ether); uint256 beforeSupply = zzz.totalSupply();
+        vm.deal(address(buyback),address(buyback).balance+13 ether); uint256 beforeSupply = zzz.totalSupply();
         uint256 acquired = RESERVE * 99 / 100;
         vm.expectEmit(true, false, false, true, address(buyback)); emit BoughtAndBurned(address(input), RESERVE, acquired);
         _execute(address(input), RESERVE);
         assertEq(zzz.totalSupply(), beforeSupply - acquired); assertEq(core.swaps(), 1);
-        assertEq(input.balanceOf(address(core)), RESERVE); assertEq(zzz.balanceOf(address(buyback)), 17 ether);
-        assertEq(input.balanceOf(address(buyback)), 13 ether); _assertReserves(address(input), 0); _claimBoth(address(input));
+        assertEq(address(core).balance, RESERVE); assertEq(zzz.balanceOf(address(buyback)), 17 ether);
+        assertEq(address(buyback).balance, 13 ether); _assertReserves(address(input), 0); _claimBoth(address(input));
     }
     function testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable() public {
         _fund(address(input), GROSS); core.setFail(true); bytes32 beforeState = _ledger(address(input));
@@ -314,12 +304,12 @@ contract BuybackExecutionTest is Test {
         _execute(address(input), RESERVE); _assertReserves(address(input), 0); _claimBoth(address(input));
     }
     function testReserveTransferFailureRestoresAccountingAndCanRetry() public {
-        _fund(address(input), GROSS); BuybackInputToken(address(input)).blockRecipient(address(buyback));
-        bytes32 beforeState = _ledger(address(input));
-        vm.expectRevert(bytes("fixture recipient blocked")); _execute(address(input), RESERVE);
-        assertEq(_ledger(address(input)), beforeState); _claimBoth(address(input));
-        BuybackInputToken(address(input)).blockRecipient(address(0));
-        _execute(address(input), RESERVE); _assertReserves(address(input), 0);
+        _fund(address(zzz),GROSS);zzz.blockRecipient(address(buyback));
+        bytes32 beforeState = _ledger(address(zzz));
+        vm.expectRevert(bytes("fixture recipient blocked")); _execute(address(zzz), RESERVE);
+        assertEq(_ledger(address(zzz)), beforeState); _claimBoth(address(zzz));
+        zzz.blockRecipient(address(0));
+        _execute(address(zzz), RESERVE); _assertReserves(address(zzz), 0);
     }
     function testNoOpBurnRejectsAndRestoresEverythingBeforeRetry() public {
         _fund(address(input), GROSS); zzz.setMode(BuybackBurnToken.Mode.NoOp); bytes32 beforeState = _ledger(address(input));
@@ -359,7 +349,7 @@ contract BuybackExecutionTest is Test {
     }
     function testWrongPairAdmissionCannotExpandBuybackAuthority() public {
         _fund(address(input), GROSS); MockToken third = new MockToken(18);
-        oracle.setTestFeed(address(third), address(inputFeed), 3600); rewards.addAsset(address(third));
+        oracle.setTestFeed(address(third),address(inputFeed),3600);
         PoolConfig memory wrongConfig = _configuration(address(input), address(third));
         // Even the synthetic ERC20 fixture requires the immutable ZZZ identity.
         // Do not bypass admission to manufacture an obsolete approved wrong pair.

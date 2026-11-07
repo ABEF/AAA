@@ -1,0 +1,56 @@
+[
+  {
+    "path": "docs/FRONTEND_API.md",
+    "original_sha256": "ba528eb3716d10de4b7a4373f8144f93375d2e656ac827a472326e53feacb876",
+    "head_sha256": "ba528eb3716d10de4b7a4373f8144f93375d2e656ac827a472326e53feacb876",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/FRONTEND_HISTORY.md",
+    "original_sha256": "942f6d084609e5cfc99804d546e80dee3aaeb18dbfd78cfcdda511b1e5d4d72b",
+    "head_sha256": "942f6d084609e5cfc99804d546e80dee3aaeb18dbfd78cfcdda511b1e5d4d72b",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/EARNINGS_CHECKPOINTS.md",
+    "original_sha256": "70d9c6fbb0a05354fdd5c1ed7af83c3f983e52ebb2f2c6771e7615d34d129917",
+    "head_sha256": "70d9c6fbb0a05354fdd5c1ed7af83c3f983e52ebb2f2c6771e7615d34d129917",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/FRONTEND_LIFECYCLE.md",
+    "original_sha256": "1ae859c538f0b7c5987767bd205184ee2a5cbd8d3dede29088241694b8e54487",
+    "head_sha256": "1ae859c538f0b7c5987767bd205184ee2a5cbd8d3dede29088241694b8e54487",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/FRONTEND_LINEAGE.md",
+    "original_sha256": "d6feef8678d51f1c145f902ffdc5558992e35830dc6f329172fd53f2ed92f92f",
+    "head_sha256": "d6feef8678d51f1c145f902ffdc5558992e35830dc6f329172fd53f2ed92f92f",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/FRONTEND_TRANSACTIONS.md",
+    "original_sha256": "75204b2e881eb9fd46fe90c9da14159f01f4fcec23b59263b882cb5946844633",
+    "head_sha256": "75204b2e881eb9fd46fe90c9da14159f01f4fcec23b59263b882cb5946844633",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/FACTORY_CODE_STORAGE.md",
+    "original_sha256": "d366d527bdd1114c0a5166b54a68b7c44ec91347ea798d74fb3742e97fe74375",
+    "head_sha256": "d366d527bdd1114c0a5166b54a68b7c44ec91347ea798d74fb3742e97fe74375",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/CLAIM_PLANNING.md",
+    "original_sha256": "5f91ad3b5b049bb25cac93cad63ae6477095ff13f34228766278edfefa13c21c",
+    "head_sha256": "5f91ad3b5b049bb25cac93cad63ae6477095ff13f34228766278edfefa13c21c",
+    "original_dirty": false
+  },
+  {
+    "path": "docs/EARNINGS_HISTORY.md",
+    "original_sha256": "d35a9c7e52f30f7d801cf1a0f55d9c12f95641d31aac9e13556621e7b2bec013",
+    "head_sha256": "d35a9c7e52f30f7d801cf1a0f55d9c12f95641d31aac9e13556621e7b2bec013",
+    "original_dirty": false
+  }
+]

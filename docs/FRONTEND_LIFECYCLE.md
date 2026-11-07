@@ -7,17 +7,16 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 ## Configuration and response version
 
 Configuration and read responses use **schema 2**. The current release explicitly
-selects `accounting_version: 4`, `fee_intake_version: 1`, direct governance V2
-and `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Its Position codec has eight
-words and terminal Exited5 in addition to Dormant3/Parked4. Legacy accounting1/2/3
-readers keep their original profile; no old journal is upgraded or reinterpreted.
-Existing schema-1
-configurations fail closed. Add independently reviewed runtime/address pins for
-`contracts.handoff` and `contracts.vault_canonical`, using the same object format
-as the other six contracts, plus the fixed `contracts.principal_exit` runtime pin.
-Nine distinct contracts are required for accounting4; historical accounting3
-retains its eight-pin configuration. Every request
-checks their runtime hashes and sealed controller/module/helper ownership links.
+selects `accounting_version:7`, explicit custody5/ProtocolPolicy1/fee-intake1,
+original-currency royalty reporting5, LP-allocation1 and
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. The Position codec retains eight words
+and Exited5/Dormant3/Parked4. Require the complete independently reviewed runtime
+graph in the [read API](FRONTEND_API.md#current-deployment-profile), including
+Rewards.canonicalModule(), its fixed access/rewards parents and Handoff.moduleAt(3).
+Every request checks runtime hashes and sealed module/helper ownership links.
+Historical6/V8 and older readers retain their actual graphs; accounting4 has nine
+base pins and accounting3 eight. No old runtime or journal is relabeled.
+Existing schema1 configuration fails closed.
 An RPC-discovered peer is never automatically accepted as a new deployment.
 
 ## Endpoints
@@ -56,13 +55,13 @@ exists, and all HTTP error bodies remain sanitized.
   the pinned source, not an independently reviewed destination deployment or a
   cross-chain finality proof. No automatic redirect or peer RPC call occurs.
 
-Accounting4 additionally reads the irreversible `lp_exit_started` flag and
+Accounting4–7 read the irreversible `lp_exit_started` flag and
 `lp_exit_phase` / `lp_exit_phase_code` (operating0/closing1/allocating2/ready3).
 The module phase and Access flag must agree. After
 collective exit begins, new economic work is false even if governance unpauses.
 Claims/transfers remain available while canonical state is operating. Terminal
 principal-return accounting is separate from funded reward/royalty balances.
-LP exit and canonical handoff cannot coexist; the old canonical transport does
+LP exit and canonical handoff cannot coexist; the canonical transport does
 not carry principal-return liabilities, so replacement stays blocked after exit.
 
 ## History continuity
@@ -73,8 +72,8 @@ previous deployments. With the optional [complete predecessor configuration](FRO
 the API now verifies same-chain retirement/activation links and replays all prior
 LP/royalty claims. Without it, imported successor lifetime totals remain
 unavailable, even if current history contains nonzero claims. Invalid configured
-lineage fails closed; zero and partial totals are never substituted. Current V6 source
-and successor require accounting6; historicalV5 accounting5/4 andV4 accounting3
+lineage fails closed; zero and partial totals are never substituted. Current V9 source
+and successor require accounting7/LP-allocation1; historical6/V8, V5 accounting5/4 andV4 accounting3
 retain their separately pinned profiles. They must
 use the same canonical schema and codec; historical
 reader support does not add cross-codec import compatibility.
@@ -88,8 +87,8 @@ cutover and operating qualification remain in the [central Todo](../TODO.md).
 
 The earlier [source-bound verification](../reports/frontend-lifecycle/VERIFICATION.md)
 records its original lifecycle/API candidate. It does not qualify later Position3,
-direct-governance or V4 changes. Current verification is recorded separately in
-the [architecture-pruning review](../reports/architecture-pruning-20261025/REVIEW.md);
+direct-governance or V4 changes. Current exact-LP integration is recorded in
+[its scoped review](../reports/exact-lp-integration-20261106/REVIEW.md);
 no production operating approval or broad fresh regression is inferred.
 
 Every read uses EIP-1898 `requireCanonical` with one block hash. Final checks

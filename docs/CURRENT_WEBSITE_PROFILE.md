@@ -3,7 +3,7 @@
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now
-[accounting6/custody5/Portfolio2/direct Entry3/schema10](POSITION_V6.md), which this website profile
+[accounting7/LP-allocation1/custody5/Portfolio2/direct Entry3/schema16](POSITION_V7.md), which this website profile
 does not support. Neither source publication nor changing a manifest's version
 upgrades the served build, a schema1/native2 deployment or an existing journal.
 Public signing remains disabled.
@@ -31,18 +31,28 @@ states. Actual LP, ETH claimable and history may be unavailable independently;
 never invent zero or display an unconverted source balance as ETH. A confirmed
 claim is a payout, not new income or an artwork evolution.
 
-## Fresh6 integration still required
+## Fresh7/source9 integration still required
 
-A new explicitly versioned frontend profile must verify accounting6/custody5/portfolio2,
-canonical `ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`, Manager/typed LP child/Balancer/math/policy,
+A matching explicitly versioned source9 frontend must verify accounting7/
+LP-allocation1/custody5/portfolio2 and canonical
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`, the immutable Rewards canonical child,
+Manager/typed LP child/Balancer/math/policy,
 execution-quality1/maintenance3/compound4/confirmation3 capabilities, exact runtimes
 and both physical LP IDs/owners/keys/ticks at one canonical block. Desired-disabled
 residuals remain included until merged; eight Position words alone are not compatibility.
 It must distinguish terminal zero LP from unavailable data, unpaid holder
 principal from rewards, and continuing royalty rights from ended LP earnings.
-The backend's current accounting6 support or a matching eight-word position
-length does not establish browser compatibility. Do not deploy fresh contracts
-under schema3 or relabel the current3 artifact as fresh4.
+Source9 backend support or a matching eight-word Position does not establish
+browser compatibility. The schema16 release graph has19 callable helpers plus2
+inert Factory data children, including fixed Rewards.canonicalModule()/child
+access()/rewards()/Handoff.moduleAt(3) bindings. Factory payload3 retains
+FORMAT2 and is release-time verification, not per-claim data-child reads. Fresh7
+raw earnings use exact LP books; checkpoint1 cannot seed them and checkpoint2
+remains open. None of this has been deployed to the website.
+
+The separate source8/accounting6/V8 read/unsigned candidate retains its own
+source scope and is not fresh7 acceptance. Do not deploy fresh contracts under
+served schema3, or relabel either old build/runtime/manifest as7.
 
 The earlier downloadable dormant-metadata defect was corrected in website source
 `cae44a1d`: reference JSON and the generator preserve fixed rarity1/2/3 independently
@@ -75,4 +85,4 @@ The served-profile [verification](../reports/current3-website-20261026/VERIFICAT
 uses actual Python projection/preparation DTO code with synthetic RPC, venue,
 price and authority dependencies. It verifies integration behavior, not real
 prices, provider authenticity, deployed contracts, marketplace operation or an
-independent audit. It is not fresh6 acceptance. Production remains **NOT APPROVED**.
+independent audit. It is not fresh7/source9 acceptance. Production remains **NOT APPROVED**.

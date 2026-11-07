@@ -1,0 +1,24 @@
+from pathlib import Path
+import hashlib,json,re
+r=Path.cwd();e=Path(__file__).parent
+stage=e/'evm-canonical-c8d193044e';status=json.loads((stage/'status.json').read_text())
+changed=[n for n,h in status['closed_before'].items()if status['closed_after'][n]!=h]
+assert changed==['test/VaultAccounting.t.sol'],changed
+old=json.loads((e/'abi-tests-d543fb0cf8/input.json').read_text())['sources'][changed[0]]['content'];new=(r/changed[0]).read_text(encoding='utf-8-sig')
+sha=lambda b:hashlib.sha256(b).hexdigest()
+assert sha(old.encode())==status['closed_before'][changed[0]]
+def extract(text,name):
+ # Strip strings/comments only for brace location; preserve raw text for proof.
+ clean=re.sub(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',lambda m:' '*len(m[0]),text,flags=re.S)
+ m=re.search(r'\bcontract\s+'+name+r'\b',clean);assert m
+ start=clean.index('{',m.start());depth=1;end=start+1
+ while depth:
+  if clean[end]=='{':depth+=1
+  elif clean[end]=='}':depth-=1
+  end+=1
+ return text[m.start():end]
+classes={}
+for name in ['VaultPolicyMock','VaultLiquidityMock']:
+ a=extract(old,name);b=extract(new,name);classes[name]={'old_body_sha256':sha(a.encode()),'current_body_sha256':sha(b.encode()),'identical':a==b};assert a==b,name
+d={'schema':1,'actual_stage':str(stage),'whole_test_closure_frozen':False,'production_source_frozen':status['source_unchanged'],'config_frozen':status['config_unchanged'],'tools_frozen':status['toolchain_unchanged'],'changed_path':changed[0],'before_raw_sha256':status['closed_before'][changed[0]],'after_raw_sha256':status['closed_after'][changed[0]],'retained_before_source':str(e/'abi-tests-d543fb0cf8/input.json'),'current_raw_sha256':sha((r/changed[0]).read_bytes()),'classes':classes,'disposition':'Qualified source-stage execution evidence only; NOT exact-frozen whole test closure or fresh runtime hash claim. All imported policy/liquidity fixture class bodies stayed identical; only other unexecuted VaultAccounting fixture/test bodies/imports changed. Production source was separately pinned to normal7e38 and unchanged. Same compiler/settings and unchanged selected economic/fixture logic support retaining the 11 actual successful methods at their explicit source stage; exact per-stage compile-input ambiguity is retained, not overwritten.','not_a_new_test_run':True}
+p=e/'CLOSURE_DRIFT_TRIAGE.json';assert not p.exists();p.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps(d,indent=2))

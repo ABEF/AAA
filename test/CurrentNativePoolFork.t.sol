@@ -252,7 +252,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         bytes32 reviewedPolicy3 = IZZZProtocolPolicy(address(entry.access().protocolPolicy())).entryFingerprint(); vm.prank(ALICE); entry.executeReviewed(request,200,reviewedPolicy3);
         assertEq(IERC20(ZZZ).allowance(ALICE,address(entry)),0);
         assertEq(IERC20(ZZZ).allowance(address(entry),address(s.vault)),0);
-        assertEq(s.vault.ACCOUNTING_VERSION(),6); assertEq(s.vault.bucketCount(),1);
+        assertEq(s.vault.ACCOUNTING_VERSION(),7); assertEq(s.vault.bucketCount(),1);
         assertEq(s.vault.nftBucket(b),bucket); assertEq(s.vault.group(bucket).lpTokenId,lp);
         assertGt(positions.getPositionLiquidity(lp),oldLiquidity); assertGt(s.vault.sharesOf(a),shares);
         assertEq(positions.ownerOf(lp),address(s.vault)); assertEq(s.membership.totalEligible(),2);
@@ -284,15 +284,19 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         assertGe(address(s.rewards).balance,s.rewards.liabilities(address(0)));
     }
     function _rewardState(ZZZRewards ledger,uint256 id,address token) private view returns (bytes32) {
-        return keccak256(abi.encode(ledger.individual(id,token),ledger.collective(id,token),
-            ledger.paidIndex(id,token),ledger.fraction(id,token),ledger.paidOwnerIndex(id,token),
-            ledger.ownerFraction(id,token),ledger.claimable(id,token)));
+        (uint256 personal,uint256 collective)=ledger.claimableComponents(id,token);
+        return keccak256(abi.encode(personal,collective,ledger.claimable(id,token)));
+    }
+    function _allocationState(ZZZRewards ledger,uint256 bucket)private view returns(bytes32){
+        (uint256 weight,uint256 eth,uint256 zzz)=ledger.allocationTree(bucket);
+        (uint256 active,uint256 collectiveETH,uint256 collectiveZZZ)=ledger.allocationTree(0);
+        return keccak256(abi.encode(weight,eth,zzz,active,collectiveETH,collectiveZZZ));
     }
     function _balance(address token,address owner) private view returns (uint256) {
         return token==address(0)?owner.balance:IERC20(token).balanceOf(owner);
     }
     function _assetState(System memory s,uint256 a,uint256 b,uint256 bucket,address token) private view returns (bytes32) {
-        bytes32 credits=keccak256(abi.encode(s.rewards.index(token),s.rewards.ownerIndex(bucket,token),
+        bytes32 credits=keccak256(abi.encode(_allocationState(s.rewards,bucket),s.rewards.directLiabilities(token),
             s.rewards.liabilities(token),s.rewards.orphaned(token),_rewardState(s.rewards,a,token),_rewardState(s.rewards,b,token)));
         bytes32 reserves=keccak256(abi.encode(s.fees.compoundBalance(bucket,token),s.fees.buybackBalance(token),
             s.fees.dust(bucket,token),s.fees.accounted(token)));

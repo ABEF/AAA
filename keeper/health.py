@@ -44,13 +44,13 @@ def _health_profile_valid(config):
     attest a service. Explicit historical configurations keep their old scope.
     """
     accounting=config.get('accounting_version',1)
-    if type(accounting) is not int or accounting not in (1,2,3,4,5,6):return False
-    if accounting not in (5,6):return True
+    if type(accounting) is not int or accounting not in (1,2,3,4,5,6,7):return False
+    if accounting not in (5,6,7):return True
     required={'fee_intake_version':1,'maintenance_policy_version':3,
         'rebalance_confirmation_version':3,'execution_quality_version':1,
-        'lp_routing_version':2,'portfolio_version':2 if accounting==6 else 1}
+        'lp_routing_version':2,'portfolio_version':2 if accounting in (6,7) else 1}
     policy=config.get('protocol_policy_version',0)
-    return (type(policy) is int and policy==(1 if accounting==6 else 0) and
+    return (type(policy) is int and policy==(1 if accounting in (6,7) else 0) and
         all(type(config.get(key)) is int and config[key]==value for key,value in required.items()))
 
 
@@ -71,15 +71,15 @@ def _confirmation_bindings(config):
 
 def _confirmation_roles(config):
     return CONFIRMATION_RUNTIME_ROLES+(('portfolio_policy',) if config.get('rebalance_confirmation_version')==3 else ())+(
-        ('protocol_policy',) if config.get('accounting_version')==6 else ())
+        ('protocol_policy',) if config.get('accounting_version') in (6,7) else ())
 
 
 def _confirmation_capabilities(config):
     result={role:config['rebalance_confirmation_version'] for role in
         ('strategy','rebalance_confirmation','idle_compounding_budget')}
     if config.get('rebalance_confirmation_version')==3:
-        result.update(portfolio_policy=2 if config.get('accounting_version')==6 else 1,budget_compounding=4)
-    if config.get('accounting_version')==6:result['protocol_policy']=1
+        result.update(portfolio_policy=2 if config.get('accounting_version') in (6,7) else 1,budget_compounding=4)
+    if config.get('accounting_version') in (6,7):result['protocol_policy']=1
     return result
 
 
@@ -155,10 +155,10 @@ def confirmation_reasons(data, config, *, now, max_age):
         return ['confirmation_health_profile_invalid']
     interval = config.get('interval_seconds')
     fresh=config['rebalance_confirmation_version']==3
-    if (type(config.get('accounting_version')) is not int or config['accounting_version'] not in ((5,6) if fresh else (4,)) or
-            config.get('accounting_version')==6 and (type(config.get('protocol_policy_version')) is not int or config['protocol_policy_version']!=1) or
+    if (type(config.get('accounting_version')) is not int or config['accounting_version'] not in ((5,6,7) if fresh else (4,)) or
+            config.get('accounting_version') in (6,7) and (type(config.get('protocol_policy_version')) is not int or config['protocol_policy_version']!=1) or
             type(config.get('maintenance_policy_version')) is not int or config['maintenance_policy_version'] != (3 if fresh else 2) or
-            fresh and (type(config.get('portfolio_version')) is not int or config['portfolio_version']!=(2 if config.get('accounting_version')==6 else 1) or
+            fresh and (type(config.get('portfolio_version')) is not int or config['portfolio_version']!=(2 if config.get('accounting_version') in (6,7) else 1) or
                 type(config.get('lp_routing_version')) is not int or config['lp_routing_version']!=2) or
             type(interval) is not int or not 60 <= interval <= CHECK_SECONDS):
         return ['confirmation_health_profile_invalid']
@@ -221,15 +221,15 @@ def confirmation_reasons(data, config, *, now, max_age):
             isinstance(reference_review,str) and re.fullmatch(r'0x[0-9a-f]{64}',reference_review) is not None and
             (observation['reference_exit_required'] or _hash(reference_review)))
     if fresh:
-        valid_policy=(valid_policy and type(observation.get('portfolio_version')) is int and observation['portfolio_version']==(2 if config.get('accounting_version')==6 else 1) and
+        valid_policy=(valid_policy and type(observation.get('portfolio_version')) is int and observation['portfolio_version']==(2 if config.get('accounting_version') in (6,7) else 1) and
             observation.get('portfolio_policy')==str(config.get('contracts',{}).get('portfolio_policy','')).lower() and
             _uint(observation.get('portfolio_policy_revision'),2**64-1) and
             _uint(observation.get('threshold_bps'),10000) and observation['threshold_bps']>0 and
             observation.get('threshold_basis')=='ZZZ_in_ETH_actual_centre_to_physical_boundary' and
-            ((observation.get('minimum_main_bps') is None and observation.get('maximum_residual_bps') is None) if config.get('accounting_version')==6 else
+            ((observation.get('minimum_main_bps') is None and observation.get('maximum_residual_bps') is None) if config.get('accounting_version') in (6,7) else
              type(observation.get('minimum_main_bps')) is int and observation['minimum_main_bps']==6000 and
              type(observation.get('maximum_residual_bps')) is int and observation['maximum_residual_bps']==4000))
-    if config.get('accounting_version')==6 and not _maintenance_policy_valid(observation.get('maintenance_policy'),config):
+    if config.get('accounting_version') in (6,7) and not _maintenance_policy_valid(observation.get('maintenance_policy'),config):
         reasons.append('confirmation_observation_maintenance_policy_invalid')
     if not valid_policy:
         reasons.append('confirmation_observation_policy_invalid')
@@ -265,7 +265,7 @@ def execution_reasons(data, config, *, now, max_age):
     confirmation = confirmation_reasons(data,config,now=now,max_age=max_age)
     if quality_version != 1:
         return confirmation
-    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != (2 if config.get('accounting_version') in (5,6) else 1):
+    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != (2 if config.get('accounting_version') in (5,6,7) else 1):
         return ['execution_health_profile_invalid']
     if version != HEALTH_SCHEMA:
         return ['execution_health_schema_required']
@@ -325,7 +325,7 @@ def execution_reasons(data, config, *, now, max_age):
             quality.get('policy_frozen_by_wallet_review') is not False):
         reasons.append('execution_observation_policy_invalid')
     if config['lp_routing_version']==2 and (not isinstance(policy,dict) or
-            type(policy.get('portfolio_version')) is not int or policy['portfolio_version']!=(2 if config.get('accounting_version')==6 else 1) or
+            type(policy.get('portfolio_version')) is not int or policy['portfolio_version']!=(2 if config.get('accounting_version') in (6,7) else 1) or
             policy.get('math_helper')!=str(config.get('contracts',{}).get('lp_balance_math','')).lower() or
             policy.get('position_executor')!=str(config.get('contracts',{}).get('lp_position_executor','')).lower()):
         reasons.append('execution_portfolio_helper_invalid')

@@ -52,7 +52,7 @@ class RoyaltyAutomation:
                 raise ValueError('Original-currency royalties prohibit conversion settings')
             return
         if not self.enabled: return
-        self.missing_explicit_profile = getattr(keeper,'accounting_version',1)==6 and 'profile' not in cfg
+        self.missing_explicit_profile = getattr(keeper,'accounting_version',1) in (6,7) and 'profile' not in cfg
         if self.missing_explicit_profile:
             # A new job configuration must not acquire authority over recovery
             # of a saved transaction. Refuse this job after recovery instead.
@@ -61,6 +61,8 @@ class RoyaltyAutomation:
         self.profile = cfg.get('profile','v3_wrapper')
         if self.profile not in ('v3_wrapper','v3_wrapper_configurable','v4_native'):
             raise ValueError('Unsupported royalty conversion profile')
+        if lp and getattr(keeper,'accounting_version',1)==7 and self.profile!='v4_native':
+            raise ValueError('Accounting7 LP conversion requires the explicit native-v4 profile')
         self.native_v4 = self.profile == 'v4_native'
         self.configurable_loss = self.profile != 'v3_wrapper'
         self.names = (self.ledger,self.converter,self.nft,'oracle',self.executor if self.native_v4 else self.wrapper)

@@ -11,15 +11,23 @@ unavailable, and the shared signer remains Anvil-only.
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
 | Historical schema2/native2 | Accounting2, dual pricing2, routing2 and review-policy1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
-| Fresh accounting6/custody5/portfolio2/canonical V8 contracts | Backend read/unsigned adapters authenticate both physical legs and full helper/core graph. A compatible deployed website consumer is still pending; add/review its explicit profile before connecting these contracts, never relabel schema3 or old journals |
+| Historical source8/accounting6/custody5/portfolio2/canonicalV8 draft | Separate unserved source profile; its runtimes, reader and journals remain explicit, never relabelled as7 |
+| Fresh source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. A compatible deployed website consumer is still pending; never relabel schema3, source8 or old journals |
 
 The legacy configuration and local-wallet procedures below retain their own
-profile scope; they are not instructions to configure fresh6. Native2 supports a captured governed contribution cap;
+profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;
 the schema 1 99% fixture floor is not a universal current rule. The contract
 candidate accepts ETH/fixed ZZZ only and defaults to 2% contribution loss; manifest
 input admission, code/runtime pins and quote policy must match the selected
 version exactly. No source publication updates a static server, existing chain,
 wallet journal or running service.
+
+The current schema16 source inventory pins17 modules,19 callable helpers and2
+inert RoyaltyFactory data children. Factory artifact3 retains code-storage
+FORMAT2; its new payload/runtime identities do not upgrade old artifacts.
+Fresh7 raw earnings use exact LP events/getters; checkpoint1 is historical6-only
+and exact checkpoint2 remains open. These are backend source boundaries, not a
+new served browser manifest or qualified production service.
 
 See [verification](../reports/deployment-adapter/VERIFICATION.md),
 [API hosting](API_INGRESS.md), [read API](FRONTEND_API.md),
@@ -47,7 +55,7 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
 | Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
-| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh4 needs its own compatible profile with the same fixed contribution identities. |
+| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh7 needs its own compatible profile with the same fixed contribution identities and current governed minima. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the trace must meet the selected version's captured marginal-LP floor. Legacy schema 1 uses 99%; native2 uses its reviewed governed cap. Show simulated LP added and gas separately. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
@@ -99,7 +107,7 @@ profile ignores this configuration and retains its own local wallet admission.
    inventory, fee semantics and RPC hash selectors first. Read the
    [production services record](PRODUCTION_SERVICES.md) and the central
    [wallet task](../TODO.md#task-wallet). Select a frontend profile that actually
-   supports that contract version. Fresh4 support remains open; native2/current3
+   supports that contract version. Fresh7 support remains open; native2/current3
    builds cannot be made compatible by changing a version field.
 2. Run the existing read/mint-claim and activation services under their reviewed
    configurations. Keep their independent admission, Origin and resource limits.
@@ -126,7 +134,7 @@ profile ignores this configuration and retains its own local wallet admission.
 - For a configuration/runtime/hash mismatch: stop preparation, investigate the
   reviewed deployment/service config and reissue a reviewed build. Never accept
   the changed target automatically or turn off identity checks to resume.
-- For a fresh accounting6/portfolio2/holder-exit deployment: stop at the unsupported-profile
+- For a fresh accounting7/portfolio2/holder-exit deployment: stop at the unsupported-profile
   boundary until its frontend is implemented and qualified. Do not substitute
   a schema3 manifest, historical API or example data to make the site load.
 - For a missing/failed input route: disable that input in the operator manifest

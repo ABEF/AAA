@@ -14,6 +14,7 @@ import {MockAccess, MockToken, MockPools} from "./mocks/Mocks.sol";
 // TEST ONLY: isolated canonical share ledger. Fair share issuance and LP custody
 // are exercised against the real Vault in separate suites.
 contract RewardsVaultFixture {
+    function ACCOUNTING_VERSION()external pure returns(uint256){return 7;}
     function migrationBudget() external view returns(address){return address(this);}
     function compositionEpoch(uint256) external pure returns(uint64){return 0;}
     mapping(uint256 => uint256) public nftBucket;
@@ -29,9 +30,9 @@ contract RewardsVaultFixture {
     function join(uint256 id, uint256 bucketId, uint256 increment) external {
         require(nftBucket[id] == 0 || nftBucket[id] == bucketId, "immutable membership");
         nftBucket[id] = bucketId;
-        rewards.checkpointOwner(id);
         sharesOf[id] += increment;
         bucketTotalShares[bucketId] += increment;
+        rewards.syncShares(id);
     }
 }
 contract RewardsAndFeesTest is Test, IERC721Receiver {
@@ -42,12 +43,12 @@ contract RewardsAndFeesTest is Test, IERC721Receiver {
     function setUp() public {
         ac = new MockAccess(); ProtocolPolicyFixture.bind(address(ac)); token = new MockToken(18); token1 = new MockToken(18);
         nft = new ZZZNFT(address(ac), "ipfs://"); nft.setMintEnd(uint64(block.timestamp + 3650 days)); membership = new ZZZMembership(address(ac)); rewards = new ZZZRewards(address(ac));
-        fees = new ZZZFeeController(address(ac)); pools = new MockPools(); vault = new RewardsVaultFixture(rewards);
+        fees = new ZZZFeeController(address(ac)); pools = new MockPools(); pools.setFixedZZZ(address(token)); vault = new RewardsVaultFixture(rewards);
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
         ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
         ac.bind(Ids.BUYBACK, address(this)); rewards.addAsset(address(token));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
-        PoolConfig memory c; c.key.currency0 = address(token); c.key.currency1 = address(token1); pools.set(POOL, c);
+        PoolConfig memory c; c.key.currency0 = address(0); c.key.currency1 = address(token); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.status = PositionStatus.Active; vault.set(BUCKET, p);
         vm.prank(address(vault)); nft.mint(alice, 1); vm.prank(address(vault)); nft.mint(bob, 2);
         vault.join(1, BUCKET, 100); _activate(1);
@@ -93,20 +94,20 @@ contract RewardsAndFeesTest is Test, IERC721Receiver {
     function testMissingNFTCannotBecomeEligible() public {
         vm.prank(address(vault)); vm.expectRevert(); membership.activate(999); assertEq(membership.totalEligible(), 1);
     }
-    function testUnauthorizedCollectiveCheckpoint() public { vm.expectRevert(); rewards.checkpointAll(1); }
-    function testUnauthorizedOwnerCheckpoint() public { vm.expectRevert(); rewards.checkpointOwner(1); }
+    function testUnauthorizedCollectiveSynchronization() public { vm.expectRevert(); rewards.syncMembership(1); }
+    function testUnauthorizedOwnerSynchronization() public { vm.expectRevert(); rewards.syncShares(1); }
     function testUnknownBucketCannotReceiveFundedRewards() public {
         token.mint(address(fees), 80); vm.startPrank(address(fees)); token.approve(address(rewards), 80);
         vm.expectRevert(); rewards.creditPool(99, address(token), 50, 30); vm.stopPrank(); assertEq(token.balanceOf(address(fees)), 80);
     }
-    function testFractionalClaimsRemainFunded() public {
+    function testWholeUnitClaimsAssignEveryFundedCollectiveUnit() public {
         vault.join(2, BUCKET, 200); _activate(2);
-        // Three equal participants exercise persistent thirds rather than exact halves.
+        // Three equal participants exercise whole-unit rotation rather than halves.
         vm.prank(address(vault)); nft.mint(alice, 3); vault.join(3, BUCKET, 100); _activate(3);
         for (uint256 i; i < 30; ++i) { _credit(0, 1); vm.prank(alice); rewards.claim(1, address(token)); }
         vm.prank(bob); rewards.claim(2, address(token)); vm.prank(alice); rewards.claim(3, address(token));
-        assertLe(token.balanceOf(alice) + token.balanceOf(bob), 30);
-        assertGe(token.balanceOf(address(rewards)), rewards.liabilities(address(token)));
+        assertEq(token.balanceOf(alice) + token.balanceOf(bob), 30);
+        assertEq(token.balanceOf(address(rewards)),0);assertEq(rewards.liabilities(address(token)),0);
     }
     function testNFTSupportsStandardERC721() public { assertTrue(nft.supportsInterface(0x80ac58cd)); }
     function testUnsafeReceiverRejected() public {
@@ -114,8 +115,8 @@ contract RewardsAndFeesTest is Test, IERC721Receiver {
     }
     function testFeeSplitIsExactAndBacked() public {
         _allocate(1000);
-        assertEq(rewards.ownerIndex(BUCKET, address(token)), 800 * rewards.SCALE() / 100);
-        assertEq(rewards.index(address(token)), 100 * rewards.SCALE());
+        (uint256 personal,uint256 shared)=rewards.claimableComponents(1,address(token));
+        assertEq(personal,800);assertEq(shared,100);
         assertEq(rewards.claimable(1, address(token)), 900); assertEq(rewards.liabilities(address(token)), 900);
         assertEq(fees.compoundBalance(BUCKET, address(token)), 50); assertEq(fees.buybackBalance(address(token)), 50);
         assertEq(token.balanceOf(address(fees)), 100); assertEq(fees.accounted(address(token)), 100);

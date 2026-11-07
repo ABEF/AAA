@@ -94,14 +94,7 @@ its USD price; independently rounded subtotals may differ by a raw USD unit.
 Never add liquidity units from different ranges or use historical deposits
 as current LP value. Both legs remain counted while mode-off awaits merge.
 
-LP rewards keep separate individual and collective sub-unit fractions. Do
-not combine those fractions into a spendable unit or sweep the difference
-between total liabilities and current claims. Claim only the exact funded
-contract amount; failed USD reads do not prove a zero reward balance. Claims
-and terminal principal payouts are not additional fee generation. See the
-[receipt-model campaign](../reports/market-lifecycle-20261104/REVIEW.md). No new call or restart is required;
-fresh custody5 still keeps terminal batches governance-only and holder reward
-claims owner-controlled.
+Fresh7 LP rewards use separate whole-unit individual and collective books. Every allocated raw unit is assigned; rounding phase is not money or a sweepable reserve. Historical6 LP fractions must keep their original reader/runtime identity. Royalties use their separate exact rarity tickets. Do not mix currencies or principal/compound/buyback backing into holder claims. See [exact LP rules](EXACT_LP_ALLOCATION.md).
 
 ## Find the right procedure
 
@@ -144,12 +137,12 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
-## Current accounting6 deployment boundary
+## Current accounting7 deployment boundary
 
 Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
-`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")`.
+`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V6.md).
 Normal size/runtime gates, scoped offline checks and local actual-v4-core
 integration pass within their [current Entry3 source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
@@ -177,9 +170,9 @@ Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
 - Default single main; governance may enable at most one residual in the same
   pool. Both actual LP NFTs belong to Vault and back the same independent NFT
   shares. Disabling desired mode does not hide a live residual before safe merge.
-- Use explicit accounting6 API/keeper configuration, ProtocolPolicy1 pins and new state paths. API
+- Use explicit accounting7 API/keeper configuration, ProtocolPolicy1 pins and new state paths. API
   requires principal_exit runtime/address pins; keeper also binds access/fees/
-  vault. Existing accounting3 poplint stays unconfigured and is not a profile6
+  vault. Existing accounting3 poplint stays unconfigured and is not a profile7
   frontend. Public signing stays Anvil-only; no deployment is authorized here.
 
 ### Fixed ZZZ setup order
@@ -204,10 +197,10 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema15 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/18 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema16 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/19 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
-| Website read/unsigned review | [Served current3/fresh Entry3/accounting6 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile6 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
+| Website read/unsigned review | [Served current3/fresh Entry3/accounting7 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile7 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. Matching Entry3 website consumer/service acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a
@@ -407,7 +400,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema15 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema16 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -495,7 +488,7 @@ Old deployments and journals retain their explicit historical profiles.
    `policyRevision`. Every reconfiguration, including change-and-restore,
    invalidates old samples. Ordinary pause permits configuration; preparation,
    canonical lifecycle and principal exit retain their locks.
-3. Use explicit accounting6/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/LP2/quality1
+3. Use explicit accounting7/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/LP2/quality1
    keeper/API configuration, Budget4 and the complete fixed helper graph.
    Match runtime pins and source, preserve pending/nonce/spend truth, and use
    controlled restart for local config/release changes. An on-chain setter alone
@@ -753,7 +746,7 @@ constructor/call evidence. These events add visibility, not authority.
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
-1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for supported native ETH/fixedZZZ fee tiers; generic ERC20 LP admission is removed. Current accounting6 retains the real zero ETH currency; do not substitute WETH or change slot ordering.
+1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for supported native ETH/fixedZZZ fee tiers; generic ERC20 LP admission is removed. Current accounting7 retains the real zero ETH currency; do not substitute WETH or change slot ordering.
 2. Check the dependent bounds below, oracle freshness, current price/spot difference, target ticks, actual swap costs and expected gas. Review narrower-range out-of-range exposure and turnover. Simulate the new configuration and maintenance on a fork at the same state before approval.
 3. Governance executes the configuration. This **does not immediately close/reopen LP**. Inspect `Strategy.rangeUpdatePending(bucketId)` and `needsRebalance(bucketId)`.
 4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Fresh confirmation3 uses 240-second condition checks; historical ten-minute polling is not its operating schedule or a guaranteed rebalance deadline.
@@ -801,7 +794,7 @@ On-chain settings are read fresh and normally need no host restart/reseal.
 Lowering a cooldown can make existing custody due sooner; it does not reset its
 clock. Local source/config/version/runtime changes need a controlled matching
 restart with original journal/pending/nonce/spend state preserved. Never relabel
-an accounting4 service or deployment as profile6. Publication does not perform
+an accounting4 service or deployment as profile7. Publication does not perform
 an operating rollout or change the existing Anvil chain.
 
 ### Optional main and residual mode
@@ -1014,7 +1007,7 @@ after an earlier raw residual close, even when no residual remains.
 
 This is paused **governance-only**, with `RESIDUAL_REINVEST_VERSION()==1` on
 Migration, Vault, Budget, PortfolioPolicy and ContributionPricing. No keeper grant is needed. It is
-not an automated keeper action. Use fresh schema15/runtime bindings; older
+not an automated keeper action. Use fresh schema16/runtime bindings; older
 deployments and journals do not gain this function through publication.
 
 The transaction harvests both legs, closes only the residual if present,
@@ -1074,7 +1067,7 @@ No holder payment, token approval or ETH transfer is required from governance.
    ordinary service recovery. On-chain setting changes alone need no host restart;
    a new runtime/capability needs a separately reviewed fresh deployment/config. The current
    seal checks do not independently prove every new capability/runtime binding;
-   use the complete schema15 preflight before sealing, never mixed generations.
+   use the complete schema16 preflight before sealing, never mixed generations.
 
 Force retains the existing mask meanings:1 raw rebalance trigger/cooldown,
 2 independent spot/reference agreement,4 USD retention/venue quality/idle caps,
@@ -1568,7 +1561,7 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 ## Pool admission and retirement
 
-For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configureNative`; the removed generic pool `configure` entrypoint is unavailable. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
+For a supported new LP venue, qualify the SAME native ETH/fixed-ZZZ identity, feeds, exact venue key/manager and strategy. Rewards books were bound before seal; a later same-pair fee tier does not call `Rewards.addAsset`. Then governance calls `configureNative`; the removed generic pool `configure` entrypoint is unavailable. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
 
 ### One contribution pool at a time
 
@@ -1635,7 +1628,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema15 observer checks these facts;
+pre-populate the replacement. The current schema16 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1657,7 +1650,7 @@ Both stop and re-enable are exact immediate governance operations; there is no n
 
 ## Custody and LP migration
 
-There is **no external handoff custody address** in accounting6/custody5.
+There is **no external handoff custody address** in accounting7/custody5.
 [Collective holder exit](HOLDER_COLLECTIVE_EXIT.md) replaces both principal and
 royalty-custody drains. Normal moves and parking remain reversible before exit.
 
@@ -1720,10 +1713,7 @@ the original journal; do not clear a retry or resend a saved transaction.
 
 ## Revenue operations
 
-The [exact-unit LP allocator](EXACT_LP_ALLOCATION.md) is an implemented INTERNAL
-source component for the next ledger integration. There is no explorer call or
-operator switch to enable it on current contracts. Current claims still use the
-existing ledger; adding this source file does not upgrade a sealed deployment.
+Fresh [accounting7 LP rewards](EXACT_LP_ALLOCATION.md) are connected to Vault, Membership, claims, conversion and canonicalV9. You do not manually checkpoint or change weights: Vault calls `syncShares` after its atomic share writes, and Membership calls `syncMembership` after activation. Both settle old money with stored old weights first. Holder `Rewards.claim(id,asset)` or the fixed ClaimRouter pays only the actual owner; pause preserves funded claims while canonical state is operating. `claimableComponents(id,asset)` reads the whole breakdown; no price feed is needed.
 
 A real `PoolManager.donate` becomes funded fee growth and is allocated at harvest
 like other actual LP receipts. An unsolicited raw Vault balance remains a prefund,
@@ -1744,12 +1734,20 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Current Budget4 / policy3 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ reviewed `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and collective holder return. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires collective holder return and a fresh reviewed deployment. |
-| Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
+| Bind LP ZZZ book | Pre-seal governance `Rewards.addAsset(ZZZ_TOKEN)` | Exactly native ETH plus fixed ZZZ, maximum2total. One-time pre-seal binding, separate from venue or royalty admission. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
 | Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | ETH and independently reviewed ERC20 payment currencies are claimed as received; no royalty swap/oracle/route. Default16ERC20+ETH capacity can expand through reviewed governance to64ERC20+ETH after gas qualification. Pre-admission/no-cohort receipts require reviewed original-currency allocation; earned/deferred/opening rights remain protected. Admission does not restrict marketplace sales. |
 | Synchronize/claim royalties | Permissionless `RoyaltyRewards.sync(asset)`/`syncAll`; actual owner calls ledger `claim` or bounded ClaimRouter | Direct royalty claim synchronizes pending admitted receipts. LP claim does not harvest new venue fees. Use current owner and actual funded amounts. |
 
 A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**, or claim individually. One failed operation reverts the whole batch; simulate and split by asset/NFT if needed. No operator can choose a different beneficiary or claim just because it holds ERC721 approval. All unclaimed rights follow the current NFT owner; already paid funds do not travel with it. An escrow that owns the NFT is the contract-level holder. Lifetime claimed display requires complete confirmed index history, including predecessors after replacement.
+
+32 is only a count ceiling. Fresh7 cold32-entry testing measured31,085,813raw
+execution gas, above the unchanged12M service budget. Use the gas-aware next-batch
+planner or smaller exact simulations, then replan after confirmation; do not raise
+gas/fee limits or repeat a confirmed claim to make a stale review work. The direct
+single-currency fixture measured1,259,505raw gas, excluding transaction overhead.
+These are controlled-host measurements, not target-chain approval or a fixed
+recommended batch size. [Scope](../reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees and UI estimates.
 
@@ -1767,7 +1765,7 @@ the holder claim: a failed strategy or buyback should not block funded LP claims
 For a manual independent harvest, governance can call
 `Vault.collectFees(bucketId,deadline)` directly; the deadline must be no more
 than ten minutes ahead. The same transaction collects actual shared-position
-fees and allocates80/10/5/5 to indices/reserves. The function is permissionless:
+fees and allocates80/10/5/5 to whole-unit books/reserves. The function is permissionless:
 a caller pays gas but cannot choose the split or recipients, move principal or
 initiate collective exit. The keeper normally submits it automatically. Native
 ETH receipts fund ETH claims immediately; ZZZ portions still use their separate
@@ -1787,12 +1785,41 @@ allocation log. If either leg fails, the entire call reverts. Pending receipts
 must be recovered by the same hash before retry; a manual call is not silently
 adopted into the keeper's own harvest clock.
 
-Small receipts carry to20raw-unit baskets. A share/membership barrier assigns
-remaining<=19raw units to incumbent individual rewards; it is a documented
-exception to the four-way split, not a second collection. Current LP indices
-can retain a final raw unit after all available claims; exact-unit royalties do
-not fix that separate ledger. See the [harvesting review](../reports/harvesting-audit-20261106/REVIEW.md)
-and [approved LP redesign](../reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md).
+Small receipts carry to20raw-unit baskets. The existing share/membership barrier assigns remaining<=19raw units to incumbent individual rewards; this is a split-dust exception, not a second harvest. Fresh7 allocated LP units are wholly assigned and claimable, including the final unit. Old6 fractional receipts keep their historical semantics. [Current LP rule](EXACT_LP_ALLOCATION.md) and [integration review](../reports/exact-lp-integration-20261106/REVIEW.md) distinguish allocated books, unallocated receipts and upstream collection rounding.
+
+### Exact LP codec, currency and recovery controls
+
+- Bind LP ZZZ once **before sealing** with `Rewards.addAsset(ZZZ_TOKEN)` after
+  configuring the matching source identity. Native ETH already exists. This is
+  not royalty-token admission and cannot add a third LP currency after seal.
+  Before sealing verify `assetCount()==2`, `assets(0)==address(0)`,
+  `assets(1)==ZZZ_TOKEN` and `isAsset(ZZZ_TOKEN)==true`, plus fixed source identity.
+  Schema16 observes and rejects any other population; `Access.seal` alone does
+  not prove this extension setup. The full release validator requires sealing,
+  so perform these reads manually BEFORE seal rather than relying on a later pass.
+  Omitting ZZZ cannot be repaired by post-seal admission; do not seal or use that
+  misconfigured deployment.
+- Read `Rewards.canonicalModule()`, then the child's `access()`/`rewards()` and
+  exact runtime pins. It is constructor-created; do not deploy/bind another child.
+  The complete schema16 inventory now has19 callable helpers plus2 inert data children.
+- Use `RewardsCanonical.canonicalExport(row)` for operator reads during the
+  coordinator's completed settlement/export phase. Parent `canonicalSeed`,
+  `canonicalNode` and `canonicalBarrier` are **module-context reads**, not ordinary
+  operator calls; table `M` marks their fixed-child context even though they are
+  read-only. Parent `canonicalWrite`/`canonicalSend` are closed child-only hooks,
+  never governance balance editors or a custody-exit recipient.
+- For replacement, use coordinator steps in [whole-collection handoff](#whole-collection-replacement).
+  Import NFT→Vault→Membership→LP→royalties→fees in order. LP seeds must finish
+  before raw nodes. At most8rows per page; use smaller simulated pages if needed.
+  Nonempty collections have2023LPnode rows (253pages), plus header/assets/NFTs;
+  do not confuse aggregate rehearsal gas with one transaction or target fees.
+- On interruption, read the SAME coordinator cursors/roots/backing flags and
+  recover any submitted hash. Never regenerate old books from rounded balances,
+  skip a monetary record or edit a journal to appear complete. Abort requires
+  all transferred backing returned before reopening; source phase/books persist.
+- Raw7 earnings replay is available; old checkpoint1 is explicitly incompatible.
+  Keep complete history until reviewed exact-unit checkpoint2 exists. Do not
+  relabel old6/V8 checkpoints, runtimes, Anvil accounts or saved operations.
 
 ### Coordinate compounding with rebalancing
 
@@ -1824,7 +1851,7 @@ Historical policy1/helper2 and older helper1 readers remain versioned separately
 No automatic journal or runtime migration is provided. Readiness does not replace
 keeper authority, lifecycle, prices, gas, deadline or execution/backing checks.
 
-Fresh accounting6/policy3 keeper source additionally waits while the main crosses
+Fresh accounting7/policy3 keeper source additionally waits while the main crosses
 the 85% physical threshold, is outside its range, or operator width/mode/active
 residual geometry is pending, including before
 the 12-hour rebalance cooldown expires. This is service policy, not a new
@@ -1969,7 +1996,7 @@ The shipped `keeper/config.example.json` is a historical accounting3 template;
 `keeper/config.holder-exit.example.json` is historical accounting4. Neither is a
 ready-made profile6 operating configuration. Do not merely relabel their version.
 
-Prepare a separately reviewed configuration with accounting6, protocol_policy_version1, maintenance3,
+Prepare a separately reviewed configuration with accounting7, protocol_policy_version1, maintenance3,
 confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
@@ -2051,7 +2078,7 @@ reviewed descriptors/worker profiles. Capacity cannot decrease or remove a token
 A review hash is not a gas proof. No public-chain expansion is qualified here.
 
 Use reporting5 and explicit keeper royalty_settlement_version4 (no royalty swaps).
-Old profiles/journals remain separate. CanonicalV8 requires initial allocation of
+Old profiles/journals remain separate. CanonicalV9 requires initial allocation of
 every admitted currency complete before capture; sync each after opening first.
 Emergency LP/terminal return remains independent. No server restart/deployment is
 implied by a source/config edit; deploy reviewed matching services separately.
@@ -2065,7 +2092,7 @@ under recovery2, sealed/current/unpaused/no preparation and positive active weig
 Amount is positive raw units bounded by `orphaned(asset)` after sync; reviewHash
 is a nonzero reviewed classification/beneficiary fingerprint. No swap, unwrap,
 price, approval, external recipient or keeper authority. Accounted backing is
-unchanged; source-currency orphaned decreases and liabilities/index increase.
+unchanged; source-currency orphaned decreases and exact ticket liabilities increase.
 Existing earned/deferred/fraction funds are excluded. Verify
 `UnallocatedRoyaltiesAllocated`, then holders claim the SAME asset. Success is
 irreversible; failure reverts. No service restart is needed for the contract call.
@@ -2096,7 +2123,7 @@ Use the [fixed code-data procedure](FACTORY_CODE_STORAGE.md). Match
 RoyaltyFactory.CODE_STORAGE_VERSION()==2, creationCodeLength/royaltyCodeHash,
 part0/part1 and both partCodeHash getters against independent final compiler
 bytes. Authenticate both actual REVERT-prefixed data runtimes at one pinned
-block using schema15; never accept self-reported pins. Construction creates
+block using schema16; never accept self-reported pins. Construction creates
 both children automatically. They have no operator call, funding or sweep.
 Factory.create reconstructs the same ledger and binds its fixed controller.
 Qualify exact constructor inputs and target gas; no deployment is authorized.
@@ -2105,9 +2132,11 @@ Optional royalty sync defaults to1m forwarded gas. A too-low governed value can
 defer a healthy currency; simulate cold synchronization and inspect eligibility.
 New currency admission/capacity still requires reviewed descriptors and actual
 gas/work qualification. Current unsigned source helpers do not relabel an old
-current3 site or old journal as the fresh native6 profile.
+current3 site or old journal as the fresh native7 profile.
 
 ### Prepare and rotate an earnings checkpoint
+
+Fresh7 uses full raw exact-tree replay; reviewed checkpoint2 is not implemented. Preserve raw logs/WAL and configure no checkpoint1 artifact for7. The following checkpoint1 procedure is explicitly historical accounting6/5/1 only.
 
 Use [the exact checkpoint1 procedure](EARNINGS_CHECKPOINTS.md). The offline
 `scripts/build-earnings-checkpoint.py` takes a reviewed API `--config`, confirmed
@@ -2153,7 +2182,7 @@ faults even when the separate healthy-currency balance view still works.
 
 ## Mint and metadata
 
-For accounting6, write randomness policy through **ProtocolPolicy**, not the NFT.
+For accounting7, write randomness policy through **ProtocolPolicy**, not the NFT.
 Configure before sealing/import preparation with the reviewed coordinator,
 expected runtime codehash, lane, subscription ID, confirmations, callback gas,
 payment mode and reviewHash. Initial defaults remain unconfigured. After all
@@ -2201,7 +2230,7 @@ This is a separately reviewed operation, not routine LP maintenance. Current imp
 Run the [read-only holder inventory and escrow cutover procedure](HOLDER_PREFLIGHT.md) before preparation and again after freeze. Every code-bearing owner requires a review of its ability to release and claim for the exact replacement; a complete inventory is not approval.
 
 1. Independently review the proposed different-code successor, its economic compatibility and deployment commitment. Governance is trusted to approve it; there is no identical-code safeguard. Inventory every contract/escrow NFT holder: same owners at a new NFT contract address does not prove their escrow can operate it. Rehearse withdrawals/cutover while the old system is still usable; never rewrite owners to work around an incompatible escrow.
-2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible canonical V8 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
+2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible canonical V9 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
 3. Finish existing provider responses and ordered `finalizeTraits` calls; confirm `unfinished_draws=0`. This is the selected simple policy: reliable funded provider plus draining before replacement. Do not remove the fully-revealed check if a request is stuck. Cancel the exact notice via `cancelPreparation(noticeHash)` if postponing, then restore ordinary controls deliberately.
 4. Park each live bucket locally with its exact reviewed request; do not start collective holder exit. Governance freeze() stops ownership/accounting before capture. Complete six ordered settle(slot) domains, export/import batches of at most eight and completeImport(), then exact classified fund(slot,index) legs. Recover from on-chain cursors/roots rather than an assumed last successful command.
 5. Verify every root, owner, trait, share, liability, reserve and exact backing. Governance `commit()` atomically retires the source and activates one successor. Finality remains required before service/marketplace cutover. Update canonical address/runtime and complete predecessor-history configuration, payout routing and marketplace collection records; old ERC721 approvals are not imported.
@@ -2252,7 +2281,7 @@ slots do not bound lifetime aliases. Recover exact next cursors/roots after an
 interruption; never skip rows or relax backing to fit a transaction budget.
 This sizing review needs no service restart or on-chain configuration change.
 
-A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V8 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
+A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V9 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
 ## Stop controls
 
@@ -2413,7 +2442,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema15 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema16 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2593,7 +2622,7 @@ Record the cause, affected block/time/object, containment and exact state; verif
 
 ### Inspect current physical portfolio data
 
-Fresh6 read/keeper policy checks independently recalculate each leg's raw
+Fresh7 read/keeper policy checks independently recalculate each leg's raw
 principal from captured sqrt price, ticks and actual PosM liquidity; require
 residual containment; and match exact stable and liquidity-sensitive identities.
 A matching aggregate alone is insufficient. Stable identity excludes changing L;
@@ -2610,9 +2639,9 @@ is unavailable/error, never zero or permission to bypass guards.
 **Authority:** the service operator enables an unhosted read-only adapter; no
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
-pins plus the full accounting6 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema15
-release inventory separately observes18 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
+pins plus the full accounting7 ProtocolPolicy1/Portfolio2 graph (historical profiles
+retain their declared sets), helper pins and admitted assets first. The schema16
+release inventory separately observes19 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
 
@@ -2975,8 +3004,8 @@ aligned geometry and actual TickMath/execution feasibility. Width must exceed
 policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
-On-chain policy changes need no service restart only for a **matching** source8
-worker that reads them dynamically. Adopting direct Entry3/accounting6/schema15/new runtime pins
+On-chain policy changes need no service restart only for a **matching** source9
+worker that reads them dynamically. Adopting direct Entry3/accounting7/schema16/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,
@@ -3026,7 +3055,7 @@ again after a relevant setting changes, including restore-to-old-value changes.
 
 ### Wallet flows and external token approvals
 
-The external fixed ZZZ ERC20 is not one of the37PoPL contract ABIs. Its approval
+The external fixed ZZZ ERC20 is not one of the38PoPL contract ABIs. Its approval
 calls are separate from NFT approvals:
 
 | Function name | Expected input | Example call inputs | Explanation |
@@ -3047,7 +3076,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **839 functions, 37 constructors and 12 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **844 functions, 38 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3758,61 +3787,51 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `G` [Rewards.addAsset](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address` | `addAsset(ROYALTY_TOKEN_ADDRESS)` | Admit reward currency |
+| `B` [Rewards.addAsset](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address` | `addAsset(ZZZ_TOKEN_ADDRESS)` | Bind fixed ZZZ book |
 | `B` [Rewards.bindConverter](CONTRACT_FUNCTIONS.md#zzzrewards) | `candidate: address` | `bindConverter(CANDIDATE_ADDRESS)` | Bind conversion implementation once |
 | `H` [Rewards.claim](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address` | `claim(NFT_ID, 0x0000000000000000000000000000000000000000)` | Claim current owner's rewards |
 | `K` [Rewards.convertBatch](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address`<br>`ids: uint256[]`<br>`routeId: bytes32`<br>`minimumETH: uint256`<br>`deadline: uint256` | `convertBatch(ZZZ_ADDRESS, ["IDS"], REVIEWED_ROUTE_ID, MINIMUM_ETH_WEI, UNIX_DEADLINE)` | Convert earned balances proportionally |
 
 <details>
-<summary>Read functions and constants (25)</summary>
+<summary>Read functions and constants (17)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [Rewards.LP_ALLOCATION_VERSION](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `LP_ALLOCATION_VERSION()` | Read LP allocation version |
 | `R` [Rewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_ASSETS()` | Read max assets |
 | `R` [Rewards.MAX_CONVERSION_NFTS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_CONVERSION_NFTS()` | Read max conversion nfts |
 | `R` [Rewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
-| `R` [Rewards.SCALE](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `SCALE()` | Read scale |
 | `R` [Rewards.access](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `access()` | Read access |
+| `R` [Rewards.allocationTree](CONTRACT_FUNCTIONS.md#zzzrewards) | `bucket: uint256` | `allocationTree(0)` | Read reward tree totals |
 | `R` [Rewards.assetCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `assetCount()` | Read asset count |
 | `R` [Rewards.assets](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256` | `assets(0)` | Read assets |
-| `R` [Rewards.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalAssetCount()` | Read canonical asset count |
-| `R` [Rewards.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256` | `canonicalBacking(0)` | Read canonical backing |
-| `R` [Rewards.canonicalCount](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalCount()` | Read canonical count |
-| `R` [Rewards.canonicalExport](CONTRACT_FUNCTIONS.md#zzzrewards) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
-| `R` [Rewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [Rewards.canonicalModule](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalModule()` | Read fixed LP codec |
 | `R` [Rewards.claimable](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address` | `claimable(NFT_ID, ZZZ_ADDRESS)` | Read funded claimable balance |
-| `R` [Rewards.collective](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `collective(NFT_ID, TARGET_ADDRESS)` | Read collective |
+| `R` [Rewards.claimableComponents](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address` | `claimableComponents(NFT_ID, 0x0000000000000000000000000000000000000000)` | Read whole LP components |
 | `R` [Rewards.converter](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `converter()` | Read converter |
-| `R` [Rewards.fraction](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `fraction(NFT_ID, TARGET_ADDRESS)` | Read fraction |
-| `R` [Rewards.index](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `index(TARGET_ADDRESS)` | Read index |
-| `R` [Rewards.individual](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `individual(NFT_ID, TARGET_ADDRESS)` | Read individual |
+| `R` [Rewards.directLiabilities](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `directLiabilities(0x0000000000000000000000000000000000000000)` | Read direct credit liabilities |
 | `R` [Rewards.isAsset](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
 | `R` [Rewards.liabilities](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
 | `R` [Rewards.orphaned](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: address` | `orphaned(TARGET_ADDRESS)` | Read orphaned |
-| `R` [Rewards.ownerFraction](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `ownerFraction(NFT_ID, TARGET_ADDRESS)` | Read owner fraction |
-| `R` [Rewards.ownerIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `ownerIndex(BUCKET_ID, TARGET_ADDRESS)` | Read owner index |
-| `R` [Rewards.paidIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `paidIndex(NFT_ID, TARGET_ADDRESS)` | Read paid index |
-| `R` [Rewards.paidOwnerIndex](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256`<br>`input1: address` | `paidOwnerIndex(NFT_ID, TARGET_ADDRESS)` | Read paid owner index |
+| `R` [Rewards.rewardBucket](CONTRACT_FUNCTIONS.md#zzzrewards) | `input0: uint256` | `rewardBucket(NFT_ID)` | Read enrolled reward bucket |
 
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (12)</summary>
+<summary>Contract-only calls: use the parent workflow (10)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `M` [Rewards.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
-| `M` [Rewards.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalActivate()` | Activate imported ledger state |
-| `M` [Rewards.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalCapture()` | Capture classified ledger backing |
-| `M` [Rewards.canonicalImport](CONTRACT_FUNCTIONS.md#zzzrewards) | `row: uint256`<br>`record: bytes` | `canonicalImport(0, RECORD)` | Import authenticated accounting row |
-| `M` [Rewards.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
-| `M` [Rewards.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzrewards) | `i: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
-| `M` [Rewards.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalSettle()` | Settle captured reward indexes |
-| `M` [Rewards.checkpointAll](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `checkpointAll(NFT_ID)` | Checkpoint active collective members |
-| `M` [Rewards.checkpointOwner](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `checkpointOwner(NFT_ID)` | Checkpoint individual NFT rewards |
+| `M` [Rewards.canonicalBarrier](CONTRACT_FUNCTIONS.md#zzzrewards) | None | `canonicalBarrier()` | Check frozen callback barrier |
+| `M` [Rewards.canonicalNode](CONTRACT_FUNCTIONS.md#zzzrewards) | `node: uint256` | `canonicalNode(1)` | Read raw allocation node |
+| `M` [Rewards.canonicalSeed](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `canonicalSeed(NFT_ID)` | Read exact NFT seed |
+| `M` [Rewards.canonicalSend](CONTRACT_FUNCTIONS.md#zzzrewards) | `token: address`<br>`destination: address`<br>`amount: uint256` | `canonicalSend(0x0000000000000000000000000000000000000000, PEER_CANONICAL_MODULE_ADDRESS, CAPTURED_BACKING_WEI)` | Send reviewed canonical backing |
+| `M` [Rewards.canonicalWrite](CONTRACT_FUNCTIONS.md#zzzrewards) | `kind: uint8`<br>`record: bytes` | `canonicalWrite(1, SOURCE_AUTHENTICATED_SEED_BYTES)` | Restore typed LP record |
 | `M` [Rewards.claimFor](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256`<br>`token: address`<br>`owner: address` | `claimFor(NFT_ID, 0x0000000000000000000000000000000000000000, OWNER_ADDRESS)` | Forward authenticated owner claim |
 | `M` [Rewards.creditCanonicalCutoff](CONTRACT_FUNCTIONS.md#zzzrewards) | `bucketId: uint256`<br>`token: address`<br>`personal: uint256`<br>`shared: uint256`<br>`value: wei` (separate) | `creditCanonicalCutoff(BUCKET_ID, ZZZ_ADDRESS, PERSONAL, SHARED); value=SETTLEMENT_WEI wei` | Credit captured cutoff rewards |
 | `M` [Rewards.creditPool](CONTRACT_FUNCTIONS.md#zzzrewards) | `bucketId: uint256`<br>`token: address`<br>`personal: uint256`<br>`shared: uint256`<br>`value: wei` (separate) | `creditPool(BUCKET_ID, ZZZ_ADDRESS, PERSONAL, SHARED); value=SETTLEMENT_WEI wei` | Credit funded LP rewards |
+| `M` [Rewards.syncMembership](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `syncMembership(NFT_ID)` | Enroll one collective share |
+| `M` [Rewards.syncShares](CONTRACT_FUNCTIONS.md#zzzrewards) | `id: uint256` | `syncShares(NFT_ID)` | Synchronize authenticated LP shares |
 
 </details>
 
@@ -4480,6 +4499,41 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 </details>
 
+<a id="zzzrewardscanonical"></a>
+
+#### RewardsCanonical
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [RewardsCanonical.access](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `access()` | Read fixed access controller |
+| `R` [RewardsCanonical.canonicalAssetCount](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalAssetCount()` | Read canonical asset count |
+| `R` [RewardsCanonical.canonicalBacking](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `index: uint256` | `canonicalBacking(0)` | Read canonical backing |
+| `R` [RewardsCanonical.canonicalCount](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalCount()` | Read canonical count |
+| `R` [RewardsCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
+| `R` [RewardsCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [RewardsCanonical.rewards](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `rewards()` | Read fixed ledger parent |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [RewardsCanonical.canonicalAccept](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalAccept(0, TARGET_ADDRESS); value=0 wei` | Accept authenticated classified backing |
+| `M` [RewardsCanonical.canonicalActivate](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalActivate()` | Activate imported ledger state |
+| `M` [RewardsCanonical.canonicalCapture](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalCapture()` | Capture classified ledger backing |
+| `M` [RewardsCanonical.canonicalImport](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `row: uint256`<br>`record: bytes` | `canonicalImport(NEXT_LP_CANONICAL_ROW, SOURCE_AUTHENTICATED_RECORD_BYTES)` | Import authenticated accounting row |
+| `M` [RewardsCanonical.canonicalRelease](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `index: uint256`<br>`destination: address` | `canonicalRelease(0, DESTINATION_ADDRESS)` | Release authenticated classified backing |
+| `M` [RewardsCanonical.canonicalRestore](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `index: uint256`<br>`input1: address`<br>`value: wei` (separate) | `canonicalRestore(0, TARGET_ADDRESS); value=0 wei` | Restore captured source backing |
+| `M` [RewardsCanonical.canonicalSettle](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | None | `canonicalSettle()` | Settle captured reward indexes |
+| `M` [RewardsCanonical.creditCutoff](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `token: address`<br>`amount: uint256` | `creditCutoff(0x0000000000000000000000000000000000000000, ACTUAL_CUTOFF_RECEIPT_WEI)` | Extend captured LP backing |
+
+</details>
+
 <a id="zzznftcanonical"></a>
 
 #### NFTCanonical
@@ -5074,7 +5128,11 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `D` [Rewards.constructor](CONTRACT_FUNCTIONS.md#zzzrewards) | `controller: address` | `deploy Rewards(CONTROLLER_ADDRESS)` | Deploy bound implementation |
+| `D` [Rewards.constructor](CONTRACT_FUNCTIONS.md#zzzrewards) | `controller: address` | `deploy Rewards(ACCESS_CONTROLLER_ADDRESS)` | Deploy exact LP ledger |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [RewardsCanonical.constructor](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `controller: address` | `deploy RewardsCanonical(ACCESS_CONTROLLER_ADDRESS)` | Construct fixed LP codec |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -5142,6 +5200,10 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [Rewards.receive](CONTRACT_FUNCTIONS.md#zzzrewards) | `value: wei` (separate) | `send ETH; data=0x; value=SETTLEMENT_WEI wei` | Receive authenticated ETH settlement |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `P` [RewardsCanonical.receive](CONTRACT_FUNCTIONS.md#zzzrewardscanonical) | `value: wei` (separate) | `send ETH; data=0x; value=AUTHENTICATED_INCOMING_WEI wei` | Receive ETH without allocation |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |

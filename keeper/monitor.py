@@ -134,29 +134,34 @@ class Keeper:
         self.royalty_settlement_version = config.get('royalty_settlement_version',0)
         if type(self.royalty_settlement_version) is not int or self.royalty_settlement_version not in (0,2,3,4):
             raise ValueError('Unsupported explicit royalty settlement profile')
-        if self.royalty_settlement_version in (2,3,4) and self.accounting_version != 6:
+        if self.royalty_settlement_version in (2,3,4) and self.accounting_version not in (6,7):
             raise ValueError('Original-currency royalty profile requires accounting6')
-        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported keeper accounting version')
-        historical_custody = 4 if self.accounting_version in (5,6) else 3 if self.accounting_version==4 else 0
+        historical_custody = 4 if self.accounting_version in (5,6,7) else 3 if self.accounting_version==4 else 0
         self.custody_version = config.get('custody_version',historical_custody)
-        allowed_custody = (4,5) if self.accounting_version==6 else (historical_custody,)
+        allowed_custody = (5,) if self.accounting_version==7 else (4,5) if self.accounting_version==6 else (historical_custody,)
         if type(self.custody_version) is not int or self.custody_version not in allowed_custody:
             raise ValueError('Unsupported explicit custody authorization profile')
         self.protocol_policy_version=config.get('protocol_policy_version',0)
-        if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version==6 else 0):
+        if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version in (6,7) else 0):
             raise ValueError('Accounting6 keeper requires explicit protocol-policy1')
         self.fee_intake_version = config.get('fee_intake_version',0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
-                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4,5,6)) or \
-                (self.accounting_version in (3,4,5,6) and self.fee_intake_version != 1):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4,5,6,7)) or \
+                (self.accounting_version in (3,4,5,6,7) and self.fee_intake_version != 1):
             raise ValueError('Unsupported keeper fee-intake profile')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
         self.contracts = {k:address(v) for k,v in config['contracts'].items()}
-        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version in (4,5,6) else ()):
+        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version in (4,5,6,7) else ()):
             if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
+        if self.accounting_version==7:
+            reward_pin=config.get('code_hashes',{}).get('rewards')
+            if ('rewards' not in self.contracts or not isinstance(reward_pin,str) or
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',reward_pin) or int(reward_pin,16)==0):
+                raise ValueError('Accounting7 requires an explicit reviewed Rewards runtime')
         adaptive = config.get('adaptive_range',{})
         if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
             raise ValueError('Adaptive range requires explicit boolean configuration')
@@ -164,9 +169,9 @@ class Keeper:
         # Absent accounting4 policy is explicitly the historical service mode.
         # A fresh deployment must opt into version2; never probe/fallback from a
         # failed getter or relabel a saved old deployment to activate new rules.
-        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version in (4,5,6) else 0)
+        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version in (4,5,6,7) else 0)
         if type(self.maintenance_policy_version) is not int or self.maintenance_policy_version not in (
-                (3,) if self.accounting_version in (5,6) else (1,2) if self.accounting_version == 4 else (0,)):
+                (3,) if self.accounting_version in (5,6,7) else (1,2) if self.accounting_version == 4 else (0,)):
             raise ValueError('Unsupported keeper maintenance policy version')
         if self.maintenance_policy_version in (2,3) and self.adaptive_range_enabled:
             raise ValueError('Outside-only policy requires operator-selected ranges')
@@ -179,7 +184,7 @@ class Keeper:
         if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2):
             raise ValueError('Execution quality requires explicit LP-routing profile1')
         if self.lp_routing_version in (1,2):
-            if self.accounting_version not in (4,5,6) or self.maintenance_policy_version not in (2,3):
+            if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):
                 raise ValueError('LP routing requires explicit accounting4 and maintenance2')
             for role in ('liquidity','balancing_router','pool_manager','state_view'):
                 if role not in self.contracts: raise ValueError('Missing reviewed LP execution contract: '+role)
@@ -190,13 +195,13 @@ class Keeper:
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
         self.portfolio_version = config.get('portfolio_version',0)
         if (type(self.portfolio_version) is not int or
-                (self.accounting_version in (5,6) and (self.portfolio_version!=(2 if self.accounting_version==6 else 1) or self.lp_routing_version!=2 or
+                (self.accounting_version in (5,6,7) and (self.portfolio_version!=(2 if self.accounting_version in (6,7) else 1) or self.lp_routing_version!=2 or
                  self.maintenance_policy_version!=3 or config.get('rebalance_confirmation_version')!=3 or
                  self.execution_quality_version!=1)) or
-                (self.accounting_version not in (5,6) and (self.portfolio_version!=0 or self.lp_routing_version==2))):
+                (self.accounting_version not in (5,6,7) and (self.portfolio_version!=0 or self.lp_routing_version==2))):
             raise ValueError('Fresh portfolio requires explicit accounting5/portfolio1/routing2/maintenance3/confirmation3/quality1')
-        if self.accounting_version in (5,6):
-            for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version==6 else ()):
+        if self.accounting_version in (5,6,7):
+            for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version in (6,7) else ()):
                 if role not in self.contracts:raise ValueError('Missing reviewed portfolio helper: '+role)
                 pin=config.get('code_hashes',{}).get(role,'')
                 if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
@@ -639,7 +644,7 @@ class Keeper:
             if self.maintenance_policy_version in (2,3) and settings.get('compound',True) and not settings.get('compound_thresholds'):
                 raise ValueError('Fresh compounding requires explicit actual-currency thresholds')
             if settings.get('compound_idle',False):
-                if self.accounting_version not in (2,3,4,5,6) or not settings.get('compound_thresholds') or \
+                if self.accounting_version not in (2,3,4,5,6,7) or not settings.get('compound_thresholds') or \
                         not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
                     raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
                 address(self.config.get('idle_compounding_budget'))
@@ -680,7 +685,7 @@ class Keeper:
 
     def _compound_ready(self,bucket: int) -> bool:
         """Read the exact historical V2 or separate-interval V3 companion policy."""
-        budget = self._compound_budget(4 if self.accounting_version in (5,6) else 3 if self.maintenance_policy_version==2 else 2)
+        budget = self._compound_budget(4 if self.accounting_version in (5,6,7) else 3 if self.maintenance_policy_version==2 else 2)
         ready = uint_result(self.rpc.eth_call(budget,calldata('compoundReady(uint256)',bucket)))
         if ready not in (0,1): raise RpcError('Malformed compound eligibility')
         return ready == 1
@@ -689,7 +694,7 @@ class Keeper:
         """One fresh physical snapshot; no confirmation or scheduling mutation."""
         from keeper.compound_policy import observe
         roles=('access','vault','strategy','pools','liquidity','pool_manager','state_view')+(
-            ('portfolio_policy','rebalance_confirmation','lp_position_executor','balancing_router','lp_balance_math') if self.accounting_version in (5,6) else ())
+            ('portfolio_policy','rebalance_confirmation','lp_position_executor','balancing_router','lp_balance_math') if self.accounting_version in (5,6,7) else ())
         if any(role not in self.contracts or
                 not isinstance(self.config.get('code_hashes',{}).get(role),str) or
                 re.fullmatch(r'0x[0-9a-fA-F]{64}',self.config['code_hashes'][role]) is None or
@@ -704,7 +709,7 @@ class Keeper:
             if abs(time.time()-stamp)>600:raise ValueError('Stale compound policy header')
             def read(target,signature,*args,count=1):
                 return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
-            profile={'accounting_version':self.accounting_version} if self.accounting_version in (5,6) else {}
+            profile={'accounting_version':self.accounting_version} if self.accounting_version in (5,6,7) else {}
             proof=observe(read,lambda target:self.rpc.call('eth_getCode',[target,block]),
                 contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket,**profile)
             if proof['last_rebalance']>stamp:raise ValueError('Compound position checkpoint is in the future')
@@ -806,7 +811,7 @@ class Keeper:
             raise RpcError('Compound confirmation evidence is unavailable') from exc
 
     def _compound_submission_ready(self,args: tuple[int|str,...]) -> bool:
-        if self.accounting_version not in (4,5,6) or self.maintenance_policy_version not in (2,3):return True
+        if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):return True
         if len(args)!=3 or type(args[0]) is not int or not 0<args[0]<1<<256:
             raise ValueError('Malformed compound submission')
         return self._compound_policy_allowed(args[0])
@@ -1248,7 +1253,7 @@ class Keeper:
         else:
             threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
             due = any(amount >= threshold for amount in reserves)
-        if due and self.accounting_version in (4,5,6):
+        if due and self.accounting_version in (4,5,6,7):
             # Authoritative shared cooldown includes other keepers and the last
             # rebalance. Never infer it solely from this sender's journal.
             if not self._compound_ready(bucket):return False
@@ -1265,7 +1270,7 @@ class Keeper:
         return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
 
     def _asset(self,value: Any) -> str:
-        if self.accounting_version in (2,3,4,5,6) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+        if self.accounting_version in (2,3,4,5,6,7) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
             return NATIVE_ASSET
         return address(value)
 
@@ -1298,6 +1303,14 @@ class Keeper:
         try: version = self.view('vault','ACCOUNTING_VERSION()')
         except (ValueError,RpcError) as exc: raise RpcError('Native accounting version is unavailable') from exc
         if version != self.accounting_version: raise RpcError('Vault accounting version differs from the reviewed keeper profile')
+        if self.accounting_version==7:
+            code=self.rpc.call('eth_getCode',[self.contracts['rewards'],'latest'])
+            if (not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=self.config['code_hashes']['rewards'].lower() or
+                    self.view('rewards','LP_ALLOCATION_VERSION()')!=1 or
+                    self.view('rewards','access()')!=int(self.contracts['access'],16) or
+                    self.view('access','module(bytes32)','0x'+keccak256(b'ZZZRewards').hex())!=int(self.contracts['rewards'],16)):
+                raise RpcError('Accounting7 exact LP ledger binding or runtime differs')
         if self.fee_intake_version == 1:
             pin = self.config.get('code_hashes',{}).get('fees','')
             if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin):
@@ -1308,7 +1321,7 @@ class Keeper:
                 raise RpcError('LP-only fee-controller runtime differs from the reviewed keeper profile')
             if self.view('fees','FEE_INTAKE_VERSION()') != 1:
                 raise RpcError('LP-only fee-intake version differs from the reviewed keeper profile')
-        if self.accounting_version in (4,5,6):
+        if self.accounting_version in (4,5,6,7):
             for name in ('access', 'principal_exit'):
                 pin = self.config.get('code_hashes',{}).get(name, '')
                 code = self.rpc.call('eth_getCode', [self.contracts[name], 'latest'])
@@ -1326,7 +1339,7 @@ class Keeper:
     def lp_exit_started(self) -> bool:
         # Historical controllers have no such getter. Their profiles and
         # pending journals must never inherit a fabricated retirement state.
-        if self.accounting_version not in (4,5,6): return False
+        if self.accounting_version not in (4,5,6,7): return False
         value = self.view('access','lpExitStarted()')
         phase = self.view('principal_exit','exitPhase()')
         if value not in (0,1) or not 0 <= phase <= 3 or bool(value) != bool(phase):
@@ -1416,7 +1429,7 @@ class Keeper:
 
     def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
         """Accounting4+ collection-clock proof; never replace paid recovery."""
-        if self.accounting_version not in (4,5,6):return None
+        if self.accounting_version not in (4,5,6,7):return None
         match=re.fullmatch(r'(harvest|compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
         if match is None or pending['value']!=0:return None
         action,bucket=match[1],int(match[2])
@@ -1565,9 +1578,9 @@ class Keeper:
             # A recovered paid transaction may carry stale action metadata.
             # Only the exact call and canonical event can advance a fresh
             # harvest clock; unverifiable telemetry must not strand recovery.
-            if self.accounting_version in (4,5,6) and pending['key'].startswith('harvest:') and harvest_bucket is None:
+            if self.accounting_version in (4,5,6,7) and pending['key'].startswith('harvest:') and harvest_bucket is None:
                 log('harvest_clock_unverified',action=pending['key'],reason='saved_call_or_receipt_not_proved')
-            if self.accounting_version not in (4,5,6) or not pending['key'].startswith('harvest:'):
+            if self.accounting_version not in (4,5,6,7) or not pending['key'].startswith('harvest:'):
                 updated['last'][pending['key']] = timestamp
             if harvest_bucket is not None:updated['last'][f'harvest:{harvest_bucket}']=timestamp
             updated.setdefault('retry_after',{}).pop(pending['key'],None)
@@ -1920,7 +1933,7 @@ class Keeper:
         if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
             ordinal > MAX_METADATA_SUPPLY or token >= 1 << 256 or \
             type(record.get('available')) is not bool or type(record.get('traits_ready')) is not bool or \
-            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version in (4,5,6) else 3) or \
+            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version in (4,5,6,7) else 3) or \
             not record['available'] and record['stage'] != 1 or \
             not record['traits_ready'] and (record['stage'] != 0 or not record['available']):
             raise ValueError('Noncanonical metadata state')
@@ -2123,7 +2136,7 @@ class Keeper:
             if self.principal_exit_started is not True:
                 self._mark_confirmation_reset(bucket)
             raise RpcError('Malformed shared-pool state')
-        if self.accounting_version not in (3,4,5,6):
+        if self.accounting_version not in (3,4,5,6,7):
             if int(fields[8],16) == 0 or int(fields[13],16) == 0:
                 raise RpcError('Missing shared-pool provenance')
             for index in (9,10,12,14): self._address_word(fields[index])
@@ -2147,7 +2160,7 @@ class Keeper:
             raise
         if status == 'exited' and (int(fields[1],16) or int(fields[2],16) or int(fields[3],16) or not self.lp_exit_started()):
             raise RpcError('Exited shared pool retains principal or lacks its lifecycle lock')
-        if status == 'parked' and self.accounting_version not in (3,4,5,6) and (
+        if status == 'parked' and self.accounting_version not in (3,4,5,6,7) and (
                 position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
             raise RpcError('Parked principal is not in this local vault')
         try:
@@ -2159,7 +2172,7 @@ class Keeper:
             if len(accounting) != 14 or accounting[1:] != config[1:]:
                 raise RpcError('Accounting configuration differs from the venue policy')
             tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
-            if self.accounting_version in (2,3,4,5,6):
+            if self.accounting_version in (2,3,4,5,6,7):
                 if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
             elif int(config[0],16) == 0:
                 wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
@@ -2488,7 +2501,7 @@ class Keeper:
                             log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
                     # Fresh accounting4 defaults to hourly independent collection;
                     # historical profiles keep their original omitted-field schedule.
-                    default_harvest = 3600 if self.accounting_version in (4,5,6) else 14400
+                    default_harvest = 3600 if self.accounting_version in (4,5,6,7) else 14400
                     interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
                         # Successful maintenance reads can be slow too. Prepare

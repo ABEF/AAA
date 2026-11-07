@@ -21,13 +21,14 @@ contract ConversionNFT is ERC721 {
     ZZZRoyaltyRewards public royalties;
     uint256 public mintedCount;
     mapping(uint256 => uint256) public tokenAtOrdinal;
+    mapping(uint256 => uint256) public mintOrdinalOf;
     mapping(uint256 => uint8) public rarityOf;
     constructor(address control) ERC721("Test", "T") {
         ProtocolPolicyFixture.bind(control);
         royalties = new ZZZRoyaltyRewards(address(this)); royalties.bindCanonicalController(control);
     }
     function mint(address owner, uint256 id, uint8 rarity) external {
-        _mint(owner,id); tokenAtOrdinal[++mintedCount] = id; rarityOf[id] = rarity;
+        _mint(owner,id); tokenAtOrdinal[++mintedCount] = id; mintOrdinalOf[id]=mintedCount; rarityOf[id] = rarity;
     }
     function activate(uint256 id) external { royalties.activate(id, uint256(rarityOf[id])+1); }
     function add(address token) external { royalties.addAsset(token); }

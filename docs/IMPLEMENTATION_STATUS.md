@@ -1,19 +1,19 @@
 # Feature and evidence reference
 
-Reviewed 2026-11-06. This records implemented source, not another task list.
+Reviewed 2026-11-07. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
 ## Current profile
 
-Fresh **accounting6 / portfolio2 / maintenance3 / confirmation3 / compound4 /
+Fresh **accounting7 / LP-allocation1 / portfolio2 / maintenance3 / confirmation3 / compound4 /
 custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position remains;
-fresh royalty4/canonicalV8 carries sale end/capacity and exact-unit ticket rights,
+fresh royalty4/canonicalV9 carries sale end/capacity and exact-unit ticket rights,
 and rejects older peers.
 Tuple shape does not imply runtime compatibility.
-[Profile](POSITION_V6.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema15 with explicit residual-reinvest1/raw-exit1 bindings; schema14 remains historical. It retains18 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 preserves the exact RoyaltyRewards creation payload and accounting ABI. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+[Profile](POSITION_V7.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
+Production inventory is schema16 with explicit residual-reinvest1/raw-exit1 bindings; schema14 remains historical. It retains19 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 preserves the exact RoyaltyRewards creation payload and accounting ABI. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -27,7 +27,7 @@ Current capabilities and exact evidence are in the tables below and the
 [complete short call catalog](OPERATOR_MANUAL.md#operator-call-tables), with
 separate exact permission/output notes; it is documentation, not execution approval.
 
-The [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented as an internal Solidity component, with bounded two-book old-weight settlement and memory-path optimization. It is not connected to current Rewards/Vault/canonical; LP fractions and the full [integration task](../TODO.md#task-lp-exact-unit-allocation) remain. The same source update makes operation reviews respect matching local retry delays without RPC or journal writes. [Evidence](../reports/exact-lp-engine-20261106/VERIFICATION.md).
+Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-write share synchronization, one-time equal Membership synchronization, whole current-owner claims, same-NFT/component conversion and lossless raw-phase canonicalV9. Profile7/schema16/source9 consumers explicitly authenticate LP-allocation1 and the fixed RewardsCanonical companion. Historical6/V8 and checkpoint1 are not reinterpreted. [Evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md); target gas, actual rollout and exact-unit checkpoint2 remain separate qualification work.
 
 ## Smart contracts
 
@@ -35,7 +35,7 @@ The [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented as an internal
 | --- | --- | --- |
 | NFT identity | ERC-721, fixed artwork draw, exact1,000 rarity quotas; actual VRF provider still unqualified. | [Metadata](NFT_METADATA.md) |
 | Contributions | ETH or the fixed ZZZ; future-governed minima(default$100 activation/$5 growth); checkpoint incumbents, use entrant-only budgets, verify marginal main LP, then issue shares from aggregate NAV. Residuals and rebalance centre/clock remain unchanged. | [Entry](ACTIVATION_ENTRY.md), [pricing](PRICE_SECURITY.md) |
-| Shared LP portfolio | Single main by default, optional one residual in the same pool; both NFTs remain Vault-owned. Aggregate raw principal/valuation includes both actual ranges, not a sum of their liquidity units. | [Portfolio profile](POSITION_V6.md) |
+| Shared LP portfolio | Single main by default, optional one residual in the same pool; both NFTs remain Vault-owned. Aggregate raw principal/valuation includes both actual ranges, not a sum of their liquidity units. | [Portfolio profile](POSITION_V7.md) |
 | Ordinary replacement | Both single/hybrid reject inactive stored-tick quotes before ranking and verify the new main is physically active before/after callbacks; hybrid requires its configured6000–9999bps main floor(default60%) and complementary residual ceiling(default40%) at captured post-cost valuation. Natural placement meeting that floor needs no swap. Otherwise bounded approved-route sizing targets a rounding-safe floor. Failed sizing/mint/close reverts atomically. | [Execution policy](LP_EXECUTION_POLICY.md) |
 | Residual geometry | Default half of the corresponding main side, a governed positive tick-spacing gap(default1) beyond spot. Width governed1–10000bps of that side. At most one residual; mixed/filled inventory remains valued until whole adjustment. | [Range controls](RANGE_POLICY_UPDATES.md) |
 | Same-main residual consolidation | Paused governance `Migration.consolidateResidual(request,forced)`: harvest/close only residual or recover prior attributed idle, balance and increase same main, atomically apply modeOFF. Shares/centre/rebalance clock preserved; compound clock updated; designated compound/rewards/buyback separate. Guarded routing now filters active candidates for preserved bounds, with financial guards and no keeper timing; force is explicit. | [Inputs/evidence](OPERATOR_MANUAL.md#same-main-residual-consolidation), [review](../reports/residual-main-consolidation-20261106/REVIEW.md) |
@@ -43,7 +43,7 @@ The [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented as an internal
 | Enable/disable | Manual reviewed desired mode; enabling permits rather than forces a residual. Disabling retains both actual legs and NFT reward membership until a guarded single-position merge succeeds; no immediate deactivation or trade. | [Operator](OPERATOR_MANUAL.md) |
 | Ordinary eligibility | 85% actual centre-to-edge human ZZZ-price distance; physical and independent reference on the same side.600-second sampled window/maxgap300, source240-second checks, fresh60–300-second service jitter, initial hard12hours. Manual geometry changes are a distinct cooldown-gated exception. | [Confirmation](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer) |
 | Financial checks | Dual USD sources with3% agreement; captured default2% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
-| Exact-unit LP engine (unwired) | Constant-work root credit, ten-level whole-unit claims/views, both-book old-weight updates, high/low phase and reduced transient writes. Internal source prerequisite; current LP ledger is not upgraded. | [Engine](EXACT_LP_ALLOCATION.md) |
+| Exact-unit LP integration | Actual Rewards uses constant-work root credit, ten-level whole claims/views, both-book old-weight synchronization and raw pending/high/low V9. Current-owner claims and same-NFT conversion conserve every allocated unit. | [Rules/evidence](EXACT_LP_ALLOCATION.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
 | Royalties | Settlement4 original-currency claims; ×1/×2/×3 weights with GCD-normalized exact-unit allocation and a saved rotating remainder cursor. Every allocated raw unit belongs to an NFT; no allocated rounding remainder remains after all eligible claims. Recovery2 assigns reviewed unallocated units at current active weights. Initial/prefund/zero-cohort and token-failure limits remain. No royalty converter; current owners inherit unpaid rights; ERC2981 requests5%, without universal payment enforcement. | [Exact allocation](EXACT_ROYALTY_ALLOCATION.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
@@ -62,14 +62,14 @@ and strict new-work validation does not discard a valid pending recovery intent.
 
 | Capability | Implemented source boundary |
 | --- | --- |
-| Confirmed reads | Fresh6 independently proves per-leg principal from captured sqrt/ticks/PosM L, containment, exact stable and L-sensitive fingerprints; no aggregate-only admission. Explicit accounting6 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
+| Confirmed reads | Fresh7 independently proves per-leg principal from captured sqrt/ticks/PosM L, containment, exact stable and L-sensitive fingerprints; no aggregate-only admission. Explicit accounting7 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Claim planning | Opt-in /v1/claims/plan accepts up to32 exact selections, simulates bounded subsets under existing12M/fee/work limits and returns only one freshly verified draft. Every unresolved entry remains explicit; no signing, queue or automatic skip. [Procedure](CLAIM_PLANNING.md). |
-| Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; source-bound schema15 and actual returned-runtime gates required. [Storage format](FACTORY_CODE_STORAGE.md). |
+| Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; source-bound schema16 and actual returned-runtime gates required. [Storage format](FACTORY_CODE_STORAGE.md). |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. Late gas-enveloped full LP simulation and final policy/nonce/funding/head/deadline/day-budget checks preserve original intent before signing. |
-| Inventory | Schema15/custody5/reinvest1 validates18helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs and exact-unit royalty4; reporting5/canonicalV8 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema16/custody5/reinvest1 validates19helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs and exact-unit royalty4; reporting5/canonicalV9 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | Source-bound current callable reference plus exact operating procedures; the historical90-entry inventory retains its original scope. Ordered named inputs, actual caller/reversal and full tuple links. Offline reviewHash helper validates strict source-bound ABI shapes and preserves exact decimal strings; no live reads, simulation, signing, transaction or readiness claim. [Operator guide](OPERATOR_MANUAL.md#prepare-and-check-an-offline-reviewhash). |
-| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Opt-in checkpoint1 bounds fresh6/5/1single-deployment replay; other readers/lineage/archive qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
+| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Fresh7 replays exact whole-unit trees from complete raw history. Checkpoint1 remains6-only; reviewed exact-unit checkpoint2 and lineage/archive/workload qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
 
 Explicit fresh read/keeper configs set custody_version5 and check actual runtime.
 Keeper principal_distribution is disabled/rejected on5; governance pays/submits
@@ -83,7 +83,7 @@ Implementing source does not qualify a host, provider, maximum gas or operating 
 ## Frontend boundary
 
 Popldemo remains simulation. Poplint's separately served current3 read/unsigned
-build is not an accounting6 website consumer. The new backend projections and
+build is not an accounting7 website consumer. The new backend projections and
 preparation are local source; actual website acceptance remains open. Browser
 signing stays Anvil-only; public DEPLOYMENT stays null. No source/build/server
 change to the website is part of this contract implementation.
@@ -120,6 +120,7 @@ Actual storage/recovery qualification remains open.
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
+| [Exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFICATION.md) | Fresh7/LP1/V9/schema16: actual Rewards, share/membership hooks, whole claims/conversion and lossless canonical books. Normal87source gates46+2carrier; strict532records222current/310exact reuse. Source-scoped host/native/core/canonical methods and619affected backend methods; final315source type closure. | Broad45-class compilation ran out of memory before EVM results; selected corrected scopes are explicit. Cold32-entry claim exceeds12M, cold8 fits only its fixture. No full-suite/publicCI, target gas, checkpoint2, rollout or independent approval. |
 | [Current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) | Exact-unit royalty4 and affected cross-repository changes, with source-scoped verification recorded in the report. | No deployment, maximum-state target gas, supported OpenSea mint path, operating acceptance or independent approval. |
 | [Four-report follow-up](../reports/four-report-consolidation-20261104/VERIFICATION.md) |93focused Python successes,9new startup cases; four input reports and current Solidity/dependency/build pins preserved. | No fresh contract execution, live storage/host acceptance or independent approval. |
 | [Manual safeguard audit](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) | Two view fixes;85distinct selected EVM successes across retained stages,47focused Python passes,43fresh normal gates and471fresh static records(13current-context review/458exact referenced reuse). ABI/storage unchanged; callable37/818/37/13 has0gaps. | Not a full suite, installed-runtime upgrade, target gas/operating rehearsal or independent approval. |
@@ -151,12 +152,12 @@ label mocked prices a production feed to turn an infeasible quote into a pass.
 bounds; Entry3/review-policy2 binds scoped contribution terms before callbacks.
 [Manual controls](OPERATOR_MANUAL.md#future-operating-settings) distinguish a chain
 setter from a new runtime/worker/site rollout. Retired architecture and old
-journals remain separate. Real providers/authorities/OpenSea, source8 services/
+journals remain separate. Real providers/authorities/OpenSea, source9 services/
 website, storage/operations, economics/gas and independent audit remain open.
 
 Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNCH_WINDOW.md)
 and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+unsupported currencies and pathological-token failures remain distinct. CanonicalV9
 rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.

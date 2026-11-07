@@ -24,7 +24,7 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {PoolKey,Ids} from "../src/libraries/ZZZTypes.sol";
 import {ConversionAccess,ConversionNFT,ConversionWrapper,ConversionToken,ConversionVenue} from "./RoyaltyConversion.t.sol";
 import {LPConversionShares} from "./LPRewardConversion.t.sol";
-import {MockToken,MockFeed} from "./mocks/Mocks.sol";
+import {MockToken,MockFeed,MockPools} from "./mocks/Mocks.sol";
 
 /// @dev Real local Uniswap v4 core/state view and real conversion/ledger code.
 /// Synthetic tokens, USD feeds, access, NFT issuance and LP-share fixtures do not
@@ -68,6 +68,7 @@ contract TypedV4RewardsTest is Test {
         oracle=new ZZZOracle(address(access),address(0));feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(token),address(feed),3600);
         access.bind(Ids.NFT,address(nft));access.bind(Ids.ORACLE,address(oracle));access.setKeeper(address(this),true);
+        MockPools fixturePools=new MockPools();fixturePools.setFixedZZZ(address(token));access.bind(Ids.POOLS,address(fixturePools));
         shares=new LPConversionShares();rewards=new ZZZRewards(address(access));rewards.addAsset(address(token));
         access.bind(Ids.REWARDS,address(rewards));access.bind(Ids.VAULT,address(shares));
         access.bind(Ids.MEMBERSHIP,address(shares));access.bind(Ids.FEES,address(this));
@@ -151,10 +152,12 @@ contract TypedV4RewardsTest is Test {
         _creditLP(600e18,200e18);shares.join(rewards,3,100e18);
         rewards.creditPool{value:9e18}(1,address(0),6e18,3e18);
         uint256 before1=rewards.claimable(1,address(0));uint256 before2=rewards.claimable(2,address(0));
+        (uint256 beforePersonal,uint256 beforeCollective)=rewards.claimableComponents(1,address(0));
         uint256 before3=rewards.claimable(3,address(0));
         uint256 output=rewards.convertBatch(address(token),_ids(),lpRoute,1,block.timestamp+60);
-        assertGe(output,792e18);assertEq(rewards.individual(1,address(0)),output/2);
-        assertEq(rewards.collective(1,address(0)),output*5/8-output/2);
+        (uint256 afterPersonal,uint256 afterCollective)=rewards.claimableComponents(1,address(0));
+        assertGe(output,792e18);assertEq(afterPersonal-beforePersonal,output/2);
+        assertEq(afterCollective-beforeCollective,output*5/8-output/2);
         assertEq(rewards.claimable(1,address(0))-before1+rewards.claimable(2,address(0))-before2,output);
         assertEq(rewards.claimable(3,address(0)),before3);
         assertEq(rewards.liabilities(address(0)),9e18+output);assertEq(rewards.liabilities(address(token)),0);

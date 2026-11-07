@@ -1,12 +1,12 @@
 # Component boundaries and current status
 
-This map describes the undeployed [accounting6/custody5/portfolio2/canonical V8](POSITION_V6.md)
+This map describes the undeployed [accounting7/custody5/portfolio2/canonical V9](POSITION_V7.md)
 source, not installed contracts or service qualification. Production is **NOT
 APPROVED**. Use [features/evidence](IMPLEMENTATION_STATUS.md) for scoped checks,
 the [sole Todo](../TODO.md) for work and the [operator manual](OPERATOR_MANUAL.md)
 for action procedures. Historical codecs and report bytes retain their scope.
 
-The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented and reviewed separately; current Rewards/Vault/canonical consumers do not use it yet. It introduces no deployed helper or current profile change.
+The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) now backs Rewards, authenticated Vault/Membership hooks, whole-unit claims/conversion and canonicalV9. The immutable RewardsCanonical helper keeps the typed codec outside the near-limit parent. Earlier6/V8 readers/checkpoints retain their own profiles. [Integration evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 ## Ownership, entry and custody
 
@@ -37,7 +37,7 @@ leave an auxiliary behind.
 | Component | Current job | Remaining qualification |
 | --- | --- | --- |
 | [FeeController](../src/ZZZFeeController.sol) | Actual LP receipts only, fixed80/10/5/5 and separate compound/buyback/dust classification. | Currency rounding, actual collection and independent accounting review. |
-| [Rewards](../src/ZZZRewards.sol) | Share-weighted individual plus equal activated collective indices/fractions and current-owner claims. | Actual recipients, complete history and worst-case currency gas. |
+| [Rewards](../src/ZZZRewards.sol) | Share-weighted individual plus equal activated collective whole-unit books and current-owner claims. | Actual recipients, complete history and worst-case currency gas. |
 | [Membership](../src/ZZZMembership.sol) | One equal collective share per activated NFT, preserved through transfer/LP exit so past entitlements survive. | Bounded dust/checkpoint costs and complete handoff composition. |
 | [LPRewardConverter](../src/ZZZLPRewardConverter.sol) | Converts only earned balances into the same NFTs' ETH credits, without new-income double counting. | Cheaper qualified ZZZ route at default 1%, latency, gas and operation. |
 | [RoyaltyRewards](../src/ZZZRoyaltyRewards.sol) | Settlement4 original-currency royalties: GCD-normalized rarity tickets, exact whole-unit allocation, opening/outage cohorts and current-owner claims. Recovery2 allocates reviewed unallocated units without swaps; future royalties continue after LP exit. | Actual marketplace currencies/receipts, raw-unit fairness, maximum-state gas and failure/recovery behavior. |
@@ -58,10 +58,10 @@ USD-loss promise. Source currency stays source currency until actually converted
 | --- | --- | --- |
 | [NFT](../src/ZZZNFT.sol) | ERC721/2981/4906,1,000 cap, exact quota/inventory draw, immutable revealed traits and transferable ownership. | Actual VRF and compatible OpenSea primary mint. |
 | [NFTMetadata](../src/ZZZNFTMetadata.sol) | Current LP NAV selects four visual stages; unavailable data stays explicit. Exited LP has verifiedzero and terminal `LP exited` stage4 using existing artwork. | Permanent hosting, feed/cache refresh and current-profile display. |
-| [Factories](../src/ZZZRoyaltyFactory.sol),[Assets factory](../src/ZZZActivationAssetsFactory.sol) | Fixed typed helper creation and parent/controller bindings; RoyaltyFactory storage2 reconstructs unchanged ledger code from2 immutable inert data children. | Schema15/reinvest1 release inventory, actual returned code/runtime/initcode and target gas. |
+| [Factories](../src/ZZZRoyaltyFactory.sol),[Assets factory](../src/ZZZActivationAssetsFactory.sol) | Fixed typed helper creation and parent/controller bindings; RoyaltyFactory storage2 reconstructs unchanged ledger code from2 immutable inert data children. | Schema16/reinvest1 release inventory, actual returned code/runtime/initcode and target gas. |
 | [Migration](../src/ZZZMigration.sol),[parking validation](../src/ZZZCustodyValidation.sol) | Before exit, same-pair moves/reversible parking and separate paused-governance [manual emergency redeployment](EMERGENCY_REBALANCE.md). Terminal exit allocates actual ETH/ZZZ by shares with bounded current-owner payouts/fallback. | Economic bypass trusts governance and can lose almost all principal. Maximal gas, services/UI, operation and independent review remain open; no custodian/bridge/return ingress. |
-| [CanonicalHandoff](../src/ZZZCanonicalHandoff.sol) | Six-domain same-chain capture/import/backing, funded abort and atomic source retirement/replacement activation, only before LP exit. | Exact V8 compatible peers, escrow cutover, funding/interruption/gas and independent review. |
-| [NFTCanonical](../src/ZZZNFTCanonical.sol),[VaultCanonical](../src/ZZZVaultCanonical.sol),[FeesCanonical](../src/ZZZFeesCanonical.sol) | Sealed typed codecs for ownership, shares, ledgers/fractions and classified backing. V6 group rows retain the existing12-word record shape. | Actual source/successor manifest and complete operated rehearsal. |
+| [CanonicalHandoff](../src/ZZZCanonicalHandoff.sol) | Six-domain same-chain capture/import/backing, funded abort and atomic source retirement/replacement activation, only before LP exit. | Exact V9 compatible peers, escrow cutover, funding/interruption/gas and independent review. |
+| [NFTCanonical](../src/ZZZNFTCanonical.sol),[VaultCanonical](../src/ZZZVaultCanonical.sol),[FeesCanonical](../src/ZZZFeesCanonical.sol),[RewardsCanonical](../src/ZZZRewardsCanonical.sol) | Sealed typed codecs for ownership, shares, exact LP pending/phase/direct books and classified backing. The principal V6-format group rows retain their existing12-word record shape; LP V9 rows are new. | Actual source/successor manifest and complete operated rehearsal. |
 
 Rarity affects royalties only; color/pattern affect neither ledger. Exited NFTs
 retain transfers, earned rewards and future royalty rights; unpaid principal
@@ -75,11 +75,11 @@ recovery is provided. [Exit details](HOLDER_COLLECTIVE_EXIT.md).
 Keeper scheduling, simulation, nonce/receipt recovery and monitoring are off-chain;
 contracts enforce principal rules. Indexer/API use confirmed state, explicit
 profiles and complete pinned history. Missing pricing/history stays unavailable.
-The new source profile requires explicit accounting6/portfolio2 readers; served accounting3 poplint
+The new source profile requires explicit accounting7/portfolio2 readers; served accounting3 poplint
 and old local deployments are not relabelled or upgraded. Public deployment stays
 null, browser signing Anvil-only, popldemo unchanged.
 
-Actual feeds/routes/VRF/authorities, OpenSea, artwork hosting, accounting6 wallet/
+Actual feeds/routes/VRF/authorities, OpenSea, artwork hosting, accounting7 wallet/
 service acceptance, target gas/strategy/operations and independent audit remain
 open. Earlier [reports](../reports/README.md) do not verify later source changes.
 Maintain the [callable reference](CONTRACT_FUNCTIONS.md) for ABI/permission changes.

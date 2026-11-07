@@ -164,13 +164,13 @@ class Transactions:
             if not lifecycle['new_economic_work_available_by_lifecycle'] or _bool(p._call(
                     p.contracts['nft'].address, 'mintPaused()', block=block)[0]):
                 raise TransactionInputError('Minting is unavailable')
-            if p.accounting_version!=6 and p._uint('vault', 'MINT_PRICE()', block=block) != MINT_PRICE:
+            if p.accounting_version not in (6,7) and p._uint('vault', 'MINT_PRICE()', block=block) != MINT_PRICE:
                 raise ProjectionError('Mint price differs from reviewed product configuration')
             if p._uint('nft', 'MAX_SUPPLY()', block=block) != 1000:
                 raise ProjectionError('NFT supply cap differs from reviewed configuration')
             if p._uint('nft', 'mintedCount()', block=block) >= 1000:
                 raise TransactionInputError('Collection is fully minted')
-            if p.accounting_version==6:
+            if p.accounting_version in (6,7):
                 from zzz_ops.protocol_policy import observe as observe_policy,observe_mint
                 try:
                     sale=observe_policy(lambda target,method,*args,count:p._call(target,method,*args,block=block,words=count),
@@ -224,7 +224,7 @@ class Transactions:
                         raise ProjectionError('Inconsistent NFT mint identity')
                     if p._addr('nft', 'ownerOf(uint256)', entry.token_id, block=block) != owner:
                         raise TransactionInputError('Wallet does not own every selected NFT')
-                    if p.accounting_version in (3, 4, 5, 6):
+                    if p.accounting_version in (3,4,5,6,7):
                         # Current activation gives a permanent global royalty
                         # weight, even if one optional currency is deferred.
                         # Zero means never activated, not parked/outbound LP.

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
-import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+
 import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
@@ -10,6 +10,7 @@ using DualOracleFixture for FixtureOracleType;
 
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
+import {Vm} from "forge-std/Vm.sol";
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -41,7 +42,11 @@ contract CapacityRoyaltyFaultToken is MockToken {
 /// @dev TEST ONLY: multi-pair venue that deploys every contributed token unit.
 /// It models custody and fee separation, not Uniswap execution or production gas.
 contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
+    Vm private constant nativeVm=Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
     MockPools private immutable pools;
+    receive()external payable{}
+    function _send(address to,uint256 value)private{if(value!=0){(bool ok,)=payable(to).call{value:value}("");require(ok);}}
+
     mapping(uint256 => uint256) private amount0;
     mapping(uint256 => uint256) private amount1;
     mapping(bytes32 => uint256) private fee;
@@ -50,25 +55,26 @@ contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
     constructor(MockPools registry) ERC721("Combined-capacity mock", "CCM") { pools = registry; }
     function positionManager() external view returns (address) { return address(this); }
     function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
-    function balance(bytes32,uint256,uint256 a0,uint256 a1,uint256) external pure returns(uint256,uint256) {
+    function balance(bytes32,uint256,uint256 a0,uint256 a1,uint256) external payable returns(uint256,uint256) {
+        require(msg.value==a0);_send(msg.sender,a0);
         return(a0,a1); // Deterministic custody fixture; no market execution is modeled.
     }
     function amounts(uint256 id) external view returns (uint256, uint256) { return (amount0[id], amount1[id]); }
     function setFees(bytes32 pool, uint256 value) external { fee[pool] = value; }
     function mint(bytes32 pool, int24, int24, uint256 a0, uint256 a1, uint128, uint256)
-        external returns (uint256 id, uint256 spent0, uint256 spent1) {
+        external payable returns (uint256 id, uint256 spent0, uint256 spent1) {
         id = next++;
         _mint(msg.sender, id);
         (spent0, spent1) = _fund(pool, id, a0, a1);
     }
     function increase(bytes32 pool, uint256 id, uint256 a0, uint256 a1, uint128, uint256)
-        external returns (uint256, uint256) {
+        external payable returns (uint256, uint256) {
         require(ownerOf(id) == msg.sender);
         return _fund(pool, id, a0, a1);
     }
     function _fund(bytes32 pool, uint256 id, uint256 a0, uint256 a1) private returns (uint256, uint256) {
         PoolConfig memory config = pools.get(pool);
-        require(IERC20(config.key.currency0).transferFrom(msg.sender, address(this), a0));
+        require(config.key.currency0==address(0)&&msg.value==a0);
         require(IERC20(config.key.currency1).transferFrom(msg.sender, address(this), a1));
         amount0[id] += a0;
         amount1[id] += a1;
@@ -79,14 +85,14 @@ contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
         fee[pool] = 0;
         if (value == 0) return;
         PoolConfig memory config = pools.get(pool);
-        MockToken(config.key.currency0).mint(msg.sender, value);
+        nativeVm.deal(address(this),address(this).balance+value);_send(msg.sender,value);
         MockToken(config.key.currency1).mint(msg.sender, value);
     }
 }
 
 /// @notice Combined permitted limits, rather than independent one-axis tests:
-/// Four historical buckets with actual LP fee receipts, 32 admitted LP reward assets,
-/// and the default 16 ERC20 royalty assets plus native ETH. Real core accounting;
+/// Four historical buckets with actual LP fee receipts, two fixed LP reward books,
+/// and the default16 ERC20 royalty assets plus native ETH. Real core accounting;
 /// mocked access, tokens, oracle feeds, randomness, strategy and liquidity venue.
 /// Cold gasleft deltas exclude construction, intrinsic/calldata gas and refunds.
 contract CombinedCapacityGasTest is Test {
@@ -131,7 +137,7 @@ contract CombinedCapacityGasTest is Test {
         feed = new MockFeed(8, 1e8);
         policy = new VaultPolicyMock();
         venue = new CombinedCapacityVenue(pools);
-        vault = new AccountingVaultHarness(address(access), block.chainid, TREASURY, address(new ZZZMigrationBudget(address(access))));
+        ProtocolPolicyFixture.recipient(address(access),TREASURY);vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         assertEq(vault.MAX_BUCKETS(), SUPPORTED_BUCKETS, "Requalify combined gas before changing capacity");
         nft = new ZZZNFT(address(access), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
@@ -152,27 +158,27 @@ contract CombinedCapacityGasTest is Test {
         access.bind(Ids.ORACLE, address(oracle));
         access.bind(Ids.MIGRATION, address(this));
         access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
-        for (uint256 i; i < 32; ++i) {
+        for (uint256 i; i < 16; ++i) {
             MockToken token = faultCurrencyFixture && i < 16 ? new CapacityRoyaltyFaultToken() : new MockToken(0);
             tokens.push(token);
             oracle.setTestFeed(address(token), address(feed), 3600);
-            rewards.addAsset(address(token));
+
             if (i < 16) nft.addRoyaltyAsset(address(token));
             token.mint(OWNER, 100_000);
             token.mint(ENTRANT, 100_000);
             vm.prank(OWNER); token.approve(address(vault), type(uint256).max);
             vm.prank(ENTRANT); token.approve(address(vault), type(uint256).max);
         }
+        pools.setFixedZZZ(address(tokens[0]));rewards.addAsset(address(tokens[0]));
+        oracle.setTestFeed(address(0),address(new MockFeed(8,1e26)),7200);
         CanonicalFixture.bind(address(access));
         access.seal();
         vm.deal(OWNER, 10 ether);
         vm.deal(ENTRANT, 1 ether);
         for (uint256 i; i < SUPPORTED_BUCKETS; ++i) {
-            address first = address(tokens[i * 2]);
-            address second = address(tokens[i * 2 + 1]);
-            if (first > second) (first, second) = (second, first);
+            address first=address(0);address second=address(tokens[0]);
             PoolConfig memory config;
-            config.key = PoolKey(first, second, 3000, 60, address(0));
+            config.key = PoolKey(first, second, uint24(3000+i), 60, address(0));
             config.operationsEnabled = true;
             config.depositsEnabled = true;
             config.minDepositUSD = 1e18;
@@ -183,7 +189,7 @@ contract CombinedCapacityGasTest is Test {
             poolIds.push(pool);
             uint256 id = _mint(OWNER);
             incumbents.push(id);
-            vm.prank(OWNER); vault.activate(id, pool, 1000, 1000, 1, block.timestamp + 100);
+            vm.prank(OWNER); vault.activate{value:1000}(id, pool, 1000, 1000, 1, block.timestamp + 100);
         }
         entrant = _mint(ENTRANT);
         // Actual LP fees and sub-twenty dust belong to the incumbent cohort
@@ -207,7 +213,7 @@ contract CombinedCapacityGasTest is Test {
         vm.deal(address(royalties), 16 ether);
         assertEq(royalties.pending(address(0)),16 ether);
         assertEq(vault.bucketCount(), SUPPORTED_BUCKETS);
-        assertEq(rewards.assetCount(), 33);
+        assertEq(rewards.assetCount(), 2);
         assertEq(royalties.assetCount(), 17);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS);
         vm.resumeGasMetering();
@@ -238,23 +244,21 @@ contract CombinedCapacityGasTest is Test {
         vm.cool(address(oracle));
     }
 
-    function _assertHistoricalFundingExcluded() private view {
-        for (uint256 i; i < 32; ++i) {
-            address token = address(tokens[i]);
-            if (i < incumbents.length * 2) {
-                uint256 bucket = vault.nftBucket(incumbents[i / 2]);
-                assertEq(fees.dust(bucket, token), 0);
-                assertEq(rewards.liabilities(token), 919);
-                assertEq(rewards.claimable(incumbents[i / 2], token), 819 + 100 / incumbents.length);
-            } else assertEq(rewards.liabilities(token), 0);
-            assertEq(rewards.claimable(entrant, token), 0, "Entrant received historical LP fees");
-            if (i < 16) {
-                assertEq(royalties.claimable(entrant, token), 0, "Entrant received historical royalties");
-                assertEq(royalties.claimable(incumbents[0], token), 1600 / SUPPORTED_BUCKETS);
-            }
+    function _lpAsset(uint256 i)private view returns(address){return i==0?address(0):address(tokens[0]);}
+    function _seedBooks(uint256 bucket)private{
+        vm.deal(address(fees),address(fees).balance+900);
+        vm.prank(address(fees));rewards.creditPool{value:900}(bucket,address(0),800,100);
+        tokens[0].mint(address(fees),900);vm.startPrank(address(fees));
+        tokens[0].approve(address(rewards),900);rewards.creditPool(bucket,address(tokens[0]),800,100);vm.stopPrank();
+    }
+    function _assertHistoricalFundingExcluded()private view{
+        for(uint256 i;i<2;++i){address asset=_lpAsset(i);
+            assertEq(rewards.liabilities(asset),3676);
+            assertEq(rewards.claimable(entrant,asset),0);
+            for(uint256 j;j<4;++j){assertEq(fees.dust(vault.nftBucket(incumbents[j]),asset),0);assertEq(rewards.claimable(incumbents[j],asset),919);}
         }
-        assertEq(royalties.claimable(entrant, address(0)), 0);
-        assertEq(royalties.claimable(incumbents[0], address(0)), 16 ether / SUPPORTED_BUCKETS);
+        for(uint256 i;i<16;++i){address asset=address(tokens[i]);assertEq(royalties.claimable(entrant,asset),0);assertEq(royalties.claimable(incumbents[0],asset),400);}
+        assertEq(royalties.claimable(entrant,address(0)),0);assertEq(royalties.claimable(incumbents[0],address(0)),4 ether);
     }
 
     function testColdActivationAtCombinedBucketAndAssetCaps() public {
@@ -262,9 +266,9 @@ contract CombinedCapacityGasTest is Test {
         _cool();
         vm.prank(ENTRANT);
         uint256 beforeGas = gasleft();
-        vault.activate(entrant, poolIds[0], 1000, 1000, 1, block.timestamp + 100);
+        vault.activate{value:1000}(entrant, poolIds[0], 1000, 1000, 1, block.timestamp + 100);
         uint256 used = beforeGas - gasleft();
-        emit log_named_uint("combined.4-buckets.32-assets.17-royalties.activation", used);
+        emit log_named_uint("combined.4-buckets.2-books.17-royalties.activation", used);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS + 1);
         assertGt(vault.sharesOf(entrant), 0);
         _assertHistoricalFundingExcluded();
@@ -278,9 +282,9 @@ contract CombinedCapacityGasTest is Test {
         _cool();
         vm.prank(OWNER);
         uint256 beforeGas = gasleft();
-        vault.increase(incumbents[0], 100, 100, 1, block.timestamp + 100);
+        vault.increase{value:100}(incumbents[0], 100, 100, 1, block.timestamp + 100);
         uint256 used = beforeGas - gasleft();
-        emit log_named_uint("combined.4-buckets.32-assets.17-royalties.top-up", used);
+        emit log_named_uint("combined.4-buckets.2-books.17-royalties.top-up", used);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS);
         assertEq(royalties.weightOf(incumbents[0]), previousWeight);
         assertGt(vault.sharesOf(incumbents[0]), previousShares);
@@ -290,62 +294,42 @@ contract CombinedCapacityGasTest is Test {
 
     /// @dev Conservatively populate every owner/global index, even though local
     /// pool moves preserve the accounting pair. Mock Fee authority seeds real
-    /// backed Rewards state; this does not claim that one venue earns 32 assets.
+    /// backed Rewards state; this does not claim that the native/fixed-ZZZ pair earns any third asset.
     function _fullyIndexedOperation(bool activation) private {
         _fixture();
         vm.pauseGasMetering();
         uint256 bucket = vault.nftBucket(incumbents[0]);
-        for (uint256 i; i < 32; ++i) {
-            tokens[i].mint(address(fees), 900);
-            vm.startPrank(address(fees));
-            tokens[i].approve(address(rewards), 900);
-            rewards.creditPool(bucket, address(tokens[i]), 800, 100);
-            vm.stopPrank();
-            assertGt(rewards.ownerIndex(bucket, address(tokens[i])), 0);
-            assertGt(rewards.index(address(tokens[i])), 0);
-        }
+        _seedBooks(bucket);
+        for(uint256 i;i<2;++i){(uint256 personal,uint256 shared)=rewards.claimableComponents(incumbents[0],_lpAsset(i));assertGt(personal,0);assertGt(shared,0);}
         vm.resumeGasMetering();
         uint256 previousShares = vault.sharesOf(incumbents[0]);
         uint256 previousWeight = royalties.weightOf(incumbents[0]);
         _cool();
         vm.prank(activation ? ENTRANT : OWNER);
         uint256 beforeGas = gasleft();
-        if (activation) vault.activate(entrant, poolIds[0], 1000, 1000, 1, block.timestamp + 100);
-        else vault.increase(incumbents[0], 100, 100, 1, block.timestamp + 100);
+        if (activation) vault.activate{value:1000}(entrant, poolIds[0], 1000, 1000, 1, block.timestamp + 100);
+        else vault.increase{value:100}(incumbents[0], 100, 100, 1, block.timestamp + 100);
         uint256 used = beforeGas - gasleft();
-        emit log_named_uint(activation ? "combined.4-buckets.32-indexed-assets.activation" :
-            "combined.4-buckets.32-indexed-assets.top-up", used);
+        emit log_named_uint(activation ? "combined.4-buckets.2-exact-books.activation" :
+            "combined.4-buckets.2-exact-books.top-up", used);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS + (activation ? 1 : 0));
         assertEq(royalties.weightOf(incumbents[0]), previousWeight);
         if (activation) {
             assertGt(vault.sharesOf(entrant), 0);
             assertEq(vault.sharesOf(incumbents[0]), previousShares);
         } else assertGt(vault.sharesOf(incumbents[0]), previousShares);
-        for (uint256 i; i < 32; ++i) {
-            address token = address(tokens[i]);
-            assertEq(rewards.claimable(entrant, token), 0, "Entrant received historical indexed rewards");
-            assertEq(rewards.paidOwnerIndex(activation ? entrant : incumbents[0], token), rewards.ownerIndex(bucket, token));
-            if (activation) assertEq(rewards.paidIndex(entrant, token), rewards.index(token));
-            bool currentAsset = i < SUPPORTED_BUCKETS * 2;
-            assertEq(rewards.liabilities(token), 900 + (currentAsset ? 919 : 0));
-            assertEq(rewards.claimable(incumbents[0], token),
-                800 + 100 / SUPPORTED_BUCKETS + (currentAsset ? 100 / SUPPORTED_BUCKETS : 0) + (i < 2 ? 819 : 0));
-            if (currentAsset) {
-                uint256 earningBucket = vault.nftBucket(incumbents[i / 2]);
-                assertEq(fees.dust(earningBucket, token), 0);
-            }
-            if (i < 16) {
-                assertEq(royalties.claimable(entrant, token), 0);
-                assertEq(royalties.claimable(incumbents[0], token), 1600 / SUPPORTED_BUCKETS);
-            }
+        for(uint256 i;i<2;++i){address asset=_lpAsset(i);assertEq(rewards.claimable(entrant,asset),0);
+            assertEq(rewards.liabilities(asset),4576);assertEq(rewards.claimable(incumbents[0],asset),1744);
+            for(uint256 j;j<4;++j)assertEq(fees.dust(vault.nftBucket(incumbents[j]),asset),0);
         }
+        for(uint256 i;i<16;++i){assertEq(royalties.claimable(entrant,address(tokens[i])),0);assertEq(royalties.claimable(incumbents[0],address(tokens[i])),400);}
         assertEq(royalties.claimable(entrant, address(0)), 0);
         assertEq(royalties.claimable(incumbents[0], address(0)), 16 ether / SUPPORTED_BUCKETS);
-        assertLt(used, LOCAL_GAS_BUDGET, "Fully indexed capacity exceeds unchanged local budget");
+        assertLt(used, LOCAL_GAS_BUDGET, "Both-book capacity exceeds unchanged local budget");
     }
 
-    function testColdActivationWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(true); }
-    function testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(false); }
+    function testColdActivationWithBothExactRewardBooksFunded() public { _fullyIndexedOperation(true); }
+    function testColdIncumbentTopUpWithBothExactRewardBooksFunded() public { _fullyIndexedOperation(false); }
 
     /// @notice Sixteen full-budget faults at the current 1M per-currency default
     /// exceed 12M. Underfunded execution must roll back; a larger LOCAL fixture
@@ -355,17 +339,11 @@ contract CombinedCapacityGasTest is Test {
         _fixture();
         vm.pauseGasMetering();
         uint256 bucket = vault.nftBucket(incumbents[0]);
-        for (uint256 i; i < 32; ++i) {
-            tokens[i].mint(address(fees), 900);
-            vm.startPrank(address(fees));
-            tokens[i].approve(address(rewards), 900);
-            rewards.creditPool(bucket, address(tokens[i]), 800, 100);
-            vm.stopPrank();
-        }
+        _seedBooks(bucket);
         for (uint256 i; i < 16; ++i) CapacityRoyaltyFaultToken(address(tokens[i])).setFailingReader(address(royalties));
         address first = pools.get(poolIds[0]).key.currency0;
         address second = pools.get(poolIds[0]).key.currency1;
-        uint256 balance0 = IERC20(first).balanceOf(ENTRANT);
+        uint256 balance0=ENTRANT.balance;
         uint256 balance1 = IERC20(second).balanceOf(ENTRANT);
         uint256 previousShares = vault.bucketTotalShares(bucket);
         uint256 previousLP = vault.group(bucket).lpTokenId;
@@ -374,7 +352,7 @@ contract CombinedCapacityGasTest is Test {
         _cool();
         vm.prank(ENTRANT);
         uint256 start = gasleft();
-        (bool executed,) = address(vault).call{gas: LOCAL_GAS_BUDGET}(payload);
+        (bool executed,) = address(vault).call{gas:LOCAL_GAS_BUDGET,value:1000}(payload);
         emit log_named_uint("maximum-royalty-faults.12M-rejected.gas", start-gasleft());
         assertFalse(executed,"Sixteen 1M faults must not be labeled 12M-qualified");
         assertEq(vault.nftBucket(entrant),0);
@@ -384,7 +362,7 @@ contract CombinedCapacityGasTest is Test {
         assertEq(membership.totalEligible(),SUPPORTED_BUCKETS);
         assertEq(royalties.activationCount(),SUPPORTED_BUCKETS);
         assertEq(royalties.weightOf(entrant),0);
-        assertEq(IERC20(first).balanceOf(ENTRANT),balance0);
+        assertEq(ENTRANT.balance,balance0);
         assertEq(IERC20(second).balanceOf(ENTRANT),balance1);
         for(uint256 i;i<16;++i) assertEq(royalties.eligibleCount(address(tokens[i])),SUPPORTED_BUCKETS);
         // 24M is a test-local envelope, not a changed service limit or target
@@ -394,7 +372,7 @@ contract CombinedCapacityGasTest is Test {
         vm.prank(ENTRANT);
         start=gasleft();
         bytes memory result;
-        (executed,result)=address(vault).call{gas:localFaultBudget}(payload);
+        (executed,result)=address(vault).call{gas:localFaultBudget,value:1000}(payload);
         uint256 completedGas=start-gasleft();
         emit log_named_uint("maximum-royalty-faults.24M-local-attempt.gas",completedGas);
         if (!executed) assembly ("memory-safe") { revert(add(result,32),mload(result)) }
@@ -405,7 +383,7 @@ contract CombinedCapacityGasTest is Test {
         assertEq(membership.totalEligible(),SUPPORTED_BUCKETS+1);
         assertEq(royalties.activationCount(),SUPPORTED_BUCKETS+1);
         assertEq(royalties.eligibleCount(address(0)),SUPPORTED_BUCKETS+1);
-        assertEq(IERC20(first).balanceOf(ENTRANT),balance0-1000);
+        assertEq(ENTRANT.balance,balance0-1000);
         assertEq(IERC20(second).balanceOf(ENTRANT),balance1-1000);
         for (uint256 i; i < 16; ++i) {
             address token=address(tokens[i]);
@@ -417,7 +395,7 @@ contract CombinedCapacityGasTest is Test {
             assertEq(royalties.claimable(entrant,token),0,"No pre-activation royalty theft");
             assertEq(royalties.claimable(incumbents[0],token),1600/SUPPORTED_BUCKETS);
         }
-        for (uint256 i; i < 32; ++i) assertEq(rewards.claimable(entrant,address(tokens[i])),0,"No historical LP fee theft");
+        for(uint256 i;i<2;++i)assertEq(rewards.claimable(entrant,_lpAsset(i)),0,"No historical LP fee theft");
         assertEq(royalties.claimable(entrant,address(0)),0);
     }
 }

@@ -4,14 +4,14 @@ Reviewed2026-11-06. [README](../README.md) explains the project; [sole Todo](../
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 
-Start with [current profile identities](POSITION_V6.md), [features](IMPLEMENTATION_STATUS.md),
+Start with [current profile identities](POSITION_V7.md), [features](IMPLEMENTATION_STATUS.md),
 [findings](AUDIT_FINDINGS.md) and the maintained [Operator manual](OPERATOR_MANUAL.md).
 Its [short call tables](OPERATOR_MANUAL.md#operator-call-tables) cover every current
 ABI function, with exact inputs, examples and explanations of at most five words.
 The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
 caller/value notes. These are documentation templates, never transaction approval.
 
-Current source is accounting6/custody5/portfolio2/direct Entry3 plus royalty
+Current source is accounting7/custody5/portfolio2/direct Entry3 plus royalty
 settlement4/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
 their original meaning. Use [the report map](../reports/README.md) for exact source
 scope; a historical audit is not a current operating procedure or release sign-off.
@@ -20,8 +20,8 @@ scope; a historical audit is not a current operating procedure or release sign-o
 
 | Topic | Current guide |
 | --- | --- |
-| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile6](POSITION_V6.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
-| Exact-unit LP upgrade | [Implemented internal engine and integration boundary](EXACT_LP_ALLOCATION.md); current LP fraction ledger remains until full wiring. |
+| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile7](POSITION_V7.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
+| Exact-unit LP upgrade | [Integrated whole-unit LP books, claims and raw-phase V9](EXACT_LP_ALLOCATION.md); earlier6/V8 retain their historical readers. |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
@@ -29,7 +29,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
-| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V8 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
+| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V9 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Short operator tables](OPERATOR_MANUAL.md#operator-call-tables), [full source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
@@ -54,7 +54,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting6/custody5 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting7/custody5 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 governed rehearsal](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
@@ -92,7 +92,7 @@ take precedence over early unpinned upstream links.
 
 ## Current adaptable policy
 
-[Accounting6 profile](POSITION_V6.md) and [bounded post-seal controls](ADAPTABLE_POLICY.md)
+[Accounting7 profile](POSITION_V7.md) and [bounded post-seal controls](ADAPTABLE_POLICY.md)
 replace fresh accounting5 assumptions. [Operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
 and [callable reference](CONTRACT_FUNCTIONS.md) describe exact procedures. Existing
 runtimes, source-scoped evidence and served websites retain their own boundaries.

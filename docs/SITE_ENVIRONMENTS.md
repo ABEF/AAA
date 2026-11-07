@@ -28,9 +28,9 @@ API's envelope schema remains its own version; do not relabel it to match the
 website manifest. Existing schema1/native2 manifests, Anvil deployments and
 saved transaction journals retain their original meanings.
 
-The fresh contract/API source now adds direct Entry-routing3 over accounting6,
-with schema10/20-helper release inventory. This is not the served current3 site
-or an update to existing local wallet/nonce records. Matching source8 website
+The fresh contract/API source now adds direct Entry-routing3 over accounting7,
+with schema16/19-callable-helper plus2-data-child release inventory. This is not the served current3 site
+or an update to existing local wallet/nonce records. Matching source9 website
 and service rollout remains separately qualified/authorized; public DEPLOYMENT
 is null and browser signing Anvil-only.
 

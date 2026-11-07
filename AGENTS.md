@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed2026-11-06. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-07. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -17,7 +17,7 @@ This file is current instructions, not a report timeline.
 - Popldemo is the existing simulation; poplint is separately built read/unsigned
   integration. Follow [environment map](docs/SITE_ENVIRONMENTS.md). Missing actual
   integration config is unavailable data, not demo data. Do not use demo roots,
-  installers or dist for poplint. Fresh source8/direct Entry3 is not the served current3 site.
+  installers or dist for poplint. Fresh source9/direct Entry3 is not the served current3 site.
 - Browser signing remains **Anvil-only**, public DEPLOYMENT null. Staging heartbeat
   was paused by the user; never restart it without explicit authorization.
 - Never print/log/commit keys, passwords, credentialed RPC endpoints or keystores.
@@ -27,21 +27,34 @@ This file is current instructions, not a report timeline.
   tests_python/test_frontend_history.py. Original hashes/evidence locations are in
   the [handoff](docs/WORK_HANDOFF.md). Do not stage unrelated untracked drafts.
 
-[Exact-unit LP engine](docs/EXACT_LP_ALLOCATION.md) is implemented as an internal,
-unwired Solidity component. It settles both fixed-pair books before weight
-changes, preserves high/low fairness phase and carries selected paths in memory.
-Current Rewards/Vault/canonical6/V8 still use LP fractions; full ledger/consumer
-integration remains the accepted open task, not a new decision to ask again.
-[Current evidence](reports/exact-lp-engine-20261106/REVIEW.md) also fixes read-only
-retry diagnostics. No deployment/profile/journal/site/service/signing changes.
+[Exact-unit LP integration](docs/POSITION_V7.md) connects fresh accounting7/LP-allocation1/
+canonicalV9/schema16/source9 to whole-unit Rewards, authenticated post-write
+shares/membership, current-owner claims/conversion and lossless raw-phase handoff.
+Constructor-fixed typed RewardsCanonical adds one helper, not an arbitrary
+executor, payout recipient or configurable custody address.17modules/19callable
+helpers plus2inert Factory data children; old6/V8/F2/checkpoint1 remain explicit.
+Normal87sources pass46object+2carrier gates at unchanged compiler settings.
+Strict532actual records:222individually reassessed,310unique exact-source reuse.
+Canonical34distinct successes include funded abort/future-credit equivalence;
+backend619distinct corrected methods and actual77-log/four26-field-snapshot Vault transcript
+reconcile. See [integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md)
+for full host/gas stages, failed attempts and final evidence, never summed overlaps.
+Final runtime headroom:Vault133/Rewards358/CanonicalHandoff32. Exact LP claims
+can be materially more expensive;32is a count ceiling, not a gas approval.
+Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
+all weights precede raw pending/high/low restoration. Never flatten old phase,
+reinterpret6/V8 or resume a partially funded/aborted deployment.
+Fresh7 raw earnings replay works; exact-unit checkpoint2 and lifetime archival/
+workload/recovery remain open. Old checkpoint1 is6-only. Source publication
+changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
 ## Fresh architecture and rules
 
-- Fresh [profile6](docs/POSITION_V6.md): accounting6/portfolio2/maintenance3/
+- Fresh [profile7](docs/POSITION_V7.md): accounting7/LP-allocation1/portfolio2/maintenance3/
   confirmation3/compound4/custody5/emergency2/LP-routing2, pricing2/Entry-routing3/
   reviewedEntry2/directgovernance2/fee-intake1. Position remains eight words;
-  fresh canonicalV8 carries sale end/capacity and exact royalty tickets; rejects older peers; tuple shape is not runtime identity.
-  Schema15/residual-reinvest1 inventory has18 callable helpers plus2 inert RoyaltyFactory data children and exact original-currency royalty4 with canonicalV8. Historical schema14 code-storage2 without reinvest; schema13 royalty4/SSTORE Factory, schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
+  fresh canonicalV9 carries exact LP pending/phase/direct state plus sale end/capacity and exact royalty tickets; rejects older peers; tuple shape is not runtime identity.
+  Schema16/residual-reinvest1 inventory has19 callable helpers plus2 inert RoyaltyFactory data children and exact original-currency royalty4 with canonicalV9. Historical schema15 retains accounting6/V8 and18helpers; schema14 code-storage2 without reinvest; schema13 royalty4/SSTORE Factory, schema12 royalty3/canonicalV7; historical schema10 royalty-converting/custody5, schema9/custody4/direct Entry3, schema8/routed Entry2 and older inventories are inspection-only; historical
   codecs/readers/receipts/journals remain separate and explicit.
 - Only native ETH and one fixed deployment ZZZ are contribution/LP assets.
   Buyback/holder return use that same ZZZ. Token identity cannot change after
@@ -108,7 +121,7 @@ retry diagnostics. No deployment/profile/journal/site/service/signing changes.
 - Both legs close for same-pair movement, parking and terminal holder return.
   Source controls compare captured sourcePool during movement. Stable geometry
   fingerprint excludes L; parking/emergency fingerprint includes both IDs/ticks/L.
-  Canonical V8 capture/import/activation requires zero registered live residuals.
+  Canonical V9 capture/import/activation requires zero registered live residuals.
 - Collective exit is paused-governance-triggered, terminal, no swaps required.
   Close actual ETH/ZZZ and designated compound; allocate by NFT shares, pay current
   owners through bounded isolated direct batches. Rewards/buyback backing stay
@@ -145,7 +158,7 @@ Gas bounds100k–1m are engineering limits, not provider/chain qualification.
 Provider rotation requires all draws finalized, no pending reroll/retargeting.
 Coordinator runtime is pinned for new requests; original-address callbacks may
 drain before planned rotation. Codehash does not freeze proxy implementations.
-Canonical V8 rejects old schemas early and binds helper/runtime/config commitment;
+Canonical V9 rejects old schemas early and binds helper/runtime/config commitment;
 threshold VALUES must match during source/import lifecycle, not local revisions.
 Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantees
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
@@ -171,14 +184,11 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [engine review](reports/exact-lp-engine-20261106/static-review.json):497records,
- 3 individually reassessed contexts/494 unique exact referenced-source reuse,
- with the new internal engine separately reviewed.
- The full85-source normal graph has45objects plus2actual carrier gates; old44 ABI/creation/runtime objects stay identical.
- Earlier both-flow44individually reassessed/453reuse and prior495 remain source-scoped.
- Earlier factory489 records retain their own exact source scope.
- Earlier487/479/471 records stay source-scoped and historical.
-  Update current default/full record together after relevant source changes.
+- CI/check-slither-review selects the strict current [integration review](reports/exact-lp-integration-20261106/static-review.json):532records,
+ 222individually reassessed contexts/310unique exact referenced-source reuse.
+ Prior497and earlier495/489/487/479/471 remain source-scoped and historical.
+ Update default/full record together after relevant source changes.
+
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.
   OpenSea/fresh consumer, providers/authorities/gas/hosting/metadata/recovery and
   independent approval remain open. Source publication changes no environment.
@@ -199,12 +209,12 @@ the November3 authority report below remains historical for those contexts.
   archive/rotation/restore and independent approval stay open. OpenSea research
   does not implement or approve its exact Robinhood drop caller/payment path.
 
-## Royalty exact-unit source boundary
+## Royalty exact-unit source boundary (LP profile now7/V9)
 
-Fresh royalty4/recovery2/reporting5/schema15/canonicalV8 has18 callable helpers
+Fresh royalty4/recovery2/reporting5/schema16/canonicalV9 has19 callable helpers
 plus2 inert Factory code-data children;
 ExactRoyaltyAllocation is internal code. Original currencies remain unchanged,
-without royalty swaps/unwraps/converter. LP conversion/fractions stay separate.
+without royalty swaps/unwraps/converter. LP conversion/exact whole-unit books stay separate; old6fractions are historical.
 The user explicitly authorized deterministic whole-unit rounding. GCD-normalize
 the captured1/2/3 cohort, distribute quotient plus rotating remainder; preserve
 earlier normalization books. Every ALLOCATED raw unit becomes one ticket's whole
@@ -234,8 +244,8 @@ Factory code-storage2 stores the unchanged constructor-derived royalty creation
 payload in exactly2 immutable REVERT-prefix data children (offset3,maxdata24573).
 create checks exact part lengths/hashes, reconstructs and whole-hash verifies,
 then typed zero-value CREATE binds caller NFT/controller. No code setter or
-arbitrary code/recipient/salt. Schema14/code-owned part pins authenticate all37
-module/helper/data addresses (17+18+2), with no per-claim data-child RPC reads.
+arbitrary code/recipient/salt. Schema14/code-owned part pins authenticate all38
+module/helper/data addresses (17+19+2), with no per-claim data-child RPC reads.
 Historical schema13 retains its SSTORE factory. Actual target gas remains open.
 See [format](docs/FACTORY_CODE_STORAGE.md), [claim planning](docs/CLAIM_PLANNING.md)
 and [scoped verification](reports/factory-claims-20261105/VERIFICATION.md).
@@ -322,7 +332,7 @@ No service/site/chain/journal/signer rollout or heartbeat restart.
 
 ## Verification and records
 
-Current test maintenance must distinguish actual royalty4/V8 consumers from
+Current test maintenance must distinguish actual LP1/royalty4/V9 consumers from
 explicit historical imports. Use the real1-hour opening; do not compare zero
 claimables while claiming to preserve earned rights. Closed canonical imports
 must not resume primary minting. Keep true initial-pool and zero-cohort cases
@@ -360,7 +370,7 @@ No environment rollout or independent approval. See the single operator procedur
   observer/validator8 preserves old schema9/custody4 behind historical inspection.
   Disable keeper principal_distribution on5; never put governance key on its host.
   No deployment/journal/service is upgraded by publication. Current principal wire remains
-  accounting6/custody4-format; current royalty header uses canonicalV8; see [permissions](docs/ACCESS_PERMISSIONS.md).
+  accounting6/custody4-format; current royalty header uses canonicalV9; see [permissions](docs/ACCESS_PERMISSIONS.md).
 - [Exit assurance supplement](reports/holder-exit-assurance-20261103/REVIEW.md)
   changes tests/guidance only; production pins remain e26fc74.10distinct selected
   successes across explicit stages include1000fuzz inputs,1000distinct holders,
@@ -376,7 +386,7 @@ No environment rollout or independent approval. See the single operator procedur
 - Matching current APIs authenticate both LP legs while preserving ownership/raw
   funded claims through price outages. USD/NAV can remain unavailable. Never infer
   keeper readiness from physical-only data or relabel an old service/journal.
-- Actual dual feeds/routes/VRF/authorities/OpenSea, matching source8 services/site,
+- Actual dual feeds/routes/VRF/authorities/OpenSea, matching source9 services/site,
   target gas/economics, storage/recovery, long-lived history and independent
   audit/remediation remain open. Source publication is not operating acceptance.
 - One maintained [Operator manual](docs/OPERATOR_MANUAL.md); PORTFOLIO_OPERATIONS
@@ -397,7 +407,7 @@ No environment rollout or independent approval. See the single operator procedur
 ## Manual portfolio control invariants
 
 RESIDUAL_EXIT_VERSION1 on Migration/Vault/Manager/position child retains
-accounting6 and the unchanged custody4-format wire under custody5. Paused governance `Migration.closeResidual(ParkingRequest)`
+accounting7 and the unchanged custody4-format wire under custody5. Paused governance `Migration.closeResidual(ParkingRequest)`
 harvests both then closes only the registered residual into attributed Vault idle;
 main/shares/clock/configuration remain. Raw minima, physical/control fingerprint,
 current governance/pause and shared parking nonce/custody epoch remain enforced.
@@ -424,7 +434,7 @@ OpenSea stage; governance can revise only while OLD end has not passed. Review
 fingerprint/revision invalidates stale operations. Initial pool belongs to strict
 pre-cutoff activations; late activations future-only. Zero cohort remains explicitly
 unallocated. Lazy sync/claim materializes initial allocation; no keeper job required.
-LP claims remain independent. V8 capture waits for open/finalized window and all
+LP claims remain independent. V9 capture waits for open/finalized window and all
 initial currencies synchronized. Emergency/terminal LP paths remain independent.
 Use [launch rule](docs/ROYALTY_LAUNCH_WINDOW.md) and the [current audit](reports/last24h-audit-20261105/VERIFICATION.md).
 No changes to served current3, public signing, services, Anvil or journals.

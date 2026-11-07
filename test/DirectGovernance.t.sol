@@ -52,8 +52,8 @@ contract DirectGovernanceTest is Test {
         access.bind(Ids.BUYBACK, address(buyback));
         MockFeed feed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(zzz), address(feed), 3600);
-        rewards.addAsset(address(zzz));
         pools.activationAssets().configureZZZ(address(zzz), address(zzz).codehash, REVIEW);
+        rewards.addAsset(address(zzz));
         migration.configureZZZ(address(zzz), address(zzz).codehash, REVIEW);
         bytes32[7] memory unused = [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.MEMBERSHIP,
             Ids.FEES,Ids.STRATEGY,Ids.COMPOUNDER];

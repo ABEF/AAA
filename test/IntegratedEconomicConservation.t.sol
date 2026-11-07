@@ -142,12 +142,13 @@ contract IntegratedEconomicConservationTest is Test {
         access.bind(Ids.FEES,address(fees));access.bind(Ids.POOLS,address(registry));
         access.bind(Ids.LIQUIDITY,address(manager));access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
         access.bind(Ids.MIGRATION,address(this));access.bind(Ids.COMPOUNDER,address(compounder));
-        access.setKeeper(address(this),true);rewards.addAsset(address(token));
+        access.setKeeper(address(this),true);
         vrf=new MockVRF();ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         // Match the fixed production contribution identity before sealing. Pool
         // admission alone deliberately does not approve arbitrary source tokens.
         registry.activationAssets().configureZZZ(address(token),address(token).codehash,
             keccak256("test-only fixed ZZZ identity; not production token qualification"));
+        rewards.addAsset(address(token));
         royalties=nft.royaltyRewards();CanonicalFixture.bind(address(access));access.seal();
         PoolConfig memory c=registry.get(keccak256(abi.encode(PoolKey(address(0),address(token),10020,200,address(0)))));
         pool=keccak256(abi.encode(c.key));
@@ -693,7 +694,7 @@ contract IntegratedEconomicConservationTest is Test {
         vault.collectFees(bucket,block.timestamp+100);_assertBacking();
     }
 
-    function testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate() public {
+    function testActualV4SmallReceiptsAndRepeatedClaimsKeepEveryWholeUnitAndLedgersSeparate() public {
         uint256 a=_mint(ALICE);uint256 b=_mint(BOB);_balanced(ALICE,a,50 ether,false);_balanced(BOB,b,50 ether,false);
         uint256 bucket=vault.nftBucket(a);
         for(uint256 i;i<9;++i){
@@ -703,7 +704,25 @@ contract IntegratedEconomicConservationTest is Test {
         _claim(ALICE,a);_claim(BOB,b);_assertBacking();
         assertGt(credited[0]+credited[1],0,"real trades must generate protocol revenue");
         assertGt(royaltyClaimed,0,"royalty checks cannot be vacuous");assertLe(royaltyClaimed,9);
-        assertLe(rewards.claimable(a,address(0))+rewards.claimable(b,address(0)),rewards.liabilities(address(0)));
+        assertEq(rewards.claimable(a,address(0))+rewards.claimable(b,address(0)),rewards.liabilities(address(0)));
+        assertEq(rewards.liabilities(address(0)),0);assertEq(rewards.liabilities(address(token)),0);
         assertEq(vault.bucketTotalShares(bucket),vault.sharesOf(a)+vault.sharesOf(b));
     }
+    function testActualV4EntrantSwapFeesBelongOnlyToIncumbentBeforeSharesIssue()public{
+        _deepenExternalLiquidity();uint256 a=_mint(ALICE);_contribute(ALICE,a,100 ether,false);
+        uint256 bucket=vault.nftBucket(a);uint256 main=vault.group(bucket).lpTokenId;vault.collectFees(bucket,block.timestamp+100);
+        uint256 beforeETH=rewards.claimable(a,address(0));uint256 beforeZZZ=rewards.claimable(a,address(token));uint256 oldShares=vault.sharesOf(a);uint160 spotBefore=manager.spot(pool);
+        uint256 b=_mint(BOB);vm.recordLogs();_contribute(BOB,b,100 ether,false);Vm.Log[] memory logs=vm.getRecordedLogs();
+        uint256 harvests;uint256 creditedETH;uint256 creditedZZZ;
+        for(uint256 i;i<logs.length;++i){Vm.Log memory item=logs[i];if(item.topics.length==0)continue;
+            if(item.emitter==address(vault)&&item.topics[0]==HARVEST){(uint256 e,uint256 z)=abi.decode(item.data,(uint256,uint256));if(harvests==0)assertEq(e+z,0);else assertGt(e+z,0);++harvests;}
+            if(item.emitter==address(rewards)&&item.topics[0]==CREDIT){(uint256 personal,uint256 shared)=abi.decode(item.data,(uint256,uint256));if(address(uint160(uint256(item.topics[2])))==address(0))creditedETH+=personal+shared;else creditedZZZ+=personal+shared;}
+        }
+        assertEq(harvests,2);assertTrue(manager.spot(pool)!=spotBefore,"real executed entrant swap must move spot");assertGt(creditedETH+creditedZZZ,0);
+        assertEq(rewards.claimable(a,address(0)),beforeETH+creditedETH);assertEq(rewards.claimable(a,address(token)),beforeZZZ+creditedZZZ);
+        assertEq(rewards.claimable(b,address(0)),0);assertEq(rewards.claimable(b,address(token)),0);assertEq(vault.sharesOf(a),oldShares);assertEq(vault.group(bucket).lpTokenId,main);
+        for(uint256 i;i<2;++i){address asset=i==0?address(0):address(token);uint256 owed=rewards.claimable(a,asset);assertEq(rewards.liabilities(asset),owed);vm.prank(ALICE);assertEq(rewards.claim(a,asset),owed);assertEq(rewards.liabilities(asset),0);}
+        assertEq(address(rewards).balance,NATIVE_PREFUND);assertEq(token.balanceOf(address(rewards)),TOKEN_PREFUND);
+    }
+
 }

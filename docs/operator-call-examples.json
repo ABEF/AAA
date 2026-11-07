@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "917b78f3ca5b769c9cac2c4f2ab56eb4edcb362501170b80e885fb71fe1e6867",
+  "reference_sha256": "1696cda6638ca423726c04256136f7bf72d2af40147f03f1c5e7331050093bac",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -5079,9 +5079,9 @@
     },
     "ZZZRewards.constructor(address)": {
       "role": "D",
-      "short": "Deploy bound implementation",
+      "short": "Deploy exact LP ledger",
       "arguments": [
-        "$CONTROLLER_ADDRESS"
+        "$ACCESS_CONTROLLER_ADDRESS"
       ],
       "value": null
     },
@@ -5103,12 +5103,6 @@
       "arguments": [],
       "value": null
     },
-    "ZZZRewards.SCALE()": {
-      "role": "R",
-      "short": "Read scale",
-      "arguments": [],
-      "value": null
-    },
     "ZZZRewards.access()": {
       "role": "R",
       "short": "Read access",
@@ -5116,10 +5110,10 @@
       "value": null
     },
     "ZZZRewards.addAsset(address)": {
-      "role": "G",
-      "short": "Admit reward currency",
+      "role": "B",
+      "short": "Bind fixed ZZZ book",
       "arguments": [
-        "$ROYALTY_TOKEN_ADDRESS"
+        "$ZZZ_TOKEN_ADDRESS"
       ],
       "value": null
     },
@@ -5142,110 +5136,6 @@
       "short": "Bind conversion implementation once",
       "arguments": [
         "$CANDIDATE_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.canonicalAccept(uint256,address)": {
-      "role": "M",
-      "short": "Accept authenticated classified backing",
-      "arguments": [
-        0,
-        "$TARGET_ADDRESS"
-      ],
-      "value": 0
-    },
-    "ZZZRewards.canonicalActivate()": {
-      "role": "M",
-      "short": "Activate imported ledger state",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.canonicalAssetCount()": {
-      "role": "R",
-      "short": "Read canonical asset count",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.canonicalBacking(uint256)": {
-      "role": "R",
-      "short": "Read canonical backing",
-      "arguments": [
-        0
-      ],
-      "value": null
-    },
-    "ZZZRewards.canonicalCapture()": {
-      "role": "M",
-      "short": "Capture classified ledger backing",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.canonicalCount()": {
-      "role": "R",
-      "short": "Read canonical count",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.canonicalExport(uint256)": {
-      "role": "R",
-      "short": "Read canonical export",
-      "arguments": [
-        0
-      ],
-      "value": null
-    },
-    "ZZZRewards.canonicalImport(uint256,bytes)": {
-      "role": "M",
-      "short": "Import authenticated accounting row",
-      "arguments": [
-        0,
-        "$RECORD"
-      ],
-      "value": null
-    },
-    "ZZZRewards.canonicalRelease(uint256,address)": {
-      "role": "M",
-      "short": "Release authenticated classified backing",
-      "arguments": [
-        0,
-        "$DESTINATION_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.canonicalRestore(uint256,address)": {
-      "role": "M",
-      "short": "Restore captured source backing",
-      "arguments": [
-        0,
-        "$TARGET_ADDRESS"
-      ],
-      "value": 0
-    },
-    "ZZZRewards.canonicalSettle()": {
-      "role": "M",
-      "short": "Settle captured reward indexes",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.canonicalValidate()": {
-      "role": "R",
-      "short": "Validate imported classified backing",
-      "arguments": [],
-      "value": null
-    },
-    "ZZZRewards.checkpointAll(uint256)": {
-      "role": "M",
-      "short": "Checkpoint active collective members",
-      "arguments": [
-        "$NFT_ID"
-      ],
-      "value": null
-    },
-    "ZZZRewards.checkpointOwner(uint256)": {
-      "role": "M",
-      "short": "Checkpoint individual NFT rewards",
-      "arguments": [
-        "$NFT_ID"
       ],
       "value": null
     },
@@ -5274,15 +5164,6 @@
       "arguments": [
         "$NFT_ID",
         "$ZZZ_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.collective(uint256,address)": {
-      "role": "R",
-      "short": "Read collective",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
       ],
       "value": null
     },
@@ -5328,32 +5209,6 @@
       ],
       "value": "$SETTLEMENT_WEI"
     },
-    "ZZZRewards.fraction(uint256,address)": {
-      "role": "R",
-      "short": "Read fraction",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.index(address)": {
-      "role": "R",
-      "short": "Read index",
-      "arguments": [
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.individual(uint256,address)": {
-      "role": "R",
-      "short": "Read individual",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
     "ZZZRewards.isAsset(address)": {
       "role": "R",
       "short": "Read is asset",
@@ -5374,42 +5229,6 @@
       "role": "R",
       "short": "Read orphaned",
       "arguments": [
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.ownerFraction(uint256,address)": {
-      "role": "R",
-      "short": "Read owner fraction",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.ownerIndex(uint256,address)": {
-      "role": "R",
-      "short": "Read owner index",
-      "arguments": [
-        "$BUCKET_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.paidIndex(uint256,address)": {
-      "role": "R",
-      "short": "Read paid index",
-      "arguments": [
-        "$NFT_ID",
-        "$TARGET_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZRewards.paidOwnerIndex(uint256,address)": {
-      "role": "R",
-      "short": "Read paid owner index",
-      "arguments": [
-        "$NFT_ID",
         "$TARGET_ADDRESS"
       ],
       "value": null
@@ -7148,6 +6967,231 @@
     "ZZZVault.RESIDUAL_REINVEST_VERSION()": {
       "role": "R",
       "short": "Read residual reinvest capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.LP_ALLOCATION_VERSION()": {
+      "role": "R",
+      "short": "Read LP allocation version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.claimableComponents(uint256,address)": {
+      "role": "R",
+      "short": "Read whole LP components",
+      "arguments": [
+        "$NFT_ID",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "value": null
+    },
+    "ZZZRewards.allocationTree(uint256)": {
+      "role": "R",
+      "short": "Read reward tree totals",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewards.directLiabilities(address)": {
+      "role": "R",
+      "short": "Read direct credit liabilities",
+      "arguments": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "value": null
+    },
+    "ZZZRewards.rewardBucket(uint256)": {
+      "role": "R",
+      "short": "Read enrolled reward bucket",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.syncShares(uint256)": {
+      "role": "M",
+      "short": "Synchronize authenticated LP shares",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.syncMembership(uint256)": {
+      "role": "M",
+      "short": "Enroll one collective share",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalModule()": {
+      "role": "R",
+      "short": "Read fixed LP codec",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalBarrier()": {
+      "role": "M",
+      "short": "Check frozen callback barrier",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewards.canonicalSeed(uint256)": {
+      "role": "M",
+      "short": "Read exact NFT seed",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalNode(uint256)": {
+      "role": "M",
+      "short": "Read raw allocation node",
+      "arguments": [
+        1
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalWrite(uint8,bytes)": {
+      "role": "M",
+      "short": "Restore typed LP record",
+      "arguments": [
+        1,
+        "$SOURCE_AUTHENTICATED_SEED_BYTES"
+      ],
+      "value": null
+    },
+    "ZZZRewards.canonicalSend(address,address,uint256)": {
+      "role": "M",
+      "short": "Send reviewed canonical backing",
+      "arguments": [
+        "0x0000000000000000000000000000000000000000",
+        "$PEER_CANONICAL_MODULE_ADDRESS",
+        "$CAPTURED_BACKING_WEI"
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.access()": {
+      "role": "R",
+      "short": "Read fixed access controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.rewards()": {
+      "role": "R",
+      "short": "Read fixed ledger parent",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.creditCutoff(address,uint256)": {
+      "role": "M",
+      "short": "Extend captured LP backing",
+      "arguments": [
+        "0x0000000000000000000000000000000000000000",
+        "$ACTUAL_CUTOFF_RECEIPT_WEI"
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.constructor(address)": {
+      "role": "D",
+      "short": "Construct fixed LP codec",
+      "arguments": [
+        "$ACCESS_CONTROLLER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.receive()": {
+      "role": "P",
+      "short": "Receive ETH without allocation",
+      "arguments": [],
+      "value": "$AUTHENTICATED_INCOMING_WEI"
+    },
+    "ZZZRewardsCanonical.canonicalAccept(uint256,address)": {
+      "role": "M",
+      "short": "Accept authenticated classified backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRewardsCanonical.canonicalActivate()": {
+      "role": "M",
+      "short": "Activate imported ledger state",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalAssetCount()": {
+      "role": "R",
+      "short": "Read canonical asset count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalBacking(uint256)": {
+      "role": "R",
+      "short": "Read canonical backing",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalCapture()": {
+      "role": "M",
+      "short": "Capture classified ledger backing",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalCount()": {
+      "role": "R",
+      "short": "Read canonical count",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalExport(uint256)": {
+      "role": "R",
+      "short": "Read canonical export",
+      "arguments": [
+        0
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalImport(uint256,bytes)": {
+      "role": "M",
+      "short": "Import authenticated accounting row",
+      "arguments": [
+        "$NEXT_LP_CANONICAL_ROW",
+        "$SOURCE_AUTHENTICATED_RECORD_BYTES"
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalRelease(uint256,address)": {
+      "role": "M",
+      "short": "Release authenticated classified backing",
+      "arguments": [
+        0,
+        "$DESTINATION_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalRestore(uint256,address)": {
+      "role": "M",
+      "short": "Restore captured source backing",
+      "arguments": [
+        0,
+        "$TARGET_ADDRESS"
+      ],
+      "value": 0
+    },
+    "ZZZRewardsCanonical.canonicalSettle()": {
+      "role": "M",
+      "short": "Settle captured reward indexes",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRewardsCanonical.canonicalValidate()": {
+      "role": "R",
+      "short": "Validate imported classified backing",
       "arguments": [],
       "value": null
     }

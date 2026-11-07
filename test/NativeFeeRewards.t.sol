@@ -5,6 +5,9 @@ import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
+import {ZZZRewardsCanonical} from "../src/ZZZRewardsCanonical.sol";
+import {ExactLPAllocation} from "../src/libraries/ExactLPAllocation.sol";
+import {ZZZExactLPRewardsCanonical as LPRecords} from "../src/base/ZZZExactLPRewardsCanonical.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZFeesCanonical} from "../src/ZZZFeesCanonical.sol";
@@ -32,23 +35,41 @@ contract NativeFeeVault {
     function bucketCount() external pure returns (uint256) { return 1; }
     function bucketAt(uint256 i) external pure returns (uint256) { require(i == 0); return 11; }
     function MAX_BUCKETS() external pure returns (uint256) { return 4; }
+    function ACCOUNTING_VERSION() external pure returns (uint256) { return 7; }
     function mintProceedsRecipient() external pure returns (address payable) { return payable(address(0x7EA5)); }
     function set(Position memory p) external { positions[11] = p; }
     function group(uint256 id) external view returns (Position memory) { return positions[id]; }
     function join(uint256 id, uint256 amount) external {
+        if (amount == 0) return;
         nftBucket[id] = 11;
-        rewards.checkpointOwner(id);
         sharesOf[id] += amount; bucketTotalShares[11] += amount;
+        rewards.syncShares(id);
+    }
+    function importShares(uint256 id, uint256 amount) external {
+        nftBucket[id] = 11;
+        sharesOf[id] = amount; bucketTotalShares[11] += amount;
     }
 }
 contract NativeConvertedCreditFixture is ZZZRewards {
     constructor(address controller) ZZZRewards(controller) {}
     // TEST ONLY: the converter's exact received ETH has already been attributed
-    // to an NFT. It must not be replayed into the native fee indices.
+    // to an NFT. It must not be replayed into the native allocation trees.
     function convertedCredit(uint256 id, uint256 personal, uint256 shared) external payable {
         require(msg.value == personal + shared);
-        individual[id][address(0)] += personal; collective[id][address(0)] += shared;
+        directIndividual[id][address(0)] += personal; directCollective[id][address(0)] += shared;
+        directLiabilities[address(0)] += msg.value;
         liabilities[address(0)] += msg.value;
+    }
+    function rawTreeDigest(uint256 bucket) external view returns(bytes32 hash) {
+        for(uint256 t;t<2;++t) {
+            ExactLPAllocation.Tree storage tree=t==0?ownerBooks[bucket]:collectiveBook;
+            hash=keccak256(abi.encode(hash,tree.books[0].outstanding,tree.books[1].outstanding));
+            for(uint256 node=1;node<=2023;++node) {
+                hash=keccak256(abi.encode(hash,tree.weights[node],tree.books[0].pending[node],
+                    tree.books[0].carry[node].high,tree.books[0].carry[node].low,tree.books[1].pending[node],
+                    tree.books[1].carry[node].high,tree.books[1].carry[node].low));
+            }
+        }
     }
 }
 contract RejectNativeClaim {
@@ -86,23 +107,24 @@ contract NativeFeeRewardsTest is Test {
     bytes32 constant POOL = keccak256("native-accounting");
     receive() external payable {}
 
-    function setUp() public {
-        ac = new NativeFeeAccess(); token = new MockToken(18); pools = new MockPools();
-        rewards = new NativeConvertedCreditFixture(address(ac));
-        vault = new NativeFeeVault(rewards); nft = new ZZZNFT(address(ac), "ipfs://"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
-        membership = new ZZZMembership(address(ac)); fees = new ZZZFeeController(address(ac));
-        canonical = new ZZZFeesCanonical(address(ac), address(fees));
-        ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft)); ac.bind(Ids.MEMBERSHIP, address(membership));
-        ac.bind(Ids.REWARDS, address(rewards)); ac.bind(Ids.FEES, address(fees)); ac.bind(Ids.POOLS, address(pools));
-        ac.bind(Ids.BUYBACK, address(this)); ac.bind(Ids.CANONICAL, address(this)); ac.bind(Ids.FEES_CANONICAL, address(canonical));
+    function setUp()public{_setup(false);}
+    function _setup(bool hostile)private{
+        ac=new NativeFeeAccess();ProtocolPolicyFixture.bind(address(ac));pools=new MockPools();rewards=new NativeConvertedCreditFixture(address(ac));
+        vault=new NativeFeeVault(rewards);nft=new ZZZNFT(address(ac),"ipfs://");nft.setMintEnd(uint64(block.timestamp+3650 days));
+        membership=new ZZZMembership(address(ac));fees=new ZZZFeeController(address(ac));canonical=new ZZZFeesCanonical(address(ac),address(fees));
+        if(hostile){captureToken=new NativeFeeCaptureToken(address(fees),address(this));token=captureToken;}
+        else token=new MockToken(18);
+        pools.setFixedZZZ(address(token));
+        ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));
+        ac.bind(Ids.REWARDS,address(rewards));ac.bind(Ids.FEES,address(fees));ac.bind(Ids.POOLS,address(pools));
+        ac.bind(Ids.BUYBACK,address(this));ac.bind(Ids.CANONICAL,address(this));ac.bind(Ids.FEES_CANONICAL,address(canonical));
         rewards.addAsset(address(token));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false);
-        ac.seal();
-        PoolConfig memory c; c.key.currency1 = address(token); pools.set(POOL, c);
-        Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;
-        vault.set(p);
-        vm.deal(address(vault), 100 ether); vm.deal(address(fees), 0); vm.deal(address(this), 100 ether);
+        ac.seal();PoolConfig memory c;c.key.currency1=address(token);pools.set(POOL,c);
+        Position memory position;position.poolId=POOL;position.status=PositionStatus.Active;vault.set(position);
+        vm.deal(address(vault),100 ether);vm.deal(address(fees),0);vm.deal(address(this),100 ether);
     }
+    function _codec(ZZZRewards r)private view returns(ZZZRewardsCanonical){return ZZZRewardsCanonical(payable(r.canonicalModule()));}
     function _seed(uint256 id, address owner, uint256 shares, bool active) private {
         vm.prank(address(vault)); nft.mint(owner, id); vault.join(id, shares);
         if (active) { vm.prank(address(vault)); membership.activate(id); }
@@ -120,7 +142,7 @@ contract NativeFeeRewardsTest is Test {
         assertEq(rewards.liabilities(address(0)), 900); assertEq(address(rewards).balance, 900);
         assertEq(fees.compoundBalance(11, address(0)), 50); assertEq(fees.buybackBalance(address(0)), 50);
         assertEq(fees.accounted(address(0)), 100); assertEq(address(fees).balance, 100);
-        assertGt(rewards.index(address(0)), 0); assertGt(rewards.ownerIndex(11, address(0)), 0);
+        (,uint256 own,)=rewards.allocationTree(11);(,uint256 shared,)=rewards.allocationTree(0);assertEq(own,800);assertEq(shared,100);
     }
     function testNativeIngressRequiresExactValueAndRejectsTokenValueEvenWithPrefunds() public {
         _seed(1, ALICE, 100, true); vm.deal(address(fees), 1000); vm.deal(address(rewards), 1000);
@@ -139,14 +161,12 @@ contract NativeFeeRewardsTest is Test {
         assertEq(rewards.claimable(1, address(0)), 2000); assertEq(rewards.claimable(2, address(0)), 700);
         assertEq(membership.totalEligible(), 2);
     }
-    function testNativeFractionsSurviveClaimsAndShareChanges() public {
-        _seed(1, ALICE, 1, false); _seed(2, BOB, 3, false); _credit(1, 0);
-        vm.prank(ALICE); assertEq(rewards.claim(1, address(0)), 0);
-        assertEq(rewards.ownerFraction(1, address(0)), rewards.SCALE() / 4);
-        vault.join(1, 3); _credit(7, 0);
-        vm.prank(ALICE); assertEq(rewards.claim(1, address(0)), 4);
-        vm.prank(BOB); assertEq(rewards.claim(2, address(0)), 3);
-        assertEq(rewards.liabilities(address(0)), 1); assertEq(address(rewards).balance, 1);
+    function testNativeWholeUnitsSurviveClaimsAndShareChanges()public{
+        _seed(1,ALICE,1,false);_seed(2,BOB,3,false);_credit(1,0);
+        vm.prank(ALICE);assertEq(rewards.claim(1,address(0)),0);
+        assertEq(rewards.claimable(2,address(0)),1);vault.join(1,3);_credit(7,0);
+        vm.prank(ALICE);assertEq(rewards.claim(1,address(0)),4);vm.prank(BOB);assertEq(rewards.claim(2,address(0)),4);
+        assertEq(rewards.liabilities(address(0)),0);assertEq(address(rewards).balance,0);
     }
     function testNativeOrphansAndDonationsCannotRewardFutureMembership() public {
         _seed(1, ALICE, 100, false); vm.deal(address(rewards), 1000); _credit(50, 30);
@@ -175,15 +195,12 @@ contract NativeFeeRewardsTest is Test {
         vm.prank(ALICE); assertEq(rewards.claim(1, address(0)), 1200);
         assertEq(address(rewards).balance, 0);
     }
-    function testHistoricalNativeDustIsFlushedWithAll33Currencies() public {
-        _seed(1, ALICE, 100, true); _allocate(19);
-        for (uint256 i; i < 31; ++i) rewards.addAsset(address(new MockToken(18)));
-        assertEq(rewards.assetCount(), 33);
-        PoolConfig memory c; c.key.currency0 = address(token); c.key.currency1 = rewards.assets(2); pools.set(POOL, c);
-        vault.setEpoch(1);
-        vm.prank(address(vault)); membership.settleDust();
-        assertEq(rewards.claimable(1, address(0)), 19); assertEq(fees.dust(11, address(0)), 0);
-        _seed(2, BOB, 100, true); assertEq(rewards.claimable(2, address(0)), 0);
+    function testFixedPairDustSettlesBeforeNewMembershipAndThirdAssetIsRejected()public{
+        _seed(1,ALICE,100,true);_allocate(19);assertEq(rewards.assetCount(),2);
+        MockToken extra=new MockToken(18);vm.expectRevert();rewards.addAsset(address(extra));
+        vm.prank(address(vault));membership.settleDust();
+        assertEq(rewards.claimable(1,address(0)),19);assertEq(fees.dust(11,address(0)),0);
+        _seed(2,BOB,100,true);assertEq(rewards.claimable(2,address(0)),0);
     }
     function testNativeReservesReleaseOnlyTheirClassifiedBacking() public {
         _seed(1, ALICE, 100, true); _allocate(1000);
@@ -193,43 +210,96 @@ contract NativeFeeRewardsTest is Test {
         fees.releaseBuyback(address(0), 50);
         assertEq(address(fees).balance, 0); assertEq(address(rewards).balance, 900);
     }
-    function testNativeRewardCanonicalCodecPreservesIndicesFractionsOrphansAndConvertedCredits() public {
-        _seed(1, ALICE, 1, false); _seed(2, BOB, 3, false); _credit(1, 3);
-        vm.prank(ALICE); assertEq(rewards.claim(1, address(0)), 0);
-        vm.prank(address(vault)); membership.activate(1);
-        vm.prank(address(vault)); membership.activate(2);
-        _credit(1, 1); vm.prank(ALICE); rewards.claim(1, address(0));
-        rewards.convertedCredit{value: 2}(1, 1, 1);
-        assertEq(rewards.orphaned(address(0)), 3);
-        assertGt(rewards.ownerFraction(1, address(0)), 0); assertGt(rewards.fraction(1, address(0)), 0);
-        ac.setCanonicalState(1); rewards.canonicalCapture();
-
-        NativeFeeAccess nextAccess = new NativeFeeAccess();
-        NativeConvertedCreditFixture next = new NativeConvertedCreditFixture(address(nextAccess));
-        NativeFeeVault nextVault = new NativeFeeVault(next);
-        nextAccess.bind(Ids.VAULT, address(nextVault)); nextAccess.bind(Ids.NFT, address(nft));
-        // Identity and membership reads are intentionally fixed fixtures here;
-        // full controller/NFT handoff validation belongs to the canonical suite.
-        nextAccess.bind(Ids.MEMBERSHIP, address(membership)); nextAccess.bind(Ids.CANONICAL, address(this));
-        nextAccess.seal(); nextVault.join(1, 1); nextVault.join(2, 3);
-        vm.deal(address(next), 13); nextAccess.setCanonicalState(2);
-        for (uint256 row; row < rewards.canonicalCount(); ++row) next.canonicalImport(row, rewards.canonicalExport(row));
-        for (uint256 i; i < rewards.canonicalAssetCount(); ++i) {
-            rewards.canonicalRelease(i, address(next)); next.canonicalAccept(i, address(rewards));
-        }
-        next.canonicalValidate();
-        assertEq(next.index(address(0)), rewards.index(address(0)));
-        assertEq(next.ownerIndex(11, address(0)), rewards.ownerIndex(11, address(0)));
-        assertEq(next.paidIndex(1, address(0)), rewards.paidIndex(1, address(0)));
-        assertEq(next.paidOwnerIndex(1, address(0)), rewards.paidOwnerIndex(1, address(0)));
-        assertEq(next.fraction(1, address(0)), rewards.fraction(1, address(0)));
-        assertEq(next.ownerFraction(1, address(0)), rewards.ownerFraction(1, address(0)));
-        assertEq(next.orphaned(address(0)), 3); assertEq(next.liabilities(address(0)), 5);
-        nextAccess.setCanonicalState(0);
-        assertEq(next.claimable(1, address(0)), 2); assertEq(next.claimable(2, address(0)), 1);
-        vm.prank(ALICE); assertEq(next.claim(1, address(0)), 2);
-        vm.prank(BOB); assertEq(next.claim(2, address(0)), 1);
-        assertEq(address(next).balance, 18); // 13 prefund + 3 orphan + 2 reserved fractions/dust.
+    function testNativeRewardCanonicalCodecPreservesRawTreesOrphansAndDirectCredits()public{
+        _seed(1,ALICE,1,false);_seed(2,BOB,3,false);_credit(1,3);
+        vm.prank(ALICE);assertEq(rewards.claim(1,address(0)),0);
+        vm.prank(address(vault));membership.activate(1);vm.prank(address(vault));membership.activate(2);
+        _credit(1,1);vm.prank(ALICE);rewards.claim(1,address(0));rewards.convertedCredit{value:2}(1,1,1);
+        assertEq(rewards.orphaned(address(0)),3);assertEq(rewards.claimable(1,address(0)),2);assertEq(rewards.claimable(2,address(0)),3);
+        bytes32 beforeBooks=rewards.rawTreeDigest(11);ac.setCanonicalState(1);ZZZRewardsCanonical from=_codec(rewards);from.canonicalCapture();
+        NativeFeeAccess nextAccess=new NativeFeeAccess();NativeConvertedCreditFixture next=new NativeConvertedCreditFixture(address(nextAccess));
+        NativeFeeVault nextVault=new NativeFeeVault(next);nextVault.importShares(1,1);nextVault.importShares(2,3);
+        nextAccess.bind(Ids.VAULT,address(nextVault));nextAccess.bind(Ids.NFT,address(nft));nextAccess.bind(Ids.MEMBERSHIP,address(membership));
+        nextAccess.bind(Ids.POOLS,address(pools));nextAccess.bind(Ids.CANONICAL,address(this));nextAccess.seal();nextAccess.setCanonicalState(2);
+        vm.deal(address(next),13);ZZZRewardsCanonical to=_codec(next);
+        for(uint256 row;row<from.canonicalCount();++row)to.canonicalImport(row,from.canonicalExport(row));
+        assertEq(next.rawTreeDigest(11),beforeBooks);assertEq(rewards.rawTreeDigest(11),beforeBooks);
+        for(uint256 i;i<from.canonicalAssetCount();++i){from.canonicalRelease(i,address(to));to.canonicalAccept(i,address(from));}
+        to.canonicalValidate();assertEq(next.rawTreeDigest(11),beforeBooks);assertEq(next.orphaned(address(0)),3);assertEq(next.liabilities(address(0)),5);
+        nextAccess.setCanonicalState(0);vm.prank(ALICE);assertEq(next.claim(1,address(0)),2);vm.prank(BOB);assertEq(next.claim(2,address(0)),3);
+        assertEq(address(next).balance,16);assertEq(next.liabilities(address(0)),0);
+    }
+    function testExactLPCanonicalTypedParentHooksRejectOtherSendersAndUnknownKinds()public{
+        _seed(1,ALICE,1,true);_credit(5,2);
+        bytes32 beforeBooks=rewards.rawTreeDigest(11);uint256 beforeBacking=address(rewards).balance;
+        ac.setCanonicalState(1);
+        vm.expectRevert();rewards.canonicalSeed(1);
+        vm.expectRevert();rewards.canonicalNode(1);
+        vm.expectRevert();rewards.canonicalBarrier();
+        vm.expectRevert();rewards.canonicalSend(address(0),ALICE,1);
+        ac.setCanonicalState(2);
+        vm.expectRevert();rewards.canonicalWrite(0,"");
+        vm.prank(rewards.canonicalModule());vm.expectRevert();rewards.canonicalWrite(3,"");
+        vm.prank(rewards.canonicalModule());vm.expectRevert();rewards.canonicalWrite(0,hex"01");
+        assertEq(rewards.rawTreeDigest(11),beforeBooks);assertEq(address(rewards).balance,beforeBacking);
+        assertEq(rewards.liabilities(address(0)),7);assertEq(ALICE.balance,0);
+    }
+    function testExactLPCanonicalRawNodeWriterRejectsInvalidFieldsBeforeFunding()public{
+        _seed(1,ALICE,1,true);_seed(2,BOB,3,true);_credit(1,1);
+        ac.setCanonicalState(1);ZZZRewardsCanonical from=_codec(rewards);from.canonicalCapture();
+        NativeFeeAccess nextAccess=new NativeFeeAccess();NativeConvertedCreditFixture next=new NativeConvertedCreditFixture(address(nextAccess));
+        NativeFeeVault nextVault=new NativeFeeVault(next);nextVault.importShares(1,1);nextVault.importShares(2,3);
+        nextAccess.bind(Ids.VAULT,address(nextVault));nextAccess.bind(Ids.NFT,address(nft));nextAccess.bind(Ids.MEMBERSHIP,address(membership));
+        nextAccess.bind(Ids.POOLS,address(pools));nextAccess.bind(Ids.CANONICAL,address(this));nextAccess.seal();nextAccess.setCanonicalState(2);
+        ZZZRewardsCanonical to=_codec(next);
+        for(uint256 row;row<1+from.canonicalAssetCount()+2;++row)to.canonicalImport(row,from.canonicalExport(row));
+        assertEq(address(next).balance,0);assertEq(address(to).balance,0);
+        bytes32 beforeBooks=next.rawTreeDigest(11);LPRecords.CanonicalNode memory record;
+        // Positive control: the actual fixed child can write a valid zero raw
+        // node at this inert stage. Negative probes isolate TARGET field checks,
+        // not the coordinator cursor, so they cannot pass on wrong-row rejection.
+        record.node=1;vm.prank(address(to));next.canonicalWrite(2,abi.encode(record));
+        record.low[0]=2; // global root weight is exactly two; low must be <weight.
+        vm.prank(address(to));vm.expectRevert();next.canonicalWrite(2,abi.encode(record));record.low[0]=0;
+        record.node=1024;record.high[0]=1; // leaf carries are always zero.
+        vm.prank(address(to));vm.expectRevert();next.canonicalWrite(2,abi.encode(record));record.high[0]=0;
+        record.node=2023;record.pending[0]=1; // ordinal1000 is unminted here.
+        vm.prank(address(to));vm.expectRevert();next.canonicalWrite(2,abi.encode(record));record.pending[0]=0;
+        record.node=1;record.pending[4]=1; // tree2 is unused with only bucket11.
+        vm.prank(address(to));vm.expectRevert();next.canonicalWrite(2,abi.encode(record));record.pending[4]=0;
+        uint256[10] memory overHigh;overHigh[0]=uint256(type(uint128).max)+1;
+        bytes memory overflowRecord=abi.encode(record.node,record.pending,overHigh,record.low);
+        assertEq(overflowRecord.length,992);
+        vm.prank(address(to));vm.expectRevert();next.canonicalWrite(2,overflowRecord);
+        assertEq(next.rawTreeDigest(11),beforeBooks);assertEq(next.liabilities(address(0)),2);
+        assertEq(address(next).balance,0);assertEq(address(rewards).balance,2);
+    }
+    function _importCurrent()private returns(NativeConvertedCreditFixture next,NativeFeeAccess nextAccess,NativeFeeVault nextVault){
+        ac.setCanonicalState(1);ZZZRewardsCanonical from=_codec(rewards);from.canonicalCapture();
+        nextAccess=new NativeFeeAccess();next=new NativeConvertedCreditFixture(address(nextAccess));
+        nextVault=new NativeFeeVault(next);nextVault.importShares(1,vault.sharesOf(1));nextVault.importShares(2,vault.sharesOf(2));
+        nextAccess.bind(Ids.VAULT,address(nextVault));nextAccess.bind(Ids.NFT,address(nft));nextAccess.bind(Ids.MEMBERSHIP,address(membership));
+        nextAccess.bind(Ids.POOLS,address(pools));nextAccess.bind(Ids.FEES,address(fees));nextAccess.bind(Ids.CANONICAL,address(this));
+        nextAccess.seal();nextAccess.setCanonicalState(2);ZZZRewardsCanonical to=_codec(next);
+        for(uint256 row;row<from.canonicalCount();++row)to.canonicalImport(row,from.canonicalExport(row));
+        for(uint256 a;a<from.canonicalAssetCount();++a){from.canonicalRelease(a,address(to));to.canonicalAccept(a,address(from));}
+        to.canonicalValidate();nextAccess.setCanonicalState(0);
+    }
+    function _futureCreditsAndClaims(NativeConvertedCreditFixture r,NativeFeeVault v)private returns(uint256 alice,uint256 bob,bytes32 raw){
+        v.join(1,2);vm.deal(address(fees),address(fees).balance+13);vm.prank(address(fees));r.creditPool{value:13}(11,address(0),9,4);
+        vm.prank(ALICE);alice=r.claim(1,address(0));vm.prank(BOB);bob=r.claim(2,address(0));raw=r.rawTreeDigest(11);
+        assertEq(r.liabilities(address(0)),0);assertEq(address(r).balance,0);
+    }
+    function testExactLPCanonicalRawPhasePreservesFutureGrowthCreditsAndClaims()public{
+        _seed(1,ALICE,1,true);_seed(2,BOB,3,true);_credit(3,1);vm.prank(ALICE);rewards.claim(1,address(0));
+        bytes32 beforeBooks=rewards.rawTreeDigest(11);uint256 saved=vm.snapshotState();
+        (NativeConvertedCreditFixture next,,NativeFeeVault nextVault)=_importCurrent();
+        assertEq(next.rawTreeDigest(11),beforeBooks);assertEq(rewards.rawTreeDigest(11),beforeBooks);
+        (uint256 importedAlice,uint256 importedBob,bytes32 importedRaw)=_futureCreditsAndClaims(next,nextVault);
+        assertTrue(vm.revertToState(saved));
+        (uint256 originalAlice,uint256 originalBob,bytes32 originalRaw)=_futureCreditsAndClaims(rewards,vault);
+        assertEq(importedAlice,originalAlice);assertEq(importedBob,originalBob);assertEq(importedRaw,originalRaw);
+        assertGt(originalAlice,0);assertGt(originalBob,0);
     }
     function testFuzzNativeFeeChunkingPreservesFundsAndAllocation(uint96 a, uint96 b) public {
         uint256 first = bound(uint256(a), 1, 10 ether); uint256 second = bound(uint256(b), 1, 10 ether);
@@ -245,7 +315,7 @@ contract NativeFeeRewardsTest is Test {
     function testCanonicalLPOnlyReservesAndDonationQuarantineMigrateThenRestore() public {
         _seed(1, ALICE, 100, true); _allocate(1000);
         vm.deal(address(fees), address(fees).balance + 7);
-        ac.setCanonicalState(1); ac.settle(true); rewards.canonicalCapture(); canonical.canonicalCapture(); canonical.canonicalSettle();
+        ac.setCanonicalState(1); ac.settle(true); _codec(rewards).canonicalCapture(); canonical.canonicalCapture(); canonical.canonicalSettle();
         assertEq(rewards.liabilities(address(0)), 900); assertEq(address(rewards).balance, 900);
         (address asset, uint256 amount) = canonical.canonicalBacking(0); assertEq(asset, address(0)); assertEq(amount, 107);
         assertEq(canonical.canonicalAssetCount(), 2);
@@ -299,19 +369,11 @@ contract NativeFeeRewardsTest is Test {
         captureBlocked = true;
         ac.setCanonicalState(0);
     }
-    function testCanonicalCaptureBarrierRejectsMidReceiptCallbackWithoutBlockingTheFee() public {
-        _seed(1, ALICE, 100, true);
-        captureToken = new NativeFeeCaptureToken(address(fees), address(this));
-        rewards.addAsset(address(captureToken));
-        PoolConfig memory c; c.key.currency1 = address(captureToken); pools.set(POOL, c);
-        captureToken.mint(address(vault), 1000);
-        vm.startPrank(address(vault)); captureToken.approve(address(fees), 1000);
-        fees.allocate(11, address(captureToken), 1000); vm.stopPrank();
-        assertTrue(captureBlocked); assertEq(ac.canonicalState(), 0);
-        assertEq(rewards.claimable(1, address(captureToken)), 900);
-        assertEq(fees.accounted(address(captureToken)), 100);
-        assertEq(captureToken.balanceOf(address(fees)), 100);
-        assertEq(captureToken.balanceOf(address(rewards)), 900);
+    function testCanonicalCaptureBarrierRejectsMidReceiptCallbackWithoutBlockingTheFee()public{
+        _setup(true);_seed(1,ALICE,100,true);captureToken.mint(address(vault),1000);
+        vm.startPrank(address(vault));captureToken.approve(address(fees),1000);fees.allocate(11,address(captureToken),1000);vm.stopPrank();
+        assertTrue(captureBlocked);assertEq(ac.canonicalState(),0);assertEq(rewards.claimable(1,address(captureToken)),900);
+        assertEq(fees.accounted(address(captureToken)),100);assertEq(captureToken.balanceOf(address(fees)),100);assertEq(captureToken.balanceOf(address(rewards)),900);
     }
     function testLPOnlyFeeCodecRejectsOlderHeadersAndExpandedBucketRows() public {
         ac.setCanonicalState(2);
@@ -325,15 +387,14 @@ contract NativeFeeRewardsTest is Test {
         vm.expectRevert(); canonical.canonicalImport(5, abi.encode(uint256(11),address(token),uint256(0),uint256(0)));
         canonical.canonicalValidate();
     }
-    function testCanonical33CurrencySourceCompanionPrefundsSurviveAbortAndRecapture() public {
+    function testCanonicalFixedPairCompanionPrefundsSurviveAbortAndRecapture() public {
         _seed(1, ALICE, 100, true); _allocate(1000);
         token.mint(address(vault), 1000);
         vm.startPrank(address(vault)); token.approve(address(fees), 1000); fees.allocate(11, address(token), 1000); vm.stopPrank();
-        for (uint256 i; i < 31; ++i) rewards.addAsset(address(new MockToken(18)));
-        assertEq(rewards.assetCount(), 33);
+        assertEq(rewards.assetCount(), 2);
         vm.deal(address(canonical), 1);
-        for (uint256 i = 1; i < 33; ++i) MockToken(rewards.assets(i)).mint(address(canonical), 1);
-        ac.setCanonicalState(1); rewards.canonicalCapture(); canonical.canonicalCapture(); canonical.canonicalSettle();
+        for (uint256 i = 1; i < 2; ++i) MockToken(rewards.assets(i)).mint(address(canonical), 1);
+        ac.setCanonicalState(1); _codec(rewards).canonicalCapture(); canonical.canonicalCapture(); canonical.canonicalSettle();
 
         NativeFeeAccess destination = new NativeFeeAccess();
         ZZZFeeController nextFees = new ZZZFeeController(address(destination));
@@ -341,13 +402,13 @@ contract NativeFeeRewardsTest is Test {
         destination.bind(Ids.VAULT, address(vault)); destination.bind(Ids.FEES, address(nextFees));
         destination.bind(Ids.FEES_CANONICAL, address(next)); destination.bind(Ids.CANONICAL, address(this));
         destination.setCanonicalState(2); vm.deal(address(next), 1);
-        for (uint256 i = 1; i < 33; ++i) MockToken(rewards.assets(i)).mint(address(next), 1);
+        for (uint256 i = 1; i < 2; ++i) MockToken(rewards.assets(i)).mint(address(next), 1);
         for (uint256 row; row < canonical.canonicalCount(); ++row) next.canonicalImport(row, canonical.canonicalExport(row));
-        for (uint256 i; i < 33; ++i) {
+        for (uint256 i; i < 2; ++i) {
             canonical.canonicalRelease(i, address(next)); next.canonicalAccept(i, address(canonical));
         }
         next.canonicalValidate(); destination.setCanonicalState(4);
-        for (uint256 i; i < 33; ++i) {
+        for (uint256 i; i < 2; ++i) {
             (address asset, uint256 amount) = canonical.canonicalBacking(i);
             uint256 beforeBalance = asset == address(0) ? address(canonical).balance : MockToken(asset).balanceOf(address(canonical));
             next.canonicalRelease(i, address(canonical));
@@ -388,7 +449,7 @@ contract NativeFeeRewardsTest is Test {
     }
 
     /// Same funded history, different claim schedules: claims must not change
-    /// lifetime NFT entitlement, fractions, indices or the two purpose reserves.
+    /// lifetime whole NFT entitlement, membership or the two purpose reserves.
     /// This isolates accounting; real venue/rebalance coverage lives elsewhere.
     function testFuzzClaimOrderAndFrequencyCannotRedistributeAnyNftRewards(uint8 order, uint8 early) public {
         _seed(1, ALICE, 1, true); _seed(2, BOB, 2, true);
@@ -413,7 +474,7 @@ contract NativeFeeRewardsTest is Test {
         for (uint256 i; i < 4; ++i) beforeClaims[i] = rewards.claimable(i + 1, asset);
         bytes32 reserved = keccak256(abi.encode(fees.compoundBalance(11, asset), fees.buybackBalance(asset),
             fees.accounted(asset), fees.dust(11, asset), _assetBalance(asset, address(fees)),
-            rewards.index(asset), rewards.ownerIndex(11, asset), membership.totalEligible(), vault.bucketTotalShares(11)));
+            membership.totalEligible(), vault.bucketTotalShares(11)));
         address owner = nft.ownerOf(id);
         uint256 beforeWallet = _assetBalance(asset, owner);
         uint256 beforeBacking = _assetBalance(asset, address(rewards));
@@ -428,7 +489,7 @@ contract NativeFeeRewardsTest is Test {
         }
         assertEq(reserved, keccak256(abi.encode(fees.compoundBalance(11, asset), fees.buybackBalance(asset),
             fees.accounted(asset), fees.dust(11, asset), _assetBalance(asset, address(fees)),
-            rewards.index(asset), rewards.ownerIndex(11, asset), membership.totalEligible(), vault.bucketTotalShares(11))));
+            membership.totalEligible(), vault.bucketTotalShares(11))));
     }
     function _claims(uint256[4][2] memory paid, uint8 order, uint8 mask) private {
         uint256 remaining = 15;
@@ -465,7 +526,7 @@ contract NativeFeeRewardsTest is Test {
         vm.prank(address(0xCA401)); nft.transferFrom(address(0xCA401), address(0xE7E), 3);
         _allocate(41); _allocate(3); _allocate(1999); _allocateToken(4001); _allocateToken(17);
         _claims(paid, order, 15);
-        _claims(paid, order, 15); // A second claim pays zero, preserving fractions.
+        _claims(paid, order, 15); // A second claim pays zero, preserving future rounding phase.
         result = keccak256(abi.encode(paid));
         for (uint256 k; k < 2; ++k) {
             address asset = k == 0 ? address(0) : address(token);
@@ -473,13 +534,14 @@ contract NativeFeeRewardsTest is Test {
             for (uint256 i; i < 4; ++i) {
                 totalPaid += paid[k][i];
                 result = keccak256(abi.encode(result, rewards.claimable(i + 1, asset),
-                    rewards.fraction(i + 1, asset), rewards.ownerFraction(i + 1, asset)));
+                    rewards.rewardBucket(i+1), vault.sharesOf(i+1)));
             }
             assertEq(totalPaid + _assetBalance(asset, address(rewards)) + _assetBalance(asset, address(fees)),
                 k == 0 ? 5445 : 6179);
             assertEq(_assetBalance(asset, address(rewards)), rewards.liabilities(asset));
+            assertEq(rewards.liabilities(asset),0,"All allocated exact LP units drained");
             assertEq(_assetBalance(asset, address(fees)), fees.accounted(asset));
-            result = keccak256(abi.encode(result, rewards.index(asset), rewards.ownerIndex(11, asset),
+            result = keccak256(abi.encode(result, rewards.directLiabilities(asset),
                 rewards.liabilities(asset), fees.compoundBalance(11, asset), fees.buybackBalance(asset),
                 fees.dust(11, asset), fees.accounted(asset)));
         }

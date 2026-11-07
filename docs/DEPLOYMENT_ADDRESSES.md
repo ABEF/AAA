@@ -1,6 +1,6 @@
 # Deployment address inventory
 
-Fresh undeployed source: [accounting6 / custody5 / portfolio2 / canonical V8](POSITION_V6.md).
+Fresh undeployed source: [accounting7 / exact LP1 / custody5 / portfolio2 / canonicalV9](POSITION_V7.md).
 Governance can permanently close LP and return actual ETH+ZZZ to NFT holders;
 there is no external principal/royalty custody recipient. Production is **NOT APPROVED**.
 
@@ -25,9 +25,9 @@ only that owner can choose a fallback recipient for a failed automatic payout.
 | Actual LP close proceeds, attributed idle and pending compound | Exact ETH+fixedZZZ apportioned by frozen shares and paid in bounded batches; no historical USD guarantee. |
 | Earned individual/collective LP rewards | Existing ledgers/backing remain claimable by current NFT owners, separately from principal return. |
 | Royalties and future receipts | Continue in the separate royalty ledger under preserved activated rarity weights; no external custody drain. |
-| Buyback reserve, quarantine and unsolicited prefunds | Not swept into principal or an administrator address. Purpose-bound accounting remains. |
+| Buyback reserve, unallocated royalties and unsolicited prefunds | Not swept into principal or an administrator address. Purpose-bound accounting remains. |
 | Mint proceeds already paid | Already held by the recipient at payment time; no management privilege follows. |
-| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonical V8 can carry them to one reviewed same-chain successor. |
+| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonicalV9 can carry them to one reviewed same-chain successor. |
 
 Authority wallets and provider-specific subscription ownership remain unselected.
 The selected native ETH/fixedZZZ pool and supported fee-tier replacements are the
@@ -36,13 +36,13 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema15 production manifest](../config/production.example.json)
+public addresses. Complete the [schema16 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
 [release record](RELEASE_CHECKLIST.md) records final sign-off.
 
-Use [versioned preflight](PRODUCTION_PREFLIGHT.md) with explicit accounting6 for this layout; older
+Use [versioned preflight](PRODUCTION_PREFLIGHT.md) with explicit accounting7/LP-allocation1 for this layout; older
 schemas/profiles remain historical inspection only. Record each module/helper
 below once, together with exact deployed runtime (including immutables), parent
 bindings, source/implementation/admin controls and configuration history. A
@@ -97,7 +97,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault` | `ZZZVault` — shared LP custody, NFT shares and terminal principal release to the fixed holder-settlement module |
 | `nft` | `ZZZNFT` — canonical ownership, fixed trait draw and royalty request |
 | `liquidity` | `ZZZLiquidityManager` — fixed venue settlement |
-| `rewards` | `ZZZRewards` — funded LP-owner and equal-collective claims |
+| `rewards` | `ZZZRewards` — exact whole-unit LP-owner and equal-collective claims |
 | `membership` | `ZZZMembership` — activated-NFT collective membership |
 | `fees` | `ZZZFeeController` — fee allocation and separate reserves |
 | `strategy` | `ZZZStrategy` — fixed range/execution calculations |
@@ -111,7 +111,8 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - LP-fee reserve codec bound to Fees |
 
-The fresh source has **21 fixed helpers**, distinct from the 17 core contracts.
+The fresh source has **19 callable helpers plus2 inert code-data children**
+(21 addresses), distinct from the17 core contracts.
 ProtocolPolicy, Budget, Balancer, PortfolioPolicy and Confirmation are separately deployed fixed
 controller companions. Their parent getters resolve the sealed Access module
 and are checked reciprocally; there is no mutable parent setter. Do not reuse a
@@ -120,8 +121,9 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Creation/binding | Helper addresses and verification |
 | --- | --- |
 | Separate policy companion | `ZZZProtocolPolicy(controller,initialMintRecipient)` before consumers, bind-once Access.protocolPolicy, version1/runtime/scoped values and fingerprints. No custody. |
-| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside18 callable helpers; verify source-derived prefix/length/part/whole hashes using schema15. [Procedure](FACTORY_CODE_STORAGE.md). |
+| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside19 callable helpers; verify payload3 source-derived prefix/length/part/whole hashes using schema16. Runtime FORMAT remains2; old payload2 is historical. [Procedure](FACTORY_CODE_STORAGE.md). |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
+| Rewards construction | Immutable `ZZZRewardsCanonical` child; verify Rewards.canonicalModule(), child access()/rewards(), Handoff.moduleAt(3) and exact runtimes. LP reward backing stays in Rewards. |
 | NFT construction | `ZZZRoyaltyRewards`, `ZZZClaimRouter`, `ZZZNFTMetadata`; exact NFT/controller/ledger relationships. |
 | Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and entry-review-policy2 bindings; inactive capture context at anchor. |
 | Separate Budget | `ZZZMigrationBudget(controller)` is supplied to Vault. Verify actual Vault getter, Access-resolved `vault()` parent, compound4/confirmation3/emergency2 and runtime. It owns no custody. |
@@ -132,7 +134,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Confirmation policy | Selected600 seconds/strict 300 second gap,240 second source checks and same-side 85% physical/reference threshold. Constructor gap 0 blocks ordinary readiness. Source late paid enrollment/jitter are separate service rules, not observed market history. |
 | Migration construction | `ZZZCustodyValidation`; exact Migration/Access parent, unchanged custody4-format tuple under custody5, including liquidity-sensitive portfolioHash and runtime. |
 | Converter route child | LP converter only: authenticate fixed `ZZZV4RouteExecutor.parent()` and `v4Executor()`. Fresh royalty4 has no converter or executor; direct Entry3 has no conversion child. |
-| Separate LP converter | Fixed Rewards/controller and optional supported wrapper; bind before sealing if required. Original-currency royalties need neither routes, feeds, conversion nor unwrap. |
+| Separate LP converter | Fixed Rewards/controller and native-ETH v4 executor; bind before sealing if required. Historical wrapper-based profiles remain separate. Original-currency royalties need neither routes, feeds, conversion nor unwrap. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
@@ -177,11 +179,12 @@ record remaining qualification; none is production approval. A v4 **pool ID is a
 bytes32 identity**, not a wallet or a separate pool-contract address. Native
 admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned
 Robinhood deployment; generic ERC20 LP admission is removed. Separate typed
-conversion venues do not become LP pools. Registration does not qualify a route. Actual independent source pairs for ETH/ZZZ and any separately priced royalty conversion assets, plus VRF qualification, remain unset. No stable peg is assumed. See [pricing requirements](PRICE_SECURITY.md).
+conversion venues do not become LP pools. Registration does not qualify a route. Actual independent ETH/ZZZ sources and LP conversion routes, plus VRF qualification, remain unset. Original-currency royalties require no swap feed. No stable peg is assumed. See [pricing requirements](PRICE_SECURITY.md).
 
 ## Collective holder return and whole-collection replacement
 
-Record `Migration.CUSTODY_VERSION()==4`, `currentZZZ()`, exact runtime and fixed
+Record `Migration.CUSTODY_VERSION()==5`, its unchanged accounting6/custody4-format
+principal-return wire, `currentZZZ()`, exact runtime and fixed
 Vault/controller/validation bindings. Bootstrap configures that same ZZZ once;
 sealing rejects an unset/mismatched contribution/settlement identity. This is
 not a recipient or replaceable token contract.
@@ -199,7 +202,8 @@ custody exit, request-ID domain or bridge provider is configured. No automatic
 fallback swaps or generic sweep exists. See [operator steps](HOLDER_COLLECTIVE_EXIT.md).
 
 Whole-collection handoff is available only before exit starts, with compatible
-same-chain V6 peers and exact classified funding. Afterward it is permanently
+same-chain7/V9 peers and exact classified funding. Historical6/V8 and older
+peers retain their own codecs and cannot join the V9 handoff by relabeling. Afterward it is permanently
 blocked even when all principal has been paid, because the importer cannot carry
 terminal payout accounting or safely reopen LP. A future royalty-only successor
 requires separately reviewed schema/code. [Canonical procedure](CANONICAL_HANDOFF.md).
@@ -235,17 +239,21 @@ source/bytecode/binding observations and explicit authorization.
 ## LP settlement helper
 
 Native ETH LP fees enter holder/collective accounting directly; they do not
-need wrapping or conversion. ZZZ and other non-native holder fees require a
-separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol), bound
-once to Rewards before sealing. Its typed hookless v4 path settles actual ETH without a wrapper. The separate v3/unwrap profile still requires its reviewed wrapper. Record controller/ledger, parent-bound executor, current conversion cap, route/feed review and keeper pins. This
+need wrapping or conversion. Fixed-ZZZ LP fees use a separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol), bound
+once to Rewards before sealing for optional ETH settlement. Its typed hookless
+v4 path settles actual ETH without a wrapper. Historical v3/unwrap profiles keep
+their reviewed wrapper; no such wrapper is admitted by the fresh7 keeper.
+Royalty currencies stay claimable as received and are not LP conversion assets. Record controller/ledger, parent-bound executor, current conversion cap, route/feed review and keeper pins. This
 helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the selected approximately 1.101%-fee pool still needs a cheaper independently qualified conversion route. [Versioned inventory and observation](PRODUCTION_PREFLIGHT.md) must match the selected contract profile; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
 
 ## Native accounting and canonical version inventory
 
-Record `Vault.ACCOUNTING_VERSION() == 6` and `ProtocolPolicy.PROTOCOL_POLICY_VERSION() == 1` and the canonical coordinator's
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8")` with their exact
-runtime pins. Current release inventory also declares `fee_intake_version: 1`,
-with18 callable helpers plus2 inert Factory data children and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
+Record Vault.ACCOUNTING_VERSION()==7, Rewards.LP_ALLOCATION_VERSION()==1,
+ProtocolPolicy.PROTOCOL_POLICY_VERSION()==1 and coordinator
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")` with exact runtime
+pins. Inventory16 includes19 callable helpers plus2 inert Factory data children
+and Fees.FEE_INTAKE_VERSION()==1. Authenticate the fixed Rewards canonical child
+and Handoff.moduleAt(3), not just an eight-word Position tuple. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
 accounting2/fee1 uses the distinct LP-only V3 schema. Neither historical codec
 nor V1 WETH accounting can be imported into this current
@@ -258,7 +266,9 @@ already transferred native funding once. Abort reverses the same classified legs
 Current Position rows contain eight words: pool ID, LP token ID, idle0, idle1,
 depositUSD, centerX96, lastRebalance and status. Their status meanings are None0,
 Active1, reserved Outbound2, Dormant3, Parked4, Exited5; no home/location cross-chain fields exist.
-Use fresh accounting6/portfolio2 API/keeper configuration and distinct state paths.
+Use fresh accounting7/LP-allocation1/portfolio2 API/keeper configuration and
+distinct state paths. Source9 consumers remain separate from the source8
+candidate and served current3 website; no website, signer or old service is upgraded by these labels.
 Keep per-deployment predecessor profiles, original currencies and saved journals;
 never reinterpret old WETH as ETH or reset pending transactions to change versions.
 The existing 8902 fixture remains on its old profile. Public `DEPLOYMENT` remains

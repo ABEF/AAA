@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "final_type_sources": 315,
+  "ABI_type_errors": 0,
+  "full_type_closure_current_raw_hashes_match": false,
+  "normal87_current_raw_hashes_match": true,
+  "text_control_errors": [],
+  "source_unchanged": true,
+  "independent_audit": false,
+  "scope": "Final source/type/document checks; not a full runtime suite, publicCI, targetchain or deployment",
+  "type_source_binding": "314 raw-exact inputs plus1 trailing-newline-only proof; all executable/type declarations unchanged",
+  "final_type_equivalence_proof": "TEST_EOF_PROOF.json"
+}

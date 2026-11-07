@@ -1,0 +1,13 @@
+{
+  "active_NFTs": 900,
+  "native_claim_raw_cold_gas": 1259505,
+  "postwrite_growth_two_books_raw_cold_gas": 1213300,
+  "scope": "actualRewards+realNFT/Membership/Fees;syntheticsharewriter;rawgasexcludesintrinsic/calldata/refunds,notactualVault/targetgasqualification",
+  "event_raw": {
+    "address": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+    "topics": [
+      "0x7d74c77b8e82f5cd4b3b60d52b90ca2cf9b69df0029c99ac9783c9269a7390fb"
+    ],
+    "data": "0x000000000000000000000000000000000000000000000000000000000000038400000000000000000000000000000000000000000000000000000000001337f10000000000000000000000000000000000000000000000000000000000128374"
+  }
+}

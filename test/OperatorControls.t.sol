@@ -140,7 +140,7 @@ contract MintControlIntegrationTest is PooledVaultFixture {
     function testExistingActivationTopUpMaintenanceTransfersAndBothClaimsContinue() public {
         uint256 id=_mint(alice);nft.setMintPaused(true);_activate(alice,id,1000,1000);
         uint256 bucket=vault.nftBucket(id);venue.setFees(100,100);vault.collectFees(bucket,block.timestamp+100);
-        vm.prank(alice);vault.increase(id,100,100,1,block.timestamp+100);
+        vm.prank(alice);vault.increase{value:100}(id, 100, 100, 1, block.timestamp+100);
         vault.rebalance(bucket,1,block.timestamp+100);
         (bool funded,)=address(nft.royaltyRewards()).call{value:1 ether}("");assertTrue(funded);
         vm.prank(alice);nft.transferFrom(alice,bob,id);
@@ -172,12 +172,12 @@ contract PoolStopEconomicIntegrationTest is PooledVaultFixture {
         uint256 shares=vault.sharesOf(id);uint256 lp=vault.group(bucket).lpTokenId;
         venue.setFees(100,100);vault.collectFees(bucket,block.timestamp+100);
         actual.disablePool(poolId,true,false);
-        vm.prank(bob);vm.expectRevert();vault.activate(other,poolId,1000,1000,1,block.timestamp+100);
-        vm.prank(alice);vm.expectRevert();vault.increase(id,100,100,1,block.timestamp+100);
+        vm.prank(bob);vm.expectRevert();vault.activate{value:1000}(other, poolId, 1000, 1000, 1, block.timestamp+100);
+        vm.prank(alice);vm.expectRevert();vault.increase{value:100}(id, 100, 100, 1, block.timestamp+100);
         assertEq(vault.sharesOf(id),shares);assertEq(vault.group(bucket).lpTokenId,lp);
         assertEq(vault.sharesOf(other),0);vm.prank(alice);nft.transferFrom(alice,bob,id);
         vm.prank(bob);assertEq(rewards.claim(id,address(t0)),90);
-        actual.configure(c);vm.prank(bob);vault.increase(id,100,100,1,block.timestamp+100);
+        actual.configure(c);vm.prank(bob);vault.increase{value:100}(id, 100, 100, 1, block.timestamp+100);
         assertGt(vault.sharesOf(id),shares);
     }
 }

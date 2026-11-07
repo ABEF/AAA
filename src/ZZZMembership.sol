@@ -64,11 +64,10 @@ contract ZZZMembership is ZZZModule {
     }
     function activate(uint256 id) external onlyModule(Ids.VAULT) economic {
         if (eligible[id] || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == address(0)) revert InvalidState();
-        // The inactive NFT checkpoints at the current index before its one
-        // collective share exists, excluding every previously published reward.
-        IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id);
         eligible[id] = true;
         ++totalEligible;
+        // Rewards settles old stored weights before admitting this new share.
+        IZZZRewards(access.module(Ids.REWARDS)).syncMembership(id);
         emit MembershipActivated(id);
     }
     uint256 private canonicalNFTs;

@@ -30,7 +30,7 @@ contract RebalanceBudgetTest is PooledVaultFixture {
         assertEq(_record(id).lpTokenId,p.lpTokenId);assertEq(adverse.ownerOf(p.lpTokenId),address(vault));
         assertEq(vault.sharesOf(id),2000e18);assertEq(vault.bucketTotalShares(_bucket()),2000e18);
         assertEq(adverse.amount0(p.lpTokenId),1000);assertEq(adverse.amount1(p.lpTokenId),1000);
-        assertEq(t0.allowance(address(vault),address(adverse)),0);
+
     }
     function testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted() public {
         uint256 id=_start();Position memory p=_record(id);
@@ -50,19 +50,19 @@ contract RebalanceBudgetTest is PooledVaultFixture {
     }
     function testPriceChangesDuringHarvestCannotHideExecutionLoss() public {
         uint256 id=_start();Position memory p=_record(id);
-        MockFeed feed=new MockFeed(8,1e8);oracle.setTestFeed(address(t0),address(feed),3600);
-        oracle.setTestFeed(address(t1),address(feed),3600);
+        MockFeed feed=new MockFeed(8,1e8);
+        _setFixtureFeed(address(t1),address(feed),3600);
         adverse.harvestLosses(40,40);adverse.mutatePrice(feed,2e8,false);adverse.mutateAtHarvest(true);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector);_run();_unchanged(id,p);
         assertEq(feed.answer(),1e8);
     }
     function testDonationsAndClaimableFeesCannotPayRebalanceLoss() public {
         uint256 id=_start();adverse.setFees(1000,1000);vault.collectFees(_bucket(),block.timestamp+100);
-        t0.mint(address(vault),10000);t1.mint(address(vault),10000);
+        _giftNative(address(vault), 10000);t1.mint(address(vault),10000);
         adverse.losses(40,40,0,0);uint256 owed=rewards.claimable(id,address(t0));
         Position memory p=_record(id);vm.expectRevert(ZZZMigrationBudget.Slippage.selector);_run();
         assertEq(_record(id).lpTokenId,p.lpTokenId);assertEq(rewards.claimable(id,address(t0)),owed);
-        assertEq(t0.balanceOf(address(vault)),10000);
+        assertEq(address(address(vault)).balance,10000);
     }
     function testRepeatedSnapshotsClearAndExistingIdleCapStillApplies() public {
         uint256 id=_start();adverse.spending(9500,9500);_run();

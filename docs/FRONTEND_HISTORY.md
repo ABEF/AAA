@@ -9,9 +9,9 @@ website's simulated actions.
 
 ## Current and historical scope
 
-Fresh reads explicitly use accounting6/ProtocolPolicy1/fee-intake1 and same-chain
-canonical adaptable-policyV6. Accounting5/4 withV5 and accounting3/V4 remain
-explicit historical profiles.
+Fresh reads explicitly use accounting7/LP-allocation1/ProtocolPolicy1/fee-intake1
+and same-chain canonicalV9. Accounting6/V8 and earlier admitted variants,
+accounting5/4 withV5 and accounting3/V4 remain explicit historical profiles.
 Native ETH is admitted by both ledgers; historical accounting 1 retains its
 ERC20-only LP boundary. No profile or old journal is relabeled automatically.
 
@@ -195,11 +195,13 @@ time; canonical contract authorization and direct payout determine entitlement.
 
 `max_events` bounds all examined logs from those three emitters, including
 unrelated metadata events, to at most 1,000,000. Exceeding it fails rather than
-truncating lifetime history. Current bounds are at most 33 LP currencies (native
-ETH plus 32 ERC20s), 17 royalty currencies and 1,000 NFTs. Historical accounting
-1 supports 32 ERC20 LP assets. This implementation replays history per request;
+truncating lifetime history. Fresh7 fixes LP currencies to native ETH and its
+one ZZZ; royalty4 supports at most65 admitted currencies, with1,000 NFTs. Older
+profiles retain their own33/32 LP and17/65 royalty bounds. Royalty admission
+does not make a currency a contribution or LP asset. This implementation replays history per request;
 production load/cold-backfill testing and a separately reviewed incremental
-checkpoint design may be needed as history grows. No history cache or supplied
+checkpoint design is still needed for fresh7 as history grows. Checkpoint1 is
+explicit6-only; accounting7 rejects it rather than fabricating an exact-tree seed. No history cache or supplied
 aggregate is trusted as the authoritative answer.
 
 **Trust boundary:** a complete cursor and SQLite file are not a cryptographic

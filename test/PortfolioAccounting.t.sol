@@ -29,7 +29,7 @@ contract PortfolioAccountingAccess {
 contract PortfolioAccountingVault {
     Position private position;
     address public migrationBudget;
-    uint256 public constant ACCOUNTING_VERSION = 6;
+    uint256 public constant ACCOUNTING_VERSION = 7;
     function set(Position memory p,address budget) external { position = p; migrationBudget = budget; }
     function group(uint256) external view returns(Position memory) { return position; }
     function checkpoint(uint256 bucket,uint8 phase) external { ZZZMigrationBudget(migrationBudget).checkpoint(bucket,phase); }

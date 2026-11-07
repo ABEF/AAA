@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "review": "records/FINAL_ACCOUNTING_REVIEW.json",
+  "copy_manifest": "COPY_MANIFEST_ACCOUNTING.json",
+  "source_blobs": "SOURCE_BLOBS.json",
+  "baseline_snapshot_index": "baseline/SOURCE_SNAPSHOT_INDEX.json",
+  "final_source_snapshot_index": "FINAL_SOURCE_SNAPSHOT_INDEX.json",
+  "distinct_methods": 54,
+  "scope_counts": {
+    "exact_host": 16,
+    "actual_vault_producer": 1,
+    "native_vault_controls": 35,
+    "actual_v4_accounting": 2
+  },
+  "native_reuse": "records/NATIVE35_FINAL_REUSE_PROOF.json",
+  "host_reuse": [
+    "records/HOST14_REUSE_PROOF.json",
+    "records/HOST16_FINAL_REUSE_PROOF.json"
+  ],
+  "canonical_fixture_reuse": "records/CANONICAL_IMPORTED_FIXTURE_REUSE_PROOF.json",
+  "raw_gas": [
+    "records/HOST_COLD_GAS.json",
+    "records/ROUTER32_COLD_GAS.json",
+    "records/ROUTER8_COLD_GAS.json"
+  ],
+  "retirements": [
+    "records/RETIRED_FORK.json",
+    "records/RETIRED_THIRD_LP_CASES.json"
+  ],
+  "zeroEVM_resource_failure": "stages/evm-affected-initial/RESOURCE_FAILURE.json",
+  "actual_wire_consumer": "../backend/INDEX.json",
+  "actual_wire_producer_raw": "records/REAL_VAULT_WIRE_PRODUCER_RAW.json.gz",
+  "production_source_basis": "normal-final-5994e91eed-START.json",
+  "limitations": [
+    "No target-chain provider/gas/uptime/OpenSea/externalprice/VRFqualification.",
+    "No fullsuite/publicCI/independentapproval.",
+    "Canonical/V9 large import gas and target operating envelopes remain qualification obligations."
+  ],
+  "no_broad_runtime_pass": true
+}

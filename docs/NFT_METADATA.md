@@ -1,6 +1,6 @@
 # NFT traits, royalties and live artwork
 
-Current [profile identities](POSITION_V6.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
+Current [profile identities](POSITION_V7.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 
 ## Fixed royalty trait versus activation
@@ -45,13 +45,13 @@ Traits remain bound to the NFT through transfers, additions and migration. `pale
 
 ## Current LP value and ERC-4906
 
-`currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. Fresh6 values both authenticated main/residual token amounts, attributed idle and designated compound; it does not sum raw liquidity across ranges. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced/Singularity thresholds default to$1,000/$10,000 and are governed
+`currentLPValue` returns availability and current 18-decimal oracle-USD marked principal/idle/compound NAV proportional to NFT shares. Fresh7 values both authenticated main/residual token amounts, attributed idle and designated compound; it does not sum raw liquidity across ranges. It does not include unclaimed rewards, arbitrary donations or historical contribution USD. Enhanced/Singularity thresholds default to$1,000/$10,000 and are governed
 display-only positive increasing USD18 values; losses or threshold changes may alter artwork, never economic rights. An activated NFT below$100 remains activated.
 
 Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
-Fresh accounting6/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7`. Confirmed collective closure marks
+Fresh accounting7/custody5 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. Confirmed collective closure marks
 Exited5 and `currentLPValue` returns available/zero without a price-feed read.
 `evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
 the existing Activated image, not a new fifth artwork evolution or a Dormant NFT.

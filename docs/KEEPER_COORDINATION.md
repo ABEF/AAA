@@ -1,6 +1,6 @@
 # Keeper coordination and operation review
 
-This describes the fresh [accounting6 / maintenance3 / portfolio2](POSITION_V6.md)
+This describes the fresh [accounting7 / maintenance3 / portfolio2](POSITION_V7.md)
 source candidate. Normal gates, scoped offline checks and local actual-v4-core
 integration pass within their [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md);
 actual operating/dependency qualification remains open. It does not upgrade installed services,
@@ -110,7 +110,7 @@ idle or silently bypass the rebalance cooldown. See
 
 ## Harvest clocks follow proved collection
 
-Standalone harvesting remains hourly by default for accounting6. Harvesting
+Standalone harvesting remains hourly by default for accounting7. Harvesting
 collects actual LP fees from both live legs and applies the allocation/dust rules; it does
 not itself convert rewards, compound, buy back, burn or pay a holder claim.
 
@@ -258,7 +258,7 @@ Fresh snapshots bind the separately deployed Budget/Balancer/Policy/Confirmation
 to the sealed controller's fixed parent modules, and the typed physical executor
 and arithmetic child to exact parents/dependencies. `portfolioFingerprint`
 excludes changing liquidity; `executionPortfolioFingerprint` includes it for
-custody manifests. Fresh6 shared observations now independently recompute
+custody manifests. Fresh7 shared observations now independently recompute
 each leg's principal and both exact hashes from already captured sqrt/ticks/
 PosM L, while requiring residual containment. One extra same-block structural
 getter per bucket verifies the execution hash; contribution review reuses it.

@@ -1,8 +1,8 @@
 # LP holder rewards settled in ETH
 
-The current undeployed candidate uses native accounting6, custody5, fee-intake 1, direct
-governance 2 and local canonical V8. Native ETH fees are indexed directly in ETH;
-only already-earned ERC20 balances, including ZZZ, need conversion. The default
+The current undeployed candidate uses native accounting7, custody5, fee-intake 1, direct
+governance 2 and local canonical V9. Native ETH fees accrue directly as whole ETH units;
+only already-earned fixed-ZZZ LP balances need conversion. The default
 conversion loss cap is **1%**, governed up to **10%**, with gas paid separately by
 the keeper. See [execution policy](EXECUTION_LOSS_POLICY.md) and the
 [sole task](../TODO.md#task-lp-eth-settlement).
@@ -11,8 +11,8 @@ the keeper. See [execution policy](EXECUTION_LOSS_POLICY.md) and the
 
 The fixed 80/10/5/5 fee allocation happens first. Only whole units earned in the
 80% individual and 10% equal-collective ledgers may be converted. Principal,
-compound/buyback reserves, quarantined funds, index dust, source fractions and
-unselected NFTs' balances are not conversion input. Checkpointing preserves
+compound/buyback reserves, quarantined funds, unallocated receipts, nonmonetary phase and
+unselected NFTs' balances are not conversion input. Whole-unit path settlement preserves
 historical shares and equal membership before spending balances.
 
 `Rewards.convertBatch(address token,uint256[] ids,bytes32 routeId,uint256 minimumETH,uint256 deadline)`
@@ -22,6 +22,12 @@ Output ETH is cumulatively allocated back to the same NFTs and their original
 individual/collective components, conserving every received wei. Today's shares,
 rarity or other holders do not reweight it. Transfers carry both unconverted
 balances and ETH credits to the current owner.
+
+The existing cumulative whole-wei apportionment conserves total measured output;
+a tiny positive source component can round to zero ETH wei. The conversion floor
+is a batch execution check, not a separate per-component USD guarantee. Retain
+economic minimum amounts; holders can claim source ZZZ before it is converted.
+Exact LP unit allocation does not eliminate currency-conversion rounding.
 
 `ZZZLPRewardConverter` uses the neutral [ZZZRewardConverter base](../src/base/ZZZRewardConverter.sol). The fresh royalty converter is removed; original-currency royalties are separate. LP conversion cannot spend royalty or principal backing. It supports:
 
@@ -39,10 +45,7 @@ input/output. A failed swap, quote, delta, wrapper, callback or minimum reverts
 the whole batch and restores balances/liabilities. Native ETH itself is not a
 conversion input.
 
-Rewards admits ETH at asset index zero plus at most 32 ERC20 currencies. Native
-venue income uses the normal individual/equal-collective indices. Converted ETH
-credits those same NFTs directly rather than entering the indices again.
-Unsolicited donations do not become earned LP income; creator inboxes are removed.
+Fresh7 Rewards admits exactly native ETH and the deployment-fixed ZZZ, bound before seal. Source identity must match `Pools.activationAssets().zzz`; no third LP currency or post-seal LP admission exists. Converted ETH credits the SAME NFTs/components directly rather than funding the trees again. Donations are not earned LP income. The generic converter may support a reviewed WETH route internally; this does not admit WETH to the LP ledger.
 
 The standard claim selects ETH from both LP and royalty ledgers. Backed but
 unconverted ZZZ remains **awaiting ETH conversion**, never relabelled as ETH.
@@ -117,8 +120,8 @@ separate. Earnings are the original processed LP allocations plus royalties,
 valued at today's reviewed prices. Conversion, claim and imported/returned
 backing are not new income. Missing complete predecessor history is unavailable.
 
-Compatible pre-exit same-chain canonical V8 carries native/source balances,
-component indices, fractions and exact backing, with checked funding and funded
+Compatible pre-exit same-chain canonical V9 carries native/source balances,
+whole-unit pending/phase/direct component books and exact backing, with checked funding and funded
 abort. Destination prefunds cannot replace source backing. Old profiles retain
 their own schemas; they are not accounting4 imports. No external custody exit
 remains. Terminal holder return preserves these reward liabilities but permanently

@@ -1,0 +1,66 @@
+from pathlib import Path
+import hashlib,json,posixpath,re,subprocess,tomllib
+r=Path.cwd();v=Path(r'C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+e=Path(__file__).parent;stage=e/'abi-affected-initial';stage.mkdir(exist_ok=False)
+cfg=tomllib.loads((r/'foundry.toml').read_text())['profile']['default']
+remaps=sorted([x.split('=',1) for x in cfg['remappings']],key=lambda x:len(x[0]),reverse=True);sources={};raw={}
+pat=re.compile(r'''\bimport\s+(?:\{[^}]*\}\s*from\s*|(?:\*\s*as\s+\w+|\w+)\s*from\s*)?["']([^"']+)["']\s*;''',re.S)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def collect(n):
+ if n in sources:return
+ txt=(r/n).read_text(encoding='utf-8-sig');sources[n]={'content':txt};raw[n]=sha(r/n)
+ for imp in pat.findall(txt):
+  if imp.startswith('.'):o=posixpath.normpath(posixpath.join(posixpath.dirname(n),imp))
+  else:
+   pre,tar=next(x for x in remaps if imp.startswith(x[0]));o=tar+imp[len(pre):]
+  collect(o)
+collect('test/AdaptableTerms.t.sol')
+collect('test/AtomicActivationIntegration.t.sol')
+collect('test/BucketCapacity.t.sol')
+collect('test/BuybackExecution.t.sol')
+collect('test/ClaimRouter.t.sol')
+collect('test/CollectionScale.t.sol')
+collect('test/CombinedCapacityGas.t.sol')
+collect('test/CompoundInterval.t.sol')
+collect('test/ContributionBudgetIsolation.t.sol')
+collect('test/ContributionEntryPriceSecurity.t.sol')
+collect('test/ContributionMarkPacking.t.sol')
+collect('test/ContributionPriceSecurity.t.sol')
+collect('test/CustodyParking.t.sol')
+collect('test/DirectGovernance.t.sol')
+collect('test/DynamicAccounting.t.sol')
+collect('test/EntryExecutionBudget.t.sol')
+collect('test/EntryReviewPolicy.t.sol')
+collect('test/FixedZZZBinding.t.sol')
+collect('test/GlobalMembershipDust.t.sol')
+collect('test/GovernedExecutionLoss.t.sol')
+collect('test/IntegratedEconomicConservation.t.sol')
+collect('test/KeeperCompletion.t.sol')
+collect('test/LPOnlyEntryBoundary.t.sol')
+collect('test/LPRewardConversion.t.sol')
+collect('test/MaintenanceCadence.t.sol')
+collect('test/MigrationBudgetAdversarial.t.sol')
+collect('test/MigrationExecutionBudget.t.sol')
+collect('test/NFTOwnershipRights.t.sol')
+collect('test/NFTRightsInvariants.t.sol')
+collect('test/NativeCustody.t.sol')
+collect('test/OperatorControls.t.sol')
+collect('test/PoolSwitching.t.sol')
+collect('test/PooledEntry.t.sol')
+collect('test/PooledRewards.t.sol')
+collect('test/PooledSecurity.t.sol')
+collect('test/PortfolioAccounting.t.sol')
+collect('test/ProductionGas.t.sol')
+collect('test/ProductionInvariants.t.sol')
+collect('test/RebalanceBudget.t.sol')
+collect('test/ReservationCapacity.t.sol')
+collect('test/RewardsAndFees.t.sol')
+collect('test/RoyaltyNoCustodian.t.sol')
+collect('test/VaultAccounting.t.sol')
+settings={'evmVersion':'cancun','viaIR':True,'optimizer':{'enabled':True,'runs':1,'details':{'yul':False}},'remappings':cfg['remappings'],'outputSelection':{'*':{'*':['abi']}}}
+(stage/'input.json').write_text(json.dumps({'language':'Solidity','sources':sources,'settings':settings},separators=(',',':')))
+with (stage/'input.json').open('rb') as si,(stage/'output.json').open('wb') as so,(stage/'stderr.txt').open('wb') as se:
+ p=subprocess.run([str(v/'toolchain-0.8.26/solc.exe'),'--standard-json'],stdin=si,stdout=so,stderr=se,timeout=120)
+d=json.loads((stage/'output.json').read_text());errs=[x.get('formattedMessage') for x in d.get('errors',[]) if x['severity']=='error']
+after={n:sha(r/n) for n in raw};status={'exit':p.returncode,'sources':len(sources),'errors':errs,'source_before':raw,'source_after':after,'frozen':raw==after,'abi_typecheck_only':True,'not_an_EVM_pass':True}
+(stage/'status.json').write_text(json.dumps(status,indent=2)+'\n');print(json.dumps({'exit':p.returncode,'closed_sources':len(sources),'errors':errs,'frozen':raw==after},indent=2));raise SystemExit(bool(errs) or p.returncode or raw!=after)

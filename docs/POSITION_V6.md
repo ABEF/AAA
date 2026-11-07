@@ -1,4 +1,7 @@
-# Accounting6: adaptable policy with bounded LP custody
+# Historical accounting6: adaptable policy with bounded LP custody
+
+This is the retained profile6 boundary. Fresh exact-unit LP source uses
+[accounting7](POSITION_V7.md); do not relabel an installed6/V8 runtime or journal.
 
 The [moving-market source follow-up](../reports/moving-market-flows-20261106/VERIFICATION.md)
 retains existing ABI/storage/capability/profile shapes and changes the exact

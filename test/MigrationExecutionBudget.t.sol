@@ -35,7 +35,7 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
         vault.collectFees(bucket, block.timestamp + 100);
         assertEq(fees.compoundBalance(bucket, address(t0)), 10);
         assertEq(fees.compoundBalance(bucket, address(t1)), 20);
-        t0.mint(address(vault), 777);
+        _giftNative(address(vault), 777);
         t1.mint(address(vault), 888);
         venue.setFees(100, 200);
         bytes32 target = _target();
@@ -50,7 +50,7 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
         assertEq(rewards.claimable(id, address(t1)), 540);
         assertEq(fees.buybackBalance(address(t0)), 15);
         assertEq(fees.buybackBalance(address(t1)), 30);
-        assertEq(t0.balanceOf(address(vault)), 777);
+        assertEq(address(address(vault)).balance, 777);
         assertEq(t1.balanceOf(address(vault)), 888);
         assertEq(vault.sharesOf(id), 2000e18);
     }

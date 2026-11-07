@@ -1,0 +1,997 @@
+{
+  "schema": 1,
+  "scope": "Physical normal/static/canonical evidence only; root owns prose/defaults/publication. No build/analyzer/test rerun during packaging.",
+  "copies": [
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed\\START.json",
+      "original_raw_sha256": "1d0b36a4afb8bdd69c540cad19a63e7ed876131d082d6ed246eab8d89bdc33d9",
+      "original_bytes": 10645,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed/START.json",
+      "published_sha256": "1d0b36a4afb8bdd69c540cad19a63e7ed876131d082d6ed246eab8d89bdc33d9",
+      "published_bytes": 10645,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed\\production-size-gates.json",
+      "original_raw_sha256": "a8a54e48120cff59077720ceddf93c76ea9d7bfab1ca87dc7b69a6c6ea7e07fe",
+      "original_bytes": 44653,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed/production-size-gates.json",
+      "published_sha256": "a8a54e48120cff59077720ceddf93c76ea9d7bfab1ca87dc7b69a6c6ea7e07fe",
+      "published_bytes": 44653,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed\\solc-stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed/solc-stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed\\compiler-input.json",
+      "original_raw_sha256": "9bd2dd00b7350b5ade3bf5ef256e7306588647a5dab11ab069761a0c8b51cd7f",
+      "original_bytes": 815157,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed/compiler-input.json.gz",
+      "published_sha256": "d686adb4ac04fabfa30f3b4fededb28b4ba8c88ec9127f63ff70946416a4ef04",
+      "published_bytes": 166995,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-5994e91eed\\compiler-output.json",
+      "original_raw_sha256": "851644b31874db849ee420de30ee8e586161c5715dd052a370adc8c794d6fed5",
+      "original_bytes": 23569076,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/normal-final-5994e91eed/compiler-output.json.gz",
+      "published_sha256": "0281b1d01c10881bdbafabf2fea46fe9ba21ddc2bc6f94f3274e8fa3316c444d",
+      "published_bytes": 2656192,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291\\START.json",
+      "original_raw_sha256": "2422a3092450d0a0ad1c081f8a52b5a4330e4f9a07bc6416e032ca1f2a2ef3c1",
+      "original_bytes": 10645,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/passed-before-documentation-rebind-7e38e0a291/START.json",
+      "published_sha256": "2422a3092450d0a0ad1c081f8a52b5a4330e4f9a07bc6416e032ca1f2a2ef3c1",
+      "published_bytes": 10645,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291\\production-size-gates.json",
+      "original_raw_sha256": "ac24493a7ce7886d9ab0280c2b482076b8f89c5ccbf79e82f0c8a372668d82f2",
+      "original_bytes": 44653,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/passed-before-documentation-rebind-7e38e0a291/production-size-gates.json",
+      "published_sha256": "ac24493a7ce7886d9ab0280c2b482076b8f89c5ccbf79e82f0c8a372668d82f2",
+      "published_bytes": 44653,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291\\solc-stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/passed-before-documentation-rebind-7e38e0a291/solc-stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291\\compiler-input.json",
+      "original_raw_sha256": "90e1e8e27ae4ce6f7b8702a2cd8f29d59555747d889d13955376d8d662ca9890",
+      "original_bytes": 815171,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/passed-before-documentation-rebind-7e38e0a291/compiler-input.json.gz",
+      "published_sha256": "67dc6bae6363a9a49342b11e1afb620b678e823bbd60e4795280e3c3418fbbb0",
+      "published_bytes": 167004,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-7e38e0a291\\compiler-output.json",
+      "original_raw_sha256": "6e21fedb452559a34fe655321ffcbc283600df8b337e076881d6db5cbbc85816",
+      "original_bytes": 23569106,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/passed-before-documentation-rebind-7e38e0a291/compiler-output.json.gz",
+      "published_sha256": "1511e30f1e453322f523236e62e2313131741cbc629c359a80c803e5f1e68b0d",
+      "published_bytes": 2656247,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-1746857ddf\\START.json",
+      "original_raw_sha256": "91f45cedf71c3ddfad250ffeec317724ed0ff47d19abd2e4fa8d0eddb4ddf05c",
+      "original_bytes": 10542,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-inline-runtime-1746857ddf/START.json",
+      "published_sha256": "91f45cedf71c3ddfad250ffeec317724ed0ff47d19abd2e4fa8d0eddb4ddf05c",
+      "published_bytes": 10542,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-1746857ddf\\production-size-gates.json",
+      "original_raw_sha256": "f8474f856a4d186ec901cb00a70a1cd20baaf348fd91a3e5fcc18c2a9ea43461",
+      "original_bytes": 44030,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-inline-runtime-1746857ddf/production-size-gates.json",
+      "published_sha256": "f8474f856a4d186ec901cb00a70a1cd20baaf348fd91a3e5fcc18c2a9ea43461",
+      "published_bytes": 44030,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-1746857ddf\\solc-stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-inline-runtime-1746857ddf/solc-stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-1746857ddf\\compiler-input.json",
+      "original_raw_sha256": "b375f0e90fd95599d6cf352b309ba146bc2b9a40ed88d04c03e25083f74191dd",
+      "original_bytes": 805482,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-inline-runtime-1746857ddf/compiler-input.json.gz",
+      "published_sha256": "ab7cd98ada3ac927fe8320028d5ff853c838b49f4e3dcbede574b52de2be08f8",
+      "published_bytes": 164658,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-1746857ddf\\compiler-output.json",
+      "original_raw_sha256": "2954d6b68fceefa8d47aa51f43da9cb4e929d039427e81637cd8f7e0af53f2cc",
+      "original_bytes": 23124071,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-inline-runtime-1746857ddf/compiler-output.json.gz",
+      "published_sha256": "40f3f71d08e715a36001e8cbe0d5584a078d71b5e0c1f2bdc8f679b4fffbb63e",
+      "published_bytes": 2601208,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-516eb43835\\START.json",
+      "original_raw_sha256": "6690523f1edd2ce7b71bd154fca0b4e19a5b67a19f5b08edcc14d0ff99596a72",
+      "original_bytes": 10645,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-dynamic-parent-reads-runtime-516eb43835/START.json",
+      "published_sha256": "6690523f1edd2ce7b71bd154fca0b4e19a5b67a19f5b08edcc14d0ff99596a72",
+      "published_bytes": 10645,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-516eb43835\\production-size-gates.json",
+      "original_raw_sha256": "4538221dd43053f59cb5a899656f16f5bbb2cca062274546c548fb9fc12cdd8f",
+      "original_bytes": 44695,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-dynamic-parent-reads-runtime-516eb43835/production-size-gates.json",
+      "published_sha256": "4538221dd43053f59cb5a899656f16f5bbb2cca062274546c548fb9fc12cdd8f",
+      "published_bytes": 44695,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-516eb43835\\solc-stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-dynamic-parent-reads-runtime-516eb43835/solc-stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-516eb43835\\compiler-input.json",
+      "original_raw_sha256": "d6469f61b1a7517684fe393cdd87e1b88506007b897fdb7a6448a06cb6f370e0",
+      "original_bytes": 814803,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-dynamic-parent-reads-runtime-516eb43835/compiler-input.json.gz",
+      "published_sha256": "1b7411cec18ba63b0616a867e00f0bf9187f7df31be2c44f1627430b0567710e",
+      "published_bytes": 166884,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\normal-final-516eb43835\\compiler-output.json",
+      "original_raw_sha256": "e7fe09089ef125cd5674a952f6ddbc0ea867af4b248def3a5440b3fd0b385111",
+      "original_bytes": 23563389,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/stages/failed-dynamic-parent-reads-runtime-516eb43835/compiler-output.json.gz",
+      "published_sha256": "d0eb5efd87103c547e33a688e8459bfc951bc1f595936d634b89c2119d6fc981",
+      "published_bytes": 2655476,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\COMMENT_ONLY_EQUIVALENCE.json",
+      "original_raw_sha256": "d095225378869c18a6f9649aef83b4cd34789c0d53b080d511754ceaba426ef4",
+      "original_bytes": 1573,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/COMMENT_ONLY_EQUIVALENCE.json",
+      "published_sha256": "d095225378869c18a6f9649aef83b4cd34789c0d53b080d511754ceaba426ef4",
+      "published_bytes": 1573,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\comment_equivalence.py",
+      "original_raw_sha256": "036d1a093be5cf74978e853f47c2dbd144a83f34965937fb517736fe45ee3fce",
+      "original_bytes": 2829,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/comment_equivalence.py.txt",
+      "published_sha256": "036d1a093be5cf74978e853f47c2dbd144a83f34965937fb517736fe45ee3fce",
+      "published_bytes": 2829,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\build-closed.py",
+      "original_raw_sha256": "de249b2c45c9ec6037080938928777c0ac9d2b181435c5bbe2e7245be8502093",
+      "original_bytes": 9499,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/build-closed.py.txt",
+      "published_sha256": "de249b2c45c9ec6037080938928777c0ac9d2b181435c5bbe2e7245be8502093",
+      "published_bytes": 9499,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\run-static.py",
+      "original_raw_sha256": "df75ff06578f08df1bcec6bbec1ace6dfeab837ac73548dd112543a5b227791f",
+      "original_bytes": 4211,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/run-static.py.txt",
+      "published_sha256": "df75ff06578f08df1bcec6bbec1ace6dfeab837ac73548dd112543a5b227791f",
+      "published_bytes": 4211,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\inline-base-before-size-extraction.sol",
+      "original_raw_sha256": "59eaabb745c210f19d3c01e075c4834627ab801e2a9579d7e4856aadee529452",
+      "original_bytes": 17112,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/source-stages/inline-base-before-size-extraction.sol.txt",
+      "published_sha256": "59eaabb745c210f19d3c01e075c4834627ab801e2a9579d7e4856aadee529452",
+      "published_bytes": 17112,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\parent-before-static-read-extraction.sol",
+      "original_raw_sha256": "0452a8298f3f5cbc6ed78e6e203715df3f1bf38aabb35dea51243642007c3834",
+      "original_bytes": 13081,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/source-stages/parent-before-static-read-extraction.sol.txt",
+      "published_sha256": "0452a8298f3f5cbc6ed78e6e203715df3f1bf38aabb35dea51243642007c3834",
+      "published_bytes": 13081,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\child-before-static-read-extraction.sol",
+      "original_raw_sha256": "3ae4b370662b346a4c25acff1cd96a6f6cdc371955470fc37c8c2eb5a008de1f",
+      "original_bytes": 12633,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/source-stages/child-before-static-read-extraction.sol.txt",
+      "published_sha256": "3ae4b370662b346a4c25acff1cd96a6f6cdc371955470fc37c8c2eb5a008de1f",
+      "published_bytes": 12633,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\START.json",
+      "original_raw_sha256": "cd87c0991bac0cb72100cc6f97a0583bebf1e2b8e14209b1ef16a3f0782fd6c3",
+      "original_bytes": 8103,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/START.json",
+      "published_sha256": "cd87c0991bac0cb72100cc6f97a0583bebf1e2b8e14209b1ef16a3f0782fd6c3",
+      "published_bytes": 8103,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\EXECUTION.json",
+      "original_raw_sha256": "57c9552481112119049c3fafe7471225e76c9900de120bf3e24b119e667ca2dc",
+      "original_bytes": 15513,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/EXECUTION.json",
+      "published_sha256": "57c9552481112119049c3fafe7471225e76c9900de120bf3e24b119e667ca2dc",
+      "published_bytes": 15513,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\slither.json",
+      "original_raw_sha256": "f99bcedeeda8e3724e61bd7d9ca726e34ad5795e8eb62b477cfbafa4bc1744b7",
+      "original_bytes": 107434550,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/slither.json.gz",
+      "published_sha256": "b64b4cdb64887272aaa756f7ab47970d8239d620130e5b336f9676e3cede6293",
+      "published_bytes": 5311723,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\detectors-only.json",
+      "original_raw_sha256": "0637ca0632557555ed29a7a5b8af0cc037440cd922b3e412ad6540bedb19a6a1",
+      "original_bytes": 43771802,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/detectors-only.json.gz",
+      "published_sha256": "b1309bb6e3e4404ce6d5ea8d3cc1019259a6a7582f193903598e18c93ccd17a0",
+      "published_bytes": 1458488,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\slither.log",
+      "original_raw_sha256": "21675185b8405fb4e13398a23d9f89d62c572808713a6374c58f66607b3991b1",
+      "original_bytes": 276085,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/slither.log.gz",
+      "published_sha256": "fdbf80d26e0512b9df48caff48c13c662409ec34e6efab6e6fc59438323f7e47",
+      "published_bytes": 26525,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\build-info\\9bd2dd00b7350b5a.json",
+      "original_raw_sha256": "7aa2d65a03ad3e0542435133b50e75c23b54a88f5ad9920e5c76a6bd4e145c3c",
+      "original_bytes": 24389054,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/build-info/9bd2dd00b7350b5a.json.gz",
+      "published_sha256": "84fe68a3d4a69353916be0a4832145e9ddd010d05bda6f0c2f8f3f93ed961596",
+      "published_bytes": 2823033,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_STATIC_INVENTORY.json",
+      "original_raw_sha256": "37ba3acd82b2cb8bf1f0be065c2f1f4e4e71b6573b86189c0c69b58f60be093c",
+      "original_bytes": 867971,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/inventory/FINAL_STATIC_INVENTORY.json.gz",
+      "published_sha256": "7841d12d64270bf730743d60a6b7b4e5fadb0f302008f615930b9725f44ea3bf",
+      "published_bytes": 103808,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_CURRENT.json",
+      "original_raw_sha256": "ad337cf7d9c64d238fa7c4252813e9efc644ae90a3590ce03ccbfb41e7b1daf1",
+      "original_bytes": 248508,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/inventory/FINAL_CURRENT.json.gz",
+      "published_sha256": "4d3672e5bf876f7c7bfcf635830052fee911160f9c4a35fa8affa7f62c359414",
+      "published_bytes": 22555,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_REMAINING.json",
+      "original_raw_sha256": "cce8043e7b1212c3f885a675bd151dff114e470100c5d9f07d5b2096ceccb33a",
+      "original_bytes": 206356,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/inventory/FINAL_REMAINING.json.gz",
+      "published_sha256": "c92d1b533c8ea48d02d948b71c713a6fde7ee8f3e86b45f23f873920ff12e7c9",
+      "published_bytes": 16603,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-owned-68.json",
+      "original_raw_sha256": "730d93fa959b7589a0b3ed92f9fbcc8e152f81e1c771c9fe2f03bec65a52926d",
+      "original_bytes": 36502,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/static-owned-68.json",
+      "published_sha256": "730d93fa959b7589a0b3ed92f9fbcc8e152f81e1c771c9fe2f03bec65a52926d",
+      "published_bytes": 36502,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-remaining-154.json",
+      "original_raw_sha256": "6e28fb26622943d5fe3bfb51c0cf9f5f8da221e05d82b2fa4ca76878742f565a",
+      "original_bytes": 104675,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/static-remaining-154.json",
+      "published_sha256": "6e28fb26622943d5fe3bfb51c0cf9f5f8da221e05d82b2fa4ca76878742f565a",
+      "published_bytes": 104675,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_STRICT_CHECK.json",
+      "original_raw_sha256": "1ba9b953f54fa62ad7ea880507fdbe117dfbd2372f444cf221821b9d1ebc1d53",
+      "original_bytes": 442,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/FINAL_STRICT_CHECK.json",
+      "published_sha256": "1ba9b953f54fa62ad7ea880507fdbe117dfbd2372f444cf221821b9d1ebc1d53",
+      "published_bytes": 442,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FAILED_STRICT_ASSEMBLY_RAW_LF.json",
+      "original_raw_sha256": "749d4e9014dd16276c2dac0375b7fd57e0adeb205a987bf7fad08b9960be8419",
+      "original_bytes": 524,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/FAILED_STRICT_ASSEMBLY_RAW_LF.json",
+      "published_sha256": "749d4e9014dd16276c2dac0375b7fd57e0adeb205a987bf7fad08b9960be8419",
+      "published_bytes": 524,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-coverage-before-exit-metadata-correction.json",
+      "original_raw_sha256": "8a76f9f439cec13b6cf1fb7a9e4332900c8c12aba759fad4c3528ff78f0d9476",
+      "original_bytes": 6384,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/static-coverage-before-exit-metadata-correction.json",
+      "published_sha256": "8a76f9f439cec13b6cf1fb7a9e4332900c8c12aba759fad4c3528ff78f0d9476",
+      "published_bytes": 6384,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_STRICT_CHECK-before-exit-metadata-correction.json",
+      "original_raw_sha256": "1709db1b7d34ec4802bc541c54d02bfdb5d4bb18272f737db1f5f5540c109551",
+      "original_bytes": 436,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/source-review/FINAL_STRICT_CHECK-before-exit-metadata-correction.json",
+      "published_sha256": "1709db1b7d34ec4802bc541c54d02bfdb5d4bb18272f737db1f5f5540c109551",
+      "published_bytes": 436,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\IMPLEMENTATION_REVIEW.json",
+      "original_raw_sha256": "dbf23966d0178ff27f77910e2a5297b9ce850050d37045f621488081d3153f9a",
+      "original_bytes": 6356,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/IMPLEMENTATION_REVIEW.json",
+      "published_sha256": "dbf23966d0178ff27f77910e2a5297b9ce850050d37045f621488081d3153f9a",
+      "published_bytes": 6356,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\CANONICAL_VERIFICATION.json",
+      "original_raw_sha256": "22fba256bd84858448497b7586f49db150f0af2ba77ab4d005b7aaf1ef99ee55",
+      "original_bytes": 18445,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/CANONICAL_VERIFICATION.json",
+      "published_sha256": "22fba256bd84858448497b7586f49db150f0af2ba77ab4d005b7aaf1ef99ee55",
+      "published_bytes": 18445,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\CLOSURE_DRIFT_TRIAGE.json",
+      "original_raw_sha256": "26683ec60693c4c58aa7f50cf3bbd15ec6d14879b8b1a9770101af887c5630d2",
+      "original_bytes": 1991,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/CLOSURE_DRIFT_TRIAGE.json",
+      "published_sha256": "26683ec60693c4c58aa7f50cf3bbd15ec6d14879b8b1a9770101af887c5630d2",
+      "published_bytes": 1991,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117\\process.json",
+      "original_raw_sha256": "dc7a1970d4e05c74c2b5c3ce488eee0a331030d6c9ed21f506b8f055b04dc72d",
+      "original_bytes": 42,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-f276076117/process.json",
+      "published_sha256": "dc7a1970d4e05c74c2b5c3ce488eee0a331030d6c9ed21f506b8f055b04dc72d",
+      "published_bytes": 42,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117\\START.json",
+      "original_raw_sha256": "3a379a289a5267b00b7cf4e177f39fed91d5e04433d47c3c7b8ce60076fa1fcb",
+      "original_bytes": 27639,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-f276076117/START.json",
+      "published_sha256": "3a379a289a5267b00b7cf4e177f39fed91d5e04433d47c3c7b8ce60076fa1fcb",
+      "published_bytes": 27639,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117\\status.json",
+      "original_raw_sha256": "5480a0146134df6a5bff1d1f34ba1319c6c8d179f97179dc84a4ed0b221c479d",
+      "original_bytes": 45282,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-f276076117/status.json",
+      "published_sha256": "5480a0146134df6a5bff1d1f34ba1319c6c8d179f97179dc84a4ed0b221c479d",
+      "published_bytes": 45282,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117\\stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-f276076117/stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-f276076117\\stdout.json",
+      "original_raw_sha256": "39247428c2b3f5c446ec67a2dbe2140f3ad7937e8a7ce7e0a23d77eb7d92dc25",
+      "original_bytes": 6978730,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-f276076117/stdout.json.gz",
+      "published_sha256": "ab43b7756bc437d46f683ae390a1973b3aa57ab120fce38c4cd4bd5a6d0d0cd9",
+      "published_bytes": 58410,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228\\process.json",
+      "original_raw_sha256": "5c69f42ee487ed93ff4152392096bab54021f13b8def1b20a8ac5cb261e91900",
+      "original_bytes": 42,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-6cd7e1c228/process.json",
+      "published_sha256": "5c69f42ee487ed93ff4152392096bab54021f13b8def1b20a8ac5cb261e91900",
+      "published_bytes": 42,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228\\START.json",
+      "original_raw_sha256": "3a8cd88b6a13532edfea3f3d911f9c76ecf55a467c24ef2b920cade49dbe17d5",
+      "original_bytes": 26274,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-6cd7e1c228/START.json",
+      "published_sha256": "3a8cd88b6a13532edfea3f3d911f9c76ecf55a467c24ef2b920cade49dbe17d5",
+      "published_bytes": 26274,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228\\status.json",
+      "original_raw_sha256": "7326da17fa3ba55bd1594bbbe0c41d18222c34792595dd783e57843afba5749b",
+      "original_bytes": 40378,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-6cd7e1c228/status.json",
+      "published_sha256": "7326da17fa3ba55bd1594bbbe0c41d18222c34792595dd783e57843afba5749b",
+      "published_bytes": 40378,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228\\stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-6cd7e1c228/stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-6cd7e1c228\\stdout.json",
+      "original_raw_sha256": "4e2e75cda40eee8b97d11dc292fbe3e404b674dbfdb9cd0c51374f3643414e84",
+      "original_bytes": 42228764,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/final/evm-canonical-6cd7e1c228/stdout.json.gz",
+      "published_sha256": "3774742c648fc4abc50e6cf3122c91b496f72d2a458e274a31e09fd9453793da",
+      "published_bytes": 348765,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e\\process.json",
+      "original_raw_sha256": "edb3a6bacd6dbbb24c1d2ec11ac825bca6c9afcebb8cfc36159a54b4fb1e03e2",
+      "original_bytes": 42,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-c8d193044e/process.json",
+      "published_sha256": "edb3a6bacd6dbbb24c1d2ec11ac825bca6c9afcebb8cfc36159a54b4fb1e03e2",
+      "published_bytes": 42,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e\\START.json",
+      "original_raw_sha256": "f7bf0c3b12d40fc28a240aad8e134cf5184eaca47ded4084903295e63ff141c4",
+      "original_bytes": 29253,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-c8d193044e/START.json",
+      "published_sha256": "f7bf0c3b12d40fc28a240aad8e134cf5184eaca47ded4084903295e63ff141c4",
+      "published_bytes": 29253,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e\\status.json",
+      "original_raw_sha256": "be9c7d380e7193592b2e3667d384fab3cd1b059173d558a93521ccce9a161473",
+      "original_bytes": 42680,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-c8d193044e/status.json",
+      "published_sha256": "be9c7d380e7193592b2e3667d384fab3cd1b059173d558a93521ccce9a161473",
+      "published_bytes": 42680,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e\\stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-c8d193044e/stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-c8d193044e\\stdout.json",
+      "original_raw_sha256": "2c4105a5c231ef34667bf51178b79e846e7f18380f47caec69ca484438f534f7",
+      "original_bytes": 42276186,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-c8d193044e/stdout.json.gz",
+      "published_sha256": "3da2aa855d38d2c8e77080108a4758454f1926c3b213929fb157362fffae6184",
+      "published_bytes": 352812,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b\\process.json",
+      "original_raw_sha256": "ebd8066e00327519d4f4b8b464eee9818ff2234bd23cda2a703a3c1e877b748f",
+      "original_bytes": 42,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-55b428438b/process.json",
+      "published_sha256": "ebd8066e00327519d4f4b8b464eee9818ff2234bd23cda2a703a3c1e877b748f",
+      "published_bytes": 42,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b\\START.json",
+      "original_raw_sha256": "6f80a8e4583853829da3cfe3e9031b0b81c5b21871438acae6b67b55ba52db42",
+      "original_bytes": 29196,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-55b428438b/START.json",
+      "published_sha256": "6f80a8e4583853829da3cfe3e9031b0b81c5b21871438acae6b67b55ba52db42",
+      "published_bytes": 29196,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b\\status.json",
+      "original_raw_sha256": "1c7b17d97288394c0e2e0d47181d711c5038b09910b3c5f923fbca8e04b853c1",
+      "original_bytes": 38773,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-55b428438b/status.json",
+      "published_sha256": "1c7b17d97288394c0e2e0d47181d711c5038b09910b3c5f923fbca8e04b853c1",
+      "published_bytes": 38773,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b\\stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-55b428438b/stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\evm-canonical-55b428438b\\stdout.json",
+      "original_raw_sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "original_bytes": 76,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/evm-canonical-55b428438b/stdout.json",
+      "published_sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "published_bytes": 76,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace-11b919a0dd\\START.json",
+      "original_raw_sha256": "c0241e3d60b52b02d3cbacfef01b86917a77a1225b43aca2c32a5b782dd65d62",
+      "original_bytes": 34577,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/trace-11b919a0dd/START.json",
+      "published_sha256": "c0241e3d60b52b02d3cbacfef01b86917a77a1225b43aca2c32a5b782dd65d62",
+      "published_bytes": 34577,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace-11b919a0dd\\stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/trace-11b919a0dd/stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace-11b919a0dd\\stdout.log",
+      "original_raw_sha256": "44e9a6764100977b92b0ce1cae2a439ede5229ebbf2da8f16a05400ff0ca09a5",
+      "original_bytes": 35,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/trace-11b919a0dd/stdout.log",
+      "published_sha256": "44e9a6764100977b92b0ce1cae2a439ede5229ebbf2da8f16a05400ff0ca09a5",
+      "published_bytes": 35,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace-11b919a0dd\\TIMEOUT.json",
+      "original_raw_sha256": "ba8b0bce4a68b13dc3772d5a6b4bce3b693fd695fce6a17757bb8b913843e420",
+      "original_bytes": 170,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/historical/trace-11b919a0dd/TIMEOUT.json",
+      "published_sha256": "ba8b0bce4a68b13dc3772d5a6b4bce3b693fd695fce6a17757bb8b913843e420",
+      "published_bytes": 170,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-source-245024d6df\\status.json",
+      "original_raw_sha256": "4a9979b6025b607a43ef19c9f63a163142b1aaa30a69a18d03e3571be2e82ddf",
+      "original_bytes": 10169,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-source-245024d6df/status.json",
+      "published_sha256": "4a9979b6025b607a43ef19c9f63a163142b1aaa30a69a18d03e3571be2e82ddf",
+      "published_bytes": 10169,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-source-245024d6df\\input.json",
+      "original_raw_sha256": "d8ae4ec2e87a785ac5251fa6a2669c48adac8b265d5f0bc847bd45391087127a",
+      "original_bytes": 805904,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-source-245024d6df/input.json.gz",
+      "published_sha256": "2180b7b1348a8648eec623d6631cf74bd5c415b7f316fa1a925b4b9d0b5bb326",
+      "published_bytes": 166897,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-source-245024d6df\\output.json",
+      "original_raw_sha256": "c528182109d69ed74809671a106208bd0c62960abef7d03c003ae60960371f83",
+      "original_bytes": 443291,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-source-245024d6df/output.json.gz",
+      "published_sha256": "addeb054eb2b42330373615334e829114452ee6cd47ea1b3b95c711050006c09",
+      "published_bytes": 29760,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-companion-88220a5ff8\\status.json",
+      "original_raw_sha256": "dfb1c8e1767e39a32936d6a9803406610cc77277628ff2a1e2bf70aac55807aa",
+      "original_bytes": 10244,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-companion-88220a5ff8/status.json",
+      "published_sha256": "dfb1c8e1767e39a32936d6a9803406610cc77277628ff2a1e2bf70aac55807aa",
+      "published_bytes": 10244,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-companion-88220a5ff8\\input.json",
+      "original_raw_sha256": "e9e5dba10d12ed5d9979dbacbf33b4c9097ff2bb8e355960322bb4dabc13c0a2",
+      "original_bytes": 815225,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-companion-88220a5ff8/input.json.gz",
+      "published_sha256": "63bb7b50262aa3765ac717e89f5df79bb2b814bdc29a8bf0c5c9d364b25a99f9",
+      "published_bytes": 169293,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-companion-88220a5ff8\\output.json",
+      "original_raw_sha256": "611bada6b641f2b7c555abd27373d5426aa1664bec485e2cede7247904931f50",
+      "original_bytes": 449440,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-companion-88220a5ff8/output.json.gz",
+      "published_sha256": "d71c6fa2c21225551c047e726f05bf8f5a644005ae6132ed90d10eb22d6d4b86",
+      "published_bytes": 30095,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-static-reads-86a07cd1fc\\status.json",
+      "original_raw_sha256": "0173adc5e68915e4c9c273ecee40262dc5385985e89f2d64fa1cccbb2d5143ef",
+      "original_bytes": 10244,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-static-reads-86a07cd1fc/status.json",
+      "published_sha256": "0173adc5e68915e4c9c273ecee40262dc5385985e89f2d64fa1cccbb2d5143ef",
+      "published_bytes": 10244,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-static-reads-86a07cd1fc\\input.json",
+      "original_raw_sha256": "0da66e08e514d1aef170e1ddf4b06e72ca969569cf7eab5e28383eb8e1b71797",
+      "original_bytes": 815593,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-static-reads-86a07cd1fc/input.json.gz",
+      "published_sha256": "7f31e0881d855598f89c7072a812b7e5930313331750ba19ce748f9718ac0e54",
+      "published_bytes": 169480,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-static-reads-86a07cd1fc\\output.json",
+      "original_raw_sha256": "b7472fe4adbe47c554eb9e6fa2048d68a67f19c4d048836584781f68fe3d6ddc",
+      "original_bytes": 453344,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-static-reads-86a07cd1fc/output.json.gz",
+      "published_sha256": "fb1d7595f84b708bd70f99d653ee32bdc84ef03a803d7ad28b1b21e1dcd62f00",
+      "published_bytes": 30438,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-488ccd316b\\status.json",
+      "original_raw_sha256": "b85ec4223f019d8059c56051a333f60b5a052572ae32184255ac527f53f1e830",
+      "original_bytes": 24320,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-488ccd316b/status.json",
+      "published_sha256": "b85ec4223f019d8059c56051a333f60b5a052572ae32184255ac527f53f1e830",
+      "published_bytes": 24320,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-488ccd316b\\input.json",
+      "original_raw_sha256": "32858eef6decc3ee0b194be95f48f1412e8818913a9ddfdac9e4a7de8ffcd2f9",
+      "original_bytes": 1609231,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-488ccd316b/input.json.gz",
+      "published_sha256": "7dd1aab06d0d9d69bbf4cca99f4163c7625b9d83eb5ae3ee4097e8062b80b8a4",
+      "published_bytes": 221410,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-488ccd316b\\output.json",
+      "original_raw_sha256": "378d144d59aaa0a9e9e1da14cd6b633074bd54f99e482e99625fc50c4094d810",
+      "original_bytes": 837394,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-488ccd316b/output.json.gz",
+      "published_sha256": "cf84820c7a00e50556f4cceeef3f4dbc48bd923a19896372a63d3178d40d326e",
+      "published_bytes": 51230,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-488ccd316b\\stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-488ccd316b/stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-d543fb0cf8\\status.json",
+      "original_raw_sha256": "902e98bc162056e4c58e7d62abe93dca91585ecf101309484489b5caf37b3707",
+      "original_bytes": 24320,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-d543fb0cf8/status.json",
+      "published_sha256": "902e98bc162056e4c58e7d62abe93dca91585ecf101309484489b5caf37b3707",
+      "published_bytes": 24320,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-d543fb0cf8\\input.json",
+      "original_raw_sha256": "ffef031581c4d9436a61593cb3d0b6f6b12e1c09b7cc3c5bfc75cf180f0e8e1f",
+      "original_bytes": 1612795,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-d543fb0cf8/input.json.gz",
+      "published_sha256": "178108052abffa7fac6715b6ff887ccb0bd1bf6b7ec055898e0a1099fb065efd",
+      "published_bytes": 222094,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-d543fb0cf8\\output.json",
+      "original_raw_sha256": "a12f55d366e8ba438880356f0192114bae77c2b87badaad8f0aa737e4b1d6c8c",
+      "original_bytes": 837700,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-d543fb0cf8/output.json.gz",
+      "published_sha256": "971f4e3cab217db6dee05fd6705f2ddc237c374ada5b829d11afbec3c905889d",
+      "published_bytes": 51294,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-d543fb0cf8\\stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-d543fb0cf8/stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-6b0f1ccf8b\\status.json",
+      "original_raw_sha256": "7c2f5eaa7b106fd7b821956183177dabe4efd74bb098d571ce011f0eee355302",
+      "original_bytes": 24088,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-6b0f1ccf8b/status.json",
+      "published_sha256": "7c2f5eaa7b106fd7b821956183177dabe4efd74bb098d571ce011f0eee355302",
+      "published_bytes": 24088,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-6b0f1ccf8b\\input.json",
+      "original_raw_sha256": "e881992dc3b0439e41adfb4277270387a9fa4465b2e468978a87296ca1876a08",
+      "original_bytes": 1614197,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-6b0f1ccf8b/input.json.gz",
+      "published_sha256": "143dc58a43a41f0c36e3d0ec6f0b69d0d94729c9822dafe657306e9da381b764",
+      "published_bytes": 222167,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-6b0f1ccf8b\\output.json",
+      "original_raw_sha256": "819ba87e6d054897b71f0fc0eb2481f2cecbdbc26eb2972211546a00ecd66f8d",
+      "original_bytes": 823808,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-6b0f1ccf8b/output.json.gz",
+      "published_sha256": "ae9ad6dcc8daf5547ddaecbb509038b4861105c9992ee1e22213fd5fcb9b1feb",
+      "published_bytes": 49638,
+      "action": "gzip_mtime0_empty_filename"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\abi-tests-6b0f1ccf8b\\stderr.txt",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "published_relative_path": "reports/exact-lp-integration-20261106/canonical/abi-stages/abi-tests-6b0f1ccf8b/stderr.txt",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_bytes": 0,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\typecheck.py",
+      "original_raw_sha256": "47e95a192cd5bcd23a52df46512d1161841380428a17cc396741ae788dff1be8",
+      "original_bytes": 2286,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/typecheck.py.txt",
+      "published_sha256": "47e95a192cd5bcd23a52df46512d1161841380428a17cc396741ae788dff1be8",
+      "published_bytes": 2286,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\run_canonical.py",
+      "original_raw_sha256": "96e8ec02f082c5ee54506eee1ba80d5e8c7cfde7f337da6f4b234ad5fca5fdcb",
+      "original_bytes": 4480,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/run_canonical.py.txt",
+      "published_sha256": "96e8ec02f082c5ee54506eee1ba80d5e8c7cfde7f337da6f4b234ad5fca5fdcb",
+      "published_bytes": 4480,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\trace_failures.py",
+      "original_raw_sha256": "1530d40ecfbbde9caf2f75383fe792d55a15e21f8e9c44853fc31a6de62b1496",
+      "original_bytes": 1436,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/trace_failures.py.txt",
+      "published_sha256": "1530d40ecfbbde9caf2f75383fe792d55a15e21f8e9c44853fc31a6de62b1496",
+      "published_bytes": 1436,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\review_static.py",
+      "original_raw_sha256": "cb30146a366e318569bc1370d05836a623a65bc41dc49c296d4d4164182e0bbd",
+      "original_bytes": 18259,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/review_static.py.txt",
+      "published_sha256": "cb30146a366e318569bc1370d05836a623a65bc41dc49c296d4d4164182e0bbd",
+      "published_bytes": 18259,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\review_remaining.py",
+      "original_raw_sha256": "e2f4c4ae61ea850ec0517b957217f8e510bf3c965e5a1ee88251380221991024",
+      "original_bytes": 28521,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/review_remaining.py.txt",
+      "published_sha256": "e2f4c4ae61ea850ec0517b957217f8e510bf3c965e5a1ee88251380221991024",
+      "published_bytes": 28521,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\final_inventory.py",
+      "original_raw_sha256": "840c404c8368e37bcff42708a5094960562d826b25c7c8b6a2e33386c0df85cb",
+      "original_bytes": 1956,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/final_inventory.py.txt",
+      "published_sha256": "840c404c8368e37bcff42708a5094960562d826b25c7c8b6a2e33386c0df85cb",
+      "published_bytes": 1956,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build_strict.py",
+      "original_raw_sha256": "9d0d4dfa782d13a5abba17e6e07e273469c78106928f7e8310dc1b9abea2eef9",
+      "original_bytes": 5543,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/build_strict.py.txt",
+      "published_sha256": "9d0d4dfa782d13a5abba17e6e07e273469c78106928f7e8310dc1b9abea2eef9",
+      "published_bytes": 5543,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\triage_closure.py",
+      "original_raw_sha256": "b098f388ed0215f66acb8299b2fb8829d10ce281b23dca6e528f60f1b16acea2",
+      "original_bytes": 2448,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/triage_closure.py.txt",
+      "published_sha256": "b098f388ed0215f66acb8299b2fb8829d10ce281b23dca6e528f60f1b16acea2",
+      "published_bytes": 2448,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\final_manifest.py",
+      "original_raw_sha256": "6929e36cbd2ad3f410e1dc6c19b131e90421bfa3224a1c3e6de5c72a46cacbd2",
+      "original_bytes": 4350,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/final_manifest.py.txt",
+      "published_sha256": "6929e36cbd2ad3f410e1dc6c19b131e90421bfa3224a1c3e6de5c72a46cacbd2",
+      "published_bytes": 4350,
+      "action": "byte_identical_copy"
+    },
+    {
+      "original_absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\package.py",
+      "original_raw_sha256": "aa1baa14c8fe5ee341757190a07b03041ed785108ef7893dd447d98c653253a1",
+      "original_bytes": 7044,
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/provenance/package.py.txt",
+      "published_sha256": "aa1baa14c8fe5ee341757190a07b03041ed785108ef7893dd447d98c653253a1",
+      "published_bytes": 7044,
+      "action": "byte_identical_copy"
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "published_relative_path": "reports/exact-lp-integration-20261106/contract/static/current-222.json",
+      "published_sha256": "fd4f6e3695466d1a7cd70ccad20b50b01b3b9ade0d02d94747e48bc862870356",
+      "action": "Merge independently written68+154 rationale records by EXACT final fingerprint; retain original stage index plus final_index. No detector normalization.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-owned-68.json",
+          "sha256": "730d93fa959b7589a0b3ed92f9fbcc8e152f81e1c771c9fe2f03bec65a52926d"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\static-remaining-154.json",
+          "sha256": "6e28fb26622943d5fe3bfb51c0cf9f5f8da221e05d82b2fa4ca76878742f565a"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\FINAL_CURRENT.json",
+          "sha256": "ad337cf7d9c64d238fa7c4252813e9efc644ae90a3590ce03ccbfb41e7b1daf1"
+        }
+      ]
+    },
+    {
+      "published_relative_path": "reports/exact-lp-integration-20261106/static-review.json",
+      "published_sha256": "ccf73aa4402f8b59cb1141a25465796bd0d3108350dbef63df22491cec1365fb",
+      "action": "Strict full532 review / exact4-field projection of actual final raw detectors / coverage summary; generated by source-bound assembly tool.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build_strict.py",
+          "sha256": "9d0d4dfa782d13a5abba17e6e07e273469c78106928f7e8310dc1b9abea2eef9"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\detectors-only.json",
+          "sha256": "0637ca0632557555ed29a7a5b8af0cc037440cd922b3e412ad6540bedb19a6a1"
+        }
+      ]
+    },
+    {
+      "published_relative_path": "reports/exact-lp-integration-20261106/static-detectors.json",
+      "published_sha256": "d757318c91bad6bf136c72da6b811ced25a4053777f9d76ddb967c493fc68efa",
+      "action": "Strict full532 review / exact4-field projection of actual final raw detectors / coverage summary; generated by source-bound assembly tool.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build_strict.py",
+          "sha256": "9d0d4dfa782d13a5abba17e6e07e273469c78106928f7e8310dc1b9abea2eef9"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\detectors-only.json",
+          "sha256": "0637ca0632557555ed29a7a5b8af0cc037440cd922b3e412ad6540bedb19a6a1"
+        }
+      ]
+    },
+    {
+      "published_relative_path": "reports/exact-lp-integration-20261106/static-coverage.json",
+      "published_sha256": "3258f3b7bb14b2b5ab126c9e310f195a194b1316c050f7de7b4099ed3e28d4c2",
+      "action": "Strict full532 review / exact4-field projection of actual final raw detectors / coverage summary; generated by source-bound assembly tool.",
+      "inputs": [
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build_strict.py",
+          "sha256": "9d0d4dfa782d13a5abba17e6e07e273469c78106928f7e8310dc1b9abea2eef9"
+        },
+        {
+          "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\detectors-only.json",
+          "sha256": "0637ca0632557555ed29a7a5b8af0cc037440cd922b3e412ad6540bedb19a6a1"
+        }
+      ]
+    }
+  ],
+  "external_duplicate_artifacts_retained": [
+    {
+      "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build\\out",
+      "files": 280,
+      "raw_bytes": 19984561,
+      "reason": "Original offline Forge artifacts/cache retained externally; not duplicated. Production compiler input/output, final test source hashes and exact commands/results are packaged."
+    },
+    {
+      "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106\\canonical-agent\\build\\cache",
+      "files": 1,
+      "raw_bytes": 133905,
+      "reason": "Original offline Forge artifacts/cache retained externally; not duplicated. Production compiler input/output, final test source hashes and exact commands/results are packaged."
+    },
+    {
+      "absolute_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\exact-lp-integration-20261106-64f9\\static-4e89b2781d\\out",
+      "files": 0,
+      "raw_bytes": 0,
+      "reason": "Per-object analyzer artifacts are derived duplicate of packaged exact closed normal output. Packaged actual build-info/rawSlither and generation script retain provenance without a second full artifact catalog."
+    }
+  ],
+  "raw_hashes_are_unmodified_source_bytes": true,
+  "gzip_is_deterministic_mtime0_empty_filename": true,
+  "historical_reports_unchanged": true,
+  "source_unchanged_during_packaging": true,
+  "no_deployment_service_site_signer_journal_change": true
+}

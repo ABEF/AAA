@@ -38,8 +38,9 @@ def source_identity():
 
 def identity(engine):
     p, h = engine.p, engine.p.history
+    require(p.accounting_version!=7, 'Accounting7 exact-LP checkpoint2 is not implemented; use complete raw history')
     require(p.lineage is None, 'Checkpoint profile does not support predecessor lineage')
-    require(p.accounting_version == 6 and p.custody_version == 5 and p.fee_intake_version == 1,
+    require(p.accounting_version in (6,7) and p.custody_version == 5 and p.fee_intake_version == 1,
             'Checkpoint requires explicit accounting6/custody5/fee-intake1')
     return dict(chain=p.chain, deployment_block=p.start, deployment_hash=p.start_hash,
         accounting=6, custody=5, fee_intake=1, royalty_settlement=royalty_profile(p),

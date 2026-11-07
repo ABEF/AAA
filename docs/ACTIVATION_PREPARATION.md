@@ -22,13 +22,15 @@ no `contracts.v4_executor`, and source rows containing only
 `pool_id,source_asset,asset_policy_id`. Removed route fields fail closed, rather
 than being ignored. Verify `ENTRY_ROUTING_VERSION()==3`, `REVIEW_POLICY_VERSION()==2`
 and Pricing `ENTRY_REVIEW_VERSION()==2` at the same pinned block. The unchanged
-read schema2/accounting6 and activation schema1 carry this explicit new capability;
-production inventory is separately schema10 with20 helpers. Historical routing2
+read schema2/accounting7 and activation schema1 carry this explicit capability;
+production inventory is separately schema16 with19 callable helpers plus2 inert
+Factory data children. Historical routing2
 configs retain their exact routed ABI and cannot prepare against fresh Entry3.
 The separate old website profiles are not upgraded by this backend change.
 
-Fresh read configuration explicitly selects accounting6/fee-intake1 and the
-complete [portfolio graph](POSITION_V6.md). Unsigned activation selects Entry
+Fresh read configuration explicitly selects accounting7/LP-allocation1/fee-intake1,
+canonicalV9 and the complete [portfolio graph](POSITION_V7.md), including Rewards'
+fixed canonical companion. Unsigned activation selects Entry
 routing3/pricing2/review2, maintenance3/range1/LP-routing2/portfolio2/
 confirmation3/execution-quality1. Pin Policy, Confirmation, Budget, Balancer,
 math, typed LP child and actual core/periphery, including reciprocal module/parent
@@ -56,7 +58,8 @@ on-chain commitment that a user action will rebalance; contributions never recen
 
 Historical accounting4 retains its separately selected maintenance1/2,
 LP-routing0/1 and confirmation0/1/2 paths; historical3 and earlier retain their
-own codecs. Fresh6 never falls back to those ABIs after an error. Legacy900-second
+own codecs. Historical6/V8 remains separately pinned. Fresh7 never falls back
+to those ABIs after an error. Legacy900-second
 confirmation and old child creation rules are not the fresh profile.
 
 Only native ETH and fixed ZZZ are original inputs; the two-source agreement
@@ -93,7 +96,7 @@ contribution's marginal deployed-LP floor. See [price security](PRICE_SECURITY.m
 | Value | Source and meaning |
 | --- | --- |
 | Current attached LP value | `NFT.currentLPValue(tokenId)` at the confirmed block: the NFT's share of marked deployed LP, attributed idle and compound reserves. It is not lifetime deposits, a withdrawal entitlement or claimable fees. Unavailable valuation is `null`, never an invented zero. |
-| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting6 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
+| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting7 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
@@ -116,8 +119,8 @@ LP/royalty claim balances remain separate. The website still shows examples.
 1. Accept only a typed current-owner request. Pin one recent confirmed block hash
    with `requireCanonical`; verify the deployment anchor, sealed module/helper
    bindings, canonical lifecycle, NFT identity/reveal, custody and pool state.
-2. Verify reviewed runtime hashes, asset admission policy, append-only route ID,
-   venue identity, feed/decimal/age configuration, current Oracle prices,
+2. Verify reviewed runtime hashes, fixed ETH/ZZZ admission and direct source policy,
+   reviewed Vault swap venues, feed/decimal/age configuration, current Oracle prices,
    sequencer policy and configured dependency getters/storage slots.
 3. Check actual balance and Entry allowance. An insufficient ERC20 allowance
    returns one exact replacement approval draft even for a smaller nonzero
@@ -125,12 +128,13 @@ LP/royalty claim balances remain separate. The website still shows examples.
    unsupported by this two-transaction flow. Simulate and estimate that approval; **no activation quote is
    declared ready**. After confirmation, prepare again. No unlimited approval,
    fabricated allowance, permit, arbitrary recipient or arbitrary calldata.
-4. Simulate the complete original-source conversion, balancing and LP addition
+4. Simulate the complete direct Entry contribution, Vault balancing and LP addition
    using the built-in `callTracer` with logs. Check original input, helper result,
    share event and actual liquidity delta. The internal probe is never returned
    for signing and still executes the contract's captured deployed-LP floor.
-5. Derive conversion-output and liquidity minima using the requested 0..1000 bps
-   tolerance. This only supplies additional output/LP minima; it cannot relax the
+5. Derive liquidity minima using the requested0..1000bps tolerance. Direct Entry3
+   has no separate input-conversion minimum or route. Historical routed profiles
+   keep their original conversion-output minimum. These caller minima cannot relax the
    captured contribution floor or stronger venue guards. Resimulate **exactly the calldata returned to the wallet**. Economic
    outputs must agree at the same snapshot; gas may differ with calldata.
 6. Estimate gas at that same hash; verify native balance, price/gas ceilings and
@@ -138,8 +142,8 @@ LP/royalty claim balances remain separate. The website still shows examples.
    Return a short-lived draft only while its deadline remains valid.
 
 Both approval previews and complete Entry reviews validate the contribution
-pool's existing slot0 response. Typed v4 input routes apply the same validation
-to their own pool: canonical integer ABI fields, initialized TickMath bounds,
+pool's existing slot0 response. Historical typed v4 input routes apply the same
+validation to their own pool. Checks include canonical integer ABI fields, initialized TickMath bounds,
 `sqrtAtTick(tick) <= sqrtPriceX96 <= sqrtAtTick(tick + 1)`, each packed 12-bit
 directional protocol fee at most 1,000 pips, and a stored LP fee matching the
 reviewed static PoolKey fee. Contradictory state fails closed. The inclusive
@@ -199,8 +203,9 @@ examples deliberately contain placeholders, not purported live addresses.
 
 Fresh activation uses a separate schema1 configuration with the exact fields below.
 The parent read configuration is schema2 and explicitly selects
-`accounting_version:6`, `custody_version:5`, `fee_intake_version:1`, `protocol_policy_version:1` and the
-complete source8 contract graph. Its required base fields are `schema`, `chain_id`,
+`accounting_version:7`, `custody_version:5`, `fee_intake_version:1`, `protocol_policy_version:1` and the
+complete source9 contract graph. LP-allocation1 is authenticated on Rewards;
+it is not an extra read-config key. Its required base fields are `schema`, `chain_id`,
 `rpc_urls`, `deployment_block`, `deployment_block_hash`, `confirmations`,
 `max_block_age_seconds`, `contracts`, `assets`; optional history/predecessor/royalty/
 earnings sections retain their own exact schemas. See [read configuration](FRONTEND_API.md#deployment-configuration).
@@ -209,15 +214,17 @@ earnings sections retain their own exact schemas. See [read configuration](FRONT
 inherits authenticated Policy1 from Projection; an extra key is rejected. Both
 configurations pin the same `protocol_policy` address/code hash and every other
 shared role. `activation.contracts.migration` must equal the parent's
-`contracts.principal_exit`. The parent has8 base roles, `principal_exit`, and14
-source8 portfolio/policy/dependency roles; its23 bindings are not interchangeable
-with the production inventory's17 modules/20 helpers.
+`contracts.principal_exit`. The parent has8 base roles, `principal_exit`,
+`rewards_canonical` and14 portfolio/policy/dependency roles; its24 bindings are
+not interchangeable with the production inventory's17 modules/19 callable
+helpers plus2 inert data children. Authenticate Rewards.canonicalModule(),
+the child's access()/rewards() and coordinator moduleAt(3) at the same block.
 
 Native ETH has address zero, code hash null,18 decimals and its own two-source
 policy; on-chain admission uses `NATIVE_ASSET_CODE_HASH()`. Exact native value is
 verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 
-| Field | Fresh source8/direct Entry3 contents |
+| Field | Fresh source9/direct Entry3 contents |
 | --- | --- |
 | `schema` | Integer1. Missing/unknown/boolean versions and extra fields fail closed. |
 | `routing_version`, `pricing_version`, `review_policy_version` | Explicit integers3,2,2. Direct Entry3/review-policy2 calldata includes `expectedContributionPolicy`. |
@@ -228,7 +235,7 @@ verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 | `rebalance_confirmation_version` | Explicit3: pinned matching confirmation child, range1/maintenance3/quality1, sampled600-second window/strict300-second maximum gap as selected policy; actual values are observed, not invented defaults. |
 | `range_policy_version`, `range_policies` | Explicit1 plus a required list of `{pool_id,orientation,keeper}` covering every source pool. Manual ZZZ-in-ETH orientation and exact optional keeper policy are reviewed separately. |
 | `contracts` | Exactly17 roles, each `{address,code_hash}`: `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`, `contribution_pricing`, `balancing_router`, `portfolio_policy`, `lp_balance_math`, `lp_position_executor`, `protocol_policy`, `rebalance_confirmation`. Shared pins must equal the parent read configuration. |
-| `tokens` |2..33 reviewed currency descriptors, at most32 ERC20s plus ETH. Fields: `address`, `code_hash`, `decimals`, `price_policy`; original input, pair currencies and required historical backing must be covered. This inventory does not admit new contribution inputs. `price_policy` has `policy_id`, `ordinal`, `policy`; policy fields are `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`. Each source has `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`; decimals0..18 and age1..86400seconds. Native code hash is null/decimals18; no single-feed fallback. |
+| `tokens` |Exactly2 reviewed currency descriptors for native ETH and the fixed ZZZ. Fields: `address`, `code_hash`, `decimals`, `price_policy`. This inventory does not admit new contribution inputs or royalty currencies. `price_policy` has `policy_id`, `ordinal`, `policy`; policy fields are `token`, `primary`, `secondary`, `maxDeviationBps`, `assetDecimals`, `reviewHash`. Each source has `source`, `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`; decimals0..18 and age1..86400seconds. Native code hash is null/decimals18; no single-feed fallback. |
 | `dependencies` |1..64 `{address,code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. The four venue pins must equal the parent's exact dependencies. |
 | `sources` |1..64 `{pool_id,source_asset,asset_policy_id}` entries, unique per input/pool. Only native ETH and the fixed reviewed ZZZ are sources and already pair currencies. No route_id/route_kind fields or Entry executor pin are accepted; Vault balancing is separate. |
 | `sequencer` | `{address,policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed; no implicit omission. Nonzero sequencer needs its dependency code pin. |
@@ -238,7 +245,8 @@ verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 
 Historical accounting4 keeps its explicit maintenance1/2, LP-routing0/1 and
 confirmation0/1/2 shapes; accounting5 keeps Portfolio1/Entry-review1 with its own
-pins. Those configurations are not source8 templates and are never promoted
+pins. Historical6/source8 retains its23-role parent and original reward accounting.
+Those configurations are not source9 templates and are never promoted
 by omitting fields, changing version labels or falling back after an error.
 
 Configuration hashes are returned in provenance. Runtime hashes alone cannot
@@ -256,7 +264,7 @@ compatibility. Suggested gas cost is an estimate, not a maximum final receipt fe
 
 ## Confirmed range and timing context
 
-Fresh source8 keeps maintenance3/confirmation3/Portfolio2. The main may still be
+Fresh source9 keeps maintenance3/confirmation3/Portfolio2. The main may still be
 active when its configured centre-to-boundary threshold is crossed. Physical
 pool and independent reference must confirm the same threshold side; the
 600-second sampled window, strict300-second maximum gap and hard cooldown are
@@ -340,13 +348,20 @@ feature evidence and remaining gates are maintained in the [feature reference](I
 and [sole Todo](../TODO.md). The older confirmation/schema6 additions have
 [historical scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
 Use [Entry3 evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) for the
-fresh source profile; neither record qualifies actual providers or upgrades poplint.
+direct-Entry behavior; that record predates the current accounting7 integration.
+Use [fresh7 integration evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+for current LP hooks and consumers. Neither record qualifies actual providers or upgrades poplint.
 
-## Accounting6 policy binding
+## Accounting7 policy and exact-LP boundary
 
 Projection requires protocol_policy_version1 and its reviewed helper/runtime.
 The activation subsection pins the same helper but does not accept a duplicate
 protocol_policy_version key. Direct Entry3/review-policy2 calldata includes the exact captured
 entryFingerprint after the maximum loss field; source minima and entrant idle cap
 are dynamic at the pinned block. Stale policy or mid-call changes revert; no
-legacy Entry selector is substituted. [Policy semantics](ADAPTABLE_POLICY.md).
+legacy Entry selector is substituted. Activation/growth writes actual Vault shares,
+then Rewards settles old-weight rights before installing the authenticated new
+weight. Membership adds one collective weight only at activation. Fresh7 does
+not query legacy LP indices/fractions; original royalty4 remains separate.
+Raw earnings replay is supported; historical6 checkpoint1 is not a7 seed and
+exact checkpoint2 remains open. [Policy semantics](ADAPTABLE_POLICY.md).

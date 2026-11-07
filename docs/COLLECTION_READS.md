@@ -1,10 +1,11 @@
 # Confirmed collection positions and attached LP
 
-The backend supports explicit fresh accounting6/custody5/portfolio2/canonical adaptable-policy V6
-and reviewed historical codecs. The separately served poplint website remains
+The backend supports explicit fresh accounting7/LP-allocation1/custody5/portfolio2/
+canonicalV9 and reviewed historical codecs. The separately served poplint website remains
 accounting3/canonical V4; native2 and other local profiles remain historical.
-Fresh6 authenticates both actual main/residual legs and the complete fixed
-helper/dependency graph; aggregate token amounts back attached LP. Backend
+Fresh7 authenticates both actual main/residual legs and the complete fixed
+helper/dependency graph, including Rewards' immutable canonical companion;
+aggregate token amounts back attached LP. Historical6/V8 stays separately pinned. Backend
 support does not upgrade a browser reader or its deployment manifest.
 Public configuration stays disabled until matching readers/services are reviewed.
 
@@ -40,7 +41,7 @@ The website independently reconciles both against each row before aggregation.
 
 ## Financial meaning and failure behavior
 
-Current3–6 collection and wallet-summary chunks use the same canonical custody
+Accounting3–7 collection and wallet-summary chunks use their profile's canonical custody
 proof as NFT detail: the NFT's active/parked/exited state must match its local
 bucket, physical-ID presence and share denominator. Neither an NFT's shares nor
 the chunk's partial sum of distinct NFT shares may exceed bucket supply. The sum
@@ -62,18 +63,21 @@ sum can differ from unrounded bucket NAV by rounding dust. No token-market or US
 price is invented by the API or browser.
 
 Activated count means reward eligibility, including parked and terminal Exited
-NFTs in accounting4/5/6; historical custody-outbound/remote states retain their old meaning. It
+NFTs in accounting4/5/6/7; historical custody-outbound/remote states retain their old meaning. It
 does not assert that every position is currently in range or earning fees. A
 non-local or failed LP valuation makes the total unavailable while verified
 positions and eligibility counts can remain visible. An unreadable dormant LP
 view is not inferred to be zero. Broken identity, malformed data or a missing
 page invalidates the complete collection rather than publishing a partial total.
 
-The website shows 16 rows per page, ordinal/full-ID search, eligibility, rarity,
+The existing website profile shows16 rows per page, ordinal/full-ID search, eligibility, rarity,
 color/style filters and current-LP/newest sorting. Lifetime-fee sorting is disabled
 because this endpoint does not supply per-NFT earnings. Position details reread
 the NFT's current confirmed owner and balances; a changed owner requires refresh.
 Collection allocations use the existing, separately validated earnings endpoint.
+Fresh7 raw earnings replay uses exact whole-unit LP books and authenticated
+share/membership events; historical6/checkpoint1 stays separate. Checkpoint2
+remains open. These source adapters do not qualify a served7 website consumer.
 An earnings outage cannot hide healthy LP inventory; an LP outage cannot invent
 an earnings value. Each metric identifies its own confirmed block.
 

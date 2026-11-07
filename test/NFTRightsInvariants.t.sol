@@ -89,30 +89,30 @@ contract NFTRightsHandler is PooledVaultFixture {
     /// funds. Existing idle plus designated compound remains incumbent idle.
     function _entryIdleBlocked(uint256 amount) private view returns(bool) {
         Position memory p=vault.group(_bucket());
-        uint256 idle=p.idle0+p.idle1+fees.compoundBalance(_bucket(),address(t0))+
-            fees.compoundBalance(_bucket(),address(t1));
-        uint256 retained=venue.a0(p.lpTokenId)+venue.a1(p.lpTokenId)+idle+amount*2;
+        uint256 idle=p.idle1+p.idle0+fees.compoundBalance(_bucket(),address(t1))+
+            fees.compoundBalance(_bucket(),address(t0));
+        uint256 retained=venue.a1(p.lpTokenId)+venue.a0(p.lpTokenId)+idle+amount*2;
         uint256 cap=IZZZProtocolPolicy(ac.protocolPolicy()).entryPolicy().maxIdleBps;
         return idle>retained*cap/10000;
     }
     function _rejectIdleEntry(uint256 n,uint256 amount,bool activation) private {
         uint256 id=ids[n];uint256 beforeShares=vault.sharesOf(id);
         uint256 beforeBucket=vault.nftBucket(id);uint256 beforeWeight=royalties.totalWeight();
-        uint256 before0=t0.balanceOf(owner[n]);uint256 before1=t1.balanceOf(owner[n]);
-        uint256 reserved0=fees.compoundBalance(_bucket(),address(t0));
-        uint256 reserved1=fees.compoundBalance(_bucket(),address(t1));
+        uint256 before0=t1.balanceOf(owner[n]);uint256 before1=address(owner[n]).balance;
+        uint256 reserved0=fees.compoundBalance(_bucket(),address(t1));
+        uint256 reserved1=fees.compoundBalance(_bucket(),address(t0));
         Position memory beforePosition=vault.group(_bucket());
         uint256 beforeSupply=vault.bucketTotalShares(_bucket());
         vm.prank(owner[n]);vm.expectRevert(bytes4(keccak256("Slippage()")));
-        if(activation) vault.activate(id,poolId,amount,amount,1,block.timestamp+100);
-        else vault.increase(id,amount,amount,1,block.timestamp+100);
-        assertEq(t0.balanceOf(owner[n]),before0,"rejected entry t0 refund");
-        assertEq(t1.balanceOf(owner[n]),before1,"rejected entry t1 refund");
+        if(activation) vault.activate{value:amount}(id, poolId, amount, amount, 1, block.timestamp+100);
+        else vault.increase{value:amount}(id, amount, amount, 1, block.timestamp+100);
+        assertEq(t1.balanceOf(owner[n]),before0,"rejected entry t1 refund");
+        assertEq(address(owner[n]).balance,before1,"rejected entry t0 refund");
         assertEq(vault.sharesOf(id),beforeShares);assertEq(vault.nftBucket(id),beforeBucket);
         assertEq(vault.bucketTotalShares(_bucket()),beforeSupply);assertEq(royalties.totalWeight(),beforeWeight);
         assertEq(keccak256(abi.encode(vault.group(_bucket()))),keccak256(abi.encode(beforePosition)));
-        assertEq(fees.compoundBalance(_bucket(),address(t0)),reserved0);
-        assertEq(fees.compoundBalance(_bucket(),address(t1)),reserved1);
+        assertEq(fees.compoundBalance(_bucket(),address(t1)),reserved0);
+        assertEq(fees.compoundBalance(_bucket(),address(t0)),reserved1);
         ++blockedContributions;
     }
 
@@ -120,12 +120,12 @@ contract NFTRightsHandler is PooledVaultFixture {
         uint256 n = seed % ids.length; uint256 id = ids[n];
         if (ac.paused() || membership.eligible(id)) return;
         uint256 amount = bound(raw, 100, 1000);
-        t0.mint(owner[n], amount); t1.mint(owner[n], amount);
+        t1.mint(owner[n], amount); _giftNative(owner[n], amount);
         if(_entryIdleBlocked(amount)) {_rejectIdleEntry(n,amount,true);return;}
         _activate(owner[n], id, amount, amount);
         lpDeposited[0] += amount; lpDeposited[1] += amount;
-        assertEq(rewards.claimable(id, address(t0)), 0, "retroactive LP");
         assertEq(rewards.claimable(id, address(t1)), 0, "retroactive LP");
+        assertEq(rewards.claimable(id, address(t0)), 0, "retroactive LP");
         assertEq(royalties.claimable(id, address(0)), 0, "retroactive native royalty");
         assertEq(royalties.claimable(id, address(royaltyAsset)), 0, "retroactive token royalty");
     }
@@ -144,34 +144,34 @@ contract NFTRightsHandler is PooledVaultFixture {
     function harvest(uint256 x, uint256 y) public {
         if (ac.paused()) return;
         x = bound(x, 0, 1000); y = bound(y, 0, 1000);
-        venue.setFees(x, y); vault.collectFees(_bucket(), block.timestamp + 100);
+        venue.setFees(y,x); vault.collectFees(_bucket(), block.timestamp + 100);
         lpReceived[0] += x; lpReceived[1] += y;
     }
 
     function topUp(uint256 seed, uint256 raw) external {
         uint256 n = seed % ids.length; uint256 id = ids[n];
         if (ac.paused() || !membership.eligible(id)) return;
-        // Both zero-decimal fixture currencies are $1. Equal-sided growth
+        // Both normalized native/ZZZ raw fixture units are $1. Equal-sided growth
         // therefore needs at least 3+3 raw units to satisfy the real $5 floor.
         // Smaller generated values previously made fail_on_revert reject an
         // invalid action instead of exploring successful accounting changes.
         uint256 amount = bound(raw, 3, 100);
-        t0.mint(owner[n], amount); t1.mint(owner[n], amount);
-        uint256 old0 = rewards.claimable(id, address(t0));
-        uint256 old1 = rewards.claimable(id, address(t1));
+        t1.mint(owner[n], amount); _giftNative(owner[n], amount);
+        uint256 old0 = rewards.claimable(id, address(t1));
+        uint256 old1 = rewards.claimable(id, address(t0));
         uint256 royaltyBefore = royalties.claimable(id, address(royaltyAsset));
         uint256 sharesBefore = vault.sharesOf(id);
         if(_entryIdleBlocked(amount)) {
             _rejectIdleEntry(n,amount,false);
-            assertEq(rewards.claimable(id,address(t0)),old0);assertEq(rewards.claimable(id,address(t1)),old1);
+            assertEq(rewards.claimable(id,address(t1)),old0);assertEq(rewards.claimable(id,address(t0)),old1);
             assertEq(royalties.claimable(id,address(royaltyAsset)),royaltyBefore);return;
         }
-        vm.prank(owner[n]); vault.increase(id, amount, amount, 1, block.timestamp + 100);
+        vm.prank(owner[n]); vault.increase{value:amount}(id, amount, amount, 1, block.timestamp + 100);
         lpDeposited[0] += amount; lpDeposited[1] += amount;
         ++topUps;
         assertGt(vault.sharesOf(id), sharesBefore);
-        assertGe(rewards.claimable(id, address(t0)), old0);
-        assertGe(rewards.claimable(id, address(t1)), old1);
+        assertGe(rewards.claimable(id, address(t1)), old0);
+        assertGe(rewards.claimable(id, address(t0)), old1);
         assertEq(royalties.claimable(id, address(royaltyAsset)), royaltyBefore);
     }
 
@@ -196,10 +196,10 @@ contract NFTRightsHandler is PooledVaultFixture {
 
     function claimLP(uint256 seed, bool second) public {
         uint256 n = seed % ids.length; uint256 id = ids[n];
-        MockToken asset = second ? t1 : t0; uint256 slot = second ? 1 : 0;
-        uint256 expected = rewards.claimable(id, address(asset)); uint256 beforeBalance = asset.balanceOf(owner[n]);
+        MockToken asset = second ? t0 : t1; uint256 slot = second ? 1 : 0;
+        uint256 expected = rewards.claimable(id, address(asset)); uint256 beforeBalance=address(asset)==address(0)?owner[n].balance:asset.balanceOf(owner[n]);
         vm.prank(owner[n]); uint256 actual = rewards.claim(id, address(asset));
-        assertEq(actual, expected); assertEq(asset.balanceOf(owner[n]) - beforeBalance, actual);
+        assertEq(actual, expected); assertEq((address(asset)==address(0)?owner[n].balance:asset.balanceOf(owner[n]))-beforeBalance,actual);
         lpPaid[slot] += actual;
         vm.prank(owner[n]); assertEq(rewards.claim(id, address(asset)), 0, "duplicate LP");
     }
@@ -207,21 +207,21 @@ contract NFTRightsHandler is PooledVaultFixture {
     function claimMixed(uint256 seed) public {
         uint256 n = seed % ids.length; uint256 id = ids[n];
         ZZZClaimRouter.Claim[] memory list = new ZZZClaimRouter.Claim[](3);
-        list[0] = ZZZClaimRouter.Claim(id, address(t0), false);
+        list[0] = ZZZClaimRouter.Claim(id, address(t1), false);
         list[1] = ZZZClaimRouter.Claim(id, address(royaltyAsset), true);
         list[2] = ZZZClaimRouter.Claim(id, address(0), true);
-        uint256 lpBefore = t0.balanceOf(owner[n]); uint256 tokenBefore = royaltyAsset.balanceOf(owner[n]);
+        uint256 lpBefore = t1.balanceOf(owner[n]); uint256 tokenBefore = royaltyAsset.balanceOf(owner[n]);
         uint256 nativeBefore = owner[n].balance;
         if(!royalties.royaltiesOpen()) {
             // A mixed batch must roll its earlier LP payment back when the
             // royalty item is locked. Separate LP claims remain available.
             vm.prank(owner[n]);vm.expectRevert(ZZZRoyaltyRewards.InvalidState.selector);
             router.claimBatch(list);
-            assertEq(t0.balanceOf(owner[n]),lpBefore);assertEq(royaltyAsset.balanceOf(owner[n]),tokenBefore);
+            assertEq(t1.balanceOf(owner[n]),lpBefore);assertEq(royaltyAsset.balanceOf(owner[n]),tokenBefore);
             assertEq(owner[n].balance,nativeBefore);++lockedMixedChecks;return;
         }
         vm.prank(owner[n]); uint256[] memory paid = router.claimBatch(list);
-        assertEq(t0.balanceOf(owner[n]) - lpBefore, paid[0]);
+        assertEq(t1.balanceOf(owner[n]) - lpBefore, paid[0]);
         assertEq(royaltyAsset.balanceOf(owner[n]) - tokenBefore, paid[1]);
         assertEq(owner[n].balance - nativeBefore, paid[2]);
         lpPaid[0] += paid[0]; royaltyPaid[1] += paid[1]; royaltyPaid[0] += paid[2]; ++mixedClaims;
@@ -231,15 +231,15 @@ contract NFTRightsHandler is PooledVaultFixture {
     function transfer(uint256 seed, uint256 recipient) public {
         uint256 n = seed % ids.length; uint256 id = ids[n]; address old = owner[n];
         address next = address(uint160(0x10000 + recipient % ids.length));
-        uint256 shares = vault.sharesOf(id); uint256 lp = rewards.claimable(id, address(t0));
+        uint256 shares = vault.sharesOf(id); uint256 lp = rewards.claimable(id, address(t1));
         uint256 nativeRoyalty = royalties.claimable(id, address(0));
         uint256 tokenRoyalty = royalties.claimable(id, address(royaltyAsset));
         vm.prank(old); nft.transferFrom(old, next, id); owner[n] = next; ++transfers;
-        assertEq(vault.sharesOf(id), shares); assertEq(rewards.claimable(id, address(t0)), lp);
+        assertEq(vault.sharesOf(id), shares); assertEq(rewards.claimable(id, address(t1)), lp);
         assertEq(royalties.claimable(id, address(0)), nativeRoyalty);
         assertEq(royalties.claimable(id, address(royaltyAsset)), tokenRoyalty);
         if (old != next) {
-            vm.prank(old); (bool lpSuccess,) = address(rewards).call(abi.encodeWithSignature("claim(uint256,address)", id, address(t0)));
+            vm.prank(old); (bool lpSuccess,) = address(rewards).call(abi.encodeWithSignature("claim(uint256,address)", id, address(t1)));
             assertFalse(lpSuccess, "previous owner LP claim");
             vm.prank(old); (bool royaltySuccess,) = address(royalties).call(abi.encodeCall(ZZZRoyaltyRewards.claim, (id, address(0))));
             assertFalse(royaltySuccess, "previous owner royalty claim");
@@ -251,7 +251,7 @@ contract NFTRightsHandler is PooledVaultFixture {
     function maintain(bool rebalancePosition) external {
         if (ac.paused()) return;
         if (rebalancePosition) vault.rebalance(_bucket(), 1, block.timestamp + 100);
-        else if (fees.compoundBalance(_bucket(), address(t0)) + fees.compoundBalance(_bucket(), address(t1)) != 0) {
+        else if (fees.compoundBalance(_bucket(), address(t1)) + fees.compoundBalance(_bucket(), address(t0)) != 0) {
             policy.setNeed(false);
             // The fake need flag is not a waiver of the real independent
             // compound interval. Invalid scheduling is not an economic action.
@@ -273,7 +273,7 @@ contract NFTRightsHandler is PooledVaultFixture {
                 assertEq(vault.nftBucket(id), _bucket());
             } else { assertEq(royalties.weightOf(id), 0); assertEq(vault.sharesOf(id), 0); }
             shares += vault.sharesOf(id);
-            lpClaims[0] += rewards.claimable(id, address(t0)); lpClaims[1] += rewards.claimable(id, address(t1));
+            lpClaims[0] += rewards.claimable(id, address(t1)); lpClaims[1] += rewards.claimable(id, address(t0));
             royaltyClaims[0] += royalties.claimable(id, address(0));
             royaltyClaims[1] += royalties.claimable(id, address(royaltyAsset));
         }
@@ -290,13 +290,13 @@ contract NFTRightsHandler is PooledVaultFixture {
         assertEq(vault.bucketTotalShares(_bucket()), shares); assertEq(vault.bucketCount(), 1);
         Position memory p = vault.group(_bucket()); assertEq(venue.ownerOf(p.lpTokenId), address(vault));
         for (uint256 i; i < 2; ++i) {
-            MockToken token = i == 0 ? t0 : t1; address asset = address(token);
-            uint256 principal = i == 0 ? venue.a0(p.lpTokenId) + p.idle0 : venue.a1(p.lpTokenId) + p.idle1;
-            uint256 feeBalance = token.balanceOf(address(fees)); uint256 rewardBalance = token.balanceOf(address(rewards));
+            MockToken token = i == 0 ? t1 : t0; address asset = address(token);
+            uint256 principal = i == 0 ? venue.a1(p.lpTokenId) + p.idle1 : venue.a0(p.lpTokenId) + p.idle0;
+            uint256 feeBalance=asset==address(0)?address(fees).balance:token.balanceOf(address(fees));uint256 rewardBalance=asset==address(0)?address(rewards).balance:token.balanceOf(address(rewards));
             assertEq(feeBalance, fees.accounted(asset));
             assertEq(feeBalance, fees.dust(_bucket(), asset) + fees.compoundBalance(_bucket(), asset) + fees.buybackBalance(asset));
             assertEq(rewardBalance, rewards.liabilities(asset) + rewards.orphaned(asset));
-            assertLe(lpClaims[i], rewards.liabilities(asset));
+            assertEq(lpClaims[i],rewards.liabilities(asset));
             assertEq(principal + feeBalance + rewardBalance + lpPaid[i], lpDeposited[i] + lpReceived[i], "LP conservation");
             address royaltyCurrency = i == 0 ? address(0) : address(royaltyAsset);
             uint256 balance = i == 0 ? address(royalties).balance : royaltyAsset.balanceOf(address(royalties));
@@ -320,7 +320,7 @@ contract NFTRightsHandler is PooledVaultFixture {
             }
         }
         assertEq(address(router).balance, 0); assertEq(royaltyAsset.balanceOf(address(router)), 0);
-        assertEq(address(vault).balance, 0); assertEq(treasury.balance, 8 * 0.05 ether);
+        assertEq(address(vault).balance,p.idle0); assertEq(treasury.balance, 8 * 0.05 ether);
     }
     function assertRoyaltiesDrained() external view {
         assertTrue(royalties.royaltiesOpen());

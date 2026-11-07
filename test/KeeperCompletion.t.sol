@@ -51,7 +51,7 @@ contract KeeperRebalanceCompletionTest is PooledVaultFixture {
         uint256 id = _prepare(action);
         Position memory beforePosition = vault.group(_bucket());
         uint256 shares = vault.sharesOf(id);
-        uint256 supply0 = t0.totalSupply();
+        uint256 nativeBacking = address(adversary).balance;
         uint256 supply1 = t1.totalSupply();
         vm.expectRevert(UNAUTHORIZED);
         vault.rebalance(_bucket(), 1, block.timestamp + 100);
@@ -59,13 +59,13 @@ contract KeeperRebalanceCompletionTest is PooledVaultFixture {
         assertEq(adversary.ownerOf(beforePosition.lpTokenId), address(vault));
         assertEq(adversary.amount0(beforePosition.lpTokenId), 1000);
         assertEq(adversary.amount1(beforePosition.lpTokenId), 1000);
-        assertEq(t0.balanceOf(address(adversary)), 1000);
+        assertEq(address(address(adversary)).balance, 1000);
         assertEq(t1.balanceOf(address(adversary)), 1000);
-        assertEq(t0.totalSupply(), supply0);
+        assertEq(address(adversary).balance, nativeBacking);
         assertEq(t1.totalSupply(), supply1);
-        assertEq(t0.balanceOf(address(vault)), 0);
+        assertEq(address(address(vault)).balance, 0);
         assertEq(t1.balanceOf(address(vault)), 0);
-        assertEq(t0.allowance(address(vault), address(adversary)), 0);
+
         assertEq(t1.allowance(address(vault), address(adversary)), 0);
         assertEq(vault.totalIdle(address(t0)), 0);
         assertEq(vault.totalIdle(address(t1)), 0);

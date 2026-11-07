@@ -111,8 +111,8 @@ def lp_execution_frame(mint,pins,request,create):
     Manager's later Policy.recordApplied reads are not marginal deployment;
     they must never be mistaken for before/after LP liquidity observations.
     """
-    if request.get('accounting_version',1) not in (5,6):return mint,pins['liquidity']
-    if request.get('lp_routing_version')!=2 or request.get('portfolio_version')!=(2 if request.get('accounting_version')==6 else 1):
+    if request.get('accounting_version',1) not in (5,6,7):return mint,pins['liquidity']
+    if request.get('lp_routing_version')!=2 or request.get('portfolio_version')!=(2 if request.get('accounting_version') in (6,7) else 1):
         raise ProjectionError('Accounting5 trace requires explicit portfolio1/routing2')
     executor=pins['lp_position_executor'];method=MINT if create else INCREASE
     executed=child(mint,pins['liquidity'],executor,method,'CALL')
@@ -308,7 +308,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         expected_contribution_policy=req.get('expected_contribution_policy'),routing_version=req.get('routing_version',1))
     if tx['data'].lower()!=expected_data:
         raise ProjectionError('Unsigned Entry selector or reviewed maximum differs from its explicit profile')
-    native_profile = req.get('accounting_version', 1) in (2, 3, 4, 5, 6)
+    native_profile = req.get('accounting_version', 1) in (2,3,4,5,6,7)
     dual_pricing = req.get('pricing_version',1)==2
     topic_word = lambda n: '0x' + f'{n:064x}'
     source = event(root, pins['entry'], SOURCE,
@@ -402,7 +402,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0) in (1,2) else 200) or
             deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
             net < floor or net < upper_input * (10000 - slippage) // 10000 or
-            idle > (deployed + idle) * (req['maximum_idle_bps'] if req.get('accounting_version')==6 else 500) // 10000 or deployed == 0 or
+            idle > (deployed + idle) * (req['maximum_idle_bps'] if req.get('accounting_version') in (6,7) else 500) // 10000 or deployed == 0 or
             supply and incumbent_nav == 0):
         raise ProjectionError('Simulated contribution violates its original-source execution budget')
     expected_shares = supply * net // (incumbent_nav + historical_value) if supply else net
@@ -431,7 +431,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         raise ProjectionError('LP deployment spent more than the entrant budget')
     lp_id = int(output[0], 16) if create else req['old_lp_id']
     measurement,operator=lp_execution_frame(mint,pins,req,create)
-    if create and req.get('accounting_version',1) in (5,6):
+    if create and req.get('accounting_version',1) in (5,6,7):
         # Entrant funds create only the main. Residual construction is reserved
         # for captured maintenance, not an activation-side inventory repair.
         event(measurement,operator,PORTFOLIO_CREATED,[topic_word(lp_id),topic_word(0),req['pool']],0)

@@ -13,7 +13,7 @@ administrator write endpoint. Optional typed preparation returns simulated,
 unsigned drafts only; public signing remains disabled. Production hosting,
 current-profile website integration and actual dependencies are not qualified.
 
-Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
+Fresh source uses accounting7/exact LP1, maintenance3, confirmation3 and optional portfolio2.
 Ordinary samples require the physical pool and independent reference on the same
 85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
 main bounds. This threshold can be reached while the main remains active. The
@@ -45,31 +45,33 @@ action is not evidence that the transaction failed; recover the same hash rather
 than prepare a duplicate. [Action output boundaries](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
 Source publication does not update the currently served older integration site.
 
-Fresh configuration uses explicit `accounting_version:6`, `custody_version:5` and `fee_intake_version:1`
-with read schema2. It verifies Vault6, direct governance2, custody5 and the
-explicit `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` admission domain. Position still has
+Fresh configuration uses explicit `accounting_version:7`, `custody_version:5`,
+`protocol_policy_version:1`, `fee_intake_version:1` and royalty_reporting schema5
+with read schema2. It verifies Vault7, Rewards LP-allocation1, direct governance2,
+custody5 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. Position still has
 eight words; dormant/parked/exited states remain 3/4/5. The main physical LP ID is
 never replaced by an aggregate or virtual ID.
 
-Profile6 requires these additional `{address,code_hash}` pins, beyond the existing
+Profile7 requires these additional `{address,code_hash}` pins, beyond the existing
 base contracts and `principal_exit`:
 
 | Boundary | Explicit contract roles |
 | --- | --- |
 | Principal and strategy | `pools`, `liquidity`, `strategy`, `budget` |
+| Exact LP canonical companion | `rewards_canonical`; authenticate Rewards.canonicalModule(), child access()/rewards() and Handoff.moduleAt(3) |
 | Protocol and strategy policy | `protocol_policy`, `portfolio_policy`, `rebalance_confirmation` |
 | Typed LP execution | `balancing_router`, `lp_balance_math`, `lp_position_executor` |
 | Reviewed v4 dependencies | `pool_manager`, `state_view`, `position_manager`, `permit2` |
 
 The service verifies runtime, sealed module, parent/child and dependency bindings.
-Capabilities are accounting6/maintenance3/confirmation3/compound4/custody5,
+Capabilities are accounting7/LP-allocation1/maintenance3/confirmation3/compound4/custody5,
 LP routing2/portfolio2/execution quality1 and emergency2. Math is noncustodial;
 the fixed PositionExecutor accepts only Manager's typed LP operations. No new
 wallet, signing authority, generic executor or custody recipient is introduced.
 
 Active positions authenticate the actual main and optional residual owners,
 full PoolKeys, ticks and positive liquidity at the same canonical block.
-Fresh6 independently recomputes floor principal from each actual L/tick range
+Fresh7 independently recomputes floor principal from each actual L/tick range
 and captured sqrt price, compares each `Manager.amounts(actualId)` and their
 aggregate, proves residual containment, and reconstructs complete packed-info
 stable and L-sensitive fingerprints. A coherent reported total alone is not
@@ -83,7 +85,7 @@ adds one same-block getter per bucket; contribution preparation reuses it and
 keeps the public portfolio payload unchanged. See the [scoped audit](../reports/residual-lifecycle-20261106/VERIFICATION.md).
 Desired single mode does not erase a residual awaiting atomic merging.
 
-Accounting6 uses an explicit physical-only observation for this authentication.
+Accounting7 uses an explicit physical-only observation for this authentication.
 It skips maintenance-price diagnostics, not owners, runtime bindings, PoolKeys,
 main range geometry consistency, positive liquidity or aggregate raw amounts.
 A reference-price outage therefore leaves confirmed ownership and funded raw
@@ -115,22 +117,23 @@ Vault→Manager→PositionExecutor→PosM; later Policy bookkeeping reads cannot
 as marginal LP. Entrant funds increase/create only the main, not an incumbent
 inventory-repair residual. [Preparation](ACTIVATION_PREPARATION.md).
 
-Accounting1-5 readers remain explicit historical profiles. Omitting the version
-selects legacy1, never6. Their codecs, addresses, runtimes, timing and journals
-are not rewritten. API6 predecessor history requires explicit accounting6 and canonicalV8
-throughout; the retained record shape does not authorize relabelling old V5
+Accounting1-6 readers remain explicit historical profiles. Omitting the version
+selects legacy1, never7. Their codecs, addresses, runtimes, timing and journals
+are not rewritten. API7 predecessor history requires explicit accounting7 and canonicalV9
+throughout; accounting6/V8 remains a separate historical profile; the retained record shape does not authorize relabelling old V5
 accounting4/5 history. Historical accounting4 remains a separately pinned custody3 profile.
 
 Fresh direct Entry3 preparation explicitly selects routing_version3 and
 review_policy_version2; its seven-field tuple has no routeId/minimumOut and no
 Entry v4 helper. Source rows carry only pool_id/source_asset/asset_policy_id.
-Read accounting6 semantics and the existing schema2 envelope are unchanged.
+The schema2 envelope and direct Entry3 tuple remain; accounting7 explicitly
+changes LP allocation/getter semantics. Old index getters are not queried on7.
 Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
 
-Production inventory schema15/reinvest1 is separate from read schema2 and activation schema1;
-it authenticates17 modules/18 callable helpers plus2 inert Factory data children.
+Production inventory schema16/exact LP1/reinvest1 is separate from read schema2 and activation schema1;
+it authenticates17 modules/19 callable helpers plus2 inert Factory data children.
 The Factory data verification is constructor/release-only, not extra per-holder
-RPC work. Historical schema13/12/10/9/8/7/6 stay tied
+RPC work. Historical schema15/14/13/12/10/9/8/7/6 stay tied
 to their recorded profiles. Actual provider/route/VRF/gas/service qualification is
 still open. The served poplint accounting3 artifact remains unconfigured;
 popldemo remains the separate simulation. Source changes do not deploy either
@@ -154,14 +157,16 @@ claimed reward totals. No principal-payout transaction endpoint is implemented.
 
 ## Optional reviewed earnings checkpoint
 
-The existing earnings schema1 may explicitly include checkpoint1 through
+Historical explicit accounting6 earnings schema1 may include checkpoint1 through
 `earnings_history.checkpoint:{path,sha256}`. It is a fixed reviewed local artifact,
-not an HTTP-supplied file or automatically trusted cached total. Fresh accounting6/
+not an HTTP-supplied file or automatically trusted cached total. Accounting6/
 custody5/fee-intake1 only; no predecessors. Earnings endpoints report checkpoint
 block/hash/digest and suffix counts while preserving all-time/24h fields and
 current-price semantics. Missing/corrupt/new-source/too-young checkpoints fail;
 default full replay remains unchanged. [Setup and recovery](EARNINGS_CHECKPOINTS.md).
-Other history/preparation consumers are not silently switched to checkpoints.
+Accounting7 rejects checkpoint1 before restoring state and uses complete bounded
+raw history. Exact-LP checkpoint2 remains open. Other history/preparation
+consumers are not silently switched to checkpoints.
 
 ## Implemented endpoint
 
@@ -252,8 +257,10 @@ before signing. A quoted confirmed balance can change before execution.
 
 The configuration is an operator-reviewed JSON file, outside the public web
 document root. No PoPL addresses have been chosen/deployed by this implementation.
-The required base shape is below; bracketed values are **unusable placeholders**, not
-an approved deployment configuration. The optional strict `history` object is
+The following block is the explicit historical accounting4 base shape only;
+fresh7 additionally needs the complete role graph above, explicit custody5,
+ProtocolPolicy1 and original-currency royalty schema5. Bracketed values are
+**unusable placeholders**, not an approved deployment configuration. The optional strict `history` object is
 specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genuine-coverage):
 
 ```json
@@ -317,7 +324,8 @@ fallback to `latest` or a number-only call is used.
 
 Historical accounting4 verifies its nine base runtime pins and accounting5 its
 explicit old portfolio graph. Accounting6 additionally authenticates ProtocolPolicy1
-and Portfolio2 with the complete execution/dependency graph above.
+and Portfolio2 with its execution/dependency graph. Fresh7 adds LP-allocation1,
+V9 and the fixed Rewards canonical companion; it never aliases the old6 reader.
 Every request checks sealed module bindings and their common
 controller; the Vault's home chain; NFT/royalty/helper ownership; and canonical
 lifecycle/origin. NFT and wallet requests additionally verify the full admitted
@@ -448,11 +456,15 @@ LP uses currentLPValue; funded ETH combines LP and royalties. Missing values
 remain null. Historical earnings and unconverted source currencies are excluded.
 See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-totals).
 
-## Accounting6 policy observation
+## Accounting7 policy and exact LP observation
 
 Fresh reads explicitly require protocol_policy_version1 and the reviewed bound
 helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
 `claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
 are read at the same confirmed block; missing policy never becomes guessed
 defaults. Stage1 means actual activation, not a persistent100USD value floor.
-Inventory is schema15/reinvest1; public signing remains disabled. [Exact profile](POSITION_V6.md).
+Inventory is schema16/LP-allocation1/reinvest1; public signing remains disabled.
+[Exact profile](POSITION_V7.md). Earned LP uses actual weight-sync/fee events and
+exact whole-unit trees; selected `rewardBucket`, `claimableComponents`, `allocationTree`, funded liabilities
+and direct credits reconcile at each pinned epoch. Claims/conversions/imports
+are not new income. Source consumer9 does not update the served websites.

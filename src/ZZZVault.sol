@@ -47,7 +47,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     uint256 public sequence;
     uint256 public immutable canonicalChainId;
     ZZZMigrationBudget public immutable migrationBudget;
-    uint256 public constant ACCOUNTING_VERSION = 6;
+    uint256 public constant ACCOUNTING_VERSION = 7;
     uint256 public constant RESIDUAL_EXIT_VERSION = 1;
     uint256 public constant RESIDUAL_REINVEST_VERSION = 1;
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
@@ -327,8 +327,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         (uint256 late0, uint256 late1) = _pullCompound(bucketId);
         incumbentNAV += _valueBucket(bucketId, late0, late1);
         (uint256 newLP, uint256 newIdle) = _nav(bucketId);
-        // Unclassified donations during callbacks cannot become LP fee income.
-        IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(nftId);
         // The captured governed contribution limit applies to activation and
         // growth. Network gas is separate; later callbacks cannot widen this budget.
         // Incumbent idle/compound assets cannot subsidize this contribution.
@@ -337,6 +335,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         );
         sharesOf[nftId] += issued;
         bucketTotalShares[bucketId] = supply + issued;
+        IZZZRewards(access.module(Ids.REWARDS)).syncShares(nftId);
         contributionUSD[nftId] += inputUSD;
         p.depositUSD += inputUSD;
         if (activation) IZZZMembership(access.module(Ids.MEMBERSHIP)).activate(nftId);

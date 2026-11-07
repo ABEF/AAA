@@ -1,0 +1,20 @@
+[
+  {
+    "current": "config/operator-review.mode.example.json",
+    "historical": "config/operator-review.accounting6.mode.example.json",
+    "historical_sha256": "dacbb597bb89fdb66a11329c744b68619fb8ff164846c2d752b2e30a604a0a26",
+    "only_profile_changed": true
+  },
+  {
+    "current": "config/operator-review.residual-close.example.json",
+    "historical": "config/operator-review.accounting6.residual-close.example.json",
+    "historical_sha256": "c2965e8beb19b30fd1f3308e671e7ecfb9c1358581247d5d6005c7ce51a768a2",
+    "only_profile_changed": true
+  },
+  {
+    "current": "config/operator-review.emergency.example.json",
+    "historical": "config/operator-review.accounting6.emergency.example.json",
+    "historical_sha256": "f047d5ceb7af939a241424bac2dbb672192597108cf55b3515bd033617f4e39d",
+    "only_profile_changed": true
+  }
+]

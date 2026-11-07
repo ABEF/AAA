@@ -1,0 +1,6 @@
+{
+  "test/VaultAccounting.t.sol": "2eb4918fe067806f17cf035c68d0c532fa88a852deeb89147414d68c8feab5e1",
+  "test/mocks/Mocks.sol": "a849466e81ba9e84a9a81861cd5a5cfe738cc572304c6f5caecc7e840359e860",
+  "test/helpers/ProtocolPolicyFixture.sol": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+  "test/helpers/PortfolioFixture.sol": "d33823f6fd16e9e27864e49833b0c9689e8c0fd52d6fdb3670b4b98f658537b5"
+}

@@ -11,14 +11,14 @@ against disposable Anvil contracts. No production PoPL deployment is configured.
 
 | Action | Fixed target and call | Native value | Approvals |
 | --- | --- | --- | --- |
-| Fresh6 dormant mint | Canonical Vault `mintDormant(expectedMintPolicy)` | Exact reviewed current mint price(default0.05ETH) | None |
+| Fresh7 dormant mint | Canonical Vault `mintDormant(expectedMintPolicy)` | Exact reviewed current mint price(default0.05ETH) | None |
 | LP and royalty claims | Immutable NFT-owned router `claimBatch((uint256,address,bool)[])` | Zero | None |
 
 Direct mint is an implemented unsigned backend capability and historical Anvil
 path, **not an OpenSea primary mint integration**. The production qualification
 gate rejects that unsupported OpenSea path; public website minting remains a
 demonstration. Direct mint forwards the reviewed current price(default0.05ETH) to the accepted payee.
-Fresh6 provenance binds sale+VRF through mint_policy; claim_operations stays empty.
+Fresh7 provenance binds sale+VRF through mint_policy; claim_operations stays empty.
 Historical Anvil profiles retain their actual no-argument selector/fixed terms. The requested
 OpenSea buyer total of 0.05 ETH/platform-fee split needs compatible code and review.
 See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Enabling transaction
@@ -34,7 +34,7 @@ Claims contain 1-32 operations, not 32 NFTs times every asset. Each operation
 names an actual decimal-string uint256 token ID, an admitted asset and a strict
 boolean selecting royalties or LP rewards. Duplicate operations are rejected;
 the same NFT/asset in the two different ledgers is valid. Native address zero is
-allowed for royalties and, under explicit accounting 2/3/4, native LP rewards. The same NFT
+allowed for royalties and, under explicit native accounting2–7, native LP rewards. The same NFT
 and native asset may select both distinct ledgers in one exact batch. Historical
 profiles do not gain native-LP semantics from a manifest change. Every selected NFT must belong to the supplied
 wallet, and every selected operation must have a positive funded balance.
@@ -54,8 +54,10 @@ for a reviewed local deployment configuration:
 python -m frontend_api.server --config /operator/path/frontend-read.json --transaction-config /operator/path/wallet-policy.json --port 8787
 ```
 
-The read configuration pins the canonical chain, deployment anchor, nine core
-contract runtimes/helper bindings and admitted reward assets. The separate policy
+The read configuration pins the canonical chain, deployment anchor, complete
+selected contract/helper graph and admitted reward assets. Fresh7 also binds
+LP-allocation1 and the immutable Rewards canonical companion; old6/V8 remains
+a separate profile. The separate policy
 file is required to enable preparation; there is no default production fee policy:
 
 ```json
@@ -146,7 +148,7 @@ ledger inventory and core bindings, but isolate an unselected currency's failed
 runtime/decimal check. Selected currency failures reject the whole draft;
 terminal work limits are never swallowed. Actual simulation remains decisive.
 
-For accounting3/4 claims, the preparer reads the global activation weight once per
+For accounting3–7 claims, the preparer reads the global activation weight once per
 distinct selected NFT at that same block. Only 0..3 is valid; weight0 plus a positive
 LP/royalty claim balance is contradictory core data and rejects the draft. Missing
 or malformed activation data also fails closed. This preserves the never-activated
@@ -156,8 +158,8 @@ and optional-currency deferrals retain their earned rights. Historical profiles
 do not acquire this getter requirement. No optional currency read is added merely
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
 
-Accounting4 requires the additional pinned `principal_exit` module, custody3 and
-holder-exit canonical V8. Its irreversible LP-exit flag blocks new mint and
+Fresh7 requires pinned `principal_exit`, custody5 and canonicalV9. Historical4
+retains its own custody3/canonicalV5 profile. Its irreversible LP-exit flag blocks new mint and
 activation/top-up drafts, including after unpause; earned LP/royalty claims stay
 available to the current owner. Principal returns appear separately in read
 responses and cannot be submitted as ClaimRouter reward operations. No backend
@@ -238,8 +240,8 @@ wallet transactions.
 
 ## Activation and additions stay separate
 
-The read-service pins (nine for accounting4, eight for historical accounting3) do not authenticate Entry, Registry, source
-admission, Oracle and conversion routes. Activation requires those additional
+The selected read-service graph alone does not authenticate Entry, Registry, source
+admission and dual Oracle policies. Activation requires those additional
 reviewed identities, a complete original-source quote and a simulated marginal
 LP deployment satisfying the captured contribution-loss budget. The current
 ETH/fixed ZZZ candidate defaults to 2%, governed up to 10%, with its reviewed caller

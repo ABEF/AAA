@@ -1,0 +1,12 @@
+{
+  "classification": "compiler resource failure; zero executed EVM methods",
+  "observed": "status PowerShell command failed Out of memory, CLRexit-532462766",
+  "elapsed_seconds": 1763.672,
+  "owned_forge_pid": 18292,
+  "owned_compiler_pid": 20988,
+  "first_taskkill_default": "access denied",
+  "authorized_exact_taskkill_unsandboxed": "taskkill /PID18292 /T /F succeeded for only20988 and18292",
+  "production_or_services_terminated": false,
+  "full_45class_stage_passed": false,
+  "followup": "smaller priority closures; no retry of whole45 unchanged"
+}

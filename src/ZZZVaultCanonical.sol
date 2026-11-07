@@ -75,7 +75,7 @@ contract ZZZVaultCanonical {
         access = IZZZAccess(controller);
         if (vaultController.code.length == 0 || IZZZAccess(controller).module(Ids.VAULT) != vaultController ||
             chain == 0 || IZZZVault(vaultController).canonicalChainId() != chain ||
-            ICanonicalVaultState(vaultController).ACCOUNTING_VERSION() != 6) revert InvalidState();
+            ICanonicalVaultState(vaultController).ACCOUNTING_VERSION() != 7) revert InvalidState();
         vault = ICanonicalVaultState(vaultController);
         originChain = chain;
         originVault = vaultController;
@@ -362,7 +362,7 @@ contract ZZZVaultCanonical {
     }
     function _recoveryPeer(address controller) private view returns(ICanonicalRecoveryRoute peer) {
         peer = ICanonicalRecoveryRoute(IZZZAccess(controller).canonicalHandoff());
-        if(peer.SCHEMA() != keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8") ||
+        if(peer.SCHEMA() != keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9") ||
             peer.access() != controller) revert InvalidState();
     }
 }

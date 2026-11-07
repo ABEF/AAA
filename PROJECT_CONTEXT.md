@@ -1,6 +1,6 @@
 # PoPL current project context
 
-Reviewed6November2026. Exact-LP-engine baseline mainb76dfcc; verify actual local/remote
+Reviewed7November2026. Exact-LP-integration baseline main64f9bfb; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 
@@ -15,13 +15,26 @@ durable intent. Calldata/minL/deadline/cost limits are never rewritten. Pending
 recovery, journal schema, signer restrictions and all live environments remain.
 Local I/O/inclusion can still age a review; no always-executable/MEV guarantee.
 
-[Exact-unit LP engine](docs/EXACT_LP_ALLOCATION.md) is implemented as an internal,
-unwired Solidity component. It settles both fixed-pair books before weight
-changes, preserves high/low fairness phase and carries selected paths in memory.
-Current Rewards/Vault/canonical6/V8 still use LP fractions; full ledger/consumer
-integration remains the accepted open task, not a new decision to ask again.
-[Current evidence](reports/exact-lp-engine-20261106/REVIEW.md) also fixes read-only
-retry diagnostics. No deployment/profile/journal/site/service/signing changes.
+[Exact-unit LP integration](docs/POSITION_V7.md) connects fresh accounting7/LP-allocation1/
+canonicalV9/schema16/source9 to whole-unit Rewards, authenticated post-write
+shares/membership, current-owner claims/conversion and lossless raw-phase handoff.
+Constructor-fixed typed RewardsCanonical adds one helper, not an arbitrary
+executor, payout recipient or configurable custody address.17modules/19callable
+helpers plus2inert Factory data children; old6/V8/F2/checkpoint1 remain explicit.
+Normal87sources pass46object+2carrier gates at unchanged compiler settings.
+Strict532actual records:222individually reassessed,310unique exact-source reuse.
+Canonical34distinct successes include funded abort/future-credit equivalence;
+backend619distinct corrected methods and actual77-log/four26-field-snapshot Vault transcript
+reconcile. See [integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md)
+for full host/gas stages, failed attempts and final evidence, never summed overlaps.
+Final runtime headroom:Vault133/Rewards358/CanonicalHandoff32. Exact LP claims
+can be materially more expensive;32is a count ceiling, not a gas approval.
+Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
+all weights precede raw pending/high/low restoration. Never flatten old phase,
+reinterpret6/V8 or resume a partially funded/aborted deployment.
+Fresh7 raw earnings replay works; exact-unit checkpoint2 and lifetime archival/
+workload/recovery remain open. Old checkpoint1 is6-only. Source publication
+changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
 ## Current architecture and economics
 
@@ -34,9 +47,9 @@ additional execution loss1% after known directional fees and default5% idle are
 different guards. Fixed80/10/5/5 actual LP receipts: owner/equal active collective/
 compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
-Accounting6/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
+Accounting7/LP-allocation1/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
 LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
-words. Fresh royalty4/recovery2/canonicalV8/schema15/reporting5;17modules/18 callable helpers plus2 inert Factory data children (code-storage2). Historical schema14 preserves pre-reinvestment code-storage2; schema13 preserves SSTORE Factory.
+words. Fresh royalty4/recovery2/canonicalV9/schema16/reporting5;17modules/19 callable helpers plus2 inert Factory data children (code-storage2). Historical schema14 preserves pre-reinvestment code-storage2; schema13 preserves SSTORE Factory.
 Old V7/V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
 One contribution pool at a time, <=4logical historical buckets. One main or
@@ -96,7 +109,7 @@ Per-currency failure cohorts and previously allocated exact units stay protected
 only increase through governance to64ERC20+ETH after gas/service review. Review
 hash is NOT a gas proof. No universal frozen-token/unknown-currency payout promise; allocated rounding units are exactly assigned.
 
-CanonicalV8 royalty header five words includes end/capacity; source requires open/
+CanonicalV9 royalty header (unchanged royalty4 layout) five words includes end/capacity; source requires open/
 finalized window and every initial currency synchronized before capture. Old V7/V6
 peers rejected early. Import never reopens sale/grace; parked/principal wire shapes
 do not imply runtime compatibility. Emergency/terminal LP recovery is independent.
@@ -108,7 +121,7 @@ and a per-currency rotating cursor assign every allocated raw unit; no fresh
 royalty scaled index/fraction reserve. StartsONE-based, backend offsetsZERO-based;
 original-source EVM logs/getters/V8 export rows verify that boundary. Claims/imports
 are not income; only generic RoyaltiesAllocated credits fresh earnings once.
-V8 preserves activation order and whole accrued liabilities, flattened in frozen
+V9 preserves activation order and whole accrued liabilities, flattened in frozen
 view without deleting source books. Old codecs/checkpoints remain historical.
 
 Mint reviews bind sale end/revision plus core policy and NFT/receiver; callback
@@ -169,10 +182,10 @@ artifacts. Older research/failures retain original scope.
 Main only. Preserve four protected dirty files in handoff, all Anvil8902 holdings,
 dist overlays, pending/nonce/receipt/spend journals, shared signer and user-paused
 heartbeat. Popldemo is simulation; separately served poplint is current3/unconfigured,
-not fresh source8/accounting6. Public DEPLOYMENT null; browser signing Anvil-only.
+not fresh source9/accounting7. Public DEPLOYMENT null; browser signing Anvil-only.
 No deployment/seal/public transaction/site/server/service/reset/signing change.
 
 Open release gates: actual OpenSea drop/all mint-path/final-end binding, currencies,
 dual feeds/routes/VRF/authorities, expanded gas/API/history/checkpoint workloads,
-matching source8 services/site, storage/restore/long-lived history, independent
+matching source9 services/site, storage/restore/long-lived history, independent
 audit/remediation. Capacity64 and current source tests do not close these gates.

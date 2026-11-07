@@ -61,16 +61,18 @@ fixed receiver or obtain its rights.
 
 ## Fresh inventory boundary
 
-Use the explicit **schema15** deployment inventory; schema14 retains the prior
-source scope for historical inspection. Format2/data payload is unchanged. Keep **18 logical callable
+Use the explicit **schema16** deployment inventory. Schema15 is archived exactly
+for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload3
+has separate source-owned bytes/pins; never substitute historical payload2. Keep **19 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
-module records,18 helper records and2 code-data records, with external dependency
+module records,19 helper records and2 code-data records, with external dependency
 records separate. The data children have no getter ABI; authenticate them with
 bounded `eth_getCode`, not invented `access()` or `controller()` calls.
 
-Royalty settlement4/recovery2, reporting5, accounting6 and canonicalV8 remain
-separate unchanged behavior/wire identities. Schema14 and older runtime/config
+Royalty settlement4/recovery2 and reporting5 remain unchanged. Fresh accounting7/
+LP-allocation1/canonicalV9 and its fixed Rewards canonical companion are separate
+identities. Schema15 and older runtime/config
 profiles remain historical; do not add mandatory data-child fields by silently
 relabeling a deployed instance or saved configuration.
 
@@ -86,14 +88,21 @@ local example addresses are not production addresses.
 Canonical `deploymentCommitment()` binds module/domain runtimes, the Access
 runtime containing its immutable factory address and ProtocolPolicy. It does
 not explicitly enumerate factory/data-child runtime hashes. The separate source-
-bound schema15 constructor/release verification must inspect that full fixed
-graph. This code-storage change introduces no new canonical wire version or
-coordinator bypass. Reviewed different-code replacements retain their existing
+bound schema16 constructor/release verification must inspect that full fixed
+graph. Code-storage FORMAT2 alone does not choose the canonical wire version; fresh7
+independently usesV9. No coordinator bypass is introduced. Reviewed different-code replacements retain their existing
 governance trust boundary.
 
 ## Exact compiler artifact family
 
-The preserved historical schema14 source artifact pins the closed normal compiler output: royalty
+The current payload3 artifact `config/factory-code-storage-v3.json` and
+`zzz_ops.factory_code_v3` bind the reviewed87-source compiler input and the
+whole25,522-byte creation hash
+`0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa`.
+Its part0 is unchanged from payload2; part1 metadata differs. Artifact payload3
+is not CODE_STORAGE_VERSION3: the runtime format remains2.
+
+The preserved historical schema14/15 payload2 artifact pins its own compiler output: royalty
 creation length25,522 and hash
 `0x4a520b4af1c8ded6fe2539ec7f3ec4f6d9a1c7fbdd710a53ccffd3412bfce831`.
 An independent Forge build can normalize source line endings or add unused
@@ -112,7 +121,7 @@ the current inventory merely to obtain consistency. No deployment is authorized.
 2. Use the typed controller/NFT deployment workflow. The factory constructs both
    data children itself; no separate manual data deployment, funding or binding
    call is needed. This guide does not authorize deployment or sealing.
-3. Read the returned factory/part addresses and authenticate the full schema15
+3. Read the returned factory/part addresses and authenticate the full schema16
    graph at one confirmed block against independently reviewed pins. Inspect the
    typed constructor's exact receiver NFT/controller binding too.
 4. Verify actual target initcode/runtime limits, constructor arguments, transaction
@@ -128,6 +137,6 @@ transaction. A future royalty implementation requires the separately reviewed
 replacement/deployment procedure; this factory cannot be repointed after sealing.
 
 See the [deployment Todo](../TODO.md#task-deployment-initcode),
-[current profile](POSITION_V6.md), [operator manual](OPERATOR_MANUAL.md), and
+[current profile](POSITION_V7.md), [operator manual](OPERATOR_MANUAL.md), and
 [release approval record](RELEASE_CHECKLIST.md). Actual providers, authorities,
 OpenSea integration, operating workloads and independent audit remain separate.

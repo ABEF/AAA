@@ -1383,6 +1383,37 @@
     "name": "PortfolioTriggerConfigured",
     "signature": "PortfolioTriggerConfigured(uint16,uint16,uint64,bytes32)"
   },
+  "0x5ea0bced500d1b272f56740a59355162c6bf2bd2c0ce912bf5369d33eeb24cf0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ordinal",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "previousWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalWeight",
+        "type": "uint256"
+      }
+    ],
+    "name": "CollectiveWeightSynchronized",
+    "signature": "CollectiveWeightSynchronized(uint256,uint256,uint256,uint256,uint256)"
+  },
   "0x606eecb31d18a2b915e97b5c7696afbdd899610ad12dbe5d806a75be4dd5d0ab": {
     "fields": [
       {
@@ -3695,6 +3726,42 @@
     ],
     "name": "PrincipalDeferred",
     "signature": "PrincipalDeferred(uint256)"
+  },
+  "0xea7b0bb558e25d5129bf2ccb4b52c245c8ff4c781340bb3f21821c51ab7ba811": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ordinal",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "previousWeight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "totalWeight",
+        "type": "uint256"
+      }
+    ],
+    "name": "ShareWeightSynchronized",
+    "signature": "ShareWeightSynchronized(uint256,uint256,uint256,uint256,uint256,uint256)"
   },
   "0xead2d22dd54e6d3db7ec6836aca3d4307e591a6a933d12cddcdf06ad59efede8": {
     "fields": [

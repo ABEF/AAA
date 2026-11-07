@@ -1,16 +1,16 @@
 # Economic rights and allocation rules
 
-Fresh accounting6 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
+Fresh accounting7 supports [governance-triggered collective holder return](HOLDER_COLLECTIVE_EXIT.md).
 After LP closes, each NFT retains unpaid proportional ETH+ZZZ principal, old
 rewards and future royalty eligibility. Direct payouts are separate from income;
 no holder principal withdrawal exists during normal operation. LP cannot reopen
 after exit starts. Historical deployments keep their original rules.
 
 
-**Undeployed candidate; production NOT APPROVED.** Accounting6, custody5, portfolio2,
-direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8` retain
+**Undeployed candidate; production NOT APPROVED.** Accounting7, custody5, portfolio2,
+direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9` retain
 the economic rights below. Historical profiles retain their own layouts and
-evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V6.md)
+evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V7.md)
 and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
 
 Governance configures contribution/conversion/maintenance loss limits within
@@ -86,15 +86,15 @@ distribution transaction every minute. `Vault.collectFees` collects actual fees,
 then FeeController funds the four allocations in that same transaction. Joining,
 growing, rebalancing and standalone compounding also harvest fees along their
 guarded paths. Uncollected venue fees are not yet a holder's funded claim balance.
-The current accounting6 keeper defaults to a standalone harvest every hour,
+The current accounting7 keeper defaults to a standalone harvest every hour,
 independent of rebalance eligibility. This is a nominal off-chain schedule, not
 a wall-clock contract timer. Governance can also call the same collectFees
 function manually; all actual allocation arithmetic stays on-chain.
 
 | Event | What changes | What does not happen |
 | --- | --- | --- |
-| Harvest | 80% advances the bucket's per-share owner index; 10% advances the equal activated-membership index. The other 5%/5% become separately backed reserves. | No loop pays every NFT, and no burn is inferred merely from reserving funds. |
-| NFT claim | Checkpoint that NFT's individual and collective balances, pay its current owner, and reduce the corresponding liability by the actual payout. Fractions remain. | No second allocation, membership change, compounding or buyback. Other NFTs' earned balances and both reserves are unchanged. |
+| Harvest | 80% funds the bucket's whole-unit share tree; 10% funds the equal activated-membership tree. The other 5%/5% become separately backed reserves. | No loop pays every NFT, and no burn is inferred merely from reserving funds. |
+| NFT claim | Materialize that NFT's whole individual/collective units, pay its current owner and reduce liabilities by the exact payout. Nonmonetary fairness phase remains; no allocated fractional reserve. | No second allocation, membership change, compounding or buyback. Other NFTs' earned balances and both reserves are unchanged. |
 | Reinvestment | Keeper `Compounder.compound` or guarded rebalance reinvests the bucket's compound funds for existing shares. A contribution may release old compound into incumbent idle/NAV, but swaps/deploys only the entrant's budget. | It does not consume holder claim balances or mint another collective membership. Retained attributed idle remains backing, not completed LP deployment. |
 | Buyback | A separate keeper `Buyback.execute` spends only the designated reserve, swaps ETH to ZZZ when required, then verifies the actual ZZZ burn and supply reduction. | It does not depend on a holder claiming. Failed execution reverts reserve release; an allocated 5% is not an executed burn. |
 
@@ -127,19 +127,17 @@ see [operating schedule](OPERATIONS.md#reward-timing-and-maintenance-schedule).
 An off/failed keeper leaves funded rights and purpose reserves on-chain, but does
 not promise timely reinvestment, conversion or burn.
 
-Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membership/share changes or migration, remaining dust goes to existing owner shares. The maximum exception is now **19 raw units**, which must be valued for each admitted currency, including ETH. Low-decimal/high-unit-value tokens can make this economically material. Global LP index dust stays reserved; per-NFT fractions carry separately for individual and collective rewards. A finite last LP receipt can leave a whole raw unit backed but unclaimable without future revenue; this differs from exact-unit royalties. The approved [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is implemented separately; its integration is not yet present in the current ledger. Do not add sub-unit fractions into an extra spendable raw unit. Mark principal by summing each asset across LP/idle/designated compound before USD rounding; separately rounded subtotals can differ by one raw unit. The [independent receipt model](../reports/market-lifecycle-20261104/REVIEW.md) verifies these distinctions across composed journeys. No administrator can sweep reward or orphan reserves. Collection allocation
-accumulators may include carried/index rounding amounts; they are not the exact
-sum of all NFT claimable balances.
+Twenty raw units split16/2/1/1; smaller receipts carry forward. Before membership/share changes or pool movement, the remaining<=19raw units go to incumbent individual shares. This existing dust exception is distinct from allocation rounding and needs asset-specific economic review. Fresh7 exact-unit LP trees assign every ALLOCATED unit, including the finite final unit; high/low phase is not money and is never swept. Historical6 indices could retain backed fractions and remain separately interpreted. No administrator can sweep principal, reward, orphan or reserve backing. Attribute principal by summing each asset across both LP legs/idle/designated compound before USD rounding; independently rounded subtotals can differ. [Exact-unit rule](EXACT_LP_ALLOCATION.md), [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; an arbitrary callback or unsolicited raw Vault prefund cannot fabricate such proceeds. Actual PoolManager donations do change fee growth and fund the normal allocation at harvest; they do not prove organic trading volume. Creator inboxes and remote intake are removed.
 
 The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 
-Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through individual/equal-collective indices; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new indexed income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's recorded approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
+Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through whole-unit individual/equal-collective books; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new fee income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's recorded approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and
-decoding. Before retirement, same-pair pool moves and compatible canonicalV8
+decoding. Before retirement, same-pair pool moves and compatible canonicalV9
 handoff remain separate operations. Once collective exit starts, minting and all
 new principal work stop permanently; canonical replacement cannot bypass it.
 
@@ -161,7 +159,7 @@ see [history semantics](FRONTEND_HISTORY.md).
 
 ## Equal collective membership
 
-`ZZZMembership.activate` is vault-only, one-time and checkpoints all admitted LP reward assets before eligibility changes. A dormant NFT has zero membership; each activated NFT has one share regardless of rarity, LP size or number of top-ups. Membership persists through transfer, market losses, pauses and migration. No contribution-USD Power module or score exists. Contribution USD remains a separate historical contribution record, not a reward weight or current valuation.
+`ZZZMembership.activate` is Vault-only and one-time. It writes eligibility/count then invokes the typed exact-unit sync; stored old weights settle earlier funds before the new weight exists. A dormant NFT has zero collective membership; activation adds one, independent of rarity/LP size/top-ups. Vault share synchronization similarly settles old money using stored old weights after its atomic new-share writes. Transfers, pauses, market losses and compatible migration preserve membership and unpaid NFT rights. Contribution USD is history, not a reward weight or current valuation.
 
 ## NFT-sale royalties
 
@@ -180,7 +178,7 @@ governance `allocateUnallocated(asset,amount,reviewHash)` or
 weights without consuming earned, deferred or opening-pool backing.
 See [exact allocation](EXACT_ROYALTY_ALLOCATION.md),
 [opening and capacity](ROYALTY_LAUNCH_WINDOW.md) and
-[settlement limits](ROYALTY_SETTLEMENT.md). LP fee conversion/fractions are separate.
+[settlement limits](ROYALTY_SETTLEMENT.md). LP fee conversion/whole-unit books are separate.
 
 Revealed metadata reports the fixed Commun x1 / Rare x2 / Legendary x3 trait even while
 Dormant. Unrevealed weight is `Unrevealed`, not an invented rarity. The economic
@@ -200,7 +198,7 @@ Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounde
 
 Governance may irreversibly start [collective holder return](HOLDER_COLLECTIVE_EXIT.md) while paused. Final harvested fees keep the fixed allocation; pending 5% compound joins that bucket's principal. Each NFT receives its frozen share of actual ETH/ZZZ, including idle and reinvested compound, by deterministic raw-unit apportionment. Earned LP/royalty liabilities, buyback reserves, donations and quarantines are excluded. The operator closes and allocates bounded batches, then sends direct payouts to current owners; normal recipients take no action. A rejecting or unusually expensive receiver is deferred without blocking others, with retry or owner-selected fallback as exceptional recovery. Receipt cannot be forced for every address. Unpaid rights follow NFT transfer; a paid NFT cannot be paid twice. LP earnings end after all LP closes, while NFTs and future royalty shares remain.
 
-Whole-collection handoff is separate and requires compatible accounting6/canonicalV8 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
+Whole-collection handoff is separate and requires compatible accounting7/canonicalV9 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
 
 Governance is immediate: the selected wallet/Safe calls modules directly, with
 its own signature/nonce policy. There is no protocol timelock, queued executor

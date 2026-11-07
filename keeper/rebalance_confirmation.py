@@ -25,7 +25,7 @@ class RebalanceConfirmation:
             if type(interval) is not int or not 60<=interval<=CHECK_SECONDS:
                 raise ValueError('Confirmation requires explicit interval_seconds 60-240; no historical default')
             if ((self.version in (1,2) and (keeper.accounting_version!=4 or keeper.maintenance_policy_version!=2)) or
-                    (self.version==3 and (keeper.accounting_version not in (5,6) or keeper.maintenance_policy_version!=3))):
+                    (self.version==3 and (keeper.accounting_version not in (5,6,7) or keeper.maintenance_policy_version!=3))):
                 raise ValueError('Rebalance confirmation requires its explicit accounting/maintenance profile')
             if 'rebalance_confirmation' not in keeper.contracts:
                 raise ValueError('Missing reviewed rebalance confirmation helper')
@@ -60,7 +60,7 @@ class RebalanceConfirmation:
         try:
             for role,target in tuple((role,k.contracts[role]) for role in ('access','strategy','rebalance_confirmation','vault')+
                     (('portfolio_policy',) if self.version==3 else ())+(
-                    ('protocol_policy',) if k.accounting_version==6 else ()))+(
+                    ('protocol_policy',) if k.accounting_version in (6,7) else ()))+(
                     ('idle_compounding_budget',self.budget),):
                 code=k.rpc.call('eth_getCode',[target,block])
                 pin=k.config.get('code_hashes',{}).get(role,'')
@@ -75,7 +75,7 @@ class RebalanceConfirmation:
                 result=observe(pinned,strategy=strategy,budget=self.budget,confirmation=helper,access=access,
                     bucket=bucket if with_candidate else None,timestamp=stamp,version=3,
                     portfolio_policy=k.contracts['portfolio_policy'],accounting_version=k.accounting_version)
-                if k.accounting_version==6:
+                if k.accounting_version in (6,7):
                     from zzz_ops.protocol_policy import observe as observe_policy
                     result['maintenance_policy']=observe_policy(pinned,policy=k.contracts['protocol_policy'],access=access,domain='maintenance')
                 converted={**result,'block_number':number,'block_hash':block['blockHash'],'block_timestamp':stamp,

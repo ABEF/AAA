@@ -7,13 +7,13 @@ during normal operation. Governance can permanently end LP activity and return
 actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties remain.
 
 **Undeployed source candidate; production NOT APPROVED.** Fresh
-[accounting6/direct Entry3/custody5](docs/POSITION_V6.md) implements
+[accounting7/direct Entry3/custody5](docs/POSITION_V7.md) implements
 [bounded operating policy](docs/ADAPTABLE_POLICY.md) and reviewed
 [manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update
 existing contracts, services, journals or websites. Public signing remains disabled.
 
 
-Current [LP execution](reports/moving-market-flows-20261106/REVIEW.md) and [harvest](reports/harvesting-audit-20261106/REVIEW.md) reviews retain their source scopes. The [exact-unit LP engine](docs/EXACT_LP_ALLOCATION.md) is now implemented and optimized, alongside accurate backend retry diagnostics. Current Rewards still uses fractions until the remaining ledger/canonical/consumer integration; see [implementation evidence](reports/exact-lp-engine-20261106/REVIEW.md). Source publication changes no running environment.
+Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless canonicalV9. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
 
 ## Project navigation
 
@@ -25,9 +25,9 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | --- | --- |
 | Remaining work | **[Sole Project Todo](TODO.md)**, beside the [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md) |
 | Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
-| Current source and compatibility | [Accounting6 profile](docs/POSITION_V6.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
+| Current source and compatibility | [Accounting7 profile](docs/POSITION_V7.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md), [Main/residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md), [factory/claim improvements](reports/factory-claims-20261105/REVIEW.md), [royalty audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Exact-unit LP integration](reports/exact-lp-integration-20261106/VERIFICATION.md), [Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md), [Main/residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md), [factory/claim improvements](reports/factory-claims-20261105/REVIEW.md), [royalty audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -51,7 +51,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | [LP Balancer](src/ZZZLPBalancer.sol), [math child](src/ZZZLPBalanceMath.sol) | Compare bounded reviewed swap venues using actual-core sizing; ordinary replacement quotes must leave an active main. Entrant and captured maintenance budgets remain separate. |
 | [Strategy](src/ZZZStrategy.sol), [portfolio policy](src/ZZZPortfolioPolicy.sol), [confirmation](src/ZZZRebalanceConfirmation.sol) | Manual range/mode settings, exact human-price threshold, sampled confirmation and reviewed readiness. |
 | [Budget](src/ZZZMigrationBudget.sol), [Oracle](src/ZZZOracle.sol) | Fixed transaction valuations, independent USD sources, principal/reserve separation, operation and caller loss floors, compound timing and actual main-floor proof. |
-| [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol) | Allocate actual harvested fees 80/10/5/5; individual shares and equal activated-NFT collective rights. |
+| [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [fixed LP codec](src/ZZZRewardsCanonical.sol) | Allocate actual harvested fees 80/10/5/5; exact-unit individual shares and equal activated-NFT collective rights; a constructor-fixed typed codec preserves raw fairness phase during replacement. |
 | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [ClaimRouter](src/ZZZClaimRouter.sol) | Exact-unit original-currency royalties with GCD-normalized rarity weights, rotating indivisible units, outage isolation and current-owner claims; no royalty swaps. The allocator is internal library code, not another deployed helper. [Rule and limits](docs/EXACT_ROYALTY_ALLOCATION.md). |
 | [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) | Reinvest designated reserves or buy and burn the same fixed ZZZ, independently of user claims. |
 | [Migration](src/ZZZMigration.sol), [canonical helpers](src/ZZZVaultCanonical.sol) | Both-leg same-pair moves/parking, terminal holder return and compatible pre-exit same-chain replacement. No bridge or external custody-address exit. |
@@ -71,15 +71,13 @@ The [Python keeper](keeper/monitor.py) reads confirmed state, simulates permitte
 maintenance and persists nonce/receipt recovery. Pending transactions recover
 before new work. [Read API](docs/FRONTEND_API.md) and [indexer](indexer/monitor.py)
 authenticate ownership, both LP legs, balances and earnings at pinned blocks.
-Fresh6 verifies each physical principal amount and exact portfolio identities;
+Fresh7 verifies each physical principal amount and exact portfolio identities;
 [the lifecycle matrix](reports/residual-lifecycle-20261106/LIFECYCLE.md) explains
 opening, fills, operator recovery and merging.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema15/residual-reinvest1/direct Entry3/royalty4 with18 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 and canonicalV8 stay unchanged. Schema14 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
-[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) bounds selected history replay;
-lineage/other readers and live workload qualification remain open. [OpenSea
-qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
+Fresh inventory is schema16/residual-reinvest1/direct Entry3/royalty4 with19 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 remains; canonicalV9 carries exact LP tree state, and LP-allocation1 is authenticated explicitly. Schema14 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
+[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is historical profile6-only. Fresh7 has exact raw earnings replay; reviewed checkpoint2, lineage/other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
 
 <a id="frontend-components"></a>
 
@@ -87,7 +85,7 @@ qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC
 
 [Popldemo](https://popldemo.0xwave.com) remains the existing simulation.
 [Poplint](https://www.poplint.0xwave.com/) is the separately built current-contract
-read/unsigned-review site. Its existing served build is not the new accounting6
+read/unsigned-review site. Its existing served build is not the new accounting7
 consumer. [Website integration](docs/CURRENT_WEBSITE_PROFILE.md) and
 [environment boundaries](docs/SITE_ENVIRONMENTS.md) explain the remaining work.
 Missing configuration remains unavailable, never invented data. Anvil signing
@@ -243,5 +241,5 @@ Fresh royalty4 retains the [one-hour sale-close activation window](docs/ROYALTY_
 and adds [exact-unit allocation](docs/EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV8
+unsupported currencies and pathological-token failures remain distinct. CanonicalV9
 rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.
