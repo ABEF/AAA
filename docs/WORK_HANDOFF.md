@@ -1,6 +1,6 @@
 # Work handoff
 
-Reviewed7November2026. Exact-LP-integration baseline main64f9bfb. Inspect actual Git heads
+Reviewed7November2026. Exact-LP integration baseline main64f9bfb; implementation published on main5646609. This is source publication, not deployment. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
@@ -62,7 +62,7 @@ custody5 and fixed LP/economic parameters preserved; exact-unit LP rounding is n
 allocation removes permanently stranded ALLOCATED rounding units. GCD-normalized
 rarity tickets, outstanding books, per-currency cursor; source ticketStartONE-based,
 internal ticket_offsetsZERO-based. Claim/import/telemetry is not new income.
-V8 flattened whole rights and actual producer/getter/event/export fixtures preserve
+V9 retains V8's royalty4 flattened whole rights; actual producer/getter/event/export fixtures preserve
 current-owner claims, activation order, cutoff/outage cohorts and exact backing.
 
 One-hour grace and zero-participant decision remain. Prefunds/unallocated receipts

@@ -119,7 +119,7 @@ do not imply runtime compatibility. Emergency/terminal LP recovery is independen
 The user approved exact-unit allocation. GCD-normalized captured rarity tickets
 and a per-currency rotating cursor assign every allocated raw unit; no fresh
 royalty scaled index/fraction reserve. StartsONE-based, backend offsetsZERO-based;
-original-source EVM logs/getters/V8 export rows verify that boundary. Claims/imports
+Historical original-source EVM logs/getters/V8 royalty rows verify that unchanged royalty4 layout, now carried inside V9. Claims/imports
 are not income; only generic RoyaltiesAllocated credits fresh earnings once.
 V9 preserves activation order and whole accrued liabilities, flattened in frozen
 view without deleting source books. Old codecs/checkpoints remain historical.

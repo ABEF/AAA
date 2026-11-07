@@ -223,10 +223,10 @@ Ticket starts areONE-based(1first,0dormant); replay/checkpoint ticket_offsets ar
 ZERO-based. The currency rotation cursor is zero-based raw weight, divisible by
 cohort GCD. Never compare source starts directly to internal offsets.
 
-Strict actual producer/consumer EVM fixtures bind events/getters/V8 rows. Only
+Strict actual producer/consumer EVM historical fixtures bind events/getters/V8 royalty rows; their royalty4 layout is retained inside V9. Only
 RoyaltiesAllocated credits income; positive receipt/opening/recovery telemetry
 acknowledges it, zero canonical-settle telemetry is not an income credit.
-V8 exports flattened whole rights without deleting source books, preserves
+V9 retains V8's royalty4 flattened whole rights without deleting source books, preserves
 activation order independent of mint order, checks exact liabilities/backing,
 and rejects V7. Rebuild/review checkpoints; never relabel old runtimes/journals.
 
@@ -258,7 +258,7 @@ Mint review uses Vault's six-word fingerprint(domain,core Policy fingerprint,
 NFT,receiver,mintEnd,mintEndRevision). Every end setter increments revision;
 final Vault check follows payee callbacks. Core Policy hash alone is insufficient.
 Cancelled importer royalty recovery waits for full abort restoration, follows
-only authenticated retired V8 hops, and requires CURRENT verified target governance
+only authenticated retired V9 hops, and requires CURRENT verified target governance
 with nonzero review hash, admitted asset, open window and stable active cohort.
 Existing VaultCanonical validates hops read-only; only coordinator writes routes
 or calls the cancelled ledger. No arbitrary recipient, principal movement or swap.
