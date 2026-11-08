@@ -1,0 +1,6 @@
+
+> zzz-popl-website@1.0.0 check
+> node --check deployment-transactions.js && node --check deployment-config.js && node --check deployment-view.js && node --check deployment-session.js && node --check deployment-native.js && node --check deployment-api.js && node --check app.js && node --check domain.js && node --check artworks.js && node --check palette-system.js && node --check generate-artworks.mjs && node --check wallet.js && node --check ui-state.js && node --check preview-store.js && node --check local-client.js && node --check browser-wallet.js && node --check browser-client.js && node --check browser-intent.js && node --check local-view.js && node check.mjs && node --check integration-app.js && node --check integration-config.js && node --check build-integration.mjs && node --check deployment-source9.js && node --check deployment-source9-data.js && node --check deployment-source9-prepare.js
+
+Checked 89 unique element IDs, 8 local references, application selectors, and all five routes.
+Verified 2784 self-contained artwork/metadata pairs and image hashes; 1000 inventory entries, at most 4 identical finished looks.

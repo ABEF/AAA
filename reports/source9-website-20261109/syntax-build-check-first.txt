@@ -1,0 +1,13 @@
+
+> zzz-popl-website@1.0.0 check
+> node --check deployment-transactions.js && node --check deployment-config.js && node --check deployment-view.js && node --check deployment-session.js && node --check deployment-native.js && node --check deployment-api.js && node --check app.js && node --check domain.js && node --check artworks.js && node --check palette-system.js && node --check generate-artworks.mjs && node --check wallet.js && node --check ui-state.js && node --check preview-store.js && node --check local-client.js && node --check browser-wallet.js && node --check browser-client.js && node --check browser-intent.js && node --check local-view.js && node check.mjs && node --check integration-app.js && node --check integration-config.js && node --check build-integration.mjs && node --check deployment-source9.js && node --check deployment-source9-data.js && node --check deployment-source9-prepare.js
+
+Checked 89 unique element IDs, 8 local references, application selectors, and all five routes.
+file:///C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/source9-website-20261108-2138/source/check.mjs:27
+  if(metadata.image!==`../${art.id}.svg` || JSON.stringify(metadata.attributes.slice(0,-1))!==JSON.stringify(expected) || metadata.attributes.at(-1)?.value!==art.royaltyWeight) throw new Error('Incorrect artwork metadata: '+art.id);
+                                                                                                                                                                                       ^
+
+Error: Incorrect artwork metadata: cyan-arcs-commun-dormant
+    at file:///C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/source9-website-20261108-2138/source/check.mjs:27:184
+
+Node.js v24.13.1

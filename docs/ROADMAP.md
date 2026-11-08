@@ -1,5 +1,10 @@
 # Engineering roadmap
 
+The local [source9 browser consumer](SOURCE9_WEBSITE_PROFILE.md) now implements
+fresh reads and unsigned reviews, including policy2 claim planning. Next qualify
+the actual Entry3 trace provider and manifests, operating loads and separately
+authorized API/poplint rollout. Source support is not deployed acceptance.
+
 The [fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) closes source
 defects in final-ETH floors, keeper conversion capacity/deadline/day handling and
 zero-noop replay. Optional gas policy2 is implemented without rollout; next qualify

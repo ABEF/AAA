@@ -1,0 +1,9 @@
+{
+  "successful": true,
+  "exact_staged_producer_files": 360,
+  "case_count": 10,
+  "financial_outputs_match_published_website_fixture": true,
+  "scope": "All output fields compared except provenance/config identities, which bind independently created temporary archive paths. Raw and checkpoint equality asserted by producer.",
+  "original_fixture_sha256": "9f0ae09579cc4d7e596f24d5d0951d52a0992346f6de1386faec47e6c49b595d",
+  "staged_fixture_sha256": "5a9591afca448ceaf9e040cdbe71a2383a3c2c1370ebedaa72b6e2831863318f"
+}

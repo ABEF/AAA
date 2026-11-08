@@ -1,0 +1,1 @@
+Static build complete: 5602 files in dist/. No dependency installation required.

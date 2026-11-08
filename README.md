@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+A separate [fresh website consumer](docs/SOURCE9_WEBSITE_PROFILE.md) now reads
+accounting7 and prepares exact unsigned Entry3/claim reviews. It keeps original
+royalty currencies, pending LP conversion and terminal principal separate.
+Public configurations remain null; both running sites and signing are unchanged.
+[Scoped evidence](reports/source9-website-20261109/REVIEW.md).
+
 Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
 the final ETH conversion value, size affordable keeper batches, stop stale sends
 and preserve zero-noop earnings history. Explicit unsigned gas policy2 is an

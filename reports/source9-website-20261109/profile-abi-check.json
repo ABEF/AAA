@@ -1,0 +1,1634 @@
+{
+  "schema": 1,
+  "scope": "Read-only comparison of every FreshProfile getter selector and output count against retained full compiler ABI output. No compiler/EVM/network run or deployment/provider qualification.",
+  "artifact": {
+    "path": "reports/fee-flow-audit-20261107/root/abi-all-628ebdf84b/output.json.gz",
+    "sha256": "063ced659273c05365e224403fe6a5f42a04931fbc57823b36dc352230ee8530"
+  },
+  "profile_source_sha256": "85dcf9d67dc3e7ff9ec1b64ab75a681464bee5869d992458146666282960a97a",
+  "checked_calls": 140,
+  "unique_role_functions": 124,
+  "error_count": 0,
+  "errors": [],
+  "records": [
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "canonicalHandoff()",
+      "selector": "0x2e0ea955",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "GOVERNANCE_VERSION()",
+      "selector": "0xf3f0172e",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "governance()",
+      "selector": "0x5aa6e675",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "isSealed()",
+      "selector": "0x631f9852",
+      "output_types": [
+        "bool"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "module(bytes32)",
+      "selector": "0xe8cffd1d",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 11
+    },
+    {
+      "role": "access",
+      "contract": "ZZZAccessController",
+      "abi_source": "src/ZZZAccessController.sol",
+      "signature": "protocolPolicy()",
+      "selector": "0xc3b64480",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "activePolicy(address)",
+      "selector": "0x237a06fb",
+      "output_types": [
+        "bytes32"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 2
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "isContributionAsset(address)",
+      "selector": "0x1f226a25",
+      "output_types": [
+        "bool"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 2
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "policies(bytes32)",
+      "selector": "0xddbfd8ef",
+      "output_types": [
+        "address",
+        "bool",
+        "bytes32",
+        "bytes32",
+        "uint8",
+        "bool"
+      ],
+      "flattened_output_words": 6,
+      "observed_output_words": 6,
+      "occurrences": 2
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "registry()",
+      "selector": "0x7b103999",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "SOURCE_POLICY_VERSION()",
+      "selector": "0x9694a103",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "activation_assets",
+      "contract": "ZZZActivationAssets",
+      "abi_source": "src/ZZZActivationAssets.sol",
+      "signature": "zzz()",
+      "selector": "0xa4dff0a2",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "balanceMath()",
+      "selector": "0x0e001842",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "selector": "0xdefb0ea2",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "liquidityManager()",
+      "selector": "0x33827438",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "LP_ROUTING_VERSION()",
+      "selector": "0x7577040b",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "poolManager()",
+      "selector": "0xdc4c90d3",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "balancing_router",
+      "contract": "ZZZLPBalancer",
+      "abi_source": "src/ZZZLPBalancer.sol",
+      "signature": "stateView()",
+      "selector": "0x4c4a3c25",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "contributionLossBps()",
+      "selector": "0xa7b5810c",
+      "output_types": [
+        "uint16"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "selector": "0xf2fb9fa7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "IDLE_COMPOUNDING_VERSION()",
+      "selector": "0x1dcc9568",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "MAX_LOSS_BPS()",
+      "selector": "0xc187241c",
+      "output_types": [
+        "uint16"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "selector": "0xe74be314",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "selector": "0x168da54f",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "budget",
+      "contract": "ZZZMigrationBudget",
+      "abi_source": "src/ZZZMigrationBudget.sol",
+      "signature": "vault()",
+      "selector": "0xfbfa77cf",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "claim_router",
+      "contract": "ZZZClaimRouter",
+      "abi_source": "src/ZZZClaimRouter.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "claim_router",
+      "contract": "ZZZClaimRouter",
+      "abi_source": "src/ZZZClaimRouter.sol",
+      "signature": "nft()",
+      "selector": "0x47ccca02",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "claim_router",
+      "contract": "ZZZClaimRouter",
+      "abi_source": "src/ZZZClaimRouter.sol",
+      "signature": "royalties()",
+      "selector": "0xf053dc5c",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "contribution_pricing",
+      "contract": "ZZZContributionPricing",
+      "abi_source": "src/ZZZContributionPricing.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "contribution_pricing",
+      "contract": "ZZZContributionPricing",
+      "abi_source": "src/ZZZContributionPricing.sol",
+      "signature": "ENTRY_REVIEW_VERSION()",
+      "selector": "0x49de0529",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "contribution_pricing",
+      "contract": "ZZZContributionPricing",
+      "abi_source": "src/ZZZContributionPricing.sol",
+      "signature": "oracle()",
+      "selector": "0x7dc0d1d0",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "contribution_pricing",
+      "contract": "ZZZContributionPricing",
+      "abi_source": "src/ZZZContributionPricing.sol",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "selector": "0x168da54f",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "entry",
+      "contract": "ZZZActivationEntry",
+      "abi_source": "src/ZZZActivationEntry.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "entry",
+      "contract": "ZZZActivationEntry",
+      "abi_source": "src/ZZZActivationEntry.sol",
+      "signature": "activationAssets()",
+      "selector": "0x5b703199",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "entry",
+      "contract": "ZZZActivationEntry",
+      "abi_source": "src/ZZZActivationEntry.sol",
+      "signature": "ENTRY_ROUTING_VERSION()",
+      "selector": "0xde05d684",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "entry",
+      "contract": "ZZZActivationEntry",
+      "abi_source": "src/ZZZActivationEntry.sol",
+      "signature": "registry()",
+      "selector": "0x7b103999",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "entry",
+      "contract": "ZZZActivationEntry",
+      "abi_source": "src/ZZZActivationEntry.sol",
+      "signature": "REVIEW_POLICY_VERSION()",
+      "selector": "0x96b09228",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "fees",
+      "contract": "ZZZFeeController",
+      "abi_source": "src/ZZZFeeController.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "fees",
+      "contract": "ZZZFeeController",
+      "abi_source": "src/ZZZFeeController.sol",
+      "signature": "FEE_INTAKE_VERSION()",
+      "selector": "0x5b9715f3",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "handoff",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_source": "src/ZZZCanonicalHandoff.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "handoff",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_source": "src/ZZZCanonicalHandoff.sol",
+      "signature": "moduleAt(uint8)",
+      "selector": "0x85cdfc5b",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "handoff",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_source": "src/ZZZCanonicalHandoff.sol",
+      "signature": "SCHEMA()",
+      "selector": "0xb4a8b1b8",
+      "output_types": [
+        "bytes32"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "balancingRouter()",
+      "selector": "0x7e6e55c0",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "selector": "0xf2fb9fa7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "selector": "0xdefb0ea2",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "LP_ROUTING_VERSION()",
+      "selector": "0x7577040b",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "permit2()",
+      "selector": "0x12261ee7",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "poolManager()",
+      "selector": "0xdc4c90d3",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "PORTFOLIO_VERSION()",
+      "selector": "0xcb5842c1",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "positionManager()",
+      "selector": "0x791b98bc",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "positionOperator()",
+      "selector": "0x3646f36a",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "selector": "0x59d509f7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "liquidity",
+      "contract": "ZZZLiquidityManager",
+      "abi_source": "src/ZZZLiquidityManager.sol",
+      "signature": "stateView()",
+      "selector": "0x4c4a3c25",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_balance_math",
+      "contract": "ZZZLPBalanceMath",
+      "abi_source": "src/ZZZLPBalanceMath.sol",
+      "signature": "balancer()",
+      "selector": "0xe563037e",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_balance_math",
+      "contract": "ZZZLPBalanceMath",
+      "abi_source": "src/ZZZLPBalanceMath.sol",
+      "signature": "LP_BALANCE_MATH_VERSION()",
+      "selector": "0xa03ee120",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "balancingRouter()",
+      "selector": "0x7e6e55c0",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "liquidityManager()",
+      "selector": "0x33827438",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "LP_POSITION_EXECUTOR_VERSION()",
+      "selector": "0x2f20e269",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "permit2()",
+      "selector": "0x12261ee7",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "poolManager()",
+      "selector": "0xdc4c90d3",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "positionManager()",
+      "selector": "0x791b98bc",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "selector": "0x59d509f7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "lp_position_executor",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_source": "src/ZZZLPPositionExecutor.sol",
+      "signature": "stateView()",
+      "selector": "0x4c4a3c25",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "nft",
+      "contract": "ZZZNFT",
+      "abi_source": "src/ZZZNFT.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "nft",
+      "contract": "ZZZNFT",
+      "abi_source": "src/ZZZNFT.sol",
+      "signature": "claimRouter()",
+      "selector": "0xbc1bc485",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "nft",
+      "contract": "ZZZNFT",
+      "abi_source": "src/ZZZNFT.sol",
+      "signature": "royaltyRewards()",
+      "selector": "0x338ca652",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "activePolicy(address)",
+      "selector": "0x237a06fb",
+      "output_types": [
+        "bytes32"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 2
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "contributionPricing()",
+      "selector": "0x2cf518cc",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "priceBounds(address)",
+      "selector": "0x4cbb3d60",
+      "output_types": [
+        "uint256",
+        "uint256",
+        "bytes32"
+      ],
+      "flattened_output_words": 3,
+      "observed_output_words": 3,
+      "occurrences": 2
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "PRICING_VERSION()",
+      "selector": "0x5f9c8132",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "oracle",
+      "contract": "ZZZOracle",
+      "abi_source": "src/ZZZOracle.sol",
+      "signature": "tokenDecimals(address)",
+      "selector": "0x8ee573ac",
+      "output_types": [
+        "uint8"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 2
+    },
+    {
+      "role": "pools",
+      "contract": "ZZZPoolRegistry",
+      "abi_source": "src/ZZZPoolRegistry.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "pools",
+      "contract": "ZZZPoolRegistry",
+      "abi_source": "src/ZZZPoolRegistry.sol",
+      "signature": "activationAssets()",
+      "selector": "0x5b703199",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "pools",
+      "contract": "ZZZPoolRegistry",
+      "abi_source": "src/ZZZPoolRegistry.sol",
+      "signature": "activationEntry()",
+      "selector": "0x5dbf78a2",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "portfolio_policy",
+      "contract": "ZZZPortfolioPolicy",
+      "abi_source": "src/ZZZPortfolioPolicy.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "portfolio_policy",
+      "contract": "ZZZPortfolioPolicy",
+      "abi_source": "src/ZZZPortfolioPolicy.sol",
+      "signature": "PORTFOLIO_VERSION()",
+      "selector": "0xcb5842c1",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "portfolio_policy",
+      "contract": "ZZZPortfolioPolicy",
+      "abi_source": "src/ZZZPortfolioPolicy.sol",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "selector": "0x168da54f",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "portfolio_policy",
+      "contract": "ZZZPortfolioPolicy",
+      "abi_source": "src/ZZZPortfolioPolicy.sol",
+      "signature": "strategy()",
+      "selector": "0xa8c62e76",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "position_manager",
+      "contract": "IPositionManagerMinimal",
+      "abi_source": "src/interfaces/IZZZ.sol",
+      "signature": "permit2()",
+      "selector": "0x12261ee7",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "position_manager",
+      "contract": "IPositionManagerMinimal",
+      "abi_source": "src/interfaces/IZZZ.sol",
+      "signature": "poolManager()",
+      "selector": "0xdc4c90d3",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "principal_exit",
+      "contract": "ZZZMigration",
+      "abi_source": "src/ZZZMigration.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "principal_exit",
+      "contract": "ZZZMigration",
+      "abi_source": "src/ZZZMigration.sol",
+      "signature": "CUSTODY_VERSION()",
+      "selector": "0x1c329fae",
+      "output_types": [
+        "uint8"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "principal_exit",
+      "contract": "ZZZMigration",
+      "abi_source": "src/ZZZMigration.sol",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "selector": "0xf2fb9fa7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "principal_exit",
+      "contract": "ZZZMigration",
+      "abi_source": "src/ZZZMigration.sol",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "selector": "0x59d509f7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "principal_exit",
+      "contract": "ZZZMigration",
+      "abi_source": "src/ZZZMigration.sol",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "selector": "0x168da54f",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "entryFingerprint()",
+      "selector": "0xe312c508",
+      "output_types": [
+        "bytes32"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "entryPolicy()",
+      "selector": "0x5fe8fe8a",
+      "output_types": [
+        "(uint128,uint128,uint16,uint64)"
+      ],
+      "flattened_output_words": 4,
+      "observed_output_words": 4,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "metadataFingerprint()",
+      "selector": "0x8810d9f3",
+      "output_types": [
+        "bytes32"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "metadataPolicy()",
+      "selector": "0x90dbe967",
+      "output_types": [
+        "(uint128,uint128,uint64)"
+      ],
+      "flattened_output_words": 3,
+      "observed_output_words": 3,
+      "occurrences": 1
+    },
+    {
+      "role": "protocol_policy",
+      "contract": "ZZZProtocolPolicy",
+      "abi_source": "src/ZZZProtocolPolicy.sol",
+      "signature": "PROTOCOL_POLICY_VERSION()",
+      "selector": "0x48f7710c",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rebalance_confirmation",
+      "contract": "ZZZRebalanceConfirmation",
+      "abi_source": "src/ZZZRebalanceConfirmation.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rebalance_confirmation",
+      "contract": "ZZZRebalanceConfirmation",
+      "abi_source": "src/ZZZRebalanceConfirmation.sol",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "selector": "0xe74be314",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rebalance_confirmation",
+      "contract": "ZZZRebalanceConfirmation",
+      "abi_source": "src/ZZZRebalanceConfirmation.sol",
+      "signature": "strategy()",
+      "selector": "0xa8c62e76",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rewards_canonical",
+      "contract": "ZZZRewardsCanonical",
+      "abi_source": "src/ZZZRewardsCanonical.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rewards_canonical",
+      "contract": "ZZZRewardsCanonical",
+      "abi_source": "src/ZZZRewardsCanonical.sol",
+      "signature": "rewards()",
+      "selector": "0x9ec5a894",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rewards",
+      "contract": "ZZZRewards",
+      "abi_source": "src/ZZZRewards.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rewards",
+      "contract": "ZZZRewards",
+      "abi_source": "src/ZZZRewards.sol",
+      "signature": "canonicalModule()",
+      "selector": "0x05819b68",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "rewards",
+      "contract": "ZZZRewards",
+      "abi_source": "src/ZZZRewards.sol",
+      "signature": "LP_ALLOCATION_VERSION()",
+      "selector": "0x1fe142c9",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "royalties",
+      "contract": "ZZZRoyaltyRewards",
+      "abi_source": "src/ZZZRoyaltyRewards.sol",
+      "signature": "nft()",
+      "selector": "0x47ccca02",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "royalties",
+      "contract": "ZZZRoyaltyRewards",
+      "abi_source": "src/ZZZRoyaltyRewards.sol",
+      "signature": "ROYALTY_SETTLEMENT_VERSION()",
+      "selector": "0x768bc5c0",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "state_view",
+      "contract": "IStateViewMinimal",
+      "abi_source": "src/interfaces/IZZZ.sol",
+      "signature": "poolManager()",
+      "selector": "0xdc4c90d3",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "selector": "0xdefb0ea2",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "MAINTENANCE_POLICY_VERSION()",
+      "selector": "0x65aa54c8",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "PORTFOLIO_VERSION()",
+      "selector": "0xcb5842c1",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "portfolioPolicy()",
+      "selector": "0xdb6416da",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "selector": "0xe74be314",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "strategy",
+      "contract": "ZZZStrategy",
+      "abi_source": "src/ZZZStrategy.sol",
+      "signature": "rebalanceConfirmation()",
+      "selector": "0xe84c8a30",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault_canonical",
+      "contract": "ZZZVaultCanonical",
+      "abi_source": "src/ZZZVaultCanonical.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault_canonical",
+      "contract": "ZZZVaultCanonical",
+      "abi_source": "src/ZZZVaultCanonical.sol",
+      "signature": "vault()",
+      "selector": "0xfbfa77cf",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "access()",
+      "selector": "0x71907f17",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "ACCOUNTING_VERSION()",
+      "selector": "0xebbc42b6",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "canonicalChainId()",
+      "selector": "0x0c7bdd72",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "canonicalModule()",
+      "selector": "0x05819b68",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "migrationBudget()",
+      "selector": "0x7d13e4db",
+      "output_types": [
+        "address"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "selector": "0x59d509f7",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    },
+    {
+      "role": "vault",
+      "contract": "ZZZVault",
+      "abi_source": "src/ZZZVault.sol",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "selector": "0x168da54f",
+      "output_types": [
+        "uint256"
+      ],
+      "flattened_output_words": 1,
+      "observed_output_words": 1,
+      "occurrences": 1
+    }
+  ]
+}

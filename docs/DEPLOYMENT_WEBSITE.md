@@ -12,7 +12,7 @@ unavailable, and the shared signer remains Anvil-only.
 | Historical schema2/native2 | Accounting2, dual pricing2, routing2 and review-policy1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
 | Historical source8/accounting6/custody5/portfolio2/canonicalV8 draft | Separate unserved source profile; its runtimes, reader and journals remain explicit, never relabelled as7 |
-| Fresh source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. A compatible deployed website consumer is still pending; never relabel schema3, source8 or old journals |
+| Fresh source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. The separate local [schema4/source9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements reads/unsigned reviews; actual matching deployment/service/site qualification remains open. Never relabel schema3, source8 or old journals |
 
 The legacy configuration and local-wallet procedures below retain their own
 profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;
@@ -55,7 +55,7 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
 | Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
-| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh7 needs its own compatible profile with the same fixed contribution identities and current governed minima. |
+| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh7 uses the separate schema4/source9 consumer with the same fixed identities and captured governed minima. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the trace must meet the selected version's captured marginal-LP floor. Legacy schema 1 uses 99%; native2 uses its reviewed governed cap. Show simulated LP added and gas separately. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |

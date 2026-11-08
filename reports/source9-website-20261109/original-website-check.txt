@@ -1,0 +1,9 @@
+Checked 89 unique element IDs, 8 local references, application selectors, and all five routes.
+file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/check.mjs:27
+  if(metadata.image!==`../${art.id}.svg` || JSON.stringify(metadata.attributes.slice(0,-1))!==JSON.stringify(expected) || metadata.attributes.at(-1)?.value!==art.royaltyWeight) throw new Error('Incorrect artwork metadata: '+art.id);
+                                                                                                                                                                                       ^
+
+Error: Incorrect artwork metadata: cyan-arcs-commun-dormant
+    at file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/check.mjs:27:184
+
+Node.js v24.13.1

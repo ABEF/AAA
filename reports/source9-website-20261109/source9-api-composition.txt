@@ -1,0 +1,23 @@
+✔ full explicit API profile validates actual fresh handler: active_single (149.745ms)
+✔ full explicit API profile validates actual fresh handler: active_residual (54.9206ms)
+✔ full explicit API profile validates actual fresh handler: price_unavailable (63.2731ms)
+✔ full explicit API profile validates actual fresh handler: dormant (74.8134ms)
+✔ full explicit API profile validates actual fresh handler: principal_allocated (66.0344ms)
+✔ full explicit API profile validates actual fresh handler: principal_ready (65.1586ms)
+✔ full explicit API profile validates actual fresh handler: principal_paid (55.7555ms)
+✔ source9 manifest requires all distinct profile versions and cannot be renamed current3 (30.9059ms)
+✔ poplint admits reviewed source9 locally without permitting a public rehearsal or demo host (27.5393ms)
+✔ an old or changed response provenance is rejected before returning balances (28.4536ms)
+✔ fresh original currencies are bounded reviewed metadata, not a fixed symbol whitelist (25.8346ms)
+✔ source9 retains exact published signer and disabled build inputs (11.1278ms)
+✔ terminal artwork matches on-chain activated fallback while the custody label remains exited (27.8822ms)
+✔ actual checkpoint2 handler composes complete collection and wallet totals without inventing USD (64.1191ms)
+✔ actual checkpoint2 earnings preserve complete current-currency history and raw-window scope (61.1251ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 979.5307

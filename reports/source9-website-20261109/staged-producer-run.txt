@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\export_source9_website_fixtures.py", line 22, in <module>
+    from tests_python.test_exact_lp_profile7 import Fresh7API
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_exact_lp_profile7.py", line 17, in <module>
+    from tests_python import test_frontend_policy_v6 as neutral_api
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_frontend_policy_v6.py", line 6, in <module>
+    from tests_python import test_portfolio_price_outage as historical_outage
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_portfolio_price_outage.py", line 17, in <module>
+    from tests_python.test_frontend_portfolio_v5 import ProfileTranscript,fresh_configuration
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_frontend_portfolio_v5.py", line 13, in <module>
+    from tests_python.test_holder_exit_profile import setup_api
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_holder_exit_profile.py", line 17, in <module>
+    from tests_python import test_royalty_reporting as R
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\tests_python\test_royalty_reporting.py", line 11, in <module>
+    from indexer.monitor import Indexer
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\indexer\monitor.py", line 11, in <module>
+    from indexer.events import decode
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\s9-producer-2138\indexer\events.py", line 9, in <module>
+    SCHEMA = json.loads((Path(__file__).parent/'event_schema.json').read_text())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\s9-producer-2138\\indexer\\event_schema.json'

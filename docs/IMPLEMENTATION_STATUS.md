@@ -98,12 +98,16 @@ Implementing source does not qualify a host, provider, maximum gas or operating 
 
 ## Frontend boundary
 
-Popldemo remains simulation. Poplint's separately served current3 read/unsigned
-build is not an accounting7 website consumer. The new backend projections and
-preparation are local source; actual website acceptance remains open. Browser
-signing stays Anvil-only; public DEPLOYMENT stays null. No source/build/server
-change to the website is part of this contract implementation.
-[Environment map](SITE_ENVIRONMENTS.md), [website profile](CURRENT_WEBSITE_PROFILE.md).
+Popldemo remains simulation and the separately served current3 poplint is unchanged.
+The [fresh source9 website consumer](SOURCE9_WEBSITE_PROFILE.md) implements explicit
+schema4/accounting7/LP1/custody5/Entry3/royalty4/V9 reads and unsigned reviews,
+including original-currency royalties, pending LP ZZZ, principal returns, governed
+thresholds and fully classified gas-aware claim plans. Source9 never constructs
+the signer, including on loopback; both build configurations stay null.
+[Source-scoped evidence](../reports/source9-website-20261109/REVIEW.md) distinguishes
+actual Python DTOs from synthetic Entry3 drafts. Actual deployment/provider,
+trace/wallet/hosting acceptance and independent review remain open.
+[Environment map](SITE_ENVIRONMENTS.md); historical [current3 profile](CURRENT_WEBSITE_PROFILE.md).
 
 ## Collective exit scale and mixed-wallet evidence
 

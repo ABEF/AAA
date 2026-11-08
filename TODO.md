@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-07 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-09 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -784,12 +784,13 @@ What holders see and use.
   - Current3 website implementation: explicit schema3 manifest, accounting3/governance2/fee1/localV4 runtime/domain bindings and ETH/fixedZZZ-only inputs; actual HTTP schema2 DTOs cover six activation/growth/approval/claim reviews. The final affected scope has451JS passes including46new methods; earlier overlapping runs are not additional coverage. Evidence: [current3 integration](reports/current3-website-20261026/VERIFICATION.md). Poplint has its own build/root/configuration; no current public deployment/API is fabricated and signing stays disabled.
   - Fresh contract preparation now uses [direct Entry3](docs/ACTIVATION_ENTRY.md) with schema9/20helpers. The served current3 site and existing browser/Anvil journals remain unchanged and cannot use the new tuple by relabelling. Build/review a matching source7 website adapter before authorized rollout; public signing stays disabled.
   - Explicit transaction policy2 supports reviewed operator gas limits after sealing, default example12M, engineering21k–64M, bounded by the confirmed block and full20% estimate headroom. Schema2 drafts/plans require matching consumer support, never a public-signing extension or relabel of old Anvil journals. Existing policy1/schema1 remains unchanged. Actual provider/per-transaction/fee/workload qualification and separately authorized rollout remain open.
+  - [Source9 website consumer](reports/source9-website-20261109/REVIEW.md): local schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 read/unsigned path, governed minima/metadata, exact approvals, pending LP ZZZ versus ETH, original royalty currencies, terminal principal and complete gas-aware claim plans. Synthetic offline handler/transport evidence does not qualify actual Entry3 traces, providers, wallets, hosts or site rollout. Public configs remain null and signer/live environments unchanged.
 
   </details>
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Current3 confirmed holdings, LP/reward/history and collection readers are implemented with exact profile/provenance and unavailable-state checks. Poplint is separate from the demo and must remain unconfigured until real reviewed bindings/API exist. Actual provider, complete-history and operating acceptance remain open.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Local source9/schema4 website integration now supports fresh accounting7 reads and unsigned contribution/claim reviews. Qualify actual deployments, Entry3 traces, runtime/API/provider manifests, complete history, original-currency faults and operating workloads before a separately authorized poplint rollout. Public signing remains disabled; served current3 and popldemo are unchanged.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -811,6 +812,7 @@ What holders see and use.
   - Current3 website implementation: explicit schema3 manifest, accounting3/governance2/fee1/localV4 runtime/domain bindings and ETH/fixedZZZ-only inputs; actual HTTP schema2 DTOs cover six activation/growth/approval/claim reviews. The final affected scope has451JS passes including46new methods; earlier overlapping runs are not additional coverage. Evidence: [current3 integration](reports/current3-website-20261026/VERIFICATION.md). Poplint has its own build/root/configuration; no current public deployment/API is fabricated and signing stays disabled.
   - Integrate fresh accounting4/custody3 principal_return and terminal LP state on poplint, separately from generated fees and reward claims. Normal collective return pushes ETH+ZZZ to the current owner with no holder action; old accounting3 website data must not be relabelled.
   - [Consumer review](reports/whole-project-audit-20261029/FRONTEND.md) traces independent card versus complete same-block totals and fixes ownership inventory outage isolation in the API. Fresh4 browser integration and terminal principal presentation remain open; current3 upgrade audio/effects are not implemented merely by preloading. No site/signer/Anvil rollout.
+  - [Source9 website consumer](reports/source9-website-20261109/REVIEW.md): local schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 read/unsigned path, governed minima/metadata, exact approvals, pending LP ZZZ versus ETH, original royalty currencies, terminal principal and complete gas-aware claim plans. Synthetic offline handler/transport evidence does not qualify actual Entry3 traces, providers, wallets, hosts or site rollout. Public configs remain null and signer/live environments unchanged.
 
   </details>
 
@@ -865,6 +867,7 @@ What holders see and use.
   - Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals.
   - Consume the implemented earnings endpoints and label both periods as earnings at current prices, with confirmed snapshot time. They count processed allocations, not unpaid/unharvested revenue. Show raw source amounts when a price is unavailable; never sum source earnings with conversion credits.
   - Current3 website implementation: explicit schema3 manifest, accounting3/governance2/fee1/localV4 runtime/domain bindings and ETH/fixedZZZ-only inputs; actual HTTP schema2 DTOs cover six activation/growth/approval/claim reviews. The final affected scope has451JS passes including46new methods; earlier overlapping runs are not additional coverage. Evidence: [current3 integration](reports/current3-website-20261026/VERIFICATION.md). Poplint has its own build/root/configuration; no current public deployment/API is fabricated and signing stays disabled.
+  - [Source9 website consumer](reports/source9-website-20261109/REVIEW.md): local schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 read/unsigned path, governed minima/metadata, exact approvals, pending LP ZZZ versus ETH, original royalty currencies, terminal principal and complete gas-aware claim plans. Synthetic offline handler/transport evidence does not qualify actual Entry3 traces, providers, wallets, hosts or site rollout. Public configs remain null and signer/live environments unchanged.
 
   </details>
 
@@ -1534,4 +1537,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `729c2f1421824523ec4b81c62af0eef8a56cf41d6ab418bf0d8cbda76c822441`.
+Snapshot SHA-256: `dea02feac71d8e911d478febbc06d19493ed4acd14c1313c6f14c29df91852ce`.

@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+The [source9 consumer review](../reports/source9-website-20261109/REVIEW.md)
+replaces stale browser profile/Entry assumptions through a separate schema4 path.
+It preserves historical clients and separates pending LP conversion, original
+royalties and terminal principal. Production composition tests include the real
+read-transport method allowlist; policy2 uses exact-number/hash-checked block reads.
+Source9 mint/Anvil signing stay disabled; real provider/site acceptance remains open.
+
 [Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
 and late deadline/UTC-day checks, strict simulation output and zero-noop earnings

@@ -1,5 +1,20 @@
 # Work handoff
 
+The [source9 website consumer](../reports/source9-website-20261109/REVIEW.md) adds
+explicit website schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 reads
+and unsigned reviews. Original royalty currencies, pending LP ZZZ, principal
+returns, governed minima/metadata and gas-aware claim plans remain separate.
+Both public build configurations are null; the shared Anvil-only signer is
+byte-identical and source9 never constructs it. Served current3 poplint,
+popldemo, services, Anvil/journals and the user-paused heartbeat are unchanged.
+Actual Entry3 trace/provider/wallet/hosting qualification remains open.
+
+Next: qualify a real matching runtime/API/provider manifest, real Entry3 marginal
+LP traces, fee/claim workloads and separately authorized poplint rollout. Preserve
+historical source8/current3 artifacts. The fresh manifest procedure is
+[source9 website profile](SOURCE9_WEBSITE_PROFILE.md). Source completion does not
+authorize public signing or deployment.
+
 [Checkpoint2 and manual LP preparation](../reports/checkpoint2-manual-20261107/REVIEW.md)
 add exact raw-tree earnings snapshots and typed unsigned Active-state B/C/D
 management reviews for direct empty-code governance wallets only. Contract-wallet
