@@ -220,23 +220,38 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
         if any(x.get('from','').lower()==pins['vault'] and x.get('to','').lower()==pins['liquidity'] and
                 x.get('input','')[:10].lower()==selector('swap(bytes32,bool,uint256,uint256,uint256)') for x in calls):
             raise ProjectionError('LP contribution bypassed atomic balancing')
-    initial={};final={};epoch=None
+    initial={};final={};epoch=None;epochs=[]
+    exact_epoch_phases=req.get('accounting_version')==7
     for frame in finish.get('calls',[]):
         if frame.get('from','').lower()!=helper:continue
         if frame.get('to','').lower()==budget and frame.get('input','')[:10].lower()==selector('compositionEpoch(uint256)'):
             successful(frame)
-            if epoch is not None or frame.get('type')!='STATICCALL' or frame['input'].lower()!=calldata('compositionEpoch(uint256)',bucket):
+            if ((not exact_epoch_phases and epoch is not None) or
+                    frame.get('type')!='STATICCALL' or frame['input'].lower()!=calldata('compositionEpoch(uint256)',bucket)):
                 raise ProjectionError('Invalid historical compound epoch boundary')
             epoch=int(words(frame.get('output'),1)[0],16)
             if epoch>=2**64:raise ProjectionError('Historical compound epoch exceeds uint64')
+            if exact_epoch_phases:
+                if len(epochs)>=(2 if supply else 1) or epochs and epoch!=epochs[0]:
+                    raise ProjectionError('Invalid historical compound epoch boundary')
+                epochs.append(epoch)
         if frame.get('to','').lower()!=pins['fees'] or frame.get('input','')[:10].lower()!=selector('compoundBalance(uint256,address)'):
             continue
         successful(frame);args=words('0x'+frame['input'][10:],2);token=_address_word(args[1],native=True)
-        amount=int(words(frame.get('output'),1)[0],16);phase=initial if epoch is None else final
+        if exact_epoch_phases:
+            if not supply or not epochs or not epoch or token in (req['token0'],req['token1']):
+                raise ProjectionError('Invalid historical compound observation')
+            phase=initial if len(epochs)==1 else final
+        else:phase=initial if epoch is None else final
+        amount=int(words(frame.get('output'),1)[0],16)
         if frame.get('type')!='STATICCALL' or int(args[0],16)!=bucket or token in phase:
             raise ProjectionError('Invalid historical compound observation')
         phase[token]=amount
-    if (bool(supply)!=(epoch is not None) or epoch==0 and final or not supply and final):
+    # Fresh7 always checks _historicalMarks, including a new bucket's epoch0.
+    # Existing shares additionally execute historicalValue after the mark phase.
+    if ((exact_epoch_phases and (len(epochs)!=(2 if supply else 1) or not supply and epoch!=0)) or
+            (not exact_epoch_phases and bool(supply)!=(epoch is not None)) or
+            epoch==0 and (final or exact_epoch_phases and initial) or not supply and final):
         raise ProjectionError('Historical compound denomination does not match the captured epoch')
     expected={token:amount for token,amount in initial.items() if token not in (req['token0'],req['token1'])}
     if epoch and final!=expected:

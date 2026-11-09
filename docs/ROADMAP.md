@@ -1,9 +1,11 @@
 # Engineering roadmap
 
 The local [source9 browser consumer](SOURCE9_WEBSITE_PROFILE.md) now implements
-fresh reads and unsigned reviews, including policy2 claim planning. Next qualify
-the actual Entry3 trace provider and manifests, operating loads and separately
-authorized API/poplint rollout. Source support is not deployed acceptance.
+fresh reads and unsigned reviews, including policy2 claim planning and optional
+activation gas2. The [actual fork follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
+executes ETH/ZZZ activation/growth but needs explicitly seeded external depth.
+Next qualify actual market depth/routes, independent feeds, provider/fee manifests,
+wallet and operating loads, then separately authorize API/poplint rollout.
 
 The [fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) closes source
 defects in final-ETH floors, keeper conversion capacity/deadline/day handling and
@@ -11,7 +13,7 @@ zero-noop replay. Optional gas policy2 is implemented without rollout; next qual
 actual cheap1% routes/native feeds and matching schema2 consumers/providers/fees,
 then actual gas/recovery and independent audit. The soleTodo owns statuses.
 
-Reviewed6November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed9November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.

@@ -1,0 +1,67 @@
+{
+  "doc_sha256": {
+    "AGENTS.md": "699a2f013d31d37b308737834f3f6de4b58f2f8bbcc4c94ee953570cb0ef9637",
+    "DEPLOYMENT_API.md": "3738dfb7fdd2c299d932473536d2693de1806779854a007fb1c85544786ef511",
+    "PROJECT_CONTEXT.md": "91473c27d36559aeb6e4d3eecbef004143da84710d8b07ba5b9fa29857f8c07f",
+    "README.md": "28f2d7f831fd0c536239ba3ccb90f5877c49a4ba5dc9af525f70041542a929a8",
+    "SITE_ENVIRONMENTS.md": "2c5b8b3826a6f76e31b2377c89f609bb38bf4b1b9a46e39d6709070785fa585a"
+  },
+  "documents": [
+    "README.md",
+    "PROJECT_CONTEXT.md",
+    "AGENTS.md",
+    "DEPLOYMENT_API.md",
+    "SITE_ENVIRONMENTS.md"
+  ],
+  "external_links_syntax_only": 40,
+  "full_tests_or_builds_repeated": false,
+  "kind": "website_documentation_check",
+  "local_link_count": 12,
+  "missing_local_links": [],
+  "new_report_reference_docs": [
+    "README.md",
+    "PROJECT_CONTEXT.md",
+    "AGENTS.md",
+    "DEPLOYMENT_API.md",
+    "SITE_ENVIRONMENTS.md"
+  ],
+  "public_demo_null": true,
+  "public_integration_null": true,
+  "source_sha256": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-api.js": "cf53a8cc89fc5c2986fd95315b3dfe17c1b2431cc9e96f3cf276ca803bffb18a",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "deployment-source9-prepare.js": "c9f26ce8eb864695cef68fe08b215d71807d2e780c51ad63b965c6110770c813",
+    "deployment-source9.js": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+    "integration-config.js": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348"
+  },
+  "original_dirty_docs": [],
+  "original_doc_sha256": {
+    "AGENTS.md": "7daaae42ebca1e5c8a2c818304bffaf90b3b8a76f6336668c487879d74e8a65c",
+    "DEPLOYMENT_API.md": "8283209d03c812c014c673725772cc00c013ffa6c10e5652b0382b8cf62b9dcf",
+    "PROJECT_CONTEXT.md": "f81e663bd88c4ad4ed44c9f9d0109905cf7a68547c1ed25ab3e12dd33e61c590",
+    "README.md": "e5d59eda8d0d1fcb1c63ae1bbef2e11499a4252f71c10b1619a7ee7eab4aa09a",
+    "SITE_ENVIRONMENTS.md": "9e3972158817cfaf81d7f5d8879a5dc0a626998c82f9f1a1f834a36a5b28cac7"
+  },
+  "preserved_source_sha256": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-api.js": "cf53a8cc89fc5c2986fd95315b3dfe17c1b2431cc9e96f3cf276ca803bffb18a",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "deployment-source9-prepare.js": "c9f26ce8eb864695cef68fe08b215d71807d2e780c51ad63b965c6110770c813",
+    "deployment-source9.js": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+    "integration-config.js": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348"
+  },
+  "runtime_and_settings_unchanged": true,
+  "signer_matches_reviewed_hash": true,
+  "whitespace_check_passed": true,
+  "historical_source9_review_sha256": "b0884dc28ac68e88866083a5a8ee57d89ad17c8e96bcdf91a0c53513a05a5fb5",
+  "historical_source9_review_matches_HEAD": true,
+  "new_report_local_exists": false,
+  "successful": true,
+  "new_report_reference": "https://github.com/ABEF/AAA/blob/main/reports/source9-actual-entry-20261109/REVIEW.md",
+  "limitations": [
+    "External links were checked for syntax and the requested exact target only; no network request was made.",
+    "The new contract report had not yet been created locally at this check; its owner will publish it with the source changes.",
+    "No full tests, builds, RPC calls, services, wallet operations or signing were repeated for these documentation edits."
+  ]
+}

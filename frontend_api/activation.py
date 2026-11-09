@@ -10,14 +10,19 @@ from frontend_api.liquidity_context import contribution_context
 from frontend_api.service import ProjectionError, UnknownNFT, ZERO, _address_word, _bool, _hash, _keys, _quantity, token_id
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.work_budget import bounded_request, expire_at
+from frontend_api.transaction_gas import DEFAULT_GAS_LIMIT, GasReview, observe as observe_gas_policy
 
-GAS_CAP = 12_000_000
+GAS_CAP = DEFAULT_GAS_LIMIT  # Historical activation schema1, unchanged.
 SNAPSHOT_AGE = 120
 DRAFT_SECONDS = 60
 
 
 class ActivationInputError(ValueError):
     """Invalid typed owner request; raw request data is never echoed."""
+
+
+class ActivationGasHeadroomError(ProjectionError):
+    """The final estimate lacks the reviewed full20% execution headroom."""
 
 
 def parse(payload):
@@ -51,14 +56,25 @@ class ActivationTransactions:
             raise ProjectionError('Activation snapshot is stale or in the future')
         return now
 
-    def _gas(self, tx, block):
+    def _gas_review(self, header):
+        if self.config.schema == 1:
+            return GasReview(GAS_CAP, GAS_CAP)
+        return observe_gas_policy(self.p, header, self.config.max_gas_limit)
+
+    def _gas(self, tx, block, review):
         # Only networks whose complete fee accounting was explicitly reviewed
         # may use this adapter. Trace gas alone is never a total network fee.
-        estimate = _quantity(self.p.rpc.call('eth_estimateGas', [{**tx,'gas':hex(GAS_CAP)},block]))
+        cap = review.effective
+        estimate = _quantity(self.p.rpc.call('eth_estimateGas', [{**tx,'gas':hex(cap)},block]))
         price = _quantity(self.p.rpc.call('eth_gasPrice', []))
-        if not 21000 <= estimate <= GAS_CAP or not 0 < price <= self.config.max_gas_price:
+        if not 21000 <= estimate <= cap or not 0 < price <= self.config.max_gas_price:
             raise ProjectionError('Gas estimate or price exceeds the reviewed bound')
-        limit = min(GAS_CAP, (estimate * 120 + 99)//100)
+        padded = (estimate * 120 + 99)//100
+        if self.config.schema == 2 and padded > cap:
+            raise ActivationGasHeadroomError('Gas estimate lacks the full reviewed20% headroom')
+        limit = min(cap, padded)
+        if self.config.schema == 2 and limit * price > self.config.max_network_fee:
+            raise ProjectionError('Network fee exceeds the reviewed bound')
         balance = _quantity(self.p.rpc.call('eth_getBalance',[tx['from'],block]))
         if balance < int(tx['value'],16) + limit * price:
             raise ActivationInputError('Wallet lacks native currency for contribution and separate estimated gas')
@@ -66,7 +82,10 @@ class ActivationTransactions:
                 'estimated_fee_wei':str(estimate*price),'suggested_limit_cost_wei':str(limit*price),
                 'currency':'native','included_in_execution_loss':False,'includes_all_network_components':True,
                 'fee_policy_review_hash':self.config.fee_review,'price_source':'eth_gasPrice at preparation time',
-                'wallet_must_refresh':True}
+                'wallet_must_refresh':True,
+                **({'policy_schema':2, 'configured_gas_limit':str(review.configured),
+                    'confirmed_block_gas_limit':str(review.block_limit), 'effective_gas_limit':str(cap),
+                    'full_twenty_percent_headroom':True} if self.config.schema == 2 else {})}
 
     def _route(self, req, source, pins, block):
         p=self.p; cfg=self.config
@@ -113,8 +132,9 @@ class ActivationTransactions:
             raise ProjectionError('Conversion pool is mismatched or unfunded')
         return out
 
-    def _trace(self, tx, pins, req, gross, max_slippage, block):
-        raw=self.p.rpc.call('debug_traceCall',[{**tx,'gas':hex(GAS_CAP)},block,
+    def _trace(self, tx, pins, req, gross, max_slippage, block, gas_review):
+        traced_tx = {**tx,'gas':hex(gas_review.effective)}
+        raw=self.p.rpc.call('debug_traceCall',[traced_tx,block,
             {'tracer':'callTracer','timeout':'5s','tracerConfig':{'withLog':True}}])
         def verify_historical(items):
             checked,prices,bounds=self.config.verify(self.p,block,[token for token,_,_ in items],timestamp=req.get('pricing_timestamp'),include_bounds=True)
@@ -124,7 +144,7 @@ class ActivationTransactions:
                 expected=amount*prices[token]//10**self.config.tokens[token]['decimals']
                 if value is not None and value!=expected:raise ProjectionError('Historical compound price differs from the reviewed snapshot')
             return sum(amount*prices[token]//10**self.config.tokens[token]['decimals'] for token,amount,_value in items)
-        return measure(raw,{**tx,'gas':hex(GAS_CAP)},pins,req,gross,max_slippage,verify_historical)
+        return measure(raw,traced_tx,pins,req,gross,max_slippage,verify_historical)
 
     @bounded_request
     def prepare(self, payload):
@@ -144,6 +164,7 @@ class ActivationTransactions:
         req['pricing_timestamp']=header['timestamp']
         expire_at(min(now+DRAFT_SECONDS,header['timestamp']+SNAPSHOT_AGE),p.clock)
         life=p._verify_deployment(block)
+        gas_review=self._gas_review(header)
         if not life['new_economic_work_available_by_lifecycle']:
             raise ActivationInputError('New contributions are unavailable during pause, preparation or collective exit')
         ordinal=p._uint('nft','mintOrdinalOf(uint256)',req['id'],block=block)
@@ -255,7 +276,7 @@ class ActivationTransactions:
                 approval_amount=req['amount']
                 transaction={'from':req['owner'],'to':source,'value':'0x0',
                              'data':calldata('approve(address,uint256)',pins['entry'],approval_amount)}
-                response=p.rpc.call('eth_call',[{**transaction,'gas':hex(GAS_CAP)},block])
+                response=p.rpc.call('eth_call',[{**transaction,'gas':hex(gas_review.effective)},block])
                 if response not in ('0x','0x'+f'{1:064x}'): raise ProjectionError('Approval simulation failed')
                 kind='approval_required'
                 approvals=[{'asset':source,'spender':pins['entry'],'amount_raw':str(approval_amount),
@@ -271,21 +292,21 @@ class ActivationTransactions:
                                             expected_contribution_policy=req.get('expected_contribution_policy'),routing_version=cfg.routing_version)}
             # Probe is NEVER returned to the wallet. The actual contract's
             # current contribution floor also applies to internal simulation.
-            initial=self._trace(tx(),pins,req,gross,int(account[10],16),block)
+            initial=self._trace(tx(),pins,req,gross,int(account[10],16),block,gas_review)
             ceil_floor=lambda value:max(1,(value*(10000-req['slippage'])+9999)//10000)
             req['minimum_lp']=ceil_floor(initial['lp_liquidity_added_raw'])
             if req['route']!=ZERO_HASH: req['minimum_out']=ceil_floor(initial['converted_amount_raw'])
             transaction=tx()
-            result=self._trace(transaction,pins,req,gross,int(account[10],16),block)
+            result=self._trace(transaction,pins,req,gross,int(account[10],16),block,gas_review)
             # Tighter calldata changes intrinsic/execution gas; economic output
             # at the same state must remain identical.
             economics=lambda item:{k:v for k,v in item.items() if k!='simulation_gas_used'}
             if economics(result)!=economics(initial):
                 raise ProjectionError('Same-snapshot activation simulations disagree')
-        gas=self._gas(transaction,block)
+        gas=self._gas(transaction,block,gas_review)
         p._finish(header);prepared=self._fresh(header)
         if prepared>=req['deadline']: raise ProjectionError('Activation draft expired during preparation')
-        return {'schema':1,'kind':kind,'activation_ready':kind=='activation_transaction',
+        return {'schema':cfg.schema,'kind':kind,'activation_ready':kind=='activation_transaction',
                 'action':payload['action'],'token_id':str(req['id']),'pool_id':req['pool'],
                 'transaction':{**transaction,'chainId':hex(p.chain)},'approval_steps':approvals,
                 'source':{'asset':req['source'],'amount_raw':str(req['amount']),'value_usd_18':str(gross)},

@@ -9,6 +9,7 @@ Source publication and report reconciliation do not deploy or qualify a service.
 ## Current evidence map
 
 | Question | Evidence | Boundary |
+| Do actual Entry3 contributions match API/website reviews? | [Actual source9 rehearsal](source9-actual-entry-20261109/REVIEW.md), [verification](source9-actual-entry-20261109/VERIFICATION.md) | Getter/trace fixes, explicit optional activation gas2, four confirmed fork contributions and rollback. Original depth fails safely; successful cases use synthetic external depth/controlled feeds/VRF. No target-market, wallet or operating approval. |
 | --- | --- | --- |
 | Does the fresh website match accounting7 and Entry3? | [Source9 browser consumer](source9-website-20261109/REVIEW.md) | Explicit schema4/source9 read/unsigned path, original currencies/pending LP ZZZ/principal separation, governed policies and gas-aware claims; old served current3/signing/environments preserved. Actual Entry3/provider/site acceptance remains open. |
 | Can exact earnings use checkpoints and manual LP inputs be prepared? | [Checkpoint2/manual milestone](checkpoint2-manual-20261107/REVIEW.md), [verification](checkpoint2-manual-20261107/VERIFICATION.md) | Explicit exact raw-tree format2, bounded build/restore and full-day suffix; typed unsigned Active B/C/D with stable controls and fresh exact simulations. Backend only; no signing, runtime/service/site change or operating approval. |

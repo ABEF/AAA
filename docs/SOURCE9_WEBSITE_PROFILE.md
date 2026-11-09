@@ -2,7 +2,7 @@
 
 The fresh local website consumer uses **website manifest schema4**, explicitly
 selecting source9/accounting7. This is separate from HTTP envelope schema2,
-activation draft schema1, optional transaction policy1/2 and inventory schema16.
+activation draft policy1/2, optional transaction policy1/2 and inventory schema16.
 The served historical schema3/accounting3 poplint release is unchanged. Popldemo
 remains a separate simulation. Both public build configuration inputs remain null.
 
@@ -45,9 +45,14 @@ bounded symbols; they are not contribution assets. No token peg is inferred.
 The manifest must choose `transaction_policy_schema:1` or `2`. Policy1 retains
 the12M historical budget. Policy2 requires matching reviewed configuration,
 confirmed-block gas limit and full20% estimate headroom, bounded by the64M
-engineering ceiling and the operator's lower website ceilings. Activation remains
-its separate schema1/12M policy. These are unsigned engineering checks, not gas
-reimbursement or production-chain capacity approval.
+engineering ceiling and the operator's lower website ceilings. Activation is
+separately selected: absent/1 `activation_policy_schema` retains schema1/12M;
+explicit2 requires activation configuration/draft schema2 with reviewed
+`max_gas_limit` and `max_network_fee_wei`, the same confirmed block gas limit and
+full20% headroom. Website `limits.gas` caps both; policy1 claims remain capped
+at12M even if activation2 uses a higher limit. No automatic widening occurs.
+These are unsigned engineering checks, not gas reimbursement or target-chain
+capacity approval.
 
 1. Select actual deployment/API/provider/fee manifests and independently review
    exact runtime/profile bindings. Do not reuse old source8/current3 identities.
@@ -64,5 +69,8 @@ reimbursement or production-chain capacity approval.
 
 No service restart, public signing, chain reset, deployment or heartbeat restart
 is part of source publication. See [verification](../reports/source9-website-20261109/REVIEW.md)
-and the [environment map](SITE_ENVIRONMENTS.md). Real Entry3 provider/EVM/browser
-acceptance, authorities, OpenSea, hosting and independent audit remain open.
+and the [environment map](SITE_ENVIRONMENTS.md). The [actual fork follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
+verifies ETH/ZZZ activation/growth through real unsigned consumer/API reviews,
+with explicit synthetic external depth and controlled feeds/VRF. Unmodified
+market depth failed safely. Actual market/provider/browser-wallet acceptance,
+authorities, OpenSea, hosting and independent audit remain open.

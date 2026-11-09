@@ -1,13 +1,19 @@
 # PoPL current project context
 
-The [source9 website consumer](reports/source9-website-20261109/REVIEW.md) adds
-explicit website schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 reads
-and unsigned reviews. Original royalty currencies, pending LP ZZZ, principal
-returns, governed minima/metadata and gas-aware claim plans remain separate.
-Both public build configurations are null; the shared Anvil-only signer is
-byte-identical and source9 never constructs it. Served current3 poplint,
-popldemo, services, Anvil/journals and the user-paused heartbeat are unchanged.
-Actual Entry3 trace/provider/wallet/hosting qualification remains open.
+The [actual source9 Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
+fixes the fresh7 fixed-ZZZ getter and actual initial/funded trace-epoch decoding.
+ETH/ZZZ activation and growth execute through real API/website unsigned reviews
+on a new owned fork; exact approvals, marginal LP, unchanged main geometry/clock,
+current-owner shares, confirmed metadata and atomic rollback are reconciled.
+Unmodified selected-pool depth fails the idle guard; successful cases explicitly
+use synthetic external depth and controlled feeds/VRF, not qualified live markets.
+Optional activation policy2 requires matching consumer/configuration, confirmed
+block gas bounds, full20% headroom and a network-fee ceiling; default1/12M stays.
+The shared signer is byte-identical, source9 never constructs it, both public
+configurations remain null. Existing8902, journals, popldemo/served current3
+poplint, services and the user-paused heartbeat are unchanged. Actual providers,
+market depth/routes, independent feeds, VRF/OpenSea, wallet/hosting/operating
+acceptance and independent audit remain open.
 
 [Checkpoint2 and manual LP preparation](reports/checkpoint2-manual-20261107/REVIEW.md)
 add exact raw-tree earnings snapshots and typed unsigned Active-state B/C/D
@@ -36,7 +42,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed7November2026. Exact-LP-integration baseline main64f9bfb; verify actual local/remote
+Reviewed9November2026. Exact-LP-integration baseline main64f9bfb; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 

@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+The [actual source9 rehearsal](../reports/source9-actual-entry-20261109/REVIEW.md)
+fixes fresh7 read/trace defects and verifies isolated ETH/ZZZ contributions and
+rollback with real unsigned consumers. Its controlled feeds/VRF and synthetic
+external depth do not qualify real market depth, authorities, providers, wallets,
+hosting, target fees/gas or independent audit. No production gate is signed off.
+
 [Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
 and late deadline/UTC-day checks, strict simulation output and zero-noop earnings

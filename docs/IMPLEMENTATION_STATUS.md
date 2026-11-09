@@ -104,9 +104,13 @@ schema4/accounting7/LP1/custody5/Entry3/royalty4/V9 reads and unsigned reviews,
 including original-currency royalties, pending LP ZZZ, principal returns, governed
 thresholds and fully classified gas-aware claim plans. Source9 never constructs
 the signer, including on loopback; both build configurations stay null.
-[Source-scoped evidence](../reports/source9-website-20261109/REVIEW.md) distinguishes
-actual Python DTOs from synthetic Entry3 drafts. Actual deployment/provider,
-trace/wallet/hosting acceptance and independent review remain open.
+[Original source evidence](../reports/source9-website-20261109/REVIEW.md) retains
+its synthetic Entry3 draft scope. The [actual follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
+fixes fixed-ZZZ admission/epoch parsing and verifies real API/consumer reviews,
+four confirmed ETH/ZZZ contributions, exact approvals, LP/share/metadata state and
+atomic rollback. Optional activation policy2 has matched unsigned consumers.
+Successes use explicit synthetic external depth/controlled feeds/VRF; actual
+market/provider/wallet/hosting acceptance and independent review remain open.
 [Environment map](SITE_ENVIRONMENTS.md); historical [current3 profile](CURRENT_WEBSITE_PROFILE.md).
 
 ## Collective exit scale and mixed-wallet evidence
@@ -161,10 +165,12 @@ refresh advisories for the frozen release.
 ## Current selected-pool fork scope
 
 [Prior fork evidence](../reports/current-pool-fork-20261026/VERIFICATION.md) is historical.
-The current harness is source preparation, not a newly executed fresh portfolio/
-Entry3 fork. Qualify actual pool state/depth, feeds, original-input execution,
-burn ABI, market cost and target gas before approval. Do not lower policy or
-label mocked prices a production feed to turn an infeasible quote into a pass.
+The [actual fresh7/Entry3 follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
+executes ETH/ZZZ activation/growth through real API and unsigned website reviews.
+The original-depth case fails safely; positive cases explicitly add synthetic
+external depth and use controlled feed/VRF substitutes. They do not qualify
+actual market depth, independent sources, burn ABI, target fees/gas, wallet
+signing or operation. Never weaken policy or relabel fixtures to claim approval.
 
 ## Bounded post-seal flexibility
 

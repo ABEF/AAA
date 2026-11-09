@@ -1,10 +1,12 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-A separate [fresh website consumer](docs/SOURCE9_WEBSITE_PROFILE.md) now reads
-accounting7 and prepares exact unsigned Entry3/claim reviews. It keeps original
-royalty currencies, pending LP conversion and terminal principal separate.
-Public configurations remain null; both running sites and signing are unchanged.
-[Scoped evidence](reports/source9-website-20261109/REVIEW.md).
+The [actual Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
+fixes two production reader/trace defects and verifies ETH/ZZZ activation and
+growth through real unsigned website/API reviews on an isolated fork. Successful
+cases explicitly use synthetic market depth and controlled feeds/VRF; the real
+thin-depth rejection remains a release blocker. [Source9](docs/SOURCE9_WEBSITE_PROFILE.md)
+supports reviewed optional activation gas policy2. Public configurations remain
+null; existing sites, lab, journals and the shared signer are unchanged.
 
 Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
 the final ETH conversion value, size affordable keeper batches, stop stale sends
@@ -17,7 +19,7 @@ fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal
 during normal operation. Governance can permanently end LP activity and return
 actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties remain.
 
-**Undeployed source candidate; production NOT APPROVED.** Fresh
+**Source candidate; not deployed for production. Production NOT APPROVED.** Fresh
 [accounting7/direct Entry3/custody5](docs/POSITION_V7.md) implements
 [bounded operating policy](docs/ADAPTABLE_POLICY.md) and reviewed
 [manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update

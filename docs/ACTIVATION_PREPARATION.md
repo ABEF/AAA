@@ -22,7 +22,7 @@ no `contracts.v4_executor`, and source rows containing only
 `pool_id,source_asset,asset_policy_id`. Removed route fields fail closed, rather
 than being ignored. Verify `ENTRY_ROUTING_VERSION()==3`, `REVIEW_POLICY_VERSION()==2`
 and Pricing `ENTRY_REVIEW_VERSION()==2` at the same pinned block. The unchanged
-read schema2/accounting7 and activation schema1 carry this explicit capability;
+read schema2/accounting7 and explicit activation policy1/2 carry this capability;
 production inventory is separately schema16 with19 callable helpers plus2 inert
 Factory data children. Historical routing2
 configs retain their exact routed ABI and cannot prepare against fresh Entry3.
@@ -90,6 +90,24 @@ The trace parser authenticates the exact current bucket-bearing Budget result
 frame, with separate explicit historical decoding. Same-block token/dual-price
 review is required for nonzero historical backing; it never satisfies a new
 contribution's marginal deployed-LP floor. See [price security](PRICE_SECURITY.md).
+
+## Actual fresh7 trace and gas policy
+
+Fresh7 Pricing.finish always records a composition epoch: exactly one epoch0
+witness for a new zero-supply bucket, and two matching epochs delimiting mark /
+value phases when shares exist. Exact bucket/type, bounds, phase and historical
+asset marks remain checked. Historical profiles keep their original decoder.
+[The actual trace regression](../reports/source9-actual-entry-20261109/REVIEW.md)
+replaces an unsupported synthetic assumption; it does not relax financial guards.
+
+Activation configuration `schema:1` retains the12M legacy cap and response shape.
+Opt-in `schema:2` additionally requires decimal-string
+`fee_policy.max_gas_limit` (21,000–64,000,000) and `max_network_fee_wei`, plus the
+existing exact fee-review and gas-price fields. It binds the same confirmed block
+gas limit, applies the smaller cap to both full traces/final estimate, and rejects
+unless ceil(estimate×1.20) fits in full. Network gas remains separate. Matching
+website `activation_policy_schema:2` is mandatory; this is a backend/build setting
+after sealing, not an on-chain governance call or permission to sign.
 
 ## Values returned to the wallet
 

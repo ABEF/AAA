@@ -6,6 +6,7 @@ import json
 import re
 
 from frontend_api.service import Contract, ProjectionError, ZERO, _address_word, _bool, _hash, _keys
+from frontend_api.transaction_gas import DEFAULT_GAS_LIMIT, configured_limit
 from zzz_ops.abi import address, calldata, keccak256
 from zzz_ops.state import integer
 
@@ -99,8 +100,9 @@ class ActivationConfig:
         if self.rebalance_confirmation_version == 3 and projection.accounting_version not in (5,6,7):
             raise ValueError('Confirmation3 cannot relabel an historical deployment')
         _keys(config, fields, 'activation configuration')
-        if type(config['schema']) is not int or config['schema'] != 1:
+        if type(config['schema']) is not int or config['schema'] not in (1,2):
             raise ValueError('Unsupported activation configuration schema')
+        self.schema = config['schema']
         if self.pricing_version == 2 and (self.routing_version not in (2,3) or projection.accounting_version not in (2,3,4,5,6,7)):
             raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
         if self.routing_version in (2,3) and projection.accounting_version not in (2,3,4,5,6,7):
@@ -233,13 +235,23 @@ class ActivationConfig:
             pin = (address(item['target']), _hash(item['slot']), hex_bytes(item['expected'], 32))
             if pin[0] not in allowed or len(pin[2]) != 66: raise ValueError('Invalid pinned storage word')
             self.storage_pins.append(pin)
-        fee = config['fee_policy']; _keys(fee, {'estimate_includes_all_fees', 'review_hash', 'max_gas_price_wei'}, 'fee policy')
+        fee = config['fee_policy']
+        fee_fields = {'estimate_includes_all_fees', 'review_hash', 'max_gas_price_wei'}
+        if self.schema == 2:
+            fee_fields |= {'max_gas_limit', 'max_network_fee_wei'}
+        _keys(fee, fee_fields, 'fee policy')
+        self.max_gas_limit = configured_limit(fee['max_gas_limit']) if self.schema == 2 else DEFAULT_GAS_LIMIT
+        self.max_network_fee = None
         if fee['estimate_includes_all_fees'] is not True:
             raise ValueError('Network fee semantics must be explicitly reviewed; no fee omission fallback')
         self.fee_review = _hash(fee['review_hash'])
         if not isinstance(fee['max_gas_price_wei'], str) or not re.fullmatch(r'[1-9][0-9]{0,19}', fee['max_gas_price_wei']):
             raise ValueError('A bounded reviewed gas price ceiling is required')
         self.max_gas_price = int(fee['max_gas_price_wei'])
+        if self.schema == 2:
+            if not isinstance(fee['max_network_fee_wei'], str) or not re.fullmatch(r'[1-9][0-9]{0,19}', fee['max_network_fee_wei']):
+                raise ValueError('A bounded reviewed network fee ceiling is required')
+            self.max_network_fee = int(fee['max_network_fee_wei'])
         self.identity = hashlib.sha256(json.dumps(config,sort_keys=True,separators=(',', ':')).encode()).hexdigest()
 
     def verify(self, p, block, used_tokens, *, include_bounds=False, timestamp=None, execution_observation=None):

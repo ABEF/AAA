@@ -416,7 +416,7 @@ class Projection:
             if role == 'rewards' and self.accounting_version in (3,4,5,6,7) and (not addresses or addresses[0] != ZERO):
                 raise ProjectionError('Current LP ledger must begin with native ETH')
             if role=='rewards' and self.accounting_version==7 and (
-                    count!=2 or addresses[1]!=self._addr('pools','ZZZ()',block=block)):
+                    count!=2 or addresses[1]!=self._addr('principal_exit','currentZZZ()',block=block)):
                 raise ProjectionError('Accounting7 LP assets must be native ETH and the fixed ZZZ')
             if role == 'rewards' and (len(set(addresses)-{ZERO}) > 32 or (ZERO in addresses and addresses[0] != ZERO)):
                 raise ProjectionError('Malformed LP native settlement inventory')

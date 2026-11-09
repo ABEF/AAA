@@ -177,6 +177,17 @@ its custody4 source scope, failures and earlier sizes; unchanged bodies may be
 reused explicitly, never relabelled. Frozen-release independent review, compiler
 advisory refresh, actual target gas/services and operating approval remain open.
 
+## Actual source9 follow-up
+
+The [actual Entry3 campaign](../reports/source9-actual-entry-20261109/REVIEW.md)
+found and fixed a nonexistent private Registry getter and an initial/funded
+trace-epoch mismatch previously hidden by synthetic fixtures. Exact-source
+regressions and four actual fork contributions now cover those paths. Optional
+activation gas policy2 adds explicit full-headroom reviews, with defaults and
+signing boundaries preserved. The unmodified selected pool could not deploy the
+required LP under existing guards; seeded-depth successes do not close market /
+route qualification. Historical reports keep their original evidence scope.
+
 ## Provenance and unresolved findings
 
 The [consolidation record](../reports/project-consolidation-20261103/REVIEW.md)

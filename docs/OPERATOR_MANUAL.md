@@ -137,6 +137,27 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
+## Unsigned activation gas settings
+
+Default activation policy1 remains12M. For a separately reviewed provider and
+consumer, activation configuration `schema:2` adds
+`fee_policy.max_gas_limit` (decimal string21k–64M) and
+`fee_policy.max_network_fee_wei`; retain the reviewed complete-fee flag, review
+hash and gas-price ceiling. Example engineering limits are `"16000000"` gas and
+`"1000000000000000000"` wei total fee, not production recommendations.
+
+Pin the resulting activation configuration hash in a matching source9 manifest,
+set `activation_policy_schema:2` and an equal/lower reviewed `limits.gas`. Both
+simulations, the final estimate and independent consumer checks use the same
+confirmed-block cap and require full20% headroom. Claim policy1 still caps12M.
+Do not widen budgets automatically after failure. Reconcile saved operations,
+review/pin the new immutable build/configuration, dry-run, then separately
+authorize any service/site release; preserve journals. Contract sealing and
+financial caps are unchanged. Revert by restoring the earlier reviewed config /
+consumer artifact, never by rewriting pending operations. Source9 stays unsigned.
+See [configuration](ACTIVATION_PREPARATION.md) and
+[actual rehearsal/market limits](../reports/source9-actual-entry-20261109/REVIEW.md).
+
 ## Current accounting7 deployment boundary
 
 Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
@@ -200,7 +221,7 @@ exit does not gain a conversion/buyback dependency.
 | Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema16 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/19 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
 | OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
-| Website read/unsigned review | [Served current3/fresh Entry3/accounting7 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile7 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. The [local source9/schema4 consumer](SOURCE9_WEBSITE_PROFILE.md) supports fresh reads/unsigned reviews; actual Entry3 trace/provider/service/site acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
+| Website read/unsigned review | [Served current3/fresh Entry3/accounting7 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile7 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. The [local source9/schema4 consumer](SOURCE9_WEBSITE_PROFILE.md) supports fresh reads/unsigned reviews; local actual Entry3 activation/growth evidence uses explicitly seeded depth; real market/provider/service/site acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
 Source-scoped audit results belong to [reports](../reports/README.md), not to a

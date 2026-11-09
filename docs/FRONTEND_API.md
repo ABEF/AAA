@@ -14,6 +14,10 @@ unsigned drafts only; public signing remains disabled. Production hosting,
 current-profile website integration and actual dependencies are not qualified.
 
 Fresh source uses accounting7/exact LP1, maintenance3, confirmation3 and optional portfolio2.
+Its exactly two LP assets are native ETH and the pinned
+`principal_exit.currentZZZ()` identity. Registry's private ZZZ constant has no
+getter; the reader never invents one or falls back after an identity failure.
+See [actual-source correction](../reports/source9-actual-entry-20261109/REVIEW.md).
 Ordinary samples require the physical pool and independent reference on the same
 85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
 main bounds. This threshold can be reached while the main remains active. The
@@ -130,7 +134,7 @@ The schema2 envelope and direct Entry3 tuple remain; accounting7 explicitly
 changes LP allocation/getter semantics. Old index getters are not queried on7.
 Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
 
-Production inventory schema16/exact LP1/reinvest1 is separate from read schema2 and activation schema1;
+Production inventory schema16/exact LP1/reinvest1 is separate from read schema2 and explicit activation policy1/2;
 it authenticates17 modules/19 callable helpers plus2 inert Factory data children.
 The Factory data verification is constructor/release-only, not extra per-holder
 RPC work. Historical schema15/14/13/12/10/9/8/7/6 stay tied

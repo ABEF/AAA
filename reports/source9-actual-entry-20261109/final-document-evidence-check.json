@@ -1,0 +1,12 @@
+{
+  "documents_checked": 15,
+  "local_links_checked": 2250,
+  "missing_local_links": [],
+  "historical_reports_preserved": true,
+  "published_bundle_hashes_and_offline_replay_pass": true,
+  "actual_reexecution": false,
+  "new_report_present": true,
+  "website_documentation_prior_pending_reference_resolved": true,
+  "scope": "Documentation/source/evidence consistency only; no tests/RPC/deployment/signing",
+  "production_approved": false
+}

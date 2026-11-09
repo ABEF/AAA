@@ -43,8 +43,8 @@ class Fresh7API:
         self.rpc.put(self.c['handoff'],'moduleAt(uint8)',(3,),(self.c['rewards_canonical'],))
         for role,method,value in (('rewards','LP_ALLOCATION_VERSION()',1),
                 ('rewards','canonicalModule()',self.c['rewards_canonical']),
-                ('rewards_canonical','access()',self.c['access']),('rewards_canonical','rewards()',self.c['rewards']),
-                ('pools','ZZZ()',addr(20))):self.rpc.put(self.c[role],method,values=(value,))
+                ('rewards_canonical','access()',self.c['access']),('rewards_canonical','rewards()',self.c['rewards'])):
+            self.rpc.put(self.c[role],method,values=(value,))
         self.rpc.header_timestamp=4000;self.q.now=4000
         id=self.rpc.nft_id
         self.rpc.put(self.c['nft'],'rarityOf(uint256)',(id,),(0,))
@@ -101,6 +101,55 @@ class ExactLPProfile7Tests(unittest.TestCase):
         self.assertEqual(7,f.p.accounting_version);self.assertEqual(5,f.p.custody_version)
         self.assertEqual([ZERO,addr(20)],f.p._admitted(f.block())[0])
         self.assertEqual('18',f.p._balance('rewards',f.rpc.nft_id,ZERO,f.block())['raw'])
+
+    def test_current7_funded_nft_uses_public_principal_identity_without_private_registry_getter(self):
+        f=Fresh7API(self);original=f.rpc.call;observed=[]
+        private=calldata('ZZZ()');public=calldata('currentZZZ()')
+        self.assertNotIn((f.c['pools'],private),f.rpc.responses)
+        def call(method,params):
+            if method=='eth_call':
+                observed.append(copy.deepcopy(params))
+                if params[0]['to']==f.c['pools'] and params[0]['data']==private:
+                    raise AssertionError('Production Registry has no public ZZZ getter')
+            return original(method,params)
+        f.rpc.call=call
+        result=f.p.nft(f.rpc.nft_id)
+        self.assertEqual('18',result['claimable']['lp'][0]['raw'])
+        self.assertEqual(addr(20),result['claimable']['lp'][1]['asset'])
+        self.assertEqual(addr(20),result['principal_return']['assets'][1]['asset'])
+        identities=[params for params in observed if params[0]['to']==f.c['principal_exit'] and params[0]['data']==public]
+        self.assertTrue(identities)
+        self.assertTrue(all(params[1]==f.block() for params in identities))
+        self.assertFalse(any(params[0]['to']==f.c['pools'] and params[0]['data']==private for params in observed))
+
+    def test_current7_wrong_principal_identity_cannot_redefine_lp_inventory(self):
+        for token in (addr(21),addr(999)):
+            with self.subTest(token=token):
+                f=Fresh7API(self)
+                f.rpc.put(f.c['principal_exit'],'currentZZZ()',values=(token,))
+                with self.assertRaises(ProjectionError):f.p.nft(f.rpc.nft_id)
+
+    def test_current7_zero_principal_identity_cannot_be_native_or_unavailable_zero(self):
+        f=Fresh7API(self)
+        f.rpc.put(f.c['principal_exit'],'currentZZZ()',values=(0,))
+        with self.assertRaises(ProjectionError):f.p.nft(f.rpc.nft_id)
+
+    def test_current7_principal_identity_getter_fault_has_no_registry_fallback(self):
+        public=calldata('currentZZZ()');private=calldata('ZZZ()')
+        for fault in ('missing','malformed','rpc'):
+            with self.subTest(fault=fault):
+                f=Fresh7API(self);original=f.rpc.call
+                if fault!='rpc':
+                    f.rpc.responses[f.c['principal_exit'],public]='0x' if fault=='missing' else '0x1234'
+                def call(method,params):
+                    if method=='eth_call':
+                        if params[0]['to']==f.c['pools'] and params[0]['data']==private:
+                            raise AssertionError('No invented Registry fallback is permitted')
+                        if fault=='rpc' and params[0]['to']==f.c['principal_exit'] and params[0]['data']==public:
+                            raise RpcError('Fixed identity read unavailable')
+                    return original(method,params)
+                f.rpc.call=call
+                with self.assertRaises(RpcError):f.p.nft(f.rpc.nft_id)
 
     def test_old_v8_marker_wrong_child_or_runtime_fail_closed(self):
         for variant in ('schema','marker','child','runtime'):
