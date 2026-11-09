@@ -113,7 +113,7 @@ Current royalty4/reporting5 uses `converter:null` and original currencies.
 LP conversion reports its current governed cap separately from the10% maximum;
 a missing/mismatched getter is unavailable, not an assumed1%.
 
-[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defines 2% / 1% / 3% defaults,
+[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defines 3% / 1% / 3% defaults,
 immediate governance and 10% hard maxima. At default 1%, the selected ETH/ZZZ
 pool's observed approximately 1.101% fee still does not qualify a full conversion
 at reference prices. Qualify a cheaper route or deliberately review a policy

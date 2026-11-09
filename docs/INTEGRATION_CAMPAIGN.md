@@ -15,8 +15,8 @@ Do not infer present funds or authorization from the old observation.
 The existing [$1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is an isolated local build
 with mocked dependencies and constructor guards for chain 31337. It is not a
 public Robinhood deployment. Production activation remains at least $100 gross
-source value, growth at least $5, with a 98% marginal-deployed-LP floor at the
-current 2% contribution default; the governed captured cap may differ within its
+source value, growth at least $5, with a 97% marginal-deployed-LP floor at the
+current 3% contribution default; the governed captured cap may differ within its
 10% maximum. Stronger venue/caller minima remain; network gas is separate.
 A $1 conversion quote is not $1 activation.
 
@@ -51,7 +51,7 @@ limits. No signing script was executed or supplied by this checkpoint.
 >
 > Preserve production economics and ETH/fixed-ZZZ-only inputs. The $1 variant
 > stays isolated. Evaluate the captured contribution limit across original-source
-> conversion and actual marginal deployed LP (default 2%, hard maximum 10%),
+> conversion and actual marginal deployed LP (default 3%, hard maximum 10%),
 > not each swap in isolation. Keep gas separate. Ordinary rebalances retain the
 > captured maintenance cap (default 3%, maximum 10%) and other execution guards;
 > LP/royalty conversion has its distinct default 1% cap. Venue LP receipts fund

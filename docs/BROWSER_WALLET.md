@@ -85,7 +85,7 @@ labels, not the current release's accepted assets. **All have a $1 mock input
 price, including ETH.** Fixture activation is exactly 100 input units at that mock
 price; increases start at 5 input units. This does not qualify actual token prices
 or conversion routes. The current candidate accepts only native ETH or the one
-fixed ZZZ token, with a $100 activation minimum, $5 growth minimum and default 2%
+fixed ZZZ token, with a $100 activation minimum, $5 growth minimum and default 3%
 contribution execution-loss guard. Native/pricing-V2 review and exact wallet
 qualification are separate work; do not copy mock prices, stablecoin inputs or
 old transaction calldata into that release.

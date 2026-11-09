@@ -1,5 +1,12 @@
 # AAA / ZZZ PoPL project instructions
 
+Current total contribution default is300bps (3%):97% actually deployed LP,
+gas separate. User selected TOTAL activation/growth only; no swap/spot/retained-
+value, conversion1%, maintenance3%, additional1% or source-agreement3% guard is
+changed. [Policy/source evidence](reports/contribution-loss3-20261109/REVIEW.md) binds the new default/runtimes; old
+instances/caller200 reviews/journals and earlier market2% evidence remain explicit.
+No deployment/service/site/Anvil/signing change or market qualification is implied.
+
 Actual market dependencies remain unqualified. The [read-only/fork market review](reports/market-qualification-20261109/REVIEW.md)
 finds no usable dual ETH/fixedZZZ USD pair: both Chainlink proxies share one
 aggregator; the observed Pyth ETH update exceeds the hard one-day age bound and
@@ -141,7 +148,7 @@ changes no chain/site/service/journal/signer; heartbeat remains user-paused.
   >=1USD, growth<=activation, subject to stronger admitted minima. Use two
   independently reviewed USD sources per priced asset, agreement tolerance3%.
   Prove actual marginal deployed LP and captured caller/operation floors. Default
-  contribution2%, conversion1%, maintenance3%; governance ceilings10%, gas separate.
+  contribution3%, conversion1%, maintenance3%; governance ceilings10%, gas separate.
   Additional execution-loss default1% after actual directional core fees is distinct
   from gross budgets, oracle agreement, governed idle ceilings(default5%) and caller minimums.
 - Fixed80/10/5/5 actual LP revenue allocation: individual / equal activated
@@ -261,9 +268,10 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [fee-flow review](reports/fee-flow-audit-20261107/static-review.json):532records,
- 15individually reassessed contexts/517unique exact referenced-source reuse.
- Prior exact-LP532(222/310),497and earlier records remain source-scoped.
+- CI/check-slither-review selects the strict current [contribution3 review](reports/contribution-loss3-20261109/static-review.json):558records,
+ 11individually reassessed contexts/547unique exact referenced-source reuse.
+ Prior mint2(186/372), fee-flow532(15/517), exact-LP532(222/310),497 and earlier
+ records remain source-scoped.
  Update default/full record together after relevant source changes.
 
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.

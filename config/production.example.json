@@ -9,7 +9,7 @@
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
     "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
     "One-hour royalty opening after the final sale end; exact whole-unit allocation, strict initial cohort, no deadline on dormant cards. Zero participants/preadmission funds remain separate reviewed allocation cases.",
-    "Source defaults are not observations: two independently qualified USD sources agree within3%; contributions2%, LP conversion1%, maintenance3%, hard10% ceilings; gas separate.",
+    "Source defaults are not observations: two independently qualified USD sources agree within3%; contributions3%, LP conversion1%, maintenance3%, hard10% ceilings; gas separate.",
     "Main/residual geometry remains optional at most2 physical legs per logical bucket. Both remain Vault-owned and accounted; source85% trigger/600-second sampled evidence/300-second max gap/240-second checks/60-300-second jitter/12-hour cooldown remain.",
     "Residual reinvestment1 is a paused governance-only operation that closes the residual and increases the unchanged main. It is not an automated keeper action, accounting upgrade, service rollout or journal relabel.",
     "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized.",
@@ -277,7 +277,7 @@
             "access": null,
             "vault": null,
             "MAX_LOSS_BPS": 1000,
-            "contributionLossBps": 200,
+            "contributionLossBps": 300,
             "maintenanceLossBps": 300,
             "IDLE_COMPOUNDING_VERSION": 4,
             "REBALANCE_CONFIRMATION_VERSION": 3,
@@ -615,7 +615,7 @@
         "legacy_v1_import": false
       },
       "execution_loss_policy": {
-        "contribution_bps": 200,
+        "contribution_bps": 300,
         "maintenance_bps": 300,
         "lp_conversion_bps": 100,
         "hard_maximum_bps": 1000,

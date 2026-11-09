@@ -2,7 +2,7 @@
 
 Governance may change all three execution-loss
 categories immediately after sealing, with an immutable **10% hard maximum**.
-Current defaults remain **2% contribution, 1% reward conversion, 3% maintenance**.
+Current defaults remain **3% contribution, 1% reward conversion, 3% maintenance**.
 These are per-operation ceilings, not targets or protection against market losses.
 Network gas is separate. The candidate is undeployed and not production approved.
 
@@ -16,6 +16,25 @@ Network gas is separate. The candidate is undeployed and not production approved
 point is 0.01%. A setting of 100 means 1%, 300 means 3%, and zero requires no
 execution loss under the applicable measurement. Zero can deliberately make
 swaps unavailable; it is not a stop flag or a fee waiver.
+
+## Scope of the3% contribution default
+
+The user approved300bps for TOTAL activation/growth only. At this cap,100USD
+upper-valued input needs at least97USD actually added LP and5USD needs4.85USD.
+Idle does not count toward this floor. Pool per-swap/retained-value floors,
+pool/reference deviation, caller minimums and additional-loss checks remain
+unchanged and may be stricter. Price-source agreement3%, maintenance3% and
+LP-conversion1% are separate controls. This change does not repair the earlier
+1% spot-guard failure or qualify a route.
+
+The new constructor default applies to fresh deployments only. For an existing
+matching deployment, governance must read the maintenance getter and explicitly
+call `setLossLimits(300,CURRENT_MAINTENANCE_BPS)` if changing that deployment is
+authorized. With maintenance300, the reviewed tuple is `(300,300)`. No call was
+sent. Saved caller maxima200 remain200 and reject a governed300 cap before
+pulling funds; obtain a fresh reviewed transaction, never rewrite saved journals.
+Canonical peers must deliberately match actual policy VALUES before handoff;
+the new default does not change a predecessor's configuration or accrued rights.
 
 ## Additional loss after known trading fees
 
@@ -40,8 +59,8 @@ its all-in conversion limit; royalty swaps are removed. [Exact formula and scope
 3. From the current governance wallet/Safe, directly call the Budget's
    `setLossLimits(uint16 contribution,uint16 maintenance)`, or the
    relevant converter's `setConversionLossBps(uint16)`. Values must be 0-1,000.
-   Read and preserve the other Budget limit when changing only one. LP and royalty
-   converters must be configured separately when both should change.
+   Read and preserve the other Budget limit when changing only one. Royalty
+   claims remain in original currencies and have no converter setting.
 4. Verify the getter and previous/new-value event. Ordinary global pause permits
    these settings; preparation/terminal canonical locks and reentrancy do not.
    Budget rejects configuration during an active maintenance checkpoint.
@@ -93,10 +112,11 @@ Current activation preparation uses explicit `routing_version: 2` and reviewed
 current accounting7/portfolio2/runtime pins. It reads the current contribution cap and
 cross-checks the packed `contributionResult(...,uint32)` trace. Legacy profiles
 retain their old `uint16`/fixed-1% interpretation; no missing-getter fallback.
-Current conversion workers explicitly use `v4_native` or
-`v3_wrapper_configurable`; historical `v3_wrapper` remains fixed 1%.
-Royalty reporting schema 2 reads the governed current limit and hard maximum;
-schema 1 remains a historical fixed-limit profile.
+Current fresh7 automated conversion uses explicit `v4_native`. Older profiles
+include `v3_wrapper_configurable`; historical `v3_wrapper` remains fixed1%.
+Existing v3 contract capability and actual worker adoption are distinct.
+Current royalties use original currencies and `converter:null`; old royalty
+reporting schemas retain their own historical converter semantics.
 
 No already-deployed immutable contract acquires these controls from a config edit.
 Existing Anvil state, saved reviews and public simulation are unchanged. See

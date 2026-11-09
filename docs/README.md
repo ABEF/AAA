@@ -1,5 +1,10 @@
 # Documentation map
 
+The [total contribution3% policy](EXECUTION_LOSS_POLICY.md) requires97% actually
+added LP; the independent swap/spot/caller/NET floors remain unchanged.
+[Verification](../reports/contribution-loss3-20261109/VERIFICATION.md) binds the
+new initializer/raw source pins without upgrading any existing environment.
+
 Fresh primary-mint source is [SeaDrop mint2/schema17/canonicalV10](OPENSEA_MINT.md);
 LP accounting7/royalty4 economics remain unchanged. Source9/schema16/V9
 reader/website guides keep their explicit prior implementation boundaries.

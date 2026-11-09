@@ -1,0 +1,108 @@
+{
+  "completed_utc": "2026-11-09T05:50:39.456468+00:00",
+  "baseline_commit": "793c8e026b1d3fc307256fde2f6d4e82c4efec37",
+  "distinct_successful_methods": 13,
+  "methods_passed": [
+    "testActivationAcceptsExact97PercentDeployedWithFullyBackedIdle()",
+    "testActivationBelow97PercentCannotBorrowDonationsAndRollsBackAllRights()",
+    "testActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth()",
+    "testDefaultsHardMaximumZeroAndGovernanceEvents()",
+    "testExplicitGovernedTwoPercentRemainsStricterThanNewDefault()",
+    "testFreshDefaultChangesOnlyContributionBudget()",
+    "testGrowthUsesMarginal97PercentWithoutRecentringOrBorrowingIncumbentIdle()",
+    "testIndivisibleUnitRoundsUpRatherThanAcceptingLessThan97Percent()",
+    "testLongHorizonSameBlockUsersBeforeRebalance()",
+    "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+    "testReviewedThreePercentAppliesToActivationAndFiveDollarGrowth()",
+    "testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull()",
+    "testThreePercentBudgetDoesNotWidenExistingOnePercentVenueGuard()"
+  ],
+  "explicit_skip_count": 1,
+  "skipped": [
+    {
+      "status": "SKIP: skipped: Opt-in current selected-pool fork; not an offline pass",
+      "method": "setUp()"
+    }
+  ],
+  "stage_results": {
+    "attempt1": [
+      {
+        "status": "FAIL: InvalidConfiguration()",
+        "method": "testReviewedThreePercentAppliesToActivationAndFiveDollarGrowth()"
+      },
+      {
+        "status": "FAIL: InvalidConfiguration()",
+        "method": "testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull()"
+      },
+      {
+        "status": "PASS",
+        "method": "testActivationAcceptsExact97PercentDeployedWithFullyBackedIdle()"
+      },
+      {
+        "status": "PASS",
+        "method": "testActivationBelow97PercentCannotBorrowDonationsAndRollsBackAllRights()"
+      },
+      {
+        "status": "PASS",
+        "method": "testExplicitGovernedTwoPercentRemainsStricterThanNewDefault()"
+      },
+      {
+        "status": "PASS",
+        "method": "testFreshDefaultChangesOnlyContributionBudget()"
+      },
+      {
+        "status": "PASS",
+        "method": "testGrowthUsesMarginal97PercentWithoutRecentringOrBorrowingIncumbentIdle()"
+      },
+      {
+        "status": "PASS",
+        "method": "testIndivisibleUnitRoundsUpRatherThanAcceptingLessThan97Percent()"
+      },
+      {
+        "status": "PASS",
+        "method": "testThreePercentBudgetDoesNotWidenExistingOnePercentVenueGuard()"
+      }
+    ],
+    "attempt2-entry": [
+      {
+        "status": "PASS",
+        "method": "testReviewedThreePercentAppliesToActivationAndFiveDollarGrowth()"
+      },
+      {
+        "status": "PASS",
+        "method": "testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull()"
+      }
+    ],
+    "attempt3-existing": [],
+    "attempt4-existing": [],
+    "attempt5-existing": [],
+    "attempt6-existing": [
+      {
+        "status": "SKIP: skipped: Opt-in current selected-pool fork; not an offline pass",
+        "method": "setUp()"
+      },
+      {
+        "status": "PASS",
+        "method": "testDefaultsHardMaximumZeroAndGovernanceEvents()"
+      },
+      {
+        "status": "PASS",
+        "method": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()"
+      },
+      {
+        "status": "PASS",
+        "method": "testActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth()"
+      },
+      {
+        "status": "PASS",
+        "method": "testLongHorizonSameBlockUsersBeforeRebalance()"
+      }
+    ]
+  },
+  "final_existing_exit_code": 0,
+  "final_snapshot_unchanged": true,
+  "final_original_sources_unchanged": true,
+  "counting": "Seven new core successes at first source stage plus two corrected Entry successes, with exact scoped core/fixture/production-source equivalence; existing successful methods added only if actually executed. Initial two fixture failures retained. Three no-test attempts never counted. No overlap or independent-review count inflation.",
+  "failure_diagnosis": "Initial inherited DirectEntryFixture rejects native assets in its ERC20-only test admission. New tests use explicit native-admission subclass. Subsequent existing selections anchored bare names with$ while callable signatures include(); dropping that anchor includes209 sources and actual selected tests. Initial path/glob suspicion was unconfirmed and is superseded.",
+  "scope_limits": "No broad full suite, public RPC/transaction, target-gas/provider/feed/route/market/operating qualification or independent approval. Mock source/VRF/controller/admission remain explicit. Test gas includes fixture construction and multiple operations. No running service/site/signer/Anvil/journal/heartbeat change."
+}

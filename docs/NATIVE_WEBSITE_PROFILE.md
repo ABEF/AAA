@@ -1,5 +1,10 @@
 # Historical native2 website read and unsigned profile
 
+Fresh source now defaults to300bps total contribution loss (97% marginal LP).
+This does not widen an independently approved client ceiling200, change old
+runtime state or upgrade a saved review. Such a ceiling remains2% and refuses
+a governed300 cap until separately re-reviewed. See [policy](EXECUTION_LOSS_POLICY.md).
+
 **Mint-profile boundary:** reader/service versions named in this guide retain
 their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
 adds original-recipient mint books and needs matching reviewed consumers

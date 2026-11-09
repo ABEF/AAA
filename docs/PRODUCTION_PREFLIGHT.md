@@ -271,7 +271,7 @@ pins, failures and limitations. A fresh inventory is not automatic state migrati
 value or token allowance, source policy/route, original contribution value and
 caller maximum and exact entry-policy fingerprint before funds move. Actual marginal LP and full final accounting
 still must pass. Production inputs are only fixed ZZZ/native ETH. Original-currency royalty
-currencies do not add contribution assets; only LP conversions retain swap venues. Defaults 2%/1%/3%,
+currencies do not add contribution assets; only LP conversions retain swap venues. Defaults 3%/1%/3%,
 10% governance ceilings, source agreement 3%, spot/venue and caller floors are
 separate. [Entry](ACTIVATION_ENTRY.md), [loss policies](EXECUTION_LOSS_POLICY.md).
 

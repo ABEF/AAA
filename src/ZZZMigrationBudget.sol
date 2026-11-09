@@ -44,7 +44,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     uint256 public constant IDLE_COMPOUNDING_VERSION = 4;
     uint256 public constant REBALANCE_CONFIRMATION_VERSION = 3;
     uint32 public constant DEFAULT_COMPOUND_INTERVAL = 1 hours;
-    uint16 public contributionLossBps = 200;
+    uint16 public contributionLossBps = 300;
     uint16 public maintenanceLossBps = 300;
     uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;
     uint256 public constant RESIDUAL_REINVEST_VERSION = 1;

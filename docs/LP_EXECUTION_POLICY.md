@@ -24,7 +24,7 @@ retain their original source scope; they do not verify this fresh portfolio.
 | Harvest | Independent hourly service schedule; actual receipts allocate 80/10/5/5 without swaps. |
 | Same-main consolidation | Paused governance closes only residual/reinvests attributed idle into unchanged main; guarded auto route or explicit force; no keeper timer. Atomically OFF; independent range change remains pending. |
 | Compound | Separate interval; reinvest attributed idle/designated reserve in the existing main. Service waits at the adjustment threshold or a pending configuration change. |
-| Limits | Default contribution 2%, conversion 1%, maintenance 3%; each governed maximum 10%, separate gas and stronger caller/venue floors. |
+| Limits | Default contribution 3%, conversion 1%, maintenance 3%; each governed maximum 10%, separate gas and stronger caller/venue floors. |
 
 Guarded manual same-main consolidation now uses active-aware route candidates
 for the preserved bounds, including the quote's projected target tick. Normal
@@ -218,7 +218,7 @@ More venues/iterations can cost more; unavailable quotes cannot waive a floor.
 
 ## Deterministic execution and adjustable economics
 
-Defaults remain 2% contribution,1% conversion and 3% maintenance, each governed up to
+Defaults remain 3% contribution,1% conversion and 3% maintenance, each governed up to
 10%, separate gas. Venue slippage is governed1–1000bps; spot/reference deviation
 is separate from the selected 3% two-source agreement. Stronger target/venue,
 captured operation and caller floors all remain. Strategy's default 1% additional

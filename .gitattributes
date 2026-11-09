@@ -146,3 +146,6 @@ reports/opensea-integration-20261109/** -text whitespace=cr-at-eol,-blank-at-eol
 
 # Preserve exact market/feed observations, upstream sources and owned-fork diagnostics.
 reports/market-qualification-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact contribution-default compiler/static/regression evidence and failures.
+reports/contribution-loss3-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

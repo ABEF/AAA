@@ -20,9 +20,9 @@ one-contribution-pool policy, owner/lifecycle checks and cumulative maximum rema
 Fresh7 entrants increase only the existing main ticks; incumbent residual/idle/
 compound stay in checkpointed NAV and cannot satisfy the new contribution floor.
 
-At the current 2% default, the captured execution budget requires at least
-**98% of conservative original value as marginal new LP**, with gas separate.
-A $5 top-up therefore needs at least $4.90 of LP and $100 activation at least $98.
+At the current 3% default, the captured execution budget requires at least
+**97% of conservative original value as marginal new LP**, with gas separate.
+A $5 top-up therefore needs at least $4.85 of LP and $100 activation at least $97.
 Read the governed cap for the exact deployment; old fixtures may retain 1%. Existing LP, idle or rewards cannot
 subsidize it. A route that cannot meet the limit reverts; the smaller minimum does
 not promise that every route or market condition will support a $5 transaction.

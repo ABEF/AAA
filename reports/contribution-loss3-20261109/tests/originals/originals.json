@@ -1,0 +1,47 @@
+{
+  "baseline_commit": "793c8e026b1d3fc307256fde2f6d4e82c4efec37",
+  "originals": {
+    "test/GovernedExecutionLoss.t.sol": {
+      "sha256": "13974061679245ee0388249f7a7af2ed3366254269b5fc856391b237926ea253",
+      "bytes": 12364,
+      "crlf": 0,
+      "bare_lf": 179
+    },
+    "test/IntegratedEconomicConservation.t.sol": {
+      "sha256": "6df9e8bd2b1f4df2b737338367762c5316dc987e3cae757f8ceef24f1d0816e4",
+      "bytes": 53585,
+      "crlf": 708,
+      "bare_lf": 21
+    },
+    "test/NativeVaultFlows.t.sol": {
+      "sha256": "97c34652b038806da3d233613ac8237c3eaf6abeb0ed843e07c1c556d343ffeb",
+      "bytes": 34814,
+      "crlf": 467,
+      "bare_lf": 2
+    },
+    "test/OptionalPortfolioCore.t.sol": {
+      "sha256": "9b1e876e5de5ea00b33f8f01bc71f0b67d8971168c29184a220a9bf135c0023e",
+      "bytes": 157176,
+      "crlf": 1834,
+      "bare_lf": 2
+    },
+    "test/CurrentNativePoolFork.t.sol": {
+      "sha256": "32671a821d7a10a0c48e9de38ef56adf92891904a53be5c3e03046d2ebca3f20",
+      "bytes": 24162,
+      "crlf": 332,
+      "bare_lf": 2
+    },
+    "test/VaultAccounting.t.sol": {
+      "sha256": "db35e5508a238bd960583adf5938118bc889909e27648cb3df75c7f1c298ca11",
+      "bytes": 31712,
+      "crlf": 0,
+      "bare_lf": 396
+    },
+    "test/EntryExecutionBudget.t.sol": {
+      "sha256": "c09c5d1559afcd8d84a132bae08696caaa203259af6bdd434989521ed6aa90d3",
+      "bytes": 3118,
+      "crlf": 0,
+      "bare_lf": 56
+    }
+  }
+}

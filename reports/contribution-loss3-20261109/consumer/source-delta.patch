@@ -1,0 +1,151 @@
+--- a/tests_python/test_activation_actual_trace7.py
++++ b/tests_python/test_activation_actual_trace7.py
+@@ -14,6 +14,8 @@
+ ROOT=Path(__file__).resolve().parents[1]
+ FIXTURE=ROOT/'tests_python/fixtures/source9-entry3-actual-trace7.json.gz'
+ SHA256='893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f'
++ORIGINAL_NORMAL=ROOT/'reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json'
++ORIGINAL_NORMAL_SHA256='af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92'
+ 
+ 
+ class ActualEntry3Trace7Tests(unittest.TestCase):
+@@ -39,8 +41,13 @@
+     def test_actual_raw_trace_and_production_source_scope_are_frozen(self):
+         self.assertEqual(SHA256,hashlib.sha256(FIXTURE.read_bytes()).hexdigest())
+         self.assertEqual(56,len(self.fixture['contract_source_sha256']))
++        # This is an actual historical200-bps trace, not a new execution of
++        # whichever sources are currently checked out. Retain its original
++        # producer's exact normal-build source scope after later policy edits.
++        self.assertEqual(ORIGINAL_NORMAL_SHA256,hashlib.sha256(ORIGINAL_NORMAL.read_bytes()).hexdigest())
++        original=json.loads(ORIGINAL_NORMAL.read_text(encoding='utf8'))['source_sha256']
+         for name,digest in self.fixture['contract_source_sha256'].items():
+-            self.assertEqual(digest,hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),name)
++            self.assertEqual(digest,original[name],name)
+         self.assertNotIn('error',self.root)
+         self.assertEqual(0,int(decode_words('0x'+self.finish['input'][10:])[2],16))
+         self.assertEqual(0,int(self.epochs[0]['output'],16))
+--- /dev/null
++++ b/tests_python/test_contribution_loss3.py
+@@ -0,0 +1,122 @@
++"""Three-percent contribution policy consumers; synthetic RPC, no EVM/market claims.
++
++The existing reviewed-pricing RPC fixtures exercise shared preparation/measurement
++logic. Direct Entry3 encoding is checked separately. Historical literal traces
++and historical200-bps inventories keep their original bytes and policy.
++"""
++import copy
++import gzip
++import json
++from pathlib import Path
++import unittest
++
++from frontend_api.activation import ActivationTransactions
++from frontend_api import activation_trace as T
++from frontend_api.service import Projection,ProjectionError,ZERO
++from tests_python.test_dual_price_integration import DualActivationRPC,install
++from tests_python.test_frontend_api import configuration,addr
++from zzz_ops.abi import calldata,decode_words
++
++ROOT=Path(__file__).resolve().parents[1]
++USD=10**18
++HISTORICAL_TRACE=ROOT/'tests_python/fixtures/source9-entry3-actual-trace7.json.gz'
++
++
++class ContributionLoss3Tests(unittest.TestCase):
++    def service(self,*,gross=100*USD,increase=False,loss=300,deployed=None,idle=None):
++        rpc=install(DualActivationRPC(loss=loss,increase=increase,new_pool=not increase))
++        rpc.original_amount=gross;rpc.request['amount_in']=str(gross)
++        rpc.pool_values[12]=5*USD
++        for method in ('get(bytes32)','accounting(bytes32)'):
++            rpc.put(rpc.pins['pools'],method,(rpc.pool,),rpc.pool_values)
++        rpc.native_put(rpc.pins['activation_assets'],'value(address,uint256)',(ZERO,gross),(gross,))
++        floor=gross-gross*loss//10000
++        retained=gross*9800//10000
++        deployed=floor if deployed is None else deployed
++        idle=max(0,retained-deployed)if idle is None else idle
++        incumbent=1000*USD if increase else 0
++        rpc.economics=(gross,incumbent,incumbent,incumbent,incumbent+deployed,idle,200)
++        cfg=configuration();cfg['accounting_version']=2
++        p=Projection(cfg,rpc,clock=lambda:1000)
++        return rpc,ActivationTransactions(p,rpc.config)
++
++    def test_fresh_inventory_uses300_without_rewriting_historical_templates(self):
++        current=json.loads((ROOT/'config/production.example.json').read_text())
++        self.assertEqual(17,current['schema_version'])
++        chain=current['chains'][0]
++        self.assertEqual(300,chain['execution_loss_policy']['contribution_bps'])
++        self.assertEqual(300,chain['helpers']['migration_budget']['bindings']['contributionLossBps'])
++        self.assertEqual(300,chain['execution_loss_policy']['maintenance_bps'])
++        self.assertEqual(100,chain['execution_loss_policy']['lp_conversion_bps'])
++        historical=json.loads((ROOT/'config/production.schema16.example.json').read_text())
++        self.assertEqual(200,historical['chains'][0]['execution_loss_policy']['contribution_bps'])
++
++    def test_activation100_and_growth5_prepare97percent_marginal_floors(self):
++        for increase,gross in((False,100*USD),(True,5*USD)):
++            with self.subTest(increase=increase):
++                rpc,service=self.service(gross=gross,increase=increase)
++                result=service.prepare(rpc.request)
++                self.assertTrue(result['activation_ready'])
++                self.assertEqual(300,result['execution_limit_bps'])
++                self.assertEqual(300,result['reviewed_maximum_loss_bps'])
++                self.assertEqual(str(gross*97//100),result['minimum_deployed_usd_18'])
++                self.assertEqual(str(gross*97//100),result['contribution']['marginal_deployed_usd_18'])
++                self.assertEqual(300,int(decode_words('0x'+result['transaction']['data'][10:])[-1],16))
++                self.assertFalse(result['network_gas']['included_in_execution_loss'])
++
++    def test_97percent_floor_rounds_up_for_indivisible_usd_units(self):
++        for gross in(100*USD+1,5*USD+1):
++            with self.subTest(gross=gross):
++                rpc,service=self.service(gross=gross,increase=gross<100*USD)
++                result=service.prepare(rpc.request)
++                expected=(gross*9700+9999)//10000
++                self.assertEqual(str(expected),result['minimum_deployed_usd_18'])
++                self.assertEqual(expected,int(result['contribution']['required_deployed_usd_18']))
++                self.assertGreater(expected,gross*9700//10000)
++
++    def test_one_unit_below_marginal_floor_cannot_hide_in_idle(self):
++        for increase,gross in((False,100*USD),(True,5*USD)):
++            floor=(gross*9700+9999)//10000
++            with self.subTest(increase=increase):
++                rpc,service=self.service(gross=gross,increase=increase,deployed=floor-1,
++                    idle=gross*9800//10000-floor+1)
++                with self.assertRaisesRegex(ProjectionError,'execution budget'):service.prepare(rpc.request)
++
++    def test_total300_preserves_stronger_retained_value_and_idle_limits(self):
++        # The unchanged pool200 still requires98% NET value.97% deployed plus
++        #1% attributed idle passes;97% deployed alone cannot waive that guard.
++        for deployed,idle in((97*USD,0),(97*USD,6*USD)):
++            with self.subTest(deployed=deployed,idle=idle):
++                rpc,service=self.service(deployed=deployed,idle=idle)
++                with self.assertRaisesRegex(ProjectionError,'execution budget'):service.prepare(rpc.request)
++
++    def test_fresh_preparation_reads_current_cap_without_widening_saved_review(self):
++        rpc,service=self.service(loss=200,deployed=99*USD,idle=0)
++        old=service.prepare(rpc.request);old_data=old['transaction']['data']
++        rpc.loss=300;rpc.put(rpc.pins['budget'],'contributionLossBps()',values=(300,))
++        new=service.prepare(rpc.request)
++        self.assertEqual(200,int(decode_words('0x'+old_data[10:])[-1],16))
++        self.assertEqual(300,int(decode_words('0x'+new['transaction']['data'][10:])[-1],16))
++        self.assertEqual(str(98*USD),old['minimum_deployed_usd_18'])
++        self.assertEqual(str(97*USD),new['minimum_deployed_usd_18'])
++        self.assertEqual(old_data,old['transaction']['data'])
++
++    def test_direct_entry3_300_codec_and_tighter_old_caller_max_remain_distinct(self):
++        args=(1,'0x'+'11'*32,addr(21),100*USD,'0x'+'0'*64,0,1,1200,False)
++        fp='0x'+'22'*32
++        data=T.request_data(*args,routing_version=3,review_policy_version=2,
++            maximum_loss_bps=300,expected_contribution_policy=fp)
++        words=decode_words('0x'+data[10:])
++        self.assertEqual(T.selector(T.EXECUTE_DIRECT_V3),data[:10])
++        self.assertEqual(9,len(words));self.assertEqual(300,int(words[-2],16));self.assertEqual(fp[2:],words[-1])
++        fixture=json.loads(gzip.decompress(HISTORICAL_TRACE.read_bytes()))
++        req={k:v for k,v in copy.deepcopy(fixture['request']).items()if not k.startswith('_')}
++        # An older caller review remains200. Raising observed execution policy
++        # to300 must reject it, even though the new source default is300.
++        req['execution_loss_bps']=300
++        with self.assertRaises(ProjectionError):
++            T.measure(fixture['actual_trace_call']['result'],fixture['actual_trace_call']['params'][0],
++                fixture['pins'],req,fixture['gross_usd_18'],fixture['max_slippage_bps'])
++
++
++if __name__=='__main__':unittest.main()

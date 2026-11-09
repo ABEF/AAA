@@ -84,7 +84,7 @@ These are distinct protections; increasing one does not remove the others.
 
 | Control | Current candidate policy |
 | --- | --- |
-| Contribution execution loss | 2% default; actual marginal deployed LP must satisfy the floor |
+| Contribution execution loss | 3% default; actual marginal deployed LP must satisfy the floor |
 | LP/royalty conversion loss | 1% default, plus any stronger submitted output minimum |
 | Maintenance loss | 3% default, covering retained LP plus attributed idle |
 | Governance ceilings | The three loss categories can be configured up to 10% |

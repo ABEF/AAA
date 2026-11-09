@@ -94,7 +94,7 @@ at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
 - Exercise entry/top-up front-running, pending receipts, tiny amounts, fractional
   carry, manipulated prices, dilution, repeated rebalances and custody migrations.
   Prove incumbent assets cannot subsidize the captured marginal-LP entry floor
-  (98% at the new default contribution cap), including conservative upper-input /
+  (97% at the new default contribution cap), including conservative upper-input /
   lower-LP prices and callback changes to policy.
 - Recheck worst-case combined settlement gas with real admitted assets/venues.
   Local fixtures and one-pool population tests do not bound every dependency cost.

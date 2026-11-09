@@ -135,6 +135,9 @@ contract IntegratedEconomicConservationTest is Test {
             IPositionDescriptor(address(0)),IWETH9(address(0)));
         manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
+        // Preserve this suite's reviewed2% scenario and caller maximum200.
+        // Fresh source defaults3%; do not silently widen historical execution.
+        vault.migrationBudget().setLossLimits(200,300);
         nft=new ZZZNFT(address(access),"ipfs://integrated-test/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(access));rewards=new ZZZRewards(address(access));
         fees=new ZZZFeeController(address(access));compounder=new ZZZCompounder(address(access));
@@ -527,7 +530,7 @@ contract IntegratedEconomicConservationTest is Test {
 
     function testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor() public {
         uint256 id=_mint(ALICE);
-        assertEq(vault.migrationBudget().contributionLossBps(),200,"approved two-percent default");
+        assertEq(vault.migrationBudget().contributionLossBps(),200,"explicit governed two-percent scenario");
         vault.migrationBudget().setLossLimits(100,300);
         assertEq(vault.migrationBudget().contributionLossBps(),100,"explicit stricter one-percent proof");
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.balance.selector),uint64(1));
@@ -591,7 +594,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(positions.nextTokenId(),1);_assertBacking();
     }
 
-    function testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth() public {
+    function testActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth() public {
         // Independent local source controls intentionally disagree by 1.5%.
         // Match the tick-rounded LP ratio so this tests the conservative USD
         // contribution floor rather than failing an unrelated swap minimum.

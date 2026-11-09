@@ -1,0 +1,13 @@
+test_97percent_floor_rounds_up_for_indivisible_usd_units (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_97percent_floor_rounds_up_for_indivisible_usd_units) ... ok
+test_activation100_and_growth5_prepare97percent_marginal_floors (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_activation100_and_growth5_prepare97percent_marginal_floors) ... ok
+test_direct_entry3_300_codec_and_tighter_old_caller_max_remain_distinct (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_direct_entry3_300_codec_and_tighter_old_caller_max_remain_distinct) ... ok
+test_fresh_inventory_uses300_without_rewriting_historical_templates (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_fresh_inventory_uses300_without_rewriting_historical_templates) ... ok
+test_fresh_preparation_reads_current_cap_without_widening_saved_review (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_fresh_preparation_reads_current_cap_without_widening_saved_review) ... ok
+test_one_unit_below_marginal_floor_cannot_hide_in_idle (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_one_unit_below_marginal_floor_cannot_hide_in_idle) ... ok
+test_total300_preserves_stronger_retained_value_and_idle_limits (tests_python.test_contribution_loss3.ContributionLoss3Tests.test_total300_preserves_stronger_retained_value_and_idle_limits) ... ok
+test_actual_raw_trace_and_production_source_scope_are_frozen (tests_python.test_activation_actual_trace7.ActualEntry3Trace7Tests.test_actual_raw_trace_and_production_source_scope_are_frozen) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 7.789s
+
+OK

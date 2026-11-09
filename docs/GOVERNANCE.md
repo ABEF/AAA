@@ -91,7 +91,7 @@ supported; no new wallet or mandatory multi-person approval is imposed.
 
 Ordinary rebalance cooldowns, sampled confirmation, transaction expiry, oracle
 freshness and sequencer/finality policy serve execution/accounting safety. Direct
-governance does not remove them. Ordinary defaults remain contribution 2%,
+governance does not remove them. Ordinary defaults remain contribution 3%,
 conversion 1%, maintenance 3%, each governed up to 10%; stronger caller/venue floors
 and captured policy remain binding. The explicitly separate emergency manifest
 may bypass selected economic/timing groups, not structural custody/accounting or

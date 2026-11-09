@@ -1,0 +1,58 @@
+{
+  "baseline": "793c8e026b1d3fc307256fde2f6d4e82c4efec37",
+  "scope": "Seven new synthetic contribution300-bps consumer methods plus one historical provenance maintenance method; no production EVM/fork/service/website acceptance",
+  "exact_external_evidence_copy": true,
+  "files": [
+    {
+      "path": "focused-attempt1.log",
+      "sha256": "99acd62150e400081f2bddf440c07af36c999ee21b83df8932f4919c1a026de2",
+      "bytes": 1694
+    },
+    {
+      "path": "source-delta.patch",
+      "sha256": "64a37c11b068ce9b4d92b01a7d85ef4ffc7cbe36247d16912df56beb3cce1e40",
+      "bytes": 9019
+    },
+    {
+      "path": "sources-before.json",
+      "sha256": "dc3dcd9edbec0265042f1508e1b92850e6efe4207d55508ad7059c169bf535e1",
+      "bytes": 1166
+    },
+    {
+      "path": "verification.json",
+      "sha256": "46e2cbce2a2f3bf5d1b11e5094eb0b6bb74102c4ee265310db35f01027247031",
+      "bytes": 3975
+    }
+  ],
+  "python": {
+    "path": "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "version": "Python 3.12.14",
+    "sha256": "3c48fbdcc2ed5c55290e39bef50bd6b1da76f43f3069a4a2624d0b8876a605f5",
+    "hash_and_version_observed_after_test_execution": true
+  },
+  "current_test_sources": [
+    {
+      "path": "tests_python/test_activation_actual_trace7.py",
+      "sha256": "65539df6d961eb91ed05ae0072f444111e75a895ebaeac0bc7eb16b75af1d0a8"
+    },
+    {
+      "path": "tests_python/test_contribution_loss3.py",
+      "sha256": "3b771ef08499a1cfce4183c4a7169eeeb87cc8eac32a17fa5fe200bac9c5c126"
+    }
+  ],
+  "historical_evidence_referenced_without_copy": [
+    {
+      "path": "tests_python/fixtures/source9-entry3-actual-trace7.json.gz",
+      "sha256": "893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f",
+      "scope": "Unchanged actual historical200-bps trace; never relabelled as new300 execution"
+    },
+    {
+      "path": "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json",
+      "sha256": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+      "scope": "Original87-source normal producer record;56 trace source pins match this original scope"
+    }
+  ],
+  "no_EVM_or_market_qualification": true,
+  "no_raw_fixture_or_normal_build_duplicated": true,
+  "no_additional_implementation_or_documentation_edits": true
+}

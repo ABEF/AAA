@@ -42,7 +42,7 @@ service/configuration/site rollout remains separately qualified/authorized; publ
 is null and browser signing Anvil-only.
 
 Current contribution inputs are native ETH and the fixed deployment ZZZ only.
-The default contribution budget is 2% (98% marginal deployed LP), conversion 1%
+The default contribution budget is 3% (97% marginal deployed LP), conversion 1%
 and maintenance 3%, with governed ceilings and stronger reviewed caller/venue
 minima. Use actual confirmed values and keep missing pricing/history unavailable.
 OpenSea primary mint integration is still unfinished; poplint must not imply

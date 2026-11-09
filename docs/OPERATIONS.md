@@ -83,7 +83,7 @@ is still an unconfigured accounting3 build, not a deployed profile4 frontend.
 
 Current contributions are native ETH/fixedZZZ; future-governed minima default
 to100USD activation/5USD growth, with stronger admitted pool minima retained.
-Actual marginal newLP is measured; default 2% contribution/1% conversion/3% maintenance
+Actual marginal newLP is measured; default 3% contribution/1% conversion/3% maintenance
 limits are distinct and may be governed up to 10%, gas separate. Read live/captured
 policy and caller minima; never assume a default or count incumbent funds/idle as
 newly deployed LP. Source disagreement 3% is a different guard and does not guarantee

@@ -53,7 +53,7 @@ leave an auxiliary behind.
 | [RebalanceConfirmation](../src/ZZZRebalanceConfirmation.sol), [PortfolioPolicy](../src/ZZZPortfolioPolicy.sol) | Fixed-controller Strategy companions; confirmation3 requires same-side physical/reference crossing of 85% of centre-to-main-boundary ZZZ-in-ETH price distance. Portfolio2 controls optional mode/geometry and monotonic review revisions. | Selected 600/300 sampled window, 240-second checks, 60–300-second service jitter and hard initial 12-hour cooldown; actual timing/gas and independent sources remain unqualified. |
 | [Buyback](../src/ZZZBuyback.sol) | Spend only buyback reserve, acquire fixed ZZZ, verify actual supply burn; governed operating ceiling. | Actual conversion/burn, price policy and funded operation. |
 
-Defaults contribution 2%/conversion 1%/maintenance 3%, maxima 10%, gas separate.
+Defaults contribution 3%/conversion 1%/maintenance 3%, maxima 10%, gas separate.
 Stronger caller/venue guards remain. Raw holder principal return has no aggregate
 USD-loss promise. Source currency stays source currency until actually converted.
 

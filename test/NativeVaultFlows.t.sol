@@ -131,7 +131,10 @@ contract NativeVaultFlowsTest is Test {
         positions = new BoundaryPositions(address(core),address(permit),address(wrapper)); core.setPositions(address(positions));
         FakeState state = new FakeState(address(core));
         ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
-        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access)))); nft = new ZZZNFT(address(access),"ipfs://native/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
+        // Retain this modeled venue suite's explicit2% review/caller policy.
+        vault.migrationBudget().setLossLimits(200,300);
+        nft = new ZZZNFT(address(access),"ipfs://native/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership = new ZZZMembership(address(access)); rewards = new ZZZRewards(address(access)); fees = new ZZZFeeController(address(access));
         buyback = new ZZZBuyback(address(access),address(token),1000e18);
         access.bind(Ids.VAULT,address(vault)); access.bind(Ids.NFT,address(nft)); access.bind(Ids.MEMBERSHIP,address(membership));

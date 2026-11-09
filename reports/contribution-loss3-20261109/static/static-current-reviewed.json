@@ -1,0 +1,138 @@
+[
+  {
+    "fingerprint": "d9c49c40c67bdd23b46269cda3e097b07535bbca38376b412cb6e69f164f8372",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLPPositionExecutor.close(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#286-296):\n\tExternal calls:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n\t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.primaryOfSecondary (src/ZZZLPPositionExecutor.sol#39) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor._main(uint256) (src/ZZZLPPositionExecutor.sol#86-88)\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- delete secondaryId[id] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- ZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38)\n",
+    "disposition": "false_positive",
+    "rationale": "Individually reviewed both-leg close context. Only the sealed immutable Manager can enter the nonReentrant executor; Manager.close accepts only the fixed Vault under its own guard. Every physical NFT is checked Vault-owned and bound to the exact PoolKey. Core native credit is armed per leg, then disarmed and zeroed before ETH goes only to the fixed Vault with exact balance proof. Secondary associations are deleted only after the actual second burn succeeds, so a failed burn/transfer reverts the complete operation instead of abandoning backing. Read-only portfolio getters do not grant a write/custody capability. The approved contribution-default initializer changes neither this logic nor recipients; compromised upstream behavior remains an explicit dependency limit.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_related_contexts": [
+      "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0"
+    ],
+    "presentation_difference_scope": "New actual reentrancy-eth fingerprint individually reviewed; no comparison/parser normalization expanded."
+  },
+  {
+    "fingerprint": "6c0ca77c93af04040b316714e0b0f5f523a0b851582613e254ae508c5a93b6be",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLPPositionExecutor.collect(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#260-267):\n\tExternal calls:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n",
+    "disposition": "false_positive",
+    "rationale": "Individually reviewed both-leg collect context. Executor.collect is sealed fixed-Manager-only and nonReentrant; Manager.collect is fixed-Vault-only and nonReentrant. The fixed core/periphery pays only the typed executor, whose receive accepts only the armed core. _finishNativeCredit clears nativeSender and nativeReceived before forwarding ETH to the fixed Vault, with exact balance checks. The second leg deliberately rearms its own receipt counter; it is not an externally selected recipient or reusable payout balance. Token forwarding uses exact deltas. The approved constructor contribution default does not change this runtime/callback code. Actual upstream code and token behavior remain separately qualified dependencies.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_related_contexts": [
+      "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e"
+    ],
+    "presentation_difference_scope": "New actual reentrancy-eth fingerprint individually reviewed; no comparison/parser normalization expanded."
+  },
+  {
+    "fingerprint": "ca4a21403406ca2b252812e8eef9bdd3f695655fa3efd65e0829b6977a55d635",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget._beforeMove(uint256,bool).s (src/ZZZMigrationBudget.sol#240) is a local variable never initialized\n",
+    "disposition": "false_positive",
+    "rationale": "Individually rechecked the zero-initialized Snapshot memory value and every later assignment. _beforeMove sets bucket/source pool, maintenanceLossBps, confirmation controls and captured price/value/scale/idle/policy fields before persistence; nonzero starting value is required. Ordinary replacement assigns portfolio revision/replacement; emergency deliberately retains replacement=false to forbid hybrid creation. Its cap remains the separate300bps maintenance policy. Changing the fresh contributionLossBps initializer from200 to300 does not leave any Snapshot field uninitialized or relax emergency/custody checks.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "ca4a21403406ca2b252812e8eef9bdd3f695655fa3efd65e0829b6977a55d635"
+  },
+  {
+    "fingerprint": "65e239d851aadbf030cf47db8f879843e00b221d76890f47923a05de406bcd41",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#372-375) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault()).group(id).poolId) (src/ZZZMigrationBudget.sol#374)\n",
+    "disposition": "false_positive",
+    "rationale": "Individually rechecked that validateExitPrice is invoked for its reverting spot/reference validity guard, not its return value. validateUnwind is fixed-Vault-only; only an already authenticated emergency context with explicit bit2 bypass may omit this check. Raw closure and captured principal accounting remain elsewhere. Contribution default300bps is separate from this unwinding check and the unchanged maintenance300bps policy; dropping the unused returned price does not skip price validation.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "65e239d851aadbf030cf47db8f879843e00b221d76890f47923a05de406bcd41"
+  },
+  {
+    "fingerprint": "2555fede779d7e3e1bfd747b1e06cfaeb2ba07f9644624de766abe9df25fa63e",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#360-365) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#362)\n",
+    "disposition": "false_positive",
+    "rationale": "Individually rechecked that Registry.get is required to succeed before reading the permanent poolBucket alias. Its config return is intentionally unused because this function validates nonzero reservation inputs and collision-free bucket ownership rather than pricing/executing a swap. The sealed fixed Vault is the only caller. The authorized fresh contribution300bps default changes no registry admission, reservation, recipient or custody behavior.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "2555fede779d7e3e1bfd747b1e06cfaeb2ba07f9644624de766abe9df25fa63e"
+  },
+  {
+    "fingerprint": "4e6e2da8e2e3d24d2302c243ecc8ea4bcb2e734d9a734e5ffcb63d29638254a1",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.beginEmergency(uint256,uint8) (src/ZZZMigrationBudget.sol#98-102) should emit an event for: \n\t- emergencyBucket = bucket (src/ZZZMigrationBudget.sol#100) \n\t- emergencyChecks = checks (src/ZZZMigrationBudget.sol#100) \n",
+    "disposition": "false_positive",
+    "rationale": "Individually rechecked that beginEmergency accepts only fixed Migration, rejects an existing emergency/snapshot and captures current governance before validating sealed, globally paused, canonical/current and nonterminal lifecycle. Emergency bucket/check bits are transaction-scoped context cleared by endEmergency after the guarded operation. Outer Migration completion events carry exact calldata/review provenance; this is not a persistent unlogged policy update. ContributionLossLimitChanged remains emitted by the unchanged governed setter; the fresh300bps constructor default is a separately documented deployment term.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "4e6e2da8e2e3d24d2302c243ecc8ea4bcb2e734d9a734e5ffcb63d29638254a1"
+  },
+  {
+    "fingerprint": "fa3890fd2412d0aaa8c5ba53a17b9939743bc252f4326c0c798139eb2f6cb2b0",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#51-374) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#24-29)\n",
+    "disposition": "informational",
+    "rationale": "Individually rechecked the Budget-facing validation interface against VaultCanonical selectors and its fixed Budget caller authentication. These typed validations do not expose arbitrary storage or asset transfer. Explicit IBudgetVaultValidation inheritance adds no authority guarantee; actual controller/module/runtime binding remains required. Constructor contribution300bps is captured through the unchanged Budget/Pricing flow, not an alternate caller or interface layout.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "fa3890fd2412d0aaa8c5ba53a17b9939743bc252f4326c0c798139eb2f6cb2b0"
+  },
+  {
+    "fingerprint": "fce0f0fed6126f9137c6a36143ab71d553f5fae67a2cf861a19db0b477bfd0bf",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-432) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#23-26)\n",
+    "disposition": "informational",
+    "rationale": "Individually rechecked maintenanceBucket and maintenancePrices against Manager IPortfolioBudget. The Budget exposes only the captured ordinary replacement basis, while emergency and same-main paths retain their distinct context. Explicit inheritance would not authorize hybrid minting or validate a controller/module binding. The source default change affects only future contribution loss policy; portfolio and maintenance interfaces/storage/guards remain exact unchanged.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "fce0f0fed6126f9137c6a36143ab71d553f5fae67a2cf861a19db0b477bfd0bf"
+  },
+  {
+    "fingerprint": "c87e7f5a8222db27bdf635321c5ba21913ba44f3eee4f8bac6a65c14c80ff833",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigration (src/ZZZMigration.sol#30-369) should inherit from IEmergencyManifest (src/ZZZMigrationBudget.sol#18-21)\n",
+    "disposition": "informational",
+    "rationale": "Individually rechecked Migration IEmergencyManifest fingerprint/target selectors and exact fixed-Budget authentication for its fingerprint. The active request remains scoped to the paused governance operation; no generic caller obtains emergency manifest authority by structural interface matching. The fresh contribution300bps initializer changes no manifest selector, request layout, checks mask or automatic emergency policy.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "c87e7f5a8222db27bdf635321c5ba21913ba44f3eee4f8bac6a65c14c80ff833"
+  },
+  {
+    "fingerprint": "4486bb4853424f5c4feb77be7389f1946bac0e8fdddc0ce3f7a2ad91d27504e5",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-432) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#24-29)\n",
+    "disposition": "informational",
+    "rationale": "Individually rechecked that IBudgetVaultValidation describes VaultCanonical, not a mandatory Budget base. Budget validateContribution intentionally returns captured uint32 packed venue/contribution limits, whereas the companion validation returns uint16 venue policy. Adding inheritance from a structural selector overlap would obscure that distinction. The authorized300bps initial cap is frozen into the existing high16bits before callbacks; ABI/storage and max1000bps governance ceiling remain unchanged.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "4486bb4853424f5c4feb77be7389f1946bac0e8fdddc0ce3f7a2ad91d27504e5"
+  },
+  {
+    "fingerprint": "59e875e2e6bfedf12710e1d301410ed480f17874aa2854bdb9eaae3fa53839a6",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-432) should inherit from IHistoricalCompound (src/ZZZNFTMetadata.sol#11)\n",
+    "disposition": "informational",
+    "rationale": "Individually rechecked immutable metadata renderer IHistoricalCompound against Budget historicalCompoundValue. The exact read-only selector delegates to fixed ContributionPricing historicalValue; explicit inheritance adds no deployment/runtime or permission validation. The new contribution300bps initializer changes future contribution execution economics only, not historical compounding value, royalty accounting or current-owner rights.",
+    "review_scope": "Individually reassessed exact current detector context and composition after the authorized constructor contribution200-to300bps default change; not independent approval.",
+    "prior_review": "reports/opensea-integration-20261109/static-review.json",
+    "prior_fingerprint": "59e875e2e6bfedf12710e1d301410ed480f17874aa2854bdb9eaae3fa53839a6"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "original_build_info_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt2-entry\\build-info\\270e1859290a236e.json",
+  "original_build_info_sha256": "da231de68166c0f8d74c255c4118fa295744a41481f012702dc04ccc6e537192",
+  "original_build_info_bytes": 52757958,
+  "extraction": "Exact input object values from retained raw build-info, compact UTF8 JSON, deterministic gzip; output objects retained in original external build-info. Not a byte-identical serialization of the enclosing raw build-info.",
+  "uncompressed_input_sha256": "e80be9e894135aa1ea3ba55ba7daa0ea245c754be95f8381ec83d1843443148b",
+  "uncompressed_input_bytes": 1765481,
+  "source_count": 119,
+  "solc_version": "0.8.26",
+  "solc_long_version": "0.8.26",
+  "normal_settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "evmVersion": "cancun",
+    "viaIR": true
+  }
+}

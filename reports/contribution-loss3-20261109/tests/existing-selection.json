@@ -1,0 +1,6 @@
+{
+  "path": "test/{GovernedExecutionLoss,IntegratedEconomicConservation,NativeVaultFlows,OptionalPortfolioCore,CurrentNativePoolFork}.t.sol",
+  "contract": "(GovernedExecutionLoss|IntegratedEconomicConservation|NativeVaultFlows|OptionalPortfolioCore|CurrentNativePoolFork)Test",
+  "test": "test(DefaultsHardMaximumZeroAndGovernanceEvents|ActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth|NativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper|LongHorizonSameBlockUsersBeforeRebalance|CurrentVaultActivationGrowthUsesOneBackedSharedLP)$",
+  "scope": "Four focused affected existing methods plus one environment-gated current-fork method. Historical fixtures retain explicit200 policy. Comment/label-only and unchanged narrower1% test bodies are inspected, not rerun. RUN_CURRENT_POOL_FORK removed from subprocess env; no network reads. No broad suite, target gas or production qualification."
+}

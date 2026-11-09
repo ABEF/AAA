@@ -1,0 +1,128 @@
+{
+  "baseline_commit": "793c8e026b1d3fc307256fde2f6d4e82c4efec37",
+  "files": [
+    {
+      "path": "test/GovernedExecutionLoss.t.sol",
+      "original": {
+        "sha256": "13974061679245ee0388249f7a7af2ed3366254269b5fc856391b237926ea253",
+        "bytes": 12364,
+        "crlf": 0,
+        "bare_lf": 179
+      },
+      "current": {
+        "sha256": "2697c6ab88c4303f2b0bea1ee9302b49aafcc5e890985136c63014a4af7007ab",
+        "bytes": 12364,
+        "crlf": 0,
+        "bare_lf": 179
+      },
+      "scope": "Fresh getter and initial previous-value event expectation200->300 only."
+    },
+    {
+      "path": "test/IntegratedEconomicConservation.t.sol",
+      "original": {
+        "sha256": "6df9e8bd2b1f4df2b737338367762c5316dc987e3cae757f8ceef24f1d0816e4",
+        "bytes": 53585,
+        "crlf": 708,
+        "bare_lf": 21
+      },
+      "current": {
+        "sha256": "77eeb70103599e28e6b446807af4d30a6c8c4716a17a16fcff99e26d7fdcbec7",
+        "bytes": 53803,
+        "crlf": 711,
+        "bare_lf": 21
+      },
+      "scope": "Local explicit governed200 preserves reviewed real-v4 economics/caller200; current wording/testname no longer claims2%default."
+    },
+    {
+      "path": "test/NativeVaultFlows.t.sol",
+      "original": {
+        "sha256": "97c34652b038806da3d233613ac8237c3eaf6abeb0ed843e07c1c556d343ffeb",
+        "bytes": 34814,
+        "crlf": 467,
+        "bare_lf": 2
+      },
+      "current": {
+        "sha256": "ccc0cea2ec69ad0e80efa8a55efb9dc42729b1ec4315e0884aef0502f1025ba6",
+        "bytes": 34959,
+        "crlf": 470,
+        "bare_lf": 2
+      },
+      "scope": "Local explicit governed200 preserves original native venue/caller200 scenario; no caller maximum widened."
+    },
+    {
+      "path": "test/OptionalPortfolioCore.t.sol",
+      "original": {
+        "sha256": "9b1e876e5de5ea00b33f8f01bc71f0b67d8971168c29184a220a9bf135c0023e",
+        "bytes": 157176,
+        "crlf": 1834,
+        "bare_lf": 2
+      },
+      "current": {
+        "sha256": "ef9b4262d16e20bbe99c0e5438558adcf18ea003c3e2c2edc75c49a3bf69b8f6",
+        "bytes": 157312,
+        "crlf": 1836,
+        "bare_lf": 2
+      },
+      "scope": "Local explicit governed200 preserves original hybrid lifecycle/caller200 and specific pool-floor rejection."
+    },
+    {
+      "path": "test/CurrentNativePoolFork.t.sol",
+      "original": {
+        "sha256": "32671a821d7a10a0c48e9de38ef56adf92891904a53be5c3e03046d2ebca3f20",
+        "bytes": 24162,
+        "crlf": 332,
+        "bare_lf": 2
+      },
+      "current": {
+        "sha256": "b0fa84d9c74057f37664f808a939f46777420e98225e1efcf581f86ef5133cd0",
+        "bytes": 24301,
+        "crlf": 334,
+        "bare_lf": 2
+      },
+      "scope": "Local explicit governed200 preserves pinned historical selected-pool scenario; offline fork gate remains."
+    },
+    {
+      "path": "test/VaultAccounting.t.sol",
+      "original": {
+        "sha256": "db35e5508a238bd960583adf5938118bc889909e27648cb3df75c7f1c298ca11",
+        "bytes": 31712,
+        "crlf": 0,
+        "bare_lf": 396
+      },
+      "current": {
+        "sha256": "3719e0917fb9ca604c99ca00d9d88eb79c464bf5f61d26a09f57b3f442ac4862",
+        "bytes": 31706,
+        "crlf": 0,
+        "bare_lf": 396
+      },
+      "scope": "Two sibling test labels/comment describe current97%LP floor; unchanged96reject/98accept bodies. No blanket fixture pin."
+    },
+    {
+      "path": "test/EntryExecutionBudget.t.sol",
+      "original": {
+        "sha256": "c09c5d1559afcd8d84a132bae08696caaa203259af6bdd434989521ed6aa90d3",
+        "bytes": 3118,
+        "crlf": 0,
+        "bare_lf": 56
+      },
+      "current": {
+        "sha256": "41eb699e5d0470feb329b2495ebb1c03566d6a04482eb9e4e074ca3f0bebc515",
+        "bytes": 3118,
+        "crlf": 0,
+        "bare_lf": 56
+      },
+      "scope": "Comment only: freshdefault3%, suite retains explicit governed1% and unchanged bodies."
+    },
+    {
+      "path": "test/ContributionThreePercent.t.sol",
+      "new": true,
+      "current": {
+        "sha256": "b7bcf5c4d2e9eb88de4e9ed866da4c87b03d91edc4e081a3e4f9fd38c9f733d8",
+        "bytes": 12782
+      },
+      "scope": "Nine focused default300/marginal-LP/rollback/caller/stricter-venue regressions; explicit test-only native admission and deterministic venue."
+    }
+  ],
+  "unchanged_parent_fixture": "PooledVaultFixture retains fresh default300; its body is unchanged.",
+  "no_production_edits_by_this_agent": true
+}

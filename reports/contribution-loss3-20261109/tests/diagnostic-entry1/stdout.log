@@ -1,0 +1,586 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/ContributionThreePercent.t.sol:ContributionThreePercentEntryTest
+[FAIL: InvalidConfiguration()] testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull() (gas: 19416874)
+Traces:
+  [78931875] ContributionThreePercentEntryTest::setUp()
+    ├─ [0] VM::warp(1000000 [1e6])
+    │   └─ ← [Return]
+    ├─ [7799286] → new MockAccess@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   ├─ [5633409] → new ZZZRoyaltyFactory@0x104fBc016F4bb334D775a19E8A6510109AC63E00
+    │   │   ├─ [4940823] → new <unknown>@0x41C3c259514f88211c4CA2fd805A93F8F9A57504
+    │   │   │   └─ ← [Return] 24576 bytes of code
+    │   │   ├─ [192309] → new <unknown>@0x0401911641c4781D93c41f9aa8094B171368E6a9
+    │   │   │   └─ ← [Return] 952 bytes of code
+    │   │   └─ ← [Return] 1893 bytes of code
+    │   ├─ [1497631] → new ZZZActivationAssetsFactory@0x037eDa3aDB1198021A9b2e88C22B464fD38db3f3
+    │   │   └─ ← [Return] 7480 bytes of code
+    │   └─ ← [Return] 2854 bytes of code
+    ├─ [3012] MockAccess::protocolPolicy() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [3212600] → new ZZZProtocolPolicy@0x2e234DAe75C793f67A35089C9d99245E1C58470b
+    │   └─ ← [Return] 14746 bytes of code
+    ├─ [629] MockAccess::bindProtocolPolicy(ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   └─ ← [Revert] unrecognized function selector 0x9c59ab71 for contract 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f, which has no fallback function.
+    ├─ [21065] MockAccess::setProtocolPolicy(ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   └─ ← [Stop]
+    ├─ [539520] → new MockToken@0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+    │   └─ ← [Return] 2463 bytes of code
+    ├─ [899347] → new MockPools@0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9
+    │   └─ ← [Return] 4492 bytes of code
+    ├─ [506371] → new VaultPolicyMock@0xc7183455a4C133Ae270771860664b6B7ec320bB1
+    │   └─ ← [Return] 2418 bytes of code
+    ├─ [2396282] → new VaultLiquidityMock@0xa0Cb889707d426A7A386870A03bc70d1b0697598
+    │   └─ ← [Return] 11387 bytes of code
+    ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    ├─ [3041] ZZZProtocolPolicy::salePolicy() [staticcall]
+    │   └─ ← [Return] SalePolicy({ mintPrice: 50000000000000000 [5e16], recipient: 0x0000000000000000000000000000000000007EA5, pendingRecipient: 0x0000000000000000000000000000000000000000, revision: 1 })
+    ├─ [4855716] → new ZZZMigrationBudget@0x1d1499e622D69689cdf9004d05Ec547d650Ff211
+    │   └─ ← [Return] 24018 bytes of code
+    ├─ [4945248] → new ZZZVault@0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [917] ZZZMigrationBudget::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [437] ZZZMigrationBudget::IDLE_COMPOUNDING_VERSION() [staticcall]
+    │   │   └─ ← [Return] 4
+    │   └─ ← [Return] 24544 bytes of code
+    ├─ [3948089] → new ZZZNFTMetadata@0x03A6a84cD762D9707A21605b548aaaB891562aAb
+    │   └─ ← [Return] 19714 bytes of code
+    ├─ [10711993] → new ZZZNFT@0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+    │   ├─ [543] ZZZNFTMetadata::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [853] ZZZNFTMetadata::validateBaseURI("") [staticcall]
+    │   │   └─ ← [Stop]
+    │   ├─ [567] MockAccess::royaltyFactory() [staticcall]
+    │   │   └─ ← [Return] ZZZRoyaltyFactory: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [5096263] ZZZRoyaltyFactory::create()
+    │   │   ├─ [5012164] → new ZZZRoyaltyRewards@0x20067a7558168e12ad53b235F2f7408FeEa4985F
+    │   │   │   ├─ emit AssetAdded(asset: 0x0000000000000000000000000000000000000000, quarantined: 0)
+    │   │   │   └─ ← [Return] 24524 bytes of code
+    │   │   ├─ [23685] ZZZRoyaltyRewards::bindCanonicalController(MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] ZZZRoyaltyRewards: [0x20067a7558168e12ad53b235F2f7408FeEa4985F]
+    │   ├─ [1833] ZZZRoyaltyRewards::canonicalController() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [688] ZZZRoyaltyRewards::nft() [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]
+    │   ├─ [601677] → new ZZZClaimRouter@0xDDA0a8D7486686d36449792617565E6C474fBa3f
+    │   │   └─ ← [Return] 2885 bytes of code
+    │   └─ ← [Return] 24097 bytes of code
+    ├─ [18477] ZZZNFT::setMintEnd(316360000 [3.163e8])
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [10870] ZZZRoyaltyRewards::setMintEnd(316360000 [3.163e8])
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ emit MintEndConfigured(mintEnd: 316360000 [3.163e8], royaltiesOpenAt: 316363600 [3.163e8])
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [1480455] → new ZZZMembership@0x15cF58144EF33af1e14b5208015d11F9143E27b9
+    │   └─ ← [Return] 7389 bytes of code
+    ├─ [8707969] → new ZZZRewards@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   ├─ emit AssetAdded(token: 0x0000000000000000000000000000000000000000)
+    │   ├─ [3750181] → new ZZZRewardsCanonical@0x82DcE515b19ca6C2b03060d7DA1a9670fc6EE074
+    │   │   └─ ← [Return] 18609 bytes of code
+    │   └─ ← [Return] 24218 bytes of code
+    ├─ [1965883] → new ZZZFeeController@0x2a07706473244BC757E10F2a9E86fB532828afe3
+    │   └─ ← [Return] 9702 bytes of code
+    ├─ [442679] → new ZZZCompounder@0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7
+    │   └─ ← [Return] 2206 bytes of code
+    ├─ [6876043] → new ZZZOracle@0xD16d567549A2a2a2005aEACf7fB193851603dd70
+    │   ├─ [4759182] → new ZZZContributionPricing@0xCDfc4483dfC62f9072de6b740b996EB0E295A467
+    │   │   └─ ← [Return] 23756 bytes of code
+    │   └─ ← [Return] 10373 bytes of code
+    ├─ [346415] → new MockFeed@0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758
+    │   └─ ← [Return] 1170 bytes of code
+    ├─ [224937] → new NormalizedNativeFixtureFeed@0x13aa49bAc059d709dd0a18D6bb63290076a702D7
+    │   └─ ← [Return] 1120 bytes of code
+    ├─ [182485] → new CorrelatedFixtureFeed@0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [1179] NormalizedNativeFixtureFeed::decimals() [staticcall]
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   └─ ← [Return] 8
+    ├─ [356028] ZZZOracle::setDualFeed(0x0000000000000000000000000000000000000000, SourcePolicy({ source: 0x13aa49bAc059d709dd0a18D6bb63290076a702D7, expectedCodeHash: 0x70ede06e1785e1707cfa6eda09e17649b1e6c47df44c1fb6c744f228d7c8ace2, independenceId: 0x8e1514aec258ee7605072f1ac2003d834e8cce361c2acb94cc94212cbe3f33c8, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240, expectedCodeHash: 0xb44e44a1e44cec462999f108aeed33a284edd61047e667a3db310cca20fe9b42, independenceId: 0xfb2e6d4baf25cbdd1aa8c2f11221838ba967b8a327a572c819dcb021c0f5d2e3, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1179] NormalizedNativeFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [3685] NormalizedNativeFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000000000000000000000 [1e26], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [2136] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [1179] NormalizedNativeFixtureFeed::decimals() [staticcall]
+    │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [5438] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [3685] NormalizedNativeFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   └─ ← [Return] 1, 100000000000000000000000000 [1e26], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000000000000000000000 [1e26], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit DualPolicyRecorded(id: 0xa9cfe91b31882820b799d98b55592368c28ba736251a15d825f920c23720a2fc, token: 0x0000000000000000000000000000000000000000, primary: NormalizedNativeFixtureFeed: [0x13aa49bAc059d709dd0a18D6bb63290076a702D7], secondary: CorrelatedFixtureFeed: [0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240], primaryIndependenceId: 0x8e1514aec258ee7605072f1ac2003d834e8cce361c2acb94cc94212cbe3f33c8, secondaryIndependenceId: 0xfb2e6d4baf25cbdd1aa8c2f11221838ba967b8a327a572c819dcb021c0f5d2e3, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: 0x0000000000000000000000000000000000000000, previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0xa9cfe91b31882820b799d98b55592368c28ba736251a15d825f920c23720a2fc)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xa9cfe91b31882820b799d98b55592368c28ba736251a15d825f920c23720a2fc
+    ├─ [182485] → new CorrelatedFixtureFeed@0x3381cD18e2Fb4dB236BF0525938AB6E43Db0440f
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [234] MockFeed::decimals() [staticcall]
+    │   └─ ← [Return] 8
+    ├─ [333179] ZZZOracle::setDualFeed(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], SourcePolicy({ source: 0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758, expectedCodeHash: 0x0ca2a099dc9f6baa4bb00e9e092904ae0e55ef07bd98acb17c90d6808d08abc7, independenceId: 0x446300a2ab67d55ab0f2168dc87e28842b2bb3204c2b06beefbef6b8a756980f, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x3381cD18e2Fb4dB236BF0525938AB6E43Db0440f, expectedCodeHash: 0xec56ab0fa84274a578d1099198d7b984374184397d484f771d00a8e2ad23e41c, independenceId: 0x6bb48a5e441ba8c2990883ece4a2c782017cfa6a56ed92e7d7f56025c7450a5b, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit DualPolicyRecorded(id: 0xf83ed9365af159fbad5d27c76b2672e1ba3c8799b8c77ad7ef6b13ee979f55e6, token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], primary: MockFeed: [0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758], secondary: CorrelatedFixtureFeed: [0x3381cD18e2Fb4dB236BF0525938AB6E43Db0440f], primaryIndependenceId: 0x446300a2ab67d55ab0f2168dc87e28842b2bb3204c2b06beefbef6b8a756980f, secondaryIndependenceId: 0x6bb48a5e441ba8c2990883ece4a2c782017cfa6a56ed92e7d7f56025c7450a5b, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0xf83ed9365af159fbad5d27c76b2672e1ba3c8799b8c77ad7ef6b13ee979f55e6)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xf83ed9365af159fbad5d27c76b2672e1ba3c8799b8c77ad7ef6b13ee979f55e6
+    ├─ [23017] MockAccess::bind(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5, ZZZNFT: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55, ZZZMembership: [0x15cF58144EF33af1e14b5208015d11F9143E27b9])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd, ZZZRewards: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04, ZZZFeeController: [0x2a07706473244BC757E10F2a9E86fB532828afe3])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x66b6519ff03a0a77984595e84073bf99bd8c895208419e04fb44ec8a39504e24, ZZZCompounder: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4, VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e, VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7, MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38, ZZZOracle: [0xD16d567549A2a2a2005aEACf7fB193851603dd70])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c, ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496])
+    │   └─ ← [Stop]
+    ├─ [23431] MockAccess::setKeeper(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], true)
+    │   └─ ← [Stop]
+    ├─ [690932] → new MockVRF@0x756e0562323ADcDA4430d6cb456d9151f605290B
+    │   └─ ← [Return] 3451 bytes of code
+    ├─ [1463] ZZZNFT::access() [staticcall]
+    │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    ├─ [183807] ZZZProtocolPolicy::configureRandomness(MockVRF: [0x756e0562323ADcDA4430d6cb456d9151f605290B], 0x0fdfb663dec615d194c4448cbaee3030522c0c37e0ce92ddadb3ba717e394d25, 0x0000000000000000000000000000000000000000000000000000000000000001, 1, 3, 500000 [5e5], false, 0xc765236cb61d1ef5e30eaa108004e9eaab2aa763765f15d63c6bb9d70903899a)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [815] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ emit RandomnessConfigured(coordinator: MockVRF: [0x756e0562323ADcDA4430d6cb456d9151f605290B], generation: 0, revision: 1, reviewHash: 0xc765236cb61d1ef5e30eaa108004e9eaab2aa763765f15d63c6bb9d70903899a)
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [89391] MockPools::setFixedZZZ(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   ├─ [34023] → new MockFixedLPAssetIdentity@0x5B0091f49210e7B2A57B03dfE1AB9D08289d9294
+    │   │   └─ ← [Return] 166 bytes of code
+    │   └─ ← [Stop]
+    ├─ [63210] ZZZRewards::addAsset(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [815] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [1292] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   ├─ [593] MockPools::activationAssets() [staticcall]
+    │   │   └─ ← [Return] MockFixedLPAssetIdentity: [0x5B0091f49210e7B2A57B03dfE1AB9D08289d9294]
+    │   ├─ [198] MockFixedLPAssetIdentity::zzz() [staticcall]
+    │   │   └─ ← [Return] MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ emit AssetAdded(token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [101081] MockPools::set(0x21671519bc1ead3bd8703d273d63ac7c6142ad3df8c71e8955e71a33ae269fc5, PoolConfig({ key: PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] }))
+    │   └─ ← [Stop]
+    ├─ [3292] MockAccess::module(0x8793ebf778da79e95ce07a99a87738bb03de82612fccea3b04b4a321177b66b7) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [4909456] → new ZZZCanonicalHandoff@0x1aF7f588A501EA2B5bB3feeFA744892aA2CF00e6
+    │   └─ ← [Return] 24400 bytes of code
+    ├─ [21017] MockAccess::bind(0x8793ebf778da79e95ce07a99a87738bb03de82612fccea3b04b4a321177b66b7, ZZZCanonicalHandoff: [0x1aF7f588A501EA2B5bB3feeFA744892aA2CF00e6])
+    │   └─ ← [Stop]
+    ├─ [3292] MockAccess::module(0xe7c4cba8d36bbf11a32f62c7c712436629d5e6a88deaf0cafcd35798392bcc0f) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1292] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   └─ ← [Return] ZZZNFT: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]
+    ├─ [3190825] → new ZZZNFTCanonical@0xe8dc788818033232EF9772CB2e6622F1Ec8bc840
+    │   ├─ [1463] ZZZNFT::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   └─ ← [Return] 15912 bytes of code
+    ├─ [21017] MockAccess::bind(0xe7c4cba8d36bbf11a32f62c7c712436629d5e6a88deaf0cafcd35798392bcc0f, ZZZNFTCanonical: [0xe8dc788818033232EF9772CB2e6622F1Ec8bc840])
+    │   └─ ← [Stop]
+    ├─ [3292] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   └─ ← [Return] ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    ├─ [293] ZZZVault::canonicalChainId() [staticcall]
+    │   └─ ← [Return] 31337 [3.133e4]
+    ├─ [4921415] → new ZZZVaultCanonical@0x3Cff5E7eBecb676c3Cb602D0ef2d46710b88854E
+    │   ├─ [1292] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [293] ZZZVault::canonicalChainId() [staticcall]
+    │   │   └─ ← [Return] 31337 [3.133e4]
+    │   ├─ [1253] ZZZVault::ACCOUNTING_VERSION() [staticcall]
+    │   │   └─ ← [Return] 7
+    │   └─ ← [Return] 24312 bytes of code
+    ├─ [21017] MockAccess::bind(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50, ZZZVaultCanonical: [0x3Cff5E7eBecb676c3Cb602D0ef2d46710b88854E])
+    │   └─ ← [Stop]
+    ├─ [3292] MockAccess::module(0x880ba1fe5e3dab66aacd02697910e5e9e5f23413023adbdbd75ab2200ba387e7) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1292] MockAccess::module(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04) [staticcall]
+    │   └─ ← [Return] ZZZFeeController: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    ├─ [2052088] → new ZZZFeesCanonical@0x27cc01A4676C73fe8b6d0933Ac991BfF1D77C4da
+    │   ├─ [609] ZZZFeeController::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [504] ZZZFeeController::FEE_INTAKE_VERSION() [staticcall]
+    │   │   └─ ← [Return] 1
+    │   └─ ← [Return] 10223 bytes of code
+    ├─ [21017] MockAccess::bind(0x880ba1fe5e3dab66aacd02697910e5e9e5f23413023adbdbd75ab2200ba387e7, ZZZFeesCanonical: [0x27cc01A4676C73fe8b6d0933Ac991BfF1D77C4da])
+    │   └─ ← [Stop]
+    ├─ [754] MockAccess::seal()
+    │   └─ ← [Stop]
+    ├─ [0] VM::deal(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [48682] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [26058] MockToken::approve(ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x00000000000000000000000000000000000A11cE, spender: ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [0] VM::deal(0x0000000000000000000000000000000000000B0b, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [26782] MockToken::mint(0x0000000000000000000000000000000000000B0b, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x0000000000000000000000000000000000000B0b, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x0000000000000000000000000000000000000B0b)
+    │   └─ ← [Return]
+    ├─ [26058] MockToken::approve(ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x0000000000000000000000000000000000000B0b, spender: ZZZVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [0] VM::deal(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], 10000000000000000000 [1e19])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [19416874] ContributionThreePercentEntryTest::testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull()
+    ├─ [5729] MockAccess::beginBootstrap()
+    │   └─ ← [Stop]
+    ├─ [1118] ZZZVault::migrationBudget() [staticcall]
+    │   └─ ← [Return] ZZZMigrationBudget: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    ├─ [23465] ZZZMigrationBudget::setLossLimits(100, 300)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit ContributionLossLimitChanged(previous: 300, current: 100)
+    │   ├─ emit MaintenanceLossLimitChanged(previous: 300, current: 300)
+    │   └─ ← [Stop]
+    ├─ [539520] → new MockToken@0x796f2974e3C1af763252512dd6d521E9E984726C
+    │   └─ ← [Return] 2463 bytes of code
+    ├─ [2396282] → new VaultLiquidityMock@0x92a6649Fdcc044DA968d94202465578a9371C7b1
+    │   └─ ← [Return] 11387 bytes of code
+    ├─ [5917] MockAccess::bind(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4, VaultLiquidityMock: [0x92a6649Fdcc044DA968d94202465578a9371C7b1])
+    │   └─ ← [Stop]
+    ├─ [346415] → new MockFeed@0xDA5A5ADC64C8013d334A0DA9e711B364Af7A4C2d
+    │   └─ ← [Return] 1170 bytes of code
+    ├─ [182485] → new CorrelatedFixtureFeed@0x886D6d1eB8D415b00052828CD6d5B321f072073d
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [234] MockFeed::decimals() [staticcall]
+    │   └─ ← [Return] 8
+    ├─ [322426] ZZZOracle::setDualFeed(0x0000000000000000000000000000000000000000, SourcePolicy({ source: 0xDA5A5ADC64C8013d334A0DA9e711B364Af7A4C2d, expectedCodeHash: 0x0ca2a099dc9f6baa4bb00e9e092904ae0e55ef07bd98acb17c90d6808d08abc7, independenceId: 0x459bf7ba9ebf8683250eebd8127188d28a8061a98a546e07c8495d77ccfb6acf, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x886D6d1eB8D415b00052828CD6d5B321f072073d, expectedCodeHash: 0xd487a3bf577c72720143e8f5325e1c776c2f838624741cc97350f01d80482d8b, independenceId: 0x42205d0a9827cd34e6d425bd5aeb141ad500357b11d996e17404c04da2a217ea, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [3012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [2543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit DualPolicyRecorded(id: 0x4ebfbc7814e8ab9720af9be1d3f532cf584833b3079d1408c6dee8148772d3b7, token: 0x0000000000000000000000000000000000000000, primary: MockFeed: [0xDA5A5ADC64C8013d334A0DA9e711B364Af7A4C2d], secondary: CorrelatedFixtureFeed: [0x886D6d1eB8D415b00052828CD6d5B321f072073d], primaryIndependenceId: 0x459bf7ba9ebf8683250eebd8127188d28a8061a98a546e07c8495d77ccfb6acf, secondaryIndependenceId: 0x42205d0a9827cd34e6d425bd5aeb141ad500357b11d996e17404c04da2a217ea, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: 0x0000000000000000000000000000000000000000, previousPolicy: 0xa9cfe91b31882820b799d98b55592368c28ba736251a15d825f920c23720a2fc, activePolicy: 0x4ebfbc7814e8ab9720af9be1d3f532cf584833b3079d1408c6dee8148772d3b7)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0x4ebfbc7814e8ab9720af9be1d3f532cf584833b3079d1408c6dee8148772d3b7
+    ├─ [182485] → new CorrelatedFixtureFeed@0x3C4293F66941ECa00f4950C10d4255d5c271bAeF
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [234] MockFeed::decimals() [staticcall]
+    │   └─ ← [Return] 8
+    ├─ [353079] ZZZOracle::setDualFeed(MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], SourcePolicy({ source: 0xDA5A5ADC64C8013d334A0DA9e711B364Af7A4C2d, expectedCodeHash: 0x0ca2a099dc9f6baa4bb00e9e092904ae0e55ef07bd98acb17c90d6808d08abc7, independenceId: 0x459bf7ba9ebf8683250eebd8127188d28a8061a98a546e07c8495d77ccfb6acf, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x3C4293F66941ECa00f4950C10d4255d5c271bAeF, expectedCodeHash: 0xd487a3bf577c72720143e8f5325e1c776c2f838624741cc97350f01d80482d8b, independenceId: 0xd785c8383925e5a9b8f50527af287c1679986d7db604623c6346005574d1cb15, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   └─ ← [Return] 500000 [5e5]
+    │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit DualPolicyRecorded(id: 0x15fe3803ec6188e77ed4562b0cdd563baf323694bff0e4398c4468064a32a9d9, token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], primary: MockFeed: [0xDA5A5ADC64C8013d334A0DA9e711B364Af7A4C2d], secondary: CorrelatedFixtureFeed: [0x3C4293F66941ECa00f4950C10d4255d5c271bAeF], primaryIndependenceId: 0x459bf7ba9ebf8683250eebd8127188d28a8061a98a546e07c8495d77ccfb6acf, secondaryIndependenceId: 0xd785c8383925e5a9b8f50527af287c1679986d7db604623c6346005574d1cb15, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0x15fe3803ec6188e77ed4562b0cdd563baf323694bff0e4398c4468064a32a9d9)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0x15fe3803ec6188e77ed4562b0cdd563baf323694bff0e4398c4468064a32a9d9
+    ├─ [48682] MockToken::mint(0x00000000000000000000000000000000000A11cE, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Stop]
+    ├─ [26782] MockToken::mint(0x0000000000000000000000000000000000000B0b, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x0000000000000000000000000000000000000B0b, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Stop]
+    ├─ [5540186] → new SyntheticPoolRegistry@0x89CA9F4f77B267778EB2eA0Ba1bEAdEe8523af36
+    │   ├─ [743] MockAccess::activationAssetsFactory() [staticcall]
+    │   │   └─ ← [Return] ZZZActivationAssetsFactory: [0x037eDa3aDB1198021A9b2e88C22B464fD38db3f3]
+    │   ├─ [1233623] ZZZActivationAssetsFactory::create()
+    │   │   ├─ [1175579] → new ZZZActivationAssets@0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8
+    │   │   │   ├─ [743] MockAccess::activationAssetsFactory() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZActivationAssetsFactory: [0x037eDa3aDB1198021A9b2e88C22B464fD38db3f3]
+    │   │   │   ├─ [347] ZZZActivationAssetsFactory::access() [staticcall]
+    │   │   │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   │   │   └─ ← [Return] 5849 bytes of code
+    │   │   └─ ← [Return] ZZZActivationAssets: [0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8]
+    │   ├─ [2002661] → new ZZZActivationEntry@0xc44Bc53910FAAbE11C9209026AB4fe96938437A9
+    │   │   ├─ [446] ZZZActivationAssets::registry() [staticcall]
+    │   │   │   └─ ← [Return] SyntheticPoolRegistry: [0x89CA9F4f77B267778EB2eA0Ba1bEAdEe8523af36]
+    │   │   ├─ [543] ZZZActivationAssets::access() [staticcall]
+    │   │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   │   └─ ← [Return] 9863 bytes of code
+    │   └─ ← [Return] 11302 bytes of code
+    ├─ [5917] MockAccess::bind(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7, SyntheticPoolRegistry: [0x89CA9F4f77B267778EB2eA0Ba1bEAdEe8523af36])
+    │   └─ ← [Stop]
+    ├─ [528] SyntheticPoolRegistry::activationAssets() [staticcall]
+    │   └─ ← [Return] ZZZActivationAssets: [0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8]
+    ├─ [561] SyntheticPoolRegistry::activationEntry() [staticcall]
+    │   └─ ← [Return] ZZZActivationEntry: [0xc44Bc53910FAAbE11C9209026AB4fe96938437A9]
+    ├─ [261550] ZZZActivationAssets::configureZZZ(MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], 0xade43eca5f587c0659b8238be40a9930be4047ec518fa72b4003efa4ffa8e712, 0x76ad2695b08783490c3da988d131e4eb414406c025e9bdddab758f9744fb7ec8)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [815] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [3292] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   └─ ← [Return] ZZZOracle: [0xD16d567549A2a2a2005aEACf7fB193851603dd70]
+    │   ├─ [1599] ZZZOracle::tokenDecimals(MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C]) [staticcall]
+    │   │   └─ ← [Return] 18
+    │   ├─ [54033] ZZZOracle::price(MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C]) [staticcall]
+    │   │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 18
+    │   │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   └─ ← [Return] 8
+    │   │   ├─ [1012] MockAccess::protocolPolicy() [staticcall]
+    │   │   │   └─ ← [Return] ZZZProtocolPolicy: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]
+    │   │   ├─ [543] ZZZProtocolPolicy::sourceCallGas() [staticcall]
+    │   │   │   └─ ← [Return] 500000 [5e5]
+    │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1000000000000000000 [1e18]
+    │   ├─ emit AssetPolicyRecorded(id: 0xd27c5dd4163730e86df9e450e6e5a742660b1ece982b91be4defe06837cf78ae, token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], enabled: true, expectedCodeHash: 0xade43eca5f587c0659b8238be40a9930be4047ec518fa72b4003efa4ffa8e712, reviewHash: 0x76ad2695b08783490c3da988d131e4eb414406c025e9bdddab758f9744fb7ec8, decimals: 18, poolAdmission: false)
+    │   ├─ emit AssetPolicyActivated(token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0xd27c5dd4163730e86df9e450e6e5a742660b1ece982b91be4defe06837cf78ae)
+    │   ├─ emit ZZZIdentityConfigured(token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C], codeHash: 0xade43eca5f587c0659b8238be40a9930be4047ec518fa72b4003efa4ffa8e712, reviewHash: 0x76ad2695b08783490c3da988d131e4eb414406c025e9bdddab758f9744fb7ec8)
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xd27c5dd4163730e86df9e450e6e5a742660b1ece982b91be4defe06837cf78ae
+    ├─ [8707969] → new ZZZRewards@0xe54a55121A47451c5727ADBAF9b9FC1643477e25
+    │   ├─ emit AssetAdded(token: 0x0000000000000000000000000000000000000000)
+    │   ├─ [3750181] → new ZZZRewardsCanonical@0xeBB4a078907Cf534c7Ce5bE89f3D19FD1939BB2B
+    │   │   └─ ← [Return] 18609 bytes of code
+    │   └─ ← [Return] 24218 bytes of code
+    ├─ [5917] MockAccess::bind(0x84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd, ZZZRewards: [0xe54a55121A47451c5727ADBAF9b9FC1643477e25])
+    │   └─ ← [Stop]
+    ├─ [63684] ZZZRewards::addAsset(MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C])
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [815] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [1292] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   └─ ← [Return] SyntheticPoolRegistry: [0x89CA9F4f77B267778EB2eA0Ba1bEAdEe8523af36]
+    │   ├─ [528] SyntheticPoolRegistry::activationAssets() [staticcall]
+    │   │   └─ ← [Return] ZZZActivationAssets: [0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8]
+    │   ├─ [737] ZZZActivationAssets::zzz() [staticcall]
+    │   │   └─ ← [Return] MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C]
+    │   ├─ emit AssetAdded(token: MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [8440] SyntheticPoolRegistry::configure(PoolConfig({ key: PoolKey({ currency0: 0x0000000000000000000000000000000000000000, currency1: 0x796f2974e3C1af763252512dd6d521E9E984726C, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 1000, triggerBps: 300, maxSpotDeviationBps: 100, maxSlippageBps: 100, minRebalanceInterval: 600, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] }))
+    │   ├─ [1462] MockAccess::canConfigure(ContributionThreePercentEntryTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [1010] MockAccess::lpExitStarted() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [737] ZZZActivationAssets::zzz() [staticcall]
+    │   │   └─ ← [Return] MockToken: [0x796f2974e3C1af763252512dd6d521E9E984726C]
+    │   └─ ← [Revert] InvalidConfiguration()
+    └─ ← [Revert] InvalidConfiguration()
+
+Backtrace:
+  at SyntheticPoolRegistry.configure
+  at ContributionThreePercentEntryTest.testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 20.01ms (11.38ms CPU time)
+
+Ran 1 test suite in 45.59ms (20.01ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/ContributionThreePercent.t.sol:ContributionThreePercentEntryTest
+[FAIL: InvalidConfiguration()] testSavedTwoPercentCallerMaximumRejectsBeforeTokenPull() (gas: 19416874)
+
+Encountered a total of 1 failing tests, 0 tests succeeded

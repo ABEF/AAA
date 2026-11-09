@@ -1,5 +1,10 @@
 # Served current3 website profile and fresh contract boundary
 
+Fresh source now defaults to300bps total contribution loss (97% marginal LP).
+This does not widen an independently approved client ceiling200, change old
+runtime state or upgrade a saved review. Such a ceiling remains2% and refuses
+a governed300 cap until separately re-reviewed. See [policy](EXECUTION_LOSS_POLICY.md).
+
 **Mint-profile boundary:** reader/service versions named in this guide retain
 their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
 adds original-recipient mint books and needs matching reviewed consumers
@@ -24,7 +29,7 @@ Public signing remains disabled.
 | Inputs | Exactly native ETH/zero/18 and the fixed deployment ZZZ; reviewed runtime, decimals, policy IDs, typed route and enabled state |
 | HTTP response schema | Remains schema2; website manifest and API envelope versions are independent |
 | Position data | Accounting3/local eight-word codec selected by the backend; its status/valuation rules do not implement accounting4's terminal holder-exit state |
-| Budget | Explicit reviewed maximum contribution cap; default200bps permits98% marginal deployed LP. Captured actual governance cap and stronger caller/venue minima still apply |
+| Budget | Explicit reviewed maximum contribution cap; an explicitly reviewed200bps ceiling permits98% marginal deployed LP. Captured actual governance cap and stronger caller/venue minima still apply |
 
 At a canonical pinned block, the browser verifies reviewed runtime code,
 versions, parent/module bindings, sealed governance and canonical chain/schema,

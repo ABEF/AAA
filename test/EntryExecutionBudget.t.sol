@@ -6,7 +6,7 @@ import {PoolConfig, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 /// @notice Gross-input UX and actual marginal LP protection, with a fake venue.
 /// Actual native-v4 venue execution has separate integration tests.
 contract EntryExecutionBudgetTest is PooledVaultFixture {
-    // This suite explicitly tests the narrower governed1% policy, not the2% default.
+    // This suite explicitly tests the narrower governed1% policy, not the3% default.
     function setUp()public override{super.setUp();vault.migrationBudget().setLossLimits(100,300);}
     function testHundredGrossWithNinetyNineLPActivates() public {
         venue.setSpendBps(9900);

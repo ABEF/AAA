@@ -64,8 +64,8 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     function _rebalance() private {vault.rebalance(_bucket(),1,block.timestamp+100);}
     function testDefaultsHardMaximumZeroAndGovernanceEvents() public {
         ZZZMigrationBudget b=_budget();assertEq(b.MAX_LOSS_BPS(),1000);
-        assertEq(b.contributionLossBps(),200);assertEq(b.maintenanceLossBps(),300);
-        vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(200,1000);
+        assertEq(b.contributionLossBps(),300);assertEq(b.maintenanceLossBps(),300);
+        vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(300,1000);
         b.setLossLimits(1000,300);
         vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(1000,1000);
         vm.expectEmit(false,false,false,true,address(b));emit MaintenanceLossLimitChanged(300,0);

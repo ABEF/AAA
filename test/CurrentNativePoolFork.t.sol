@@ -211,6 +211,8 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
     function _system() private returns (System memory s) {
         access.beginBootstrap();
         s.vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
+        // The pinned historical fork evidence reviews2%, never new default3%.
+        s.vault.migrationBudget().setLossLimits(200,300);
         s.nft=new ZZZNFT(address(access),"ipfs://TEST_ONLY/", address(new ZZZNFTMetadata(address(access)))); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.vrf=new MockVRF();
         s.membership=new ZZZMembership(address(access)); s.rewards=new ZZZRewards(address(access));
         s.fees=new ZZZFeeController(address(access));

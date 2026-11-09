@@ -1,5 +1,12 @@
 # PoPL current project context
 
+Current total contribution default is300bps (3%):97% actually deployed LP,
+gas separate. User selected TOTAL activation/growth only; no swap/spot/retained-
+value, conversion1%, maintenance3%, additional1% or source-agreement3% guard is
+changed. [Policy/source evidence](reports/contribution-loss3-20261109/REVIEW.md) binds the new default/runtimes; old
+instances/caller200 reviews/journals and earlier market2% evidence remain explicit.
+No deployment/service/site/Anvil/signing change or market qualification is implied.
+
 Actual market dependencies remain unqualified. The [read-only/fork market review](reports/market-qualification-20261109/REVIEW.md)
 finds no usable dual ETH/fixedZZZ USD pair: both Chainlink proxies share one
 aggregator; the observed Pyth ETH update exceeds the hard one-day age bound and
@@ -119,7 +126,7 @@ changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 one fixed ZZZ for contributions/LP/buyback/holder return. Default activation100USD,
 growth5USD/direct mint0.05ETH; future minima/payout policy remain bounded and
 governed. Two independent USD sources per priced asset,3% agreement. Default
-contribution2%/LP conversion1%/maintenance3%, governed ceilings10%, gas separate;
+contribution3%/LP conversion1%/maintenance3%, governed ceilings10%, gas separate;
 additional execution loss1% after known directional fees and default5% idle are
 different guards. Fixed80/10/5/5 actual LP receipts: owner/equal active collective/
 compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.

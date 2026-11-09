@@ -14,6 +14,8 @@ from zzz_ops.abi import calldata, decode_words
 ROOT=Path(__file__).resolve().parents[1]
 FIXTURE=ROOT/'tests_python/fixtures/source9-entry3-actual-trace7.json.gz'
 SHA256='893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f'
+ORIGINAL_NORMAL=ROOT/'reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json'
+ORIGINAL_NORMAL_SHA256='af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92'
 
 
 class ActualEntry3Trace7Tests(unittest.TestCase):
@@ -39,8 +41,13 @@ class ActualEntry3Trace7Tests(unittest.TestCase):
     def test_actual_raw_trace_and_production_source_scope_are_frozen(self):
         self.assertEqual(SHA256,hashlib.sha256(FIXTURE.read_bytes()).hexdigest())
         self.assertEqual(56,len(self.fixture['contract_source_sha256']))
+        # This is an actual historical200-bps trace, not a new execution of
+        # whichever sources are currently checked out. Retain its original
+        # producer's exact normal-build source scope after later policy edits.
+        self.assertEqual(ORIGINAL_NORMAL_SHA256,hashlib.sha256(ORIGINAL_NORMAL.read_bytes()).hexdigest())
+        original=json.loads(ORIGINAL_NORMAL.read_text(encoding='utf8'))['source_sha256']
         for name,digest in self.fixture['contract_source_sha256'].items():
-            self.assertEqual(digest,hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),name)
+            self.assertEqual(digest,original[name],name)
         self.assertNotIn('error',self.root)
         self.assertEqual(0,int(decode_words('0x'+self.finish['input'][10:])[2],16))
         self.assertEqual(0,int(self.epochs[0]['output'],16))

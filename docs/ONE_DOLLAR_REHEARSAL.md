@@ -24,8 +24,8 @@ sealing, signing, public transactions or changing the preserved Anvil stack.
    Preserve every unrelated pool setting, exact token identity and custody.
 4. Simulate and review each exact operation before any separately authorized
    submission. Confirm actual configuration/events, original-source value,
-   marginal new LP, shares, retained backing and gas. With the default 2% loss
-   cap, $1 of conservative input still needs at least $0.98 of new deployed LP.
+   marginal new LP, shares, retained backing and gas. With the default 3% loss
+   cap, $1 of conservative input still needs at least $0.97 of new deployed LP.
    An oracle-priced token is not assumed to equal $1 per unit.
 5. Restore the explicitly reviewed production minima/pool settings before a
    release candidate is considered. Read actual values rather than assuming

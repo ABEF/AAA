@@ -22,7 +22,7 @@
       "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
       "src/ZZZMembership.sol": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
       "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
-      "src/ZZZMigrationBudget.sol": "fb67a8263cdf720984fd77caa754dd51956b39d7f704c34ee22391c04011caa4",
+      "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
       "src/ZZZNFT.sol": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
       "src/ZZZNFTCanonical.sol": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
       "src/ZZZNFTMetadata.sol": "2e66578c27a917fe91f8c111bab0ef162fbe42f09ee7c7125bcfb1366a608a12",
@@ -235,9 +235,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "dffd16f1700b46094cf5e752cbc4a5bcf62ed2f6d2c7d82e37ce80e17dbdbbdf",
-    "compiler_output_sha256": "665e457d5524aff7dedbde3ed61d571e9dd2d622e001e00d39c3219868841eac",
-    "size_evidence_sha256": "01c89e6f1d948e31a393952f83291971c34f98a037e5b83b7ec6ef4b59c6e5fc",
+    "compiler_input_sha256": "6dc29e7bc35b46b985dcb69608d85218e1980833e6bee9474f9569a7cfaa8f29",
+    "compiler_output_sha256": "5c5702dc89af029ffef5bea1005f293d7c52089eaf673ec6426364b6ea22670d",
+    "size_evidence_sha256": "d7e33b7d8d805e7e3c23192a5251aeae32537456baffd2c2781132d64616cd72",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -26296,7 +26296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "27edff4511a586a4927e5e29df2b7b009624499a16f27a7dd8a26c0952aefcb8",
+  "notes_sha256": "fd8842e89f76ce5c587883683e82dc19755adf124f78ab52b07d6f245f2f0e05",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -42547,7 +42547,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Both values supplied together. Captured operation limits and original custody floors cannot be retroactively loosened; gas separate. Inputs: Basis points: default contribution200 and maintenance300."
+          "notes": "Both values supplied together. Preserve current maintenance when changing only contribution. Fresh defaults contribution300 and maintenance300; actual getters and captured caller/venue floors apply. Gas separate."
         },
         {
           "signature": "validateCanonicalWriter(address)",

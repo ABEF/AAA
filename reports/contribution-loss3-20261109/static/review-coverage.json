@@ -1,0 +1,8 @@
+{
+  "review_coverage_pass": true,
+  "findings": 558,
+  "current_contexts": 11,
+  "unique_exact_reused": 547,
+  "errors": [],
+  "independent_audit": false
+}

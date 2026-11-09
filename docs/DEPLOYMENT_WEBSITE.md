@@ -27,7 +27,7 @@ unavailable, and the shared signer remains Anvil-only.
 The legacy configuration and local-wallet procedures below retain their own
 profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;
 the schema 1 99% fixture floor is not a universal current rule. The contract
-candidate accepts ETH/fixed ZZZ only and defaults to 2% contribution loss; manifest
+candidate accepts ETH/fixed ZZZ only and defaults to 3% contribution loss; manifest
 input admission, code/runtime pins and quote policy must match the selected
 version exactly. No source publication updates a static server, existing chain,
 wallet journal or running service.

@@ -1,0 +1,18 @@
+{
+  "command_differences": [
+    {
+      "index": 13,
+      "before": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt5-existing\\build-info",
+      "after": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt6-existing\\build-info"
+    },
+    {
+      "index": 17,
+      "before": "test(DefaultsHardMaximumZeroAndGovernanceEvents|ActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth|NativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper|LongHorizonSameBlockUsersBeforeRebalance|CurrentVaultActivationGrowthUsesOneBackedSharedLP)$",
+      "after": "test(DefaultsHardMaximumZeroAndGovernanceEvents|ActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth|NativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper|LongHorizonSameBlockUsersBeforeRebalance|CurrentVaultActivationGrowthUsesOneBackedSharedLP)"
+    }
+  ],
+  "same_snapshot_root": true,
+  "same_source_hashes": true,
+  "same_tools": true,
+  "interpretation": "Only semantic execution-filter change removes bare-name end anchor; other difference is retained build-info output directory. Callable ABI signatures include parentheses. This changes compiler inclusion90->209. Prior path/glob suspicion remains unconfirmed and is not the diagnosis."
+}

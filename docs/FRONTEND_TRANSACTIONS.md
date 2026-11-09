@@ -302,7 +302,7 @@ The selected read-service graph alone does not authenticate Entry, Registry, sou
 admission and dual Oracle policies. Activation requires those additional
 reviewed identities, a complete original-source quote and a simulated marginal
 LP deployment satisfying the captured contribution-loss budget. The current
-ETH/fixed ZZZ candidate defaults to 2%, governed up to 10%, with its reviewed caller
+ETH/fixed ZZZ candidate defaults to 3%, governed up to 10%, with its reviewed caller
 ceiling and stricter execution minima still enforced. Historical 1% fixtures keep
 their original policy/ABI; do not reuse their quotes for the current profile.
 

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "489bd4554e549cb8c71788e69f926e840ed330761dafb4912b020e8f8a2d0858",
+  "reference_sha256": "3b0c0ed7555b19e79f39ca748634e326a35f9266f1d03fc1b4fa632b9dac89cd",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -463,7 +463,7 @@
           "$UNIX_DEADLINE",
           false
         ],
-        200,
+        300,
         "$EXPECTED_CONTRIBUTION_POLICY"
       ],
       "value": "$ETH_INPUT_WEI"
@@ -3219,7 +3219,7 @@
       "role": "G",
       "short": "Set contribution/maintenance loss limits",
       "arguments": [
-        200,
+        300,
         300
       ],
       "value": null

@@ -19,7 +19,7 @@ weaken a captured operation. Gas is separate.
 Other buckets, donations, claims, royalties and buyback reserves cannot subsidize
 principal. Failure reverts the atomic action; per-operation caps do not bound
 cumulative turnover, impermanent loss or future market loss. Contributions instead
-require marginal deployed LP under their captured default 2% cap/caller maximum,
+require marginal deployed LP under their captured default 3% cap/caller maximum,
 conservative price bounds and$100/$5 original-value minima.
 
 Same-pair movement cannot turn ETH into WETH or exchange ZZZ for a new token.

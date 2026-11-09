@@ -8,7 +8,7 @@ and [current feature/evidence boundaries](IMPLEMENTATION_STATUS.md). Earlier
 [pruning review](../reports/architecture-pruning-20261025/REVIEW.md) remains historical.
 
 Governance may configure contribution, conversion and maintenance loss limits
-within hard 10% ceilings; defaults are 2%/1%/3%, gas separate. Captured operation
+within hard 10% ceilings; defaults are 3%/1%/3%, gas separate. Captured operation
 policy, stronger caller/venue minima and
 backing remain. [Exact controls](EXECUTION_LOSS_POLICY.md), [typed routes](TYPED_V4_ROUTES.md).
 
@@ -20,7 +20,7 @@ Aliases and returns reuse their slot; reserved None-state entries have no
 principal or shares and are skipped by maintenance. Admission does not qualify market depth, conversion routes or service operation. See [evolution and trust boundaries](ARCHITECTURE_EVOLUTION.md)
 and its [source-scoped evidence](../reports/architecture-evolution/VERIFICATION.md). Current selected-pool changes have separate [verification](../reports/hookless-pool/VERIFICATION.md).
 
-Current undeployed candidate:1,000 NFTs; exact600/300/100 random rarities; free TEAM and governed-price AL/public dormant mints(default0.05ETH gross, gas separate); $100 original gross source activation with the captured contribution floor (98% at default 2%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
+Current undeployed candidate:1,000 NFTs; exact600/300/100 random rarities; free TEAM and governed-price AL/public dormant mints(default0.05ETH gross, gas separate); $100 original gross source activation with the captured contribution floor (97% at default 3%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
 
 Paused governance [same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation)
 closes only the residual, reinvests attributed idle and applies modeOFF without
@@ -105,7 +105,7 @@ Stablecoins may be admitted separately as marketplace royalty currencies.
 
 ## Entry and membership
 
-Activation defaults to at least100USD original ETH/fixed-ZZZ source value (future-governed policy minima), with the captured contribution floor(default2%,at least98%) actually deployed as marginal oracle-valued MAIN LP. Registry-created direct [Entry3](ACTIVATION_ENTRY.md) forwards the exact pair input to the fixed Vault; no pre-Vault route/conversion child exists. Vault performs reviewed ratio balancing and LP placement within the one captured source budget. Owner/context, dual-price/policy, exact allowance/balance and actual marginal LP checks remain. Growth defaults5USD under the same rules and stronger pool minima; current governed idle limits remain independent. Only the LP reward converter retains reviewed v3/v4 routes; royalties are claimed in their original currency. Actual input/venue/token/feed/gas qualification remains open.
+Activation defaults to at least100USD original ETH/fixed-ZZZ source value (future-governed policy minima), with the captured contribution floor(default3%,at least97%) actually deployed as marginal oracle-valued MAIN LP. Registry-created direct [Entry3](ACTIVATION_ENTRY.md) forwards the exact pair input to the fixed Vault; no pre-Vault route/conversion child exists. Vault performs reviewed ratio balancing and LP placement within the one captured source budget. Owner/context, dual-price/policy, exact allowance/balance and actual marginal LP checks remain. Growth defaults5USD under the same rules and stronger pool minima; current governed idle limits remain independent. Only the LP reward converter retains reviewed v3/v4 routes; royalties are claimed in their original currency. Actual input/venue/token/feed/gas qualification remains open.
 
 Before share/membership changes, the Vault settles already-funded local dust
 and harvests both current bucket legs. Entrant-only swaps/deployment increase the

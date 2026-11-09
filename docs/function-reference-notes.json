@@ -5054,7 +5054,7 @@
         "setLossLimits(uint16,uint16)": {
           "purpose": "Set contribution and maintenance caps for future operations within hard 10% maxima.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: nonReentrant, no preparation/canonical lock or active captured snapshot.",
-          "notes": "Both values supplied together. Captured operation limits and original custody floors cannot be retroactively loosened; gas separate. Inputs: Basis points: default contribution200 and maintenance300.",
+          "notes": "Both values supplied together. Preserve current maintenance when changing only contribution. Fresh defaults contribution300 and maintenance300; actual getters and captured caller/venue floors apply. Gas separate.",
           "inputs": {
             "0": "Future contribution-loss limit in basis points, at most1,000.",
             "1": "Future maintenance-loss limit in basis points, at most1,000."

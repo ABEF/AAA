@@ -1,0 +1,13 @@
+{
+  "tests_python/test_activation_actual_trace7.py": "a3a1535c33f799071439250aae36f1b499717324c6a37a1f992ad7b3032c62a5",
+  "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+  "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+  "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+  "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+  "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+  "config/production.example.json": "c20528939c6f9a295b988e37b05a125e11ba979be3db4c1422df9e0bc65fd0ef",
+  "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+  "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+  "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+  "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+}

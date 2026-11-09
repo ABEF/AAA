@@ -55,7 +55,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    there is no pool-spot, stale-price or assumed-stable-peg fallback. Two matching
    addresses or answers do not establish independent price discovery.
 4. Contribution prices and limits are frozen before external token/conversion
-   callbacks. The current **2% contribution** default requires marginal deployed
+   callbacks. The current **3% contribution** default requires marginal deployed
    LP to satisfy the captured conservative upper-input/lower-LP floor. It cannot
    be met using incumbent LP, unrelated idle, donations or historical compound.
    Reviewed Entry also binds the caller's maximum loss before funds move.

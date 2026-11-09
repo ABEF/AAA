@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-11-09T05:38:11.053088+00:00",
+  "new_test_methods": 9,
+  "exact_stage_counting": "Seven successful core methods at attempt1; two initially failed inherited native-admission setup, corrected only in new test and passed at attempt2-entry. The seven core contract/fixture bodies and compiled production sources are unchanged; source equivalence is explicit. No summing diagnostic repeats. Existing final selection pending separately.",
+  "initial_failure": "Inherited DirectEntryFixture uses ERC20-only SyntheticPoolRegistry, which rejects native currency0 before execution. Original old fixture not modified. New test uses an explicit native-admission-only subclass retaining production Registry/Entry/Assets/accounting and deterministic venue. This is test admission, never production runtime qualification.",
+  "selection_failures": "Attempts3,4,5 have exit0 but no tests; never count them as passes. Bare test-name regex ending$ did not match callable signatures with parentheses. Initial path-glob suspicion is unconfirmed and superseded; attempt6 changes only the regex end-anchor and includes209 sources.",
+  "test_maintenance": "VaultAccounting two labels/comment now describe3%/$97 floor; EntryExecutionBudget comment now describes new3% default while retaining its explicit1% scenario. Bodies unchanged and not rerun for wording.",
+  "explicit_200_fixture_scopes": [
+    "IntegratedEconomicConservationTest.setUp",
+    "NativeVaultFlowsTest.setUp",
+    "OptionalPortfolioCoreTest.setUp",
+    "CurrentNativePoolForkTest._system"
+  ],
+  "unchanged_context": "ContributionSourcePolicy constructs no Budget; its caller200 is an unsupported-source rejection beforepull. PooledVaultFixture keeps fresh300 default; no blanket historical pin.",
+  "qualification_limits": "Mock controller/VRF/feeds/native admission and deterministic venues remain explicit. Existing actual-v4 tests use real core/periphery with local substitutes. No public RPC/transaction, provider/market/gas/operating qualification, service/site/signer/Anvil/journal change or independent audit. Test gas includes fixture construction and multiple operations, not production per-transaction gas."
+}

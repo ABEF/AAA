@@ -213,7 +213,7 @@ not invent an exact slippage inequality from a generic error.
   This can overlap a swap check at unchanged prices, but not under every rounding,
   price-timing or emergency case.
 - **Contribution:** did this entrant actually add enough new LP? At the default
-  2% ceiling, a conservatively valued $100 input needs at least $98 of new LP.
+  3% ceiling, a conservatively valued $100 input needs at least $97 of new LP.
   Existing LP/idle cannot satisfy that floor.
 - **Maintenance:** did LP plus attributed idle retain enough starting value,
   including released compound? Its default ceiling is 3%; it is separate from

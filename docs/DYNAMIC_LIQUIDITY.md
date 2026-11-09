@@ -12,7 +12,7 @@ production NOT APPROVED**. Inputs are native ETH or the fixed deployment ZZZ.
 It does not qualify live feeds, routes, a keeper schedule or production funds.
 Remaining work belongs to the [central Todo](../TODO.md#task-security-share-accounting).
 
-[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defaults to 2% contribution,
+[Execution-loss policy](EXECUTION_LOSS_POLICY.md) defaults to 3% contribution,
 1% conversion and 3% maintenance; direct governance may configure each up to 10%.
 Stronger venue/caller minima and captured operation policy remain binding.
 The separate [execution-quality floor](EXECUTION_QUALITY.md) limits additional
@@ -44,7 +44,7 @@ fees remain in the same bucket; do not sum raw liquidity across ranges.
 
 | Operation | Actual source path | Accounting consequence |
 | --- | --- | --- |
-| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross activation/$5 growth and the captured marginal-deployed floor (98% at current default), gas separate. |
+| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross activation/$5 growth and the captured marginal-deployed floor (97% at current default), gas separate. |
 | Select token mix and swap venue | [Manager `balance`](../src/ZZZLiquidityManager.sol), [LPBalancer `plan`](../src/ZZZLPBalancer.sol) | Actual-core revert quotes compare bounded reviewed venues against current physical ticks; initial positions use Strategy `target`. Zero or one actual swap balances only the supplied budget. |
 | Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest both legs, release designated compound, close both, balance and rebuild the selected one/two-leg portfolio atomically. Keep shares; authenticate both actual IDs and final active-main/60%–40% guards. Share counts persist. |
 | Read current value | [LiquidityManager `portfolioAmounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
@@ -112,7 +112,7 @@ The user chose to allow new activations/top-ups outside the current range, with
 an explicit warning and all ordinary custody, oracle, route and captured contribution-floor checks retained.
 An outside-range or operator-requested rebalance alone does not block a contribution. There is
 no deposit queue, automatic user-triggered rebalance or arbitrary near-edge band.
-If costs cannot meet the captured floor (98% at the current 2% default), the atomic transaction still reverts.
+If costs cannot meet the captured floor (97% at the current 3% default), the atomic transaction still reverts.
 
 The quote's `liquidity_context` uses the same confirmed hash as its prices and
 simulation. It reads the current physical LP ticks, StateView `slot0.tick`,

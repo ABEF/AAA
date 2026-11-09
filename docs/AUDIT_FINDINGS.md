@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+The approved [total contribution3% update](../reports/contribution-loss3-20261109/REVIEW.md)
+changes only the fresh Budget default200→300 and corresponding template/reader
+examples. Actual marginal LP must reach97%; idle never supplies that floor.
+Pool spot/swap/NET/caller controls and conversion/maintenance remain separate.
+Old200 reviews/runtime state and the recorded market2% failures remain explicit;
+this does not establish market feasibility or change existing environments.
+
 The [actual market qualification](../reports/market-qualification-20261109/REVIEW.md)
 replaces an ambiguous depth-only diagnosis with source-bound evidence. Both
 Chainlink proxies share one aggregator; Pyth ETH is stale/beyond3% agreement;
@@ -65,7 +72,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The current strict pointer selects the [mint2 static record](../reports/opensea-integration-20261109/static-review.json):558records,186current-context dispositions and372unique exact referenced-source reuses, with unchanged matching rules. No installed environment changed.
+The current strict pointer selects the [contribution3 static record](../reports/contribution-loss3-20261109/static-review.json):558records,11current-context dispositions and547unique exact referenced-source reuses, with unchanged matching rules. Prior mint2(186/372) retains its source scope. No installed environment changed.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
 found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,

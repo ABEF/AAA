@@ -54,7 +54,7 @@ the caller or inferred from an intermediate conversion.
 Vault checkpoints incumbents, balances only entrant funds, harvests fees generated
 by that swap, increases MAIN only, verifies marginal physical deployed LP/net
 NAV and issues shares. It neither changes residual liquidity nor recentres or
-resets the rebalance clock. Default contribution loss2%, ceiling10%, gas separate;
+resets the rebalance clock. Default contribution loss3%, ceiling10%, gas separate;
 idle, known fees, additional loss and stronger caller/venue minima remain distinct.
 Direct input can still require a guarded balancing swap and can still fail.
 
@@ -89,10 +89,10 @@ changes Vault balancing choices, not the one contribution destination, token
 identity, existing liquidity or earned-conversion routes. An empty list stops
 swaps with no fallback; an already suitable inventory may need no swap.
 
-Contributions default100USD activation/5USD growth and a2% total execution budget,
+Contributions default100USD activation/5USD growth and a3% total execution budget,
 with policy bounds/caller maxima/stronger venue limits and gas separate. Dual
 source agreement3%, additional execution-loss1%, idle ceilings and known trading
-fees remain different controls. At default, marginal deployed LP must cover98%
+fees remain different controls. At default, marginal deployed LP must cover97%
 of conservative source value. Incumbent LP/idle/compound cannot subsidize it.
 
 

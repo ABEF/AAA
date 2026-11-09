@@ -1,0 +1,61 @@
+{
+  "scope": "Seven new synthetic contribution300-bps consumer methods plus one historical provenance maintenance method; no production EVM/fork/service/website acceptance",
+  "baseline": "793c8e026b1d3fc307256fde2f6d4e82c4efec37",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "tests_python.test_contribution_loss3",
+    "tests_python.test_activation_actual_trace7.ActualEntry3Trace7Tests.test_actual_raw_trace_and_production_source_scope_are_frozen",
+    "-v"
+  ],
+  "tests_run": 8,
+  "new_methods": 7,
+  "maintained_existing_methods": 1,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 7.789,
+  "successful_attempt": "focused-attempt1.log",
+  "log_sha256": "99acd62150e400081f2bddf440c07af36c999ee21b83df8932f4919c1a026de2",
+  "source_before": {
+    "tests_python/test_activation_actual_trace7.py": "a3a1535c33f799071439250aae36f1b499717324c6a37a1f992ad7b3032c62a5",
+    "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+    "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+    "config/production.example.json": "c20528939c6f9a295b988e37b05a125e11ba979be3db4c1422df9e0bc65fd0ef",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "source_after": {
+    "tests_python/test_activation_actual_trace7.py": "65539df6d961eb91ed05ae0072f444111e75a895ebaeac0bc7eb16b75af1d0a8",
+    "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+    "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+    "config/production.example.json": "c20528939c6f9a295b988e37b05a125e11ba979be3db4c1422df9e0bc65fd0ef",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+    "tests_python/test_contribution_loss3.py": "3b771ef08499a1cfce4183c4a7169eeeb87cc8eac32a17fa5fe200bac9c5c126"
+  },
+  "changed_during_child_work": [
+    "tests_python/test_activation_actual_trace7.py"
+  ],
+  "protected4_unchanged": true,
+  "actual_historical_fixture_gzip_sha256": "893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f",
+  "historical_producer_record_sha256": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+  "source_deployment_or_consumer_implementation_changed_by_child": false,
+  "historical200_values_not_relabelled": true,
+  "existing_stronger_guards_unchanged": {
+    "pool_net_and_venue_bps": 200,
+    "maximum_idle_bps": 500,
+    "old_caller_maximum_bps": 200
+  },
+  "no_unmodified_Solidity_suite_or_market_fork_rerun": true
+}

@@ -209,7 +209,7 @@ Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
 - Contribution inputs remain native ETH and one fixed ZZZ. Entry binds exact
   value/approval, current owner, original source value, caller maximum and
   actual marginal LP. Activation/growth minima default100/5USD and are governed for future contributions;
-  exact policy fingerprints and the2% default loss cap remain separate.
+  exact policy fingerprints and the3% default loss cap remain separate.
 - Production LP admission is native ETH/fixedZZZ only through configureNative.
   Another reviewed fee tier is possible; ERC20-only LP admission is removed.
   Separate reward-conversion venues/currencies do not expand principal assets.
@@ -276,7 +276,7 @@ Read [keeper safeguards](KEEPER_SAFEGUARDS.md) for the full protection inventory
 and the distinction between on-chain enforcement and bypassable service policy.
 
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
-default to 2% (98% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
+default to 3% (97% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
 Fresh LP routing2 selects one bounded route/size using actual-core quotes and
 executes zero or one balancing swap. Contributions can swap/deploy only their
 own amounts; old idle/compound stays attributed for guarded maintenance and in
@@ -435,7 +435,7 @@ range LP. Polling and a target width are not a promised execution time.
 Before admission, use the [actual market qualification record](../reports/market-qualification-20261109/REVIEW.md):
 two proxy addresses may share one aggregator, and a deployed Pyth Core may hold
 stale data. Feed catalogs and old answers are candidate discovery, never a live
-policy. The3% source agreement bound and2% contribution cap are different tests;
+policy. The3% source agreement bound and3% contribution cap are different tests;
 source spread consumes execution margin. Do not loosen one to hide failure of
 another. Check both swap directions at actual sizes through the complete
 operation: nonzero active L does not prove liquid ticks exist ahead. Preserve
@@ -489,7 +489,7 @@ require a fresh review. Existing nonzero historical compound keeps its starting
 mark; newly discovered historical compound is first marked at the final
 checkpoint only for incumbent backing, never the new LP floor. Source uncertainty
 uses some of the captured execution budget: even agreement inside 3% can fail
-the separate default 2% contribution execution floor. A failed quote does not authorize an
+the separate default 3% contribution execution floor. A failed quote does not authorize an
 automatic cap increase, stablecoin peg, spot price or single-source fallback.
 
 If either source fails, retain unavailable status and disable affected work until
@@ -692,7 +692,7 @@ No installed service changed.
 [Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy
 fields, activation `routing_version: 2`, converter workers and failure/restart.
 [Execution-loss controls](EXECUTION_LOSS_POLICY.md) supersede earlier fixed-cap
-wording in this manual: default **2% / 1% / 3%**, immediate governance **0-10%**,
+wording in this manual: default **3% / 1% / 3%**, immediate governance **0-10%**,
 network gas separate. Never assume an old default is the current on-chain value.
 
 | Change | Exact current control | Preserve / recover |
@@ -708,6 +708,20 @@ ordinary pause allows policy changes; preparation/canonical locks and reentry do
 not. Caps are per operation, not cumulative. Other venue guards can still be
 stricter than 10%; raising a cap does not bypass those guards or guarantee a swap.
 The public site remains simulated and signing remains Anvil-only.
+
+### Apply the total contribution3% policy
+
+Fresh Budget defaults to300bps. Existing deployments keep their actual stored
+value; source publication changes no chain. If authorized to adopt this policy,
+read `Budget.contributionLossBps()` and `maintenanceLossBps()`, then governance
+calls `setLossLimits(300,CURRENT_MAINTENANCE_BPS)` preserving maintenance. At
+maintenance300 the tuple is `(300,300)`. Simulate, confirm both getters/events,
+and prepare new wallet reviews. Previously reviewed caller maximum200 remains
+stricter and is rejected before input movement; do not widen an old review or
+edit its journal. No keeper restart is inherently required for an on-chain
+getter change, but independently approved service/client ceilings and pending
+work must be reconciled before new execution. Pool spot/per-swap/retained-value,
+conversion1%, maintenance and additional-loss settings remain unchanged.
 
 ## Before every management operation
 
@@ -1523,7 +1537,7 @@ not an immutable percentage. Contributions similarly capture
 `contributionLossBps()` as `C`: both net added backing and marginal deployed LP,
 valued at lower source bounds, must reach
 `U - floor(U * C / 10000)` for upper-bound original input value `U`. The default
-`C=200` means 98%; stronger venue/caller guards remain. Network gas is separate.
+`C=300` means 97%; stronger venue/caller guards remain. Network gas is separate.
 The user retained **per-operation limits only**: repeated permitted operations
 can accumulate losses. Monitor turnover/costs and stop harmful activity; no
 rolling loss breaker or guarantee against impermanent loss exists.
@@ -1563,8 +1577,8 @@ governance transaction and does not undo already executed swaps or range costs.
 For normal $5 increases, governance configures `minDepositUSD=5e18` through the
 appropriate full `configureNative` call. After terminal exit, reserve-venue configuration requires Ready and deposits
 disabled; activation/growth remain permanently stopped. Activation still requires
-$100; each action must meet the captured contribution-loss floor above (98% at
-the default 200 bps), gas separate. No per-user
+$100; each action must meet the captured contribution-loss floor above (97% at
+the default 300 bps), gas separate. No per-user
 override or new role exists. A higher pool minimum intentionally blocks smaller
 increases. Follow [the exact procedure](CONTRIBUTION_MINIMUMS.md#operator-procedure)
 for authority, simulation, verified getters/receipts, dependency-free stop,
@@ -2978,7 +2992,7 @@ current production integration.
 | Randomness provider/lane/subscription/payment | Planned ProtocolPolicy rotation requires every draw finalized; pending requests cannot change or reroll. |
 | Canonical artwork base, module/helper implementations, core strategy/adapter identity | Fixed after sealing. Bounded policy/geometry changes are not a replacement algorithm or arbitrary proxy upgrade. |
 | Future activation/growth minima | ProtocolPolicy allows reviewed USD18 minima>=1USD, growth<=activation; defaults100/5USD. Stronger pool minima and marginal LP floors remain. A smaller minimum changes future participation economics; no deployment/test action is implied. |
-| Exceed normal10% loss ceilings or lower hybrid main below60% | No ordinary configurable path. Defaults2%/1%/3%; main floor6000–9999bps or single mode. Separate paused-governance emergency manifests may explicitly bypass selected financial checks; they are not a way to raise normal caps and can lose nearly all principal. |
+| Exceed normal10% loss ceilings or lower hybrid main below60% | No ordinary configurable path. Defaults3%/1%/3%; main floor6000–9999bps or single mode. Separate paused-governance emergency manifests may explicitly bypass selected financial checks; they are not a way to raise normal caps and can lose nearly all principal. |
 | Holder withdrawal during normal operation, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance terminal collective return is a separate irreversible procedure, not a holder-facing withdrawal or custody sweep. |
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 
@@ -3825,7 +3839,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `G` [MigrationBudget.setCompoundInterval](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `poolId: bytes32`<br>`interval: uint32` | `setCompoundInterval(POOL_ID, 3600)` | Set standalone compounding interval |
-| `G` [MigrationBudget.setLossLimits](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `contribution: uint16`<br>`maintenance: uint16` | `setLossLimits(200, 300)` | Set contribution/maintenance loss limits |
+| `G` [MigrationBudget.setLossLimits](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `contribution: uint16`<br>`maintenance: uint16` | `setLossLimits(300, 300)` | Set contribution/maintenance loss limits |
 
 <details>
 <summary>Read functions and constants (42)</summary>
@@ -4484,7 +4498,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `H` [ActivationEntry.executeReviewed](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `request` [ZZZActivationEntry.Request](#input-zzzactivationentry-request)<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32`<br>`value: wei` (separate) | `executeReviewed(["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false], 200, EXPECTED_CONTRIBUTION_POLICY); value=ETH_INPUT_WEI wei` | Activate or grow attached LP |
+| `H` [ActivationEntry.executeReviewed](CONTRACT_FUNCTIONS.md#zzzactivationentry) | `request` [ZZZActivationEntry.Request](#input-zzzactivationentry-request)<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32`<br>`value: wei` (separate) | `executeReviewed(["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false], 300, EXPECTED_CONTRIBUTION_POLICY); value=ETH_INPUT_WEI wei` | Activate or grow attached LP |
 
 <details>
 <summary>Read functions and constants (8)</summary>

@@ -1,0 +1,892 @@
+{
+  "started_utc": "2026-11-09T05:32:48.812494+00:00",
+  "original_root": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+  "snapshot_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt4-existing\\project",
+  "selected_roots": [
+    "test/GovernedExecutionLoss.t.sol",
+    "test/IntegratedEconomicConservation.t.sol",
+    "test/NativeVaultFlows.t.sol",
+    "test/OptionalPortfolioCore.t.sol",
+    "test/CurrentNativePoolFork.t.sol"
+  ],
+  "sources": {
+    "src/libraries/ZZZV3VenueValidation.sol": {
+      "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "bytes": 1242
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "bytes": 3303
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "bytes": 11425
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "bytes": 2185
+    },
+    "src/interfaces/IZZZV3Route.sol": {
+      "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "bytes": 914
+    },
+    "src/libraries/ZZZPriceMath.sol": {
+      "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "bytes": 830
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "bytes": 32145
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "bytes": 34943
+    },
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "bytes": 1973
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "bytes": 10075
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+      "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "bytes": 4454
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "bytes": 193
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "bytes": 871
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "bytes": 182
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "bytes": 2781
+    },
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "bytes": 5065
+    },
+    "src/libraries/ExactLPAllocation.sol": {
+      "sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "bytes": 8377
+    },
+    "src/libraries/ExactAsset.sol": {
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "bytes": 1265
+    },
+    "src/interfaces/IZZZSeaDrop.sol": {
+      "sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "bytes": 5405
+    },
+    "src/interfaces/IZZZProtocolPolicy.sol": {
+      "sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "bytes": 2287
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "bytes": 2119
+    },
+    "src/interfaces/IZZZEmergency.sol": {
+      "sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "bytes": 1594
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "bytes": 1362
+    },
+    "src/base/ZZZSeaDropToken.sol": {
+      "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "bytes": 3616
+    },
+    "src/ZZZSeaDropMint.sol": {
+      "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "bytes": 17560
+    },
+    "src/base/ZZZRewardConverter.sol": {
+      "sha256": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
+      "bytes": 12775
+    },
+    "src/ZZZV4RouteExecutor.sol": {
+      "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "bytes": 9694
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": {
+      "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "bytes": 12382
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": {
+      "sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "bytes": 5174
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": {
+      "sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "bytes": 2609
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "bytes": 3384
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "bytes": 684
+    },
+    "src/base/ZZZExactLPRewardsCanonical.sol": {
+      "sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "bytes": 12147
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "bytes": 4124
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "bytes": 22027
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+      "bytes": 25666
+    },
+    "src/ZZZContributionPricing.sol": {
+      "sha256": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+      "bytes": 22452
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "bytes": 34166
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "bytes": 997
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+      "bytes": 22792
+    },
+    "src/ZZZPortfolioPolicy.sol": {
+      "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "bytes": 18593
+    },
+    "src/ZZZRebalanceConfirmation.sol": {
+      "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "bytes": 14600
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": {
+      "sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "bytes": 14076
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": {
+      "sha256": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "bytes": 366
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": {
+      "sha256": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "bytes": 1165
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": {
+      "sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "bytes": 5463
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": {
+      "sha256": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "bytes": 2269
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "bytes": 33727
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "bytes": 3245
+    },
+    "src/ZZZRoyaltyCodeData.sol": {
+      "sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "bytes": 596
+    },
+    "src/ZZZRewardsCanonical.sol": {
+      "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "bytes": 13710
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "bytes": 12664
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "sha256": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+      "bytes": 483
+    },
+    "src/ZZZPythPriceFeed.sol": {
+      "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "bytes": 3558
+    },
+    "src/ZZZProtocolPolicy.sol": {
+      "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "bytes": 13506
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "bytes": 11429
+    },
+    "src/ZZZActivationAssetsFactory.sol": {
+      "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "bytes": 707
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "bytes": 7913
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "bytes": 9090
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+      "bytes": 13810
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "2e66578c27a917fe91f8c111bab0ef162fbe42f09ee7c7125bcfb1366a608a12",
+      "bytes": 13413
+    },
+    "node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "bytes": 19280
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "bytes": 2613
+    },
+    "node_modules/@openzeppelin/contracts/utils/Base64.sol": {
+      "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "bytes": 5183
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "sha256": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "bytes": 10600
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+      "bytes": 21571
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "bytes": 16102
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "bytes": 6538
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "bytes": 879
+    },
+    "node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "bytes": 963
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
+      "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "bytes": 1922
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "bytes": 792
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "bytes": 4929
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+      "bytes": 22292
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "sha256": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+      "bytes": 15258
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
+      "bytes": 6041
+    },
+    "src/ZZZLPPositionExecutor.sol": {
+      "sha256": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+      "bytes": 19287
+    },
+    "src/ZZZLPBalancer.sol": {
+      "sha256": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
+      "bytes": 22218
+    },
+    "src/ZZZLPBalanceMath.sol": {
+      "sha256": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
+      "bytes": 6761
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": {
+      "sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "bytes": 3774
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
+      "bytes": 22882
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "bytes": 7819
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "bytes": 8888
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "bytes": 760
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "bytes": 27516
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "bytes": 5111
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "bytes": 13844
+    },
+    "test/CurrentNativePoolFork.t.sol": {
+      "sha256": "b0fa84d9c74057f37664f808a939f46777420e98225e1efcf581f86ef5133cd0",
+      "bytes": 24301
+    },
+    "test/helpers/CanonicalFixture.sol": {
+      "sha256": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+      "bytes": 1803
+    },
+    "test/helpers/DualOracleFixture.sol": {
+      "sha256": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+      "bytes": 1456
+    },
+    "test/mocks/MockVRF.sol": {
+      "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "bytes": 1740
+    },
+    "test/mocks/Mocks.sol": {
+      "sha256": "a849466e81ba9e84a9a81861cd5a5cfe738cc572304c6f5caecc7e840359e860",
+      "bytes": 7123
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "bytes": 10798
+    },
+    "lib/forge-std/src/Test.sol": {
+      "sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "bytes": 1129
+    },
+    "lib/forge-std/src/Base.sol": {
+      "sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "bytes": 2269
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "bytes": 127640
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "bytes": 18314
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "bytes": 10233
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "bytes": 2258
+    },
+    "lib/forge-std/src/StdToml.sol": {
+      "sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "bytes": 9986
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "bytes": 10795
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "bytes": 1403
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "bytes": 9986
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "bytes": 4099
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "bytes": 1028
+    },
+    "lib/forge-std/src/StdConstants.sol": {
+      "sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "bytes": 1897
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "bytes": 32638
+    },
+    "lib/forge-std/src/console2.sol": {
+      "sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "bytes": 121
+    },
+    "lib/forge-std/src/console.sol": {
+      "sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "bytes": 70830
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "bytes": 14518
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "bytes": 24029
+    },
+    "lib/forge-std/src/safeconsole.sol": {
+      "sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "bytes": 441472
+    },
+    "test/helpers/ProtocolPolicyFixture.sol": {
+      "sha256": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+      "bytes": 2056
+    },
+    "test/OptionalPortfolioCore.t.sol": {
+      "sha256": "ef9b4262d16e20bbe99c0e5438558adcf18ea003c3e2c2edc75c49a3bf69b8f6",
+      "bytes": 157312
+    },
+    "node_modules/@uniswap/v4-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol": {
+      "sha256": "a31c712c5cc8d171818a4225c09011f9ba86b2d5edf6045ac812bab93b6bbb87",
+      "bytes": 7703
+    },
+    "node_modules/@uniswap/v4-periphery/lib/permit2/src/interfaces/IEIP712.sol": {
+      "sha256": "e386407da496dbe874c10a81801c55744fb2922a51389a51c79001422e81e0cd",
+      "bytes": 144
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/external/IWETH9.sol": {
+      "sha256": "d6b24fe796517f53292d6679adf173e1f3c1fc0dc5efedfc69fa4955c1a9c058",
+      "bytes": 364
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IPositionDescriptor.sol": {
+      "sha256": "ea68397628ff5d386fdfbea48af0556acb537f8d63edccb22d2fa61ac4175cdd",
+      "bytes": 2006
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/IPoolManager.sol": {
+      "sha256": "a98405333567e4ab344489728014795721cf0071c151536377d2fcc986e0600c",
+      "bytes": 12835
+    },
+    "node_modules/@uniswap/v4-core/src/types/PoolOperation.sol": {
+      "sha256": "cf72ad0c3e5e91662029e862acd841fabce8753040b0d4e802dee64ef1157232",
+      "bytes": 907
+    },
+    "node_modules/@uniswap/v4-core/src/types/BalanceDelta.sol": {
+      "sha256": "320d9c13dec135c3903729e66d3a1040fe86d537a7ee53728915012ca183af32",
+      "bytes": 2339
+    },
+    "node_modules/@uniswap/v4-core/src/types/PoolKey.sol": {
+      "sha256": "99e1afe285b5c614ebc9586ab5196db9d24a63fd924a449f5d99f490a6a6d6a9",
+      "bytes": 805
+    },
+    "node_modules/@uniswap/v4-core/src/types/PoolId.sol": {
+      "sha256": "548424ac50ad58212545da70207283fb8990731578c115c85d5acbcb0e1d3c9f",
+      "bytes": 539
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/IHooks.sol": {
+      "sha256": "6eb35c9c598eb932e963219f1ff180748bc4c30ac6a02d924893b3c29abb1d73",
+      "bytes": 8229
+    },
+    "node_modules/@uniswap/v4-core/src/types/BeforeSwapDelta.sol": {
+      "sha256": "6aee06f1553e879f5909e8f4c0eac26ec23dd4821a7e56e4d5077db39a227e12",
+      "bytes": 1466
+    },
+    "node_modules/@uniswap/v4-core/src/types/Currency.sol": {
+      "sha256": "ba6726fd24fbc66848208dfbb2899116c10729c505e6e5552316ac2444f1dfc3",
+      "bytes": 5458
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/external/IERC20Minimal.sol": {
+      "sha256": "5e966a2d22b3b234a56af4b17e36bf7be90f9b29b1ddb6a15bfefc0b6dab4282",
+      "bytes": 3041
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/IExttload.sol": {
+      "sha256": "c21643d2c7f48d2d2407438a64a3ff0f376324cf6a0c62608977713652308c9e",
+      "bytes": 699
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/IExtsload.sol": {
+      "sha256": "9421ef4ba198d94058cd9a4c9fd2d663c61fc682f7dafa449a873456853f0025",
+      "bytes": 1023
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/IProtocolFees.sol": {
+      "sha256": "807d68adea106ec2aa51a8009155de09ebfe09e1ee7053d5a5ae448d7e840654",
+      "bytes": 2489
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/external/IERC6909Claims.sol": {
+      "sha256": "1cd65496c829036bc6aee67bc71363ab5fb6989c65e793087d0e1e2379f7d7d8",
+      "bytes": 3162
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IPositionManager.sol": {
+      "sha256": "b7aa2a13c92f5f2e5612948359120d1b92263e575ce8d134b4576227f8629569",
+      "bytes": 3501
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IPermit2Forwarder.sol": {
+      "sha256": "3b28167d65673e7de2bbed1e6f3508350cf889f8439e8680da23ad7586f4cc57",
+      "bytes": 1435
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IUnorderedNonce.sol": {
+      "sha256": "12e02d4e7e03a668fc1d493840315b4f2aaee2f366ca677574d37d3811d45701",
+      "bytes": 799
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IPoolInitializer_v4.sol": {
+      "sha256": "ca6ecf95cfbc647d49b774801d84c49c8213010771b44555b056118102d644fc",
+      "bytes": 782
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IMulticall_v4.sol": {
+      "sha256": "0c0f4f1cccb7cf63c1ee3dc53e8d48cf867cbff08f5a8f85dd820873277e9481",
+      "bytes": 774
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IEIP712_v4.sol": {
+      "sha256": "ee4cc46349cc7f1f894197f368ddea0f71f2564c2962822eead755714f3ba57d",
+      "bytes": 328
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IERC721Permit_v4.sol": {
+      "sha256": "80680771bccd7bf47641417d5a656f950746072766e24703f354e58c2ee0875c",
+      "bytes": 2137
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IImmutableState.sol": {
+      "sha256": "86f06a1f388f91ee0185495cb5d2912d564f73fabb163b3767e9c292c5069276",
+      "bytes": 365
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/INotifier.sol": {
+      "sha256": "7fadc8550f73d9ae57925bb27f5ab3a134d4c020972a13683e1121fc11691249",
+      "bytes": 3200
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/ISubscriber.sol": {
+      "sha256": "9672e03c964da7cd484df290ad3395b6beacd90adcdd8ea2236f835407fb8e2e",
+      "bytes": 2270
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/PositionInfoLibrary.sol": {
+      "sha256": "5c889e1d5f259291045413e28069101eba1e7b8b72df6586bf54e4de5e525099",
+      "bytes": 3945
+    },
+    "node_modules/@uniswap/v4-periphery/src/PositionManager.sol": {
+      "sha256": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+      "bytes": 28098
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/NativeWrapper.sol": {
+      "sha256": "8ca41a32e3c8e42866e6486fccd2e805b702cb583bf222c2d2da4bd429a23aa2",
+      "bytes": 1137
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/ImmutableState.sol": {
+      "sha256": "d3ef34f9c00fae08ec1eb24aa341d5d916c4d6d62e6c2118ef4afe9c7470fde5",
+      "bytes": 818
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/ActionConstants.sol": {
+      "sha256": "8e88393dd8b50b25b818e2f6c246aae5cfe63106b56b6e0609869e599c81ec79",
+      "bytes": 1040
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/SlippageCheck.sol": {
+      "sha256": "2f106f2f4773b8d7ef8c2364a95074ceb07ec2c80d38a7751e80fdfc9996ec02",
+      "bytes": 3420
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/Permit2Forwarder.sol": {
+      "sha256": "be0db7277904908724b64b31e9a1ed266f96d8e98914b1c5ae43930121708935",
+      "bytes": 1511
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/CalldataDecoder.sol": {
+      "sha256": "d995bf0c5f50c2b6c5d46010f770587464532d6e34e64bf2aec864d79e710d6d",
+      "bytes": 16477
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IV4Router.sol": {
+      "sha256": "0fe009c839a978c489459fa5b41dbdfff459aa447b299bbf4b39c956170b3aab",
+      "bytes": 1641
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/PathKey.sol": {
+      "sha256": "0c00bae5a64829334a0b5d5541807faf7d18dff5a667cd74cadf9effaf5f0885",
+      "bytes": 1365
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/Notifier.sol": {
+      "sha256": "b4e380f1fb38506aa02b8325266c7de9f2298f5d0fd878622977a184776a871e",
+      "bytes": 4927
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/Actions.sol": {
+      "sha256": "404b842f30a05783b20eb37b20cc86e7a0df2730f6a7399229b46ae77f63e63a",
+      "bytes": 2031
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/BaseActionsRouter.sol": {
+      "sha256": "e3ceda8c5bb24d3e439aef94d004fdce7956439bc74c5c5bcd86e2cb9455e813",
+      "bytes": 3550
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IMsgSender.sol": {
+      "sha256": "cb96ee72c46755a67f9ca304df192365ae7c3923eaab9539f0ce74a88de10cf7",
+      "bytes": 605
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/SafeCallback.sol": {
+      "sha256": "0c25eef89a860e579d6e26f53e32240da787bd75827d7833b6f29e63af87b571",
+      "bytes": 1055
+    },
+    "node_modules/@uniswap/v4-core/src/interfaces/callback/IUnlockCallback.sol": {
+      "sha256": "2e4a514730654da2e08a82eff5b3eabae12dc1c6198951396e1d466d4c0e223e",
+      "bytes": 488
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol": {
+      "sha256": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+      "bytes": 5801
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TransientStateLibrary.sol": {
+      "sha256": "9835fca9df8b3f649def66835c5d7ee68de6a6cbe92bf255eb5d8b92a6a8d60e",
+      "bytes": 2361
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/Lock.sol": {
+      "sha256": "29cd41a53de22514164e638e7bc965ccf4d9f34b455b43a1a15e06a8cb86e7f1",
+      "bytes": 930
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/NonzeroDeltaCount.sol": {
+      "sha256": "0ae35ca64da2527b4e1f7afa4ca10c4b65af952dc473c33b6663101e8d199f40",
+      "bytes": 1460
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/CurrencyReserves.sol": {
+      "sha256": "b38f1d3807d90bbccb865c0d96caf1ef92d6df9b69adbbe43b1d12e1241523c9",
+      "bytes": 1289
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/PoolInitializer_v4.sol": {
+      "sha256": "142555120536369dcdd8e9ea363945f0babb256048054c9318091c7cb2d80461",
+      "bytes": 804
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/Multicall_v4.sol": {
+      "sha256": "4abf8420610db70687e200ff315db4d9093a79fe640a3a7c457ce427100ea4e4",
+      "bytes": 836
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/ReentrancyLock.sol": {
+      "sha256": "a30c768301d6a3fb9befefd9efeecca7ba22b8bfac5e5e2c891410e14775fb10",
+      "bytes": 521
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/Locker.sol": {
+      "sha256": "aa0481cc66c87ab579438728dbeaee5bf351eac37e4876f0ab899d8c7f7bdbeb",
+      "bytes": 734
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/ERC721Permit_v4.sol": {
+      "sha256": "b85c2da69c27748d1215b72d1d3083983e420af44403ffd831e5795326687d2e",
+      "bytes": 4169
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/UnorderedNonce.sol": {
+      "sha256": "c64fa82d222e7ab25b37c21660b888a1843a5ed57996f5f010f28ad3a7960bf3",
+      "bytes": 1116
+    },
+    "node_modules/@uniswap/v4-periphery/lib/permit2/src/libraries/SignatureVerification.sol": {
+      "sha256": "1804b3d7b1183225419ec8ee45daf89174ff3668315d71d28111d5fcc179f8e4",
+      "bytes": 1812
+    },
+    "node_modules/@uniswap/v4-periphery/lib/permit2/src/interfaces/IERC1271.sol": {
+      "sha256": "ec69c9c80939d613cda408fd05424e0dfa7b1fd76168a1fb6593f4b26b3b3d7b",
+      "bytes": 464
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/ERC721PermitHash.sol": {
+      "sha256": "0d692bf7c7806644db1dbea2b2b4dd11151a16090a4bcc2ffcd904e61bcd7c2f",
+      "bytes": 3732
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/EIP712_v4.sol": {
+      "sha256": "5468276540ebe52a5e84dd9b0f45e7af833a0ec17c83a87b8a80c9dde1ea70cb",
+      "bytes": 2695
+    },
+    "node_modules/@uniswap/v4-core/lib/solmate/src/tokens/ERC721.sol": {
+      "sha256": "2da0cca384448208e25d43eeb5953a237de0e6712942a07d0f2674e895b0d3d3",
+      "bytes": 7365
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/StateLibrary.sol": {
+      "sha256": "eebdbc1b6e431072ce5521b9e1b603d43831e3b6e062743e6665e070d5cf8a1a",
+      "bytes": 16027
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/Position.sol": {
+      "sha256": "3dc4e2ad1564fa94eddf3ff06ce9ac592c9d578ea64ca194050382da454c8fcb",
+      "bytes": 4813
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/LiquidityMath.sol": {
+      "sha256": "67a39e58732340af4870342ba9230691f35501d89ed8725ca1b338deaa0eb26a",
+      "bytes": 742
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint128.sol": {
+      "sha256": "1ca2f55160697b73bd66fd27c8724d79a57108121ce1e8a0ab8b79f38bb58fbb",
+      "bytes": 297
+    },
+    "node_modules/@uniswap/v4-periphery/src/lens/StateView.sol": {
+      "sha256": "cee9aff0c7d832d93a59f813c62613ac288a66898f49b9ad1de17e6007d7dab5",
+      "bytes": 3805
+    },
+    "node_modules/@uniswap/v4-periphery/src/interfaces/IStateView.sol": {
+      "sha256": "28bb7523693dd487f3fe0c4ea44f1aeb4c1bed6371c6bc74d76bd625003e62f2",
+      "bytes": 7565
+    },
+    "node_modules/@uniswap/v4-core/src/PoolManager.sol": {
+      "sha256": "3b6ab111dadf613e3cfd617e4b1c6ab75b5445cd15cbe52d7c6207fc02449717",
+      "bytes": 17613
+    },
+    "node_modules/@uniswap/v4-core/src/Exttload.sol": {
+      "sha256": "386b5618307a20144a44308b81188c7755a6c279db6c5824cf63a910864324d4",
+      "bytes": 1603
+    },
+    "node_modules/@uniswap/v4-core/src/Extsload.sol": {
+      "sha256": "ac157c05d62562eed212cdf290046a85d192e7b1f8aba69c3ce358b0ebac4279",
+      "bytes": 2609
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/CurrencyDelta.sol": {
+      "sha256": "dfbb3d232c2d52bb09c8dcbb38b4a8fd16c616b8e6bf49e6f4ee948760530f7b",
+      "bytes": 1606
+    },
+    "node_modules/@uniswap/v4-core/src/ERC6909Claims.sol": {
+      "sha256": "6fa9989899398646fd7c33f837254a69e7c75b77af120970ede397c3d0fbdc37",
+      "bytes": 958
+    },
+    "node_modules/@uniswap/v4-core/src/ERC6909.sol": {
+      "sha256": "0f1bf94844851b561ae53d57263366d18f4c4431eb47096871e8715837c6ec9d",
+      "bytes": 3497
+    },
+    "node_modules/@uniswap/v4-core/src/ProtocolFees.sol": {
+      "sha256": "bdabfbdfa0d8692ee187ffab948c295c2c6ebcc2dcf86e552fba3491309843c6",
+      "bytes": 3036
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/Pool.sol": {
+      "sha256": "59c493035ad25d56f24a457e8b40d9d1e3784504b8ff13d171db1eb25c6f128e",
+      "bytes": 30035
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/LPFeeLibrary.sol": {
+      "sha256": "e96c3fa7deac991dc09b6c5e560a340d01d6c68ccba483d4b29f8a66e5aa44e0",
+      "bytes": 3596
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/ProtocolFeeLibrary.sol": {
+      "sha256": "f8d96d9c8b5d12ab927b34551699bd7086750475f70254c9505e636f2cafe56a",
+      "bytes": 2113
+    },
+    "node_modules/@uniswap/v4-core/src/types/Slot0.sol": {
+      "sha256": "378b45486644dc7e49726358e83d0e2fffdaee088d18cac1a3df00d02c3635b4",
+      "bytes": 3404
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SwapMath.sol": {
+      "sha256": "eb3971ea0ba84ff0a01f2fbe43f62f9c393121ef1724774ed3f3ab7760780e4a",
+      "bytes": 6968
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TickBitmap.sol": {
+      "sha256": "19b25dccfac8bd90f9d615fb182547eb7b5908a5cbf21a1c5920b92c47383cb6",
+      "bytes": 6266
+    },
+    "node_modules/@uniswap/v4-core/lib/solmate/src/auth/Owned.sol": {
+      "sha256": "8ac2f2dc41ab8012e93adb3791326ffa1e4059a20c306a777109dd81816b9125",
+      "bytes": 1476
+    },
+    "node_modules/@uniswap/v4-core/src/NoDelegateCall.sol": {
+      "sha256": "525bf4df92c4ac0fd582e1b6ac18fdfb5d147d410f38f19231e4c9a469187415",
+      "bytes": 1248
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/Hooks.sol": {
+      "sha256": "297d577998cdede64d48b47b12f15e4f442eea032fbb9676bb3c2f89da89b83c",
+      "bytes": 16511
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/ParseBytes.sol": {
+      "sha256": "6a6f3d1cec0143fd70ea68c34e6dce3bde72f368b213f1a225ada23dbfd99bb8",
+      "bytes": 1200
+    },
+    "test/NativeVaultFlows.t.sol": {
+      "sha256": "ccc0cea2ec69ad0e80efa8a55efb9dc42729b1ec4315e0884aef0502f1025ba6",
+      "bytes": 34959
+    },
+    "test/NativeLiquidity.t.sol": {
+      "sha256": "9a6c737a0ee2bc1a6bb72f5ef3771542b6e94716a14c56e009e5257690f8c00a",
+      "bytes": 33558
+    },
+    "test/LiquidityFactualChecks.t.sol": {
+      "sha256": "a53bb7886ba851f92b301860193756f7fa9e9aae87f647606c42d9cf10b46ca4",
+      "bytes": 14405
+    },
+    "test/LiquidityEncoding.t.sol": {
+      "sha256": "5e8de41bc91c5583e3355b3ae570ebeec715d1dd14df28dad9e7feb287329fba",
+      "bytes": 7877
+    },
+    "test/IntegratedEconomicConservation.t.sol": {
+      "sha256": "77eeb70103599e28e6b446807af4d30a6c8c4716a17a16fcff99e26d7fdcbec7",
+      "bytes": 53803
+    },
+    "test/GovernedExecutionLoss.t.sol": {
+      "sha256": "2697c6ab88c4303f2b0bea1ee9302b49aafcc5e890985136c63014a4af7007ab",
+      "bytes": 12364
+    },
+    "test/RebalanceBudget.t.sol": {
+      "sha256": "f26867ac76dd73af460783e5bf23836cddd8f8376ca1a40566ce945d09244dc5",
+      "bytes": 5449
+    },
+    "test/MigrationBudgetAdversarial.t.sol": {
+      "sha256": "0a5ecf404209879f0786afe6a7742b2a6b430b8025da9a4cd988af8b97d9535a",
+      "bytes": 19918
+    },
+    "test/VaultAccounting.t.sol": {
+      "sha256": "3719e0917fb9ca604c99ca00d9d88eb79c464bf5f61d26a09f57b3f442ac4862",
+      "bytes": 31706
+    },
+    "test/helpers/PortfolioFixture.sol": {
+      "sha256": "d33823f6fd16e9e27864e49833b0c9689e8c0fd52d6fdb3670b4b98f658537b5",
+      "bytes": 2078
+    }
+  },
+  "foundry_toml_sha256": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+  "original_remappings": [
+    "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+    "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+    "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+    "v4-core/=node_modules/@uniswap/v4-core/",
+    "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+    "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+    "forge-std/=lib/forge-std/src/",
+    "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+    "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+    "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+    "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/"
+  ],
+  "scope": "Byte-exact isolated import closure; no rewritten test or production source, config copied exactly; no .env/credential/RPC/config/runtime copied. Offline current-fork opt-in forced false. Four affected existing methods only; prior brace-glob no-tests attempt retained and never counted.",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt4-existing\\project",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--offline",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt4-existing\\out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt4-existing\\cache",
+    "--build-info",
+    "--build-info-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution-three-percent-20261109-793c8e0\\tests\\attempt4-existing\\build-info",
+    "--match-path",
+    "test/*.t.sol",
+    "--match-contract",
+    "(GovernedExecutionLoss|IntegratedEconomicConservation|NativeVaultFlows|OptionalPortfolioCore|CurrentNativePoolFork)Test",
+    "--match-test",
+    "test(DefaultsHardMaximumZeroAndGovernanceEvents|ActualV4ExplicitTwoPercentAndStricterOnePercentApplyToActivationAndGrowth|NativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper|LongHorizonSameBlockUsersBeforeRebalance|CurrentVaultActivationGrowthUsesOneBackedSharedLP)$",
+    "-vv"
+  ],
+  "tools": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+  }
+}

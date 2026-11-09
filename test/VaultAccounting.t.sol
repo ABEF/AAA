@@ -347,15 +347,15 @@ contract VaultAccountingTest is PooledVaultFixture {
         vm.prank(alice);vm.expectRevert();vault.activate{value:49}(id, poolId, 49, 50, 1, block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertEq(alice.balance,1 ether-0.05 ether);
     }
-    function testActivationRejects100InputWhenActualLPIsBelow98() public {
+    function testActivationRejects100InputWhenActualLPIsBelow97() public {
         venue.setSpendBps(9700);
         uint256 id=_mint(alice);
-        // Integer rounding deploys $96; current 2% policy requires at least $98 LP.
+        // Integer rounding deploys $96; current3% policy requires at least $97 LP.
         vm.prank(alice);vm.expectRevert();vault.activate{value:50}(id, poolId, 50, 50, 1, block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertFalse(membership.eligible(id));
         assertEq(vault.totalIdle(address(t0)),0);assertEq(alice.balance,1 ether-0.05 ether);assertEq(venue.next(),1);
     }
-    function testActivationAcceptsExactly98LPAtCurrentTwoPercentBoundary() public {
+    function testActivationAccepts98LPWithCurrentThreePercentPolicy() public {
         uint256 id=_mint(alice);venue.setSpendBps(9800);_activate(alice,id,50,50);
         Position memory p=_record(id);assertEq(venue.a0(p.lpTokenId)+venue.a1(p.lpTokenId),98);
         assertEq(p.idle0+p.idle1,2);assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),100e18);

@@ -1,5 +1,12 @@
 # Work handoff
 
+Current total contribution default is300bps (3%):97% actually deployed LP,
+gas separate. User selected TOTAL activation/growth only; no swap/spot/retained-
+value, conversion1%, maintenance3%, additional1% or source-agreement3% guard is
+changed. [Policy/source evidence](../reports/contribution-loss3-20261109/REVIEW.md) binds the new default/runtimes; old
+instances/caller200 reviews/journals and earlier market2% evidence remain explicit.
+No deployment/service/site/Anvil/signing change or market qualification is implied.
+
 Actual market dependencies remain unqualified. The [read-only/fork market review](../reports/market-qualification-20261109/REVIEW.md)
 finds no usable dual ETH/fixedZZZ USD pair: both Chainlink proxies share one
 aggregator; the observed Pyth ETH update exceeds the hard one-day age bound and

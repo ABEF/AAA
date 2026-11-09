@@ -92,7 +92,7 @@ all LP closes; NFT transfers and future rarity-weighted royalties continue.
 
 ## Accepted migration execution budget
 
-The default contribution / conversion / maintenance loss caps are **2% / 1% /
+The default contribution / conversion / maintenance loss caps are **3% / 1% /
 3%**, with gas separate and governance hard maxima of 10%. Captured operation
 policy, signed caller maxima and stronger venue minima still apply. A caller does not gain three fresh budgets for
 close, swap and redeployment.
@@ -100,7 +100,7 @@ close, swap and redeployment.
 Atomic maintenance values starting principal plus released compound and final
 LP plus attributed idle at one starting price vector. Contributions additionally
 require actual marginal deployed LP at the captured floor, excluding incumbent
-capital; the default is 98%. The separately captured entry/maintenance idle ceilings default5% and are governed within0–40%; neither relaxes a contribution loss floor. Governed
+capital; the default is 97%. The separately captured entry/maintenance idle ceilings default5% and are governed within0–40%; neither relaxes a contribution loss floor. Governed
 parking and collective closure use independently reviewed raw output minima,
 without swaps or oracle-valued aggregate loss promises. They do not claim one
 cached price vector across separate operator transactions.

@@ -35,7 +35,7 @@ all project accounts, but the automated keeper key retains limited authority.
 Before sealing, bind the same reviewed ZZZ in source assets, Buyback and
 Migration. After sealing, supported source/route/feed/range/role settings remain
 configurable within guards; ZZZ identity and80/10/5/5 do not. Defaults remain
-contribution2%, conversion1%, maintenance3%, each bounded at10%, gas separate.
+contribution3%, conversion1%, maintenance3%, each bounded at10%, gas separate.
 Use [post-seal policy](POST_SEAL_POLICY.md) and the [operator manual](OPERATOR_MANUAL.md).
 
 ## Choosing the action

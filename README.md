@@ -125,7 +125,7 @@ Mint a dormant NFT through the reviewed [OpenSea phases](docs/OPENSEA_MINT.md), 
 growth minima default to $100/$5; governance may change future terms through
 ProtocolPolicy, subject to stronger pool minima. Two independently
 reviewed USD sources per priced asset must agree within 3%. Contribution loss
-defaults to 2%, conversion 1%, maintenance 3%; governance ceilings are 10%, gas
+defaults to 3%, conversion 1%, maintenance 3%; governance ceilings are 10%, gas
 separate. Approval alone changes no LP. Shares and artwork update only after
 successful actual deployment and atomic accounting checks.
 

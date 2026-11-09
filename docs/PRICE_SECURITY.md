@@ -140,7 +140,7 @@ the approved operational age must reflect the asset and feed heartbeat.
 
 The intended configuration uses **300 basis points (3%)**. An observation at
 exactly 3% is within that band; anything above it fails. This does not relax the
-separate default 2% contribution execution-loss test described below. Governance can configure
+separate default 3% contribution execution-loss test described below. Governance can configure
 maximum disagreement from 0 to 500 basis points. Zero requires
 exact agreement. The 500-basis-point hard ceiling is consistent with the existing
 maximum pool/reference-price guard; it is not a recommended production setting or
@@ -241,15 +241,16 @@ growth threshold, currently $100 or $5 respectively. Its **upper** input value i
 used for the captured execution floor, while incremental LP is valued with the
 frozen **lower** pair prices. Both net new backing and marginal deployed LP must
 meet the floor; incumbent idle, old LP and historical compound cannot subsidize
-it. The default contribution loss limit is 2%; existing governance can configure
+it. The default contribution loss limit is 3%; existing governance can configure
 future limits up to the 10% hard maximum. Stronger venue/caller minima remain.
 See [execution-loss policy](EXECUTION_LOSS_POLICY.md).
 
 Price disagreement consumes some of the available execution margin. The3%
 agreement ceiling is a source-admission bound, not an extra execution allowance.
 For illustration, a source input worth100 at its lower price and103 at its upper
-price needs at least100.94 of new lower-valued LP at the2% limit. Returning100
-even with zero fees would fail that example. Favorable actual execution can alter
+price needs at least99.91 of new lower-valued LP under the3% contribution
+floor alone. Returning100 leaves only0.09 for execution in that illustration;
+a stronger venue/caller floor can require more and still reject it. Favorable actual execution can alter
 the result; never infer a universal route verdict from that illustration.
 A quote can therefore fail despite a cheap swap if approved bounds are too wide.
 The safe response is to reject or obtain a new qualified quote, not silently

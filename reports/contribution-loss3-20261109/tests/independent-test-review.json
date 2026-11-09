@@ -1,0 +1,10 @@
+{
+  "reviewer": "/root/seadrop_contract",
+  "mode": "Independent collaborating-agent read-only review, not independent audit or production approval",
+  "file": "test/ContributionThreePercent.t.sol",
+  "sha256": "b7bcf5c4d2e9eb88de4e9ed866da4c87b03d91edc4e081a3e4f9fd38c9f733d8",
+  "observed_utc": "2026-11-09T05:27:27.632578+00:00",
+  "conclusion": "No concrete semantic-vacuity or weakened-guard issue found.",
+  "rationale": "Default cases genuinely exercise untouched300;97LP+3idle is backed and totals100;9699 and indivisible101-unit shortfalls fail marginal LP while retained value still exists; donation/incumbent idle cannot mask it. Explicit governed200 and unchanged pool100 retained-NAV rejection remain nonvacuous. Entry fixture native-admission-only override fixes prior ERC20-only setup mismatch while keeping actual Registry/Entry/Pricing accounting. Successful100/5 growth checks97/3 proportions, same main/centre/clock, failed-growth rollback and unused approval on caller200 rejection.",
+  "scope_limits": "No edits or tests by reviewer; deterministic venue, mock controller/VRF and correlated feeds; not real-v4 admission or live market, gas or operational qualification."
+}

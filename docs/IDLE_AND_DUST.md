@@ -1,6 +1,6 @@
 # Attributed idle, dust and reinvestment
 
-The undeployed candidate uses a contribution default of **2%**, LP
+The undeployed candidate uses a contribution default of **3%**, LP
 conversion **1%**, ordinary maintenance **3%**; gas is separate. Governance may
 change each within its existing hard 10% maximum. These are ceilings, not targets,
 market-loss insurance or permission to sweep balances. Fresh royalties are
@@ -25,8 +25,8 @@ An existing LP's self-generated fees are harvested separately before increasing
 liquidity; they cannot be misclassified as new principal.
 
 The contribution floor counts **marginal deployed LP**, not idle, old principal,
-unclaimed fees or donations. At the current 2% default, conservative $100 input
-requires at least $98 of new LP; $5 growth requires at least $4.90. Any retained
+unclaimed fees or donations. At the current 3% default, conservative $100 input
+requires at least $97 of new LP; $5 growth requires at least $4.85. Any retained
 idle still belongs to the NFT-share bucket and is included in current NAV. Thus
 undeployed value and execution loss are different, even though both consume the
 deployed-LP allowance. The separate whole-bucket idle ceiling defaults5%, independently governed for

@@ -1,0 +1,25 @@
+{
+  "scope": "Tool-observed comparison-utility diagnostics, not compiler or product test failures. Original scripts retained; existing strict Slither comparison rules unchanged.",
+  "attempts": [
+    {
+      "tool_chunk": "09cd2a",
+      "script": "equivalence-attempt1.py",
+      "failure": "New utility mis-sized the exact solc CBOR key suffix as11bytes instead of9; assertion rejected before producing a pass."
+    },
+    {
+      "tool_chunk": "dc31da",
+      "script": "equivalence-attempt2.py",
+      "failure": "Constructor-returned ZZZRoyaltyCodeData creation has no CBOR trailer; utility now compares every raw byte for this exact artifact."
+    },
+    {
+      "tool_chunk": "79e6ca",
+      "script": "equivalence-attempt3.py",
+      "failure": "Initial utility assumed only Budget creation body could differ and all creation sizes equal. Actual compile shows Budget+1byte and Migration/NFT embedded own-runtime CBOR changes. Final proof explicitly explains these known objects via exact unique-runtime substitution; never strips arbitrary embedded data."
+    },
+    {
+      "tool_chunk": "6afc82",
+      "script": "equivalence.py",
+      "result": "PASS64runtime bodies,0ABI/storage differences, fullAST identical except initializer literal; constructor and metadata effects separated."
+    }
+  ]
+}

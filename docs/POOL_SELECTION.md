@@ -100,7 +100,7 @@ ZZZ token or chain requires fresh review; old rights do not move automatically.
 ## Remaining qualification
 
 The selected pool fee applies only to the swapped portion of a contribution.
-The default contribution budget is 2%, requiring at least 98% of conservative upper
+The default contribution budget is 3%, requiring at least 97% of conservative upper
 input value as actual new LP; caller-bound policy and full execution checks still
 apply. The separate 1% reward-conversion cap requires a cheaper qualified route. Independent ZZZ/USD pricing,
 ETH/ZZZ contribution and LP-reward-conversion routes, full execution/gas

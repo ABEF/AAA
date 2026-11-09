@@ -84,7 +84,7 @@ the served poplint artifact is not automatically upgraded or enabled for signing
 contribution cap. Responses expose `reviewed_maximum_loss_bps`, actual
 `execution_limit_bps` and `provenance.review_policy_version`. A later cap above
 the signed maximum rejects; a tighter policy remains binding. Default
-contribution loss is 2%, conversion 1%, maintenance 3%, each with a 10% hard
+contribution loss is 3%, conversion 1%, maintenance 3%, each with a 10% hard
 maximum and network gas separate. No fallback to an old Entry selector occurs.
 
 Preparation uses profile-specific dormant status 3 for the current code and 5
@@ -124,7 +124,7 @@ after sealing, not an on-chain governance call or permission to sign.
 | Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Current accounting7 prices actual ETH directly at currency zero; historical profiles retain their original mapping. No assumed USD peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
-| Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
+| Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (3% by default). |
 
 Activation/growth minima default100/5USD and are governed for future contributions
 through ProtocolPolicy; each is at least1USD and growth cannot exceed activation. The backend rejects below-floor requests before preparing approvals/traces.
@@ -132,8 +132,8 @@ The effective minimum also respects any higher pool `minDepositUSD`. Entry and
 the fixed Vault helper enforce the same floors, including direct Vault calls.
 See [contribution minimums](CONTRIBUTION_MINIMUMS.md) for configuration and evidence.
 
-At the current 2% default, a $5 top-up requires at least $4.90 of new LP;
-a $100 original contribution requires at least $98 of marginal deployed
+At the current 3% default, a $5 top-up requires at least $4.85 of new LP;
+a $100 original contribution requires at least $97 of marginal deployed
 LP. The floor rounds up in raw USD units, as in the contract. Idle input is not
 counted as deployed LP. The NFT's existing marked value can change with prices;
 do not calculate its new total by adding the contribution to lifetime deposits.
