@@ -1,0 +1,167 @@
+{
+  "anchor": {
+    "chain_id": 4663,
+    "block_number": 110324511,
+    "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "block_timestamp": 1794254690,
+    "observed_head": 110324523,
+    "depth": 13,
+    "rpc": "https://rpc.mainnet.chain.robinhood.com/",
+    "selector": {
+      "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+      "requireCanonical": true
+    },
+    "observed_utc": "2026-11-09T20:04:53.256519+00:00",
+    "header": {
+      "baseFeePerGas": "0x1320f90",
+      "difficulty": "0x1",
+      "extraData": "0x238ffbf77ae92194f0034ac08719edc967901f91a00ff3d75fe22fcf76b3474c",
+      "gasLimit": "0x4000000000000",
+      "gasUsed": "0x103d2",
+      "hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+      "l1BlockNumber": "0x1928558",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0xa4b000000000000000000073657175656e636572",
+      "mixHash": "0x0000000000000ec20000000001928558000000000000003d0000000000000000",
+      "nonce": "0x000000000006abe0",
+      "number": "0x6936b1f",
+      "parentHash": "0x26d1226fec538ffe16d3b1405569a800a339246696998df89a57e2aca5a96eb6",
+      "receiptsRoot": "0x9cdab8bfdaca6a1788b2ab6e15faf10c1a7aada32405238ce0f3a42aedc82c03",
+      "sendCount": "0xec2",
+      "sendRoot": "0x238ffbf77ae92194f0034ac08719edc967901f91a00ff3d75fe22fcf76b3474c",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x93b",
+      "stateRoot": "0x93716e0d1ec5770402d5c130a075a81a621f651998a095a87ee084c1fc22248c",
+      "timestamp": "0x6af22762",
+      "transactions": [
+        "0x7edba38b4697a84a557816dcd54bfe281b1b72541cde82e90c2d2e1fb631c029",
+        "0x89d3d697b2ba653b3524392c8bd2de576d9046ab4acde2cdc9ada603022c4e54",
+        "0x7ff50899047b967ef27fb451f946bc418b664e3c0004aef3630bb4270de58b40"
+      ],
+      "transactionsRoot": "0xfef3e079a9a9a21c5b8f4b6919f83978ca5922a44370fde13f1876ef3568fafe",
+      "uncles": []
+    },
+    "historical_anchor_rechecked": true
+  },
+  "production_approved": false,
+  "source_baseline": "509d4fd7f2e42cdd278f913f7863e37cfd006d6d",
+  "discovery": {
+    "anchor": {
+      "chain_id": 4663,
+      "block_number": 110324511,
+      "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+      "block_timestamp": 1794254690,
+      "observed_head": 110324523,
+      "depth": 13,
+      "rpc": "https://rpc.mainnet.chain.robinhood.com/",
+      "selector": {
+        "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+        "requireCanonical": true
+      },
+      "observed_utc": "2026-11-09T20:04:53.256519+00:00",
+      "header": {
+        "baseFeePerGas": "0x1320f90",
+        "difficulty": "0x1",
+        "extraData": "0x238ffbf77ae92194f0034ac08719edc967901f91a00ff3d75fe22fcf76b3474c",
+        "gasLimit": "0x4000000000000",
+        "gasUsed": "0x103d2",
+        "hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+        "l1BlockNumber": "0x1928558",
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "miner": "0xa4b000000000000000000073657175656e636572",
+        "mixHash": "0x0000000000000ec20000000001928558000000000000003d0000000000000000",
+        "nonce": "0x000000000006abe0",
+        "number": "0x6936b1f",
+        "parentHash": "0x26d1226fec538ffe16d3b1405569a800a339246696998df89a57e2aca5a96eb6",
+        "receiptsRoot": "0x9cdab8bfdaca6a1788b2ab6e15faf10c1a7aada32405238ce0f3a42aedc82c03",
+        "sendCount": "0xec2",
+        "sendRoot": "0x238ffbf77ae92194f0034ac08719edc967901f91a00ff3d75fe22fcf76b3474c",
+        "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+        "size": "0x93b",
+        "stateRoot": "0x93716e0d1ec5770402d5c130a075a81a621f651998a095a87ee084c1fc22248c",
+        "timestamp": "0x6af22762",
+        "transactions": [
+          "0x7edba38b4697a84a557816dcd54bfe281b1b72541cde82e90c2d2e1fb631c029",
+          "0x89d3d697b2ba653b3524392c8bd2de576d9046ab4acde2cdc9ada603022c4e54",
+          "0x7ff50899047b967ef27fb451f946bc418b664e3c0004aef3630bb4270de58b40"
+        ],
+        "transactionsRoot": "0xfef3e079a9a9a21c5b8f4b6919f83978ca5922a44370fde13f1876ef3568fafe",
+        "uncles": []
+      },
+      "historical_anchor_rechecked": true
+    },
+    "prior_anchor": 109785803,
+    "delta_from": 109785804,
+    "new_v4": [],
+    "v3_delta_pool_events": [],
+    "v3_delta_fee_events": [],
+    "v3_enabled_fee_history_reads": 12,
+    "v3_enabled_fees": [
+      100,
+      500,
+      3000,
+      10000
+    ],
+    "all_v4_keys": 102,
+    "source_scope": "single official core/native ETH/fixedZZZ; single official v3factory/WETH/fixedZZZ; no hooked/dynamic/multihop/other factory venue qualification"
+  },
+  "states": {
+    "total_static_hookless_below_100percent_fee": 95,
+    "principal_fee_compatible": 71,
+    "active": 14,
+    "prior_states_changed": [
+      "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+      "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+      "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+      "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155"
+    ],
+    "earlier_unmeasured_active_conversion_only": [
+      "0x8713aa35ccea9dbb98d15cec7e72579510332c07e8d04fc3eef416c2253b9559",
+      "0x4d9cd3f1c7a5508b2a024be59983b00521e597563a1c772c3ee76c241e7187d3",
+      "0x10a5ec60423aa0b45043fefd34fcbc954da5f11fac92ded27144b23bd9bc1b53",
+      "0x35983e58bb96b73ab03d763865256a9ce97016a12ae88b8595c0332fa998678b",
+      "0xd0ad42e0f491e7a40c81a5892df899b952e9d06ad194bf8593b4c0e593e67bba",
+      "0x719b599b7a492252c04b81b43b9c21d05448b715b7d32c71671589481582fc21"
+    ],
+    "selected_unchanged": true
+  },
+  "quotes": {
+    "main": 646,
+    "main_success_return": 175,
+    "main_errors": 471,
+    "additional_gap_operation": 11,
+    "additional_gap_success": 0,
+    "additional_capacity": 16,
+    "additional_capacity_return": 13,
+    "all_quote_calls": 673
+  },
+  "replay": {
+    "native_main_exact_positive_or_zero_output_matches": 138,
+    "capacity_exact_output_matches": 13,
+    "main_successes_beyond_captured_tick_words": 23,
+    "scope": "MIT Uniswap v4 exact-input integer math port; bounded current+adjacent bitmap words,73 tick rows. Complete replays match official quote output exactly. Missing-word cases remain unknown and never invent price/depth."
+  },
+  "preserved_guards_bps": {
+    "contribution_total": 300,
+    "conversion": 100,
+    "maintenance": 300,
+    "additional_execution": 100,
+    "source_agreement": 300
+  },
+  "no_changes": [
+    "No repository edits",
+    "No transactions or funds",
+    "No deployment/fork",
+    "No configuration/route/source admission",
+    "No service/site/Anvil/journal/signer/heartbeat change"
+  ],
+  "interpretation": [
+    "No new native v4 Initialize or v3 PoolCreated/FeeAmountEnabled delta events since109785803. Liquidity/spot refresh still mattered:4 earlier candidate states changed.",
+    "15 zero-active-L lowfee(<=10000pips) venues were probed bothdirections at14 tiny/meaningful vectors; none returned a successful quote. Empty activeL alone was not used to exclude them.",
+    "An alreadyknown4%-fee zero-activeL venue667a9f\u2026 crossed a gap for tinyETH output, but all11 extra fee/operation sizes failed incomplete-input. It is not a cheap route.",
+    "Selected pool exactcurrent-range reverse limit388557rawZZZ returns1weiETH and removes currentL at125600.388558 fails officialfull-input quote;1rawZZZ returns0 and cannot satisfy positiveoutput.",
+    "Favorable tiny19820d/07ee2b ZZZ quotes and selecteddust quotes can pass a correlated pointvector rounded1% output floor. This does not qualify independentUSD, meaningful feeconversion, wholeNFT entitlement batches or gas.",
+    "Nativev4 principal admission and optionalv3/WETH earnedconversion are separate. V3 fee1% is not principal compatible and not fresh7 automatedworker compatible.",
+    "No tested qualified fullactivation/growth/conversion is established;3% totalcontribution does not alter swaps,spot,idle or conversion floors."
+  ]
+}

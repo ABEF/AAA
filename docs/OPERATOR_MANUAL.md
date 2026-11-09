@@ -443,7 +443,35 @@ range LP. Polling and a target width are not a promised execution time.
 
 ## Configure, stop and recover USD pricing
 
-Before admission, use the [actual market qualification record](../reports/market-qualification-20261109/REVIEW.md):
+
+Current qualification remains blocked; no governance call follows merely from
+finding a provider or quote. Review these points before preparing a new policy:
+
+- ETH and fixedZZZ each need two reviewed USD sources, even for ETH-only input.
+  The LP still contains ZZZ. Check exact ABI words, original timestamps, decimals,
+  runtime/proxy controls and market/publisher independence at one pinned block.
+- The observed API3 ETH name/base is inactive and its direct round IDs are0.
+  Funding/initialization and a reviewed compatible reader are separate work.
+  Do not weaken Oracle round/age checks. Pyth zero update-fee getters do not
+  establish data access, a funded updater, gas or recovery.
+- The correct-chain outage policy remains unresolved; Chainlink no longer
+  expands uptime feeds to new networks. Do not copy an Arbitrum address or
+  fabricate an always-up observation.
+- Qualify each actual swap direction and raw size, complete input consumption,
+  price bands and current quote/transaction gas budgets. A tiny quote can be
+  favorable yet cost more gas than its output. A zero-L gap can cross in one
+  direction; unknown errors are unavailable evidence, not empty-pool proofs.
+- Selected and alternative10018 cannot jointly pass ordinary reference bands
+  at the captured block. Registering a venue alone does not make it usable.
+  Converter rules and native principal rules remain separate; wrapperzero
+  cannot gain v3 after sealing, and current automated conversion is native-v4 only.
+- Keep the3% marginal-LP budget separate from3% source agreement. Hypothetical
+  upper/lower1.03 consumes almost that entire LP budget before trading costs.
+- Verify archive **state**, not just headers. The public RPC later refused an
+  eleven-minute-old state while retaining its header. Use a separately qualified
+  archive/trace provider; never merge a later observation into an older review.
+
+Before admission, use the [latest market qualification record](../reports/market-followup-20261109/REVIEW.md):
 two proxy addresses may share one aggregator, and a deployed Pyth Core may hold
 stale data. Feed catalogs and old answers are candidate discovery, never a live
 policy. The3% source agreement bound and3% contribution cap are different tests;

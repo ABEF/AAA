@@ -1,0 +1,15 @@
+{
+  "msg": "Success",
+  "result": "true",
+  "data": [
+    {
+      "symbol": "zzz_usdt",
+      "quantityAccuracy": "0",
+      "minOrderAmount": "1",
+      "minTranQua": "1",
+      "priceAccuracy": "6"
+    }
+  ],
+  "error_code": 0,
+  "ts": 1794254802923
+}

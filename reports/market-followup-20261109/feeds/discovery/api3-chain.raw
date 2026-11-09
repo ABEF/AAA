@@ -1,0 +1,18 @@
+{
+  "alias": "robinhood",
+  "blockExplorerUrl": "https://robin.etherscan.io/",
+  "decimals": 18,
+  "id": "4663",
+  "name": "Robinhood Chain",
+  "providers": [
+    {
+      "alias": "default",
+      "rpcUrl": "https://rpc.mainnet.chain.robinhood.com"
+    }
+  ],
+  "symbol": "ETH",
+  "testnet": false,
+  "verificationApi": {
+    "type": "etherscan"
+  }
+}

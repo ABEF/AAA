@@ -1,0 +1,8 @@
+{
+  "url": "https://rpc.mainnet.chain.robinhood.com/",
+  "read_only": true,
+  "utc": "2026-11-09T20:07:28.074248+00:00",
+  "http_status": 200,
+  "response_bytes": 3233,
+  "response_sha256": "161154c2dce1027891246f3e2bdcdf21bc23aaf4856c238251b3cd07af17c8a7"
+}

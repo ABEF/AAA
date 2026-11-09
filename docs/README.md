@@ -22,7 +22,7 @@ Use the new mint procedure for team/allowlist/public quotas, proofs and
 configuration; it does not authorize public deployment or signer changes.
 
 
-Reviewed2026-11-09. [Actual feed/market qualification](../reports/market-qualification-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-09. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 

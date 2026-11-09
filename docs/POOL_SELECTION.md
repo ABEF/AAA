@@ -24,6 +24,21 @@ TVL or a volume forecast. Protocol and LP fees compose sequentially with roundin
 The creator cannot change this static fee or add a hook, but may remove their own
 LP; token permissions, market depth and external governance remain separate risks.
 
+## Latest execution qualification
+
+[Read-only follow-up](../reports/market-followup-20261109/REVIEW.md) keeps this
+destination unchanged. Selected reverse capacity at its shared anchor is only
+388557rawZZZ for1weiETH; the next raw unit rejects a full-input quote. ActiveL
+alone is not depth. Both-direction probes and exact current fee events are retained.
+
+Ordinary principal target and swap venue must both fit the same reference. At
+this snapshot alternative10018 is1.358280448times selected in raw ZZZ-per-ETH
+price; no shared reference can put both inside the current maximum500bps bands.
+They may be registered for future use, but cannot jointly pass those ordinary
+pre-swap checks now. This does not apply to the separate earned converter.
+No independent USD vector, whole contribution or practical conversion route is
+approved; no pool, price source, operating parameter or guard was changed.
+
 ## Admission and revenue
 
 `SELECTED_NATIVE_POOL` records the launch identity. Governance can also use

@@ -1,5 +1,14 @@
 # Engineering roadmap
 
+The [read-only feed/route follow-up](../reports/market-followup-20261109/REVIEW.md)
+is complete at its documented anchors. Next obtain two defensible ZZZ USD
+provider proposals, resolve funded ETH publication and Robinhood liveness,
+then qualify useful route depth and complete operations with those real prices.
+API3 is a concrete inactive option requiring separate initialization/funding/ABI
+review. Dedicated archive/trace service remains necessary. The sole Todo owns
+status; do not repeat unchanged mock suites to close external dependencies.
+
+
 The local [source10/mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now
 implements current read/unsigned flows alongside source9/V9. Next review the
 actual deployed graph, independent feeds/routes, OpenSea/VRF/provider and gas

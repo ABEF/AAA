@@ -1,0 +1,142 @@
+{
+  "api3-chain": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/data/chains/robinhood.json",
+    "observed_at_utc": "2026-11-09T20:06:21.153236+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:21 GMT",
+    "available": true,
+    "bytes": 352,
+    "sha256": "31b28c370e834453b5e800b38aae1eac152ff394369a403a3cf2d504f7754477"
+  },
+  "api3-addresses": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/deployments/addresses.json",
+    "observed_at_utc": "2026-11-09T20:06:21.154238+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:21 GMT",
+    "available": true,
+    "bytes": 27380,
+    "sha256": "7905acc057e155680fee0674e898184a19656cdff0ff0cd3b8357a8d7b3378f5"
+  },
+  "api3-proxy-source": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/contracts/api3-server-v1/proxies/Api3ReaderProxyV1.sol",
+    "observed_at_utc": "2026-11-09T20:06:21.155236+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:21 GMT",
+    "available": true,
+    "bytes": 7589,
+    "sha256": "effea3a0761041ff99a05c9565430c31b640e0ca4125e8e88f49235911f9c1bf"
+  },
+  "api3-factory-source": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/contracts/api3-server-v1/proxies/Api3ReaderProxyV1Factory.sol",
+    "observed_at_utc": "2026-11-09T20:06:21.506549+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:21 GMT",
+    "available": true,
+    "bytes": 3786,
+    "sha256": "97601bb7a5483ea158668702019b96bd6d26af7014f4bed08e3c8db6aa6b5829"
+  },
+  "api3-market-source": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/contracts/api3-server-v1/Api3MarketV2.sol",
+    "observed_at_utc": "2026-11-09T20:06:21.543501+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 52351,
+    "sha256": "f50cc11ad7153a4814f975a121795782db2000b4b7d2e38eee31aa52cecd93d3"
+  },
+  "api3-registry-artifact": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/deployments/robinhood/AirseekerRegistry.json",
+    "observed_at_utc": "2026-11-09T20:06:21.570468+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 157233,
+    "sha256": "2d3e265ef94f35c71157fda9173b4d5c8c899700ccef41590def18a7d56fafc0"
+  },
+  "api3-server-artifact": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/deployments/robinhood/Api3ServerV1.json",
+    "observed_at_utc": "2026-11-09T20:06:21.858327+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 200194,
+    "sha256": "8479482a4a4882b5e26609c97349f384fb9af7d47c60eb158ed79539d919d963"
+  },
+  "api3-factory-artifact": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/deployments/robinhood/Api3ReaderProxyV1Factory.json",
+    "observed_at_utc": "2026-11-09T20:06:21.941823+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 136869,
+    "sha256": "25f21381ef66657c9e117427daf483f5e7fb1e39ae6e6784b9d9d109dfeeb9c5"
+  },
+  "api3-market-artifact": {
+    "url": "https://raw.githubusercontent.com/api3dao/contracts/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c/deployments/robinhood/Api3MarketV2.json",
+    "observed_at_utc": "2026-11-09T20:06:21.981205+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 378270,
+    "sha256": "75386d9478391aa24d8043b5dd1758aae0509811e68951d32950d11c3b524082"
+  },
+  "api3-js": {
+    "url": "https://market.api3.org/assets/api3-B0P4kasb.js",
+    "observed_at_utc": "2026-11-09T20:06:22.096387+00:00",
+    "http_status": 200,
+    "content_type": "application/javascript",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 3819537,
+    "sha256": "112b714fbfa25f36980c34b76ed33e7385b8f6938a81a6a46ac712dbec6d5227"
+  },
+  "api3-index-js": {
+    "url": "https://market.api3.org/assets/index-Cd5M3xxk.js",
+    "observed_at_utc": "2026-11-09T20:06:22.268151+00:00",
+    "http_status": 200,
+    "content_type": "application/javascript",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 3541703,
+    "sha256": "0aa1c9cd363560d3e7664cead98477ae9571e52089f1ec5ca2dfa21198e2be35"
+  },
+  "pyth-getters-source": {
+    "url": "https://raw.githubusercontent.com/pyth-network/pyth-crosschain/main/target_chains/ethereum/contracts/contracts/pyth/PythGetters.sol",
+    "observed_at_utc": "2026-11-09T20:06:22.290200+00:00",
+    "http_status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": true,
+    "bytes": 2712,
+    "sha256": "ecbd99f8d2c23d5cd32d96b49a49045248d7a70a8c429a302e43dcd5e33ff2ec"
+  },
+  "explorer-chainlink": {
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+    "observed_at_utc": "2026-11-09T20:06:22.371070+00:00",
+    "http_status": 403,
+    "content_type": "text/html; charset=UTF-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": false,
+    "bytes": 5753,
+    "sha256": "3a73d2ba3617c909fd4d92bd1d5dcd44b7b27005f394fbed0c3ddd8bc7f1d47a"
+  },
+  "explorer-pyth": {
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+    "observed_at_utc": "2026-11-09T20:06:22.431407+00:00",
+    "http_status": 403,
+    "content_type": "text/html; charset=UTF-8",
+    "server_date": "Mon, 09 Nov 2026 20:06:22 GMT",
+    "available": false,
+    "bytes": 5753,
+    "sha256": "23b467baf6af43ef8c2303e36b0af8d4c594fd9928789faf0d5435487fa8bf2c"
+  }
+}

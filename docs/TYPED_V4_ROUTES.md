@@ -8,6 +8,23 @@ dependency for v4. These routes are separate from the registry's principal LP
 pools. Adding one does not admit another NFT contribution pool or reward currency.
 No real route, RPC or oracle is qualified by the local tests.
 
+## Actual market qualification
+
+[Latest route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md)
+preserves some favorable tiny ZZZ-to-ETH outputs against a conditional selected-
+spot vector. Thus a known fee alone is not proof that every possible quote fails
+the1% output floor. None establishes useful economics, independent USD truth,
+whole-NFT conversion or the production wrapper/callback path. At the captured
+basefee, even intrinsic-only gas costs more than the largest observed favorable
+tiny output. No route was admitted or enabled.
+
+Empty activeL also does not prove no executable liquidity beyond a tick gap;
+probe both directions at actual raw sizes and retain unknown errors separately.
+Registry principal fee eligibility is stricter than the Balancer inclusive fee
+ceiling; typed earned routes have their own bounds. Native principal and v3/WETH
+earned conversion never become interchangeable. Known fees are excluded only
+from the additional-quality calculation, not from the total conversion1% cap.
+
 ## Contract boundary
 
 `ZZZLPRewardConverter` inherits the fixed-ledger `ZZZRewardConverter` base and

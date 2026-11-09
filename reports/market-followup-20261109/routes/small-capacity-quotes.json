@@ -1,0 +1,787 @@
+[
+  {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_1",
+    "zeroForOne": false,
+    "amountIn": 1,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007c8c"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 0,
+      "amountConsumed": 1,
+      "remaining": 0,
+      "sqrtAfter": 42277818571609234285824917886142,
+      "tickAfter": 125599,
+      "liquidityAfter": 962337799357516411500,
+      "combined_fee_pips": 11010,
+      "path": [
+        {
+          "tickBefore": 125599,
+          "sqrtBefore": 42277818571609234285824917886142,
+          "L": 962337799357516411500,
+          "nextTick": 125600,
+          "initialized": true,
+          "sqrtAfter": 42277818571609234285824917886142,
+          "input": 0,
+          "fee": 1,
+          "output": 0,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 0,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_388556",
+    "zeroForOne": false,
+    "amountIn": 388556,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000a5ba"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 1,
+      "amountConsumed": 388556,
+      "remaining": 0,
+      "sqrtAfter": 42277818571609234317462000651487,
+      "tickAfter": 125599,
+      "liquidityAfter": 962337799357516411500,
+      "combined_fee_pips": 11010,
+      "path": [
+        {
+          "tickBefore": 125599,
+          "sqrtBefore": 42277818571609234285824917886142,
+          "L": 962337799357516411500,
+          "nextTick": 125600,
+          "initialized": true,
+          "sqrtAfter": 42277818571609234317462000651487,
+          "input": 384277,
+          "fee": 4279,
+          "output": 1,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 1,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_388557",
+    "zeroForOne": false,
+    "amountIn": 388557,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000e2ed"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 1,
+      "amountConsumed": 388557,
+      "remaining": 0,
+      "sqrtAfter": 42277818571609234317462070031598,
+      "tickAfter": 125600,
+      "liquidityAfter": 0,
+      "combined_fee_pips": 11010,
+      "path": [
+        {
+          "tickBefore": 125599,
+          "sqrtBefore": 42277818571609234285824917886142,
+          "L": 962337799357516411500,
+          "nextTick": 125600,
+          "initialized": true,
+          "sqrtAfter": 42277818571609234317462070031598,
+          "input": 384278,
+          "fee": 4279,
+          "output": 1,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 1,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_388558",
+    "zeroForOne": false,
+    "amountIn": 388558,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "error": {
+        "code": 3,
+        "message": "execution reverted",
+        "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b00000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "replay": {
+      "status": "capture_bound",
+      "error": "'uncaptured bitmap 4'",
+      "amountOut": 1,
+      "amountConsumed": 388557,
+      "remaining": 1,
+      "sqrtAfter": 2195280434697541071699621943234603,
+      "tickAfter": 204600,
+      "liquidityAfter": 0,
+      "combined_fee_pips": 11010,
+      "path": [
+        {
+          "tickBefore": 125599,
+          "sqrtBefore": 42277818571609234285824917886142,
+          "L": 962337799357516411500,
+          "nextTick": 125600,
+          "initialized": true,
+          "sqrtAfter": 42277818571609234317462070031598,
+          "input": 384278,
+          "fee": 4279,
+          "output": 1,
+          "remaining": 1
+        },
+        {
+          "tickBefore": 125600,
+          "sqrtBefore": 42277818571609234317462070031598,
+          "L": 0,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 169727306461382225272639593607248,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 1
+        },
+        {
+          "tickBefore": 153400,
+          "sqrtBefore": 169727306461382225272639593607248,
+          "L": 0,
+          "nextTick": 204600,
+          "initialized": false,
+          "sqrtAfter": 2195280434697541071699621943234603,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 1
+        }
+      ]
+    }
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_1000000000000",
+    "zeroForOne": false,
+    "amountIn": 1000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": "0x00000000000000000000000000000000000000000000000000000000005ea687000000000000000000000000000000000000000000000000000000000000a67a"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 6203015,
+      "amountConsumed": 1000000000000,
+      "remaining": 0,
+      "sqrtAfter": 31635408945874061537483637412232,
+      "tickAfter": 119799,
+      "liquidityAfter": 265494416382117651707,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635408945874061537483637412232,
+          "input": 988987000000,
+          "fee": 11013000000,
+          "output": 6203015,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 6203015,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_10000000000000",
+    "zeroForOne": false,
+    "amountIn": 10000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": "0x0000000000000000000000000000000000000000000000000000000003b28147000000000000000000000000000000000000000000000000000000000000a67a"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 62030151,
+      "amountConsumed": 10000000000000,
+      "remaining": 0,
+      "sqrtAfter": 31635408948530240203890993962702,
+      "tickAfter": 119799,
+      "liquidityAfter": 265494416382117651707,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635408948530240203890993962702,
+          "input": 9889870000000,
+          "fee": 110130000000,
+          "output": 62030151,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 62030151,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_100000000000000",
+    "zeroForOne": false,
+    "amountIn": 100000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": "0x0000000000000000000000000000000000000000000000000000000024f90cce000000000000000000000000000000000000000000000000000000000000a67a"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 620301518,
+      "amountConsumed": 100000000000000,
+      "remaining": 0,
+      "sqrtAfter": 31635408975092026867964559467402,
+      "tickAfter": 119799,
+      "liquidityAfter": 265494416382117651707,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635408975092026867964559467402,
+          "input": 98898700000000,
+          "fee": 1101300000000,
+          "output": 620301518,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 620301518,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_1000000000000000",
+    "zeroForOne": false,
+    "amountIn": 1000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": "0x0000000000000000000000000000000000000000000000000000000171ba7fdb000000000000000000000000000000000000000000000000000000000000a67a"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 6203015131,
+      "amountConsumed": 1000000000000000,
+      "remaining": 0,
+      "sqrtAfter": 31635409240709893508700214514409,
+      "tickAfter": 119799,
+      "liquidityAfter": 265494416382117651707,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635409240709893508700214514409,
+          "input": 988987000000000,
+          "fee": 11013000000000,
+          "output": 6203015131,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 6203015131,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_10000000000000000",
+    "zeroForOne": false,
+    "amountIn": 10000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "error": {
+        "code": 3,
+        "message": "execution reverted",
+        "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed73419820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d174700000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "replay": {
+      "status": "capture_bound",
+      "error": "'uncaptured bitmap 4'",
+      "amountOut": 22863086891,
+      "amountConsumed": 3685802303845406,
+      "remaining": 6314197696154594,
+      "sqrtAfter": 2195280434697541071699621943234603,
+      "tickAfter": 204600,
+      "liquidityAfter": 0,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635410033373313693355141608497,
+          "input": 3645210563073156,
+          "fee": 40591740772250,
+          "output": 22863086891,
+          "remaining": 6314197696154594
+        },
+        {
+          "tickBefore": 119800,
+          "sqrtBefore": 31635410033373313693355141608497,
+          "L": 0,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 169727306461382225272639593607248,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 6314197696154594
+        },
+        {
+          "tickBefore": 153400,
+          "sqrtBefore": 169727306461382225272639593607248,
+          "L": 0,
+          "nextTick": 204600,
+          "initialized": false,
+          "sqrtAfter": 2195280434697541071699621943234603,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 6314197696154594
+        }
+      ]
+    }
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_100000000000000000",
+    "zeroForOne": false,
+    "amountIn": 100000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "error": {
+        "code": 3,
+        "message": "execution reverted",
+        "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed73419820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d174700000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "replay": {
+      "status": "capture_bound",
+      "error": "'uncaptured bitmap 4'",
+      "amountOut": 22863086891,
+      "amountConsumed": 3685802303845406,
+      "remaining": 96314197696154594,
+      "sqrtAfter": 2195280434697541071699621943234603,
+      "tickAfter": 204600,
+      "liquidityAfter": 0,
+      "combined_fee_pips": 11013,
+      "path": [
+        {
+          "tickBefore": 119799,
+          "sqrtBefore": 31635408945578930574549486684402,
+          "L": 265494416382117651707,
+          "nextTick": 119800,
+          "initialized": true,
+          "sqrtAfter": 31635410033373313693355141608497,
+          "input": 3645210563073156,
+          "fee": 40591740772250,
+          "output": 22863086891,
+          "remaining": 96314197696154594
+        },
+        {
+          "tickBefore": 119800,
+          "sqrtBefore": 31635410033373313693355141608497,
+          "L": 0,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 169727306461382225272639593607248,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 96314197696154594
+        },
+        {
+          "tickBefore": 153400,
+          "sqrtBefore": 169727306461382225272639593607248,
+          "L": 0,
+          "nextTick": 204600,
+          "initialized": false,
+          "sqrtAfter": 2195280434697541071699621943234603,
+          "input": 0,
+          "fee": 0,
+          "output": 0,
+          "remaining": 96314197696154594
+        }
+      ]
+    }
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_1000000000000",
+    "zeroForOne": false,
+    "amountIn": 1000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": "0x000000000000000000000000000000000000000000000000000000000037e3cc000000000000000000000000000000000000000000000000000000000000a206"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 3662796,
+      "amountConsumed": 1000000000000,
+      "remaining": 0,
+      "sqrtAfter": 41169016266334315747273927886675,
+      "tickAfter": 125068,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 41169016266334315747273927886675,
+          "input": 988995000000,
+          "fee": 11005000000,
+          "output": 3662796,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 3662796,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_10000000000000",
+    "zeroForOne": false,
+    "amountIn": 10000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 12,
+      "result": "0x00000000000000000000000000000000000000000000000000000000022ee4a0000000000000000000000000000000000000000000000000000000000000a206"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 36627616,
+      "amountConsumed": 10000000000000,
+      "remaining": 0,
+      "sqrtAfter": 41169402723276225666510182100350,
+      "tickAfter": 125068,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 41169402723276225666510182100350,
+          "input": 9889950000000,
+          "fee": 110050000000,
+          "output": 36627616,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 36627616,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_100000000000000",
+    "zeroForOne": false,
+    "amountIn": 100000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 13,
+      "result": "0x0000000000000000000000000000000000000000000000000000000015d467fb000000000000000000000000000000000000000000000000000000000000a597"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 366241787,
+      "amountConsumed": 100000000000000,
+      "remaining": 0,
+      "sqrtAfter": 41173267292695324858872724237099,
+      "tickAfter": 125070,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 41173267292695324858872724237099,
+          "input": 98899500000000,
+          "fee": 1100500000000,
+          "output": 366241787,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 366241787,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_1000000000000000",
+    "zeroForOne": false,
+    "amountIn": 1000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 14,
+      "result": "0x00000000000000000000000000000000000000000000000000000000da17a858000000000000000000000000000000000000000000000000000000000000a57b"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 3658983512,
+      "amountConsumed": 1000000000000000,
+      "remaining": 0,
+      "sqrtAfter": 41211912986886316782498145604588,
+      "tickAfter": 125089,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 41211912986886316782498145604588,
+          "input": 988995000000000,
+          "fee": 11005000000000,
+          "output": 3658983512,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 3658983512,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_10000000000000000",
+    "zeroForOne": false,
+    "amountIn": 10000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 15,
+      "result": "0x0000000000000000000000000000000000000000000000000000000870a9b4de000000000000000000000000000000000000000000000000000000000000a5bb"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 36249908446,
+      "amountConsumed": 10000000000000000,
+      "remaining": 0,
+      "sqrtAfter": 41598369928796236018752359279480,
+      "tickAfter": 125275,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 41598369928796236018752359279480,
+          "input": 9889950000000000,
+          "fee": 110050000000000,
+          "output": 36249908446,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 36249908446,
+    "official_output_exact_match": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "label": "capacity_100000000000000000",
+    "zeroForOne": false,
+    "amountIn": 100000000000000000,
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 16,
+      "result": "0x0000000000000000000000000000000000000000000000000000004d39f61993000000000000000000000000000000000000000000000000000000000000a57b"
+    },
+    "replay": {
+      "status": "complete",
+      "amountOut": 331684911507,
+      "amountConsumed": 100000000000000000,
+      "remaining": 0,
+      "sqrtAfter": 45462939347895428381294496028398,
+      "tickAfter": 127052,
+      "liquidityAfter": 1824799176298748,
+      "combined_fee_pips": 11005,
+      "path": [
+        {
+          "tickBefore": 125068,
+          "sqrtBefore": 41168973326674103534025455196267,
+          "L": 1824799176298748,
+          "nextTick": 153400,
+          "initialized": false,
+          "sqrtAfter": 45462939347895428381294496028398,
+          "input": 98899500000000000,
+          "fee": 1100500000000000,
+          "output": 331684911507,
+          "remaining": 0
+        }
+      ]
+    },
+    "amountOut": 331684911507,
+    "official_output_exact_match": true
+  }
+]

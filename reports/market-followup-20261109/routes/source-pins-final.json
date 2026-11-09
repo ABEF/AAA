@@ -1,0 +1,107 @@
+[
+  {
+    "path": "src/ZZZLPBalancer.sol",
+    "bytes": 22218,
+    "sha256": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad"
+  },
+  {
+    "path": "src/ZZZLPBalanceMath.sol",
+    "bytes": 6761,
+    "sha256": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898"
+  },
+  {
+    "path": "src/ZZZContributionPricing.sol",
+    "bytes": 22452,
+    "sha256": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540"
+  },
+  {
+    "path": "src/ZZZPoolRegistry.sol",
+    "bytes": 11429,
+    "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa"
+  },
+  {
+    "path": "src/ZZZStrategy.sol",
+    "bytes": 22792,
+    "sha256": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632"
+  },
+  {
+    "path": "src/ZZZOracle.sol",
+    "bytes": 13810,
+    "sha256": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe"
+  },
+  {
+    "path": "src/base/ZZZRewardConverter.sol",
+    "bytes": 12775,
+    "sha256": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232"
+  },
+  {
+    "path": "src/ZZZV4RouteExecutor.sol",
+    "bytes": 9694,
+    "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021"
+  },
+  {
+    "path": "src/ZZZRewards.sol",
+    "bytes": 12664,
+    "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30"
+  },
+  {
+    "path": "zzz_ops/tick_math.py",
+    "bytes": 4949,
+    "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+  },
+  {
+    "path": "zzz_ops/abi.py",
+    "bytes": 3754,
+    "sha256": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/capture.py",
+    "bytes": 3454,
+    "sha256": "fbb232b1509b858095e60efb981389bc42aa117b6b6809ea2ada783dab17a713"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/quotes.py",
+    "bytes": 4547,
+    "sha256": "0daa7ea8bf9a9d85bd9bc688fbdd5a5d91c39883dfe693dc5976a7cda3786298"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/core/src/pkgs/v4-core/src/libraries/SwapMath.sol",
+    "bytes": 6968,
+    "sha256": "eb3971ea0ba84ff0a01f2fbe43f62f9c393121ef1724774ed3f3ab7760780e4a"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/core/src/pkgs/v4-core/src/libraries/SqrtPriceMath.sol",
+    "bytes": 14076,
+    "sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/core/src/pkgs/v4-core/src/libraries/Pool.sol",
+    "bytes": 30035,
+    "sha256": "59c493035ad25d56f24a457e8b40d9d1e3784504b8ff13d171db1eb25c6f128e"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/core/src/pkgs/v4-core/src/libraries/TickBitmap.sol",
+    "bytes": 6266,
+    "sha256": "19b25dccfac8bd90f9d615fb182547eb7b5908a5cbf21a1c5920b92c47383cb6"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/market-evidence-manifest.json",
+    "bytes": 67175,
+    "sha256": "3b2198b890ce9e972f4e2022fc2e3195dd761890c1605a7093a7954e61303adb"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/registry-pin.json",
+    "bytes": 148,
+    "sha256": "da7b81ac6828c8ec245a7b41638db143a27f2d4e54fbbde83927ba7c4927e2e3"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/quoter/src/pkgs/v4-periphery/src/base/BaseV4Quoter.sol",
+    "bytes": 2518,
+    "sha256": "78c4d90510c21e90dfd20242bf42bf79ed911d172a6f5fa67912cee936a2632a"
+  },
+  {
+    "path": "reports/market-qualification-20261109/markets/verified-sources/quoter/src/pkgs/v4-periphery/src/lens/V4Quoter.sol",
+    "bytes": 7107,
+    "sha256": "0466f1e83d6362836c0b5256996d13e222a33a2b2810d7992d32a84753a8c0ef"
+  }
+]

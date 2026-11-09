@@ -22,6 +22,16 @@ cap setter needs no service restart, but a config/runtime/source rollout require
 the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 [Fee-adjusted scope and limits](EXECUTION_QUALITY.md).
 
+## Actual dependency qualification
+
+The [current read-only campaign](../reports/market-followup-20261109/REVIEW.md)
+adds source/control/ABI and direction/size/spot/depth evidence, not a ready live
+configuration. Keep unavailable prices unavailable. Quote output or retained
+idle cannot substitute for actual marginal LP or independent USD valuation.
+No new complete activation/growth transaction was performed; previous2% fork
+rejections retain that scope. Current3% total does not alter swap/spot/idle/caller
+guards, and a source spread can consume the available marginal-LP budget.
+
 ## Current deployment and review profile
 
 Fresh Entry3 has a seven-field direct ETH/ZZZ request. Use `routing_version:3`,

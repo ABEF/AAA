@@ -18,18 +18,24 @@ changed. [Policy/source evidence](../reports/contribution-loss3-20261109/REVIEW.
 instances/caller200 reviews/journals and earlier market2% evidence remain explicit.
 No deployment/service/site/Anvil/signing change or market qualification is implied.
 
-Actual market dependencies remain unqualified. The [read-only/fork market review](../reports/market-qualification-20261109/REVIEW.md)
-finds no usable dual ETH/fixedZZZ USD pair: both Chainlink proxies share one
-aggregator; the observed Pyth ETH update exceeds the hard one-day age bound and
-the pair exceeds3% disagreement. Retrieved public catalogs name no fixedZZZ feed.
-The selected pool's active L is not bidirectional depth: reverse ZZZ input crosses
-its upper tick and exhausts current L. Preserve actual guard failures; never
-qualify by duplicating a feed, adding synthetic depth, widening limits, selecting
-an incompatible venue or replacing unavailable prices with pool spot.
-Native-v4 principal venues and optional v3/WETH earned conversion are distinct;
-wrapper=zero before seal permanently excludes v3 on that converter, and the
-fresh7 automated worker remains native-v4-only. No runtime/configuration,
-service/site/journal/signer or existing Anvil change accompanies these observations.
+Actual market dependencies remain unqualified. The [read-only follow-up](../reports/market-followup-20261109/REVIEW.md)
+adds same-anchor feed/control/market evidence at110324511 (9November20:04:50UTC),
+an inactive API3 ETH candidate, authenticated offers and external exact-ZZZ market
+leads. Chainlink proxies still share one aggregator; stored Pyth ETH is stale and
+disagrees above300bps; no two qualified fixedZZZ USD sources are established.
+Tiny favorable conversion quotes exist but do not establish meaningful gas/depth
+or full-operation acceptance. The selected reverse pool remains exceptionally
+shallow; ordinary principal target/venue price bands must also overlap.
+Preserve source round/age/agreement and all execution guards. Do not duplicate a
+feed, infer independence from names/admin addresses, add synthetic depth, widen
+limits or replace USD truth with target-pool spot/USDT peg. API3 needs activation
+and separately reviewed round-compatible adaptation if selected; no adapter or
+subscription was added. Chainlink no longer expands uptime feeds to new networks;
+Robinhood liveness policy remains open. A retained header is not archive-state
+availability. Native-v4 principal and optional v3/WETH earned conversion remain
+distinct; zero immutable wrapper excludes v3 and fresh7 automation is native-v4
+only. No source/configuration/service/site/Anvil/journal/signer or paused-heartbeat
+change accompanies this qualification. Earlier reports keep their original scope.
 
 The [SeaDrop integration candidate](../reports/opensea-integration-20261109/REVIEW.md) adds fresh mint2/helper1,
 canonicalV10 and schema17 with20 callable helpers plus2 inert data children.

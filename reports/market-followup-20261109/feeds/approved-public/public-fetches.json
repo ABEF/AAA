@@ -1,0 +1,152 @@
+{
+  "pyth-fees": {
+    "url": "https://docs.pyth.network/pro/on-chain-fees",
+    "observed_at_utc": "2026-11-09T20:05:32.330528+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 208799,
+    "sha256": "2dd976d9c9a06c2f162aafed028bf017d882df5e89857fb6c725cc2f551c61eb"
+  },
+  "pyth-architecture": {
+    "url": "https://docs.pyth.network/pro/how-lazer-works",
+    "observed_at_utc": "2026-11-09T20:05:32.331546+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 260091,
+    "sha256": "5f90b9d4934f7352900041b8b6ad08db5c2242541f1b206e902c0742f11c2bf1"
+  },
+  "pyth-upgrade": {
+    "url": "https://docs.pyth.network/pro/pyth-core-upgrade",
+    "observed_at_utc": "2026-11-09T20:05:32.332561+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 251823,
+    "sha256": "9bcf53ae10fd3ce2dfd688b96a3d54c3b72d86a7dc9e8e3a48b25b6bc43fc554"
+  },
+  "pyth-addresses": {
+    "url": "https://docs.pyth.network/pro/contract-addresses",
+    "observed_at_utc": "2026-11-09T20:05:32.503755+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 544868,
+    "sha256": "07370a47cda1c84e6f4ad3f2bae83a42f05ca7b5aa86f2fce917e647b5358de0"
+  },
+  "pyth-sponsored": {
+    "url": "https://docs.pyth.network/pro/sponsored-feeds",
+    "observed_at_utc": "2026-11-09T20:05:32.523525+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 308120,
+    "sha256": "ebb46085c526f53b31a960145e39dab127334b1a28db0caa7c62a92de5f76e06"
+  },
+  "chainlink-sequencer": {
+    "url": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+    "observed_at_utc": "2026-11-09T20:05:32.572135+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 376859,
+    "sha256": "1185cdc95ad25aa5f56184a26232f8ae279e41b58447ec2c012bfa7ac91b07ec"
+  },
+  "chainlink-catalog": {
+    "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+    "observed_at_utc": "2026-11-09T20:05:32.605970+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 88515,
+    "sha256": "5d52e012431e6c6543c71dc14e467a0233300fcf0eb7b846aae2daf72b630381"
+  },
+  "pyth-symbols": {
+    "url": "https://pyth.dourolabs.app/v1/symbols",
+    "observed_at_utc": "2026-11-09T20:05:32.675094+00:00",
+    "http_status": 200,
+    "content_type": "application/json",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": true,
+    "bytes": 5347821,
+    "sha256": "b15657256437308bf456e1095a760e079675a64ed2fadb6da7fff2c4c89af2e2"
+  },
+  "pyth-hermes-latest-noauth": {
+    "url": "https://pyth.dourolabs.app/hermes/v2/updates/price/latest?ids%5B%5D=ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace&parsed=true",
+    "observed_at_utc": "2026-11-09T20:05:32.693822+00:00",
+    "http_status": 401,
+    "content_type": "text/plain; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:32 GMT",
+    "available": false,
+    "bytes": 12,
+    "sha256": "e9d83f01c9aff03af6380e341aad90a5547d378ef54582383c6c9a35c53181af"
+  },
+  "robinhood-oracles": {
+    "url": "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+    "observed_at_utc": "2026-11-09T20:05:32.761452+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 50498,
+    "sha256": "c3cb44230ef7064756cefea8231eb717097468fbcb7f5472549e0210f4fbc94f"
+  },
+  "api3-market": {
+    "url": "https://market.api3.org/robinhood",
+    "observed_at_utc": "2026-11-09T20:05:32.903986+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 4098,
+    "sha256": "8cf183c5c0af924c65f0b2b601554a8149d3cc865f6b3c0664b4efb1be7c5666"
+  },
+  "api3-eth": {
+    "url": "https://market.api3.org/robinhood/eth-usd",
+    "observed_at_utc": "2026-11-09T20:05:33.034466+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 4098,
+    "sha256": "8cf183c5c0af924c65f0b2b601554a8149d3cc865f6b3c0664b4efb1be7c5666"
+  },
+  "api3-round-doc": {
+    "url": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html",
+    "observed_at_utc": "2026-11-09T20:05:33.065283+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 22340,
+    "sha256": "6db1db90253b5f6bf6639006ac607ea4b19b4d95dd5f7ca849ab8fc52c28cd74"
+  },
+  "api3-integration": {
+    "url": "https://docs.api3.org/dapps/integration/contract-integration.html",
+    "observed_at_utc": "2026-11-09T20:05:33.179186+00:00",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 32927,
+    "sha256": "b193d2e22bda44440cbd7aee03641d04815e98fe2f49f4a9950800f5eccea739"
+  },
+  "api3-repo-tree": {
+    "url": "https://api.github.com/repos/api3dao/contracts/git/trees/main?recursive=1",
+    "observed_at_utc": "2026-11-09T20:05:33.229670+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:05:33 GMT",
+    "available": true,
+    "bytes": 253293,
+    "sha256": "0ca14ef2260b93da9ff443189c8c31259054fd86949a2eb254836881c0159d44"
+  }
+}

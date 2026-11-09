@@ -1,0 +1,11 @@
+{
+  "source": "discovery/api3-index-js.raw",
+  "total_rows": 292,
+  "ETH_USD": [
+    [
+      "0x4554482f55534400000000000000000000000000000000000000000000000000",
+      "0x5494cb529af981f0d6484ca21d839f27bf2948c8f5599ac8dd9809966caef9bb",
+      "0xB93C7491465cFe6121EE6bf62B2fDaC567669953"
+    ]
+  ]
+}

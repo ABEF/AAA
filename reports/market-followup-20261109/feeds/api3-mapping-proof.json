@@ -1,0 +1,29 @@
+{
+  "fresh_secondary_anchor": {
+    "chain_id": 4663,
+    "block_number": 110332661,
+    "block_hash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+    "block_timestamp": 1794255524,
+    "selector": {
+      "blockHash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+      "requireCanonical": true
+    },
+    "observed_head": 110332673,
+    "depth": 13
+  },
+  "literal_app_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+  "computed_all_292_leaf_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+  "literal_root_verified": true,
+  "selected_ETH_entry": [
+    [
+      "0x4554482f55534400000000000000000000000000000000000000000000000000",
+      "0x5494cb529af981f0d6484ca21d839f27bf2948c8f5599ac8dd9809966caef9bb",
+      "0xB93C7491465cFe6121EE6bf62B2fDaC567669953"
+    ]
+  ],
+  "source": "discovery/api3-index-js.raw",
+  "qualification": false,
+  "onchain_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+  "root_matches_onchain": true,
+  "canonical_recheck": true
+}

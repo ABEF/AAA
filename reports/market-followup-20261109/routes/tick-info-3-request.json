@@ -1,0 +1,22 @@
+{
+  "url": "https://rpc.mainnet.chain.robinhood.com/",
+  "read_only": true,
+  "utc": "2026-11-09T20:09:36.420755+00:00",
+  "json": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "data": "0x7c40f1fe667a9f04bb69ab4036518c8c7103d868ef90407c45e372f720ba83a7b66c3ee0000000000000000000000000000000000000000000000000000000000001db00"
+        },
+        {
+          "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+          "requireCanonical": true
+        }
+      ]
+    }
+  ]
+}

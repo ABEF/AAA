@@ -1,0 +1,64 @@
+{
+  "rc": 0,
+  "mc": "SUCCESS",
+  "ma": [],
+  "result": {
+    "time": 1794254803160,
+    "version": "3d1badedc5e95e3b1a94e899d6381303",
+    "symbols": [
+      {
+        "id": 11998,
+        "symbol": "zzz_usdt",
+        "displayName": "ZZZ/USDT",
+        "type": "normal",
+        "state": "ONLINE",
+        "stateTime": 1789039800000,
+        "tradingEnabled": true,
+        "openapiEnabled": false,
+        "nextStateTime": null,
+        "nextState": null,
+        "depthMergePrecision": 5,
+        "baseCurrency": "zzz",
+        "baseCurrencyPrecision": 8,
+        "baseCurrencyId": 5583,
+        "baseCurrencyLogo": "https://a.static-global.com/1/currency/8955c38e-826a-4015-9387-70026b3e9c1c-1789037748543.png",
+        "quoteCurrency": "usdt",
+        "quoteCurrencyPrecision": 8,
+        "quoteCurrencyId": 11,
+        "pricePrecision": 5,
+        "quantityPrecision": 2,
+        "orderTypes": [],
+        "timeInForces": [],
+        "displayWeight": 1000,
+        "displayLevel": "FULL",
+        "plates": [
+          300,
+          3
+        ],
+        "businessNameI18n": {
+          "cn": "ZZZ",
+          "hk": "ZZZ",
+          "en": "ZZZ"
+        },
+        "tags": [],
+        "filters": [
+          {
+            "filter": "PROTECTION_LIMIT",
+            "sellPriceLimitCoefficient": "0.8",
+            "buyMaxDeviation": "0.8",
+            "buyPriceLimitCoefficient": "4",
+            "sellMaxDeviation": "4"
+          }
+        ],
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002",
+        "chainRelation": [
+          {
+            "chainId": 2403,
+            "contract": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a"
+          }
+        ]
+      }
+    ]
+  }
+}

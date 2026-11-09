@@ -1,0 +1,163 @@
+{
+  "address": "0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+  "anchor": {
+    "chain_id": 4663,
+    "block_number": 110324511,
+    "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "block_timestamp": 1794254690,
+    "selector": {
+      "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+      "requireCanonical": true
+    }
+  },
+  "qualification": false,
+  "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+  "explorer_name": "DualAggregator",
+  "compiler": "v0.8.24+commit.e11b9ed9",
+  "file_path": "src/DualAggregator.sol",
+  "is_verified": true,
+  "is_fully_verified": false,
+  "is_partially_verified": true,
+  "license_type": "none",
+  "reported_runtime_bytes": 23186,
+  "canonical_runtime_bytes": 23186,
+  "reported_runtime_keccak256": "0x8cbea1fd25321771256158fd6beb8689fe60cd36230b22c65e77c2a03c5972fd",
+  "canonical_runtime_keccak256": "0x8cbea1fd25321771256158fd6beb8689fe60cd36230b22c65e77c2a03c5972fd",
+  "reported_runtime_equals_canonical": true,
+  "source_json_sha256": "ee7b3d4dc08c7b464aaed5b3c53874fac1ae0fdb9b6b3100091a2762c80584a5",
+  "source_sha256": "63e415e12be911a069e27d19ef86381f269317f2a91676b3f4c54f5b03a1e5e6",
+  "functions": [
+    "acceptOwnership",
+    "acceptPayeeship",
+    "addAccess",
+    "checkEnabled",
+    "decimals",
+    "description",
+    "disableAccessCheck",
+    "enableAccessCheck",
+    "getAnswer",
+    "getBilling",
+    "getBillingAccessController",
+    "getLinkToken",
+    "getRequesterAccessController",
+    "getRoundData",
+    "getTimestamp",
+    "getTransmitters",
+    "getValidatorConfig",
+    "hasAccess",
+    "latestAnswer",
+    "latestConfigDetails",
+    "latestConfigDigestAndEpoch",
+    "latestRound",
+    "latestRoundData",
+    "latestTimestamp",
+    "latestTransmissionDetails",
+    "linkAvailableForPayment",
+    "maxAnswer",
+    "minAnswer",
+    "oracleObservationCount",
+    "owedPayment",
+    "owner",
+    "removeAccess",
+    "requestNewRound",
+    "setBilling",
+    "setBillingAccessController",
+    "setConfig",
+    "setCutoffTime",
+    "setLinkToken",
+    "setPayees",
+    "setRequesterAccessController",
+    "setValidatorConfig",
+    "transferOwnership",
+    "transferPayeeship",
+    "transmit",
+    "transmitSecondary",
+    "typeAndVersion",
+    "version",
+    "withdrawFunds",
+    "withdrawPayment"
+  ],
+  "constructor_args": [
+    [
+      "0x492641F648a4986844848E0beFE66D14817bCE34",
+      {
+        "internalType": "contract LinkTokenInterface",
+        "name": "link",
+        "type": "address"
+      }
+    ],
+    [
+      "1",
+      {
+        "internalType": "int192",
+        "name": "minAnswer_",
+        "type": "int192"
+      }
+    ],
+    [
+      "95780971304118053647396689196894323976171195136475135",
+      {
+        "internalType": "int192",
+        "name": "maxAnswer_",
+        "type": "int192"
+      }
+    ],
+    [
+      "0xf7112CE822645BcE84b7Cb85d12b7b45Da50AB4d",
+      {
+        "internalType": "contract AccessControllerInterface",
+        "name": "billingAccessController",
+        "type": "address"
+      }
+    ],
+    [
+      "0xe7492344505c5a286fe92D48dED203E0207221D3",
+      {
+        "internalType": "contract AccessControllerInterface",
+        "name": "requesterAccessController",
+        "type": "address"
+      }
+    ],
+    [
+      "8",
+      {
+        "internalType": "uint8",
+        "name": "decimals_",
+        "type": "uint8"
+      }
+    ],
+    [
+      "ETH / USD",
+      {
+        "internalType": "string",
+        "name": "description_",
+        "type": "string"
+      }
+    ],
+    [
+      "0x5058aDee53b04e374d8bEDbAD634Bc4778F50b22",
+      {
+        "internalType": "address",
+        "name": "secondaryProxy_",
+        "type": "address"
+      }
+    ],
+    [
+      "30",
+      {
+        "internalType": "uint32",
+        "name": "cutoffTime_",
+        "type": "uint32"
+      }
+    ],
+    [
+      "20",
+      {
+        "internalType": "uint32",
+        "name": "maxSyncIterations_",
+        "type": "uint32"
+      }
+    ]
+  ],
+  "limitation": "Explorer-reported verified source runtime equals shared-anchor onchain runtime; not independently recompiled, audited, feed-independent or operating-approved."
+}

@@ -1,0 +1,21 @@
+{
+  "anchor": {
+    "block_number": 110324511,
+    "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "block_timestamp": 1794254690
+  },
+  "feed_id": "0x5494cb529af981f0d6484ca21d839f27bf2948c8f5599ac8dd9809966caef9bb",
+  "reads": {
+    "market_base": {
+      "error_type": "ValueError"
+    },
+    "server_base": {
+      "error_type": "ValueError"
+    },
+    "registry_details": {
+      "error_type": "ValueError"
+    }
+  },
+  "qualification": false,
+  "canonical_recheck": true
+}

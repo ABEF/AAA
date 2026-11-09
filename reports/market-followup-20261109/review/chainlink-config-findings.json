@@ -1,0 +1,10 @@
+{
+  "qualification": false,
+  "aggregator": "0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+  "source": "chainlink-source-match.json",
+  "latest_config_count": 1,
+  "latest_config_block": 25245315,
+  "latest_config_digest": "0x000161b3b08a60002dadc5d6018cc48426304311ab88f656d925f5b50a5399d5",
+  "complete": false,
+  "error_type": "AssertionError"
+}

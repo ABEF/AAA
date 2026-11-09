@@ -1,0 +1,92 @@
+{
+  "pyth-fees": {
+    "url": "https://docs.pyth.network/pro/on-chain-fees",
+    "observed_at_utc": "2026-11-09T20:05:12.778340+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-architecture": {
+    "url": "https://docs.pyth.network/pro/how-lazer-works",
+    "observed_at_utc": "2026-11-09T20:05:12.779389+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-upgrade": {
+    "url": "https://docs.pyth.network/pro/pyth-core-upgrade",
+    "observed_at_utc": "2026-11-09T20:05:12.780393+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-addresses": {
+    "url": "https://docs.pyth.network/pro/contract-addresses",
+    "observed_at_utc": "2026-11-09T20:05:12.863232+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-sponsored": {
+    "url": "https://docs.pyth.network/pro/sponsored-feeds",
+    "observed_at_utc": "2026-11-09T20:05:12.865900+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "chainlink-sequencer": {
+    "url": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+    "observed_at_utc": "2026-11-09T20:05:12.867310+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "chainlink-catalog": {
+    "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+    "observed_at_utc": "2026-11-09T20:05:12.936778+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-symbols": {
+    "url": "https://pyth.dourolabs.app/v1/symbols",
+    "observed_at_utc": "2026-11-09T20:05:12.936778+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "pyth-hermes-latest-noauth": {
+    "url": "https://pyth.dourolabs.app/hermes/v2/updates/price/latest?ids%5B%5D=ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace&parsed=true",
+    "observed_at_utc": "2026-11-09T20:05:12.987948+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "robinhood-oracles": {
+    "url": "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+    "observed_at_utc": "2026-11-09T20:05:13.031933+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "api3-market": {
+    "url": "https://market.api3.org/robinhood",
+    "observed_at_utc": "2026-11-09T20:05:13.051495+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "api3-eth": {
+    "url": "https://market.api3.org/robinhood/eth-usd",
+    "observed_at_utc": "2026-11-09T20:05:13.053009+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "api3-round-doc": {
+    "url": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html",
+    "observed_at_utc": "2026-11-09T20:05:13.141991+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "api3-integration": {
+    "url": "https://docs.api3.org/dapps/integration/contract-integration.html",
+    "observed_at_utc": "2026-11-09T20:05:13.172946+00:00",
+    "available": false,
+    "error_type": "URLError"
+  },
+  "api3-repo-tree": {
+    "url": "https://api.github.com/repos/api3dao/contracts/git/trees/main?recursive=1",
+    "observed_at_utc": "2026-11-09T20:05:13.189051+00:00",
+    "available": false,
+    "error_type": "URLError"
+  }
+}

@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Latest market/provider qualification](../reports/market-followup-20261109/REVIEW.md)
+adds actual state/control/offer/book/route evidence. This is research completion,
+not a new runtime feature or live approval. No qualified ETH/fixedZZZ USD pair or
+practical conversion route is established; current safeguards and code remain
+unchanged. [Verification boundaries](../reports/market-followup-20261109/VERIFICATION.md).
+
+
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9

@@ -1,22 +1,22 @@
 # Production service decisions
 
-Reviewed2026-11-09. [Actual market evidence](../reports/market-qualification-20261109/REVIEW.md) records dated observations, not selected live configuration. This records required capabilities and actual selection limits;
+Reviewed2026-11-09. [Latest read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory
 
 | Dependency | Required capability / current boundary | Procedure/evidence |
 | --- | --- | --- |
-| ETH and fixedZZZ USD prices | Two independently reviewed sources per asset, exact decimals/original timestamps, source runtime/proxy/upgrade controls, age/round agreement 3%, sequencer policy. No usable dual ETH/fixedZZZ pair is established: both Chainlink proxies share an aggregator, observed Pyth ETH is stale, and no fixedZZZ match appears in the retrieved provider catalogs. No automatic fallback. | [Price security](PRICE_SECURITY.md), [current observations](../reports/market-qualification-20261109/pricing/pricing-findings.json) |
-| Optional Pyth reader | Immutable bounded price-ID/confidence/time/exponent reader is implemented. The observed ETH publish age173991s exceeds the hard86400s bound; pair spread465.063bps exceeds300. Qualify/fund authenticated updates or another actual source; do not extend freshness to pass. Updater, independence and costs remain unqualified. | [Reader policy](PYTH_PRICE_SOURCE.md) |
-| Sequencer liveness | No correct-chain Chainlink uptime address is identified in the retrieved official supported list. Review an actual Robinhood liveness policy; never copy an Arbitrum feed or fabricate always-up data. | [Observed limits](../reports/market-qualification-20261109/pricing/pricing-findings.json), [price recovery](OPERATOR_MANUAL.md#configure-stop-and-recover-usd-pricing---2026-10-24) |
-| Contribution/conversion markets | Entry3 forwards ETH/fixedZZZ pair inputs directly. Review actual Vault balancing venues/depth/fees, exact LP placement and independent prices; separate earned-reward v3/v4 converters retain their own routes. The new actual quotes do not establish a default1% conversion route; inspect direction, raw size, usable ranges and all output floors. Existence or active L alone is insufficient. Principal balancing remains native-v4; v3/WETH is optional earned conversion only. | [Routing](TYPED_V4_ROUTES.md), [pool](POOL_SELECTION.md), [preparation](ACTIVATION_PREPARATION.md) |
-| RPC/archive | Same-block/hash canonical reads, authentic complete logs, trace/simulation/gas capabilities, bounded latency, reorg and backup provider behavior. Read-only probe success is not independent production approval; the current research also hit HTTP429. Qualify a dedicated archive/trace provider and bounded failure/recovery behavior. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [history audit](HISTORY_AUDIT.md) |
+| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, exact original age/round/decimals, runtime/upstream controls and300bps agreement. No usable pair: Chainlink proxies share one aggregator; Pyth is stale; API3 ETH is inactive/direct-ABI incompatible; no two fixedZZZ sources are established. Exact-token CEX books are USDT market leads, not USD feeds. | [Price security](PRICE_SECURITY.md), [latest findings](../reports/market-followup-20261109/feeds/FINDINGS.md) |
+| Optional Pyth reader | Existing immutable reader preserves original publishTime and hard86400s age ceiling. Captured age229537s and546.2675655bps disagreement fail unchanged guards. Live on-chain update-fee getters are0; authenticated data access, funded updates, gas, upstream controls and recovery remain unqualified. | [Reader policy](PYTH_PRICE_SOURCE.md), [feed evidence](../reports/market-followup-20261109/feeds/FEED_FINDINGS.json) |
+| Sequencer liveness | Chainlink lists no Robinhood uptime feed and says expansion to additional networks has stopped. Review an actual correct-chain outage/recovery policy; never copy another chain or synthesize always-up data. | [Primary-source findings](../reports/market-followup-20261109/feeds/FINDINGS.md), [operator procedure](OPERATOR_MANUAL.md#configure-stop-and-recover-usd-pricing---2026-10-24) |
+| Contribution/conversion markets | Actual full-input/direction/size/spot/fee/depth and gas qualification, then whole operation with independent prices. Latest696quote calls include23overlapping gas rechecks; tiny favorable reverse outputs are not economically useful conversion acceptance. Selected and alternative10018 cannot jointly pass ordinary principal reference bands at the anchor. Native-v4 principal and optional v3/WETH earned conversion stay separate. | [Route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
+| RPC/archive | Canonical hashes/ancestry, complete logs, durable historical state, trace/simulation/gas and recovery. The official endpoint retained an anchor header but refused its state roughly11minutes later; a bounded alternate-provider read recovered it. This is not provider approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [current failures](../reports/market-followup-20261109/VERIFICATION.md), [history](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. No qualified provider yet. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Mint2 source implements free TEAM and governed-price AL/public dormant minting(default0.05ETH gross), recipient net after the actual platform fee, gas separate. The pinned SeaDrop runtime is observed; actual custom-drop onboarding, fees/payers, VRF and operating acceptance remain open. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | Authorities | One human operator/governance wallet (type still unselected), separate guardian/keeper capabilities, current accepted mint recipient, bootstrap and VRF owner/funder; actual addresses deferred. No external custody recipient exists: collective principal return pays current NFT owners. | [Address inventory](DEPLOYMENT_ADDRESSES.md) |
 | Artwork | Matching2,784-state content-addressed root, independently verified manifest/CID, redundant retention/retrieval and marketplace cache rehearsals. Prepared bundle is not uploaded/pinned. | [Publication](ARTWORK_PUBLICATION.md) |
-| Read/API/indexer | Backend source supports explicit mint_integration_version2/accounting7/V10 read and owned-claim preparation with fixed mint-helper/SeaDrop pins; omitted/default1 retains V9. Qualify actual runtime/configuration, predecessor/history coverage, concurrency/deadlines, ingress, backups and recovery. Source9 website configuration and served unconfigured current3 poplint remain unchanged; no hosted acceptance yet. | [API](FRONTEND_API.md), [ingress](API_INGRESS.md), [recovery](INDEXER_RECOVERY.md) |
+| Read/API/indexer | Backend and local source10 website support explicit mint2/accounting7/V10 reads and owned unsigned reviews; source9/V9 remains separate. Actual hosting/configuration/providers/history/concurrency/restore acceptance remains open. Served current3 poplint stays unconfigured and no public signing is enabled. | [API](FRONTEND_API.md), [source10](SOURCE10_WEBSITE_PROFILE.md), [recovery](INDEXER_RECOVERY.md) |
 | Keeper/monitoring | Supported Linux host, exact source/provider/signing-fee policy, gas funds, original journals, logs/alerts and off-host restore/rehearsals. Paused desktop heartbeat is not continuous monitoring. | [Operations](OPERATIONS.md), [rehearsals](KEEPER_REHEARSALS.md) |
 
 ## Cost and qualification rules
@@ -37,3 +37,19 @@ Select and independently review actual services/configuration, bind observations
 to exact source/block/chain, run the appropriate rehearsals, then obtain independent
 audit/remediation and named release sign-off. Publishing these decisions or an
 unsigned transaction does not authorize deployment, sealing, signing or spending.
+
+## Concrete provider requests
+
+For fixedZZZ `0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a` on4663, request exact
+USD source/product addresses, market/publisher coverage, source and administrative
+independence, original timestamps/decimals, heartbeat/latency/outage terms, upgrade
+controls, authenticated update ownership and full data/gas/funding costs. If a
+market uses USDT, require defensible USD normalization and depeg behavior.
+
+API3 is a concrete ETH alternative to discuss, with authenticated published offers,
+but its observed base/name are uninitialized. A compatible immutable reader would
+be separately reviewed work; do not remove round checks to accommodate the native
+proxy. Offers are native-wei duration-funding parameters, not guaranteed payable
+amounts or an active SLA. All observed offers have86400s heartbeat; do not presume
+that a heartbeat at the Oracle hard maximum leaves update/confirmation headroom.
+No provider was contacted, selected or paid by this qualification.

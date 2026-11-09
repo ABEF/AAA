@@ -1,0 +1,25 @@
+{
+  "source": "discovery/api3-index-js.raw",
+  "row_count": 292,
+  "ETH_USD": [
+    {
+      "name": "ETH/USD",
+      "metadata": {
+        "prefix": "$",
+        "category": "Cryptocurrency",
+        "description": "* Related to https://www.coingecko.com/en/coins/ethereum"
+      },
+      "providers": [
+        "blocksize",
+        "coingecko",
+        "coinmetrics",
+        "coinpaprika",
+        "ncfx",
+        "nodary",
+        "shiftmarkets"
+      ],
+      "stage": "active"
+    }
+  ],
+  "ZZZ_matches": []
+}

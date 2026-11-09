@@ -1,0 +1,34 @@
+{
+  "api3-eth-offers": {
+    "url": "https://api3dao.github.io/data-feeds/market/dapi-pricing/4663/ETH-USD.json",
+    "observed_at_utc": "2026-11-09T20:10:02.125273+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:10:02 GMT",
+    "available": true,
+    "bytes": 9232,
+    "sha256": "e26dec19f9b2cc67c8683f3296b75dd4a00ceb53e58f4215f7348ea3ce52d975"
+  },
+  "api3-zzz-offers": {
+    "url": "https://api3dao.github.io/data-feeds/market/dapi-pricing/4663/ZZZ-USD.json",
+    "observed_at_utc": "2026-11-09T20:10:02.126277+00:00",
+    "http_status": 404,
+    "content_type": "text/html; charset=utf-8",
+    "server_date": "Mon, 09 Nov 2026 20:10:02 GMT",
+    "available": false,
+    "bytes": 9379,
+    "sha256": "b620507312c5e97566a3c6cfaf99144fefc18a0da7d941401dfa0f5f58fb0368"
+  },
+  "sourcify-chainlink": {
+    "url": "https://repo.sourcify.dev/contracts/full_match/4663/0x6091E64eb7138EEF066a80FD3A0d7427B91f2721/metadata.json",
+    "observed_at_utc": "2026-11-09T20:10:02.126277+00:00",
+    "available": false,
+    "error_type": "ValueError"
+  },
+  "sourcify-pyth": {
+    "url": "https://repo.sourcify.dev/contracts/full_match/4663/0x66e9cba5529824a03b5bc9931d9c63637101d0f7/metadata.json",
+    "observed_at_utc": "2026-11-09T20:10:02.365832+00:00",
+    "available": false,
+    "error_type": "ValueError"
+  }
+}

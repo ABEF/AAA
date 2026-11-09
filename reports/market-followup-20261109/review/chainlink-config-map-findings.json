@@ -1,0 +1,53 @@
+{
+  "qualification": false,
+  "aggregator": "0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+  "latest_config_count": 1,
+  "config_block_number_opcode": 25245315,
+  "block_number_semantics": "Arbitrum NUMBER opcode uses first non-Arbitrum ancestor height; RPC L2 block numbers differ.",
+  "primary_doc": "https://docs.arbitrum.io/arbitrum-essentials/arbitrum-vs-ethereum/block-numbers-and-time",
+  "complete": true,
+  "first_L2_block_matching_L1": 33089,
+  "log_range_L2": [
+    33089,
+    35089
+  ],
+  "rows": [
+    {
+      "transactionHash": "0x9330e777212ecd58b5f4df36b92c3b8e80529b5428646d355e4bfcd9c2cd4416",
+      "blockNumber_L2": 33090,
+      "blockHash": "0xcaf71a6b5461e68d1d6d308211cbd3e2c814b18fdca0ac9e1b0f5230f7899ca0",
+      "logIndex": 0,
+      "previousConfigBlockNumber": 0,
+      "configDigest": "0x000161b3b08a60002dadc5d6018cc48426304311ab88f656d925f5b50a5399d5",
+      "configCount": 1,
+      "signers": [
+        "0xf7eef8f2d4cf593667afd2c0730096d6340f057e",
+        "0x17d3826b46c1edfdacb011f71f8461534b2f466d",
+        "0x870288957f9b3509c82ad11fb75cd66c49549d22",
+        "0xf12666b6999d11ab818760ddc5fc9c99bc976def",
+        "0xc881c5c891f1960be89170d197dbe27f056d6d76",
+        "0xd5acfb5e58703e1fdc393fa6ba340b5107eb21e0",
+        "0x7ee843a335324359ac5b1edb9e5c5ac253fe92d2",
+        "0x4caa91093b2660f8598b727b0e3dbcd422acbf8c",
+        "0xce0cb60fdea0622a182a5006397759c41da56b7f",
+        "0x216a9eaa61501412052be5b7b03fec571f517097"
+      ],
+      "transmitters": [
+        "0x2df4c8f0095d7323a1521ce82fbf21629fdba7df",
+        "0xa211fbdde369d28efb235bcd3a77f3a77790ba94",
+        "0x67a2da43031e8876acc515a21cb0d95648efd807",
+        "0x4fea9e9741b57bbaad4cf0e60e99a983bb908b3b",
+        "0x1dd2dea254a9b9244d2de4139042c65ab9ecdaae",
+        "0xbe328e128835dae56a42f1e67de4a0daeec61a5f",
+        "0x4af41cd301e74b05410df9f6b5fc3d99ddce7cd5",
+        "0x83b351d4ed8de251ccf65fd44b42d27c41b5d8a6",
+        "0x5d4faed290f0422c7b33586aa772d81785a01d7c",
+        "0x74d14b5e642ea3331c88bcc72649997f447a7a5f"
+      ],
+      "f": 3,
+      "offchainConfigVersion": 2
+    }
+  ],
+  "limitation": "Mapped range bounded to2001L2blocks and exact current config digest. Public keys/f are not verified node organizations, data-vendor independence or operating acceptance.",
+  "rpc_calls": 30
+}

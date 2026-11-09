@@ -1,0 +1,8 @@
+{
+  "anchor_base_fee_per_gas_wei": 20058000,
+  "transaction_intrinsic_gas_lower_bound": 21000,
+  "intrinsic_base_fee_lower_bound_wei": 421218000000,
+  "largest_observed_conditional_1percent_floor_passing_reverse_output_wei": 36249908446,
+  "intrinsic_basefee_cost_to_largest_passing_output": "210609000000/18124954223",
+  "boundary": "Arithmetic diagnostic at captured header basefee only, not a transaction fee quote, actual fee paid, production cost selection or target-gas acceptance. Actual conversion requires more than intrinsic gas, and fee/basefee/timing/provider terms can change. Worker converts whole selected NFT entitlements, not arbitrary input fractions."
+}

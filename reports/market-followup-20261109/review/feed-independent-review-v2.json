@@ -1,0 +1,32 @@
+{
+  "review_type": "Independent internal evidence review; not external audit or source/operating approval.",
+  "qualification": false,
+  "feed_findings_sha256": "f60d7f4fea1db610cb0259160ef0eaf8ba433bd70b1091e7227e11096cf78c05",
+  "manifest_payloads_verified": 70,
+  "manifest_mismatches": [],
+  "shared_anchor": {
+    "block_number": 110324511,
+    "hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "timestamp": 1794254690
+  },
+  "validated": [
+    "Exact primary/secondary Chainlink aggregator identity; canonical fiveword ETH round, 133s age.",
+    "Pyth integer exponent/price decode and229537s age; exact lower-denominator agreement fails300bps.",
+    "All8 initial runtime pins reproduce the raw code bytes.",
+    "API3 original-anchor unset ETH name binding and base value/timestamp[0,0] mean unavailable observation, not zero USD.",
+    "API3 pinned source returns roundId/answeredInRound0 and therefore cannot directly satisfy current Oracle; separate adapter work would preserve positive genuine timestamp.",
+    "All5 API3 ETH offer proofs reconstruct the published/onchain anchor root; offers are not purchases, active publishers or full funding quotations.",
+    "Exact Chainlink config event digest/count/transmitters match current shared-anchor getters; 10signers/10transmitters/f3.",
+    "Literal public-address intersections match retained sets; distinct keys do not prove distinct people/upstream markets.",
+    "Secondary liveness anchor remains explicitly separate and is not substituted into original market quotes."
+  ],
+  "assessment": "The feed findings correctly retain unqualified status. Fresh prices, code existence, published catalog/provider labels, offers and distinct administration keys are each weaker than the required independent correct-token USD pair and operating service.",
+  "api3_offer_unit_assessment": "Pinned Api3MarketV2 lines646/866 compute dailyPrice=(price*1days)/duration; lines253-255 compare sponsor native balance+msg.value against expected sponsor balance. Thus price is total-duration native-wei funding parameter (ETH here), not USD or exact payable quote. Final required payment depends on sponsor balance, queue, rounding and gas. No purchase or funding was simulated or made.",
+  "remaining": [
+    "No two qualified fixedZZZ/USD publications established. Exact-token CEX books are custom-upstream leads only and require USDT/USD plus manipulation/depth/publication review.",
+    "No qualified independent ETH pair at either observed anchor; API3 inactive and direct ABI unsuitable; Pyth stale/authenticated updater funding missing.",
+    "No correctchain Chainlink uptime feed listed; chain and upstream outage/grace policy remains unresolved.",
+    "Explorer partial source verification and bytecode equality are not independent source recompilation. Real operator/reporting organizations and market inputs remain unqualified.",
+    "Public RPC historic state failed while historic headers remained readable; one alternate provider success does not qualify archive or availability."
+  ]
+}

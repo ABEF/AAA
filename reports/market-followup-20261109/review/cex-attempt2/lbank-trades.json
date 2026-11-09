@@ -1,0 +1,78 @@
+{
+  "msg": "Success",
+  "result": "true",
+  "data": [
+    {
+      "date_ms": 1794254802856,
+      "amount": 1824,
+      "price": 0.005467,
+      "type": "buy",
+      "tid": "5f9bb9fe-7bb1-48d2-9ce8-e61d6915ff2c.0"
+    },
+    {
+      "date_ms": 1794254802452,
+      "amount": 1774,
+      "price": 0.005471,
+      "type": "buy",
+      "tid": "91b0d98c-fcff-4725-85e2-4a3288775cfd.0"
+    },
+    {
+      "date_ms": 1794254801449,
+      "amount": 1543,
+      "price": 0.00547,
+      "type": "buy",
+      "tid": "032c7d37-608b-491d-86a8-ee91cfcaeb85.0"
+    },
+    {
+      "date_ms": 1794254799045,
+      "amount": 1642,
+      "price": 0.005468,
+      "type": "buy",
+      "tid": "75bbdc90-ddf0-4121-ab96-1b0491d4778b.0"
+    },
+    {
+      "date_ms": 1794254798445,
+      "amount": 1269,
+      "price": 0.005469,
+      "type": "sell",
+      "tid": "4c8e7063-442e-4fc6-bcdd-0308a5719e79.0"
+    },
+    {
+      "date_ms": 1794254797640,
+      "amount": 2097,
+      "price": 0.005471,
+      "type": "buy",
+      "tid": "5d589a94-0886-4151-8c4c-049060949a01.0"
+    },
+    {
+      "date_ms": 1794254796474,
+      "amount": 648,
+      "price": 0.00547,
+      "type": "sell",
+      "tid": "f890d4d0-4adc-4058-bdf3-1c483524247d.0"
+    },
+    {
+      "date_ms": 1794254795829,
+      "amount": 2179,
+      "price": 0.005473,
+      "type": "buy",
+      "tid": "6730a2ea-fcf6-4c4b-aee8-d5e7b7fd1b5a.0"
+    },
+    {
+      "date_ms": 1794254794824,
+      "amount": 1607,
+      "price": 0.005475,
+      "type": "sell",
+      "tid": "5ca84c23-f350-48e7-bf27-96798eea3735.0"
+    },
+    {
+      "date_ms": 1794254793822,
+      "amount": 7755,
+      "price": 0.005476,
+      "type": "sell",
+      "tid": "5a63a727-57e9-48db-ad0b-acfaf91129db.0"
+    }
+  ],
+  "error_code": 0,
+  "ts": 1794254803161
+}

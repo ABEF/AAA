@@ -91,6 +91,32 @@ with provider, market, governance and common-mode risks. Correct token amounts
 cannot prove that an oracle's dollar price is true. Conversely, matching oracle
 prices cannot prove that liquidity was deployed.
 
+## Current market and provider qualification
+
+[Latest evidence](../reports/market-followup-20261109/REVIEW.md) preserves actual
+round/control/ABI failures and both-direction route outputs. Fresh Chainlink ETH
+is only one source; its second proxy is the same upstream. Pyth stored ETH is
+stale, and the captured pair differs546.2675655bps versus the300bps rule. API3
+has a real ETH proxy and authenticated offers, but an unset binding/base and zero
+round IDs prevent direct admission. No independently qualified fixedZZZ pair exists.
+
+Keep market-source, runtime/control, ABI, freshness, funding and price agreement
+as separate acceptance gates. Literal nonoverlapping admin-owner sets do not
+prove different people, publishers or underlying markets. Public catalog absence
+does not prove no custom service exists. Actual exact-token XT/LBank books are
+USDT upstream leads, not USD oracles; shallow displayed books also need review.
+
+Source disagreement consumes the separate execution allowance. For illustration,
+upper input at1.03times lower input makes the97% marginal-LP floor require99.91%
+of lower-marked input, leaving9bps before other costs. This does not change either
+3% setting or approve that hypothetical source pair. Quotes at selected-pool spot
+cannot prove which independent USD sources should be admitted.
+
+The alternative10018 and selected destination cannot share ordinary principal
+spot/reference bands at this anchor, even at the current500bps hard ceiling.
+This is an execution condition, not a ban on registering future pools or a
+converter rule. [Exact deductions](../reports/market-followup-20261109/routes/common-reference-bands-v2.json).
+
 ## Feed fees and recorded reference prices
 
 The Oracle adds no separate percentage or LINK payment for price reads. Ordinary

@@ -1,0 +1,116 @@
+{
+  "qualification": false,
+  "source_token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "warning": "Exchange supplied USDT books and status only. Not USD sources, onchain adapters, honest/executable depth or independent operator qualification. No orders/deposits/withdrawals made.",
+  "captures": "cex-attempt2/cex-capture-manifest.json",
+  "books": {
+    "lbank": {
+      "timestamp_ms": 1794254802668,
+      "timestamp_utc": "2026-11-09T20:06:42.668000+00:00",
+      "bid_USDT": "0.00544",
+      "ask_USDT": "0.00555",
+      "mid_USDT": "0.005495",
+      "spread_bps_lower_denominator": "202.205882352941176470588235294117647058823529411764705882353",
+      "levels_bid": 60,
+      "levels_ask": 60,
+      "displayed_notional_USDT_within_3pct_of_mid": {
+        "bids": "4.05824",
+        "asks": "4.24020"
+      },
+      "book_only_sell_10000_ZZZ": {
+        "base": "10000",
+        "quote_USDT_gross": "53.010082",
+        "complete": true,
+        "weighted_price_USDT": "0.0053010082"
+      },
+      "book_only_buy_for_50_USDT": {
+        "base": "8184.53077047326764658375060571797770957842028751413341947989",
+        "quote_USDT_gross": "50.000000",
+        "complete": true,
+        "weighted_price_USDT": "0.00610908571330458415292706219386731077671928183755298701826687"
+      },
+      "fees_included": false,
+      "fills_executed": false,
+      "reported_trade_count": 10,
+      "reported_trade_latest_ms": 1794254802856,
+      "reported_trade_oldest_ms": 1794254793822
+    },
+    "xt": {
+      "timestamp_ms": 1794254802195,
+      "timestamp_utc": "2026-11-09T20:06:42.195000+00:00",
+      "bid_USDT": "0.00549",
+      "ask_USDT": "0.00552",
+      "mid_USDT": "0.005505",
+      "spread_bps_lower_denominator": "54.6448087431693989071038251366120218579234972677595628415301",
+      "levels_bid": 93,
+      "levels_ask": 100,
+      "displayed_notional_USDT_within_3pct_of_mid": {
+        "bids": "40.5819854",
+        "asks": "44.8874298"
+      },
+      "book_only_sell_10000_ZZZ": {
+        "base": "10000.00",
+        "quote_USDT_gross": "53.7871598",
+        "complete": true,
+        "weighted_price_USDT": "0.00537871598"
+      },
+      "book_only_buy_for_50_USDT": {
+        "base": "8927.17214035087719298245614035087719298245614035087719298246",
+        "quote_USDT_gross": "50.0000000",
+        "complete": true,
+        "weighted_price_USDT": "0.00560087777113646872383775949544714668607696385856944871868935"
+      },
+      "fees_included": false,
+      "fills_executed": false,
+      "reported_trade_count": 10,
+      "reported_trade_latest_ms": 1794254796178,
+      "reported_trade_oldest_ms": 1794254733716
+    }
+  },
+  "lbank_identity_status": {
+    "assetCode": "zzz",
+    "chainName": "robinhood",
+    "canDraw": true,
+    "canStationDraw": true,
+    "canDeposit": true,
+    "hasMemo": false,
+    "contractInfo": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "assetFee": {
+      "type": 1,
+      "feeCode": "zzz",
+      "scale": 4,
+      "minAmt": "1",
+      "feeAmt": "1",
+      "feeRate": "0",
+      "stationFeeAmt": "0",
+      "stationScale": 4,
+      "stationMinAmt": "0.0001",
+      "minDepositAmt": "0.0001",
+      "depositFee": "0"
+    }
+  },
+  "xt_identity_status": {
+    "symbol": "zzz_usdt",
+    "state": "ONLINE",
+    "tradingEnabled": true,
+    "openapiEnabled": false,
+    "orderTypes": [],
+    "timeInForces": [],
+    "takerFeeRate": "0.002",
+    "makerFeeRate": "0.002",
+    "chainRelation": [
+      {
+        "chainId": 2403,
+        "contract": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a"
+      }
+    ]
+  },
+  "xt_chain_note": "chainRelation.chainId=2403 is exchange metadata; not assumed EVM chain id4663. Official exact-contract listing links Robinhood explorer. Current XT deposit/withdrawal path not checked.",
+  "midpoint_difference_bps_lower_denominator": "18.1983621474067333939945404913557779799818016378525932666060",
+  "required_before_custom_price_use": [
+    "Independent, reviewed and funded correctchain oracle publication/adapter with exact static ABI; no such current source discovered here.",
+    "Native USD denomination or independently qualified USDT/USD conversion; do not assume USDT=USD.",
+    "Common marketmaker, wash activity, manipulation, books versus real fills, venue halts, transferability and outage recovery review.",
+    "Source method, upstream/admin/signing/updates, age/freshness/confidence and genuinely independent pair review."
+  ]
+}

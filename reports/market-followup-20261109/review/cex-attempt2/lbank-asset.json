@@ -1,0 +1,27 @@
+{
+  "result": "true",
+  "data": [
+    {
+      "assetCode": "zzz",
+      "chainName": "robinhood",
+      "canDraw": true,
+      "canStationDraw": true,
+      "canDeposit": true,
+      "hasMemo": false,
+      "contractInfo": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "assetFee": {
+        "type": 1,
+        "feeCode": "zzz",
+        "scale": 4,
+        "minAmt": "1",
+        "feeAmt": "1",
+        "feeRate": "0",
+        "stationFeeAmt": "0",
+        "stationScale": 4,
+        "stationMinAmt": "0.0001",
+        "minDepositAmt": "0.0001",
+        "depositFee": "0"
+      }
+    }
+  ]
+}

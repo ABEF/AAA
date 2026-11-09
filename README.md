@@ -11,15 +11,16 @@ are unchanged. [Verification](reports/v10-website-20261109/REVIEW.md) is synthet
 not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
 
 
-The [actual market review](reports/market-qualification-20261109/REVIEW.md)
-checks independent feed candidates, native-v4/v3 swap venues and unmodified
-market execution. No usable dual ETH/fixedZZZ USD pair or default1%-qualified
-conversion route is established. Active liquidity alone is insufficient: the
-selected pool exhausts current L after an upward tick crossing. Actual
-contribution failures must be attributed to their financial/placement guards,
-not assumed to be a solver bug. Earlier [Entry3 positive flows](reports/source9-actual-entry-20261109/REVIEW.md)
-used explicitly synthetic depth/controlled feeds. Public configurations, sites,
-existing lab/journals and the shared signer remain unchanged.
+The [latest read-only market qualification](reports/market-followup-20261109/REVIEW.md)
+adds actual provider controls, an inactive API3 ETH option, external ZZZ market
+leads, both-direction depth and gas-aware route observations. No independent
+ETH/ZZZ USD pair or practical reward-conversion route is approved. Tiny favorable
+quotes are preserved; they do not prove economical execution. The selected
+reverse pool remains shallow, and alternative principal venues must pass the
+same reference-price guards. Current3% contribution/1% conversion and all other
+safeguards are unchanged. Earlier synthetic-depth positives and2% full-operation
+failures retain their original scope. Public sites/configurations, lab/journals
+and the shared signer remain unchanged.
 
 Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
 the final ETH conversion value, size affordable keeper batches, stop stale sends

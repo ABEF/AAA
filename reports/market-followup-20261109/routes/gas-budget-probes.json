@@ -1,0 +1,351 @@
+{
+  "warning": "Official quoter gas-capped read-only probes only.200k matches the Balancer engineering subcall budget but the production quoteCandidate has a different wrapper/callback path. This does not establish complete-operation, converter, transaction, provider or cost acceptance. Gas-priced economics also need a reviewed network-fee ceiling and real entitlement sizes.",
+  "rows": [
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "zzz1",
+      "amountIn": 1000000000000000000,
+      "zeroForOne": false,
+      "amountOut": 2557011928726,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x0000000000000000000000000000000000000000000000000000025359c9a696000000000000000000000000000000000000000000000000000000000000a636"
+      },
+      "amountOut200k": 2557011928726,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "zzz1000",
+      "amountIn": 1000000000000000000000,
+      "zeroForOne": false,
+      "amountOut": 2530231460882950,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": "0x0000000000000000000000000000000000000000000000000008fd3b6b6cea06000000000000000000000000000000000000000000000000000000000000a729"
+      },
+      "amountOut200k": 2530231460882950,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "nominal_100usd_eth_half",
+      "amountIn": 23522659377778614,
+      "zeroForOne": true,
+      "amountOut": 8206707421924249463370,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "0x0000000000000000000000000000000000000000000001bce2f1b73d9cae6a4a000000000000000000000000000000000000000000000000000000000000a91c"
+      },
+      "amountOut200k": 8206707421924249463370,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "nominal_100usd_zzz_half",
+      "amountIn": 6698111823701693679806,
+      "zeroForOne": false,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "error": {
+          "code": 3,
+          "message": "execution reverted",
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000"
+        }
+      }
+    },
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "nominal_5usd_eth_half",
+      "amountIn": 1176132968888930,
+      "zeroForOne": true,
+      "amountOut": 447730353822168953670,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x0000000000000000000000000000000000000000000000184581c09fca56b346000000000000000000000000000000000000000000000000000000000000a527"
+      },
+      "amountOut200k": 447730353822168953670,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+      "label": "nominal_5usd_zzz_half",
+      "amountIn": 334905591185084627040,
+      "zeroForOne": false,
+      "amountOut": 853338769087038,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x0000000000000000000000000000000000000000000000000003081b6a345a3e000000000000000000000000000000000000000000000000000000000000a749"
+      },
+      "amountOut200k": 853338769087038,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "tiny_eth",
+      "amountIn": 1000000,
+      "zeroForOne": true,
+      "amountOut": 281616355792,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": "0x0000000000000000000000000000000000000000000000000000004191a491d0000000000000000000000000000000000000000000000000000000000000a8bc"
+      },
+      "amountOut200k": 281616355792,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "nominal_100usd_eth_half",
+      "amountIn": 23522659377778614,
+      "zeroForOne": true,
+      "amountOut": 6540000758165875648798,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": "0x00000000000000000000000000000000000000000000016288be27248e62e91e000000000000000000000000000000000000000000000000000000000000a547"
+      },
+      "amountOut200k": 6540000758165875648798,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "nominal_100usd_eth_full",
+      "amountIn": 47045318755557228,
+      "zeroForOne": true,
+      "amountOut": 12915515489003524502124,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": "0x0000000000000000000000000000000000000000000002bc26c88bea369eb26c000000000000000000000000000000000000000000000000000000000000a547"
+      },
+      "amountOut200k": 12915515489003524502124,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "nominal_5usd_eth_half",
+      "amountIn": 1176132968888930,
+      "zeroForOne": true,
+      "amountOut": 331004785463447209189,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": "0x000000000000000000000000000000000000000000000011f19d3aa3f72744e5000000000000000000000000000000000000000000000000000000000000a8d8"
+      },
+      "amountOut200k": 331004785463447209189,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "nominal_5usd_eth_full",
+      "amountIn": 2352265937777861,
+      "zeroForOne": true,
+      "amountOut": 661583130701872846418,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": "0x000000000000000000000000000000000000000000000023dd4f7027dbf55652000000000000000000000000000000000000000000000000000000000000a547"
+      },
+      "amountOut200k": 661583130701872846418,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "capacity_388556",
+      "amountIn": 388556,
+      "zeroForOne": false,
+      "amountOut": 1,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000a5ba"
+      },
+      "amountOut200k": 1,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "label": "capacity_388557",
+      "amountIn": 388557,
+      "zeroForOne": false,
+      "amountOut": 1,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000e2ed"
+      },
+      "amountOut200k": 1,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+      "label": "capacity_1000000000000",
+      "amountIn": 1000000000000,
+      "zeroForOne": false,
+      "amountOut": 6203015,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "result": "0x00000000000000000000000000000000000000000000000000000000005ea687000000000000000000000000000000000000000000000000000000000000a67a"
+      },
+      "amountOut200k": 6203015,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+      "label": "capacity_10000000000000",
+      "amountIn": 10000000000000,
+      "zeroForOne": false,
+      "amountOut": 62030151,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": "0x0000000000000000000000000000000000000000000000000000000003b28147000000000000000000000000000000000000000000000000000000000000a67a"
+      },
+      "amountOut200k": 62030151,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+      "label": "capacity_100000000000000",
+      "amountIn": 100000000000000,
+      "zeroForOne": false,
+      "amountOut": 620301518,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": "0x0000000000000000000000000000000000000000000000000000000024f90cce000000000000000000000000000000000000000000000000000000000000a67a"
+      },
+      "amountOut200k": 620301518,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+      "label": "capacity_1000000000000000",
+      "amountIn": 1000000000000000,
+      "zeroForOne": false,
+      "amountOut": 6203015131,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x0000000000000000000000000000000000000000000000000000000171ba7fdb000000000000000000000000000000000000000000000000000000000000a67a"
+      },
+      "amountOut200k": 6203015131,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_1000000000000",
+      "amountIn": 1000000000000,
+      "zeroForOne": false,
+      "amountOut": 3662796,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": "0x000000000000000000000000000000000000000000000000000000000037e3cc000000000000000000000000000000000000000000000000000000000000a206"
+      },
+      "amountOut200k": 3662796,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_10000000000000",
+      "amountIn": 10000000000000,
+      "zeroForOne": false,
+      "amountOut": 36627616,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "0x00000000000000000000000000000000000000000000000000000000022ee4a0000000000000000000000000000000000000000000000000000000000000a206"
+      },
+      "amountOut200k": 36627616,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_100000000000000",
+      "amountIn": 100000000000000,
+      "zeroForOne": false,
+      "amountOut": 366241787,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x0000000000000000000000000000000000000000000000000000000015d467fb000000000000000000000000000000000000000000000000000000000000a597"
+      },
+      "amountOut200k": 366241787,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_1000000000000000",
+      "amountIn": 1000000000000000,
+      "zeroForOne": false,
+      "amountOut": 3658983512,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x00000000000000000000000000000000000000000000000000000000da17a858000000000000000000000000000000000000000000000000000000000000a57b"
+      },
+      "amountOut200k": 3658983512,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_10000000000000000",
+      "amountIn": 10000000000000000,
+      "zeroForOne": false,
+      "amountOut": 36249908446,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x0000000000000000000000000000000000000000000000000000000870a9b4de000000000000000000000000000000000000000000000000000000000000a5bb"
+      },
+      "amountOut200k": 36249908446,
+      "matches_2M_quote": true
+    },
+    {
+      "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "label": "capacity_100000000000000000",
+      "amountIn": 100000000000000000,
+      "zeroForOne": false,
+      "amountOut": 331684911507,
+      "gas_cap": 200000,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": "0x0000000000000000000000000000000000000000000000000000004d39f61993000000000000000000000000000000000000000000000000000000000000a57b"
+      },
+      "amountOut200k": 331684911507,
+      "matches_2M_quote": true
+    }
+  ]
+}

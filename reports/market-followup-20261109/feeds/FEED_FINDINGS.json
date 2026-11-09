@@ -1,0 +1,557 @@
+{
+  "anchor": {
+    "chain_id": 4663,
+    "block_number": 110324511,
+    "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "block_timestamp": 1794254690,
+    "selector": {
+      "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+      "requireCanonical": true
+    }
+  },
+  "canonical_rechecks": [
+    true,
+    true
+  ],
+  "chainlink": {
+    "proxy": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+    "secondary_proxy": "0x5058aDee53b04e374d8bEDbAD634Bc4778F50b22",
+    "aggregator": "0x6091e64eb7138eef066a80fd3a0d7427b91f2721",
+    "round_id": "18446744073709554844",
+    "answered_in_round": "18446744073709554844",
+    "answer_raw": "212561000000",
+    "decimals": 8,
+    "usd": "2125.61",
+    "started_at": 1794254545,
+    "updated_at": 1794254557,
+    "updated_at_utc": "2026-11-09T20:02:37+00:00",
+    "age_seconds": 133,
+    "secondary_same_aggregator": true,
+    "owner": "0xee27d5ae494300902d90454e8630a3f1c68c9c52",
+    "owner_safe_threshold": 4,
+    "owner_safe_owner_count": 9,
+    "chosen_max_age_seconds": null,
+    "catalog_heartbeat_seconds": 86400,
+    "catalog_deviation_percent": "0.5",
+    "qualified": false,
+    "transmitter_count": 10,
+    "transmitters_getter": "getTransmitters()",
+    "old_transmitters_call_failure": "Wrong ABI getter retained in anchor-rpc.json; not treated as missing or zero reporters.",
+    "controls": {
+      "getValidatorConfig()": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "getRequesterAccessController()": "0x000000000000000000000000e7492344505c5a286fe92d48ded203e0207221d3",
+      "getBillingAccessController()": "0x000000000000000000000000f7112ce822645bce84b7cb85d12b7b45da50ab4d",
+      "getLinkToken()": "0x000000000000000000000000492641f648a4986844848e0befe66d14817bce34",
+      "getBilling()": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "checkEnabled()": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "latestConfigDigestAndEpoch()": "0x0000000000000000000000000000000000000000000000000000000000000000000161b3b08a60002dadc5d6018cc48426304311ab88f656d925f5b50a5399d50000000000000000000000000000000000000000000000000000000000012937",
+      "latestTransmissionDetails()": "0x000161b3b08a60002dadc5d6018cc48426304311ab88f656d925f5b50a5399d500000000000000000000000000000000000000000000000000000000000129370000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000317d9f7640000000000000000000000000000000000000000000000000000000006af226dd",
+      "minAnswer()": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "maxAnswer()": "0x00000000000000000000ffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    "source_evidence": {
+      "source_manifest": "../review/chainlink-source-match.json",
+      "source": "../review/ChainlinkDualAggregator.explorer.sol",
+      "status": "Explorer partial verification with exact explorer-runtime/on-chain-runtime equality; not independent recompilation or full source verification."
+    },
+    "current_config": {
+      "event": {
+        "transactionHash": "0x9330e777212ecd58b5f4df36b92c3b8e80529b5428646d355e4bfcd9c2cd4416",
+        "blockNumber_L2": 33090,
+        "blockHash": "0xcaf71a6b5461e68d1d6d308211cbd3e2c814b18fdca0ac9e1b0f5230f7899ca0",
+        "logIndex": 0,
+        "previousConfigBlockNumber": 0,
+        "configDigest": "0x000161b3b08a60002dadc5d6018cc48426304311ab88f656d925f5b50a5399d5",
+        "configCount": 1,
+        "signers": [
+          "0xf7eef8f2d4cf593667afd2c0730096d6340f057e",
+          "0x17d3826b46c1edfdacb011f71f8461534b2f466d",
+          "0x870288957f9b3509c82ad11fb75cd66c49549d22",
+          "0xf12666b6999d11ab818760ddc5fc9c99bc976def",
+          "0xc881c5c891f1960be89170d197dbe27f056d6d76",
+          "0xd5acfb5e58703e1fdc393fa6ba340b5107eb21e0",
+          "0x7ee843a335324359ac5b1edb9e5c5ac253fe92d2",
+          "0x4caa91093b2660f8598b727b0e3dbcd422acbf8c",
+          "0xce0cb60fdea0622a182a5006397759c41da56b7f",
+          "0x216a9eaa61501412052be5b7b03fec571f517097"
+        ],
+        "transmitters": [
+          "0x2df4c8f0095d7323a1521ce82fbf21629fdba7df",
+          "0xa211fbdde369d28efb235bcd3a77f3a77790ba94",
+          "0x67a2da43031e8876acc515a21cb0d95648efd807",
+          "0x4fea9e9741b57bbaad4cf0e60e99a983bb908b3b",
+          "0x1dd2dea254a9b9244d2de4139042c65ab9ecdaae",
+          "0xbe328e128835dae56a42f1e67de4a0daeec61a5f",
+          "0x4af41cd301e74b05410df9f6b5fc3d99ddce7cd5",
+          "0x83b351d4ed8de251ccf65fd44b42d27c41b5d8a6",
+          "0x5d4faed290f0422c7b33586aa772d81785a01d7c",
+          "0x74d14b5e642ea3331c88bcc72649997f447a7a5f"
+        ],
+        "f": 3,
+        "offchainConfigVersion": 2
+      },
+      "digest_matches_shared_anchor": true,
+      "transmitters_match_current_getter": true,
+      "source_report_signature_count_f_plus_1": 4,
+      "evidence": "../review/chainlink-config-map-findings.json",
+      "block_number_scope": "ConfigSet block.number is the Arbitrum ancestor-chain height, not the RPC L2 block number. The mapped L2 event is33090. Original empty unmapped lookup is retained and is not evidence of absent configuration.",
+      "scope": "Exact public keys and f do not establish actual node organizations, exchange/vendor independence or full operating qualification."
+    }
+  },
+  "pyth": {
+    "core": "0x8250f4aF4B972684F7b336503E2D6dFeDeB1487a",
+    "feed_id": "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+    "price_raw": "224172518000",
+    "confidence_raw": "197482000",
+    "exponent": -8,
+    "usd": "2241.72518000",
+    "confidence_bps": "8.809376000317755274533696410",
+    "publish_time": 1794025153,
+    "publish_time_utc": "2026-11-07T04:19:13+00:00",
+    "age_seconds": 229537,
+    "passes_hard_86400_age": false,
+    "single_update_fee_wei": 0,
+    "transaction_fee_wei": 0,
+    "get_update_fee_empty_wei": 0,
+    "authenticated_current_packet_available_in_campaign": false,
+    "unauthenticated_current_Hermes_status": 401,
+    "paid_plan_and_updater_funding_qualified": false,
+    "qualified": false,
+    "implementation": {
+      "address": "0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+      "bytes": 24498,
+      "keccak256": "0x6bfa2a72d71260d707b4bad3f9aeaa5b91d455f58290bd66b392d1e6324eb583"
+    },
+    "governance_source": {
+      "chain_id": 1,
+      "emitter": "0x5635979a221c34931e32620b9293a463065555ea71fe97cd6237ade875b12e9e",
+      "raw": "0x00000000000000000000000000000000000000000000000000000000000000015635979a221c34931e32620b9293a463065555ea71fe97cd6237ade875b12e9e"
+    },
+    "verifier": {
+      "address": "0xb27e5ca259702f209a29225d0eddc131039c9933",
+      "guardian_set_index": 1,
+      "keys": [
+        "0x41534bb176e461a3fb30479400f210549ecce638",
+        "0x6502987b62f21cab7eb5ccd8f0173084b60d5b41",
+        "0x44a3e8f6a382412cf6bb90a3f8106e68977476c9",
+        "0x13edc776d3063549fdb0702af182edc905a539d4",
+        "0x3af088854bb768065f4929e5bbdfa4cbb04c9af9"
+      ],
+      "key_count": 5,
+      "governance_chain_id": 1,
+      "governance_contract": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "wormhole_domain_chain_id": 60101,
+      "quorum_getter_result": {
+        "error_type": "ValueError"
+      },
+      "documented_architecture_quorum": "3 of 5 routers; independently proving exact verifier implementation/quorum remains open."
+    },
+    "fees_scope": "Live zero fee storage getters agree with current official docs. No authenticated signed update, actual getUpdateFee(packet), paid data access, updater funding, submission gas or lifecycle recovery was qualified; reads used 500000 gas ceilings, not actual gas measurements."
+  },
+  "eth_pair": {
+    "low_usd": "2125.61",
+    "high_usd": "2241.72518000",
+    "spread_bps_against_low": "546.2675655458903561801082983",
+    "passes_300bps": false,
+    "exact_test": "(high - low) * 10000 <= low * 300",
+    "qualified": false
+  },
+  "runtime_pins": {
+    "chainlink-primary": {
+      "address": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+      "bytes": 9571,
+      "keccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2"
+    },
+    "chainlink-secondary": {
+      "address": "0x5058aDee53b04e374d8bEDbAD634Bc4778F50b22",
+      "bytes": 9571,
+      "keccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2"
+    },
+    "chainlink-aggregator": {
+      "address": "0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+      "bytes": 23186,
+      "keccak256": "0x8cbea1fd25321771256158fd6beb8689fe60cd36230b22c65e77c2a03c5972fd"
+    },
+    "pyth-core": {
+      "address": "0x8250f4aF4B972684F7b336503E2D6dFeDeB1487a",
+      "bytes": 177,
+      "keccak256": "0x7e693eea60500e1d5c5984a4cc54ec0b371d9ad29e8bb09c543cb7be447963df"
+    },
+    "api3-factory": {
+      "address": "0xEfC5883a9d09fd06a0d5F8612E5FF18dD10Cb227",
+      "bytes": 8557,
+      "keccak256": "0x1f11dcf1b6bc8efb6414f1aedbc6e000ce23e7a7fea9c3c7a8aeb5288ca2b6df"
+    },
+    "api3-server": {
+      "address": "0xEa5f320Ee0ef7E81AFAf2a9b4FBc1a7d093287fe",
+      "bytes": 13240,
+      "keccak256": "0x27204d8c31a1fcbdf7747d795776d8a60c6d10bf2bf7c94739cd9190a5e16238"
+    },
+    "api3-market": {
+      "address": "0x7D0C40f6B4D49CFB616B051F314B88546c38bEE1",
+      "bytes": 23213,
+      "keccak256": "0xd432235ad883899b0edc14298fac3d1ef0eff44e8a3c31f6e97442ef25a0e446"
+    },
+    "api3-registry": {
+      "address": "0xbd553312fA8E6fe36E0f2Df02380f623672f6E88",
+      "bytes": 10784,
+      "keccak256": "0x004f835d6a2fb2b50ffc15f99a15578e183e9123087cd5179a78afdd32b6a4c0"
+    },
+    "chainlink-owner": {
+      "address": "0xee27d5ae494300902d90454e8630a3f1c68c9c52",
+      "bytes": 171,
+      "keccak256": "0xb89c1b3bdf2cf8827818646bce9a8f6e372885f8c55e5c07acbd307cb133b000"
+    },
+    "api3-forwarder": {
+      "address": "0x0F52eE9C03cb939F25286D05A846208642f45A32",
+      "bytes": 1504,
+      "keccak256": "0x9a180ffc965ab9318b8fe32f3f13f9b8da74e4c9e9159f2dc97dc935cc9c7211"
+    },
+    "api3-safe": {
+      "address": "0xbAC8d514d284df81Fc21DE80925d2e0721bF06B5",
+      "bytes": 12330,
+      "keccak256": "0x8d0ac2ac4115860f948942d0a29e00aac085b33547ec5850d03189aaff5bbd2f"
+    },
+    "pyth-wormhole": {
+      "address": "0xb27e5ca259702f209a29225d0eddc131039c9933",
+      "bytes": 177,
+      "keccak256": "0xdc3e90fa531e085a7df6e3fce1322f2ae67b47716d606097959e5d80afa764c6"
+    },
+    "pyth-implementation": {
+      "address": "0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+      "bytes": 24498,
+      "keccak256": "0x6bfa2a72d71260d707b4bad3f9aeaa5b91d455f58290bd66b392d1e6324eb583"
+    },
+    "api3-ETH/USD": {
+      "address": "0x3c57b17052bdd5ff75b1f03c5f3afddbcfb8de1c",
+      "bytes": 183,
+      "keccak256": "0x6a262fa9116d19f33c6b843c58c22f687293b75052171cfe58d05ba51365c3b1"
+    },
+    "api3-ZZZ/USD": {
+      "address": "0xd0adc32b5747f511ca036f7d83c37d16bdc7a555",
+      "bytes": 0,
+      "keccak256": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
+    }
+  },
+  "api3": {
+    "ETH/USD": {
+      "name": "0x4554482f55534400000000000000000000000000000000000000000000000000",
+      "name_hash": "0x9e6138f8f57d7b493a8364edb0a0ac92399dfd890eecb9121050836a1749ba42",
+      "data_feed_id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "subscription_id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "value": 0,
+      "timestamp": 0,
+      "computed_communal_proxy": "0x3c57b17052bdd5ff75b1f03c5f3afddbcfb8de1c",
+      "runtime_bytes": 183,
+      "runtime_keccak256": "0x6a262fa9116d19f33c6b843c58c22f687293b75052171cfe58d05ba51365c3b1",
+      "read_result": {
+        "error_type": "ValueError"
+      },
+      "decimals_result": "0x0000000000000000000000000000000000000000000000000000000000000012",
+      "qualified": false,
+      "requires_new_adapter_for_current_Oracle": true,
+      "source_implementation_latestRoundData_roundId_and_answeredInRound": 0,
+      "proxy_implementation": {
+        "address": "0x618934db51db175054be0ba587296ab1a7733afc",
+        "bytes": 4724,
+        "keccak256": "0x136db3aecad402ee7e644ad5386c12f92ee163b3157b474ddd5b6483d421abec"
+      },
+      "admin_slot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "owner_forwarder": "0x0F52eE9C03cb939F25286D05A846208642f45A32",
+      "forwarder_owner": "0xbAC8d514d284df81Fc21DE80925d2e0721bF06B5",
+      "owner_safe_threshold": 4,
+      "owner_safe_owner_count": 8,
+      "catalog_base_feed": {
+        "id": "0x5494cb529af981f0d6484ca21d839f27bf2948c8f5599ac8dd9809966caef9bb",
+        "provider": "https://robinhood.rpc.pinax.network",
+        "canonical_recheck": true,
+        "raw_value": "0",
+        "timestamp": 0,
+        "interpretation": "No initialized underlying price observation at shared anchor, not a zero USD price. Registry details are empty.",
+        "raw_evidence": "api3-base-retry.json",
+        "management_literal_evidence": "api3-management-selected.json"
+      },
+      "management_mapping_verification": {
+        "fresh_secondary_anchor": {
+          "chain_id": 4663,
+          "block_number": 110332661,
+          "block_hash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+          "block_timestamp": 1794255524,
+          "selector": {
+            "blockHash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+            "requireCanonical": true
+          },
+          "observed_head": 110332673,
+          "depth": 13
+        },
+        "literal_app_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+        "computed_all_292_leaf_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+        "literal_root_verified": true,
+        "selected_ETH_entry": [
+          [
+            "0x4554482f55534400000000000000000000000000000000000000000000000000",
+            "0x5494cb529af981f0d6484ca21d839f27bf2948c8f5599ac8dd9809966caef9bb",
+            "0xB93C7491465cFe6121EE6bf62B2fDaC567669953"
+          ]
+        ],
+        "source": "discovery/api3-index-js.raw",
+        "qualification": false,
+        "onchain_root": "0x8dab32245f4b4b16fb3535f0d6004fef1c28507e14736e66c3ec38e821515430",
+        "root_matches_onchain": true,
+        "canonical_recheck": true
+      }
+    },
+    "ZZZ/USD": {
+      "name": "0x5a5a5a2f55534400000000000000000000000000000000000000000000000000",
+      "name_hash": "0x1216880984497470ba8a27ead6525a093307b07e49dc62164cff16f8333d5fd0",
+      "data_feed_id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "subscription_id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "value": 0,
+      "timestamp": 0,
+      "computed_communal_proxy": "0xd0adc32b5747f511ca036f7d83c37d16bdc7a555",
+      "runtime_bytes": 0,
+      "runtime_keccak256": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+      "read_result": "0x",
+      "decimals_result": "0x",
+      "qualified": false,
+      "requires_new_adapter_for_current_Oracle": true,
+      "source_implementation_latestRoundData_roundId_and_answeredInRound": 0
+    },
+    "candidate_source_commit": "bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c",
+    "offers": {
+      "source": "https://api3dao.github.io/data-feeds/market/dapi-pricing/4663/ETH-USD.json",
+      "root": "0xc1a77131f663fa66c6dd896c59bbd1678a684e1a537d330035033609dc588de8",
+      "onchain_root_at_anchor": "0xc1a77131f663fa66c6dd896c59bbd1678a684e1a537d330035033609dc588de8",
+      "root_matches_shared_anchor": true,
+      "rows": [
+        {
+          "duration_seconds": 7776000,
+          "duration_days": "90",
+          "price_parameter_wei": "14797515243100114",
+          "price_parameter_ETH": "0.014797515243100114",
+          "update_parameters_raw": "0x00000000000000000000000000000000000000000000000000000000004c4b4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015180",
+          "deviation_percent": "5",
+          "deviation_reference": "0",
+          "heartbeat_seconds": 86400,
+          "merkle_proof_valid": true
+        },
+        {
+          "duration_seconds": 7776000,
+          "duration_days": "90",
+          "price_parameter_wei": "26371145363189660",
+          "price_parameter_ETH": "0.02637114536318966",
+          "update_parameters_raw": "0x00000000000000000000000000000000000000000000000000000000002625a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015180",
+          "deviation_percent": "2.5",
+          "deviation_reference": "0",
+          "heartbeat_seconds": 86400,
+          "merkle_proof_valid": true
+        },
+        {
+          "duration_seconds": 7776000,
+          "duration_days": "90",
+          "price_parameter_wei": "83904245318021024",
+          "price_parameter_ETH": "0.083904245318021024",
+          "update_parameters_raw": "0x00000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015180",
+          "deviation_percent": "1",
+          "deviation_reference": "0",
+          "heartbeat_seconds": 86400,
+          "merkle_proof_valid": true
+        },
+        {
+          "duration_seconds": 7776000,
+          "duration_days": "90",
+          "price_parameter_wei": "259767021838641312",
+          "price_parameter_ETH": "0.259767021838641312",
+          "update_parameters_raw": "0x000000000000000000000000000000000000000000000000000000000007a12000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015180",
+          "deviation_percent": "0.5",
+          "deviation_reference": "0",
+          "heartbeat_seconds": 86400,
+          "merkle_proof_valid": true
+        },
+        {
+          "duration_seconds": 7776000,
+          "duration_days": "90",
+          "price_parameter_wei": "941077986370735360",
+          "price_parameter_ETH": "0.94107798637073536",
+          "update_parameters_raw": "0x000000000000000000000000000000000000000000000000000000000003d09000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015180",
+          "deviation_percent": "0.25",
+          "deviation_reference": "0",
+          "heartbeat_seconds": 86400,
+          "merkle_proof_valid": true
+        }
+      ],
+      "selected_or_purchased": false,
+      "scope": "Published price parameters in sponsor-wallet funding offers. Final purchase payment also depends on sponsor balance, queued subscriptions/readiness and transaction gas; no payable call simulated or made. No operating heartbeat or deviation selected."
+    },
+    "catalog": {
+      "source": "discovery/api3-index-js.raw",
+      "row_count": 292,
+      "ETH_USD": [
+        {
+          "name": "ETH/USD",
+          "metadata": {
+            "prefix": "$",
+            "category": "Cryptocurrency",
+            "description": "* Related to https://www.coingecko.com/en/coins/ethereum"
+          },
+          "providers": [
+            "blocksize",
+            "coingecko",
+            "coinmetrics",
+            "coinpaprika",
+            "ncfx",
+            "nodary",
+            "shiftmarkets"
+          ],
+          "stage": "active"
+        }
+      ],
+      "ZZZ_matches": []
+    },
+    "independence_scope": "Catalog provider labels are availability metadata, not the actual activated ETH reporter/market set. No active ETH binding means no actual ETH source set at this anchor. New immutable read-only adapter, upstream pins, provider/control review and funded liveness would be separate work."
+  },
+  "qualification": false,
+  "literal_public_address_overlap": {
+    "chainlink_admin_owners": [
+      "0x80efdee7f82d0f2abf3bf29a9a85edf0b42c9e19",
+      "0x05724b9c8c1dde1b2f659d7c0676ff63f6d5e781",
+      "0x480496c0884d61f2f56707adb11697f8018898c2",
+      "0xb65b6d224351cd61f856c227b2d5cfc611e9b2d8",
+      "0x80d46dad5a5450a3611cd1d7f9110aedfa55bff6",
+      "0xfde996f00e42b33bde7c640786333623acc3f298",
+      "0x7052cb84079905400ea52b635cab6a275fda8823",
+      "0xb7f0643d4ca8c296564ce335062833e1afa3afdb",
+      "0xd66336ea98ce0da67f25934e7cc230d4226292a0"
+    ],
+    "api3_admin_owners": [
+      "0x42a18bab999803bba3c7186dc725e567ed28d955",
+      "0x80efdd3bb15f2108c407049c5575490858800d47",
+      "0x56afb8383b3e8db331e711e1183f195ced7b9faf",
+      "0x5b2962121b4334fe563f7062fea975f51313ede3",
+      "0x09dea15d4e1f82787e181f23788dc3f4b3d3dae4",
+      "0xd5f40ee4015a3c4e2708dd74c40884fb65e8ab34",
+      "0x433171908d5bab4ac0e860c64d1333f51a310321",
+      "0xd852ac3f736401d94752e37129aa61da035ab58b"
+    ],
+    "chainlink_transmitters": [
+      "0x2df4c8f0095d7323a1521ce82fbf21629fdba7df",
+      "0xa211fbdde369d28efb235bcd3a77f3a77790ba94",
+      "0x67a2da43031e8876acc515a21cb0d95648efd807",
+      "0x4fea9e9741b57bbaad4cf0e60e99a983bb908b3b",
+      "0x1dd2dea254a9b9244d2de4139042c65ab9ecdaae",
+      "0xbe328e128835dae56a42f1e67de4a0daeec61a5f",
+      "0x4af41cd301e74b05410df9f6b5fc3d99ddce7cd5",
+      "0x83b351d4ed8de251ccf65fd44b42d27c41b5d8a6",
+      "0x5d4faed290f0422c7b33586aa772d81785a01d7c",
+      "0x74d14b5e642ea3331c88bcc72649997f447a7a5f"
+    ],
+    "pyth_verifier_keys": [
+      "0x41534bb176e461a3fb30479400f210549ecce638",
+      "0x6502987b62f21cab7eb5ccd8f0173084b60d5b41",
+      "0x44a3e8f6a382412cf6bb90a3f8106e68977476c9",
+      "0x13edc776d3063549fdb0702af182edc905a539d4",
+      "0x3af088854bb768065f4929e5bbdfa4cbb04c9af9"
+    ],
+    "chainlink_admin_vs_api3_admin": [],
+    "chainlink_admin_vs_pyth_keys": [],
+    "api3_admin_vs_pyth_keys": [],
+    "interpretation": "No address equality is not proof of independent people, organizations, infrastructure or markets. Safe modules/guards/delegates and real-world operator provenance remain unqualified.",
+    "chainlink_report_signers": [
+      "0xf7eef8f2d4cf593667afd2c0730096d6340f057e",
+      "0x17d3826b46c1edfdacb011f71f8461534b2f466d",
+      "0x870288957f9b3509c82ad11fb75cd66c49549d22",
+      "0xf12666b6999d11ab818760ddc5fc9c99bc976def",
+      "0xc881c5c891f1960be89170d197dbe27f056d6d76",
+      "0xd5acfb5e58703e1fdc393fa6ba340b5107eb21e0",
+      "0x7ee843a335324359ac5b1edb9e5c5ac253fe92d2",
+      "0x4caa91093b2660f8598b727b0e3dbcd422acbf8c",
+      "0xce0cb60fdea0622a182a5006397759c41da56b7f",
+      "0x216a9eaa61501412052be5b7b03fec571f517097"
+    ],
+    "chainlink_report_signers_vs_pyth_keys": [],
+    "chainlink_report_signers_vs_api3_admin": []
+  },
+  "research_provider_limits": {
+    "official_public_RPC": "Initial canonical state reads succeeded. By2026-11-09T20:16:17UTC the exact anchor header remained readable but the state returned historical-state-unavailable.",
+    "official_failure_evidence": "api3-base-rpc.json",
+    "alternate_public_pinax_retry": "Chain4663, exact shared header and hash selector checked; three API3 base reads succeeded with canonical header recheck. This bounded success is not archive/provider availability qualification."
+  },
+  "separately_labeled_fresh_liveness": {
+    "evidence": "fresh-secondary-reads.json",
+    "anchor": {
+      "chain_id": 4663,
+      "block_number": 110332661,
+      "block_hash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+      "block_timestamp": 1794255524,
+      "selector": {
+        "blockHash": "0xe209c7bbac02c6f4ce5b397bc8dda0f8618ce24dca8818c43163faaf1151514f",
+        "requireCanonical": true
+      },
+      "observed_head": 110332673,
+      "depth": 13
+    },
+    "canonical_recheck": true,
+    "api3_base_initialized": false,
+    "api3_base_timestamp": 0,
+    "api3_registry_details_empty": true,
+    "chainlink_round_id": "18446744073709554844",
+    "chainlink_answer_raw": "212561000000",
+    "chainlink_updated_at": 1794254557,
+    "chainlink_age_seconds": 967,
+    "pyth_price_raw": "224172518000",
+    "pyth_publish_time": 1794025153,
+    "pyth_age_seconds": 230371,
+    "scope": "Contemporary liveness evidence only, never substituted for the original shared anchor or used to qualify market execution."
+  },
+  "fixed_ZZZ_catalog_checks": {
+    "chainlink": {
+      "row_count": 62,
+      "matches": [],
+      "source": "approved-public/chainlink-catalog.raw",
+      "scope": "No match in this retrieved public catalog; custom/private services and alternative naming remain unresolved."
+    },
+    "pyth": {
+      "row_count": 3946,
+      "matches": [],
+      "source": "approved-public/pyth-symbols.raw",
+      "scope": "No match in this retrieved public catalog; custom/private services and alternative naming remain unresolved."
+    },
+    "api3": {
+      "row_count": 292,
+      "matches": [],
+      "ZZZ_USD_offer_http_status": 404,
+      "ZZZ_USD_name_onchain_unset": true,
+      "computed_ZZZ_USD_proxy_code_empty": true
+    },
+    "other_market_leads": "See ../review/cex-findings.json for exact-token LBank/XT upstream leads. CEX ticker books are not on-chain USD feeds and do not establish independent publishers, USDT/USD conversion, suitable depth or PoPL ABI compatibility."
+  },
+  "liveness": {
+    "chainlink_correct_chain_uptime_feed": null,
+    "source": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+    "status": "Robinhood absent from official supported list; docs state no expansion to additional networks. Live progressing blocks/readable current price do not substitute for reviewed sequencer outage/grace and upstream controls."
+  },
+  "status": {
+    "source_existence": "Chainlink ETH reference and inactive API3 ETH proxy exist; Pyth Core exists with stale stored ETH.",
+    "actual_release_admission": "BLOCKED",
+    "ETH_pair": "BLOCKED by stale Pyth and spread above300bps; API3 inactive/ABI-incompatible for direct use.",
+    "fixed_ZZZ_pair": "BLOCKED: no two independently qualified correct-token USD sources established.",
+    "production_approval": false,
+    "changes": "External evidence only. No repository source/config, chain update, funds, deployment, signing, provider contact or service changes."
+  },
+  "primary_links": {
+    "pyth_fees": "https://docs.pyth.network/pro/on-chain-fees",
+    "pyth_auth": "https://docs.pyth.network/pro/pyth-core-upgrade",
+    "pyth_architecture": "https://docs.pyth.network/pro/how-lazer-works",
+    "pyth_addresses": "https://docs.pyth.network/pro/contract-addresses",
+    "pyth_sponsored": "https://docs.pyth.network/pro/sponsored-feeds",
+    "api3_rounds": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html",
+    "api3_market": "https://market.api3.org/robinhood",
+    "api3_source": "https://github.com/api3dao/contracts/tree/bd8b08d7aa2203c5f3f103d4600b3b9f39d30e1c",
+    "chainlink_uptime": "https://docs.chain.link/data-feeds/l2-sequencer-feeds"
+  },
+  "checks": {
+    "exact_integer_300bps": false,
+    "all_5_offer_proofs_pass": true,
+    "all_canonical_rechecks_pass": true
+  }
+}

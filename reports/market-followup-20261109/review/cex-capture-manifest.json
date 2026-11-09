@@ -1,0 +1,112 @@
+[
+  {
+    "label": "xt-listing",
+    "url": "https://xtsupport.zendesk.com/hc/en-us/articles/62111344876825-XT-Announcement-on-the-Launching-ZZZ-ZZZ",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.633530+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.733213+00:00"
+  },
+  {
+    "label": "xt-old-symbol-distinction",
+    "url": "https://xtsupport.zendesk.com/hc/en-us/articles/62113392379417-XT-Announcement-on-Renaming-of-ZZZ-to-ZZZOLD",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.635038+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.733213+00:00"
+  },
+  {
+    "label": "lbank-listing",
+    "url": "https://www.lbank.com/support/articles/2096098424263802880",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.635038+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.768539+00:00"
+  },
+  {
+    "label": "lbank-asset",
+    "url": "https://api.lbank.info/v2/assetConfigs.do?assetCode=zzz",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.636072+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.767302+00:00"
+  },
+  {
+    "label": "lbank-depth",
+    "url": "https://api.lbank.info/v2/depth.do?symbol=zzz_usdt&size=60",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.733213+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.768539+00:00"
+  },
+  {
+    "label": "lbank-accuracy",
+    "url": "https://api.lbank.info/v2/accuracy.do?symbol=zzz_usdt",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.733213+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.819345+00:00"
+  },
+  {
+    "label": "lbank-trades",
+    "url": "https://api.lbank.info/v2/trades.do?symbol=zzz_usdt&size=10",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.767302+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.820351+00:00"
+  },
+  {
+    "label": "xt-symbol",
+    "url": "https://sapi.xt.com/v4/public/symbol?symbol=zzz_usdt",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.768539+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.892752+00:00"
+  },
+  {
+    "label": "xt-depth",
+    "url": "https://sapi.xt.com/v4/public/depth?symbol=zzz_usdt&limit=100",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.768539+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.878805+00:00"
+  },
+  {
+    "label": "xt-trades",
+    "url": "https://sapi.xt.com/v4/public/trade/recent?symbol=zzz_usdt&limit=10",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.819345+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.892752+00:00"
+  },
+  {
+    "label": "xt-time",
+    "url": "https://sapi.xt.com/v4/public/time",
+    "method": "GET",
+    "started_utc": "2026-11-09T20:06:23.820351+00:00",
+    "error_type": "URLError",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "completed_utc": "2026-11-09T20:06:23.894261+00:00"
+  }
+]

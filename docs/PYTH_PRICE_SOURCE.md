@@ -15,6 +15,17 @@ found in the downloaded Chainlink or Pyth catalogs. Catalog absence is not proof
 that no custom service exists. ZZZ still needs two independently reviewed sources,
 even if users contribute only ETH: the final LP contains and values ZZZ.
 
+## Latest service observation
+
+[Current read-only evidence](../reports/market-followup-20261109/feeds/FINDINGS.md)
+observes stored ETH age229537s at20:04:50UTC and the same stale observation at the
+separate20:18:44UTC follow-up. Both live single-update/transaction-fee getters
+return0; the current unauthenticated Hermes request returns401. Zero native
+update fee does not fund data access, signed updates, transaction gas or recovery.
+No plan, updater, production source pair or immutable reader setting was chosen.
+Preserve original publishTime, existing confidence/age checks and the86400s hard
+limit. Core/Pro/same-backend wrappers are not independent sources.
+
 ## Exact constructor policy
 
 Deploy a separate reader per reviewed feed. Its seven constructor arguments are:

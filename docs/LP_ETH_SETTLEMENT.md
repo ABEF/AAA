@@ -1,8 +1,11 @@
 # LP holder rewards settled in ETH
 
-The [actual market review](../reports/market-qualification-20261109/REVIEW.md)
-does not establish a usable default1% conversion route. A v3 pool's existence
-does not make it a principal balancing venue. For future v3 earned conversion,
+The [latest market follow-up](../reports/market-followup-20261109/REVIEW.md)
+does not establish a practical default1% conversion route. Favorable tiny reverse
+quotes are retained, but their observed output is below intrinsic-only gas cost
+and no independent USD pair/full converter operation is qualified. This is not a
+blanket claim that every numeric1% quote fails. A v3 pool's existence does not make
+it a principal balancing venue. For future v3 earned conversion,
 the converter must be constructed with the reviewed nonzero wrapper before
 seal, then receive its exact wrapper/route policies and independently priced
 ETH/ZZZ/WETH. Zero immutable wrapper cannot be changed after seal. Current
