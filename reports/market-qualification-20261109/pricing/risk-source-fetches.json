@@ -1,0 +1,23 @@
+{
+  "chainlink-svr": {
+    "url": "https://docs.chain.link/data-feeds/svr-feeds",
+    "observed_at_utc": "2026-11-09T04:43:47.450337+00:00",
+    "available": true,
+    "bytes": 374693,
+    "sha256": "016815329173c0fa396edd0ccd3176cb25e9469701d0913cae542e8c087dc279"
+  },
+  "pyth-best-practices": {
+    "url": "https://docs.pyth.network/pro/best-practices",
+    "observed_at_utc": "2026-11-09T04:43:47.451772+00:00",
+    "available": true,
+    "bytes": 272180,
+    "sha256": "4232754036649f27e7f1b62b632b6837432f9888c142870c5d3941dec439b139"
+  },
+  "redstone-official-readme": {
+    "url": "https://raw.githubusercontent.com/redstone-finance/redstone-oracles-monorepo/main/README.md",
+    "observed_at_utc": "2026-11-09T04:43:47.452276+00:00",
+    "available": true,
+    "bytes": 1940,
+    "sha256": "d3b183bf9bbada1b22838ba305f1d0c2665092c07b02adbcd61121ac1f49d9f2"
+  }
+}

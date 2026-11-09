@@ -34,6 +34,7 @@ Custody, ownership and reward accounting.
   - Native V2 venue ETH fees now enter individual/collective indices directly, without conversion. Already converted ETH credits coexist without new-income double counting. ZZZ still requires a cheaper qualified conversion route; the limit defaults to 1%, governance maximum 10%, and gas stays separate.
   - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
   - [Fee-flow audit](reports/fee-flow-audit-20261107/VERIFICATION.md): preserve per-NFT components/reserve separation, direct source claims, both reference floors and18-decimal wrapper identity. Fresh7 automated worker remains native-v4 only. At most6 independently re-priced prefix preparations; pending-first recovery, suffix fairness, original gas/economy/day/price guards and no uncertain resend. A cheaper actual1%-eligible route remains required.
+  - [Actual November9 conversion quotes](reports/market-qualification-20261109/REVIEW.md) establish no tested default1%-eligible ZZZ-to-ETH route. Cheaper v3 candidates cannot fill measured quotes; the liquid v3 1% pool adds impact and differs materially from selected spot. Existing v3 capability requires a nonzero reviewed immutable wrapper chosen before seal, wrapper/route/pricing admission and matching consumer; fresh7 automated conversion currently accepts native-v4 only. Do not change the1% cap or mark pending ZZZ as ETH. Healthy source-currency fallback remains separate.
 
   </details>
 
@@ -86,7 +87,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-activation-assets"></a>
 
-- [ ] **[Qualify ETH and ZZZ contributions only](docs/ACTIVATION_ENTRY.md)** - In progress. Contract admission is restricted to native ETH and the explicitly reviewed ZZZ identity. Qualify their actual dual-price policies, full activation/$5 growth execution, selected pool depth and separate gas. USDC, USDG and WETH are not user inputs; royalty currencies are separate.
+- [ ] **[Qualify ETH and ZZZ contributions only](docs/ACTIVATION_ENTRY.md)** - In progress. Only native ETH and fixed ZZZ are accepted. November9 unmodified-market fork100USD activation in each asset reverted atomically under recorded guards;5USD growth was blocked without a genuine active NFT. Traces distinguish configured1% pool/reference and2% per-swap floors from the2% total contribution cap and5% idle gate. Qualify actual independent prices, reviewed pool/venue settings, executable depth and separate gas; do not count synthetic depth or guard relaxation as acceptance.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -102,6 +103,7 @@ Custody, ownership and reward accounting.
   - [Dated service/route evidence](reports/release-services-20261025/feeds-routes/VERIFICATION.md): fresh Pinax reads returned429 twice and official RPC403 before a usable snapshot. No fresh route quote/depth or cheaper ZZZ conversion is qualified; transport failure is not market absence. Preserve bounded retries and fail closed.
   - [Historical simplification audit](reports/simplification-20261025/REVIEW.md) retains its exact source scope. Fresh source binds ETH/fixedZZZ only and native ETH/ZZZ LP admission; issuer/chain custody executors are removed. Governance may end LP and return actual ETH+ZZZ to holders; token identity is not replaceable.
   - The [unmodified-depth actual fork case](reports/source9-actual-entry-20261109/REVIEW.md) retained only about46.89USD as deployed LP from100USD and failed the5%idle guard. No limit was loosened. A separate synthetic-depth fixture supports positive pipeline verification; qualify actual sufficiently deep reviewed swap venues independently of the destination before release.
+  - [Current-market fork](reports/market-qualification-20261109/REVIEW.md) uses current normal90 objects and unmodified block109785803 depth with explicitly correlated controlled price fixtures, not qualified USD. Both100USD inputs revert with exact asset/LP/Entry rollback; only local gas is spent. Growth5 has no positive case because no initial activation succeeds. ETH rolled-back internal values50.8826USD LP/48.8033USD idle are diagnostics, not user losses or published portfolio balances. Production pool spot/venue settings remain unselected, not copied from the rehearsal.
 
   </details>
 
@@ -231,6 +233,7 @@ Custody, ownership and reward accounting.
   - [Multi-day portfolio evidence](reports/portfolio-long-horizon-20261102/VERIFICATION.md): ETH and fixed-ZZZ reviewed Entry/growth use current main while both-leg aggregate NAV/IDs/clocks remain coherent. Both serialized orders against rebalance pass. Actual venue/depth, caller-floor competitiveness and real strategy economics remain open.
   - [November3 contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md): two new actual-core journeys verify admitted-but-infeasible residual-gap rollback followed by single-mode recovery, and one-minute USD outage with two-leg harvest/partial claims/raw residual close/later merge. Preflight actual geometry and the whole operation; no production guard or default was loosened. [Verification](reports/smart-contract-lp-audit-20261103/VERIFICATION.md) reuses exact normal/static source scope; real market/operating qualification remains open.
   - Manager guarded paused same-main routing reuses active-aware candidate filtering; ordinary replacement already does so. Actual core quotes must preserve active target geometry; no globally optimal/always-feasible route claim, no ordinary entrant/compound/force regression. Current ABI/storage/profile shapes remain but runtime pins change. [Both-flow review](reports/moving-market-flows-20261106/REVIEW.md), [verification](reports/moving-market-flows-20261106/VERIFICATION.md), [inputs](reports/moving-market-flows-20261106/INPUT_MATRIX.md), [recovery](reports/moving-market-flows-20261106/BLOCKERS.md).
+  - [Bounded live market investigation](reports/market-qualification-20261109/markets/MARKET_FINDINGS.json):102 initialized native v4 keys,71 hookless fee-compatible states,3 v3 factory candidates and107 size/direction quotes. Selected upper tick removes all current active L; active L alone is not two-way capacity. Alternative10018 has material price disagreement. Native-v4 principal balancing and v3/WETH earned conversion remain distinct; no discovered venue is automatically approved and no global-optimality or future-availability claim is made.
 
   </details>
 
@@ -598,7 +601,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema17 validates accounting7/custody5/ProtocolPolicy1/Portfolio2/direct Entry3/mint2,20helpers and both physical LP legs. Exact schema16 remains explicit historical inspection. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
+- [ ] **[Qualify the accounting7 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema17 validates accounting7/custody5/ProtocolPolicy1/Portfolio2/direct Entry3/mint2,20helpers and both physical LP legs. Exact schema16 remains explicit historical inspection. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -910,7 +913,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-zzz-price"></a>
 
-- [ ] **[Identify two defensible independent ZZZ USD sources](docs/PRODUCTION_SERVICES.md#dependency-inventory)** - To do. Ask the ZZZ team for actual independent on-chain pricing/provider options and underlying market references. No pair is selected. Two adapters reading the same thin pool cannot establish independent economic pricing.
+- [ ] **[Identify two defensible independent ZZZ USD sources](docs/PRODUCTION_SERVICES.md#dependency-inventory)** - To do. Obtain ZZZ-team/provider proposals for TWO actual independent on-chain USD sources for the fixed token, with underlying markets/reporters, source/admin controls, update/funding and outage evidence. November9 catalog research found no matching public feed in the checked Chainlink/Pyth/RedStone inventories; private/custom availability is unresolved. Two adapters over the same thin pool are insufficient. No message or provider arrangement has been made.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -919,6 +922,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   - If suitable sources do not exist, discuss a supportable authenticated on-chain pricing design and independent market coverage. Team approval is input, not security qualification. Do not substitute the contribution pool instantaneous price, two wrappers of one feed, an unverified web API or an assumed stablecoin peg.
   - Engineering owns independent source/common-mode/proxy/bounds/liveness/gas qualification under [dual-source qualification](TODO.md#task-dual-price-qualification), [activation inputs](TODO.md#task-activation-assets) and [oracle security](TODO.md#task-security-strategy). The selected hookless pool does not require a Pons creator-payment agreement.
   - 25October research: the checked Robinhood catalog has an ETH/USD candidate but no ZZZ-named entry. Ask the ZZZ team for two independent defensible ZZZ USD source proposals, market coverage, administrators/update policy, operating costs and who funds any custom service. The [pool-derived reference](reports/price-reference-20261025/OBSERVATION.md) is not an approved substitute.
+  - [Official-catalog/chain evidence](reports/market-qualification-20261109/pricing/pricing-findings.json) supplies concrete provider questions; absence in these public catalogs is not proof that no private/custom product exists. Require exact token identity and independence evidence, not ticker matches or the target pool spot. Team-dependent proposals remain open under this stable task ID.
 
   </details>
 
@@ -1380,7 +1384,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-dual-price-qualification"></a>
 
-- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - In progress. An optional immutable Pyth Core reader is implemented with bounded precision/confidence/freshness/runtime checks. Official catalogs give ETH/stablecoin candidates; no ZZZ source pair, adapter deployment, updater or actual policy is qualified. Source agreement remains3%; keep unsupported assets unavailable.
+- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - In progress. Actual November9 read-only source/proxy observations establish no usable dual ETH/fixedZZZ pair. Both Chainlink ETH proxies share one aggregator; observed Pyth ETH age173991s exceeds86400s and spread465.063bps exceeds300. Retrieved Chainlink/Pyth/RedStone catalogs list no fixedZZZ match. Qualify actual independent sources, funded fresh updates, liveness/upstream controls and costs; keep prices unavailable.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1397,6 +1401,7 @@ Decisions and rehearsals before real funds.
   - [Updated official-source research](reports/real-service-readiness-20261025/RESEARCH.md) does not establish a qualified ZZZ source pair. Current defaults are2% contribution/1% conversion/3% maintenance, gas separate; source disagreement remains3%. Do not substitute shared-upstream proxy pairs, an instantaneous pool price or an invented feed.
   - [Optional Pyth reader](docs/PYTH_PRICE_SOURCE.md) has17 focused Solidity passes including1,000 confidence-boundary fuzz samples and38 normal object gates. The37 prior objects are byte-identical. Qualify real Core/proxy/feed/denomination/age/confidence/updater fees and common upstreams; confidence is a screening ceiling, not added mathematical Oracle bounds. Neither two Pyth products nor shared Chainlink proxies establish independence.
   - A3%source-agreement pass can still be infeasible under a conservative2%contribution budget plus execution costs; qualify actual spreads/update timing and quote availability without widening caller limits or adding a single-source fallback. [Principal review](reports/system-adversarial-20261026/PRINCIPAL.md).
+  - [Actual November9 source review](reports/market-qualification-20261109/pricing/pricing-findings.json) binds real rounds, timestamps, proxy/implementation/owner and official catalogs. Independent ETH coverage needs a fresh qualified Pyth update service or alternative; fixedZZZ needs two defensible actual sources. No correct-chain uptime-feed address is identified in the retrieved official list. Do not copy another chain, fabricate always-up data, duplicate an aggregator or extend the hard age limit to pass.
 
   </details>
 
@@ -1554,4 +1559,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `573811008d7754da2847b98834478765d95da3b349b0fa0c51fcf4d9fb032a5a`.
+Snapshot SHA-256: `1edb1e73de628027318d5cb417aaa55fcf9c929a50fa47acc810d5a4ee4c2edb`.

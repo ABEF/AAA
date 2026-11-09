@@ -1,0 +1,44 @@
+{
+  "chainlink_eth_usd": "214210382193/100000000",
+  "feed_answer": 214210382193,
+  "feed_updatedAt": 1794193610,
+  "anchor_timestamp": 1794199150,
+  "warning": "One unqualified ETH/USD source and selected-pool instantaneous ZZZ/ETH ratio: sizing labels only, not independent PoPL valuation.",
+  "vectors": [
+    {
+      "label": "zzz1",
+      "zeroForOne": false,
+      "amountIn": 1000000000000000000
+    },
+    {
+      "label": "zzz1000",
+      "zeroForOne": false,
+      "amountIn": 1000000000000000000000
+    },
+    {
+      "label": "zzz10000",
+      "zeroForOne": false,
+      "amountIn": 10000000000000000000000
+    },
+    {
+      "label": "nominal_100usd_eth_half",
+      "zeroForOne": true,
+      "amountIn": 23341539045923007
+    },
+    {
+      "label": "nominal_100usd_zzz_half_at_selected_spot",
+      "zeroForOne": false,
+      "amountIn": 6646537543054630968622
+    },
+    {
+      "label": "nominal_5usd_eth_half",
+      "zeroForOne": true,
+      "amountIn": 1167076952296150
+    },
+    {
+      "label": "nominal_5usd_zzz_half_at_selected_spot",
+      "zeroForOne": false,
+      "amountIn": 332326877152731448768
+    }
+  ]
+}

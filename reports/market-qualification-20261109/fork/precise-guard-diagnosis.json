@@ -1,0 +1,36 @@
+{
+  "baseline": "99a01e97887156be0d31b61d453df4e29eb8a055",
+  "anchor": 109785803,
+  "selected_plan_trace_path": "0.24.26.20",
+  "actual_plan": {
+    "venue": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "native_input": true,
+    "amount_in": "9182688510634636",
+    "output": "2573038008076697321139",
+    "minimum_output": "2562488366160867283779",
+    "post_sqrt": "42065983316259833851135064209916"
+  },
+  "rolled_back_physical_trace_path": "0.24.47.6.5.0",
+  "rolled_back_physical_raw": [
+    "14717484215202593",
+    "2573038008076697321124"
+  ],
+  "rolled_back_idle_raw": [
+    "22782905366008785",
+    "14"
+  ],
+  "controlled_usd18": {
+    "deployed": "50882607835024253894",
+    "idle": "48803348659196923858",
+    "retained": "99685956494221177752",
+    "idle_allowed": "4984297824711058887",
+    "marginal_LP_required": "98000000000000000294"
+  },
+  "failed_guard": "ContributionPricing.assertDeployed(bucket,500): idle>floor((deployed+idle)*500/10000)",
+  "root_cause_scope": "At this exact conditional price vector and original market, route candidates are bounded by per-swap gross2% and configured1%spot; accepted partial leaves too much idle. All8 native candidates quoted successfully, so evidence does not support quoteGas exhaustion or solver iteration shortage as primary cause.",
+  "not_claimed": "Global absence of liquidity; independent USD qualification; a production-ready venue policy; successful100activation or5growth.",
+  "actual_rollback_verified": true,
+  "source_snapshot_bound": true,
+  "public_transactions": false,
+  "synthetic_depth": false
+}

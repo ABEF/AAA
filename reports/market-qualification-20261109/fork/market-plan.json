@@ -1,0 +1,21 @@
+{
+  "block": 109785803,
+  "hash": "0x4a55b88b470e9dd41d7bf885c80f33a0886d66444cf1ba4223ff2128c9da9498",
+  "eth_price_usd18": 2142103821930000000000,
+  "zzz_price_usd18": 7522713845534209,
+  "price_evidence": "markets agent same-anchor observation: Chainlink ETH/USD 0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9 decimals8 answer214210382193 updatedAt1794193610, blocktime1794199150 (age5540sec). ZZZ USD is derived from SELECTED POOL same anchor sqrt, NOT independent. Four controlled observations use this correlated price vector; no actual dual USD qualification.",
+  "selected_pool_observed_sqrt": 42277818571609234285824917886142,
+  "selected_pool_observed_liquidity": 962337799357516411500,
+  "selected_pool_observed_tick": 125599,
+  "selected_pool_observed_protocol_fee": 4097000,
+  "execution_pools": [
+    {
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "fee": 10020,
+      "tick_spacing": 200
+    }
+  ],
+  "financial_limits_unchanged": true,
+  "controlled_single_source_USD_diagnostic_only": true,
+  "primary_mint2_qualified": false
+}

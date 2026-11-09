@@ -1,0 +1,11 @@
+{
+  "implementation": "0xc6b81b429797e0f555440b70cd99e032d7ae947e",
+  "implementation_runtime_keccak256": "0xbe1295f37be34ffe03ad779bda0ef278907e1856b51a3be2f35ee541d75d4650",
+  "admin": "0xa3acd31afb851b4eb9dad00f5204c01d924267df",
+  "admin_runtime_keccak256": "0xa4b2186ab82fa36fb4ae158582e5615ea519e757c26c13ba4a33daaaed8902a7",
+  "admin_owner": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": "0x0000000000000000000000002a153c6a1b66dbc930a8d7017230ab0253005c09"
+  }
+}

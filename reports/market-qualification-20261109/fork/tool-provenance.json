@@ -1,0 +1,30 @@
+{
+  "kind": "Read-only post-campaign hash/version observation of exact tool paths; reused normal/fixture solc hash independently pinned",
+  "no_binary_copy": true,
+  "tools": [
+    {
+      "hash_observed_after_campaign": true,
+      "name": "anvil",
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\anvil.exe",
+      "sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+      "version": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf",
+      "version_exit_code": 0
+    },
+    {
+      "hash_observed_after_campaign": true,
+      "name": "cast",
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\cast.exe",
+      "sha256": "610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8",
+      "version": "cast Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf",
+      "version_exit_code": 0
+    },
+    {
+      "hash_observed_after_campaign": true,
+      "name": "solc",
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+      "sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+      "version": "solc, the solidity compiler commandline interface\nVersion: 0.8.26+commit.8a97fa7a.Windows.msvc",
+      "version_exit_code": 0
+    }
+  ]
+}

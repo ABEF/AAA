@@ -36,7 +36,7 @@ admitted. `configure` is removed; separate ERC20 conversion venues do not become
 principal pools. Exactly one pool accepts contributions at a time. This keeps
 every funded bucket returnable to NFT holders as native ETH+fixedZZZ.
 
-The accounting-4 candidate uses native ETH at the venue and throughout
+The current accounting7 candidate uses native ETH at the venue and throughout
 principal/fee/reward custody; it does not normalize ETH to WETH. It preserves
 prefunds, requires exact declared payable budgets and clears exact ERC20 allowances. Vault harvests before increasing LP so old
 native fees cannot silently pay new principal. Unexpected offsets fail atomically.
@@ -103,16 +103,16 @@ The selected pool fee applies only to the swapped portion of a contribution.
 The default contribution budget is 2%, requiring at least 98% of conservative upper
 input value as actual new LP; caller-bound policy and full execution checks still
 apply. The separate 1% reward-conversion cap requires a cheaper qualified route. Independent ZZZ/USD pricing,
-ETH/ZZZ contribution and reward-conversion routes, any optional royalty-currency
-conversion, full execution/gas economics, production inventory,
+ETH/ZZZ contribution and LP-reward-conversion routes, full execution/gas
+economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
 remain open. Bounded post-seal request/buyback controls and typed v4 conversion are implemented;
-actual provider/market qualification remains open. Current-accounting6 holder
+actual provider/market qualification remains open. Current-accounting7 holder
 payouts need their own target-chain/receiver/gas qualification. Historical fork
 observations retain their exact source scope; local fixtures do not qualify live
-services. Fresh accounting6/custody5/portfolio2/fee1/governance2/canonicalV8 runtime pins and
+services. Fresh accounting7/LP1/custody5/portfolio2/fee1/governance2/mint2/canonicalV10 runtime pins and
 actual native wallet/service acceptance are required. Historical native2 and
-served accounting3 website artifacts do not qualify accounting6 integration. Existing fixtures/journals keep their original
+served accounting3 website artifacts do not qualify current accounting7 integration. Existing fixtures/journals keep their original
 profiles and public deployment is null.
 
 [Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |

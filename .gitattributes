@@ -143,3 +143,6 @@ reports/checkpoint2-manual-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,
 
 # Preserve exact deployed SeaDrop evidence, source-scoped tests and original failures.
 reports/opensea-integration-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact market/feed observations, upstream sources and owned-fork diagnostics.
+reports/market-qualification-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

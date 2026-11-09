@@ -1,0 +1,135 @@
+{
+  "recorded_at_utc": "2026-11-09T04:44:58.068097+00:00",
+  "source_commit": "99a01e9",
+  "source_sha256": {
+    "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540"
+  },
+  "scope": "Read-only official catalogs/documentation and canonical public chain observations; no source/docs edit, deployment, price update, signer, transaction, service/site or existing fork/journal changes.",
+  "asset_identity": {
+    "native_eth": "0x0000000000000000000000000000000000000000",
+    "fixed_zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "chain_id": 4663
+  },
+  "actual_observation": {
+    "chain_id": 4663,
+    "block_number": 109785732,
+    "block_hash": "0x4f11bc04863fc640f16c8b8392924b17fe118cb7735416c57cdfa4cda9d9ce92",
+    "block_timestamp": 1794199144,
+    "block_time_utc": "2026-11-09T04:39:04+00:00",
+    "eth": {
+      "proxy": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+      "round_id": "18446744073709554825",
+      "answer_raw": "214210382193",
+      "decimals": 8,
+      "usd": "2142.10382193",
+      "started_at": 1794193597,
+      "updated_at": 1794193610,
+      "updated_at_utc": "2026-11-09T03:06:50+00:00",
+      "age_seconds": 5534,
+      "answered_in_round": "18446744073709554825"
+    },
+    "pyth": {
+      "core": "0x8250f4aF4B972684F7b336503E2D6dFeDeB1487a",
+      "price_raw": "224172518000",
+      "confidence_raw": "197482000",
+      "exponent": -8,
+      "usd": "2241.72518000",
+      "confidence_bps": "8.809376000317755274533696410",
+      "publish_time": 1794025153,
+      "publish_time_utc": "2026-11-07T04:19:13+00:00",
+      "age_seconds": 173991
+    },
+    "chainlink_primary_secondary_same_aggregator": true,
+    "qualification": false
+  },
+  "catalog_coverage": {
+    "chainlink": {
+      "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+      "rows": 62,
+      "eth_usd_matches": 1,
+      "zzz_symbol_or_fixed_address_matches": 0
+    },
+    "pyth": {
+      "url": "https://pyth.dourolabs.app/v1/symbols",
+      "rows": 3945,
+      "eth_usd_matches": 1,
+      "zzz_symbol_or_fixed_address_matches": 0
+    },
+    "redstone_push": {
+      "url": "https://app.redstone.finance/push-feeds",
+      "decoded_deployment_rows": 798,
+      "robinhood_rows": 0,
+      "zzz_matches": 0,
+      "authoritative_extract": "redstone-push-selected-v2.json"
+    },
+    "redstone_pull": {
+      "url": "https://app.redstone.finance/pull-feeds",
+      "decoded_asset_map_entries": 1760,
+      "zzz_matches": 0,
+      "eth_usd_present": true,
+      "authoritative_extract": "redstone-pull-selected-v3.json",
+      "scope": "Asset coverage map, not proof of a deployed chain4663 AggregatorV3 feed."
+    },
+    "absence_limit": "No match in these retrieved public catalogs is not proof that no private/custom product exists. A ticker alone would not authenticate the fixed ZZZ token."
+  },
+  "pair_evaluation": {
+    "eth_usd_independent_qualified_pair": false,
+    "zzz_usd_independent_qualified_pair": false,
+    "configured_popl_prices_available": false,
+    "chainlink_pyth_spread_bps_at_same_block": "465.06316383975641936405776570967905382864189379519",
+    "allowed_disagreement_bps": 300,
+    "pyth_age_seconds": 173991,
+    "oracle_hard_maximum_source_age_seconds": 86400,
+    "failure_reasons": [
+      "Pyth ETH stored observation is older than the hard one-day age ceiling.",
+      "Observed Chainlink/Pyth answers disagree by more than the selected3% even if stale data were improperly used.",
+      "Both listed Chainlink proxies resolve the exact SAME aggregator and owner; phase-prefixed round IDs do not establish independence.",
+      "No fixed-ZZZ on-chain USD source, let alone two independently reviewed sources, identified in these catalogs."
+    ]
+  },
+  "capability_map": {
+    "chainlink_push": "Actual decimals/latestRoundData shape matches Oracle source ABI; current source runtime/round observed, owner/aggregator policies still require independent qualification.",
+    "pyth_core": "Existing optional ZZZPythPriceFeed accepts Core getPriceUnsafe feedID/exponent/age/confidence through a separately deployed reviewed immutable reader. It never pushes updates or funds them. No reader deployment authorized/performed.",
+    "pyth_pro": "Officially listed Robinhood0xACeA761c27A909d4D3895128EBe6370FDE2dF481 verifies signed per-transaction payloads and stores no price; not a direct replacement for the current Core adapter.",
+    "redstone_pull": "Signed data appended to a consumer transaction is not consumed by the current Oracle static decimals/latestRoundData calls. Needs a separately reviewed compatible stored-price adapter/updater or architecture change; no such correct-chain address was identified.",
+    "dex_price": "Instantaneous target/deeper pool prices are not independent ZZZ/USD feeds. Multiple wrappers or windows over one thin market do not establish source independence."
+  },
+  "upstream_and_operations": {
+    "chainlink_proxy_aggregator_owner": "0xee27d5ae494300902d90454e8630a3f1c68c9c52",
+    "chainlink_aggregator": "0x6091e64eb7138eef066a80fd3a0d7427b91f2721",
+    "chainlink_aggregator_type": "DualAggregator 1.0.0",
+    "owner_control_review_complete": false,
+    "pyth_core_implementation": "0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+    "pyth_implementation_runtime_bytes": 24498,
+    "pyth_implementation_keccak256": "0x6bfa2a72d71260d707b4bad3f9aeaa5b91d455f58290bd66b392d1e6324eb583",
+    "proxy_pin_limit": "A177-byte proxy runtime pin does not freeze the implementation. Zero owner/admin slot does not establish immutability; actual governanceDataSource remains populated.",
+    "implementation_source_review_complete": false,
+    "pyth_sponsored_robinhood_listed": false,
+    "pyth_hermes_requires_api_key_per_official_docs": true,
+    "pyth_update_service_funded_or_qualified": false,
+    "chainlink_robinhood_sequencer_feed_listed": false,
+    "sequencer_notice": "Chainlink official supported list omits Robinhood and states expansion to new networks has ended. Robinhood docs provide a generic uptime-check example but no deployable correct-chain address. Do not substitute Arbitrum One or fabricate a permanently-up source.",
+    "observed_provider_limit": "Initial upstream metadata read receivedHTTP429; bounded later fixed-anchor retry and final header recheck succeeded. These public endpoints are explicitly rate-limited/not recommended for production.",
+    "verified_source_access": "Blockscout source API returned403 for both observed implementations. Contract existence/runtime is observed; verified-source/admin review remains incomplete."
+  },
+  "required_external_inputs": [
+    "Two source proposals authenticated to this exact fixed ZZZ asset, with independent upstream markets/reporters and administration review.",
+    "A sustainable authenticated Pyth update service or another actual correct-chain ETH/USD source, with measured age, cost and outages.",
+    "Reviewed ETH/ZZZ provider/common-market/proxy/governance policies and operational maximum ages, not merely distinct labels.",
+    "A correct-chain sequencer-liveness policy/source decision and post-outage recovery rationale.",
+    "Actual provider/archive/simulation/gas/workload/backup qualification and independent approval."
+  ],
+  "evidence_corrections": [
+    "Initial redstone-push-selected.json has valid decoded push rows; v2 is the maintained richer extract.",
+    "redstone-pull-selected-v2.json used list-shaped iteration against a map and is superseded by explicit map decoder v3; do not cite its ETH absence.",
+    "upstream-read-snapshot.json is deliberately marked incomplete after429. upstream-retry-snapshot.json separately completes storage and final canonical header check at the same anchor.",
+    "primary-fetches.json preserves restricted-network failures; primary-fetches-2.json preserves the authorized successful raw fetches."
+  ],
+  "qualification": false,
+  "deployment_authorized": false,
+  "public_transactions": 0
+}

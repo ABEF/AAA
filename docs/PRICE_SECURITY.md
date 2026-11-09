@@ -1,6 +1,8 @@
 # Price security and factual LP verification
 
-Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
+Fresh source uses accounting7/LP-allocation1, mint2/canonicalV10, maintenance3,
+confirmation3 and optional portfolio2. Historical pricing-V2 evidence retains
+its original source scope; unchanged pricing semantics do not upgrade old runtimes.
 Ordinary samples require the physical pool and independent reference on the same
 85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
 main bounds. This threshold can be reached while the main remains active. The
@@ -18,8 +20,10 @@ Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUT
 
 ## Status and security boundary
 
-The [reference-market improvement](../TODO.md#task-rebalance-confirmation-buffer)
-is proposed separately from the implemented safeguards below.
+The physical-plus-configured-reference confirmation below is implemented.
+Qualification of a genuinely independent higher-liquidity market/TWAP remains
+separate [reference-market work](../TODO.md#task-rebalance-confirmation-buffer);
+no target-pool spot fallback is implemented or approved.
 
 ## Physical pool and independent reference
 
@@ -241,8 +245,13 @@ it. The default contribution loss limit is 2%; existing governance can configure
 future limits up to the 10% hard maximum. Stronger venue/caller minima remain.
 See [execution-loss policy](EXECUTION_LOSS_POLICY.md).
 
-Price disagreement consumes some of the available execution margin. A quote can
-therefore fail despite a cheap swap if the approved price bounds are too wide.
+Price disagreement consumes some of the available execution margin. The3%
+agreement ceiling is a source-admission bound, not an extra execution allowance.
+For illustration, a source input worth100 at its lower price and103 at its upper
+price needs at least100.94 of new lower-valued LP at the2% limit. Returning100
+even with zero fees would fail that example. Favorable actual execution can alter
+the result; never infer a universal route verdict from that illustration.
+A quote can therefore fail despite a cheap swap if approved bounds are too wide.
 The safe response is to reject or obtain a new qualified quote, not silently
 widen the loss cap or substitute one source. Network gas is separate.
 

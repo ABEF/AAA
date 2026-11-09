@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+The [market qualification record](../reports/market-qualification-20261109/REVIEW.md)
+adds dated official-feed/source/proxy and actual venue/quote/fork evidence. No
+source pair or default1% conversion route is qualified. Underlying feed identity,
+freshness, bidirectional range depth and exact operation guards remain release
+requirements; no financial limit, runtime, live configuration or environment is
+changed. Earlier synthetic-depth successes retain their original scope.
+
 The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
 canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
 Initial20free-team/500paid-allowlist/480public allocations are configurable;

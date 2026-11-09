@@ -1,0 +1,24 @@
+{
+  "observed_utc": "2026-11-09T05:01:48.124327+00:00",
+  "baseline": "99a01e97887156be0d31b61d453df4e29eb8a055",
+  "verified_pricing_payloads": 34,
+  "verified_market_payloads": 356,
+  "verified_fork_archive_entries": 67,
+  "unchanged_production_dependency_sources": 90,
+  "protected_unrelated_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_all_match": true,
+  "signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+  "signer_unchanged": true,
+  "markdown_files_checked": 21,
+  "local_file_link_occurrences": 2548,
+  "new_broken_local_file_links": [],
+  "fragment_and_external_link_coverage": "not comprehensive",
+  "runtime_or_operating_policy_changed": false,
+  "actual_sources_or_routes_qualified": false,
+  "no_normal_static_or_unchanged_test_suite_rerun": true
+}

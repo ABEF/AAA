@@ -1,0 +1,25 @@
+{
+  "actual_cases": 2,
+  "atomic_receipt_and_balance_rollbacks": 2,
+  "baseline": "99a01e97887156be0d31b61d453df4e29eb8a055",
+  "blocked_growth_cases": 2,
+  "exact90source_pins_unchanged": true,
+  "independent_USD_qualification": false,
+  "new_owned_fork_stopped": true,
+  "no_production_source_change": true,
+  "no_unchanged_Solidity_suite_rerun": true,
+  "original_preflight_failures_preserved": [
+    "attempt1/preflight-failure.json",
+    "attempt2/failure.json"
+  ],
+  "primary_mint2_qualification": false,
+  "protected4files_unchanged": true,
+  "public_transaction": false,
+  "readonly_core_delta_cases": 2,
+  "scope": "Current normal90 original-market fork diagnostics; fresh100activation in each asset failed safely;5growth blocked without an actual active NFT",
+  "selected_reverse": "1ZZZ requested,388557raw consumed,1weiETH output; callback rejects partial fill",
+  "solver_cause": "native8successful<=74k quotes; chosen partial bounded by1%spot and2%per-swap floors; no solver-budget issue demonstrated",
+  "successful_activations": 0,
+  "synthetic_depth": false,
+  "target_gas_qualification": false
+}

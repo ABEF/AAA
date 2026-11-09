@@ -1,0 +1,3421 @@
+{
+  "source": "https://app.redstone.finance/push-feeds",
+  "row_count": 798,
+  "robinhood": [],
+  "zzz_matches": [],
+  "eth": [
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "80094",
+        "name": "Berachain",
+        "rpcUrl": "https://rpc.berachain.com",
+        "explorerUrl": "https://berascan.com/",
+        "chainId": 80094,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg",
+        "order": 640,
+        "dominantColor": "#451d07",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg"
+      },
+      "relayerName": "berachainEth",
+      "address": "0xD15862FC3D5407A03B696548b6902D6464A69b8c",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "80069",
+        "name": "Berachain Testnet",
+        "rpcUrl": "https://bepolia.rpc.berachain.com",
+        "explorerUrl": "https://berascan.com/",
+        "chainId": 80069,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg",
+        "order": 100,
+        "dominantColor": "#451d07",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg"
+      },
+      "relayerName": "berachainTestnetEth",
+      "address": "0x06877FC483a93114be8A9a2C0aE4E8F734B3571d",
+      "updateTriggers": {
+        "deviationPercentage": 1,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "42793",
+        "name": "Etherlink",
+        "rpcUrl": "https://node.mainnet.etherlink.com",
+        "explorerUrl": "https://explorer.etherlink.com",
+        "chainId": 42793,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/etherlink.svg",
+        "order": 505,
+        "dominantColor": "#38ff9c",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/etherlink.svg"
+      },
+      "relayerName": "etherlinkTezos",
+      "address": "0xF0F22f4b9e49a0d6ade134A9d71D37cc0117951F",
+      "updateTriggers": {
+        "timeSinceLastUpdateInMilliseconds": 10000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "1329",
+        "name": "Sei",
+        "rpcUrl": "https://evm-rpc.sei-apis.com",
+        "explorerUrl": "https://seiscan.io/",
+        "chainId": 1329,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sei.svg",
+        "order": 580,
+        "dominantColor": "#ffffff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sei.svg"
+      },
+      "relayerName": "seiMultiAdapter",
+      "address": "0xEFc092F9D1Fd756D6788C5E8c1043Ed7a7F423Df",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "42161",
+        "name": "Arbitrum",
+        "rpcUrl": "https://arb1.arbitrum.io/rpc",
+        "explorerUrl": "https://arbiscan.io",
+        "chainId": 42161,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/arbitrum.svg",
+        "order": 930,
+        "dominantColor": "#203147",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/arbitrum.svg"
+      },
+      "relayerName": "arbitrumOneMultiFeed",
+      "address": "0x197225B3B017eb9b72Ac356D6B3c267d0c04c57c",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "8453",
+        "name": "Base",
+        "rpcUrl": "https://mainnet.base.org",
+        "explorerUrl": "https://basescan.org",
+        "chainId": 8453,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/base.svg",
+        "order": 940,
+        "dominantColor": "#0052ff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/base.svg"
+      },
+      "relayerName": "baseMultiFeed",
+      "address": "0xe8D9FbC10e00ecc9f0694617075fDAF657a76FB2",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "80094",
+        "name": "Berachain",
+        "rpcUrl": "https://rpc.berachain.com",
+        "explorerUrl": "https://berascan.com/",
+        "chainId": 80094,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg",
+        "order": 640,
+        "dominantColor": "#451d07",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/berachain.svg"
+      },
+      "relayerName": "berachainMultiFeed",
+      "address": "0x3587a73AA02519335A8a6053a97657BECe0bC2Cc",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "56",
+        "name": "BNB Chain",
+        "rpcUrl": "https://bsc-dataseed.binance.org/",
+        "explorerUrl": "https://bscscan.com",
+        "chainId": 56,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/bnb.svg",
+        "order": 950,
+        "isSVG": true,
+        "dominantColor": "#f3ba2f",
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/bnb.svg"
+      },
+      "relayerName": "bnbMultiFeed",
+      "address": "0x9cF19D284862A66378c304ACAcB0E857EBc3F856",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "1",
+        "name": "Ethereum",
+        "rpcUrl": "https://rpc.flashbots.net/fast",
+        "explorerUrl": "https://etherscan.io",
+        "chainId": 1,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "order": 1000,
+        "dominantColor": "#e3e3e3",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg"
+      },
+      "relayerName": "ethereumMultiFeed",
+      "address": "0x67F6838e58859d612E4ddF04dA396d6DABB66Dc4",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "127823",
+        "name": "Etherlink Shadownet Testnet",
+        "rpcUrl": "https://node.shadownet.etherlink.com",
+        "explorerUrl": "https://shadownet.explorer.etherlink.com",
+        "chainId": 127823,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/etherlink.svg",
+        "order": 100,
+        "dominantColor": "#38ff9c",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/etherlink.svg"
+      },
+      "relayerName": "etherlinkShadownetTestnetMultiFeed",
+      "address": "0xE94c9f9A1893f23be38A5C0394E46Ac05e8a5f8C",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 10000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "252",
+        "name": "Fraxtal",
+        "rpcUrl": "https://rpc.frax.com",
+        "explorerUrl": "https://fraxscan.com",
+        "chainId": 252,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/sources/fraxswap.svg",
+        "order": 510,
+        "dominantColor": "#ffffff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/sources/fraxswap.svg"
+      },
+      "relayerName": "fraxtalMultiFeed",
+      "address": "0x89e60b56efD70a1D4FBBaE947bC33cae41e37A72",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "685689",
+        "name": "Gensyn Mainnet",
+        "rpcUrl": "https://gensyn-testnet.g.alchemy.com/public",
+        "explorerUrl": "",
+        "chainId": 685689,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/gensys.png",
+        "currencySymbol": "ETH",
+        "dominantColor": "#ffffff",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/gensys.png"
+      },
+      "relayerName": "gensynMultiFeed",
+      "address": "0xc555c100DB24dF36D406243642C169CC5A937f09",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "91342",
+        "name": "GIWA Sepolia",
+        "rpcUrl": "https://sepolia-rpc.giwa.io",
+        "explorerUrl": "https://sepolia-explorer.giwa.io",
+        "chainId": 91342,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/giwa.svg",
+        "order": 100,
+        "dominantColor": "#da0000",
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/giwa.svg"
+      },
+      "relayerName": "giwaTestnetMultiFeed",
+      "address": "0xE94c9f9A1893f23be38A5C0394E46Ac05e8a5f8C",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "43111",
+        "name": "Hemi Network",
+        "rpcUrl": "https://rpc.hemi.network/rpc",
+        "explorerUrl": "https://explorer.hemi.xyz",
+        "chainId": 43111,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hemi.svg",
+        "order": 500,
+        "dominantColor": "#ffebd4",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hemi.svg"
+      },
+      "relayerName": "hemiMultiFeed",
+      "address": "0xb9D0073aCb296719C26a8BF156e4b599174fe1d5",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "743111",
+        "name": "Hemi Sepolia Testnet",
+        "rpcUrl": "https://testnet.rpc.hemi.network/rpc",
+        "explorerUrl": "https://testnet.explorer.hemi.xyz",
+        "chainId": 743111,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hemi-sepolia.svg",
+        "order": 100,
+        "dominantColor": "#ffffff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hemi-sepolia.svg"
+      },
+      "relayerName": "hemiTestnetMultiFeed",
+      "address": "0x89F48f6671Ec1B1C4f6abE964EBdd21F4eb7076f",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "999",
+        "name": "HyperEVM",
+        "chainId": 999,
+        "rpcUrl": "https://rpc.hyperliquid.xyz/evm",
+        "explorerUrl": "https://hyperevmscan.io/",
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg",
+        "order": 520,
+        "dominantColor": "#072723",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg"
+      },
+      "relayerName": "hyperevmHyperLendMultiFeed",
+      "address": "0x04Ef0593aEFBC9D6fA28fd386A8bE0E5eb34F70b",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "999",
+        "name": "HyperEVM",
+        "chainId": 999,
+        "rpcUrl": "https://rpc.hyperliquid.xyz/evm",
+        "explorerUrl": "https://hyperevmscan.io/",
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg",
+        "order": 520,
+        "dominantColor": "#072723",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg"
+      },
+      "relayerName": "hyperevmMultiFeed",
+      "address": "0x4BAD96DD1C7D541270a0C92e1D4e5f12EEEA7a57",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "998",
+        "name": "Hyperliquid testnet",
+        "rpcUrl": "https://app.hyperliquid-testnet.xyz/explorer",
+        "explorerUrl": "https://app.hyperliquid-testnet.xyz/explorer",
+        "chainId": 998,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg",
+        "order": 100,
+        "dominantColor": "#072723",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/hyperliquid.svg"
+      },
+      "relayerName": "hyperliquidTestnetMultiFeed",
+      "address": "0xBf3bA2b090188B40eF83145Be0e9F30C6ca63689",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "57073",
+        "name": "Ink",
+        "rpcUrl": "https://rpc-qnd.inkonchain.com",
+        "explorerUrl": "https://explorer.inkonchain.com/",
+        "chainId": 57073,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/ink.svg",
+        "order": 670,
+        "dominantColor": "#7132f5",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/ink.svg"
+      },
+      "relayerName": "inkMultiFeed",
+      "address": "0xe5867B1d421f0b52697F16e2ac437e87d66D5fbF",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "763373",
+        "name": "Ink Sepolia",
+        "rpcUrl": "https://rpc-gel-sepolia.inkonchain.com",
+        "explorerUrl": "https://explorer-sepolia.inkonchain.com",
+        "chainId": 763373,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/ink-sepolia.svg",
+        "order": 100,
+        "dominantColor": "#7132f5",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/ink-sepolia.svg"
+      },
+      "relayerName": "inkSepoliaMultiFeed",
+      "address": "0xb4fe9028A4D4D8B3d00e52341F2BB0798860532C",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "8217",
+        "name": "Kaia Mainnet",
+        "rpcUrl": "https://1rpc.io/klay",
+        "explorerUrl": "https://kaiascan.io",
+        "chainId": 8217,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/kaia.png",
+        "currencySymbol": "KAIA",
+        "dominantColor": "#000000",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/kaia.png"
+      },
+      "relayerName": "kaiaMultiFeed",
+      "address": "0xb728dbB1D8504fD521db0e87bdDdF33466bCabAD",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "747474",
+        "name": "Katana",
+        "rpcUrl": "https://rpc.katana.network",
+        "explorerUrl": "https://explorer.katanarpc.com",
+        "chainId": 747474,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/katana.svg",
+        "order": 300,
+        "dominantColor": "#f6ff0e",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/katana.svg"
+      },
+      "relayerName": "katanaMultiFeed",
+      "address": "0xE94c9f9A1893f23be38A5C0394E46Ac05e8a5f8C",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "2222",
+        "name": "Kava EVM",
+        "rpcUrl": "https://evm.kava.io",
+        "explorerUrl": "https://explorer.kavalabs.io",
+        "chainId": 2222,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/kava.svg",
+        "order": 710,
+        "dominantColor": "#ff564f",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/kava.svg"
+      },
+      "relayerName": "kavaMultiFeed",
+      "address": "0x5C552051bcD340cC57fa5Fb1ecdF0d896B1379Ec",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 3600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "5000",
+        "name": "Mantle",
+        "rpcUrl": "https://rpc.mantle.xyz",
+        "explorerUrl": "https://explorer.mantle.xyz",
+        "chainId": 5000,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/mnt.svg",
+        "order": 770,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/mnt.svg"
+      },
+      "relayerName": "mantleMultiFeed",
+      "address": "0xFc34806fbD673c21c1AEC26d69AA247F1e69a2C6",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 3600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "4326",
+        "name": "MegaETH Mainnet",
+        "rpcUrl": "https://mainnet.megaeth.com/rpc",
+        "explorerUrl": "https://megaeth.blockscout.com",
+        "chainId": 4326,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/megaeth.png",
+        "order": 550,
+        "dominantColor": "#DFD9D9",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/megaeth.png"
+      },
+      "relayerName": "megaEthMultiFeed",
+      "address": "0xc555c100DB24dF36D406243642C169CC5A937f09",
+      "updateTriggers": {
+        "deviationPercentage": 0.1,
+        "timeSinceLastUpdateInMilliseconds": 0
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "6343",
+        "name": "MegaETH Testnet",
+        "rpcUrl": "https://timothy.megaeth.com/rpc",
+        "explorerUrl": "https://megaeth-testnet-v2.blockscout.com/",
+        "chainId": 6343,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/megaeth.png",
+        "order": 100,
+        "dominantColor": "#DFD9D9",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/megaeth.png"
+      },
+      "relayerName": "megaEthTestnetMultiFeed",
+      "address": "0x9674Dbe42f9996e1470F8eC15a6D0aebA4a93AEb",
+      "updateTriggers": {
+        "timeSinceLastUpdateInMilliseconds": 0
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "143",
+        "name": "Monad",
+        "rpcUrl": "https://rpc.monad.xyz",
+        "explorerUrl": "https://monadscan.com/",
+        "chainId": 143,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg",
+        "order": 650,
+        "dominantColor": "#5F38CF",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg"
+      },
+      "relayerName": "monadCurvanceMultiFeed",
+      "address": "0x8D89d6c114193154f111D7C83299D285C9cC5BBC",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "143",
+        "name": "Monad",
+        "rpcUrl": "https://rpc.monad.xyz",
+        "explorerUrl": "https://monadscan.com/",
+        "chainId": 143,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg",
+        "order": 650,
+        "dominantColor": "#5F38CF",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg"
+      },
+      "relayerName": "monadMultiFeed",
+      "address": "0xc44be6D00307c3565FDf753e852Fc003036cBc13",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 0
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "10143",
+        "name": "Monad Testnet",
+        "rpcUrl": "https://monad-testnet.drpc.org",
+        "explorerUrl": "https://testnet.monadscan.com/",
+        "chainId": 10143,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg",
+        "order": 100,
+        "dominantColor": "#5F38CF",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/monad.svg"
+      },
+      "relayerName": "monadTestnetBoltMultiFeed",
+      "address": "0x0B57D841B12458595B12188F36b75A8Ff263aE2c",
+      "updateTriggers": {
+        "timeSinceLastUpdateInMilliseconds": 0
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "2818",
+        "name": "Morph",
+        "rpcUrl": "https://rpc-quicknode.morphl2.io",
+        "explorerUrl": "https://explorer.morph.network",
+        "chainId": 2818,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/morph.jpeg",
+        "dominantColor": "#1ECC8B",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/morph.jpeg"
+      },
+      "relayerName": "morphMultiFeed",
+      "address": "0xc555c100DB24dF36D406243642C169CC5A937f09",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "9745",
+        "name": "Plasma Mainnet",
+        "rpcUrl": "https://plasma.drpc.org",
+        "explorerUrl": "https://plasmascan.to",
+        "chainId": 9745,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/plasma.svg",
+        "order": 480,
+        "dominantColor": "#162f29",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/plasma.svg"
+      },
+      "relayerName": "plasmaMultiFeed",
+      "address": "0xc555c100DB24dF36D406243642C169CC5A937f09",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "31",
+        "name": "Rootstock Testnet",
+        "rpcUrl": "https://public-node.testnet.rsk.co",
+        "explorerUrl": "https://rootstock-testnet.blockscout.com",
+        "chainId": 31,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/rootstock.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/rootstock.svg"
+      },
+      "relayerName": "rootstockTestnetMultiFeed",
+      "address": "0xC3346631E0A9720582fB9CAbdBEA22BC2F57741b",
+      "updateTriggers": {
+        "deviationPercentage": 1,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "534352",
+        "name": "Scroll",
+        "rpcUrl": "https://rpc.scroll.io",
+        "explorerUrl": "https://scrollscan.com",
+        "chainId": 534352,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/scroll.png",
+        "order": 790,
+        "dominantColor": "#ffeeda",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/scroll.png"
+      },
+      "relayerName": "scrollMultiFeed",
+      "address": "0x1bB8f2dF000553E5Af2AEd5c42FEd3a73cd5144b",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "11155111",
+        "name": "Sepolia",
+        "rpcUrl": "https://rpc.sepolia.org",
+        "explorerUrl": "https://sepolia.etherscan.io",
+        "chainId": 11155111,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sepolia.svg",
+        "order": 100,
+        "dominantColor": "#ffffff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sepolia.svg"
+      },
+      "relayerName": "sepoliaMultiFeed",
+      "address": "0xefe76D1C11F267d8735D240f53317F238D8C77c9",
+      "updateTriggers": {
+        "deviationPercentage": 0.1,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "988",
+        "name": "Stable",
+        "rpcUrl": "https://rpc.stable.xyz",
+        "explorerUrl": "https://stablescan.xyz",
+        "chainId": 988,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stable.svg",
+        "order": 400,
+        "dominantColor": "#01241d",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stable.svg"
+      },
+      "relayerName": "stableMultiFeed",
+      "address": "0x457BE3C697c644bF329C2C3ea79EbF1D254d603a",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "1514",
+        "name": "Data Mainnet",
+        "explorerUrl": "https://www.datanetscan.io/",
+        "chainId": 1514,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/story_ip.png",
+        "order": 610,
+        "dominantColor": "#ede9e9",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/story_ip.png"
+      },
+      "relayerName": "storyMultiFeed",
+      "address": "0x22d47686b3AEC9068768f84EFD8Ce2637a347B0A",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "1315",
+        "name": "Data Aeneid Testnet",
+        "explorerUrl": "https://aeneid.datanetscan.io/",
+        "chainId": 1315,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/story_ip.png",
+        "dominantColor": "#7C4FF0",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/story_ip.png"
+      },
+      "relayerName": "storyTestnetMultiFeed",
+      "address": "0xeC7C6AdcC867E1C22713D14797339750E36538E4",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "239",
+        "name": "Tac",
+        "rpcUrl": "https://rpc.ankr.com/tac",
+        "explorerUrl": "https://explorer.tac.build/",
+        "chainId": 239,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/tac.svg",
+        "order": 400,
+        "dominantColor": "#91029b",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/tac.svg"
+      },
+      "relayerName": "tacMultiFeed",
+      "address": "0xc555c100DB24dF36D406243642C169CC5A937f09",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "2391",
+        "name": "TAC Saint Petersburg Testnet",
+        "rpcUrl": "https://spb.rpc.tac.build",
+        "explorerUrl": "https://spb.explorer.tac.build",
+        "chainId": 2391,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/tac.svg",
+        "order": 100,
+        "dominantColor": "#91029b",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/tac.svg"
+      },
+      "relayerName": "tacSpbTestnetMultiFeed",
+      "address": "0xE94c9f9A1893f23be38A5C0394E46Ac05e8a5f8C",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "130",
+        "name": "Unichain",
+        "rpcUrl": "https://mainnet.unichain.org",
+        "explorerUrl": "https://unichain.blockscout.com",
+        "chainId": 130,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/unichain.svg",
+        "order": 660,
+        "dominantColor": "#f40db3",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/unichain.svg"
+      },
+      "relayerName": "unichainMultiFeed",
+      "address": "0xe8D9FbC10e00ecc9f0694617075fDAF657a76FB2",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "1301",
+        "name": "Unichain Sepolia Testnet",
+        "rpcUrl": "https://sepolia.unichain.org",
+        "explorerUrl": "https://unichain-sepolia.blockscout.com",
+        "chainId": 1301,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/unichain-sepolia.svg",
+        "order": 100,
+        "dominantColor": "#f40db3",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/unichain-sepolia.svg"
+      },
+      "relayerName": "unichainTestnetMultiFeed",
+      "address": "0x67F6838e58859d612E4ddF04dA396d6DABB66Dc4",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "16661",
+        "name": "0G Aristotle Mainnet",
+        "rpcUrl": "http://evmrpc.0g.ai",
+        "explorerUrl": "https://chainscan.0g.ai",
+        "chainId": 16661,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/0g.svg",
+        "order": 450,
+        "dominantColor": "#b75fff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/0g.svg"
+      },
+      "relayerName": "zeroGravityMultiFeed",
+      "address": "0xeC7C6AdcC867E1C22713D14797339750E36538E4",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 21600000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "aptos/1",
+        "name": "Aptos Mainnet",
+        "rpcUrl": "https://api.mainnet.aptoslabs.com/v1",
+        "explorerUrl": "https://explorer.aptoslabs.com",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/aptos.png",
+        "currencySymbol": "APT",
+        "dominantColor": "#D5FAD3",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/aptos.png"
+      },
+      "relayerName": "aptosMultiFeed",
+      "address": "0xcb78b8a36b32a88f3b2031c4f8c51e930f01f1b43763ae82fada6ee18abbb42a",
+      "updateTriggers": {
+        "deviationPercentage": 0.2,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "aptos/2",
+        "name": "Aptos Testnet",
+        "rpcUrl": "https://api.testnet.aptoslabs.com/v1",
+        "explorerUrl": "https://explorer.aptoslabs.com/?network=testnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/aptos.png",
+        "currencySymbol": "APT",
+        "dominantColor": "#D5FAD3",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/aptos.png"
+      },
+      "relayerName": "aptosTestnetMultiFeed",
+      "address": "0x4741cd07f83c96936129a55949c3bc856280409d1b4056ae5b279939df9bc9f6",
+      "updateTriggers": {
+        "deviationPercentage": 0.2,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "canton/2",
+        "name": "Canton Devnet",
+        "chainId": null,
+        "explorerUrl": "",
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/canton.png",
+        "currencySymbol": "CC",
+        "dominantColor": "#0B1F3A",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/canton.png"
+      },
+      "relayerName": "cantonDevnetCapsMultiFeed",
+      "address": "004f4041ca1cbeb0333a45828380eef045826a9918054cb9223d95b46b3614e086ca12122066489fff8ddceee0dbc8772f3f3f481529399d0249a4a3604e78ca02cb20112b",
+      "updateTriggers": {
+        "deviationPercentage": 1,
+        "timeSinceLastUpdateInMilliseconds": 7000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "canton/2",
+        "name": "Canton Devnet",
+        "chainId": null,
+        "explorerUrl": "",
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/canton.png",
+        "currencySymbol": "CC",
+        "dominantColor": "#0B1F3A",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/canton.png"
+      },
+      "relayerName": "cantonDevnetMultiFeed",
+      "address": "RedStoneAdapter-v19-0.4.0",
+      "updateTriggers": {
+        "deviationPercentage": 0.2,
+        "timeSinceLastUpdateInMilliseconds": 7000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "solana/3",
+        "name": "Solana Devnet",
+        "rpcUrl": "https://api.devnet.solana.com",
+        "explorerUrl": "https://solscan.io/?cluster=devnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg"
+      },
+      "relayerName": "solanaDevnetMultiFeed",
+      "address": "6bgjyNJ18vWGjw2qjjseSBaDK4QbJF8sjsHAhwy8EuBW",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "solana/3",
+        "name": "Solana Devnet",
+        "rpcUrl": "https://api.devnet.solana.com",
+        "explorerUrl": "https://solscan.io/?cluster=devnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg"
+      },
+      "relayerName": "solanaDevnetRustBoltMultiFeed",
+      "address": "perrHDgcDL9B4coCk24kWDnHJ7bVbphVPMJWgN3Q84k",
+      "updateTriggers": {
+        "deviationPercentage": 0.1,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "solana/1",
+        "name": "Solana",
+        "rpcUrl": "https://api.mainnet-beta.solana.com",
+        "explorerUrl": "https://solscan.io",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg",
+        "order": 920,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg"
+      },
+      "relayerName": "solanaMultiFeed",
+      "address": "HPmPoq3eUTPePsDB5U4G6msu5RpeZHhMemc5VnqxQ9Lx",
+      "updateTriggers": {
+        "deviationPercentage": 0.1,
+        "timeSinceLastUpdateInMilliseconds": 60000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "solana/2",
+        "name": "Solana Testnet",
+        "rpcUrl": "https://api.testnet.solana.com",
+        "explorerUrl": "https://solscan.io/?cluster=testnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/solana.svg"
+      },
+      "relayerName": "solanaTestnetMultiFeed",
+      "address": "BsFkAfSgub54ZMHxZpCXqB3zpWXF8NwAswbuNX1Jq55g",
+      "updateTriggers": {
+        "deviationPercentage": 0.2,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "stellar/1",
+        "name": "Stellar Mainnet",
+        "rpcUrl": "https://soroban-mainnet.stellar.org",
+        "explorerUrl": "https://stellar.expert/explorer/public",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg",
+        "order": 560,
+        "dominantColor": "#fff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg"
+      },
+      "relayerName": "stellarMultiFeed",
+      "address": "CBC3S2VH7CM3DLGC62QXM4UD4YKCQULRLENAEEO7ZZ6U4OMZIQ5B777O",
+      "updateTriggers": {
+        "deviationPercentage": 0.2,
+        "timeSinceLastUpdateInMilliseconds": 43200000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "stellar/2",
+        "name": "Stellar Testnet",
+        "rpcUrl": "https://soroban-testnet.stellar.org",
+        "explorerUrl": "https://stellar.expert/explorer/testnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg"
+      },
+      "relayerName": "stellarRustTestnetMultiFeed",
+      "address": "CD4KFB23CQLJ47RIPESVBTQ444R75M6QVEZULWXHHFYYZT7SS2VGXOPW",
+      "updateTriggers": {
+        "deviationPercentage": 0.1,
+        "timeSinceLastUpdateInMilliseconds": 300000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "stellar/2",
+        "name": "Stellar Testnet",
+        "rpcUrl": "https://soroban-testnet.stellar.org",
+        "explorerUrl": "https://stellar.expert/explorer/testnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg",
+        "order": 100,
+        "dominantColor": "#000000",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/stellar.svg"
+      },
+      "relayerName": "stellarTestnetMultiFeed",
+      "address": "CBCT7A5D5SBYUNXYD223N7ODZGENYJPEK32XNVWM3DJ4YFIWQGZUHWIM",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "421614",
+        "name": "Arbitrum Sepolia Testnet",
+        "rpcUrl": "https://sepolia-rollup.arbitrum.io/rpc",
+        "explorerUrl": "https://sepolia.arbiscan.io/",
+        "chainId": 421614,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/arbitrum-sepolia.svg",
+        "order": 100,
+        "dominantColor": "#ffffff",
+        "isSVG": true,
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/arbitrum-sepolia.svg"
+      },
+      "relayerName": "stylusSepoliaMultiFeed",
+      "address": "0x04a968ab0fE91B26BB3eF20D26dbD8cFBbbC5a6f",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "sui/897796746",
+        "name": "Sui Network",
+        "rpcUrl": "https://rpc.ankr.com/sui",
+        "explorerUrl": "https://suiscan.xyz/mainnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sui.svg",
+        "order": 570,
+        "dominantColor": "#4da2ff",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sui.svg"
+      },
+      "relayerName": "suiMultiFeed",
+      "address": "0x22794c3a37c5320e5acb6b9cdba6e256bc08867e9de8afd2a4b5d8ea7061fea3",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    },
+    {
+      "feedName": "ETH",
+      "chain": {
+        "id": "sui/1282977196",
+        "name": "Sui Testnet",
+        "rpcUrl": "https://rpc.ankr.com/sui_testnet",
+        "explorerUrl": "https://suiscan.xyz/testnet",
+        "chainId": null,
+        "iconUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sui.svg",
+        "order": 100,
+        "dominantColor": "#4da2ff",
+        "isSVG": true,
+        "useSmartReverse": true,
+        "logoColor": "#FFFFFF",
+        "logoUrl": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/sui.svg"
+      },
+      "relayerName": "suiTestnetMultiFeed",
+      "address": "0x6403f9f18301ba3b75cbc7ecca747160e47dbc29fa3b794332efce3f06160255",
+      "updateTriggers": {
+        "deviationPercentage": 0.5,
+        "timeSinceLastUpdateInMilliseconds": 86400000
+      },
+      "manifestInfo": {
+        "source": [
+          "ws-spot-binance-usdt",
+          "ws-spot-bitget-usdt",
+          "ws-spot-bybit-usdt",
+          "ws-spot-gate-usdt",
+          "ws-spot-htx-usdt",
+          "ws-spot-kraken-usd",
+          "ws-spot-kucoin-usdt",
+          "ws-spot-okx-usdt",
+          "ws-spot-xt-usdt"
+        ],
+        "denomination": "USD",
+        "rateFeed": false,
+        "minValidSourcesCount": 3,
+        "types": [
+          "crypto"
+        ],
+        "deviationCheck": {
+          "deviationWithRecentValues": {
+            "maxPercent": 30,
+            "maxDelayMilliseconds": 120000
+          }
+        },
+        "broadcasters": [
+          "redstone-packages",
+          "influx",
+          "s3"
+        ],
+        "name": "Ethereum",
+        "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+        "url": "https://ethereum.org/",
+        "tags": [
+          "crypto"
+        ],
+        "isSVG": true,
+        "dominantColor": "#e3e3e3",
+        "symbol": "ETH",
+        "manifestName": "primary-ws"
+      }
+    }
+  ],
+  "parser": "Nuxt devalue indexed refs and Reactive wrapper; full loaded feed list; no additional network request"
+}

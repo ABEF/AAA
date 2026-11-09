@@ -1,12 +1,14 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The earlier [actual Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
-fixes two production reader/trace defects and verifies ETH/ZZZ activation and
-growth through real unsigned website/API reviews on an isolated fork. Successful
-cases explicitly use synthetic market depth and controlled feeds/VRF; the real
-thin-depth rejection remains a release blocker. [Source9](docs/SOURCE9_WEBSITE_PROFILE.md)
-supports reviewed optional activation gas policy2. Public configurations remain
-null; existing sites, lab, journals and the shared signer are unchanged.
+The [actual market review](reports/market-qualification-20261109/REVIEW.md)
+checks independent feed candidates, native-v4/v3 swap venues and unmodified
+market execution. No usable dual ETH/fixedZZZ USD pair or default1%-qualified
+conversion route is established. Active liquidity alone is insufficient: the
+selected pool exhausts current L after an upward tick crossing. Actual
+contribution failures must be attributed to their financial/placement guards,
+not assumed to be a solver bug. Earlier [Entry3 positive flows](reports/source9-actual-entry-20261109/REVIEW.md)
+used explicitly synthetic depth/controlled feeds. Public configurations, sites,
+existing lab/journals and the shared signer remain unchanged.
 
 Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
 the final ETH conversion value, size affordable keeper batches, stop stale sends

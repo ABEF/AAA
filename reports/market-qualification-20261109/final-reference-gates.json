@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only Todo, callable documentation and whitespace checks; no production suite rerun",
+  "results": [
+    {
+      "name": "todo",
+      "chunk_id": "ce30d1",
+      "wall_time_seconds": 0.0000277,
+      "exit_code": 0,
+      "original_token_count": 6,
+      "output": "Project Todo verified.\r\n"
+    },
+    {
+      "name": "functions",
+      "chunk_id": "8f392d",
+      "wall_time_seconds": 0.0000258,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "{\"checked\": true, \"contracts\": 39, \"functions\": 906, \"constructors\": 39, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n"
+    },
+    {
+      "name": "operator",
+      "chunk_id": "addeb3",
+      "wall_time_seconds": 0.4788684,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\"contracts\": 39, \"functions\": 906, \"constructors\": 39, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 958, \"ready_for_submission\": false}\r\n"
+    },
+    {
+      "name": "whitespace",
+      "chunk_id": "5459e4",
+      "wall_time_seconds": 0.253783,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    }
+  ]
+}

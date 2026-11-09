@@ -1,0 +1,65 @@
+{
+  "url": "https://rpc.mainnet.chain.robinhood.com/",
+  "method": "POST",
+  "read_only": true,
+  "utc": "2026-11-09T04:47:24.247506+00:00",
+  "json": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_getCode",
+      "params": [
+        "0xc6b81b429797e0f555440b70cd99e032d7ae947e",
+        {
+          "blockHash": "0x4a55b88b470e9dd41d7bf885c80f33a0886d66444cf1ba4223ff2128c9da9498",
+          "requireCanonical": true
+        }
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_getCode",
+      "params": [
+        "0xa3acd31afb851b4eb9dad00f5204c01d924267df",
+        {
+          "blockHash": "0x4a55b88b470e9dd41d7bf885c80f33a0886d66444cf1ba4223ff2128c9da9498",
+          "requireCanonical": true
+        }
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xa3acd31afb851b4eb9dad00f5204c01d924267df",
+          "data": "0x8da5cb5b"
+        },
+        {
+          "blockHash": "0x4a55b88b470e9dd41d7bf885c80f33a0886d66444cf1ba4223ff2128c9da9498",
+          "requireCanonical": true
+        }
+      ]
+    }
+  ],
+  "http_status": 200,
+  "headers": {
+    "Date": "Mon, 09 Nov 2026 04:47:24 GMT",
+    "Content-Type": "application/json",
+    "Transfer-Encoding": "chunked",
+    "Connection": "close",
+    "Reporting-Endpoints": "cf-csp-endpoint=\"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=duyxQpJIuNO3ATuUcQ29OwXpnRV7YQD3xQKAT_UeOgE-1794199644.3347266-1.0.1.1-hYkEyjgAoFcbzj0ZJMIN9Ut6yFILNLG33EB6UAax5QB6XK_RyvegVXi.hEzHdAboCcwO4rJW3ZjAWUClACAevyOACVvls.vpt3fLEBBfB.4gRjhkm2JsbKH2NpsdC7FhDaWmllBIQQx2RxABCFPsRerEYbozGJhyck.eHkze_UiGYEbeWAs3fUpHayE7WHda\"",
+    "vary": "Origin",
+    "x-envoy-upstream-service-time": "10",
+    "Cache-Control": "no-cache",
+    "Server": "cloudflare",
+    "cf-cache-status": "DYNAMIC",
+    "Content-Security-Policy-Report-Only": "script-src 'unsafe-inline' 'unsafe-eval'; connect-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=duyxQpJIuNO3ATuUcQ29OwXpnRV7YQD3xQKAT_UeOgE-1794199644.3347266-1.0.1.1-hYkEyjgAoFcbzj0ZJMIN9Ut6yFILNLG33EB6UAax5QB6XK_RyvegVXi.hEzHdAboCcwO4rJW3ZjAWUClACAevyOACVvls.vpt3fLEBBfB.4gRjhkm2JsbKH2NpsdC7FhDaWmllBIQQx2RxABCFPsRerEYbozGJhyck.eHkze_UiGYEbeWAs3fUpHayE7WHda; report-to cf-csp-endpoint",
+    "Report-To": "{\"group\":\"cf-csp-endpoint\",\"max_age\":86400,\"endpoints\":[{\"url\":\"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=duyxQpJIuNO3ATuUcQ29OwXpnRV7YQD3xQKAT_UeOgE-1794199644.3347266-1.0.1.1-hYkEyjgAoFcbzj0ZJMIN9Ut6yFILNLG33EB6UAax5QB6XK_RyvegVXi.hEzHdAboCcwO4rJW3ZjAWUClACAevyOACVvls.vpt3fLEBBfB.4gRjhkm2JsbKH2NpsdC7FhDaWmllBIQQx2RxABCFPsRerEYbozGJhyck.eHkze_UiGYEbeWAs3fUpHayE7WHda\"}]}",
+    "CF-RAY": "a57a2de119f6d526-CDG"
+  },
+  "response_bytes": 17467,
+  "sha256": "dbc939aa0fcc898e47baa23f90dff6eabf36a0e73675db873355e4af0d828b20"
+}

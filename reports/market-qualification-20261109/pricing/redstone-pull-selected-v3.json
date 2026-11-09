@@ -1,0 +1,115 @@
+{
+  "source": "https://app.redstone.finance/pull-feeds",
+  "row_count": 1760,
+  "zzz_matches": {},
+  "eth": {
+    "ETH": {
+      "denomination": "USD",
+      "rateFeed": false,
+      "minValidSourcesCount": 3,
+      "types": [
+        "crypto"
+      ],
+      "deviationCheck": {
+        "deviationWithRecentValues": {
+          "maxPercent": 30,
+          "maxDelayMilliseconds": 120000
+        }
+      },
+      "broadcasters": [
+        "redstone-packages",
+        "influx",
+        "s3"
+      ],
+      "name": "Ethereum",
+      "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+      "url": "https://ethereum.org/",
+      "tags": [
+        "crypto"
+      ],
+      "isSVG": true,
+      "dominantColor": "#e3e3e3",
+      "symbol": "ETH",
+      "sources": {
+        "ws-spot-binance-usdt": {
+          "id": "ws-spot-binance-usdt",
+          "name": "ws-spot-binance-usdt"
+        },
+        "ws-spot-bitget-usdt": {
+          "id": "ws-spot-bitget-usdt",
+          "name": "ws-spot-bitget-usdt"
+        },
+        "ws-spot-bybit-usdt": {
+          "id": "ws-spot-bybit-usdt",
+          "name": "ws-spot-bybit-usdt"
+        },
+        "ws-spot-gate-usdt": {
+          "id": "ws-spot-gate-usdt",
+          "name": "ws-spot-gate-usdt"
+        },
+        "ws-spot-htx-usdt": {
+          "id": "ws-spot-htx-usdt",
+          "name": "ws-spot-htx-usdt"
+        },
+        "ws-spot-kraken-usd": {
+          "id": "ws-spot-kraken-usd",
+          "name": "ws-spot-kraken-usd"
+        },
+        "ws-spot-kucoin-usdt": {
+          "id": "ws-spot-kucoin-usdt",
+          "name": "ws-spot-kucoin-usdt"
+        },
+        "ws-spot-okx-usdt": {
+          "id": "ws-spot-okx-usdt",
+          "name": "ws-spot-okx-usdt"
+        },
+        "ws-spot-xt-usdt": {
+          "id": "ws-spot-xt-usdt",
+          "name": "ws-spot-xt-usdt"
+        }
+      },
+      "providers": [
+        "primary-ws",
+        "primary",
+        "primary-fast"
+      ]
+    },
+    "ETH/USDC": {
+      "denomination": "USDC",
+      "rateFeed": false,
+      "deviationCheck": {
+        "deviationWithRecentValues": {
+          "maxPercent": 30,
+          "maxDelayMilliseconds": 120000
+        }
+      },
+      "broadcasters": [
+        "redstone-packages",
+        "influx",
+        "s3"
+      ],
+      "name": "Ethereum",
+      "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/symbols/eth.svg",
+      "url": "https://ethereum.org/",
+      "tags": [
+        "crypto"
+      ],
+      "isSVG": true,
+      "dominantColor": "#8c8c8c",
+      "symbol": "ETH/USDC",
+      "sources": {
+        "non-usd-based": {
+          "id": "non-usd-based",
+          "logoURI": "https://raw.githubusercontent.com/redstone-finance/redstone-images/main/redstone-logo.png",
+          "url": "https://redstone.finance/",
+          "color": "#AE0822",
+          "name": "non-usd-based"
+        }
+      },
+      "providers": [
+        "primary"
+      ]
+    }
+  },
+  "parser": "Nuxt devalue indexed refs; map keyed by asset ID, not a chain deployment list; initial list-shaped v2 extract is superseded."
+}

@@ -1,0 +1,9 @@
+{
+  "created_at_utc": "2026-11-09T04:33:48.117605+00:00",
+  "source_commit": "99a01e9",
+  "scope": "Read-only primary-source research and public price-feed code/state observations; no deployment, update, signing or public transaction.",
+  "fixed_zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "chain_id": 4663,
+  "missing_requested_document": "docs/PRICE_FEED_QUALIFICATION.md does not exist; current PRICE_SECURITY.md/PYTH_PRICE_SOURCE.md and prior reports inspected instead.",
+  "qualification": false
+}

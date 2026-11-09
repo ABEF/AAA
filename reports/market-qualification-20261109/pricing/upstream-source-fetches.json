@@ -1,0 +1,28 @@
+{
+  "pyth-implementation-source": {
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+    "observed_at_utc": "2026-11-09T04:42:18.457816+00:00",
+    "available": false,
+    "http_status": 403
+  },
+  "chainlink-aggregator-source": {
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x6091E64eb7138EEF066a80FD3A0d7427B91f2721",
+    "observed_at_utc": "2026-11-09T04:42:18.458319+00:00",
+    "available": false,
+    "http_status": 403
+  },
+  "pyth-upgrade-doc": {
+    "url": "https://docs.pyth.network/pro/pyth-core-upgrade",
+    "observed_at_utc": "2026-11-09T04:42:18.459467+00:00",
+    "available": true,
+    "bytes": 251913,
+    "sha256": "d9623dcb1e1a061683556211da0b1af6ff4de45b413f8304fa18a8b6686852b0"
+  },
+  "robinhood-oracles-doc": {
+    "url": "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+    "observed_at_utc": "2026-11-09T04:42:18.563051+00:00",
+    "available": true,
+    "bytes": 50498,
+    "sha256": "c3cb44230ef7064756cefea8231eb717097468fbcb7f5472549e0210f4fbc94f"
+  }
+}

@@ -1,5 +1,15 @@
 # Consolidated audit findings and evidence
 
+The [actual market qualification](../reports/market-qualification-20261109/REVIEW.md)
+replaces an ambiguous depth-only diagnosis with source-bound evidence. Both
+Chainlink proxies share one aggregator; Pyth ETH is stale/beyond3% agreement;
+no fixedZZZ source appears in the checked catalogs. Selected active L disappears
+on the next upward tick, and actual reverse quotes cannot fill. ETH100USD
+rejection instead combines recorded1% spot/2% swap/5% idle guards; its2% total
+contribution limit is distinct. Current normal90 fork execution proves exact
+rollback, not successful activation/growth or a solver bug. Production settings
+remain unselected and no source/guard/runtime is changed.
+
 The [SeaDrop mint2 follow-up](../reports/opensea-integration-20261109/REVIEW.md)
 implements the previously open custom-callback source path using the exact
 verified SeaDrop runtime. It preserves zero-value callbacks, fixed artwork/VRF

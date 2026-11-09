@@ -1,0 +1,54 @@
+{
+  "sources": {
+    "chainlink-catalog": {
+      "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+      "started_utc": "2026-11-09T04:34:53.316626+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.369366+00:00"
+    },
+    "pyth-symbols": {
+      "url": "https://pyth.dourolabs.app/v1/symbols",
+      "started_utc": "2026-11-09T04:34:53.318055+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.400766+00:00"
+    },
+    "pyth-addresses": {
+      "url": "https://docs.pyth.network/pro/contract-addresses",
+      "started_utc": "2026-11-09T04:34:53.319063+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.384553+00:00"
+    },
+    "pyth-sponsored": {
+      "url": "https://docs.pyth.network/pro/sponsored-feeds",
+      "started_utc": "2026-11-09T04:34:53.319063+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.384553+00:00"
+    },
+    "chainlink-sequencer": {
+      "url": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+      "started_utc": "2026-11-09T04:34:53.369366+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.447189+00:00"
+    },
+    "redstone-push": {
+      "url": "https://app.redstone.finance/push-feeds",
+      "started_utc": "2026-11-09T04:34:53.384553+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.681615+00:00"
+    },
+    "redstone-pull": {
+      "url": "https://app.redstone.finance/pull-feeds",
+      "started_utc": "2026-11-09T04:34:53.384553+00:00",
+      "available": false,
+      "error_type": "URLError",
+      "completed_utc": "2026-11-09T04:34:53.681615+00:00"
+    }
+  },
+  "qualification": false
+}

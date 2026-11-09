@@ -1,0 +1,88 @@
+{
+  "sources": {
+    "chainlink-catalog": {
+      "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+      "started_utc": "2026-11-09T04:35:35.120820+00:00",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "server_date": "Mon, 09 Nov 2026 04:35:35 GMT",
+      "available": true,
+      "bytes": 88515,
+      "sha256": "5d52e012431e6c6543c71dc14e467a0233300fcf0eb7b846aae2daf72b630381",
+      "row_count": 62,
+      "eth_matches": 1,
+      "zzz_matches": 0,
+      "completed_utc": "2026-11-09T04:35:35.257122+00:00"
+    },
+    "pyth-symbols": {
+      "url": "https://pyth.dourolabs.app/v1/symbols",
+      "started_utc": "2026-11-09T04:35:35.120820+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "server_date": "Mon, 09 Nov 2026 04:35:35 GMT",
+      "available": true,
+      "bytes": 5346488,
+      "sha256": "fcab8b12b8605a44e3ed2c3d0e2672d6d5338b399a5fff57c903bfa687dac54e",
+      "row_count": 3945,
+      "eth_matches": 1,
+      "zzz_matches": 0,
+      "completed_utc": "2026-11-09T04:35:35.536528+00:00"
+    },
+    "pyth-addresses": {
+      "url": "https://docs.pyth.network/pro/contract-addresses",
+      "started_utc": "2026-11-09T04:35:35.121818+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server_date": "Sat, 07 Nov 2026 14:57:08 GMT",
+      "available": true,
+      "bytes": 542590,
+      "sha256": "ee223dacb93b9a69c63cb9cf203bfa45831cca683bbb128454256252c4432df5",
+      "completed_utc": "2026-11-09T04:35:35.282872+00:00"
+    },
+    "pyth-sponsored": {
+      "url": "https://docs.pyth.network/pro/sponsored-feeds",
+      "started_utc": "2026-11-09T04:35:35.122321+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server_date": "Mon, 09 Nov 2026 04:35:35 GMT",
+      "available": true,
+      "bytes": 308210,
+      "sha256": "7e0f098e56b35a42646b14b0255f177f28172a33e4fc4d37b38814095abf6da7",
+      "completed_utc": "2026-11-09T04:35:35.314058+00:00"
+    },
+    "chainlink-sequencer": {
+      "url": "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+      "started_utc": "2026-11-09T04:35:35.257122+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server_date": "Mon, 09 Nov 2026 04:35:35 GMT",
+      "available": true,
+      "bytes": 375853,
+      "sha256": "38f1853c55e27211966f56802b0a88f9751f8a46bbd5cd02d64cd2f56485b99a",
+      "completed_utc": "2026-11-09T04:35:35.413373+00:00"
+    },
+    "redstone-push": {
+      "url": "https://app.redstone.finance/push-feeds",
+      "started_utc": "2026-11-09T04:35:35.282872+00:00",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "server_date": "Mon, 09 Nov 2026 04:35:38 GMT",
+      "available": true,
+      "bytes": 1453402,
+      "sha256": "f05e4a74c0b353bdb3b5282e1ad98b97300cdc0c8e559344defef1d3278cb631",
+      "completed_utc": "2026-11-09T04:35:38.580846+00:00"
+    },
+    "redstone-pull": {
+      "url": "https://app.redstone.finance/pull-feeds",
+      "started_utc": "2026-11-09T04:35:35.314058+00:00",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "server_date": "Mon, 09 Nov 2026 04:35:38 GMT",
+      "available": true,
+      "bytes": 2194434,
+      "sha256": "5cbf7c3749e19b7131a510a3608eca124d5daaeaab76a299b33a4b31a1796c92",
+      "completed_utc": "2026-11-09T04:35:39.200354+00:00"
+    }
+  },
+  "qualification": false
+}

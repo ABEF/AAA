@@ -1,0 +1,9 @@
+{
+  "scope": "Exact arithmetic from a captured slot0/liquidity and current integer TickMath; not proof of next-tick liquidity or actual executable fill",
+  "sqrt_at_spot": "42277818571609234285824917886142",
+  "next_tick": 125600,
+  "sqrt_at_next_tick": "42277818571609234317462070031598",
+  "active_liquidity": "962337799357516411500",
+  "net_zzz_to_next_tick_ceil": "384278",
+  "eth_out_to_next_tick_floor": "1"
+}

@@ -1,0 +1,1430 @@
+[
+  {
+    "poolId": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      0,
+      200,
+      "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044"
+    ],
+    "blockNumber": 54672541,
+    "transactionHash": "0x699e86e0b41888308103b7f2fc09a9c269b5bf01c4369cfffaafaaf798977ba5",
+    "hookless": false,
+    "static": true
+  },
+  {
+    "poolId": "0xc837935ce0bd8402ccea5d698f55bd5fa739601022e1d59e0273f85c04961bd2",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      810000,
+      19988,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54674354,
+    "transactionHash": "0x32a2822fa0b520160ede06abeec0a815db1c55763073bacfe8fe5e6e9eb5b981",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x5f0b1299e5ac608e2fd5d9ed283e5373a22594e1a101edbd2b4a356f95a6069e",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      802731,
+      9303,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54674746,
+    "transactionHash": "0x5393129c53a59cf5adf94039ad1bf6ba96de1c4d84dfedd07fa1eeb6e1fb2cab",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x0a8950921ede75744e253dbb16a2410cca6741b1bd2aa37be0d63d7787c1335c",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      912630,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54674812,
+    "transactionHash": "0xea569ec0751fb58e421231acca53cd477ec8ab4033b60d8c3be8ab31ef5d97ac",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xd9fcac854d9b8149d38bf9859cfe34ac6b2af3948e83e68a2f38119e53b32b52",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      50000,
+      1000,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54678106,
+    "transactionHash": "0xbfd65347523a39fb8b2f738fd02c6d29c0733067ae1db5c2345a99ecc866a818",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      49000,
+      490,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54679797,
+    "transactionHash": "0xf4a07303b79b8b57294c8bc806832d8ded3de11fe897a1b13f4de238f2c969e7",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x30c913e26fefc2977a95f8feeb892ef9b1fee4020d9edae02a2c2d54efd546b9",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      98000,
+      980,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54680589,
+    "transactionHash": "0x17437de2db6251a107d7f555ce621afadbe9b6d99a7de92496692fbf15e11a8a",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x8713aa35ccea9dbb98d15cec7e72579510332c07e8d04fc3eef416c2253b9559",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      200000,
+      2000,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54681473,
+    "transactionHash": "0x546c674971bf49bbe6a4fb4ffb1db1e94d4c9a5c8204c10d456b3f8647c77b76",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x3a637d9367101ea308d998f2a6aeb195aefd90f78eb77ffeb94b247e3818c3fb",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      833690,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54684614,
+    "transactionHash": "0x997b5c06adba888c7f49503982f0ff13d4319e1360273e028ca19f10d57629ee",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x817e2dfc5a7866c86bdb8ecd515bdfb69ab18d4d77e4546da652b45ce539e9f7",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      990000,
+      9900,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54685086,
+    "transactionHash": "0xf90e419be19eee7fe680263e7e7b41453d8a8911660a86040f8d0493687dc417",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa8a131c720e3d86c41867180c60f4bc96fd55beead9c007fdb7be20ad3dcca23",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      56800,
+      568,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54697961,
+    "transactionHash": "0x67e01ce83d5ab6d07906b89b9332120165a42319675462bcf5afc3c955b86234",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xc8fd8f851298065b0a7961289cb5e4858c72b89ae99c8f80b3a6336726c0a324",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      141400,
+      1414,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54698148,
+    "transactionHash": "0x704d3edc9ffc7660473ae0662156c0ba1a079e2a10a9f1e4ee50e56984bfb258",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xdf3219818c2af71bfd5be4d36e9adb1fc6822025f12bb487ba694422e364a899",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      56200,
+      562,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54718487,
+    "transactionHash": "0x92bb5aecf216560eeb887221bb6605cbd2897894462b4df4f329bc8ae44d5d9e",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x443679c5b20058bd2d333ab27bbed97d2b586f02dee34ddc040d5795f7b4da1f",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      30000,
+      300,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54752865,
+    "transactionHash": "0xbdb1b8c9af61fd001775a4f16064e79c6f2aa473bec346434072f56e2de8d390",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa442b03f5a51827f623eb2d36cb354a901ed067bb56b5096ba3a0328ba9207e3",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      60000,
+      600,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54754611,
+    "transactionHash": "0xffef1f83f39ff68596d475af010bc4fccd0519257f1901d80a4b9fc4c11dee0b",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x8c89839957cf553924077940fce78ab18052b628e3b23942a0a08917931f9c6b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      30543,
+      305,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54758466,
+    "transactionHash": "0x49598e9cb10878472e619f427400e4192f023a6fbeb29028c9598516760ec247",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x6f573d8102f5e9683ad47845cd1e7a068e8e607e1ec00e31ac3cd9089facc6f4",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      30001,
+      300,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54762591,
+    "transactionHash": "0x811b865ef3a32506d24851157c18089c4502e7af0f1592852229735855b1aa88",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xb21d7557cf03c3662a0f90d189234108fb91edd8fcd39b73a1eaaefd6e3dc342",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      3000,
+      60,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54791973,
+    "transactionHash": "0x4c867ef827a63b273bcc832235eb7d9644eef06abe9d64ef5676abe6480735d9",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      75,
+      1,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54920254,
+    "transactionHash": "0x5ce63a8c8cfe3add593a780e664edcf0f9e6fd59f5e88c34a1edc4198a2c3bce",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x4d9cd3f1c7a5508b2a024be59983b00521e597563a1c772c3ee76c241e7187d3",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      899900,
+      8999,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54921190,
+    "transactionHash": "0xc1a59a41d16cb4160f0d9a990adc44d97c63e83a954bcb20c04c0c92aa6de208",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xe196a07890b3f4ea0bfbfbac0678313f4412aed4872f9cabed6b1623520d8cce",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      29800,
+      298,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54954263,
+    "transactionHash": "0x3e9facbe31bd8c05306a7f111e45bb8f075d7ca20ced44f984c33d76665bd50f",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x7ca3f2f7c93dcc5fabebd500345798f6a565aa407d2e03e42bb8678d7422bd14",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      47500,
+      475,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54963887,
+    "transactionHash": "0x03efd9e710524802cd31abee1da0aad65041c1650d9b85e69457814edd19fc7e",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa35f063456d1ab7c9a1769252528d8fe2327c48b196ffa51e58ea0ca0d901fe7",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      330000,
+      3300,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54978054,
+    "transactionHash": "0x26b3fde1b4a9f0890c704c48a268e100db5a4b7e3a53338827e6f1ecd223f171",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20000,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 54981601,
+    "transactionHash": "0xd5dd7772167cb032f4fdc85654acac6e2da2eedb3bfe70f00609bd05b9cbf69a",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x32fa7519f26fc52a1b9b0481593fc17167c02577b28259a353827e2616e16085",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      100000,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55057620,
+    "transactionHash": "0xf5f1436bc59022ec9cab02263a8592984ac4c3ee9db7afd9dab2dc9394439c00",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x2dad1a9db3321a9a9b2d5a4498aedd3f1b6cd3c042833dc020b52819d68aad4d",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19999,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55091923,
+    "transactionHash": "0x46fe41316881b4b281c1056a149acb036a2511b5a4f5d71bb953762a62fb102d",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x98023f1157cd17a32cc593df3508739d50f19099a1fb7441bf38359a8893bd29",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20001,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55189792,
+    "transactionHash": "0xa00d432fafb449041ee22cfc66f41bedad83a0f996bc9c732088d9d7eee694fb",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x8281eb5cd5e1b28bb101a93bdbec4654244e2d4edb3e2ec09d9c2367148aadef",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19998,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55192065,
+    "transactionHash": "0x5fcfdf2dcfac47517b83678ad30a5dfcd76f644a198b5a6888be6d99b78dd157",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x10a5ec60423aa0b45043fefd34fcbc954da5f11fac92ded27144b23bd9bc1b53",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      790000,
+      7900,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55192633,
+    "transactionHash": "0x31ddc494b396897b975a5a184aa8ec2a955b8cb3f2025e1014b00988538f6481",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1c35dd4c4a6e9102b9d8759e33d9588b98bcf0e124712d9fe7c23d797978bf93",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      30000,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55211491,
+    "transactionHash": "0x581ca8873e1fb0cee1161fedfcb78abcb7f50213b2928de150c4d31c4f2c5a2e",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xea1992f6614163505b706c9077abe4d8b194af93b141eba20044cfc68da998b3",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      0,
+      4000,
+      "0xc52fc52698479e42f0da9a8a75296ec3871454c0"
+    ],
+    "blockNumber": 55367208,
+    "transactionHash": "0x2c14543e97d2a818191a8661e57ad7bf6a34ea4c5c54387828ea291abb86808b",
+    "hookless": false,
+    "static": true
+  },
+  {
+    "poolId": "0xf371f5e9f1304c87843a0db0d1a9625d43f7716715093f6a091812f4ead89f8b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      0,
+      5000,
+      "0xc52fc52698479e42f0da9a8a75296ec3871454c0"
+    ],
+    "blockNumber": 55372776,
+    "transactionHash": "0xf8b27a5ef2b835a2296ca7fbce9061e79f2b53a2926a47ccd2f301748349bb1b",
+    "hookless": false,
+    "static": true
+  },
+  {
+    "poolId": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      2999,
+      60,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55452115,
+    "transactionHash": "0xd9310226b2e9183d8753a3dd214fc86afb42f9c4f0daf049c4394e4a58cd0951",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xba990d4ccfbe67f394e57bdb19e810a233e1e8fd51e00dc2cd149af473756c59",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      810620,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55510077,
+    "transactionHash": "0x8e0bf279e62bf8b3ce9b5e71ca74f7eb2a46c04ca94085ae7950f44abf1dca15",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x154211d0e06c563735b28e8955a068cf098ccd62a5a214931a6ff648267b10c4",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20002,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 55927688,
+    "transactionHash": "0x8bab598546a5e1425f9ee983cb078e707afe043a5e28c02c185043933d890573",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x35983e58bb96b73ab03d763865256a9ce97016a12ae88b8595c0332fa998678b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      900000,
+      60,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 56503501,
+    "transactionHash": "0x06b6617e71db5eb6385dbfb11ecade22c6c330ec5a32edb8b30700e22c771a0a",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xd0ad42e0f491e7a40c81a5892df899b952e9d06ad194bf8593b4c0e593e67bba",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      880000,
+      8800,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 56746454,
+    "transactionHash": "0xb443164adf9dd216ac5b968cfbf36267c6bf8ccb93aadcc5568076467af37300",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xe90aab0591bba4fc75a62df5c8b2b82b9711fe466258e41135a4956f94e79cee",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      860610,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57719608,
+    "transactionHash": "0xc1de0e9c02f352482e4d053a897be3580aba782814b7d1eb8288ce0bd682e5a4",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1af54ba1282f99225f026cb332f084c6aca0549dc546ea686c3a0c5d3e1de465",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      808670,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57719692,
+    "transactionHash": "0xca7cbdb80b097937ccfa4406f937c110398cd9e38ecc357d6f24e906ff50c37d",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xb9dd41bd4b6083abd5691840a1388ecaaec65df13113a195debd0941336ea16a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19997,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57810517,
+    "transactionHash": "0x1edb8c47539394724fdffd7c396e090584c992a72e1608f0f0bdeb0af12e3d41",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x290f0d8b194f825a3be4e9ae8cef794cfcbbc0a339a98068821e6566c6bc6117",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20003,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57859119,
+    "transactionHash": "0x6194adb0754175ddb153b233fe600c1f5e7b4942e622ebe7fc2c145175f8597f",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xe89f63981f7da36f36de50d0d329f905e2359ffcf9cbd770a487ec18e770498a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19996,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57911041,
+    "transactionHash": "0xf6d661f132a6cf44835b9745c5ac7b7ffb5c3736249d0de443a1abe9ae15b17d",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x8a202a5c1a0e9dcc9b93c182e5cd3a526766f211b68f2ccd5b67e770cd913f30",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20004,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 57919025,
+    "transactionHash": "0x6867fc060134c922045628a048e27a5ada62428857f43212e202ad8b33232535",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1fd9360ecaa56714e337eb43b877a40c76192116c5f9067c5f7c4d2f7657f082",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10002,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58007732,
+    "transactionHash": "0x80748895b95037d2b82fc709f46aa069a0ea4dfabdc6afdec4e79f1a607c57af",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x05298040bf08eabb25b24d3865fff755b2046367b31e69f83a82ab0fd82df190",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10003,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58030254,
+    "transactionHash": "0xc794ecc50ea3c330872a8e7cbc551154d6c46a10325fa3b70f30c840aa8bfd7b",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x05c29dad68ef47de2fc5b100b8cf12f6ab2c5aa00b83bef587e7656e6a361a8d",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19995,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58096279,
+    "transactionHash": "0x032d2992ffb300b9bb45fbdae2c05becb29a359fd4694e5a94874b5f9e103df3",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x3cbff8b8053e64eb16dc990014c96c6da70cc50b4da3a32803c79f08d25f448a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10004,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58096313,
+    "transactionHash": "0xa11e6ab42a0419b49a916725729618273813ca73759e64fd6b22727ffb427398",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x5b334743729c4ce37d60a3ef38abccb561c525df7e5e970812ff46f1b3a9b3a8",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10005,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58173710,
+    "transactionHash": "0xe9c65ae28e239517a4bbc3e8f7d8554ee54cb617c17d07360841dd8984442abc",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x2469c0c5596d427b5d52eb3ecc82a7e2e16562b22cabeafef947641a4701a316",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10006,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58188394,
+    "transactionHash": "0xc293d73d030eb88d56c5b975c673d6ff9395ff0daa93dc377d803aec8a496668",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x8e696d3ebb44d2470f9bc6d55250554ca3dd1456d6581ab4d9b422bae7288411",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10007,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58235320,
+    "transactionHash": "0x5a2a13f15984972488832182bc58ca7ce84306d31c25906d367fbb366f392b0f",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x20ce5422622698e7eebde01763b5ac4e6f5a8742d68c352f539691b6961ed911",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10008,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58255254,
+    "transactionHash": "0xe585c2f2ab08f232bc2e1189b2259dd8c2595dd02d6a36e785bab3343ba02ea2",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10009,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58285954,
+    "transactionHash": "0x6c1fe99bae010e640ad7e06fa1d7a2a34df4a887bd2273e0a195d573679fbf75",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xe8403e5fb2e5d6c8d821d4dc2bc7e857ebfe656e7a5c11d85c9ef12e53426584",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10010,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58293522,
+    "transactionHash": "0x43f9af619b1825ae37f37fda02d69f5baa28f8085b065d137a16d7fc238f6420",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x2997f509fb36e54a1e6cca4353762409e0c3edb67a919b3ae19144130f21079f",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10011,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58312657,
+    "transactionHash": "0xdeb7057f75c169ef2e5f23add6259ac984c34fedcf4d179334f85328dbc0ed20",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x85e9780e10f3f8ae93e533752b7f132fa7268343cf8efdb18279d7c7bc8115a8",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10012,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58360241,
+    "transactionHash": "0x7772cf1ecfe042cfc4c45d68e0b07a032363bb27a0d25898f85d1be53947ff41",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa58ce389ae4a2a54b6b4c40006b729097aca3e90cc70bb0c0eb4d36a4a4f106a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10013,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58367915,
+    "transactionHash": "0x52094651f349eab75a71297b15e489ec3170f2476048b96c2e1db10df387068b",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xef1f42cc5d95db098df4fba05bfb7813b1006745a64574e94d0fc8c33cd83493",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20005,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58375457,
+    "transactionHash": "0x924a2575454e051469c10d0ed7bf0f14a1eb261ef931e2e0130e44bd42201e56",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xcbdeace366c8c0e9a85c953bc3441dbaf40190234ddbccfb67706d873db3b0e0",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10014,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58379217,
+    "transactionHash": "0x07495d5b3753e61f94fe766827d9bf3002b620f4ef9aa9cc69291593d312b72f",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x6d5f4224f996349a22b36076c5125cdcc841939c6fb531768f27ec7cb2584d36",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19994,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58383596,
+    "transactionHash": "0xb7e34ff62cb84272f0902a108a806034ba0e7cefed79f670c918034016cdc138",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xaefdf192738991fadd330cd7a0b7e65de1a3b31b14599b559930a3bb1b15a72a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20006,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58396786,
+    "transactionHash": "0x4f1299addb7b99132689f34601dbb7e29736256d61ecad3637af688656f66562",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x00f538197e004ca178773b31f68c361e72b66ae95c8847cb6b79c157c9b2927d",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19993,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58398675,
+    "transactionHash": "0x7dda03e88466fd062c0cb9fe72f01c9da31703ecce9ad037ad13ab030042d9b7",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x58797c397875c1d2393225ca8cc1295b8c43e3bf4f8fa66fd6604d1e661511d3",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20007,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58399775,
+    "transactionHash": "0x0683c1b04d85a833328f4376bec16589aa9b10a4ec2529595669348a269118e0",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10015,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58401213,
+    "transactionHash": "0xc2bcba1b02459a2187ab54b8bc03272660d3259d6b98ab76181837280224f396",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xe28ff5e56888cb05dae6886c7b1f833d85546fffeb7aa1a908b939560468295b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19992,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58404177,
+    "transactionHash": "0xdc095ff06772d3892e507f62570075b69bada30f1b6ed348a2e1f56469941cb2",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x33f12d114399ccf5dbed1d68a60467f8231d25eccd09ac5c8a1d8e41f40e9545",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      8388608,
+      60,
+      "0x028b6425e962cf06a2ed84474e8cd71c82096880"
+    ],
+    "blockNumber": 58558093,
+    "transactionHash": "0x9487ea90232df452a6e37cdcb810d238be07a794eae3764fafadc0fd90e1d3b3",
+    "hookless": false,
+    "static": false
+  },
+  {
+    "poolId": "0xe9cbd4587c3aa6b2633403255f67308c29291ca661a30464ea23b0bd84ee6036",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      8388608,
+      200,
+      "0x028b6425e962cf06a2ed84474e8cd71c82096880"
+    ],
+    "blockNumber": 58753916,
+    "transactionHash": "0x33d3d330c3540e8faca6d98fc54e48b634db67f8577e60deadd155c563c82ce8",
+    "hookless": false,
+    "static": false
+  },
+  {
+    "poolId": "0x7b820f619c879afc597c272ae19fe453e69852df0583eac075954476d8384593",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10000,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58822526,
+    "transactionHash": "0x185f7468ebd82962eacaae67d696b8d255c431537909674bf694d61e1abac64a",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1106d8c0902b13270cbd46f4d9ec5ee7514b7215cd5a98e8126d5806f4a8a698",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      20008,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 58858417,
+    "transactionHash": "0x58ee72ec44224e51bf038e0af62c613bfbac0e1f8931d5516619f1c607c66ca5",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      96500,
+      965,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 59091755,
+    "transactionHash": "0x8ac52cfdf5a3de02b0c53105ba4630c217368e550444e2f5ddb9281f844e9dde",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x53dda9ed188587bf0198be0e503a5e1de5d493834f51b41ee8122bcdb780f330",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      19991,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 59323330,
+    "transactionHash": "0x3b4d03e60f79c91d8f302394d073008293733d27b46d3eea01d340268635c0b2",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xd081a62886ffb1d9ee6d456d20d3ab678101f297c7d2626b0b0ac8f0cec52b84",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      841730,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 59816408,
+    "transactionHash": "0x97e1f45d0bf61d75b25f20a1c7e1cfe05e50872e422b3d7d33e2c9ad7d650b9e",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x1372458bc3a9e82e73366ec33611b1324cf53d818b45c6a6424900c0ba0defc1",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9690,
+      97,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 59883698,
+    "transactionHash": "0xfe46e1c6825e122f5895c01baba61ea87eea05d9e4d893de531d76247ed85f96",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x064243647c5f6d319bf6abf4017f35eb0b7e88e48d5f8354e7e60e6734c98721",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9699,
+      97,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60020228,
+    "transactionHash": "0x52b4d788a390e09cf5331c260c5416b081b533956dc3fc1399b1040a3d170e23",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x6476654903958402cf271a6c9088ba044a15917e1364465f38a97d3d128c3108",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      830369,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60312594,
+    "transactionHash": "0x48540c48b5833924eaf69274b5dbada303afbfeb4f43e29b3d3fb8d81ac951b2",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      6942,
+      69,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60467641,
+    "transactionHash": "0xf6f2514dea7266668aa777b70b2e65b04cff11894f386c7a4ff16e4c6e249275",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xb4535c48a18c52cd6ad8e86fe0f0e9192cb3e24c269010d4848fdfbcb7b2c9cf",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9777,
+      98,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60471330,
+    "transactionHash": "0xcc31b2d58d1068d3a3335f481225b47310d058fc0966901e42e221e05ade1a35",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x33a0ad0843913d5821777907525c3fdb4e1b272bbe22ddadadf88cfe6cb40de1",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10016,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60777517,
+    "transactionHash": "0xc9b0c75c9c346461f91d93d779bb832043423cd5594aba764802bf61bf3a9b05",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x4fc83b0264edb9fd55a08d79cf5ccd165959d8446b0f992fc4f0136f0e62702a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10017,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60791006,
+    "transactionHash": "0x2355f5b3aa2437d765f3a92f07321087076a906c6b044aa93803c5e5858b8a89",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10018,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60804457,
+    "transactionHash": "0xa536523a6cba08517db7e2a187ce1b09060daa216c10fc6a9f731d0c53744589",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x758382d90259ba1efc5df255ead129b63b73018aa32c33c951adb237944b1e36",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9750,
+      98,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 60899464,
+    "transactionHash": "0x74fec8bb881df80af4ad014e5076c59e05d83289c706738d46959b342afa78cd",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x6779af72eb1ab2c1dd015f7c5fde53a14b7101cb3074dd10e80fdbed7e2aff65",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9742,
+      97,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 61361532,
+    "transactionHash": "0x6f2c90a27ecc2dbe64c047c79717f3756c5c934b55fc2d863edb930e73fcef98",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x9da18ab2e4dfdee3e1e173955edcc110f9793551190395f9502a35e37c912fac",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9753,
+      98,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 61431768,
+    "transactionHash": "0x8a0810c8e084518a9bf66964fcf9713bbfb92a0fda05104587743f52957c0a6d",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x37a6ca3d585edd278f0f32eb1743b17b537e2a20e47e99faacf24e589bad67c6",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9765,
+      98,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 61631102,
+    "transactionHash": "0xc1c9537f1b24c56591c5ad963a69344aa4451afa54d888aa741397966beeb804",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa79b2540a5051e595d72478c279d0121638d5dcdcb8af6ba7147f7534d7a749d",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9722,
+      97,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 61640985,
+    "transactionHash": "0xd6f0b06e23a9efccb96b5aa4cd4a503a9acbef25dd96e18f596c41fabfb1da98",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x9834b25879c518634b1a0bea0c9c56b7e7319002d957163ecc67f4fd60416fb7",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9757,
+      98,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 61718101,
+    "transactionHash": "0x79f84d5949aa72beb51db8a538d24becfe59d351ed311d9b167434ce2f46ccd9",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x127dc003807e55adf58d2ae18c8502617aa832dd03b4b53f0f52d017693c2104",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      8388608,
+      60,
+      "0xce580fff858e5618ac6caadf9ebaf2e78e6aa880"
+    ],
+    "blockNumber": 62099712,
+    "transactionHash": "0x05279c11e4a4d3b7c5ccd5978e8b192a527982c5bad7f08bc166a516b0e7496b",
+    "hookless": false,
+    "static": false
+  },
+  {
+    "poolId": "0x719b599b7a492252c04b81b43b9c21d05448b715b7d32c71671589481582fc21",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      790000,
+      60,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 62526699,
+    "transactionHash": "0xa332b1a3ccc5fb5281d91dd491208396184db57febad17bf37ea53feb075e03f",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x60c8e9794766966c7d0384ff4cbeabc681317046a1c2213fb9460169fb9892d0",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      9710,
+      97,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 62619607,
+    "transactionHash": "0xf489d78281febbd252fafafddfaf2d65c877fb3f35d8e976f9fc30a2c7b23265",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xa3c2920d2660d5baefc7c6267e6ca751ae94ce91b6ab661c7dce05d74f160184",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      830269,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 63076801,
+    "transactionHash": "0x3cb6f5a1d6a88374236ef89587a894f54699e9502f6d9fd38a7dc99a549bafe3",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x7959f277d49b4fac6d3af1689699b69fde1cc93eef4e14e33de47c354c13161a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10019,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 65099763,
+    "transactionHash": "0x129ceb7607868a9cd89b365cff66c64fa4e2116f53029dcd264f5ed94a1b39c1",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 65181311,
+    "transactionHash": "0x0752dc07e3eb6007b548ec58acdc273bdd6670762ce8f2789a40e64d1c46cd04",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x02232a2f67a83b6670dcde3cd05c57b9cde219457f26090f9867ddae57776095",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      880279,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 67500483,
+    "transactionHash": "0x5bc9c12caed9d16a8e306bcbbcd62ee79c9059c62836d9559c2e36faa9a43ba0",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x9a600e4779a3c5c4227d03c9df09e090fbe5dac3a2c57c449e96f18d2e52d27a",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10021,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 68619523,
+    "transactionHash": "0xdcc3010517fc9c6fc963a701ce165601359bf2a261e62ae749a66acfb850a298",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x0aedbc98a68a117f8e8004b1a48044833a03722f90409e839a26f89a90792bcb",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10022,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 68724267,
+    "transactionHash": "0x362d6c0e4dd9c2d8d102800e51a2c68ac3a38bc7b47eada951a8757ca670a6d5",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10023,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 68737357,
+    "transactionHash": "0x792078733c43ba7c3cf379e613d1ccce8fba2f7f0ddcce5f40b94cb0542f5f56",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x5fb0dfd2976063329f49f7ec9447d668790588e9bfc6bd4791aa2cc6749d5fc2",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      0,
+      200,
+      "0x67d120fb5f990668dceaa63d147548792e2fea44"
+    ],
+    "blockNumber": 69813160,
+    "transactionHash": "0x8b6966d72174a03a10fa82022309fe1a9ac2a3ec3e70d479b99ad95f7e458dba",
+    "hookless": false,
+    "static": true
+  },
+  {
+    "poolId": "0xeccead3071ea31dd19613fd38e1181eba8fa9ea98367c5f92b99aa24c426cd4b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      887333,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 71236422,
+    "transactionHash": "0x7775f716147150784900f49a015830d844d37d9e4382c5f6c6809b73d5998a6d",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xc5a0a8f17476e1b163e74aa3ec97c45705059c6ad3ea6172175a7cb262cfe8ff",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10024,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 73140383,
+    "transactionHash": "0xf1da58e8ffa38bc76196e39691feb271c5747c78c07685a0847c185607b62479",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x06fc3c39faf5809e0d04cb1ced0ab5248a144b68f2f0d717b218e4fa81ea2a24",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      880238,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 76629988,
+    "transactionHash": "0x9c06bbf3426462404915c84c72045d67e6329f35ae96b956815a4ab30c59a8b0",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0xc39c6bfba948ee0bb67a34d3fd597df65d84748ab2f8768692842e97d5ce389e",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      836226,
+      9303,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 76630083,
+    "transactionHash": "0xdc474337d0867e434d7ddf05b2b0ac9b9a8bed1fd7217e9fb86a7b5d7932ff4c",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x667a9f04bb69ab4036518c8c7103d868ef90407c45e372f720ba83a7b66c3ee0",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      40000,
+      800,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 79925046,
+    "transactionHash": "0xde7f15803b46fdce4ac70586a5a9846af03428272d0e84b4ee02db761952ddf1",
+    "hookless": true,
+    "static": true
+  },
+  {
+    "poolId": "0x11d940e1d286e4d5e34016d96807b324f5f0a87ff168163f4544827cbdc3bf8f",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      883131,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 82941874,
+    "transactionHash": "0xb08aeb1f6664d3217094e11306dde62f00d779fcb4cf0f121a802ceafbf3696b",
+    "hookless": true,
+    "static": true
+  }
+]

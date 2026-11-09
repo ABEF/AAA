@@ -1,5 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
+Actual market dependencies remain unqualified. The [read-only/fork market review](reports/market-qualification-20261109/REVIEW.md)
+finds no usable dual ETH/fixedZZZ USD pair: both Chainlink proxies share one
+aggregator; the observed Pyth ETH update exceeds the hard one-day age bound and
+the pair exceeds3% disagreement. Retrieved public catalogs name no fixedZZZ feed.
+The selected pool's active L is not bidirectional depth: reverse ZZZ input crosses
+its upper tick and exhausts current L. Preserve actual guard failures; never
+qualify by duplicating a feed, adding synthetic depth, widening limits, selecting
+an incompatible venue or replacing unavailable prices with pool spot.
+Native-v4 principal venues and optional v3/WETH earned conversion are distinct;
+wrapper=zero before seal permanently excludes v3 on that converter, and the
+fresh7 automated worker remains native-v4-only. No runtime/configuration,
+service/site/journal/signer or existing Anvil change accompanies these observations.
+
 The [SeaDrop integration candidate](reports/opensea-integration-20261109/REVIEW.md) adds fresh mint2/helper1,
 canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
 Initial sale:20free team,500allowlist at governed price(one per distinct

@@ -1,0 +1,41 @@
+{
+  "ETH_USD": [
+    {
+      "pyth_lazer_id": 2,
+      "name": "ETHUSD",
+      "symbol": "Crypto.ETH/USD",
+      "description": "ETHEREUM / US DOLLAR",
+      "asset_type": "crypto",
+      "instrument_type": "spot",
+      "exponent": -8,
+      "display_dp": 1,
+      "cmc_id": 1027,
+      "interval": null,
+      "min_publishers": 3,
+      "min_channel": "real_time",
+      "state": "stable",
+      "schedule": "America/New_York;O,O,O,O,O,O,O;",
+      "market_session_schedule": {
+        "regular": "America/New_York;O,O,O,O,O,O,O;"
+      },
+      "market_sessions": {
+        "regular": {
+          "min_pub": 3,
+          "schedule": "America/New_York;O,O,O,O,O,O,O;",
+          "state": "stable"
+        }
+      },
+      "hermes_id": "ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+      "nasdaq_symbol": null,
+      "quote_currency": "USD",
+      "symbol_chain_id": null,
+      "expiration_pattern": null,
+      "availability_pattern": null,
+      "asset_sector": null,
+      "asset_subclass": null,
+      "exchange_id": null,
+      "groups": []
+    }
+  ],
+  "ZZZ_matches": []
+}

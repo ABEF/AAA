@@ -1,0 +1,193 @@
+{
+  "case": "zzz-activation100",
+  "depth_failure_not_inferred_from_guard_rejection": true,
+  "method": "Integer arithmetic matches retained source _quoted/_minimum/_validSpot; protocol1000 each direction per same-anchor selectedslot0; no RPC",
+  "other_reverted_calls": [
+    {
+      "error": "execution reverted",
+      "gas_used": "0x7cf8ab",
+      "output": "0x7dd37f70",
+      "path": "0",
+      "selector": "0x6169e438",
+      "to": "0x91ab41adbeed290ff3482de0839e84dd79de6d6d"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x6c8f4e",
+      "output": "0x7dd37f70",
+      "path": "0.31",
+      "selector": "0x3dd70670",
+      "to": "0xc4dcfd766dcdacfbd339468b6ab7b91af9748ced"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.6.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.7.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.8.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.9.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.10.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.11.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.12.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x24428",
+      "output": "0x7dd37f70",
+      "path": "0.31.31.25.28.13.0",
+      "selector": "0x48c89491",
+      "to": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x8bab2",
+      "output": "0x7dd37f70",
+      "path": "0.31.44",
+      "selector": "0x42d01368",
+      "to": "0xeb946a794b67e41a24a13d15cb5ca78faf61c3ed"
+    },
+    {
+      "error": "execution reverted",
+      "gas_used": "0x88dba",
+      "output": "0x7dd37f70",
+      "path": "0.31.44.1",
+      "selector": "0x42d01368",
+      "to": "0xccf610bb5c66f1ce555d63e2c272aeb1e541b086"
+    }
+  ],
+  "quotes": [
+    {
+      "amount_in": 8133578578284151474097,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.6"
+    },
+    {
+      "amount_in": 4066789289142075737048,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.7"
+    },
+    {
+      "amount_in": 2033394644571037868524,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.8"
+    },
+    {
+      "amount_in": 1016697322285518934262,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.9"
+    },
+    {
+      "amount_in": 508348661142759467131,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.10"
+    },
+    {
+      "amount_in": 254174330571379733565,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.11"
+    },
+    {
+      "amount_in": 127087165285689866782,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.12"
+    },
+    {
+      "amount_in": 63543582642844933391,
+      "error": "execution reverted",
+      "gas_used": "0x2ae7d",
+      "lp_fee_pips": 10020,
+      "native_input": false,
+      "path": "0.31.31.25.28.13"
+    }
+  ],
+  "recorded_status": "atomic_revert_unchanged_market",
+  "routes": [
+    {
+      "additional_loss_bps": 100,
+      "amount0": 0,
+      "amount1": 13293075086109262959919,
+      "direction": false,
+      "error": null,
+      "lower0": 2142103821930000000000,
+      "lower1": 7522713845534209,
+      "lower_sqrt": 34270093498237828470580712573375,
+      "main_floor_bps": 10000,
+      "path": "0.31.31.25.28",
+      "price": 42277818571609234285824917886142,
+      "reference_sqrt": 42277818571609235522813484335104,
+      "require_active": false,
+      "scale1": 1000000000000000000,
+      "upper0": 2142103821930000000000,
+      "upper1": 7522713845534209,
+      "upper_sqrt": 59994030525552175501311725399488,
+      "venue": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+    }
+  ],
+  "source_sha256": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad"
+}

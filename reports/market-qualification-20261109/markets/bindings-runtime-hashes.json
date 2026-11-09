@@ -1,0 +1,56 @@
+[
+  {
+    "name": "ZZZ",
+    "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "runtime_bytes": 3248,
+    "runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597"
+  },
+  {
+    "name": "WETH",
+    "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+    "runtime_bytes": 2202,
+    "runtime_keccak256": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353"
+  },
+  {
+    "name": "V4PoolManager",
+    "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "runtime_bytes": 24009,
+    "runtime_keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+  },
+  {
+    "name": "V4StateView",
+    "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+    "runtime_bytes": 3531,
+    "runtime_keccak256": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6"
+  },
+  {
+    "name": "V4PositionManager",
+    "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+    "runtime_bytes": 23877,
+    "runtime_keccak256": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2"
+  },
+  {
+    "name": "V4Quoter",
+    "address": "0x8dc178efb8111bb0973dd9d722ebeff267c98f94",
+    "runtime_bytes": 6118,
+    "runtime_keccak256": "0xd707b1da8cb165e5ea35a3b4450d971eb562ec171e23492aa117036b78a868f6"
+  },
+  {
+    "name": "V3Factory",
+    "address": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+    "runtime_bytes": 24535,
+    "runtime_keccak256": "0xec72b1abd1f2faee020cfea9c646bd8994f9fb389054f6e574f103a895091739"
+  },
+  {
+    "name": "V3SwapRouter02",
+    "address": "0xcaf681a66d020601342297493863e78c959e5cb2",
+    "runtime_bytes": 24497,
+    "runtime_keccak256": "0x6f36c378e272c6324c48f045182bcb54bd8ad654cf9ebd42e8893d52c4cb25dc"
+  },
+  {
+    "name": "V3QuoterV2",
+    "address": "0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
+    "runtime_bytes": 8273,
+    "runtime_keccak256": "0x3db0868d945e9304c9bc6a8b2181948109ea617647142f3c4083e14393496a28"
+  }
+]

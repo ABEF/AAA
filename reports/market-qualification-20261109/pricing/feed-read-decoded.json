@@ -1,0 +1,32 @@
+{
+  "chain_id": 4663,
+  "block_number": 109785732,
+  "block_hash": "0x4f11bc04863fc640f16c8b8392924b17fe118cb7735416c57cdfa4cda9d9ce92",
+  "block_timestamp": 1794199144,
+  "block_time_utc": "2026-11-09T04:39:04+00:00",
+  "eth": {
+    "proxy": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+    "round_id": "18446744073709554825",
+    "answer_raw": "214210382193",
+    "decimals": 8,
+    "usd": "2142.10382193",
+    "started_at": 1794193597,
+    "updated_at": 1794193610,
+    "updated_at_utc": "2026-11-09T03:06:50+00:00",
+    "age_seconds": 5534,
+    "answered_in_round": "18446744073709554825"
+  },
+  "pyth": {
+    "core": "0x8250f4aF4B972684F7b336503E2D6dFeDeB1487a",
+    "price_raw": "224172518000",
+    "confidence_raw": "197482000",
+    "exponent": -8,
+    "usd": "2241.72518000",
+    "confidence_bps": "8.809376000317755274533696410",
+    "publish_time": 1794025153,
+    "publish_time_utc": "2026-11-07T04:19:13+00:00",
+    "age_seconds": 173991
+  },
+  "chainlink_primary_secondary_same_aggregator": true,
+  "qualification": false
+}

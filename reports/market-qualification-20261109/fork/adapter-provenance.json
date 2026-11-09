@@ -1,0 +1,16 @@
+{
+  "kind": "isolated copied diagnostic adapter; original repository script unchanged",
+  "original": "scripts/source9_rehearsal_deploy.py",
+  "original_sha256": "0731e37e03d6e430c7484664f48232a116d76ea65ab8f09813452725ecc67598",
+  "adapter_sha256": "5647c42936bb4c18721d65b80261ac2d71a97e267025fb9b3603cb71e6e9b94c",
+  "normal_build": "reports/opensea-integration-20261109/contract/normal-final-05f7ac32db",
+  "changes": [
+    "exact current90-source normal build",
+    "predeployed renderer / NFT3args",
+    "explicit captured conditional price vector",
+    "explicit compatible hookless execution venue list",
+    "LP-only unbound direct-mint exclusion"
+  ],
+  "no_network": true,
+  "production_sources_edited": false
+}

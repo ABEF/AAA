@@ -1,7 +1,8 @@
 # Typed Uniswap v4 conversion routes
 
 The undeployed candidate supports reviewed, static-fee, hookless, single-hop
-exact-input conversion for earned LP/royalty ERC20 balances. Fresh Entry3
+exact-input conversion for already-earned LP ZZZ balances. Royalties are claimed
+in their original currencies; the current release has no royalty converter. Fresh Entry3
 has no pre-Vault conversion route or executor. Native ETH is currency zero, with explicit value handling and no WETH
 dependency for v4. These routes are separate from the registry's principal LP
 pools. Adding one does not admit another NFT contribution pool or reward currency.
@@ -9,9 +10,11 @@ No real route, RPC or oracle is qualified by the local tests.
 
 ## Contract boundary
 
-Each `ZZZRoyaltyConverter` and inherited `ZZZLPRewardConverter` creates its own
-immutable `ZZZV4RouteExecutor`; these are two distinct ledger-bound children. Only that
-parent can record, enable or execute a route; output always returns to the parent.
+`ZZZLPRewardConverter` inherits the fixed-ledger `ZZZRewardConverter` base and
+creates one immutable `ZZZV4RouteExecutor`. Only that parent can record, enable
+or execute a route; output always returns to the same parent. Historical
+royalty-converter instances and receipts retain their original profiles and
+are not part of the current graph.
 The parent retains owner/ledger authentication, governance, lifecycle and loss
 checks. There is no arbitrary calldata, router, output recipient, sweep, hook,
 multihop path, exact-output swap or generic executor approval.
@@ -63,7 +66,7 @@ revert the entire operation. Input/output are bounded by signed int128 settlemen
 <a id="add-or-rotate-an-input-route"></a>
 ## Add or rotate an earned-conversion route
 
-1. Select the LP-reward or royalty converter, its fixed ledger and exact
+1. Select the LP-reward converter, its fixed Rewards ledger and exact
    parent-bound executor. Qualify source currency, independent prices, actual
    venue depth/directional fees and core/StateView runtime/behavior.
 2. Governance calls that converter's `addV4Route(policy)` with the exact tuple
@@ -90,25 +93,25 @@ source and native output zero. The ledger preserves exact NFT entitlements;
 conversion is not new income and cannot spend principal, compound/buyback reserves
 or another NFT's balance. Native LP income is indexed in ETH directly.
 
-For each converter, governance adds the v4 policy and enables the converter after
+Governance adds the v4 policy and enables the LP converter after
 bindings/prices/routes are qualified. The constructor accepts no wrapper for a
 native-only deployment. If V3 or exact WETH unwrap is used, its explicit wrapper
 still must exist and pass its own checks. Enabling the converter does not invent
 a usable route. Failed conversion leaves original backed entitlements intact.
 
 Conversion workers explicitly select `profile: "v4_native"` with the reviewed
-`contracts.lp_v4_executor` / `code_hashes.lp_v4_executor` pins for LP conversion,
-or `contracts.royalty_v4_executor` / `code_hashes.royalty_v4_executor` for royalties;
-helper/parent, route tuple, current cap, independent
+`contracts.lp_v4_executor` / `code_hashes.lp_v4_executor` pins for LP conversion.
+Helper/parent, route tuple, current cap, independent
 native quote, balances and simulation are verified at the same hash. Existing
 historical workers use `v3_wrapper`; new adjustable-cap v3 deployments use
 `v3_wrapper_configurable`. Changing profiles changes durable worker identity:
 stop, reconcile pending hashes/state, review and restart one worker. There is no
 silent profile fallback or mixed-profile automatic scheduling in this slice.
 
-Royalty reporting opts in with `royalty_reporting: {schema: 2,
-converter: {address, code_hash}}`. It reports the current governed cap separately
-from its 10% hard maximum; a missing/mismatched getter is unavailable, not 1%.
+Historical royalty-reporting schema2 converter records are inspection-only.
+Current royalty4/reporting5 uses `converter:null` and original currencies.
+LP conversion reports its current governed cap separately from the10% maximum;
+a missing/mismatched getter is unavailable, not an assumed1%.
 
 [Execution-loss policy](EXECUTION_LOSS_POLICY.md) defines 2% / 1% / 3% defaults,
 immediate governance and 10% hard maxima. At default 1%, the selected ETH/ZZZ

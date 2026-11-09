@@ -1,0 +1,8 @@
+{
+  "source": "https://app.redstone.finance/pull-feeds",
+  "row_count": 1760,
+  "robinhood": [],
+  "zzz_matches": [],
+  "eth": [],
+  "parser": "Nuxt devalue indexed refs and Reactive wrapper; full loaded feed list; no additional network request"
+}

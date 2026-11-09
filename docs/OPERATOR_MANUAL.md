@@ -432,6 +432,23 @@ range LP. Polling and a target width are not a promised execution time.
 
 ## Configure, stop and recover USD pricing
 
+Before admission, use the [actual market qualification record](../reports/market-qualification-20261109/REVIEW.md):
+two proxy addresses may share one aggregator, and a deployed Pyth Core may hold
+stale data. Feed catalogs and old answers are candidate discovery, never a live
+policy. The3% source agreement bound and2% contribution cap are different tests;
+source spread consumes execution margin. Do not loosen one to hide failure of
+another. Check both swap directions at actual sizes through the complete
+operation: nonzero active L does not prove liquid ticks exist ahead. Preserve
+the exact blocker/output and re-review at a fresh canonical block.
+
+LP balancing admits native ETH/fixedZZZ v4 venues only. Existing v3/WETH earned
+conversion requires a nonzero reviewed immutable wrapper selected BEFORE seal,
+wrapper and route admission, plus its own pricing; wrapper0 cannot later gain
+that capability. Fresh7 automated conversion is currently native-v4-only.
+Neither observation implies deploying, enabling a route, replacing an Oracle,
+restarting a service or funding an updater. Use the existing call tables only
+after the actual sources, terms and reviewed manifest are available.
+
 The [pricing-V2 guard](PRICE_SECURITY.md) requires two independently reviewed USD
 sources per priced asset. The old single-feed `setFeed` entry point is removed;
 its instructions and deployed profiles are historical. Do not use one ETH/USD source plus one

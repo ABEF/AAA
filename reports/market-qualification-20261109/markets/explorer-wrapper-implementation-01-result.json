@@ -1,0 +1,8 @@
+{
+  "encoding": "PowerShell HTTP body decoded then explicit UTF8",
+  "sha256": "c0ca84f20047ed153fc2b5bdf2aa629f39f42266933afd128057d282b6bb2333",
+  "read_only": true,
+  "utc": "2026-11-09T04:48:24.4250520Z",
+  "http_status": 200,
+  "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xc6b81b429797e0f555440b70cd99e032d7ae947e"
+}

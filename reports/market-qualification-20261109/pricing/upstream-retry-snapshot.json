@@ -1,0 +1,19 @@
+{
+  "qualification": false,
+  "block_hash": "0x4f11bc04863fc640f16c8b8392924b17fe118cb7735416c57cdfa4cda9d9ce92",
+  "block_number": 109785732,
+  "implementation": {
+    "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+    "raw": "0x00000000000000000000000066e9cba5529824a03b5bc9931d9c63637101d0f7",
+    "address": "0x66e9cba5529824a03b5bc9931d9c63637101d0f7",
+    "runtime_bytes": 24498,
+    "runtime_keccak256": "0x6bfa2a72d71260d707b4bad3f9aeaa5b91d455f58290bd66b392d1e6324eb583"
+  },
+  "admin": {
+    "slot": "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103",
+    "raw": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "address": "0x0000000000000000000000000000000000000000"
+  },
+  "final_canonical_header_recheck": true,
+  "complete": true
+}

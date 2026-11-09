@@ -33,11 +33,11 @@ work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.
 
-[Exact-unit LP integration](../reports/exact-lp-integration-20261106/REVIEW.md) connects the actual host, claims, lossless raw-tree handoff and explicit consumers. Final normal runtime headroom is133bytes for Vault,358 for Rewards and32 for CanonicalHandoff; normal compiler limits are unchanged. Earlier moving-market source/evidence remains historical.
+[Exact-unit LP integration](../reports/exact-lp-integration-20261106/REVIEW.md) connects the actual host, claims, lossless raw-tree handoff and explicit consumers. That earlier source had runtime headroom133bytes for Vault,358 for Rewards and32 for CanonicalHandoff; the current mint2 record is32/358/176 respectively, normal compiler limits are unchanged. Earlier moving-market source/evidence remains historical.
 
 ## 1. Freeze the correct source and integration boundary
 
-Fresh [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. Current source/size/static/consumer evidence is in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md). Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
+The earlier [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) milestone wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. Current source/size/static/consumer evidence is in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md). Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
 
 Preserve completed direct Entry, residual management, active-main routing, cooldown observation and authenticated harvest coalescing. Do not revive removed bridges, creator inboxes or third LP inputs. Target deployment arguments, maximum-workload gas/economics and independent review still require the exact final candidate.
 
@@ -51,6 +51,13 @@ evidence. Production Solidity/normal/static pins remain unchanged. Actual token/
 periphery callbacks, maximum workload and source rollout remain qualification.
 
 ## 2. Qualify real dependencies and market execution
+
+The [actual market review](../reports/market-qualification-20261109/REVIEW.md)
+establishes concrete blockers: no usable dual ETH/fixedZZZ pair, stale Pyth
+updates, unqualified liveness/provider policy and direction-specific execution
+constraints. Qualify independent ZZZ sources with the team, an operating ETH
+updater/alternative, actual bidirectional depth and a default1%-eligible route.
+Quote/slot/source observations are not admission approval or future guarantees.
 
 Select and authenticate independent ETH/ZZZ USD sources, feed/proxy/update controls,
 actual fixed token/burn behavior, reviewed balancing/conversion venues, RPC tracing,

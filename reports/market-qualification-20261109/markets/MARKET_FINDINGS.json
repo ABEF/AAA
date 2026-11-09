@@ -1,0 +1,557 @@
+{
+  "kind": "bounded read-only market qualification candidate; not production approval",
+  "utc": "2026-11-09T04:50:49.187826+00:00",
+  "chainId": 4663,
+  "block_number": 109785803,
+  "block_hash": "0x4a55b88b470e9dd41d7bf885c80f33a0886d66444cf1ba4223ff2128c9da9498",
+  "block_timestamp": 1794199150,
+  "fixed_token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "native_currency": "ETH",
+  "selected_pool": {
+    "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10020,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "blockNumber": 65181311,
+    "transactionHash": "0x0752dc07e3eb6007b548ec58acdc273bdd6670762ce8f2789a40e64d1c46cd04",
+    "hookless": true,
+    "static": true,
+    "slot0_response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": "0x00000000000000000000000000000000000002159effdd0c563e2d1227e7d4be000000000000000000000000000000000000000000000000000000000001ea9f00000000000000000000000000000000000000000000000000000000003e83e80000000000000000000000000000000000000000000000000000000000002724"
+    },
+    "liquidity_response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": "0x0000000000000000000000000000000000000000000000342b1ea9d4dbe6f26c"
+    },
+    "liquidity": 962337799357516411500,
+    "slot0": {
+      "sqrtPriceX96": 42277818571609234285824917886142,
+      "tick": 125599,
+      "protocolFee": 4097000,
+      "lpFee": 10020
+    }
+  },
+  "discovery_scope": {
+    "v4": "All Initialize logs on the officially registered single core, native ETH/fixed ZZZ, block0..anchor in11 bounded<=10M block reads;102events; decoded PoolKeys recomputed. Not all chains/factories/pairs/hooked/multihop venues.",
+    "v4_total": 102,
+    "v4_hookless_static_fee_le_100000": 71,
+    "v4_active_liquidity_nonzero": 8,
+    "v4_lowfee_le_10000_zero_active_L": 15,
+    "v3": "Official factory getPool for only fee100,250,500,1000,3000,10000; three nonzero addresses. Not exhaustive custom factory/fee discovery."
+  },
+  "quotes": {
+    "calls": 107,
+    "successes": 44,
+    "reverts": 63,
+    "gas_cap_each_eth_call": 2000000,
+    "all_quotes_eth_call_only": true,
+    "ranked_by_exact_output": {
+      "zzz1": [
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 1000000000000000000,
+          "amountOut": 3316388253529,
+          "loss_bps_vs_own_spot": 365.7763454380066,
+          "loss_bps_vs_selected_spot": 556.5357146935982
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 1000000000000000000,
+          "amountOut": 3062844555046,
+          "loss_bps_vs_own_spot": 110.19467825735003,
+          "loss_bps_vs_selected_spot": 1278.5051218765102
+        },
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 1000000000000000000,
+          "amountOut": 3030372358105,
+          "loss_bps_vs_own_spot": 100.00353308649987,
+          "loss_bps_vs_selected_spot": 1370.9701798357103
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 1000000000000000000,
+          "amountOut": 2875784393391,
+          "loss_bps_vs_own_spot": 501.27946040154234,
+          "loss_bps_vs_selected_spot": 1811.1616809850193
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 1000000000000000000,
+          "amountOut": 2598957751194,
+          "loss_bps_vs_own_spot": 975.575327378096,
+          "loss_bps_vs_selected_spot": 2599.429612529785
+        },
+        {
+          "version": 4,
+          "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+          "pool": null,
+          "amountIn": 1000000000000000000,
+          "amountOut": 1792844608220,
+          "loss_bps_vs_own_spot": 5159.128491086346,
+          "loss_bps_vs_selected_spot": 4894.848632751718
+        }
+      ],
+      "zzz1000": [
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 1000000000000000000000,
+          "amountOut": 3029292353745119,
+          "loss_bps_vs_own_spot": 103.53182535014736,
+          "loss_bps_vs_selected_spot": 1374.0455081208286
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 1000000000000000000000,
+          "amountOut": 3027771237199053,
+          "loss_bps_vs_own_spot": 223.44505034118515,
+          "loss_bps_vs_selected_spot": 1378.3769098381267
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 1000000000000000000000,
+          "amountOut": 2424646979039704,
+          "loss_bps_vs_own_spot": 1991.3870754675802,
+          "loss_bps_vs_selected_spot": 3095.7820976863854
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 1000000000000000000000,
+          "amountOut": 2221462075325810,
+          "loss_bps_vs_own_spot": 2286.3628111484245,
+          "loss_bps_vs_selected_spot": 3674.3540967560953
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 1000000000000000000000,
+          "amountOut": 189915646709081,
+          "loss_bps_vs_own_spot": 9448.28841618617,
+          "loss_bps_vs_selected_spot": 9459.212405239454
+        }
+      ],
+      "zzz10000": [
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 10000000000000000000000,
+          "amountOut": 30192008742604696,
+          "loss_bps_vs_own_spot": 136.49992281076229,
+          "loss_bps_vs_selected_spot": 1402.7811442447899
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 10000000000000000000000,
+          "amountOut": 27446243283871312,
+          "loss_bps_vs_own_spot": 1137.715348841877,
+          "loss_bps_vs_selected_spot": 2184.6418934434037
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 10000000000000000000000,
+          "amountOut": 10047083740647911,
+          "loss_bps_vs_own_spot": 6681.446602544989,
+          "loss_bps_vs_selected_spot": 7139.078140946577
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 10000000000000000000000,
+          "amountOut": 9622765970025545,
+          "loss_bps_vs_own_spot": 6658.663396937891,
+          "loss_bps_vs_selected_spot": 7259.903249654198
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 10000000000000000000000,
+          "amountOut": 194567699423561,
+          "loss_bps_vs_own_spot": 9943.477404064331,
+          "loss_bps_vs_selected_spot": 9944.596561677437
+        }
+      ],
+      "nominal_100usd_eth_half": [
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 23341539045923007,
+          "amountOut": 7528760052731334905618,
+          "loss_bps_vs_own_spot": 126.86843946764351,
+          "loss_bps_vs_selected_spot": -1327.3414976773759
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 6854847537441526775516,
+          "loss_bps_vs_own_spot": 904.9409097628181,
+          "loss_bps_vs_selected_spot": -313.41129578749093
+        },
+        {
+          "version": 4,
+          "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 6490280350783546197553,
+          "loss_bps_vs_own_spot": 235.09562875239808,
+          "loss_bps_vs_selected_spot": 235.09562875239808
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 4152245276240841935223,
+          "loss_bps_vs_own_spot": 3876.4656889399052,
+          "loss_bps_vs_selected_spot": 3752.7693940738
+        },
+        {
+          "version": 4,
+          "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 3557014832373343673855,
+          "loss_bps_vs_own_spot": 441.968673068935,
+          "loss_bps_vs_selected_spot": 4648.3190543469
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 3075161194224706155885,
+          "loss_bps_vs_own_spot": 6205.818581668472,
+          "loss_bps_vs_selected_spot": 5373.288461391257
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 3006573869408821271312,
+          "loss_bps_vs_own_spot": 6100.278414878483,
+          "loss_bps_vs_selected_spot": 5476.48102499538
+        },
+        {
+          "version": 4,
+          "poolId": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 1128383785242383105245,
+          "loss_bps_vs_own_spot": 133.0836275658467,
+          "loss_bps_vs_selected_spot": 8302.298335136165
+        },
+        {
+          "version": 4,
+          "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+          "pool": null,
+          "amountIn": 23341539045923007,
+          "amountOut": 967500497687625801096,
+          "loss_bps_vs_own_spot": 8464.885397159725,
+          "loss_bps_vs_selected_spot": 8544.35412209681
+        }
+      ],
+      "nominal_100usd_zzz_half_at_selected_spot": [
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 6646537543054630968622,
+          "amountOut": 20092937972311697,
+          "loss_bps_vs_own_spot": 123.8648345699504,
+          "loss_bps_vs_selected_spot": 1391.7681551417377
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 6646537543054630968622,
+          "amountOut": 18900847513238859,
+          "loss_bps_vs_own_spot": 817.760786284085,
+          "loss_bps_vs_selected_spot": 1902.4844608349806
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 6646537543054630968622,
+          "amountOut": 8541706234166148,
+          "loss_bps_vs_own_spot": 5755.1929205619035,
+          "loss_bps_vs_selected_spot": 6340.555685997877
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 6646537543054630968622,
+          "amountOut": 8108314398581429,
+          "loss_bps_vs_own_spot": 5764.005160067383,
+          "loss_bps_vs_selected_spot": 6526.229747477734
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 6646537543054630968622,
+          "amountOut": 194329028166536,
+          "loss_bps_vs_own_spot": 9915.063654216063,
+          "loss_bps_vs_selected_spot": 9916.745409210504
+        }
+      ],
+      "nominal_5usd_eth_half": [
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 1167076952296150,
+          "amountOut": 377411075799425898312,
+          "loss_bps_vs_own_spot": 101.346894651117,
+          "loss_bps_vs_selected_spot": -1356.6221014972125
+        },
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 371074779454490326905,
+          "loss_bps_vs_own_spot": 153.10835842463936,
+          "loss_bps_vs_selected_spot": -1165.9575245233939
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 342182613351315260153,
+          "loss_bps_vs_own_spot": 1556.1960414175678,
+          "loss_bps_vs_selected_spot": -296.56753263607663
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 341693362065000867721,
+          "loss_bps_vs_own_spot": 1136.030329435176,
+          "loss_bps_vs_selected_spot": -281.8455429340658
+        },
+        {
+          "version": 4,
+          "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 328457737121947437697,
+          "loss_bps_vs_own_spot": 116.42573311955819,
+          "loss_bps_vs_selected_spot": 116.42573311955819
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 319759573349868847984,
+          "loss_bps_vs_own_spot": 568.6750736914483,
+          "loss_bps_vs_selected_spot": 378.160921275317
+        },
+        {
+          "version": 4,
+          "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 183706519425478482818,
+          "loss_bps_vs_own_spot": 127.26822700019599,
+          "loss_bps_vs_selected_spot": 4472.113691212214
+        },
+        {
+          "version": 4,
+          "poolId": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 56544621836572335203,
+          "loss_bps_vs_own_spot": 111.14724849526367,
+          "loss_bps_vs_selected_spot": 8298.523961678085
+        },
+        {
+          "version": 4,
+          "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+          "pool": null,
+          "amountIn": 1167076952296150,
+          "amountOut": 52134315812035884164,
+          "loss_bps_vs_own_spot": 8345.58949161424,
+          "loss_bps_vs_selected_spot": 8431.233842453377
+        }
+      ],
+      "nominal_5usd_zzz_half_at_selected_spot": [
+        {
+          "version": 4,
+          "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+          "pool": null,
+          "amountIn": 332326877152731448768,
+          "amountOut": 1013970004559918,
+          "loss_bps_vs_own_spot": 148.0448102865708,
+          "loss_bps_vs_selected_spot": 1311.8839116392778
+        },
+        {
+          "version": 3,
+          "poolId": null,
+          "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+          "amountIn": 332326877152731448768,
+          "amountOut": 1006955116969027,
+          "loss_bps_vs_own_spot": 101.17400012718491,
+          "loss_bps_vs_selected_spot": 1371.9903817147056
+        },
+        {
+          "version": 4,
+          "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+          "pool": null,
+          "amountIn": 332326877152731448768,
+          "amountOut": 900152549350127,
+          "loss_bps_vs_own_spot": 1053.3708153715759,
+          "loss_bps_vs_selected_spot": 2287.119134868238
+        },
+        {
+          "version": 4,
+          "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+          "pool": null,
+          "amountIn": 332326877152731448768,
+          "amountOut": 817622995137359,
+          "loss_bps_vs_own_spot": 1457.0486092200767,
+          "loss_bps_vs_selected_spot": 2994.266628873636
+        },
+        {
+          "version": 4,
+          "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+          "pool": null,
+          "amountIn": 332326877152731448768,
+          "amountOut": 175314079396557,
+          "loss_bps_vs_own_spot": 8467.492231201033,
+          "loss_bps_vs_selected_spot": 8497.836161945983
+        }
+      ]
+    }
+  },
+  "prices": {
+    "ETH_USD_sizing_candidate": {
+      "chainlink_eth_usd": "214210382193/100000000",
+      "feed_answer": 214210382193,
+      "feed_updatedAt": 1794193610,
+      "anchor_timestamp": 1794199150,
+      "warning": "One unqualified ETH/USD source and selected-pool instantaneous ZZZ/ETH ratio: sizing labels only, not independent PoPL valuation.",
+      "vectors": [
+        {
+          "label": "zzz1",
+          "zeroForOne": false,
+          "amountIn": 1000000000000000000
+        },
+        {
+          "label": "zzz1000",
+          "zeroForOne": false,
+          "amountIn": 1000000000000000000000
+        },
+        {
+          "label": "zzz10000",
+          "zeroForOne": false,
+          "amountIn": 10000000000000000000000
+        },
+        {
+          "label": "nominal_100usd_eth_half",
+          "zeroForOne": true,
+          "amountIn": 23341539045923007
+        },
+        {
+          "label": "nominal_100usd_zzz_half_at_selected_spot",
+          "zeroForOne": false,
+          "amountIn": 6646537543054630968622
+        },
+        {
+          "label": "nominal_5usd_eth_half",
+          "zeroForOne": true,
+          "amountIn": 1167076952296150
+        },
+        {
+          "label": "nominal_5usd_zzz_half_at_selected_spot",
+          "zeroForOne": false,
+          "amountIn": 332326877152731448768
+        }
+      ]
+    },
+    "selected_spot_ZZZ_per_ETH_exact": "446853485793476668812012109334398305007234838768954246418911041/1569275433846670190958947355801916604025588861116008628224",
+    "selected_spot_derived_ZZZ_USD_exact": "1313105822071801210022407836950372311524351688638842987353705807872/174552142888076823754692230208749337893451108894122752507387125390625",
+    "selected_spot_derived_ZZZ_USD_display": 0.00752271384553421,
+    "independent_ZZZ_USD": null,
+    "dual_source_qualification": false
+  },
+  "conclusions": [
+    "No tested candidate establishes default1% ZZZ-to-ETH conversion qualification. The low-fee native pools fail full-input quotes; both cheaper v3 pools fail quotes. The live v3 1% pool exceeds1% own-spot loss at every positive tested size, with additional selected-spot disagreement.",
+    "Selected pool reverse full-fill capacity is directionally exhausted near tick125600. Verified quoter error specifically means actual input delta differs from requested. 1rawweiZZZ returns0ETH,1e6rawZZZ fails; upper tick net removes all current activeL. This is a pinned direction/size observation, not a claim no future reverse trade is possible.",
+    "Native10018 is a candidate alternative execution venue, not a proposed LP destination or admitted route. Its exact output can beat selected in ETH-to-ZZZ direction, but its spot differs materially. Existing independent reference/venue guards must decide admissibility; no feed or loss cap was weakened.",
+    "Pool-level exact swap quotes do not prove entrant marginal LP, main geometry, residual handling or operation gas. Owned-fork end-to-end preparation must verify those separately without synthetic depth or false independent feeds.",
+    "v3 candidates are conversion-only for existing contracts and require preseal wrapper binding plus explicit reviewed proxy implementation/admin/admin-owner pins. Current automatic fresh7 worker is native-v4-only; no backend rollout is implied.",
+    "WETH proxy unwrap source is ordinary aeWETH withdrawTo burning caller balance and sending native ETH; bridge mint disabled, gateway burn separate. Upgrade authority remains an external dependency risk."
+  ],
+  "failures_preserved": [
+    "Initial unbounded-range eth_getLogs rejected by10M-block provider limit; original request/response retained.",
+    "First local state script rejected >32 batch before RPC; followup batches<=32 and original source retained.",
+    "Four urllib explorer requests403; originals retained, system HTTP retries200 explicitly decoded/re-encodedUTF8.",
+    "Quote reverts all retained as negative evidence; no retry with relaxed guards.",
+    "First wrapper dependency source extraction exceeded Windows path length; original partial extracted directory retained. Final flattened numbered sources preserve original paths in source manifest."
+  ],
+  "independent_core_diagnostic": {
+    "origin": "Sibling owned-fork agent observed this separately; see original fork artifacts, not duplicate local proof.",
+    "original_paths": [
+      "../fork/attempt3/direct-reverse-1.json",
+      "../fork/attempt3/direct-reverse-1000000000000000000.json"
+    ],
+    "reported_exact_1_ZZZ_request_core_deltas": {
+      "native_output_wei": 1,
+      "ZZZ_input_raw": 388557
+    },
+    "reported_1_raw_ZZZ_request_core_deltas": {
+      "native_output_wei": 0,
+      "ZZZ_input_raw": 1
+    },
+    "meaning": "Actual normal LPBalancer rejects partial fill or zero output; no guard weakened."
+  },
+  "limitations": [
+    "No transactions, keys, deployment, services, source/docs edits, preexistingAnvil/journals/sites or pausedheartbeat changes.",
+    "Explorer-reported verified source/deployed bytes match pinned runtime hashes; independent source recompilation was not performed.",
+    "Captured liquidity L is not USD TVL or depth. Exact output depends on amount,direction,ticks and block.",
+    "ETH reference is one observed Chainlink feed, age5540seconds at anchor, not a qualified two-source price. ZZZ USD derived from selected pool is not independent.",
+    "No guarantee of global best execution, honest RPC, uptime, current block finality beyond canonical pinned rechecks, target gas suitability or MEV resistance."
+  ]
+}

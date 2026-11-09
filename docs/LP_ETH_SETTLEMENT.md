@@ -1,5 +1,14 @@
 # LP holder rewards settled in ETH
 
+The [actual market review](../reports/market-qualification-20261109/REVIEW.md)
+does not establish a usable default1% conversion route. A v3 pool's existence
+does not make it a principal balancing venue. For future v3 earned conversion,
+the converter must be constructed with the reviewed nonzero wrapper before
+seal, then receive its exact wrapper/route policies and independently priced
+ETH/ZZZ/WETH. Zero immutable wrapper cannot be changed after seal. Current
+fresh7 automation accepts native-v4 only; manual existing contract capability
+is not an implemented v3 worker. No asset/route is enabled by this note.
+
 The current undeployed candidate uses native accounting7, custody5, fee-intake 1, direct
 governance 2 and local canonical V10. Native ETH fees accrue directly as whole ETH units;
 only already-earned fixed-ZZZ LP balances need conversion. The default
