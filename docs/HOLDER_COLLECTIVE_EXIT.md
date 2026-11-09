@@ -1,7 +1,7 @@
 # Collective LP exit to NFT holders
 
-Fresh undeployed candidate: accounting **6**, custody **5**, canonical adaptable-policy
-**V6**. Production is **NOT APPROVED**. External principal and royalty custody
+Fresh source candidate: accounting **7**, custody **5**, exact-LP canonical
+**V9**. Production is **NOT APPROVED**. External principal and royalty custody
 exits are removed. Existing deployments are not upgraded or relabelled.
 
 ## Rights and authority
@@ -49,9 +49,40 @@ Governance must complete all closing, allocation and payout batches. Normal
 accepted payments need no holder transaction. A rejecting receiver remains
 backed for retry/owner fallback; this is not a universal delivery guarantee.
 
+## Prepare each step without signing
+
+The [typed management preparer](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections)
+supports one exact `collective_exit_begin`, `close_bucket`, `allocate_principal`
+or `distribute_principal` selection. It authenticates current accounting7/
+custody5 runtime/lifecycle/governance and backing at two pinned snapshots,
+fetches current inputs, and simulates unchanged calldata and gas. It supports
+direct empty-code governance wallets only; it constructs no multisig envelope.
+
+Explicit begin confirmation acknowledges terminal shutdown; it does not approve
+later calls. You supply raw total-principal close floors, ordinal maximum or
+exact NFT IDs. Close floors are uint256 and may explicitly be0/0; the tool never
+chooses or weakens them. No other recipient, token conversion or holder-reward
+claim enters this flow. Existing earned rewards stay separate.
+
+The management policy uses reviewed full25% estimate headroom. Distribution uses
+the explicitly configured block-bounded gas budget, because an estimator can
+succeed cheaply after the contract's gasleft early break. A simulated payout
+count can be partial and is not a paid-prefix or per-NFT success proof. Inspect
+actual `PrincipalPaid`/`PrincipalDeferred` and `principalOf`, then prepare only
+your next explicit selection. No automatic queue, governance signer, retry or
+journal adoption exists. The gas payer is your submitting governance wallet.
+
+Begin/allocation/distribution have **no on-chain deadline**: their `expires_at`
+is only an off-chain artifact boundary. Allocation uses the cursor, and direct
+payment uses the actual current owner, at inclusion. Those can move after the
+last read. Any observed control/progress/ownership change during preparation
+requires a new review. Every prepared artifact remains not approved/not ready;
+your actual wallet must revalidate before signing. A rejected or unavailable
+review changes nothing. [Source verification](../reports/operator-management-20261109/REVIEW.md).
+
 ## Operator procedure
 
-1. Verify accounting6/custody5/portfolio2 runtime pins, fixed ZZZ, chain, governance and
+1. Verify accounting7/custody5/portfolio2 runtime pins, fixed ZZZ, chain, governance and
    canonical operating state. Inventory all historical buckets and NFT ordinals.
    Stop/reconcile pending keeper work using its original journal; never reset
    or repeat an unresolved transaction. Review the permanent shutdown decision.
@@ -151,7 +182,7 @@ outages and insufficient gas can still delay closing/payment. Exact checks fail
 rather than erase liabilities. There is no automatic resend, swap fallback,
 operator custody address, recovery-to-pool ingress or bridge.
 
-Use [accounting6](POSITION_V6.md), [function reference](CONTRACT_FUNCTIONS.md),
+Use [accounting7](POSITION_V7.md), [function reference](CONTRACT_FUNCTIONS.md),
 [feature evidence](IMPLEMENTATION_STATUS.md) and [sole Todo](../TODO.md).
 Existing Anvil/NFTs/LP/journals, popldemo and the accounting3 poplint artifact stay
 unchanged. Website payout controls, actual inventory/service acceptance,

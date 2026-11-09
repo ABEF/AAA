@@ -28,9 +28,12 @@ existing contracts, services, journals or websites. Public signing remains disab
 
 Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless canonicalV9. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
 
-The [new backend tools](reports/checkpoint2-manual-20261107/REVIEW.md) add reviewed
-exact-unit earnings checkpoints and typed unsigned manual LP preparation. They
-change no contract/runtime, operating service, website or signing boundary.
+The [operator management preparer](reports/operator-management-20261109/REVIEW.md)
+now fetches exact inputs and simulates unsigned parking, resume, residual-only
+closure and the complete collective-exit sequence. Explicit floors and gas
+budgets remain operator choices; no signing or automatic fallback is added.
+Existing [checkpoint2/B-C-D tools](reports/checkpoint2-manual-20261107/REVIEW.md)
+remain separate. No contract/runtime or installed environment changes.
 
 ## Project navigation
 

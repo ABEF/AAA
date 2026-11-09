@@ -44,6 +44,15 @@ Parked/other actions, actual provider/wallet execution and host operation remain
 unqualified. No Solidity, ABI, runtime, authority, financial right or installed
 environment changes, so unchanged normal/static contract evidence is reused.
 
+## Unsigned management extension
+
+The [operator extension](../reports/operator-management-20261109/REVIEW.md)
+implements seven typed custody/exit preparations and verifies their input,
+permission, control-drift, gas-sensitive payout and publication handling.
+Focused injected-RPC and offline ABI evidence does not close actual governance
+wallet, provider/fee, target-gas, operating or independent approval gates.
+No public transaction, runtime upgrade or operating rollout is authorized.
+
 ## Evidence and approval boundary
 
 Pre-audit published royalty3 baseline: main `967370f6d2de36c3e852a90f1458a7782edd7765`.

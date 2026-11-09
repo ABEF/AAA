@@ -1,0 +1,38 @@
+{
+  "successful": true,
+  "tests_run": 70,
+  "unique_test_ids": 70,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "selectors": [
+    "tests_python.test_management_review.ManagementReviewTests",
+    "tests_python.test_management_custody.CustodyManagementTests",
+    "tests_python.test_management_exit.ManagementExitTests",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests"
+  ],
+  "source_sha256": {
+    "zzz_ops/management_review.py": "39f5ec4ca407b65f1e785dbc24e75dec5412014a89947256ab7927d0c69b5e9f",
+    "zzz_ops/management_base.py": "28a65b9860d14c4a71f5419b535f5aeff9d844495fd630df7a70fc602e9ae98d",
+    "zzz_ops/management_custody.py": "3c7f0102be8fa1222ddbe1f5ea760ee9a512e83b5f34db68dc80f2872e53f169",
+    "zzz_ops/management_exit.py": "97894200fa2f6ab2c2f0116a0b5336a5f92aa9809bcc372620e9c0116731ccbb",
+    "zzz_ops/manual_lp_review.py": "a95ef470a0f2f036db29c62005bcee15f76546cefbe91ece84589b542e4a6bf5",
+    "scripts/prepare-operator-management.py": "382e0cba5f7013a301abfc86058ef17bf0b1777c6e29ab70588d65092036801e",
+    "tests_python/test_management_review.py": "fa60ce736572c5b343eec7371bee825888cf5fd6f37f52c90779ab42fa7b44d9",
+    "tests_python/test_management_custody.py": "9a690254138a7f058c3b8bbb78b1d644f24509008d8d7ae7118ef337932017ce",
+    "tests_python/test_management_exit.py": "317952659f276d90607486aef83da1e1b5260c64c8abd4e3f08a717ee701cc0b",
+    "tests_python/test_manual_lp_review.py": "edaaf036c900ee76db45e0e7c33ccfaebba7f44e0d8eb115e2c084690dc0dd0b"
+  },
+  "transport": "Injected RPC; actual Projection/catalog/adapters/preparation/publication; no public chain or execution",
+  "artifact_actions": [
+    "allocate_principal",
+    "close_bucket",
+    "close_residual",
+    "collective_exit_begin",
+    "distribute_principal",
+    "park",
+    "resume"
+  ],
+  "historical_source_tests": "29 existing B/C/D methods are affected shared-policy extraction checks, not new coverage",
+  "new_scope_methods": 41
+}

@@ -1,0 +1,98 @@
+{
+  "kind": "independent_offline_management_abi_crosscheck",
+  "passed": true,
+  "cases": [
+    {
+      "action": "park",
+      "signature": "park((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))",
+      "argument_labels": [
+        "r"
+      ],
+      "calldata_selector": "0xa4ff29f8",
+      "calldata_bytes": 452,
+      "calldata_sha256": "9f2a066aaf97e6b13eb9f87f595b7116b09ab76c9d18c175a76e4ac9b771de0a",
+      "independent_cast_match": true
+    },
+    {
+      "action": "close_residual",
+      "signature": "closeResidual((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))",
+      "argument_labels": [
+        "r"
+      ],
+      "calldata_selector": "0x5bb46586",
+      "calldata_bytes": 452,
+      "calldata_sha256": "7668e8efffa8b5543696f5e867b76b5970b48f94dee946b9a6fb8527930729fd",
+      "independent_cast_match": true
+    },
+    {
+      "action": "resume",
+      "signature": "resume(uint256,bytes32,uint128,uint256)",
+      "argument_labels": [
+        "id",
+        "pool",
+        "minimum",
+        "deadline"
+      ],
+      "calldata_selector": "0x87ff232e",
+      "calldata_bytes": 132,
+      "calldata_sha256": "889f013fa1e9ef6f1bbf2bb96fe4cfbf4708b0eaaf1f7c0e62285d436c303e43",
+      "independent_cast_match": true
+    },
+    {
+      "action": "collective_exit_begin",
+      "signature": "beginCollectiveExit(bytes32)",
+      "argument_labels": [
+        "reviewHash"
+      ],
+      "calldata_selector": "0x47b39f03",
+      "calldata_bytes": 36,
+      "calldata_sha256": "ace9e71bc514c5c1768f441ddfcaef858f9c2b78ecb324ed13b65f59b88bdee8",
+      "independent_cast_match": true
+    },
+    {
+      "action": "close_bucket",
+      "signature": "closeBucket(uint256,uint256,uint256,uint256)",
+      "argument_labels": [
+        "bucket",
+        "minimumETH",
+        "minimumZZZ",
+        "deadline"
+      ],
+      "calldata_selector": "0xea959059",
+      "calldata_bytes": 132,
+      "calldata_sha256": "3732c266376c1a9d250a15d1144bfe81b6857bcf23ad0dd2af4fdb034c1ef0ca",
+      "independent_cast_match": true
+    },
+    {
+      "action": "allocate_principal",
+      "signature": "allocatePrincipal(uint256)",
+      "argument_labels": [
+        "maximum"
+      ],
+      "calldata_selector": "0x5bf6d407",
+      "calldata_bytes": 36,
+      "calldata_sha256": "9da6c0df3bb18955450fc0a1493a231eedaa5d61aefd4959ad3bc0fce6c25cd5",
+      "independent_cast_match": true
+    },
+    {
+      "action": "distribute_principal",
+      "signature": "distributePrincipal(uint256[])",
+      "argument_labels": [
+        "ids"
+      ],
+      "calldata_selector": "0x114d5f3c",
+      "calldata_bytes": 1092,
+      "calldata_sha256": "8ea998e32c314fd552f75fc3c59cb22ddebb76f028c0939046d759032ecdba5f",
+      "independent_cast_match": true
+    }
+  ],
+  "source_sha256": {
+    "zzz_ops/management_custody.py": "3c7f0102be8fa1222ddbe1f5ea760ee9a512e83b5f34db68dc80f2872e53f169",
+    "zzz_ops/management_exit.py": "97894200fa2f6ab2c2f0116a0b5336a5f92aa9809bcc372620e9c0116731ccbb",
+    "docs/function-reference.json": "fcf475fd20519dfa152bf68f7610fb92d282c563c6ee4ff1bb8dfbe6441c33bb"
+  },
+  "cast_sha256": "610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8",
+  "limitations": [
+    "Offline encoding only; no authority, chain state, gas, simulation, RPC, signatures or execution verified"
+  ]
+}

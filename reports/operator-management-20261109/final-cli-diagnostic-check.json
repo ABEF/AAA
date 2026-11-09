@@ -1,0 +1,25 @@
+{
+  "successful": true,
+  "selector": "tests_python.test_management_review.ManagementReviewTests.test_strict_selection_and_cli_preserve_output_and_sanitize_provider_errors",
+  "tests_run": 1,
+  "overlap": "One of the70unique methods; not additional coverage",
+  "observed_output": "Ran1test in0.850s;OK",
+  "source_sha256": {
+    "zzz_ops/management_review.py": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+    "tests_python/test_management_review.py": "a87627869f0b21a0a8aed31d2337c89ed5ebc6d68d7a8419f5697678c6d566c6"
+  },
+  "previous_70_method_source_sha256": "39f5ec4ca407b65f1e785dbc24e75dec5412014a89947256ab7927d0c69b5e9f",
+  "only_changed_production_contexts": [
+    "main"
+  ],
+  "unchanged_contexts_sha256": {
+    "selection": "2cdd12e6bd7e0a882bb26383b24b9d617209f9b64ba26642c8447b5f3e705b40",
+    "_canonical_arguments": "a44fb22e585d2d6d8c8c936248b5cc62634667659655f27095ffcaa116f42426",
+    "_mark_review_hash": "b6cd152e2a2c1aa25a413cccaaa10eecd82799c39d963984b74f6856963d80a0",
+    "_returned": "aef63c3a904516f379b29ee9d21509b0650ee7c4c36cad684fbfc4499d072793",
+    "simulate": "6c6c237721a944d0e622db92d84d1039f80e0c20afe2215ebde257677c9fb3ee",
+    "_source_pins": "3fabf9c610b66981a87410c36e6e431dab07f554fe9f0d8310aab71e1e076941",
+    "prepare": "395fa95fe4c96cc7793dd3e3e6dfed586f9d1dd3828882e920f66ae8ed52e063"
+  },
+  "exact_prior_bytes_reconstructed_and_hash_matched": true
+}

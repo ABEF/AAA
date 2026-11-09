@@ -56,10 +56,12 @@ and a matching accounting7/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
-Source-only typed manual B/C/D preparation is implemented for Active buckets.
-Qualify actual operator-selected floors, provider/hash support, complete fees and
-wallet execution; extend other states/actions separately. No signing or automatic
-force/recenter fallback follows from preparation.
+The [unsigned operator extension](../reports/operator-management-20261109/REVIEW.md)
+adds reversible parking/resume/residual closure and all terminal holder-return
+steps, alongside existing Active B/C/D. Qualify actual operator-selected floors,
+provider/hash/complete-fee support, target gas and wallet execution. Parked
+forced-D and contract-wallet envelopes remain separate manual procedures.
+Preparation adds no signing, queue, force/recenter fallback or execution approval.
 
 Qualify the new explicit claim planner with actual worst-case currencies/fees,
 confirmation/replanning and no silent omission; bounded local planning is not a

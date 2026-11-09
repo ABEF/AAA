@@ -1,0 +1,25 @@
+{
+  "kind": "operator_custody_documentation_check",
+  "successful": true,
+  "documents_sha256": {
+    "docs/MANUAL_LP_PREPARATION.md": "7dba548acebb3a859051196d0d9e6f2f977c60a094eb8911256fe3b505f55369",
+    "docs/OPERATOR_MANUAL.md": "d2468d458f8169d73b4c7d9b18c388d7918edeae16a3d35b69057562893befa8",
+    "docs/CUSTODY_PARKING.md": "8f54a19d7409f70a086cd39d42d84620ff02f4f19f85e94626120d7a2555e68b",
+    "docs/HOLDER_COLLECTIVE_EXIT.md": "11f127b34c3d9cb80813a47f428f8409fc6dc452e8184defd7968b5ac369a789"
+  },
+  "source_sha256": {
+    "zzz_ops/management_review.py": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+    "zzz_ops/management_base.py": "28a65b9860d14c4a71f5419b535f5aeff9d844495fd630df7a70fc602e9ae98d",
+    "zzz_ops/management_custody.py": "3c7f0102be8fa1222ddbe1f5ea760ee9a512e83b5f34db68dc80f2872e53f169",
+    "zzz_ops/management_exit.py": "97894200fa2f6ab2c2f0116a0b5336a5f92aa9809bcc372620e9c0116731ccbb"
+  },
+  "local_links_checked": 1110,
+  "missing_unexpected_links": [],
+  "pending_owner_report_links": [],
+  "all_seven_action_rows_present": true,
+  "complete_json_shape_validated_by_actual_selection_parser": true,
+  "example_is_not_an_operational_review": true,
+  "whitespace_check_passed": true,
+  "tests_builds_or_rpc_performed": false,
+  "scope": "Documentation shape/link/source consistency only; no simulation or production approval"
+}

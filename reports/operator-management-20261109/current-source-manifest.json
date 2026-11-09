@@ -1,0 +1,33 @@
+{
+  "production_approved": false,
+  "baseline_commit": "ff4b502bf19772a01b9eb35c22ff5db1c55efacd",
+  "source_sha256": {
+    "zzz_ops/management_review.py": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+    "zzz_ops/management_base.py": "28a65b9860d14c4a71f5419b535f5aeff9d844495fd630df7a70fc602e9ae98d",
+    "zzz_ops/management_custody.py": "3c7f0102be8fa1222ddbe1f5ea760ee9a512e83b5f34db68dc80f2872e53f169",
+    "zzz_ops/management_exit.py": "97894200fa2f6ab2c2f0116a0b5336a5f92aa9809bcc372620e9c0116731ccbb",
+    "zzz_ops/manual_lp_review.py": "a95ef470a0f2f036db29c62005bcee15f76546cefbe91ece84589b542e4a6bf5",
+    "scripts/prepare-operator-management.py": "382e0cba5f7013a301abfc86058ef17bf0b1777c6e29ab70588d65092036801e",
+    "tests_python/test_management_review.py": "a87627869f0b21a0a8aed31d2337c89ed5ebc6d68d7a8419f5697678c6d566c6",
+    "tests_python/test_management_custody.py": "9a690254138a7f058c3b8bbb78b1d644f24509008d8d7ae7118ef337932017ce",
+    "tests_python/test_management_exit.py": "317952659f276d90607486aef83da1e1b5260c64c8abd4e3f08a717ee701cc0b",
+    "tests_python/test_manual_lp_review.py": "edaaf036c900ee76db45e0e7c33ccfaebba7f44e0d8eb115e2c084690dc0dd0b"
+  },
+  "protected_unrelated_files_unchanged": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "production_solidity_changed": false,
+  "runtime_abi_profile_changed": false,
+  "website_signer_service_anvil_journal_heartbeat_changed": false,
+  "actual_rpc_or_transactions_run": false,
+  "unique_focused_methods": 70,
+  "new_methods": 41,
+  "existing_affected_methods": 29,
+  "overlapping_final_cli_method": 1,
+  "earlier_attempts_not_added_to_coverage": true,
+  "local_evidence": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-management-20261109",
+  "independent_evidence": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\management-independent-20261109"
+}

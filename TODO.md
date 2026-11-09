@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 28 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 29 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -618,7 +618,7 @@ The data and services behind the app.
 
 <a id="task-operation-review"></a>
 
-- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. A separate typed unsigned CLI prepares direct empty-code-governance Active-state guarded/forced same-main consolidation or full emergency replacement with explicit floors/masks, authenticated snapshots, fresh simulations and gas envelopes. Other states/actions and actual provider/operator qualification remain open; no signing or universal execution approval.
+- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Parked forced-D, contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -638,6 +638,7 @@ The data and services behind the app.
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
   - [Typed manual-LP preparation](docs/MANUAL_LP_PREPARATION.md) implements explicit Active-state B/C/D as a bounded source-only milestone for direct empty-code governance wallets; contract/delegated-wallet envelopes explicitly reject before funding review, without restricting contract authority. Authenticate runtime/governance/pause/main/residual/control snapshots, prepare exact added-L versus new-L floors and custody/review commitments, retain the original expiry and exact calldata, and simulate freshly before publication. Healthy market movement is re-evaluated rather than treated as a geometry change. No automatic force, floor choice, signing, deadline extension, intent deletion or Parked-state support. Actual provider/manual rehearsal and wider adapters remain open. [Both-flow scope](reports/moving-market-flows-20261106/INPUT_MATRIX.md).
   - [Retry diagnostics](reports/exact-lp-engine-20261106/VERIFICATION.md): rebalance/compound/harvest rows expose matching journal-backed retry waits and return not_due before simulation. Pending/lifecycle/authority remain first; missing timing staysnull/unavailable. Decimal-string legacy counters normalize through the existing parser. No added RPC, journal writes, signing or worker-policy change; universal report and actual hosting/provider qualification remain open.
+  - [Operator management extension](reports/operator-management-20261109/REVIEW.md): seven source-only typed custody/terminal actions, automatic exact request/hash inputs, confirmed/latest controls, unchanged calldata/gas simulations, explicit batch-budget partial payouts, current-owner/cursor inclusion limits, sanitized blockers and durable exclusive publication. Existing Active B/C/D unchanged. No Solidity/profile/authority/service/site/signing change; actual operator/provider/target-gas and independent acceptance remain open.
 
   </details>
 
@@ -721,6 +722,18 @@ The data and services behind the app.
 
   - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
   - [Holder input hardening](reports/system-adversarial-20261026/ops-input/VERIFICATION.md) caps reads before allocation, rejects duplicate/nonfinite/overflow JSON, normalizes parser limits and sanitizes argument errors.24affected methods pass,12new included once; valid flags/static help/exclusive outputs and unresolved-escrow/nonapproval semantics remain. Actual holder/escrow rehearsal still required.
+
+  </details>
+
+<a id="task-operator-management-preparation"></a>
+
+- [x] **[Prepare unsigned custody and holder-return operations](docs/MANUAL_LP_PREPARATION.md)** - Implemented. Typed direct-EOA preparations now cover park, resume, residual-only closure and all four collective-return steps. Exact inputs/hashes are read automatically; caller floors/expiry, frozen gas, phase permissions and two-snapshot controls remain explicit. Source completion is separate from live operator/provider/gas qualification.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Source-scoped review and verification](reports/operator-management-20261109/REVIEW.md): 41 new focused methods plus29 existing affected B/C/D checks, later overlapping CLI diagnostic correction, and seven independent offline ABI comparisons. No signing, nonce/journal changes, automatic batch queue or force fallback.
+  - Raw closes remain price-independent; guarded resume retains reviewed financial controls. Distribution uses the explicit reviewed gas budget and a count-only result, preserving every selected ID and current-owner rights. Late cursor/owner changes cannot be pinned by the existing ABI; operator revalidation and actual receipt reconciliation remain required.
 
   </details>
 
@@ -1543,4 +1556,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8fa2390473785d13350f6a47022bbb45132e17d367758f216c7a3f945b749a2c`.
+Snapshot SHA-256: `bfd8c5584558591e08c1d3866d2bc3db33f661f31896aee4fb76d62324be455f`.

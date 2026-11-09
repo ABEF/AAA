@@ -1,0 +1,66 @@
+{
+  "kind": "independent_management_common_publication_delta_final_review",
+  "source_sha256": {
+    "zzz_ops/management_review.py": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+    "tests_python/test_management_review.py": "a87627869f0b21a0a8aed31d2337c89ed5ebc6d68d7a8419f5697678c6d566c6"
+  },
+  "scope": [
+    "Static operator_effect descriptions",
+    "Exclusive existing-output refusal",
+    "Uncertain artifact publication after linking/durability failure"
+  ],
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "MANUAL-DELTA-01",
+      "disposition": "Known existing output now reports output_may_exist=true; test assertion added. Early refusal still performs no preparation/RPC."
+    }
+  ],
+  "reviewed_behavior": {
+    "operator_effect_descriptions_consistent_with_contracts": true,
+    "post_link_durability_failure_reports_uncertainty_without_claiming_no_artifact": true,
+    "transaction_submitted_always_false": true,
+    "existing_or_uncertain_output_not_deleted_or_overwritten": true,
+    "output_may_exist_expression_truth_table": [
+      {
+        "publishing": false,
+        "known_existing_output": true,
+        "expected_output_may_exist": true,
+        "actual": true
+      },
+      {
+        "publishing": true,
+        "known_existing_output": false,
+        "expected_output_may_exist": true,
+        "actual": true
+      },
+      {
+        "publishing": false,
+        "known_existing_output": false,
+        "expected_output_may_exist": false,
+        "actual": false
+      },
+      {
+        "publishing": false,
+        "known_existing_output": false,
+        "expected_output_may_exist": false,
+        "actual": false
+      }
+    ],
+    "output_flag_ast": "BoolOp(op=Or(), values=[Name(id='publishing', ctx=Load()), BoolOp(op=And(), values=[Call(func=Name(id='isinstance', ctx=Load()), args=[Name(id='exc', ctx=Load()), Name(id='ManagementBlocked', ctx=Load())], keywords=[]), Compare(left=Attribute(value=Name(id='exc', ctx=Load()), attr='code', ctx=Load()), ops=[Eq()], comparators=[Constant(value='existing_output_preserved')])])])"
+  },
+  "abi_reuse": {
+    "record": "abi-crosscheck-final-current.json",
+    "record_sha256": "803d7ef1b89290e01f8104810e5759ff05f8c605730cb81844e1283f34feddb4",
+    "reuse_basis": "Both adapter source hashes remain identical; seven ABI cases reused without rerunning."
+  },
+  "invalid_prior_review_attempt": {
+    "file": "design-review-publication-delta.json",
+    "sha256": "11c525d3c1dd686e0433397cfb78686fbc59f99d2416b76bd3281c3aba805fbc",
+    "reason": "A text-matching review helper raced the applied fix and incorrectly classified equivalent Boolean formatting. Superseded by actual AST inspection and the final review here."
+  },
+  "production_or_rpc_code_executed": false,
+  "tests_repeated": false,
+  "source_or_environment_edits": false,
+  "production_approved": false
+}

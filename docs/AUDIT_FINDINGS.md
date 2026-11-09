@@ -188,6 +188,16 @@ signing boundaries preserved. The unmodified selected pool could not deploy the
 required LP under existing guards; seeded-depth successes do not close market /
 route qualification. Historical reports keep their original evidence scope.
 
+## Operator management preparation
+
+The [unsigned management follow-up](../reports/operator-management-20261109/REVIEW.md)
+implements previously missing park/resume/residual-close and terminal-return
+adapters. It handles exact custody inputs, phase-specific pause/preparation,
+current-owner/cursor drift, gas-sensitive partial payouts and uncertain durable
+publication without signing or automatic fallback. Known local blockers remain
+distinct from opaque RPC failure. Actual operator/provider/gas acceptance,
+contract-wallet envelopes and Parked forced-D preparation remain open.
+
 ## Provenance and unresolved findings
 
 The [consolidation record](../reports/project-consolidation-20261103/REVIEW.md)

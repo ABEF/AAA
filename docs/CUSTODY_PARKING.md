@@ -6,7 +6,7 @@ upkeep cannot run. Parking pays no holder or administrator. The separate
 [collective holder exit](HOLDER_COLLECTIVE_EXIT.md) permanently ends LP operation
 and returns actual ETH/ZZZ to NFT owners; no external custodian receives principal.
 
-Fresh [Position6](POSITION_V7.md) uses None0/Active1/reserved Outbound2/Dormant3/
+Fresh [Position7](POSITION_V7.md) uses None0/Active1/reserved Outbound2/Dormant3/
 Parked4/Exited5. Parking is reversible; Exited is terminal. Bucket identity,
 NFT shares, membership and accrued rights remain attached; main LP token ID and residual association become
 zero and returned principal is attributed to that bucket's idle ledger. Closed
@@ -30,9 +30,11 @@ handmade hash. A main increase or residual change invalidates this stronger mani
 
 The request binds bucket/pool, exact main LP token ID, total shares, contribution USD,
 custody epoch, parking nonce, ordered accounting currencies, raw close minima,
-deadline and nonzero review hash. At least one raw minimum must be positive for
-a genuinely one-sided LP. Deadline must be current and no more than ten minutes
-ahead. The review hash records provenance, not automatic independent approval.
+deadline and nonzero review hash. Current runtime permits explicit zero for
+BOTH raw minima, including one-sided LP; this accepts the actual returned mix.
+Every positive supplied minimum remains binding. Deadline must be current and
+no more than ten minutes ahead. The review hash records provenance, not automatic
+independent approval. Historical runtimes can differ despite sharing the tuple.
 
 The request must still match those live fields. LP replacement, changed shares,
 contributions, pool/currencies, epoch or nonce can invalidate it. It does not bind
@@ -46,6 +48,25 @@ Governance may advance `invalidateParking(bucket)` to invalidate unused request
 data. To end a preparation notice, use `AccessController.cancelPreparation(hash)`.
 Neither action restarts an LP or reverses completed work. There is no custody
 `cancel`, `approve` or external-address `exit` function in this release.
+
+## Prepare the exact call without signing
+
+The [typed management preparer](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections)
+supports `park`, `close_residual` and guarded `resume`. Supply exact reviewed raw
+floors or positive new-L minimum, bucket/destination and original expiry. It
+fetches the14-word parking manifest, physical portfolio fingerprint, current
+shares, nonce/epoch and source-bound review hash; no manual hash substitution is
+needed. Raw close remains price-independent and does not require ordinary pool
+operations readiness. Park can drain during preparation; residual-only close
+requires preparation to be inactive. Both preserve the actual paused state.
+
+Resume must be prepared separately while unpaused. It retains normal prices,
+loss/idle/deployment guards and accepts the same or another compatible reviewed
+pool; it is not an automatic force fallback. Deposits-disabled/operations-enabled
+destinations can receive resumed existing LP. Existing bucket aliases cannot be
+reassigned. The tool neither signs nor changes pause state, mode or pending work.
+After actual execution inspect the receipt and source state before preparing
+the next step. [Current verification](../reports/operator-management-20261109/REVIEW.md).
 
 ## Exact price-independent close
 

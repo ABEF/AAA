@@ -264,12 +264,8 @@ class Reader:
             'compound_reserves_raw':list(map(str,reserves)),'financial':financial,'timing':timing,'swap':swap,'routing':routing}
 
 
-def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
-    """Prepare one explicitly selected call, or fail without a partial draft."""
-    clock=clock or time.time;catalog=catalog or offline.Catalog()
-    input_references=(read_config,policy,request)
-    original=[digest(value) for value in input_references]
-    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+def validate_policy(policy,catalog):
+    """Authenticate shared manual-review inputs without choosing operating limits."""
     offline._keys(policy,{'schema','projection_sha256','reference_sha256','source_snapshot_sha256',
         'governance','extra_contracts','fee_policy'})
     if type(policy['schema']) is not int or policy['schema']!=1:raise ValueError('Unsupported manual policy schema')
@@ -284,6 +280,16 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
     gas=integer(fee['max_gas_limit'],positive=True);integer(fee['max_gas_price_wei'],positive=True)
     integer(fee['max_network_fee_wei'],positive=True);offline._hex(fee['review_hash'],32,nonzero=True)
     if not 21000<=gas<=MAX_GAS or fee['estimate_includes_all_fees'] is not True:raise ValueError('Bounded reviewed complete fee policy is required')
+    return governance,fee
+
+
+def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
+    """Prepare one explicitly selected call, or fail without a partial draft."""
+    clock=clock or time.time;catalog=catalog or offline.Catalog()
+    input_references=(read_config,policy,request)
+    original=[digest(value) for value in input_references]
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+    governance,fee=validate_policy(policy,catalog)
     with request_scope(Budget(seconds=MAX_SECONDS,calls=MAX_CALLS,posts=1536)):
         p=Projection(config,rpc=rpc,clock=clock)
         if (p.accounting_version,p.custody_version,p.fee_intake_version)!=(7,5,1):raise ValueError('Only explicit accounting7/custody5 is supported')

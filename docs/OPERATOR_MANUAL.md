@@ -98,7 +98,7 @@ Fresh7 LP rewards use separate whole-unit individual and collective books. Every
 
 ## Find the right procedure
 
-Use [current profile identities](POSITION_V6.md) and [consolidated findings](AUDIT_FINDINGS.md)
+Use [current profile identities](POSITION_V7.md) and [consolidated findings](AUDIT_FINDINGS.md)
 when an older report conflicts with a procedure. Source publication does not
 upgrade old services/sites or make an offline reviewHash a simulated transaction.
 
@@ -133,9 +133,42 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Run the current selected-pool read-only fork harness | [Development and fork qualification](DEVELOPMENT.md#fork-and-operating-qualification) |
 | Publish poplint without changing the demo | [Demo/integration environment map](SITE_ENVIRONMENTS.md) |
 | Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
+| Prepare park/resume/residual close or each holder-return step without signing | [Typed custody and terminal management](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections) |
 | Prepare a reviewHash and exact ordered explorer inputs without signing | [Offline review preparation](#prepare-and-check-an-offline-reviewhash) |
 | Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
+
+## Prepare custody and holder-return operations
+
+Use the [seven-action preparer](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections)
+to fetch exact inputs/hashes and simulate one unsigned governance operation:
+park, resume, close only the residual, start collective exit, close one exit
+bucket, allocate or distribute principal. It supports current accounting7/
+custody5 direct empty-code governance wallets only; contract/delegated-wallet
+envelopes remain manual Explorer/Safe work. It changes no contract authority.
+
+```text
+python scripts/prepare-operator-management.py --read-config READ_CONFIG.json --policy MANUAL_POLICY.json --selection SELECTED_ACTION.json --output NEW_REVIEW.json
+```
+
+The complete [input table and JSON example](MANUAL_LP_PREPARATION.md#prepare-one-management-action)
+distinguish raw ETH/ZZZ floors, new-L minimum, exact NFT IDs and ordinal count.
+You choose them; the tool never guesses floors, routes or force. Park and raw
+residual close stay paused and leave attributed idle; only park permits draining
+during preparation. Resume requires unpaused Parked state and retains normal
+financial/deployment guards. Closing the residual is not consolidation into main.
+Existing B/C/D reviews remain Active-only; Parked emergency force remains the
+separate [manual contract procedure](CUSTODY_PARKING.md#explicit-raw-floors-and-forced-re-entry).
+
+The two simulations preserve exact calldata and frozen gas, with known blockers
+reported separately from opaque RPC failures. Manual reviews retain25% estimate
+headroom. Distribution uses the reviewed block-bounded gas budget and may pay
+only a subset: simulated counts do not identify a paid prefix. Inspect actual
+receipts/ledgers, then prepare the next explicit batch. No tool submits, pauses,
+unpauses, manages pending nonces or starts a future action automatically. The
+artifact expiry is not a contract deadline on begin/allocation/distribution;
+actual cursor/beneficiary are determined at inclusion. Readiness remains false.
+See [verification](../reports/operator-management-20261109/REVIEW.md).
 
 ## Unsigned activation gas settings
 
@@ -160,14 +193,16 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 
 ## Current accounting7 deployment boundary
 
-Fresh source uses Vault.ACCOUNTING_VERSION6, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
+Fresh source uses Vault.ACCOUNTING_VERSION7, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")`.
-Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V6.md).
-Normal size/runtime gates, scoped offline checks and local actual-v4-core
-integration pass within their [current Entry3 source scope](../reports/direct-entry-v3-20261103/VERIFICATION.md).
-Live dependency/operating qualification and independent review remain open.
+Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
+The [current normal/static source evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
+and [actual Entry3 follow-up](../reports/source9-actual-entry-20261109/VERIFICATION.md)
+retain their distinct source, fixture and execution limits. Historical Entry3
+reports do not qualify later runtime changes. Live dependency/operating
+qualification and independent review remain open.
 Eight Position words remain; statuses are None0/Active1/Outbound2/Dormant3/
 Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
 
@@ -596,8 +631,9 @@ converter policy and caller minimums; the strongest relevant floor always wins.
 No installed service was changed. Direct Manager swaps/buybacks additionally
 require a constructible configured target range through the full context check;
 near TickMath bounds that can stop execution. Inspect configuration and simulated
-failure instead of bypassing prices/floors. Separate LP/royalty converters retain
-their own all-in conversion limits. See [fee-adjusted quality](EXECUTION_QUALITY.md)
+failure instead of bypassing prices/floors. The LP reward converter retains its
+own all-in conversion limit. Current royalties remain in their received currency
+and have no converter. See [fee-adjusted quality](EXECUTION_QUALITY.md)
 for exact fee/rounding scope, 2% gross-floor interaction and recovery boundaries.
 
 ### Qualify current routing gas and telemetry
@@ -645,10 +681,10 @@ network gas separate. Never assume an old default is the current on-chain value.
 | Change | Exact current control | Preserve / recover |
 | --- | --- | --- |
 | Contribution or maintenance limit | Budget `setLossLimits(uint16 contribution,uint16 maintenance)` | Read both current values; preserve the other when changing one. Captured per-operation policy and caller-reviewed maxima never relax automatically. The retired custody-approval floor is not a current control. |
-| LP or royalty conversion limit | Respective converter `setConversionLossBps(uint16)` | Each converter is independent. Keep stronger caller minima, fresh independent quotes and exact source/native backing. |
+| LP reward conversion limit | LP reward converter `setConversionLossBps(uint16)` | Keep stronger caller minima, fresh independent quotes and exact source/native backing. Royalties are claimed in original currencies. |
 | Add v4 conversion pool | Parent `addV4Route(Policy)` | Static hookless exact-input, pinned manager/StateView/assets, immutable parent output; separate from principal pool admission. |
 | Stop/reopen conversion route | Parent `setRouteEnabled(id,bool)` | Stop has no dependency reads. Reopen requires exact dependency validation. Reconcile submitted transactions before replacing worker config. |
-| Read current conversion limit | Royalty reporting schema 2 and reviewed converter pin | Reports current cap and hard maximum separately. Legacy schema 1 stays fixed-1%; no missing-getter fallback. |
+| Read current LP conversion limit | Pinned LP converter `conversionLossBps()` and `MAX_LOSS_BPS()` | Read actual operating cap and hard maximum; never substitute old royalty-reporting fields or a guessed default. |
 
 Verify previous/new events and getters, then regenerate current reviews. An
 ordinary pause allows policy changes; preparation/canonical locks and reentry do
@@ -867,7 +903,7 @@ immutable Manager/core/state/PosM/Permit2/router graph and the Balancer math chi
 liquidity across ranges. Stable `portfolioFingerprint` excludes liquidity so
 normal contributions do not reset samples. Custody reviews use the separate
 liquidity-sensitive `executionPortfolioFingerprint`. Parking/move/holder return
-must close both legs; canonical export requires no live residual. [Profile](POSITION_V6.md),
+must close both legs; canonical export requires no live residual. [Profile](POSITION_V7.md),
 [range guide](RANGE_POLICY_UPDATES.md), [current source qualification](../reports/optional-portfolio-20261030/VERIFICATION.md).
 
 Every ordinary replacement, including single mode, checks that the new main
@@ -1551,7 +1587,7 @@ Changing one control never implicitly re-enables another stopped source/pool/rou
 1. Only ETH and the reviewed ZZZ identity are contribution inputs. Do not add USDC, USDG or WETH as user sources. Marketplace royalty currencies are a separate policy.
 2. Bind the initial ZZZ identity once before sealing using `ActivationAssets.configureZZZ(token,codeHash,reviewHash)` after reviewing its exact runtime, decimals, transfer behavior and two independent USD sources. The deployed identity cannot be replaced. An issuer migration uses terminal collective holder return and a fresh deployment; old ownership/reward records are not erased.
 3. To stop either input, append its disabled `setAsset` policy; this stop requires no healthy token/feed. Re-enabling requires full review/validation. The helper cannot enable a third contribution currency.
-4. Current principal destinations remain native ETH/fixedZZZ only. A new execution venue does not admit another input or target pair. Pin its exact venue/code/prices, simulate the complete direct/native operation and verify captured contribution floors before admission. Optional royalty conversions have their separate routes and permissions. Pool/route reconfiguration does not reopen a disabled source.
+4. Current principal destinations remain native ETH/fixedZZZ only. A new execution venue does not admit another input or target pair. Pin its exact venue/code/prices, simulate the complete direct/native operation and verify captured contribution floors before admission. Earned LP conversion has separate routes and permissions; current royalties have no conversion route. Pool/route reconfiguration does not reopen a disabled source.
 
 Current native accounting uses explicitly admitted ETH at `address(0)`, reviewed two-source USD pricing and exact call value. It is never an ERC20 approval target. Re-enabling either existing input does not admit a new LP or royalty currency. Only native ETH and the fixed reviewed ZZZ may be user inputs. Actual Vault venues, prices and preparation remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
@@ -1565,11 +1601,12 @@ Choose the actual target first; there is no Entry3 `addRoute` call.
   `Balancer.configureExecutionPools(bytes32[] pools,bytes32 reviewHash)` from
   governance. The supplied list is the reviewed bounded list; an empty list
   disables swaps, with no unsafe fallback. This does not migrate the LP.
-- **Earned LP or royalty conversion:** use that specific converter's
+- **Earned LP conversion:** use the pinned LP converter's
   `addRoute(RoutePolicy)` or `addV4Route(Policy)`, qualify the returned immutable
-  route ID, then update the matching converter worker's selected route and
+  route ID, then update the matching LP-conversion worker's selected route and
   `setRouteEnabled(oldId,false)` when appropriate. Follow [typed conversion](TYPED_V4_ROUTES.md)
-  and the ledger's [LP](LP_ETH_SETTLEMENT.md) / [royalty](ROYALTY_SETTLEMENT.md) procedure.
+  and [LP settlement](LP_ETH_SETTLEMENT.md). Current [royalties](ROYALTY_SETTLEMENT.md)
+  are paid in their original currency; there is no royalty converter or worker.
   Entry3 API source rows carry no route ID or Entry executor pin.
 
 Immediate governance authorization has no timelock. Chain policy setters are
@@ -2348,7 +2385,7 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | Hide a frontend action | That UI path only | Direct contract calls continue. Restore UI only after real backend/on-chain readiness. |
 | Stop an API/indexer/keeper process | That service's new work | On-chain custody/rights persist; another authorized keeper/direct caller may operate. Recover durable state before restart. |
 | Revoke keeper | New authorized keeper actions from that address | Permissionless claims, transfers and allowed fee synchronization remain. Governance must authorize a reviewed replacement. |
-| Disable source asset | Affected contributions | Existing LP/funded claims remain. Reward/royalty conversion routes are separate controls; this stop does not disable them. Re-enable only after validation and fresh quotes. |
+| Disable source asset | Affected contributions | Existing LP/funded claims remain. Earned LP conversion has separate controls; royalty claims retain their original-currency rules. Re-enable only after validation and fresh quotes. |
 | Converter `setEnabled(false)` / `setRouteEnabled(id,false)` | New conversion through that converter/route | Existing earned currencies/credits stay backed; receipts and source claims keep their separate permissions. Review routes/runtime/prices and full simulation before re-enabling; an enabled getter alone is no qualification. |
 | `NFT.setMintPaused(true)` | New NFT mints and new randomness requests | Governance only. Original fulfillment/finalize, existing NFT rights and LP work retain their own guards. Resume with `false`; global/lifecycle controls remain. |
 | `Buyback.setOperatingTradeUSD(0)` | New buyback executions only | Immediate governance; no price/reserve query. Resize/remove keeper buyback tasks to avoid deliberate simulation failures. Accrued reserves stay classified; reopen with a reviewed positive limit no higher than `maxTradeUSD`. Preparation/canonical locks still apply. |

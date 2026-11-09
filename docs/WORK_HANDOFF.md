@@ -22,16 +22,20 @@ mock feeds, synthetic depth or ephemeral HTTP origins as operating configuration
 Preserve historical profiles and every existing lab/journal. See
 [source9 procedure](SOURCE9_WEBSITE_PROFILE.md).
 
-[Checkpoint2 and manual LP preparation](../reports/checkpoint2-manual-20261107/REVIEW.md)
-add exact raw-tree earnings snapshots and typed unsigned Active-state B/C/D
-management reviews for direct empty-code governance wallets only. Contract-wallet
-envelopes are explicitly unsupported by this tool; contract authority is unchanged.
-Formats1/2 stay explicit; a complete raw rolling day and
-operator artifact approval remain required. Manual reviews preserve caller inputs,
-allow healthy market changes through a second exact simulation, and reject changed
-custody/governed controls. They never sign, send, choose floors, force a fallback
-or alter a journal. No Solidity/runtime/profile, service/site/Anvil/signing change.
-Actual providers, wallet execution, host/lineage/archive qualification stay open.
+The [unsigned operator management extension](../reports/operator-management-20261109/REVIEW.md)
+adds typed park/resume/residual-only close and all four collective-exit steps for
+direct empty-code governance EOAs. It auto-reads exact custody/ledger hashes,
+preserves explicit floors/expiry and simulates frozen calldata/gas at confirmed
+state and a later canonical tip. Distribution uses the explicit reviewed batch
+budget and reports a count, never a paid prefix or guaranteed beneficiaries.
+Local blockers/uncertain output publication are explicit; no signer, journal,
+nonce reservation, queue, force fallback or authority change is added. Existing
+Active B/C/D and checkpoint2 retain their original scope; Parked forced-D and
+contract-wallet envelopes still require separate manual preparation. Seventy
+distinct focused checks plus an overlapping final CLI diagnostic recheck pass
+with injected RPC; seven encodings match offline Cast. These are not live wallet,
+provider, target-gas or operating acceptance. Solidity/runtime/profile, sites,
+services, existing Anvil/journals and paused heartbeat stay unchanged.
 
 [Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion

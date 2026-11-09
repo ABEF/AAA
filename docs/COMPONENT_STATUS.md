@@ -65,12 +65,19 @@ USD-loss promise. Source currency stays source currency until actually converted
 
 Rarity affects royalties only; color/pattern affect neither ledger. Exited NFTs
 retain transfers, earned rewards and future royalty rights; unpaid principal
-follows current ownership until permanently marked paid. Current V6 canonical
+follows current ownership until permanently marked paid. Current V9 canonical
 replacement cannot run after exit starts because its importer does not carry
 terminal payout accounting. No integrated bridge, remote ledger or post-halt
 recovery is provided. [Exit details](HOLDER_COLLECTIVE_EXIT.md).
 
 ## Services and evidence
+
+The [typed operator preparers](MANUAL_LP_PREPARATION.md) authenticate current
+governance and custody, fetch request hashes, and simulate exact unsigned manual
+management and collective-return steps. They are not an executor or keeper;
+batch gas/output limits and operator receipt reconciliation remain explicit.
+[Source-scoped verification](../reports/operator-management-20261109/VERIFICATION.md).
+
 
 Keeper scheduling, simulation, nonce/receipt recovery and monitoring are off-chain;
 contracts enforce principal rules. Indexer/API use confirmed state, explicit
