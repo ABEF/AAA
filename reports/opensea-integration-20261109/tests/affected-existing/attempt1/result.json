@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "source_unchanged_before_during_after": true,
+  "original_artifacts_unchanged": true,
+  "finished_utc": "2026-11-09T03:36:54Z",
+  "qualification": "Local normal engineering regression evidence; not actual provider/target-gas/operating/OpenSea approval"
+}

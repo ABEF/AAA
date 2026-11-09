@@ -1,5 +1,12 @@
 # Verify earnings-history ingestion
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 The read-only `frontend_api.history_audit` command compares a local index with a
 separately reviewed RPC provider. It checks all configured emitters, including
 the seven required by [earnings replay](EARNINGS_HISTORY.md). It detects omitted,

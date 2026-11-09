@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
@@ -623,7 +624,8 @@ contract RoyaltyFactoryAudit20261105Test is Test {
         emit log_named_uint("actual controller constructor gas including immutable code data",before-gasleft());
         ZZZProtocolPolicy policy=new ZZZProtocolPolicy(address(control),address(0x7ea5));
         control.bindProtocolPolicy(address(policy));
-        before=gasleft(); ZZZNFT nft=new ZZZNFT(address(control),"ipfs://exact-audit/");
+        ZZZNFTMetadata renderer=new ZZZNFTMetadata(address(control));
+        before=gasleft(); ZZZNFT nft=new ZZZNFT(address(control),"ipfs://exact-audit/",address(renderer));
         emit log_named_uint("actual NFT constructor gas including code-backed exact royalty ledger",before-gasleft());
         assertEq(nft.royaltyRewards().nft(),address(nft));
         assertEq(nft.royaltyRewards().canonicalController(),address(control));
@@ -643,7 +645,7 @@ contract MintSaleEndReviewAudit20261105Test is Test {
         vm.warp(1000); access=new MockAccess();
         ProtocolPolicyFixture.bind(address(access),address(this));
         vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        collection=new ZZZNFT(address(access),"");
+        collection=new ZZZNFT(address(access),"", address(new ZZZNFTMetadata(address(access))));
         access.bind(Ids.VAULT,address(vault)); access.bind(Ids.NFT,address(collection));
         access.bind(Ids.VAULT_CANONICAL,address(new ZZZVaultCanonical(address(access),address(vault),block.chainid)));
         provider=new MockVRF();

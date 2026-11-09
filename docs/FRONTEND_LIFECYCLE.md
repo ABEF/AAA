@@ -8,8 +8,15 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 
 Configuration and read responses use **schema 2**. The current release explicitly
 selects `accounting_version:7`, explicit custody5/ProtocolPolicy1/fee-intake1,
-original-currency royalty reporting5, LP-allocation1 and
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. The Position codec retains eight words
+original-currency royalty reporting5 and LP-allocation1. On accounting7,
+omitted/default1 `mint_integration_version` retains
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`; explicit integer2 opts into
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10` and requires independent
+`seadrop_mint`/`seadrop` address/runtime pins. The reader verifies
+NFT.seaDropMint(), helper nft/access/version1, fixed SeaDrop and its code hash at
+the SAME canonical block. Boolean/unknown flags and non7/2 combinations reject.
+This is implemented read/owned-claim source support, not website/service adoption.
+The Position codec retains eight words
 and Exited5/Dormant3/Parked4. Require the complete independently reviewed runtime
 graph in the [read API](FRONTEND_API.md#current-deployment-profile), including
 Rewards.canonicalModule(), its fixed access/rewards parents and Handoff.moduleAt(3).
@@ -32,7 +39,11 @@ reward balances. Those can be unavailable after backing has moved. It still
 requires valid pinned deployment bindings, lifecycle getters and a fresh canonical
 snapshot. Missing/malformed/unknown values, inconsistent phase/state combinations,
 wrong origins or helper owners fail closed. No old-interface or `latest` fallback
-exists, and all HTTP error bodies remain sanitized.
+exists, and all HTTP error bodies remain sanitized. Under explicit mint2,
+`minting.channel` is OpenSea, direct transaction preparation is false and actual
+`available` is null with unverified stage eligibility. Collection sale/control
+observations cannot establish a wallet's SeaDrop phase/proof/payer allowance.
+Mutable sale configuration does not gate LP or reward-claim reads.
 
 `lifecycle` reports:
 
@@ -72,9 +83,12 @@ previous deployments. With the optional [complete predecessor configuration](FRO
 the API now verifies same-chain retirement/activation links and replays all prior
 LP/royalty claims. Without it, imported successor lifetime totals remain
 unavailable, even if current history contains nonzero claims. Invalid configured
-lineage fails closed; zero and partial totals are never substituted. Current V9 source
-and successor require accounting7/LP-allocation1; historical6/V8, V5 accounting5/4 andV4 accounting3
-retain their separately pinned profiles. They must
+lineage fails closed; zero and partial totals are never substituted. Accounting7
+source/successor reads require LP-allocation1 and each peer's explicit mint
+profile: omitted/default1 is V9, explicit2 is V10. The successor's mint flag is
+never inherited by an older peer. Actual current V10 handoff rejects V9 records;
+reader profile support does not authorize cross-schema migration. Historical6/V8,
+V5 accounting5/4 andV4 accounting3 retain their separately pinned profiles. They must
 use the same canonical schema and codec; historical
 reader support does not add cross-codec import compatibility.
 

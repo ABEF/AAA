@@ -1,0 +1,177 @@
+Compiling 115 files with Solc 0.8.26
+Solc 0.8.26 finished in 177.54s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:80:13:
+   |
+80 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:88:36:
+   |
+88 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+  --> src/ZZZProtocolPolicy.sol:98:27:
+   |
+98 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+   |                           ^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:59:5:
+   |
+59 |     function payoutGas() external view returns(uint32){return gasLimits.payoutGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+  --> src/ZZZProtocolPolicy.sol:98:44:
+   |
+98 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+   |                                            ^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:60:5:
+   |
+60 |     function sourceCallGas() external view returns(uint32){return gasLimits.sourceCallGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+  --> src/ZZZProtocolPolicy.sol:98:65:
+   |
+98 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+   |                                                                 ^^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:61:5:
+   |
+61 |     function royaltySyncGas() external view returns(uint32){return gasLimits.royaltySyncGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:137:13:
+    |
+137 |             Records.CanonicalAsset memory r;address token=assets[row];
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:159:9:
+    |
+159 |         Records.CanonicalNode memory r=rewards.canonicalNode(row-nftTotal+1);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:150:13:
+    |
+150 |             Records.CanonicalSeed memory r=rewards.canonicalSeed(id);
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:159:9:
+    |
+159 |         Records.CanonicalNode memory r=rewards.canonicalNode(row-nftTotal+1);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:181:13:
+    |
+181 |             Records.CanonicalAsset memory r=abi.decode(record,(Records.CanonicalAsset));
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:201:9:
+    |
+201 |         Records.CanonicalNode memory r=abi.decode(record,(Records.CanonicalNode));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:196:13:
+    |
+196 |             Records.CanonicalSeed memory r=abi.decode(record,(Records.CanonicalSeed));
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:201:9:
+    |
+201 |         Records.CanonicalNode memory r=abi.decode(record,(Records.CanonicalNode));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZFeesCanonical.sol:138:5:
+    |
+138 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> src/ZZZMembership.sol:105:5:
+    |
+105 |     function canonicalAssetCount() external view returns (uint256) { return 0; }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZMembership.sol:106:5:
+    |
+106 |     function canonicalActivate() external canonicalOnly {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:34:5:
+   |
+34 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZNFTCanonical.sol:123:5:
+    |
+123 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZRewardsCanonical.sol:125:5:
+    |
+125 |     function canonicalSettle() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZRewardsCanonical.sol:236:5:
+    |
+236 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:202:5:
+    |
+202 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:335:5:
+    |
+335 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-11-09T03:05:20.943323Z  WARN traces::etherscan: etherscan config not found
+
+Ran 11 tests for test/SeaDropCanonical.t.sol:SeaDropCanonicalTest
+[FAIL: InvalidConfiguration()] testActualCoordinatorRejectsV9SchemaBeforePreparingAnImporter() (gas: 12815088)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testActualThreeStageIssuanceAndTransfersExportOriginalRecipients() (gas: 4482839)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testCompleteNFTCodecImportPreservesOwnersDrawsQuotasAndAllArtworkRows() (gas: 4482795)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testDifferentPinnedSeaDropRuntimeRejectsCanonicalPeer() (gas: 4482861)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testDuplicateAllowlistRecipientCannotBeRestoredAsAnotherMint() (gas: 4482685)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testHalfBoundAndDifferentPlanOrPriceAreRejectedBeforeHeaderImport() (gas: 4482993)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testIncompleteImportCannotActivateOrValidateUnrestoredMintCounts() (gas: 4482597)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testInvalidStageAndZeroOriginalRecipientRollbackWithoutConsumingRow() (gas: 4482509)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testLegacyTenWordNFTRecordRejectsAndDoesNotAdvanceImportCursor() (gas: 4482751)
+[PASS] testPendingOriginalRandomnessBlocksSourceCaptureWithoutChangingQuotaBooks() (gas: 1225537)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testSourceBooksSurviveMockCancelledPartialNFTImport() (gas: 4482883)
+Suite result: FAILED. 1 passed; 10 failed; 0 skipped; finished in 41.57ms (151.33ms CPU time)
+
+Ran 1 test suite in 50.99ms (41.57ms CPU time): 1 tests passed, 10 failed, 0 skipped (11 total tests)
+
+Failing tests:
+Encountered 10 failing tests in test/SeaDropCanonical.t.sol:SeaDropCanonicalTest
+[FAIL: InvalidConfiguration()] testActualCoordinatorRejectsV9SchemaBeforePreparingAnImporter() (gas: 12815088)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testActualThreeStageIssuanceAndTransfersExportOriginalRecipients() (gas: 4482839)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testCompleteNFTCodecImportPreservesOwnersDrawsQuotasAndAllArtworkRows() (gas: 4482795)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testDifferentPinnedSeaDropRuntimeRejectsCanonicalPeer() (gas: 4482861)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testDuplicateAllowlistRecipientCannotBeRestoredAsAnotherMint() (gas: 4482685)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testHalfBoundAndDifferentPlanOrPriceAreRejectedBeforeHeaderImport() (gas: 4482993)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testIncompleteImportCannotActivateOrValidateUnrestoredMintCounts() (gas: 4482597)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testInvalidStageAndZeroOriginalRecipientRollbackWithoutConsumingRow() (gas: 4482509)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testLegacyTenWordNFTRecordRejectsAndDoesNotAdvanceImportCursor() (gas: 4482751)
+[FAIL: ERC721InsufficientApproval(0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, 70515168225693911966170291983040574336935200588791582653794956849771885417577 [7.051e76])] testSourceBooksSurviveMockCancelledPartialNFTImport() (gas: 4482883)
+
+Encountered a total of 10 failing tests, 1 tests succeeded

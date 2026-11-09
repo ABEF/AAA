@@ -1,5 +1,12 @@
 # Confirmed wallet inventory and lifetime claims
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 `frontend_api/history.py` extends the unhosted
 [confirmed read API](FRONTEND_API.md) using the existing event indexer's SQLite
 database. It implements complete current wallet NFT inventory and cumulative

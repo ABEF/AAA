@@ -107,7 +107,7 @@ rebalancing remain disabled. Existing principal remains nonredeemable.
 | --- | --- |
 | `Migration.resume(bucket,pool,minimumLiquidity,deadline)` | Unpaused operating state before collective exit; enabled reviewed destination with the same native ETH/fixed-ZZZ pair, fresh prices/strategy and normal deployment/loss/idle guards. It may reuse the old pool. |
 | `Migration.beginCollectiveExit(reviewHash)` | Governance starts irreversible retirement while paused; close every bucket with reviewed raw minima, allocate principal and directly distribute ETH/ZZZ to current owners. A parked bucket contributes its attributed idle and designated compound. Follow the [bounded exit procedure](HOLDER_COLLECTIVE_EXIT.md). |
-| Same-chain whole-collection handoff | Before collective exit only, use compatible canonical V9 peers to preserve ownership, parked principal, both reward ledgers and exact classified backing. Follow the [handoff procedure](CANONICAL_HANDOFF.md). |
+| Same-chain whole-collection handoff | Before collective exit only, use compatible canonical V10 peers to preserve ownership, parked principal, both reward ledgers and exact classified backing. Follow the [handoff procedure](CANONICAL_HANDOFF.md). |
 
 Resume releases only designated compound and redeploys actual principal under
 the supported source path; ordinary optional residual creation remains bound to

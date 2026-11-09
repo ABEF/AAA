@@ -178,6 +178,8 @@ class Transactions:
     def prepare(self, payload: Any) -> dict[str, Any]:
         action, owner, claims = _parse(payload)
         p = self.projection
+        if action == 'mint' and p.mint_integration_version == 2:
+            raise TransactionInputError('Use OpenSea for this collection; direct mint transaction preparation is disabled')
         header, head, block = p._snapshot()
         self._fresh(header)
         expire_at(header['timestamp'] + min(p.max_age, MAX_SNAPSHOT_AGE), p.clock)

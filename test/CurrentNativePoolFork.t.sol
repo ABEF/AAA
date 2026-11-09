@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
@@ -210,7 +211,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
     function _system() private returns (System memory s) {
         access.beginBootstrap();
         s.vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        s.nft=new ZZZNFT(address(access),"ipfs://TEST_ONLY/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.vrf=new MockVRF();
+        s.nft=new ZZZNFT(address(access),"ipfs://TEST_ONLY/", address(new ZZZNFTMetadata(address(access)))); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.vrf=new MockVRF();
         s.membership=new ZZZMembership(address(access)); s.rewards=new ZZZRewards(address(access));
         s.fees=new ZZZFeeController(address(access));
         access.bind(Ids.VAULT,address(s.vault)); access.bind(Ids.NFT,address(s.nft));

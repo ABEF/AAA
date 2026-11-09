@@ -39,13 +39,21 @@ interrupted physical evidence uses the existing reset path; missing local
 reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
-Use explicit accounting7, portfolio2, maintenance3, confirmation3, Budget4,
-LP routing2, fee intake1, governance2, custody5, pricing2, Entry routing3 and
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9` with actual bindings. The historical accounting4
-[holder-exit keeper example](../keeper/config.holder-exit.example.json) is dry-run with placeholders,
-not a working deployment. Review the distinct fresh accounting7/schema16 inventory,
-its exact supported observer bindings, assets/routes/feeds/authorities and gas policy
-under [preflight](PRODUCTION_PREFLIGHT.md). Historical schema5/accounting3 records
+Current fresh release inventory is schema17/mint2/helper1/canonicalV10 with
+accounting7, portfolio2, maintenance3, confirmation3, Budget4, LP routing2,
+fee intake1, governance2, custody5, pricing2 and Entry routing3. It pins17modules,
+20callable helpers and2inert Factory data children through the current v15
+observer/validator. Review actual bindings, assets/routes/feeds/authorities and
+gas policy under [preflight](PRODUCTION_PREFLIGHT.md).
+
+Prior source9/schema16/V9 worker, checker and website configurations retain their
+explicit identities; do not silently relabel them as V10 or raise journal/profile
+versions. Backend source now offers opt-in mint_integration_version2 on
+accounting7 for V10 reads/owned claims, not an automatic keeper/health/site rollout.
+Qualify the complete matching worker/checker/source/configuration before operating
+a fresh release. This frontend flag is not a new keeper setting. The historical
+accounting4 [holder-exit keeper example](../keeper/config.holder-exit.example.json)
+is dry-run with placeholders, not a working deployment. Historical schema5/accounting3 records
 and schema6/accounting4 cannot be relabelled profile7; placeholder inventory remains blocked. LP routing2 additionally needs
 exact Manager/balancer/core/state runtime/parent pins and a reviewed execution
 catalog; source settings do not qualify a live service.
@@ -66,8 +74,10 @@ Read-only keeper preflight validates the actual helper/Budget runtime, capabilit
 bindings and policy before cooldown expires and with compounding disabled.
 
 Pin `contracts.principal_exit` and its runtime plus the Access runtime. The
-keeper checks fixed module/access ownership and custody version4. Existing
-accounting1/2/3 configurations, journals and the old example remain historical
+keeper checks fixed module/access ownership and its explicitly selected custody
+version. Fresh accounting7 requires custody5 and ordinary keeper principal
+distribution disabled; the historical custody4 example retains its own checks.
+Existing accounting1/2/3 configurations, journals and the old example remain historical
 profiles; do not edit their version to use new code. The served poplint artifact
 is still an unconfigured accounting3 build, not a deployed profile4 frontend.
 

@@ -1,0 +1,759 @@
+{
+  "originals_archived": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\opensea-integration-20261109-1579186\\function-docs-before",
+  "restored_string_count": 157,
+  "restored_strings": [
+    {
+      "path": "notes/contracts/ZZZAccessController/functions/canonicalTransition(uint8,bool,bool)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZPoolRegistry/functions/applyKeeperRange(bytes32,uint16)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZPoolRegistry/functions/applyKeeperRange(bytes32,uint16)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZActivationEntry/functions/sourceValue(bytes32,uint256,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZActivationEntry/functions/sourceValue(bytes32,uint256,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/isApprovedForAll(address,address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/paletteOf(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/patternOf(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/traitsReady(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/approve(address,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/approve(address,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/setApprovalForAll(address,bool)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/setApprovalForAll(address,bool)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/canonicalArtwork(uint8,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFT/functions/canonicalSuccessor()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZOracle/functions/sequencerFeed()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZOracle/functions/value(address,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)/inputs/2",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)/inputs/3",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/swapPlan(bytes32,uint256,uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/compoundPlan(uint256,uint256,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZStrategy/functions/compoundPlan(uint256,uint256,uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/activate(uint256,bytes32,uint256,uint256,uint128,uint256)/inputs/5",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/canonicalChainId()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/canonicalChainId()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/canonicalModule()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/canonicalModule()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/canonicalSend(address,address,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/collectFees(uint256,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/compound(uint256,uint128,uint256)/inputs/2",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/contributionUSD(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/homePoolId(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/homePoolId(uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/increase(uint256,uint256,uint256,uint128,uint256)/inputs/4",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/movePool(uint256,bytes32,uint128,uint256)/inputs/3",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/park(uint256,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/resume(uint256,bytes32,uint128,uint256)/inputs/3",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/sharesOf(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVault/functions/sharesOf(uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/increase(bytes32,uint256,uint256,uint256,uint128,uint256)/inputs/5",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)/inputs/6",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/spot(bytes32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/swap(bytes32,bool,uint256,uint256,uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/swap(bytes32,bool,uint256,uint256,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/swap(bytes32,bool,uint256,uint256,uint256)/inputs/4",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLiquidityManager/functions/ticks(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/accounted(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/accounted(address)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/accounted(address)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/canonicalModule()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/canonicalModule()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/canonicalState()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/canonicalState()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/dust(uint256,address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/dust(uint256,address)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/functions/releaseCompound(uint256,address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeeController/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRewards/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRewards/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRewards/functions/claimFor(uint256,address,address)/access",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRewards/functions/converter()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRewards/functions/converter()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMembership/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMembership/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMembership/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/activate(uint256,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/activationOrdinal(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/activationOrdinal(uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/bindCanonicalController(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/bindCanonicalController(address)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/canonicalBacking(uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/canonicalController()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/canonicalController()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/claim(uint256,address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/claimFor(uint256,address,address)/access",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/claimable(uint256,address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/eligibleCount(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/eligibleCount(address)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/sync(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZRoyaltyRewards/functions/syncForActivation(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/MAX_LOSS_BPS()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/convert(address,uint256,bytes32,uint256,uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/convert(address,uint256,bytes32,uint256,uint256)/inputs/4",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/functions/convert(address,uint256,bytes32,uint256,uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPRewardConverter/receive/access",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZClaimRouter/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZClaimRouter/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZClaimRouter/functions/claimBatch((uint256,address,bool)[])/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZClaimRouter/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZClaimRouter/constructor/inputs/2",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCompounder/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCompounder/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCompounder/functions/compound(uint256,uint128,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCompounder/functions/compound(uint256,uint128,uint256)/inputs/2",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCompounder/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZBuyback/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZBuyback/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZBuyback/functions/execute(address,uint256,bytes32,uint256)/inputs/3",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZBuyback/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/MAX_LOSS_BPS()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/compositionEpoch(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/compositionEpoch(uint256)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)/inputs/2",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/idleValue(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/mintTarget(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/nav(uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/poolTokens(bytes32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/recordComposition(uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/validateLPReceiver(address)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZMigrationBudget/functions/validateRebalance(uint256,uint128)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCustodyValidation/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCustodyValidation/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCustodyValidation/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/acceptFunding(uint8,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/bindFrozen(bytes32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/exportRows(uint8,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/fund(uint8,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/importRows(uint8,bytes[])/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/importRows(uint8,bytes[])/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/moduleAt(uint8)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/phase()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/prepareImport(address)/access",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/returnFunding(uint8,uint256)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/returnFunding(uint8,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/returnFunds(uint8,uint256)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/functions/settle(uint8)/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZCanonicalHandoff/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFTCanonical/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFTCanonical/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZNFTCanonical/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/functions/aliasBucket(bytes32)/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/functions/aliasBucket(bytes32)/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/functions/canonicalBacking(uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZVaultCanonical/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeesCanonical/functions/access()/purpose",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeesCanonical/functions/access()/outputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeesCanonical/functions/canonicalBacking(uint256)/notes",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZFeesCanonical/constructor/inputs/0",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZLPBalancer/functions/quoteCandidate((address,address,uint24,int24,address),bool,uint256)/inputs/1",
+      "encoding_layers": 4
+    },
+    {
+      "path": "notes/contracts/ZZZPortfolioPolicy/functions/completeConsolidation()/notes",
+      "encoding_layers": 4
+    }
+  ],
+  "intentional_changed_existing_note_paths": [
+    "notes/contracts/ZZZAccessController/functions/seal()/notes",
+    "notes/contracts/ZZZNFT/purpose",
+    "notes/contracts/ZZZNFT/functions/mint(address,uint256)/purpose",
+    "notes/contracts/ZZZNFT/functions/mint(address,uint256)/access",
+    "notes/contracts/ZZZNFT/functions/supportsInterface(bytes4)/outputs/0",
+    "notes/contracts/ZZZNFT/functions/setMintEnd(uint64)/notes",
+    "notes/contracts/ZZZNFT/constructor/purpose",
+    "notes/contracts/ZZZNFT/constructor/access",
+    "notes/contracts/ZZZNFT/constructor/inputs/1",
+    "notes/contracts/ZZZNFTMetadata/constructor/purpose",
+    "notes/contracts/ZZZNFTMetadata/constructor/access",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/purpose",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/access",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/inputs/0",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/outputs/0",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/value",
+    "notes/contracts/ZZZVault/functions/mintDormant(bytes32)/notes",
+    "notes/contracts/ZZZVault/functions/mintPolicyFingerprint()/purpose",
+    "notes/contracts/ZZZVault/functions/mintPolicyFingerprint()/notes",
+    "notes/contracts/ZZZRoyaltyRewards/functions/canonicalCapture()/notes",
+    "notes/contracts/ZZZRoyaltyRewards/functions/canonicalExport(uint256)/notes",
+    "notes/contracts/ZZZRoyaltyRewards/functions/canonicalImport(uint256,bytes)/notes",
+    "notes/contracts/ZZZRoyaltyRewards/functions/ROYALTY_SETTLEMENT_VERSION()/outputs/0",
+    "notes/contracts/ZZZRoyaltyRewards/functions/ticketStart(uint256)/outputs/0",
+    "notes/contracts/ZZZRoyaltyRewards/functions/allocationCursor(address)/outputs/0",
+    "notes/contracts/ZZZRoyaltyRewards/functions/mintEndRevision()/outputs/0",
+    "notes/contracts/ZZZCanonicalHandoff/functions/SCHEMA()/outputs/0",
+    "notes/contracts/ZZZCanonicalHandoff/functions/prepareImport(address)/notes",
+    "notes/contracts/ZZZCanonicalHandoff/functions/advanceCancelledRoyaltyReturn()/notes",
+    "notes/contracts/ZZZNFTCanonical/purpose",
+    "notes/contracts/ZZZNFTCanonical/functions/canonicalExport(uint256)/notes",
+    "notes/contracts/ZZZNFTCanonical/functions/canonicalImport(uint256,bytes)/notes",
+    "notes/contracts/ZZZVaultCanonical/functions/canonicalActivate()/notes",
+    "notes/contracts/ZZZVaultCanonical/functions/canonicalCapture()/notes",
+    "notes/contracts/ZZZVaultCanonical/functions/canonicalValidate()/notes",
+    "notes/contracts/ZZZVaultCanonical/functions/validateCancelledRoyaltyHop()/notes",
+    "notes/contracts/ZZZRewardsCanonical/purpose",
+    "notes/contracts/ZZZRewardsCanonical/functions/canonicalExport(uint256)/purpose",
+    "examples/reference_sha256",
+    "examples/rows/ZZZNFT.mint(address,uint256)/short",
+    "examples/rows/ZZZVault.mintDormant(bytes32)/role",
+    "examples/rows/ZZZVault.mintDormant(bytes32)/short",
+    "examples/rows/ZZZVault.mintDormant(bytes32)/arguments/0"
+  ],
+  "preserved_existing_example_rows": 890,
+  "changed_existing_example_rows": [
+    "ZZZNFT.mint(address,uint256)",
+    "ZZZVault.mintDormant(bytes32)"
+  ],
+  "added_rows": [
+    "ZZZNFT.baseURI()",
+    "ZZZNFT.canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8))",
+    "ZZZNFT.constructor(address,string,address)",
+    "ZZZNFT.getMintStats(address)",
+    "ZZZNFT.maxSupply()",
+    "ZZZNFT.mintSeaDrop(address,uint256)",
+    "ZZZNFT.mintStageOf(uint256)",
+    "ZZZNFT.originalMintRecipient(uint256)",
+    "ZZZNFT.seaDropMint()",
+    "ZZZNFT.seaDropMintRecipient(bytes32)",
+    "ZZZNFT.setMaxSupply(uint256)",
+    "ZZZNFT.setSeaDropMint(address)",
+    "ZZZNFT.updateAllowList(address,(bytes32,string[],string))",
+    "ZZZNFT.updateAllowedFeeRecipient(address,address,bool)",
+    "ZZZNFT.updateAllowedSeaDrop(address[])",
+    "ZZZNFT.updateCreatorPayoutAddress(address,address)",
+    "ZZZNFT.updateDropURI(address,string)",
+    "ZZZNFT.updatePayer(address,address,bool)",
+    "ZZZNFT.updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))",
+    "ZZZNFT.updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))",
+    "ZZZNFT.updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))",
+    "ZZZNFTCanonical.deploymentConfigurationCommitment()",
+    "ZZZNFTMetadata.evolutionOf(uint256)",
+    "ZZZNFTMetadata.markedValue(uint256)",
+    "ZZZNFTMetadata.tokenMetadata(uint256)",
+    "ZZZNFTMetadata.validateBaseURI(string)",
+    "ZZZSeaDropMint.ALLOWLIST()",
+    "ZZZSeaDropMint.MAX_BATCH_ENGINEERING()",
+    "ZZZSeaDropMint.MAX_PAYERS_ENGINEERING()",
+    "ZZZSeaDropMint.MAX_SUPPLY()",
+    "ZZZSeaDropMint.MINT_INTEGRATION_VERSION()",
+    "ZZZSeaDropMint.PUBLIC()",
+    "ZZZSeaDropMint.TEAM()",
+    "ZZZSeaDropMint.access()",
+    "ZZZSeaDropMint.activeFingerprint()",
+    "ZZZSeaDropMint.activeRecipient()",
+    "ZZZSeaDropMint.allowlistMinted(address)",
+    "ZZZSeaDropMint.assertCanonicalCount()",
+    "ZZZSeaDropMint.beginMint(address,address,uint256)",
+    "ZZZSeaDropMint.configurationHash()",
+    "ZZZSeaDropMint.configurationReviewHash()",
+    "ZZZSeaDropMint.configurationValuesHash()",
+    "ZZZSeaDropMint.configure((uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32),uint128,bytes32)",
+    "ZZZSeaDropMint.configured()",
+    "ZZZSeaDropMint.constructor(address,address,address,bytes32)",
+    "ZZZSeaDropMint.currentPhase()",
+    "ZZZSeaDropMint.expectedPublicDrop()",
+    "ZZZSeaDropMint.finishMint(bytes32)",
+    "ZZZSeaDropMint.lifetimeMinted(address)",
+    "ZZZSeaDropMint.mintConfig()",
+    "ZZZSeaDropMint.mintStage(uint256)",
+    "ZZZSeaDropMint.mintStats(address)",
+    "ZZZSeaDropMint.minting()",
+    "ZZZSeaDropMint.nft()",
+    "ZZZSeaDropMint.originalMintRecipient(uint256)",
+    "ZZZSeaDropMint.phaseMinted(uint8)",
+    "ZZZSeaDropMint.prepareUpdate(address,bytes)",
+    "ZZZSeaDropMint.restoreMint(uint256,address,uint8)",
+    "ZZZSeaDropMint.reviewedMintPrice()",
+    "ZZZSeaDropMint.revision()",
+    "ZZZSeaDropMint.seaDrop()",
+    "ZZZSeaDropMint.seaDropCodeHash()",
+    "ZZZSeaDropMint.totalMinted()",
+    "ZZZSeaDropMint.validateBinding()",
+    "ZZZSeaDropMint.validateMintReview(bytes32)",
+    "ZZZVaultCanonical.validateMint(address,uint256,uint256,bytes32)"
+  ],
+  "retired_rows": [
+    "ZZZNFT.canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256))",
+    "ZZZNFT.constructor(address,string)",
+    "ZZZVaultCanonical.validateMint(uint256,uint256,bytes32)"
+  ],
+  "reference_sha256": "489bd4554e549cb8c71788e69f926e840ed330761dafb4912b020e8f8a2d0858",
+  "notes_utf8_sha256": "3dfe08b7aa4cac4414c182941772d800cf96399e08e3d4a46943bc4c8392b295"
+}

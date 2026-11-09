@@ -1,0 +1,11 @@
+{
+  "started_utc": "2026-11-09T02:40:34.8263006Z",
+  "finished_utc": "2026-11-09T02:40:45.6302862Z",
+  "exit_code": 1,
+  "forge": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+  "solc": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+  "source_root": "test/fixtures",
+  "scope": "Exact deployed V1 runtime with explicit synthetic NFT callback fixture; unchanged normal optimizer/compiler settings; not a full-production size check",
+  "no_rpc": true,
+  "no_keys": true
+}

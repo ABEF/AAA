@@ -1,0 +1,11 @@
+test_cli_emits_blocked_machine_readable_output_without_chain_access (tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access) ... ok
+test_cli_nonstring_route_kind_is_blocked_with_machine_readable_output (tests_python.test_production_config.ProductionConfigTests.test_cli_nonstring_route_kind_is_blocked_with_machine_readable_output) ... ok
+test_cli_reads_utf8_inventory_and_writes_utf8_report (tests_python.test_production_config.ProductionConfigTests.test_cli_reads_utf8_inventory_and_writes_utf8_report) ... ok
+test_cli_invalid_json_is_blocked (tests_python.test_production_config.ProductionConfigTests.test_cli_invalid_json_is_blocked) ... ok
+test_cli_failure_is_sanitized_and_does_not_overwrite_existing_output (tests_python.test_production_observer.ProductionObserverTests.test_cli_failure_is_sanitized_and_does_not_overwrite_existing_output) ... ok
+test_cli_rejects_same_output_secret_env_and_mismatched_anchor_before_rpc (tests_python.test_production_observer.ProductionObserverTests.test_cli_rejects_same_output_secret_env_and_mismatched_anchor_before_rpc) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.927s
+
+OK

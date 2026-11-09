@@ -348,7 +348,7 @@ token balances and allowances, other-bucket/donation isolation, current and
 historical compound, entry marginal NAV, local fee dust/late venue receipts, composition
 epochs and successor import. Authenticate complete records and exact classified
 backing; native receiver protection must not be counted twice. Whole-collection
-capture rejects lpExitStarted permanently; canonical V9 does not import the
+capture rejects lpExitStarted permanently; canonical V10 does not import the
 terminal principal payout ledger. Repeated successor and
 funded-abort paths need version-compatible source/destination code and actual
 dependency qualification.

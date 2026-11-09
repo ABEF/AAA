@@ -1,0 +1,353 @@
+{
+  "format": 1,
+  "created_utc": "2026-11-09T02:23:02.4703678Z",
+  "registry_commit": "d368f55f609a7f4b2245f89ff49c1a933fbeff83",
+  "purpose": "Official SeaDrop primary-drop evidence and exact verified dependencies for offline owned-fork tests",
+  "no_secrets": true,
+  "no_transactions": true,
+  "responses": [
+    {
+      "path": "official-registry/Deployments.md",
+      "uri": "https://raw.githubusercontent.com/ProjectOpenSea/seadrop/d368f55f609a7f4b2245f89ff49c1a933fbeff83/docs/Deployments.md",
+      "method": "GET",
+      "request": "",
+      "fetched_utc": "2026-11-09T02:22:42.2250374Z",
+      "status": 200,
+      "bytes": 7186,
+      "sha256": "3a19ecc283b968721266883b0be521bda6a4424ea0590484bfc44831b051c8ed",
+      "headers": {
+        "Content-Type": [
+          "text/plain; charset=utf-8"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:22:42 GMT"
+        ],
+        "ETag": [
+          "W/\"1c8eb0b4a5784f712839254d576dcf0893b77cc37caf859cc8d5e994732cc618\""
+        ],
+        "Cache-Control": [
+          "max-age=300"
+        ]
+      }
+    },
+    {
+      "path": "official-registry/README.md",
+      "uri": "https://raw.githubusercontent.com/ProjectOpenSea/seadrop/d368f55f609a7f4b2245f89ff49c1a933fbeff83/README.md",
+      "method": "GET",
+      "request": "",
+      "fetched_utc": "2026-11-09T02:22:42.4753253Z",
+      "status": 200,
+      "bytes": 5737,
+      "sha256": "a01bb645c2c69d2b8cdee0133ef84eba4294f6a1705101f827ec722702291c5c",
+      "headers": {
+        "Content-Type": [
+          "text/plain; charset=utf-8"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:22:42 GMT"
+        ],
+        "ETag": [
+          "W/\"5da9121cd6e416e5c8054b2d78d320bfa314e445599f2fc2bf23d60a9f26c0a4\""
+        ],
+        "Cache-Control": [
+          "max-age=300"
+        ]
+      }
+    },
+    {
+      "path": "official-registry/commit.json",
+      "uri": "https://api.github.com/repos/ProjectOpenSea/seadrop/commits/d368f55f609a7f4b2245f89ff49c1a933fbeff83",
+      "method": "GET",
+      "request": "",
+      "fetched_utc": "2026-11-09T02:22:42.8382106Z",
+      "status": 200,
+      "bytes": 10509,
+      "sha256": "01a71d84bd422d7166b1449199ff3256980a4be54fe8c49e45c5b5ddc90bd3ba",
+      "headers": {
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:22:42 GMT"
+        ],
+        "ETag": [
+          "W/\"01a71d84bd422d7166b1449199ff3256980a4be54fe8c49e45c5b5ddc90bd3ba\""
+        ],
+        "Last-Modified": [
+          "Sat, 07 Nov 2026 00:36:40 GMT"
+        ],
+        "Cache-Control": [
+          "public, max-age=60, s-maxage=60"
+        ]
+      }
+    },
+    {
+      "path": "explorer/verified-contract-response.json",
+      "uri": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x00005EA00Ac477B1030CE78506496e8C2dE24bf5",
+      "method": "GET",
+      "request": "",
+      "fetched_utc": "2026-11-09T02:23:01.4396644Z",
+      "status": 200,
+      "bytes": 243235,
+      "sha256": "84fe4c9eca99c43a10e6de86045b40ef58c59328ab641102d1439472a83aa811",
+      "headers": {
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:01 GMT"
+        ],
+        "Cache-Control": [
+          "must-revalidate, max-age=0, private"
+        ]
+      }
+    },
+    {
+      "path": "rpc/01-chain-id.json",
+      "uri": "https://rpc.mainnet.chain.robinhood.com/",
+      "method": "POST",
+      "request": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"eth_chainId\",\"params\":[]}",
+      "fetched_utc": "2026-11-09T02:23:01.9470838Z",
+      "status": 200,
+      "bytes": 43,
+      "sha256": "75ea0f516604d743a7a785da0919b7b26debc20e260ff9d0a045c6cfa40f876f",
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:02 GMT"
+        ],
+        "Cache-Control": [
+          "no-cache"
+        ]
+      }
+    },
+    {
+      "path": "rpc/02-block-number.json",
+      "uri": "https://rpc.mainnet.chain.robinhood.com/",
+      "method": "POST",
+      "request": "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"eth_blockNumber\",\"params\":[]}",
+      "fetched_utc": "2026-11-09T02:23:02.0806947Z",
+      "status": 200,
+      "bytes": 46,
+      "sha256": "7029ebb47768fb6b3cafb8f3904f6af9e603beeaa00dbadc4ab939ff292687d2",
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:02 GMT"
+        ],
+        "Cache-Control": [
+          "no-cache"
+        ]
+      }
+    },
+    {
+      "path": "rpc/03-block-before.json",
+      "uri": "https://rpc.mainnet.chain.robinhood.com/",
+      "method": "POST",
+      "request": "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"eth_getBlockByNumber\",\"params\":[\"0x68a00b2\",false]}",
+      "fetched_utc": "2026-11-09T02:23:02.2024957Z",
+      "status": 200,
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd",
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:02 GMT"
+        ],
+        "Cache-Control": [
+          "no-cache"
+        ]
+      }
+    },
+    {
+      "path": "rpc/04-code-at-block.json",
+      "uri": "https://rpc.mainnet.chain.robinhood.com/",
+      "method": "POST",
+      "request": "{\"jsonrpc\":\"2.0\",\"id\":4,\"method\":\"eth_getCode\",\"params\":[\"0x00005EA00Ac477B1030CE78506496e8C2dE24bf5\",\"0x68a00b2\"]}",
+      "fetched_utc": "2026-11-09T02:23:02.3309699Z",
+      "status": 200,
+      "bytes": 42201,
+      "sha256": "f517c2459e50ff28aeba8ca7e426a13b0ce612e8dcb2f8bde39b8bcf70f95f87",
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:02 GMT"
+        ],
+        "Cache-Control": [
+          "no-cache"
+        ]
+      }
+    },
+    {
+      "path": "rpc/05-block-after.json",
+      "uri": "https://rpc.mainnet.chain.robinhood.com/",
+      "method": "POST",
+      "request": "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"eth_getBlockByNumber\",\"params\":[\"0x68a00b2\",false]}",
+      "fetched_utc": "2026-11-09T02:23:02.4638072Z",
+      "status": 200,
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd",
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ],
+        "Date": [
+          "Mon, 09 Nov 2026 02:23:02 GMT"
+        ],
+        "Cache-Control": [
+          "no-cache"
+        ]
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "derived/abi.json",
+      "bytes": 35012,
+      "sha256": "b64b0900ed04920443dd266b668961570cb6b7b38a1146ed3f6499e772b5c360"
+    },
+    {
+      "path": "derived/deployed-runtime.hex",
+      "bytes": 42164,
+      "sha256": "671c10aac7c2cc27887dd9584251c05c7a4a6509eaf89af7410db5ef7ab7cc2f"
+    },
+    {
+      "path": "derived/rpc-runtime-comparison.json",
+      "bytes": 516,
+      "sha256": "156a5983cadbc454e1c910c2177386808a0547651b579993bedc7787631664a9"
+    },
+    {
+      "path": "derived/verified-metadata.json",
+      "bytes": 4134,
+      "sha256": "60e5b675c61eff4f3e44b6d96d5202e1042676b9f1edfa86ced1fa54ab612807"
+    },
+    {
+      "path": "explorer/verified-contract-response.json",
+      "bytes": 243235,
+      "sha256": "84fe4c9eca99c43a10e6de86045b40ef58c59328ab641102d1439472a83aa811"
+    },
+    {
+      "path": "official-registry/commit.json",
+      "bytes": 10509,
+      "sha256": "01a71d84bd422d7166b1449199ff3256980a4be54fe8c49e45c5b5ddc90bd3ba"
+    },
+    {
+      "path": "official-registry/Deployments.md",
+      "bytes": 7186,
+      "sha256": "3a19ecc283b968721266883b0be521bda6a4424ea0590484bfc44831b051c8ed"
+    },
+    {
+      "path": "official-registry/README.md",
+      "bytes": 5737,
+      "sha256": "a01bb645c2c69d2b8cdee0133ef84eba4294f6a1705101f827ec722702291c5c"
+    },
+    {
+      "path": "rpc/01-chain-id.json",
+      "bytes": 43,
+      "sha256": "75ea0f516604d743a7a785da0919b7b26debc20e260ff9d0a045c6cfa40f876f"
+    },
+    {
+      "path": "rpc/02-block-number.json",
+      "bytes": 46,
+      "sha256": "7029ebb47768fb6b3cafb8f3904f6af9e603beeaa00dbadc4ab939ff292687d2"
+    },
+    {
+      "path": "rpc/03-block-before.json",
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd"
+    },
+    {
+      "path": "rpc/04-code-at-block.json",
+      "bytes": 42201,
+      "sha256": "f517c2459e50ff28aeba8ca7e426a13b0ce612e8dcb2f8bde39b8bcf70f95f87"
+    },
+    {
+      "path": "rpc/05-block-after.json",
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+      "bytes": 4976,
+      "sha256": "5212ea444cfce33fdc82d4b3440b161b70784f0bfe7eac485364569040584f75"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "bytes": 2254,
+      "sha256": "f640392a0f3b662c1f0110504b6f90064eb3a28046e2505ea93f54d4620a77e6"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+      "bytes": 8538,
+      "sha256": "92436ee32d03bff1fe45f4a96a661e238a9e2ef3821ace8279b12c33e199f0f3"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol",
+      "bytes": 8471,
+      "sha256": "1185b7f201bf9f2c8a02100897e84f1ece6b35bf83e18c1180eb14521bb6862c"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+      "bytes": 853,
+      "sha256": "701e025d13ec6be09ae892eb029cd83b3064325801d73654847a5fb11c58b1e5"
+    },
+    {
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+      "bytes": 12505,
+      "sha256": "4198e681b682c9aea82eb601f946c131e9e2e7ac874cc7b6b48192c29fda5e51"
+    },
+    {
+      "path": "verified-sources/lib/solmate/src/tokens/ERC20.sol",
+      "bytes": 6812,
+      "sha256": "a3a7e839f42762ef24623581542a916e838f3c7c0bef647963d1fdad0f9d208a"
+    },
+    {
+      "path": "verified-sources/lib/solmate/src/utils/ReentrancyGuard.sol",
+      "bytes": 602,
+      "sha256": "e69ce8729cd5ff2caac16efa4498e967fc6bf85bbad4003be87c8a0757fd8a0c"
+    },
+    {
+      "path": "verified-sources/lib/solmate/src/utils/SafeTransferLib.sol",
+      "bytes": 5783,
+      "sha256": "85056ad3600b04e40167d89978eae2a92dd34d1316e74987b4a7dcd65c2b65d9"
+    },
+    {
+      "path": "verified-sources/src/SeaDrop.sol",
+      "bytes": 45656,
+      "sha256": "1e1c55f85debe55feb001a63a169125207b41aae5f358b306e86be5a35ce52d8"
+    },
+    {
+      "path": "verified-sources/src/interfaces/INonFungibleSeaDropToken.sol",
+      "bytes": 6944,
+      "sha256": "9d4667915de85f9b4fc3c637ff9ef2083a19d2e6a4d23b6b80316e9e566c79d9"
+    },
+    {
+      "path": "verified-sources/src/interfaces/ISeaDrop.sol",
+      "bytes": 9759,
+      "sha256": "8e888977c4a00a8b168131f0ce1a5214beec41d1c6ea6cd1fc686b2b7b4acb8b"
+    },
+    {
+      "path": "verified-sources/src/interfaces/ISeaDropTokenContractMetadata.sol",
+      "bytes": 3057,
+      "sha256": "f5e7d84e0b9e5a9b38587755d8b687c8539cc198cdfe1cbba008bcaef8597e2e"
+    },
+    {
+      "path": "verified-sources/src/lib/SeaDropErrorsAndEvents.sol",
+      "bytes": 9615,
+      "sha256": "2cd90c67273f166362c91895fe4aa5cb933549c10cbdd530d53f2894d9b593a8"
+    },
+    {
+      "path": "verified-sources/src/lib/SeaDropStructs.sol",
+      "bytes": 6284,
+      "sha256": "b2ba6712b9100c98b445fa47bb0926499440039fe606b2dbfb1ff2ad6f75460d"
+    }
+  ]
+}

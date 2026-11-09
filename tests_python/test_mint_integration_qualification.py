@@ -132,16 +132,20 @@ class MintIntegrationQualificationTests(unittest.TestCase):
                 self.assertFalse(result['ready'])
 
     def test_current_template_declares_real_implementation_and_unselected_provider(self):
-        from zzz_ops import production_v14 as current
+        from zzz_ops import production_v15 as current
         config = json.loads((Path(__file__).resolve().parents[1]/'config/production.example.json').read_text(encoding='utf8'))
-        self.assertEqual(1,config['mint_integration_version'])
+        self.assertEqual(2,config['mint_integration_version'])
         chain = config['chains'][0]
-        self.assertEqual('vault_direct_v1',chain['services']['opensea']['integration']['implementation_profile'])
+        self.assertEqual('seadrop_sequential_v1',chain['services']['opensea']['integration']['implementation_profile'])
         self.assertIsNone(chain['nft_inventory']['randomness']['coordinator'])
+        self.assertIsNone(chain['primary_mint']['onboarding_evidence'])
+        self.assertIsNone(chain['primary_mint']['observed'])
         result = current.validate(config,now=NOW)
-        self.assertEqual(result['schema_version'],16)
+        self.assertEqual(result['schema_version'],17)
         self.assertFalse(result['ready'])
-        self.assertIn('mint.opensea_unsupported',{i['code'] for i in result['issues']})
+        self.assertTrue(result['opensea_primary_mint_supported'])
+        self.assertFalse(result['production_qualification_supported'])
+        self.assertFalse(result['deployment_authorized'])
 
     def test_current_malformed_integration_records_fail_closed_without_exception(self):
         for field in ('randomness','integration'):

@@ -1,0 +1,30 @@
+Compiling 35 files with Solc 0.8.26
+Solc 0.8.26 finished in 8.04s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+  --> test/SeaDropIntegration.t.sol:62:5:
+   |
+62 |     function updateAllowedSeaDrop(address[] calldata allowed) external onlyOwner {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-11-09T02:42:11.950568Z  WARN traces::etherscan: etherscan config not found
+
+Ran 15 tests for test/SeaDropIntegration.t.sol:SeaDropActualRuntimeTest
+[PASS] testAllBatchStatsPrecedeCallbacksAndRealSeaDropBlocksNestedMint() (gas: 907652)
+[PASS] testAuthorizedFeeCallbackChangesOnlyFuturePriceAndPayee() (gas: 926185)
+[PASS] testCreatorAndFeeConfigurationRejectInvalidValues() (gas: 57344)
+[PASS] testExactDeployedRuntimeAndConstructorGuardAreInstalled() (gas: 14501)
+[PASS] testFreeMintSkipsCreatorPayoutAndRequiresNoFinalSettlementCallback() (gas: 2436757)
+[PASS] testMissingCreatorPayoutRollsBackEntireBatchAndSyntheticDraws() (gas: 2478423)
+[PASS] testNonpayerRecipientNeedsExplicitPayerAdmissionAndStatsFollowRecipient() (gas: 300118)
+[PASS] testPaidBatchPreservesExactGrossNetAndLifetimeStats() (gas: 356121)
+[PASS] testPublicStageStartsAndEndsInclusively() (gas: 344004)
+[PASS] testRejectingCreatorRollsBackAlreadyTransferredFeeAndAllMintState() (gas: 329312)
+[PASS] testRejectingFeeRecipientRollsBackNFTBatchDrawsValueAndGuard() (gas: 340811)
+[PASS] testRejectingNFTReceiverRollsBackBatchAndDraws() (gas: 798259)
+[PASS] testUnapprovedAndZeroFeeRecipientsAreRejectedEvenForFreeMints() (gas: 99493)
+[PASS] testUnderpaymentOverpaymentAndZeroQuantityRevertWithoutIssuance() (gas: 81214)
+[PASS] testWalletQuotaRemainsConsumedAfterTransfer() (gas: 285079)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 13.78ms (17.48ms CPU time)
+
+Ran 1 test suite in 23.45ms (13.78ms CPU time): 15 tests passed, 0 failed, 0 skipped (15 total tests)

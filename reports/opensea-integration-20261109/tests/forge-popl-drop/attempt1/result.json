@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-11-09T02:57:00.0682669Z",
+  "finished_utc": "2026-11-09T02:59:34.1912749Z",
+  "exit_code": 0,
+  "scope": "Real current PoPL mint graph with exact deployed V1 runtime; MockAccess and MockVRF; normal compiler/optimizer; no full handoff or LP qualification",
+  "no_rpc": true,
+  "no_keys": true
+}

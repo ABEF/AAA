@@ -1,0 +1,421 @@
+[
+  {
+    "fingerprint": "12294906635af2723c2a5491efaadce57d1a370dd429fd55844dc78db7960c0a",
+    "check": "locked-ether",
+    "impact": "Medium",
+    "confidence": "High",
+    "description": "Contract locking ether found:\n\tContract ZZZNFT (src/ZZZNFT.sol#36-372) has payable functions:\n\t - ZZZNFT.mintSeaDrop(address,uint256) (src/ZZZNFT.sol#146-156)\n\tBut does not have a function to withdraw the ether\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "The sole payable NFT callback rejects every nonzero msg.value before any bookkeeping. Exact admitted SeaDrop calls it with zero and retains gross ETH for its atomic fee/creator settlement; no normal proceeds enter the NFT. There is deliberately no sweep authority. Forced donations are not a guarantee of recoverable protocol revenue.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "9150e44d48ec8ef271b842ec6ef13a20736ff55582970ddba82f8fbe08998223",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZSeaDropMint._leafTerms(ZZZSeaDropMint.MintConfig,uint128).allowlistTerms (src/ZZZSeaDropMint.sol#299) is a local variable never initialized\n",
+    "referenced_paths": [
+      "src/ZZZSeaDropMint.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "bytes32 locals initialize to zero. A zero allowlist allocation deliberately has no paid-leaf terms; a positive allocation explicitly assigns the price/fee/cumulative cap and allowlist window hash before use. Thus team-only free proofs do not unnecessarily bind later public pricing. The final hash always includes both tagged term slots; initial root content remains a reviewed manifest obligation.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "a60636b461dc57181dd4f2318b596a43ae26f56ed8185bc65242ae8175683278",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata._visualAttributes(NFTMetadataInput).number (src/ZZZNFTMetadata.sol#197) is a local variable never initialized\n",
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "The Solidity uint256 local initializes to zero and counts only the selected palette colors; each appended Color N attribute pre-increments it. The moved JSON builder preserves the original loop, eight-color bound and exact output semantics; it does not allocate royalties or token balances.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "74e2c91dbdf7acb38105aea3b3493752b8da0cc37c9a3b944fca9915f256aa3f",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTCanonical.deploymentConfigurationCommitment().mintCommitment (src/ZZZNFTCanonical.sol#108) is a local variable never initialized\n",
+    "referenced_paths": [
+      "src/ZZZNFTCanonical.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "The zero bytes32 value explicitly denotes an unbound direct-test mint configuration. A nonzero helper is validated for NFT/controller/version and then hashes its address, runtime, complete reviewed configuration and immutable SeaDrop identity. V10 peers must match bound/unbound mode; schema17 production admission separately requires the bound helper.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "ae33705560449cbdb5454fb3f7309728c78c27e2724a5377fde0c8228a6b575d",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZSeaDropMint._leafTerms(ZZZSeaDropMint.MintConfig,uint128).teamTerms (src/ZZZSeaDropMint.sol#298) is a local variable never initialized\n",
+    "referenced_paths": [
+      "src/ZZZSeaDropMint.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "bytes32 locals initialize to zero. A zero team allocation deliberately omits team-leaf terms; a positive team allocation assigns its exact quota/window terms before hashing. No uninitialized pointer, amount or recipient is read. Same-current-root changed leaf terms are rejected, while opaque initial/historically reused root contents still require explicit review.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "f5c8f82001ed37fd0d0a04bf316afe26668aad4c031a5bd60e710e0d1991a42b",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZSeaDropMint.prepareUpdate(address,bytes).implementation (src/ZZZSeaDropMint.sol#129) is a local variable never initialized\n",
+    "referenced_paths": [
+      "src/ZZZSeaDropMint.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "Every accepted prepareUpdate selector decodes and assigns its implementation address before the shared fixed-address/runtime check and return. Every other selector reverts. The scalar default zero cannot reach an external call as an accepted arbitrary target; the NFT also obtains its target solely from the immutable helper SeaDrop getter.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "78bf62a33bfc70ad849413c55da3131d58c3085c30f90c6f72c19da5700b3041",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata._ownedCollection(uint256) (src/ZZZNFTMetadata.sol#117-120) ignores return value by nft.ownerOf(id) (src/ZZZNFTMetadata.sol#119)\n",
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "ownerOf(id) is intentionally called to require existence, not to require the caller to own the NFT. Its revert propagates; returned ownership is irrelevant to public metadata. All three new read-only orchestration methods use this validation before returning values, and missing prices remain explicitly unavailable.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "c59dd680b69bf9f8ff1d6e8b61bd43a0f167ac02b950d6317b15404ba5f337b0",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFT.mintSeaDrop(address,uint256) (src/ZZZNFT.sol#146-156) ignores return value by (first,review,None) = seaDropMint.beginMint(msg.sender,minter,quantity) (src/ZZZNFT.sol#149)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "The helper authenticates, enforces and persists the mint phase before returning. NFT uses firstOrdinal and the exact batch fingerprint; it does not independently choose a phase from caller inputs. Ignoring the duplicate phase return cannot bypass phase quotas or price/root validation. mintStageOf reads the persisted per-ordinal phase and V10 exports it.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "cde43375daacfbc7246bdf39faf8a9484e0330fc1085529d2623fd9fb29ef2dc",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata.currentValue(uint256) (src/ZZZNFTMetadata.sol#68-89) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId) (src/ZZZNFTMetadata.sol#80)\n",
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "validateExitPrice is called for its reverting spot/reference-price guard; the metadata mark subsequently obtains actual portfolio amounts and independent USD values itself. Its returned reference is not the requested output. The read-only mark catches failure as unavailable and never substitutes a made-up price or zero LP value.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "00d05520f7ab55edf8be29dfaa2ac8da8dc5812e37b02b5c195b9d0b9be28b01",
+    "check": "shadowing-local",
+    "impact": "Low",
+    "confidence": "High",
+    "description": "ZZZNFT.constructor(address,string,address).baseURI (src/ZZZNFT.sol#85) shadows:\n\t- ZZZSeaDropToken.baseURI() (src/base/ZZZSeaDropToken.sol#82-84) (function)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol",
+      "src/base/ZZZSeaDropToken.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "The local baseURI string is intentionally the constructor/setter input, while inherited baseURI() is a separate read-only function selector returning artworkBaseURI(). The setter still permits only an initially empty URI before seal and validates the supplied string at the fixed renderer; no shadowed storage slot or authority is selected.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "7b87f6193de3cee3cfd9a9225681932706da7fe2ed71b8b2c2ab74aa70b33d27",
+    "check": "shadowing-local",
+    "impact": "Low",
+    "confidence": "High",
+    "description": "ZZZNFT.setBaseURI(string).baseURI (src/ZZZNFT.sol#303) shadows:\n\t- ZZZSeaDropToken.baseURI() (src/base/ZZZSeaDropToken.sol#82-84) (function)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol",
+      "src/base/ZZZSeaDropToken.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "The local baseURI string is intentionally the constructor/setter input, while inherited baseURI() is a separate read-only function selector returning artworkBaseURI(). The setter still permits only an initially empty URI before seal and validates the supplied string at the fixed renderer; no shadowed storage slot or authority is selected.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "9750adcd61289de9eeadd0e5e7273043147b1c0075522a815800ea7b5222a8b5",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT.canonicalWriteHeader(uint256,uint256,uint256,uint16[3],uint256) (src/ZZZNFT.sol#339-346) should emit an event for: \n\t- mintedCount = count (src/ZZZNFT.sol#344) \n\t- nextToFinalize = next (src/ZZZNFT.sol#344) \n\t- remainingToReveal = remaining (src/ZZZNFT.sol#344) \n\t- randomnessBaseEpoch = epoch (src/ZZZNFT.sol#345) \n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "Header writes are usable only by the fixed NFTCanonical during sealed state2 import. The enclosing Handoff emits the complete source-hash-checked RecordImported row; ordinary mints/transfers emit their own events. This inert counter reconstruction is not an unlogged discretionary change of supply or a new mint entitlement.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "de96b9cb9004d3d04badf9afdffbf6a72927f9933f4349054c924721c888e928",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: recipient = IZZZVault(access.module(Ids.VAULT)).mintProceedsRecipient() (src/ZZZNFT.sol#171)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "5ff565eac0915bb8364c356191b9b23e697dea458109750e60be6d610a608977",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT.canonicalModule() (src/ZZZNFT.sol#329) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZNFT.sol#329)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n\t\tZZZNFT._mintDormant(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tZZZNFT._update(address,uint256,address)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "02b379d2705f9a7f5e43a5c284df58835961ff18c04cf63274f519ac709daaa9",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: royaltyRewards.mintEnd() != end (src/ZZZNFT.sol#191)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "2da41d0b94804249b3b99563a8470ac48f265ef89f1b6fe0ea872727ddab32d9",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: end = royaltyRewards.mintEnd() (src/ZZZNFT.sol#164)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "2f9a25e25f0dd355b684cbefea0fd91abc8d143bbd7fae799b8295ece4f5c0fa",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: revision = policy.vrfRevision() (src/ZZZNFT.sol#168)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "0a8b2dcc1daf9bd325d515696a6c083aeb5e7d078f44dfe0ef2b9c51094174fd",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._update(address,uint256,address) (src/ZZZNFT.sol#322-326) has external calls inside a loop: state = IZZZCanonicalAccess(address(access)).canonicalState() (src/ZZZNFT.sol#323)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n\t\tZZZNFT._mintDormant(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "7cfbe51436e953c419de98bce92be31bb74fec27d885a5a401224da4b4562ea0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._policy() (src/ZZZNFT.sol#98-100) has external calls inside a loop: IZZZProtocolPolicy(access.protocolPolicy()) (src/ZZZNFT.sol#99)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n\t\tZZZNFT._mintDormant(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "21c76177d31d50af3ed7f516e22b01e5820e8b3339e8d19dc209fdb59bd91bb2",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: vrf = policy.vrfPolicy() (src/ZZZNFT.sol#167)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "753bb29a2f66be219bd88c22507104f698cb0195d5060bb9c107d6209104bc84",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: requestId = IZZZVRFCoordinator(vrf.coordinator).requestRandomWords(IZZZVRFCoordinator.RandomWordsRequest(vrf.keyHash,vrf.subscriptionId,vrf.requestConfirmations,vrf.callbackGasLimit,2,abi.encodeWithSelector(bytes4(keccak256(bytes)(VRF ExtraArgsV1)),vrf.nativePayment))) (src/ZZZNFT.sol#179-181)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "The exact fixed provider must receive one original two-word request per NFT. The outer NFT is nonReentrant; original recipient and complete helper quota/stat reservation precede callbacks. Zero/reused requests, synchronous invalid fulfillment and policy/runtime changes revert the whole batch and SeaDrop payment. MaxBatch1..10 is bounded engineering policy, not live VRF funding/throughput/gas qualification.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "255d43be7b7983b5ca1ce0a59872e691aa47cc3842b2775fcda071f8c3e1f606",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT.mintSeaDrop(address,uint256) (src/ZZZNFT.sol#146-156) has external calls inside a loop: _mintDormant(minter,vault.mintDormant(review)) (src/ZZZNFT.sol#153)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "Each bounded item records its canonical origin-preserving ID in the fixed Vault before the private dormant NFT mint. Vault authenticates its fixed NFT caller through the current helper review and accepts zero ETH on that branch; no generic free minter is exposed. NFT/helper final counts must agree and the outer NFT/SeaDrop guards block nested mints. A failed item rolls back all IDs, requests, counters and payment.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "99fec5794b1b0c530cd1e5731b84ccb8b02d7695a490c956308ff65f46b38b86",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has external calls inside a loop: policy.vrfRevision() != revision || vrf.coordinator.codehash != vrf.expectedCodeHash (src/ZZZNFT.sol#192)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "This call is inside the explicitly bounded1..10 NFT issuance loop and reads fixed controller, royalty-end, provider or lifecycle state. Repeating checks protects each receiver/provider callback moment rather than trusting only the first item. The complete helper batch is reserved before callbacks; end/fingerprint/runtime/lifecycle checks after callbacks and atomic rollback preserve consistency. External outage or gas exhaustion can reject a batch; target-provider/max-batch gas remains unqualified.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "0a10d6f94e4014240e9d745b91386b65ecd7154b3ac652226f617f0a3a6b4dcb",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194):\n\tExternal calls:\n\t- requestId = IZZZVRFCoordinator(vrf.coordinator).requestRandomWords(IZZZVRFCoordinator.RandomWordsRequest(vrf.keyHash,vrf.subscriptionId,vrf.requestConfirmations,vrf.callbackGasLimit,2,abi.encodeWithSelector(bytes4(keccak256(bytes)(VRF ExtraArgsV1)),vrf.nativePayment))) (src/ZZZNFT.sol#179-181)\n\tState variables written after the call(s):\n\t- providerRequestUsed[providerKey] = true (src/ZZZNFT.sol#185)\n\t- randomness[requestKey].nftId = id (src/ZZZNFT.sol#186)\n\t- randomness[requestKey].requested = true (src/ZZZNFT.sol#186)\n\t- requestEpochOf[id] = epoch (src/ZZZNFT.sol#187)\n\t- requestOf[id] = requestId (src/ZZZNFT.sol#188)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "The provider call sits inside the outer NFT nonReentrant mint/SeaDrop callback. Complete helper supply/wallet/phase counts and NFT ordinal/original recipient are reserved before this call. Request bookkeeping must follow the returned request ID; a synchronous callback sees no armed request and rejects, duplicate/zero provider IDs reject, and the pinned provider/policy/end checks repeat after the ERC721 callback. The new dormant NFT cannot activate before its ordered reveal; independent operations on an already-owned NFT retain the Vault own guards and separated accounting.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "f80e66e3112700df063432f6cb95283226dfd4940954b70c77cfacee7469d4b6",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZNFT.notifyContribution(uint256) (src/ZZZNFT.sol#247-252):\n\tExternal calls:\n\t- royaltyRewards.activate(id,uint256(rarityOf[id]) + 1) (src/ZZZNFT.sol#250)\n\tEvent emitted after the call(s):\n\t- MetadataUpdate(id) (src/ZZZNFT.sol#251)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "false_positive",
+    "rationale": "notifyContribution is usable only by the sealed fixed Vault after successful share issuance. The fixed royalty ledger authenticates the NFT and owns its separate nonReentrant activation accounting; MetadataUpdate is deliberately emitted only after successful royalty activation. This event neither issues shares nor pays funds and failure rolls back the contribution. The new SeaDrop path mints dormant and never calls this activation hook.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "539fe329b868a41681ee7c32916ff95a381fc14833a00c42393ed0a58c10def6",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- end == 0 || block.timestamp > end (src/ZZZNFT.sol#165)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "Sale eligibility intentionally uses inclusive block timestamps. configure requires disjoint ordered team/allowlist/public windows; actual SeaDrop validates the leaf/public window and NFT checks the final royalty sale end. Near-boundary inclusion may reject a transaction atomically and spend gas. These times are neither randomness nor a promise of wall-clock inclusion; operators must review the actual chain/sale schedule.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "d3e49084fb504adfaf36f2c8b519c91f7b8acea826d4c77711852d479fd30865",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZSeaDropMint.currentPhase() (src/ZZZSeaDropMint.sol#230-237) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- block.timestamp >= c.teamStart && block.timestamp <= c.teamEnd (src/ZZZSeaDropMint.sol#233)\n\t- block.timestamp >= c.allowlistStart && block.timestamp <= c.allowlistEnd (src/ZZZSeaDropMint.sol#234)\n\t- block.timestamp >= c.publicStart && block.timestamp <= c.publicEnd (src/ZZZSeaDropMint.sol#235)\n",
+    "referenced_paths": [
+      "src/ZZZSeaDropMint.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "Sale eligibility intentionally uses inclusive block timestamps. configure requires disjoint ordered team/allowlist/public windows; actual SeaDrop validates the leaf/public window and NFT checks the final royalty sale end. Near-boundary inclusion may reject a transaction atomically and spend gas. These times are neither randomness nor a promise of wall-clock inclusion; operators must review the actual chain/sale schedule.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "9506c54d73fee8cdeb7fa03adfe5975180a7d9cdff19a7c62696490fa5273c9b",
+    "check": "costly-loop",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZNFT._mintDormant(address,uint256) (src/ZZZNFT.sol#162-194) has costly operations inside a loop:\n\t- ordinal = ++ mintedCount (src/ZZZNFT.sol#173)\n\tCalls stack containing the loop:\n\t\tZZZNFT.mintSeaDrop(address,uint256)\n",
+    "referenced_paths": [
+      "src/ZZZNFT.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "Each NFT needs its own immutable ordinal, original recipient and original two-word VRF request, so per-item state cannot be replaced with one batch counter. The fixed helper reserves the complete batch first; governed maxBatch is1..10 and total supply1000. A failed item reverts the complete mint/payment/request bookkeeping. Engineering bounds are not actual provider or maximum-batch gas approval.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "8d859ca855f8f0835a1c33b6ee026f1c6661525f69f37a07eac496eb56c9a914",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZSeaDropMint.beginMint(address,address,uint256) (src/ZZZSeaDropMint.sol#162-190) has a high cyclomatic complexity (12).\n",
+    "referenced_paths": [
+      "src/ZZZSeaDropMint.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "beginMint branches explicitly over three disjoint phases, independent team/allowlist quotas, cumulative public wallet count, unminted-team reservation and hard1000 supply. The callback authenticates one fixed NFT/SeaDrop/runtime and pre-reserves the whole bounded batch; complete configuration and post-callback fingerprints must match. Flattening these distinct economic cases would hide required constraints. Exact target gas and initial Merkle-root review remain release requirements.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "03586e8185be9af2f4e4a7f86b8b6aa7facb23b2a50f10af5746e8f003539fe1",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZSeaDropToken._updateDrop() (src/base/ZZZSeaDropToken.sol#43-50):\n\t- (ok,None) = seaDropMint.seaDrop().call(data) (src/base/ZZZSeaDropToken.sol#46)\n",
+    "referenced_paths": [
+      "src/base/ZZZSeaDropToken.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "_updateDrop is PRIVATE and reachable only from six typed NFT configuration selectors. The fixed collection-specific helper accepts only those selectors, fully decodes/re-encodes them, checks the forwarded actual governance/bootstrap caller, lifecycle, batch lock and immutable SeaDrop runtime, then advances revision. The NFT always calls that fixed SeaDrop address with zero value and rechecks authority afterward. There is no external generic call, arbitrary target/value, delegatecall, signer or LP approval; unreviewed signed/token-gated/list-rotation selectors revert.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "59e875e2e6bfedf12710e1d301410ed480f17874aa2854bdb9eaae3fa53839a6",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-432) should inherit from IHistoricalCompound (src/ZZZNFTMetadata.sol#11)\n",
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol",
+      "src/ZZZNFTMetadata.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "IHistoricalCompound is a minimal read-only structural view used by the immutable metadata renderer. MigrationBudget already implements the exact historicalCompoundValue(uint256) selector. Adding inheritance would add no authorization or implementation check; actual constructor/controller/runtime admission remains separate.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  },
+  {
+    "fingerprint": "dca030ebf720e5b86b9f6804c7c847e5ccd7ddcd77ffb7ecb337db64a9e5ff27",
+    "check": "naming-convention",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Function INFTMintPolicy.MINT_INTEGRATION_VERSION() (src/ZZZNFTCanonical.sol#16) is not in mixedCase\n",
+    "referenced_paths": [
+      "src/ZZZNFTCanonical.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "MINT_INTEGRATION_VERSION intentionally follows the existing uppercase capability-getter convention. The interface declares the exact read-only selector used for fresh helper admission; it adds no write or mint authority.",
+    "review_scope": "Individually reassessed current source, exact detector context and SeaDrop callback/lifecycle composition; internal review, not independent approval."
+  }
+]

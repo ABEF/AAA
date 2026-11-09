@@ -1,5 +1,24 @@
 # Work handoff
 
+The [SeaDrop integration candidate](../reports/opensea-integration-20261109/REVIEW.md) adds fresh mint2/helper1,
+canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
+Initial sale:20free team,500allowlist at governed price(one per distinct
+listed address),480public FCFS. Unused allowlist rolls public; unused team
+stays reserved(false). Counts/caps/windows remain reviewed future settings,
+not supply resets. Lifetime original-recipient counts survive transfers
+and V10 import; do not reconstruct them from owners/balances. Exact pinned
+SeaDrop owns gross/fee/net settlement; NFT callbacks receive0ETH and direct
+Vault paid mint is disabled when the helper is bound. The metadata renderer
+is now predeployed; fresh NFT constructor has3arguments. [Procedure](OPENSEA_MINT.md).
+Original source9/schema16/V9 consumers, existing Anvil8902, websites, signer,
+journals and paused heartbeat retain their exact old profiles. Backend
+read/claim and lineage support is implemented through explicit
+`mint_integration_version:2`, pinned helper/SeaDrop roles and V10 authentication;
+direct mint preparation returns Use OpenSea. Omission retains mint1/V9.
+Matching website/installed consumers, actual OpenSea onboarding/fees/payers/VRF/
+gas/operation and independent approval remain open. Source publication is not deployment.
+
+
 The [actual source9 Entry3 rehearsal](../reports/source9-actual-entry-20261109/REVIEW.md)
 fixes the fresh7 fixed-ZZZ getter and actual initial/funded trace-epoch decoding.
 ETH/ZZZ activation and growth execute through real API/website unsigned reviews
@@ -78,7 +97,8 @@ Earlier [exact-LP integration evidence](../reports/exact-lp-integration-20261106
 its original engine/canonical/consumer source scope. Current fee-flow normal,
 static and fresh producer evidence is described above; canonical object/body
 equivalence supports scoped reuse without relabeling older source fixtures.
-Final runtime headroom:Vault133/Rewards358/CanonicalHandoff32. Exact LP claims
+Prior V9 runtime headroom was Vault133/Rewards358/CanonicalHandoff32;
+current V10 sizes are in the SeaDrop verification record. Exact LP claims
 can be materially more expensive;32is a count ceiling, not a gas approval.
 Nonempty LP canonical export has2023node rows plus headers/assets/NFT seeds;
 all weights precede raw pending/high/low restoration. Never flatten old phase,
@@ -107,7 +127,7 @@ Raw close/full replace/park/resume/holder return remain. Check full operator
 inputs and reverse/pause steps. Source publication does not upgrade old runtimes,
 journals/services/sites/signers/Anvil or restart the paused heartbeat.
 
-Fresh royalty4/recovery2/reporting5/schema16/canonicalV9,19 callable helpers
+The earlier royalty4/recovery2/reporting5/schema16/canonicalV9,19 callable helpers
 plus2 inert Factory data children; accounting7/LP-allocation1,
 custody5 and fixed LP/economic parameters preserved; exact-unit LP rounding is now7. User-approved exact-unit royalty
 allocation removes permanently stranded ALLOCATED rounding units. GCD-normalized
@@ -155,7 +175,7 @@ authorities, maximum currency/claim/canonical/API work, fresh source9 services/s
 storage/restore/lifetime history and independent audit/remediation are in soleTodo.
 
 Current test-maintenance follow-up is separate from production source changes:
-use real1-hour opening, exact royalty claims, current V9 identity/closed mint,
+use real1-hour opening, exact royalty claims, explicit current V10 versus prior V9 identity/closed mint,
 nonvacuous funded invariants and atomic rejection under existing guards. Keep
 historical imports explicit.16full1M currency faults exceed12M, so maximum actual
 activation/provider gas remains unqualified; no running service budget changed.

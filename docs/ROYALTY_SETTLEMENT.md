@@ -1,7 +1,7 @@
 # Marketplace royalty settlement: original currencies
 
 Fresh **royalty settlement4/recovery2**, accounting7/LP-allocation1/custody5/Entry3,
-canonicalV9 and schema16. Historical accounting6/V8/schema15 remains separately pinned.
+canonicalV10 and schema17. Historical accounting6/V8/schema15 remains separately pinned.
 User decision5November2026: holders claim each royalty currency as received.
 **No royalty swap, unwrap, converter binding, price-feed dependency or keeper
 conversion job remains in this fresh ledger.** LP reward conversion is separate.
@@ -89,7 +89,7 @@ Before admitting a new currency, prepare its reviewed API asset descriptor and
 website reward_assets entry, then qualify that coordinated configuration rollout.
 An on-chain admission does not reload a server or populate client metadata.
 No USD feed is required for the raw claim; missing USD prices stay unavailable.
-In schema16, declare an admitted non-ETH royalty currency's strategy as
+In schema17, declare an admitted non-ETH royalty currency's strategy as
 `claim_original`. A royalty-only token may explicitly have `price_policy:null`;
 token identity/decimals/transfer-behavior/admission checks still apply. ETH, ZZZ,
 LP reward assets, contribution assets and conversion sources retain required
@@ -129,7 +129,7 @@ successor, never a selected custody wallet. That successor separately reviews
 admission/allocation. Exact unreadable backing can still block handoff.
 
 Legacy conversion/recovery1 events, readers and tests remain explicitly historical;
-they do not enable swaps on settlement4. Current canonicalV9 retains the
+they do not enable swaps on settlement4. Current canonicalV10 retains the
 royalty4 sale/capacity and whole-ticket records, while separately preserving
 the new raw exact LP trees in Rewards' fixed canonical child. It requires the
 initial royalty window complete. HistoricalV8 and older record shapes are not

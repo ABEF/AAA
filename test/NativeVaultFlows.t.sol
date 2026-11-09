@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
@@ -130,7 +131,7 @@ contract NativeVaultFlowsTest is Test {
         positions = new BoundaryPositions(address(core),address(permit),address(wrapper)); core.setPositions(address(positions));
         FakeState state = new FakeState(address(core));
         ZZZLiquidityManager manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
-        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access)))); nft = new ZZZNFT(address(access),"ipfs://native/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        vault = new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access)))); nft = new ZZZNFT(address(access),"ipfs://native/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership = new ZZZMembership(address(access)); rewards = new ZZZRewards(address(access)); fees = new ZZZFeeController(address(access));
         buyback = new ZZZBuyback(address(access),address(token),1000e18);
         access.bind(Ids.VAULT,address(vault)); access.bind(Ids.NFT,address(nft)); access.bind(Ids.MEMBERSHIP,address(membership));

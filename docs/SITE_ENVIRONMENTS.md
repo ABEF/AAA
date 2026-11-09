@@ -1,5 +1,12 @@
 # Demo and contract-integration websites
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 Decision: 2026-10-26. These are separate release targets from the same website
 repository, `ABEF/AAA-website`, on `main`. The operator must select the target
 explicitly; a hostname change does not change a contract deployment profile.

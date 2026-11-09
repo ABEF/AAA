@@ -1,0 +1,12 @@
+{
+  "kind": "Read-only code comparison; no deployment, signing, transactions or provider qualification",
+  "network": "Robinhood Chain",
+  "chain_id": "0x1237",
+  "block_number": "0x68a00b2",
+  "block_hash": "0xf48f34d754a1365ef4b4aa0cd9c49fc8221285dc34d8575befce6efb4bc19ef3",
+  "block_hash_after": "0xf48f34d754a1365ef4b4aa0cd9c49fc8221285dc34d8575befce6efb4bc19ef3",
+  "stable_block": true,
+  "exact_code_matches_explorer": true,
+  "rpc_bytes": 42164,
+  "observed_utc": "2026-11-09T02:23:02.4690431Z"
+}

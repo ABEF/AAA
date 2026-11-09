@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
@@ -134,7 +135,7 @@ contract IntegratedEconomicConservationTest is Test {
             IPositionDescriptor(address(0)),IWETH9(address(0)));
         manager=new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit), address(new ZZZLPBalancer(address(access), address(core), address(state))));
         vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        nft=new ZZZNFT(address(access),"ipfs://integrated-test/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        nft=new ZZZNFT(address(access),"ipfs://integrated-test/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(access));rewards=new ZZZRewards(address(access));
         fees=new ZZZFeeController(address(access));compounder=new ZZZCompounder(address(access));
         access.bind(Ids.VAULT,address(vault));access.bind(Ids.NFT,address(nft));

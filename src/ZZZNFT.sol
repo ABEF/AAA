@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {ZZZModule} from "./base/ZZZModule.sol";
+import {ZZZSeaDropToken} from "./base/ZZZSeaDropToken.sol";
 import {Ids, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZAccess} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "./ZZZClaimRouter.sol";
-import {ZZZNFTMetadata, NFTMetadataInput} from "./ZZZNFTMetadata.sol";
+import {ZZZNFTMetadata} from "./ZZZNFTMetadata.sol";
 import {ZZZRoyaltyFactory} from "./ZZZRoyaltyFactory.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {CanonicalNFTRecord} from "./interfaces/IZZZNFTCanonical.sol";
@@ -34,7 +33,7 @@ interface IZZZVRFCoordinator {
 
 /// @notice Canonical ownership and immutable revealed traits. NFT-sale royalties
 /// have their own funded ledger; rarity never changes LP or collective rewards.
-contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
+contract ZZZNFT is ERC721, ZZZSeaDropToken, ReentrancyGuard {
     string private metadataBase;
     bool private metadataConfigured;
     ZZZRoyaltyRewards public immutable royaltyRewards;
@@ -48,6 +47,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     uint16[3] public rarityRemaining = [600, 300, 100];
     mapping(uint256 => uint256) public mintOrdinalOf;
     mapping(uint256 => uint256) public tokenAtOrdinal;
+    mapping(uint256 => address) public originalMintRecipient;
     mapping(uint256 => uint256) public requestOf;
     mapping(uint256 => bool) public traitsReady;
     mapping(uint256 => uint8) public rarityOf;
@@ -82,15 +82,17 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     event MetadataUpdate(uint256 tokenId);
     event BatchMetadataUpdate(uint256 fromTokenId, uint256 toTokenId);
 
-    constructor(address controller, string memory baseURI)
-        ERC721("ZZZ Permanent Liquidity Rights", "ZZZLP") ZZZModule(controller) {
-        _validateBaseURI(baseURI);
+    constructor(address controller, string memory baseURI,address renderer)
+        ERC721("ZZZ Permanent Liquidity Rights", "ZZZLP") ZZZSeaDropToken(controller) {
+        if(renderer.code.length==0 || address(ZZZNFTMetadata(renderer).access())!=controller)
+            revert InvalidConfiguration();
+        metadataRenderer=ZZZNFTMetadata(renderer);
+        metadataRenderer.validateBaseURI(baseURI);
         metadataBase = baseURI;
         metadataConfigured = bytes(baseURI).length != 0;
         royaltyRewards = ZZZRoyaltyFactory(access.royaltyFactory()).create();
         if (royaltyRewards.canonicalController() != controller || royaltyRewards.nft() != address(this)) revert InvalidConfiguration();
         claimRouter = new ZZZClaimRouter(controller, address(this), address(royaltyRewards));
-        metadataRenderer = new ZZZNFTMetadata(controller);
     }
 
     function _policy() private view returns (IZZZProtocolPolicy) {
@@ -134,6 +136,30 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     }
 
     function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating principalOperating nonReentrant {
+        if(address(seaDropMint)!=address(0))revert Unauthorized();
+        _mintDormant(to,id);
+    }
+
+    /// @notice SeaDrop validates gross payment and calls with zero ETH. Its
+    /// atomic fee/creator settlement follows this callback. Free team NFTs use
+    /// the same dormant issuance and original asynchronous randomness request.
+    function mintSeaDrop(address minter,uint256 quantity)
+        external payable live operating principalOperating nonReentrant {
+        if(msg.value!=0)revert InvalidAmount();
+        (uint256 first,bytes32 review,)=seaDropMint.beginMint(msg.sender,minter,quantity);
+        IZZZVault vault=IZZZVault(access.module(Ids.VAULT));
+        for(uint256 i;i<quantity;++i) {
+            if(mintedCount+1!=first+i)revert InvalidState();
+            _mintDormant(minter,vault.mintDormant(review));
+        }
+        seaDropMint.finishMint(review);
+    }
+
+    function mintStageOf(uint256 id) external view returns(uint8) {
+        return address(seaDropMint)==address(0) ? 0 : seaDropMint.mintStage(mintOrdinalOf[id]);
+    }
+
+    function _mintDormant(address to,uint256 id) private {
         if (mintPaused) revert Paused();
         uint64 end = royaltyRewards.mintEnd();
         if (end == 0 || block.timestamp > end) revert NotReady();
@@ -142,10 +168,11 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         uint64 revision = policy.vrfRevision();
         if (!vrf.configured || vrf.coordinator.codehash != vrf.expectedCodeHash) revert NotReady();
         if (mintedCount == MAX_SUPPLY) revert InvalidState();
-        address recipient = IZZZVault(msg.sender).mintProceedsRecipient();
+        address recipient = IZZZVault(access.module(Ids.VAULT)).mintProceedsRecipient();
         if (recipient == address(royaltyRewards) || recipient == address(this)) revert InvalidConfiguration();
         uint256 ordinal = ++mintedCount;
         mintOrdinalOf[id] = ordinal; tokenAtOrdinal[ordinal] = id;
+        originalMintRecipient[id]=to;
         // Bind before the ERC721 receiver callback. Official fulfillment is
         // asynchronous; a synchronous coordinator callback is rejected.
         uint256 epoch = randomnessBaseEpoch + vrf.generation;
@@ -229,43 +256,30 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     /// @notice Fixed 5% marketplace request, wholly payable to the holder pool.
     /// ERC2981 cannot enforce marketplace payment.
     function royaltyInfo(uint256, uint256 salePrice) external view returns (address receiver, uint256 royaltyAmount) {
-        return (address(royaltyRewards), Math.mulDiv(salePrice, 500, 10000));
+        // floor(salePrice * 500 / 10000), without intermediate multiplication.
+        return (address(royaltyRewards), salePrice / 20);
     }
 
     function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
-        return interfaceId == 0x2a55205a || interfaceId == 0x49064906 || super.supportsInterface(interfaceId);
+        return interfaceId == 0x2a55205a || interfaceId == 0x49064906 ||
+            (interfaceId == 0x1890fe8e && address(seaDropMint)!=address(0)) || super.supportsInterface(interfaceId);
     }
 
     /// @notice Current local marked principal, idle and compound NAV share.
     /// External/parked custody or stale dependencies report unavailable.
     function currentLPValue(uint256 id) public view returns (bool available, uint256 valueUSD) {
         _requireOwned(id);
-        if (royaltyRewards.weightOf(id) == 0) return (true, 0);
-        try metadataRenderer.currentValue(id) returns (uint256 value) { return (true, value); }
-        catch { return (false, 0); }
+        return metadataRenderer.markedValue(id);
     }
 
     function evolution(uint256 id) public view returns (bool available, uint8 stage) {
-        uint256 value;
-        (available, value) = currentLPValue(id);
-        stage = _stage(id, value, royaltyRewards.weightOf(id));
-    }
-
-    /// @dev One stage path keeps public reads and JSON metadata consistent.
-    /// Terminal stage4 reuses activated art without removing royalty eligibility.
-    function _stage(uint256 id, uint256 value, uint256 weight) private view returns (uint8) {
-        if (weight == 0) return 0;
-        if (IZZZVault(access.module(Ids.VAULT)).nftStatus(id) == PositionStatus.Exited) return 4;
-        IZZZProtocolPolicy.MetadataPolicy memory policy = _policy().metadataPolicy();
-        return value >= policy.singularityUSD ? 3 : value >= policy.enhancedUSD ? 2 : 1;
+        _requireOwned(id);
+        return metadataRenderer.evolutionOf(id);
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {
-        (bool available, uint256 value) = currentLPValue(id);
-        uint8 weight = uint8(royaltyRewards.weightOf(id));
-        uint8 stage = _stage(id, value, weight);
-        return metadataRenderer.render(NFTMetadataInput(id, rarityOf[id], paletteOf[id], patternOf[id], stage, traitsReady[id],
-            available, value, weight, metadataBase));
+        _requireOwned(id);
+        return metadataRenderer.tokenMetadata(id);
     }
 
     /// @notice Permissionless indexer notification after market moves.
@@ -288,19 +302,10 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     /// @notice Only an initially empty base can be populated, once before seal.
     function setBaseURI(string calldata baseURI) external onlyGovernance {
         if (access.isSealed() || metadataConfigured || bytes(baseURI).length == 0) revert InvalidConfiguration();
-        _validateBaseURI(baseURI);
+        metadataRenderer.validateBaseURI(baseURI);
         metadataConfigured = true; metadataBase = baseURI;
         emit MetadataBaseChanged(baseURI);
         emit BatchMetadataUpdate(0, type(uint256).max);
-    }
-    function _validateBaseURI(string memory baseURI) private pure {
-        bytes memory value = bytes(baseURI);
-        if (value.length == 0) return; // Unconfigured draft; production admission requires a reviewed CID.
-        bool ipfs = value.length >= 7 && value[0] == "i" && value[1] == "p" && value[2] == "f" &&
-            value[3] == "s" && value[4] == ":" && value[5] == "/" && value[6] == "/";
-        bool arweave = value.length >= 5 && value[0] == "a" && value[1] == "r" &&
-            value[2] == ":" && value[3] == "/" && value[4] == "/";
-        if (!ipfs && !arweave) revert InvalidConfiguration();
     }
     function _requestKey(uint256 epoch, uint256 requestId) private pure returns (bytes32) {
         return keccak256(abi.encode(epoch, requestId));
@@ -345,6 +350,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         randomness[key] = RandomnessResult(value.id, value.rarityWord, value.colorWord, true, true);
         requestOf[value.id] = value.requestId; requestEpochOf[value.id] = value.requestEpoch;
         mintOrdinalOf[value.id] = row; tokenAtOrdinal[row] = value.id;
+        originalMintRecipient[value.id]=value.originalRecipient;
+        if(address(seaDropMint)!=address(0))seaDropMint.restoreMint(row,value.originalRecipient,value.mintStage);
         rarityOf[value.id] = value.rarity; colorOf[value.id] = value.color;
         paletteOf[value.id] = value.palette; patternOf[value.id] = value.pattern; traitsReady[value.id] = true;
         canonicalImporting = true; _mint(value.owner, value.id); canonicalImporting = false;

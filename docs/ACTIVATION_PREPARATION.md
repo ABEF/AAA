@@ -1,5 +1,12 @@
 # Activation and top-up preparation
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 The backend prepares an **unsigned, fully simulated Entry transaction** for a
 reviewed deployment. It does not sign, broadcast, approve a deployment or connect
 the public website. The associated current-NAV guard and rebalance budget are described in [dynamic liquidity](DYNAMIC_LIQUIDITY.md). Qualification of

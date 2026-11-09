@@ -1,0 +1,21 @@
+{
+  "observed_utc": "2026-11-09T04:02:46.474819+00:00",
+  "protected_unrelated_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected_all_match": true,
+  "shared_signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+  "shared_signer_unchanged": true,
+  "changed_markdown_files_checked": 59,
+  "local_link_occurrences": 3069,
+  "new_broken_local_links": [],
+  "preexisting_unresolved_local_links": [],
+  "utf8_new_replacement_characters": [],
+  "focused_evidence_files_verified": 101,
+  "normal_object_gates": 47,
+  "static_records": 558,
+  "no_deployment_or_service_or_signer_change": true
+}

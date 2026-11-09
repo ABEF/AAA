@@ -10,8 +10,8 @@ Production **NOT APPROVED**. Preserve old runtimes, wallets, journals and
 | --- | --- |
 | Vault share/accounting behavior | `ACCOUNTING_VERSION() = 7` |
 | Rewards whole-unit allocation | `LP_ALLOCATION_VERSION() = 1` |
-| Canonical peers | `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9` |
-| Production inventory / read consumer | schema16 / explicit profile7 |
+| Canonical peers | `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10` |
+| Production inventory / read consumer | schema17/mint2; explicit backend flag2 adds V10 read/claims, default1 retains V9 |
 | LP geometry, custody and maintenance | portfolio2, custody5, maintenance3, confirmation3, compound4 |
 | Entry and pricing | direct Entry3, reviewedEntry2, pricing2, ProtocolPolicy1 |
 | Royalties | royalty4, reporting5; original currencies and one-hour opening |
@@ -26,6 +26,13 @@ shares; the collective 10% uses one share per activated NFT across buckets.
 The 5% compound and 5% buyback reserves stay outside Rewards. Rarity affects
 only separate royalties. Engine rounding phase is not money or a reserved
 fractional claim. See [exact allocation](EXACT_LP_ALLOCATION.md).
+
+See [OpenSea mint2](OPENSEA_MINT.md) for the V10 original-recipient/phase extension,
+20th callable helper and predeployed metadata renderer. LP/royalty economics and
+raw accounting-domain formats are unchanged; original V9 evidence retains its
+source scope. Explicit mint2 backend reads/claims and per-peer lineage pins are
+implemented; source9 website and installed consumers are not upgraded. Actual
+V10 consumer/operating qualification remains open.
 
 ## Atomic weight and claim flow
 

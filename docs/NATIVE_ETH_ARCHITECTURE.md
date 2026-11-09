@@ -4,7 +4,7 @@
 
 The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==7`, custody5,
 direct governance2 and canonical
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. [Profile7](POSITION_V7.md) is explicit;
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`. [Profile7](POSITION_V7.md) is explicit;
 older native/wrapped deployments and journals are not upgraded. Production is
 **NOT APPROVED**. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md)
 retains its original source scope.
@@ -87,7 +87,7 @@ Principal return is neither a fee earning nor a previously claimed reward.
 
 Versioned API/keeper/inventory readers must explicitly select accounting7,
 custody5, portfolio2, LP routing2, maintenance3, confirmation3, Budget4 and
-canonical V9; production inventory is schema16 with19 helpers, royalty4/reporting5. Eight-word length alone does not select the profile.
+canonical V10; production inventory is schema17 with20 helpers, royalty4/reporting5. Eight-word length alone does not select the profile.
 Historical profiles, deployment addresses and receipt/pending journals keep their
 original semantics. The served accounting3 poplint artifact and existing local
 chains do not acquire new payout controls from source edits; popldemo stays a

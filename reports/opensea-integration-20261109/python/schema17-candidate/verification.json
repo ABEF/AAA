@@ -1,0 +1,43 @@
+{
+  "utc": "2026-11-09T03:10:43.395362+00:00",
+  "scope": "synthetic mint2 gate and canonical-hash ABI wire consumer only",
+  "command": "python -X utf8 -m unittest tests_python.test_production_v15 -v",
+  "tool_observed_exit_code": 0,
+  "tool_observed_tests_run": 11,
+  "tool_observed_passes": 11,
+  "test_ids": [
+    "tests_python.test_production_v15.MintInventoryTests.test_cli_default_dispatch_rejects_historical16",
+    "tests_python.test_production_v15.MintInventoryTests.test_component_validates_original_recipients_not_current_owners",
+    "tests_python.test_production_v15.MintInventoryTests.test_default_template_remains_unqualified_and_old_gate_is_unchanged",
+    "tests_python.test_production_v15.MintInventoryTests.test_each_core_book_or_control_mutation_is_rejected",
+    "tests_python.test_production_v15.MintInventoryTests.test_new_bindings_are_explicit_and_do_not_relabel_schema16",
+    "tests_python.test_production_v15.MintInventoryTests.test_team_reservation_and_phase_caps_are_independent",
+    "tests_python.test_production_v15.MintInventoryTests.test_transfer_cannot_reset_lifetime_or_allowlist_limits",
+    "tests_python.test_production_v15.MintInventoryTests.test_zero_supply_is_explicit_not_a_substitute_for_funded_history",
+    "tests_python.test_production_v15.MintObserverWireTests.test_bounded_wire_capture_uses_only_the_same_confirmed_hash",
+    "tests_python.test_production_v15.MintObserverWireTests.test_noncanonical_bool_is_unavailable_never_a_guessed_false",
+    "tests_python.test_production_v15.MintObserverWireTests.test_nonempty_wire_preserves_original_recipient_and_lifetime_book"
+  ],
+  "source_scope": "post-run source hashes; no before/after or live-runtime assertion",
+  "post_run_sha256": {
+    "zzz_ops/production_v15.py": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08",
+    "zzz_ops/production_observer_v15.py": "481b94680e2f52a1f51c5e10f2d27d015c1c194a14d01ddb530583610a66c592",
+    "zzz_ops/production_v6.py": "a1d16d2e6538c1c4db4e8f0917b966c5027144f1c56b4b02da2c41ddc7ee8cf7",
+    "scripts/validate-production-config.py": "dcdd205a9228050c249134b11dcde81d736f99aebdc987d8b7e44b195ed7e305",
+    "scripts/observe-production-config.py": "aa599f6a5913c67ea2a5dc930186055042e10a9b5d2b22675602e21dfebb4b30",
+    "tests_python/test_production_v15.py": "507ed248843e9c30de0eb2f5ad18efb56111ec323e16a8efdfc4467e83fcb876",
+    "config/production.example.json": "ccc80dc6ea65be67ae8be695c54fa236cce069b96c9f33561899d54aa89c3751",
+    "config/production.schema16.example.json": "b5560279bdc2ac380dccb823a88c43d4a31f9cf64e5fe7a32122836f5791f93c"
+  },
+  "source_publication_only": true,
+  "network_calls": 0,
+  "signing": false,
+  "deployment": false,
+  "public_service_qualification": false,
+  "old_schema16_bytes_preserved": true,
+  "limitations": [
+    "Actual RPC/provider, OpenSea onboarding/fees/payers, wallet/hosting, full1000-NFT observer throughput and independent review remain unqualified.",
+    "Whole observer retains12000-read/60-second budget; exhaustion cannot produce complete observations.",
+    "The new gate remains a fail-closed source candidate and never authorizes deployment."
+  ]
+}

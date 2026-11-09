@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {Vm} from "forge-std/Vm.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
@@ -169,7 +170,7 @@ abstract contract PooledVaultFixture is Test {
     function setUp() public virtual { _fixture(treasury); }
     function _fixture(address payable recipient) internal {
         vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));t0=MockToken(address(0));t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
-        venue=new VaultLiquidityMock(address(t0),address(t1));ProtocolPolicyFixture.recipient(address(ac),recipient);vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        venue=new VaultLiquidityMock(address(t0),address(t1));ProtocolPolicyFixture.recipient(address(ac),recipient);vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         compounder=new ZZZCompounder(address(ac));oracle=new ZZZOracle(address(ac),address(0));
         MockFeed feed=new MockFeed(8,1e8);_royaltyFixtureFeed=feed;_setFixtureFeed(address(0),address(feed),3600);_setFixtureFeed(address(t1),address(feed),3600);

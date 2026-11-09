@@ -2,7 +2,7 @@
 
 This guide is the **full-replacement** path. To close only the residual and
 increase the unchanged main, use [governance same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation).
-The new source requires residual-reinvest1 peers and fresh schema16 admission;
+The new source requires residual-reinvest1 peers and fresh schema17 admission;
 old emergency2 runtimes keep their original dispatcher and profile.
 
 

@@ -225,13 +225,19 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     function mintDormant(bytes32 expectedMintPolicy) external payable live operating principalOperating nonReentrant returns (uint256 id) {
         address recipient;
-        (id,recipient) = canonicalModule().validateMint(msg.value, ++sequence,expectedMintPolicy);
+        IZZZNFT collection = _nft();
+        (id,recipient) = canonicalModule().validateMint(msg.sender,msg.value,++sequence,expectedMintPolicy);
         if (minted[id]) revert InvalidState();
         minted[id] = true;
-        _nft().mint(msg.sender, id);
-        (bool paid,) = payable(recipient).call{value: msg.value}("");
-        if (!paid || canonicalModule().mintPolicyFingerprint() != expectedMintPolicy) revert InvalidState();
-        emit DormantMinted(id, msg.sender, msg.value);
+        if (msg.sender != address(collection)) {
+            collection.mint(msg.sender,id);
+            (bool paid,) = payable(recipient).call{value:msg.value}("");
+            if (!paid || canonicalModule().mintPolicyFingerprint() != expectedMintPolicy) revert InvalidState();
+            recipient = msg.sender;
+        }
+        // NFT-only issuance records the authenticated buyer, with no proceeds
+        // flowing through this Vault. SeaDrop owns subsequent payment settlement.
+        emit DormantMinted(id,recipient,msg.value);
     }
 
     /// @notice New NFTs join the sole shared position for this pool. No redeemable token is issued.

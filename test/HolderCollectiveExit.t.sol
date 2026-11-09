@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
@@ -121,7 +122,7 @@ contract HolderCollectiveExitTest is Test {
         vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(token);
         oracle=new ZZZOracle(address(ac),address(0));MockFeed feed=new MockFeed(8,1e8);royaltyClockFeed=feed;
         oracle.setTestFeed(address(0),address(feed),1 hours);oracle.setTestFeed(address(token),address(feed),1 hours);
-        vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/"); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));

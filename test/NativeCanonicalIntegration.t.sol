@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
 import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
@@ -72,7 +73,7 @@ contract NativeCanonicalIntegrationTest is Test {
         s.access = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.access));
         s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access), address(token));
         s.vault = new ZZZVault(address(s.access),block.chainid,address(new ZZZMigrationBudget(address(s.access))));
-        s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.royalties = s.nft.royaltyRewards();
+        s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/", address(new ZZZNFTMetadata(address(s.access)))); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.access)); s.fees = new ZZZFeeController(address(s.access));
         s.migration = new ZZZMigration(address(s.access)); ZZZOracle oracle = new ZZZOracle(address(s.access), address(0));
         s.access.bind(Ids.VAULT, address(s.vault)); s.access.bind(Ids.NFT, address(s.nft));

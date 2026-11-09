@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
@@ -38,7 +39,7 @@ contract DeployCore is Script {
         ZZZProtocolPolicy policy=new ZZZProtocolPolicy(controller,vm.envAddress("MINT_PROCEEDS_RECIPIENT"));
         a.bindProtocolPolicy(address(policy));
         a.bind(Ids.VAULT,address(new ZZZVault(controller,home,address(new ZZZMigrationBudget(controller)))));
-        ZZZNFT nft=new ZZZNFT(controller,vm.envString("NFT_BASE_URI"));
+        ZZZNFT nft=new ZZZNFT(controller,vm.envString("NFT_BASE_URI"), address(new ZZZNFTMetadata(controller)));
         a.bind(Ids.NFT,address(nft));
         // Optional LOCAL reviewed coordinator configuration. Without it minting
         // remains disabled. No public-network coordinator is assumed here.

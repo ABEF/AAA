@@ -1,0 +1,718 @@
+{
+  "format": 1,
+  "created_utc": "2026-11-09T03:58:21.863488+00:00",
+  "source_campaign": "opensea-integration-20261109-1579186",
+  "scope": "Exact official evidence and focused local tests/Python receipts; excludes all out/cache trees and root-owned normal/static/review files.",
+  "copied_originals_verified": true,
+  "no_credentials_detected_in_urls": true,
+  "overlapping_stages_not_summed": true,
+  "files": [
+    {
+      "path": "official-seadrop/derived/abi.json",
+      "source": "official-seadrop-evidence/derived/abi.json",
+      "bytes": 35012,
+      "sha256": "b64b0900ed04920443dd266b668961570cb6b7b38a1146ed3f6499e772b5c360",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/derived/deployed-runtime.hex",
+      "source": "official-seadrop-evidence/derived/deployed-runtime.hex",
+      "bytes": 42164,
+      "sha256": "671c10aac7c2cc27887dd9584251c05c7a4a6509eaf89af7410db5ef7ab7cc2f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/derived/rpc-runtime-comparison.json",
+      "source": "official-seadrop-evidence/derived/rpc-runtime-comparison.json",
+      "bytes": 516,
+      "sha256": "156a5983cadbc454e1c910c2177386808a0547651b579993bedc7787631664a9",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/derived/verified-metadata.json",
+      "source": "official-seadrop-evidence/derived/verified-metadata.json",
+      "bytes": 4134,
+      "sha256": "60e5b675c61eff4f3e44b6d96d5202e1042676b9f1edfa86ced1fa54ab612807",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/explorer/verified-contract-response.json",
+      "source": "official-seadrop-evidence/explorer/verified-contract-response.json",
+      "bytes": 243235,
+      "sha256": "84fe4c9eca99c43a10e6de86045b40ef58c59328ab641102d1439472a83aa811",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/manifest.json",
+      "source": "official-seadrop-evidence/manifest.json",
+      "bytes": 12065,
+      "sha256": "e8d640808db67bde68eef736a3a283f581f992d6fbe6519fb68a58972be5c900",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/official-registry/commit.json",
+      "source": "official-seadrop-evidence/official-registry/commit.json",
+      "bytes": 10509,
+      "sha256": "01a71d84bd422d7166b1449199ff3256980a4be54fe8c49e45c5b5ddc90bd3ba",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/official-registry/Deployments.md",
+      "source": "official-seadrop-evidence/official-registry/Deployments.md",
+      "bytes": 7186,
+      "sha256": "3a19ecc283b968721266883b0be521bda6a4424ea0590484bfc44831b051c8ed",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/official-registry/README.md",
+      "source": "official-seadrop-evidence/official-registry/README.md",
+      "bytes": 5737,
+      "sha256": "a01bb645c2c69d2b8cdee0133ef84eba4294f6a1705101f827ec722702291c5c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/rpc/01-chain-id.json",
+      "source": "official-seadrop-evidence/rpc/01-chain-id.json",
+      "bytes": 43,
+      "sha256": "75ea0f516604d743a7a785da0919b7b26debc20e260ff9d0a045c6cfa40f876f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/rpc/02-block-number.json",
+      "source": "official-seadrop-evidence/rpc/02-block-number.json",
+      "bytes": 46,
+      "sha256": "7029ebb47768fb6b3cafb8f3904f6af9e603beeaa00dbadc4ab939ff292687d2",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/rpc/03-block-before.json",
+      "source": "official-seadrop-evidence/rpc/03-block-before.json",
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/rpc/04-code-at-block.json",
+      "source": "official-seadrop-evidence/rpc/04-code-at-block.json",
+      "bytes": 42201,
+      "sha256": "f517c2459e50ff28aeba8ca7e426a13b0ce612e8dcb2f8bde39b8bcf70f95f87",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/rpc/05-block-after.json",
+      "source": "official-seadrop-evidence/rpc/05-block-after.json",
+      "bytes": 2028,
+      "sha256": "567d739ca7fc8b6686312393ffa50c08e6ca2c68c4aa3c29a2180c5cab3735bd",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+      "bytes": 4976,
+      "sha256": "5212ea444cfce33fdc82d4b3440b161b70784f0bfe7eac485364569040584f75",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+      "bytes": 8538,
+      "sha256": "92436ee32d03bff1fe45f4a96a661e238a9e2ef3821ace8279b12c33e199f0f3",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol",
+      "bytes": 8471,
+      "sha256": "1185b7f201bf9f2c8a02100897e84f1ece6b35bf83e18c1180eb14521bb6862c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+      "bytes": 853,
+      "sha256": "701e025d13ec6be09ae892eb029cd83b3064325801d73654847a5fb11c58b1e5",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+      "bytes": 12505,
+      "sha256": "4198e681b682c9aea82eb601f946c131e9e2e7ac874cc7b6b48192c29fda5e51",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "bytes": 2254,
+      "sha256": "f640392a0f3b662c1f0110504b6f90064eb3a28046e2505ea93f54d4620a77e6",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/solmate/src/tokens/ERC20.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/solmate/src/tokens/ERC20.sol",
+      "bytes": 6812,
+      "sha256": "a3a7e839f42762ef24623581542a916e838f3c7c0bef647963d1fdad0f9d208a",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/solmate/src/utils/ReentrancyGuard.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/solmate/src/utils/ReentrancyGuard.sol",
+      "bytes": 602,
+      "sha256": "e69ce8729cd5ff2caac16efa4498e967fc6bf85bbad4003be87c8a0757fd8a0c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/lib/solmate/src/utils/SafeTransferLib.sol",
+      "source": "official-seadrop-evidence/verified-sources/lib/solmate/src/utils/SafeTransferLib.sol",
+      "bytes": 5783,
+      "sha256": "85056ad3600b04e40167d89978eae2a92dd34d1316e74987b4a7dcd65c2b65d9",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/interfaces/INonFungibleSeaDropToken.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/interfaces/INonFungibleSeaDropToken.sol",
+      "bytes": 6944,
+      "sha256": "9d4667915de85f9b4fc3c637ff9ef2083a19d2e6a4d23b6b80316e9e566c79d9",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/interfaces/ISeaDrop.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/interfaces/ISeaDrop.sol",
+      "bytes": 9759,
+      "sha256": "8e888977c4a00a8b168131f0ce1a5214beec41d1c6ea6cd1fc686b2b7b4acb8b",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/interfaces/ISeaDropTokenContractMetadata.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/interfaces/ISeaDropTokenContractMetadata.sol",
+      "bytes": 3057,
+      "sha256": "f5e7d84e0b9e5a9b38587755d8b687c8539cc198cdfe1cbba008bcaef8597e2e",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/lib/SeaDropErrorsAndEvents.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/lib/SeaDropErrorsAndEvents.sol",
+      "bytes": 9615,
+      "sha256": "2cd90c67273f166362c91895fe4aa5cb933549c10cbdd530d53f2894d9b593a8",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/lib/SeaDropStructs.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/lib/SeaDropStructs.sol",
+      "bytes": 6284,
+      "sha256": "b2ba6712b9100c98b445fa47bb0926499440039fe606b2dbfb1ff2ad6f75460d",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/verified-sources/src/SeaDrop.sol",
+      "source": "official-seadrop-evidence/verified-sources/src/SeaDrop.sol",
+      "bytes": 45656,
+      "sha256": "1e1c55f85debe55feb001a63a169125207b41aae5f358b306e86be5a35ce52d8",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "official-seadrop/interface-conformance.json",
+      "source": "interface-conformance.json",
+      "bytes": 2215,
+      "sha256": "fd8e3220272fe5a04338961c52e5bf943a5b9c3f272265618410577c4ea61e6e",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt1/result.json",
+      "source": "forge-actual-drop/attempt1/result.json",
+      "bytes": 516,
+      "sha256": "dc8b2a7e1bd500fef62085334caa19c513b192346f4c665ebbbc5ae6971e8d2d",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt1/stderr.log",
+      "source": "forge-actual-drop/attempt1/stderr.log",
+      "bytes": 63,
+      "sha256": "df18400792f8f1a06d846e92c3a7c0e45c8830da2176d5c4b4191443fce39d52",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt1/stdout.log",
+      "source": "forge-actual-drop/attempt1/stdout.log",
+      "bytes": 37,
+      "sha256": "49c1fe9ef249ef9cd2c3b9a7ed694b4df335aea8c9d3d7d4e6e999a37618ac3f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt2/result.json",
+      "source": "forge-actual-drop/attempt2/result.json",
+      "bytes": 631,
+      "sha256": "5c1e8abf36846bafa6afceaa3c622d681403281306dbd9b8f99444410bca0374",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt2/stderr.log",
+      "source": "forge-actual-drop/attempt2/stderr.log",
+      "bytes": 63,
+      "sha256": "df18400792f8f1a06d846e92c3a7c0e45c8830da2176d5c4b4191443fce39d52",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt2/stdout.log",
+      "source": "forge-actual-drop/attempt2/stdout.log",
+      "bytes": 36,
+      "sha256": "887f8650058a28c3c4b226b69fcab383e85283093db71bbf6130a8e70d95a037",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt3/result.json",
+      "source": "forge-actual-drop/attempt3/result.json",
+      "bytes": 319,
+      "sha256": "33eb600ef4f5c7452eace878c4148eae5608c820170b6b3cbaa3e8b290d844f9",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt3/stderr.log",
+      "source": "forge-actual-drop/attempt3/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt3/stdout.log",
+      "source": "forge-actual-drop/attempt3/stdout.log",
+      "bytes": 1939,
+      "sha256": "5de29d20d8faa6f417e9d7563d8cd1e232f935b1d9b056c105a34570cd5a68f0",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/result.json",
+      "source": "forge-popl-drop/attempt1/result.json",
+      "bytes": 327,
+      "sha256": "d102e25a30d9f4378bed2b3f8cc3bdcfd7c260f31437acdd28ae05ed987a6b73",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/source-conformance-lf.json",
+      "source": "forge-popl-drop/attempt1/source-conformance-lf.json",
+      "bytes": 30373,
+      "sha256": "84861aba768210f4989fab526cd40fe8f2326b9e7e143ca0c2dafaa00dee9a63",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/source-conformance.json",
+      "source": "forge-popl-drop/attempt1/source-conformance.json",
+      "bytes": 22355,
+      "sha256": "c951bff42b7fed5e414d7384b8200784393570ed29084ebd2c8396da3b46706d",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/stderr.log",
+      "source": "forge-popl-drop/attempt1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/stdout.log",
+      "source": "forge-popl-drop/attempt1/stdout.log",
+      "bytes": 8491,
+      "sha256": "ecf21e61f40e1042c7c0377dbf4fdb6cf8b76703803fefb39f4be926fc4f6d75",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-quota-drop/attempt1/result.json",
+      "source": "forge-quota-drop/attempt1/result.json",
+      "bytes": 332,
+      "sha256": "36bd9cdc3f296ae19d4aabcfddd95a24eb5b896da95c61508f0eced23616d3f2",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-quota-drop/attempt1/stderr.log",
+      "source": "forge-quota-drop/attempt1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-quota-drop/attempt1/stdout.log",
+      "source": "forge-quota-drop/attempt1/stdout.log",
+      "bytes": 7878,
+      "sha256": "f5ecb3a303f294fff48259ee55ddccf9c7203186a00c5aea653481637cda29a2",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-canonical-drop/attempt1/verification.json",
+      "source": "forge-canonical-drop/attempt1/verification.json",
+      "bytes": 24101,
+      "sha256": "c5d0ae8fa69725fa66465b2d2f7b5740dbb2adec810cfba4d20f26ebd1a12c9c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-canonical-drop/attempt1/verification.log",
+      "source": "forge-canonical-drop/attempt1/verification.log",
+      "bytes": 11869,
+      "sha256": "ff528dad5eddf457fa1587b122de723bf4aa0425ce82357d39023cdfb09aecb4",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-canonical-drop/attempt2/verification.json",
+      "source": "forge-canonical-drop/attempt2/verification.json",
+      "bytes": 24346,
+      "sha256": "6a36802658688445d6fbb1bd0dffe9021bd6b1f09b1d7dbf41c180f264984b5c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-canonical-drop/attempt2/verification.log",
+      "source": "forge-canonical-drop/attempt2/verification.log",
+      "bytes": 7883,
+      "sha256": "ce4a369d690aab4c7c140c9ff1a30796acbf58fe4228913b966df0890b579473",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt1/diagnostic-trace.log.gz",
+      "source": "forge-whole-seadrop/attempt1/diagnostic-trace.log",
+      "bytes": 2143809,
+      "sha256": "6bcdc31c7f550fb0560e4f537f9bb1592ba0bf8f8aa6ecd14f224027a06c1604",
+      "encoding": "gzip, mtime0, no stored filename",
+      "original_bytes": 56517286,
+      "original_sha256": "7a1e0af502e472b951cf36fd0ad8c93d2fdb51be81e53e37059adeacdf4a0163",
+      "decompression_verified": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt1/verification.json",
+      "source": "forge-whole-seadrop/attempt1/verification.json",
+      "bytes": 25519,
+      "sha256": "b93b6e25776b376e057b386ef0dc35ba409de5b7af11930e74e40fc73095157a",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt1/verification.log",
+      "source": "forge-whole-seadrop/attempt1/verification.log",
+      "bytes": 8356,
+      "sha256": "9cf3fba1dfcdba22e586c4423cd0927e46fdf8dc581dc811e9973be418460956",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt2/verification.json",
+      "source": "forge-whole-seadrop/attempt2/verification.json",
+      "bytes": 25831,
+      "sha256": "3f894ccbc9c86ec65a70f18348fa1d21dd03f2fb620bf3d26b10878c61ac6305",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt2/verification.log",
+      "source": "forge-whole-seadrop/attempt2/verification.log",
+      "bytes": 8324,
+      "sha256": "db47fe18b0cf1deb15608cf2f47d231c324d44a94cbc4c7a60183275df257ed6",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt3/diagnostic-trace.log.gz",
+      "source": "forge-whole-seadrop/attempt3/diagnostic-trace.log",
+      "bytes": 2396382,
+      "sha256": "20ab54827287669a3aa25fdddeb8290be8712f27dcadb47a2122dad77eb3e9b9",
+      "encoding": "gzip, mtime0, no stored filename",
+      "original_bytes": 64866787,
+      "original_sha256": "188b461a9e18a3a3dc4585b88f1d8968b6ce2bfe65d636868ca2604cd8679329",
+      "decompression_verified": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt3/verification.json",
+      "source": "forge-whole-seadrop/attempt3/verification.json",
+      "bytes": 25891,
+      "sha256": "6f70cd14710b2adc39906acf761a1f11e9526368658cdbbdf98144229d5ef326",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt3/verification.log",
+      "source": "forge-whole-seadrop/attempt3/verification.log",
+      "bytes": 8674,
+      "sha256": "113ee1b0dbf0cd69da09a598ad906319587e636b21f7a04802b48d47ae47a0ea",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt4/verification.json",
+      "source": "forge-whole-seadrop/attempt4/verification.json",
+      "bytes": 25977,
+      "sha256": "f188f4616ed1e20bde177f4992cfe4f546a876c0f0377b5bd5f29cec7f78776d",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt4/verification.log",
+      "source": "forge-whole-seadrop/attempt4/verification.log",
+      "bytes": 8000,
+      "sha256": "3a93cd00b79b04548c08495c23d2c70deb80e7e0487d740919721e7f80f2fe79",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/command.json",
+      "source": "affected-existing/attempt1/command.json",
+      "bytes": 1123,
+      "sha256": "5e6cbf8c41198cf67794784e90206a8dca316a0ea7751f006bc2dff31e590374",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/original-artifacts-after.json",
+      "source": "affected-existing/attempt1/original-artifacts-after.json",
+      "bytes": 29609,
+      "sha256": "23f656860973c412285272f78670960a971d85c0751738fc50034f2f6ba80e64",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/original-artifacts-before.json",
+      "source": "affected-existing/attempt1/original-artifacts-before.json",
+      "bytes": 29609,
+      "sha256": "23f656860973c412285272f78670960a971d85c0751738fc50034f2f6ba80e64",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/result.json",
+      "source": "affected-existing/attempt1/result.json",
+      "bytes": 277,
+      "sha256": "14ced5c95de6bccc0406c15f89281d8aa8ea894877c421ac6844aef10ff77b29",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/source-after.json",
+      "source": "affected-existing/attempt1/source-after.json",
+      "bytes": 7768,
+      "sha256": "2f08a225b582332492f4431a495868dcf5d5ef27a7bd34ac033b195af4926b0f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/source-before.json",
+      "source": "affected-existing/attempt1/source-before.json",
+      "bytes": 7768,
+      "sha256": "2f08a225b582332492f4431a495868dcf5d5ef27a7bd34ac033b195af4926b0f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/source-during.json",
+      "source": "affected-existing/attempt1/source-during.json",
+      "bytes": 7981,
+      "sha256": "c6b80a0c517490ea651107ee7b7c5e79c22d582294c4f572e44a1c4896972879",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/stderr.log",
+      "source": "affected-existing/attempt1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/affected-existing/attempt1/stdout.log",
+      "source": "affected-existing/attempt1/stdout.log",
+      "bytes": 10467,
+      "sha256": "b13448cc4a7a3e63f9c7a2bdec93f1a8cd2c0f8a34e3a0af62718b91af2c7285",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/forge-actual-drop/attempt3/compiler-source-scope.json",
+      "bytes": 14343,
+      "sha256": "b5096f1f997faa0bdfe510af92a41397e365dc114a7e2e3ef0a4b9a3568c88fa",
+      "kind": "derived source-scope explanation"
+    },
+    {
+      "path": "tests/forge-popl-drop/attempt1/compiler-source-scope.json",
+      "bytes": 27724,
+      "sha256": "50974f4d38c32979d6ce3ab721293c11ee1d4cb725349548ea2d4a2291366473",
+      "kind": "derived source-scope explanation"
+    },
+    {
+      "path": "tests/forge-quota-drop/attempt1/compiler-source-scope.json",
+      "bytes": 28049,
+      "sha256": "6fd00977aee8eeb52a91083802175ab9abea9d00c104b383b18c5b657be910a8",
+      "kind": "derived source-scope explanation"
+    },
+    {
+      "path": "tests/current-test-source/test/SeaDropIntegration.t.sol",
+      "source": "test/SeaDropIntegration.t.sol",
+      "bytes": 17997,
+      "sha256": "2526134c7a2639d3564ddd6826a3df1ba481a379e5e96430ae16beb630d89be8",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/SeaDropPoPLIntegration.t.sol",
+      "source": "test/SeaDropPoPLIntegration.t.sol",
+      "bytes": 20560,
+      "sha256": "2438cd2b2ebfab199b7f9472b247c3749e8222425c46b58b3804860ec46761a0",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/SeaDropQuota.t.sol",
+      "source": "test/SeaDropQuota.t.sol",
+      "bytes": 9266,
+      "sha256": "059b3404fc9b779f330cd826579ad16de6ad9f82da4cb81949401543150eee4a",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/SeaDropCanonical.t.sol",
+      "source": "test/SeaDropCanonical.t.sol",
+      "bytes": 15463,
+      "sha256": "570bf3d6c2c8be942330be8fc89af303b56aa88b1b38d4ab2ed400bbb6f06f32",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/fixtures/VerifiedSeaDropV1.sol",
+      "source": "test/fixtures/VerifiedSeaDropV1.sol",
+      "bytes": 44707,
+      "sha256": "d5fc2f1d38154b2513f0e37f19c550de038c18d28555e4404ae1eaacd03aa29f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/NFTMetadata.t.sol",
+      "source": "test/NFTMetadata.t.sol",
+      "bytes": 36526,
+      "sha256": "c4c1f7538b8f95174baf88f98273b68c621a69fa82f69cadabea1f6c4552a3b1",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/RandomnessRequestSettings.t.sol",
+      "source": "test/RandomnessRequestSettings.t.sol",
+      "bytes": 27590,
+      "sha256": "86c0d6c412f5a804b2f1a435ac8097fdc093221a368c24c5da385e4ba868ed35",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/test/RoyaltyLaunchWindow.t.sol",
+      "source": "test/RoyaltyLaunchWindow.t.sol",
+      "bytes": 11448,
+      "sha256": "3065515519447a676a2e36f2a55a9750310314483c3b448dd09f916b4e8ded2f",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/current-test-source/scope.json",
+      "bytes": 1681,
+      "sha256": "8f9393566e9ff139cfc47a3c69edd22df34d6c9849073fbcb381dac32c2fd1d7",
+      "kind": "derived source-scope explanation"
+    },
+    {
+      "path": "python/root-reference-gates-1/START.json",
+      "source": "root-reference-gates-1/START.json",
+      "bytes": 60257,
+      "sha256": "6b45f968856ad635748ce4f8a59d99c589b7d0aa5468cec11511125fa53f5e98",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/root-reference-gates-1/tests.log",
+      "source": "root-reference-gates-1/tests.log",
+      "bytes": 17655,
+      "sha256": "9478edd5d61f825ff24e96e8213ae19132febd080bae60346adbec25bd6479a3",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/root-reference-gates-1/verification.json",
+      "source": "root-reference-gates-1/verification.json",
+      "bytes": 131643,
+      "sha256": "c8d689b553d9730df5281a8c9bfa5e786e7ce27288036ca861fe53648b28266b",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/current-template-recheck/START.json",
+      "source": "current-template-recheck/START.json",
+      "bytes": 60318,
+      "sha256": "58583576e57df8c88870425e510084d24120d4c1013ec52facd9b5cfeb36cff3",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/current-template-recheck/tests.log",
+      "source": "current-template-recheck/tests.log",
+      "bytes": 345,
+      "sha256": "4cbda10f34fa5111392cf84e93bed784fda905637bcdbe086a2f7c69c5cd9c2c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/current-template-recheck/verification.json",
+      "source": "current-template-recheck/verification.json",
+      "bytes": 120625,
+      "sha256": "0716648b02b55d303a3fe71c36badca4e517d7521a55b368ae8d3c88d043b774",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/builder-final-all-13686d71.json",
+      "source": "builder-final-all-13686d71.json",
+      "bytes": 4936,
+      "sha256": "e9ce5422b4bfb8dba1d685c60fc3b036eb42ec4b744ffca52073acf5d5d67832",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/builder-final-focused-84485b5f.json",
+      "source": "builder-final-focused-84485b5f.json",
+      "bytes": 2075,
+      "sha256": "5450fe2be1b6dd84619fa8595c025fec133bd66e1da322a730912cf03717cfc8",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/docs-encoding-reconciliation.json",
+      "source": "docs-encoding-reconciliation.json",
+      "bytes": 28350,
+      "sha256": "0b2268f707d8317a6e4ac5e067b698f43e5c67718aca39e7c1bcd10afc53d829",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "tests/scope-index.json",
+      "bytes": 2602,
+      "sha256": "ea08619a5449ed4f269de238fc1d39c6c9808d39d5fea125145572865d13d35d",
+      "kind": "derived source-scope explanation"
+    },
+    {
+      "path": "tests/current-test-source/test/SeaDropFullHandoff.t.sol",
+      "source": "test/SeaDropFullHandoff.t.sol",
+      "bytes": 20874,
+      "sha256": "0e23491f133e8c15315440c5522a03edb44f6a95f006fa9a804129ddd4fba1e5",
+      "exact_original_bytes": true,
+      "matches_final_full_handoff_source": true
+    },
+    {
+      "path": "tests/forge-whole-seadrop/attempt4/current-source-conformance.json",
+      "bytes": 29345,
+      "sha256": "085fa32f443c1cab4a6d85b264accf2fcd68960b04c508b11b5eaf6ff4e8c4b7",
+      "kind": "derived current-source comparison"
+    },
+    {
+      "path": "python/schema17-candidate/prior-template-equality.json",
+      "source": "schema17-candidate/prior-template-equality.json",
+      "bytes": 303,
+      "sha256": "4d1c81103cb4b76ed89186f2a8ba3568b5d66e1882dcb35af1d9b094471c4db7",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/schema17-candidate/verification.json",
+      "source": "schema17-candidate/verification.json",
+      "bytes": 3207,
+      "sha256": "193afee3a35286c57d1aa9cb1a3d85d354591df9a1f2d3a12b25d3a0dc720b38",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/frontend-consumer-v10-candidate/verification.json",
+      "source": "frontend-consumer-v10-candidate/verification.json",
+      "bytes": 20938,
+      "sha256": "6819eedcf14b010a8ab14a67458efc66c4e6c9fafe186dd64fbf6a54ba3635c4",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/builder-final-all-13686d71.log",
+      "source": "builder-final-all-13686d71.log",
+      "bytes": 5228,
+      "sha256": "bb5df4489d7902910c9f165bf176c1902736087d011edd34abbc29f85219b033",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/builder-final-focused-84485b5f.log",
+      "source": "builder-final-focused-84485b5f.log",
+      "bytes": 953,
+      "sha256": "d210b150be7b7bbb76e92a955a8ffd916e19c65787208c3af23adbe511a4e53c",
+      "exact_original_bytes": true
+    },
+    {
+      "path": "python/operator-reference20/tool-observation.json",
+      "bytes": 4150,
+      "sha256": "41d4fc18129f5ca44c586106c37a1e3622bf60104166679115192789177a079f",
+      "kind": "derived tool-observation, not raw log"
+    },
+    {
+      "path": "python/scope-index.json",
+      "bytes": 1655,
+      "sha256": "7d793e7e1335d546b4e561ac6e13f4661f3bbe2ec84d8faa9379cdec6ca0610c",
+      "kind": "derived source-scope explanation"
+    }
+  ],
+  "updated_utc": "2026-11-09T04:02:33.405088+00:00"
+}

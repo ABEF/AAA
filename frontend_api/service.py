@@ -118,6 +118,8 @@ class Projection:
                     'deployment_block_hash', 'confirmations', 'max_block_age_seconds', 'contracts', 'assets'}
         if isinstance(config, dict) and 'accounting_version' in config:
             expected.add('accounting_version')
+        if isinstance(config, dict) and 'mint_integration_version' in config:
+            expected.add('mint_integration_version')
         if isinstance(config, dict) and 'fee_intake_version' in config:
             expected.add('fee_intake_version')
         if isinstance(config, dict) and 'protocol_policy_version' in config:
@@ -138,6 +140,13 @@ class Projection:
         self.accounting_version = config.get('accounting_version', 1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported deployment accounting version')
+        # V10 is a separately selected source profile, never inferred from a
+        # matching Position tuple or a successor's mint configuration.
+        self.mint_integration_version = config.get('mint_integration_version', 1)
+        if (type(self.mint_integration_version) is not int or
+                self.mint_integration_version not in (1, 2) or
+                self.mint_integration_version == 2 and self.accounting_version != 7):
+            raise ValueError('Unsupported explicit mint integration profile')
         historical_custody = 4 if self.accounting_version in (5,6,7) else 3 if self.accounting_version==4 else 0
         self.custody_version = config.get('custody_version',historical_custody)
         allowed_custody = (5,) if self.accounting_version==7 else (4,5) if self.accounting_version==6 else (historical_custody,)
@@ -170,6 +179,8 @@ class Projection:
         self.clock = clock
         self.roles = ROLES + (('principal_exit',) if self.accounting_version in (4,5,6,7) else ())
         if self.accounting_version==7:self.roles+=('rewards_canonical',)
+        if self.mint_integration_version == 2:
+            self.roles += ('seadrop_mint', 'seadrop')
         if self.accounting_version in (5,6,7):
             from frontend_api.portfolio_v5 import ROLES as old_portfolio_roles
             from frontend_api.portfolio_v6 import ROLES as policy_portfolio_roles
@@ -310,7 +321,8 @@ class Projection:
                 raise ProjectionError('Native accounting profile differs from the deployed Vault version')
             launch = self.royalty_reporting is not None and self.royalty_reporting.schema >= 4
             exact = self.royalty_reporting is not None and self.royalty_reporting.schema == 5
-            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9' if self.accounting_version==7 else
+            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10' if self.mint_integration_version == 2 else
+                      b'ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9' if self.accounting_version==7 else
                       b'ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8' if self.accounting_version==6 and exact else
                       b'ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7' if self.accounting_version in (6,7) and launch else
                       b'ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6' if self.accounting_version in (6,7) else
@@ -354,6 +366,22 @@ class Projection:
                     raise ProjectionError('Accounting7 canonical child binding differs')
             if self._addr('handoff','moduleAt(uint8)',3,block=block)!=self.contracts['rewards_canonical'].address:
                 raise ProjectionError('Accounting7 handoff LP slot must use its fixed canonical child')
+        if self.mint_integration_version == 2:
+            # Authenticate immutable mint identities only. Sale phases, prices,
+            # fee recipients and mint availability cannot block existing LP or
+            # original-currency claims after the sale has ended.
+            for role, method, expected in (
+                    ('nft', 'seaDropMint()', 'seadrop_mint'),
+                    ('seadrop_mint', 'access()', 'access'),
+                    ('seadrop_mint', 'nft()', 'nft'),
+                    ('seadrop_mint', 'seaDrop()', 'seadrop')):
+                if self._addr(role, method, block=block) != self.contracts[expected].address:
+                    raise ProjectionError('SeaDrop mint integration binding differs from deployment pins')
+            if self._uint('seadrop_mint', 'MINT_INTEGRATION_VERSION()', block=block) != 1:
+                raise ProjectionError('Unsupported SeaDrop mint helper capability')
+            if ('0x' + self._call(self.contracts['seadrop_mint'].address,
+                    'seaDropCodeHash()', block=block)[0] != self.contracts['seadrop'].code_hash):
+                raise ProjectionError('SeaDrop helper runtime pin differs from the reviewed implementation')
         if self.accounting_version in (4,5,6,7):
             module_id = '0x' + keccak256(b'ZZZMigration').hex()
             if (self._addr('access', 'module(bytes32)', module_id, block=block) != self.contracts['principal_exit'].address or
@@ -392,6 +420,11 @@ class Projection:
             minting.update(sale_window=window, available_by_sale_window=window['available'],
                            remaining_mint_supply=1000-minted, available_by_supply=minted < 1000,
                            available=minting['available_by_controls'] and window['available'] and minted < 1000)
+        if self.mint_integration_version == 2:
+            minting.update(channel='opensea', direct_transaction_preparation_supported=False,
+                available=None, stage_eligibility='unverified',
+                scope='Controls, supply and the collection sale window are coarse observations only. '
+                      'SeaDrop phase, proof, payer and wallet eligibility are not verified here.')
         self._finish(header)
         return {'schema': 2, 'chain_id': self.chain, 'lifecycle': lifecycle,
                 'minting': minting,

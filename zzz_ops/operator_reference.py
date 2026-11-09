@@ -26,6 +26,7 @@ GROUPS = (
               'ZZZPortfolioPolicy', 'ZZZProtocolPolicy', 'ZZZOracle', 'ZZZLPBalancer', 'ZZZMigrationBudget')),
     ('revenue', 'LP rewards, royalties and claims', ('ZZZFeeController', 'ZZZMembership', 'ZZZRewards',
                 'ZZZRoyaltyRewards', 'ZZZLPRewardConverter', 'ZZZClaimRouter')),
+    ('mint', 'Primary mint and sale stages', ('ZZZSeaDropMint',)),
     ('recovery', 'Parking, holder return and canonical replacement', ('ZZZMigration', 'ZZZCanonicalHandoff')),
     ('holders', 'NFTs, contributions and metadata', ('ZZZNFT', 'ZZZActivationEntry', 'ZZZNFTMetadata')),
     ('internals', 'Bound modules, helpers and factories', ('ZZZContributionPricing', 'ZZZLiquidityManager',
@@ -34,6 +35,9 @@ GROUPS = (
      'ZZZActivationAssetsFactory', 'ZZZRoyaltyFactory', 'ZZZRoyaltyCodeData')),
 )
 WRITE_ORDER = {
+    'ZZZSeaDropMint': ('configure',),
+    'ZZZNFT': ('setMintPaused', 'setSeaDropMint', 'setMintEnd', 'updatePublicDrop', 'updateAllowList',
+               'updateCreatorPayoutAddress', 'updateAllowedFeeRecipient', 'updatePayer', 'updateDropURI'),
     'ZZZAccessController': ('setPaused', 'setKeeper', 'setGuardian', 'proposeGovernance', 'acceptGovernance',
                             'startPreparation', 'cancelPreparation', 'bindProtocolPolicy', 'bind', 'seal'),
     'ZZZVault': ('collectFees', 'rebalance', 'activate', 'increase', 'mintDormant', 'reservePool'),
@@ -233,7 +237,7 @@ def render(reference, examples):
              'Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.', '',
              'Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wallet/token approvals](#wallet-flows-and-external-token-approvals) for exact funding and transaction value.', '',
              '**Caller keys:** `G` governance after seal/bootstrap before seal; `B` bootstrap only; `K` keeper-authorized wallet; `H` NFT owner/approved NFT transfer caller as specified; `P` permissionless; `N` exact nominated recipient/provider; `M` fixed module/parent only; `C` authenticated callback only; `D` deployment only; `R` read, possibly guarded. These keys do not replace the linked exact permission. Governance is not automatically keeper-authorized. Guardian may pause, never unpause.', '',
-             '**Input format:** examples show function(arguments), not transaction calldata. Tuple/array brackets preserve ABI order; addresses and decimal integers are quoted for JSON precision. Quoted uppercase names are unresolved replacements, not literal values; replace boolean placeholders with true/false. Enter separate arguments/expanded tuple fields in the explorer or reviewed ABI tool. A tuple/array is ONE top-level argument. Use exact integer strings, never floats. Transaction value/gas are separate. Direct mint examples do not implement OpenSea primary mint.', '',
+             '**Input format:** examples show function(arguments), not transaction calldata. Tuple/array brackets preserve ABI order; addresses and decimal integers are quoted for JSON precision. Quoted uppercase names are unresolved replacements, not literal values; replace boolean placeholders with true/false. Enter separate arguments/expanded tuple fields in the explorer or reviewed ABI tool. A tuple/array is ONE top-level argument. Use exact integer strings, never floats. Transaction value/gas are separate. Buyers use the reviewed SeaDrop V1 flow; NFT mintSeaDrop and the Vault mintDormant module branch accept zero native value. The unbound direct-mint fixture is not the production path. These tables do not establish OpenSea onboarding. Pure unsupported setters are listed as reads and always revert.', '',
              '**Order:** read identities/state → capture current inputs → review → simulate exact caller/value/calldata → sign if authorized → verify receipt/state. Failed/reverted/unresolved operations need receipt reconciliation; do not guess success, resend, reset journals or restart services from this table.', '',
              '### Table navigation', '']
     for slug, title, _ in GROUPS:

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/{NFTMetadata,RandomnessRequestSettings,RoyaltyLaunchWindow}.t.sol",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\opensea-integration-20261109-1579186\\affected-existing\\attempt1\\out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\opensea-integration-20261109-1579186\\affected-existing\\attempt1\\cache",
+    "-vv"
+  ],
+  "scope": "Affected existing NFT/VRF/one-hour royalty regression files only; normal default fuzz/compiler. Reused copied owned artifacts, originals preserved.",
+  "no_rpc": true,
+  "no_keys": true,
+  "started_utc": "2026-11-09T03:34:12Z"
+}

@@ -1,8 +1,20 @@
 # Unsigned mint and claim preparation
 
-`frontend_api.transactions` prepares two typed wallet actions using the existing
-deployment-pinned [read service](FRONTEND_API.md). It constructs and simulates a
-transaction draft, with no key, signature, broadcast, allowance or asset movement.
+**Mint-profile boundary:** the backend implements explicit opt-in
+`mint_integration_version:2` for accounting7/V10 reads and owned reward claims.
+On accounting7, omitted/default1 retains the historical direct-mint/V9 profile; source9 website
+configurations are unchanged. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md) still
+requires reviewed matching deployment/configuration and operating acceptance.
+No existing service, checkpoint, journal, served site or signer is upgraded or
+relabeled by these source changes.
+
+
+`frontend_api.transactions` prepares owned reward claims using the
+deployment-pinned [read service](FRONTEND_API.md). Historical/default mint
+integration1 also supports direct mint drafts. Explicit mint integration2 reads
+V10 and prepares claims, but rejects a mint action with "Use OpenSea" before any
+RPC, simulation or direct-Vault draft. It has no key, signature, broadcast,
+allowance or asset movement.
 The public website remains a simulation. A separate local
 [browser-wallet profile](BROWSER_WALLET.md) implements signing and receipt recovery
 against disposable Anvil contracts. No production PoPL deployment is configured.
@@ -47,18 +59,24 @@ by their saved hash. Publishing this procedure changes no actual configuration.
 
 | Action | Fixed target and call | Native value | Approvals |
 | --- | --- | --- | --- |
-| Fresh7 dormant mint | Canonical Vault `mintDormant(expectedMintPolicy)` | Exact reviewed current mint price(default0.05ETH) | None |
-| LP and royalty claims | Immutable NFT-owned router `claimBatch((uint256,address,bool)[])` | Zero | None |
+| Historical mint integration1 dormant mint | Canonical Vault `mintDormant(expectedMintPolicy)` | Exact reviewed current mint price(default0.05ETH) | None |
+| Explicit mint integration2 primary mint | Not prepared here: use the reviewed OpenSea/SeaDrop path | Free TEAM or reviewed AL/public gross price, gas separate | None |
+| LP and royalty claims, mint integration1 or2 | Immutable NFT-owned router `claimBatch((uint256,address,bool)[])` | Zero | None |
 
-Direct mint is an implemented unsigned backend capability and historical Anvil
-path, **not an OpenSea primary mint integration**. The production qualification
-gate rejects that unsupported OpenSea path; public website minting remains a
-demonstration. Direct mint forwards the reviewed current price(default0.05ETH) to the accepted payee.
-Fresh7 provenance binds sale+VRF through mint_policy; claim_operations stays empty.
-Historical Anvil profiles retain their actual no-argument selector/fixed terms. The requested
-OpenSea buyer total of 0.05 ETH/platform-fee split needs compatible code and review.
-See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Enabling transaction
-configuration does not implement that path or enable signing.
+Direct mint remains an implemented historical backend/Anvil capability, not the
+fresh primary-sale path. With the Mint2 helper bound, direct paid Vault minting
+cannot bypass SeaDrop. Historical mint1 provenance binds sale/VRF through
+`mint_policy`; historical Anvil profiles retain their actual no-argument selector
+and fixed terms.
+
+The [SeaDrop Mint2 source](OPENSEA_MINT.md) implements dormant buyer issuance and
+atomic gross/fee/net settlement. TEAM is free; AL/public use the reviewed governed
+gross price(default0.05ETH), with gas separate. Actual custom-drop onboarding,
+fees/payers, VRF and operating acceptance remain unqualified; source support is
+not production approval. The website Mint page remains demonstrative.
+Mint integration2 is independent of transaction gas policy1/2 and response
+schema1/2: opting into V10 does not raise any gas/work budget, enable signing or
+change an existing browser consumer. See [qualification](MINT_INTEGRATION_QUALIFICATION.md).
 
 The service accepts only the connected wallet's public address and the typed
 selection. Callers cannot provide RPC URLs, chain IDs, destinations, recipients,
@@ -130,7 +148,7 @@ POST /v1/transactions/prepare
 Content-Type: application/json
 ```
 
-Mint request:
+Historical/default mint integration1 request (explicit2 rejects it):
 
 ```json
 {"action":"mint","wallet":"0x<current wallet address>"}
@@ -176,7 +194,7 @@ qualification remain required before hosting.
 All state reads, simulation, gas estimation and wallet balance reads use **one
 confirmed canonical block hash** with EIP-1898. The gas-price suggestion is a
 preparation-time RPC quote, not a historical price. No `latest` fallback or state,
-balance or allowance override. Mint preparation verifies the exact price, supply
+balance or allowance override. Historical mint1 preparation verifies the exact price, supply
 cap, remaining supply, global pause, preparation mode and independent mint-pause
 switch. Minting does not query unrelated reward currencies. Simulation exercises the actual mint,
 VRF request and mint-recipient payment paths. Claims require the full reviewed
@@ -194,7 +212,10 @@ and optional-currency deferrals retain their earned rights. Historical profiles
 do not acquire this getter requirement. No optional currency read is added merely
 to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
 
-Fresh7 requires pinned `principal_exit`, custody5 and canonicalV9. Historical4
+Accounting7 requires pinned `principal_exit` and custody5. Omitted/default mint
+integration1 authenticates V9; explicit2 authenticates V10 plus the fixed
+SeaDrop/helper bindings at that same block, without mutable sale/price checks
+gating claims. Historical4
 retains its own custody3/canonicalV5 profile. Its irreversible LP-exit flag blocks new mint and
 activation/top-up drafts, including after unpause; earned LP/royalty claims stay
 available to the current owner. Principal returns appear separately in read
@@ -294,7 +315,8 @@ use separate listeners for activation and mint/claim adapters.
 
 Current activation/growth accepts native ETH or the one fixed ZZZ token only.
 Actual feeds, routes/native venue, current website compatibility, authorities,
-VRF, hosting, OpenSea integration and independent audit remain release gates.
+VRF, hosting, actual OpenSea onboarding/fee/payer acceptance and independent
+audit remain release gates.
 Royalty currencies are separate and do not become contribution assets merely
 because a royalty receipt is admitted.
 

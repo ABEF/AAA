@@ -84,7 +84,7 @@ contract NFTMetadataTest is Test {
         access = new MockAccess(); vault = new MetadataVaultMock(); vrf = new MockVRF();
         policy = new ZZZProtocolPolicy(address(access), vault.mintProceedsRecipient());
         access.setProtocolPolicy(address(policy));
-        nft = new ZZZNFT(address(access), "ipfs://example/"); nft.setMintEnd(uint64(block.timestamp + 3650 days)); vault.setNFT(nft);
+        nft = new ZZZNFT(address(access), "ipfs://example/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days)); vault.setNFT(nft);
         policy.configureRandomness(address(vrf), address(vrf).codehash, bytes32(uint256(1)), 1, 3, 500000, false, keccak256("mock VRF review"));
         venue = new MetadataVenueMock(); fees = new MetadataFeesMock(); pools = new MockPools();
         token0 = new MockToken(0); token1 = new MockToken(0);
@@ -140,7 +140,7 @@ contract NFTMetadataTest is Test {
     }
 
     function testMintRequiresFixedVRFAndRollbackLeavesNoRequest() public {
-        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), ""); other.setMintEnd(uint64(block.timestamp + 3650 days));
+        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), "", address(new ZZZNFTMetadata(address(otherAccess)))); other.setMintEnd(uint64(block.timestamp + 3650 days));
         otherAccess.setProtocolPolicy(address(new ZZZProtocolPolicy(address(otherAccess),payable(address(0x7EA5)))));
         otherAccess.bind(Ids.VAULT, address(this)); otherAccess.seal();
         vm.expectRevert(); other.mint(ALICE, 1);
@@ -170,7 +170,7 @@ contract NFTMetadataTest is Test {
     }
 
     function testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration() public {
-        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), ""); other.setMintEnd(uint64(block.timestamp + 3650 days));
+        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), "", address(new ZZZNFTMetadata(address(otherAccess)))); other.setMintEnd(uint64(block.timestamp + 3650 days));
         ZZZProtocolPolicy otherPolicy = new ZZZProtocolPolicy(address(otherAccess), payable(address(0x7EA5)));
         otherAccess.setProtocolPolicy(address(otherPolicy));
         bytes32 reviewed=keccak256("mock VRF review");
@@ -413,10 +413,11 @@ contract NFTMetadataTest is Test {
 
     function testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment() public {
         vm.expectRevert(); nft.setBaseURI("ipfs://replacement/");
-        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), ""); other.setMintEnd(uint64(block.timestamp + 3650 days));
+        MockAccess otherAccess = new MockAccess(); ZZZNFT other = new ZZZNFT(address(otherAccess), "", address(new ZZZNFTMetadata(address(otherAccess)))); other.setMintEnd(uint64(block.timestamp + 3650 days));
         vm.prank(BOB); vm.expectRevert(); other.setBaseURI("ipfs://unauthorized/");
         vm.expectRevert(); other.setBaseURI("https://mutable.example/");
-        vm.expectRevert(); new ZZZNFT(address(otherAccess), "https://mutable.example/");
+        ZZZNFTMetadata invalidUriRenderer = new ZZZNFTMetadata(address(otherAccess));
+        vm.expectRevert(); new ZZZNFT(address(otherAccess), "https://mutable.example/", address(invalidUriRenderer));
         other.setBaseURI("ipfs://fixed/"); vm.expectRevert(); other.setBaseURI("ipfs://replacement/");
         otherAccess.seal(); vm.expectRevert(); other.setBaseURI("ipfs://later/");
     }

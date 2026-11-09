@@ -1,7 +1,7 @@
 # Current production inventory and read-only preflight
 
 Fresh source: [accounting7 / exact LP1 / custody5 / portfolio2](POSITION_V7.md),
-canonicalV9 and inventory16. **Undeployed; production NOT APPROVED.** The
+canonicalV10 and inventory17. **Undeployed; production NOT APPROVED.** The
 [exact-LP integration record](../reports/exact-lp-integration-20261106/VERIFICATION.md)
 binds its changed LP ledger, typed canonical companion and consumers. Earlier
 [moving-market](../reports/moving-market-flows-20261106/VERIFICATION.md) and
@@ -11,7 +11,7 @@ any fresh deployment; source publication never upgrades existing Anvil, service,
 website, inventory or journal identities.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-The [schema16 example](../config/production.example.json) is deliberately
+The [schema17 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood
 dependency references are not fresh on-chain evidence. No command below signs,
@@ -33,14 +33,17 @@ Governance may move to another reviewed native ETH/ZZZ pool, park all legs, or
 permanently return actual principal to current NFT owners. Same-chain canonical
 handoff remains pre-exit only and requires no live residual during parked export.
 
-Schema16 explicitly requires royalty settlement4/recovery2/reporting5,
+Schema17 explicitly requires royalty settlement4/recovery2/reporting5,
 accounting7, LP-allocation1, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
-LP routing2, quality1, Entry routing3, pricing2 and entry-review-policy2. A matching
-canonicalV9 wire does not make an old accounting profile current. Unknown,
+LP routing2, quality1, Entry routing3, pricing2, entry-review-policy2 and mint
+integration2/helper1. The predeployed metadata renderer is passed as the third
+NFT constructor argument; the collection-specific mint helper is bound once
+before sealing/any mint. A matching
+canonicalV10 wire does not make an old accounting profile current. Unknown,
 missing, boolean and inconsistent versions fail closed.
 
-There are 17 modules including Access, 19 logical callable helpers and exactly
+There are 17 modules including Access, 20 logical callable helpers and exactly
 2 inert factory code-data children. Optional creator inboxes, Entry conversion,
 royalty conversion and bridge helpers are removed. The LP converter and its v4
 executor remain separate from original-currency royalty claims. Budget, Balancer, PortfolioPolicy and Confirmation are
@@ -57,12 +60,13 @@ Rewards.LP_ALLOCATION_VERSION()==1 and MAX_ASSETS()==2 with their exact runtime
 pins. LP reward backing remains in Rewards; principal stays Vault-managed. The
 child has only typed canonical authority.
 LP funding assets are exactly native ETH plus the fixed ZZZ, separately from
-original-currency royalties. V9 preserves pending whole units, high/low phase and
+original-currency royalties. V10 retains V9's pending whole units, high/low phase and
 direct credits; historical6/V8 indices are not translated or relabeled. The
 terminal holder-return record keeps the accounting6/custody4-format wire under
-custody5; it is separate from the V9 canonical LP-reward codec.
+custody5; it is separate from the exact LP-reward domain retained within V10.
 
-Historical [schema15](../config/production.schema15.example.json),
+Historical [schema16](../config/production.schema16.example.json),
+[schema15](../config/production.schema15.example.json),
 [schema14](../config/production.schema14.example.json), [schema13](../config/production.schema13.example.json), schema12,
 schema10/custody5, schema9/custody4/direct Entry3 and schema8/routed Entry2 remain
 available only through explicit
@@ -90,8 +94,8 @@ must bind those same pointers/hashes. Children cannot alias protocol modules,
 helpers, dependencies, tokens or the future mint-payment recipient.
 
 Keep the factory-code qualification review and full independently reviewed
-runtime pins. CanonicalV9 does not explicitly enumerate the factory/data-child
-hashes; the full schema16 release graph authenticates
+runtime pins. CanonicalV10 does not explicitly enumerate the factory/data-child
+hashes; the full schema17 release graph authenticates
 them separately. Ordinary mint, LP and claim operations add no child-code reads.
 These inert children are neither authorities nor royalty recipients. See the
 [fixed code-storage procedure](FACTORY_CODE_STORAGE.md) for exact format,
@@ -99,7 +103,7 @@ constructor boundaries, failure handling and actual target-gas qualifications.
 
 ## Current buyback maximum and creation history
 
-Fresh schema16 requires `chains[].buyback_maximum_usd18`: the reviewed current
+Fresh schema17 requires `chains[].buyback_maximum_usd18`: the reviewed current
 `Buyback.maxTradeUSD()` in USD18, positive and at most uint128.max. It is matched
 to the exact pinned live getter. `operating_buyback_usd18` must not exceed it.
 `constructor.maximum_buyback_usd18` remains the original creation value; do not
@@ -128,12 +132,17 @@ capacity, lifecycle and gas still need independent qualification. See the
 
 <a id="current-schema6-observation-and-offline-validation"></a>
 
-## Current schema16 observation and offline validation
+## Current schema17 observation and offline validation
 
-[Validator](../zzz_ops/production_v14.py) and [observer](../zzz_ops/production_observer_v14.py)
-authenticate residual-reinvest1 on Migration/Vault/Budget/Policy/Pricing and
-raw-exit1 on the fixed closure graph. The current seal function does not prove
-this entire semantic/runtime graph; preflight it before irreversible binding.
+[Validator](../zzz_ops/production_v15.py) and
+[observer](../zzz_ops/production_observer_v15.py) authenticate schema17/mint2/V10,
+original-recipient/phase/lifetime mint books, the fixed helper/SeaDrop graph and
+reviewed current drop configuration. They retain residual-reinvest1 on
+Migration/Vault/Budget/Policy/Pricing and raw-exit1 on the fixed closure graph.
+Exact runtime/configuration consistency does not approve opaque proof contents,
+actual onboarding, fees/payers, provider operation or deployment. The current
+seal function does not prove this entire semantic/runtime graph; preflight it
+before irreversible binding.
 They operate directly on the fresh layout; no manifest is rewritten as accounting4
 to obtain a historical pass. All contract/code/native-balance reads share one
 EIP-1898 block hash with `requireCanonical`. Genesis, confirmation depth, final
@@ -217,8 +226,8 @@ supply actual addresses/pins/source commit, confirmed anchor and review records.
 Keep credentials, keys and endpoints outside the manifest. Then run:
 
 ```bash
-python3 scripts/observe-production-config.py --config reviewed-schema16.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema16.json
-python3 scripts/validate-production-config.py --config observed-schema16.json --expected-commit RELEASE_COMMIT --output preflight-schema16.json
+python3 scripts/observe-production-config.py --config reviewed-schema17.json --rpc-env POPL_RELEASE_RPC_URL --output observed-schema17.json
+python3 scripts/validate-production-config.py --config observed-schema17.json --expected-commit RELEASE_COMMIT --output preflight-schema17.json
 ```
 
 `POPL_RELEASE_RPC_URL` names a read-only endpoint environment variable; its

@@ -1,0 +1,37 @@
+{
+  "scope": "Final read-only source/reference/default-review checks; no compilation or deployment",
+  "gates": [
+    {
+      "name": "function-reference",
+      "chunk_id": "d355c4",
+      "wall_time_seconds": 0.605287,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "{\"checked\": true, \"contracts\": 39, \"functions\": 906, \"constructors\": 39, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n"
+    },
+    {
+      "name": "operator-reference",
+      "chunk_id": "d8cdab",
+      "wall_time_seconds": 0.6698065,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\"contracts\": 39, \"functions\": 906, \"constructors\": 39, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 958, \"ready_for_submission\": false}\r\n"
+    },
+    {
+      "name": "todo",
+      "chunk_id": "2b40fb",
+      "wall_time_seconds": 0.2455407,
+      "exit_code": 0,
+      "original_token_count": 6,
+      "output": "Project Todo verified.\r\n"
+    },
+    {
+      "name": "strict-static",
+      "chunk_id": "f6ec5e",
+      "wall_time_seconds": 0.7472437,
+      "exit_code": 0,
+      "original_token_count": 19,
+      "output": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\r\n"
+    }
+  ]
+}

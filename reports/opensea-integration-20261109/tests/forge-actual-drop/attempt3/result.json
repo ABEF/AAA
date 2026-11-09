@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-11-09T02:41:54.7487008Z",
+  "finished_utc": "2026-11-09T02:42:11.9927614Z",
+  "exit_code": 0,
+  "source_root": "test/fixtures",
+  "scope": "Exact deployed V1 runtime, bounded literal functions; synthetic NFT callbacks; normal compiler/optimizer",
+  "no_rpc": true,
+  "no_keys": true
+}

@@ -1,5 +1,20 @@
 # Engineering roadmap
 
+The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
+canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
+Initial20free-team/500paid-allowlist/480public allocations are configurable;
+AL is one NFT per distinct listed address, unused AL rolls public and
+unused team stays reserved. Original-recipient lifetime mint counts,
+dormancy and original two-word VRF requests are preserved. Normal size
+limits remain unchanged; see the [source-scoped verification](../reports/opensea-integration-20261109/VERIFICATION.md).
+Backend read/claim and lineage support is implemented with explicit mint2/V10
+pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
+Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
+website/installed-consumer and operating/independent acceptance remain open.
+Earlier V9/schema16 evidence below retains its original scope; it does
+not verify the mint extension or upgrade a served site/runtime.
+
+
 The local [source9 browser consumer](SOURCE9_WEBSITE_PROFILE.md) now implements
 fresh reads and unsigned reviews, including policy2 claim planning and optional
 activation gas2. The [actual fork follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
@@ -51,8 +66,10 @@ Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
 
 ## 3. Integrate matching services and site without changing old profiles
 
-Build reviewed schema16/source9 configs for API/indexer/keeper/health writer-checker
-and a matching accounting7/direct Entry3 website consumer on poplint. Popldemo
+Qualify reviewed schema17/mint2/V10 configs and the implemented opt-in2
+API read/claim/lineage path. Update remaining indexer/keeper/health/website
+consumers explicitly, preserving source9/schema16 as a prior profile. Build and
+qualify the matching accounting7/direct Entry3 website consumer on poplint. Popldemo
 remains simulation; served current3 and historical Anvil/journals remain their
 original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
@@ -68,7 +85,7 @@ confirmation/replanning and no silent omission; bounded local planning is not a
 maximum-batch or live-wallet gas guarantee.
 Qualify actual preparation/trace/approval/claims and truthful complete holdings/
 history, unavailable states, account changes and pending recovery. Fresh7 supports complete raw exact-tree replay or explicit reviewed checkpoint2 for earnings. Qualify actual suffix workloads, archival/rotation/restore and operator approval before claiming bounded lifetime operation. Checkpoint1 remains6-only. Extend lineage/other full-history consumers and review archival/rotation/source-codec evolution.
-Fresh royalty4/reporting5/canonicalV9 needs exact-unit cursor/cohort history and
+Fresh royalty4/reporting5/canonicalV10 retains the exact-unit cursor/cohort history and
 reviewed checkpoint rebuilds. No converter or new deployed allocator is added.
 A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.
 

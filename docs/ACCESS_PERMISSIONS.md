@@ -1,6 +1,6 @@
 # Who can call PoPL functions
 
-Fresh **accounting7 / LP-allocation1 / canonicalV9 / custody5 / schema16 / residual-reinvest1 / direct Entry3** candidate; undeployed,
+Fresh **accounting7 / LP-allocation1 / canonicalV10 / custody5 / schema17 / residual-reinvest1 / direct Entry3** candidate; undeployed,
 production **NOT APPROVED**. One human operator controls governance. This does not
 make every callable function operator-only: NFT owners must retain their rights,
 the keeper its limited work and dependencies their authenticated callbacks.
@@ -54,7 +54,7 @@ native receivers are its historical counts, not current catalog totals or execut
 
 ## Fresh versus historical profiles
 
-Fresh inventory16 requires accounting7/LP-allocation1/custody5, canonicalV9,
+Fresh inventory17 requires accounting7/LP-allocation1/custody5, canonicalV10,
 the fixed Rewards canonical child and residual-reinvest1/raw-exit1 capabilities.
 Schema15/accounting6/V8 and earlier inventories retain
 their original profiles. Governance-only consolidation is never a keeper action.

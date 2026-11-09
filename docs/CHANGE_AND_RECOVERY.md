@@ -85,7 +85,7 @@ The former remote destination-capacity proposal belongs to the removed bridge
 architecture. It is not a current release feature or an unimplemented bridge
 requirement. Preserve its original reports as historical evidence.
 
-Before `lpExitStarted`, compatible [same-chain canonical V9 handoff](CANONICAL_HANDOFF.md)
+Before `lpExitStarted`, compatible [same-chain canonical V10 handoff](CANONICAL_HANDOFF.md)
 can carry NFT ownership, shares, both ledgers and exact backing to one reviewed
 replacement. It requires complete reveals, parked buckets, authenticated records,
 funded legs and atomic retirement/activation; partial failure requires exact

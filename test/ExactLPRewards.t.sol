@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 
 import {Vm} from "forge-std/Vm.sol";
 import {Test} from "forge-std/Test.sol";
@@ -102,7 +103,7 @@ contract ExactLPRewardsTest is Test {
     function setUp()public{
         vm.warp(1_000_000);vm.deal(address(this),1_000_000 ether);access=new MockAccess();ProtocolPolicyFixture.bind(address(access));
         token=new MockToken(18);pools=new MockPools();pools.setActivationAssets(address(new ExactLPFixedIdentity(address(token))));
-        nft=new ZZZNFT(address(access),"ipfs://TEST-ONLY/");nft.setMintEnd(uint64(block.timestamp+3650 days));
+        nft=new ZZZNFT(address(access),"ipfs://TEST-ONLY/", address(new ZZZNFTMetadata(address(access))));nft.setMintEnd(uint64(block.timestamp+3650 days));
         members=new ZZZMembership(address(access));rewards=new ZZZRewards(address(access));fees=new ZZZFeeController(address(access));
         shares=new ExactLPShareFixture(rewards,members,nft,fees,token);
         access.bind(Ids.VAULT,address(shares));access.bind(Ids.NFT,address(nft));access.bind(Ids.MEMBERSHIP,address(members));

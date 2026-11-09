@@ -1,5 +1,12 @@
 # Confirmed earnings and current-price USD values
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
 candidate uses accounting7/exact LP1/portfolio2, fee intake1 and compatible

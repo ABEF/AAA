@@ -1,7 +1,7 @@
 # Shared permanent-liquidity architecture
 
 **Undeployed candidate; production NOT APPROVED.** The current source uses native
-ETH accounting7 / LP-allocation1, direct governance V2 and the LP-only same-chain canonical V9
+ETH accounting7 / LP-allocation1, direct governance V2 and the same-chain canonical V10
 schema. This fresh-deployment ABI/storage change does not upgrade existing Anvil
 contracts or reinterpret their historical profiles. See [profile boundaries](POSITION_V7.md)
 and [current feature/evidence boundaries](IMPLEMENTATION_STATUS.md). Earlier
@@ -20,14 +20,14 @@ Aliases and returns reuse their slot; reserved None-state entries have no
 principal or shares and are skipped by maintenance. Admission does not qualify market depth, conversion routes or service operation. See [evolution and trust boundaries](ARCHITECTURE_EVOLUTION.md)
 and its [source-scoped evidence](../reports/architecture-evolution/VERIFICATION.md). Current selected-pool changes have separate [verification](../reports/hookless-pool/VERIFICATION.md).
 
-Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.05 ETH dormant mint; $100 original gross source activation with the captured contribution floor (98% at default 2%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
+Current undeployed candidate:1,000 NFTs; exact600/300/100 random rarities; free TEAM and governed-price AL/public dormant mints(default0.05ETH gross, gas separate); $100 original gross source activation with the captured contribution floor (98% at default 2%) and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
 
 Paused governance [same-main consolidation](OPERATOR_MANUAL.md#same-main-residual-consolidation)
 closes only the residual, reinvests attributed idle and applies modeOFF without
 changing main ID/ticks/shares/centre/rebalance clock. New residual-reinvest1
-participants and inventory16 require matching runtime review; old14 stays explicit.
+participants and inventory17 require matching runtime review; old14 stays explicit.
 
-The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is connected to Rewards, post-write Vault/Membership hooks, whole claims/conversion and canonicalV9. Its immutable constructor-created [RewardsCanonical](../src/ZZZRewardsCanonical.sol) handles typed capture/import/backing outside the near-limit parent. No generic executor, arbitrary recipient or delegatecall is added. Earlier6/V8 runtimes and journals retain their original interpretation.
+The internal [exact-unit LP engine](EXACT_LP_ALLOCATION.md) is connected to Rewards, post-write Vault/Membership hooks, whole claims/conversion and canonicalV10. Its immutable constructor-created [RewardsCanonical](../src/ZZZRewardsCanonical.sol) handles typed capture/import/backing outside the near-limit parent. No generic executor, arbitrary recipient or delegatecall is added. Earlier6/V8 runtimes and journals retain their original interpretation.
 
 ## Shared implementation boundaries
 
@@ -45,6 +45,7 @@ The fresh graph uses fixed companions to satisfy normal runtime/initcode limits:
 
 | Component | Responsibility and boundary |
 | --- | --- |
+| NFT + predeployed Metadata + fixed SeaDropMint | Three-argument NFT constructor binds the renderer; the helper is bound once before seal/any mint. It tracks original-recipient/phase quotas and authenticates zero-ETH SeaDrop callbacks, without sale proceeds or LP custody. |
 | Strategy + standalone PortfolioPolicy | Reviewed manual ranges, 85% price geometry, desired single/two-leg mode and revisions. No funds or trading authority. |
 | Standalone Confirmation | Bounded samples and readiness; the sealed controller fixes its sole Strategy parent. |
 | Vault + standalone MigrationBudget | Principal/share accounting, exact backing and captured contribution/maintenance/utilization floors. |
@@ -84,7 +85,7 @@ explicit; wire phase values and financial ordering are unchanged. See the
 
 ## Identity and custody
 
-Only the canonical chain issues NFTs. Minting forwards the charge separately, requests verifiable randomness and creates a dormant ERC-721 with no LP or rewards. Mint and payment/request failures roll back atomically. The NFT enforces the 1,000 cap and excludes royalty/mint-receiver collisions. Before canonical sealing, the randomness configuration must exist; actual provider availability remains a deployment gate.
+Only the canonical chain issues NFTs. On fresh Mint2, pinned SeaDrop validates the free-team or paid AL/public transaction, then calls the NFT with zero ETH. The NFT records canonical hashed IDs, requests one original two-word verifiable result per NFT and safely mints dormant ERC-721s with no LP or rewards. SeaDrop then pays the actual platform fee and creator net; any mint/payment/request failure rolls the transaction back atomically. Actual OpenSea custom-drop onboarding and fee/payer/provider operation remain unqualified. The NFT enforces the 1,000 cap and excludes royalty/mint-receiver collisions. Before canonical sealing, the randomness configuration must exist; actual provider availability remains a deployment gate.
 
 Each approved pool has one bucket, one physical main LP NFT and at most one
 associated residual in the same pool. Many collection NFTs share this bounded
@@ -219,7 +220,7 @@ on seal. Governance approval cannot prove replacement code or dependencies safe;
 immediate governance remains an accepted trust boundary. No arbitrary custody
 recipient is available in the current source.
 
-The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
+The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
 permanently blocked after collective LP exit begins. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
 
 Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
@@ -241,9 +242,9 @@ rehearsals and independent audit/remediation remain open. Production NOT APPROVE
 
 ## Exact royalty source boundary
 
-Royalty4/reporting5/schema16/canonicalV9 uses internal whole-unit allocation.
+Royalty4/reporting5/schema17/canonicalV10 uses internal whole-unit allocation.
 The allocator adds no deployed helper; Factory storage2 adds exactly two inert
-code-data children outside the19 callable-helper roles. RoyaltyFactory stores only fixed
+code-data children outside the20 callable-helper roles. RoyaltyFactory stores only fixed
 compiled creation bytes, authenticates them with immutable royaltyCodeHash,
 then creates the typed caller's ledger and binds its fixed controller. No caller
 supplies code, salt, recipient or execution payload. Code storage reduces

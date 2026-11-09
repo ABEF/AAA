@@ -6,6 +6,7 @@ struct CanonicalNFTHeader {
 struct CanonicalNFTRecord {
     uint256 id; address owner; uint8 rarity; uint8 color; uint8 palette; uint8 pattern;
     uint256 requestId; uint256 requestEpoch; uint256 rarityWord; uint256 colorWord;
+    address originalRecipient; uint8 mintStage;
 }
 interface IZZZNFTCanonicalState {
     function access() external view returns (address);
@@ -26,6 +27,9 @@ interface IZZZNFTCanonicalState {
     function requestEpochOf(uint256) external view returns (uint256);
     function canonicalRandomness(uint256) external view returns (uint256,uint256,uint256,bool,bool);
     function canonicalArtwork(uint8,uint256) external view returns (uint16);
+    function seaDropMint() external view returns(address);
+    function originalMintRecipient(uint256) external view returns(address);
+    function mintStageOf(uint256) external view returns(uint8);
     function canonicalWriteHeader(uint256,uint256,uint256,uint16[3] calldata,uint256) external;
     function canonicalWriteRecord(uint256,CanonicalNFTRecord calldata) external;
     function canonicalWriteArtwork(uint8,uint256,uint16) external;

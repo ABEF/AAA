@@ -140,3 +140,6 @@ reports/fee-flow-audit-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,-bla
 
 # Preserve exact checkpoint/manual review evidence and causal negative controls.
 reports/checkpoint2-manual-20261107/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact deployed SeaDrop evidence, source-scoped tests and original failures.
+reports/opensea-integration-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,5 +1,14 @@
 # Reviewed website API profile
 
+**Mint-profile boundary:** backend source implements explicit opt-in
+`mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
+Omitted/default1 on accounting7 retains V9; source9/schema16 website configuration
+remains its exact prior profile. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md)
+requires separately reviewed deployment/configuration and operating acceptance.
+No service, checkpoint, journal, served site or signer is automatically adopted,
+upgraded or relabeled.
+
+
 The website has disabled-by-default read and unsigned-review adapters. Public
 `deployment-config.js` exports `DEPLOYMENT = null`; nonlocal submission is
 unavailable, and the shared signer remains Anvil-only.
@@ -12,7 +21,8 @@ unavailable, and the shared signer remains Anvil-only.
 | Historical schema2/native2 | Accounting2, dual pricing2, routing2 and review-policy1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
 | Historical source8/accounting6/custody5/portfolio2/canonicalV8 draft | Separate unserved source profile; its runtimes, reader and journals remain explicit, never relabelled as7 |
-| Fresh source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. The separate local [schema4/source9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements reads/unsigned reviews; actual matching deployment/service/site qualification remains open. Never relabel schema3, source8 or old journals |
+| Prior source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. The separate local [schema4/source9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements reads/unsigned reviews; actual matching deployment/service/site qualification remains open. Never relabel schema3, source8 or old journals |
+| Fresh schema17/mint2/helper1/accounting7/canonicalV10 contract source | Backend read/owned-claim support is implemented with explicit mint_integration_version2 and pinned SeaDrop/helper bindings. Direct mint drafts reject with UseOpenSea. No matching website manifest, running service or signer is adopted by this source change; actual configuration/hosting/marketplace acceptance remains open. |
 
 The legacy configuration and local-wallet procedures below retain their own
 profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;
@@ -22,8 +32,9 @@ input admission, code/runtime pins and quote policy must match the selected
 version exactly. No source publication updates a static server, existing chain,
 wallet journal or running service.
 
-The current schema16 source inventory pins17 modules,19 callable helpers and2
-inert RoyaltyFactory data children. Factory artifact3 retains code-storage
+Current schema17/mint2/V10 release inventory pins17modules,20callable helpers
+and2inert RoyaltyFactory data children. Prior source9/schema16/V9 keeps its
+19-helper inventory and unchanged website configuration. Factory artifact3 retains code-storage
 FORMAT2; its new payload/runtime identities do not upgrade old artifacts.
 Fresh7 earnings use exact LP events/getters and optionally reviewed checkpoint2;
 checkpoint1 stays historical6-only. These are backend source boundaries, not a
@@ -53,7 +64,7 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | LP attached | Confirmed `currentLPValue` projection in USD; unavailable values remain unavailable. An unsigned approval/contribution never changes the card or artwork. |
 | Earnings | LP individual + collective + royalty earnings at current reviewed prices, only with matching NFT/block provenance. No price or matching history means unavailable, not zero. |
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
-| Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
+| Mint | Website: demonstration only. Mint2 backend rejects direct preparation and directs primary mint to OpenSea; actual custom-drop onboarding/URL remains unqualified. Historical local rehearsal retains its actual direct selector/price. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
 | Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh7 uses the separate schema4/source9 consumer with the same fixed identities and captured governed minima. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |

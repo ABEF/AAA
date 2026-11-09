@@ -1,8 +1,14 @@
 # Canonical handoff: same-chain implementation
 
+V10 additionally preserves each original mint recipient/phase and lifetime mint
+limits through owner transfers. Both deployments must match the reviewed mint plan
+and fixed SeaDrop policy. See [mint profile](OPENSEA_MINT.md); V9 NFT records
+are not extended implicitly. LP and royalty domain formats retain their own
+accounting7/royalty4 rules.
+
 ## Current exact-LP and exact-royalty compatibility
 
-Fresh canonicalV9 uses ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9; V8 and older
+Fresh canonicalV10 uses ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10; V9 and older
 peers are rejected. The royalty header remains five words (currency count, NFT
 count, total weight, closed mint end, capacity). Royalty asset rows are192bytes
 (asset, raw allocation cursor, accounted, liabilities, unallocated, backing).
@@ -35,7 +41,7 @@ original source scope. **Production NOT APPROVED.**
 ## Supported boundary
 
 The current coordinator binds
-`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")`, matching
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`, matching
 fresh accounting7 eight-word local Positions and LP-only fee intake1. Both peers must
 expose this exact schema. Older WETH/native V1/V2/V3/V4 codecs are rejected, not
 reinterpreted. Native ETH is asset zero; every admitted principal, reserve and

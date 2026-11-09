@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {Test} from "forge-std/Test.sol";
 import {InKindNFT, InKindFaultToken} from "./RoyaltyRecovery.t.sol";
 import {MockAccess, MockToken} from "./mocks/Mocks.sol";
@@ -153,7 +154,7 @@ contract RoyaltyLaunchWindowTest is Test {
 contract RoyaltySaleEndAuthorityTest is Test {
     MockAccess a; ZZZNFT n;MockVRF v;
     bool mutateEnd;
-    function setUp() public {vm.warp(1000);a=new MockAccess();ProtocolPolicyFixture.bind(address(a));n=new ZZZNFT(address(a),"ipfs://royalty-window/");a.bind(Ids.NFT,address(n));a.bind(Ids.VAULT,address(this));v=new MockVRF();ProtocolPolicyFixture.randomness(address(a),address(v),bytes32(uint256(1)),1,3,500000,false);a.seal();}
+    function setUp() public {vm.warp(1000);a=new MockAccess();ProtocolPolicyFixture.bind(address(a));n=new ZZZNFT(address(a),"ipfs://royalty-window/", address(new ZZZNFTMetadata(address(a))));a.bind(Ids.NFT,address(n));a.bind(Ids.VAULT,address(this));v=new MockVRF();ProtocolPolicyFixture.randomness(address(a),address(v),bytes32(uint256(1)),1,3,500000,false);a.seal();}
     function testOnlyGovernanceCanSetOfficialMintEnd() public {
         vm.prank(address(123));vm.expectRevert();n.setMintEnd(1200);
         n.setMintEnd(1200);assertEq(n.royaltyRewards().royaltiesOpenAt(),4800);

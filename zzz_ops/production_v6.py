@@ -510,7 +510,8 @@ def validate(config, *, expected_commit=None, now=None):
 def _validate(config, *, expected_commit, now, versions, helpers, binding_factory,
               service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
               canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,
-              royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None,top_fields=TOP_FIELDS):
+              royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None,top_fields=TOP_FIELDS,
+              mint_validator=None,mint_implementation=V.MINT_IMPLEMENTATION_PROFILE):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
@@ -564,9 +565,9 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))
         _safe(g,path+'.rebalance_confirmation',lambda:_confirmation(g,chain,path))
         _safe(g,path+'.release',lambda:_release_records(g,chain,path,home,tokens,service_profiles=service_profiles,royalty_conversion=royalty_conversion,canonical_schema_hash=canonical_schema_hash,royalty_max_assets=royalty_max_assets,royalty_mint_revision=royalty_mint_revision,constructor_forbidden_addresses=addresses if chain_validator is not None else None,accounting_version=versions['accounting_version']))
-        _safe(g,path+'.mint',lambda:V._mint_integration(g,chain,path))
+        _safe(g,path+'.mint',lambda:(V._mint_integration if mint_validator is None else mint_validator)(g,chain,path))
     # A schema8 manifest cannot manufacture the missing primary-mint interface.
-    if not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
+    if mint_validator is None and not any(i['code']=='mint.opensea_unsupported' for i in g.issues):
         g.check(False,'services.opensea','mint.opensea_unsupported','Current direct mint is not OpenSea primary-drop integration.','services')
     groups={}
     for issue in g.issues:groups.setdefault(issue['group'],[]).append(issue)
@@ -574,7 +575,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         inventory_profile_supported=True,production_qualification_supported=False,release_commit=g.commit,
         inventory_consistent=not any(i['code']!='mint.opensea_unsupported' for i in g.issues),issues=g.issues,blockers=groups,
         contribution_reservation_status=reservation_status,
-        opensea_primary_mint_supported=False,primary_mint_implementation=V.MINT_IMPLEMENTATION_PROFILE,
+        opensea_primary_mint_supported=mint_validator is not None,primary_mint_implementation=mint_implementation,
         protocol_bridge_enabled=False,external_custody_exit_supported=False,collective_holder_return_supported=True,
         limitations=['Read observations and offline consistency cannot authenticate providers, evidence or independent review.',
             'No result authorizes deployment, sealing, signing, service rollout or transactions.',

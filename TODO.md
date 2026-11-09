@@ -39,7 +39,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Royalty4 pays original currencies after final sale end plus1hour. GCD-normalized rarity weights and a rotating exact-unit cursor assign every allocated raw unit without an allocated rounding remainder. Initial/prefund/zero-cohort and unsupported-token recovery remain distinct. Qualify actual OpenSea timing/currencies, schema16/canonicalV9/reporting5 integration, gas/workloads and independent audit.
+- [ ] **[Qualify original-currency royalty claims](docs/ROYALTY_SETTLEMENT.md)** - In progress. Royalty4 pays original currencies after final sale end plus1hour. GCD-normalized rarity weights and a rotating exact-unit cursor assign every allocated raw unit without an allocated rounding remainder. Initial/prefund/zero-cohort and unsupported-token recovery remain distinct. Qualify actual OpenSea timing/currencies, schema17/mint2/canonicalV10/reporting5 integration, gas/workloads and independent audit.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -47,7 +47,7 @@ Custody, ownership and reward accounting.
   - User decision5November2026: no royalty swaps or unwraps; keep LP conversion separate. ETH, WETH, USDC and every admitted currency retain their own amounts and exact decimals. No route/feed is needed merely to claim original units.
   - Preserve activated rarity1/2/3, successful activation-time cohorts, current-owner unpaid rights, outage isolation, claim atomicity and zero dormant dilution. Fresh4 uses exact whole-unit rights, not a scaled royalty fraction reserve. Keep historical royalty fractions/readers separate; LP fractions and80/10/5/5 are unchanged.
   - Recovery2 requires reviewed admission first and governance allocateUnallocated(asset,amount,reviewHash), bounded by actual orphaned backing. Allocate the original currency at active weights at recovery; never consume earned/deferred/ticket liabilities or choose a custody recipient.
-  - Authenticate schema16/19-callable-helper plus2-data-child fresh inventory and settlement4/recovery2, API reporting5/converter:null, canonicalV9 and explicit keeper royalty_settlement_version4 with royalty conversion disabled. The allocator is internal library code, not a new deployed helper. Never reinterpret older runtimes, event histories or journals.
+  - Authenticate schema17/20-callable-helper plus2-data-child fresh inventory and settlement4/recovery2, API reporting5/converter:null, canonicalV10 and explicit keeper royalty_settlement_version4 with royalty conversion disabled. The allocator is internal library code, not a new deployed helper. Never reinterpret older runtimes, event histories or journals.
   - Source website reviews original-currency claims and separate quantities;32 total NFT/asset/ledger operations maximum. Simulate exact mixed claims and surface unavailable currencies. Public signing remains disabled and actual source/site/API rollout is separate.
   - Rebuild/review earnings checkpoints after original-currency allocation event semantics change; preserve old conversion/recovery events as history, never new income or additional paid totals.
   - Qualify actual OpenSea recipient/order/offer/checkout payments, approved token transfer behavior, gas/capacity, outage recovery and independent audit/remediation. Local tests are not live approval.
@@ -55,7 +55,7 @@ Custody, ownership and reward accounting.
   - [Royalty window/capacity](docs/ROYALTY_LAUNCH_WINDOW.md): governance may change final sale end during the old sale; claims open1hour later. Strict pre-deadline activation cohort, current-owner rights, original currencies, no keeper/swap; late activations do not receive the initial pool. Zero participants keep unallocated funds for explicit governance allocation.
   - Keep openingPool separate from constructor/preadmission prefunds and earned ticket/accrued backing. allocateAllUnallocated assigns every eligible unallocated whole unit in one currency at current active weights; no payout/sweep. Unknown-token recovery cannot reconstruct historical receipt-time entitlements.
   - Capacity starts16ERC20 plusETH; governance can increase to64 with review hash. BEFORE expansion qualify cold/faulted target-chain activation, gas headroom, full API/history/checkpoint/claims/canonical workloads and recovery. Work budgets remain bounded; no unlimited-token or frozen-token payout guarantee; exact allocated-unit assignment does not erase temporary holds or invent beneficiaries.
-  - Qualify matching final OpenSea sale stages and every mint path; schedule changes must update both controls. Current custom NFT is not yet a supported SeaDrop integration. Test sale under-subscription, early sellout, pauses/VRF failures, exact cutoff, no activations, tokens received before admission and matching schema13/canonicalV9/reporting5 consumers.
+  - Qualify matching final OpenSea sale stages and every mint path; schedule changes must update both controls. Mint2 implements the pinned SeaDrop callback; actual custom-drop onboarding and launch settings remain unqualified. Test sale under-subscription, early sellout, pauses/VRF failures, exact cutoff, no activations, tokens received before admission and matching explicit mint2/schema17/canonicalV10/reporting5 consumers.
   - [Source-scoped audit evidence](reports/last24h-audit-20261105/REVIEW.md) retains failing/corrected fixtures and final source checks. Actual marketplace, maximum target gas/expanded workloads, site/services/checkpoint rollout and independent approval remain open.
   - Verify GCD-normalized weighted allocation when all ideal entitlements are whole units, rotating indivisible remainders otherwise, fixed-cohort batching equivalence and exact final liability drainage. Cover tiny/non-divisible/MAXuint receipts, claim order, transfers, mixed rarities, deferred currencies and canonical import/abort. Preserve cursor/ticket identity and do not count allocation or import twice in history. [Exact rule](docs/EXACT_ROYALTY_ALLOCATION.md).
   - Fresh optional royaltySyncGas defaults to1,000,000 within existing governed bounds. Measure cold/faulted activation, actual-token sync, full-ledger claims and selected32-entry batches before qualification; the ceiling is not a fixed cost or target-chain acceptance. Lowering it can defer a healthy currency without making its backing disappear.
@@ -144,19 +144,17 @@ Custody, ownership and reward accounting.
 
 <a id="task-opensea-mint"></a>
 
-- [ ] **[Qualify OpenSea primary mint integration](docs/MINT_INTEGRATION_QUALIFICATION.md)** - In progress. Actual interface/payment mismatch is identified and the current release gate rejects a fabricated primary-drop approval. Implement and qualify a recipient-aware OpenSea integration before sealing: buyer pays0.05ETH gross, actual platform fee deducted from recipient proceeds, gas separate. Current direct Vault mint now uses reviewed future-governed price/payee (default0.05ETH), with sale+VRF fingerprint; that does not implement OpenSea primary mint.
+- [ ] **[Qualify OpenSea primary mint integration](docs/OPENSEA_MINT.md)** - In progress. Source implements reviewed SeaDrop V1 callback/payment/quota integration, fresh mint2/helper1/canonicalV10/schema17 and offline proof preparation. Initial20free team/500same-price allowlist(one per distinct address)/480public; unused AL rolls public, unused team stays reserved. Qualify actual custom-drop onboarding, fee/payers, VRF/gas, matching consumers and operator/wallet acceptance before sealing; local source tests are not approval.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Code review 2026-10-23: current Vault.mintDormant mints to msg.sender and the NFT accepts mint only from Vault; no SeaDrop interface is implemented. Verify buyer recipient, payment/fee handling and the exact supported Robinhood drop integration before adding any mint adapter. General marketplace chain support does not prove primary-drop support.
-  - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
-  - Preserve canonical NFT identity, 1,000 cap, reviewed current gross buyer price (default0.05 ETH) and actual platform-fee/net-recipient conservation, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
-  - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
-  - Official OpenSea Robinhood chain support is distinct from custom primary-mint/SeaDrop compatibility. [Current research](reports/real-service-readiness-20261025/RESEARCH.md) leaves actual product/contract/caller/recipient/royalty and random-draw integration unqualified; no marketplace mint authority or mint adapter was silently added.
-  - Decision2026-10-25:0.05ETH is total buyer mint price; the recipient receives the remainder after the actual platform fee, gas separate. No actual fee is selected. [Current qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) is hardblocked by code-owned direct-mint capability; runtime presence/general chain support cannot implement SeaDrop or qualify primary mint.
-  - [November5 official-source investigation](reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md): exact mintSeaDrop/getMintStats, mint-recipient/payment, per-wallet issuance counts and nested NFT/Vault reentrancy must be designed on the canonical graph. General Robinhood marketplace support and a generic fee guide do not establish its actual primary-drop product, deployed runtime or accepted fee. No mint power, adapter or misleading readiness flag was added.
-  - Distinguish the fixed5% ERC2981 request from transfer-validator enforcement. Current ERC721 permits ordinary transfer without a royalty payment. OpenSea documents a separate compatible creator-token/Seaport validator path; adding it requires an explicit transfer-policy/dependency decision and Robinhood qualification, not a collection setting alone. [Current royalty audit](reports/royalty-audit-20261105/REVIEW.md).
+  - Decision2026-11-09: configurable20free-team/500allowlist/480public allocations, hard1000 cap. AL price equals public governed price(default0.05ETH gross), one NFT per distinct listed address. Unused AL rolls public; unused team remains reserved. Public wallet limits count lifetime original mints across phases; supply/counts never reset.
+  - [Source integration](reports/opensea-integration-20261109/REVIEW.md): pinned official Robinhood SeaDrop V1/runtime independently matched; authenticated recipient-aware issuance, original two-word VRF/dormancy, atomic payment/receiver/provider rollback, separate quota counters and bounded batches. Real OpenSea custom-drop onboarding/API and actual fee/payer settings remain unqualified.
+  - Offline source-bound proof builder uses the exact single-hashed SeaDrop leaves and sorted pairs; current Policy price is explicit configure calldata. Review initial/new roots and live synchronized price/end/fee/payee/payer settings. Artifacts are neither live snapshots, simulations nor signatures.
+  - Fresh schema17/mint2/helper1/V10 observer and gate bind original-recipient/stage/lifetime books and do not reinterpret V9/16. Predeploy the fixed metadata renderer and use the fresh three-argument NFT constructor. Preserve original journals/runtimes, source9 consumers, websites and signer; implement/review matching V10 consumer adoption before release.
+  - Qualify exact real collection/drop URL, unsigned platform transaction, buyer ownership, gross/platform/net balance conservation, original VRF request/result/reveal, payment and callback failures, last supply, maximum gas and operating restart/recovery. Public signing/transactions/deployment remain separately authorized.
+  - Fixed5% ERC2981 requests royalties without universally enforcing marketplace payment. New primary-mint support does not add transfer-validator enforcement, a royalty converter, or a new custody/withdrawal authority.
 
   </details>
 
@@ -255,7 +253,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-only-simplification"></a>
 
-- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Fresh accounting7 retains eight-word local Positions/direct governance2 and removed creator/bridge/external-custody paths. ProtocolPolicy1/Portfolio2 and canonicalV9 make current policy/implementation boundaries explicit; compatible parked handoff requires all physical legs closed. Historical deployments/readers/journals keep their original profiles.
+- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Fresh accounting7 retains eight-word local Positions/direct governance2 and removed creator/bridge/external-custody paths. ProtocolPolicy1/Portfolio2 and canonicalV10 make current policy/implementation boundaries explicit; compatible parked handoff requires all physical legs closed. Historical deployments/readers/journals keep their original profiles.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -340,7 +338,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-exact-unit-allocation"></a>
 
-- [x] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - Implemented. Fresh accounting7 integrates whole-unit LP books with authenticated Vault/Membership hooks, current-owner claims, same-NFT conversion and lossless canonicalV9. Profile7/schema16/source9 readers and actual event/getter replay reconcile exact rights. Local host/canonical/consumer verification is source-scoped; target maximum-workload gas, operating rollout and independent audit remain release work.
+- [x] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - Implemented. Fresh accounting7 integrates whole-unit LP books with authenticated Vault/Membership hooks, current-owner claims, same-NFT conversion and lossless raw accounting; mint2 extends the outer canonical schema to V10. Original profile7/schema16/source9 readers and actual event/getter replay reconcile exact rights. Local host/canonical/consumer verification is source-scoped; target maximum-workload gas, operating rollout and independent audit remain release work.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -460,7 +458,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-passive-inventory"></a>
 
-- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting7: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper/schema16 are integrated; actual release qualification remains separate.
+- [x] **[Bounded optional main-plus-residual LP adjustment](docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)** - Implemented. Implemented locally in explicit accounting7: default main-only, optional active main>=60% and one residual<=40%, latest half-side width default5000bps,85%centre-to-boundary trigger,600/240/300sampled confirmation,60–300service jitter and hard initial12hours. Both-leg accounting/recovery/readers/keeper are integrated under their explicit profiles; fresh mint2 adds schema17; actual release qualification remains separate.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -600,7 +598,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema16 validates accounting7/custody5/ProtocolPolicy1/Portfolio2/direct Entry3,19helpers and both physical LP legs. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
+- [ ] **[Qualify the accounting6 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - In progress. Fresh schema17 validates accounting7/custody5/ProtocolPolicy1/Portfolio2/direct Entry3/mint2,20helpers and both physical LP legs. Exact schema16 remains explicit historical inspection. Schema9/custody4/direct Entry3 and older profiles require explicit historical inspection. Actual configuration/providers, services, target gas and audit remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1030,7 +1028,7 @@ Three required testing layers, with source-bound evidence.
   - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
   - Complete qualified current services, frozen-release independent audit and operating rehearsals. The hookless launch pool earns LP fees directly; creator-payment receivers/terms/measurement tools and integrated bridge/remote-proof execution are removed. Marketplace royalties retain their separate funded ledger; immediate governance and reviewed replacement-code approval remain explicit trust boundaries.
   - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including qualification of the implemented same-chain whole-collection handoff while the source works. Cross-chain canonical transport is deferred optional scope, not a current launch/sealing requirement. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
-  - Fill and independently authenticate the current schema16/accounting7/LP-allocation1/ProtocolPolicy1 production inventory with explicit mint_integration_version1: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
+  - Fill and independently authenticate the current schema17/accounting7/LP-allocation1/ProtocolPolicy1 production inventory with explicit mint_integration_version2: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
   - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
   - Keep fork inventory assertions aligned with actual published fixtures and preserve normal assertion failures. Earlier [CI fixture correction](reports/architecture-evolution-ci/README.md) covers historical24native/Pons plus9hookless cases only. Current fixture retirement and source profiles must not be hidden by a mock, renamed pass or stale inventory count.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
@@ -1556,4 +1554,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `bfd8c5584558591e08c1d3866d2bc3db33f661f31896aee4fb76d62324be455f`.
+Snapshot SHA-256: `573811008d7754da2847b98834478765d95da3b349b0fa0c51fcf4d9fb032a5a`.

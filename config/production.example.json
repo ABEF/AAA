@@ -1,11 +1,11 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "accounting_model": "shared-pools-native-v7",
   "accounting_version": 7,
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Fresh schema16/accounting7/exact LP1/custody5/direct Entry3/review2, royalty4/recovery2/reporting5/canonicalV9 with governed residual-reinvest1.19 logical callable helpers plus exactly2 inert code-data children. The exact prior schema15 template is preserved in production.schema15.example.json for explicit historical inspection.",
+    "Fresh schema17/accounting7/LP1/custody5/direct Entry3/royalty4/canonicalV10/mint2.20 callable helpers plus2 inert data children. Exact previous schema16 template preserved in production.schema16.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
     "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
     "One-hour royalty opening after the final sale end; exact whole-unit allocation, strict initial cohort, no deadline on dormant cards. Zero participants/preadmission funds remain separate reviewed allocation cases.",
@@ -13,7 +13,8 @@
     "Main/residual geometry remains optional at most2 physical legs per logical bucket. Both remain Vault-owned and accounted; source85% trigger/600-second sampled evidence/300-second max gap/240-second checks/60-300-second jitter/12-hour cooldown remain.",
     "Residual reinvestment1 is a paused governance-only operation that closes the residual and increases the unchanged main. It is not an automated keeper action, accounting upgrade, service rollout or journal relabel.",
     "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized.",
-    "Exact LP whole-unit trees replace index/fraction accounting. Current source consumers require explicit7 and LP-allocation1; checkpoint1 is not supported on7 and complete bounded raw history is required. No old runtime, source8 website, journal or snapshot is relabeled."
+    "Exact LP whole-unit trees replace index/fraction accounting. Current source consumers require explicit7 and LP-allocation1; checkpoint1 is not supported on7 and complete bounded raw history is required. No old runtime, source8 website, journal or snapshot is relabeled.",
+    "Mint source2 uses one reviewed SeaDrop V1, phased20 free team/500 same-price allowlist/public remainder, AL1 original recipient, unusedAL rolls to public; unusedTEAM stays reserved. Times, actual platform fees, fee recipient, payer permissions, public lifetime wallet limit and batch/gas acceptance remain unselected/unqualified. No source-only result approves a primary drop or deployment."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -527,6 +528,21 @@
           },
           "observed_bindings": null,
           "review_evidence": null
+        },
+        "seadrop_mint": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "bindings": {
+            "access": null,
+            "nft": null,
+            "seaDrop": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+            "seaDropCodeHash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c",
+            "MINT_INTEGRATION_VERSION": 1
+          },
+          "observed_bindings": null,
+          "review_evidence": null
         }
       },
       "dependencies": {
@@ -593,7 +609,7 @@
         "decimals": 18,
         "runtime_hash": null,
         "version": 7,
-        "canonical_schema": "0xd077e0d60fbbef64fe13686e9deef1d4bf95fb9f9c1e632da05a58b8db6de5e8",
+        "canonical_schema": "0x39072e4b9a0ee67088975eb1e1705d8c18c76abc065e31bab795739387ec2952",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -898,7 +914,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "accounting7_lp1_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3_custody5_governance_principal_no_royalty_swaps",
+          "profile": "accounting7_lp1_policy1_portfolio2_upkeep3_compound4_lp2_quality1_confirmation3_custody5_governance_principal_no_royalty_swaps_canonical_v10_mint2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -906,7 +922,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting7_lp1_policy1_custody5_holder_exit_v9_portfolio2_confirmation3_entry3_royalty4_exact_units",
+          "profile": "accounting7_lp1_policy1_custody5_holder_exit_v10_portfolio2_confirmation3_entry3_royalty4_exact_units_mint2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -922,10 +938,10 @@
         },
         "opensea": {
           "status": "unqualified",
-          "profile": "primary_mint_current_nft",
+          "profile": "seadrop_sequential_v1",
           "integration": {
             "requested_product": "opensea_seadrop_v1",
-            "implementation_profile": "vault_direct_v1"
+            "implementation_profile": "seadrop_sequential_v1"
           },
           "chain_id": 4663,
           "controller": null,
@@ -1091,13 +1107,47 @@
             "observed_prefix": null
           }
         ]
+      },
+      "primary_mint": {
+        "implementation_profile": "seadrop_sequential_v1",
+        "mint_config": {
+          "teamAllocation": 20,
+          "allowlistAllocation": 500,
+          "publicWalletLimit": null,
+          "feeBps": null,
+          "maxBatch": null,
+          "teamStart": null,
+          "teamEnd": null,
+          "allowlistStart": null,
+          "allowlistEnd": null,
+          "publicStart": null,
+          "publicEnd": null,
+          "releaseUnusedTeamToPublic": false,
+          "merkleRoot": null,
+          "feeRecipient": null,
+          "allowedPayersHash": null
+        },
+        "expected_mint_price_wei": "50000000000000000",
+        "configuration_hash": null,
+        "configuration_values_hash": null,
+        "configuration_review_hash": null,
+        "revision": null,
+        "sea_drop": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+        "sea_drop_runtime_hash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c",
+        "allowed_payers": null,
+        "observed": null,
+        "review_evidence": null,
+        "onboarding_evidence": null,
+        "fee_qualification_evidence": null,
+        "operating_evidence": null,
+        "manifest_review_evidence": null
       }
     }
   ],
   "pricing_version": 2,
   "review_policy_version": 2,
   "range_policy_version": 1,
-  "mint_integration_version": 1,
+  "mint_integration_version": 2,
   "fee_intake_version": 1,
   "governance_version": 2,
   "custody_version": 5,
@@ -1108,7 +1158,7 @@
   "rebalance_confirmation_version": 3,
   "emergency_rebalance_version": 2,
   "portfolio_version": 2,
-  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9",
+  "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10",
   "protocol_policy_version": 1,
   "lp_allocation_version": 1
 }

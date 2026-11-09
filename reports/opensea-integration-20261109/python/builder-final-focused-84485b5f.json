@@ -1,0 +1,34 @@
+{
+  "successful": true,
+  "python": "3.12.14",
+  "utc": "2026-11-09T02:52:33.919721+00:00",
+  "selected_methods": [
+    "tests_python.test_opensea_drop.OpenSeaDropTests.test_each_positive_phase_requires_its_own_reviewed_proof_leaf",
+    "tests_python.test_opensea_drop.OpenSeaDropTests.test_positive_reserved_phases_cannot_publish_a_zero_eligibility_root",
+    "tests_python.test_opensea_drop.OpenSeaDropTests.test_empty_and_single_leaf_cases_are_explicit",
+    "tests_python.test_opensea_drop.OpenSeaDropTests.test_exact_configuration_tuple_and_domain_review_hash",
+    "tests_python.test_opensea_drop.OpenSeaDropTests.test_full_artifact_check_rejects_every_derived_tamper"
+  ],
+  "tests_run": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_sha256_before": {
+    "zzz_ops/opensea_drop.py": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+    "scripts/prepare-opensea-drop.py": "356a628dfc4b107ee2ad6c5c09e0bdf9f1481b66a9c3e1b66b93ec0f8fd3b782",
+    "tests_python/test_opensea_drop.py": "9d1ab30bd572dc1caae3d6d4f903c7aeffad1d308dac6d0a8ab621f126dff0a4"
+  },
+  "source_sha256_after": {
+    "zzz_ops/opensea_drop.py": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/evidence.py": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+    "scripts/prepare-opensea-drop.py": "356a628dfc4b107ee2ad6c5c09e0bdf9f1481b66a9c3e1b66b93ec0f8fd3b782",
+    "tests_python/test_opensea_drop.py": "9d1ab30bd572dc1caae3d6d4f903c7aeffad1d308dac6d0a8ab621f126dff0a4"
+  },
+  "solidity_tests_executed": 0,
+  "notice": "Offline synthetic proof/source fixtures only; no actual runtime, RPC, wallet or OpenSea acceptance. Overlapping earlier checks are not additive coverage.",
+  "evidence_status": "complete",
+  "completion_recorded": true
+}

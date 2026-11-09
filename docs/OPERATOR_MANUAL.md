@@ -196,7 +196,7 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 Fresh source uses Vault.ACCOUNTING_VERSION7, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
 Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
 emergency2, Access.GOVERNANCE_VERSION2 and
-`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")`.
+`SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
 The [current normal/static source evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
 and [actual Entry3 follow-up](../reports/source9-actual-entry-20261109/VERIFICATION.md)
@@ -253,8 +253,8 @@ exit does not gain a conversion/buyback dependency.
 
 | Need | Procedure and boundary |
 | --- | --- |
-| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema16 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/19 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
-| OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Current direct mint still pays all 0.05 ETH; supported OpenSea/VRF integration is unfinished. |
+| Exact version, modules, helper runtimes and addresses | [Address inventory](DEPLOYMENT_ADDRESSES.md) and [schema17 preflight](PRODUCTION_PREFLIGHT.md), which observes17 modules/20 callable helpers and2 inert Factory data children; schema9/custody4, schema8/7/6 and older profiles are explicit historical inspection only. Observed code cannot approve its own runtime pin; retain creation-to-anchor policy history. |
+| OpenSea primary mint and VRF | [Mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Buyer gross 0.05 ETH, recipient net of actual platform fee, gas separate. Fresh SeaDrop mint2 supports free team, paid allowlist and public phases; exact platform onboarding/fee/VRF qualification remains open. |
 | USD providers, proxy controls and update services | [Price security](PRICE_SECURITY.md), [service decisions](PRODUCTION_SERVICES.md) and optional [Pyth reader](PYTH_PRICE_SOURCE.md). Review upstream independence, update costs, funding and recovery; a matching ABI is not provider qualification. |
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting7 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile7 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. The [local source9/schema4 consumer](SOURCE9_WEBSITE_PROFILE.md) supports fresh reads/unsigned reviews; local actual Entry3 activation/growth evidence uses explicitly seeded depth; real market/provider/service/site acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
@@ -456,7 +456,7 @@ ZZZ/USD source as redundant coverage for both assets.
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
    policy remains in history. Never promote observed hashes to approved pins
    automatically or remove a safety check to make a price appear available.
-5. Refresh the schema16 release inventory with explicit `pricing_version: 2` and
+5. Refresh the schema17 release inventory with explicit `pricing_version: 2` and
    all20 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
    `access()` bindings. Update reviewed API/preparation/earnings configurations,
    source proxy pins and service alerts at one confirmed block. Keep old deployed
@@ -776,7 +776,7 @@ and [controller source](../src/ZZZAccessController.sol).
 | Guardian | Direct `AccessController.setPaused(true)` | Governance uses `setGuardian(address,bool)`. A guardian cannot unpause, choose a new pool, withdraw LP or repair lost governance. |
 | Keeper | Eligible bounded maintenance; cannot approve or execute discretionary custody exits or same-pair pool moves | Governance uses `setKeeper(address,bool)`. Isolate/revoke a compromised signer, reconcile its pending transactions, then qualify a new signer and state. No salary, gas reimbursement or bounty is automatic. |
 | Bootstrap | Initial bindings and sealing | `bind` and `seal` only before sealing; bootstrap is erased. Do not retain deployment keys as a supposed recovery backdoor. |
-| Mint recipient | Receives future direct-mint proceeds at the reviewed current price (default0.05 ETH); OpenSea primary integration remains open | Governance proposes through ProtocolPolicy, candidate accepts; zero cancels. Old payments and protocol rights never move. |
+| Mint recipient | Receives future paid SeaDrop mint proceeds net of the actual platform fee; team mints are free. OpenSea acceptance remains open | Governance proposes through ProtocolPolicy, candidate accepts; zero cancels. Old payments and protocol rights never move. |
 
 Roles can technically share an address, but this combines their compromise and availability risks. Immediate governance can approve unsafe dependencies or harmful replacement code; role separation and independent transaction review are operational defenses, not an on-chain delay. If every required governance authority/key is lost, there is no hidden admin recovery. Preserve reviewed multisig recovery arrangements before launch.
 
@@ -1064,7 +1064,7 @@ after an earlier raw residual close, even when no residual remains.
 
 This is paused **governance-only**, with `RESIDUAL_REINVEST_VERSION()==1` on
 Migration, Vault, Budget, PortfolioPolicy and ContributionPricing. No keeper grant is needed. It is
-not an automated keeper action. Use fresh schema16/runtime bindings; older
+not an automated keeper action. Use fresh schema17/runtime bindings; older
 deployments and journals do not gain this function through publication.
 
 The transaction harvests both legs, closes only the residual if present,
@@ -1124,7 +1124,7 @@ No holder payment, token approval or ETH transfer is required from governance.
    ordinary service recovery. On-chain setting changes alone need no host restart;
    a new runtime/capability needs a separately reviewed fresh deployment/config. The current
    seal checks do not independently prove every new capability/runtime binding;
-   use the complete schema16 preflight before sealing, never mixed generations.
+   use the complete schema17 preflight before sealing, never mixed generations.
 
 Force retains the existing mask meanings:1 raw rebalance trigger/cooldown,
 2 independent spot/reference agreement,4 USD retention/venue quality/idle caps,
@@ -1686,7 +1686,7 @@ original ID; do not force it to the destination pool's newly derived ID.
 Do not execute destination reservations before canonical header import: the
 importer requires empty local sequence/buckets/aliases and later imports the
 authenticated source aliases. A planned inherited mapping is not permission to
-pre-populate the replacement. The current schema16 observer checks these facts;
+pre-populate the replacement. The current schema17 observer checks these facts;
 its narrow reservation status is not full transaction approval. A bad permanent
 reservation has no delete/relabel fix: assess remaining capacity/another reviewed
 pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
@@ -1771,7 +1771,7 @@ the original journal; do not clear a retry or resend a saved transaction.
 
 ## Revenue operations
 
-Fresh [accounting7 LP rewards](EXACT_LP_ALLOCATION.md) are connected to Vault, Membership, claims, conversion and canonicalV9. You do not manually checkpoint or change weights: Vault calls `syncShares` after its atomic share writes, and Membership calls `syncMembership` after activation. Both settle old money with stored old weights first. Holder `Rewards.claim(id,asset)` or the fixed ClaimRouter pays only the actual owner; pause preserves funded claims while canonical state is operating. `claimableComponents(id,asset)` reads the whole breakdown; no price feed is needed.
+Fresh [accounting7 LP rewards](EXACT_LP_ALLOCATION.md) are connected to Vault, Membership, claims, conversion and canonicalV10. You do not manually checkpoint or change weights: Vault calls `syncShares` after its atomic share writes, and Membership calls `syncMembership` after activation. Both settle old money with stored old weights first. Holder `Rewards.claim(id,asset)` or the fixed ClaimRouter pays only the actual owner; pause preserves funded claims while canonical state is operating. `claimableComponents(id,asset)` reads the whole breakdown; no price feed is needed.
 
 A real `PoolManager.donate` becomes funded fee growth and is allocated at harvest
 like other actual LP receipts. An unsolicited raw Vault balance remains a prefund,
@@ -1884,14 +1884,14 @@ control different subcalls. Raising one does not raise the others or the network
   not royalty-token admission and cannot add a third LP currency after seal.
   Before sealing verify `assetCount()==2`, `assets(0)==address(0)`,
   `assets(1)==ZZZ_TOKEN` and `isAsset(ZZZ_TOKEN)==true`, plus fixed source identity.
-  Schema16 observes and rejects any other population; `Access.seal` alone does
+  Schema17 observes and rejects any other population; `Access.seal` alone does
   not prove this extension setup. The full release validator requires sealing,
   so perform these reads manually BEFORE seal rather than relying on a later pass.
   Omitting ZZZ cannot be repaired by post-seal admission; do not seal or use that
   misconfigured deployment.
 - Read `Rewards.canonicalModule()`, then the child's `access()`/`rewards()` and
   exact runtime pins. It is constructor-created; do not deploy/bind another child.
-  The complete schema16 inventory now has19 callable helpers plus2 inert data children.
+  The complete schema17 inventory now has20 callable helpers plus2 inert data children.
 - Use `RewardsCanonical.canonicalExport(row)` for operator reads during the
   coordinator's completed settlement/export phase. Parent `canonicalSeed`,
   `canonicalNode` and `canonicalBarrier` are **module-context reads**, not ordinary
@@ -2213,7 +2213,7 @@ Use the [fixed code-data procedure](FACTORY_CODE_STORAGE.md). Match
 RoyaltyFactory.CODE_STORAGE_VERSION()==2, creationCodeLength/royaltyCodeHash,
 part0/part1 and both partCodeHash getters against independent final compiler
 bytes. Authenticate both actual REVERT-prefixed data runtimes at one pinned
-block using schema16; never accept self-reported pins. Construction creates
+block using schema17; never accept self-reported pins. Construction creates
 both children automatically. They have no operator call, funding or sweep.
 Factory.create reconstructs the same ledger and binds its fixed controller.
 Qualify exact constructor inputs and target gas; no deployment is authorized.
@@ -2273,6 +2273,50 @@ large-history/load and UI qualification remain open; source changes do not start
 a service. The strict earnings endpoint may be unavailable during ledger/currency
 faults even when the separate healthy-currency balance view still works.
 
+## OpenSea primary-mint management
+
+Use the [complete mint procedure](OPENSEA_MINT.md) for fresh mint2/helper1,
+canonicalV10 and schema17. Initial allocations are20 free team,500 paid
+allowlist(one per distinct listed address), and480 public FCFS. Unsold
+allowlist supply rolls into public; unused team slots remain reserved
+(`releaseUnusedTeamToPublic=false`). All allocations stay within1000 and
+issued counts never reset. Wallet limits are lifetime original-recipient
+counts across all phases, even after NFT transfers.
+
+Deploy the fixed metadata renderer before the fresh three-argument NFT,
+then the collection-specific mint helper. Bootstrap binds that helper
+once before seal/any mint. Governance configures future plan terms after
+seal. The singleton SeaDrop/runtime and helper cannot be swapped later.
+The original two-word VRF request and dormant state are preserved; no
+LP/royalty rights are granted by a free or paid mint alone.
+
+Prepare/review the exact plan and proofs with
+`scripts/prepare-opensea-drop.py`; it never contacts a chain or submits.
+Call `Mint.configure(config,expectedMintPrice,reviewHash)` using its full
+15-field tuple and exact current governed price. Synchronize the NFT-keyed
+`updatePublicDrop`, `updateAllowList`, `updateCreatorPayoutAddress`,
+`updateAllowedFeeRecipient`, `updatePayer`, optional `updateDropURI`, and
+`setMintEnd` as described in that procedure. Partial/mismatched setup
+blocks minting rather than silently selecting another price or route.
+
+Before a live sale change, pause/reconcile minting, publish matching
+proofs and settings, simulate the actual platform transaction, then
+deliberately unpause. No keeper restart is required by on-chain sale
+settings. End-of-sale restrictions still apply. Direct Vault paid mints
+are disabled when the primary helper is bound; `mintSeaDrop` and the
+zero-value Vault recording branch are authenticated module callbacks,
+not operator/free-mint shortcuts. Signed/token-gated/list-rotation
+setters and max-supply changes always revert.
+
+SeaDrop receives buyer gross ETH and atomically pays platform fee then
+creator net after the NFT callback. Do not infer price from
+`Vault.DormantMinted.mintPrice`: it is0 on this path because the Vault
+receives no proceeds. Rejected payment/receiver/provider calls revert
+the whole mint. The website mint remains demonstrative; no public
+signer, deployment or service rollout is authorized. Actual OpenSea
+custom-drop acceptance, exact fee/payers, VRF and operating gas remain
+unqualified.
+
 ## Mint and metadata
 
 For accounting7, write randomness policy through **ProtocolPolicy**, not the NFT.
@@ -2323,7 +2367,7 @@ This is a separately reviewed operation, not routine LP maintenance. Current imp
 Run the [read-only holder inventory and escrow cutover procedure](HOLDER_PREFLIGHT.md) before preparation and again after freeze. Every code-bearing owner requires a review of its ability to release and claim for the exact replacement; a complete inventory is not approval.
 
 1. Independently review the proposed different-code successor, its economic compatibility and deployment commitment. Governance is trusted to approve it; there is no identical-code safeguard. Inventory every contract/escrow NFT holder: same owners at a new NFT contract address does not prove their escrow can operate it. Rehearse withdrawals/cutover while the old system is still usable; never rewrite owners to work around an incompatible escrow.
-2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible canonical V9 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
+2. Require Access.lpExitStarted()==false; terminal principal settlement cannot be imported by this successor. Prepare the compatible canonical V10 destination as an inert importer with CanonicalHandoff.prepareImport(sourceController) before its seal, qualify actual dependencies/randomness and verify its source binding. Governance starts the exact reviewed preparation notice. New mint/contribution/maintenance/config work stops; reveal, transfers, claims and permitted local parking remain available.
 3. Finish existing provider responses and ordered `finalizeTraits` calls; confirm `unfinished_draws=0`. This is the selected simple policy: reliable funded provider plus draining before replacement. Do not remove the fully-revealed check if a request is stuck. Cancel the exact notice via `cancelPreparation(noticeHash)` if postponing, then restore ordinary controls deliberately.
 4. Park each live bucket locally with its exact reviewed request; do not start collective holder exit. Governance freeze() stops ownership/accounting before capture. Complete six ordered settle(slot) domains, export/import batches of at most eight and completeImport(), then exact classified fund(slot,index) legs. Recover from on-chain cursors/roots rather than an assumed last successful command.
 5. Verify every root, owner, trait, share, liability, reserve and exact backing. Governance `commit()` atomically retires the source and activates one successor. Finality remains required before service/marketplace cutover. Update canonical address/runtime and complete predecessor-history configuration, payout routing and marketplace collection records; old ERC721 approvals are not imported.
@@ -2374,7 +2418,7 @@ slots do not bound lifetime aliases. Recover exact next cursors/roots after an
 interruption; never skip rows or relax backing to fit a transaction budget.
 This sizing review needs no service restart or on-chain configuration change.
 
-A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V9 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
+A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Collective exit must not have started; canonical V10 rejects terminal principal settlement. Imported local buckets retain their reviewed shares/backing. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
 ## Stop controls
 
@@ -2535,7 +2579,7 @@ maintenance values halt further work; repair config and restart with the same
 journal/receipt/nonce history. Do not edit history to match a changed source hash.
 [Exact fields and recovery boundary](OPERATIONS.md#maintenance-configuration-errors-and-paid-recovery).
 
-Fresh schema16 preflight separates current `chains[].buyback_maximum_usd18` from
+Fresh schema17 preflight separates current `chains[].buyback_maximum_usd18` from
 `constructor.maximum_buyback_usd18`. After reviewing a maximum-cap change, record
 the actual pinned live getter as current policy, preserve creation provenance
 and observe/validate again. Do not invent a value or edit constructor history to
@@ -2733,8 +2777,8 @@ is unavailable/error, never zero or permission to bypass guards.
 governance permission or private key is needed. Wallet signatures and contracts
 authorize eventual payments/claims. Review the exact chain, anchor, base module
 pins plus the full accounting7 ProtocolPolicy1/Portfolio2 graph (historical profiles
-retain their declared sets), helper pins and admitted assets first. The schema16
-release inventory separately observes19 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
+retain their declared sets), helper pins and admitted assets first. The schema17
+release inventory separately observes20 callable helpers plus2 inert Factory data children. Bind the separate fee policy to
 `Projection.identity`; document full network-fee semantics, gas-price ceiling
 and maximum suggested-limit cost. Placeholder reviews are not qualification.
 
@@ -3129,7 +3173,7 @@ policy remains distinct. Changed geometry applies only on the next guarded full
 adjustment; it does not immediately remove LP or waive cooldown/confirmation.
 
 On-chain policy changes need no service restart only for a **matching** source9
-worker that reads them dynamically. Adopting direct Entry3/accounting7/schema16/new runtime pins
+worker that reads them dynamically. Adopting direct Entry3/accounting7/schema17/new runtime pins
 requires separate reviewed installation/configuration and controlled restart;
 editing this manual does not authorize one. Preserve pending hashes/journals and
 reconcile nonce/receipts/spend before any operating change. Requalify gas/load,
@@ -3179,7 +3223,7 @@ again after a relevant setting changes, including restore-to-old-value changes.
 
 ### Wallet flows and external token approvals
 
-The external fixed ZZZ ERC20 is not one of the38PoPL contract ABIs. Its approval
+The external fixed ZZZ ERC20 is not one of the39PoPL contract ABIs. Its approval
 calls are separate from NFT approvals:
 
 | Function name | Expected input | Example call inputs | Explanation |
@@ -3200,7 +3244,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **844 functions, 38 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **906 functions, 39 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3208,7 +3252,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 **Caller keys:** `G` governance after seal/bootstrap before seal; `B` bootstrap only; `K` keeper-authorized wallet; `H` NFT owner/approved NFT transfer caller as specified; `P` permissionless; `N` exact nominated recipient/provider; `M` fixed module/parent only; `C` authenticated callback only; `D` deployment only; `R` read, possibly guarded. These keys do not replace the linked exact permission. Governance is not automatically keeper-authorized. Guardian may pause, never unpause.
 
-**Input format:** examples show function(arguments), not transaction calldata. Tuple/array brackets preserve ABI order; addresses and decimal integers are quoted for JSON precision. Quoted uppercase names are unresolved replacements, not literal values; replace boolean placeholders with true/false. Enter separate arguments/expanded tuple fields in the explorer or reviewed ABI tool. A tuple/array is ONE top-level argument. Use exact integer strings, never floats. Transaction value/gas are separate. Direct mint examples do not implement OpenSea primary mint.
+**Input format:** examples show function(arguments), not transaction calldata. Tuple/array brackets preserve ABI order; addresses and decimal integers are quoted for JSON precision. Quoted uppercase names are unresolved replacements, not literal values; replace boolean placeholders with true/false. Enter separate arguments/expanded tuple fields in the explorer or reviewed ABI tool. A tuple/array is ONE top-level argument. Use exact integer strings, never floats. Transaction value/gas are separate. Buyers use the reviewed SeaDrop V1 flow; NFT mintSeaDrop and the Vault mintDormant module branch accept zero native value. The unbound direct-mint fixture is not the production path. These tables do not establish OpenSea onboarding. Pure unsupported setters are listed as reads and always revert.
 
 **Order:** read identities/state → capture current inputs → review → simulate exact caller/value/calldata → sign if authorized → verify receipt/state. Failed/reverted/unresolved operations need receipt reconciliation; do not guess success, resend, reset journals or restart services from this table.
 
@@ -3218,6 +3262,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 - [Daily LP management](#calls-liquidity)
 - [Pools, ranges, execution and prices](#calls-policy)
 - [LP rewards, royalties and claims](#calls-revenue)
+- [Primary mint and sale stages](#calls-mint)
 - [Parking, holder return and canonical replacement](#calls-recovery)
 - [NFTs, contributions and metadata](#calls-holders)
 - [Bound modules, helpers and factories](#calls-internals)
@@ -3303,7 +3348,6 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `K` [Vault.rebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `rebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Replace shared LP positions |
 | `H` [Vault.activate](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `activate(NFT_ID, POOL_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Activate dormant NFT liquidity |
 | `H` [Vault.increase](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `increase(NFT_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Grow existing attached LP |
-| `P` [Vault.mintDormant](CONTRACT_FUNCTIONS.md#zzzvault) | `expectedMintPolicy: bytes32`<br>`value: wei` (separate) | `mintDormant(EXPECTED_MINT_POLICY); value=MINT_PRICE_WEI wei` | Mint dormant PoPL NFT |
 | `G` [Vault.reservePool](CONTRACT_FUNCTIONS.md#zzzvault) | `pool: bytes32`<br>`bucket: uint256` | `reservePool(POOL_ID, BUCKET_ID)` | Reserve historical custody capacity |
 
 <details>
@@ -3338,7 +3382,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (12)</summary>
+<summary>Contract-only calls: use the parent workflow (13)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -3350,6 +3394,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [Vault.compound](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `compound(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Reinvest designated LP reserves |
 | `M` [Vault.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `emergencyRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Execute typed manual LP operation |
 | `M` [Vault.exitBucketToHolders](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumETH: uint256`<br>`minimumZZZ: uint256`<br>`deadline: uint256` | `exitBucketToHolders(BUCKET_ID, MINIMUM_ETH_WEI, MINIMUM_ZZZ, UNIX_DEADLINE)` | Return bucket principal internally |
+| `M` [Vault.mintDormant](CONTRACT_FUNCTIONS.md#zzzvault) | `expectedMintPolicy: bytes32`<br>`value: wei` (separate) | `mintDormant(ACTIVE_BATCH_FINGERPRINT); value=0 wei` | Record SeaDrop dormant identity |
 | `M` [Vault.movePool](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`newPool: bytes32`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `movePool(BUCKET_ID, POOL_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Execute authenticated pool movement |
 | `C` [Vault.onERC721Received](CONTRACT_FUNCTIONS.md#zzzvault) | `input0: address`<br>`input1: address`<br>`input2: uint256`<br>`input3: bytes` | `onERC721Received(TARGET_ADDRESS, TARGET_ADDRESS, INPUT2, ENCODED_BYTES)` | Read on erc721 received |
 | `M` [Vault.park](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`deadline: uint256` | `park(BUCKET_ID, UNIX_DEADLINE)` | Close LP into attributed idle |
@@ -4104,6 +4149,71 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 </details>
 
+<a id="calls-mint"></a>
+
+### Primary mint and sale stages
+
+<a id="zzzseadropmint"></a>
+
+#### SeaDropMint
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `G` [SeaDropMint.configure](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `next` [ZZZSeaDropMint.MintConfig](#input-zzzseadropmint-mintconfig)<br>`expectedMintPrice: uint128`<br>`reviewHash: bytes32` | `configure(["20", "500", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", "CONFIGURED_MAX_MINT_BATCH", "TEAM_START_UNIX", "TEAM_END_UNIX", "ALLOWLIST_START_UNIX", "ALLOWLIST_END_UNIX", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", false, "REVIEWED_TEAM_ALLOWLIST_ROOT", "REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS", "REVIEWED_SORTED_PAYERS_ARRAY_HASH"], REVIEWED_MINT_PRICE_WEI, SOURCE_BOUND_MANIFEST_REVIEW_HASH)` | Configure reviewed mint stages |
+
+<details>
+<summary>Read functions and constants (33)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [SeaDropMint.ALLOWLIST](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `ALLOWLIST()` | Read allowlist phase code |
+| `R` [SeaDropMint.MAX_BATCH_ENGINEERING](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `MAX_BATCH_ENGINEERING()` | Read batch engineering ceiling |
+| `R` [SeaDropMint.MAX_PAYERS_ENGINEERING](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `MAX_PAYERS_ENGINEERING()` | Read payer engineering ceiling |
+| `R` [SeaDropMint.MAX_SUPPLY](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `MAX_SUPPLY()` | Read fixed supply ceiling |
+| `R` [SeaDropMint.MINT_INTEGRATION_VERSION](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `MINT_INTEGRATION_VERSION()` | Read mint integration version |
+| `R` [SeaDropMint.PUBLIC](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `PUBLIC()` | Read public phase code |
+| `R` [SeaDropMint.TEAM](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `TEAM()` | Read free-team phase code |
+| `R` [SeaDropMint.access](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `access()` | Read immutable authority controller |
+| `R` [SeaDropMint.activeFingerprint](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `activeFingerprint()` | Read in-flight batch fingerprint |
+| `R` [SeaDropMint.activeRecipient](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `activeRecipient()` | Read in-flight mint beneficiary |
+| `R` [SeaDropMint.allowlistMinted](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `input0: address` | `allowlistMinted(ORIGINAL_MINT_RECIPIENT_ADDRESS)` | Read paid allowlist usage |
+| `R` [SeaDropMint.assertCanonicalCount](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `assertCanonicalCount()` | Validate aggregate mint counts |
+| `R` [SeaDropMint.configurationHash](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `configurationHash()` | Read local configuration hash |
+| `R` [SeaDropMint.configurationReviewHash](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `configurationReviewHash()` | Read manifest review commitment |
+| `R` [SeaDropMint.configurationValuesHash](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `configurationValuesHash()` | Read semantic settings hash |
+| `R` [SeaDropMint.configured](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `configured()` | Read configuration presence |
+| `R` [SeaDropMint.currentPhase](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `currentPhase()` | Read current mint phase |
+| `R` [SeaDropMint.expectedPublicDrop](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `expectedPublicDrop()` | Read expected public terms |
+| `R` [SeaDropMint.lifetimeMinted](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `input0: address` | `lifetimeMinted(ORIGINAL_MINT_RECIPIENT_ADDRESS)` | Read original lifetime issuance |
+| `R` [SeaDropMint.mintConfig](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `mintConfig()` | Read reviewed mint settings |
+| `R` [SeaDropMint.mintStage](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `input0: uint256` | `mintStage(SOURCE_MINT_ORDINAL)` | Read ordinal issuance phase |
+| `R` [SeaDropMint.mintStats](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `recipient: address` | `mintStats(ORIGINAL_MINT_RECIPIENT_ADDRESS)` | Read complete issuance statistics |
+| `R` [SeaDropMint.minting](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `minting()` | Read active batch flag |
+| `R` [SeaDropMint.nft](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `nft()` | Read fixed NFT caller |
+| `R` [SeaDropMint.originalMintRecipient](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `input0: uint256` | `originalMintRecipient(SOURCE_MINT_ORDINAL)` | Read ordinal original recipient |
+| `R` [SeaDropMint.phaseMinted](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `input0: uint8` | `phaseMinted(3)` | Read phase issuance total |
+| `R` [SeaDropMint.reviewedMintPrice](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `reviewedMintPrice()` | Read reviewed paid mint price |
+| `R` [SeaDropMint.revision](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `revision()` | Read mint configuration revision |
+| `R` [SeaDropMint.seaDrop](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `seaDrop()` | Read fixed mint singleton |
+| `R` [SeaDropMint.seaDropCodeHash](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `seaDropCodeHash()` | Read singleton runtime hash |
+| `R` [SeaDropMint.totalMinted](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `totalMinted()` | Read lifetime issued total |
+| `R` [SeaDropMint.validateBinding](CONTRACT_FUNCTIONS.md#zzzseadropmint) | None | `validateBinding()` | Validate empty binding handshake |
+| `R` [SeaDropMint.validateMintReview](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `fingerprint: bytes32` | `validateMintReview(ACTIVE_BATCH_FINGERPRINT)` | Read authenticated active beneficiary |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (4)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [SeaDropMint.beginMint](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `caller: address`<br>`recipient: address`<br>`quantity: uint256` | `beginMint(FIXED_SEADROP_ADDRESS, ORIGINAL_MINT_RECIPIENT_ADDRESS, 1)` | Reserve complete authenticated batch |
+| `M` [SeaDropMint.finishMint](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `fingerprint: bytes32` | `finishMint(ACTIVE_BATCH_FINGERPRINT)` | Finish authenticated NFT callback |
+| `M` [SeaDropMint.prepareUpdate](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `caller: address`<br>`originalData: bytes` | `prepareUpdate(FORWARDED_GOVERNANCE_ADDRESS, EXACT_TYPED_NFT_SETTER_CALLDATA)` | Prepare fixed typed setter |
+| `M` [SeaDropMint.restoreMint](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `ordinal: uint256`<br>`recipient: address`<br>`phase: uint8` | `restoreMint(SOURCE_MINT_ORDINAL, ORIGINAL_MINT_RECIPIENT_ADDRESS, SOURCE_MINT_STAGE)` | Restore original issuance books |
+
+</details>
+
 <a id="calls-recovery"></a>
 
 ### Parking, holder return and canonical replacement
@@ -4250,6 +4360,15 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `G` [NFT.setMintPaused](CONTRACT_FUNCTIONS.md#zzznft) | `state: bool` | `setMintPaused(true)` | Pause or resume minting |
+| `B` [NFT.setSeaDropMint](CONTRACT_FUNCTIONS.md#zzznft) | `helper: address` | `setSeaDropMint(REVIEWED_MINT_HELPER_ADDRESS)` | Bind reviewed mint helper |
+| `G` [NFT.setMintEnd](CONTRACT_FUNCTIONS.md#zzznft) | `end: uint64` | `setMintEnd(OFFICIAL_MINT_END_UNIX_SECONDS)` | Set official sale end |
+| `G` [NFT.updatePublicDrop](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1` [PublicDrop](#input-publicdrop) | `updatePublicDrop(FIXED_SEADROP_ADDRESS, ["REVIEWED_MINT_PRICE_WEI", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", true])` | Synchronize public mint terms |
+| `G` [NFT.updateAllowList](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1` [AllowListData](#input-allowlistdata) | `updateAllowList(FIXED_SEADROP_ADDRESS, ["REVIEWED_TEAM_ALLOWLIST_ROOT", ["REVIEWED_PUBLIC_KEY_URI"], "SOURCE_BOUND_PROOF_MANIFEST_URI"])` | Synchronize reviewed proof root |
+| `G` [NFT.updateCreatorPayoutAddress](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: address` | `updateCreatorPayoutAddress(FIXED_SEADROP_ADDRESS, ACCEPTED_PRIMARY_MINT_RECIPIENT_ADDRESS)` | Synchronize accepted mint payee |
+| `G` [NFT.updateAllowedFeeRecipient](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: address`<br>`input2: bool` | `updateAllowedFeeRecipient(FIXED_SEADROP_ADDRESS, REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS, true)` | Admit reviewed platform recipient |
+| `G` [NFT.updatePayer](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: address`<br>`input2: bool` | `updatePayer(FIXED_SEADROP_ADDRESS, REVIEWED_THIRD_PARTY_PAYER_ADDRESS, true)` | Admit reviewed third-party payer |
+| `G` [NFT.updateDropURI](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: string` | `updateDropURI(FIXED_SEADROP_ADDRESS, REVIEWED_DROP_URI)` | Emit reviewed drop URI |
 | `G` [NFT.addRoyaltyAsset](CONTRACT_FUNCTIONS.md#zzznft) | `token: address` | `addRoyaltyAsset(ROYALTY_TOKEN_ADDRESS)` | Admit royalty payment currency |
 | `H` [NFT.approve](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`tokenId: uint256` | `approve(TO_ADDRESS, NFT_ID)` | Approve one NFT transfer |
 | `P` [NFT.finalizeTraits](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `finalizeTraits(NFT_ID)` | Finalize original artwork draw |
@@ -4260,12 +4379,10 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `H` [NFT.safeTransferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256`<br>`data: bytes` | `safeTransferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID, 0x)` | Safely transfer NFT ownership |
 | `H` [NFT.setApprovalForAll](CONTRACT_FUNCTIONS.md#zzznft) | `operator: address`<br>`approved: bool` | `setApprovalForAll(OPERATOR_ADDRESS, false)` | Set NFT operator approval |
 | `B` [NFT.setBaseURI](CONTRACT_FUNCTIONS.md#zzznft) | `baseURI: string` | `setBaseURI(IPFS_BASE_URI)` | Bind permanent artwork base |
-| `G` [NFT.setMintEnd](CONTRACT_FUNCTIONS.md#zzznft) | `end: uint64` | `setMintEnd(OFFICIAL_MINT_END_UNIX_SECONDS)` | Set official sale end |
-| `G` [NFT.setMintPaused](CONTRACT_FUNCTIONS.md#zzznft) | `state: bool` | `setMintPaused(true)` | Pause or resume minting |
 | `H` [NFT.transferFrom](CONTRACT_FUNCTIONS.md#zzznft) | `from: address`<br>`to: address`<br>`tokenId: uint256` | `transferFrom(FROM_ADDRESS, TO_ADDRESS, NFT_ID)` | Transfer NFT ownership |
 
 <details>
-<summary>Read functions and constants (44)</summary>
+<summary>Read functions and constants (55)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4274,6 +4391,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [NFT.access](CONTRACT_FUNCTIONS.md#zzznft) | None | `access()` | Read access |
 | `R` [NFT.artworkBaseURI](CONTRACT_FUNCTIONS.md#zzznft) | None | `artworkBaseURI()` | Read artwork base uri |
 | `R` [NFT.balanceOf](CONTRACT_FUNCTIONS.md#zzznft) | `owner: address` | `balanceOf(OWNER_ADDRESS)` | Read balance of |
+| `R` [NFT.baseURI](CONTRACT_FUNCTIONS.md#zzznft) | None | `baseURI()` | Read prepared artwork root |
 | `R` [NFT.callbackGasLimit](CONTRACT_FUNCTIONS.md#zzznft) | None | `callbackGasLimit()` | Read callback gas limit |
 | `R` [NFT.canonicalArtwork](CONTRACT_FUNCTIONS.md#zzznft) | `rarity: uint8`<br>`item: uint256` | `canonicalArtwork(0, ITEM)` | Read canonical artwork |
 | `R` [NFT.canonicalModule](CONTRACT_FUNCTIONS.md#zzznft) | None | `canonicalModule()` | Read canonical module |
@@ -4284,15 +4402,19 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [NFT.currentLPValue](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `currentLPValue(NFT_ID)` | Read current lpvalue |
 | `R` [NFT.evolution](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `evolution(NFT_ID)` | Read evolution |
 | `R` [NFT.getApproved](CONTRACT_FUNCTIONS.md#zzznft) | `tokenId: uint256` | `getApproved(NFT_ID)` | Read get approved |
+| `R` [NFT.getMintStats](CONTRACT_FUNCTIONS.md#zzznft) | `minter: address` | `getMintStats(ORIGINAL_MINT_RECIPIENT_ADDRESS)` | Read original issuance counts |
 | `R` [NFT.isApprovedForAll](CONTRACT_FUNCTIONS.md#zzznft) | `owner: address`<br>`operator: address` | `isApprovedForAll(OWNER_ADDRESS, OPERATOR_ADDRESS)` | Read is approved for all |
 | `R` [NFT.keyHash](CONTRACT_FUNCTIONS.md#zzznft) | None | `keyHash()` | Read key hash |
+| `R` [NFT.maxSupply](CONTRACT_FUNCTIONS.md#zzznft) | None | `maxSupply()` | Read fixed supply ceiling |
 | `R` [NFT.metadataRenderer](CONTRACT_FUNCTIONS.md#zzznft) | None | `metadataRenderer()` | Read metadata renderer |
 | `R` [NFT.mintOrdinalOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `mintOrdinalOf(NFT_ID)` | Read mint ordinal of |
 | `R` [NFT.mintPaused](CONTRACT_FUNCTIONS.md#zzznft) | None | `mintPaused()` | Read mint paused |
+| `R` [NFT.mintStageOf](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `mintStageOf(NFT_ID)` | Read original issuance stage |
 | `R` [NFT.mintedCount](CONTRACT_FUNCTIONS.md#zzznft) | None | `mintedCount()` | Read minted count |
 | `R` [NFT.name](CONTRACT_FUNCTIONS.md#zzznft) | None | `name()` | Read name |
 | `R` [NFT.nativePayment](CONTRACT_FUNCTIONS.md#zzznft) | None | `nativePayment()` | Read native payment |
 | `R` [NFT.nextToFinalize](CONTRACT_FUNCTIONS.md#zzznft) | None | `nextToFinalize()` | Read next to finalize |
+| `R` [NFT.originalMintRecipient](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `originalMintRecipient(NFT_ID)` | Read original mint recipient |
 | `R` [NFT.ownerOf](CONTRACT_FUNCTIONS.md#zzznft) | `tokenId: uint256` | `ownerOf(NFT_ID)` | Read current NFT owner |
 | `R` [NFT.paletteOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `paletteOf(NFT_ID)` | Read palette of |
 | `R` [NFT.patternOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `patternOf(NFT_ID)` | Read pattern of |
@@ -4307,25 +4429,32 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [NFT.requestOf](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `requestOf(NFT_ID)` | Read request of |
 | `R` [NFT.royaltyInfo](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256`<br>`salePrice: uint256` | `royaltyInfo(NFT_ID, 1000000000000000000)` | Read requested royalty payment |
 | `R` [NFT.royaltyRewards](CONTRACT_FUNCTIONS.md#zzznft) | None | `royaltyRewards()` | Read royalty rewards |
+| `R` [NFT.seaDropMint](CONTRACT_FUNCTIONS.md#zzznft) | None | `seaDropMint()` | Read fixed mint helper |
+| `R` [NFT.seaDropMintRecipient](CONTRACT_FUNCTIONS.md#zzznft) | `review: bytes32` | `seaDropMintRecipient(ACTIVE_BATCH_FINGERPRINT)` | Read in-flight mint beneficiary |
+| `R` [NFT.setMaxSupply](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `setMaxSupply(1000)` | Reject supply changes |
 | `R` [NFT.subscriptionId](CONTRACT_FUNCTIONS.md#zzznft) | None | `subscriptionId()` | Read subscription id |
 | `R` [NFT.supportsInterface](CONTRACT_FUNCTIONS.md#zzznft) | `interfaceId: bytes4` | `supportsInterface(0x2a55205a)` | Read supports interface |
 | `R` [NFT.symbol](CONTRACT_FUNCTIONS.md#zzznft) | None | `symbol()` | Read symbol |
 | `R` [NFT.tokenAtOrdinal](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `tokenAtOrdinal(1)` | Read token at ordinal |
 | `R` [NFT.tokenURI](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `tokenURI(NFT_ID)` | Read token uri |
 | `R` [NFT.traitsReady](CONTRACT_FUNCTIONS.md#zzznft) | `input0: uint256` | `traitsReady(NFT_ID)` | Read traits ready |
+| `R` [NFT.updateAllowedSeaDrop](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address[]` | `updateAllowedSeaDrop(["FIXED_SEADROP_ADDRESS"])` | Reject singleton rotation |
+| `R` [NFT.updateSignedMintValidationParams](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: address`<br>`input2` [SignedMintValidationParams](#input-signedmintvalidationparams) | `updateSignedMintValidationParams(FIXED_SEADROP_ADDRESS, UNSUPPORTED_SIGNER_ADDRESS, ["UNSUPPORTED_MIN_MINT_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_MIN_START_UNIX", "UNSUPPORTED_MAX_END_UNIX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_MIN_FEE_BPS", "UNSUPPORTED_MAX_FEE_BPS"])` | Reject signed mint configuration |
+| `R` [NFT.updateTokenGatedDrop](CONTRACT_FUNCTIONS.md#zzznft) | `input0: address`<br>`input1: address`<br>`input2` [TokenGatedDropStage](#input-tokengateddropstage) | `updateTokenGatedDrop(FIXED_SEADROP_ADDRESS, UNSUPPORTED_GATING_TOKEN_ADDRESS, ["UNSUPPORTED_MINT_PRICE_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_START_UNIX", "UNSUPPORTED_END_UNIX", "UNSUPPORTED_STAGE_INDEX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_FEE_BPS", true])` | Reject token-gated mint configuration |
 
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (8)</summary>
+<summary>Contract-only calls: use the parent workflow (9)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [NFT.canonicalRetire](CONTRACT_FUNCTIONS.md#zzznft) | None | `canonicalRetire()` | Retire source NFT authority |
 | `M` [NFT.canonicalWriteArtwork](CONTRACT_FUNCTIONS.md#zzznft) | `rarity: uint8`<br>`item: uint256`<br>`value: uint16` | `canonicalWriteArtwork(0, ITEM, VALUE)` | Import authenticated artwork draw |
 | `M` [NFT.canonicalWriteHeader](CONTRACT_FUNCTIONS.md#zzznft) | `count: uint256`<br>`next: uint256`<br>`remaining: uint256`<br>`quotas: uint16[3]`<br>`epoch: uint256` | `canonicalWriteHeader(1, NEXT, REMAINING, ["QUOTAS", "QUOTAS", "QUOTAS"], EPOCH)` | Import authenticated NFT header |
-| `M` [NFT.canonicalWriteRecord](CONTRACT_FUNCTIONS.md#zzznft) | `row: uint256`<br>`value` [CanonicalNFTRecord](#input-canonicalnftrecord) | `canonicalWriteRecord(ROW, ["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD"])` | Import authenticated NFT record |
-| `M` [NFT.mint](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`id: uint256` | `mint(TO_ADDRESS, NFT_ID)` | Mint authenticated PoPL NFT |
+| `M` [NFT.canonicalWriteRecord](CONTRACT_FUNCTIONS.md#zzznft) | `row: uint256`<br>`value` [CanonicalNFTRecord](#input-canonicalnftrecord) | `canonicalWriteRecord(ROW, ["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD", "ORIGINAL_MINT_RECIPIENT_ADDRESS", "SOURCE_MINT_STAGE"])` | Import authenticated NFT record |
+| `M` [NFT.mint](CONTRACT_FUNCTIONS.md#zzznft) | `to: address`<br>`id: uint256` | `mint(TO_ADDRESS, NFT_ID)` | Mint unbound fixture only |
+| `M` [NFT.mintSeaDrop](CONTRACT_FUNCTIONS.md#zzznft) | `minter: address`<br>`quantity: uint256`<br>`value: wei` (separate) | `mintSeaDrop(ORIGINAL_MINT_RECIPIENT_ADDRESS, 1); value=0 wei` | Receive authenticated SeaDrop mint |
 | `M` [NFT.notifyContribution](CONTRACT_FUNCTIONS.md#zzznft) | `id: uint256` | `notifyContribution(NFT_ID)` | Register successful contribution rights |
 | `M` [NFT.policyMetadataChanged](CONTRACT_FUNCTIONS.md#zzznft) | None | `policyMetadataChanged()` | Announce changed display policy |
 | `C` [NFT.rawFulfillRandomWords](CONTRACT_FUNCTIONS.md#zzznft) | `requestId: uint256`<br>`words: uint256[]` | `rawFulfillRandomWords(REQUEST_ID, ["RARITY_WORD", "ARTWORK_WORD"])` | Record original provider randomness |
@@ -4361,14 +4490,18 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### NFTMetadata
 
 <details>
-<summary>Read functions and constants (4)</summary>
+<summary>Read functions and constants (8)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [NFTMetadata.access](CONTRACT_FUNCTIONS.md#zzznftmetadata) | None | `access()` | Read access |
 | `R` [NFTMetadata.artworkItem](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `rarity: uint8`<br>`item: uint256` | `artworkItem(RARITY, 0)` | Read artwork item |
 | `R` [NFTMetadata.currentValue](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `currentValue(NFT_ID)` | Read current value |
+| `R` [NFTMetadata.evolutionOf](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `evolutionOf(NFT_ID)` | Read canonical artwork stage |
+| `R` [NFTMetadata.markedValue](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `markedValue(NFT_ID)` | Read marked NFT liquidity |
 | `R` [NFTMetadata.render](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `input` [NFTMetadataInput](#input-nftmetadatainput) | `render(["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"])` | Read render |
+| `R` [NFTMetadata.tokenMetadata](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `tokenMetadata(NFT_ID)` | Read canonical NFT metadata |
+| `R` [NFTMetadata.validateBaseURI](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `uri: string` | `validateBaseURI(REVIEWED_ARTWORK_ROOT_URI)` | Validate artwork root syntax |
 
 </details>
 
@@ -4663,7 +4796,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### NFTCanonical
 
 <details>
-<summary>Read functions and constants (6)</summary>
+<summary>Read functions and constants (7)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4672,6 +4805,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [NFTCanonical.canonicalCount](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalCount()` | Read canonical count |
 | `R` [NFTCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
 | `R` [NFTCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalValidate()` | Validate imported classified backing |
+| `R` [NFTCanonical.deploymentConfigurationCommitment](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `deploymentConfigurationCommitment()` | Read deployment policy commitment |
 | `R` [NFTCanonical.nft](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `nft()` | Read nft |
 
 </details>
@@ -4715,7 +4849,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [VaultCanonical.validateCancelledRoyaltyHop](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `validateCancelledRoyaltyHop()` | Validate fixed return hop |
 | `R` [VaultCanonical.validateContribution](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`bucket: uint256`<br>`inputUSD: uint256`<br>`inputTotal: uint256`<br>`minimumLiquidity: uint128`<br>`activation: bool` | `validateContribution(NFT_ID, BUCKET_ID, INPUT_USD, INPUT_TOTAL, MINIMUM_LIQUIDITY, ACTIVATION)` | Read validate contribution |
 | `R` [VaultCanonical.validateHolderExit](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`migrationCaller: address` | `validateHolderExit(BUCKET_ID, MIGRATION_CALLER_ADDRESS)` | Read validate holder exit |
-| `R` [VaultCanonical.validateMint](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `value: uint256`<br>`ordinal: uint256`<br>`expectedPolicy: bytes32` | `validateMint(VALUE, 1, EXPECTED_POLICY)` | Read validate mint |
+| `R` [VaultCanonical.validateMint](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `caller: address`<br>`value: uint256`<br>`ordinal: uint256`<br>`expectedPolicy: bytes32` | `validateMint(FIXED_NFT_ADDRESS, 0, NEXT_MINT_ORDINAL, ACTIVE_BATCH_FINGERPRINT)` | Read authenticated mint identity |
 | `R` [VaultCanonical.validateOwner](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | `id: uint256`<br>`caller: address`<br>`minted: bool`<br>`activation: bool` | `validateOwner(NFT_ID, CALLER_ADDRESS, MINTED, ACTIVATION)` | Read validate owner |
 | `R` [VaultCanonical.vault](CONTRACT_FUNCTIONS.md#zzzvaultcanonical) | None | `vault()` | Read vault |
 
@@ -4811,13 +4945,28 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 Fields are expanded recursively in exact ABI order. Uppercase symbols remain required snapshot/review inputs. These examples prove neither venue feasibility nor historical entitlement. Parameter semantics and bounds remain in the linked function/procedure.
 
 <details>
+<summary>AllowListData</summary>
+
+<a id="input-allowlistdata"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `input1` | `(bytes32,string[],string)` | `["REVIEWED_TEAM_ALLOWLIST_ROOT", ["REVIEWED_PUBLIC_KEY_URI"], "SOURCE_BOUND_PROOF_MANIFEST_URI"]` |
+| `input1.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` |
+| `input1.publicKeyURIs` | `string[]` | `["REVIEWED_PUBLIC_KEY_URI"]` |
+| `input1.publicKeyURIs[0]` | `string` | `REVIEWED_PUBLIC_KEY_URI` |
+| `input1.allowListURI` | `string` | `SOURCE_BOUND_PROOF_MANIFEST_URI` |
+
+</details>
+
+<details>
 <summary>CanonicalNFTRecord</summary>
 
 <a id="input-canonicalnftrecord"></a>
 
 | Field | ABI type | Example input |
 | --- | --- | --- |
-| `value` | `(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256)` | `["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD"]` |
+| `value` | `(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8)` | `["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD", "ORIGINAL_MINT_RECIPIENT_ADDRESS", "SOURCE_MINT_STAGE"]` |
 | `value.id` | `uint256` | `ID` |
 | `value.owner` | `address` | `OWNER_ADDRESS` |
 | `value.rarity` | `uint8` | `RARITY` |
@@ -4828,6 +4977,8 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | `value.requestEpoch` | `uint256` | `REQUEST_EPOCH` |
 | `value.rarityWord` | `uint256` | `RARITY_WORD` |
 | `value.colorWord` | `uint256` | `COLOR_WORD` |
+| `value.originalRecipient` | `address` | `ORIGINAL_MINT_RECIPIENT_ADDRESS` |
+| `value.mintStage` | `uint8` | `SOURCE_MINT_STAGE` |
 
 </details>
 
@@ -4914,6 +5065,60 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | `key.fee` | `uint24` | `FEE` |
 | `key.tickSpacing` | `int24` | `TICK_SPACING` |
 | `key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+
+</details>
+
+<details>
+<summary>PublicDrop</summary>
+
+<a id="input-publicdrop"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `input1` | `(uint80,uint48,uint48,uint16,uint16,bool)` | `["REVIEWED_MINT_PRICE_WEI", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", true]` |
+| `input1.mintPrice` | `uint80` | `REVIEWED_MINT_PRICE_WEI` |
+| `input1.startTime` | `uint48` | `PUBLIC_START_UNIX` |
+| `input1.endTime` | `uint48` | `PUBLIC_END_UNIX` |
+| `input1.maxTotalMintableByWallet` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` |
+| `input1.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` |
+| `input1.restrictFeeRecipients` | `bool` | `true` |
+
+</details>
+
+<details>
+<summary>SignedMintValidationParams</summary>
+
+<a id="input-signedmintvalidationparams"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `input2` | `(uint80,uint24,uint40,uint40,uint40,uint16,uint16)` | `["UNSUPPORTED_MIN_MINT_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_MIN_START_UNIX", "UNSUPPORTED_MAX_END_UNIX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_MIN_FEE_BPS", "UNSUPPORTED_MAX_FEE_BPS"]` |
+| `input2.minMintPrice` | `uint80` | `UNSUPPORTED_MIN_MINT_WEI` |
+| `input2.maxMaxTotalMintableByWallet` | `uint24` | `UNSUPPORTED_WALLET_LIMIT` |
+| `input2.minStartTime` | `uint40` | `UNSUPPORTED_MIN_START_UNIX` |
+| `input2.maxEndTime` | `uint40` | `UNSUPPORTED_MAX_END_UNIX` |
+| `input2.maxMaxTokenSupplyForStage` | `uint40` | `UNSUPPORTED_STAGE_SUPPLY` |
+| `input2.minFeeBps` | `uint16` | `UNSUPPORTED_MIN_FEE_BPS` |
+| `input2.maxFeeBps` | `uint16` | `UNSUPPORTED_MAX_FEE_BPS` |
+
+</details>
+
+<details>
+<summary>TokenGatedDropStage</summary>
+
+<a id="input-tokengateddropstage"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `input2` | `(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool)` | `["UNSUPPORTED_MINT_PRICE_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_START_UNIX", "UNSUPPORTED_END_UNIX", "UNSUPPORTED_STAGE_INDEX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_FEE_BPS", true]` |
+| `input2.mintPrice` | `uint80` | `UNSUPPORTED_MINT_PRICE_WEI` |
+| `input2.maxTotalMintableByWallet` | `uint16` | `UNSUPPORTED_WALLET_LIMIT` |
+| `input2.startTime` | `uint48` | `UNSUPPORTED_START_UNIX` |
+| `input2.endTime` | `uint48` | `UNSUPPORTED_END_UNIX` |
+| `input2.dropStageIndex` | `uint8` | `UNSUPPORTED_STAGE_INDEX` |
+| `input2.maxTokenSupplyForStage` | `uint32` | `UNSUPPORTED_STAGE_SUPPLY` |
+| `input2.feeBps` | `uint16` | `UNSUPPORTED_FEE_BPS` |
+| `input2.restrictFeeRecipients` | `bool` | `true` |
 
 </details>
 
@@ -5104,6 +5309,32 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 </details>
 
 <details>
+<summary>ZZZSeaDropMint.MintConfig</summary>
+
+<a id="input-zzzseadropmint-mintconfig"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `next` | `(uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32)` | `["20", "500", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", "CONFIGURED_MAX_MINT_BATCH", "TEAM_START_UNIX", "TEAM_END_UNIX", "ALLOWLIST_START_UNIX", "ALLOWLIST_END_UNIX", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", false, "REVIEWED_TEAM_ALLOWLIST_ROOT", "REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS", "REVIEWED_SORTED_PAYERS_ARRAY_HASH"]` |
+| `next.teamAllocation` | `uint16` | `20` |
+| `next.allowlistAllocation` | `uint16` | `500` |
+| `next.publicWalletLimit` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` |
+| `next.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` |
+| `next.maxBatch` | `uint8` | `CONFIGURED_MAX_MINT_BATCH` |
+| `next.teamStart` | `uint48` | `TEAM_START_UNIX` |
+| `next.teamEnd` | `uint48` | `TEAM_END_UNIX` |
+| `next.allowlistStart` | `uint48` | `ALLOWLIST_START_UNIX` |
+| `next.allowlistEnd` | `uint48` | `ALLOWLIST_END_UNIX` |
+| `next.publicStart` | `uint48` | `PUBLIC_START_UNIX` |
+| `next.publicEnd` | `uint48` | `PUBLIC_END_UNIX` |
+| `next.releaseUnusedTeamToPublic` | `bool` | `false` |
+| `next.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` |
+| `next.feeRecipient` | `address` | `REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS` |
+| `next.allowedPayersHash` | `bytes32` | `REVIEWED_SORTED_PAYERS_ARRAY_HASH` |
+
+</details>
+
+<details>
 <summary>ZZZV4RouteExecutor.Policy</summary>
 
 <a id="input-zzzv4routeexecutor-policy"></a>
@@ -5216,7 +5447,7 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `D` [NFT.constructor](CONTRACT_FUNCTIONS.md#zzznft) | `controller: address`<br>`baseURI: string` | `deploy NFT(CONTROLLER_ADDRESS, IPFS_BASE_URI)` | Deploy bound implementation |
+| `D` [NFT.constructor](CONTRACT_FUNCTIONS.md#zzznft) | `controller: address`<br>`baseURI: string`<br>`renderer: address` | `deploy NFT(CONTROLLER_ADDRESS, IPFS_BASE_URI, PREDEPLOYED_METADATA_RENDERER_ADDRESS)` | Deploy fixed NFT collection |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -5269,6 +5500,10 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `D` [RoyaltyRewards.constructor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `nftController: address` | `deploy RoyaltyRewards(NFT_CONTROLLER_ADDRESS)` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [SeaDropMint.constructor](CONTRACT_FUNCTIONS.md#zzzseadropmint) | `controller: address`<br>`collection: address`<br>`seaDropImplementation: address`<br>`expectedCodeHash: bytes32` | `deploy SeaDropMint(CONTROLLER_ADDRESS, EMPTY_NFT_ADDRESS, VERIFIED_SEADROP_ADDRESS, VERIFIED_SEADROP_RUNTIME_HASH)` | Deploy fixed mint policy |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |

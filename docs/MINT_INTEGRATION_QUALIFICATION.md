@@ -1,43 +1,36 @@
 # Qualify randomness and OpenSea primary mint
 
 
-Fresh accounting6 issues paid NFTs through `Vault.mintDormant(expectedMintPolicy)`
-with exact reviewed current price(default0.05ETH), accepted future payee and
-sale+VRF fingerprint. Historical no-argument selectors stay on their own profiles. It does not yet
-implement an OpenSea primary-drop mint path. Marketplaces may recognize the
-ERC-721 collection for secondary sales without supporting its primary mint.
-Keep these two acceptance criteria separate before sealing.
+Fresh [SeaDrop mint2/helper1](OPENSEA_MINT.md) implements the canonical NFT
+callback, shared supply/quota bookkeeping, authenticated buyer issuance and
+atomic SeaDrop fee/creator settlement. Initial sale:20free team,500paid
+allowlist(one per distinct address),480public FCFS; unsold AL rolls public,
+unused team remains reserved. Paid price defaults0.05ETH total, gas separate.
+Actual OpenSea onboarding/fee/payer/provider and operating acceptance remain
+unqualified. Website minting remains demonstrative.
 
 ## Versioned production inventory
 
-The current blocked [production template](../config/production.example.json)
-declares `mint_integration_version: 1`. The existing production inventory checker
-then verifies the current code-owned `vault_direct_v1` capability and explicitly
-reports `mint.opensea_unsupported`. Inventing a `mintSeaDrop` flag, successful
-secondary sale or generic supported-chain proof cannot make this source support
-a new mint caller or payment path.
+The blocked [schema17 production template](../config/production.example.json)
+requires mint integration2, `seadrop_sequential_v1`, the fixed helper and
+canonicalV10. The checker/observer authenticate source-matching configuration,
+original-recipient lifetime books and actual admitted drop state separately
+from proof review, actual onboarding, fees, VRF and operating evidence. A
+manifest cannot approve its own deployment or make opaque root contents safe.
 
-An omitted/zero version preserves historical schema-5 consistency checks.
-The module labels their output `legacy_manifest_consistency_only`, with
-`production_qualification_supported: false`. The CLI defaults to the current
-release gate and fails closed on omitted/zero/boolean mint profiles or old
-schemas. Historical inspection requires explicit `--historical-consistency`;
-that output is labeled `historical_manifest_consistency_only` and
-`current_release_gate: false`, never current production qualification. Current
-qualification requires explicit version 1, supported qualification scope,
-`ready: true` and genuine independent evidence. No checker authorizes deployment,
-signing, sealing or spending.
+The exact prior [schema16 template](../config/production.schema16.example.json)
+and direct `vault_direct_v1` checker remain explicitly historical; that path
+does not gain SeaDrop functionality by relabeling. Existing reader/source9,
+site/runtime/journal/signer profiles remain unchanged. No checker signs or
+authorizes deployment, sealing or public spending.
 
-From the repository root, inspect the existing checker output:
-
-```sh
-python3 scripts/validate-production-config.py --config config/production.example.json
+```text
+python scripts/validate-production-config.py --config config/production.example.json
 ```
 
-The checked-in template must remain blocked. Do not invent service addresses,
-evidence hashes, fees, source-code matches or a successful marketplace mint to
-silence the checks. A future reviewed implementation needs an explicit capability
-profile update; manifest metadata alone cannot add it.
+The checked-in template stays blocked. Exact addresses, platform fee/payer,
+wallet limits, sale windows, source hashes and independent evidence must
+come from actual qualification; do not fabricate them to silence blockers.
 
 ## Qualify the original randomness request
 
@@ -104,41 +97,20 @@ whole-collection replacement. It does not block ordinary LP pool movement merely
 because randomness is pending. No promise of post-provider-failure recovery is
 made without a genuine still-valid original result.
 
-## Latest interface investigation
+## Current OpenSea investigation and remaining acceptance
 
-The [November5 official-source investigation](../reports/earnings-checkpoints-20261104/OPENSEA_RESEARCH.md)
-confirms the absent NFT mint/stats interface, recipient-aware Vault issuance and
-distinct marketplace payment flow. Naïve NFT-to-Vault-to-NFT wrappers also need
-reentrancy/callback review. Robinhood marketplace support is not verified primary-
-drop support, and the inspected deployment list does not establish its actual
-SeaDrop address/runtime. The generic published platform-fee guide is not selected
-Robinhood fee evidence. No contract/mint-authority or readiness flag changed.
+The [November9 source/runtime investigation](../reports/opensea-integration-20261109/REVIEW.md)
+supersedes the historical missing-chain conclusion: the pinned official
+registry lists Robinhood4663 and an independent RPC read matches verified
+SeaDrop V1. The canonical callback is implemented against that exact runtime.
+Protocol compatibility is still not custom collection onboarding/API
+acceptance; generic marketplace support or a generic fee guide is insufficient.
 
-## Design and qualify the OpenSea path
-
-The initial user decision is **0.05 ETH total mint price paid by the buyer**, with
-network gas separate. The mint-proceeds recipient receives that gross payment
-minus the actual OpenSea platform fee. The actual fee is not yet verified; do
-not assume a fee percentage or invent a platform recipient. Confirm the supported
-ERC-721 drop product and exact reviewed SeaDrop deployment on Robinhood. Current
-Vault direct mint forwards all of its reviewed current gross price(default0.05ETH)
-and does not implement this future split. Any future price/payee change must be
-reflected in the compatible drop review;
-do not charge the mint twice or claim marketplace compatibility is complete.
-
-A compatible implementation must retain canonical hashed NFT IDs, Vault issuance
-records, max supply 1,000, the exact 600/300/100 draw, immutable royalties and
-transferable economic rights. It needs an explicit reviewed caller/buyer path,
-exact payment conservation, bounded quantity and worst-case request gas, pause
-and lifecycle checks, receiver-callback protection, complete failure rollback
-and exactly one original randomness request per minted NFT. Copying a template
-that adds a public burn, sequential identity or unrelated mint authority is not
-an authorized integration.
-
-Before approval, retain the exact OpenSea collection/drop URL, network, verified
-runtime and product configuration; generated unsigned mint transaction; actual
-buyer receipt and canonical NFT record; mint price/platform fee/creator payment;
-request/fulfillment/reveal; ERC-2981 receiver; and failed/duplicate/last-supply/
-receiver-rejection cases. Source review and local simulations should precede
-the separately authorized real rehearsal. No public transaction is authorized
-by this runbook. The website Mint page remains a demonstration.
+Use the [complete plan, inputs and stop/restart procedure](OPENSEA_MINT.md).
+Before production approval retain the actual OpenSea collection/drop URL and
+accepted configuration; generated unsigned platform mint; buyer receipt and
+canonical ownership; gross/platform/net balance changes; original request,
+fulfillment and ordered reveal; royalty receiver; negative/duplicate/last-slot/
+receiver/payer cases and actual maximum-batch gas. Source-local tests and
+mock VRF do not qualify that campaign. Public transaction authorization is
+separate. No deployment, website mint or signer rollout is implied.

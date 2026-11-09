@@ -38,6 +38,9 @@ interface ICanonicalExactLPProfile {
     function ACCOUNTING_VERSION() external view returns(uint256);
     function LP_ALLOCATION_VERSION() external view returns(uint256);
 }
+interface ICanonicalDeploymentConfiguration {
+    function deploymentConfigurationCommitment() external view returns(bytes32);
+}
 
 /// @notice Fixed, bounded handoff coordinator. This first transport is direct
 /// same-chain custody with atomic retirement/activation. It cannot attest remote
@@ -46,7 +49,7 @@ interface ICanonicalExactLPProfile {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10");
     // Numeric values are wire-compatible; coordinator phases and Access states
     // are separate state machines. Constants add no public getter or storage.
     uint8 private constant PHASE_IDLE = 0;
@@ -188,9 +191,8 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             address target = moduleAt(slot);
             result = keccak256(abi.encode(result, slot, target, target.codehash));
         }
-        address policy = access.protocolPolicy();
-        result = keccak256(abi.encode(result,policy,policy.codehash,
-            IZZZProtocolPolicy(policy).PROTOCOL_POLICY_VERSION(),IZZZProtocolPolicy(policy).configurationHash()));
+        result=keccak256(abi.encode(result,ICanonicalDeploymentConfiguration(
+            access.module(Ids.NFT_CANONICAL)).deploymentConfigurationCommitment()));
     }
 
     /// @notice Only an unused, unsealed deployment can become an inert importer.

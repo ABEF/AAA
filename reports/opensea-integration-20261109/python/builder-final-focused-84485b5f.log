@@ -1,0 +1,10 @@
+test_each_positive_phase_requires_its_own_reviewed_proof_leaf (tests_python.test_opensea_drop.OpenSeaDropTests.test_each_positive_phase_requires_its_own_reviewed_proof_leaf) ... ok
+test_positive_reserved_phases_cannot_publish_a_zero_eligibility_root (tests_python.test_opensea_drop.OpenSeaDropTests.test_positive_reserved_phases_cannot_publish_a_zero_eligibility_root) ... ok
+test_empty_and_single_leaf_cases_are_explicit (tests_python.test_opensea_drop.OpenSeaDropTests.test_empty_and_single_leaf_cases_are_explicit) ... ok
+test_exact_configuration_tuple_and_domain_review_hash (tests_python.test_opensea_drop.OpenSeaDropTests.test_exact_configuration_tuple_and_domain_review_hash) ... ok
+test_full_artifact_check_rejects_every_derived_tamper (tests_python.test_opensea_drop.OpenSeaDropTests.test_full_artifact_check_rejects_every_derived_tamper) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.743s
+
+OK

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -90,7 +91,7 @@ contract ClaimRouterTest is Test {
 
     function setUp() public {
         access = new MockAccess(); ProtocolPolicyFixture.bind(address(access)); vrf = new MockVRF(); token = new MockToken(18); other = new MockToken(6);
-        nft = new ZZZNFT(address(access), "ipfs://example/"); nft.setMintEnd(uint64(block.timestamp + 3650 days)); rewards = new ZZZRewards(address(access));
+        nft = new ZZZNFT(address(access), "ipfs://example/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days)); rewards = new ZZZRewards(address(access));
         royalties = nft.royaltyRewards(); router = nft.claimRouter(); membership = new ZZZMembership(address(access));
         vault = new ClaimVaultFixture(nft, rewards, membership);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.REWARDS, address(rewards));
@@ -218,7 +219,7 @@ contract ClaimRouterTest is Test {
     }
 
     function testUnsealedOrNoncanonicalBindingRejected() public {
-        MockAccess unsealed = new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed)); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), ""); otherNFT.setMintEnd(uint64(block.timestamp + 3650 days));
+        MockAccess unsealed = new MockAccess(); ProtocolPolicyFixture.bind(address(unsealed)); ZZZNFT otherNFT = new ZZZNFT(address(unsealed), "", address(new ZZZNFTMetadata(address(unsealed)))); otherNFT.setMintEnd(uint64(block.timestamp + 3650 days));
         ZZZClaimRouter unsealedRouter = otherNFT.claimRouter();
         vm.expectRevert(ZZZClaimRouter.InvalidConfiguration.selector); unsealedRouter.claimBatch(_both(1));
         access.bind(Ids.NFT, address(otherNFT));

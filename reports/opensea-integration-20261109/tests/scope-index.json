@@ -1,0 +1,44 @@
+{
+  "source_date": "2026-11-09",
+  "overlap_rule": "Do not sum overlapping tests, corrected stages or follow-up rechecks. Each original result/source scope remains authoritative.",
+  "actual_v1": {
+    "path": "forge-actual-drop/attempt3",
+    "passes": 15,
+    "scope": "Exact deployed V1 runtime plus synthetic ERC721 fixture. Attempts1/2 retain native solc stack-overflow failures. Bounded test-only runtime literals fixed the host failure without compiler/financial changes."
+  },
+  "actual_popl_mint": {
+    "path": "forge-popl-drop/attempt1",
+    "passes": 18,
+    "scope": "Real NFT/Vault/VaultCanonical/Budget/Policy/helper/royalty graph with explicit MockAccess and MockVRF. No full handoff, real provider or LP venue claim."
+  },
+  "quota_model": {
+    "path": "forge-quota-drop/attempt1",
+    "methods": 12,
+    "focused_fuzz_inputs": 64,
+    "scope": "Getter-verified synthetic helper historical counts and mocked NFT count. Does not claim minting1000 actual NFTs or proving historical ownership/backing."
+  },
+  "nft_canonical": {
+    "path": "forge-canonical-drop",
+    "scope": "Original failed/corrected NFT codec stages are retained. Domain-level tests are distinct from the whole-coordinator run."
+  },
+  "whole_handoff": {
+    "path": "forge-whole-seadrop/attempt4",
+    "successful": true,
+    "passes": 2,
+    "source_files_before": 106,
+    "source_files_after": 106,
+    "scope": "Final full local coordinator test with explicit mocks and documented per-transaction gas/memory/transient-state test harness. Earlier failed attempts and original diagnostic traces are retained. Original8-row/12M operating budget is unchanged; test harness gas resets are not target qualification."
+  },
+  "existing_regressions": {
+    "path": "affected-existing/attempt1",
+    "passes": 68,
+    "scope": "Only existing NFTMetadata,RandomnessRequestSettings,RoyaltyLaunchWindow paths; default fuzz1000. Copied owned artifacts reused; originals unchanged. Source before/during/after manifests included. No unchanged LP suite."
+  },
+  "license_provenance": "Original verified source/dependency license headers are preserved. Top-level SeaDrop is SPDXMIT; captured Solmate dependency headers include AGPL-3.0-only. No MIT-only dependency-closure claim.",
+  "global_boundaries": [
+    "No public transaction, wallet key, deployment or service change.",
+    "Mock feed/VRF/authority/dependency behavior is not provider qualification.",
+    "Engineering gas is not target-chain acceptance.",
+    "OpenSea custom onboarding, exact platform recipient/terms and independent approval remain separate."
+  ]
+}

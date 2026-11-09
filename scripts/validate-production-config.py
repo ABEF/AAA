@@ -21,14 +21,14 @@ sys.path.insert(0,str(ROOT))
 
 def validate(config: Any, *, expected_commit: str | None = None, now: int | None = None) -> dict[str,Any]:
     """Evaluate current release only; old configuration never enters legacy code."""
-    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==16:
-        from zzz_ops.production_v14 import validate as validate_current
+    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==17:
+        from zzz_ops.production_v15 import validate as validate_current
         return validate_current(config,expected_commit=expected_commit,now=now)
     # Fresh portfolio accounting must never inherit a historical single-LP pass.
-    return {'schema_version':16,'status':'blocked','ready':False,'deployment_authorized':False,
+    return {'schema_version':17,'status':'blocked','ready':False,'deployment_authorized':False,
         'current_release_gate':True,'production_qualification_supported':False,
         'issues':[{'code':'holder_exit_qualification_pending','path':'current_release_profile',
-            'message':'Use explicit schema16/accounting7/LP-allocation1/custody5/residual-reinvest1/direct Entry3/royalty4 with19 logical helpers plus2 inert data children and canonical V9. Schema15 and older layouts require --historical-consistency; no deployment or journal is relabeled.'}],
+            'message':'Use explicit schema17/accounting7/LP-allocation1/custody5/direct Entry3/royalty4/mint2 with20 callable helpers,2 inert data children and canonical V10. Schema16 and older layouts require --historical-consistency; no deployment or journal is relabeled.'}],
         'limitations':['Source implementation and focused tests do not qualify actual release bindings, services or deployment.']}
 
 
@@ -65,7 +65,11 @@ def main() -> int:
     try:
         config=read_config(Path(args.config))
         if args.historical_consistency:
-            if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==14:
+            if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==16:
+                from zzz_ops.production_v14 import validate as validate_historical
+            elif isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==15:
+                from zzz_ops.production_v13 import validate as validate_historical
+            elif isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==14:
                 from zzz_ops.production_v12 import validate as validate_historical
             elif isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==13:
                 from zzz_ops.production_v11 import validate as validate_historical
@@ -91,7 +95,7 @@ def main() -> int:
         else:
             result=validate(config,expected_commit=args.expected_commit,now=int(time.time()))
     except (OSError,UnicodeError,ValueError,RecursionError,TypeError,KeyError,OverflowError) as exc:
-        result={'schema_version':4 if args.historical_consistency else 16,'status':'blocked','ready':False,
+        result={'schema_version':4 if args.historical_consistency else 17,'status':'blocked','ready':False,
             'deployment_authorized':False,'current_release_gate':not args.historical_consistency,
             'production_qualification_supported':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}

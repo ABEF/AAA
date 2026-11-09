@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "d43854c61eeecab95189a4e942a1f2f3a779bfdfbe6840682f49e5439144f893",
+  "reference_sha256": "489bd4554e549cb8c71788e69f926e840ed330761dafb4912b020e8f8a2d0858",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -3349,15 +3349,6 @@
       "arguments": [],
       "value": null
     },
-    "ZZZNFT.constructor(address,string)": {
-      "role": "D",
-      "short": "Deploy bound implementation",
-      "arguments": [
-        "$CONTROLLER_ADDRESS",
-        "$IPFS_BASE_URI"
-      ],
-      "value": null
-    },
     "ZZZNFT.MAX_METADATA_REFRESH_BATCH()": {
       "role": "R",
       "short": "Read max metadata refresh batch",
@@ -3474,26 +3465,6 @@
       ],
       "value": null
     },
-    "ZZZNFT.canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256))": {
-      "role": "M",
-      "short": "Import authenticated NFT record",
-      "arguments": [
-        "$ROW",
-        [
-          "$ID",
-          "$OWNER_ADDRESS",
-          "$RARITY",
-          "$COLOR",
-          "$PALETTE",
-          "$PATTERN",
-          "$REQUEST_ID",
-          "$REQUEST_EPOCH",
-          "$RARITY_WORD",
-          "$COLOR_WORD"
-        ]
-      ],
-      "value": null
-    },
     "ZZZNFT.claimRouter()": {
       "role": "R",
       "short": "Read claim router",
@@ -3563,7 +3534,7 @@
     },
     "ZZZNFT.mint(address,uint256)": {
       "role": "M",
-      "short": "Mint authenticated PoPL NFT",
+      "short": "Mint unbound fixture only",
       "arguments": [
         "$TO_ADDRESS",
         "$NFT_ID"
@@ -6165,12 +6136,12 @@
       "value": null
     },
     "ZZZVault.mintDormant(bytes32)": {
-      "role": "P",
-      "short": "Mint dormant PoPL NFT",
+      "role": "M",
+      "short": "Record SeaDrop dormant identity",
       "arguments": [
-        "$EXPECTED_MINT_POLICY"
+        "$ACTIVE_BATCH_FINGERPRINT"
       ],
-      "value": "$MINT_PRICE_WEI"
+      "value": 0
     },
     "ZZZVault.mintPolicyFingerprint()": {
       "role": "R",
@@ -6497,16 +6468,6 @@
       "arguments": [
         "$BUCKET_ID",
         "$MIGRATION_CALLER_ADDRESS"
-      ],
-      "value": null
-    },
-    "ZZZVaultCanonical.validateMint(uint256,uint256,bytes32)": {
-      "role": "R",
-      "short": "Read validate mint",
-      "arguments": [
-        "$VALUE",
-        1,
-        "$EXPECTED_POLICY"
       ],
       "value": null
     },
@@ -7193,6 +7154,564 @@
       "role": "R",
       "short": "Validate imported classified backing",
       "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.constructor(address,string,address)": {
+      "role": "D",
+      "short": "Deploy fixed NFT collection",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$IPFS_BASE_URI",
+        "$PREDEPLOYED_METADATA_RENDERER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8))": {
+      "role": "M",
+      "short": "Import authenticated NFT record",
+      "arguments": [
+        "$ROW",
+        [
+          "$ID",
+          "$OWNER_ADDRESS",
+          "$RARITY",
+          "$COLOR",
+          "$PALETTE",
+          "$PATTERN",
+          "$REQUEST_ID",
+          "$REQUEST_EPOCH",
+          "$RARITY_WORD",
+          "$COLOR_WORD",
+          "$ORIGINAL_MINT_RECIPIENT_ADDRESS",
+          "$SOURCE_MINT_STAGE"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.baseURI()": {
+      "role": "R",
+      "short": "Read prepared artwork root",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.getMintStats(address)": {
+      "role": "R",
+      "short": "Read original issuance counts",
+      "arguments": [
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.maxSupply()": {
+      "role": "R",
+      "short": "Read fixed supply ceiling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.mintStageOf(uint256)": {
+      "role": "R",
+      "short": "Read original issuance stage",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.originalMintRecipient(uint256)": {
+      "role": "R",
+      "short": "Read original mint recipient",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFT.seaDropMint()": {
+      "role": "R",
+      "short": "Read fixed mint helper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFT.seaDropMintRecipient(bytes32)": {
+      "role": "R",
+      "short": "Read in-flight mint beneficiary",
+      "arguments": [
+        "$ACTIVE_BATCH_FINGERPRINT"
+      ],
+      "value": null
+    },
+    "ZZZNFT.mintSeaDrop(address,uint256)": {
+      "role": "M",
+      "short": "Receive authenticated SeaDrop mint",
+      "arguments": [
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS",
+        1
+      ],
+      "value": 0
+    },
+    "ZZZNFT.setSeaDropMint(address)": {
+      "role": "B",
+      "short": "Bind reviewed mint helper",
+      "arguments": [
+        "$REVIEWED_MINT_HELPER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.setMaxSupply(uint256)": {
+      "role": "R",
+      "short": "Reject supply changes",
+      "arguments": [
+        1000
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateAllowedSeaDrop(address[])": {
+      "role": "R",
+      "short": "Reject singleton rotation",
+      "arguments": [
+        [
+          "$FIXED_SEADROP_ADDRESS"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))": {
+      "role": "G",
+      "short": "Synchronize public mint terms",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        [
+          "$REVIEWED_MINT_PRICE_WEI",
+          "$PUBLIC_START_UNIX",
+          "$PUBLIC_END_UNIX",
+          "$PUBLIC_LIFETIME_WALLET_LIMIT",
+          "$REVIEWED_PRIMARY_FEE_BPS",
+          true
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateAllowList(address,(bytes32,string[],string))": {
+      "role": "G",
+      "short": "Synchronize reviewed proof root",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        [
+          "$REVIEWED_TEAM_ALLOWLIST_ROOT",
+          [
+            "$REVIEWED_PUBLIC_KEY_URI"
+          ],
+          "$SOURCE_BOUND_PROOF_MANIFEST_URI"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateCreatorPayoutAddress(address,address)": {
+      "role": "G",
+      "short": "Synchronize accepted mint payee",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$ACCEPTED_PRIMARY_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateAllowedFeeRecipient(address,address,bool)": {
+      "role": "G",
+      "short": "Admit reviewed platform recipient",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS",
+        true
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateDropURI(address,string)": {
+      "role": "G",
+      "short": "Emit reviewed drop URI",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$REVIEWED_DROP_URI"
+      ],
+      "value": null
+    },
+    "ZZZNFT.updatePayer(address,address,bool)": {
+      "role": "G",
+      "short": "Admit reviewed third-party payer",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$REVIEWED_THIRD_PARTY_PAYER_ADDRESS",
+        true
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))": {
+      "role": "R",
+      "short": "Reject signed mint configuration",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$UNSUPPORTED_SIGNER_ADDRESS",
+        [
+          "$UNSUPPORTED_MIN_MINT_WEI",
+          "$UNSUPPORTED_WALLET_LIMIT",
+          "$UNSUPPORTED_MIN_START_UNIX",
+          "$UNSUPPORTED_MAX_END_UNIX",
+          "$UNSUPPORTED_STAGE_SUPPLY",
+          "$UNSUPPORTED_MIN_FEE_BPS",
+          "$UNSUPPORTED_MAX_FEE_BPS"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFT.updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))": {
+      "role": "R",
+      "short": "Reject token-gated mint configuration",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$UNSUPPORTED_GATING_TOKEN_ADDRESS",
+        [
+          "$UNSUPPORTED_MINT_PRICE_WEI",
+          "$UNSUPPORTED_WALLET_LIMIT",
+          "$UNSUPPORTED_START_UNIX",
+          "$UNSUPPORTED_END_UNIX",
+          "$UNSUPPORTED_STAGE_INDEX",
+          "$UNSUPPORTED_STAGE_SUPPLY",
+          "$UNSUPPORTED_FEE_BPS",
+          true
+        ]
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.validateBaseURI(string)": {
+      "role": "R",
+      "short": "Validate artwork root syntax",
+      "arguments": [
+        "$REVIEWED_ARTWORK_ROOT_URI"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.markedValue(uint256)": {
+      "role": "R",
+      "short": "Read marked NFT liquidity",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.evolutionOf(uint256)": {
+      "role": "R",
+      "short": "Read canonical artwork stage",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.tokenMetadata(uint256)": {
+      "role": "R",
+      "short": "Read canonical NFT metadata",
+      "arguments": [
+        "$NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.deploymentConfigurationCommitment()": {
+      "role": "R",
+      "short": "Read deployment policy commitment",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZVaultCanonical.validateMint(address,uint256,uint256,bytes32)": {
+      "role": "R",
+      "short": "Read authenticated mint identity",
+      "arguments": [
+        "$FIXED_NFT_ADDRESS",
+        0,
+        "$NEXT_MINT_ORDINAL",
+        "$ACTIVE_BATCH_FINGERPRINT"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.constructor(address,address,address,bytes32)": {
+      "role": "D",
+      "short": "Deploy fixed mint policy",
+      "arguments": [
+        "$CONTROLLER_ADDRESS",
+        "$EMPTY_NFT_ADDRESS",
+        "$VERIFIED_SEADROP_ADDRESS",
+        "$VERIFIED_SEADROP_RUNTIME_HASH"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.ALLOWLIST()": {
+      "role": "R",
+      "short": "Read allowlist phase code",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.MAX_BATCH_ENGINEERING()": {
+      "role": "R",
+      "short": "Read batch engineering ceiling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.MAX_PAYERS_ENGINEERING()": {
+      "role": "R",
+      "short": "Read payer engineering ceiling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.MAX_SUPPLY()": {
+      "role": "R",
+      "short": "Read fixed supply ceiling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.MINT_INTEGRATION_VERSION()": {
+      "role": "R",
+      "short": "Read mint integration version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.PUBLIC()": {
+      "role": "R",
+      "short": "Read public phase code",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.TEAM()": {
+      "role": "R",
+      "short": "Read free-team phase code",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.access()": {
+      "role": "R",
+      "short": "Read immutable authority controller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.activeFingerprint()": {
+      "role": "R",
+      "short": "Read in-flight batch fingerprint",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.activeRecipient()": {
+      "role": "R",
+      "short": "Read in-flight mint beneficiary",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.configurationHash()": {
+      "role": "R",
+      "short": "Read local configuration hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.configurationReviewHash()": {
+      "role": "R",
+      "short": "Read manifest review commitment",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.configurationValuesHash()": {
+      "role": "R",
+      "short": "Read semantic settings hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.configured()": {
+      "role": "R",
+      "short": "Read configuration presence",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.currentPhase()": {
+      "role": "R",
+      "short": "Read current mint phase",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.expectedPublicDrop()": {
+      "role": "R",
+      "short": "Read expected public terms",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.mintConfig()": {
+      "role": "R",
+      "short": "Read reviewed mint settings",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.minting()": {
+      "role": "R",
+      "short": "Read active batch flag",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.nft()": {
+      "role": "R",
+      "short": "Read fixed NFT caller",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.reviewedMintPrice()": {
+      "role": "R",
+      "short": "Read reviewed paid mint price",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.revision()": {
+      "role": "R",
+      "short": "Read mint configuration revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.seaDrop()": {
+      "role": "R",
+      "short": "Read fixed mint singleton",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.seaDropCodeHash()": {
+      "role": "R",
+      "short": "Read singleton runtime hash",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.totalMinted()": {
+      "role": "R",
+      "short": "Read lifetime issued total",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.assertCanonicalCount()": {
+      "role": "R",
+      "short": "Validate aggregate mint counts",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.validateBinding()": {
+      "role": "R",
+      "short": "Validate empty binding handshake",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZSeaDropMint.allowlistMinted(address)": {
+      "role": "R",
+      "short": "Read paid allowlist usage",
+      "arguments": [
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.lifetimeMinted(address)": {
+      "role": "R",
+      "short": "Read original lifetime issuance",
+      "arguments": [
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.originalMintRecipient(uint256)": {
+      "role": "R",
+      "short": "Read ordinal original recipient",
+      "arguments": [
+        "$SOURCE_MINT_ORDINAL"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.mintStage(uint256)": {
+      "role": "R",
+      "short": "Read ordinal issuance phase",
+      "arguments": [
+        "$SOURCE_MINT_ORDINAL"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.phaseMinted(uint8)": {
+      "role": "R",
+      "short": "Read phase issuance total",
+      "arguments": [
+        3
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.mintStats(address)": {
+      "role": "R",
+      "short": "Read complete issuance statistics",
+      "arguments": [
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.validateMintReview(bytes32)": {
+      "role": "R",
+      "short": "Read authenticated active beneficiary",
+      "arguments": [
+        "$ACTIVE_BATCH_FINGERPRINT"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.configure((uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32),uint128,bytes32)": {
+      "role": "G",
+      "short": "Configure reviewed mint stages",
+      "arguments": [
+        [
+          20,
+          500,
+          "$PUBLIC_LIFETIME_WALLET_LIMIT",
+          "$REVIEWED_PRIMARY_FEE_BPS",
+          "$CONFIGURED_MAX_MINT_BATCH",
+          "$TEAM_START_UNIX",
+          "$TEAM_END_UNIX",
+          "$ALLOWLIST_START_UNIX",
+          "$ALLOWLIST_END_UNIX",
+          "$PUBLIC_START_UNIX",
+          "$PUBLIC_END_UNIX",
+          false,
+          "$REVIEWED_TEAM_ALLOWLIST_ROOT",
+          "$REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS",
+          "$REVIEWED_SORTED_PAYERS_ARRAY_HASH"
+        ],
+        "$REVIEWED_MINT_PRICE_WEI",
+        "$SOURCE_BOUND_MANIFEST_REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.beginMint(address,address,uint256)": {
+      "role": "M",
+      "short": "Reserve complete authenticated batch",
+      "arguments": [
+        "$FIXED_SEADROP_ADDRESS",
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS",
+        1
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.finishMint(bytes32)": {
+      "role": "M",
+      "short": "Finish authenticated NFT callback",
+      "arguments": [
+        "$ACTIVE_BATCH_FINGERPRINT"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.prepareUpdate(address,bytes)": {
+      "role": "M",
+      "short": "Prepare fixed typed setter",
+      "arguments": [
+        "$FORWARDED_GOVERNANCE_ADDRESS",
+        "$EXACT_TYPED_NFT_SETTER_CALLDATA"
+      ],
+      "value": null
+    },
+    "ZZZSeaDropMint.restoreMint(uint256,address,uint8)": {
+      "role": "M",
+      "short": "Restore original issuance books",
+      "arguments": [
+        "$SOURCE_MINT_ORDINAL",
+        "$ORIGINAL_MINT_RECIPIENT_ADDRESS",
+        "$SOURCE_MINT_STAGE"
+      ],
       "value": null
     }
   }

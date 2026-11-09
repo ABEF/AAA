@@ -1,6 +1,6 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [actual Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
+The earlier [actual Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
 fixes two production reader/trace defects and verifies ETH/ZZZ activation and
 growth through real unsigned website/API reviews on an isolated fork. Successful
 cases explicitly use synthetic market depth and controlled feeds/VRF; the real
@@ -26,7 +26,7 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 existing contracts, services, journals or websites. Public signing remains disabled.
 
 
-Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless canonicalV9. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
+Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless raw-phase accounting. Current mint2 extends the outer canonical schema to V10; original V9 integration evidence keeps its source scope. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
 
 The [operator management preparer](reports/operator-management-20261109/REVIEW.md)
 now fetches exact inputs and simulates unsigned parking, resume, residual-only
@@ -34,6 +34,12 @@ closure and the complete collective-exit sequence. Explicit floors and gas
 budgets remain operator choices; no signing or automatic fallback is added.
 Existing [checkpoint2/B-C-D tools](reports/checkpoint2-manual-20261107/REVIEW.md)
 remain separate. No contract/runtime or installed environment changes.
+
+The new [OpenSea mint source](docs/OPENSEA_MINT.md) implements configurable
+free-team/paid-allowlist/public phases (initially20/500/480). Unused allowlist
+supply rolls into public; unused team slots stay reserved. CanonicalV10 preserves
+original recipients and lifetime mint limits. Actual custom-drop onboarding,
+fee/payer/provider and operating qualification remain open. Explicit mint2/V10 backend read/claim support is implemented; website and installed-service adoption remain separate.
 
 ## Project navigation
 
@@ -64,7 +70,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 
 | Component | Job |
 | --- | --- |
-| [NFT](src/ZZZNFT.sol), [metadata](src/ZZZNFTMetadata.sol) | Transferable ownership, fixed-design random assignment and artwork evolution from authenticated aggregate LP value. |
+| [NFT](src/ZZZNFT.sol), [mint policy](src/ZZZSeaDropMint.sol), [metadata](src/ZZZNFTMetadata.sol) | Dormant SeaDrop minting with reviewed quotas and atomic payment rollback; transferable ownership, fixed-design random assignment and on-chain LP evolution. |
 | [Activation Entry](src/ZZZActivationEntry.sol), [Registry](src/ZZZPoolRegistry.sol) | Atomic native ETH/fixed-ZZZ contributions; one admitted contribution pool at a time. |
 | [Vault](src/ZZZVault.sol), [pricing companion](src/ZZZContributionPricing.sol) | Own both physical LP NFTs, record per-NFT shares and prove actual marginal deployed LP before issuing shares. |
 | [Liquidity Manager](src/ZZZLiquidityManager.sol), [typed position child](src/ZZZLPPositionExecutor.sol) | Mint/increase, harvest and close a main plus at most one residual. The child has typed actions and fixed Vault recipients, not a generic withdrawal path. |
@@ -96,7 +102,7 @@ Fresh7 verifies each physical principal amount and exact portfolio identities;
 opening, fills, operator recovery and merging.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
-Fresh inventory is schema16/residual-reinvest1/direct Entry3/royalty4 with19 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 remains; canonicalV9 carries exact LP tree state, and LP-allocation1 is authenticated explicitly. Schema14 and older profiles remain separate. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
+Fresh contract inventory is schema17/mint2/residual-reinvest1/direct Entry3/royalty4 with20 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 and exact LP tree formats remain; canonicalV10 adds original-recipient mint books. Explicit backend `mint_integration_version:2` adds pinned V10 read/claim/lineage support and rejects direct mint preparation with Use OpenSea. Omission keeps mint1/V9; source9 website and installed consumers retain their prior profiles pending explicit matching adoption. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
 [Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is historical profile6-only. Fresh7 supports raw replay or explicit reviewed checkpoint2 with raw exact-tree state and a complete rolling-day suffix; lineage/other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
 
 <a id="frontend-components"></a>
@@ -113,7 +119,7 @@ and historical local journals remain unchanged.
 
 ## NFT lifecycle
 
-Mint a dormant NFT, then activate with native ETH or fixed ZZZ. Activation and
+Mint a dormant NFT through the reviewed [OpenSea phases](docs/OPENSEA_MINT.md), then activate with native ETH or fixed ZZZ. Activation and
 growth minima default to $100/$5; governance may change future terms through
 ProtocolPolicy, subject to stronger pool minima. Two independently
 reviewed USD sources per priced asset must agree within 3%. Contribution loss

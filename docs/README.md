@@ -1,5 +1,12 @@
 # Documentation map
 
+Fresh primary-mint source is [SeaDrop mint2/schema17/canonicalV10](OPENSEA_MINT.md);
+LP accounting7/royalty4 economics remain unchanged. Source9/schema16/V9
+reader/website guides keep their explicit prior implementation boundaries.
+Use the new mint procedure for team/allowlist/public quotas, proofs and
+configuration; it does not authorize public deployment or signer changes.
+
+
 Reviewed2026-11-06. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**

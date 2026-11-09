@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ICanonicalHandoffTest} from "./helpers/CanonicalInterface.sol";
 import {CanonicalNativeVenue} from "./helpers/CanonicalNativeVenue.sol";
@@ -148,7 +149,7 @@ contract CanonicalHandoffTest is Test {
         vm.deal(address(s.venue),10000000);
         s.vault = new ZZZVault(address(s.ac),homeChain,address(new ZZZMigrationBudget(address(s.ac))));
         ProtocolPolicyFixture.recipient(address(s.ac),TREASURY);
-        s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/"); s.nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        s.nft = new ZZZNFT(address(s.ac), "ipfs://canonical-handoff-fixture/", address(new ZZZNFTMetadata(address(s.ac)))); s.nft.setMintEnd(uint64(block.timestamp + 3650 days));
         s.royalties = s.nft.royaltyRewards();
         s.rewards = new HandoffConvertedRewardsFixture(address(s.ac)); s.membership = new ZZZMembership(address(s.ac));
         s.fees = new ZZZFeeController(address(s.ac)); s.migration = new ZZZMigration(address(s.ac));

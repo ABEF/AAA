@@ -23,6 +23,7 @@ interface ICanonicalPortfolio { function PORTFOLIO_VERSION() external view retur
 interface ICanonicalVaultNFT {
     function tokenAtOrdinal(uint256 ordinal) external view returns (uint256);
     function royaltyRewards() external view returns (address);
+    function seaDropMintRecipient(bytes32 review) external view returns (address);
 }
 interface ICanonicalMintRoyalty {
     function mintEnd() external view returns (uint64);
@@ -146,8 +147,13 @@ contract ZZZVaultCanonical {
         return keccak256(abi.encode(keccak256("ZZZ_MINT_POLICY_WITH_ROYALTY_END_V2"),
             policy.mintFingerprint(),collection,receiver,ledger.mintEnd(),ledger.mintEndRevision()));
     }
-    function validateMint(uint256 value,uint256 ordinal,bytes32 expectedPolicy) external view onlyVault returns (uint256,address) {
+    function validateMint(address caller,uint256 value,uint256 ordinal,bytes32 expectedPolicy) external view onlyVault returns (uint256,address) {
         if (block.chainid != vault.canonicalChainId()) revert InvalidState();
+        if(caller == access.module(Ids.NFT)) {
+            if(value != 0) revert InvalidAmount();
+            return (uint256(keccak256(abi.encode(originChain,originVault,ordinal))),
+                ICanonicalVaultNFT(caller).seaDropMintRecipient(expectedPolicy));
+        }
         IZZZProtocolPolicy policy = IZZZProtocolPolicy(access.protocolPolicy());
         IZZZProtocolPolicy.SalePolicy memory sale = policy.salePolicy();
         if(value != sale.mintPrice || expectedPolicy == bytes32(0) || expectedPolicy != _mintPolicyFingerprint(policy)) revert InvalidAmount();
@@ -362,7 +368,7 @@ contract ZZZVaultCanonical {
     }
     function _recoveryPeer(address controller) private view returns(ICanonicalRecoveryRoute peer) {
         peer = ICanonicalRecoveryRoute(IZZZAccess(controller).canonicalHandoff());
-        if(peer.SCHEMA() != keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9") ||
+        if(peer.SCHEMA() != keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10") ||
             peer.access() != controller) revert InvalidState();
     }
 }

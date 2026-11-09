@@ -1,5 +1,12 @@
 # Historical native2 website read and unsigned profile
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 This guide preserves the accounting2/pricing2/Entry-review1 manifest and its
 source-scoped evidence. The served poplint build has a separate
 [current3 profile](CURRENT_WEBSITE_PROFILE.md); the fresh contract candidate is

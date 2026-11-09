@@ -1,0 +1,48 @@
+{
+  "kind": "derived-tool-observation-not-raw-log",
+  "original_tool_output_chunk": "9f9efb",
+  "command": "python -B -m unittest tests_python.test_operator_reference -v",
+  "observed_exit_code": 0,
+  "observed_tests_run": 20,
+  "observed_passes": 20,
+  "method_ids": [
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_current_callables_have_exact_examples_and_no_missing_types",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_table_is_current_without_writing_or_compiling",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_every_callable_has_a_row_and_each_explanation_is_at_most_five_words",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_missing_or_extra_callable_fails_closed",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_reference_drift_requires_new_example_review",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_overloaded_nft_transfers_are_not_collapsed",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_module_and_callback_cannot_be_presented_as_permissionless_actions",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_governance_only_terminal_batches_are_not_keeper_or_public",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_bootstrap_seal_and_one_time_bindings_remain_distinct",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_payable_value_cannot_be_hidden_inside_arguments",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_atomic_entry_keeps_its_complete_seven_field_tuple_and_policy",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_floats_booleans_as_integers_overflows_and_malformed_bytes_reject",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_fixed_arrays_cannot_drop_or_add_a_slot",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_unresolved_symbol_does_not_hide_an_unknown_abi_type",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_nested_json_preserves_uint256_precision_and_real_boolean_types",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_dual_sources_have_distinct_reviewed_symbols_and_three_percent_tolerance",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_snapshot_identifiers_remain_three_distinct_kinds",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_user_explanations_do_not_expand_into_long_warnings",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_exact_lp_restricted_reads_keep_module_context",
+    "tests_python.test_operator_reference.OperatorReferenceTests.test_module_read_exception_does_not_reclassify_public_getters"
+  ],
+  "source_scope": "Post-run fingerprints at packaging only; no execution-time before/after snapshot was captured for this standalone tool run. Do not promote these to original before/after evidence.",
+  "post_run_source_sha256": {
+    "zzz_ops/operator_reference.py": "515116a306d41c905ee344abf617ee67f698ec8006c17758ab1a5c47b3a3509c",
+    "tests_python/test_operator_reference.py": "55b28305525db87a544d7c7b5f9bbfcbff7f6bcacb12a0b8a785666b87c58c01",
+    "docs/function-reference-notes.json": "3dfe08b7aa4cac4414c182941772d800cf96399e08e3d4a46943bc4c8392b295",
+    "docs/function-reference.json": "0c1c3ab349057989b8d52c57daae69b65406b6882ba9795b7bd20dc26f7a61d1",
+    "docs/operator-call-examples.json": "a3a303e01b90585474ad282b4bbae760b584fa8407946c6f6549e51ad618e7bd",
+    "docs/OPERATOR_MANUAL.md": "999a7efbd294c9290bf7d1bb8f06c012c68991189710357cba74fb0b3b587ec9"
+  },
+  "also_observed_same_tool_output": [
+    "generate-function-reference.py --check passed",
+    "generate-operator-reference.py --check passed",
+    "operator generated coverage39 contracts/906 functions/39 constructors/13 receivers/958 rows; readinessfalse"
+  ],
+  "raw_log_available": false,
+  "rerun_performed": false,
+  "source_publication_only": true,
+  "qualification": "Documentation validation only; no compiler, provider, RPC, wallet, deployment or production approval."
+}

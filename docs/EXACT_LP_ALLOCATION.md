@@ -99,10 +99,12 @@ Source books remain unchanged for a fully funded abort. See [record layout](POSI
 
 ### Consumers and remaining qualification
 
-Fresh profile7/schema16/source9 consumers use explicit synchronization events and
-exact-phase replay. Conversion, claims and import are not new income. Old
-checkpoint1 is profile6-only; fresh7 uses complete admitted raw history until
-reviewed checkpoint2 exists. Do not relabel old artifacts to avoid that boundary.
+Original profile7/schema16/source9 consumers use explicit synchronization events
+and exact-phase replay. Fresh mint2 adds schema17/canonicalV10 with explicit
+backend flag2 read/claim/lineage support; default1 remains V9. Conversion, claims
+and import are not new income. Old checkpoint1 is profile6-only; profile7 has
+complete admitted raw history or explicit reviewed checkpoint2. Actual lifetime
+workload/archive/restore qualification remains open. Do not relabel old artifacts.
 
 Normal real-host size gates and scoped EVM/producer-consumer evidence are recorded
 in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md).

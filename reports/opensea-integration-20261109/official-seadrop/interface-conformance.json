@@ -1,0 +1,59 @@
+{
+  "local_source": "src/interfaces/IZZZSeaDrop.sol",
+  "local_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+  "verified_source_sha256": "9d4667915de85f9b4fc3c637ff9ef2083a19d2e6a4d23b6b80316e9e566c79d9",
+  "input_selectors_exact_match": true,
+  "declared_count": 11,
+  "interface_id": "0x1890fe8e",
+  "functions": {
+    "updateAllowedSeaDrop": {
+      "signature": "updateAllowedSeaDrop(address[])",
+      "selector": "0x60c308b6"
+    },
+    "mintSeaDrop": {
+      "signature": "mintSeaDrop(address,uint256)",
+      "selector": "0x64869dad"
+    },
+    "getMintStats": {
+      "signature": "getMintStats(address)",
+      "selector": "0x840e15d4"
+    },
+    "updatePublicDrop": {
+      "signature": "updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))",
+      "selector": "0x1b73593c"
+    },
+    "updateAllowList": {
+      "signature": "updateAllowList(address,(bytes32,string[],string))",
+      "selector": "0x3680620d"
+    },
+    "updateTokenGatedDrop": {
+      "signature": "updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))",
+      "selector": "0x7bc2be76"
+    },
+    "updateDropURI": {
+      "signature": "updateDropURI(address,string)",
+      "selector": "0x7a05bc82"
+    },
+    "updateCreatorPayoutAddress": {
+      "signature": "updateCreatorPayoutAddress(address,address)",
+      "selector": "0x66251b69"
+    },
+    "updateAllowedFeeRecipient": {
+      "signature": "updateAllowedFeeRecipient(address,address,bool)",
+      "selector": "0x48a4c101"
+    },
+    "updateSignedMintValidationParams": {
+      "signature": "updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))",
+      "selector": "0x511aa644"
+    },
+    "updatePayer": {
+      "signature": "updatePayer(address,address,bool)",
+      "selector": "0xcb743ba8"
+    }
+  },
+  "boundaries": [
+    "Input ABI/selector equality is not full product onboarding.",
+    "Local payable mintSeaDrop adds an explicit zero-value guard; verified upstream callback is nonpayable.",
+    "Inherited metadata declarations are intentionally not asserted identical."
+  ]
+}

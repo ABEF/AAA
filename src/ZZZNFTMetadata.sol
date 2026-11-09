@@ -5,9 +5,20 @@ import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees, IZZZStrategy} from "./interfaces/IZZZ.sol";
+import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 import {IPairVault} from "./ZZZMigrationBudget.sol";
 interface IHistoricalCompound { function historicalCompoundValue(uint256 id) external view returns (uint256); }
+interface IMetadataCollection {
+    function ownerOf(uint256 id) external view returns (address);
+    function royaltyRewards() external view returns (address);
+    function rarityOf(uint256 id) external view returns (uint8);
+    function paletteOf(uint256 id) external view returns (uint8);
+    function patternOf(uint256 id) external view returns (uint8);
+    function traitsReady(uint256 id) external view returns (bool);
+    function artworkBaseURI() external view returns (string memory);
+}
+interface IMetadataRoyaltyWeight { function weightOf(uint256 id) external view returns (uint256); }
 
 struct NFTMetadataInput {
     uint256 id;
@@ -31,7 +42,19 @@ contract ZZZNFTMetadata {
     IZZZAccess public immutable access;
     error ValuationUnavailable();
     error InvalidArtwork();
+    error InvalidConfiguration();
     constructor(address controller) { access = IZZZAccess(controller); }
+
+    /// @notice Preserve the collection's immutable-storage URI syntax rules.
+    function validateBaseURI(string memory uri) external pure {
+        bytes memory value=bytes(uri);
+        if(value.length==0)return;
+        bool ipfs=value.length>=7 && value[0]=="i" && value[1]=="p" && value[2]=="f" &&
+            value[3]=="s" && value[4]==":" && value[5]=="/" && value[6]=="/";
+        bool arweave=value.length>=5 && value[0]=="a" && value[1]=="r" && value[2]==":" &&
+            value[3]=="/" && value[4]=="/";
+        if(!ipfs && !arweave)revert InvalidConfiguration();
+    }
 
     /// @notice Fixed artwork lookup only. The NFT retains its draw state/order;
     /// this immutable read-only child holds the same finite prepared tables.
@@ -65,7 +88,51 @@ contract ZZZNFTMetadata {
         return Math.mulDiv(nav, shares, supply);
     }
 
-    function render(NFTMetadataInput calldata input) external pure returns (string memory) {
+    /// @notice Existing dormant NFTs need no prices. Failed marked valuation
+    /// remains unavailable; it never becomes a fabricated zero-valued position.
+    function markedValue(uint256 id) external view returns (bool available, uint256 valueUSD) {
+        return _markedValue(id, _ownedCollection(id));
+    }
+
+    /// @notice One stage policy serves both the public evolution read and JSON.
+    /// Exited LP keeps its distinct stage and all existing royalty eligibility.
+    function evolutionOf(uint256 id) external view returns (bool available, uint8 stage) {
+        IMetadataCollection nft = _ownedCollection(id);
+        uint256 value;
+        (available, value) = _markedValue(id, nft);
+        stage = _evolutionStage(id, value, IMetadataRoyaltyWeight(nft.royaltyRewards()).weightOf(id));
+    }
+
+    /// @notice Read the canonical NFT's exact traits and rights, then render the
+    /// unchanged JSON. No ownership, entitlement or metadata state is written.
+    function tokenMetadata(uint256 id) external view returns (string memory) {
+        IMetadataCollection nft = _ownedCollection(id);
+        (bool available, uint256 value) = _markedValue(id, nft);
+        uint8 weight = uint8(IMetadataRoyaltyWeight(nft.royaltyRewards()).weightOf(id));
+        uint8 stage = _evolutionStage(id, value, weight);
+        return render(NFTMetadataInput(id, nft.rarityOf(id), nft.paletteOf(id), nft.patternOf(id), stage,
+            nft.traitsReady(id), available, value, weight, nft.artworkBaseURI()));
+    }
+
+    function _ownedCollection(uint256 id) private view returns (IMetadataCollection nft) {
+        nft = IMetadataCollection(access.module(Ids.NFT));
+        nft.ownerOf(id);
+    }
+
+    function _markedValue(uint256 id, IMetadataCollection nft) private view returns (bool, uint256) {
+        if (IMetadataRoyaltyWeight(nft.royaltyRewards()).weightOf(id) == 0) return (true, 0);
+        try this.currentValue(id) returns (uint256 value) { return (true, value); }
+        catch { return (false, 0); }
+    }
+
+    function _evolutionStage(uint256 id, uint256 value, uint256 weight) private view returns (uint8) {
+        if (weight == 0) return 0;
+        if (IZZZVault(access.module(Ids.VAULT)).nftStatus(id) == PositionStatus.Exited) return 4;
+        IZZZProtocolPolicy.MetadataPolicy memory policy = IZZZProtocolPolicy(access.protocolPolicy()).metadataPolicy();
+        return value >= policy.singularityUSD ? 3 : value >= policy.enhancedUSD ? 2 : 1;
+    }
+
+    function render(NFTMetadataInput memory input) public pure returns (string memory) {
         string memory rarity = input.traitsReady ? _rarity(input.rarity) : "Unrevealed";
         string memory state = input.valuationAvailable ? _stage(input.stage) : "Valuation unavailable";
         string memory image;
@@ -119,7 +186,7 @@ contract ZZZNFTMetadata {
             }
         }
     }
-    function _visualAttributes(NFTMetadataInput calldata input) private pure returns (bytes memory attributes) {
+    function _visualAttributes(NFTMetadataInput memory input) private pure returns (bytes memory attributes) {
         if (!input.traitsReady) return abi.encodePacked(
             ',{"trait_type":"Color style","value":"Unrevealed"}',
             ',{"trait_type":"Palette","value":"Unrevealed"}',

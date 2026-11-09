@@ -170,7 +170,7 @@
         "seal()": {
           "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated.",
           "access": "Bootstrap only, once.",
-          "notes": "Requires the one-time fixed ProtocolPolicy1 binding with matching controller,distinct required module identities and valid current mint recipient; initializes no new economic work. Source6 canonical admission remains separate from identical-width old records."
+          "notes": "Requires fixed ProtocolPolicy and existing identity/randomness/token bindings; sealing does not itself qualify the full SeaDrop/metadata/helper graph, actual market services or OpenSea product admission. Fresh V10 canonical admission remains separate from older wire formats."
         },
         "setKeeper(address,bool)": {
           "purpose": "Grant or revoke bounded keeper maintenance authority and emit KeeperChanged. Initial grants are also emitted by the constructor; no management or custody-exit authority is added.",
@@ -670,7 +670,7 @@
       }
     },
     "ZZZNFT": {
-      "purpose": "ERC721 canonical ownership, fixed finite random artwork draw, persistent royalty eligibility and current-LP metadata.",
+      "purpose": "Canonical ERC721 ownership, asynchronous fixed-artwork draws, activation royalty rights and pre-seal-bound SeaDrop callbacks. Read-only rendering is separately deployed and immutable; primary proceeds never become LP or royalties.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -975,8 +975,8 @@
           }
         },
         "mint(address,uint256)": {
-          "purpose": "Issue one canonical NFT and create its original two-word randomness request. One request and ordinal per NFT, max 1,000, safe receiver callback, no activation/LP created. Failure rolls back issuance/request. Production OpenSea mintSeaDrop integration is absent.",
-          "access": "Bound Vault module only; not a public marketplace mint interface.",
+          "purpose": "Issue a dormant NFT and original asynchronous draw only in the explicitly unbound direct-mint test configuration; a bound SeaDrop helper rejects this legacy path.",
+          "access": "Bound Vault module only and no SeaDrop helper; not the production/OpenSea primary mint path.",
           "inputs": {
             "0": "Recipient chosen by the authorized Vault issuance path.",
             "1": "New canonical hashed NFT identity assigned by Vault; not a user-selected sequential token number."
@@ -1156,15 +1156,8 @@
             "2": "Source remainingToReveal, including finite entries that are still unminted.",
             "3": "Exact remaining [Commun,Rare,Legendary] quota counts as uint16[3].",
             "4": "Source randomnessEpoch used to preserve original request-identity namespaces."
-          }
-        },
-        "canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256))": {
-          "purpose": "Import one source owner/trait/original-randomness record into an inert replacement. Internal migration endpoint. Mints inert ownership without receiver callbacks; original ID/traits/result remain; duplicate request identity reverts.",
-          "access": "Fixed NFT canonical companion only, sealed importing state 2.",
-          "inputs": {
-            "0": "One-based source mint ordinal being imported.",
-            "1": "Authenticated CanonicalNFTRecord(id,owner,rarity,color,palette,pattern,requestId,requestEpoch,rarityWord,colorWord). Preserve original owner/ID/traits and original verified words; this is not a new mint draw."
-          }
+          },
+          "notes": "V10 original-buyer/stage books restore from subsequent ordered records; aggregate header count alone does not complete handoff."
         },
         "canonicalWriteArtwork(uint8,uint256,uint16)": {
           "purpose": "Import one sparse draw-map slot into the inert replacement. Internal authenticated migration state only; not an administrative artwork editor.",
@@ -1194,7 +1187,7 @@
             "0": "interfaceId is bytes4 ERC165 identifier."
           },
           "outputs": {
-            "0": "Boolean support; no claim of royalty enforcement or SeaDrop compatibility."
+            "0": "ERC165/ERC721/metadata, ERC2981 and ERC4906 support; SeaDrop eleven-selector0x1890fe8e only while a helper is bound. This does not prove OpenSea product onboarding or enforce royalty payment."
           }
         },
         "policyMetadataChanged()": {
@@ -1209,7 +1202,7 @@
             "0": "Future final sale end in Unix seconds. Changes only while the previous sale remains open."
           },
           "outputs": {},
-          "notes": "Mirror final OpenSea stages; this does not configure OpenSea. Stops NFT mints after end; royalties open1hour later. No sellout assumption. Callback changes cause mint rollback."
+          "notes": "Mirror final SeaDrop/OpenSea publicEnd and helper configuration using the reviewed update procedure. Updating only one does not synchronize the others. Minting ends at the official time even below sellout; royalties open1hour later. Changes during NFT receiver callbacks revert that mint."
         },
         "increaseRoyaltyAssetCapacity(uint8,bytes32)": {
           "purpose": "Increase reviewed royalty currency capacity.",
@@ -1220,14 +1213,198 @@
           },
           "outputs": {},
           "notes": "No currency removal, transfer, swap or reweighting. Default16 stays until explicitly increased. Additional admissions are separate calls."
+        },
+        "baseURI()": {
+          "purpose": "Read the immutable prepared artwork root through the compatibility getter.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Same root as artworkBaseURI(); not an upload or generated artwork."
+          }
+        },
+        "getMintStats(address)": {
+          "purpose": "Read original-buyer lifetime count, full reserved total and hard supply ceiling.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original beneficiary address; secondary ownership is irrelevant."
+          },
+          "outputs": {
+            "0": "Lifetime team+allowlist+public issuance to this beneficiary.",
+            "1": "Whole-collection completed/reserved batch count.",
+            "2": "1000 immutable maximum."
+          },
+          "notes": "The complete batch is reserved before ERC721 callbacks. An explicitly unbound test NFT has no SeaDrop stats; do not fabricate zero."
+        },
+        "maxSupply()": {
+          "purpose": "Read the immutable collection supply ceiling.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1000; current mintedCount can remain lower."
+          }
+        },
+        "mintSeaDrop(address,uint256)": {
+          "purpose": "Receive an authenticated SeaDrop mint callback and create dormant canonical NFTs plus original VRF requests.",
+          "access": "Fixed reviewed SeaDrop through the bound helper only; sealed/live/operating/nonterminal and nonReentrant.",
+          "inputs": {
+            "0": "Original beneficiary validated by upstream proof/payment; current owner can later differ.",
+            "1": "Complete batch quantity within configured engineering, phase, wallet and global limits."
+          },
+          "value": "Exactly0 wei. The buyer pays gross native ETH to SeaDrop, which settles creator/platform amounts after this callback. Never call this directly as a wallet.",
+          "notes": "Reserves all books, records each hashed identity through the NFT-only zero-value Vault branch, issues each original draw, then revalidates. Failures revert the whole upstream mint/payment. Later authorized SeaDrop payee callbacks affect future settings only; no invented post-settlement callback exists."
+        },
+        "mintStageOf(uint256)": {
+          "purpose": "Read the recorded original issuance phase for an NFT ID.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual hashed NFT ID, not mint ordinal."
+          },
+          "outputs": {
+            "0": "1 team,2 allowlist,3 public;0 has no recorded SeaDrop phase, including explicit unbound direct fixtures."
+          }
+        },
+        "originalMintRecipient(uint256)": {
+          "purpose": "Read immutable original issuance beneficiary for an NFT ID.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Actual hashed NFT ID."
+          },
+          "outputs": {
+            "0": "Original beneficiary; secondary transfers do not rewrite lifetime wallet usage. Unknown IDs returnzero."
+          }
+        },
+        "seaDropMint()": {
+          "purpose": "Read the pre-seal-bound mint helper.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed helper address; zero is the explicit unbound direct-mint test configuration."
+          }
+        },
+        "seaDropMintRecipient(bytes32)": {
+          "purpose": "Resolve the authenticated original buyer for zero-value Vault identity recording.",
+          "access": "Only fixed VaultCanonical; guarded read inside the same active NFT callback.",
+          "inputs": {
+            "0": "Exact ephemeral beginMint fingerprint forwarded by the Vault."
+          },
+          "outputs": {
+            "0": "In-flight mint beneficiary; not the proceeds payee or royalty receiver."
+          }
+        },
+        "setSeaDropMint(address)": {
+          "purpose": "Bind the reviewed collection-specific mint helper once before sealing.",
+          "access": "Bootstrap only before sealing; empty NFT/helper required. The governance address alone is not the bootstrap.",
+          "inputs": {
+            "0": "Predeployed reviewed helper with this fixed NFT/controller and verified singleton runtime."
+          },
+          "notes": "Irreversible binding; verify implementation/runtime inventory before sealing. No public signing, deployment or OpenSea onboarding is implied."
+        },
+        "setMaxSupply(uint256)": {
+          "purpose": "Reject changes to the fixed1000 supply.",
+          "access": "Anyone; pure compatibility entry point that ALWAYS reverts. No transaction or configuration action is available.",
+          "inputs": {
+            "0": "Unsupported proposed supply; this function always reverts."
+          },
+          "status": "unavailable"
+        },
+        "updateAllowedSeaDrop(address[])": {
+          "purpose": "Reject rotation or replacement of the fixed singleton.",
+          "access": "Anyone; pure compatibility entry point that ALWAYS reverts. No transaction or configuration action is available.",
+          "inputs": {
+            "0": "Unsupported replacement array; this function always reverts, even for the same singleton."
+          },
+          "status": "unavailable"
+        },
+        "updateSignedMintValidationParams(address,address,(uint80,uint24,uint40,uint40,uint40,uint16,uint16))": {
+          "purpose": "Reject enabling unsupported signed-mint stages.",
+          "access": "Anyone; pure compatibility entry point that ALWAYS reverts. No transaction or configuration action is available.",
+          "inputs": {
+            "0": "Unsupported implementation address.",
+            "1": "Unsupported signer address.",
+            "2": "Unsupported signed-stage bounds in exact ABI order; never enables a signer."
+          },
+          "status": "unavailable"
+        },
+        "updateTokenGatedDrop(address,address,(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool))": {
+          "purpose": "Reject enabling unsupported token-gated mint stages.",
+          "access": "Anyone; pure compatibility entry point that ALWAYS reverts. No transaction or configuration action is available.",
+          "inputs": {
+            "0": "Unsupported implementation address.",
+            "1": "Unsupported token-gating contract address.",
+            "2": "Unsupported token-gated stage in exact ABI order; never enables token-gated minting."
+          },
+          "status": "unavailable"
+        },
+        "updatePublicDrop(address,(uint80,uint48,uint48,uint16,uint16,bool))": {
+          "purpose": "Synchronize the NFT-keyed upstream public-stage tuple.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "PublicDrop in ABI order: gross native mintPriceWei, inclusive public start/end UNIX seconds, lifetime wallet limit, reviewed feeBps, restrictFeeRecipients=true. Must match helper.expectedPublicDrop() before minting."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "updateAllowList(address,(bytes32,string[],string))": {
+          "purpose": "Synchronize reviewed team/allowlist root and proof-manifest metadata.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "AllowListData(merkleRoot,publicKeyURIs[],allowListURI). Review every free-team and paid-allowlist leaf, payment, lifetime cap and time window; root must match the helper."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "updateCreatorPayoutAddress(address,address)": {
+          "purpose": "Synchronize the accepted PRIMARY mint-proceeds recipient.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "Current accepted ProtocolPolicy.salePolicy().recipient; not RoyaltyRewards or an arbitrary payout target."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "updateAllowedFeeRecipient(address,address,bool)": {
+          "purpose": "Update NFT-keyed platform fee-recipient admission.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "Exact separately reviewed platform recipient address.",
+            "2": "True adds, false removes. Mint validation requires exactly ONE recipient matching helper settings."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "updateDropURI(address,string)": {
+          "purpose": "Emit upstream indexed drop-metadata URI.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "Reviewed public drop metadata/manifest URI; does not change artwork, stage economics or proofs itself."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "updatePayer(address,address,bool)": {
+          "purpose": "Update a reviewed third-party payer for a different beneficiary.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "Exact immutable reviewed singleton.",
+            "1": "Exact reviewed payer address; ordinary direct payer=minter requires no admission.",
+            "2": "True admits, false removes. Synchronize the helper sorted-array hash; bounded maximum16."
+          },
+          "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
+        },
+        "canonicalWriteRecord(uint256,(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8))": {
+          "purpose": "Import an exact V10 owner, trait, original draw, original buyer and issuance-stage record.",
+          "access": "Fixed NFT canonical companion only, sealed importing state2.",
+          "inputs": {
+            "0": "One-based authenticated SOURCE mint ordinal.",
+            "1": "CanonicalNFTRecord in ABI order: id,currentOwner,rarity,color,palette,pattern,requestId,requestEpoch,rarityWord,colorWord,ORIGINAL mint recipient,mintStage. Preserve current owner separately from original buyer; stage1/2/3 reconstructs helper quotas."
+          },
+          "notes": "Inert ownership import without receiver callbacks or new requests. Helper books restore in the same ordered write; rejected records roll back both. Old V9 ten-field records are not reinterpreted."
         }
       },
       "constructor": {
-        "purpose": "Deploy canonical ERC721 with immutable royalty ledger, claim router and metadata companions.",
-        "access": "Deployment only; use the reviewed controller/royalty factory.",
+        "purpose": "Deploy the canonical NFT with fixed royalty ledger, claim router and predeployed metadata renderer.",
+        "access": "Deployment only; reviewed matching controller/factory and renderer required.",
         "inputs": {
           "0": "Exact collection controller.",
-          "1": "Reviewed IPFS/Arweave artwork root; empty draft may be populated once before seal. A nonempty constructor root cannot later be switched."
+          "1": "Reviewed immutable IPFS/Arweave artwork root; empty draft may be populated once before seal.",
+          "2": "Predeployed reviewed ZZZNFTMetadata with code and the SAME controller; no later renderer setter."
         }
       }
     },
@@ -1276,11 +1453,50 @@
             "2": "Primary color index derived from that palette."
           },
           "notes": "Invalid rarity/item reverts. No reveal cursor,request or adjustable trait selection lives in this renderer."
+        },
+        "validateBaseURI(string)": {
+          "purpose": "Validate the existing artwork-root syntax without changing any state.",
+          "access": "Anyone; pure read that can revert.",
+          "inputs": {
+            "0": "Empty draft root or a valid ipfs:// or ar:// root; nonempty requirement and one-time binding are enforced by NFT."
+          }
+        },
+        "markedValue(uint256)": {
+          "purpose": "Read the canonical NFT marked LP value or explicit unavailable status.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Existing canonical hashed NFT ID."
+          },
+          "outputs": {
+            "0": "True for a valid mark or known dormant/exited zero; false for unavailable active NAV.",
+            "1": "Attributed LP/idle/compound USD18 value; excludes claimable rewards and royalties."
+          }
+        },
+        "evolutionOf(uint256)": {
+          "purpose": "Read the unchanged evolution policy through the fixed renderer.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Existing canonical hashed NFT ID."
+          },
+          "outputs": {
+            "0": "Whether current mark/lifecycle is known.",
+            "1": "0 dormant,1 active,2 enhanced,3 singularity,4 LP exited; unavailable active mark falls back to1."
+          }
+        },
+        "tokenMetadata(uint256)": {
+          "purpose": "Render canonical prepared artwork, traits and funded-right metadata.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Existing canonical hashed NFT ID."
+          },
+          "outputs": {
+            "0": "Base64 JSON data URI, with explicit valuation availability and activated royalty status; no image or right is regenerated."
+          }
         }
       },
       "constructor": {
-        "purpose": "Deploy the read-only renderer/valuation helper bound to a controller.",
-        "access": "Normally created by NFT constructor; no future binding setter.",
+        "purpose": "Predeploy the immutable read-only renderer before the NFT and bind the same controller.",
+        "access": "Deployment only; pass this reviewed instance to the NFT constructor. No later renderer setter.",
         "inputs": {
           "0": "Exact collection controller used to resolve Vault/Registry/Oracle/Strategy and ledgers."
         }
@@ -2290,16 +2506,16 @@
           "notes": "No swap, external payout, compound release or main replacement. Main ID, shares, deposits, centre and rebalance clock stay unchanged; actual native/token deltas fund idle. Ordinary new-deposit and later deployment/idle/loss guards remain binding. Desired mode is not implicitly changed."
         },
         "mintDormant(bytes32)": {
-          "purpose": "Mint a dormant canonical NFT with captured current sale+VRF policy and exact current native price.",
-          "access": "Any payer while sealed/live/operating/principalOperating and nonReentrant; mint pause,supply and configured request guards apply.",
+          "purpose": "Record a SeaDrop-authenticated dormant identity with no primary proceeds flowing through Vault.",
+          "access": "Fixed NFT for the fresh SeaDrop callback; the explicitly unbound direct fixture alone retains a paid user branch. Sealed/live/operating/nonterminal and nonReentrant.",
           "inputs": {
-            "0": "Exact nonzero Vault.mintPolicyFingerprint() read for this review; combines sale/current VRF generation/settings,not generic reviewHash."
+            "0": "NFT callback: exact active helper review. Unbound direct fixture: exact current Vault.mintPolicyFingerprint(); these fingerprints are not interchangeable."
           },
           "outputs": {
-            "0": "Canonical hashed NFT ID,not sequential ordinal; simulation reserves nothing."
+            "0": "Canonical hashed NFT ID derived from origin chain/Vault and next ordinal."
           },
-          "notes": "Creates no LP/reward eligibility. Current recipient receives captured proceeds; recipient/NFT callbacks cannot change policy/authority and succeed. Failures revert payment,mint and request together; terminal LP exit forbids new mints.",
-          "value": "Exactly Vault.mintPrice() native wei,default0.05ETH but future-configurable. Gas separate. No fresh no-argument fallback or implemented OpenSea fee split."
+          "value": "NFT callback MUST send0 wei; SeaDrop holds the buyer gross and pays platform/creator afterward. Only an explicitly unbound direct test fixture uses exact current mint price.",
+          "notes": "Creates no LP, shares, fee eligibility or proceeds claim. DormantMinted value is Vault-received native value(0 for the SeaDrop branch), not paid buyer gross. Source-aware readers must reconcile upstream SeaDropMint price/fee telemetry; do not call this module branch manually."
         },
         "mintPrice()": {
           "purpose": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
@@ -2309,12 +2525,12 @@
           }
         },
         "mintPolicyFingerprint()": {
-          "purpose": "Read current complete sale+VRF mint review fingerprint.",
+          "purpose": "Read the composite direct-fixture sale/VRF/royalty-end review fingerprint.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Fresh six-word domain-separated review hash of core Policy mint fingerprint, NFT, royalty receiver, mintEnd and mintEndRevision. Exact current getter; not Policy.mintFingerprint alone."
           },
-          "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
+          "notes": "Used only by the explicitly unbound paid direct-mint fixture. The production SeaDrop NFT callback instead forwards its ephemeral helper fingerprint; these are not interchangeable. Sale-end revisions prevent stale direct reviews from reviving after restored values."
         },
         "RESIDUAL_REINVEST_VERSION()": {
           "purpose": "Read the explicit same-main residual-reinvestment capability.",
@@ -3425,7 +3641,7 @@
         "canonicalCapture()": {
           "purpose": "Capture the immutable cutoff for rarity-weighted cohorts, exact whole rights and reviewed unallocated balances.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. Current V9 peers carry the unchanged royalty4 layout; an unreadable currency can still block handoff. LP emergency/terminal paths stay independent."
+          "notes": "Requires opened/finalized one-hour window and every initial currency synchronized. Current V10 peers carry the unchanged royalty4 layout; an unreadable currency can still block handoff. LP emergency/terminal paths stay independent."
         },
         "canonicalController()": {
           "purpose": "Identify the bound controller providing this royalty receiver’s lifecycle authority.",
@@ -3445,7 +3661,7 @@
         "canonicalExport(uint256)": {
           "purpose": "Encode one exact captured rarity-weighted cohorts, exact whole rights and reviewed unallocated balances record.",
           "access": "Anyone; read-only.",
-          "notes": "Unchanged royalty4 row format formerly carried by V8, now V9: header160,currency192,NFT128,NFT/currency96 bytes. Frozen view flattens exact ticket rights without deleting source books; abort retains them. It does not flatten LP tree phase.",
+          "notes": "Unchanged royalty4 row format formerly carried by V8/V9, unchanged in V10: header160,currency192,NFT128,NFT/currency96 bytes. Frozen view flattens exact ticket rights without deleting source books; abort retains them. It does not flatten LP tree phase.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal."
           },
@@ -3456,7 +3672,7 @@
         "canonicalImport(uint256,bytes)": {
           "purpose": "Import the next source-authenticated rarity-weighted cohorts, exact whole rights and reviewed unallocated balances record into an inert successor.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Current V9 coordinator only; unchanged ordered royalty4 row lengths, exact roots/backing, ticket/activation order, no holes/overlaps, correct rarity/GCD/cursor and summed whole claims=liabilities. No source semantics inferred from tuple size.",
+          "notes": "Current V10 coordinator only; unchanged ordered royalty4 row lengths, exact roots/backing, ticket/activation order, no holes/overlaps, correct rarity/GCD/cursor and summed whole claims=liabilities. No source semantics inferred from tuple size.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal.",
             "1": "Exact versioned ABI-encoded canonical record authenticated against its source."
@@ -3682,7 +3898,7 @@
           "purpose": "Read the explicit royalty settlement version.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "4: exact original-currency whole-unit royalties and one-hour opening; carried by V9 in the current profile7 graph. Earlier peers retain their own identities."
+            "0": "4: exact original-currency whole-unit royalties and one-hour opening; carried unchanged by V10 in the current mint-enabled profile7 graph. Earlier peers retain their own identities."
           }
         },
         "allocateUnallocated(address,uint256,bytes32)": {
@@ -3794,7 +4010,7 @@
             "0": "Exact NFT token ID; not mint ordinal."
           },
           "outputs": {
-            "0": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in current V9."
+            "0": "One-based raw ticket start assigned at activation;0 for dormant. Interval length is weightOf(id), unchanged on transfer/growth and preserved in current V10."
           }
         },
         "allocationCursor(address)": {
@@ -3804,7 +4020,7 @@
             "0": "Admitted original currency; address zero for native ETH."
           },
           "outputs": {
-            "0": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; current V9 preserves it."
+            "0": "Cursor below its captured raw weight, divisible by the cohort GCD. Claims/transfers do not advance it; current V10 preserves it."
           }
         },
         "mintEndRevision()": {
@@ -3812,7 +4028,7 @@
           "access": "Anyone; read-only.",
           "inputs": {},
           "outputs": {
-            "0": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed current V9 import has its own local revision."
+            "0": "Checked uint64 revision incremented by every accepted mint-end setter, including same values. A restored end never revives an old mint review. Closed current V10 import has its own local revision."
           }
         },
         "canonicalRecoverCancelled(address,address)": {
@@ -5276,7 +5492,7 @@
           "purpose": "Read same-chain adaptable-policy canonical admission domain.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "keccak256(\"ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9\"); rejects V8 peers rather than reinterpreting their LP fractions."
+            "0": "keccak256(\"ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10\"); rejects V9 and earlier peers rather than reinterpreting their missing original-buyer/phase rows."
           }
         },
         "SLOTS()": {
@@ -5502,7 +5718,7 @@
         "prepareImport(address)": {
           "purpose": "Mark an unused unsealed successor as an inert same-chain importer for one source controller.",
           "access": "That deployment’s bootstrap before sealing.",
-          "notes": "Unused local importer only. Both sides require accounting7, LP-allocation1 and exact V9 schema before freezing. No older-runtime relabeling, fractional conversion or public deployment authorization.",
+          "notes": "Unused local importer only. Both sides require accounting7, LP-allocation1 and exact V10 schema before freezing. No older-runtime relabeling, fractional conversion or public deployment authorization.",
           "inputs": {
             "0": "The one reviewed source controller for an inert compatible importer."
           }
@@ -5580,7 +5796,7 @@
           "access": "Anyone; cancelled importer only after original source restoration.",
           "inputs": {},
           "outputs": {},
-          "notes": "No payment/input/recipient. Authenticates V9 reciprocal lineage, retired source roots and immutable successor import roots. One bounded hop; cannot skip into an unverified destination."
+          "notes": "No payment/input/recipient. Authenticates V10 reciprocal lineage, retired source roots and immutable successor import roots. One bounded hop; cannot skip into an unverified destination."
         },
         "recoverCancelledRoyalties(address,bytes32)": {
           "purpose": "Recover reviewed cancelled royalties into current active rights.",
@@ -5604,7 +5820,7 @@
       }
     },
     "ZZZNFTCanonical": {
-      "purpose": "Seal-bound ownership/trait/inventory export/import codec; no fungible custody domain.",
+      "purpose": "Fixed V10 ownership/artwork/draw codec plus original-buyer and issuance-stage quota restoration; no custody or independent economic authority.",
       "functions": {
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
@@ -5643,7 +5859,7 @@
         "canonicalExport(uint256)": {
           "purpose": "Encode one exact captured NFT ownership, immutable traits and remaining artwork inventory record.",
           "access": "Anyone; read-only.",
-          "notes": "Versioned ABI bytes consumed by authenticated import, not a general transaction. Inputs: Input is zero-based canonical record row, not necessarily an NFT ID.",
+          "notes": "V10 NFT rows append original recipient and phase while retaining the actual CURRENT owner; remaining artwork rows and finalized draw semantics remain. Historical V9 records are incompatible.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal."
           },
@@ -5654,7 +5870,7 @@
         "canonicalImport(uint256,bytes)": {
           "purpose": "Import the next source-authenticated NFT ownership, immutable traits and remaining artwork inventory record into an inert successor.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite.",
+          "notes": "Requires ordered V10 bytes and matching helper/singleton/semantic mint settings. Restores original-buyer lifetime and phase books, never reconstructs them from current ownership. Incomplete imports cannot activate.",
           "inputs": {
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal.",
             "1": "Exact versioned ABI-encoded canonical record authenticated against its source."
@@ -5675,6 +5891,13 @@
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "The immutable NFT whose canonical ownership/trait records this codec serves."
+          }
+        },
+        "deploymentConfigurationCommitment()": {
+          "purpose": "Read V10 local policy and fixed mint-helper deployment commitments.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Hash binding ProtocolPolicy identity/runtime/configuration and optional helper identity/runtime/local settings plus singleton identity/runtime; not a transaction approval."
           }
         }
       },
@@ -5742,7 +5965,7 @@
         "canonicalActivate()": {
           "purpose": "Activate the validated imported Vault shares, bucket state, identities and attributed principal state.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase retain their V9-format records in separate domain3 under V10 admission, with reviewed policy/parent/backing/lifecycle checks."
         },
         "canonicalAssetCount()": {
           "purpose": "Count classified backing legs captured for Vault shares, bucket state, identities and attributed principal.",
@@ -5766,7 +5989,7 @@
         "canonicalCapture()": {
           "purpose": "Capture the immutable cutoff for Vault shares, bucket state, identities and attributed principal.",
           "access": "Only fixed CanonicalHandoff.",
-          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase retain their V9-format records in separate domain3 under V10 admission, with reviewed policy/parent/backing/lifecycle checks."
         },
         "canonicalCount()": {
           "purpose": "Read the version-specific exported record count for Vault shares, bucket state, identities and attributed principal.",
@@ -5823,7 +6046,7 @@
         "canonicalValidate()": {
           "purpose": "Assert complete imported/restored record and backing consistency for Vault shares, bucket state, identities and attributed principal.",
           "access": "Anyone; read-only assertion.",
-          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase live in separate V9 domain3, with reviewed policy/parent/backing/lifecycle checks."
+          "notes": "Fresh accounting7/portfolio2 requires zero live residuals. Principal rows retain the explicit ADAPTABLE_POLICY_V6 wire; that does not admit a runtime6 peer. Exact-unit LP books/phase retain their V9-format records in separate domain3 under V10 admission, with reviewed policy/parent/backing/lifecycle checks."
         },
         "mintIdentity(uint256)": {
           "purpose": "Derive the canonical hashed NFT ID for an original mint ordinal.",
@@ -5934,20 +6157,6 @@
           },
           "notes": "Captured by mint review and checked again after mint/payee callbacks. Sale-end changes invalidate stale reviews, even if restored; review expiry must respect the confirmed sale end. Historical profiles retain explicit old semantics."
         },
-        "validateMint(uint256,uint256,bytes32)": {
-          "purpose": "Validate current mint price/policy on canonical home chain and derive identity plus captured recipient.",
-          "access": "Only fixed Vault; read-only helper,not an operator mint entry point.",
-          "inputs": {
-            "0": "Actual native payment wei,must equal current mintPrice.",
-            "1": "Canonical mint ordinal for chain/origin-Vault token-ID derivation.",
-            "2": "Exact nonzero current combined mint fingerprint."
-          },
-          "outputs": {
-            "0": "Canonical uint256 NFT ID=keccak256(originChain,originVault,ordinal).",
-            "1": "Current accepted recipient for captured payment forwarding."
-          },
-          "notes": "No OpenSea buyer/fee adapter,asset movement or identity reservation occurs in this view."
-        },
         "validateCancelledRoyaltyHop()": {
           "purpose": "Validate one fixed cancelled-source recovery hop without mutation.",
           "access": "Fixed canonical coordinator only; read-only.",
@@ -5955,7 +6164,22 @@
           "outputs": {
             "0": "Authenticated sealed next controller on the retired source lineage. No supplied receiver, route or code."
           },
-          "notes": "Authenticates its own cancelled source context, exact V9 parent bindings, reciprocal source/destination, retired/active phases and immutable six-domain roots; no writable custody route or caller-supplied receiver."
+          "notes": "Authenticates its own cancelled source context, exact V10 parent bindings, reciprocal source/destination, retired/active phases and immutable six-domain roots; no writable custody route or caller-supplied receiver."
+        },
+        "validateMint(address,uint256,uint256,bytes32)": {
+          "purpose": "Validate the correct direct-fixture or NFT-only SeaDrop identity-recording branch.",
+          "access": "Only fixed Vault; guarded read, not an operator mint endpoint.",
+          "inputs": {
+            "0": "Actual original Vault caller forwarded by Vault; only the fixed NFT selects its zero-value branch.",
+            "1": "NFT branch exactly0 wei; direct unbound fixture branch requires exact current price.",
+            "2": "Next original mint ordinal for hashed chain/origin-Vault identity.",
+            "3": "NFT branch active helper fingerprint; direct fixture branch current composite mint policy."
+          },
+          "outputs": {
+            "0": "Canonical uint256 NFT ID.",
+            "1": "NFT branch authenticated mint beneficiary; direct branch captured mint-proceeds recipient."
+          },
+          "notes": "View reserves nothing and transfers no assets. NFT branch resolves its beneficiary only through the fixed NFT active-review read, never arbitrary caller-supplied recipient data."
         }
       },
       "constructor": {
@@ -7959,7 +8183,7 @@
       }
     },
     "ZZZRewardsCanonical": {
-      "purpose": "Immutable Rewards-owned V9 raw-tree codec and authenticated canonical backing coordination; no ordinary claim or arbitrary executor.",
+      "purpose": "Immutable Rewards-owned V9-format raw-tree codec carried unchanged by V10 and authenticated canonical backing coordination; no ordinary claim or arbitrary executor.",
       "category": "Fixed canonical helper",
       "functions": {
         "access()": {
@@ -8004,7 +8228,7 @@
           "notes": "Only the captured/imported snapshot establishes workload; a pre-capture count does not approve readiness."
         },
         "canonicalExport(uint256)": {
-          "purpose": "Read a source-authenticated raw V9 LP record.",
+          "purpose": "Read a source-authenticated raw LP-allocation1 record; its V9-format payload is carried unchanged by the V10 coordinator.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Zero-based LP-domain row, strictly below canonicalCount."
@@ -8093,6 +8317,326 @@
         "purpose": "Receive only native transport or unsolicited ETH.",
         "access": "Anyone may transfer ETH; only authenticated coordinator funding is accepted as backing.",
         "value": "ETH from the exact handoff funding/return path; arbitrary donations are not new LP income."
+      }
+    },
+    "ZZZSeaDropMint": {
+      "purpose": "Pre-seal-bound, noncustodial SeaDrop V1 policy and exact original-buyer/phase issuance books. No proceeds receiver, NFT mint, arbitrary target or executor. Separate mint-helper code and the singleton runtime require deployment review.",
+      "constructor": {
+        "purpose": "Deploy the collection-specific immutable SeaDrop policy and count helper.",
+        "access": "Deployment only; exact collection/controller, empty issued supply, policy and reviewed singleton code required.",
+        "inputs": {
+          "0": "Reviewed AccessController with prebound ProtocolPolicy.",
+          "1": "Already deployed empty NFT whose access() matches this controller.",
+          "2": "Independently verified canonical SeaDrop V1 implementation on the selected chain.",
+          "3": "Exact nonzero independently verified runtime Keccak; must match the implementation now."
+        }
+      },
+      "functions": {
+        "ALLOWLIST()": {
+          "purpose": "Read paid allowlist phase code.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "2; not the zero-based SeaDrop public-stage index."
+          }
+        },
+        "MAX_BATCH_ENGINEERING()": {
+          "purpose": "Read the hard mint-batch count ceiling.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "10 NFTs; engineering ceiling, not gas qualification."
+          }
+        },
+        "MAX_PAYERS_ENGINEERING()": {
+          "purpose": "Read the hard reviewed-payer count ceiling.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "16; adding a payer requires explicit policy hash synchronization."
+          }
+        },
+        "MAX_SUPPLY()": {
+          "purpose": "Read the immutable collection issuance ceiling.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1000 NFTs; no sellout requirement."
+          }
+        },
+        "MINT_INTEGRATION_VERSION()": {
+          "purpose": "Read this integration capability version.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1; runtime/code identity must also be verified."
+          }
+        },
+        "PUBLIC()": {
+          "purpose": "Read public phase code.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "3; upstream public drop stage index remains0."
+          }
+        },
+        "TEAM()": {
+          "purpose": "Read free-team phase code.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "1; free proofs still bind the recipient, quota and time window."
+          }
+        },
+        "access()": {
+          "purpose": "Read the immutable authority controller.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed AccessController; no authority granted to the reader."
+          }
+        },
+        "activeFingerprint()": {
+          "purpose": "Read the ephemeral in-flight batch review.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Nonzero only inside the same atomic NFT callback; normally zero between transactions. Not a reusable operator reviewHash."
+          }
+        },
+        "activeRecipient()": {
+          "purpose": "Read the ephemeral in-flight mint beneficiary.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Original buyer/beneficiary during the same atomic batch; zero when idle. This is not a proceeds recipient."
+          }
+        },
+        "configurationHash()": {
+          "purpose": "Read local settings, identities, source review and revision commitment.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Address/revision-specific configuration hash; changes on every admitted typed update or configuration."
+          }
+        },
+        "configurationReviewHash()": {
+          "purpose": "Read the latest source-bound mint-manifest review commitment.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Operator-supplied nonzero review hash; not a signature, transaction hash or automatic proof validation."
+          }
+        },
+        "configurationValuesHash()": {
+          "purpose": "Read the semantic mint settings commitment used by V10 handoff.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Hash of configured flag, complete MintConfig and captured mint price; excludes helper-local revision/address. Singleton address/runtime is checked separately."
+          }
+        },
+        "configured()": {
+          "purpose": "Read whether reviewed mint settings have been recorded.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "True does not prove upstream SeaDrop setters, proofs, provider or OpenSea onboarding are qualified."
+          }
+        },
+        "currentPhase()": {
+          "purpose": "Read the phase selected by current inclusive stage timestamps.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "0 outside all windows,1 team,2 allowlist,3 public. This alone is not mint readiness."
+          }
+        },
+        "expectedPublicDrop()": {
+          "purpose": "Read the exact required upstream public-stage tuple.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "PublicDrop(mintPriceWei,publicStart,publicEnd,publicWalletLimit,feeBps,true); reverts if current Policy price differs from the explicitly reviewed price."
+          }
+        },
+        "mintConfig()": {
+          "purpose": "Read the complete reviewed mint settings. ",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "MintConfig in ABI order: teamAllocation (initial20 free units), allowlistAllocation (initial500 paid units), publicWalletLimit (lifetime count), feeBps (reviewed paid platform basis points), maxBatch (1..10), teamStart/teamEnd, allowlistStart/allowlistEnd, publicStart/publicEnd (inclusive UNIX seconds with strictly disjoint stages), releaseUnusedTeamToPublic (initialfalse; retain unminted team reserve), merkleRoot (reviewed free-team/paid-allowlist proofs; zero only when both allocations are zero), feeRecipient (exact approved platform address), allowedPayersHash (Keccak of ABI-encoded sorted bounded reviewed payer array, including explicit empty array). Team+allowlist<=1000; issued counts never reset. Unused allowlist capacity rolls into public."
+          }
+        },
+        "minting()": {
+          "purpose": "Read whether the NFT callback currently holds a batch reservation.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Transient flag inside the same atomic mint only; no post-payment finalization call exists."
+          }
+        },
+        "nft()": {
+          "purpose": "Read the immutable sole NFT caller and book owner.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed collection address; unrelated collections cannot reserve or restore its books."
+          }
+        },
+        "reviewedMintPrice()": {
+          "purpose": "Read the explicitly captured paid mint price.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Native wei per paid NFT; free team leaves still have price0. Initial intended paid gross is0.05ETH."
+          }
+        },
+        "revision()": {
+          "purpose": "Read the monotonic mint-configuration revision.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Changes even when typed upstream configuration is later restored; does not reset LP observations."
+          }
+        },
+        "seaDrop()": {
+          "purpose": "Read the immutable reviewed primary-mint singleton.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Exact pre-seal-selected SeaDrop implementation; no rotation setter."
+          }
+        },
+        "seaDropCodeHash()": {
+          "purpose": "Read the immutable approved singleton runtime hash.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Full runtime Keccak verified for the actual target chain; a matching function selector is insufficient."
+          }
+        },
+        "totalMinted()": {
+          "purpose": "Read whole-collection lifetime issued/reserved mint count.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Includes every team, allowlist and public mint, including transferred NFTs. During a callback includes its complete reserved batch."
+          }
+        },
+        "allowlistMinted(address)": {
+          "purpose": "Read original buyer paid-allowlist usage.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original mint recipient address; current secondary owner is irrelevant."
+          },
+          "outputs": {
+            "0": "0 or1 from completed/reserved allowlist issuance; transfers never replenish it."
+          }
+        },
+        "lifetimeMinted(address)": {
+          "purpose": "Read original buyer lifetime issuance count.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original mint recipient address, not current holder."
+          },
+          "outputs": {
+            "0": "All team+allowlist+public NFTs ever issued/reserved to that recipient."
+          }
+        },
+        "originalMintRecipient(uint256)": {
+          "purpose": "Read original recipient for a mint ordinal.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "One-based mint ordinal, NOT hashed NFT ID."
+          },
+          "outputs": {
+            "0": "Original beneficiary; zero for an unknown/unassigned ordinal."
+          }
+        },
+        "mintStage(uint256)": {
+          "purpose": "Read immutable issuance phase for a mint ordinal.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "One-based mint ordinal, NOT hashed NFT ID."
+          },
+          "outputs": {
+            "0": "1 team,2 allowlist,3 public; zero means no recorded SeaDrop issuance."
+          }
+        },
+        "phaseMinted(uint8)": {
+          "purpose": "Read lifetime count for one issuance phase.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Phase1 team,2 allowlist or3 public. Getter of an unused phase returns0."
+          },
+          "outputs": {
+            "0": "Completed/reserved issuance count; no ownership transfer or reconfiguration resets it."
+          }
+        },
+        "configure((uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32),uint128,bytes32)": {
+          "purpose": "Capture reviewed future stage settings and an explicit current price without changing upstream SeaDrop.",
+          "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
+          "inputs": {
+            "0": "MintConfig in ABI order: teamAllocation (initial20 free units), allowlistAllocation (initial500 paid units), publicWalletLimit (lifetime count), feeBps (reviewed paid platform basis points), maxBatch (1..10), teamStart/teamEnd, allowlistStart/allowlistEnd, publicStart/publicEnd (inclusive UNIX seconds with strictly disjoint stages), releaseUnusedTeamToPublic (initialfalse; retain unminted team reserve), merkleRoot (reviewed free-team/paid-allowlist proofs; zero only when both allocations are zero), feeRecipient (exact approved platform address), allowedPayersHash (Keccak of ABI-encoded sorted bounded reviewed payer array, including explicit empty array). Team+allowlist<=1000; issued counts never reset. Unused allowlist capacity rolls into public.",
+            "1": "Exact expected current ProtocolPolicy paid mint price in wei; a price change before execution rejects this configuration.",
+            "2": "Nonzero source-bound manifest review hash; independently verify every proof/leaf and intended platform terms."
+          },
+          "notes": "Pause new minting while synchronizing matching NFT-keyed upstream setters and royalty mint end. Current positive proof roots cannot silently change relevant leaf terms; a reviewed new root is required. This guard does not decode arbitrary Merkle leaves or recognize all previously used roots. Free-team-only roots need not change for an unrelated paid public-price change. Historical allocations and original-buyer counts persist."
+        },
+        "beginMint(address,address,uint256)": {
+          "purpose": "Reserve the complete admitted batch before any VRF or ERC721 receiver callback.",
+          "access": "Fixed NFT only; internal parent workflow, never an operator transaction.",
+          "inputs": {
+            "0": "Actual caller forwarded by NFT; must equal its immutable SeaDrop singleton.",
+            "1": "Nonzero original mint beneficiary authenticated by upstream payment/proof rules.",
+            "2": "Positive quantity within configured maxBatch and all current phase, wallet and supply limits."
+          },
+          "outputs": {
+            "0": "First one-based mint ordinal reserved by this batch.",
+            "1": "Exact in-flight fingerprint used by Vault identity recording and finishMint.",
+            "2": "Current phase1,2 or3."
+          },
+          "notes": "Requires live sealed operating/nonterminal state, exact source/runtime and coherent upstream getters. Updates all batch counts and original-recipient/stage rows before callbacks. The enclosing NFT transaction provides atomic rollback."
+        },
+        "finishMint(bytes32)": {
+          "purpose": "Revalidate and release the NFT callback batch reservation.",
+          "access": "Fixed NFT only; internal parent workflow, never an operator transaction.",
+          "inputs": {
+            "0": "Exact fingerprint returned by beginMint within THIS same NFT call."
+          },
+          "notes": "Checks unchanged controls and NFT/helper count equality. Never call manually or add a later settlement transaction; free and paid callbacks both finish before SeaDrop payout callbacks."
+        },
+        "prepareUpdate(address,bytes)": {
+          "purpose": "Validate one of six fixed typed NFT setters and encode its corresponding upstream call.",
+          "access": "Fixed NFT only; internal parent workflow, never an operator transaction.",
+          "inputs": {
+            "0": "Actual governance/bootstrap caller forwarded by NFT.",
+            "1": "Exact original NFT msg.data for updatePublicDrop,updateAllowList,updateDropURI,updateCreatorPayoutAddress,updateAllowedFeeRecipient or updatePayer."
+          },
+          "outputs": {
+            "0": "Encoded same-singleton zero-value typed call; no arbitrary target, value, selector or executor."
+          },
+          "notes": "Rejects an active batch, wrong singleton, unrecognized setter or unauthorized caller. Revision increments before the NFT executes the returned call; failed external calls roll the revision back."
+        },
+        "restoreMint(uint256,address,uint8)": {
+          "purpose": "Reconstruct original-buyer and phase books during ordered V10 NFT import.",
+          "access": "Fixed NFT only while importing state2; not an operator repair/reset endpoint.",
+          "inputs": {
+            "0": "Next one-based original mint ordinal, exactly totalMinted+1 and within imported NFT count.",
+            "1": "Authenticated ORIGINAL source beneficiary, not the current NFT owner.",
+            "2": "Authenticated source stage1 team,2 allowlist or3 public."
+          },
+          "notes": "Rejects missing/zero recipient, duplicate allowlist entitlement or unordered record. Does not issue a new draw, transfer a token or change imported current ownership."
+        },
+        "validateBinding()": {
+          "purpose": "Validate the empty pre-seal collection/helper singleton handshake.",
+          "access": "Fixed NFT only; guarded read during its one-time binding.",
+          "notes": "Requires no issued/reserved mint count, no active batch, unsealed controller and unchanged singleton runtime. Deployment inventory must additionally approve the helper implementation itself."
+        },
+        "validateMintReview(bytes32)": {
+          "purpose": "Authenticate the Vault-recording review inside a currently active NFT callback.",
+          "access": "Fixed NFT only; guarded read, not an operator review generator.",
+          "inputs": {
+            "0": "Exact active beginMint fingerprint."
+          },
+          "outputs": {
+            "0": "Original beneficiary captured for this batch; not the mint-proceeds payee."
+          }
+        },
+        "assertCanonicalCount()": {
+          "purpose": "Check no active mint and equality of helper/NFT aggregate counts.",
+          "access": "Anyone; read-only.",
+          "notes": "Used by the canonical codec. This is an aggregate consistency check, not proof of ownership, full export completion or backing."
+        },
+        "mintStats(address)": {
+          "purpose": "Read the upstream lifetime-wallet, complete-batch total and immutable supply statistics.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Original mint beneficiary address, not a current secondary-market owner."
+          },
+          "outputs": {
+            "0": "Lifetime team+allowlist+public count for this original beneficiary.",
+            "1": "Total completed/reserved whole-collection count.",
+            "2": "1000 fixed collection ceiling."
+          }
+        }
       }
     }
   }

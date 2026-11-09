@@ -1,0 +1,43 @@
+{
+  "observed_utc": "2026-11-09T03:58:21.702970+00:00",
+  "scope": "Current test files only, not a retroactive source snapshot for failed stages. Original before/after source hash manifests retain the exact earlier scopes. Production source/compiler input is in the separate root-owned contract package.",
+  "files": [
+    {
+      "source": "test/SeaDropIntegration.t.sol",
+      "sha256": "2526134c7a2639d3564ddd6826a3df1ba481a379e5e96430ae16beb630d89be8"
+    },
+    {
+      "source": "test/SeaDropPoPLIntegration.t.sol",
+      "sha256": "2438cd2b2ebfab199b7f9472b247c3749e8222425c46b58b3804860ec46761a0"
+    },
+    {
+      "source": "test/SeaDropQuota.t.sol",
+      "sha256": "059b3404fc9b779f330cd826579ad16de6ad9f82da4cb81949401543150eee4a"
+    },
+    {
+      "source": "test/SeaDropCanonical.t.sol",
+      "sha256": "570bf3d6c2c8be942330be8fc89af303b56aa88b1b38d4ab2ed400bbb6f06f32"
+    },
+    {
+      "source": "test/fixtures/VerifiedSeaDropV1.sol",
+      "sha256": "d5fc2f1d38154b2513f0e37f19c550de038c18d28555e4404ae1eaacd03aa29f"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "sha256": "c4c1f7538b8f95174baf88f98273b68c621a69fa82f69cadabea1f6c4552a3b1"
+    },
+    {
+      "source": "test/RandomnessRequestSettings.t.sol",
+      "sha256": "86c0d6c412f5a804b2f1a435ac8097fdc093221a368c24c5da385e4ba868ed35"
+    },
+    {
+      "source": "test/RoyaltyLaunchWindow.t.sol",
+      "sha256": "3065515519447a676a2e36f2a55a9750310314483c3b448dd09f916b4e8ded2f"
+    },
+    {
+      "source": "test/SeaDropFullHandoff.t.sol",
+      "sha256": "0e23491f133e8c15315440c5522a03edb44f6a95f006fa9a804129ddd4fba1e5",
+      "matches_final_full_handoff_source": true
+    }
+  ]
+}

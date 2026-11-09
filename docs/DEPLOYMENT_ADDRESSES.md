@@ -1,17 +1,19 @@
 # Deployment address inventory
 
-Fresh undeployed source: [accounting7 / exact LP1 / custody5 / portfolio2 / canonicalV9](POSITION_V7.md).
+Fresh undeployed source: [accounting7 / exact LP1 / custody5 / portfolio2 / canonicalV10](POSITION_V7.md).
 Governance can permanently close LP and return actual ETH+ZZZ to NFT holders;
 there is no external principal/royalty custody recipient. Production is **NOT APPROVED**.
 
 ## Mint proceeds and approval boundary
 
-The current accepted mint recipient gains no management powers. Current direct mint
-forwards the full reviewed current price(default0.05ETH). The intended OpenSea integration must keep the buyer's
-gross mint price 0.05 ETH and deduct the actual platform fee before paying that
-recipient; gas is separate. No platform rate or marketplace contract is approved.
-This requires a compatible mint implementation before sealing; an inventory
-entry cannot create it. [Integration requirements](MINT_INTEGRATION_QUALIFICATION.md).
+The current accepted mint recipient gains no management powers. Fresh
+[SeaDrop Mint2](OPENSEA_MINT.md) pays that recipient the net of the actual
+platform fee from each paid AL/public gross price(default0.05ETH); TEAM is free
+and network gas is separate. The compatible source is implemented, while actual
+custom-drop onboarding, fee recipient/rate, payers and operation remain
+unqualified. NFT/Vault callbacks receive0ETH; their event value is not buyer
+revenue. Historical unbound direct mint pays its reviewed full price and is not
+the fresh primary-sale path. [Qualification](MINT_INTEGRATION_QUALIFICATION.md).
 
 ## Governance and principal recipients
 
@@ -27,7 +29,7 @@ only that owner can choose a fallback recipient for a failed automatic payout.
 | Royalties and future receipts | Continue in the separate royalty ledger under preserved activated rarity weights; no external custody drain. |
 | Buyback reserve, unallocated royalties and unsolicited prefunds | Not swept into principal or an administrator address. Purpose-bound accounting remains. |
 | Mint proceeds already paid | Already held by the recipient at payment time; no management privilege follows. |
-| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonicalV9 can carry them to one reviewed same-chain successor. |
+| NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonicalV10 can carry them to one reviewed same-chain successor. |
 
 Authority wallets and provider-specific subscription ownership remain unselected.
 The selected native ETH/fixedZZZ pool and supported fee-tier replacements are the
@@ -36,7 +38,7 @@ only admitted LP pair; ERC20 conversion venues remain separate. See
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
-public addresses. Complete the [schema16 production manifest](../config/production.example.json)
+public addresses. Complete the [schema17 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
 review evidence. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
@@ -63,7 +65,7 @@ the schema and record the chosen wallet accurately rather than inventing people.
 | Governance wallet, controlled by the operator | Select its public address, actual signer/threshold policy and recovery controls. A single-owner configuration is supported. This wallet is `Access.governance()` and directly calls governed modules; NFT ownership is not a governance vote. |
 | Guardian | Select the emergency pause account. It cannot unpause or withdraw principal. |
 | Keeper | Select a dedicated signer, fund its native gas balance and restrict it to keeper operations. Separate it from governance in production; role separation is an operating recommendation, not a general on-chain prohibition on reusing an address. |
-| Mint proceeds recipient | Select the initial future-mint recipient: current direct mint pays the reviewed current price(default0.05 ETH); the required OpenSea path pays net of its actual platform fee from the same reviewed gross buyer price(default0.05 ETH). A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
+| Mint proceeds recipient | Select the accepted future-mint payee. Fresh SeaDrop Mint2 pays net of its actual platform fee from the reviewed AL/public gross price(default0.05ETH); TEAM is free. Actual platform terms remain unqualified. A treasury may fill this role; receiving proceeds grants no custody authority. |
 | Deployment/bootstrap signer | Select the temporary deployment account. It performs write-once bindings and configuration before seal; sealing permanently clears bootstrap. |
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
 
@@ -111,7 +113,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - LP-fee reserve codec bound to Fees |
 
-The fresh source has **19 callable helpers plus2 inert code-data children**
+The fresh source has **20 callable helpers plus2 inert code-data children**
 (21 addresses), distinct from the17 core contracts.
 ProtocolPolicy, Budget, Balancer, PortfolioPolicy and Confirmation are separately deployed fixed
 controller companions. Their parent getters resolve the sealed Access module
@@ -121,10 +123,10 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Creation/binding | Helper addresses and verification |
 | --- | --- |
 | Separate policy companion | `ZZZProtocolPolicy(controller,initialMintRecipient)` before consumers, bind-once Access.protocolPolicy, version1/runtime/scoped values and fingerprints. No custody. |
-| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside19 callable helpers; verify payload3 source-derived prefix/length/part/whole hashes using schema16. Runtime FORMAT remains2; old payload2 is historical. [Procedure](FACTORY_CODE_STORAGE.md). |
+| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside20 callable helpers; verify payload3 source-derived prefix/length/part/whole hashes using schema17. Runtime FORMAT remains2; old payload2 is historical. [Procedure](FACTORY_CODE_STORAGE.md). |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
 | Rewards construction | Immutable `ZZZRewardsCanonical` child; verify Rewards.canonicalModule(), child access()/rewards(), Handoff.moduleAt(3) and exact runtimes. LP reward backing stays in Rewards. |
-| NFT construction | `ZZZRoyaltyRewards`, `ZZZClaimRouter`, `ZZZNFTMetadata`; exact NFT/controller/ledger relationships. |
+| NFT construction | Predeploy `ZZZNFTMetadata(controller)` and pass it to `ZZZNFT(controller,baseURI,renderer)`. The royalty factory creates the NFT's `ZZZRoyaltyRewards`; the NFT creates its fixed `ZZZClaimRouter`. Verify exact controller/NFT/ledger bindings. |
 | Oracle construction | `ZZZContributionPricing`; exact Oracle/Access, pricing2 and entry-review-policy2 bindings; inactive capture context at anchor. |
 | Separate Budget | `ZZZMigrationBudget(controller)` is supplied to Vault. Verify actual Vault getter, Access-resolved `vault()` parent, compound4/confirmation3/emergency2 and runtime. It owns no custody. |
 | Separate LP Balancer | `ZZZLPBalancer(controller,core,state)` is supplied to Manager; sealed parent, core/state, LP routing2/quality1 and exact runtime. Inventory actual execution pools/solver/quality separately. |
@@ -250,8 +252,8 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 
 Record Vault.ACCOUNTING_VERSION()==7, Rewards.LP_ALLOCATION_VERSION()==1,
 ProtocolPolicy.PROTOCOL_POLICY_VERSION()==1 and coordinator
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9")` with exact runtime
-pins. Inventory16 includes19 callable helpers plus2 inert Factory data children
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")` with exact runtime
+pins. Inventory17 includes20 callable helpers plus2 inert Factory data children
 and Fees.FEE_INTAKE_VERSION()==1. Authenticate the fixed Rewards canonical child
 and Handoff.moduleAt(3), not just an eight-word Position tuple. Absent/zero retains
 the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
@@ -288,3 +290,13 @@ keeper/guardian grants use `setKeeper`/`setGuardian`; governance wallet rotation
 uses the two-step handover. Preserve full reviewed authority history and exact
 runtime/bootstrap/source/exit bindings. Removing obsolete role arrays does not
 relax compiler limits or qualify the new deployment automatically.
+
+## OpenSea mint source additions
+
+The fresh NFT now takes `(controller,baseURI,renderer)`; deploy the fixed read-only
+renderer first. Add the collection-specific `ZZZSeaDropMint` helper to the reviewed
+20-helper graph and bind it once before sealing. Its PoPL address is not selected.
+Robinhood SeaDrop V1 is independently observed at
+`0x00005EA00Ac477B1030CE78506496e8C2dE24bf5`; the [mint procedure](OPENSEA_MINT.md)
+binds its exact runtime. That public dependency address is not a PoPL deployment,
+platform fee recipient, approved payer or OpenSea onboarding acceptance.

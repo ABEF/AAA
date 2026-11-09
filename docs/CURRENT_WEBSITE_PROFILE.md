@@ -1,5 +1,12 @@
 # Served current3 website profile and fresh contract boundary
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now

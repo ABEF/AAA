@@ -1,12 +1,26 @@
 # Gas-aware unsigned claim planning
 
+**Mint-profile boundary:** backend source implements explicit opt-in
+`mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
+Omitted/default1 on accounting7 retains V9; source9/schema16 website configuration
+remains its exact prior profile. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md)
+requires separately reviewed deployment/configuration and operating acceptance.
+No service, checkpoint, journal, served site or signer is automatically adopted,
+upgraded or relabeled.
+
+
 The optional `POST /v1/claims/plan` endpoint prepares **one next claim batch**
 within the existing gas and network-fee limits. It never signs, broadcasts,
 queues later transactions or changes a ledger. The existing
-`/v1/transactions/prepare` endpoint and its mint/claim behavior are unchanged.
-Public signing remains disabled; the shared browser signer remains Anvil-only.
-Fresh7 admission authenticates accounting7/LP-allocation1/canonicalV9 and the
-fixed Rewards canonical companion. LP funded claims are exact whole units in
+`/v1/transactions/prepare` retains historical/default1 direct mint and claim
+behavior. Explicit mint integration2 supports V10 owned claims here but rejects
+direct mint preparation with "Use OpenSea" before RPC/simulation. Public signing
+remains disabled; the shared browser signer remains Anvil-only.
+Accounting7 admission authenticates exact LP1 and the fixed Rewards canonical
+companion, with V9 under omitted/default1 or V10 under explicit2. The latter
+also verifies independently pinned `seadrop_mint`/`seadrop` runtime and fixed
+NFT/helper/controller/implementation bindings at the same canonical block;
+mutable sale prices, phases and proof eligibility never gate existing claims. LP funded claims are exact whole units in
 ETH or fixed ZZZ; original royalty currencies remain separate. Historical policy1 keeps schema1; optional policy2 returns schema2 with the same explicit claim selection; no historical6 runtime is relabeled.
 
 The exact-host cold32-entry rehearsal consumed31,085,813raw execution gas,
@@ -75,7 +89,7 @@ The result has `kind: "unsigned_claim_plan"` (schema1 for historical policy1, sc
 | `entries` | Every original selection, its index, identity, status, reason and observed raw amount when available. Missing amounts stay `null`. |
 | `remaining_claims` | Every selection outside the next batch that still needs assessment/action, including blocked or unavailable entries. Zero-balance entries are identified in `entries` rather than silently discarded. |
 | `planning` | Trial count, exact selection indices, result categories, actual effective gas cap and bounded-work policy. It does not guarantee the mathematically largest possible batch. |
-| `provenance` | Confirmed block/hash/time, reviewed configuration identities and explicit accounting/custody/royalty profile. |
+| `provenance` | Confirmed block/hash/time, reviewed configuration identities and explicit accounting/custody/royalty profile; opt-in2 additionally states mint_integration_version2. |
 | `expires_at` | Client review expiry. It is not an on-chain deadline added to the claim router. |
 
 | Entry status | Meaning |

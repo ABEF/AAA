@@ -1,5 +1,14 @@
 # Confirmed frontend read API
 
+**Mint-profile boundary:** the backend implements explicit opt-in
+`mint_integration_version:2` for accounting7/V10 reads and owned reward claims.
+On accounting7, omitted/default1 retains the historical direct-mint/V9 profile; source9 website
+configurations are unchanged. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md) still
+requires reviewed matching deployment/configuration and operating acceptance.
+No existing service, checkpoint, journal, served site or signer is upgraded or
+relabeled by these source changes.
+
+
 Confirmed financial history rejects contradictory transaction-index/hash grouping
 at ingestion and replay. Valid filtered-log gaps and optional historical indices
 remain supported; consistency does not prove provider/database completeness.
@@ -52,9 +61,13 @@ Source publication does not update the currently served older integration site.
 Fresh configuration uses explicit `accounting_version:7`, `custody_version:5`,
 `protocol_policy_version:1`, `fee_intake_version:1` and royalty_reporting schema5
 with read schema2. It verifies Vault7, Rewards LP-allocation1, direct governance2,
-custody5 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. Position still has
-eight words; dormant/parked/exited states remain 3/4/5. The main physical LP ID is
-never replaced by an aggregate or virtual ID.
+custody5 and the explicitly selected mint/canonical profile. Omitted or integer1
+`mint_integration_version` retains `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`.
+Integer2 is supported only with accounting7 and requires
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`; booleans, unknown values and
+non7/2 combinations are rejected. Position still has eight words;
+dormant/parked/exited states remain3/4/5. The main physical LP ID is never
+replaced by an aggregate or virtual ID.
 
 Profile7 requires these additional `{address,code_hash}` pins, beyond the existing
 base contracts and `principal_exit`:
@@ -66,6 +79,19 @@ base contracts and `principal_exit`:
 | Protocol and strategy policy | `protocol_policy`, `portfolio_policy`, `rebalance_confirmation` |
 | Typed LP execution | `balancing_router`, `lp_balance_math`, `lp_position_executor` |
 | Reviewed v4 dependencies | `pool_manager`, `state_view`, `position_manager`, `permit2` |
+| Opt-in mint integration2 only | `seadrop_mint`, `seadrop`; both require distinct `{address,code_hash}` pins |
+
+For opt-in2, the SAME confirmed canonical block must authenticate
+`NFT.seaDropMint()`, the helper's `access()`, `nft()`,
+`MINT_INTEGRATION_VERSION()==1`, `seaDrop()` and `seaDropCodeHash()` against
+those independent pins. Helper capability1 and API mint integration2 are
+different version boundaries. Mutable sale phases, price, proof/payer settings
+and mint availability do not gate existing LP reads or reward claims.
+`protocol.minting` labels OpenSea as the channel, disables direct transaction
+preparation, and returns `available:null` with unverified stage eligibility.
+An open collection sale window is only a coarse observation, not a proof that a
+wallet may mint. The reveal-oriented mint-readiness endpoint likewise does not
+qualify SeaDrop eligibility. Actual sale review remains the marketplace's path.
 
 The service verifies runtime, sealed module, parent/child and dependency bindings.
 Capabilities are accounting7/LP-allocation1/maintenance3/confirmation3/compound4/custody5,
@@ -123,8 +149,11 @@ inventory-repair residual. [Preparation](ACTIVATION_PREPARATION.md).
 
 Accounting1-6 readers remain explicit historical profiles. Omitting the version
 selects legacy1, never7. Their codecs, addresses, runtimes, timing and journals
-are not rewritten. API7 predecessor history requires explicit accounting7 and canonicalV9
-throughout; accounting6/V8 remains a separate historical profile; the retained record shape does not authorize relabelling old V5
+are not rewritten. API7 predecessor history requires explicit accounting7;
+each peer selects its actual mint profile separately: omitted/default1 is V9,
+explicit2 is V10. A successor never supplies its mint flag to an older peer.
+This reader distinction does not authorize a cross-schema handoff: current V10
+contracts reject V9 peers. Accounting6/V8 remains a separate historical profile; the retained record shape does not authorize relabelling old V5
 accounting4/5 history. Historical accounting4 remains a separately pinned custody3 profile.
 
 Fresh direct Entry3 preparation explicitly selects routing_version3 and
@@ -134,10 +163,12 @@ The schema2 envelope and direct Entry3 tuple remain; accounting7 explicitly
 changes LP allocation/getter semantics. Old index getters are not queried on7.
 Historical routing2 retains its exact old ABI; a runtime/profile mismatch fails.
 
-Production inventory schema16/exact LP1/reinvest1 is separate from read schema2 and explicit activation policy1/2;
-it authenticates17 modules/19 callable helpers plus2 inert Factory data children.
+Current production inventory schema17/mint2/exact LP1/reinvest1 is separate from
+read schema2, mint integration1/2, and activation policy1/2. It authenticates
+17modules/20callable helpers plus2inert Factory data children. Historical
+schema16/V9/source9 retains its19-helper graph and actual configuration.
 The Factory data verification is constructor/release-only, not extra per-holder
-RPC work. Historical schema15/14/13/12/10/9/8/7/6 stay tied
+RPC work. Historical schema16/15/14/13/12/10/9/8/7/6 stay tied
 to their recorded profiles. Actual provider/route/VRF/gas/service qualification is
 still open. The served poplint accounting3 artifact remains unconfigured;
 popldemo remains the separate simulation. Source changes do not deploy either
@@ -263,8 +294,10 @@ before signing. A quoted confirmed balance can change before execution.
 The configuration is an operator-reviewed JSON file, outside the public web
 document root. No PoPL addresses have been chosen/deployed by this implementation.
 The following block is the explicit historical accounting4 base shape only;
-fresh7 additionally needs the complete role graph above, explicit custody5,
-ProtocolPolicy1 and original-currency royalty schema5. Bracketed values are
+accounting7 additionally needs the complete role graph above, explicit custody5,
+ProtocolPolicy1 and original-currency royalty schema5. Fresh V10 also requires
+`mint_integration_version:2` and the two extra mint contract pins; omission
+continues to select historical V9 and cannot adopt a V10 deployment. Bracketed values are
 **unusable placeholders**, not an approved deployment configuration. The optional strict `history` object is
 specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genuine-coverage):
 
@@ -464,11 +497,14 @@ See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-tota
 ## Accounting7 policy and exact LP observation
 
 Fresh reads explicitly require protocol_policy_version1 and the reviewed bound
-helper/runtime. Dynamic sale/VRF mint provenance is `mint_policy`, separate from
-`claim_operations` (empty for mint). Entry minima/idle and cosmetic tier thresholds
+helper/runtime. Historical direct-mint1 sale/VRF provenance is `mint_policy`,
+separate from `claim_operations` (empty for mint). Opt-in mint2 prepares only
+claims here; a mint action rejects with "Use OpenSea" before RPC/simulation. Entry minima/idle and cosmetic tier thresholds
 are read at the same confirmed block; missing policy never becomes guessed
 defaults. Stage1 means actual activation, not a persistent100USD value floor.
-Inventory is schema16/LP-allocation1/reinvest1; public signing remains disabled.
+The current release inventory is schema17/mint2/LP-allocation1/reinvest1;
+source9/schema16/V9 remains its separate historical consumer profile. Public
+signing remains disabled.
 [Exact profile](POSITION_V7.md). Earned LP uses actual weight-sync/fee events and
 exact whole-unit trees; selected `rewardBucket`, `claimableComponents`, `allocationTree`, funded liabilities
 and direct credits reconcile at each pinned epoch. Claims/conversions/imports

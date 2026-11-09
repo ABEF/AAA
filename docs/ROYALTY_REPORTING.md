@@ -1,5 +1,12 @@
 # Original-currency royalty balances and history
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 Fresh accounting7 reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4, the exact
 runtime and canonicalV9. Use `"royalty_reporting":{"schema":5,"converter":null}`.
 Historical accounting6/reporting5/V8 retains the same royalty allocation rules

@@ -51,7 +51,10 @@ def main(argv=None):
         endpoint = os.environ[args.rpc_env]
         rpc = Rpc([endpoint], chain_id, timeout=10, retries=2)
         version=config.get('schema_version')
-        if type(version) is int and version==16 and not args.historical_consistency:
+        if type(version) is int and version==17 and not args.historical_consistency:
+            from zzz_ops.production_observer_v15 import observe as observe_current
+            result=observe_current(config,rpc)
+        elif type(version) is int and version==16 and args.historical_consistency:
             from zzz_ops.production_observer_v14 import observe as observe_current
             result=observe_current(config,rpc)
         elif type(version) is int and version==15 and args.historical_consistency:

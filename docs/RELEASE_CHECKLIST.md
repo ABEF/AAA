@@ -1,5 +1,20 @@
 # Release approval record - NOT APPROVED
 
+The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
+canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
+Initial20free-team/500paid-allowlist/480public allocations are configurable;
+AL is one NFT per distinct listed address, unused AL rolls public and
+unused team stays reserved. Original-recipient lifetime mint counts,
+dormancy and original two-word VRF requests are preserved. Normal size
+limits remain unchanged; see the [source-scoped verification](../reports/opensea-integration-20261109/VERIFICATION.md).
+Backend read/claim and lineage support is implemented with explicit mint2/V10
+pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
+Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
+website/installed-consumer and operating/independent acceptance remain open.
+Earlier V9/schema16 evidence below retains its original scope; it does
+not verify the mint extension or upgrade a served site/runtime.
+
+
 The [actual source9 rehearsal](../reports/source9-actual-entry-20261109/REVIEW.md)
 fixes fresh7 read/trace defects and verifies isolated ETH/ZZZ contributions and
 rollback with real unsigned consumers. Its controlled feeds/VRF and synthetic
@@ -22,7 +37,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-07. This records review of one frozen release; it is not a second Todo.
+Reviewed2026-11-09. This records review of one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.
@@ -90,7 +105,7 @@ does not verify these new contracts. No service/site/deployment is upgraded.
 
 | Boundary | Current requirement |
 | --- | --- |
-| Identity | Accounting7/LP-allocation1/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory16/reporting5/canonicalV9. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V7.md). |
+| Identity | Accounting7/LP-allocation1/ProtocolPolicy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2; Entry routing3/pricing2/review2/governance2/fee1. Eight-word Position; royalty4/recovery2, inventory17/mint2/reporting5/canonicalV10. Same-chain capture requires both physical legs closed and exact royalty/backing rows. [Profile](POSITION_V7.md). |
 | LP custody | Native ETH and one fixed ZZZ, both physical NFTs Vault-owned; one main plus at most one residual per logical bucket. No extra arbitrary executor/recipient, bridge or token substitution. |
 | Geometry | Default single; optional configured main floor6000–9999bps(default60%) with complementary residual maximum(default40%) after replacement. Default residual half corresponding main side and governed positive gap(default1 full tick-spacing). Weight is not maintained continuously; fill/mixed/outside states remain accounted. |
 | Timing |85% centre-to-boundary threshold with independent same-side corroboration,600-second sampled window/maxgap300,240-second source checks, hard initial12hours and service60–300 jitter. Actual inclusion and liveness remain unqualified. |
@@ -98,7 +113,7 @@ does not verify these new contracts. No service/site/deployment is upgraded.
 | Financial limits | Default2% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; check exact margins in the current normal compiler record; royalty factory/constructor changes require fresh runtime and initcode checks, not fixture limits or historical headroom. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema16/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with19 callable helpers plus2 inert Factory data children, reporting5 and canonicalV9 and matching source/service/health/website acceptance required. The local source9/schema4 consumer is implemented; actual runtime/Entry3 trace/provider/site acceptance remains open. Popldemo unchanged; served poplint current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema17/mint2/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with20 callable helpers plus2 inert Factory data children, reporting5 and canonicalV10 require matching source/service/health/website acceptance. The local source9/schema4 consumer is implemented; actual runtime/Entry3 trace/provider/site acceptance remains open. Popldemo unchanged; served poplint current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)

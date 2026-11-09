@@ -1,5 +1,20 @@
 # Feature and evidence reference
 
+The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
+canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
+Initial20free-team/500paid-allowlist/480public allocations are configurable;
+AL is one NFT per distinct listed address, unused AL rolls public and
+unused team stays reserved. Original-recipient lifetime mint counts,
+dormancy and original two-word VRF requests are preserved. Normal size
+limits remain unchanged; see the [source-scoped verification](../reports/opensea-integration-20261109/VERIFICATION.md).
+Backend read/claim and lineage support is implemented with explicit mint2/V10
+pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
+Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
+website/installed-consumer and operating/independent acceptance remain open.
+Earlier V9/schema16 evidence below retains its original scope; it does
+not verify the mint extension or upgrade a served site/runtime.
+
+
 [Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
 v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
 and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
@@ -25,11 +40,11 @@ Reviewed 2026-11-07. This records implemented source, not another task list.
 Fresh **accounting7 / LP-allocation1 / portfolio2 / maintenance3 / confirmation3 / compound4 /
 custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position remains;
-fresh royalty4/canonicalV9 carries sale end/capacity and exact-unit ticket rights,
+fresh royalty4/canonicalV10 carries sale end/capacity and exact-unit ticket rights,
 and rejects older peers.
 Tuple shape does not imply runtime compatibility.
 [Profile](POSITION_V7.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema16 with explicit residual-reinvest1/raw-exit1 bindings; schema14 remains historical. It retains19 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 preserves the exact RoyaltyRewards creation payload and accounting ABI. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+Production inventory is schema17/mint2 with explicit residual-reinvest1/raw-exit1 bindings; schema16 remains historical. It retains20 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 preserves the exact RoyaltyRewards creation payload and accounting ABI. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -83,7 +98,7 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; source-bound schema16 and actual returned-runtime gates required. [Storage format](FACTORY_CODE_STORAGE.md). |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. Late gas-enveloped full LP simulation and final policy/nonce/funding/head/deadline/day-budget checks preserve original intent before signing. |
-| Inventory | Schema16/custody5/reinvest1 validates19helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs and exact-unit royalty4; reporting5/canonicalV9 and keeper royalty4 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
+| Inventory | Schema17/mint2/custody5/reinvest1 validates20helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs, primary mint books and exact-unit royalty4; reporting5/canonicalV10 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | [Typed preparation](MANUAL_LP_PREPARATION.md) now covers park/resume/residual-only close and begin/close/allocate/distribute collective exit, alongside separate Active B/C/D. Direct empty-code governance only; exact fetched inputs, explicit caller floors, confirmed/latest control review and frozen-gas simulations. Distribution preserves configured batch gas and reports partial counts without per-ID success guesses. No signing, queue, fallback or execution approval. Parked forced-D, contract-wallet envelopes and actual provider/operator qualification remain open. [Evidence](../reports/operator-management-20261109/REVIEW.md). |
 | Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Fresh7 replays exact whole-unit trees from complete raw history. Checkpoint1 remains6-only; explicit checkpoint2 preserves raw exact trees/pending/phase/direct rights and a complete raw24-hour suffix. Lineage/archive/workload/operating qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
 

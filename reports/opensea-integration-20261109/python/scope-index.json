@@ -1,0 +1,40 @@
+{
+  "overlap_rule": "Retain separate stages and original source scope. Do not add focused builder cases to the full builder run, consumer stages together without method review, or template recheck to the original root stage.",
+  "schema17_candidate": {
+    "path": "schema17-candidate/verification.json",
+    "methods": 11,
+    "evidence": "Original tool-observed receipt with post-run source hashes only; no original raw test log exists in this campaign."
+  },
+  "frontend_candidate": {
+    "path": "frontend-consumer-v10-candidate/verification.json",
+    "stages": [
+      {
+        "name": "initial affected existing checks",
+        "methods": 83,
+        "passed": true
+      },
+      {
+        "name": "final new consumer checks",
+        "methods": 14,
+        "passed": true
+      },
+      {
+        "name": "final affected existing subset",
+        "methods": 36,
+        "passed": true
+      }
+    ],
+    "evidence": "Original tool-observed stage receipt with final post-run hashes, not fabricated before/after proof or raw logs. No site/service/wallet rollout."
+  },
+  "builder_final": {
+    "all_receipt": "builder-final-all-13686d71.json",
+    "all_raw_log": "builder-final-all-13686d71.log",
+    "focused_receipt": "builder-final-focused-84485b5f.json",
+    "focused_raw_log": "builder-final-focused-84485b5f.log",
+    "evidence": "Original exact files; focused methods overlap the all-method run."
+  },
+  "operator_reference20": {
+    "path": "operator-reference20/tool-observation.json",
+    "evidence": "Derived transcription of original successful tool result; post-run-only fingerprints. No raw file or new execution is claimed."
+  }
+}

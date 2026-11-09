@@ -15,9 +15,9 @@ from zzz_ops.abi import address, decode_words, keccak256
 MAX_PREDECESSORS = 8
 MAX_TOTAL_EVENTS = 1_000_000
 MAX_RECEIPT_LOGS = 4096
-# These independently pinned Uniswap dependencies can legitimately be reused by
+# These independently pinned venue/drop dependencies may be reused by
 # a same-chain replacement. Deployment-owned protocol modules/helpers cannot.
-SHARED_DEPENDENCY_ROLES = frozenset(('pool_manager', 'state_view', 'position_manager', 'permit2'))
+SHARED_DEPENDENCY_ROLES = frozenset(('pool_manager', 'state_view', 'position_manager', 'permit2', 'seadrop'))
 RETIRED = '0x' + keccak256(b'Retired(bytes32,address,bytes32)').hex()
 ACTIVATED = '0x' + keccak256(b'Activated(bytes32,address,bytes32)').hex()
 
@@ -47,12 +47,14 @@ class Lineage:
             if isinstance(item,dict) and ('custody_version' in item or
                     getattr(current,'custody_version',0)==5):
                 fields.add('custody_version')
+            if isinstance(item, dict) and 'mint_integration_version' in item:
+                fields.add('mint_integration_version')
             if isinstance(item,dict) and 'royalty_reporting' in item or (current.royalty_reporting is not None and current.royalty_reporting.schema >= 4):
                 fields.add('royalty_reporting')
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version')}
             previous_config['accounting_version'] = item.get('accounting_version', 1)
             if current.accounting_version in (3,4,5,6,7) and previous_config['accounting_version'] != current.accounting_version:
                 raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')
@@ -224,6 +226,7 @@ class Lineage:
             anchors.append((source.history.start, created))
             receipts.append({'controller': source.contracts['access'].address,
                              'successor_controller': destination.contracts['access'].address,
+                             **({'mint_integration_version': 2} if source.mint_integration_version == 2 else {}),
                              'retirement_transaction_hash': entry.transaction,
                              'retirement_block': cutoff['number'], 'retirement_block_hash': cutoff['hash'],
                              'handoff_id': handoff_id, 'state_root': state_root,

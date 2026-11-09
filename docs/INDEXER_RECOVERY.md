@@ -1,5 +1,14 @@
 # Indexer history and reorganization recovery
 
+**Mint-profile boundary:** backend source implements explicit opt-in
+`mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
+Omitted/default1 on accounting7 retains V9; source9/schema16 website configuration
+remains its exact prior profile. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md)
+requires separately reviewed deployment/configuration and operating acceptance.
+No service, checkpoint, journal, served site or signer is automatically adopted,
+upgraded or relabeled.
+
+
 The SQLite indexer is an operator-maintained event cache, not custody or an
 independent proof of complete blockchain history. Its cursor, exact deployment
 contract list, creation/start block and original parent hash identify one history.
@@ -8,15 +17,21 @@ incomplete history distinct from zero balances and zero earnings.
 
 Use exact emitter inventories for the selected deployment profile, not familiar
 token names or an old Anvil manifest. Earnings needs all seven reviewed emitters
-from creation. Fresh accounting7/LP-allocation1/portfolio2/canonicalV9,
-historical6/V8,4/V6,3/V4 and older codecs remain distinct; adding emitters or
+from creation. Prior source9 accounting7/LP1/portfolio2/V9 and fresh
+schema17/mint2/V10 are distinct source/runtime identities. Explicit backend
+mint_integration_version2 reads V10; omitted/default1 on7 stays V9. Historical6/V8,
+4/V6,3/V4 and older codecs remain distinct; adding emitters or
 changing profiles is not a cursor-only edit. Backfill and
 verify a separate database before switching consumers. Profile7 consumers also
 authenticate both physical legs and the full pinned helper graph at the selected
 block, including the fixed Rewards canonical child; an event alone does not
-establish current LP value. The schema16 inventory authenticates17 modules,
-19 callable helpers and2 inert Factory data children. Backend support does
-not deploy a fresh7 browser consumer or enable public signing.
+establish current LP value. Current schema17 inventory authenticates17modules,
+20callable helpers and2inert Factory data children, including the fixed mint
+helper; source9/schema16 retains19helpers. Backend support does not adopt a
+website, re-pin a checkpoint, migrate an index database/journal or enable public
+signing. Primary mint gross/fee/net receipts are separate from earnings:
+Vault.DormantMinted.mintPrice is0 on Mint2 and cannot establish buyer revenue.
+Never count primary-mint proceeds as LP/royalty income.
 
 Retain raw `ShareWeightSynchronized` and `CollectiveWeightSynchronized` logs
 from Rewards, plus the existing Vault/Membership acknowledgements. Fresh7

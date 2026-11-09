@@ -27,6 +27,7 @@ MAX_METADATA = 512
 _IDENTITY = (
     'access()', 'nft()', 'royalties()', 'royaltyRewards()', 'claimRouter()',
     'LP_ALLOCATION_VERSION()', 'canonicalModule()', 'rewards()', 'moduleAt(uint8)',
+    'seaDropMint()', 'MINT_INTEGRATION_VERSION()', 'seaDrop()', 'seaDropCodeHash()',
     'canonicalChainId()', 'ACCOUNTING_VERSION()', 'GOVERNANCE_VERSION()',
     'CUSTODY_VERSION()', 'SCHEMA()', 'migrationBudget()', 'vault()',
     'portfolioPolicy()', 'strategy()', 'rebalanceConfirmation()',
@@ -303,6 +304,7 @@ class ClaimPlanner:
                 block_timestamp=header['timestamp'],observed_head=head,configuration_sha256=p.identity,
                 transaction_configuration_sha256=self.transactions.config.identity,
                 accounting_version=p.accounting_version,custody_version=p.custody_version,
+                **({'mint_integration_version': 2} if p.mint_integration_version == 2 else {}),
                 royalty_reporting_schema=schema or None,
                 eip1898_require_canonical=True,protocol_finalized=False),
             replan_after_confirmation=True,automatic_submission=False,production_approved=False,

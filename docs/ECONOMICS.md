@@ -8,7 +8,7 @@ after exit starts. Historical deployments keep their original rules.
 
 
 **Undeployed candidate; production NOT APPROVED.** Accounting7, custody5, portfolio2,
-direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9` retain
+direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10` retain
 the economic rights below. Historical profiles retain their own layouts and
 evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V7.md)
 and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
@@ -49,7 +49,7 @@ there is no USD-loss promise when closing without price feeds.
 
 ## Permanent capital
 
-Current direct mint forwards its reviewed current price (default0.05 ETH) to the current accepted mint recipient; none becomes LP or rewards. The intended OpenSea path must keep the buyer total at the reviewed gross mint price(default0.05 ETH), deduct the actual platform fee and pay that recipient the remainder, with gas separate. That compatible mint integration is not implemented; no platform percentage is assumed. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). Contributions accept native ETH or fixed ZZZ only. Activation defaults to **$100 conservative original-source value** and growth to **$5**, governed for future contributions through ProtocolPolicy, subject to a higher pool minimum. The **captured marginal-LP floor is 98% at the default 2% limit**, with gas separate. Vault balancing and deployment share that budget; direct Entry3/review-policy2 also binds the caller maximum and exact entry-policy fingerprint. Incumbent LP, idle and compound cannot subsidize a newcomer. Stricter venue bounds remain. The immutable [Entry](ACTIVATION_ENTRY.md) authenticates exact source ingress, owner intent and measured USD through the actual Vault call. Its context preserves the original budget across the Vault balancing/deployment steps. Actual feeds/routes and selected-pool execution remain unqualified.
+Fresh [SeaDrop Mint2](OPENSEA_MINT.md) implements free TEAM mints and paid AL/public mints at the reviewed governed gross price(default0.05 ETH), with network gas separate. SeaDrop deducts the actual platform fee and pays the accepted creator recipient the net; no platform percentage or actual OpenSea onboarding is qualified yet. Neither mint proceeds nor fees become LP or holder rewards. The NFT/Vault callback receives0ETH, so `Vault.DormantMinted.mintPrice` is not the buyer's gross price on this path. Historical unbound direct mint forwards its reviewed price to the payee and remains an explicit test profile. See [qualification](MINT_INTEGRATION_QUALIFICATION.md). Contributions accept native ETH or fixed ZZZ only. Activation defaults to **$100 conservative original-source value** and growth to **$5**, governed for future contributions through ProtocolPolicy, subject to a higher pool minimum. The **captured marginal-LP floor is 98% at the default 2% limit**, with gas separate. Vault balancing and deployment share that budget; direct Entry3/review-policy2 also binds the caller maximum and exact entry-policy fingerprint. Incumbent LP, idle and compound cannot subsidize a newcomer. Stricter venue bounds remain. The immutable [Entry](ACTIVATION_ENTRY.md) authenticates exact source ingress, owner intent and measured USD through the actual Vault call. Its context preserves the original budget across the Vault balancing/deployment steps. Actual feeds/routes and selected-pool execution remain unqualified.
 
 The default shared bucket has one physical main; optional mode adds at most one
 Vault-owned residual in the same pool. NAV and harvest include both legs, not
@@ -137,7 +137,7 @@ Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH t
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and
-decoding. Before retirement, same-pair pool moves and compatible canonicalV9
+decoding. Before retirement, same-pair pool moves and compatible canonicalV10
 handoff remain separate operations. Once collective exit starts, minting and all
 new principal work stop permanently; canonical replacement cannot bypass it.
 
@@ -198,7 +198,7 @@ Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounde
 
 Governance may irreversibly start [collective holder return](HOLDER_COLLECTIVE_EXIT.md) while paused. Final harvested fees keep the fixed allocation; pending 5% compound joins that bucket's principal. Each NFT receives its frozen share of actual ETH/ZZZ, including idle and reinvested compound, by deterministic raw-unit apportionment. Earned LP/royalty liabilities, buyback reserves, donations and quarantines are excluded. The operator closes and allocates bounded batches, then sends direct payouts to current owners; normal recipients take no action. A rejecting or unusually expensive receiver is deferred without blocking others, with retry or owner-selected fallback as exceptional recovery. Receipt cannot be forced for every address. Unpaid rights follow NFT transfer; a paid NFT cannot be paid twice. LP earnings end after all LP closes, while NFTs and future royalty shares remain.
 
-Whole-collection handoff is separate and requires compatible accounting7/canonicalV9 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
+Whole-collection handoff is separate and requires compatible accounting7/canonicalV10 while LP is still operating; it is blocked permanently once collective exit starts. No issuer exchange, bridge or post-exit canonical import is implemented. Failed venues/tokens, gas and recipient behavior can prevent or delay settlement. Actual operating rehearsals and independent review remain release gates.
 
 Governance is immediate: the selected wallet/Safe calls modules directly, with
 its own signature/nonce policy. There is no protocol timelock, queued executor

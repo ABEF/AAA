@@ -1,5 +1,12 @@
 # Source9 website read and unsigned profile
 
+**Mint-profile boundary:** reader/service versions named in this guide retain
+their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
+adds original-recipient mint books and needs matching reviewed consumers
+before adoption. Existing services, checkpoints, journals, served sites and
+Anvil signing are not upgraded or relabeled by the new source.
+
+
 The fresh local website consumer uses **website manifest schema4**, explicitly
 selecting source9/accounting7. This is separate from HTTP envelope schema2,
 activation draft policy1/2, optional transaction policy1/2 and inventory schema16.

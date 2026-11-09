@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {PreparationPools,PreparationPolicy,PreparationVenue} from "./helpers/CanonicalPreparationFixtures.sol";
 import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
@@ -100,7 +101,7 @@ contract CanonicalPreparationTest is Test {
         treasury = new PreparationTreasuryCallback();
         ProtocolPolicyFixture.bind(address(ac),address(treasury));
         vault = new AccountingVaultHarness(address(ac), block.chainid, payable(address(treasury)), address(new ZZZMigrationBudget(address(ac))));
-        nft = new ZZZNFT(address(ac), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        nft = new ZZZNFT(address(ac), "", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         rewards = new ZZZRewards(address(ac)); membership = new ZZZMembership(address(ac));
         fees = new ZZZFeeController(address(ac)); compounder = new ZZZCompounder(address(ac));
         buyback = new ZZZBuyback(address(ac), address(t0), 1e30);

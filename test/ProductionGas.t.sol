@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
@@ -55,7 +56,7 @@ contract ProductionGasTest is Test {
         require(assetCount==2);tokens.push(MockToken(address(0)));tokens.push(new MockToken(0));
         venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
         ProtocolPolicyFixture.recipient(address(access),TREASURY);vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
-        nft = new ZZZNFT(address(access), ""); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        nft = new ZZZNFT(address(access), "", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         membership = new ZZZMembership(address(access));

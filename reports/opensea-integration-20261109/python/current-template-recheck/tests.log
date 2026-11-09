@@ -1,0 +1,6 @@
+test_current_template_declares_real_implementation_and_unselected_provider (tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_template_declares_real_implementation_and_unselected_provider) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.042s
+
+OK

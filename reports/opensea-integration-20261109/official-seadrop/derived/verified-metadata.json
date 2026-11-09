@@ -1,0 +1,113 @@
+{
+  "observed_utc": "2026-11-09T02:23:01.7450220Z",
+  "provenance": "Original explorer response retained separately; extracted sources, ABI and runtime are derivatives",
+  "name": "SeaDrop",
+  "is_verified": true,
+  "is_fully_verified": true,
+  "compiler_version": "v0.8.17+commit.8df45f5f",
+  "optimization_runs": 1000000,
+  "optimization_enabled": true,
+  "compiler_settings": {
+    "evmVersion": "london",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 1000000
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "ast"
+        ],
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata"
+        ]
+      }
+    },
+    "remappings": [
+      "ERC721A/=lib/ERC721A/contracts/",
+      "ds-test/=lib/forge-std/lib/ds-test/src/",
+      "forge-std/=lib/forge-std/src/",
+      "murky/=lib/murky/src/",
+      "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+      "seadrop/=src/",
+      "solmate/=lib/solmate/src/",
+      "utility-contracts/=lib/utility-contracts/src/"
+    ]
+  },
+  "evm_version": "london",
+  "verified_at": "2026-07-02T09:27:16.752208Z",
+  "proxy_type": null,
+  "implementations": [],
+  "is_changed_bytecode": false,
+  "runtime_bytes": 21081,
+  "source_files": [
+    {
+      "sha256": "1e1c55f85debe55feb001a63a169125207b41aae5f358b306e86be5a35ce52d8",
+      "path": "verified-sources/src/SeaDrop.sol"
+    },
+    {
+      "sha256": "f5e7d84e0b9e5a9b38587755d8b687c8539cc198cdfe1cbba008bcaef8597e2e",
+      "path": "verified-sources/src/interfaces/ISeaDropTokenContractMetadata.sol"
+    },
+    {
+      "sha256": "2cd90c67273f166362c91895fe4aa5cb933549c10cbdd530d53f2894d9b593a8",
+      "path": "verified-sources/src/lib/SeaDropErrorsAndEvents.sol"
+    },
+    {
+      "sha256": "5212ea444cfce33fdc82d4b3440b161b70784f0bfe7eac485364569040584f75",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol"
+    },
+    {
+      "sha256": "f640392a0f3b662c1f0110504b6f90064eb3a28046e2505ea93f54d4620a77e6",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/Strings.sol"
+    },
+    {
+      "sha256": "92436ee32d03bff1fe45f4a96a661e238a9e2ef3821ace8279b12c33e199f0f3",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+    },
+    {
+      "sha256": "1185b7f201bf9f2c8a02100897e84f1ece6b35bf83e18c1180eb14521bb6862c",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol"
+    },
+    {
+      "sha256": "701e025d13ec6be09ae892eb029cd83b3064325801d73654847a5fb11c58b1e5",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+    },
+    {
+      "sha256": "4198e681b682c9aea82eb601f946c131e9e2e7ac874cc7b6b48192c29fda5e51",
+      "path": "verified-sources/lib/openzeppelin-contracts/contracts/utils/math/Math.sol"
+    },
+    {
+      "sha256": "a3a7e839f42762ef24623581542a916e838f3c7c0bef647963d1fdad0f9d208a",
+      "path": "verified-sources/lib/solmate/src/tokens/ERC20.sol"
+    },
+    {
+      "sha256": "e69ce8729cd5ff2caac16efa4498e967fc6bf85bbad4003be87c8a0757fd8a0c",
+      "path": "verified-sources/lib/solmate/src/utils/ReentrancyGuard.sol"
+    },
+    {
+      "sha256": "85056ad3600b04e40167d89978eae2a92dd34d1316e74987b4a7dcd65c2b65d9",
+      "path": "verified-sources/lib/solmate/src/utils/SafeTransferLib.sol"
+    },
+    {
+      "sha256": "9d4667915de85f9b4fc3c637ff9ef2083a19d2e6a4d23b6b80316e9e566c79d9",
+      "path": "verified-sources/src/interfaces/INonFungibleSeaDropToken.sol"
+    },
+    {
+      "sha256": "8e888977c4a00a8b168131f0ce1a5214beec41d1c6ea6cd1fc686b2b7b4acb8b",
+      "path": "verified-sources/src/interfaces/ISeaDrop.sol"
+    },
+    {
+      "sha256": "b2ba6712b9100c98b445fa47bb0926499440039fe606b2dbfb1ff2ad6f75460d",
+      "path": "verified-sources/src/lib/SeaDropStructs.sol"
+    }
+  ]
+}

@@ -1,5 +1,14 @@
 # Lifetime claims across same-chain handoffs
 
+**Mint-profile boundary:** the backend implements explicit opt-in
+`mint_integration_version:2` for accounting7/V10 reads and owned reward claims.
+On accounting7, omitted/default1 retains the historical direct-mint/V9 profile; source9 website
+configurations are unchanged. [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md) still
+requires reviewed matching deployment/configuration and operating acceptance.
+No existing service, checkpoint, journal, served site or signer is upgraded or
+relabeled by these source changes.
+
+
 The confirmed NFT endpoint returns lifetime LP and royalty claim totals
 across the complete configured lineage of replacement deployments. These include
 claims by every past/current NFT owner. Current funded balances still come only
@@ -9,9 +18,13 @@ This implements the [read API task](../TODO.md#task-read-api) for the supported
 same-chain handoff. It does not implement cross-chain consensus verification,
 marketplace cutover or a hosted production indexer.
 
-For fresh accounting7/LP-allocation1/portfolio2/canonicalV9, every configured
-predecessor must explicitly use7/V9 and its complete helper/runtime graph,
-including the fixed Rewards canonical companion. Historical6/V8 stays separate;
+For accounting7/LP-allocation1/portfolio2, every configured predecessor must
+explicitly use accounting7 and its complete helper/runtime graph, including the
+fixed Rewards canonical companion. Each peer declares its own mint profile:
+omitted/default1 authenticates V9, while explicit2 authenticates V10 and the
+additional fixed mint helper/SeaDrop pins. The successor's flag is never inherited.
+This supports exact historical reader identities, not cross-schema migration;
+current V10 contracts reject V9 handoff records/peers. Historical6/V8 stays separate;
 its index/fraction state is not translated into exact7 trees. Historical accounting4/V5 requires 4 throughout; accounting3/V4 similarly requires
 accounting3 predecessors. Older1/2 readers remain for compatible historical
 lineages; changing a version cannot import another schema. Collective holder
@@ -27,12 +40,15 @@ the current deployment's immediate predecessor. The first entry must have no
 predecessor on-chain. Configuration is explicit: no unreviewed peer or RPC is
 automatically discovered.
 
-Every entry contains exactly these fields:
+Each entry uses the following strict fields; `mint_integration_version` is
+optional with the historical default noted below:
 
 | Field | Required meaning |
 | --- | --- |
 | `custody_version` | Required for each predecessor when current custody_version is5. Declare5 with accounting7, or its actual4/5 with historical6; never inherit successor permissions. Historical older accounting keeps its supported version. |
-| `accounting_version` | Fresh profile7/V9 requires7 for every predecessor; historical6/V8 requires6; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires 3. Other historical configurations retain their supported codec. |
+| `accounting_version` | Accounting7 requires7 for every predecessor; historical6/V8 requires6; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires3. Other historical configurations retain their supported codec. |
+| `mint_integration_version` | Optional per peer: omit or integer1 for historical V9; explicit integer2 only with accounting7 for V10. Boolean/unknown values reject. A V10 peer requires `seadrop_mint` and `seadrop` pins; no automatic relabeling. |
+| `royalty_reporting` | For current exact royalty readers, declare each peer's matching schema5 original-currency profile explicitly; it is not inherited. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
 | `contracts` | Complete fresh7 graph, including `rewards_canonical`, `principal_exit`, ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
 | `assets` | Exact historical LP/royalty asset union and descriptors at retirement, using the same API format |
@@ -43,10 +59,14 @@ The current deployment must also have its own complete `history` configuration.
 Predecessors inherit its chain, RPC endpoints, confirmation depth, freshness
 policy, fee-intake version and configuration schema. Their accounting version is
 explicit; custody_version is also per deployment and never inherited from the
-successor. They do not inherit the current optional royalty/earnings reporting
-configuration. They cannot override inherited fields or contain nested predecessor
-lists. Every protocol contract address must be distinct across deployments;
-repeated identities, cycles and asset/module collisions are rejected.
+successor. The mint integration flag is also per deployment; omission remains1
+rather than adopting a successor's2. They do not inherit the current optional
+royalty/earnings reporting configuration. They cannot override inherited fields or contain nested predecessor
+lists. Deployment-owned protocol/helper addresses must be distinct across
+deployments. Independently pinned `pool_manager`, `state_view`,
+`position_manager`, `permit2` and `seadrop` may be shared only under the same role
+and exact code hash. A reused collection-specific mint helper, conflicting
+shared runtime, cycle or asset/module collision is rejected.
 
 The API supports **up to eight predecessors** and **one million configured maximum
 events in total**, including the current history. These are backend request-work
@@ -117,7 +137,8 @@ See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).
 
 ## Exact-royalty peer declaration
 
-Every fresh V9 predecessor must declare its own royalty_reporting schema5 and
+Every accounting7 predecessor, V9 or explicit V10, declares its own
+royalty_reporting schema5 and
 matching royalty runtime. The lineage builder must forward that declaration;
 omitting it or inheriting the current peer's value is rejected. Older declared
 schemas remain historical. Preserve exact ticket mapping/cursors and current

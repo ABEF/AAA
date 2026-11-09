@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 class OperatorReferenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.reference = json.loads((ROOT/'docs/function-reference.json').read_text())
-        cls.examples = json.loads((ROOT/'docs/operator-call-examples.json').read_text())
+        cls.reference = json.loads((ROOT/'docs/function-reference.json').read_text(encoding='utf-8'))
+        cls.examples = json.loads((ROOT/'docs/operator-call-examples.json').read_text(encoding='utf-8'))
 
     def test_current_callables_have_exact_examples_and_no_missing_types(self):
         expected = check_examples(self.reference, self.examples)
@@ -54,7 +54,9 @@ class OperatorReferenceTests(unittest.TestCase):
 
     def test_module_and_callback_cannot_be_presented_as_permissionless_actions(self):
         for identity in ['ZZZVault.compound(uint256,uint128,uint256)',
-                         'ZZZV4RouteExecutor.unlockCallback(bytes)']:
+                         'ZZZV4RouteExecutor.unlockCallback(bytes)',
+                         'ZZZNFT.mintSeaDrop(address,uint256)',
+                         'ZZZSeaDropMint.beginMint(address,address,uint256)']:
             example = copy.deepcopy(self.examples); example['rows'][identity]['role'] = 'P'
             with self.assertRaisesRegex(ExampleError, 'Permissionless classification'):
                 check_examples(self.reference, example)
@@ -69,7 +71,7 @@ class OperatorReferenceTests(unittest.TestCase):
 
     def test_bootstrap_seal_and_one_time_bindings_remain_distinct(self):
         for identity in ['ZZZAccessController.seal()', 'ZZZRewards.bindConverter(address)',
-                         'ZZZNFT.setBaseURI(string)']:
+                         'ZZZNFT.setBaseURI(string)', 'ZZZNFT.setSeaDropMint(address)']:
             self.assertEqual(self.examples['rows'][identity]['role'], 'B')
 
     def test_payable_value_cannot_be_hidden_inside_arguments(self):
@@ -77,7 +79,10 @@ class OperatorReferenceTests(unittest.TestCase):
         example['rows']['ZZZVault.mintDormant(bytes32)']['value'] = None
         with self.assertRaisesRegex(ExampleError, 'Payable value'):
             check_examples(self.reference, example)
-        self.assertEqual(self.examples['rows']['ZZZVault.mintDormant(bytes32)']['value'], '$MINT_PRICE_WEI')
+        self.assertEqual(self.examples['rows']['ZZZVault.mintDormant(bytes32)']['value'], 0)
+        self.assertEqual(self.examples['rows']['ZZZVault.mintDormant(bytes32)']['role'], 'M')
+        self.assertEqual(self.examples['rows']['ZZZNFT.mintSeaDrop(address,uint256)']['value'], 0)
+        self.assertEqual(self.examples['rows']['ZZZNFT.mintSeaDrop(address,uint256)']['role'], 'M')
 
     def test_atomic_entry_keeps_its_complete_seven_field_tuple_and_policy(self):
         identity = 'ZZZActivationEntry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)'
@@ -120,7 +125,7 @@ class OperatorReferenceTests(unittest.TestCase):
         self.assertEqual(args[3], 300)
 
     def test_snapshot_identifiers_remain_three_distinct_kinds(self):
-        text = (ROOT/'docs/OPERATOR_MANUAL.md').read_text()
+        text = (ROOT/'docs/OPERATOR_MANUAL.md').read_text(encoding='utf-8')
         self.assertIn('LiquidityManager.portfolioFingerprint(LP_TOKEN_ID)', text)
         self.assertNotIn('LiquidityManager.portfolioFingerprint(BUCKET_ID)', text)
         self.assertIn('ProtocolPolicy.entryFingerprint()', text)
