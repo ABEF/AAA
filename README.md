@@ -1,5 +1,16 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The local [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 The [actual market review](reports/market-qualification-20261109/REVIEW.md)
 checks independent feed candidates, native-v4/v3 swap venues and unmodified
 market execution. No usable dual ETH/fixedZZZ USD pair or default1%-qualified

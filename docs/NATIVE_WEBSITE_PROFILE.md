@@ -18,8 +18,7 @@ source-scoped evidence. The served poplint build has a separate
 [current3 profile](CURRENT_WEBSITE_PROFILE.md); the fresh contract candidate is
 [accounting7/ProtocolPolicy1/custody5](POSITION_V7.md) with
 [mint2/canonicalV10/schema17](OPENSEA_MINT.md). Local source9 implements the prior
-V9/schema16 read/unsigned profile; matching V10 website adoption and operating
-qualification remain open. Native2 is neither the served integration profile nor fresh7
+V9/schema16 read/unsigned profile. A separate [source10/V10 consumer](SOURCE10_WEBSITE_PROFILE.md) is now implemented locally; actual configuration, rollout and operating qualification remain open. Native2 is neither the served integration profile nor fresh7
 acceptance. Do not relabel this profile or any existing Anvil journal. Public
 `DEPLOYMENT` remains null and the shared signer stays Anvil-only.
 

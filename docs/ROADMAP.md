@@ -1,5 +1,12 @@
 # Engineering roadmap
 
+The local [source10/mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now
+implements current read/unsigned flows alongside source9/V9. Next review the
+actual deployed graph, independent feeds/routes, OpenSea/VRF/provider and gas
+configuration, then wallet/hosting/operating acceptance before separately
+authorizing a rollout. Existing current3 poplint, popldemo and Anvil8902 stay
+unchanged. The sole Todo retains qualification and release statuses.
+
 The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
 canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
 Initial20free-team/500paid-allowlist/480public allocations are configurable;
@@ -10,7 +17,7 @@ limits remain unchanged; see the [source-scoped verification](../reports/opensea
 Backend read/claim and lineage support is implemented with explicit mint2/V10
 pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
 Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
-website/installed-consumer and operating/independent acceptance remain open.
+website rollout/installed-consumer and operating/independent acceptance remain open.
 Earlier V9/schema16 evidence below retains its original scope; it does
 not verify the mint extension or upgrade a served site/runtime.
 

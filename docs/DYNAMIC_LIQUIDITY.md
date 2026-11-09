@@ -304,7 +304,7 @@ The separate popldemo website remains a labelled simulation with example amounts
 Number-based demo IDs and no live dependency on this API. Served poplint uses
 the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh7.
 The local source9 read/unsigned consumer implements the prior V9 profile;
-V10 website adoption and actual service/site qualification remain open. Matching
+The separate [source10/V10 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented locally; actual service/site qualification and rollout remain open. Matching
 integration must use decimal-string IDs/amounts, canonical block provenance, current marked NAV,
 separate LP/royalty claim balances, full lifetime claims and unavailable states.
 An indexer `Rebalanced` event invalidates cached position identity; events alone

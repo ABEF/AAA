@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "baseline": "9594df8aaf52bb6219a481dc718b17ed9c1f7ca8",
+  "test_selectors": [
+    {
+      "name": "tests_python.test_v10_website_fixtures.V10WebsiteExportTests",
+      "methods": 7
+    },
+    {
+      "name": "tests_python.test_v10_website_fixtures.V10WebsiteNegativeTests",
+      "methods": 2
+    },
+    {
+      "name": "tests_python.test_v10_website_fixtures.V10WebsiteRoundtripCompatibilityTests",
+      "methods": 2
+    }
+  ],
+  "tests": 11,
+  "passed": 11,
+  "elapsed_seconds": 33.062,
+  "excluded_overlapping_method": "V10WebsiteFixturesTests.test_current7_entry3_eth_and_zzz_activation_and_growth",
+  "test_log": {
+    "path": "published-attempt4.log",
+    "sha256": "3132850080da09ecc56b855bae7ab6c9e70897eee0dfd93c59fc3e96c6c13b4f",
+    "process_exit": "1 after all11passed because only the metadata differencer indexed newly added source keys; this command completes provenance without rerunning tests."
+  },
+  "python_isolated_flag": true,
+  "workspace_modules_imported": false,
+  "completion_mode": "Metadata only from retained successful test log plus fresh isolated import/source verification.",
+  "imported_modules": {
+    "tests_python": "tests_python/__init__.py",
+    "frontend_api": "frontend_api/__init__.py",
+    "zzz_ops": "zzz_ops/__init__.py",
+    "zzz_ops.abi": "zzz_ops/abi.py",
+    "zzz_ops.errors": "zzz_ops/errors.py",
+    "zzz_ops.work_budget": "zzz_ops/work_budget.py",
+    "zzz_ops.rpc": "zzz_ops/rpc.py",
+    "zzz_ops.state": "zzz_ops/state.py",
+    "zzz_ops.log_provenance": "zzz_ops/log_provenance.py",
+    "frontend_api.history": "frontend_api/history.py",
+    "frontend_api.lifecycle": "frontend_api/lifecycle.py",
+    "zzz_ops.position": "zzz_ops/position.py",
+    "frontend_api.service": "frontend_api/service.py",
+    "frontend_api.transaction_gas": "frontend_api/transaction_gas.py",
+    "frontend_api.activation_config": "frontend_api/activation_config.py",
+    "frontend_api.activation_trace": "frontend_api/activation_trace.py",
+    "zzz_ops.tick_math": "zzz_ops/tick_math.py",
+    "frontend_api.activation_v4": "frontend_api/activation_v4.py",
+    "frontend_api.liquidity_context": "frontend_api/liquidity_context.py",
+    "frontend_api.activation": "frontend_api/activation.py",
+    "frontend_api.transactions": "frontend_api/transactions.py",
+    "frontend_api.earnings_replay": "frontend_api/earnings_replay.py",
+    "frontend_api.earnings_checkpoint": "frontend_api/earnings_checkpoint.py",
+    "keeper": "keeper/__init__.py",
+    "zzz_ops.ethereum_fees": "zzz_ops/ethereum_fees.py",
+    "zzz_ops.range_policy": "zzz_ops/range_policy.py",
+    "keeper.royalties": "keeper/royalties.py",
+    "keeper.watchdog": "keeper/watchdog.py",
+    "keeper.principal": "keeper/principal.py",
+    "keeper.rebalance_confirmation": "keeper/rebalance_confirmation.py",
+    "keeper.health": "keeper/health.py",
+    "keeper.monitor": "keeper/monitor.py",
+    "keeper.operation_review": "keeper/operation_review.py",
+    "frontend_api.portfolio_v5": "frontend_api/portfolio_v5.py",
+    "zzz_ops.production_v2": "zzz_ops/production_v2.py",
+    "zzz_ops.production_v4": "zzz_ops/production_v4.py",
+    "keeper.compound_policy": "keeper/compound_policy.py",
+    "frontend_api.admission": "frontend_api/admission.py",
+    "frontend_api.http_runtime": "frontend_api/http_runtime.py",
+    "frontend_api.server": "frontend_api/server.py",
+    "tests_python.test_frontend_api": "tests_python/test_frontend_api.py",
+    "tests_python.test_frontend_transactions": "tests_python/test_frontend_transactions.py",
+    "zzz_ops.production_observer": "zzz_ops/production_observer.py",
+    "tests_python.test_keeper": "tests_python/test_keeper.py",
+    "tests_python.test_keeper_native": "tests_python/test_keeper_native.py",
+    "tests_python.test_production_v2": "tests_python/test_production_v2.py",
+    "tests_python.fee_intake_fixtures": "tests_python/fee_intake_fixtures.py",
+    "tests_python.test_production_observer": "tests_python/test_production_observer.py",
+    "tests_python.test_local_position_services": "tests_python/test_local_position_services.py",
+    "indexer": "indexer/__init__.py",
+    "indexer.events": "indexer/events.py",
+    "indexer.monitor": "indexer/monitor.py",
+    "tests_python.test_frontend_history": "tests_python/test_frontend_history.py",
+    "frontend_api.lineage": "frontend_api/lineage.py",
+    "tests_python.test_frontend_lineage": "tests_python/test_frontend_lineage.py",
+    "tests_python.test_royalty_reporting": "tests_python/test_royalty_reporting.py",
+    "frontend_api.earnings_prices": "frontend_api/earnings_prices.py",
+    "zzz_ops.price_policy": "zzz_ops/price_policy.py",
+    "tests_python.test_frontend_activation": "tests_python/test_frontend_activation.py",
+    "tests_python.test_native_backend_boundary": "tests_python/test_native_backend_boundary.py",
+    "tests_python.test_typed_v4_activation": "tests_python/test_typed_v4_activation.py",
+    "tests_python.test_dual_price_integration": "tests_python/test_dual_price_integration.py",
+    "tests_python.test_current_activation_profile": "tests_python/test_current_activation_profile.py",
+    "tests_python.test_holder_exit_profile": "tests_python/test_holder_exit_profile.py",
+    "keeper.ops": "keeper/ops.py",
+    "tests_python.test_keeper_outside_schedule": "tests_python/test_keeper_outside_schedule.py",
+    "tests_python.test_keeper_rebalance_confirmation": "tests_python/test_keeper_rebalance_confirmation.py",
+    "tests_python.test_keeper_compound_range_policy": "tests_python/test_keeper_compound_range_policy.py",
+    "tests_python.test_keeper_operation_review": "tests_python/test_keeper_operation_review.py",
+    "zzz_ops.rebalance_confirmation": "zzz_ops/rebalance_confirmation.py",
+    "tests_python.test_keeper_portfolio_policy": "tests_python/test_keeper_portfolio_policy.py",
+    "tests_python.test_frontend_portfolio_v5": "tests_python/test_frontend_portfolio_v5.py",
+    "tests_python.test_portfolio_price_outage": "tests_python/test_portfolio_price_outage.py",
+    "frontend_api.portfolio_v6": "frontend_api/portfolio_v6.py",
+    "tests_python.test_liquidity_context_policy2": "tests_python/test_liquidity_context_policy2.py",
+    "tests_python.test_lp_execution_profile": "tests_python/test_lp_execution_profile.py",
+    "tests_python.test_portfolio_activation_bindings": "tests_python/test_portfolio_activation_bindings.py",
+    "zzz_ops.protocol_policy": "zzz_ops/protocol_policy.py",
+    "tests_python.test_protocol_policy_v6": "tests_python/test_protocol_policy_v6.py",
+    "tests_python.test_frontend_policy_v6": "tests_python/test_frontend_policy_v6.py",
+    "tests_python.test_keeper_policy_v6": "tests_python/test_keeper_policy_v6.py",
+    "tests_python.test_exact_lp_profile7": "tests_python/test_exact_lp_profile7.py",
+    "tests_python.test_seadrop_consumer": "tests_python/test_seadrop_consumer.py",
+    "tests_python.v10_website_fixture": "tests_python/v10_website_fixture.py",
+    "frontend_api.earnings_checkpoint_build": "frontend_api/earnings_checkpoint_build.py",
+    "zzz_ops.exact_lp": "zzz_ops/exact_lp.py",
+    "frontend_api.earnings_exact_lp": "frontend_api/earnings_exact_lp.py",
+    "frontend_api.earnings_checkpoint_v2": "frontend_api/earnings_checkpoint_v2.py",
+    "tests_python.test_earnings": "tests_python/test_earnings.py",
+    "tests_python.test_earnings_checkpoints": "tests_python/test_earnings_checkpoints.py",
+    "tests_python.test_exact_lp_source_wire": "tests_python/test_exact_lp_source_wire.py",
+    "tests_python.test_earnings_checkpoint_v2": "tests_python/test_earnings_checkpoint_v2.py",
+    "tests_python.export_v10_website_fixtures": "tests_python/export_v10_website_fixtures.py",
+    "tests_python.test_v10_website_fixtures": "tests_python/test_v10_website_fixtures.py"
+  },
+  "added_dynamic_source_pins": {
+    "indexer/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "scripts/observe-production-config.py": "aa599f6a5913c67ea2a5dc930186055042e10a9b5d2b22675602e21dfebb4b30",
+    "zzz_ops/factory_code_v2.py": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df",
+    "zzz_ops/factory_code_v3.py": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+    "zzz_ops/opensea_drop.py": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+    "zzz_ops/production_observer_v10.py": "40b34711155a1746e0a2703961628204d2b7a3a6b58b4151ae5422866711c72c",
+    "zzz_ops/production_observer_v11.py": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b",
+    "zzz_ops/production_observer_v12.py": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5",
+    "zzz_ops/production_observer_v13.py": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10",
+    "zzz_ops/production_observer_v14.py": "5dceb961ed49f353f86b8739a0084af26d24d1fffbbc633a3bed4b8b0eab8de5",
+    "zzz_ops/production_observer_v15.py": "481b94680e2f52a1f51c5e10f2d27d015c1c194a14d01ddb530583610a66c592",
+    "zzz_ops/production_observer_v4.py": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf",
+    "zzz_ops/production_observer_v5.py": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc",
+    "zzz_ops/production_observer_v6.py": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623",
+    "zzz_ops/production_observer_v7.py": "0f485bac1b84944596fece409cbf3ce6416c43bcde29db7711b7e9856807137c",
+    "zzz_ops/production_observer_v8.py": "10352865326afc0ed08de5830dd923b1dc9df7caab296cba99ae885669f7c784",
+    "zzz_ops/production_observer_v9.py": "b23475cd26139801c6bd633e91e3a683fe588e17429f1b47931736ec3c1832b4",
+    "zzz_ops/production_v10.py": "82894984f291864973c358e9dd08374910261f3f0cc641b0c73d2d69256b45b8",
+    "zzz_ops/production_v11.py": "4d0df8fe0dfd623b1dd5fac540e33552c4dce4d529991db51676f610abc16473",
+    "zzz_ops/production_v12.py": "344f93fd0cf34f7bc70a0d387ec81d10c6b2ee266e805b797dd00c693cba400b",
+    "zzz_ops/production_v13.py": "cf4d0e76c7583cebab8234f46c722dde4d4e25fa43d49afde2f8add65cdd7b2f",
+    "zzz_ops/production_v14.py": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+    "zzz_ops/production_v15.py": "6f5068e82f1076fbded153daa7ea87067ca5ce9fde8d6a38e57029c48a8f2915",
+    "zzz_ops/production_v5.py": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153",
+    "zzz_ops/production_v7.py": "044926fd357e631b0500a57ffa4111cefddc15b31e23d18d1c5bbadbce2abe01",
+    "zzz_ops/production_v8.py": "345bb808c88d6bfd187ffd1ab00859c04ef6430fa0e36cf23a699414523f53c3",
+    "zzz_ops/production_v9.py": "e9ff075f489a0d4c0ea1d9061aa52f333fd6cc9e75d191f3caa2fd0c9bee9fa1"
+  },
+  "changed_source_pins": {
+    "tests_python/export_v10_website_fixtures.py": {
+      "earlier_workspace": "0e433fe8566edbbbd6a67c052181ffc4cf8fbef9813515f30416df5db20a3b66",
+      "clean_published": "7507aa246640c86776be50952d25ce98520b3225a3ff6e9a5030dacd03aa224e"
+    },
+    "tests_python/test_frontend_history.py": {
+      "earlier_workspace": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "clean_published": "fc9028d56b41cbc03ea9161c19d775cc1edf1f831bf06dcd571e97ab42db6e20"
+    },
+    "tests_python/test_v10_website_fixtures.py": {
+      "earlier_workspace": "900991b9e5bc4ab319c13d20adeef5b8933c38e873ee687a7268e336c5bb5cb8",
+      "clean_published": "5f571d33270abef10378d25e02dd3aede642659aae214e696b7af397a12acb10"
+    }
+  },
+  "materialization": {
+    "path": "published-materialization4.json",
+    "sha256": "67f4a6ce506532de9d5f132a59fb770393808f8b39870e78c49120f8392a27cd",
+    "files": 204
+  },
+  "protected_clean_vs_workspace": {
+    "reports/source-checks.json": {
+      "clean": "d71258feda610a7002cf859babe32598addcc2980c8f84d616e0f0ccd87b27f6",
+      "workspace": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "source_pinned": false
+    },
+    "scripts/run-fork-checks.py": {
+      "clean": "2c4ab7d711e6a43849b42ecb2e94cf773f983d1f70fb1e4248a6d2e5ba6e022f",
+      "workspace": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "source_pinned": false
+    },
+    "tests_python/test_fork_runner.py": {
+      "clean": "2975c438c3d22a82bd6b4b5931923d582031504a0817e1445a352fb5d65d62f9",
+      "workspace": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "source_pinned": false
+    },
+    "tests_python/test_frontend_history.py": {
+      "clean": "fc9028d56b41cbc03ea9161c19d775cc1edf1f831bf06dcd571e97ab42db6e20",
+      "workspace": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "source_pinned": true
+    }
+  },
+  "imported_protected_helpers": "HistoryRPC/h/topic ASTs match HEAD exactly; dirty frontend_history adds only two unselected tests. Other3protectedfiles are outside the import/source closure.",
+  "producer_source_sha256": {
+    "tests_python/export_v10_website_fixtures.py": "7507aa246640c86776be50952d25ce98520b3225a3ff6e9a5030dacd03aa224e",
+    "tests_python/v10_website_fixture.py": "c827306bdcac3b0b4528da4e33203f2843c92f14c3906b2f4adad9c5612a078b",
+    "tests_python/test_v10_website_fixtures.py": "5f571d33270abef10378d25e02dd3aede642659aae214e696b7af397a12acb10"
+  },
+  "fixture": {
+    "path": "v10-website-api-published.json",
+    "sha256": "6430930e8d4852d26a73f6d0dafbfcba7619ad5f011506d2f1860d43341d78cf",
+    "bytes": 7078109,
+    "cases": 17,
+    "python_source_pins": 137,
+    "solidity_source_pins": 59,
+    "data_pins": {
+      "indexer/event_schema.json": "f78ecef98d1ad6720bfa80a79cc3b13e13c846e381c61cf935eda64113c7178b"
+    }
+  },
+  "conclusion": "Pass on exact tracked baseline plus only three new files; no behavioral dependency on the four protected dirty files.",
+  "limits": "Synthetic offline API/parser evidence only. No HTTP listener, EVM, chain, actual provider/market/wallet qualification or environment change."
+}

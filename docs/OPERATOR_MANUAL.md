@@ -1,5 +1,16 @@
 # PoPL operator manual
 
+The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 Management procedures for the **undeployed candidate; production NOT APPROVED**.
 The [sole Todo](../TODO.md) owns remaining work; the [release approval record](RELEASE_CHECKLIST.md)
 records one frozen release. A procedure, local pass or GitHub publication does
@@ -179,7 +190,7 @@ consumer, activation configuration `schema:2` adds
 hash and gas-price ceiling. Example engineering limits are `"16000000"` gas and
 `"1000000000000000000"` wei total fee, not production recommendations.
 
-Pin the resulting activation configuration hash in a matching source9 manifest,
+Pin the resulting activation configuration hash in a matching source9/V9 or source10/V10 manifest,
 set `activation_policy_schema:2` and an equal/lower reviewed `limits.gas`. Both
 simulations, the final estimate and independent consumer checks use the same
 confirmed-block cap and require full20% headroom. Claim policy1 still caps12M.

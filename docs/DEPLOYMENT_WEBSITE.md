@@ -1,5 +1,16 @@
 # Reviewed website API profile
 
+The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 **Mint-profile boundary:** backend source implements explicit opt-in
 `mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
 Omitted/default1 on accounting7 retains V9; source9/schema16 website configuration
@@ -17,12 +28,13 @@ unavailable, and the shared signer remains Anvil-only.
 
 | Profile | Scope |
 | --- | --- |
+| Local schema5/source10/accounting7/mint2/V10 | [Explicit33-pin mint2 read/unsigned consumer](SOURCE10_WEBSITE_PROFILE.md), actual rollout unqualified; unsigned even on Anvil |
 | Historical schema 1 | Wrapped-asset/single-feed local deployments, original 1% contribution policy and original journals |
 | Historical schema2/native2 | Accounting2, dual pricing2, routing2 and review-policy1; see [preserved native2 manifest](NATIVE_WEBSITE_PROFILE.md) |
 | Served schema3/accounting3/localV4 | [Explicit current3 reader/unsigned-review profile](CURRENT_WEBSITE_PROFILE.md), served separately through poplint; actual reviewed contracts/API/providers remain unconfigured/unqualified |
 | Historical source8/accounting6/custody5/portfolio2/canonicalV8 draft | Separate unserved source profile; its runtimes, reader and journals remain explicit, never relabelled as7 |
 | Prior source9/accounting7/LP-allocation1/custody5/portfolio2/canonicalV9 contracts | Backend read/unsigned adapters authenticate both physical legs, exact LP rights and full helper/core graph, including Rewards' fixed canonical child. The separate local [schema4/source9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements reads/unsigned reviews; actual matching deployment/service/site qualification remains open. Never relabel schema3, source8 or old journals |
-| Fresh schema17/mint2/helper1/accounting7/canonicalV10 contract source | Backend read/owned-claim support is implemented with explicit mint_integration_version2 and pinned SeaDrop/helper bindings. Direct mint drafts reject with UseOpenSea. No matching website manifest, running service or signer is adopted by this source change; actual configuration/hosting/marketplace acceptance remains open. |
+| Fresh schema17/mint2/helper1/accounting7/canonicalV10 contract source | Backend read/owned-claim support is implemented with explicit mint_integration_version2 and pinned SeaDrop/helper bindings. Direct mint drafts reject with UseOpenSea. The local [source10/schema5 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented; no running service or signer is adopted by source publication; actual configuration/hosting/marketplace acceptance remains open. |
 
 The legacy configuration and local-wallet procedures below retain their own
 profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;

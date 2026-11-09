@@ -1,5 +1,16 @@
 # Release approval record - NOT APPROVED
 
+The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 The [current source double-check](../reports/today-change-review-20261109/REVIEW.md)
 closes two offline inventory consistency defects. It grants no release approval.
 Before sealing, record acceptance of the same-SeaDrop V10 boundary or complete
@@ -23,7 +34,7 @@ limits remain unchanged; see the [source-scoped verification](../reports/opensea
 Backend read/claim and lineage support is implemented with explicit mint2/V10
 pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
 Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
-website/installed-consumer and operating/independent acceptance remain open.
+website rollout/installed-consumer and operating/independent acceptance remain open.
 Earlier V9/schema16 evidence below retains its original scope; it does
 not verify the mint extension or upgrade a served site/runtime.
 
@@ -126,7 +137,7 @@ does not verify these new contracts. No service/site/deployment is upgraded.
 | Financial limits | Default3% contribution/1% conversion/3% maintenance, governance ceilings10%, gas separate. Additional1% loss after known directional fees remains separate. Paused governance emergency may explicitly bypass financial checks and lose near-total principal. |
 | Code size | Fresh normal runtime/initcode gates at exact source and unchanged compiler settings. Local object sizes do not qualify exact deployment bindings, target gas or future edits; check exact margins in the current normal compiler record; royalty factory/constructor changes require fresh runtime and initcode checks, not fixture limits or historical headroom. |
 | Actual dependencies | Independent feeds/routes/VRF, token/core/periphery authenticity, RPC reliability and market depth remain unqualified. Old fork receipts do not qualify new portfolio behavior. |
-| Services/site | Schema17/mint2/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with20 callable helpers plus2 inert Factory data children, reporting5 and canonicalV10 require matching source/service/health/website acceptance. The local source9/schema4 consumer is implemented; actual runtime/Entry3 trace/provider/site acceptance remains open. Popldemo unchanged; served poplint current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
+| Services/site | Schema17/mint2/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with20 callable helpers plus2 inert Factory data children, reporting5 and canonicalV10 require matching source/service/health/website acceptance. Local source9/schema4/V9 and source10/schema5/mint2/V10 consumers are implemented; actual mint2 runtime/Entry3 trace/provider/site acceptance remains open. Popldemo unchanged; served poplint current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
 The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)

@@ -1,0 +1,103 @@
+{
+  "baseline": "0236210e357d1c1dfaacedd54aa6d9b1205267ee",
+  "commit": "2c6f0c822b909a8d44c457c2fd24d3f546745ba8",
+  "paths": {
+    "AGENTS.md": {
+      "bytes": 12794,
+      "sha256": "7f2cf90b5098c51fa352c28680e22e28bd3fb06c8e459a1490e5edec44eab403"
+    },
+    "DEPLOYMENT_API.md": {
+      "bytes": 12016,
+      "sha256": "e0390022a7b5ad93bf97da82fa75e96ea8457ee90b272644f15b76f80c234520"
+    },
+    "PROJECT_CONTEXT.md": {
+      "bytes": 11477,
+      "sha256": "686ee6754b18ddd691d0c4e934f26b5dc2bdacac6db6b8f23ac9d765cede2f4f"
+    },
+    "README.md": {
+      "bytes": 29619,
+      "sha256": "9a5cfcf5d0c8240d9448a4774074f3601f7a0d012a63f4149d6e4f4600c25fba"
+    },
+    "SITE_ENVIRONMENTS.md": {
+      "bytes": 5710,
+      "sha256": "1ee1aba62ffb987b51958205c6650decac8ee58089f4d0ab79ac2d358ae9e4ca"
+    },
+    "build-integration.mjs": {
+      "bytes": 6328,
+      "sha256": "47df577df4cfe5eb535fc7d00cd8071d6e22ed53f746ca354e28b9f1d98991c0"
+    },
+    "deployment-api.js": {
+      "bytes": 48563,
+      "sha256": "3f905bf36c1a37128a73d22ccd1ca4918cb44f58fc2ec59913fa09c8542ea0c0"
+    },
+    "deployment-source10.js": {
+      "bytes": 17483,
+      "sha256": "64e6ab78491b6dc7ceec0341a81a270d29fabdbe973377c55f7ed49525d320b3"
+    },
+    "deployment-source9-prepare.js": {
+      "bytes": 24486,
+      "sha256": "6405b37dd198c25e02b935422aa562e76179850aca0ac33c325c9d4d56047760"
+    },
+    "deployment-view.js": {
+      "bytes": 48872,
+      "sha256": "b2b70d124cb918d80327c363cf4eb8af0025631f5fb1a35322bafda48d1acc13"
+    },
+    "integration-app.js": {
+      "bytes": 4506,
+      "sha256": "6eae5326427b56f9495476d9b2e53160955b28b3ec64a176fd919cd0148d6f68"
+    },
+    "integration.html": {
+      "bytes": 8432,
+      "sha256": "6902589adba213866dab3aed6734bc21e78261b8a2ae1e808d7e9293ae9ef8e3"
+    },
+    "package.json": {
+      "bytes": 2299,
+      "sha256": "ca6c27ce074550e2021d2d804e09cc0e4a5a05173927a091c06a18d4da7a1c06"
+    },
+    "tests/fixtures/source10-api.json": {
+      "bytes": 4532001,
+      "sha256": "4b59be5ccd330694912443e99ad4c081c54a9754bd66661eac2c20ca423abbc2"
+    },
+    "tests/helpers/source10-api-fixture.mjs": {
+      "bytes": 7368,
+      "sha256": "e2b1911001391890926ceaba28e455fad5ae7551d33a12866376445067ad5e92"
+    },
+    "tests/helpers/source10-profile-fixture.mjs": {
+      "bytes": 9712,
+      "sha256": "3ffddc8b9255e88d6328d15f4b2b50b9041e8ea4ad2500450f49511367704374"
+    },
+    "tests/integration-site.test.mjs": {
+      "bytes": 6659,
+      "sha256": "c1c8df4125d1b751b881e7676c4584a5bc7f7c65ec6e0e595ab4a8c9471c0142"
+    },
+    "tests/source10-api.test.mjs": {
+      "bytes": 6726,
+      "sha256": "4b430a6d42c9a7b7bd82ab23031b5a0efe482fcc794605adbac0d606398a7a29"
+    },
+    "tests/source10-integration.test.mjs": {
+      "bytes": 5199,
+      "sha256": "b9b7c836a96cb0bb70e168a11debbfda89044152f45d7279a05f12bb612b2b4c"
+    },
+    "tests/source10-prepare.test.mjs": {
+      "bytes": 17578,
+      "sha256": "8282d9e28c2a3225ed7cf5d3d47f244fe064cc6c57b305d172cd9fccb6514b30"
+    },
+    "tests/source10-profile.test.mjs": {
+      "bytes": 12865,
+      "sha256": "394106ac9c765ba61f64f88f39f00d034624e3427604e3707e67f60e367ebf93"
+    },
+    "tests/source9-api.test.mjs": {
+      "bytes": 5544,
+      "sha256": "13cce4f5481418634893329a4f185f61e705e497bf217594fd8750d0bc6ce305"
+    },
+    "tests/source9-prepare.test.mjs": {
+      "bytes": 25111,
+      "sha256": "beec1fe9e08a1c4a3eb68f11b0a0581e35b6c23e231678770daca5e180317c11"
+    }
+  },
+  "staged_exact": true,
+  "static_js_relative_import_closure": true,
+  "only_postcheck_change": "Removed one empty EOF line in synthetic profile fixture",
+  "implementation_commit": "b9a1288b9dd26e24fbbfb912fa1e849cac015fcd",
+  "post_verification_test_change": "Correct currency label; explicitly assert ETH and USDC; targeted test passed"
+}

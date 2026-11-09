@@ -1,5 +1,16 @@
 # PoPL current project context
 
+The local [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 Current total contribution default is300bps (3%):97% actually deployed LP,
 gas separate. User selected TOTAL activation/growth only; no swap/spot/retained-
 value, conversion1%, maintenance3%, additional1% or source-agreement3% guard is
@@ -35,7 +46,7 @@ journals and paused heartbeat retain their exact old profiles. Backend
 read/claim and lineage support is implemented through explicit
 `mint_integration_version:2`, pinned helper/SeaDrop roles and V10 authentication;
 direct mint preparation returns Use OpenSea. Omission retains mint1/V9.
-Matching website/installed consumers, actual OpenSea onboarding/fees/payers/VRF/
+Matching installed consumers/rollout, actual OpenSea onboarding/fees/payers/VRF/
 gas/operation and independent approval remain open. Source publication is not deployment.
 Inventory mint phase must match pinned block time; disabled mint-family counts
 are exact integer zero. V10 peers retain the same SeaDrop address/runtime;

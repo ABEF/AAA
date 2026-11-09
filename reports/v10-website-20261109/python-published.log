@@ -1,0 +1,21 @@
+test_all_four_current_entry_drafts_capture300_and_exact_native_value (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_all_four_current_entry_drafts_capture300_and_exact_native_value) ... ok
+test_browser_only_immutable_proofs_use_actual_selectors_and_exclusive_output (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_browser_only_immutable_proofs_use_actual_selectors_and_exclusive_output) ... ok
+test_explicit_profile_and_real_handler_requests_are_source_bound (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_explicit_profile_and_real_handler_requests_are_source_bound) ... ok
+test_funded_original_currency_claims_and_planner_preserve_owner (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_funded_original_currency_claims_and_planner_preserve_owner) ... ok
+test_history_inventory_and_checkpoint_use_real_replay_not_retagged_seed (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_history_inventory_and_checkpoint_use_real_replay_not_retagged_seed) ... ok
+test_unavailable_terminal_and_dormant_cases_keep_distinct_meanings (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_unavailable_terminal_and_dormant_cases_keep_distinct_meanings) ... ok
+test_zzz_approval_is_exact_and_requires_fresh_preparation (tests_python.test_v10_website_fixtures.V10WebsiteExportTests.test_zzz_approval_is_exact_and_requires_fresh_preparation) ... ok
+test_current7_funded_second_epoch_cannot_be_omitted (tests_python.test_v10_website_fixtures.V10WebsiteNegativeTests.test_current7_funded_second_epoch_cannot_be_omitted) ... ok
+test_v9_schema_and_lower_current_loss_do_not_create_an_accepted_draft (tests_python.test_v10_website_fixtures.V10WebsiteNegativeTests.test_v9_schema_and_lower_current_loss_do_not_create_an_accepted_draft) ... ok
+test_claim_headers_match_exact_hash_number_timestamp_and_gas_limit (tests_python.test_v10_website_fixtures.V10WebsiteRoundtripCompatibilityTests.test_claim_headers_match_exact_hash_number_timestamp_and_gas_limit) ... ok
+test_contribution_requests_match_shared_website_100bps_review (tests_python.test_v10_website_fixtures.V10WebsiteRoundtripCompatibilityTests.test_contribution_requests_match_shared_website_100bps_review) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 33.062s
+
+OK
+Traceback (most recent call last):
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\v10-website-20261109-9594df8\backend\verify-published-python.py", line 37, in <module>
+    pin_differences={name:dict(workspace=previous['source_sha256'][name],published=digest)
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'indexer/__init__.py'

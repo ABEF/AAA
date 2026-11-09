@@ -1,5 +1,16 @@
 # Demo and contract-integration websites
 
+The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 **Mint-profile boundary:** reader/service versions named in this guide retain
 their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
 adds original-recipient mint books and needs matching reviewed consumers
@@ -14,11 +25,11 @@ explicitly; a hostname change does not change a contract deployment profile.
 | Boundary | Demo | Current-contract integration |
 | --- | --- | --- |
 | Public URL | https://www.popldemo.0xwave.com/ (existing apex alias retained) | https://www.poplint.0xwave.com/ with `poplint.0xwave.com` alias |
-| Purpose | Existing product demonstration and simulated financial actions | Accounting3 reads and unsigned activation/growth/claim reviews |
+| Purpose | Existing product demonstration and simulated financial actions | Served current3; local source9/V9 and source10/V10 reads/unsigned reviews |
 | Server root | `/var/www/aaa-website/current` | `/var/www/popl-integration/current` |
 | Release history | `/var/www/aaa-website/releases/` | `/var/www/popl-integration/releases/` |
 | Build command | Existing `node build.mjs`; do not run it against a preserved local dist overlay | Separate `node build-integration.mjs`; isolated `dist-poplint/` output |
-| Contracts and data | Clearly labeled examples; public `DEPLOYMENT = null` | Reviewed current3 manifest/API required; missing configuration is **unconfigured**, never sample holdings or guessed zero |
+| Contracts and data | Clearly labeled examples; public `DEPLOYMENT = null` | Exact reviewed current3, source9/V9 or source10/V10 manifest/API required; missing configuration is **unconfigured**, never sample holdings or guessed zero |
 | Wallet authority | Existing local Anvil profile remains separate | Public read/unsigned review only; no public signing or transaction submission |
 
 DNS records point the two integration hostnames to `46.225.185.212`. Their Nginx
@@ -48,7 +59,7 @@ The default contribution budget is 3% (97% marginal deployed LP), conversion 1%
 and maintenance 3%, with governed ceilings and stronger reviewed caller/venue
 minima. Use actual confirmed values and keep missing pricing/history unavailable.
 The OpenSea-compatible mint2 source is implemented, while custom-drop onboarding,
-payment/provider qualification and matching website adoption remain open. Poplint
+payment/provider qualification and matching website rollout remain open. Poplint
 must not imply that a production mint or real-fund wallet flow is enabled.
 
 The integration entry fails closed when the reviewed manifest is absent or

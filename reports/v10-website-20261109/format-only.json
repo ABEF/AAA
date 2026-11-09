@@ -1,0 +1,6 @@
+{
+  "file": "tests/helpers/source10-profile-fixture.mjs",
+  "old_sha256": "bd01d385ac3ef377ec6a0684814e236c0167d4ee82ea3911fdfae2199dc944ec",
+  "new_sha256": "3ffddc8b9255e88d6328d15f4b2b50b9041e8ea4ad2500450f49511367704374",
+  "non_whitespace_bytes_equal": true
+}

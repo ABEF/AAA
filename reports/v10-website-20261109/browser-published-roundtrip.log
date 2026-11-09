@@ -1,0 +1,28 @@
+✔ current V10 handler payload composes with the browser: active_single (137.803ms)
+✔ current V10 handler payload composes with the browser: active_residual (84.5235ms)
+✔ current V10 handler payload composes with the browser: price_unavailable (63.8206ms)
+✔ current V10 handler payload composes with the browser: dormant (96.2708ms)
+✔ current V10 handler payload composes with the browser: principal_allocated (64.4439ms)
+✔ current V10 handler payload composes with the browser: principal_ready (66.3302ms)
+✔ current V10 handler payload composes with the browser: principal_paid (70.7881ms)
+✔ current DTOs preserve funded LP and three original royalty currencies without adding ZZZ to ETH (61.992ms)
+✔ actual current claim producer matches exact unsigned calldata and complete plan, policy1 (63.9447ms)
+✔ actual current claim producer matches exact unsigned calldata and complete plan, policy2 (62.5608ms)
+✔ actual current Entry3 producer composes with unsigned browser review: activation_eth (62.9032ms)
+✔ actual current Entry3 producer composes with unsigned browser review: activation_zzz (63.1177ms)
+✔ actual current Entry3 producer composes with unsigned browser review: growth_eth (63.8993ms)
+✔ actual current Entry3 producer composes with unsigned browser review: growth_zzz (62.8416ms)
+✔ actual current Entry3 producer composes with unsigned browser review: activation_zzz_approval (69.1356ms)
+✔ actual current Entry3 producer composes with unsigned browser review: growth_zzz_approval (67.5459ms)
+✔ current checkpoint2 history, wallet and collection totals match actual current raw replay (82.3715ms)
+✔ profile, mint channel and helper drift are rejected instead of hiding unavailable data (151.2227ms)
+✔ historical replay replies cannot be reused as current-block browser proofs (62.5539ms)
+✔ direct mint rejects before transport, consistent with the actual current mint2 producer (29.6405ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1677.0868

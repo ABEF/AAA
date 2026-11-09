@@ -95,8 +95,7 @@ one batch. Failed selected payouts revert atomically; LP-only claims remain a
 separate choice. Source helpers understand reporting5 and the fresh7 fixed-child
 graph. Mint2/schema17 pins20 callable helpers plus2 inert data children; prior
 source9/schema16 pins19 plus2. Local source9 read/unsigned integration exists for
-V9; matching V10 website adoption and actual service/site qualification remain
-open. The served current3 site is unchanged and public signing stays disabled.
+V9. The separate [source10/V10 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented locally; actual service/site qualification and rollout remain open. The served current3 site is unchanged and public signing stays disabled.
 
 See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claim router](CLAIM_ROUTER.md),
 [window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).

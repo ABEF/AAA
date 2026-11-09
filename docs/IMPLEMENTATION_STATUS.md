@@ -1,5 +1,16 @@
 # Feature and evidence reference
 
+The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
+website schema5/source10 over accounting7, with33 browser runtime pins and
+unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+retains its original profile and evidence. Direct mint preparation is disabled
+for mint2; OpenSea eligibility is unverified. Both public configurations stay
+null, source10 never constructs the unchanged shared signer (even on Anvil),
+and served current3 poplint/popldemo, services, journals and existing Anvil8902
+are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
+
+
 The [current double-check](../reports/today-change-review-20261109/REVIEW.md)
 adds exact phase/time and count-type preflight validation plus focused funded
 Entry trace regressions. This changes no Solidity, economics, service or site.
@@ -23,7 +34,7 @@ limits remain unchanged; see the [source-scoped verification](../reports/opensea
 Backend read/claim and lineage support is implemented with explicit mint2/V10
 pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
 Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
-website/installed-consumer and operating/independent acceptance remain open.
+website rollout/installed-consumer and operating/independent acceptance remain open.
 Earlier V9/schema16 evidence below retains its original scope; it does
 not verify the mint extension or upgrade a served site/runtime.
 
@@ -130,6 +141,12 @@ See [API](FRONTEND_API.md), [unsigned preparation](ACTIVATION_PREPARATION.md),
 Implementing source does not qualify a host, provider, maximum gas or operating latency.
 
 ## Frontend boundary
+
+The [source10 website consumer](SOURCE10_WEBSITE_PROFILE.md) adds explicit
+schema5/mint2/V10 support with33 runtime pins and current backend-to-browser
+read/unsigned review checks. It preserves source9/V9 and has no signing path.
+Actual configuration, providers, mint2 execution and operating rollout remain
+separate release requirements; [scoped evidence](../reports/v10-website-20261109/VERIFICATION.md).
 
 Popldemo remains simulation and the separately served current3 poplint is unchanged.
 The [fresh source9 website consumer](SOURCE9_WEBSITE_PROFILE.md) implements explicit

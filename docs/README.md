@@ -1,5 +1,11 @@
 # Documentation map
 
+[Current mint2 website consumer](SOURCE10_WEBSITE_PROFILE.md) documents explicit
+schema5/source10/V10 reads and unsigned reviews,33 browser pins, configuration
+and rollout boundaries. [Verification](../reports/v10-website-20261109/REVIEW.md)
+is synthetic current-handler/browser compatibility. Source9/V9 and all running
+sites/services retain their original profiles.
+
 [Current consistency record](../reports/documentation-consistency-20261109/REVIEW.md)
 reconciles current profiles, task descriptions and review exports while keeping
 historical evidence and running environments unchanged.
@@ -70,7 +76,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). The local [source9/V9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements accounting7/custody5 reads and unsigned Entry3 reviews. Matching mint2/V10 website adoption and actual service/site qualification remain open; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). The local [source9/V9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements accounting7/custody5 reads and unsigned Entry3 reviews. The separate [source10/schema5/mint2/V10 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented locally; actual service/site qualification and rollout remain open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 governed rehearsal](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
