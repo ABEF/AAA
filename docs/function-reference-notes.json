@@ -1882,7 +1882,7 @@
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
           },
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
         },
         "compoundPlan(uint256,uint256,uint256)": {
           "purpose": "Calculate balancing of compound amounts against the bucket’s existing physical LP ticks. Uses current qualified prices and actual directional fees; does not execute, collect or compound assets.",
@@ -1897,7 +1897,7 @@
             "1": "Raw input token units/wei; zero means no planned conversion.",
             "2": "Raw output token units/wei after conservative price/fee/slippage guards; not gas or USD value."
           },
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         "MAINTENANCE_POLICY_VERSION()": {
           "purpose": "Read threshold condition separated from hard execution cooldown.",
@@ -2287,7 +2287,7 @@
           }
         },
         "group(uint256)": {
-          "purpose": "Read the eight-word accounting4 shared Position: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
+          "purpose": "Read the eight-word shared Position used by current accounting7: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
@@ -2518,7 +2518,7 @@
           "notes": "Creates no LP, shares, fee eligibility or proceeds claim. DormantMinted value is Vault-received native value(0 for the SeaDrop branch), not paid buyer gross. Source-aware readers must reconcile upstream SeaDropMint price/fee telemetry; do not call this module branch manually."
         },
         "mintPrice()": {
-          "purpose": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+          "purpose": "Read the governed paid-mint gross native price from fixed ProtocolPolicy.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Positive current mint price in wei; default0.05ETH configurable. Gas separate."
@@ -2874,7 +2874,7 @@
           "purpose": "Read explicit capability for governed residual-only closure.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+            "0": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
           }
         },
         "closeSecondary(bytes32,uint256,uint256)": {
@@ -4768,7 +4768,7 @@
           "purpose": "Read explicit capability for governed residual-only closure.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+            "0": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
           }
         },
         "closeResidual((uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32))": {
@@ -6135,7 +6135,7 @@
           "notes": "Same preexisting terminal holder-exit checks extracted from Vault; ordering/error selectors and native/fixed-ZZZ requirement retained. No state or custody changes. Requires paused terminal LP exit, Active/Parked custody and nonzero bucket shares; no USD price read."
         },
         "mintPrice()": {
-          "purpose": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+          "purpose": "Read the governed paid-mint gross native price from fixed ProtocolPolicy.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Positive current mint price in wei; default0.05ETH configurable. Gas separate."
@@ -7854,7 +7854,7 @@
           "purpose": "Read explicit capability for governed residual-only closure.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+            "0": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
           }
         },
         "closeSecondary(bytes32,uint256,uint256)": {
@@ -7894,7 +7894,7 @@
         "access": "Deployment only; controller must have code. Recipient cannot be zero,controller or this helper.",
         "inputs": {
           "0": "Fixed AccessController; bind this helper once through Access before consumer deployment.",
-          "1": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
+          "1": "Initial mint-proceeds recipient: paid Mint2 sends net after the actual platform fee; the unbound direct fixture sends the full price. Defaults:paid gross0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
         }
       },
       "functions": {
@@ -8053,7 +8053,7 @@
           }
         },
         "mintFingerprint()": {
-          "purpose": "Read exact review commitment used by fresh direct mint.",
+          "purpose": "Read the core sale/VRF policy fingerprint shared by Mint2 and the unbound direct fixture.",
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "keccak256(abi.encode(this address,complete SalePolicy,vrfRevision,complete VrfPolicy)); binds proceeds and provider/settings generation,excludes cosmetic/gas/entry changes."

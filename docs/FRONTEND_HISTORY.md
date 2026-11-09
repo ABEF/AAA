@@ -1,10 +1,11 @@
 # Confirmed wallet inventory and lifetime claims
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
 `frontend_api/history.py` extends the unhosted
@@ -16,8 +17,11 @@ website's simulated actions.
 
 ## Current and historical scope
 
-Fresh reads explicitly use accounting7/LP-allocation1/ProtocolPolicy1/fee-intake1
-and same-chain canonicalV9. Accounting6/V8 and earlier admitted variants,
+Fresh reads use accounting7/LP-allocation1/ProtocolPolicy1/fee-intake1 and the
+explicitly selected mint profile: default1 uses same-chain canonicalV9; opt-in2
+requires canonicalV10 and its authenticated mint helper/runtime. Each lineage
+peer declares its own profile; permitted handoff peers must match the canonical
+schema and its bindings. Accounting6/V8 and earlier admitted variants,
 accounting5/4 withV5 and accounting3/V4 remain explicit historical profiles.
 Native ETH is admitted by both ledgers; historical accounting 1 retains its
 ERC20-only LP boundary. No profile or old journal is relabeled automatically.
@@ -205,11 +209,12 @@ unrelated metadata events, to at most 1,000,000. Exceeding it fails rather than
 truncating lifetime history. Fresh7 fixes LP currencies to native ETH and its
 one ZZZ; royalty4 supports at most65 admitted currencies, with1,000 NFTs. Older
 profiles retain their own33/32 LP and17/65 royalty bounds. Royalty admission
-does not make a currency a contribution or LP asset. This implementation replays history per request;
-production load/cold-backfill testing and a separately reviewed incremental
-checkpoint design is still needed for fresh7 as history grows. Checkpoint1 is
-explicit6-only; accounting7 rejects it rather than fabricating an exact-tree seed. No history cache or supplied
-aggregate is trusted as the authoritative answer.
+does not make a currency a contribution or LP asset. Ownership and lifetime-claim history still replay per request;
+production load/cold-backfill and archival qualification remain open. Explicit
+checkpoint2 accelerates accounting7 earnings endpoints only, not these inventory/
+claim-history paths. Checkpoint1 is6-only; accounting7 rejects it rather than
+fabricating an exact-tree seed. No history cache or supplied aggregate is trusted
+as the authoritative answer. See [checkpoint scope](EARNINGS_CHECKPOINTS.md).
 
 **Trust boundary:** a complete cursor and SQLite file are not a cryptographic
 proof that the RPC/indexer omitted no claim logs. Ownership receives additional

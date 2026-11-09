@@ -1,17 +1,20 @@
 # Confirmed earnings and current-price USD values
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
 This optional read-only backend reports processed collection and per-NFT
 earnings. It never harvests, synchronizes, converts, claims or signs. The current
-candidate uses accounting7/exact LP1/portfolio2, fee intake1 and compatible
-parked same-chain canonicalV9. Both physical LPs contribute to one funded allocation
-per bucket/asset, not duplicate income streams. Explicit historical6/V8 and older readers
+candidate uses accounting7/exact LP1/portfolio2 and fee intake1. Backend mint
+profile2 authenticates same-chain canonicalV10; omitted/default1 retains V9.
+The same-schema handoff and each predecessor's explicit profile remain required.
+Both physical LPs contribute to one funded allocation per bucket/asset, not
+duplicate income streams. Explicit historical6/V8 and older readers
 retain their original deployment scope. The public demo
 remains a simulation; current-profile service, website and provider
 qualification remain open. See the [financial-history task](../TODO.md#task-financial-history).
@@ -41,8 +44,9 @@ claim reserve. Claims and LP conversions mutate balances without new income.
 
 At each pinned epoch the replay reconciles `allocationTree`, `directLiabilities`,
 funded liabilities, orphaned money, selected `rewardBucket` and
-`claimableComponents`. V9 imports
-preserve pending whole units/phase/direct credits, not a flattened index.
+`claimableComponents`. The exact-LP raw record format introduced in V9 is retained
+inside V10: matching imports preserve pending whole units/phase/direct credits,
+not a flattened index. The formats do not make V9 and V10 peers interchangeable.
 Fresh7 may use explicit reviewed checkpoint2 plus a complete raw24-hour suffix;
 checkpoint1 remains rejected before restoring state. The exact raw trees, high/low
 phase, direct credits, immutable ordinals and royalty4 tickets are retained.

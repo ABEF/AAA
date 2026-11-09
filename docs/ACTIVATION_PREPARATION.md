@@ -30,13 +30,15 @@ no `contracts.v4_executor`, and source rows containing only
 than being ignored. Verify `ENTRY_ROUTING_VERSION()==3`, `REVIEW_POLICY_VERSION()==2`
 and Pricing `ENTRY_REVIEW_VERSION()==2` at the same pinned block. The unchanged
 read schema2/accounting7 and explicit activation policy1/2 carry this capability;
-production inventory is separately schema16 with19 callable helpers plus2 inert
-Factory data children. Historical routing2
+the original source9 inventory is schema16 with19 callable helpers plus2 inert
+Factory data children. The current mint2 release inventory is schema17 with20
+callable helpers plus2 data children; its parent read configuration explicitly
+selects `mint_integration_version:2` and the required SeaDrop/helper pins. Historical routing2
 configs retain their exact routed ABI and cannot prepare against fresh Entry3.
 The separate old website profiles are not upgraded by this backend change.
 
-Fresh read configuration explicitly selects accounting7/LP-allocation1/fee-intake1,
-canonicalV9 and the complete [portfolio graph](POSITION_V7.md), including Rewards'
+Original source9 read configuration selects accounting7/LP-allocation1/fee-intake1
+and canonicalV9; explicit mint2 selects V10. Both authenticate the complete [portfolio graph](POSITION_V7.md), including Rewards'
 fixed canonical companion. Unsigned activation selects Entry
 routing3/pricing2/review2, maintenance3/range1/LP-routing2/portfolio2/
 confirmation3/execution-quality1. Pin Policy, Confirmation, Budget, Balancer,
@@ -240,9 +242,10 @@ inherits authenticated Policy1 from Projection; an extra key is rejected. Both
 configurations pin the same `protocol_policy` address/code hash and every other
 shared role. `activation.contracts.migration` must equal the parent's
 `contracts.principal_exit`. The parent has8 base roles, `principal_exit`,
-`rewards_canonical` and14 portfolio/policy/dependency roles; its24 bindings are
-not interchangeable with the production inventory's17 modules/19 callable
-helpers plus2 inert data children. Authenticate Rewards.canonicalModule(),
+`rewards_canonical` and14 portfolio/policy/dependency roles; its24 bindings belong
+to the original source9 scope, not interchangeable with current production inventory's
+17 modules/20 callable helpers plus2 inert data children. Mint2 adds its own
+reviewed parent-read roles; do not relabel the original24-binding example. Authenticate Rewards.canonicalModule(),
 the child's access()/rewards() and coordinator moduleAt(3) at the same block.
 
 Native ETH has address zero, code hash null,18 decimals and its own two-source

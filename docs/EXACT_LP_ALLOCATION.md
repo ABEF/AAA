@@ -2,7 +2,7 @@
 
 The internal [Solidity engine](../src/libraries/ExactLPAllocation.sol) is wired
 into fresh [accounting7](POSITION_V7.md) Rewards, claims, same-NFT conversion and
-lossless canonicalV9. Current-owner rights, fixed80/10/5/5 and separate original-
+lossless canonical accounting(original V9 LP domain, current mint2 outerV10). Current-owner rights, fixed80/10/5/5 and separate original-
 currency rarity royalties are preserved. Historical6/V8 indices and checkpoints
 remain explicit; existing runtimes/journals are never reinterpreted or upgraded.
 See [integration evidence](../reports/exact-lp-integration-20261106/REVIEW.md).
@@ -90,7 +90,7 @@ ETH only to the SAME NFT/components, without another cohort allocation or income
 Principal, compound, buyback and royalty backing remain separate.
 
 Rewards owns funds/books. Its immutable constructor-created RewardsCanonical
-companion handles V9 capture/import/backing. The parent accepts only three closed
+companion handles the unchanged LP capture/import/backing domain inside current V10; original V9 evidence retains its scope. The parent accepts only three closed
 typed record domains from that child; there is no delegatecall, arbitrary storage
 writer, ordinary operator recipient or new custody-exit address. All weights seed
 before raw pending/high/low nodes. Exact per-book outstanding, direct liabilities,

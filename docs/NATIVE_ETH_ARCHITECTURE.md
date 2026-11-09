@@ -61,7 +61,7 @@ can later change both assets/values. It does not force a 40% residual allocation
 | Rebalance/move/resume | Guarded native ETH/ZZZ LP, same actual pair. Default 3% maintenance cap uses starting prices and includes released compound; stronger venue/caller and idle limits still apply. |
 | Reversible parking | Approved paused close of both legs into Vault idle, without USD prices or swaps. No external recipient. Fresh guarded same-pair deployment is required to resume. |
 | Collective holder return | Governance permanently stops LP; close each bucket, include pending compound, apportion exact actual ETH/ZZZ by shares and pay current owners. No conversion or USD-loss promise. Rejected payouts remain backed. |
-| Canonical replacement | Same-chain V9 carries ownership/accounting/backing only before LP exit starts. Both physical legs must be closed before parked export; complete funding and atomic retirement/activation or funded abort are required. |
+| Canonical replacement | Current same-chain V10 carries ownership/accounting/backing only before LP exit starts. Both physical legs must be closed before parked export; complete funding and atomic retirement/activation or funded abort are required. |
 
 WETH is unnecessary for native principal, harvesting, closing or holder payout.
 A separately reviewed v3/unwrap conversion route can still depend on a wrapper;

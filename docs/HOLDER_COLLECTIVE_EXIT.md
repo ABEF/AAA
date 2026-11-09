@@ -1,7 +1,7 @@
 # Collective LP exit to NFT holders
 
 Fresh source candidate: accounting **7**, custody **5**, exact-LP canonical
-**V9**. Production is **NOT APPROVED**. External principal and royalty custody
+**V10** for mint2. Original V9 deployments retain their own peer boundary. Production is **NOT APPROVED**. External principal and royalty custody
 exits are removed. Existing deployments are not upgraded or relabelled.
 
 ## Rights and authority

@@ -26296,7 +26296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "c64fa6cba0f54a478c2b06aefc2387e39f4769713d63b68d7e050d85267c5bd0",
+  "notes_sha256": "43cd1b8506e406354e0627d71f8131ef35a60ebf3391981be602fe32a51604b6",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -35584,7 +35584,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+              "explanation": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
             }
           ],
           "native_value": null,
@@ -37707,7 +37707,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+              "explanation": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
             }
           ],
           "native_value": null,
@@ -39418,7 +39418,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review."
+              "explanation": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
             }
           ],
           "native_value": null,
@@ -49970,7 +49970,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
+              "explanation": "Initial mint-proceeds recipient: paid Mint2 sends net after the actual platform fee; the unbound direct fixture sends the full price. Defaults:paid gross0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
             }
           ],
           "outputs": [],
@@ -50551,7 +50551,7 @@
           "kind": "function",
           "name": "mintFingerprint",
           "state_mutability": "view",
-          "purpose": "Read exact review commitment used by fresh direct mint.",
+          "purpose": "Read the core sale/VRF policy fingerprint shared by Mint2 and the unbound direct fixture.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -57710,7 +57710,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
         },
         {
           "signature": "executionQualityRevision()",
@@ -58427,7 +58427,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
+          "notes": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
         },
         {
           "signature": "target(bytes32)",
@@ -60075,7 +60075,7 @@
           "kind": "function",
           "name": "group",
           "state_mutability": "view",
-          "purpose": "Read the eight-word accounting4 shared Position: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
+          "purpose": "Read the eight-word shared Position used by current accounting7: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -60353,7 +60353,7 @@
           "kind": "function",
           "name": "mintPrice",
           "state_mutability": "view",
-          "purpose": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+          "purpose": "Read the governed paid-mint gross native price from fixed ProtocolPolicy.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -61393,7 +61393,7 @@
           "kind": "function",
           "name": "mintPrice",
           "state_mutability": "view",
-          "purpose": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+          "purpose": "Read the governed paid-mint gross native price from fixed ProtocolPolicy.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],

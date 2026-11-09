@@ -205,8 +205,9 @@ custody exit, request-ID domain or bridge provider is configured. No automatic
 fallback swaps or generic sweep exists. See [operator steps](HOLDER_COLLECTIVE_EXIT.md).
 
 Whole-collection handoff is available only before exit starts, with compatible
-same-chain7/V9 peers and exact classified funding. Historical6/V8 and older
-peers retain their own codecs and cannot join the V9 handoff by relabeling. Afterward it is permanently
+same-chain7/mint2/V10 peers and exact classified funding. V10 retains the
+source SeaDrop address/runtime across peers. Original V9, historical6/V8 and older
+peers retain their own codecs and cannot join V10 by relabeling. Afterward it is permanently
 blocked even when all principal has been paid, because the importer cannot carry
 terminal payout accounting or safely reopen LP. A future royalty-only successor
 requires separately reviewed schema/code. [Canonical procedure](CANONICAL_HANDOFF.md).

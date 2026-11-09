@@ -123,11 +123,16 @@ Fresh7 raw earnings replay and explicit exact-unit checkpoint2 are implemented;
 lifetime archival/workload/recovery qualification remains open. Old checkpoint1 is6-only. Source publication
 changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
+Frozen review exports default to instruction schema3; schema1/2 instructions and
+archives remain byte-identical and explicitly historical. This is separate from
+contract inventory17/mint2/V10 and does not qualify a release.
+[Review package](docs/FROZEN_REVIEW_BUNDLE.md).
+
 ## Current architecture and economics
 
 1,000 ERC721 NFTs; fixed600Commun/300Rare/100Legendary draw quotas. Native ETH and
 one fixed ZZZ for contributions/LP/buyback/holder return. Default activation100USD,
-growth5USD/direct mint0.05ETH; future minima/payout policy remain bounded and
+growth5USD/paid mint0.05ETH gross(team free); future minima/payout policy remain bounded and
 governed. Two independent USD sources per priced asset,3% agreement. Default
 contribution3%/LP conversion1%/maintenance3%, governed ceilings10%, gas separate;
 additional execution loss1% after known directional fees and default5% idle are
@@ -136,7 +141,7 @@ compound/ZZZ buyback-burn. Rarity affects royalties only, not LP shares.
 
 Accounting7/LP-allocation1/custody5/portfolio2/maintenance3/confirmation3/compound4/emergency2,
 LP-routing2/pricing2/Entry3/review2/direct governance2/fee-intake1. Position eight
-words. Fresh royalty4/recovery2/canonicalV9/schema16/reporting5;17modules/19 callable helpers plus2 inert Factory data children (code-storage2). Historical schema14 preserves pre-reinvestment code-storage2; schema13 preserves SSTORE Factory.
+words. Fresh royalty4/recovery2/canonicalV10/schema17/mint2/reporting5;17modules/20 callable helpers plus2 inert Factory data children (code-storage2). Original source9/schema16/V9 remains explicit. Historical schema14 preserves pre-reinvestment code-storage2; schema13 preserves SSTORE Factory.
 Old V7/V6/header/runtime/profile/journal/receipt boundaries remain explicit.
 
 One contribution pool at a time, <=4logical historical buckets. One main or

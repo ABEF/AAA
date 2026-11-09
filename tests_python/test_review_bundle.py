@@ -27,7 +27,7 @@ def inputs():
     }
 
 
-def build(files=None, gitlinks=None, excluded=None):
+def build(files=None, gitlinks=None, excluded=None, *, schema=None):
     files = inputs() if files is None else files
     records = []
     for name, raw in sorted(files.items()):
@@ -36,7 +36,7 @@ def build(files=None, gitlinks=None, excluded=None):
     if excluded is None:
         excluded = [{'path': row['path'], 'reason': 'gitlink_dependency_not_bundled'} for row in gitlinks or []]
     with patch.object(b, 'frozen_files', return_value=(TREE, records, gitlinks or [], files, excluded)):
-        return b.pack(Path('unused'), COMMIT)
+        return b.pack(Path('unused'), COMMIT) if schema is None else b.pack(Path('unused'), COMMIT, schema=schema)
 
 
 def rewrite(raw, mutate=None, member_change=None):

@@ -2199,7 +2199,7 @@ reviewed descriptors/worker profiles. Capacity cannot decrease or remove a token
 A review hash is not a gas proof. No public-chain expansion is qualified here.
 
 Use reporting5 and explicit keeper royalty_settlement_version4 (no royalty swaps).
-Old profiles/journals remain separate. CanonicalV9 requires initial allocation of
+Old profiles/journals remain separate. Current canonicalV10 requires initial allocation of
 every admitted currency complete before capture; sync each after opening first.
 Emergency LP/terminal return remains independent. No server restart/deployment is
 implied by a source/config edit; deploy reviewed matching services separately.

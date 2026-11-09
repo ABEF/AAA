@@ -1,0 +1,3 @@
+{
+  "note": "An intermediate prose update expected CRLF in the LF Python source and its assertion stopped before writing source/docs. The test whitespace normalization had completed. Retry detects each original file newline style; red/green verification logs remain separate. No historical renderer was altered."
+}

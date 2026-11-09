@@ -1,0 +1,33 @@
+{
+  "zzz_ops/review_bundle.py": {
+    "sha256": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+    "bytes": 32713,
+    "crlf": 0,
+    "bare_lf": 577
+  },
+  "tests_python/test_review_bundle_profiles.py": {
+    "sha256": "1ec91f1c42601be057fcf33118486f4ff9e76917a9a18e172f3b783ed64585fb",
+    "bytes": 4870,
+    "crlf": 98,
+    "bare_lf": 0
+  },
+  "tests_python/test_review_bundle.py": {
+    "sha256": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+    "bytes": 11122,
+    "crlf": 0,
+    "bare_lf": 223
+  },
+  "docs/FROZEN_REVIEW_BUNDLE.md": {
+    "sha256": "42ca9ce20bb3b40ad14427e2d1999b29ae3fa27fc4ad5b25ac8fe9ad41f86f30",
+    "bytes": 6868,
+    "crlf": 0,
+    "bare_lf": 107
+  },
+  "historical_identity": {
+    "schema1_archive": "331d306eb6e587a8dc6e0455618fe4f38f4ba37e53f8e46b37cbc9fa1b99975f",
+    "schema2_archive": "eee1ac2371714a90b50e5d9aa6bf6b9bb1164cb238395f3a6ef727a04bc11397",
+    "both_archives_byte_identical": true,
+    "both_handoffs_byte_identical": true,
+    "v1_function_ast_unchanged": true
+  }
+}

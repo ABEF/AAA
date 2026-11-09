@@ -44,7 +44,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed 2026-11-07. This records implemented source, not another task list.
+Reviewed 2026-11-09. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
@@ -71,7 +71,7 @@ Current capabilities and exact evidence are in the tables below and the
 [complete short call catalog](OPERATOR_MANUAL.md#operator-call-tables), with
 separate exact permission/output notes; it is documentation, not execution approval.
 
-Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-write share synchronization, one-time equal Membership synchronization, whole current-owner claims, same-NFT/component conversion and lossless raw-phase canonicalV9. Profile7/schema16/source9 consumers explicitly authenticate LP-allocation1 and the fixed RewardsCanonical companion. Historical6/V8 and checkpoint1 are not reinterpreted. [Evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md); target gas, actual rollout and checkpoint2 operating qualification remain separate work. Explicit checkpoint2 source support is described below.
+Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-write share synchronization, one-time equal Membership synchronization, whole current-owner claims, same-NFT/component conversion and lossless raw-phase accounting introduced under V9 and retained inside current V10. Original profile7/schema16/source9 consumers explicitly authenticate LP-allocation1 and the fixed RewardsCanonical companion. Historical6/V8 and checkpoint1 are not reinterpreted. [Evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md); target gas, actual rollout and checkpoint2 operating qualification remain separate work. Explicit checkpoint2 source support is described below.
 
 ## Smart contracts
 
@@ -87,7 +87,7 @@ Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-w
 | Enable/disable | Manual reviewed desired mode; enabling permits rather than forces a residual. Disabling retains both actual legs and NFT reward membership until a guarded single-position merge succeeds; no immediate deactivation or trade. | [Operator](OPERATOR_MANUAL.md) |
 | Ordinary eligibility | 85% actual centre-to-edge human ZZZ-price distance; physical and independent reference on the same side.600-second sampled window/maxgap300, source240-second checks, fresh60–300-second service jitter, initial hard12hours. Manual geometry changes are a distinct cooldown-gated exception. | [Confirmation](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer) |
 | Financial checks | Dual USD sources with3% agreement; captured default3% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
-| Exact-unit LP integration | Actual Rewards uses constant-work root credit, ten-level whole claims/views, both-book old-weight synchronization and raw pending/high/low V9. Current-owner claims and same-NFT conversion conserve every allocated unit. | [Rules/evidence](EXACT_LP_ALLOCATION.md) |
+| Exact-unit LP integration | Actual Rewards uses constant-work root credit, ten-level whole claims/views, both-book old-weight synchronization and raw pending/high/low LP records(original V9 domain, current V10 wrapper). Current-owner claims and same-NFT conversion conserve every allocated unit. | [Rules/evidence](EXACT_LP_ALLOCATION.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
 | Royalties | Settlement4 original-currency claims; ×1/×2/×3 weights with GCD-normalized exact-unit allocation and a saved rotating remainder cursor. Every allocated raw unit belongs to an NFT; no allocated rounding remainder remains after all eligible claims. Recovery2 assigns reviewed unallocated units at current active weights. Initial/prefund/zero-cohort and token-failure limits remain. No royalty converter; current owners inherit unpaid rights; ERC2981 requests5%, without universal payment enforcement. | [Exact allocation](EXACT_ROYALTY_ALLOCATION.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
@@ -100,6 +100,11 @@ Current [both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md) cha
 
 ## Backend and operations
 
+[Frozen review packages](FROZEN_REVIEW_BUNDLE.md) now use instruction schema3
+for current source guidance. Original1/2 instruction and ZIP bytes remain exact;
+26 focused archive/profile integrity methods pass. This versions review artifacts,
+not contract or operating profiles.
+
 Confirmed-read and preparation boundaries remain explicit. RPC endpoints are a
 validated immutable snapshot, budgeted convenience calls use the metered path,
 and strict new-work validation does not discard a valid pending recovery intent.
@@ -108,7 +113,7 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | --- | --- |
 | Confirmed reads | Fresh7 independently proves per-leg principal from captured sqrt/ticks/PosM L, containment, exact stable and L-sensitive fingerprints; no aggregate-only admission. Explicit accounting7 graph/runtime/version checks; both physical IDs/owners/keys/ticks/liquidity and aggregate principal authenticated at one confirmed block. Desired-disabled residuals remain included. Physical reads preserve owners/raw funded claims during price outages; valuations remain unavailable. No maintenance readiness inferred. Old profiles remain separate. |
 | Claim planning | Opt-in /v1/claims/plan accepts up to32 exact selections, simulates bounded subsets under existing12M/fee/work limits and returns only one freshly verified draft. Every unresolved entry remains explicit; no signing, queue or automatic skip. [Procedure](CLAIM_PLANNING.md). |
-| Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; source-bound schema16 and actual returned-runtime gates required. [Storage format](FACTORY_CODE_STORAGE.md). |
+| Factory deployment | Fixed creation payload moves from storage slots into exactly2 authenticated inert data children. Payload/royalty rules unchanged; current source-bound schema17 and actual returned-runtime gates required; schema16 evidence remains historical. [Storage format](FACTORY_CODE_STORAGE.md). |
 | Unsigned activation/growth | Fresh graph including actual typed-executor verification, control and portfolio review binding; exact Manager→typed child→PosM trace and entrant marginal main liquidity; no public signing added. |
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. Late gas-enveloped full LP simulation and final policy/nonce/funding/head/deadline/day-budget checks preserve original intent before signing. |
 | Inventory | Schema17/mint2/custody5/reinvest1 validates20helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs, primary mint books and exact-unit royalty4; reporting5/canonicalV10 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
@@ -213,5 +218,5 @@ Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNC
 and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV9
-rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.
+unsupported currencies and pathological-token failures remain distinct. Current canonicalV10
+rejects older peers; original V9 evidence retains its source scope. Actual OpenSea, gas/workloads and independent approval remain open.

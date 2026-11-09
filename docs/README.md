@@ -1,5 +1,9 @@
 # Documentation map
 
+[Current consistency record](../reports/documentation-consistency-20261109/REVIEW.md)
+reconciles current profiles, task descriptions and review exports while keeping
+historical evidence and running environments unchanged.
+
 The [total contribution3% policy](EXECUTION_LOSS_POLICY.md) requires97% actually
 added LP; the independent swap/spot/caller/NET floors remain unchanged.
 [Verification](../reports/contribution-loss3-20261109/VERIFICATION.md) binds the
@@ -33,7 +37,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Topic | Current guide |
 | --- | --- |
 | Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile7](POSITION_V7.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
-| Exact-unit LP upgrade | [Integrated whole-unit LP books, claims and raw-phase V9](EXACT_LP_ALLOCATION.md); earlier6/V8 retain their historical readers. |
+| Exact-unit LP upgrade | [Integrated whole-unit LP books, claims and unchanged raw LP domain inside V10](EXACT_LP_ALLOCATION.md); original V9 evidence and earlier6/V8 readers remain separately scoped. |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
@@ -41,7 +45,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |
-| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V9 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
+| Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V10 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Short operator tables](OPERATOR_MANUAL.md#operator-call-tables), [full source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
@@ -66,7 +70,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Scope |
 | --- | --- |
 | Demo versus integration release targets | [Environment map](SITE_ENVIRONMENTS.md): popldemo remains the existing simulation; served poplint has its own unconfigured current3 build/root and no demo fallback. |
-| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). Fresh accounting7/custody5 backend reads/unsigned preparation are implemented in source with direct Entry3; matching website consumption remains open; public signing remains disabled. |
+| Website read/review compatibility | [Served current3 and fresh contract gap](CURRENT_WEBSITE_PROFILE.md), [historical native2](NATIVE_WEBSITE_PROFILE.md), [website/API configuration](DEPLOYMENT_WEBSITE.md). The local [source9/V9 consumer](SOURCE9_WEBSITE_PROFILE.md) implements accounting7/custody5 reads and unsigned Entry3 reviews. Matching mint2/V10 website adoption and actual service/site qualification remain open; public signing remains disabled. |
 | Disposable local rehearsals | [Test stack](LOCAL_TEST_STACK.md), [local website](LOCAL_WEBSITE.md), [local API rehearsal](LOCAL_API_REHEARSAL.md), [browser wallets](BROWSER_WALLET.md). Commands are explicitly historical/versioned; no claim that a saved port/session is running now. |
 | Small-value/integration research | [$1 governed rehearsal](ONE_DOLLAR_REHEARSAL.md), [integration campaign boundaries](INTEGRATION_CAMPAIGN.md). Test substitutes never relax production minima or qualify real services. |
 
@@ -82,7 +86,7 @@ operator procedures or the sole Todo.
 | Exact-release decision and sequence | [Approval record](RELEASE_CHECKLIST.md), [roadmap](ROADMAP.md), [sole Todo maintenance](TODO_WORKFLOW.md) |
 | Actual service/deployment qualification | [Service decisions](PRODUCTION_SERVICES.md), [address inventory](DEPLOYMENT_ADDRESSES.md), [versioned preflight](PRODUCTION_PREFLIGHT.md), [RPC probes](RPC_PREPARATION_QUALIFICATION.md) |
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
-| Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [frozen review export](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
+| Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [schema3 frozen review export, with original1/2 verification](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
 | Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
 | Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalties-in-kind-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
 

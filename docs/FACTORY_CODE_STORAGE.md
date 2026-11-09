@@ -66,7 +66,7 @@ for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload3
 has separate source-owned bytes/pins; never substitute historical payload2. Keep **20 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
-module records,19 helper records and2 code-data records, with external dependency
+module records,20 helper records and2 code-data records, with external dependency
 records separate. The data children have no getter ABI; authenticate them with
 bounded `eth_getCode`, not invented `access()` or `controller()` calls.
 
@@ -90,7 +90,7 @@ runtime containing its immutable factory address and ProtocolPolicy. It does
 not explicitly enumerate factory/data-child runtime hashes. The separate source-
 bound schema17 constructor/release verification must inspect that full fixed
 graph. Code-storage FORMAT2 alone does not choose the canonical wire version; fresh7
-independently usesV9. No coordinator bypass is introduced. Reviewed different-code replacements retain their existing
+uses outerV10 for mint2, retaining the original V9 LP-domain record format. No coordinator bypass is introduced. Reviewed different-code replacements retain their existing
 governance trust boundary.
 
 ## Exact compiler artifact family

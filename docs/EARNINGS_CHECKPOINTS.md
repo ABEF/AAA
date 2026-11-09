@@ -14,6 +14,13 @@ state; accounting6 likewise rejects checkpoint2. There is no artifact conversion
 edited source-hash adoption, pruning or live rollout. Source changes require an
 independently reviewed rebuild/re-pin, including previously built format1 files.
 
+Accounting7 backend mint profile1/default authenticates canonicalV9; explicit2
+authenticates mint2/canonicalV10 and its additional mint contract pins. Both use
+checkpoint2's exact-LP earnings format under their own source/deployment identity.
+This is not V9-to-V10 artifact adoption: changed source, contract pins or deployment
+requires reviewed rebuild/re-pin. The checkpoint is an earnings seed, not a backup
+or restoration codec for SeaDrop phase quotas and original-mint recipient books.
+
 ## What is authenticated
 
 The operator pins the artifact's SHA-256 through the reviewed API configuration.

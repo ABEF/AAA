@@ -208,7 +208,7 @@ changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 - Both legs close for same-pair movement, parking and terminal holder return.
   Source controls compare captured sourcePool during movement. Stable geometry
   fingerprint excludes L; parking/emergency fingerprint includes both IDs/ticks/L.
-  Canonical V9 capture/import/activation requires zero registered live residuals.
+  Current V10 capture/import/activation retains the zero-live-residual requirement; original V9 evidence remains separately scoped.
 - Collective exit is paused-governance-triggered, terminal, no swaps required.
   Close actual ETH/ZZZ and designated compound; allocate by NFT shares, pay current
   owners through bounded isolated direct batches. Rewards/buyback backing stay
@@ -245,7 +245,7 @@ Gas bounds100k–1m are engineering limits, not provider/chain qualification.
 Provider rotation requires all draws finalized, no pending reroll/retargeting.
 Coordinator runtime is pinned for new requests; original-address callbacks may
 drain before planned rotation. Codehash does not freeze proxy implementations.
-Canonical V9 rejects old schemas early and binds helper/runtime/config commitment;
+Current canonicalV10 rejects older peers and binds helper/runtime/config commitment; original V9 records retain their own schema;
 threshold VALUES must match during source/import lifecycle, not local revisions.
 Current owner/rewards/quotas/ETH-ZZZ/fixed splits and terminal custody guarantees
 are unchanged. No deployment/service/site/Anvil/journal/signing change authorized.
@@ -423,7 +423,7 @@ No service/site/chain/journal/signer rollout or heartbeat restart.
 
 ## Verification and records
 
-Current test maintenance must distinguish actual LP1/royalty4/V9 consumers from
+Current test maintenance must distinguish actual LP1/royalty4/V10 consumers, explicit original V9 consumers and
 explicit historical imports. Use the real1-hour opening; do not compare zero
 claimables while claiming to preserve earned rights. Closed canonical imports
 must not resume primary minting. Keep true initial-pool and zero-cohort cases
@@ -471,6 +471,9 @@ No environment rollout or independent approval. See the single operator procedur
 - Before Python publication run `python scripts/check-python-publication.py --index`
   against exact staged blobs, then the committed revision. Local untracked imports
   never establish published closure. Main only; verify exact local/remote heads.
+- Frozen review archives default to instruction schema3. Preserve schema1/2
+  renderers and ZIP bytes; archive versions are not contract/inventory/journal
+  upgrades. Use [the package procedure](docs/FROZEN_REVIEW_BUNDLE.md).
 - Offline operator-review tooling only hashes a strict source-bound manifest and
   orders explorer inputs. No live authority/snapshot/simulation/signing is implied.
   Preserve false readiness flags, exact integers/hashes and saved journals.
@@ -525,8 +528,8 @@ OpenSea stage; governance can revise only while OLD end has not passed. Review
 fingerprint/revision invalidates stale operations. Initial pool belongs to strict
 pre-cutoff activations; late activations future-only. Zero cohort remains explicitly
 unallocated. Lazy sync/claim materializes initial allocation; no keeper job required.
-LP claims remain independent. V9 capture waits for open/finalized window and all
-initial currencies synchronized. Emergency/terminal LP paths remain independent.
+LP claims remain independent. Current V10 capture waits for an open/finalized
+window and for all initial currencies to be synchronized. Emergency/terminal LP paths remain independent.
 Use [launch rule](docs/ROYALTY_LAUNCH_WINDOW.md) and the [current audit](reports/last24h-audit-20261105/VERIFICATION.md).
 No changes to served current3, public signing, services, Anvil or journals.
 

@@ -1,14 +1,16 @@
 # Original-currency royalty balances and history
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
-Fresh accounting7 reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4, the exact
-runtime and canonicalV9. Use `"royalty_reporting":{"schema":5,"converter":null}`.
+Fresh accounting7 reporting5 authenticates ROYALTY_SETTLEMENT_VERSION4 and exact
+runtimes. Backend mint profile2 requires canonicalV10; omitted/default1 retains V9.
+Use `"royalty_reporting":{"schema":5,"converter":null}` in either matching profile.
 Historical accounting6/reporting5/V8 retains the same royalty allocation rules
 under its separately pinned graph; the version labels are not interchangeable.
 Royalties stay in original units: no converter, unwrap, route, feed or keeper
@@ -67,15 +69,19 @@ under that checkpoint's original profile, not by relabelling its seed.
 Semantic source changes require reviewed rebuild/re-pin. The full rolling24-hour
 earnings period stays86,400seconds; it is not the one-hour opening window.
 
+<a id="current-native-eligibility-and-historical-custody"></a>
+
 ## Lineage, capacity and unsigned claims
 
 Each predecessor declares its OWN royalty_reporting schema and runtime pins;
-no omitted/inherited field may turn V9 into a V8 or older reader. Matching new
-peers carry accounting7/V9/reporting5. Historical peers keep their own declared profiles.
+no omitted/inherited field may turn V10 into V9, V8 or an older reader. Each peer
+explicitly selects mint1/V9 or mint2/V10 alongside accounting7/reporting5, and
+handoff peers must satisfy their same-schema binding. Historical peers keep their
+own declared profiles.
 Existing lineage/workload release limitations remain; a profile declaration is
 not operating qualification.
 
-Current inventory16 permits65royalty currencies includingETH and66 combined
+Current inventory17 and prior inventory16 permit65royalty currencies includingETH and66 combined
 token records for the fixed ETH/ZZZ pair plus royalty-only currencies. Historical
 inventory13 retains its own97-record bound; neither raises the API work budget.
 Operating ERC20 capacity starts16 and can increase to64 only after review. Work,
@@ -87,9 +93,10 @@ The router still permits32selected NFT/currency/ledger entries. Simulate exact
 claims and use smaller healthy batches if gas or a currency failure prevents
 one batch. Failed selected payouts revert atomically; LP-only claims remain a
 separate choice. Source helpers understand reporting5 and the fresh7 fixed-child
-graph; the production inventory pins19 callable helpers plus2 inert data children.
-Complete source9/fresh7 site integration/qualification remains open; the served
-current3 site is unchanged and public signing stays disabled.
+graph. Mint2/schema17 pins20 callable helpers plus2 inert data children; prior
+source9/schema16 pins19 plus2. Local source9 read/unsigned integration exists for
+V9; matching V10 website adoption and actual service/site qualification remain
+open. The served current3 site is unchanged and public signing stays disabled.
 
 See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claim router](CLAIM_ROUTER.md),
 [window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).

@@ -55,7 +55,7 @@ from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
 | Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
 | Current source and compatibility | [Accounting7 profile](docs/POSITION_V7.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
 | LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Exact-unit LP integration](reports/exact-lp-integration-20261106/VERIFICATION.md), [Same-main governance consolidation](reports/residual-main-consolidation-20261106/REVIEW.md), [Main/residual lifecycle audit](reports/residual-lifecycle-20261106/REVIEW.md), [factory/claim improvements](reports/factory-claims-20261105/REVIEW.md), [royalty audit](reports/last24h-audit-20261105/REVIEW.md), [source-scoped authority evidence](reports/authority-audit-20261103/VERIFICATION.md), [whole-project review](reports/comprehensive-audit-20261104/REVIEW.md), [release approval record](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md) |
+| Verify or approve release | [Current review](reports/today-change-review-20261109/REVIEW.md), [current3% build/static evidence](reports/contribution-loss3-20261109/VERIFICATION.md), [mint2/V10 evidence](reports/opensea-integration-20261109/VERIFICATION.md), [release approval](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md). Earlier source scopes remain in the [report map](reports/README.md). |
 | Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
 
 ## Architecture overview
@@ -269,5 +269,5 @@ Fresh royalty4 retains the [one-hour sale-close activation window](docs/ROYALTY_
 and adds [exact-unit allocation](docs/EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV9
-rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.
+unsupported currencies and pathological-token failures remain distinct. Current canonicalV10
+rejects older peers; original V9 evidence retains its own source scope. Actual OpenSea, gas/workloads and independent approval remain open.

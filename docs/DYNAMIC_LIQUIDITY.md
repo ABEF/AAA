@@ -272,8 +272,9 @@ operations are disabled. Parked custody and dependency failures
 stay unavailable, not zero or an invented historical price. Activation and its
 royalty weight persist through falling value and unavailable valuation.
 
-Fresh accounting7/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. After a bucket closes for holder return,
+Fresh accounting7/custody5/mint2 uses canonical
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`; prior direct-mint/V9 retains
+its explicit profile and raw exact-LP record format. After a bucket closes for holder return,
 Exited5 reports confirmed zero LP and terminal `lp_exited`/`LP exited`, while
 retaining royalty eligibility. Pending 5% compound joins returned principal;
 earned LP/royalties, buyback reserves and unrelated funds do not. Principal
@@ -302,8 +303,9 @@ contract safeguards still pass. Do not claim an on-chain stale-position veto.
 The separate popldemo website remains a labelled simulation with example amounts,
 Number-based demo IDs and no live dependency on this API. Served poplint uses
 the [unconfigured current3 profile](CURRENT_WEBSITE_PROFILE.md), not fresh7.
-Fresh7 live integration must
-use decimal-string IDs/amounts, canonical block provenance, current marked NAV,
+The local source9 read/unsigned consumer implements the prior V9 profile;
+V10 website adoption and actual service/site qualification remain open. Matching
+integration must use decimal-string IDs/amounts, canonical block provenance, current marked NAV,
 separate LP/royalty claim balances, full lifetime claims and unavailable states.
 An indexer `Rebalanced` event invalidates cached position identity; events alone
 cannot establish a fresh USD value. No frontend/server deployment is included.

@@ -37,7 +37,7 @@ from deployment, services, websites and public transactions.
 
 ## 1. Freeze the correct source and integration boundary
 
-The earlier [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) milestone wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. Current source/size/static/consumer evidence is in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md). Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
+The earlier [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) milestone wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. That milestone's source/size/static/consumer evidence is in the [original integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md); use the [report map](../reports/README.md) for later mint2/V10 and current3% source records. Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
 
 Preserve completed direct Entry, residual management, active-main routing, cooldown observation and authenticated harvest coalescing. Do not revive removed bridges, creator inboxes or third LP inputs. Target deployment arguments, maximum-workload gas/economics and independent review still require the exact final candidate.
 

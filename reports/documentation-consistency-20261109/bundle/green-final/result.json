@@ -1,0 +1,28 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tests_python.test_review_bundle_profiles",
+    "tests_python.test_review_bundle",
+    "-v"
+  ],
+  "exit_code": 0,
+  "before": {
+    "zzz_ops/review_bundle.py": "6035c38ddc01f48e6a6cedd113bbaf33f5ef5843b039fb049af50181bd2ee84b",
+    "tests_python/test_review_bundle_profiles.py": "1ec91f1c42601be057fcf33118486f4ff9e76917a9a18e172f3b783ed64585fb",
+    "tests_python/test_review_bundle.py": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7"
+  },
+  "after": {
+    "zzz_ops/review_bundle.py": "6035c38ddc01f48e6a6cedd113bbaf33f5ef5843b039fb049af50181bd2ee84b",
+    "tests_python/test_review_bundle_profiles.py": "1ec91f1c42601be057fcf33118486f4ff9e76917a9a18e172f3b783ed64585fb",
+    "tests_python/test_review_bundle.py": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7"
+  },
+  "observed_utc": "2026-11-09T06:30:50.839029+00:00",
+  "scope": "Focused offline bundle documentation-artifact profile/integrity tests; injected locked inputs, no chain, deployment or approval.",
+  "unchanged": true
+}

@@ -1,10 +1,11 @@
 # Verify earnings-history ingestion
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
 The read-only `frontend_api.history_audit` command compares a local index with a
@@ -22,10 +23,12 @@ observation, not a cryptographic proof that no event was omitted.
 
 Use the reviewed schema-2 API configuration with `history`, `earnings_history`
 and every required same-chain predecessor. Fresh deployments explicitly select
-accounting7/LP-allocation1/fee-intake1/canonicalV9 with royalty reporting5; each predecessor
-declares its own authenticated accounting/canonical/royalty profile. Fresh7 peers
-must matchV9. Historical accounting6/V8,4/V6 and3/V4 remain separate. A config
-version does not upgrade old deployments.
+accounting7/LP-allocation1/fee-intake1 with royalty reporting5. Omitted/default1
+`mint_integration_version` selects V9; explicit2 requires mint2/V10 and its mint
+helper/runtime pins. Each predecessor declares its own authenticated accounting/
+canonical/royalty profile; handoff peers must satisfy the same-schema binding.
+Historical accounting6/V8,4/V6 and3/V4 remain separate. A config version does not
+upgrade old deployments.
 The constructor verifies that each earnings profile has all seven emitters.
 The audit checks that the SQLite cursor has the
 exact configured chain/start/parent/contract identity and has fully ingested the
@@ -95,8 +98,10 @@ verifies lifecycle, complete predecessor lineage, profile-specific on-chain book
 entitlement/claim/conversion reconciliation. This audit never bypasses it.
 For7, the raw event inventory includes exact share/membership synchronization
 and its host acknowledgements; claims/conversions are mutations, not new income.
-Historical6/checkpoint1 remains separately pinned; fresh7 rejects that seed and
-uses complete raw replay until a reviewed exact checkpoint2 is implemented.
+Historical6/checkpoint1 remains separately pinned; fresh7 rejects that seed.
+Explicit checkpoint2 is implemented for accounting7 earnings endpoints only.
+This ingestion audit still compares the complete bounded raw window; it does not
+adopt a checkpoint as proof of missing-log completeness.
 
 A report for a historical window is not a current balance or price quote. No USD
 price is inferred, and an audit pass does not qualify a feed. Preserve the user's

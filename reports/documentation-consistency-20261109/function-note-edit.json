@@ -1,0 +1,132 @@
+{
+  "path": "docs/function-reference-notes.json",
+  "observed_utc": "2026-11-09T06:25:16.031895+00:00",
+  "before_sha256": "bd84c48923754280e311b8ba2d902cfe2b93425da795441e0fb2055053fcf5c1",
+  "after_sha256": "188fe3e4f9d23d1e8bfaf925d6b09d832c50eab442b09c46e3a50a9f1ea4836e",
+  "changed_string_fields": 10,
+  "edits": [
+    {
+      "path": [
+        "contracts",
+        "ZZZStrategy",
+        "functions",
+        "swapPlan(bytes32,uint256,uint256)",
+        "notes"
+      ],
+      "before": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent.",
+      "after": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution. Output floor also includes the additional-loss policy after actual directional trading fees; existing gross/operation limits stay independent."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZStrategy",
+        "functions",
+        "compoundPlan(uint256,uint256,uint256)",
+        "notes"
+      ],
+      "before": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing1 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution.",
+      "after": "Approximate read-only legacy preview/seed using directional fees. Fresh LP routing2 execution uses actual-core depth-aware quotes and may choose a different route/size. This view does not authorize execution."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZVault",
+        "functions",
+        "group(uint256)",
+        "purpose"
+      ],
+      "before": "Read the eight-word accounting4 shared Position: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status.",
+      "after": "Read the eight-word shared Position used by current accounting7: poolId, lpTokenId, idle0, idle1, depositUSD, centerX96, lastRebalance and status."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZVault",
+        "functions",
+        "mintPrice()",
+        "purpose"
+      ],
+      "before": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+      "after": "Read the governed paid-mint gross native price from fixed ProtocolPolicy."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZVaultCanonical",
+        "functions",
+        "mintPrice()",
+        "purpose"
+      ],
+      "before": "Read current future direct-mint gross native price from fixed ProtocolPolicy.",
+      "after": "Read the governed paid-mint gross native price from fixed ProtocolPolicy."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZLiquidityManager",
+        "functions",
+        "RESIDUAL_EXIT_VERSION()",
+        "outputs",
+        "0"
+      ],
+      "before": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review.",
+      "after": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZMigration",
+        "functions",
+        "RESIDUAL_EXIT_VERSION()",
+        "outputs",
+        "0"
+      ],
+      "before": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review.",
+      "after": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZLPPositionExecutor",
+        "functions",
+        "RESIDUAL_EXIT_VERSION()",
+        "outputs",
+        "0"
+      ],
+      "before": "1; separate residual-only manual capability within fresh accounting6/portfolio2/custody4. Exact runtime/parent bindings still require review.",
+      "after": "1; separate residual-only manual capability within current accounting7/portfolio2/custody5. Exact runtime/parent bindings still require review."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZProtocolPolicy",
+        "constructor",
+        "inputs",
+        "1"
+      ],
+      "before": "Initial direct-mint recipient. Defaults:mint0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification.",
+      "after": "Initial mint-proceeds recipient: paid Mint2 sends net after the actual platform fee; the unbound direct fixture sends the full price. Defaults:paid gross0.05ETH,entry100/5USD,idle500bps,payout180k/source500k/royalty1m gas,tiers1000/10000USD. Defaults are not observations or provider qualification."
+    },
+    {
+      "path": [
+        "contracts",
+        "ZZZProtocolPolicy",
+        "functions",
+        "mintFingerprint()",
+        "purpose"
+      ],
+      "before": "Read exact review commitment used by fresh direct mint.",
+      "after": "Read the core sale/VRF policy fingerprint shared by Mint2 and the unbound direct fixture."
+    }
+  ],
+  "scope": "Ten prose-only string fields. No ABI signatures/caller classes/example values/types/keys or executable source changed. Constructor input explanation changed only because direct-only wording was stale. UTF8 and all original line endings preserved. No tests/build/reference regeneration run by this agent.",
+  "source_anchors": [
+    "src/ZZZLPBalancer.sol:20",
+    "src/ZZZLiquidityManager.sol:38",
+    "src/ZZZVault.sol:50,217-219",
+    "src/ZZZVaultCanonical.sol:132-134",
+    "src/ZZZMigration.sol:31",
+    "src/ZZZProtocolPolicy.sol:49,71",
+    "src/ZZZSeaDropMint.sol:250-277"
+  ]
+}

@@ -51,7 +51,7 @@ display-only positive increasing USD18 values; losses or threshold changes may a
 Parked local custody, stale feeds or unavailable dependencies return valuation unavailable and explicitly labelled Activated fallback art. They never fabricate prices. Claims and collective principal return do not require metadata/oracle evaluation. ERC-4906 events accompany reveal/contribution. Anyone can notify one token with `refreshMetadata(id)` or up to 50 inclusive mint ordinals with `refreshMetadataRange(firstOrdinal,lastOrdinal)`. Ordinals are not token IDs: the bounded call emits one `MetadataUpdate` per actual hashed ID, without reading prices or modifying custody.
 
 Fresh accounting7/custody5 uses canonical
-`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`. Confirmed collective closure marks
+`ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`. Confirmed collective closure marks
 Exited5 and `currentLPValue` returns available/zero without a price-feed read.
 `evolution` returns terminal stage4 and metadata labels `LP exited`; it reuses
 the existing Activated image, not a new fifth artwork evolution or a Dormant NFT.

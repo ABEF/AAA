@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Documentation consistency and review-export schema3](documentation-consistency-20261109/REVIEW.md)
+is maintenance evidence, not a new contract audit. Original archive1/2 identities,
+source-scoped reports and existing environments are preserved.
+
 Current [9November double-check](today-change-review-20261109/REVIEW.md) fixes
 phase/time and typed-count preflight gaps, strengthens funded trace coverage
 and clarifies operator/version/transport limits without a runtime change.

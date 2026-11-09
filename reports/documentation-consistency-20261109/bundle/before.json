@@ -1,0 +1,44 @@
+{
+  "files": {
+    "zzz_ops/review_bundle.py": {
+      "sha256": "0e5b6b6f94c6e86f6d2ab1599526c6669c2bedca822c47f648105d477fa73a46",
+      "bytes": 27338,
+      "crlf": 0,
+      "bare_lf": 487
+    },
+    "tests_python/test_review_bundle_profiles.py": {
+      "sha256": "a385380449936ffe87bb7a570fdbf8c985e07e988fcde6cb6bd40ed237b1f340",
+      "bytes": 3560,
+      "crlf": 0,
+      "bare_lf": 68
+    },
+    "tests_python/test_review_bundle.py": {
+      "sha256": "b2c2b05a5acc4f0832d06be4bf84219914ddc1bc9239df247741fc316e482637",
+      "bytes": 11037,
+      "crlf": 0,
+      "bare_lf": 223
+    },
+    "docs/FROZEN_REVIEW_BUNDLE.md": {
+      "sha256": "aff86822af7ecea31b785cd6469b795f91cf4ac04c00a9187a2e211a1af502a7",
+      "bytes": 5992,
+      "crlf": 0,
+      "bare_lf": 94
+    }
+  },
+  "fixtures": {
+    "1": {
+      "archive_sha256": "331d306eb6e587a8dc6e0455618fe4f38f4ba37e53f8e46b37cbc9fa1b99975f",
+      "handoff_sha256": "dc1f262561c42ce51b94c422037f818864773f5521feb17d9062dd9479e259a6",
+      "archive_bytes": 6850,
+      "handoff_bytes": 3338
+    },
+    "2": {
+      "archive_sha256": "eee1ac2371714a90b50e5d9aa6bf6b9bb1164cb238395f3a6ef727a04bc11397",
+      "handoff_sha256": "91c80897916ea5f14a2f1ed5e67dd662781579c6f8acc7ab0e86e21d1a75fad5",
+      "archive_bytes": 7322,
+      "handoff_bytes": 3810
+    }
+  },
+  "fixture_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "scope": "Captured before any bundle source/test edits. Synthetic locked-input fixture, not a real release archive or qualification."
+}

@@ -5,17 +5,19 @@ This does not widen an independently approved client ceiling200, change old
 runtime state or upgrade a saved review. Such a ceiling remains2% and refuses
 a governed300 cap until separately re-reviewed. See [policy](EXECUTION_LOSS_POLICY.md).
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
 The separately served [poplint integration target](SITE_ENVIRONMENTS.md) uses the
 explicit current3 reader/unsigned-review profile below. Its reviewed deployment
 configuration remains absent. The fresh contract candidate is now
-[accounting7/LP-allocation1/custody5/Portfolio2/direct Entry3/schema16](POSITION_V7.md), which this website profile
+[accounting7/LP-allocation1/custody5/Portfolio2/direct Entry3](POSITION_V7.md)
+with [mint2/canonicalV10/schema17](OPENSEA_MINT.md), which this website profile
 does not support. Neither source publication nor changing a manifest's version
 upgrades the served build, a schema1/native2 deployment or an existing journal.
 Public signing remains disabled.
@@ -43,9 +45,10 @@ states. Actual LP, ETH claimable and history may be unavailable independently;
 never invent zero or display an unconverted source balance as ETH. A confirmed
 claim is a payout, not new income or an artwork evolution.
 
-## Fresh7/source9 integration still required
+## Local source9 implementation and fresh V10 boundary
 
-A matching explicitly versioned source9 frontend must verify accounting7/
+The local [source9 frontend](SOURCE9_WEBSITE_PROFILE.md) implements the prior
+V9/schema16 read/unsigned profile. It verifies accounting7/
 LP-allocation1/custody5/portfolio2 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9`, the immutable Rewards canonical child,
 Manager/typed LP child/Balancer/math/policy,
@@ -54,13 +57,20 @@ and both physical LP IDs/owners/keys/ticks at one canonical block. Desired-disab
 residuals remain included until merged; eight Position words alone are not compatibility.
 It must distinguish terminal zero LP from unavailable data, unpaid holder
 principal from rewards, and continuing royalty rights from ended LP earnings.
-Source9 backend support or a matching eight-word Position does not establish
-browser compatibility. The schema16 release graph has19 callable helpers plus2
+A matching eight-word Position alone does not establish browser compatibility.
+The source9 schema16 graph has19 callable helpers plus2
 inert Factory data children, including fixed Rewards.canonicalModule()/child
 access()/rewards()/Handoff.moduleAt(3) bindings. Factory payload3 retains
 FORMAT2 and is release-time verification, not per-claim data-child reads. Fresh7
-raw earnings use exact LP books; checkpoint1 cannot seed them and checkpoint2
-remains open. None of this has been deployed to the website.
+raw earnings use exact LP books; checkpoint1 cannot seed them, while explicit
+checkpoint2 is implemented for earnings endpoints. Actual matching service/site,
+providers and workload qualification remain open; served current3 is unchanged.
+
+Fresh mint2 instead requires canonicalV10/schema17 and20 callable helpers plus2
+inert Factory data children, including the new mint helper. Its explicit backend
+read/claim profile is implemented; source9 website support is not V10 support.
+Review a matching consumer and configuration before adoption, rather than changing
+an old manifest's schema or runtime labels.
 
 The separate source8/accounting6/V8 read/unsigned candidate retains its own
 source scope and is not fresh7 acceptance. Do not deploy fresh contracts under

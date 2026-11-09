@@ -152,3 +152,6 @@ reports/contribution-loss3-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,
 
 # Preserve exact red/green and source-bound daily review records.
 reports/today-change-review-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact documentation/archive compatibility receipts and original attempts.
+reports/documentation-consistency-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

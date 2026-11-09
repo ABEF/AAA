@@ -112,7 +112,7 @@ Exports include zero rows and the complete finite domain, rather than a relay's
 chosen Merkle snapshot. Existing IDs, mint ordinals, owners, traits, quota/draw
 inventory, VRF provenance, shares, activation, exact LP pending/phase/direct books, exact whole
 royalty entitlements, reserves, admitted assets and protected unallocated balances
-survive. Historical request namespaces stay authenticated. V9 requires the sale
+survive. Historical request namespaces stay authenticated. Current V10 retains the requirement that the sale
 and one-hour opening to be complete and imports that closed end; unused draw
 inventory is preserved for integrity, not permission to mint again. Neither
 replacement activation nor changing future mint-price policy reopens the sale.

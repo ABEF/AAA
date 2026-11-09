@@ -78,12 +78,25 @@ single-signer fencing, alert delivery and off-host restore. A blocked example
 inventory is an expected result; do not fill unknown addresses or mark a service
 qualified to force a passing gate.
 
-The current OpenSea release profile must explicitly set `mint_integration_version: 1`.
-A gate report must state `production_qualification_supported: true` as well as
-passing every applicable check. Legacy consistency-only reports do not qualify
-production; neither result substitutes for actual independent review or approval.
-The existing `vault_direct_v1` mint surface does not establish OpenSea primary
-mint compatibility. Do not relabel it as a supported marketplace integration.
+New exports use **review-bundle schema3** for current instructions. Schema1 and
+schema2 retain their original handoff/archive bytes and remain verifiable with
+their historical advice. The archive version is separate from the contract,
+inventory, backend and journal profiles; exporting an old commit never upgrades it.
+
+For a frozen commit using current schema17/accounting7/mint2/helper1/canonicalV10,
+use its `config/production.example.json` and explicit `mint_integration_version: 2`.
+Current validators deliberately keep `production_qualification_supported` and
+`deployment_authorized` false; do not forge a qualification pass. Source supports
+fixed SeaDrop primary minting, but actual OpenSea onboarding, fee/payer terms,
+funded VRF, feeds/routes, wallets and operations remain unqualified. The unbound
+`vault_direct_v1` mint is a historical/local fixture, not the fresh launch path.
+
+Schema3 reference instructions describe the selected600/300-second confirmation
+window/gap,240-second service checks and3% total contribution default (97%
+marginal LP), with conversion1%/maintenance3% and stronger guards unchanged.
+These are reference settings, not observed deployed values. The exact frozen
+source and reviewed configuration take precedence. No stored cap, client ceiling,
+saved transaction, service or historical evidence is relabeled by this export.
 
 The independent reviewer receives this package, the exact deployment/configuration
 inventory when available, original source-scoped evidence and the [audit workstreams](SECURITY_AUDIT_PLAN.md).

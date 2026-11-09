@@ -1,0 +1,65 @@
+{
+  "completed_utc": "2026-11-09T06:33:38.333159+00:00",
+  "files": {
+    "zzz_ops/review_bundle.py": {
+      "sha256": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+      "bytes": 32713,
+      "crlf": 0,
+      "bare_lf": 577
+    },
+    "tests_python/test_review_bundle_profiles.py": {
+      "sha256": "b75a9b2f44e8ccac80599401689e57b909f8506d1ea52bd871162af6a76d8bf0",
+      "bytes": 4772,
+      "crlf": 0,
+      "bare_lf": 98
+    },
+    "tests_python/test_review_bundle.py": {
+      "sha256": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+      "bytes": 11122,
+      "crlf": 0,
+      "bare_lf": 223
+    },
+    "docs/FROZEN_REVIEW_BUNDLE.md": {
+      "sha256": "42ca9ce20bb3b40ad14427e2d1999b29ae3fa27fc4ad5b25ac8fe9ad41f86f30",
+      "bytes": 6868,
+      "crlf": 0,
+      "bare_lf": 107
+    }
+  },
+  "profiles": {
+    "1": {
+      "archive_sha256": "331d306eb6e587a8dc6e0455618fe4f38f4ba37e53f8e46b37cbc9fa1b99975f",
+      "handoff_sha256": "dc1f262561c42ce51b94c422037f818864773f5521feb17d9062dd9479e259a6",
+      "archive_bytes": 6850,
+      "handoff_bytes": 3338
+    },
+    "2": {
+      "archive_sha256": "eee1ac2371714a90b50e5d9aa6bf6b9bb1164cb238395f3a6ef727a04bc11397",
+      "handoff_sha256": "91c80897916ea5f14a2f1ed5e67dd662781579c6f8acc7ab0e86e21d1a75fad5",
+      "archive_bytes": 7322,
+      "handoff_bytes": 3810
+    },
+    "3": {
+      "archive_sha256": "8f4708e7afba9e3cef970ffaf9e7051b523f4d1779ffda9de55eaea3a5ef462e",
+      "handoff_sha256": "d0c622ab44d81e0723c94015346920a51411bd4d9d23e53949276d63a7a52121",
+      "archive_bytes": 8741,
+      "handoff_bytes": 5229
+    }
+  },
+  "old_handoff_and_archive_bytes_preserved": true,
+  "v1_renderer_ast_preserved": true,
+  "source_exclusion_dependencies_bounds_publication_cli_ast_preserved": true,
+  "final_test_stage": "final-stable/result.json",
+  "distinct_final_methods": 26,
+  "final_profile_methods": 7,
+  "existing_integrity_methods": 19,
+  "retained_stages": [
+    "red",
+    "green",
+    "green-final",
+    "final-profile",
+    "final-stable"
+  ],
+  "counting": "26 distinct methods at final stable source. Earlier successes overlap; do not sum them. Red profiles fail on missing schema3/current instructions; intermediate first-green had one whitespace-sensitive text assertion, corrected to normalize whitespace. Original raw logs and both legacy archives remain.",
+  "scope": "Documentation artifact version3, not production profile/schema upgrade. New default instructions respect frozen commit-specific docs; all approval flags stay false. No Solidity, production settings, old reports, sites, services, signer, journals, Anvil or heartbeat changed."
+}

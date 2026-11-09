@@ -1,0 +1,36 @@
+{
+  "baseline": "c56e260b25895842d8d2ed458bfd7abfe910a5c3",
+  "contracts_unchanged": true,
+  "financial_backend_keeper_indexer_configs_unchanged": true,
+  "only_source_drift": [
+    "tests_python/test_review_bundle.py",
+    "tests_python/test_review_bundle_profiles.py",
+    "zzz_ops/review_bundle.py"
+  ],
+  "archive_26_methods_final_pass": true,
+  "archive1_2_bytes_preserved": true,
+  "todo_order_and_statuses_preserved": 77,
+  "task_status_counts": {
+    "done": 29,
+    "progress": 39,
+    "excluded": 1,
+    "todo": 8
+  },
+  "all_operator_example_rows_unchanged": 958,
+  "callable_source_and_ABI_snapshot_unchanged": true,
+  "historical_changelog_and_reports_unchanged": true,
+  "protected_files_preserved": true,
+  "link_check": {
+    "files": 114,
+    "local_links": 3749,
+    "fragments_checked_heuristically": 1466,
+    "missing_files": [],
+    "suspect_fragments": [],
+    "historical_report_contents_not_rewritten": true
+  },
+  "website_head": "0236210e357d1c1dfaacedd54aa6d9b1205267ee",
+  "website_only_six_document_changes": true,
+  "website_signer_unchanged": true,
+  "no_build_or_deployment": true,
+  "source_rules": "No old runtime, client ceiling or journal relabeled"
+}

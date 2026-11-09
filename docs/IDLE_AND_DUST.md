@@ -45,7 +45,7 @@ allowance; do not repeat a successful approval blindly.
 | Vault `Position.idle0/idle1` | Principal attributed to that shared bucket and its NFT shares | Reinvest through guarded compounding/rebalance; collective holder return includes it in actual ETH/ZZZ principal. |
 | Fees' designated compound reserve | The fixed 5% LP-compounding allocation | Release only through the fixed compound path into the same bucket. It is not claimable operator revenue. |
 | Buyback reserve | Fixed 5% buyback/burn purpose | Use the governed, bounded buyback worker and actual burn evidence; no dust transfer to a treasury. |
-| Exact-unit LP reward books | Every allocated raw unit belongs to an NFT ticket; high/low phase is not money | Claim whole units or preserve pending/phase/direct books through V9. Historical6 fractions keep their original interpretation; no operator sweep. |
+| Exact-unit LP reward books | Every allocated raw unit belongs to an NFT ticket; high/low phase is not money | Claim whole units or preserve pending/phase/direct books through current V10 with the unchanged LP-domain layout introduced under V9. Historical6 fractions keep their original interpretation; no operator sweep. |
 | Small LP fee receipt dust | Existing fee allocation/membership semantics | Keep reserved and settle under incumbent weights before membership changes; historical raw-unit exceptions need asset-specific economic review. |
 | Royalties, quarantines and orphaned receipts | Separate royalty domains/cohorts | Fresh royalty4 has no swaps. Reviewed recovery2 allocates eligible unallocated original units at current active weights; opening, earned and deferred rights stay separate. Exact ticket allocation leaves no allocated whole-unit rounding reserve. No external-custodian drain. |
 | Raw prefunds, accidental tokens or unsolicited ETH | Unclassified or explicitly quarantined funds | Never infer permission from contract balance. They cannot subsidize an entrant, pay another bucket or be swept. The royalty receiver alone has restricted unallocated recovery; no equivalent arbitrary Vault sweep is added. Broken/unsellable/unpriced assets can remain inaccessible. |
@@ -57,7 +57,7 @@ See [holder return and recovery boundaries](HOLDER_COLLECTIVE_EXIT.md).
 
 The [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) measures
 current finite-unit and upstream collection rounding separately. The
-[exact-unit LP accounting7](EXACT_LP_ALLOCATION.md) connects the internal engine to claims/conversion and lossless V9 replacement. Every allocated unit is assigned; unallocated funds and upstream rounding remain separately classified.
+[exact-unit LP accounting7](EXACT_LP_ALLOCATION.md) connects the internal engine to claims/conversion and lossless current V10 replacement; original V9 integration evidence remains separately scoped. Every allocated unit is assigned; unallocated funds and upstream rounding remain separately classified.
 
 ## Reinvest idle without a new fee receipt
 

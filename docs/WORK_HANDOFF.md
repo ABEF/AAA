@@ -95,7 +95,9 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed9November2026. Exact-LP integration baseline main64f9bfb; implementation published on main5646609. This is source publication, not production deployment. Inspect actual Git heads
+Reviewed9November2026. The earlier exact-LP integration used baseline64f9bfb and
+publication5646609. The current code-review baseline is c56e260; later documentation
+publication is separate from deployment. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
 
@@ -130,7 +132,7 @@ Fresh7 raw earnings replay and explicit exact-unit checkpoint2 are implemented;
 lifetime archival/workload/recovery qualification remains open. Old checkpoint1 is6-only. Source publication
 changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
-## Current result
+## Implemented LP and royalty milestones
 
 [Same-main governance consolidation](../reports/residual-main-consolidation-20261106/REVIEW.md)
 adds residual-reinvest1 on Migration/Vault/Budget/PortfolioPolicy/ContributionPricing,
@@ -183,6 +185,10 @@ snapshot and simulate the exact call against fresh state. Custody identity is
 not a price quote or a commitment to every governed setting. Re-read IDs after
 replacement, refresh reviews after settings/reorg/expiry and recover the same
 pending hash before retry. See [focused review](../reports/consolidation-races-20261106/REVIEW.md).
+
+Frozen review exports now default to instruction schema3 with unchanged original
+schema1/2 archive bytes. Use [the current package procedure](FROZEN_REVIEW_BUNDLE.md)
+and the exact committed source; archive format is not a deployment/profile update.
 
 ## Verification and remaining gates
 

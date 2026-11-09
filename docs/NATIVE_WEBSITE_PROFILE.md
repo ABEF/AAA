@@ -5,18 +5,21 @@ This does not widen an independently approved client ceiling200, change old
 runtime state or upgrade a saved review. Such a ceiling remains2% and refuses
 a governed300 cap until separately re-reviewed. See [policy](EXECUTION_LOSS_POLICY.md).
 
-**Mint-profile boundary:** reader/service versions named in this guide retain
-their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
-adds original-recipient mint books and needs matching reviewed consumers
-before adoption. Existing services, checkpoints, journals, served sites and
-Anvil signing are not upgraded or relabeled by the new source.
+**Mint-profile boundary:** accounting7 backend configuration explicitly selects
+`mint_integration_version:2` for [SeaDrop mint2/schema17/V10](OPENSEA_MINT.md);
+omitted/default1 retains direct-mint/V9. The local source9 website retains the
+schema16/V9 contract profile and does not implement that V10 consumer. Reviewed matching deployment,
+configuration and operating acceptance are still required. Existing services,
+checkpoints, journals, served sites and Anvil signing are not upgraded or relabeled.
 
 
 This guide preserves the accounting2/pricing2/Entry-review1 manifest and its
 source-scoped evidence. The served poplint build has a separate
 [current3 profile](CURRENT_WEBSITE_PROFILE.md); the fresh contract candidate is
-[accounting7/ProtocolPolicy1/custody5/canonicalV9](POSITION_V7.md), with website integration
-still required. Native2 is neither the served integration profile nor fresh7
+[accounting7/ProtocolPolicy1/custody5](POSITION_V7.md) with
+[mint2/canonicalV10/schema17](OPENSEA_MINT.md). Local source9 implements the prior
+V9/schema16 read/unsigned profile; matching V10 website adoption and operating
+qualification remain open. Native2 is neither the served integration profile nor fresh7
 acceptance. Do not relabel this profile or any existing Anvil journal. Public
 `DEPLOYMENT` remains null and the shared signer stays Anvil-only.
 

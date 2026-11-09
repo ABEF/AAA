@@ -1,0 +1,49 @@
+{
+  "scope": "External documentation candidate only; website checkout unchanged. No source/config/dist/signer/build/test/service/journal/deployment changes.",
+  "website_revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+  "contract_revision": "c56e260b25895842d8d2ed458bfd7abfe910a5c3",
+  "files": [
+    {
+      "path": "README.md",
+      "original_sha256": "28f2d7f831fd0c536239ba3ccb90f5877c49a4ba5dc9af525f70041542a929a8",
+      "candidate_sha256": "290b155975d29530d389b2141faed4c77870ed14cc482a56c1ae253a9d71e244",
+      "replacements": 5,
+      "original_line_ending": "LF"
+    },
+    {
+      "path": "AGENTS.md",
+      "original_sha256": "699a2f013d31d37b308737834f3f6de4b58f2f8bbcc4c94ee953570cb0ef9637",
+      "candidate_sha256": "62289195afac2c071a4670f2034a3060af53e7e35114d500739df9b9936461d5",
+      "replacements": 3,
+      "original_line_ending": "CRLF"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "original_sha256": "91473c27d36559aeb6e4d3eecbef004143da84710d8b07ba5b9fa29857f8c07f",
+      "candidate_sha256": "8c8c8216d1e0aeeba7f921168b12866f4e74b687bed8ee6c4414157bfc15fd76",
+      "replacements": 3,
+      "original_line_ending": "CRLF"
+    },
+    {
+      "path": "DEPLOYMENT_API.md",
+      "original_sha256": "3738dfb7fdd2c299d932473536d2693de1806779854a007fb1c85544786ef511",
+      "candidate_sha256": "71acb7e390f61df1e4f68d352c4d678102ae05dc552257403858aa9f72d9e34f",
+      "replacements": 3,
+      "original_line_ending": "LF"
+    },
+    {
+      "path": "SITE_ENVIRONMENTS.md",
+      "original_sha256": "2c5b8b3826a6f76e31b2377c89f609bb38bf4b1b9a46e39d6709070785fa585a",
+      "candidate_sha256": "54f30d6ca1a13c97dcba8cb4a83ebbabb6632ebc924580780a4f705813683043",
+      "replacements": 1,
+      "original_line_ending": "LF"
+    },
+    {
+      "path": "FRONTEND_STATE.md",
+      "original_sha256": "4ca24ee12ace5e2e97d951b005fcb86f73f5ff11bd7f84a32664669bde399c20",
+      "candidate_sha256": "3ca14a5248c111c47af746a747eee09a95f521f96d2cd3119e3f2c5dfe414247",
+      "replacements": 1,
+      "original_line_ending": "LF"
+    }
+  ]
+}

@@ -242,8 +242,10 @@ partial read stays unavailable; never omit records to make the budget pass.
 Actual provider capacity, cost, freshness and target-host latency remain gates.
 
 `inventory_consistent` means supplied-data consistency. `ready` and
-`deployment_authorized` stay false: actual OpenSea primary-drop integration is
-not supplied by the current direct mint, and metadata cannot add that interface.
+`deployment_authorized` stay false. The current mint2 SeaDrop-compatible source
+exists, but this offline gate does not approve custom-drop onboarding, actual
+platform fees/payers, wallet execution or operating acceptance. Historical
+unbound direct mint and metadata alone do not supply that integration.
 Real feeds/routes/VRF/authorities, complete history, current services/gas and
 independent audit/remediation remain mandatory.
 
