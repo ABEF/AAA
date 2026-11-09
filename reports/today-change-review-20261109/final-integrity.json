@@ -1,0 +1,22 @@
+{
+  "baseline": "d81185684d768b0afccfed4801a443ed4ccca60d",
+  "production_solidity_unchanged": true,
+  "only_production_implementation_changed": "zzz_ops/production_v15.py",
+  "operator_example_rows_unchanged": 958,
+  "todo_task_order_and_statuses_preserved": 77,
+  "nested_manifests_verified": [
+    {
+      "folder": "contracts",
+      "files": 2
+    },
+    {
+      "folder": "consumers",
+      "files": 16
+    }
+  ],
+  "local_markdown_file_links_checked": 2418,
+  "comprehensive_fragment_or_external_link_check": false,
+  "protected_four_preserved": true,
+  "website_source_clean_and_signer_unchanged": true,
+  "operating_environment_changed": false
+}

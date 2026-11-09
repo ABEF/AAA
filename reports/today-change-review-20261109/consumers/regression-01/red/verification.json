@@ -1,0 +1,35 @@
+{
+  "stage": "red",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "-v",
+    "tests_python.test_production_v15.MintInventoryTests.test_phase_matches_every_inclusive_stage_boundary",
+    "tests_python.test_production_v15.MintInventoryTests.test_phase_zero_is_valid_between_stages",
+    "tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp",
+    "tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp",
+    "tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases"
+  ],
+  "started_utc": "2026-11-09T06:07:34.774763+00:00",
+  "finished_utc": "2026-11-09T06:07:35.545852+00:00",
+  "exit_code": 1,
+  "source_before": {
+    "zzz_ops/production_v15.py": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08",
+    "tests_python/test_production_v15.py": "23c487be6f5a6e72c67ffa0cfbfbd3bb5f94f8105dd8be516db2cded2e328758",
+    "config/production.example.json": "c20528939c6f9a295b988e37b05a125e11ba979be3db4c1422df9e0bc65fd0ef"
+  },
+  "source_after": {
+    "zzz_ops/production_v15.py": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08",
+    "tests_python/test_production_v15.py": "23c487be6f5a6e72c67ffa0cfbfbd3bb5f94f8105dd8be516db2cded2e328758",
+    "config/production.example.json": "c20528939c6f9a295b988e37b05a125e11ba979be3db4c1422df9e0bc65fd0ef"
+  },
+  "source_unchanged": true,
+  "credentials_inherited": false,
+  "no_network_or_chain_requested": true,
+  "scope": "New consumer preflight regressions only against unpatched code",
+  "raw_log_sha256": "46e2d635a684d2278c64d9a3e9eed732273eb50297b928bc839fc10771324143"
+}

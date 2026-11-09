@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "3b0c0ed7555b19e79f39ca748634e326a35f9266f1d03fc1b4fa632b9dac89cd",
+  "reference_sha256": "823883b227f093ddfdc2e1ef1d56710e0ec01ac35a94ff11939eb2dc4861af98",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",

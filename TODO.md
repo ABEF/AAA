@@ -157,6 +157,7 @@ Custody, ownership and reward accounting.
   - Fresh schema17/mint2/helper1/V10 observer and gate bind original-recipient/stage/lifetime books and do not reinterpret V9/16. Predeploy the fixed metadata renderer and use the fresh three-argument NFT constructor. Preserve original journals/runtimes, source9 consumers, websites and signer; implement/review matching V10 consumer adoption before release.
   - Qualify exact real collection/drop URL, unsigned platform transaction, buyer ownership, gross/platform/net balance conservation, original VRF request/result/reveal, payment and callback failures, last supply, maximum gas and operating restart/recovery. Public signing/transactions/deployment remain separately authorized.
   - Fixed5% ERC2981 requests royalties without universally enforcing marketplace payment. New primary-mint support does not add transfer-validator enforcement, a royalty converter, or a new custody/withdrawal authority.
+  - Current V10 peers must retain the same SeaDrop address/runtime; canonical replacement does not rotate mint transport. Record acceptance before sealing, or complete a separately reviewed design if rotation is required. Actual batch/provider acceptance must include failure on a later NFT after an earlier item succeeds. [Double-check](reports/today-change-review-20261109/REVIEW.md).
 
   </details>
 
@@ -1057,6 +1058,7 @@ Three required testing layers, with source-bound evidence.
   - [LP lifecycle review](reports/lp-lifecycle-audit-20261102/REVIEW.md): Fresh475-record Slither analysis at final-a8e7dc7cc5;407 exact unchanged source/context dispositions reused and68 current contexts reviewed. Finding exit is not a clean run. Strict checker rules unchanged; new default record is source-bound. Independent audit/remediation and live-service qualification stay open. [scoped evidence](reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
   - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md): recurring stale static CI default repaired with a full current471-record strict review and44focused Python passes. Preserve13current-context/458referenced-context reuse limits; no new analyzer/compiler/contract execution or green public CI is claimed. Keep review/default/current-source regression aligned after relevant changes; frozen-release independent audit/remediation remains open.
+  - November9 double-check of the six current-day commits fixes offline phase/time and integer-count preflight defects, adds source-bound funded Entry trace mutation checks and corrects operator guidance. No additional actionable Solidity defect was established; existing runtime, actual-service and independent-release evidence is not broadened. [Review and exact verification](reports/today-change-review-20261109/REVIEW.md).
 
   </details>
 
@@ -1563,4 +1565,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `2783010352ff1f6aef3de10bb813d416e231b2fb513e2927fe9e7f0cd5d41b53`.
+Snapshot SHA-256: `771859449e28dbf7fab6b38439f5f3a6a4b7fa6e94cc9270b974ee2f6d084cde`.

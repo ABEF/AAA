@@ -1,0 +1,26 @@
+test_actual_funded_source_scope_and_two_zero_epochs_are_preserved (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_actual_funded_source_scope_and_two_zero_epochs_are_preserved) ... ok
+test_current_pair_observation_cannot_be_relabelled_historical (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_current_pair_observation_cannot_be_relabelled_historical) ... ok
+test_duplicate_second_epoch_cannot_create_a_third_phase (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_duplicate_second_epoch_cannot_create_a_third_phase) ... ok
+test_equal_nonzero_epochs_are_an_explicit_synthetic_funded_witness (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_equal_nonzero_epochs_are_an_explicit_synthetic_funded_witness) ... ok
+test_misordered_historical_observation_cannot_precede_first_epoch (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_misordered_historical_observation_cannot_precede_first_epoch) ... ok
+test_missing_second_epoch_cannot_reuse_first_phase (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_missing_second_epoch_cannot_reuse_first_phase) ... FAIL
+test_second_epoch_change_cannot_cross_share_issuance (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_second_epoch_change_cannot_cross_share_issuance) ... ok
+test_second_epoch_requires_exact_bucket_static_success_and_uint64 (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_second_epoch_requires_exact_bucket_static_success_and_uint64) ... ok
+
+======================================================================
+FAIL: test_missing_second_epoch_cannot_reuse_first_phase (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_missing_second_epoch_cannot_reuse_first_phase)
+----------------------------------------------------------------------
+frontend_api.service.ProjectionError: Historical compound denomination does not match the captured epoch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_activation_funded_trace7.py", line 94, in test_missing_second_epoch_cannot_reuse_first_phase
+    with self.assertRaisesRegex(ProjectionError,'historical compound denomination'):self.measure()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "historical compound denomination" does not match "Historical compound denomination does not match the captured epoch"
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.001s
+
+FAILED (failures=1)

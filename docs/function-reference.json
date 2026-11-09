@@ -26296,7 +26296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "fd8842e89f76ce5c587883683e82dc19755adf124f78ab52b07d6f245f2f0e05",
+  "notes_sha256": "c64fa6cba0f54a478c2b06aefc2387e39f4769713d63b68d7e050d85267c5bd0",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -50995,7 +50995,7 @@
           "kind": "function",
           "name": "setMintPrice",
           "state_mutability": "nonpayable",
-          "purpose": "Change future direct-mint gross native payment.",
+          "purpose": "Change future paid-mint gross native price.",
           "access": "Before sealing: current bootstrap only. After sealing: current governance only. Canonical operating state and no preparation required before/after work; ordinary pause does not block configuration. No timelock; nonReentrant.",
           "status": "documented",
           "inputs": [
@@ -51006,7 +51006,7 @@
               "type": "uint128",
               "canonical_type": "uint128",
               "internal_type": "uint128",
-              "explanation": "Positive uint128 price in wei; gas separate."
+              "explanation": "Positive uint128 price in wei; current mint2 must also fit SeaDrop uint80. Gas separate."
             },
             {
               "position": 1,
@@ -51020,7 +51020,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Default0.05ETH configurable. Advances sale/mint identity; never changes/refunds old proceeds. OpenSea primary integration separately unfinished."
+          "notes": "Default0.05ETH gross for mint2 paid allowlist/public; team is free. Advances sale/mint identity; never changes/refunds old proceeds. Pause and coordinate the helper plan, matching proofs and SeaDrop settings before resuming. The unbound direct path is historical/local; actual OpenSea qualification remains open."
         },
         {
           "signature": "setRandomnessRequestSettings(uint16,uint32,bytes32)",

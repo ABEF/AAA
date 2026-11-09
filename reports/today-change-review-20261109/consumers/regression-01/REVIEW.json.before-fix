@@ -1,0 +1,357 @@
+{
+  "scope": "Read-only source inspection of consumer compatibility boundaries across the six contract commits after2138dd6 throughd811856, with source9 website759a468..a41dbf8. No testing, RPC, deployment, service, signing or source edits.",
+  "utc": "2026-11-09T06:05:36.497708+00:00",
+  "contract_revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+  "website_revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+  "findings": [
+    {
+      "id": "CONSUMER-01",
+      "priority": "P2",
+      "file": "zzz_ops/production_v15.py",
+      "line": 160,
+      "title": "Reconcile current mint phase with its pinned observation timestamp",
+      "evidence": "The gate accepts any integer0..3 current_phase; it does not derive the expected phase from chain.observed_block.timestamp and the configured inclusive phase windows. The helper implements that deterministic calculation at src/ZZZSeaDropMint.sol:230-237.",
+      "effect": "An internally contradictory offline observation (TEAM during PUBLIC, or PUBLIC after the end) can pass this portion of mint inventory consistency. The ordinary observer reads the real getter; this is a consistency/diagnostic gap, not authority to bypass contract phase checks or proof of a live exploit.",
+      "minimal_fix": "Derive expected phase from the already pinned timestamp and reviewed disjoint windows. Require exact equality, retaining0 before/after sale and between phases; do not require sale to be open for release review. Component fixtures need a matching pinned timestamp and focused inclusive-boundary/gap/mismatch cases."
+    },
+    {
+      "id": "CONSUMER-02",
+      "priority": "P3",
+      "file": "zzz_ops/production_v15.py",
+      "line": 167,
+      "title": "Reject boolean aliases for empty disabled mint-family counters",
+      "evidence": "The chained comparison signer_count==token_gate_count==0 accepts Python False as0, unlike the nearby exact-type current_phase and mint-count checks.",
+      "effect": "A malformed manually supplied observation can pass those empty-family fields. The actual observer produces integer lengths, so this is strict offline-format validation, not an onchain permission bypass.",
+      "minimal_fix": "Require type(value)is int and value==0 for each count; retain existing actual zero-family requirement."
+    }
+  ],
+  "checked_boundaries": [
+    "Source9 website schema4 independently requiresV9,29 exact runtime roles and the source9 capability graph. V10/mint2 is not inferred from the eight-word Position tuple. A matching V10 website profile remains explicitly unimplemented, not silently adopted.",
+    "Source9 view localSigning excludes schema4 before constructing DeploymentTransactions. Shared browser-wallet.js matches its759a468 bytes and both public deployment exports remain null.",
+    "API mint integration defaults to historical1, requires explicit integer2/accounting7 forV10, validates pinned helper/NFT/SeaDrop parent/runtime bindings, and rejects direct mint preparation before RPC.",
+    "Mutable sale eligibility is deliberately absent from existing LP/claim authorization; protocol labels mint2 OpenSea availability unverified rather than treating the broad collection sale window as stage eligibility.",
+    "Pinned current fixed ZZZ getter comes from principal_exit.currentZZZ(); exact LP admission is ETH then that ZZZ. Original-currency royalties remain separate from source inputs and LP conversion.",
+    "SeaDrop original-recipient/stage/lifetime counts are serialized separately from current ownership. Observer uses15-word config,6-word public drop and3-word mintStats outputs matching actual ABI; IDs and ordinal inversion are checked.",
+    "CanonicalV10 NFT rows retain12words and original recipients/stages; historical V9 predecessor profiles remain explicit and cannot inherit a successor mint2 flag. Shared global SeaDrop may be reused only with the same role/hash; owned helpers cannot be reused.",
+    "Checkpoint2 remains source/config/contract-bound; source service hashes and role inventories change across mint2. Lineage is not silently enabled for checkpoints, and claims/conversions/imports are not new earnings.",
+    "Source9 reviews reconstruct exact Entry3/claim calldata, amount/asset/spender/minimums/captured policies, independently simulate at a pinned canonical block, and repeat expiry/deployment provenance. Approval alone is not LP; at most exact approval plus contribution is prepared.",
+    "Optional activation gas policy2 is explicit and separate from claim-policy selection; confirmed-block bounds, full20percent headroom and fee ceilings are checked. Schema1 remains12M; no signer capability follows from a larger unsigned gas envelope.",
+    "Fresh7 trace parsing distinguishes initial epoch0/new-bucket behavior from two stable funded epochs and excludes entrant use of incumbent idle/compound. Current successful actual-rehearsal evidence used controlled depth/feeds and is not live-provider qualification."
+  ],
+  "source_pins": [
+    {
+      "repository": "contract",
+      "path": "frontend_api/service.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "a5e481c01d6b09a3a046f02b8df2da829b3df884e417a4dc34ae2c4cc135cff8",
+      "current_raw_sha256": "a5e481c01d6b09a3a046f02b8df2da829b3df884e417a4dc34ae2c4cc135cff8",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/activation.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+      "current_raw_sha256": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/activation_config.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "d33e5d42a0ad40dc70b6522cbf47bb55ad53917b13d403b3637c85ad420183c1",
+      "current_raw_sha256": "d33e5d42a0ad40dc70b6522cbf47bb55ad53917b13d403b3637c85ad420183c1",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/activation_trace.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+      "current_raw_sha256": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/transactions.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+      "current_raw_sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/transaction_gas.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+      "current_raw_sha256": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/claim_planner.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "0f19f12b55d55564e5ce1cc734bb4c1f8eac889e95cbedcabbd7637caacffc96",
+      "current_raw_sha256": "0f19f12b55d55564e5ce1cc734bb4c1f8eac889e95cbedcabbd7637caacffc96",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/lineage.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "b9265607f267d0af0f41dd450e526767302aef49f27d4ccee90d519bacf1390e",
+      "current_raw_sha256": "b9265607f267d0af0f41dd450e526767302aef49f27d4ccee90d519bacf1390e",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/lifecycle.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+      "current_raw_sha256": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/history.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+      "current_raw_sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/earnings.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "current_raw_sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/earnings_replay.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+      "current_raw_sha256": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/earnings_checkpoint.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+      "current_raw_sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/earnings_checkpoint_v2.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "current_raw_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/portfolio_v7.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+      "current_raw_sha256": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "frontend_api/mint_readiness.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d",
+      "current_raw_sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "zzz_ops/production_v15.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08",
+      "current_raw_sha256": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "zzz_ops/production_observer_v15.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "481b94680e2f52a1f51c5e10f2d27d015c1c194a14d01ddb530583610a66c592",
+      "current_raw_sha256": "481b94680e2f52a1f51c5e10f2d27d015c1c194a14d01ddb530583610a66c592",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "zzz_ops/production_v14.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+      "current_raw_sha256": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "zzz_ops/production_observer_v14.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "5dceb961ed49f353f86b8739a0084af26d24d1fffbbc633a3bed4b8b0eab8de5",
+      "current_raw_sha256": "5dceb961ed49f353f86b8739a0084af26d24d1fffbbc633a3bed4b8b0eab8de5",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "zzz_ops/production_v6.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "a1d16d2e6538c1c4db4e8f0917b966c5027144f1c56b4b02da2c41ddc7ee8cf7",
+      "current_raw_sha256": "a1d16d2e6538c1c4db4e8f0917b966c5027144f1c56b4b02da2c41ddc7ee8cf7",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "src/ZZZSeaDropMint.sol",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "current_raw_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "src/ZZZNFT.sol",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+      "current_raw_sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "src/ZZZNFTCanonical.sol",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "current_raw_sha256": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "current_raw_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "src/ZZZVault.sol",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "current_raw_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "tests_python/test_seadrop_consumer.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "f7cc8ca14112647ba64924dd96f0398463d53139adb881bb5aad79cf6e53eb02",
+      "current_raw_sha256": "f7cc8ca14112647ba64924dd96f0398463d53139adb881bb5aad79cf6e53eb02",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "tests_python/test_production_v15.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "507ed248843e9c30de0eb2f5ad18efb56111ec323e16a8efdfc4467e83fcb876",
+      "current_raw_sha256": "507ed248843e9c30de0eb2f5ad18efb56111ec323e16a8efdfc4467e83fcb876",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "contract",
+      "path": "tests_python/test_activation_actual_trace7.py",
+      "revision": "d81185684d768b0afccfed4801a443ed4ccca60d",
+      "git_blob_sha256": "65539df6d961eb91ed05ae0072f444111e75a895ebaeac0bc7eb16b75af1d0a8",
+      "current_raw_sha256": "65539df6d961eb91ed05ae0072f444111e75a895ebaeac0bc7eb16b75af1d0a8",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-api.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "cf53a8cc89fc5c2986fd95315b3dfe17c1b2431cc9e96f3cf276ca803bffb18a",
+      "current_raw_sha256": "cf53a8cc89fc5c2986fd95315b3dfe17c1b2431cc9e96f3cf276ca803bffb18a",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-source9.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+      "current_raw_sha256": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-source9-data.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "21f891a5ccdcdf8a6cb71dfcae4558000932191fe98958926c5683a9dea631e4",
+      "current_raw_sha256": "21f891a5ccdcdf8a6cb71dfcae4558000932191fe98958926c5683a9dea631e4",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-source9-prepare.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "c9f26ce8eb864695cef68fe08b215d71807d2e780c51ad63b965c6110770c813",
+      "current_raw_sha256": "c9f26ce8eb864695cef68fe08b215d71807d2e780c51ad63b965c6110770c813",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-view.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "568d3ee5a8349bf5eabae33907fa1b4022ea6f861398e121c50c0e777df250b4",
+      "current_raw_sha256": "568d3ee5a8349bf5eabae33907fa1b4022ea6f861398e121c50c0e777df250b4",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "browser-wallet.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "current_raw_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "deployment-config.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "current_raw_sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "integration-config.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348",
+      "current_raw_sha256": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348",
+      "current_lf_matches_reviewed_git": true
+    },
+    {
+      "repository": "website",
+      "path": "integration-app.js",
+      "revision": "a41dbf8c901a5ecf573d68494eaf6052d40713e8",
+      "git_blob_sha256": "84c5a7c4fa3cbf1f24ae3216616b108ca8fee5b2cd0cfb92f94ff052440f4adb",
+      "current_raw_sha256": "84c5a7c4fa3cbf1f24ae3216616b108ca8fee5b2cd0cfb92f94ff052440f4adb",
+      "current_lf_matches_reviewed_git": true
+    }
+  ],
+  "shared_signer_unchanged_vs_759a468": true,
+  "shared_signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+  "public_DEPLOYMENT_null": true,
+  "public_INTEGRATION_DEPLOYMENT_null": true,
+  "limits": [
+    "Inspection only; no existing tests rerun and no new live probes.",
+    "No concrete claim amount, reward allocation, mint-counter serialization or public-signing defect found in the inspected consumer paths.",
+    "This is not an independent full-project audit or target workload/provider/browser/hosting qualification.",
+    "Root may implement fixes after this report; findings describe the pinned d811856 source, and current-worktree match flags make any later changes explicit."
+  ]
+}

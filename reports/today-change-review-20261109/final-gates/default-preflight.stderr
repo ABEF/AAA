@@ -1,0 +1,5 @@
+usage: validate-production-config.py [-h] --config CONFIG
+                                     [--expected-commit EXPECTED_COMMIT]
+                                     [--output OUTPUT]
+                                     [--historical-consistency]
+validate-production-config.py: error: the following arguments are required: --config

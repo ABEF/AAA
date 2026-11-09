@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+The [current source double-check](../reports/today-change-review-20261109/REVIEW.md)
+closes two offline inventory consistency defects. It grants no release approval.
+Before sealing, record acceptance of the same-SeaDrop V10 boundary or complete
+a reviewed alternative; actual provider/batch acceptance must include a failure
+on a later NFT after an earlier item succeeds.
+
 The [market qualification record](../reports/market-qualification-20261109/REVIEW.md)
 adds dated official-feed/source/proxy and actual venue/quote/fork evidence. No
 source pair or default1% conversion route is qualified. Underlying feed identity,

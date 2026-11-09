@@ -41,7 +41,7 @@ The new [OpenSea mint source](docs/OPENSEA_MINT.md) implements configurable
 free-team/paid-allowlist/public phases (initially20/500/480). Unused allowlist
 supply rolls into public; unused team slots stay reserved. CanonicalV10 preserves
 original recipients and lifetime mint limits. Actual custom-drop onboarding,
-fee/payer/provider and operating qualification remain open. Explicit mint2/V10 backend read/claim support is implemented; website and installed-service adoption remain separate.
+fee/payer/provider and operating qualification remain open. Explicit mint2/V10 backend read/claim support is implemented; website and installed-service adoption remain separate. The [current review](reports/today-change-review-20261109/REVIEW.md) tightens mint-phase observations and clarifies the fixed transport boundary.
 
 ## Project navigation
 

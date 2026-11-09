@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "path": "finish_review.py",
+      "bytes": 4379,
+      "sha256": "7edf0b75a084a02af0588b0db6b8f1f61dc0c34aa9f4324c3780dcb099b1f15e"
+    },
+    {
+      "path": "regression-01/green/unittest.log",
+      "bytes": 2360,
+      "sha256": "db2ec8795e0292c8200fd3de398205e427c6e52fc45382f880882de1d2b52d5b"
+    },
+    {
+      "path": "regression-01/green/verification.json",
+      "bytes": 1384,
+      "sha256": "f0294624c900d9b3505f4497d22b40dc062df8d44e8efa3e3a332bc321782cbc"
+    },
+    {
+      "path": "regression-01/implemented.diff",
+      "bytes": 6674,
+      "sha256": "fb4dad93ab60c844b431d4cd572e888fb6fbae9478906c6f9d9e7614c556c5d0"
+    },
+    {
+      "path": "regression-01/manifest.json.before-fix",
+      "bytes": 311,
+      "sha256": "94a2436159241e4a567e77e9992294fdc0f87c2280292c6518439aa548255e75"
+    },
+    {
+      "path": "regression-01/production_v15-after.py",
+      "bytes": 16975,
+      "sha256": "6f5068e82f1076fbded153daa7ea87067ca5ce9fde8d6a38e57029c48a8f2915"
+    },
+    {
+      "path": "regression-01/production_v15-before.py",
+      "bytes": 16216,
+      "sha256": "f9735391792b448f2c715056dd300379eedadfa28fd08a9751c567e76ed9ca08"
+    },
+    {
+      "path": "regression-01/red/unittest.log",
+      "bytes": 15305,
+      "sha256": "46e2d635a684d2278c64d9a3e9eed732273eb50297b928bc839fc10771324143"
+    },
+    {
+      "path": "regression-01/red/verification.json",
+      "bytes": 1837,
+      "sha256": "215929be162d71e3db37d8fca0d8cbed3abacc23f4333237e9b76e652ecf5f05"
+    },
+    {
+      "path": "regression-01/REVIEW.json.before-fix",
+      "bytes": 20406,
+      "sha256": "1b5cff91353196a582165576e69c14d8276816c78f5e051ac7728dfb73c06c0f"
+    },
+    {
+      "path": "regression-01/REVIEW.md.before-fix",
+      "bytes": 1972,
+      "sha256": "6f7f3c0edad35217756f6341db0b8a3c4c993be2df9db8bb94288d3b733ade8b"
+    },
+    {
+      "path": "regression-01/test_production_v15-after.py",
+      "bytes": 15770,
+      "sha256": "23c487be6f5a6e72c67ffa0cfbfbd3bb5f94f8105dd8be516db2cded2e328758"
+    },
+    {
+      "path": "regression-01/test_production_v15-before.py",
+      "bytes": 13075,
+      "sha256": "507ed248843e9c30de0eb2f5ad18efb56111ec323e16a8efdfc4467e83fcb876"
+    },
+    {
+      "path": "REVIEW.json",
+      "bytes": 22178,
+      "sha256": "190c86f72ce0823b180a86790d086b2a0541fac5f83863afe08cd539a170e351"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 2832,
+      "sha256": "d27aeba992c6c5e04556b7a8fe7634f94d51db1dc1f02c82062ba0733c7db7f0"
+    },
+    {
+      "path": "run_regressions.py",
+      "bytes": 2481,
+      "sha256": "45adbc0e4db77eafb971b95168c41770784ed55bb6fb84bd713ea2305be7178c"
+    }
+  ]
+}

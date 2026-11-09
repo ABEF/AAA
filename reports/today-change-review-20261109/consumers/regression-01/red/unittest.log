@@ -1,0 +1,154 @@
+test_phase_matches_every_inclusive_stage_boundary (tests_python.test_production_v15.MintInventoryTests.test_phase_matches_every_inclusive_stage_boundary) ... ok
+test_phase_zero_is_valid_between_stages (tests_python.test_production_v15.MintInventoryTests.test_phase_zero_is_valid_between_stages) ... ok
+test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) ... 
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=99, phase=3) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=100, phase=0) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=199, phase=2) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=200, phase=1) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=299, phase=3) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=300, phase=2) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=399, phase=0) ... FAIL
+  test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=400, phase=3) ... FAIL
+test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) ... 
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=None) ... FAIL
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=True) ... FAIL
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=False) ... FAIL
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp='300') ... FAIL
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=300.0) ... FAIL
+  test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=-1) ... FAIL
+test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) ... 
+  test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) (field='signer_count', value=False) ... FAIL
+  test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) (field='token_gate_count', value=False) ... FAIL
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=99, phase=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=100, phase=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=199, phase=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=200, phase=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=299, phase=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=300, phase=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=399, phase=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) (timestamp=400, phase=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 100, in test_in_range_phase_code_cannot_contradict_the_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp='300')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=300.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) (timestamp=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 106, in test_phase_requires_an_exact_pinned_timestamp
+    self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) (field='signer_count', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 113, in test_disabled_mint_family_counts_reject_boolean_zero_aliases
+    self.assertTrue(any(row['code']=='mint.drop_controls' for row in self.gate()))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) (field='token_gate_count', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_production_v15.py", line 113, in test_disabled_mint_family_counts_reject_boolean_zero_aliases
+    self.assertTrue(any(row['code']=='mint.drop_controls' for row in self.gate()))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.371s
+
+FAILED (failures=16)

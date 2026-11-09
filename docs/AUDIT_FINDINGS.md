@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+The [9November double-check](../reports/today-change-review-20261109/REVIEW.md)
+fixes inventory phase/time consistency and exact integer-zero mint-family
+observations, adds funded Entry epoch mutation coverage, and corrects operator
+price/profile/address guidance. Solidity and economic rights remain unchanged.
+V10 cannot rotate SeaDrop across peers; actual provider/batch/operating and
+independent acceptance remain open.
+
 The approved [total contribution3% update](../reports/contribution-loss3-20261109/REVIEW.md)
 changes only the fresh Budget default200→300 and corresponding template/reader
 examples. Actual marginal LP must reach97%; idle never supplies that floor.

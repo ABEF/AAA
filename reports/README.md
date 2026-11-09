@@ -1,5 +1,9 @@
 # Verification evidence
 
+Current [9November double-check](today-change-review-20261109/REVIEW.md) fixes
+phase/time and typed-count preflight gaps, strengthens funded trace coverage
+and clarifies operator/version/transport limits without a runtime change.
+
 Use [consolidated findings](../docs/AUDIT_FINDINGS.md) to interpret historical
 remarks against current code, [features/evidence](../docs/IMPLEMENTATION_STATUS.md)
 for capabilities, [Operator manual](../docs/OPERATOR_MANUAL.md) for actions and

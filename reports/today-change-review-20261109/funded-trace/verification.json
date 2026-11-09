@@ -1,0 +1,91 @@
+{
+  "baseline": "d81185684d768b0afccfed4801a443ed4ccca60d",
+  "scope": "Test-only actual historical funded7 Entry3 decoder regression; no EVM/new300 qualification",
+  "production_findings": [],
+  "new_test": "tests_python/test_activation_funded_trace7.py",
+  "new_test_sha256": "10f91c996148e554b5d4c0726b7c083f6cd9551b99db096b6ad227b09dcbc204",
+  "distinct_successful_methods": 8,
+  "unchanged_successful_methods_reused_from_attempt1": 7,
+  "corrected_method": "test_missing_second_epoch_cannot_reuse_first_phase",
+  "production_sources_changed": false,
+  "new_or_repeated_EVM_fork_network_or_service_work": false,
+  "source_before": {
+    "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+    "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "reports/source9-actual-entry-20261109/campaign-evidence.zip": "903c0e572d26daaaff2ad78a27396d8b59062dda9d0249270ae6a783f553333c",
+    "tests_python/fixtures/source9-entry3-actual-trace7.json.gz": "893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f",
+    "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "source_after": {
+    "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+    "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "reports/source9-actual-entry-20261109/campaign-evidence.zip": "903c0e572d26daaaff2ad78a27396d8b59062dda9d0249270ae6a783f553333c",
+    "tests_python/fixtures/source9-entry3-actual-trace7.json.gz": "893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f",
+    "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "source_drift": [],
+  "method_body_sha256_before": {
+    "test_actual_funded_source_scope_and_two_zero_epochs_are_preserved": "f41be6f4622abab9c8eea9a2c001f0963ea879b39b9724fcf747712840b8762a",
+    "test_missing_second_epoch_cannot_reuse_first_phase": "47d8290e781157e0d00f33cbee855e8d0722742e0fe04d74cc5c9102e7f6bb95",
+    "test_duplicate_second_epoch_cannot_create_a_third_phase": "14d05c5b60116b230f2dab9cc8f9cac4aa7d58f1947463ba535ee4c5b48699ee",
+    "test_second_epoch_change_cannot_cross_share_issuance": "3e94aa66ec0b5232c87af69d11c845c9776e1377b35aac4ca51430d8940a62f0",
+    "test_second_epoch_requires_exact_bucket_static_success_and_uint64": "db94b72ed26d12a39ddbc40fc80350b639b7ff6b0526b174a43443b78f5c4f11",
+    "test_equal_nonzero_epochs_are_an_explicit_synthetic_funded_witness": "912a5ff6d50ce1fcb0f4a8e824874eccd6b3762bf78dfbf3d01e139d565fd8a0",
+    "test_misordered_historical_observation_cannot_precede_first_epoch": "47fb5dd8a0ca5cf3410fe66c5ed844478cc7aaf137d92faef85dfe67ee18084b",
+    "test_current_pair_observation_cannot_be_relabelled_historical": "91a19a0691da0c82f316ad8c6b29be3ee3eb4e88200e7f5ca1a43b9078767db3"
+  },
+  "method_body_sha256_after": {
+    "test_actual_funded_source_scope_and_two_zero_epochs_are_preserved": "f41be6f4622abab9c8eea9a2c001f0963ea879b39b9724fcf747712840b8762a",
+    "test_missing_second_epoch_cannot_reuse_first_phase": "976f5c1137d6f792895acf56018d1282f388b9b3eb0a83ba770c18f7589f28e6",
+    "test_duplicate_second_epoch_cannot_create_a_third_phase": "14d05c5b60116b230f2dab9cc8f9cac4aa7d58f1947463ba535ee4c5b48699ee",
+    "test_second_epoch_change_cannot_cross_share_issuance": "3e94aa66ec0b5232c87af69d11c845c9776e1377b35aac4ca51430d8940a62f0",
+    "test_second_epoch_requires_exact_bucket_static_success_and_uint64": "db94b72ed26d12a39ddbc40fc80350b639b7ff6b0526b174a43443b78f5c4f11",
+    "test_equal_nonzero_epochs_are_an_explicit_synthetic_funded_witness": "912a5ff6d50ce1fcb0f4a8e824874eccd6b3762bf78dfbf3d01e139d565fd8a0",
+    "test_misordered_historical_observation_cannot_precede_first_epoch": "47fb5dd8a0ca5cf3410fe66c5ed844478cc7aaf137d92faef85dfe67ee18084b",
+    "test_current_pair_observation_cannot_be_relabelled_historical": "91a19a0691da0c82f316ad8c6b29be3ee3eb4e88200e7f5ca1a43b9078767db3"
+  },
+  "runs": [
+    {
+      "log": "focused-attempt1.log",
+      "methods": 8,
+      "passes": 7,
+      "failures": 1,
+      "seconds": 2.001,
+      "scope": "Initial new-only run; expected-message capitalization mismatch in one assertion, actual decoder rejection was correct",
+      "log_sha256": "dda037b9aeefeaf28c66550ea57922cfff4aaa4fe2619f20e690b1675210c1bb"
+    },
+    {
+      "log": "corrected-method-attempt2.log",
+      "methods": 1,
+      "passes": 1,
+      "failures": 0,
+      "seconds": 0.194,
+      "scope": "Only corrected assertion rerun; other seven unchanged method bodies not rerun",
+      "log_sha256": "3d0b2cc0dfba3e4dcfe06c709e6c76ca918281fffb6be281f634ca1e7dbd79a8"
+    }
+  ],
+  "historical_source_explanation": "Current decoder is explicitly selected accounting7/Entry3 and its two-phase semantics still apply. Original record was actual source9/normal87 at200bps with correlated feeds, mock VRF and synthetic external market depth; no new300-bps EVM or live-market claim is made. Original archive/entries and initial pin fixture remain immutable, referenced rather than copied.",
+  "new_cases": [
+    "actual funded supply>0, twoepoch0 success",
+    "second epoch missing",
+    "third/duplicate epoch",
+    "changed second epoch",
+    "second epoch wrong bucket/kind/output/uint64/error",
+    "synthetic equal nonzero epochs success",
+    "synthetic historical observation before first epoch rejection",
+    "synthetic current-pair-as-historical rejection"
+  ],
+  "read_only_audit_conclusion": "No new concrete management authorization/terminal-accounting/final-freshness/gas/Entry cap or parser production defect established. Remaining actual provider/operator-envelope/gas/operation qualification stays open."
+}

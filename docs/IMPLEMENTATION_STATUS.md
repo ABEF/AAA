@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+The [current double-check](../reports/today-change-review-20261109/REVIEW.md)
+adds exact phase/time and count-type preflight validation plus focused funded
+Entry trace regressions. This changes no Solidity, economics, service or site.
+Source9/V9 remains distinct from mint2/V10; transport rotation is not a V10
+handoff capability. Actual qualification remains open.
+
 The [market qualification record](../reports/market-qualification-20261109/REVIEW.md)
 adds dated official-feed/source/proxy and actual venue/quote/fork evidence. No
 source pair or default1% conversion route is qualified. Underlying feed identity,

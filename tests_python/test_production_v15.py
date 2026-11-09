@@ -36,6 +36,8 @@ class MintInventoryTests(unittest.TestCase):
             configuration_review_hash=digest(13),revision=1)
         section['configuration_hash'],section['configuration_values_hash']=P.configuration_hashes(self.chain,section)
         self.chain['canonical_handoff'].update(origin_chain_id=4663,origin_vault=self.chain['modules']['vault']['address'])
+        # This component fixture observes the public stage at its inclusive start.
+        self.chain['observed_block']['timestamp']=300
         helper=self.chain['helpers']['seadrop_mint']['address']
         def nftid(i):return int(P.V.identity([(4663,'uint256'),(self.chain['modules']['vault']['address'],'address'),(i,'uint256')]),16)
         rows=[dict(ordinal=i,reverse_ordinal=i,id=nftid(i),recipient=a,stage=stage,nft_original_recipient=a,nft_stage=stage)
@@ -69,6 +71,47 @@ class MintInventoryTests(unittest.TestCase):
 
     def test_component_validates_original_recipients_not_current_owners(self):
         self.assertEqual([],self.gate())
+
+    def test_phase_matches_every_inclusive_stage_boundary(self):
+        for timestamp,phase in ((99,0),(100,1),(199,1),(200,2),(299,2),(300,3),(399,3),(400,0)):
+            with self.subTest(timestamp=timestamp):
+                self.chain['observed_block']['timestamp']=timestamp
+                self.chain['primary_mint']['observed']['current_phase']=phase
+                self.assertEqual([],self.gate())
+
+    def test_phase_zero_is_valid_between_stages(self):
+        section=self.chain['primary_mint'];c=section['mint_config'];observed=section['observed']
+        c.update(allowlistStart=220,publicStart=340,merkleRoot=digest(14))
+        observed['config']=copy.deepcopy(c);observed['allowlist_root']=c['merkleRoot']
+        observed['public_drop']['startTime']=c['publicStart']
+        section['configuration_hash'],section['configuration_values_hash']=P.configuration_hashes(self.chain,section)
+        for key in ('configuration_hash','configuration_values_hash'):observed[key]=section[key]
+        for timestamp in (200,219,300,339):
+            with self.subTest(timestamp=timestamp):
+                self.chain['observed_block']['timestamp']=timestamp
+                observed['current_phase']=0
+                self.assertEqual([],self.gate())
+
+    def test_in_range_phase_code_cannot_contradict_the_pinned_timestamp(self):
+        for timestamp,phase in ((99,3),(100,0),(199,2),(200,1),(299,3),(300,2),(399,0),(400,3)):
+            with self.subTest(timestamp=timestamp,phase=phase):
+                self.chain['observed_block']['timestamp']=timestamp
+                self.chain['primary_mint']['observed']['current_phase']=phase
+                self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+
+    def test_phase_requires_an_exact_pinned_timestamp(self):
+        for timestamp in (None,True,False,'300',300.0,-1):
+            with self.subTest(timestamp=timestamp):
+                self.chain['observed_block']['timestamp']=timestamp
+                self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
+
+    def test_disabled_mint_family_counts_reject_boolean_zero_aliases(self):
+        for field in ('signer_count','token_gate_count'):
+            for value in (False,True,'0'):
+                with self.subTest(field=field,value=value):
+                    self.chain['primary_mint']['observed'][field]=value
+                    self.assertTrue(any(row['code']=='mint.drop_controls' for row in self.gate()))
+                    self.chain['primary_mint']['observed'][field]=0
 
     def test_each_core_book_or_control_mutation_is_rejected(self):
         baseline=copy.deepcopy(self.chain)

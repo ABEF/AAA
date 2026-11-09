@@ -1,0 +1,6 @@
+test_missing_second_epoch_cannot_reuse_first_phase (tests_python.test_activation_funded_trace7.FundedEntry3Trace7Tests.test_missing_second_epoch_cannot_reuse_first_phase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.194s
+
+OK

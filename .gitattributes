@@ -149,3 +149,6 @@ reports/market-qualification-20261109/** -text whitespace=cr-at-eol,-blank-at-eo
 
 # Preserve exact contribution-default compiler/static/regression evidence and failures.
 reports/contribution-loss3-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact red/green and source-bound daily review records.
+reports/today-change-review-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

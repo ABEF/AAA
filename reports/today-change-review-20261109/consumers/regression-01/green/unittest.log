@@ -1,0 +1,18 @@
+test_cli_default_dispatch_rejects_historical16 (tests_python.test_production_v15.MintInventoryTests.test_cli_default_dispatch_rejects_historical16) ... ok
+test_component_validates_original_recipients_not_current_owners (tests_python.test_production_v15.MintInventoryTests.test_component_validates_original_recipients_not_current_owners) ... ok
+test_default_template_remains_unqualified_and_old_gate_is_unchanged (tests_python.test_production_v15.MintInventoryTests.test_default_template_remains_unqualified_and_old_gate_is_unchanged) ... ok
+test_disabled_mint_family_counts_reject_boolean_zero_aliases (tests_python.test_production_v15.MintInventoryTests.test_disabled_mint_family_counts_reject_boolean_zero_aliases) ... ok
+test_each_core_book_or_control_mutation_is_rejected (tests_python.test_production_v15.MintInventoryTests.test_each_core_book_or_control_mutation_is_rejected) ... ok
+test_in_range_phase_code_cannot_contradict_the_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_in_range_phase_code_cannot_contradict_the_pinned_timestamp) ... ok
+test_new_bindings_are_explicit_and_do_not_relabel_schema16 (tests_python.test_production_v15.MintInventoryTests.test_new_bindings_are_explicit_and_do_not_relabel_schema16) ... ok
+test_phase_matches_every_inclusive_stage_boundary (tests_python.test_production_v15.MintInventoryTests.test_phase_matches_every_inclusive_stage_boundary) ... ok
+test_phase_requires_an_exact_pinned_timestamp (tests_python.test_production_v15.MintInventoryTests.test_phase_requires_an_exact_pinned_timestamp) ... ok
+test_phase_zero_is_valid_between_stages (tests_python.test_production_v15.MintInventoryTests.test_phase_zero_is_valid_between_stages) ... ok
+test_team_reservation_and_phase_caps_are_independent (tests_python.test_production_v15.MintInventoryTests.test_team_reservation_and_phase_caps_are_independent) ... ok
+test_transfer_cannot_reset_lifetime_or_allowlist_limits (tests_python.test_production_v15.MintInventoryTests.test_transfer_cannot_reset_lifetime_or_allowlist_limits) ... ok
+test_zero_supply_is_explicit_not_a_substitute_for_funded_history (tests_python.test_production_v15.MintInventoryTests.test_zero_supply_is_explicit_not_a_substitute_for_funded_history) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.598s
+
+OK

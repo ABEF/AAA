@@ -8091,13 +8091,13 @@
           "notes": "Gas revision does not reset LP samples/change rights. Preserve batch tail,outer-gas,exact returndata and failure-isolation guards. Real gas qualification is separate."
         },
         "setMintPrice(uint128,bytes32)": {
-          "purpose": "Change future direct-mint gross native payment.",
+          "purpose": "Change future paid-mint gross native price.",
           "access": "Before sealing: current bootstrap only. After sealing: current governance only. Canonical operating state and no preparation required before/after work; ordinary pause does not block configuration. No timelock; nonReentrant.",
           "inputs": {
-            "0": "Positive uint128 price in wei; gas separate.",
+            "0": "Positive uint128 price in wei; current mint2 must also fit SeaDrop uint80. Gas separate.",
             "1": "Nonzero reviewHash provenance commitment; not a policy fingerprint,authorization or contract-verified review preimage."
           },
-          "notes": "Default0.05ETH configurable. Advances sale/mint identity; never changes/refunds old proceeds. OpenSea primary integration separately unfinished."
+          "notes": "Default0.05ETH gross for mint2 paid allowlist/public; team is free. Advances sale/mint identity; never changes/refunds old proceeds. Pause and coordinate the helper plan, matching proofs and SeaDrop settings before resuming. The unbound direct path is historical/local; actual OpenSea qualification remains open."
         },
         "proposeMintRecipient(address,bytes32)": {
           "purpose": "Propose future mint recipient,or cancel with zero.",

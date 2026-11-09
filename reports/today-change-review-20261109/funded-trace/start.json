@@ -1,0 +1,17 @@
+{
+  "baseline": "d81185684d768b0afccfed4801a443ed4ccca60d",
+  "scope": "Test-only actual historical funded7 Entry3 decoder regression; no EVM/new300 qualification",
+  "source_sha256": {
+    "frontend_api/activation.py": "f234daea3c8d075e5098982cf05fb73cf8d90a5f73015e4e21e7674eb4d60ec5",
+    "frontend_api/activation_trace.py": "98bdcca3e21188529095ad31c0e2cdf6d9b4ce1e7ddb0ef0a02ee879c3fddf9c",
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "reports/source9-actual-entry-20261109/campaign-evidence.zip": "903c0e572d26daaaff2ad78a27396d8b59062dda9d0249270ae6a783f553333c",
+    "tests_python/fixtures/source9-entry3-actual-trace7.json.gz": "893b369933f5946ada87a6cf6fc845f7489d9361ac55ffac7f3c954cda95cf6f",
+    "reports/fee-flow-audit-20261107/contract/normal-final-4de5dcc67c/START.json": "af21ac0916ffaf0d0823a2ac2339131a8f996fdf70a7bce4f323a7374257ff92",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  }
+}

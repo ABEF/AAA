@@ -2318,6 +2318,9 @@ Deploy the fixed metadata renderer before the fresh three-argument NFT,
 then the collection-specific mint helper. Bootstrap binds that helper
 once before seal/any mint. Governance configures future plan terms after
 seal. The singleton SeaDrop/runtime and helper cannot be swapped later.
+V10 replacement also requires the same SeaDrop address/runtime across peers;
+it is not a mint-transport recovery/rotation path. Review this fixed dependency
+before sealing if a future transport change is required.
 The original two-word VRF request and dormant state are preserved; no
 LP/royalty rights are granted by a free or paid mint alone.
 
@@ -2329,6 +2332,10 @@ Call `Mint.configure(config,expectedMintPrice,reviewHash)` using its full
 `updateAllowedFeeRecipient`, `updatePayer`, optional `updateDropURI`, and
 `setMintEnd` as described in that procedure. Partial/mismatched setup
 blocks minting rather than silently selecting another price or route.
+Schema17 preflight cross-checks `currentPhase()` against that same confirmed
+block timestamp and inclusive windows. Phase0 is valid before/between/after
+stages; it is not an error requiring the sale to open. Refresh inconsistent
+observations with the read-only observer; never edit time/phase to force a pass.
 
 Before a live sale change, pause/reconcile minting, publish matching
 proofs and settings, simulate the actual platform transaction, then

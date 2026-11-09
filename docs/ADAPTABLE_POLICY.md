@@ -1,9 +1,11 @@
 # Configurable operating policy
 
-Fresh accounting6 / ProtocolPolicy1 / Portfolio2 source candidate. **Production
+Current accounting7 / mint2 / ProtocolPolicy1 / Portfolio2 source candidate. **Production
 NOT APPROVED.** This does not upgrade an existing deployment, worker, journal,
 website or wallet signer. [Operator procedure](OPERATOR_MANUAL.md#future-operating-settings)
-and [exact profile](POSITION_V6.md).
+and [exact profile](POSITION_V7.md). Historical accounting6 deployments retain
+their [separate profile](POSITION_V6.md); policy implementation identity alone
+does not upgrade their mint or canonical integration.
 
 ## What can change
 
@@ -21,7 +23,7 @@ It holds no funds, grants no approvals and has no arbitrary executor or sweep.
 | Principal payout gas | 180,000 per isolated owner call | 100,000–1,000,000; captured once per bounded payout batch. Tail reserve and per-owner failure isolation remain. |
 | Oracle source-read gas | 500,000 per bounded upstream call | 100,000–1,000,000; exact return length, freshness, dual-source and identity checks remain. |
 | Optional royalty sync gas | 1,000,000 per isolated currency | 100,000–1,000,000; underfunded outer calls revert; optional failure still defers only that currency. Lower values can defer a healthy exact allocator; review cold gas first. |
-| Direct mint price | 0.05 ETH gross | Positive uint128 wei. Fresh mint reviews bind price, recipient and current VRF policy. OpenSea primary mint integration remains unfinished. |
+| Future paid mint price | 0.05 ETH gross | Policy accepts positive uint128 wei; mint2 additionally requires the value to fit SeaDrop's uint80. Team mints remain free. Pause and coordinate the helper plan, proofs and SeaDrop settings before resuming. The unbound direct path is historical/local. Actual OpenSea onboarding/payment qualification stays open. See [mint procedure](OPENSEA_MINT.md). |
 | Future mint recipient | Deployment-selected address | Propose, then candidate itself accepts. Zero proposal cancels. Protocol accounting/custody addresses are rejected; old payments never move. |
 | Enhanced / Singularity display thresholds | $1,000 / $10,000 | Positive increasing uint128 USD18 values. Existing NFT appearance may change; traits, ownership, eligibility, rewards and shares do not. |
 | VRF provider / subscription / lane / payment mode | Unconfigured until reviewed | Initial setup before seal; later planned rotation only when every minted draw has finalized. No pending retargeting, reroll or selected traits. |
@@ -49,13 +51,19 @@ operation captures the policy before token callbacks and checks it through final
 Entry allowance reset. Contributions still spend only entrant funds, prove
 marginal deployed LP, and price new shares against incumbent aggregate NAV.
 
-Fresh direct mint is `Vault.mintDormant(expectedMintPolicy)`, with exact
-`Vault.mintPrice()` as native value. Read `Vault.mintPolicyFingerprint()`; this
-combines sale terms **and the complete current VRF policy/revision**. Stale reviews
-fail, including a change followed by restoration. Captured recipient/price are
-checked after NFT/recipient callbacks; failure rolls back the entire mint.
-There is no fresh no-argument mint fallback. Historical deployments keep their
-own selectors and transaction-recovery profiles.
+Current mint2 uses the pinned SeaDrop path and coordinated helper/proof/drop
+terms, not a paid Vault call. Team minting is free; allowlist/public use the
+governed gross price and SeaDrop pays the platform fee plus creator net. The NFT
+callback rechecks its mint/runtime/end identity, then SeaDrop settles payment
+atomically. It has no post-payment NFT callback or buyer-supplied PoPL policy
+hash. Follow [the exact configuration and review boundary](OPENSEA_MINT.md).
+
+Historical/local unbound direct mint uses
+`Vault.mintDormant(expectedMintPolicy)` and exact `Vault.mintPrice()` native
+value. Its `Vault.mintPolicyFingerprint()` combines sale/VRF policy with the
+NFT, royalty receiver, official mint end and revision. This distinct flow checks
+the fingerprint after recipient callbacks. Binding mint2 disables that paid
+direct path; old deployments retain their own selectors and recovery profiles.
 
 Maintenance captures its own idle policy and starting USD vector. Changes during
 close/swap/mint callbacks cannot weaken that operation. Cosmetic, mint and gas

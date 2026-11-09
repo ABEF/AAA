@@ -160,12 +160,24 @@ def mint_integration(g,chain,path):
     g.check(type(o.get('current_phase')) is int and 0<=o['current_phase']<=3 and
         type(o.get('mint_end_revision')) is int and 0<=o['mint_end_revision']<2**64,
         p,'mint.observation.type','Read exact phase and sale-end revision.','bindings')
+    stamp=V._obj(chain.get('observed_block')).get('timestamp')
+    stage_windows=(('teamStart','teamEnd'),('allowlistStart','allowlistEnd'),('publicStart','publicEnd'))
+    phase_inputs=type(stamp) is int and stamp>=1 and all(type(c.get(key)) is int for window in stage_windows for key in window)
+    expected_phase=0
+    if phase_inputs:
+        for number,(start,end) in enumerate(stage_windows,1):
+            if c[start]<=stamp<=c[end]:
+                expected_phase=number
+                break
+    g.check(phase_inputs and o.get('current_phase')==expected_phase,p,'mint.phase.timestamp',
+        'Reconcile inclusive mint phase with the pinned block; gaps and closed sales remain phase zero.','bindings')
     g.check(type(c.get('teamAllocation')) is int and type(c.get('allowlistAllocation')) is int and
         phases[0]<=c['teamAllocation'] and phases[1]<=c['allowlistAllocation'],p,'mint.phase_caps','Historical phase counts cannot exceed configured quotas.','bindings')
     if c.get('releaseUnusedTeamToPublic') is False and count is not None and type(c.get('teamAllocation')) is int:
         g.check(count<=1000-c['teamAllocation']+phases[0],p,'mint.team.reservation','Unused team supply remains reserved.','bindings')
     g.check(o.get('allowlist_root')==c.get('merkleRoot') and o.get('allowed_fee_recipients')==[c.get('feeRecipient')] and
-        o.get('allowed_payers')==payers and o.get('signer_count')==o.get('token_gate_count')==0,p,'mint.drop_controls','Reject unreviewed payers, fees and mint families.','bindings')
+        o.get('allowed_payers')==payers and all(type(o.get(key)) is int and o[key]==0 for key in ('signer_count','token_gate_count')),
+        p,'mint.drop_controls','Reject unreviewed payers, fees and mint families.','bindings')
     public=dict(mintPrice=price,startTime=c.get('publicStart'),endTime=c.get('publicEnd'),
         maxTotalMintableByWallet=c.get('publicWalletLimit'),feeBps=c.get('feeBps'),restrictFeeRecipients=True)
     g.check(V._equal(o.get('public_drop'),public) and o.get('creator_payout')==V._obj(V._obj(chain.get('protocol_policy')).get('sale')).get('recipient') and

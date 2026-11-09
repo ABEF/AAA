@@ -1,0 +1,7 @@
+{
+  "first_four_gates_passed": true,
+  "last_invocation_exit": 2,
+  "last_invocation_error": "Required --config flag omitted; no inventory validation occurred",
+  "driver_followup_error": "Tried to parse empty argparse stdout as JSON",
+  "prior_passes_not_rerun": true
+}

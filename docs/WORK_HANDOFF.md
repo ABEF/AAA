@@ -37,6 +37,9 @@ read/claim and lineage support is implemented through explicit
 direct mint preparation returns Use OpenSea. Omission retains mint1/V9.
 Matching website/installed consumers, actual OpenSea onboarding/fees/payers/VRF/
 gas/operation and independent approval remain open. Source publication is not deployment.
+Inventory mint phase must match pinned block time; disabled mint-family counts
+are exact integer zero. V10 peers retain the same SeaDrop address/runtime;
+replacement is not transport rotation. See the [current double-check](../reports/today-change-review-20261109/REVIEW.md).
 
 
 The [actual source9 Entry3 rehearsal](../reports/source9-actual-entry-20261109/REVIEW.md)

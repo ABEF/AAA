@@ -35,8 +35,10 @@ API's envelope schema remains its own version; do not relabel it to match the
 website manifest. Existing schema1/native2 manifests, Anvil deployments and
 saved transaction journals retain their original meanings.
 
-The fresh contract/API source now adds direct Entry-routing3 over accounting7,
-with schema16/19-callable-helper plus2-data-child release inventory. This is not the served current3 site
+The original source9 contract/API profile has direct Entry-routing3 over accounting7,
+with schema16/19-callable-helper plus2-data-child inventory. The newer mint2
+candidate adds schema17/20-callable-helper plus2-data-child inventory and
+canonicalV10; it requires explicit matching API/website adoption. Neither is the served current3 site
 or an update to existing local wallet/nonce records. The local [source9 website consumer](SOURCE9_WEBSITE_PROFILE.md) now exists. Matching
 service/configuration/site rollout remains separately qualified/authorized; public DEPLOYMENT
 is null and browser signing Anvil-only.
@@ -45,8 +47,9 @@ Current contribution inputs are native ETH and the fixed deployment ZZZ only.
 The default contribution budget is 3% (97% marginal deployed LP), conversion 1%
 and maintenance 3%, with governed ceilings and stronger reviewed caller/venue
 minima. Use actual confirmed values and keep missing pricing/history unavailable.
-OpenSea primary mint integration is still unfinished; poplint must not imply
-that a production mint or real-fund wallet flow is enabled.
+The OpenSea-compatible mint2 source is implemented, while custom-drop onboarding,
+payment/provider qualification and matching website adoption remain open. Poplint
+must not imply that a production mint or real-fund wallet flow is enabled.
 
 The integration entry fails closed when the reviewed manifest is absent or
 incompatible. Do not populate it with demo contracts, unqualified addresses,

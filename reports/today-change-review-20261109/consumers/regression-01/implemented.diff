@@ -1,0 +1,91 @@
+diff --git a/tests_python/test_production_v15.py b/tests_python/test_production_v15.py
+index 6e2a57b..1f576a1 100644
+--- a/tests_python/test_production_v15.py
++++ b/tests_python/test_production_v15.py
+@@ -36,6 +36,8 @@ class MintInventoryTests(unittest.TestCase):
+             configuration_review_hash=digest(13),revision=1)
+         section['configuration_hash'],section['configuration_values_hash']=P.configuration_hashes(self.chain,section)
+         self.chain['canonical_handoff'].update(origin_chain_id=4663,origin_vault=self.chain['modules']['vault']['address'])
++        # This component fixture observes the public stage at its inclusive start.
++        self.chain['observed_block']['timestamp']=300
+         helper=self.chain['helpers']['seadrop_mint']['address']
+         def nftid(i):return int(P.V.identity([(4663,'uint256'),(self.chain['modules']['vault']['address'],'address'),(i,'uint256')]),16)
+         rows=[dict(ordinal=i,reverse_ordinal=i,id=nftid(i),recipient=a,stage=stage,nft_original_recipient=a,nft_stage=stage)
+@@ -70,6 +72,47 @@ class MintInventoryTests(unittest.TestCase):
+     def test_component_validates_original_recipients_not_current_owners(self):
+         self.assertEqual([],self.gate())
+ 
++    def test_phase_matches_every_inclusive_stage_boundary(self):
++        for timestamp,phase in ((99,0),(100,1),(199,1),(200,2),(299,2),(300,3),(399,3),(400,0)):
++            with self.subTest(timestamp=timestamp):
++                self.chain['observed_block']['timestamp']=timestamp
++                self.chain['primary_mint']['observed']['current_phase']=phase
++                self.assertEqual([],self.gate())
++
++    def test_phase_zero_is_valid_between_stages(self):
++        section=self.chain['primary_mint'];c=section['mint_config'];observed=section['observed']
++        c.update(allowlistStart=220,publicStart=340,merkleRoot=digest(14))
++        observed['config']=copy.deepcopy(c);observed['allowlist_root']=c['merkleRoot']
++        observed['public_drop']['startTime']=c['publicStart']
++        section['configuration_hash'],section['configuration_values_hash']=P.configuration_hashes(self.chain,section)
++        for key in ('configuration_hash','configuration_values_hash'):observed[key]=section[key]
++        for timestamp in (200,219,300,339):
++            with self.subTest(timestamp=timestamp):
++                self.chain['observed_block']['timestamp']=timestamp
++                observed['current_phase']=0
++                self.assertEqual([],self.gate())
++
++    def test_in_range_phase_code_cannot_contradict_the_pinned_timestamp(self):
++        for timestamp,phase in ((99,3),(100,0),(199,2),(200,1),(299,3),(300,2),(399,0),(400,3)):
++            with self.subTest(timestamp=timestamp,phase=phase):
++                self.chain['observed_block']['timestamp']=timestamp
++                self.chain['primary_mint']['observed']['current_phase']=phase
++                self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
++
++    def test_phase_requires_an_exact_pinned_timestamp(self):
++        for timestamp in (None,True,False,'300',300.0,-1):
++            with self.subTest(timestamp=timestamp):
++                self.chain['observed_block']['timestamp']=timestamp
++                self.assertTrue(any(row['code']=='mint.phase.timestamp' for row in self.gate()))
++
++    def test_disabled_mint_family_counts_reject_boolean_zero_aliases(self):
++        for field in ('signer_count','token_gate_count'):
++            for value in (False,True,'0'):
++                with self.subTest(field=field,value=value):
++                    self.chain['primary_mint']['observed'][field]=value
++                    self.assertTrue(any(row['code']=='mint.drop_controls' for row in self.gate()))
++                    self.chain['primary_mint']['observed'][field]=0
++
+     def test_each_core_book_or_control_mutation_is_rejected(self):
+         baseline=copy.deepcopy(self.chain)
+         changes=[('vault_sequence',4),('nft_minted_count',False),('total_minted',True),('phase_minted',[2,0,1]),
+diff --git a/zzz_ops/production_v15.py b/zzz_ops/production_v15.py
+index d6a5ed1..a60d32b 100644
+--- a/zzz_ops/production_v15.py
++++ b/zzz_ops/production_v15.py
+@@ -160,12 +160,24 @@ def mint_integration(g,chain,path):
+     g.check(type(o.get('current_phase')) is int and 0<=o['current_phase']<=3 and
+         type(o.get('mint_end_revision')) is int and 0<=o['mint_end_revision']<2**64,
+         p,'mint.observation.type','Read exact phase and sale-end revision.','bindings')
++    stamp=V._obj(chain.get('observed_block')).get('timestamp')
++    stage_windows=(('teamStart','teamEnd'),('allowlistStart','allowlistEnd'),('publicStart','publicEnd'))
++    phase_inputs=type(stamp) is int and stamp>=1 and all(type(c.get(key)) is int for window in stage_windows for key in window)
++    expected_phase=0
++    if phase_inputs:
++        for number,(start,end) in enumerate(stage_windows,1):
++            if c[start]<=stamp<=c[end]:
++                expected_phase=number
++                break
++    g.check(phase_inputs and o.get('current_phase')==expected_phase,p,'mint.phase.timestamp',
++        'Reconcile inclusive mint phase with the pinned block; gaps and closed sales remain phase zero.','bindings')
+     g.check(type(c.get('teamAllocation')) is int and type(c.get('allowlistAllocation')) is int and
+         phases[0]<=c['teamAllocation'] and phases[1]<=c['allowlistAllocation'],p,'mint.phase_caps','Historical phase counts cannot exceed configured quotas.','bindings')
+     if c.get('releaseUnusedTeamToPublic') is False and count is not None and type(c.get('teamAllocation')) is int:
+         g.check(count<=1000-c['teamAllocation']+phases[0],p,'mint.team.reservation','Unused team supply remains reserved.','bindings')
+     g.check(o.get('allowlist_root')==c.get('merkleRoot') and o.get('allowed_fee_recipients')==[c.get('feeRecipient')] and
+-        o.get('allowed_payers')==payers and o.get('signer_count')==o.get('token_gate_count')==0,p,'mint.drop_controls','Reject unreviewed payers, fees and mint families.','bindings')
++        o.get('allowed_payers')==payers and all(type(o.get(key)) is int and o[key]==0 for key in ('signer_count','token_gate_count')),
++        p,'mint.drop_controls','Reject unreviewed payers, fees and mint families.','bindings')
+     public=dict(mintPrice=price,startTime=c.get('publicStart'),endTime=c.get('publicEnd'),
+         maxTotalMintableByWallet=c.get('publicWalletLimit'),feeBps=c.get('feeBps'),restrictFeeRecipients=True)
+     g.check(V._equal(o.get('public_drop'),public) and o.get('creator_payout')==V._obj(V._obj(chain.get('protocol_policy')).get('sale')).get('recipient') and

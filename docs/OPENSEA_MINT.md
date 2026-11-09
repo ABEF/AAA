@@ -30,6 +30,9 @@ it also does not become mintable outside a valid team window. Reopening or
 rescheduling must respect the still-open official sale end. The existing mint-end
 rule forbids reopening after that final end has passed. Under-subscription is
 valid: neither royalties nor protocol operation wait for a1,000-NFT sellout.
+Inventory phase must match the same pinned block timestamp:0 before/between/after
+stages,1/2/3 inside the inclusive windows. This consistency check does not prove
+OpenSea eligibility or require the sale to be currently open.
 
 The official final public end must match `NFT.royaltyRewards().mintEnd()`.
 The **one-hour** royalty activation window starts after that end. Free or paid
@@ -117,6 +120,11 @@ are rejected. The fixed NFT codec also binds the helper/runtime/configuration
 into the deployment commitment. Ordinary LP accounting and reward economics are
 unchanged. Actual complete handoff, service and marketplace cutover qualification
 must match this exact release.
+
+V10 also requires the **same SeaDrop address and runtime hash across peers**.
+Canonical replacement cannot rotate a failed or obsolete mint transport. Record
+acceptance of that boundary before sealing; supporting another transport needs
+a separately reviewed design, not a new address in the current handoff inputs.
 
 ## Backend consumers
 

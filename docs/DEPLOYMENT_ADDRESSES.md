@@ -114,7 +114,8 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `fees_canonical` | `ZZZFeesCanonical` - LP-fee reserve codec bound to Fees |
 
 The fresh source has **20 callable helpers plus2 inert code-data children**
-(21 addresses), distinct from the17 core contracts.
+(22 addresses), distinct from the17 core contracts:39 PoPL module/helper/data
+addresses, before external dependencies and authority wallets.
 ProtocolPolicy, Budget, Balancer, PortfolioPolicy and Confirmation are separately deployed fixed
 controller companions. Their parent getters resolve the sealed Access module
 and are checked reciprocally; there is no mutable parent setter. Do not reuse a
