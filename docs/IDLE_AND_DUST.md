@@ -9,7 +9,8 @@ settings and preserve captured operation and raw-output minima.
 
 ## Reduce idle before accepting it
 
-Fresh LP routing2 compares up to four explicitly reviewed ETH/ZZZ execution
+LP routing2, or explicit execution-price1/LP-routing3, compares up to four
+reviewed ETH/ZZZ execution
 venues using bounded reverted actual-core quotes. Single mode selects useful
 deployed value; hybrid mode seeks a smallest qualifying sampled swap with a
 final active main meeting the configured floor (default60%, hardminimum60%)
@@ -22,7 +23,11 @@ or zero idle. [Policy and configuration](LP_EXECUTION_POLICY.md).
 Each swap keeps exact approvals, raw input/output deltas, typed venue binding,
 fresh pricing and output minimums. Final source-price/policy/LP checks still run.
 An existing LP's self-generated fees are harvested separately before increasing
-liquidity; they cannot be misclassified as new principal.
+liquidity. The distinct unverified late-callback fee-netting question remains
+dependency qualification: ordinary external transactions cannot interleave inside
+that atomic operation. Do not turn an unverified hostile-dependency hypothesis
+into a claim of guaranteed protection or a demonstrated outsider exploit.
+[Exact scope](../reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md).
 
 The contribution floor counts **marginal deployed LP**, not idle, old principal,
 unclaimed fees or donations. At the current 3% default, conservative $100 input

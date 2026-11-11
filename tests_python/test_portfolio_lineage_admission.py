@@ -41,7 +41,8 @@ class PortfolioLineageAdmissionTests(unittest.TestCase):
                 p = Projection(config, rpc, clock=lambda: 1000)
                 self.assertEqual(1, len(p.lineage.entries))
                 old = p.lineage.entries[0].projection
-                for role in SHARED_DEPENDENCY_ROLES:
+                self.assertNotIn('seadrop', p.contracts)
+                for role in ('pool_manager', 'state_view', 'position_manager', 'permit2'):
                     self.assertEqual(p.contracts[role], old.contracts[role])
                 self.assertNotEqual(p.contracts['vault'].address, old.contracts['vault'].address)
 

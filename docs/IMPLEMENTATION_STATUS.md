@@ -1,11 +1,12 @@
 # Feature and evidence reference
 
-The [daily follow-up](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
-adds immutable execution-capability/binding reads to request-local claim caching:
-18→6such RPC reads in one measured plan, unchanged18-unit payout.28focused
-planner/HTTP methods pass. No mutable state, cross-request cache or gas/rights
-change. Historical reconciliation and two static prose errata add traceability,
-not new deployed features or blanket closure.
+The [remaining-findings implementation](../reports/remaining-271-20261111/REVIEW.md)
+adds bounded initial keeper RPC execution work, independent per-predecessor
+execution-profile admission and strict offline artwork-catalogue validation.
+It also corrects operator errors/test selection/one legacy fixture. These are
+source improvements with focused verification, not deployments or changes to
+NFT rights, allocation, financial caps or the existing artwork. All271remaining
+records now have individual assessments and existing Todo owners.
 
 The fresh [reference-execution capability](REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds

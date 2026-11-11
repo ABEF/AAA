@@ -1,0 +1,36 @@
+{
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "scope": "94 individually reviewed records, fixed keeper provider envelope and peer profile inheritance, wording-only AST equivalence and selected affected tests; no deployment.",
+  "source_sha256": {
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "frontend_api/lineage.py": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+    "tests_python/test_keeper_simulation_envelope.py": "2094348e8da4b4b2e09da1334cdfacf7392c3c6adf7b94a7e51c5b71a5f582ef",
+    "tests_python/test_lineage_execution_profiles.py": "c00cd07229a5a9dcaf14437b3dfd90eac2e615d88db64f37f83154143b15b8a5",
+    "tests_python/test_portfolio_lineage_admission.py": "b6cbf14689275cd7f2f4fd2c46cf2018d3a47129eac473f99c8ff567f9e6713a",
+    "scripts/run-keeper-tests.py": "69d701ead54b99df30098e6b6d4af42572eab629a4bdebce4b1153fca0892872"
+  },
+  "evidence_sha256": {
+    "CORRECTIONS.json": "e25739c007b3257c511ece7b2f27cbe59e085054495afc88461da69cfa790bc1",
+    "FINDINGS.json": "fb8b39f6a4e1d90d49a2c5d4bb1043adda9dedaf185541fa96763bc2b3ab6120",
+    "keeper-runner-selection.json": "59f9e4a51fdd27513bd49e8f25d831fa04c15cafec7d38523b379563d661fd6d",
+    "lineage-affected-attempt1.json": "8d2dc9790481ee38ac3fea37f20f65f2b3e42c687f1338b431ec8a8867025612",
+    "lineage-affected-attempt1.log": "43bd55616086d4ef55be7db4675b943742594ebc34d356d524512336b026a1c6",
+    "lineage-baseline.json": "c95d53232d228e7e22d722ffebc25269c25e508d306b2ab98be395ceb25b7415",
+    "lineage-baseline.log": "a4b0608660e5b4deccca1fe80787e1418b0ade39b33e0b6eb7dd6097e9157c56",
+    "lineage-final-summary.json": "03e65c2982d630f586355749ebb0edea6beae85ac69f885c8c6c2a3757987e93",
+    "lineage-legacy-fixture-final.json": "1e0dd5d57fe92d0a8a2fc875746d0cb1aa300485e34ba61ef2feb2a5ee2f54d8",
+    "lineage-legacy-fixture-final.log": "d26302631a2c990b5da0d67030f751f564c9429b8957a9cd547e0d6e93d487d8",
+    "lineage-serializer-fixture-attempt1.json": "1586bd04aca96d55cb2cbd3945281f77fb03d6cff33d4db6eb1c7e55aaa9c294",
+    "operator-error-text.json": "d6293d50248ea7e7188b1211eca71c57854f28e0c88a542cf49be447c8a4f22f",
+    "REVIEW.md": "492a48afa8ded40cc824ee08c1f95e52bcd40be58b02e374c4a3c93042a2ad0b",
+    "simulation-envelope-affected.json": "4c5c2588b98e18d0c35dfcb3162a4ed6ba007691d62276467c2ab4409b3d9462",
+    "simulation-envelope-affected.log": "865471c3390a8f24d9f5c44b9345117528fd1d4e29f6197971f468991b0b6e8b",
+    "simulation-envelope-baseline.json": "060be50fd4a701a9e41a3215d59851a14af047dd973a0afb92e35efbf8eca975",
+    "simulation-envelope-baseline.log": "3c0224cd2fd88bd4dda103c133dc154a758f488534d036eb53b5f7a20054bb69",
+    "simulation-envelope-final.json": "821a54974613879e7aab8ed6bddd3769e0a9cf3f40e5249b58b59d226732cd28",
+    "simulation-envelope-final.log": "ca0aed0bc70954c17f09136b1324e69f73bbebd7dbb1e9e4d3c864419ebd453e",
+    "VALIDATION.json": "9d8356307068739dc2713a883a65042cddc39656a12843b8222478b21ce8da02"
+  },
+  "baseline_source_evidence_hash_policy": "Actual named Git blobs; new source fixes separately pinned.",
+  "environment_changed": false
+}

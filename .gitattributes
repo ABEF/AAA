@@ -165,6 +165,9 @@ reports/reference-execution-20261111/** -text whitespace=cr-at-eol,-blank-at-eol
 # Preserve exact current reconciliation receipts and native checker/test diagnostics.
 reports/daily-reconciliation-audit-20261111/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 
+# Preserve exact individualized historical review and focused correction receipts.
+reports/remaining-271-20261111/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
 # Preserve exact read-only feed/route snapshots, failures and upstream evidence.
 reports/market-followup-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Upstream HTML indent spacing is preserved as captured, rather than reformatted.

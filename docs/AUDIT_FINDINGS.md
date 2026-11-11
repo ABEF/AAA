@@ -1,12 +1,17 @@
 # Consolidated audit findings and evidence
 
-The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
-records the claim-planner fix, static permission-description errata and selected
-individual historical reassessments. Its [history map](../reports/daily-reconciliation-audit-20261111/history/CURRENT_REASSESSMENTS.json)
-splits resolved/superseded source work from still-open qualification. Unselected
-legacy rows are explicitly unreviewed, never automatically resolved. Initial
-keeper RPC execution envelopes and dependency-qualified late-fee netting remain
-open questions; neither establishes a demonstrated signing or outsider exploit.
+All271previously unreviewed records now have individual source/decision
+assessments in the [complete follow-up](../reports/remaining-271-20261111/REVIEW.md).
+Together with the earlier39, the original310record registry is fully reviewed
+across the two source-scoped passes. It is not310independent bugs or universal
+closure: retained qualification, accepted risks and evidence-only records remain
+explicit. [Reading index](../reports/remaining-271-20261111/INDEX.md).
+
+Initial keeper simulation gas and historical execution-profile inheritance are
+fixed in source; strict artwork input admission adds no asset change. The
+dependency-qualified late-fee question remains unverified. See the exact
+[post-baseline corrections](../reports/remaining-271-20261111/FIXES.json); original
+reports and baseline defect descriptions are retained rather than relabeled.
 
 The [reference-execution follow-up](../reports/reference-execution-20261111/REVIEW.md)
 addresses the earlier swap/reference fingerprint coupling under explicit
@@ -194,7 +199,7 @@ remain source-scoped; no operating/independent approval is implied.
 | Active-main rejection can hide an otherwise valid ordinary route candidate | Candidate activity is now checked before ranking using actual stored post-swap ticks; final mint checks remain. Bounded search is not a global optimum guarantee. | [LP lifecycle](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
 | Two geometry getter comparisons are independent proof | Both forward to the same packed PosM source. They prove coherence under that dependency; they are not independent stored-range sources. | [Correction](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
 | One residual must be left open or closed with all principal | Paused governance can close only the residual into attributed idle; modefalse/merge/park/emergency/terminal exit remain distinct. | [Management](OPERATOR_MANUAL.md#portfolio-management-controls) |
-| Old Vault size, helper counts, outside-only triggers or15-minute windows are current | Fresh identity and source-bound evidence below replace those labels. Original results remain valid only at their original source scope. | [Identity table](POSITION_V6.md), [Entry3 verification](../reports/direct-entry-v3-20261103/VERIFICATION.md) |
+| Old Vault size, helper counts, outside-only triggers or15-minute windows are current | Fresh identity and source-bound evidence below replace those labels. Original results remain valid only at their original source scope. | [Current identity](POSITION_V7.md), [Entry3 verification](../reports/direct-entry-v3-20261103/VERIFICATION.md) |
 
 ## Per-NFT exit assurance supplement
 
@@ -207,18 +212,25 @@ selected successes include1000model NFTs,37mixed wallets, real NFT tier/rarity
 composition and actual local v4 both-leg exit. That report binds historical e26fc74; actual
 maximum gas, rejecting recipients/dependency liveness and independent review stay open.
 
-## Evidence that can be reused now
+## Historical evidence reuse boundary
 
-Use the [latest manual safeguard record](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
-for current52production/31dependency pins,43normal gates,471static contexts
-(13current/458exact referenced reuse),85selected EVM successes across its recorded
-stages and47targeted Python methods. Reference37/818/37/13 has0gaps; runtime
-headroom remains Vault635/Budget237/Migration39/Balancer360. The
-[consolidation verification](../reports/four-report-consolidation-20261104/VERIFICATION.md)
-proves unchanged contract/build/dependency pins and separately records new93method
-indexer/history execution. These are not added into one full-suite result.
+The [November4 manual-safeguard record](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
+retains its original52production/31dependency pins,43normal gates,471static
+contexts and85selected EVM successes/47Python methods. Its37/818reference and
+Vault635/Budget237/Migration39/Balancer360headrooms describe that historical
+revision, not the current candidate. Reuse requires exact relevant source/body,
+dependency and build equivalence; the report title alone is not proof.
 
+The [reference-execution record](../reports/reference-execution-20261111/VERIFICATION.md)
+binds the current unchanged61production/100total normal source and48size gates,
+with Vault32/Oracle88/Manager190runtime headroom. The corrected strict default
+retains567detector contexts under its original162/405review/reuse scope; the
+daily errata correct two permission descriptions only. New backend/tool changes
+have separate focused verification and do not relabel prior whole-source suites.
 
+The earlier [consolidation verification](../reports/four-report-consolidation-20261104/VERIFICATION.md)
+proves its own unchanged pins and93method indexer/history execution. These
+historical stages are never added into a single current full-suite total.
 
 Custody5 restricts terminal allocation/distribution to governance; old custody4
 was safe fixed-owner progress but permissionless. Owner reward/royalty claims

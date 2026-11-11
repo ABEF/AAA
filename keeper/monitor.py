@@ -150,7 +150,7 @@ class Keeper:
         if type(self.royalty_settlement_version) is not int or self.royalty_settlement_version not in (0,2,3,4):
             raise ValueError('Unsupported explicit royalty settlement profile')
         if self.royalty_settlement_version in (2,3,4) and self.accounting_version not in (6,7):
-            raise ValueError('Original-currency royalty profile requires accounting6')
+            raise ValueError('Original-currency royalty profile requires accounting6 or accounting7')
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported keeper accounting version')
         from zzz_ops.execution_price import version as execution_price_version
@@ -164,7 +164,7 @@ class Keeper:
             raise ValueError('Unsupported explicit custody authorization profile')
         self.protocol_policy_version=config.get('protocol_policy_version',0)
         if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version in (6,7) else 0):
-            raise ValueError('Accounting6 keeper requires explicit protocol-policy1')
+            raise ValueError('Accounting6/7 keeper requires explicit protocol-policy1')
         self.fee_intake_version = config.get('fee_intake_version',0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
                 (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4,5,6,7)) or \
@@ -193,7 +193,7 @@ class Keeper:
                 (3,) if self.accounting_version in (5,6,7) else (1,2) if self.accounting_version == 4 else (0,)):
             raise ValueError('Unsupported keeper maintenance policy version')
         if self.maintenance_policy_version in (2,3) and self.adaptive_range_enabled:
-            raise ValueError('Outside-only policy requires operator-selected ranges')
+            raise ValueError('Threshold-based rebalancing requires operator-selected ranges')
         self.lp_routing_version = config.get('lp_routing_version',0)
         if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1,2,3):
             raise ValueError('Unsupported keeper LP-routing profile')
@@ -206,7 +206,7 @@ class Keeper:
             raise ValueError('Execution quality requires explicit LP-routing profile1')
         if self.lp_routing_version in (1,2,3):
             if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):
-                raise ValueError('LP routing requires explicit accounting4 and maintenance2')
+                raise ValueError('LP routing requires a supported matching accounting and maintenance profile')
             for role in ('liquidity','balancing_router','pool_manager','state_view'):
                 if role not in self.contracts: raise ValueError('Missing reviewed LP execution contract: '+role)
                 pin=config.get('code_hashes',{}).get(role,'')
@@ -220,7 +220,7 @@ class Keeper:
                  self.maintenance_policy_version!=3 or config.get('rebalance_confirmation_version')!=3 or
                  self.execution_quality_version!=1)) or
                 (self.accounting_version not in (5,6,7) and (self.portfolio_version!=0 or self.lp_routing_version in (2,3)))):
-            raise ValueError('Fresh portfolio requires explicit accounting5/portfolio1/routing2/maintenance3/confirmation3/quality1')
+            raise ValueError('Fresh portfolio requires matching accounting, portfolio, LP routing, maintenance, confirmation and quality profiles')
         if self.accounting_version in (5,6,7):
             for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version in (6,7) else ()):
                 if role not in self.contracts:raise ValueError('Missing reviewed portfolio helper: '+role)
@@ -1774,6 +1774,7 @@ class Keeper:
             raise ValueError('Reward bridge scheduling is retired')
         if self.fee_intake_version == 1 and signature in ('syncExternal(uint256)','syncAllExternal()'):
             raise ValueError('Creator-payment synchronization is retired in the LP-only profile')
+        gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
         self._validate_maintenance_config()
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
@@ -1809,6 +1810,9 @@ class Keeper:
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
                 'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
+        # Bound provider EVM work before estimation; signed gas remains the
+        # padded estimate below, never this larger simulation ceiling.
+        simulation_tx={**tx,'gas':hex(gas_cap)}
         day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         def capacity_failure(exc, method):
             # Opaque execution rejection proves no bad token or zero balance.
@@ -1822,7 +1826,7 @@ class Keeper:
             self.blocked_actions+=1
             log('lp_conversion_deferred',action=key,reason='opaque_pre_send_rejection',**error_context(exc))
             return True
-        try:simulation=self.rpc.call('eth_call',[tx,'latest'])
+        try:simulation=self.rpc.call('eth_call',[simulation_tx,'latest'])
         except RemoteRPCError as exc:
             if capacity_failure(exc,'eth_call'):return False
             raise
@@ -1836,7 +1840,6 @@ class Keeper:
                 raise RpcError('Observation simulation output is not a canonical boolean')
         if lp_conversion_action and uint_result(simulation)<args[3]:
             raise RpcError('LP conversion simulation output is below its prepared minimum')
-        gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
         price_cap=positive(self.config['max_gas_price_wei'],'max_gas_price_wei')
         gas_review={'action':name+'.'+signature,'head_number':review_head,
             'configuration_sha256':self.configuration_sha256,
@@ -1847,7 +1850,7 @@ class Keeper:
             'padded_gas_required':None,'gas_price_wei':None,'state':'unavailable',
             'reason':'estimate_or_price_unavailable'}
         self.gas_review_health={'state':'reviewed_this_cycle','last_review':gas_review}
-        try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
+        try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[simulation_tx]),'estimated gas',minimum=1)
         except RemoteRPCError as exc:
             if capacity_failure(exc,'eth_estimateGas'):return False
             raise

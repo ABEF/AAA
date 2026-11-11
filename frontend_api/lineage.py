@@ -49,13 +49,16 @@ class Lineage:
                 fields.add('custody_version')
             if isinstance(item, dict) and 'mint_integration_version' in item:
                 fields.add('mint_integration_version')
+            if isinstance(item, dict) and 'execution_price_version' in item:
+                fields.add('execution_price_version')
             if isinstance(item,dict) and 'royalty_reporting' in item or (current.royalty_reporting is not None and current.royalty_reporting.schema >= 4):
                 fields.add('royalty_reporting')
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version','execution_price_version')}
             previous_config['accounting_version'] = item.get('accounting_version', 1)
+            previous_config['execution_price_version'] = item.get('execution_price_version', 0)
             if current.accounting_version in (3,4,5,6,7) and previous_config['accounting_version'] != current.accounting_version:
                 raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
@@ -227,6 +230,7 @@ class Lineage:
             receipts.append({'controller': source.contracts['access'].address,
                              'successor_controller': destination.contracts['access'].address,
                              **({'mint_integration_version': 2} if source.mint_integration_version == 2 else {}),
+                             **({'execution_price_version': 1} if source.execution_price_version == 1 else {}),
                              'retirement_transaction_hash': entry.transaction,
                              'retirement_block': cutoff['number'], 'retirement_block_hash': cutoff['hash'],
                              'handoff_id': handoff_id, 'state_root': state_root,

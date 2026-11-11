@@ -6,7 +6,7 @@ There is one human project operator: the user. That operator controls governance
 and runs the services. There is no separate operator role, committee or additional
 human approval. Keep the automated keeper's limited service key separate from the
 governance key; this does not imply another person. Production authorities remain
-unset. The fresh candidate is accounting6/custody5/portfolio2/canonicalV8, **NOT APPROVED**.
+unset. The current candidate is accounting7/custody5/portfolio2/mint2/canonicalV10, **NOT APPROVED**.
 
 The selected governance wallet calls target modules directly. Access authenticates
 it through `canConfigure(caller)`; Access does not schedule or forward calls.
@@ -33,9 +33,12 @@ pause preserves claims and transfers; canonical freezes and terminal locks have
 separate effects. Keeper executes authorized bounded maintenance and pays gas.
 Governance alone does not imply a keeper grant for ordinary `Vault.rebalance`.
 Bootstrap disappears at seal. The current accepted mint recipient gains no management
-authority from receiving payments. Current direct mint forwards0.05ETH; the
-required OpenSea path must keep0.05ETH gross buyer price and pay that recipient
-net of the actual marketplace fee, gas separate. That integration is unfinished.
+authority from receiving payments. Historical unbound direct mint forwards the governed price (default0.05ETH).
+Current mint2 binds the SeaDrop helper, disables direct paid mint and keeps the
+governed buyer price gross (default0.05ETH), with recipient proceeds net of actual
+platform fees and network gas separate. The [source integration](OPENSEA_MINT.md)
+is implemented; actual correct-chain onboarding/fees/payers and operation remain
+unqualified.
 VRF subscription ownership/funding depends on the unqualified provider.
 
 Read the [address inventory](DEPLOYMENT_ADDRESSES.md),

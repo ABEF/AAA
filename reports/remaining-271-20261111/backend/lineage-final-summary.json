@@ -1,0 +1,69 @@
+{
+  "composed_distinct_passing_methods": 38,
+  "new_methods": 5,
+  "final_fresh_all38_run": false,
+  "successful_unchanged_methods": [
+    "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor",
+    "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors",
+    "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_invalid_predecessor_capability_is_not_coerced_or_inherited",
+    "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_omitted_predecessor_never_inherits_successor_execution_profile",
+    "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_current_source_commitment_and_successor_binding_are_required",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_retirement_or_activation_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_unknown_and_unbounded_configuration_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_final_historical_anchor_change_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_history_totals_do_not_change_claimable_balances",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_inconsistent_asset_units_are_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_mismatched_roots_peers_and_receipt_log_identity_are_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_predecessor_ingestion_fails_without_partial_total",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_no_configuration_preserves_explicit_unavailable_balance",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_nonretired_source_and_wrong_origin_are_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_old_claim_asset_is_retained_even_when_not_in_current_admission",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_old_ordinal_mismatch_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_omitted_original_or_reordered_predecessor_is_rejected",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_two_handoffs_sum_both_ledgers_and_all_past_owners",
+    "tests_python.test_frontend_lineage.ClaimLineageTests.test_wrong_archival_code_or_unavailable_archive_fails_closed",
+    "tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_protocol_reuse_cross_role_collision_and_dependency_pin_change_are_rejected",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_claim_planner_caches_only_required_new_identity_reads_and_keeps_budgets",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_closed_or_unconfigured_sale_does_not_block_owned_lp_and_currency_claims",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_every_new_binding_and_capability_is_checked",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_funded_nft_and_royalties_read_at_the_same_canonical_hash",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_cannot_infer_new_profile_or_reuse_owned_helper_or_conflicting_core",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_omitted_peer_flag_stays_v9_and_explicit_two_keeps_v10",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_mint2_refuses_direct_draft_before_any_rpc_or_simulation",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_new_reads_do_not_expand_request_rpc_budget",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_nonowner_or_zero_claim_cannot_create_an_unsigned_success",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_profile_flag_rejects_booleans_unknown_values_and_non7",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_protocol_marks_open_collection_window_as_unverified_opensea_eligibility",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_runtime_changes_and_v9_schema_are_never_relabelled_v10",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_two_extra_distinct_pinned_contract_roles_are_required",
+    "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_v9_default_and_explicit_one_remain_historical_without_new_roles"
+  ],
+  "final_repaired_methods": [
+    "tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol"
+  ],
+  "evidence": [
+    "lineage-affected-attempt1.json",
+    "lineage-affected-attempt1.log",
+    "lineage-legacy-fixture-final.json",
+    "lineage-legacy-fixture-final.log"
+  ],
+  "first_affected_run": {
+    "methods": 38,
+    "passed": 37,
+    "failed_methods": 1,
+    "error_subcases": 2
+  },
+  "failure_reason": "Legacy accounting5/6 fixture assertion expected SeaDrop after a later shared-role extension. Production admission succeeded. Only that failed assertion now checks the actual four Uniswap roles and absence of SeaDrop.",
+  "unchanged_legacy_test_helpers_and_other_method_AST": true,
+  "source_sha256": {
+    "frontend_api/lineage.py": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+    "tests_python/test_lineage_execution_profiles.py": "c00cd07229a5a9dcaf14437b3dfd90eac2e615d88db64f37f83154143b15b8a5",
+    "tests_python/test_portfolio_lineage_admission.py": "b6cbf14689275cd7f2f4fd2c46cf2018d3a47129eac473f99c8ff567f9e6713a"
+  },
+  "serializer_unit_boundary": "Injected already-authenticated epochs exercise additive metadata, not actual mixed-runtime V10 EVM handoff or receipt-authentication acceptance.",
+  "checkpoint_boundary": "lineage.py is outside semantic SOURCE_FILES; checkpoints forbid lineage. This fix alone requires no checkpoint rebuild.",
+  "nested_consumer_review": "Current website/API consumers impose no exact nested predecessor receipt key set; flag1 is additive and historical0 output shape is unchanged."
+}

@@ -1,0 +1,507 @@
+{
+  "schema": 1,
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "assigned_indices": [
+    0,
+    60
+  ],
+  "rows": 60,
+  "source_references": 201,
+  "unique_evidence_files": 65,
+  "original_section_references": 135,
+  "unique_original_sections": 115,
+  "untracked_originals": [
+    {
+      "id": "historical/OP-31",
+      "path": "reports/operations-hardening/README.md",
+      "source_mode": "retained_untracked_original_not_git_baseline",
+      "raw_sha256": "5865da5d222fccb9537137b37c93dccb254d155da3f8fa1bad14c73b872f4adb"
+    }
+  ],
+  "verification_kind": "offline report integrity only; source analysis is recorded individually, not inferred by this script",
+  "original_packet_sha256": "0516e51f6c8dd374d60d2af6e74d653dfb0b6aece8d23476d75d211a058810e8",
+  "findings_sha256": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+  "all_passed": true,
+  "checks": [
+    {
+      "id": "historical/FB-01",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/FB-15",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/FB-22",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-01",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-02",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-03",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-05",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-07",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-09",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-10",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-11",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-12",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-13",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-17",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-19",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-20",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-21",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-23",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-24",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-25",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-26",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-27",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-29",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-30",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-31",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-34",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-35",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-36",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-37",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-38",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-46",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-47",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-48",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-50",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-52",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/HC-53",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-13",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-16",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-21",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-25",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-27",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-30",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OP-31",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-00-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-06-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-09-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-09-3",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-11-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-12-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-12-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-15-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-15-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-17-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-20-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-21-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-31-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-31-3",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-41-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-41-2",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    },
+    {
+      "id": "historical/OPS-RS-43-1",
+      "original_pointer_exact": true,
+      "original_record_hash_exact": true,
+      "baseline_evidence_exact": true,
+      "substantive_sections_present": true,
+      "todo_ids_exist": true
+    }
+  ]
+}

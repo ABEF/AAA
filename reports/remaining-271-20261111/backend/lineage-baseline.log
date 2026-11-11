@@ -1,0 +1,119 @@
+test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) ... 
+  test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=0, previous=0) ... ERROR
+  test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=0, previous=1) ... ERROR
+  test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=1, previous=0) ... ERROR
+  test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=1, previous=1) ... ERROR
+test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) ... 
+  test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) (previous=0) ... ERROR
+  test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) (previous=1) ... ERROR
+test_invalid_predecessor_capability_is_not_coerced_or_inherited (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_invalid_predecessor_capability_is_not_coerced_or_inherited) ... ok
+test_omitted_predecessor_never_inherits_successor_execution_profile (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_omitted_predecessor_never_inherits_successor_execution_profile) ... FAIL
+
+======================================================================
+ERROR: test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=0, previous=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 36, in test_each_explicit_zero_or_one_is_independent_of_successor
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+ERROR: test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=0, previous=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 36, in test_each_explicit_zero_or_one_is_independent_of_successor
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+ERROR: test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=1, previous=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 36, in test_each_explicit_zero_or_one_is_independent_of_successor
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+ERROR: test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) (current=1, previous=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 36, in test_each_explicit_zero_or_one_is_independent_of_successor
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+ERROR: test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) (previous=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 53, in test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+ERROR: test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) (previous=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 53, in test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors
+    projection = Projection(config, fixture.rpc, clock=lambda: 4000)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 238, in __init__
+    self.lineage = Lineage(config['predecessors'], self, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\lineage.py", line 54, in __init__
+    _keys(item, fields, 'predecessor')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 48, in _keys
+    raise ValueError(f'{name} has missing or unexpected fields')
+ValueError: predecessor has missing or unexpected fields
+
+======================================================================
+FAIL: test_omitted_predecessor_never_inherits_successor_execution_profile (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_omitted_predecessor_never_inherits_successor_execution_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lineage_execution_profiles.py", line 26, in test_omitted_predecessor_never_inherits_successor_execution_profile
+    self.assertEqual(0, peer.execution_price_version)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 4 tests in 5.433s
+
+FAILED (failures=1, errors=6)

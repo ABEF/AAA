@@ -1,0 +1,178 @@
+test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) ... 
+  test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) (method='eth_call') ... ERROR
+  test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) (method='eth_estimateGas') ... ERROR
+test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate) ... ERROR
+test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) ... 
+  test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=0) ... FAIL
+  test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=-1) ... FAIL
+  test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=True) ... FAIL
+  test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value='invalid') ... FAIL
+test_padding_remains_stronger_than_the_initial_execution_envelope (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_padding_remains_stronger_than_the_initial_execution_envelope) ... ok
+test_pending_record_still_prevents_new_work_even_if_config_cap_is_invalid (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_pending_record_still_prevents_new_work_even_if_config_cap_is_invalid) ... ok
+test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) ... 
+  test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) (method='eth_call') ... ERROR
+  test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) (method='eth_estimateGas') ... ERROR
+
+======================================================================
+ERROR: test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) (method='eth_call')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 84, in test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded
+    self.assertFalse(keeper.submit('rewards', ROYALTY_BATCH,
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1825, in submit
+    try:simulation=self.rpc.call('eth_call',[tx,'latest'])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 76, in call
+    self.assertEqual(params[0]['gas'], hex(config['max_gas_limit']))
+                     ~~~~~~~~~^^^^^^^
+KeyError: 'gas'
+
+======================================================================
+ERROR: test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) (method='eth_estimateGas')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 84, in test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded
+    self.assertFalse(keeper.submit('rewards', ROYALTY_BATCH,
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1850, in submit
+    try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 76, in call
+    self.assertEqual(params[0]['gas'], hex(config['max_gas_limit']))
+                     ~~~~~~~~~^^^^^^^
+KeyError: 'gas'
+
+======================================================================
+ERROR: test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 37, in test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate
+    self.assertEqual(params[0]['gas'], hex(config['max_gas_limit']))
+                     ~~~~~~~~~^^^^^^^
+KeyError: 'gas'
+
+======================================================================
+ERROR: test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) (method='eth_call')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 64, in test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent
+    with self.assertRaises(RemoteRPCError): self.submit(keeper, rpc)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 19, in submit
+    return keeper.submit('vault', 'collectFees(uint256,uint256)',
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1825, in submit
+    try:simulation=self.rpc.call('eth_call',[tx,'latest'])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 58, in call
+    self.assertEqual(params[0]['gas'], hex(config['max_gas_limit']))
+                     ~~~~~~~~~^^^^^^^
+KeyError: 'gas'
+
+======================================================================
+ERROR: test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) (method='eth_estimateGas')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 64, in test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent
+    with self.assertRaises(RemoteRPCError): self.submit(keeper, rpc)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 19, in submit
+    return keeper.submit('vault', 'collectFees(uint256,uint256)',
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1850, in submit
+    try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 58, in call
+    self.assertEqual(params[0]['gas'], hex(config['max_gas_limit']))
+                     ~~~~~~~~~^^^^^^^
+KeyError: 'gas'
+
+======================================================================
+FAIL: test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 48, in test_invalid_new_work_cap_is_rejected_before_provider_work
+    self.assertEqual(rpc.calls, [])
+AssertionError: Lists differ: [('eth_getBlockByNumber', ['latest', False[298 chars]t'])] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+('eth_getBlockByNumber', ['latest', False])
+
++ []
+- [('eth_getBlockByNumber', ['latest', False]),
+-  ('eth_call',
+-   [{'data': '0x6cae7bf70000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006af3b0b3',
+-     'from': '0x1111111111111111111111111111111111111111',
+-     'to': '0x2222222222222222222222222222222222222222',
+-     'value': '0x0'},
+-    'latest'])]
+
+======================================================================
+FAIL: test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 48, in test_invalid_new_work_cap_is_rejected_before_provider_work
+    self.assertEqual(rpc.calls, [])
+AssertionError: Lists differ: [('eth_getBlockByNumber', ['latest', False[298 chars]t'])] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+('eth_getBlockByNumber', ['latest', False])
+
++ []
+- [('eth_getBlockByNumber', ['latest', False]),
+-  ('eth_call',
+-   [{'data': '0x6cae7bf70000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006af3b0b3',
+-     'from': '0x1111111111111111111111111111111111111111',
+-     'to': '0x2222222222222222222222222222222222222222',
+-     'value': '0x0'},
+-    'latest'])]
+
+======================================================================
+FAIL: test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 48, in test_invalid_new_work_cap_is_rejected_before_provider_work
+    self.assertEqual(rpc.calls, [])
+AssertionError: Lists differ: [('eth_getBlockByNumber', ['latest', False[298 chars]t'])] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+('eth_getBlockByNumber', ['latest', False])
+
++ []
+- [('eth_getBlockByNumber', ['latest', False]),
+-  ('eth_call',
+-   [{'data': '0x6cae7bf70000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006af3b0b3',
+-     'from': '0x1111111111111111111111111111111111111111',
+-     'to': '0x2222222222222222222222222222222222222222',
+-     'value': '0x0'},
+-    'latest'])]
+
+======================================================================
+FAIL: test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) (value='invalid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_envelope.py", line 48, in test_invalid_new_work_cap_is_rejected_before_provider_work
+    self.assertEqual(rpc.calls, [])
+AssertionError: Lists differ: [('eth_getBlockByNumber', ['latest', False[298 chars]t'])] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+('eth_getBlockByNumber', ['latest', False])
+
++ []
+- [('eth_getBlockByNumber', ['latest', False]),
+-  ('eth_call',
+-   [{'data': '0x6cae7bf70000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006af3b0b3',
+-     'from': '0x1111111111111111111111111111111111111111',
+-     'to': '0x2222222222222222222222222222222222222222',
+-     'value': '0x0'},
+-    'latest'])]
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.111s
+
+FAILED (failures=4, errors=5)

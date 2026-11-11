@@ -1,9 +1,9 @@
 # Documentation map
 
-The [daily audit/reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
-links current source improvements, historical dispositions and remaining release
-limits. Current task summaries and guides are corrected; historical reports
-remain immutable evidence, not current settings.
+The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
+individual reconciliation of the original310registry across two passes. Use its
+[reading index](../reports/remaining-271-20261111/INDEX.md), current procedures and
+sole Todo; old reports retain exact source/evidence/qualification boundaries.
 
 [Reference-as-swap execution](REFERENCE_SWAP_EXECUTION.md) documents fresh
 execution-price1/LP3, original valuation, exact market proofs, source admission,

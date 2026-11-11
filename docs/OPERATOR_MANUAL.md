@@ -8,12 +8,15 @@ balances and financial controls are not cached. Continue fresh exact simulation
 and replan remaining claims after confirmation; no service restart or rollout
 is authorized by this documentation.
 
-**Simulation resource limit:** the keeper's initial call/estimate currently lets
-the provider choose its EVM gas envelope, then checks the configured ceiling
-before signing. Final ordinary-LP simulation is explicitly bounded. This is an
-open provider-resource qualification item, not permission to increase spending
-or treat a successful estimate as an approved operation. Keep RPC/time/fee
-limits and pending-first recovery; see the [source review](../reports/daily-reconciliation-audit-20261111/backend/REVIEW.md).
+**Bounded initial keeper simulations:** both initial `eth_call` and
+`eth_estimateGas` now carry the loaded `max_gas_limit`; invalid new-work caps
+reject before provider work. This limits the requested EVM work, not DNS/socket
+stalls or an untrusted provider. Signed gas remains the rounded125% estimate and
+must fit the same cap and independent price/transaction/day limits. No automatic
+wider retry, signing, fee-policy or pending-journal change is added. Recover saved
+pending work first. A source/config update still needs the reviewed stop/reconcile/
+dry-run/restart process; no running service was changed. See the
+[remaining-findings verification](../reports/remaining-271-20261111/VERIFICATION.md).
 
 ## Use a price-reference pool for swaps
 

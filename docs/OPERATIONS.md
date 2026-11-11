@@ -28,6 +28,24 @@ atomic identity/schema admission, cleanup on failure, SQLite integer bounds and
 verified durable WAL. A successful local regression does not qualify production
 storage or authorize a service restart.
 
+## Initial simulation gas envelope
+
+`max_gas_limit` now bounds the gas requested in the initial `eth_call` and
+`eth_estimateGas`, before any new intent/signing. The original unsigned intent
+shape stays unchanged; signing uses the rounded125% estimate, not the larger
+simulation ceiling, and still enforces gas-price/transaction/daily bounds.
+Provider rejection never triggers a wider retry. Fresh7 conversion prefix
+planning may retry a smaller reviewed selection under the same cap; opaque
+rejection is not proof of a bad token or zero rewards. Saved pending receipt
+recovery retains priority even if the cap for new work is invalid.
+
+Changing this operator file setting is not an on-chain setter. Review actual
+provider/chain limits and fees, stop/reconcile pending work, then dry-run and
+restart the matching service with the same journal. The placeholder2.5M example
+is not a production approval. A gas field does not enforce a hard network/OS
+wall timeout; keep worker/watchdog/RPC containment and fee policy separate.
+[Focused change and evidence](../reports/remaining-271-20261111/VERIFICATION.md).
+
 ## Current deployment and configuration
 
 Current [keeper coordination](KEEPER_COORDINATION.md) adds service-only compound
@@ -40,7 +58,8 @@ reader configuration alone does not invalidate a healthy window. Source updates
 need matching worker/checker rollout and a controlled journal-preserving restart.
 
 Current fresh release inventory is schema17/mint2/helper1/canonicalV10 with
-accounting7, portfolio2, maintenance3, confirmation3, Budget4, LP routing2,
+accounting7, portfolio2, maintenance3, confirmation3 and Budget4. Explicit
+execution-price1 requires LP-routing3; omitted/0 retains LP2. The other profiles are
 fee intake1, governance2, custody5, pricing2 and Entry routing3. It pins17modules,
 20callable helpers and2inert Factory data children through the current v15
 observer/validator. Review actual bindings, assets/routes/feeds/authorities and

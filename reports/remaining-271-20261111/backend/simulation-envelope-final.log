@@ -1,0 +1,11 @@
+test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_fresh_conversion_capacity_refusal_keeps_prefix_planning_bounded) ... ok
+test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_initial_call_and_estimate_use_cap_but_intent_keeps_padded_estimate) ... ok
+test_invalid_new_work_cap_is_rejected_before_provider_work (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_invalid_new_work_cap_is_rejected_before_provider_work) ... ok
+test_padding_remains_stronger_than_the_initial_execution_envelope (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_padding_remains_stronger_than_the_initial_execution_envelope) ... ok
+test_pending_record_still_prevents_new_work_even_if_config_cap_is_invalid (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_pending_record_still_prevents_new_work_even_if_config_cap_is_invalid) ... ok
+test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent (tests_python.test_keeper_simulation_envelope.KeeperSimulationEnvelopeTests.test_provider_refusal_never_retries_with_a_wider_envelope_or_creates_intent) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.082s
+
+OK

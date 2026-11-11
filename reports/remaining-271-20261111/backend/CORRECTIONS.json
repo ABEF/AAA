@@ -1,0 +1,74 @@
+{
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "findings": [
+    {
+      "id": "BE-REMAIN-01",
+      "status": "fixed",
+      "source": "keeper/monitor.py",
+      "problem": "Initial whole-job eth_call/estimate requested no explicit gas ceiling before later cap refusal.",
+      "change": "Validate existing max_gas_limit before new-work RPC; use separate bounded simulation/estimate tx. Preserve original executable/journal shape,125%padding, nonce/fee/day/lifecycle/final checks and fresh7 prefix sizing. Pending-first behavior unchanged.",
+      "evidence": "simulation-envelope-affected.json",
+      "methods_executed": 49,
+      "passing_methods": 48,
+      "explicit_skips": 1,
+      "skip": "Existing optional Cast CLI test: cast absent from sanitized PATH. All6new envelope methods pass.",
+      "tested_source_sha256": "b806fb0a8da2011d5cc5eabf12d07d262e932752742139b672d1bd95b57dee4f",
+      "final_source_sha256": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+      "equivalence": "Only5error-text constants changed after executable checks; operator-error-text.json reverses them and proves whole-module AST equality.",
+      "limits": "Requested EVM gas is not hard DNS/socket timeout or provider-honesty/target-gas qualification. Refusal fails closed, no wider retry."
+    },
+    {
+      "id": "BE-REMAIN-02",
+      "status": "fixed",
+      "source": "frontend_api/lineage.py",
+      "problem": "Successor execution1 leaked into omitted historical peer; explicit peer0/1 was rejected despite compatible reviewed V10/accounting7 peers.",
+      "change": "Optional exact peer0/1, omission0, no inheritance. Preserve runtime/schema/role checks/shared infrastructure; receipt metadata adds only1, historical0 shape unchanged.",
+      "evidence": "lineage-final-summary.json",
+      "passing_distinct_methods": 38,
+      "new_methods": 5,
+      "fresh_all38": false,
+      "final_source_sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "limits": "Injected profiles/read/serializer, not actual mixed-runtime V10 EVM handoff. Serializer injects authenticated epochs. No new live Oracle dependency on healthy claims. Checkpoints forbid lineage; this file alone triggers no checkpoint rebuild."
+    },
+    {
+      "id": "BE-REMAIN-03",
+      "status": "fixed_operator_error_text",
+      "source": "keeper/monitor.py",
+      "problem": "Five constructor descriptions retained obsolete outside-only/accounting/portfolio/routing labels.",
+      "change": "Accurate threshold/matching-profile/accounting6or7 wording only; zero acceptance predicate/settings change.",
+      "evidence": "operator-error-text.json",
+      "tests_rerun_for_wording": false
+    },
+    {
+      "id": "BE-REMAIN-04",
+      "status": "test_selection_and_fixture_maintenance",
+      "sources": [
+        "scripts/run-keeper-tests.py",
+        "tests_python/test_portfolio_lineage_admission.py"
+      ],
+      "change": "Runner selects6new envelope methods, inventory-only verification. Failed legacy5/6 test now asserts actual4Uniswap roles/noSeaDrop; mint2 SeaDrop coverage retained and production role policy unchanged.",
+      "evidence": [
+        "keeper-runner-selection.json",
+        "lineage-legacy-fixture-final.json"
+      ]
+    }
+  ],
+  "owned_source_paths": [
+    "keeper/monitor.py",
+    "frontend_api/lineage.py",
+    "tests_python/test_keeper_simulation_envelope.py",
+    "tests_python/test_lineage_execution_profiles.py",
+    "tests_python/test_portfolio_lineage_admission.py",
+    "scripts/run-keeper-tests.py"
+  ],
+  "final_working_source_sha256": {
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "frontend_api/lineage.py": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+    "tests_python/test_keeper_simulation_envelope.py": "2094348e8da4b4b2e09da1334cdfacf7392c3c6adf7b94a7e51c5b71a5f582ef",
+    "tests_python/test_lineage_execution_profiles.py": "c00cd07229a5a9dcaf14437b3dfd90eac2e615d88db64f37f83154143b15b8a5",
+    "tests_python/test_portfolio_lineage_admission.py": "b6cbf14689275cd7f2f4fd2c46cf2018d3a47129eac473f99c8ff567f9e6713a",
+    "scripts/run-keeper-tests.py": "69d701ead54b99df30098e6b6d4af42572eab629a4bdebce4b1153fca0892872"
+  },
+  "environment_changed": false,
+  "remaining": "Actual independent sources/depth/routes/publications/liveness/fees/gas/VRF/OpenSea/authorities/hosts/archive/restore/load and independent approval remain."
+}

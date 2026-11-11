@@ -1,0 +1,63 @@
+{
+  "whole_map_under_python_optimization": {
+    "successful": true,
+    "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+    "parts": [
+      {
+        "part": "contracts",
+        "individually_reviewed": 60
+      },
+      {
+        "part": "backend",
+        "individually_reviewed": 94
+      },
+      {
+        "part": "evidence-frontend",
+        "individually_reviewed": 87
+      },
+      {
+        "part": "contracts-supplement",
+        "individually_reviewed": 30
+      }
+    ],
+    "reviewed_remaining": 271,
+    "previously_reviewed": 39,
+    "original_registry": 310,
+    "exact_original_pointers": 271,
+    "distinct_evidence_files": 210,
+    "evidence_revision_file_pairs": 210,
+    "integrity_checks_active_under_optimization": true,
+    "post_baseline_source_files_verified": 8,
+    "claim_all_obligations_resolved": false,
+    "production_approval": false
+  },
+  "new_integrity_negative_cases": [
+    {
+      "case": "omitted",
+      "returncode": 1,
+      "successful": false,
+      "error": "contracts: incomplete individual coverage"
+    },
+    {
+      "case": "duplicate",
+      "returncode": 1,
+      "successful": false,
+      "error": "Unexpected/duplicate finding ID"
+    },
+    {
+      "case": "wrong-origin",
+      "returncode": 1,
+      "successful": false,
+      "error": "historical/FB-01: original identity/pointer changed"
+    },
+    {
+      "case": "wrong-source",
+      "returncode": 1,
+      "successful": false,
+      "error": "historical/FB-01: evidence raw hash changed: src/ZZZVault.sol"
+    }
+  ],
+  "verifier_sha256": "6b4d614d3416a376e9a91dfbc1e7143d670d13d8f5a897d1c58909b765eb016d",
+  "scope": "Artifact-integrity checks for newly created report data, not unchanged feature test reruns.",
+  "prior_driver_issue": "Initial fourth fixture referenced an outdated nested evidence path; only the driver was corrected. No production/verifier false pass."
+}

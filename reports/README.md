@@ -1,9 +1,9 @@
 # Verification evidence
 
-The [11November daily audit](daily-reconciliation-audit-20261111/REVIEW.md)
-is the current reconciliation of today's changes and historical findings. Use
-its individualized evidence/status map; original reports retain their original
-source scope, and unreviewed rows are not marked resolved.
+The [remaining271 review](remaining-271-20261111/REVIEW.md) completes the
+individual follow-up to the earlier39. All original records retain provenance;
+fixes, retired requirements, accepted risks and actual qualification remain
+separate. [All271 reading index](remaining-271-20261111/INDEX.md).
 
 [Reference-execution follow-up](reference-execution-20261111/REVIEW.md) records
 explicit execution-price1/LP3, original-value/full-state proofs, actual-core and

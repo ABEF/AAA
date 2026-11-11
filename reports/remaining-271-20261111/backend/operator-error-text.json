@@ -1,0 +1,17 @@
+{
+  "source": "keeper/monitor.py",
+  "sha256_before": "b806fb0a8da2011d5cc5eabf12d07d262e932752742139b672d1bd95b57dee4f",
+  "sha256_after": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+  "replacements": {
+    "Outside-only policy requires operator-selected ranges": "Threshold-based rebalancing requires operator-selected ranges",
+    "LP routing requires explicit accounting4 and maintenance2": "LP routing requires a supported matching accounting and maintenance profile",
+    "Fresh portfolio requires explicit accounting5/portfolio1/routing2/maintenance3/confirmation3/quality1": "Fresh portfolio requires matching accounting, portfolio, LP routing, maintenance, confirmation and quality profiles",
+    "Original-currency royalty profile requires accounting6": "Original-currency royalty profile requires accounting6 or accounting7",
+    "Accounting6 keeper requires explicit protocol-policy1": "Accounting6/7 keeper requires explicit protocol-policy1"
+  },
+  "predicate_changes": false,
+  "test_files_referencing_exact_old_or_new_literals": [],
+  "execution_tests_rerun": false,
+  "scope": "Five operator error descriptions only, after the separately verified simulation-envelope correction; no acceptance predicate/config/profile change.",
+  "whole_module_ast_identical_after_reversing_only_five_strings": true
+}

@@ -1,0 +1,1979 @@
+{
+  "schema": 1,
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "input_sha256": "1c23cf4c12798a7cabef810d459de978cce43b601a2c6acbdba6f13777a9de7d",
+  "assigned_count": 30,
+  "individual_review_count": 30,
+  "rows": [
+    {
+      "id": "historical/OPS-RS-44-1",
+      "title": "### S-P2-1: activation preparation used the obsolete dormant status",
+      "input_ordinal": 0,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/194/record",
+      "original_record_sha256": "f461f79938792a1b58fd1f34b9585e6b91b83b7760fc24e4782941beff4c28ed",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_profile_specific_preparation",
+      "assessment": "Current ActivationTransactions compares increase against Active1 and activation against p.dormant_status. Projection explicitly assigns Dormant3 to accounting3..7 and preserves older5. A fresh accounting7 dormant NFT no longer hits the literal5 failure.",
+      "subclaims": [
+        {
+          "disposition": "implemented_profile_specific_preparation",
+          "assessment": "Current ActivationTransactions compares increase against Active1 and activation against p.dormant_status. Projection explicitly assigns Dormant3 to accounting3..7 and preserves older5. A fresh accounting7 dormant NFT no longer hits the literal5 failure."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "This is the full-audit REVIEW instance of the same service defect also recorded in OPS-RS-46-1; do not count them as independent repairs. Actual source10 activation route/market/provider/gas acceptance remains."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+          "lines": [
+            180
+          ],
+          "term": "if status!=(1 if req['increase'] else p.dormant_status)",
+          "excerpt": "        status=p._uint('vault','nftStatus(uint256)',req['id'],block=block)\n        if status!=(1 if req['increase'] else p.dormant_status):\n            raise ActivationInputError('Selected action does not match the NFT custody state')\n        registry=cfg.contracts['pools'];p._code(registry.address,registry.code_hash,block)\n        actual=p._call(registry.address,'get(bytes32)',req['pool'],block=block,words=14)\n        account=p._call(registry.address,'accounting(bytes32)',req['pool'],block=block,words=14)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+          "lines": [
+            170
+          ],
+          "term": "self.dormant_status =",
+          "excerpt": "            raise ValueError('Local Position V3 requires LP-only fee intake')\n        self.dormant_status = 3 if self.accounting_version in (3,4,5,6,7) else 5\n        self.parked_status = 4 if self.accounting_version in (3,4,5,6,7) else 6\n        self.chain = integer(config['chain_id'], 'chain_id', minimum=1)\n        self.start = integer(config['deployment_block'], 'deployment_block')\n        self.start_hash = _hash(config['deployment_block_hash'])"
+        }
+      ],
+      "task_ids": [
+        "activation-quotes",
+        "activation-assets",
+        "reviewed-contribution-policy"
+      ],
+      "unresolved_action": "This is the full-audit REVIEW instance of the same service defect also recorded in OPS-RS-46-1; do not count them as independent repairs. Actual source10 activation route/market/provider/gas acceptance remains.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-44-2",
+      "title": "### S-P2-2: native ETH was rejected in a required source-policy call",
+      "input_ordinal": 1,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/195/record",
+      "original_record_sha256": "9880b11ebaade11ac0b17cc617a7194640466ec84b70355991e70815ada17ee0",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_typed_native_argument",
+      "assessment": "Projection._call rejects a zero contract target before encoding, but explicitly enables address(0) in the isContributionAsset/address currency argument for native accounting2..7. It substitutes only the typed slot, not owner/callback/target addresses.",
+      "subclaims": [
+        {
+          "disposition": "implemented_typed_native_argument",
+          "assessment": "Projection._call rejects a zero contract target before encoding, but explicitly enables address(0) in the isContributionAsset/address currency argument for native accounting2..7. It substitutes only the typed slot, not owner/callback/target addresses."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "The old missing-native-slot defect is fixed without accepting both arbitrary profile types or all zero addresses. Exact current fixed-ZZZ/ETH Entry proof and actual market qualification remain."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+          "lines": [
+            257
+          ],
+          "term": "def _call(",
+          "excerpt": "\n    def _call(self, target: str, signature: str, *args: Any, block: dict[str, Any], words: int = 1) -> list[str]:\n        # Zero is a legitimate explicitly typed currency, never a contract\n        # target. Legacy profiles keep their conversion-only native ABI; the\n        # native accounting profile opts into the additional currency getters.\n        try:"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+          "lines": [
+            282
+          ],
+          "term": "'isContributionAsset(address)': {0}",
+          "excerpt": "                'referenceX96(address,address)': {0, 1}, 'activePolicy(address)': {0},\n                'isAsset(address)': {0}, 'isContributionAsset(address)': {0},\n            })\n        replacements = {i for i in native_slots.get(signature, ()) if i < len(args) and args[i] == ZERO}\n        safe = tuple('0x' + '0' * 39 + '1' if i in replacements else arg for i, arg in enumerate(args))\n        data = calldata(signature, *safe)"
+        }
+      ],
+      "task_ids": [
+        "activation-quotes",
+        "activation-assets",
+        "reviewed-contribution-policy"
+      ],
+      "unresolved_action": "The old missing-native-slot defect is fixed without accepting both arbitrary profile types or all zero addresses. Exact current fixed-ZZZ/ETH Entry proof and actual market qualification remain.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-45-1",
+      "title": "## Economic and ownership traces",
+      "input_ordinal": 2,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/199/record",
+      "original_record_sha256": "f7890622e531bf1aa18c62fac34e7f9996f8a9a0c9bc81b86077f2f3d6e9dcbf",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "preserved_current_owner_exact_unit_rights",
+      "assessment": "ClaimRouter validates owner/duplicates before payouts and owner again for every entry; Rewards and RoyaltyRewards independently authenticate owner and debit exact liabilities before callbacks. An owner receiving one paid component may transfer the NFT, but cannot claim the debited component twice.",
+      "subclaims": [
+        {
+          "disposition": "preserved_current_owner_exact_unit_rights",
+          "assessment": "ClaimRouter validates owner/duplicates before payouts and owner again for every entry; Rewards and RoyaltyRewards independently authenticate owner and debit exact liabilities before callbacks. An owner receiving one paid component may transfer the NFT, but cannot claim the debited component twice."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Original fractions are historical6; fresh7 LP and royalty4 allocate whole units. Equal active collective, fixed80/10/5/5 and rarity-only royalty weights remain; no buyer-rights disclosure feature is silently required."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZClaimRouter.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+          "lines": [
+            48
+          ],
+          "term": "function claimBatch",
+          "excerpt": "    /// the complete batch. Chunk larger portfolios, and omit failing assets.\n    function claimBatch(Claim[] calldata claims) external nonReentrant returns (uint256[] memory amounts) {\n        uint256 length = claims.length;\n        if (length == 0 || length > MAX_CLAIMS) revert InvalidBatch();\n        if (!access.isSealed() || access.module(Ids.NFT) != nft) revert InvalidConfiguration();\n        // Reject malformed/unauthorized batches before any payout callback."
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "lines": [
+            167
+          ],
+          "term": "function _claim(",
+          "excerpt": "    }\n    function _claim(uint256 id, address token, address owner) private returns (uint256 amount) {\n        if (!access.isSealed() || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != owner) revert Unauthorized();\n        (uint256 personal, uint256 shared) = _takeComponents(id, token);\n        amount = personal + shared;\n        liabilities[token] -= amount;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "lines": [
+            383
+          ],
+          "term": "function _claim(",
+          "excerpt": "\n    function _claim(uint256 id, address asset, address owner) private returns (uint256 amount) {\n        if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) != owner) revert Unauthorized();\n        if (!royaltiesOpen()) revert InvalidState();\n        if (!isAsset[asset]) revert InvalidConfiguration();\n        _sync(asset);"
+        }
+      ],
+      "task_ids": [
+        "reward-ledgers",
+        "security-ownership-rewards",
+        "lp-eth-settlement"
+      ],
+      "unresolved_action": "Original fractions are historical6; fresh7 LP and royalty4 allocate whole units. Equal active collective, fixed80/10/5/5 and rarity-only royalty weights remain; no buyer-rights disclosure feature is silently required.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-45-2",
+      "title": "## Governance and custody",
+      "input_ordinal": 3,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/200/record",
+      "original_record_sha256": "e6cf16ff556854af9fc8638e198fbc9fa86fe5610277cb8da1e6f18f540a5f5f",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "governance_preserved_old_custody_superseded",
+      "assessment": "Current controller permits bootstrap configuration before seal and selected direct governance after seal in operating state, with two-step governance transfer and immutable module identities. It has no timelock/generic queue; paused terminal exit returns principal to actual current NFT owners.",
+      "subclaims": [
+        {
+          "disposition": "governance_preserved_old_custody_superseded",
+          "assessment": "Current controller permits bootstrap configuration before seal and selected direct governance after seal in operating state, with two-step governance transfer and immutable module identities. It has no timelock/generic queue; paused terminal exit returns principal to actual current NFT owners."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "External custody/all-ZZZ exit is retired, not an outstanding authority feature. Earned rewards/buyback reserves remain separate and emergency optional financial bypass is explicit governance trust."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZAccessController.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "lines": [
+            82
+          ],
+          "term": "function canConfigure",
+          "excerpt": "    }\n    function canConfigure(address account) public view returns (bool) {\n        return !preparationActive && ((isSealed && canonicalState == 0 && account == governance) ||\n            (!isSealed && account == bootstrap));\n    }\n    /// @notice No delay. The current wallet proposes; the new wallet must accept"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZAccessController.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "lines": [
+            94
+          ],
+          "term": "function acceptGovernance",
+          "excerpt": "    }\n    function acceptGovernance() external {\n        if (msg.sender != pendingGovernance || msg.sender == address(0) ||\n            canonicalState != 0 || preparationActive) revert Unauthorized();\n        address previous=governance;governance=msg.sender;pendingGovernance=address(0);\n        emit GovernanceAccepted(previous,msg.sender);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigration.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "lines": [
+            287
+          ],
+          "term": "function distributePrincipal",
+          "excerpt": "    /// A deferred NFT remains fully backed and can retry or use owner fallback.\n    function distributePrincipal(uint256[] calldata ids) external onlyGovernance operating nonReentrant returns(uint256 paid) {\n        if(exitPhase != ExitPhase.Ready || ids.length == 0 || ids.length > MAX_BATCH) revert InvalidState();\n        uint256 payoutGas = IZZZProtocolPolicy(access.protocolPolicy()).payoutGas();\n        for(uint256 i; i<ids.length; ++i) {\n            if(gasleft() < payoutGas+60000) break;"
+        }
+      ],
+      "task_ids": [
+        "security-share-accounting",
+        "custody-composition"
+      ],
+      "unresolved_action": "External custody/all-ZZZ exit is retired, not an outstanding authority feature. Earned rewards/buyback reserves remain separate and emergency optional financial bypass is explicit governance trust.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-46-1",
+      "title": "### S-P2-1: current dormant state was rejected by activation preparation",
+      "input_ordinal": 4,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/203/record",
+      "original_record_sha256": "cf0f897bf1aa8630b8fa99a38f7c0f0b0c39b0c061db4a192f2e60b11789a37d",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_same_status_bug_distinct_report",
+      "assessment": "The SERVICES report independently explains why valid local Dormant3 was rejected. Current status dispatch is profile-derived through Projection.dormant_status for activation and exactly1for growth, rather than accepting literal3or5without binding accounting.",
+      "subclaims": [
+        {
+          "disposition": "implemented_same_status_bug_distinct_report",
+          "assessment": "The SERVICES report independently explains why valid local Dormant3 was rejected. Current status dispatch is profile-derived through Projection.dormant_status for activation and exactly1for growth, rather than accepting literal3or5without binding accounting."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Same implementation repair as OPS-RS-44-1, not another test campaign or general support for unknown codecs. Existing historical deployment identities remain."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/activation.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+          "lines": [
+            180
+          ],
+          "term": "if status!=(1 if req['increase'] else p.dormant_status)",
+          "excerpt": "        status=p._uint('vault','nftStatus(uint256)',req['id'],block=block)\n        if status!=(1 if req['increase'] else p.dormant_status):\n            raise ActivationInputError('Selected action does not match the NFT custody state')\n        registry=cfg.contracts['pools'];p._code(registry.address,registry.code_hash,block)\n        actual=p._call(registry.address,'get(bytes32)',req['pool'],block=block,words=14)\n        account=p._call(registry.address,'accounting(bytes32)',req['pool'],block=block,words=14)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+          "lines": [
+            170
+          ],
+          "term": "self.dormant_status =",
+          "excerpt": "            raise ValueError('Local Position V3 requires LP-only fee intake')\n        self.dormant_status = 3 if self.accounting_version in (3,4,5,6,7) else 5\n        self.parked_status = 4 if self.accounting_version in (3,4,5,6,7) else 6\n        self.chain = integer(config['chain_id'], 'chain_id', minimum=1)\n        self.start = integer(config['deployment_block'], 'deployment_block')\n        self.start_hash = _hash(config['deployment_block_hash'])"
+        }
+      ],
+      "task_ids": [
+        "activation-quotes",
+        "activation-assets",
+        "reviewed-contribution-policy"
+      ],
+      "unresolved_action": "Same implementation repair as OPS-RS-44-1, not another test campaign or general support for unknown codecs. Existing historical deployment identities remain.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-46-2",
+      "title": "### S-P2-2: current source-policy check could not encode native ETH",
+      "input_ordinal": 5,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/204/record",
+      "original_record_sha256": "e333143dabfdb1c03b382b02214a5b02058e0b60a4dc46c3942a26619add782e",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_native_slot_scope_preserved",
+      "assessment": "The SERVICES source-policy failure shares the REVIEW native-zero bug: current native profiles admit zero only in enumerated currency selector slots, and nonzero target validation still runs first. Fixed ZZZ remains the only ERC20 principal input.",
+      "subclaims": [
+        {
+          "disposition": "implemented_native_slot_scope_preserved",
+          "assessment": "The SERVICES source-policy failure shares the REVIEW native-zero bug: current native profiles admit zero only in enumerated currency selector slots, and nonzero target validation still runs first. Fixed ZZZ remains the only ERC20 principal input."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Do not treat this codec correction as approval for stablecoin/WETH contribution or malformed zero owner/module targets. Actual fresh complete preparation remains bounded and simulated."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "frontend_api/service.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+          "lines": [
+            265
+          ],
+          "term": "native_slots =",
+          "excerpt": "            raise ProjectionError('Invalid contract call target') from exc\n        native_slots = {\n            'claimable(uint256,address)': {1}, 'eligibleFor(uint256,address)': {1},\n            'claimableComponents(uint256,address)': {1}, 'directLiabilities(address)': {0},\n            'liabilities(address)': {0}, 'orphaned(address)': {0},\n            'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZActivationAssets.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+          "lines": [
+            50,
+            75,
+            95,
+            130
+          ],
+          "term": "isContributionAsset",
+          "excerpt": "    /// Target-pair currencies and marketplace royalty currencies are separate.\n    function isContributionAsset(address token) public view returns (bool) {\n        return token == address(0) || (zzz != address(0) && token == zzz);\n    }\n\n    /// @notice Bind the ZZZ identity once, before sealing, after validating its"
+        }
+      ],
+      "task_ids": [
+        "activation-quotes",
+        "activation-assets",
+        "reviewed-contribution-policy"
+      ],
+      "unresolved_action": "Do not treat this codec correction as approval for stablecoin/WETH contribution or malformed zero owner/module targets. Actual fresh complete preparation remains bounded and simulated.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-47-1",
+      "title": "## Exact native sends",
+      "input_ordinal": 6,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/208/record",
+      "original_record_sha256": "76f668bf85c8201543c764b6f1104276c59de4092f7d6324e7997bacbfa2278e",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "preserved_exact_native_claim_destinations",
+      "assessment": "Rewards fixes owner to caller or NFT claim router and checks current owner; RoyaltyRewards repeats current owner/opening/asset checks and pays original currencies. Batch callback transfer invalidates a later old-owner payout and atomically rolls it back.",
+      "subclaims": [
+        {
+          "disposition": "preserved_exact_native_claim_destinations",
+          "assessment": "Rewards fixes owner to caller or NFT claim router and checks current owner; RoyaltyRewards repeats current owner/opening/asset checks and pays original currencies. Batch callback transfer invalidates a later old-owner payout and atomically rolls it back."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "There is no royalty external-custody recipient exception in current source. Same-chain V10 funding/abort destinations are authenticated lifecycle routes, not a generic operator claim recipient."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "lines": [
+            163
+          ],
+          "term": "function claimFor",
+          "excerpt": "    /// @notice Only the NFT's fixed router may claim for its current owner.\n    function claimFor(uint256 id, address token, address owner) external nonReentrant economic returns (uint256) {\n        if (msg.sender != IZZZNFT(access.module(Ids.NFT)).claimRouter()) revert Unauthorized();\n        return _claim(id, token, owner);\n    }\n    function _claim(uint256 id, address token, address owner) private returns (uint256 amount) {"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "lines": [
+            383
+          ],
+          "term": "function _claim(",
+          "excerpt": "\n    function _claim(uint256 id, address asset, address owner) private returns (uint256 amount) {\n        if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) != owner) revert Unauthorized();\n        if (!royaltiesOpen()) revert InvalidState();\n        if (!isAsset[asset]) revert InvalidConfiguration();\n        _sync(asset);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZClaimRouter.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+          "lines": [
+            66
+          ],
+          "term": "A preceding native/token callback",
+          "excerpt": "            Claim calldata entry = claims[i];\n            // A preceding native/token callback may have transferred this NFT.\n            // Each ledger independently repeats the same current-owner check.\n            if (IZZZNFT(nft).ownerOf(entry.nftId) != msg.sender) revert Unauthorized();\n            address target = entry.royalty ? royalties : access.module(Ids.REWARDS);\n            if (target.code.length == 0) revert InvalidConfiguration();"
+        }
+      ],
+      "task_ids": [
+        "reward-ledgers",
+        "security-ownership-rewards",
+        "lp-eth-settlement"
+      ],
+      "unresolved_action": "There is no royalty external-custody recipient exception in current source. Same-chain V10 funding/abort destinations are authenticated lifecycle routes, not a generic operator claim recipient.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/OPS-RS-47-2",
+      "title": "## Reentrancy and balance snapshots",
+      "input_ordinal": 7,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/209/record",
+      "original_record_sha256": "4e41f003d2563cd5c9c0d66c641dd42c38a3e196baa2367016e32347e970519f",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "preserved_preoperation_baselines",
+      "assessment": "Original balance snapshots remain conservation baselines: exact native sender receipts, source-token baseline and reward conversion source/native deltas exclude prefunds and callback-added funds from authorized spending. Refreshing baselines after mutable calls would weaken those checks.",
+      "subclaims": [
+        {
+          "disposition": "preserved_preoperation_baselines",
+          "assessment": "Original balance snapshots remain conservation baselines: exact native sender receipts, source-token baseline and reward conversion source/native deltas exclude prefunds and callback-added funds from authorized spending. Refreshing baselines after mutable calls would weaken those checks."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Old Royalty conversion is removed; retained LP conversion/canonical/terminal classification remains separate. Exact deltas cannot prove a malicious fixed token/periphery never generates economically different fees; qualify dependencies."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLiquidityManager.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+          "lines": [
+            143,
+            147,
+            231,
+            361
+          ],
+          "term": "uint256 beforeNative",
+          "excerpt": "        if (amount == 0) return;\n        uint256 beforeNative = address(this).balance;\n        (bool ok,) = recipient.call{value: amount}(\"\");\n        if (!ok || address(this).balance + amount != beforeNative) revert InvalidState();\n    }\n    function _finishNativeCredit(uint256 beforeNative, address recipient) private {"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZActivationEntry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+          "lines": [
+            115,
+            140
+          ],
+          "term": "sourceBaseline",
+          "excerpt": "        uint256 nativeBaseline = address(this).balance - msg.value;\n        uint256 sourceBaseline = ExactAsset.balance(source,address(this)) - (source == address(0) ? msg.value : 0);\n        // Freeze source + LP-pair prices BEFORE token pulls or approvals can\n        // call external code. Both bounds come from two sources.\n        uint256 grossUSD = activationAssets.value(source, request.amountIn);\n        if (grossUSD == 0 || grossUSD < (request.increase?entryTerms.minGrowthUSD:entryTerms.minActivationUSD))"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "lines": [
+            194,
+            200
+          ],
+          "term": "sourceBefore",
+          "excerpt": "        if (total == 0) revert InvalidAmount();\n        uint256 sourceBefore = IERC20(token).balanceOf(address(this));\n        uint256 nativeBefore = address(this).balance;\n        liabilities[token] -= total;\n        IERC20(token).forceApprove(converter, total);\n        output = ZZZLPRewardConverter(payable(converter)).convert(token,total,routeId,minimumETH,deadline);"
+        }
+      ],
+      "task_ids": [
+        "security-share-accounting",
+        "custody-composition"
+      ],
+      "unresolved_action": "Old Royalty conversion is removed; retained LP conversion/canonical/terminal classification remains separate. Exact deltas cannot prove a malicious fixed token/periphery never generates economically different fees; qualify dependencies.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-01",
+      "title": "Sampled confirmation, reset, raw control and callback consistency",
+      "input_ordinal": 8,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/215/record",
+      "original_record_sha256": "bcac18d2c1ee22acb51d01788398dc9edde9aa5c16cc754b5bdd7647c7c66296",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_confirmation3_with_sampled_limit",
+      "assessment": "Confirmation3 records same-side85%-boundary physical+independent reference evidence, bounded identity/control revisions and600second duration/maxgap300 defaults after explicit configuration. Fault/inside/opposite/manual conditions clear observations successfully; callback-aware Budget retains source controls.",
+      "subclaims": [
+        {
+          "disposition": "implemented_confirmation3_with_sampled_limit",
+          "assessment": "Confirmation3 records same-side85%-boundary physical+independent reference evidence, bounded identity/control revisions and600second duration/maxgap300 defaults after explicit configuration. Fault/inside/opposite/manual conditions clear observations successfully; callback-aware Budget retains source controls."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Current source cadence240s and durable60–300s jitter replace older900s/confirmation2 wording. Sampling is not uninterrupted persistence/MEV immunity; actual chain inclusion/reset/provider/operating gas remains."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            192
+          ],
+          "term": "function observe(",
+          "excerpt": "    /// reverting after deletion would incorrectly restore the previous samples.\n    function observe(uint256 bucket) external onlyKeeper live operating principalOperating nonReentrant returns(bool) {\n        try this.condition(bucket) returns(uint8 side,bytes32 identity,bool manual) {\n            if(manual || side == 0 || maxObservationGap == 0) {\n                delete observations[bucket];\n                emit ObservationReset(bucket,manual ? 4 : side == 0 ? 1 : 3);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            35
+          ],
+          "term": "duration = 10 minutes",
+          "excerpt": "    uint32 public constant MAX_DURATION = 7 days;\n    uint32 public duration = 10 minutes;\n    /// @notice Zero is unconfigured/stopped; it never disables the safeguard.\n    uint32 public maxObservationGap;\n    uint64 public policyRevision;\n    bytes32 public reviewHash;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigrationBudget.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+          "lines": [
+            242,
+            280
+          ],
+          "term": "s.sourcePool",
+          "excerpt": "        s.bucketId = id;\n        s.sourcePool = p.poolId;\n        s.lossBps = maintenanceLossBps;\n        s.confirmationControl = _confirmationControl(id,p.poolId);\n        if (!emergencyActive) {\n            s.portfolioRevision = _portfolioPolicy().revision();"
+        }
+      ],
+      "task_ids": [
+        "rebalance-confirmation-buffer",
+        "security-external-manipulation",
+        "security-keeper-manipulation"
+      ],
+      "unresolved_action": "Current source cadence240s and durable60–300s jitter replace older900s/confirmation2 wording. Sampling is not uninterrupted persistence/MEV immunity; actual chain inclusion/reset/provider/operating gas remains.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-03",
+      "title": "Known fees versus deployment ratio drift and thin-market feasibility A-07",
+      "input_ordinal": 9,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/217/record",
+      "original_record_sha256": "323dd9ea61d8819db76b5fd687f23acabd582860b4cddcaa5b86a97cb66fb7bf",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_bounded_planner_actual_market_open",
+      "assessment": "Current LP-routing3 actual-core search sizes at most one swap using post-withdrawal depth and deployment geometry, values with original two-source marks, and isolates entrant money. Known directional trading fees and additional-loss floors remain distinct from total contribution3%/97%deployed LP.",
+      "subclaims": [
+        {
+          "disposition": "implemented_bounded_planner_actual_market_open",
+          "assessment": "Current LP-routing3 actual-core search sizes at most one swap using post-withdrawal depth and deployment geometry, values with original two-source marks, and isolates entrant money. Known directional trading fees and additional-loss floors remain distinct from total contribution3%/97%deployed LP."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Thin selected-pool depth can still make activation impossible. A bounded solver is not a global optimum or permission to consume incumbent idle/relax loss, spot or caller limits."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            184
+          ],
+          "term": "function routePlan",
+          "excerpt": "    }\n    function routePlan(ZZZLPBalanceMath.Context calldata x, bytes32 id, bool direction,bool requireActive) external returns (Plan memory best,uint256 bestValue) {\n        if (msg.sender != address(this)) revert Unauthorized();\n        PoolConfig memory c = _pool(id);\n        PoolConfig memory target = _pool(x.target);\n        if (c.key.currency1 != target.key.currency1) revert InvalidConfiguration();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            119
+          ],
+          "term": "function _minimum",
+          "excerpt": "    }\n    function _minimum(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private view returns (uint256) {\n        return balanceMath.minimumOutput(p,direction,amount,loss,fee);\n    }\n    /// @dev Fee-aware seed usually gives one quote for deep, small trades.\n    function _seed(ZZZLPBalanceMath.Context memory x,bool direction,uint256 fee)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZContributionPricing.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+          "lines": [
+            185
+          ],
+          "term": "function beginEntryReviewed",
+          "excerpt": "    /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.\n    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps,\n        bytes32 expectedContributionPolicy)\n        external returns(uint256 lowerUSD) {\n        if (msg.sender != _entry()) revert Unauthorized();\n        _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Thin selected-pool depth can still make activation impossible. A bounded solver is not a global optimum or permission to consume incumbent idle/relax loss, spot or caller limits.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-04",
+      "title": "Signed reviewed-cap binding A-08",
+      "input_ordinal": 10,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/218/record",
+      "original_record_sha256": "30f103c868c9bcdd1781d1be7533cc498dc53bf1a090a7c418e2589b0a81af10",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_signed_caller_policy_and_cap",
+      "assessment": "Current Entry.executeReviewed binds maximumLossBps plus exact expectedContributionPolicy and validates both before pull and after callbacks. Pricing rejects captured operation caps above caller maximum; a narrower runtime policy remains allowed.",
+      "subclaims": [
+        {
+          "disposition": "implemented_signed_caller_policy_and_cap",
+          "assessment": "Current Entry.executeReviewed binds maximumLossBps plus exact expectedContributionPolicy and validates both before pull and after callbacks. Pricing rejects captured operation caps above caller maximum; a narrower runtime policy remains allowed."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Old missing-field A08 is superseded by explicit Entry3/reviewed2 calldata, not permission to reuse old reviewed transactions or extend public/Anvil signing scope."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZActivationEntry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+          "lines": [
+            98
+          ],
+          "term": "function executeReviewed",
+          "excerpt": "    /// A tighter execution-time policy is allowed, but never a wider one than reviewed.\n    function executeReviewed(Request calldata request, uint16 maximumLossBps,bytes32 expectedContributionPolicy)\n        external payable live operating principalOperating nonReentrant {\n        _deadline(request.deadline);\n        IZZZProtocolPolicy policySource=IZZZProtocolPolicy(access.protocolPolicy());\n        if(expectedContributionPolicy==bytes32(0) || policySource.entryFingerprint()!=expectedContributionPolicy)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZContributionPricing.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+          "lines": [
+            185,
+            190,
+            194
+          ],
+          "term": "maximumLossBps",
+          "excerpt": "    /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.\n    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps,\n        bytes32 expectedContributionPolicy)\n        external returns(uint256 lowerUSD) {\n        if (msg.sender != _entry()) revert Unauthorized();\n        _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZActivationEntry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+          "lines": [
+            102,
+            142
+          ],
+          "term": "entryFingerprint()!=expectedContributionPolicy",
+          "excerpt": "        IZZZProtocolPolicy policySource=IZZZProtocolPolicy(access.protocolPolicy());\n        if(expectedContributionPolicy==bytes32(0) || policySource.entryFingerprint()!=expectedContributionPolicy)\n            revert InvalidState();\n        IZZZProtocolPolicy.EntryPolicy memory entryTerms=policySource.entryPolicy();\n        address vault = _vault();\n        if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();"
+        }
+      ],
+      "task_ids": [
+        "activation-quotes",
+        "activation-assets",
+        "reviewed-contribution-policy"
+      ],
+      "unresolved_action": "Old missing-field A08 is superseded by explicit Entry3/reviewed2 calldata, not permission to reuse old reviewed transactions or extend public/Anvil signing scope.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-08",
+      "title": "Superseded Pons, Power, remote transport and external-custody release requirements",
+      "input_ordinal": 11,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/222/record",
+      "original_record_sha256": "8039a273d2075207a2617fe6a657dfd55c794168f61335d9b3bd80821e804c32",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "superseded_architecture_general_threats_survive",
+      "assessment": "Native static hookless ETH/fixedZZZ Registry replaces Pons/wrapped principal; Power, creator inboxes, remote transport and external custody-address exit are removed. Terminal exit closes both legs and returns actual assets while prior rewards/reserves survive.",
+      "subclaims": [
+        {
+          "disposition": "superseded_architecture_general_threats_survive",
+          "assessment": "Native static hookless ETH/fixedZZZ Registry replaces Pons/wrapped principal; Power, creator inboxes, remote transport and external custody-address exit are removed. Terminal exit closes both legs and returns actual assets while prior rewards/reserves survive."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "General upstream/oracle/governance/market/MEV risks remain. Retained historical codecs, multi-currency royalties and optional v3/WETH earned conversion are not extra principal inputs or current bridge work."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPoolRegistry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "lines": [
+            67,
+            164
+          ],
+          "term": "key.currency0 != address(0)",
+          "excerpt": "        PoolKey memory key = config.key;\n        if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||\n            activationAssets.zzz() != ZZZ) {\n            revert InvalidConfiguration();\n        }\n        _nativeBindings();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "docs/SIMPLIFIED_RELEASE.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "969ce2bf5702edcb036bcddf32f1f48175d1d70e97e3b01d6ba17d5267a06e98",
+          "lines": [
+            20
+          ],
+          "term": "bridge",
+          "excerpt": "| Preliminary Entry conversion | Removed from fresh Entry3, including its route catalogue/setters, receiver and executor child. Vault ratio balancing and earned-reward conversion remain. |\n| Creator inboxes, bridges and remote ledgers | Removed; the hookless LP earns actual venue fees directly. No remote transport, synthetic LP or bridge operator is configured. |\n\nSeparate ledgers and bounded helpers preserve economic domains and deployment\nsize. Historical codecs/event readers remain where needed to inspect real old\nstate; they do not re-enable removed current selectors. Earlier"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigration.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "lines": [
+            28
+          ],
+          "term": "No external custody address",
+          "excerpt": "/// @notice Live same-pair movement/parking, or irreversible collective principal\n/// return to NFT owners. No external custody address, conversion exit or sweep.\n/// Reward ledgers and future royalty rights remain independent of principal.\ncontract ZZZMigration is ZZZModule, ReentrancyGuard {\n    uint8 public constant CUSTODY_VERSION = 5;\n    uint256 public constant EMERGENCY_REBALANCE_VERSION = 2;"
+        }
+      ],
+      "task_ids": [
+        "lp-only-simplification",
+        "shared-custody",
+        "creator-market-controls"
+      ],
+      "unresolved_action": "General upstream/oracle/governance/market/MEV risks remain. Retained historical codecs, multi-currency royalties and optional v3/WETH earned conversion are not extra principal inputs or current bridge work.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-09",
+      "title": "Native settlement, actual deltas, prefund isolation and callback requirements",
+      "input_ordinal": 12,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/223/record",
+      "original_record_sha256": "52d4dd3b488dc19f2ff810c0bed12075ca79d24e2feec96ab5cc77468e571ba0",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_native_actual_delta_settlement",
+      "assessment": "Manager authenticated unlock callback checks exact full input/output, syncs input even for ETH then requires exact settle amount. Native take is accepted only from expected core, measured and forwarded with prefund-neutral balances; typed LP executor uses exact rounded native debt and resets approvals.",
+      "subclaims": [
+        {
+          "disposition": "implemented_native_actual_delta_settlement",
+          "assessment": "Manager authenticated unlock callback checks exact full input/output, syncs input even for ETH then requires exact settle amount. Native take is accepted only from expected core, measured and forwarded with prefund-neutral balances; typed LP executor uses exact rounded native debt and resets approvals."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Original wrapping recommendation is retired. Exact-transfer/static-hookless dependency assumptions still require actual source/proxy/core/periphery and failure qualification, not arbitrary tokens or universal liveness."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLiquidityManager.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+          "lines": [
+            330
+          ],
+          "term": "function unlockCallback",
+          "excerpt": "    }\n    function unlockCallback(bytes calldata data) external returns (bytes memory) {\n        if (msg.sender != address(poolManager) || pendingSwapHash == bytes32(0) ||\n            pendingSwapHash != keccak256(data)) revert Unauthorized();\n        pendingSwapHash = bytes32(0);\n        (PoolKey memory key, bool zeroForOne, uint256 amountIn, uint256 minOut, address recipient,uint256 quoted) ="
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLiquidityManager.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+          "lines": [
+            352
+          ],
+          "term": "poolManager.sync(input)",
+          "excerpt": "        address output = zeroForOne ? key.currency1 : key.currency0;\n        poolManager.sync(input);\n        if (input == address(0)) {\n            if (poolManager.settle{value: amountIn}() != amountIn) revert InvalidState();\n        } else {\n            ExactToken.push(input, address(poolManager), amountIn);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            175
+          ],
+          "term": "No SWEEP",
+          "excerpt": "        if (beforeNative != before0 + msg.value) revert InvalidState();\n        // No SWEEP: pay exactly rounded-up principal debt. Prior PosM donations\n        // cannot fund this operation and any unconsumed value makes it revert.\n        if (nativeValue+aux.debt0 > amount0 || mainDebt1+aux.debt1>amount1) revert Slippage();\n        uint256 beforePosmNative = address(posm).balance;\n        _approve(t1, amount1, deadline);"
+        }
+      ],
+      "task_ids": [
+        "native-custody-recovery",
+        "migration-framework",
+        "asset-liveness-dust"
+      ],
+      "unresolved_action": "Original wrapping recommendation is retired. Exact-transfer/static-hookless dependency assumptions still require actual source/proxy/core/periphery and failure qualification, not arbitrary tokens or universal liveness.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-14",
+      "title": "Optional Pyth reader and actual independent USD services",
+      "input_ordinal": 13,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/228/record",
+      "original_record_sha256": "3174c931edf6e559ac053f7a197fa7aacee3f2b7343233eda0a8fbe4b252ee76",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "optional_reader_implemented_live_sources_open",
+      "assessment": "Pyth wrapper bounds staticcall gas/returndata and validates source runtime, exponent, positive answer, confidence and original publishTime/age; synthetic round identity never claims a fresh ZZZ trade. It neither publishes updates nor proves upstream independence/proxy honesty.",
+      "subclaims": [
+        {
+          "disposition": "optional_reader_implemented_live_sources_open",
+          "assessment": "Pyth wrapper bounds staticcall gas/returndata and validates source runtime, exponent, positive answer, confidence and original publishTime/age; synthetic round identity never claims a fresh ZZZ trade. It neither publishes updates nor proves upstream independence/proxy honesty."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Dated Nov9stored Pyth ETH was stale/disagreeing; two qualified fixedZZZ USD paths and ETH publication/funding/liveness remain open. Catalogue absence is bounded dated research, not universal nonexistence."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPythPriceFeed.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+          "lines": [
+            42
+          ],
+          "term": "function latestRoundData",
+          "excerpt": "\n    function latestRoundData() external view returns\n        (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound) {\n        address source = core;\n        if (source.codehash != expectedCoreCodeHash) revert InvalidObservation();\n        bytes32 id = feedId;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPythPriceFeed.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+          "lines": [
+            69
+          ],
+          "term": "block.timestamp - updatedAt > maxAge",
+          "excerpt": "            exponent != int256(expectedExponent) || updatedAt == 0 || updatedAt > type(uint80).max ||\n            updatedAt > block.timestamp || block.timestamp - updatedAt > maxAge ||\n            confidence * 10_000 > uint256(answer) * maxConfidenceBps) revert InvalidObservation();\n        roundId = uint80(updatedAt);\n        startedAt = updatedAt;\n        answeredInRound = roundId;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "reports/market-followup-20261109/REVIEW.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "011e06999abee05e1e38bc3300603a3d090f8fb3ad1abac13f1dbc05385c0474",
+          "lines": [
+            19
+          ],
+          "term": "Pyth Core",
+          "excerpt": "| Chainlink ETH/USD | $2125.61, updated20:02:37UTC, age133s. Both proxy addresses still point to the same aggregator. Current digest/event/getters reconcile10signers,10transmitters and f=3. | One candidate, not two independent sources. Actual operating maxAge, organizations/markets, full upstream/control and service review remain open. |\n| Pyth Core ETH/USD | Stored $2241.72518 from7November; age229537s exceeds86400s. Spread against Chainlink is546.2675655bps, above300. Both live update-fee getters return0; unauthenticated current Hermes request returns401. | Reject stale/disagreeing observations. Zero on-chain fee is not a funded authenticated updater, data plan, gas budget or recovery qualification. |\n| API3 ETH/USD: newly investigated | Real proxy/implementation/control graph and five authenticated90-day offers exist. Name binding/subscription and base observation are unset; reads revert or return an uninitialized timestamp. All292management leaves reconstruct the published/on-chain mapping root. | Inactive candidate. Its native compatibility proxy also returns round IDs0, which current PoPL correctly rejects. Activation/funding, liveness and a separately reviewed adapter would be needed if selected. No adapter or subscription was added. |\n| Fixed ZZZ/USD | No exact-token match in refreshed checked Chainlink/Pyth/API3 catalogs. The tested API3 ZZZ name/offer/proxy are unavailable. | No two independently qualified correct-token USD sources established. Public-catalog absence is not proof that custom/private services do not exist. |\n\nExact controls, original timestamps, runtime pins, failures, offer parameters"
+        }
+      ],
+      "task_ids": [
+        "price-security",
+        "dual-price-qualification",
+        "creator-zzz-price"
+      ],
+      "unresolved_action": "Dated Nov9stored Pyth ETH was stale/disagreeing; two qualified fixedZZZ USD paths and ETH publication/funding/liveness remain open. Catalogue absence is bounded dated research, not universal nonexistence.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "historical/RO-15",
+      "title": "Cheaper actual conversion route at1% and complete contribution feasibility",
+      "input_ordinal": 14,
+      "original_matrix": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "json_pointer": "/groups/229/record",
+      "original_record_sha256": "d33a0ae55d738a9fc35d5d57582655e8991aac81c0aeadd4e13e1985c75bca6d",
+      "original_matrix_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "original_record_read_in_full": true,
+      "disposition": "actual_conversion_qualification_still_open",
+      "assessment": "Normal earned fixed-ZZZ→ETH conversion remains a separately admitted route with1%default cap and actual output/backing. The selected high-fee pool can exceed that budget before extra impact; tiny favorable quotes do not fund useful gas or establish full entry acceptance.",
+      "subclaims": [
+        {
+          "disposition": "actual_conversion_qualification_still_open",
+          "assessment": "Normal earned fixed-ZZZ→ETH conversion remains a separately admitted route with1%default cap and actual output/backing. The selected high-fee pool can exceed that budget before extra impact; tiny favorable quotes do not fund useful gas or establish full entry acceptance."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Require a real cheaper qualified route or deliberate governed policy within bounds, never automatic widening. Original USDC/USDG discovery cannot introduce extra principal inputs; royalty original-currency claims use no swap."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "docs/LP_ETH_SETTLEMENT.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "fc64d67a122f9aa045bf9ec7732915447b9202ad70bdfdd3963d4854cee7b658",
+          "lines": [
+            4,
+            7,
+            18,
+            53,
+            167,
+            168
+          ],
+          "term": "1%",
+          "excerpt": "The [latest market follow-up](../reports/market-followup-20261109/REVIEW.md)\ndoes not establish a practical default1% conversion route. Favorable tiny reverse\nquotes are retained, but their observed output is below intrinsic-only gas cost\nand no independent USD pair/full converter operation is qualified. This is not a\nblanket claim that every numeric1% quote fails. A v3 pool's existence does not make\nit a principal balancing venue. For future v3 earned conversion,"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "reports/market-followup-20261109/REVIEW.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "011e06999abee05e1e38bc3300603a3d090f8fb3ad1abac13f1dbc05385c0474",
+          "lines": [
+            76
+          ],
+          "term": "intrinsic-only",
+          "excerpt": "qualified USD execution. The largest observed passing output,36249908446wei ETH,\nis about11.62times smaller than the421218000000wei **intrinsic-only basefee cost**\nat this anchor, before any conversion work. This is not a paid or complete fee\nquote. The keeper converts whole selected NFT entitlements; it does not invent\narbitrary dust slices to make a quote look executable.\n"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRewards.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "lines": [
+            180
+          ],
+          "term": "function convertBatch",
+          "excerpt": "    /// @notice Convert already allocated ZZZ rights into same-NFT ETH credits.\n    function convertBatch(address token, uint256[] calldata ids, bytes32 routeId, uint256 minimumETH, uint256 deadline)\n        external onlyKeeper live operating nonReentrant economic returns (uint256 output) {\n        if (access.module(Ids.REWARDS) != address(this) || converter == address(0) || token == address(0) ||\n            !isAsset[token] || ids.length == 0 || ids.length > MAX_CONVERSION_NFTS) revert InvalidConfiguration();\n        uint256[] memory personal = new uint256[](ids.length);"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Require a real cheaper qualified route or deliberate governed policy within bounds, never automatic widening. Original USDC/USDG discovery cannot introduce extra principal inputs; royalty original-currency claims use no swap.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/A04",
+      "title": "Planned randomness rotation and original callback continuity",
+      "input_ordinal": 15,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/16",
+      "original_record_sha256": "5db9e62921e28d69a2fddd2f23ee6f5892f3b231ebe17ea97d925fccb1e5345e",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_vrf_rotation_no_reroll",
+      "assessment": "ProtocolPolicy rotation requires all original draws finalized before changing provider generation; NFT callbacks authenticate the current original request address and store only its two words. Runtime mismatch blocks new requests while original-address callbacks may drain.",
+      "subclaims": [
+        {
+          "disposition": "implemented_vrf_rotation_no_reroll",
+          "assessment": "ProtocolPolicy rotation requires all original draws finalized before changing provider generation; NFT callbacks authenticate the current original request address and store only its two words. Runtime mismatch blocks new requests while original-address callbacks may drain."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Permanently failed original requests can still block rotation/whole-collection handoff. No reroll/retarget fallback was approved; actual coordinator/proxy/subscription funding/outage qualification remains."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZProtocolPolicy.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+          "lines": [
+            176
+          ],
+          "term": "nextToFinalize()!=collection.mintedCount()+1",
+          "excerpt": "        IPolicyNFT collection=IPolicyNFT(access.module(Ids.NFT));\n        if(collection.nextToFinalize()!=collection.mintedCount()+1)revert InvalidState();\n        randomness=_vrf(coordinator,expectedCodeHash,keyHash,subscriptionId,confirmations,callbackGas,nativePayment,reviewHash,\n            randomness.generation+1);\n        ++vrfRevision;_record(\"VRF\",keccak256(abi.encode(randomness,vrfRevision)));\n        emit RandomnessConfigured(coordinator,randomness.generation,vrfRevision,reviewHash);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZNFT.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "lines": [
+            198
+          ],
+          "term": "function rawFulfillRandomWords",
+          "excerpt": "    /// neither consume its gas nor turn a fulfilled request into another draw.\n    function rawFulfillRandomWords(uint256 requestId, uint256[] calldata words) external {\n        IZZZProtocolPolicy.VrfPolicy memory vrf = _policy().vrfPolicy();\n        // Keep the original request's address authorization even if its provider\n        // later changes runtime: new requests stay code-pinned, while pending\n        // original callbacks must be able to drain before a reviewed rotation."
+        }
+      ],
+      "task_ids": [
+        "fair-draw",
+        "nft-lifecycle"
+      ],
+      "unresolved_action": "Permanently failed original requests can still block rotation/whole-collection handoff. No reroll/retarget fallback was approved; actual coordinator/proxy/subscription funding/outage qualification remains.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/M04",
+      "title": "Manual mode/geometry/empty-route controls conflated",
+      "input_ordinal": 16,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/21",
+      "original_record_sha256": "fe525f2c922c163bdef74c3ae127680147f4adb509df18a96f024dbf082f0f53",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_distinct_manual_control_domains",
+      "assessment": "Desired modeOFF records a pending whole merge rather than deleting the current residual; ordinary manual geometry changes remain an explicit exception to sampled conditions after hard cooldown, including maxgap0. Empty automatic venues disables automatic swaps but not an explicitly reviewed force swap.",
+      "subclaims": [
+        {
+          "disposition": "implemented_distinct_manual_control_domains",
+          "assessment": "Desired modeOFF records a pending whole merge rather than deleting the current residual; ordinary manual geometry changes remain an explicit exception to sampled conditions after hard cooldown, including maxgap0. Empty automatic venues disables automatic swaps but not an explicitly reviewed force swap."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Force remains paused governance-only with structural accounting/custody locks. Neither mode toggling nor empty list creates/closes LP by itself; no keeper auto-force fallback."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "lines": [
+            54
+          ],
+          "term": "function setMode",
+          "excerpt": "\n    function setMode(bytes32 pool,bool next,bytes32 reviewed)\n        external onlyGovernance operating principalOperating {\n        if(reviewed == bytes32(0) || enabled[pool] == next) revert InvalidConfiguration();\n        // Disabling an already enabled mode records a desired safe merge; it\n        // must not depend on a currently failing external venue binding."
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            166
+          ],
+          "term": "if(manual) return true",
+          "excerpt": "        (uint8 side,bytes32 identity,bool manual) = condition(bucket);\n        if(manual) return true;\n        return _ready(observations[bucket],side,identity);\n    }\n    /// @notice Optional manual-emergency check of still-fresh existing evidence.\n    /// Does not record observations while paused or authorize ordinary execution."
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigration.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "lines": [
+            103
+          ],
+          "term": "function emergencyRebalance",
+          "excerpt": "    /// native ETH/fixed ZZZ, exact accounting and all lifecycle locks remain.\n    function emergencyRebalance(EmergencyRebalance calldata request)\n        external onlyGovernance operating principalOperating nonReentrant {\n        _deadline(request.deadline);\n        validation.validateEmergency(request);\n        _executeManual(request,true);"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Force remains paused governance-only with structural accounting/custody locks. Neither mode toggling nor empty list creates/closes LP by itself; no keeper auto-force fallback.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/D03",
+      "title": "Ordinary single/hybrid replacement could mint inactive main",
+      "input_ordinal": 17,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/24",
+      "original_record_sha256": "8c9fdc93f8fb98d2ffb97faf4b6da354f928f3998e2d9d81b63c35954621a82c",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_active_main_before_after_callbacks",
+      "assessment": "Typed executor detects ordinary replacement and validates actual stored tick strictly lower<=tick<upper before mint and after approval/pull/settlement/refund callbacks. It verifies new position IDs/ticks/liquidity and policy context for both single/hybrid modes.",
+      "subclaims": [
+        {
+          "disposition": "implemented_active_main_before_after_callbacks",
+          "assessment": "Typed executor detects ordinary replacement and validates actual stored tick strictly lower<=tick<upper before mint and after approval/pull/settlement/refund callbacks. It verifies new position IDs/ticks/liquidity and policy context for both single/hybrid modes."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Initial/growth can retain their existing range and emergency may deliberately waive financial activity; do not silently apply the ordinary guard to those separate user-approved behaviors."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            134
+          ],
+          "term": "function _activeMainMark",
+          "excerpt": "\n    function _activeMainMark(bytes32 poolId,uint160 current,int24 lower,int24 upper) private view {\n        (uint160 mark,int24 tick,,)=stateView.getSlot0(poolId);\n        if(mark!=current || tick<lower || tick>=upper)revert Slippage();\n    }\n"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            218
+          ],
+          "term": "if(replacement)_activeMainMark",
+          "excerpt": "        // downward boundary; callbacks must not leave a once-active main out.\n        if(replacement)_activeMainMark(poolId,current,actualLower,actualUpper);\n        if(aux.liquidity!=0) {\n            (int24 al,int24 au)=_checkPosition(poolId,aux.id);\n            if(al!=aux.lower || au!=aux.upper || posm.getPositionLiquidity(aux.id)!=aux.liquidity ||\n                secondaryId[tokenId]!=0 || primaryOfSecondary[aux.id]!=0 || activeSecondaryCount>=4)revert InvalidState();"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Initial/growth can retain their existing range and emergency may deliberately waive financial activity; do not silently apply the ordinary guard to those separate user-approved behaviors.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/I01",
+      "title": "Best quote may fail destination active-main guard despite viable alternative",
+      "input_ordinal": 18,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/30",
+      "original_record_sha256": "646c227cea82ef737053479f443d5b7ce7659f8f1b1367fb34a264408a281f56",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "old_open_implementation_now_corrected_source",
+      "assessment": "Current Balancer planReplacement/routePlan evaluates actual stored-tick viability before ranking: external-route target must remain active, target-route quotes carry post-swap tick, and oversized inactive moves shrink or infeasible directions advance the bracket. The old I01 missing screen is implemented.",
+      "subclaims": [
+        {
+          "disposition": "old_open_implementation_now_corrected_source",
+          "assessment": "Current Balancer planReplacement/routePlan evaluates actual stored-tick viability before ranking: external-route target must remain active, target-route quotes carry post-swap tick, and oversized inactive moves shrink or infeasible directions advance the bracket. The old I01 missing screen is implemented."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Bounded4venue/4..12iteration search can still miss a feasible global solution; near-boundary callbacks can change state and cause atomic revert. Preserve guards and operator triage, no always-best/always-feasible promise."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            189
+          ],
+          "term": "if(requireActive && id!=x.target",
+          "excerpt": "        if (c.key.currency1 != target.key.currency1) revert InvalidConfiguration();\n        if(requireActive && id!=x.target && !_activeTarget(x))return(best,0);\n        (uint160 beforePrice,,uint24 protocol,uint24 fee) = stateView.getSlot0(id);\n        uint256 swapFee = _fee(c,direction,protocol,fee);\n        if (!_validSpot(beforePrice,x.prices.referenceX96,c.maxSpotDeviationBps)) revert InvalidState();\n        uint256 lo; uint256 hi = direction ? x.amount0 : x.amount1;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            215
+          ],
+          "term": "else if(outside!=0)",
+          "excerpt": "                else if (output < minimum || !_validSpot(afterPrice,x.prices.referenceX96,c.maxSpotDeviationBps)) hi = input;\n                else if(outside!=0) {\n                    // Shrink an overshoot, but increase a trade which has not\n                    // yet brought the destination into its required range.\n                    if(direction ? outside<0 : outside>0)hi=input;\n                    else lo=input+1;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            134
+          ],
+          "term": "function _activeMainMark",
+          "excerpt": "\n    function _activeMainMark(bytes32 poolId,uint160 current,int24 lower,int24 upper) private view {\n        (uint160 mark,int24 tick,,)=stateView.getSlot0(poolId);\n        if(mark!=current || tick<lower || tick>=upper)revert Slippage();\n    }\n"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Bounded4venue/4..12iteration search can still miss a feasible global solution; near-boundary callbacks can change state and cause atomic revert. Preserve guards and operator triage, no always-best/always-feasible promise.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/B03",
+      "title": "Sampled trigger, geometry, idle and independent financial guards can block",
+      "input_ordinal": 19,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/39",
+      "original_record_sha256": "5979c8e56351e28a27c0ff7bf9d4267ba2ae9ba892bfd422305f5f4cdd7d2a8a",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "accepted_guard_scopes_and_liveness_tradeoff",
+      "assessment": "Trigger sampling, actual main activity, main/residual allocation, geometry/gap and entry/maintenance/idle/caller budgets protect different scopes and phases. Captured marks prevent loss being repriced away; current same-reference execution proof permits only exact reviewed own transitions.",
+      "subclaims": [
+        {
+          "disposition": "accepted_guard_scopes_and_liveness_tradeoff",
+          "assessment": "Trigger sampling, actual main activity, main/residual allocation, geometry/gap and entry/maintenance/idle/caller budgets protect different scopes and phases. Captured marks prevent loss being repriced away; current same-reference execution proof permits only exact reviewed own transitions."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Their intersection can legitimately block economically poor/thin-market operations. Use clear diagnostics/configuration/manual reviewed recovery; do not remove controls globally or introduce automatic unsafe fallback."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalanceMath.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+          "lines": [
+            150
+          ],
+          "term": "function checkMaintenance",
+          "excerpt": "    }\n    function checkMaintenance(uint256 bucket,uint256 beforeValue,uint256 price0,uint256 price1,\n        uint256 scale0,uint256 scale1,uint16 lossBps,uint16 maxIdleBps,bytes32 expectedPolicy)\n        external view returns(uint256 deployed,uint256 idle,bytes32 poolId){\n        IZZZAccess a=_access();\n        if(beforeValue==0 || lossBps>1000 || maxIdleBps>4000 ||"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalanceMath.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+          "lines": [
+            162
+          ],
+          "term": "function assertPortfolioUtilization",
+          "excerpt": "    }\n    function assertPortfolioUtilization(uint256 bucket,uint256 price0,uint256 price1,uint256 scale0,uint256 scale1)\n        external view {\n        IZZZAccess a=_access();Position memory p=IZZZVault(a.module(Ids.VAULT)).group(bucket);\n        IZZZLiquidity manager=IZZZLiquidity(a.module(Ids.LIQUIDITY));\n        (uint256 a0,uint256 a1)=manager.amounts(p.lpTokenId);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "docs/REFERENCE_SWAP_EXECUTION.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "15b60d7a09c76fd329c37612a0d91003ede51f4a3dcaf1d8f4afb5c409be3615",
+          "lines": [
+            24,
+            25,
+            41,
+            57,
+            58,
+            62,
+            69,
+            73
+          ],
+          "term": "captur",
+          "excerpt": "1. Pricing starts a transaction-only scope before Entry pulls tokens, or before\n   maintenance harvests/closes the old LP. Direct Vault contribution captures its\n   scope before incoming asset pulls too. The Oracle validates and captures both\n   ETH and ZZZ source observations, bounds, decimals, policy/sequencer IDs, gas\n   policy and monotonic source-kind revision.\n2. Explicit execution reads use those starting bounds. Contribution minima,"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Their intersection can legitimately block economically poor/thin-market operations. Use clear diagnostics/configuration/manual reviewed recovery; do not remove controls globally or introduce automatic unsafe fallback.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/R03",
+      "title": "Mode enable/disable mistaken for immediate creation/consolidation",
+      "input_ordinal": 20,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/43",
+      "original_record_sha256": "7df6e6dc42cf1ca52ac84618d1715ee10f2f5ca72924505fc00c7cbb63d2b430",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_desired_vs_actual_mode_lifecycle",
+      "assessment": "setMode updates desired geometry/revision and creates nothing immediately. Existing residual remains valued/harvested until next whole guarded replacement or manual raw close; same-main consolidateResidual additionally applies OFF after actual reinvestment.",
+      "subclaims": [
+        {
+          "disposition": "implemented_desired_vs_actual_mode_lifecycle",
+          "assessment": "setMode updates desired geometry/revision and creates nothing immediately. Existing residual remains valued/harvested until next whole guarded replacement or manual raw close; same-main consolidateResidual additionally applies OFF after actual reinvestment."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "A raw close can leave idle and current modeON; a same-value mode re-review can deliberately mark geometry pending. Operators must choose explicit intended close/consolidate/full replacement and unpause separately."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "lines": [
+            54
+          ],
+          "term": "function setMode",
+          "excerpt": "\n    function setMode(bytes32 pool,bool next,bytes32 reviewed)\n        external onlyGovernance operating principalOperating {\n        if(reviewed == bytes32(0) || enabled[pool] == next) revert InvalidConfiguration();\n        // Disabling an already enabled mode records a desired safe merge; it\n        // must not depend on a currently failing external venue binding."
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigration.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "lines": [
+            114
+          ],
+          "term": "function consolidateResidual",
+          "excerpt": "    /// reviewed explicit swap/mask. Neither releases the Fees compound reserve.\n    function consolidateResidual(EmergencyRebalance calldata request,bool forced)\n        external onlyGovernance operating principalOperating nonReentrant {\n        _deadline(request.deadline);\n        ZZZCustodyValidation.Consolidation memory beforeState=validation.captureConsolidation(request,forced);\n        consolidationActive=true;"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigration.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "lines": [
+            19,
+            354
+          ],
+          "term": "function closeResidual",
+          "excerpt": "    function exitBucketToHolders(uint256,uint256,uint256,uint256) external returns(uint256,uint256);\n    function closeResidual(uint256,uint256) external;\n}\ninterface IHolderExitNFT is IZZZNFT {\n    function mintedCount() external view returns(uint256);\n    function tokenAtOrdinal(uint256) external view returns(uint256);"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "A raw close can leave idle and current modeON; a same-value mode re-review can deliberately mark geometry pending. Operators must choose explicit intended close/consolidate/full replacement and unpause separately.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/P01",
+      "title": "Unbounded physical-position strategy and incomparable raw liquidity",
+      "input_ordinal": 21,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/45",
+      "original_record_sha256": "5dd70b443837310b41f7589977cc35efe63da1db2bb4a37f0e4c557a482b0338",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_two_leg_bounded_custody",
+      "assessment": "Executor maps one main to at most one residual with reciprocal identity and total activeSecondaryCount bound; both LP NFTs are Vault-owned. portfolioAmounts adds actual token amounts, while valuation weights those amounts instead of summing incomparable raw liquidity.",
+      "subclaims": [
+        {
+          "disposition": "implemented_two_leg_bounded_custody",
+          "assessment": "Executor maps one main to at most one residual with reciprocal identity and total activeSecondaryCount bound; both LP NFTs are Vault-owned. portfolioAmounts adds actual token amounts, while valuation weights those amounts instead of summing incomparable raw liquidity."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Both legs must close for whole moves/parking/terminal return and remain included through fills/reversals.60/40is an at-placement policy, not continuously optimal or continuously maintained."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            110
+          ],
+          "term": "function portfolioAmounts",
+          "excerpt": "\n    function portfolioAmounts(uint256 mainId) external view returns(uint256 amount0,uint256 amount1) {\n        _main(mainId);\n        (PoolKey memory key,)=posm.getPoolAndPositionInfo(mainId);\n        _checkPosition(keccak256(abi.encode(key)),mainId);\n        (amount0,amount1)=amounts(mainId);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            223
+          ],
+          "term": "secondaryId[tokenId]=aux.id",
+          "excerpt": "                secondaryId[tokenId]!=0 || primaryOfSecondary[aux.id]!=0 || activeSecondaryCount>=4)revert InvalidState();\n            secondaryId[tokenId]=aux.id;primaryOfSecondary[aux.id]=tokenId;++activeSecondaryCount;\n        }\n        if(_balanceContext(poolId)!=policyContext)revert InvalidState();\n        if(id==0) {\n            emit PortfolioCreated(tokenId,aux.id,poolId);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZNFTMetadata.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+          "lines": [
+            79
+          ],
+          "term": "portfolioAmounts",
+          "excerpt": "        IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId);\n        (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).portfolioAmounts(position.lpTokenId);\n        IZZZFees fees = IZZZFees(access.module(Ids.FEES));\n        a0 += position.idle0 + fees.compoundBalance(bucket, config.key.currency0);\n        a1 += position.idle1 + fees.compoundBalance(bucket, config.key.currency1);\n        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));"
+        }
+      ],
+      "task_ids": [
+        "passive-inventory",
+        "liquidity-placement-idle"
+      ],
+      "unresolved_action": "Both legs must close for whole moves/parking/terminal return and remain included through fills/reversals.60/40is an at-placement policy, not continuously optimal or continuously maintained.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/P02",
+      "title": "Same-pair move rechecked destination using captured source controls",
+      "input_ordinal": 22,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/46",
+      "original_record_sha256": "195905a86fb6409ea486e852d8e20987be8ada31822ab209b56d4afa764303e7",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_captured_source_move_controls",
+      "assessment": "Budget snapshot retains sourcePool before closing and validates confirmationControl against that original pool after move. Manager separately binds the new target execution context; source and destination controls are not accidentally compared using the changed position.poolId.",
+      "subclaims": [
+        {
+          "disposition": "implemented_captured_source_move_controls",
+          "assessment": "Budget snapshot retains sourcePool before closing and validates confirmationControl against that original pool after move. Manager separately binds the new target execution context; source and destination controls are not accidentally compared using the changed position.poolId."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Same-pair destination still needs reviewed configuration/admission/capacity/prices and actual movement gas. Callback control changes must fail even if values are restored."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigrationBudget.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+          "lines": [
+            242
+          ],
+          "term": "s.sourcePool = p.poolId",
+          "excerpt": "        s.bucketId = id;\n        s.sourcePool = p.poolId;\n        s.lossBps = maintenanceLossBps;\n        s.confirmationControl = _confirmationControl(id,p.poolId);\n        if (!emergencyActive) {\n            s.portfolioRevision = _portfolioPolicy().revision();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZMigrationBudget.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+          "lines": [
+            280
+          ],
+          "term": "_confirmationControl(id,s.sourcePool)",
+          "excerpt": "        // Manager's separate context freezes target execution controls.\n        if (s.confirmationControl != _confirmationControl(id,s.sourcePool)) revert Slippage();\n        if (!emergencyActive) {\n            IBudgetPortfolioPolicy policy = _portfolioPolicy();\n            if (policy.revision() != s.portfolioRevision) revert InvalidState();\n            if (s.replacement && policy.enabled(targetPool)) {"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Same-pair destination still needs reviewed configuration/admission/capacity/prices and actual movement gas. Callback control changes must fail even if values are restored.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/P03",
+      "title": "Rounding headroom forced a needless swap at natural floor",
+      "input_ordinal": 23,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/47",
+      "original_record_sha256": "da3a18bce848eeb10a8d0fa9edce4f10fd93c4a1a8fc973ef91430b45c25fb7a",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_natural_floor_no_needless_trade",
+      "assessment": "Naturally sufficient baseline main returns zero-swap before venue search when it meets configured main allocation. The extra1bp rounding headroom applies only to seed/qualification of a needed partial trade, with final ceil main-floor and residual bounds retained.",
+      "subclaims": [
+        {
+          "disposition": "implemented_natural_floor_no_needless_trade",
+          "assessment": "Naturally sufficient baseline main returns zero-swap before venue search when it meets configured main allocation. The extra1bp rounding headroom applies only to seed/qualification of a needed partial trade, with final ceil main-floor and residual bounds retained."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Very strict9999hybrid floor can remain unrepresentable; modeOFF expresses single position. Do not widen fixed minimum6000or consume incumbent funds to manufacture feasibility."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            127,
+            163
+          ],
+          "term": "A naturally sufficient main",
+          "excerpt": "        // the same rounding headroom as its later qualification, without making\n        // a naturally sufficient main require another swap.\n        if(x.mainFloor<9999)++x.mainFloor;\n        return balanceMath.seed(x,direction,fee);\n    }\n    function plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            128
+          ],
+          "term": "if(x.mainFloor<9999)",
+          "excerpt": "        // a naturally sufficient main require another swap.\n        if(x.mainFloor<9999)++x.mainFloor;\n        return balanceMath.seed(x,direction,fee);\n    }\n    function plan(bytes32 target,int24 lower,int24 upper,uint256 amount0,uint256 amount1)\n        external returns(Plan memory) { uint256[4] memory marks; return _plan(target,lower,upper,amount0,amount1,10000,marks,false); }"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalanceMath.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+          "lines": [
+            25,
+            174
+          ],
+          "term": "minimumMainBps",
+          "excerpt": "interface IExecutionMathControls {function controlFingerprint(bytes32)external view returns(bytes32);}\ninterface IExecutionMathMainFloor {function minimumMainBps(bytes32)external view returns(uint16);}\ninterface IExecutionMathNativePools {function isNativePool(bytes32)external view returns(bool);}\ninterface IExecutionMathAssets {function activationAssets()external view returns(address);}\ninterface IExecutionMathZZZ {function zzz()external view returns(address);}\ninterface IExecutionMathCompoundBudget {"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Very strict9999hybrid floor can remain unrepresentable; modeOFF expresses single position. Do not widen fixed minimum6000or consume incumbent funds to manufacture feasibility.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/P04",
+      "title": "Ordinary replacement could create an inactive main after callbacks",
+      "input_ordinal": 24,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/48",
+      "original_record_sha256": "f9e9394d283cdd2273f0f83ae01c5c2027f5365749803bffa4f22f706a20f35b",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_callback_active_tick_guard",
+      "assessment": "The old optional-portfolio P04 concerns the post-callback boundary: identical sqrt alone does not prove the same stored tick at a downward exact boundary. Executor performs final _activeMainMark after all refunds and full actual position proof for ordinary single/hybrid replacement.",
+      "subclaims": [
+        {
+          "disposition": "implemented_callback_active_tick_guard",
+          "assessment": "The old optional-portfolio P04 concerns the post-callback boundary: identical sqrt alone does not prove the same stored tick at a downward exact boundary. Executor performs final _activeMainMark after all refunds and full actual position proof for ordinary single/hybrid replacement."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Same guard is shared with later D03; it is not two new implementations/tests. Historical initial/growth and explicit emergency semantics remain separate; candidate screening I01 is now implemented too."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            216
+          ],
+          "term": "Identical sqrt alone",
+          "excerpt": "            uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();\n        // Identical sqrt alone does not fix the stored tick at an exact\n        // downward boundary; callbacks must not leave a once-active main out.\n        if(replacement)_activeMainMark(poolId,current,actualLower,actualUpper);\n        if(aux.liquidity!=0) {\n            (int24 al,int24 au)=_checkPosition(poolId,aux.id);"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            218
+          ],
+          "term": "if(replacement)_activeMainMark",
+          "excerpt": "        // downward boundary; callbacks must not leave a once-active main out.\n        if(replacement)_activeMainMark(poolId,current,actualLower,actualUpper);\n        if(aux.liquidity!=0) {\n            (int24 al,int24 au)=_checkPosition(poolId,aux.id);\n            if(al!=aux.lower || au!=aux.upper || posm.getPositionLiquidity(aux.id)!=aux.liquidity ||\n                secondaryId[tokenId]!=0 || primaryOfSecondary[aux.id]!=0 || activeSecondaryCount>=4)revert InvalidState();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalancer.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+          "lines": [
+            215
+          ],
+          "term": "else if(outside!=0)",
+          "excerpt": "                else if (output < minimum || !_validSpot(afterPrice,x.prices.referenceX96,c.maxSpotDeviationBps)) hi = input;\n                else if(outside!=0) {\n                    // Shrink an overshoot, but increase a trade which has not\n                    // yet brought the destination into its required range.\n                    if(direction ? outside<0 : outside>0)hi=input;\n                    else lo=input+1;"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Same guard is shared with later D03; it is not two new implementations/tests. Historical initial/growth and explicit emergency semantics remain separate; candidate screening I01 is now implemented too.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/P05",
+      "title": "Paid observation throughout hard cooldown wasted nonce/gas writes",
+      "input_ordinal": 25,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/49",
+      "original_record_sha256": "33ccc7cc335aa43ba4a2f64b589cb17dd00d465b73fa7bd378b86b934348faa8",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_near_eligibility_paid_enrollment",
+      "assessment": "Keeper can make raw status/reset checks during hard cooldown but begins paid ordinary observation near earliestCooldown-duration-maxgap. Stable physical geometry excludes main liquidity changes, so entrant growth does not reset clocks/window; pending-first recovery remains.",
+      "subclaims": [
+        {
+          "disposition": "implemented_near_eligibility_paid_enrollment",
+          "assessment": "Keeper can make raw status/reset checks during hard cooldown but begins paid ordinary observation near earliestCooldown-duration-maxgap. Stable physical geometry excludes main liquidity changes, so entrant growth does not reset clocks/window; pending-first recovery remains."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "This is sampled evidence, not continuous four-hour history before enrollment. Actual inclusion delay may restart strict300s gap; service240s wakeup/jitter and nonce/gas operation remain qualification."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "keeper/monitor.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "lines": [
+            1195
+          ],
+          "term": "def _confirmation_enrollment_at",
+          "excerpt": "    @staticmethod\n    def _confirmation_enrollment_at(status):\n        \"\"\"Service-only paid-window lead; raw checks and resets remain active.\n\n        Only the final duration+max-gap before the hard cooldown needs a paid\n        ordinary window. Already-eligible work begins immediately. No earlier"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "lines": [
+            95
+          ],
+          "term": "function portfolioFingerprint",
+          "excerpt": "\n    function portfolioFingerprint(uint256 mainId) external view returns(bytes32) {\n        if(mainId==0)return keccak256(abi.encode(address(this),uint256(0)));\n        _main(mainId);\n        (PoolKey memory key,uint256 info)=posm.getPoolAndPositionInfo(mainId);\n        bytes32 poolId=keccak256(abi.encode(key));"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            113
+          ],
+          "term": "p.lastRebalance,lower,upper",
+          "excerpt": "        bytes32 physical = keccak256(abi.encode(block.chainid,address(this),bucket,p.poolId,p.lpTokenId,\n            p.lastRebalance,lower,upper,manager,IConfirmationPortfolio(manager).portfolioFingerprint(p.lpTokenId)));\n        identity = keccak256(abi.encode(physical,keccak256(abi.encode(c)),\n            policy.rangeOrientation(p.poolId),_controlFingerprint(c)));\n    }\n    /// @notice Pinned-reader explanation, not readiness or permission to trade."
+        }
+      ],
+      "task_ids": [
+        "rebalance-confirmation-buffer",
+        "security-external-manipulation",
+        "security-keeper-manipulation"
+      ],
+      "unresolved_action": "This is sampled evidence, not continuous four-hour history before enrollment. Actual inclusion delay may restart strict300s gap; service240s wakeup/jitter and nonce/gas operation remain qualification.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/C03",
+      "title": "Final buyback venue could not be re-enabled after terminal LP exit",
+      "input_ordinal": 26,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/52",
+      "original_record_sha256": "894bcce02f21ea173ab24e22fe7d4cd6f8e49838be3125a05421aa801030af77",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_postexit_reserve_only_venue",
+      "assessment": "Registry admits/revalidates a pool after terminal exit only in Readyphase3 and deposits disabled, checking this before/after configuration. Terminal Vault/principal locks remain and separate buyback reserve can use a restored/new reviewed venue.",
+      "subclaims": [
+        {
+          "disposition": "implemented_postexit_reserve_only_venue",
+          "assessment": "Registry admits/revalidates a pool after terminal exit only in Readyphase3 and deposits disabled, checking this before/after configuration. Terminal Vault/principal locks remain and separate buyback reserve can use a restored/new reviewed venue."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Governance must explicitly enable usable reserve work after completion; failed core/token/burn ABI still blocks it. Venue admission cannot reopen principal or spend holder allocated exit backing."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPoolRegistry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "lines": [
+            51
+          ],
+          "term": "function _checkNativeConfiguration",
+          "excerpt": "    }\n    function _checkNativeConfiguration(bool depositsEnabled) private view {\n        // Migration.Ready (3) means every bucket is closed and principal is\n        // allocated. Only remaining protocol reserves may use a restored/new\n        // venue; terminal Vault locks cannot be reopened by this configuration.\n        if (access.lpExitStarted() && (depositsEnabled ||"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZPoolRegistry.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "lines": [
+            65
+          ],
+          "term": "function configureNative",
+          "excerpt": "    /// remains available, so the separate buyback reserve need not be stranded.\n    function configureNative(PoolConfig calldata config) external onlyGovernance nativeConfiguration(config.depositsEnabled) returns (bytes32 poolId) {\n        PoolKey memory key = config.key;\n        if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||\n            activationAssets.zzz() != ZZZ) {\n            revert InvalidConfiguration();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZBuyback.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+          "lines": [
+            74
+          ],
+          "term": "IBurnable(zzz).burn",
+          "excerpt": "        uint256 supplyBefore = IBurnable(zzz).totalSupply();\n        IBurnable(zzz).burn(acquired);\n        if (IBurnable(zzz).totalSupply() + acquired != supplyBefore ||\n            IERC20(zzz).balanceOf(address(this)) != beforeZZZ) revert InvalidState();\n        emit BoughtAndBurned(token, amount, acquired);\n        if (!access.keeperAuthorized(msg.sender) || access.paused()) revert Unauthorized();"
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "Governance must explicitly enable usable reserve work after completion; failed core/token/burn ABI still blocks it. Venue admission cannot reopen principal or spend holder allocated exit backing.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/C04",
+      "title": "Identity faults could preserve confirmation/jitter",
+      "input_ordinal": 27,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/53",
+      "original_record_sha256": "2f16c317e23b26dc777dadb2afb49c1269eb0691df003f3c065f06ce575eaac7",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_durable_fault_reset",
+      "assessment": "Keeper identity/occupancy/custody/confirmation-reader faults mark affected tracked windows for durable reset, drop stale schedule/jitter and require reset acknowledgement before healthy re-enrollment. Rollback-safe save preserves prior memory if persistence fails.",
+      "subclaims": [
+        {
+          "disposition": "implemented_durable_fault_reset",
+          "assessment": "Keeper identity/occupancy/custody/confirmation-reader faults mark affected tracked windows for durable reset, drop stale schedule/jitter and require reset acknowledgement before healthy re-enrollment. Rollback-safe save preserves prior memory if persistence fails."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Unknown optional diagnostics do not authorize clearing unrelated buckets or block pending-first same-hash recovery/independent harvest. Actual process/host interruption acceptance remains."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "keeper/monitor.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "lines": [
+            1210
+          ],
+          "term": "def _mark_confirmation_reset",
+          "excerpt": "\n    def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:\n        if self.rebalance_confirmation.version not in (1,2,3):return\n        already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))\n        if already_needed and str(bucket) not in self.state.get(self._confirmation_namespace(),{}):return\n        previous=self.state;updated=copy.deepcopy(previous)"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "keeper/monitor.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "lines": [
+            1239
+          ],
+          "term": "def _mark_known_confirmation_resets",
+          "excerpt": "\n    def _mark_known_confirmation_resets(self) -> None:\n        \"\"\"Invalidate only known fresh windows after an initial raw-state fault.\"\"\"\n        if self.rebalance_confirmation.version not in (1,2,3) or self.state.get('pending'):return\n        buckets=set(self.state.get(self._confirmation_namespace(),{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))\n        for bucket in sorted(buckets,key=int):self._mark_confirmation_reset(int(bucket))"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            186
+          ],
+          "term": "function resetObservation",
+          "excerpt": "    /// an off-chain fault must confirm this reset before extending old evidence.\n    function resetObservation(uint256 bucket) external onlyKeeper operating principalOperating nonReentrant {\n        delete observations[bucket];\n        emit ObservationReset(bucket,5);\n    }\n    /// @notice A failed observed read clears evidence in a successful transaction;"
+        }
+      ],
+      "task_ids": [
+        "rebalance-confirmation-buffer",
+        "security-external-manipulation",
+        "security-keeper-manipulation"
+      ],
+      "unresolved_action": "Unknown optional diagnostics do not authorize clearing unrelated buckets or block pending-first same-hash recovery/independent harvest. Actual process/host interruption acceptance remains.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/K02",
+      "title": "Healthy inside/opposite observation preserved an old sampled window",
+      "input_ordinal": 28,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/67",
+      "original_record_sha256": "a8fac68f9302ab1c51d9059fb3ee3bf55504bffae4adfc0acd0b887376b4241d",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "implemented_inside_opposite_negative_evidence",
+      "assessment": "A healthy same-hash physical/reference observation returning inside/opposite records required reset before compounding can use old evidence. A retained clear acknowledgement prevents repeated paid clears unless a new authenticated nonempty contradiction appears.",
+      "subclaims": [
+        {
+          "disposition": "implemented_inside_opposite_negative_evidence",
+          "assessment": "A healthy same-hash physical/reference observation returning inside/opposite records required reset before compounding can use old evidence. A retained clear acknowledgement prevents repeated paid clears unless a new authenticated nonempty contradiction appears."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "Pure readers/reporting never mutate journals. Service policy cannot guarantee movements between samples or impose a new on-chain compound restriction; preserve the accepted keeper-side boundary."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "keeper/monitor.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "lines": [
+            782
+          ],
+          "term": "A same-hash inside/opposite-side read",
+          "excerpt": "            if record['nonempty'] and (acknowledged or side==0 or side!=record['side']):\n                # A same-hash inside/opposite-side read is negative evidence. A\n                # retained clear plus a nonempty record is foreign evidence;\n                # only that authenticated contradiction forces another clear.\n                self._mark_confirmation_reset(bucket,force=acknowledged)\n                self._rebalance_reset_due=bucket"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "keeper/monitor.py",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "lines": [
+            780
+          ],
+          "term": "acknowledged=key in self.state",
+          "excerpt": "                    side!=status['reference_threshold_side']):side=0\n            acknowledged=key in self.state.get(CONFIRMATION_CLEARS,{})\n            if record['nonempty'] and (acknowledged or side==0 or side!=record['side']):\n                # A same-hash inside/opposite-side read is negative evidence. A\n                # retained clear plus a nonempty record is foreign evidence;\n                # only that authenticated contradiction forces another clear."
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "lines": [
+            194
+          ],
+          "term": "if(manual || side == 0",
+          "excerpt": "        try this.condition(bucket) returns(uint8 side,bytes32 identity,bool manual) {\n            if(manual || side == 0 || maxObservationGap == 0) {\n                delete observations[bucket];\n                emit ObservationReset(bucket,manual ? 4 : side == 0 ? 1 : 3);\n                return _withCooldown(bucket,manual);\n            }"
+        }
+      ],
+      "task_ids": [
+        "rebalance-confirmation-buffer",
+        "security-external-manipulation",
+        "security-keeper-manipulation"
+      ],
+      "unresolved_action": "Pure readers/reporting never mutate journals. Service policy cannot guarantee movements between samples or impose a new on-chain compound restriction; preserve the accepted keeper-side boundary.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    },
+    {
+      "id": "later/K06",
+      "title": "Idle treated as surplus or entrant funds and conditional floors as redundant",
+      "input_ordinal": 29,
+      "original_matrix": "reports/ten-audit-consolidation-20261102/findings.json",
+      "json_pointer": "/findings/71",
+      "original_record_sha256": "f3e5fe240c272266a3a009b63910834f02eba9d1d0107646a9ae781d580c7a1a",
+      "original_matrix_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "original_record_read_in_full": true,
+      "disposition": "accepted_attributed_idle_and_distinct_floors",
+      "assessment": "Attributed idle remains incumbent principal in NAV and designated compound remains separate until release. New Entry source budget/marginal physical LP cannot spend existing idle/residual/compound; swaps, whole-buffer, marginal LP, maintenance retained value and idle/caller floors are not blanket duplicates.",
+      "subclaims": [
+        {
+          "disposition": "accepted_attributed_idle_and_distinct_floors",
+          "assessment": "Attributed idle remains incumbent principal in NAV and designated compound remains separate until release. New Entry source budget/marginal physical LP cannot spend existing idle/residual/compound; swaps, whole-buffer, marginal LP, maintenance retained value and idle/caller floors are not blanket duplicates."
+        },
+        {
+          "disposition": "remaining_action_or_preserved_boundary",
+          "assessment": "No generic dust sweep. Idle-only scheduling/economic thresholds and5%ceiling may block future entry, so qualify recovery/configuration; raw close and same-main reinvestment are explicit operations."
+        }
+      ],
+      "current_evidence": [
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZContributionPricing.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+          "lines": [
+            185
+          ],
+          "term": "function beginEntryReviewed",
+          "excerpt": "    /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.\n    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps,\n        bytes32 expectedContributionPolicy)\n        external returns(uint256 lowerUSD) {\n        if (msg.sender != _entry()) revert Unauthorized();\n        _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "src/ZZZLPBalanceMath.sol",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+          "lines": [
+            150
+          ],
+          "term": "function checkMaintenance",
+          "excerpt": "    }\n    function checkMaintenance(uint256 bucket,uint256 beforeValue,uint256 price0,uint256 price1,\n        uint256 scale0,uint256 scale1,uint16 lossBps,uint16 maxIdleBps,bytes32 expectedPolicy)\n        external view returns(uint256 deployed,uint256 idle,bytes32 poolId){\n        IZZZAccess a=_access();\n        if(beforeValue==0 || lossBps>1000 || maxIdleBps>4000 ||"
+        },
+        {
+          "repository": "ABEF/AAA",
+          "path": "docs/KEEPER_COORDINATION.md",
+          "revision": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+          "hash_mode": "git_blob_raw_sha256",
+          "sha256": "523cf42b37a0964738ed5d9f611038e21bd08de32a30f32bf5b052a3029af24a",
+          "lines": [
+            12,
+            21,
+            55,
+            104,
+            220
+          ],
+          "term": "5%",
+          "excerpt": "\nCompounding adds the bucket's attributed idle and designated 5% compound reserve\nto its existing main LP range. It does not replace the range, alter a residual or\nreset the rebalance clock. It may need an ETH/ZZZ swap. Rebalancing closes the\nold main and any residual, then atomically rebuilds the selected one/two-leg\nportfolio. Both physical positions and attributed idle back the same NFT shares."
+        }
+      ],
+      "task_ids": [
+        "lp-execution-routing",
+        "lp-eth-settlement",
+        "governed-loss-limits",
+        "creator-input-liquidity"
+      ],
+      "unresolved_action": "No generic dust sweep. Idle-only scheduling/economic thresholds and5%ceiling may block future entry, so qualify recovery/configuration; raw close and same-main reinvestment are explicit operations.",
+      "verification": "Individual original-record/current-code/report inspection; no new contract/source change or unchanged test execution."
+    }
+  ],
+  "production_approved": false,
+  "new_production_code_changes": 0,
+  "new_test_runs": 0,
+  "related_prior_review": "The separate87 evidence/frontend rows are unchanged and not duplicated here."
+}

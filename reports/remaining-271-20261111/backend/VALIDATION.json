@@ -1,0 +1,26 @@
+{
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "input_sha256": "d048b7146b677b1ac6e41a948d6b1cb30973bba5c9fea229a8f533d7913ecb75",
+  "input_rows": 94,
+  "output_rows": 94,
+  "unique_ids": 94,
+  "same_input_ids": true,
+  "all_original_pointer_values_match_baseline": true,
+  "all_task_ids_in_baseline_sole_todo": true,
+  "protected_files_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "environment_changes": false,
+  "status_counts": {
+    "source_implemented": 56,
+    "superseded_requirement": 15,
+    "accepted_boundary": 14,
+    "qualification_open": 9
+  },
+  "current_evidence_locations_verified": 280,
+  "current_evidence_unique_git_blobs": 104,
+  "all_current_evidence_raw_and_lf_hashes_and_exact_line_terms_verified": true
+}

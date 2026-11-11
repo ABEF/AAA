@@ -1,11 +1,12 @@
 # PoPL current project context
 
-The [current daily reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md)
-corrects current documentation/task summaries and two static-review permission
-descriptions, and saves12RPC reads in one claim plan through request-local
-immutable metadata caching. Historical issues are split by current source and
-qualification status; unreviewed rows remain unclosed. No Solidity, rights, gas
-policy, site/service, signer, existing chain/journal or heartbeat changes.
+All remaining271original findings are individually assessed in the
+[current reconciliation](reports/remaining-271-20261111/REVIEW.md), with exact
+original pointers, current proof and Todo owners. Together with the prior39,
+every original record is reviewed; implementation and real qualification remain
+separate. Keeper simulation bounds, per-predecessor execution profiles and strict
+artwork-generator input validation are corrected. No Solidity/assets, economic
+rights, gas caps, live services/sites, signer, chains/journals or heartbeat change.
 
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds

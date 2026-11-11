@@ -69,3 +69,15 @@ For Solidity/toolchain changes, check the actual static CI default as well as ne
 analysis/report links. Update its full strict source-bound record with the same
 change; preserve old artifacts. The current-default regression should fail on
 unreviewed drift rather than silently accepting an old report.
+
+A completed historical reconciliation means each requested original ID has an
+individual source/decision assessment with its original pointer/hash retained;
+it does not mean every obligation is resolved. Split source implementation from
+live qualification, retired requirements, evidence-only records and accepted
+risks. Give duplicates explicit pointers without dropping their distinct
+subclaims. A source-labelled excerpt/hash must come from that exact Git revision,
+not a simultaneously edited working file. Keep new-fix proof separate from the
+baseline. Avoid copying full original records already preserved in a tracked
+ledger; link their exact provenance instead. Do not rerun unchanged suites just
+to produce a new aggregate count. New focused verification must identify changed
+behavior, failed baseline, final correction, overlap and any skipped checks.

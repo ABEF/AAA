@@ -1,10 +1,11 @@
 # Release approval record - NOT APPROVED
 
-The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
-does not approve a release. Retain the actual dependency/callback review, bounded
-initial keeper simulation follow-up, complete gas qualification and all
-unresolved historical obligations alongside existing external gates. Selected
-old findings have new dispositions; unreviewed rows are not silently closed.
+The [complete remaining-findings review](../reports/remaining-271-20261111/REVIEW.md)
+checks all271previously unreviewed records and implements source corrections.
+Initial keeper simulation work is now bounded by the existing cap; actual
+provider/OS latency, gas/workload and matching rollout remain qualification.
+Retain the actual dependency/callback review and every external gate. Review
+completion does not approve release or close all historical obligations.
 
 Fresh [execution-price1/LP-routing3](REFERENCE_SWAP_EXECUTION.md) needs exact new
 runtime/configuration/source-proof admission and matching consumers. Normal size,

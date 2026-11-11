@@ -1,0 +1,110 @@
+{
+  "finding_id": "EF-01",
+  "severity": "P2 offline artifact admission",
+  "scope": "Offline source-generation input validation; no deployed exploit or financial authority change",
+  "before": {
+    "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+    "scope": "Read-only generate() strings over temporary catalogue variants; no asset written",
+    "generator_sha256": "14fc18310eacf2bd8a25e6a6d2e05a3e7f807c05292a9bdad53edb0816727381",
+    "catalogue_sha256": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "library_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "cases": [
+      {
+        "case": "valid",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+      },
+      {
+        "case": "duplicate_key",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "628f26cbf2ec460b7d50fa343cb7c3bbbbccd212b33a3c472212b898d4e31cd5"
+      },
+      {
+        "case": "nonfinite",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "2cbdf040153248e9e1ebf0faad30f1ddaf61503e9806034a5133a106ad15398d"
+      },
+      {
+        "case": "boolean_mask",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "10dad93f8f021c50bb25c5560ead53e7ec79ab46eff99d5a108d01f5f671babb"
+      },
+      {
+        "case": "boolean_code",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "5fc2894f388d57e428155b0a399ca08978a82851161d6b00a4eb404973e82880"
+      },
+      {
+        "case": "float_code",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "17c192c4458e8aa470eb41f8d0e4ae4517adcdfaf8b6d682658f8ebe759dc9fd"
+      },
+      {
+        "case": "zero_mask",
+        "accepted": true,
+        "error_type": null,
+        "generated_sha256": "98247c9b07f9724a41c74df43882ef6767683f108c8a6d1d0f4e08d2913f693f"
+      }
+    ]
+  },
+  "after": {
+    "generator_sha256": "9b70cfd1673b41892e3937f9323ae7f8fa395e7558b505309c076c03cdfa78fd",
+    "test_sha256": "f8638cc3716fd17ea9da67dfa4e78d31cae5da2cf41fad091d2b480057f1e652",
+    "valid_generated_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "library_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "catalogue_sha256": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+    "spot_checks": [
+      {
+        "case": "duplicate_key",
+        "accepted": false,
+        "error_type": "ValueError"
+      },
+      {
+        "case": "overflow_exponent",
+        "accepted": false,
+        "error_type": "ValueError"
+      }
+    ]
+  },
+  "tests": {
+    "distinct_methods": 5,
+    "new_methods": 4,
+    "affected_existing_methods": 1,
+    "invocations_across_stages": 7,
+    "stages": [
+      {
+        "methods": 4,
+        "elapsed_seconds": 5.626,
+        "result": "passed",
+        "scope": "3new malformed-input methods plus1existing valid-catalogue normal/O control before finite-float follow-up"
+      },
+      {
+        "methods": 2,
+        "elapsed_seconds": 2.099,
+        "result": "passed",
+        "scope": "Expanded duplicate/nonfinite method including exponent overflow; initial positive finite metadata check"
+      },
+      {
+        "methods": 1,
+        "elapsed_seconds": 0.325,
+        "result": "passed",
+        "scope": "Strengthened finite metadata full generated-body/hash control"
+      }
+    ],
+    "all_unchanged_methods_rerun": false,
+    "all_library_suite_rerun": false,
+    "final_source_unchanged_context_reuse": "Exact integer/mask/list logic unchanged after stage1; finite-float handler preserves ordinary finite floats and adds earlier rejection of overflow; final valid generation also equals saved library. Stages overlap, not7distinct methods."
+  },
+  "asset_or_library_written": false,
+  "task_ids": [
+    "metadata-ops",
+    "security-integration",
+    "local-verification"
+  ]
+}

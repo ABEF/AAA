@@ -1,8 +1,9 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [daily audit and historical reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md)
-fixes redundant claim-planning reads and stale current guidance, preserving
-original findings and separating source completion from live qualification.
+The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
+individually checks all271previously unreviewed records, fixes three concrete
+source gaps and updates current operator guidance. Original reports retain
+their source scope; live release qualification remains open.
 
 PoPL connects transferable ERC-721 NFTs to vault-managed ETH/ZZZ liquidity.
 Activation attaches an independently accounted LP share and unlocks funded LP

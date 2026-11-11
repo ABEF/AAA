@@ -1,0 +1,6 @@
+test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.828s
+
+OK

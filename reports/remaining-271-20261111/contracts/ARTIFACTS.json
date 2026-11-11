@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "60contract rows, baseline6cfa4f1 plus separately scoped FB-15 fix; portable read-only verifier QA",
+  "historical_findings_and_receipt_unchanged": {
+    "FINDINGS.json": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+    "verification.json": "315b00e22bb8de8fd047e21ba96c7f70ca74bbf48a284c6466ce0e025f73133e"
+  },
+  "files": {
+    "build_review.py": "6a96f70ed086c9e971f81290e7529bb74e619867efa2566b056063d839746347",
+    "FINDINGS.json": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+    "INDEX.md": "24b4a030b9499ba6f4fbf1c5557ee6bb994e3d7eaebf8900ab3087c85b1cfff7",
+    "original-sections.json": "a712f9baac3fce44e8be9c2f9daa2f97b8d63c839e8e32291d6e4d98fe4b7549",
+    "POST_BASELINE_FIX.json": "05bf30a4529746bd8c695f5cbfa7b51f838557082bc2013c4d8cdd3538dee031",
+    "read_original_sections.py": "602c8a96af0f004b22559637351445166d0e0401c37e13bbfc4f4bdd6833ea79",
+    "REVIEW.md": "fa209dadea35e5f01791fbaf27b5a1bc7f23dddaab958edec083a09bf56ed84f",
+    "verification.json": "315b00e22bb8de8fd047e21ba96c7f70ca74bbf48a284c6466ce0e025f73133e",
+    "VERIFIER_QA.json": "fca8432e571b4ec2e40f0a45cd8d1bb07dc4da664a3088f04a50c5667e4926f4",
+    "verify_review.py": "a34e6e2f291422b51e15be0129b8efa95612819c89c19606937504aaacd70d03"
+  }
+}

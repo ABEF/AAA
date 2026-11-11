@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "FINDINGS.json",
+      "bytes": 340770,
+      "sha256": "06b90daafd57cb0b637e91d9f2f919454cce5f77b3242efc1a7acb57b48914b4"
+    },
+    {
+      "path": "GENERATOR_ADMISSION.json",
+      "bytes": 4152,
+      "sha256": "e6aee0655af82d0e7f62e9e92bf927008c354e79cf7a1609d3761824af02fb40"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 5166,
+      "sha256": "50acf63566e5f3aa00cb664698bbaaf09fe7623cddb36b020c3f882d8aa749f6"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 4893,
+      "sha256": "5005f049f7d45cb23a93623545324a2c03cb4da41108e7a9965219f26f4e7590"
+    }
+  ]
+}

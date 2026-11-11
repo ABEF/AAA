@@ -1,0 +1,63 @@
+test_each_explicit_zero_or_one_is_independent_of_successor (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor) ... ok
+test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors) ... ok
+test_invalid_predecessor_capability_is_not_coerced_or_inherited (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_invalid_predecessor_capability_is_not_coerced_or_inherited) ... ok
+test_omitted_predecessor_never_inherits_successor_execution_profile (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_omitted_predecessor_never_inherits_successor_execution_profile) ... ok
+test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals (tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals) ... ok
+test_current_source_commitment_and_successor_binding_are_required (tests_python.test_frontend_lineage.ClaimLineageTests.test_current_source_commitment_and_successor_binding_are_required) ... ok
+test_duplicate_retirement_or_activation_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_retirement_or_activation_is_rejected) ... ok
+test_duplicate_unknown_and_unbounded_configuration_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_unknown_and_unbounded_configuration_is_rejected) ... ok
+test_final_historical_anchor_change_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_final_historical_anchor_change_is_rejected) ... ok
+test_history_totals_do_not_change_claimable_balances (tests_python.test_frontend_lineage.ClaimLineageTests.test_history_totals_do_not_change_claimable_balances) ... ok
+test_inconsistent_asset_units_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_inconsistent_asset_units_are_rejected) ... ok
+test_mismatched_roots_peers_and_receipt_log_identity_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_mismatched_roots_peers_and_receipt_log_identity_are_rejected) ... ok
+test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected) ... ok
+test_missing_predecessor_ingestion_fails_without_partial_total (tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_predecessor_ingestion_fails_without_partial_total) ... ok
+test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims (tests_python.test_frontend_lineage.ClaimLineageTests.test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims) ... ok
+test_no_configuration_preserves_explicit_unavailable_balance (tests_python.test_frontend_lineage.ClaimLineageTests.test_no_configuration_preserves_explicit_unavailable_balance) ... ok
+test_nonretired_source_and_wrong_origin_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_nonretired_source_and_wrong_origin_are_rejected) ... ok
+test_old_claim_asset_is_retained_even_when_not_in_current_admission (tests_python.test_frontend_lineage.ClaimLineageTests.test_old_claim_asset_is_retained_even_when_not_in_current_admission) ... ok
+test_old_ordinal_mismatch_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_old_ordinal_mismatch_is_rejected) ... ok
+test_omitted_original_or_reordered_predecessor_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_omitted_original_or_reordered_predecessor_is_rejected) ... ok
+test_two_handoffs_sum_both_ledgers_and_all_past_owners (tests_python.test_frontend_lineage.ClaimLineageTests.test_two_handoffs_sum_both_ledgers_and_all_past_owners) ... ok
+test_wrong_archival_code_or_unavailable_archive_fails_closed (tests_python.test_frontend_lineage.ClaimLineageTests.test_wrong_archival_code_or_unavailable_archive_fails_closed) ... ok
+test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) ... 
+  test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) (version=5) ... ERROR
+  test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) (version=6) ... ERROR
+test_protocol_reuse_cross_role_collision_and_dependency_pin_change_are_rejected (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_protocol_reuse_cross_role_collision_and_dependency_pin_change_are_rejected) ... ok
+test_claim_planner_caches_only_required_new_identity_reads_and_keeps_budgets (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_claim_planner_caches_only_required_new_identity_reads_and_keeps_budgets) ... ok
+test_closed_or_unconfigured_sale_does_not_block_owned_lp_and_currency_claims (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_closed_or_unconfigured_sale_does_not_block_owned_lp_and_currency_claims) ... ok
+test_every_new_binding_and_capability_is_checked (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_every_new_binding_and_capability_is_checked) ... ok
+test_funded_nft_and_royalties_read_at_the_same_canonical_hash (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_funded_nft_and_royalties_read_at_the_same_canonical_hash) ... ok
+test_lineage_cannot_infer_new_profile_or_reuse_owned_helper_or_conflicting_core (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_cannot_infer_new_profile_or_reuse_owned_helper_or_conflicting_core) ... ok
+test_lineage_omitted_peer_flag_stays_v9_and_explicit_two_keeps_v10 (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_omitted_peer_flag_stays_v9_and_explicit_two_keeps_v10) ... ok
+test_mint2_refuses_direct_draft_before_any_rpc_or_simulation (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_mint2_refuses_direct_draft_before_any_rpc_or_simulation) ... ok
+test_new_reads_do_not_expand_request_rpc_budget (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_new_reads_do_not_expand_request_rpc_budget) ... ok
+test_nonowner_or_zero_claim_cannot_create_an_unsigned_success (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_nonowner_or_zero_claim_cannot_create_an_unsigned_success) ... ok
+test_profile_flag_rejects_booleans_unknown_values_and_non7 (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_profile_flag_rejects_booleans_unknown_values_and_non7) ... ok
+test_protocol_marks_open_collection_window_as_unverified_opensea_eligibility (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_protocol_marks_open_collection_window_as_unverified_opensea_eligibility) ... ok
+test_runtime_changes_and_v9_schema_are_never_relabelled_v10 (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_runtime_changes_and_v9_schema_are_never_relabelled_v10) ... ok
+test_two_extra_distinct_pinned_contract_roles_are_required (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_two_extra_distinct_pinned_contract_roles_are_required) ... ok
+test_v9_default_and_explicit_one_remain_historical_without_new_roles (tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_v9_default_and_explicit_one_remain_historical_without_new_roles) ... ok
+
+======================================================================
+ERROR: test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) (version=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_portfolio_lineage_admission.py", line 45, in test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol
+    self.assertEqual(p.contracts[role], old.contracts[role])
+                     ~~~~~~~~~~~^^^^^^
+KeyError: 'seadrop'
+
+======================================================================
+ERROR: test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol (tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol) (version=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_portfolio_lineage_admission.py", line 45, in test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol
+    self.assertEqual(p.contracts[role], old.contracts[role])
+                     ~~~~~~~~~~~^^^^^^
+KeyError: 'seadrop'
+
+----------------------------------------------------------------------
+Ran 38 tests in 20.030s
+
+FAILED (errors=2)

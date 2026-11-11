@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "FINDINGS.json",
+      "bytes": 137894,
+      "sha256": "25e28030276fde9a98928a781049e4a30b6defec0503a02655b1d803d0a97891"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 4585,
+      "sha256": "c161ffcb3ee45828887eaa15a75c3c9235e542164ee5c548a57188668d8b323e"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3389,
+      "sha256": "1bf3df81ee3e82d9e7b98f0036d9b706125784536e8331264d57b2b8072d2416"
+    }
+  ]
+}

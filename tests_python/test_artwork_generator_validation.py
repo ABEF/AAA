@@ -92,6 +92,43 @@ class ArtworkGeneratorValidationTests(unittest.TestCase):
         catalogue['codes']['legendary'][0] = 232
         self.reject_both(catalogue)
 
+    def test_duplicate_keys_and_nonfinite_constants_are_rejected_in_both_modes(self):
+        raw = CATALOGUE.read_bytes().lstrip()
+        for prefix in (b'"patternOrder":["wrong"],', b'"unused":NaN,',
+                       b'"unused":Infinity,', b'"unused":-Infinity,',
+                       b'"unused":1e999,', b'"unused":-1e999,'):
+            for optimized in (False, True):
+                with self.subTest(prefix=prefix, optimized=optimized):
+                    self.assertFalse(self.probe(None, optimized=optimized,
+                        source_bytes=b'{' + prefix + raw[1:])['accepted'])
+
+    def test_finite_optional_metadata_float_preserves_generated_library_body(self):
+        raw = CATALOGUE.read_bytes().lstrip()
+        altered = b'{"unused":1.25,' + raw[1:]
+        expected = (ROOT / 'src/libraries/ZZZArtwork.sol').read_text(encoding='utf-8').replace(
+            hashlib.sha256(CATALOGUE.read_bytes()).hexdigest(), hashlib.sha256(altered).hexdigest())
+        # Only the raw-input fingerprint differs; every generated body byte stays.
+        for optimized in (False, True):
+            with self.subTest(optimized=optimized):
+                self.assertEqual({'accepted': True, 'sha256': hashlib.sha256(expected.encode()).hexdigest()},
+                    self.probe(None, optimized=optimized, source_bytes=altered))
+
+    def test_palette_masks_are_nonempty_exact_bytes_in_both_modes(self):
+        for mask in (True, False, 1.0, 0, -1, 256):
+            catalogue = copy.deepcopy(self.catalogue)
+            catalogue['paletteOrder'][0]['mask'] = mask
+            with self.subTest(mask=mask):
+                self.reject_both(catalogue)
+
+    def test_boolean_and_float_codes_cannot_equal_packed_integer_codes(self):
+        for rarity, original in (('commun', 1), ('rare', 0)):
+            index = self.catalogue['codes'][rarity].index(original)
+            for value in (bool(original), float(original)):
+                catalogue = copy.deepcopy(self.catalogue)
+                catalogue['codes'][rarity][index] = value
+                with self.subTest(rarity=rarity, value=value):
+                    self.reject_both(catalogue)
+
 
 if __name__ == '__main__':
     unittest.main()

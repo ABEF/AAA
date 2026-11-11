@@ -1,0 +1,49 @@
+{
+  "date_utc": "2026-11-11T06:50:43.988288+00:00",
+  "scope": "Current source/document/provenance consistency; focused behavior evidence remains separately scoped.",
+  "checks": [
+    {
+      "name": "function-reference",
+      "returncode": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 956, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}"
+    },
+    {
+      "name": "operator-reference",
+      "returncode": 0,
+      "stdout": "{\"contracts\": 40, \"functions\": 956, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1009, \"ready_for_submission\": false}"
+    },
+    {
+      "name": "sole-todo",
+      "returncode": 0,
+      "stdout": "Project Todo verified."
+    },
+    {
+      "name": "all271-optimized",
+      "returncode": 0,
+      "stdout": "{\"successful\": true, \"baseline\": \"6cfa4f1d478c3d15470519801f9703f9f8a8d656\", \"parts\": [{\"part\": \"contracts\", \"individually_reviewed\": 60}, {\"part\": \"backend\", \"individually_reviewed\": 94}, {\"part\": \"evidence-frontend\", \"individually_reviewed\": 87}, {\"part\": \"contracts-supplement\", \"individually_reviewed\": 30}], \"reviewed_remaining\": 271, \"previously_reviewed\": 39, \"original_registry\": 310, \"exact_original_pointers\": 271, \"distinct_evidence_files\": 210, \"evidence_revision_file_pairs\": 210, \"integrity_checks_active_under_optimization\": true, \"post_baseline_source_files_verified\": 8, \"claim_all_obligations_resolved\": false, \"production_approval\": false}"
+    }
+  ],
+  "unchanged_production_solidity_files": 61,
+  "old_report_artifacts_unchanged": 5549,
+  "protected_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "shared_signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+  "public_configurations_null": true,
+  "website_changes_documentation_only": true,
+  "current_markdown_files_checked": 29,
+  "new_report_integrity_negatives_rejected": 4,
+  "publication": "Exact staged/committed Python closure and remote head checks follow this receipt in external publication records. No deployment.",
+  "errors": [],
+  "successful": true,
+  "staged_python_publication": {
+    "successful": true,
+    "files": 401,
+    "exact_index_bytes": true,
+    "evidence_sha256": "b39ad406f7532e87c80962505c43e84f944bcfd70876ebd3030d443cac6be8a2",
+    "evidence_location": "external remaining-271-20261111-6cfa4f1/publication-index.json"
+  }
+}

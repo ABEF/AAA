@@ -1,0 +1,20 @@
+{
+  "selected_methods": [
+    "tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol"
+  ],
+  "methods": 1,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "seconds": 1.828,
+  "source_sha256_before": {
+    "frontend_api/lineage.py": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+    "tests_python/test_portfolio_lineage_admission.py": "b6cbf14689275cd7f2f4fd2c46cf2018d3a47129eac473f99c8ff567f9e6713a"
+  },
+  "source_sha256_after": {
+    "frontend_api/lineage.py": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+    "tests_python/test_portfolio_lineage_admission.py": "b6cbf14689275cd7f2f4fd2c46cf2018d3a47129eac473f99c8ff567f9e6713a"
+  },
+  "scope": "Only failed preexisting accounting5/6 assertion updated for actual four Uniswap shared roles; production role allowlist is unchanged."
+}

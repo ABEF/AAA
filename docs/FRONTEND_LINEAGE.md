@@ -22,7 +22,12 @@ For accounting7/LP-allocation1/portfolio2, every configured predecessor must
 explicitly use accounting7 and its complete helper/runtime graph, including the
 fixed Rewards canonical companion. Each peer declares its own mint profile:
 omitted/default1 authenticates V9, while explicit2 authenticates V10 and the
-additional fixed mint helper/SeaDrop pins. The successor's flag is never inherited.
+additional fixed mint helper/SeaDrop pins. The successor's flag is never inherited. Each peer also declares its own
+`execution_price_version`: omitted/0 retains LP2, explicit1 requires that peer's
+reviewed LP3/capability graph. A successor's execution flag is never inherited.
+Compatible V10 peers may differ in this capability; matching canonical/accounting
+semantics, exact runtime pins, original identity and retirement proof remain
+mandatory.
 This supports exact historical reader identities, not cross-schema migration;
 current V10 contracts reject V9 handoff records/peers. Historical6/V8 stays separate;
 its index/fraction state is not translated into exact7 trees. Historical accounting4/V5 requires 4 throughout; accounting3/V4 similarly requires
@@ -41,13 +46,14 @@ predecessor on-chain. Configuration is explicit: no unreviewed peer or RPC is
 automatically discovered.
 
 Each entry uses the following strict fields; `mint_integration_version` is
-optional with the historical default noted below:
+optional with their historical defaults noted below:
 
 | Field | Required meaning |
 | --- | --- |
 | `custody_version` | Required for each predecessor when current custody_version is5. Declare5 with accounting7, or its actual4/5 with historical6; never inherit successor permissions. Historical older accounting keeps its supported version. |
 | `accounting_version` | Accounting7 requires7 for every predecessor; historical6/V8 requires6; historical profile5/V5 requires5 and profile4/V5 requires4 and V4 requires3. Other historical configurations retain their supported codec. |
 | `mint_integration_version` | Optional per peer: omit or integer1 for historical V9; explicit integer2 only with accounting7 for V10. Boolean/unknown values reject. A V10 peer requires `seadrop_mint` and `seadrop` pins; no automatic relabeling. |
+| `execution_price_version` | Optional per peer: omit or integer0 for original LP2; integer1 only with accounting7 and the reviewed execution1/LP3 graph. Boolean, string and unknown values reject. It is never inherited from the successor. |
 | `royalty_reporting` | For current exact royalty readers, declare each peer's matching schema5 original-currency profile explicitly; it is not inherited. |
 | `deployment_block`, `deployment_block_hash` | Reviewed sealed-deployment anchor, at or before its outgoing retirement; the destination anchor must also precede that handoff |
 | `contracts` | Complete fresh7 graph, including `rewards_canonical`, `principal_exit`, ProtocolPolicy1/Portfolio2/Manager/math/physical executor/core bindings. Historical accounting4 retains its nine base pins; accounting3 retains eight. Use the [API configuration format](FRONTEND_API.md#deployment-configuration). |
@@ -60,7 +66,8 @@ Predecessors inherit its chain, RPC endpoints, confirmation depth, freshness
 policy, fee-intake version and configuration schema. Their accounting version is
 explicit; custody_version is also per deployment and never inherited from the
 successor. The mint integration flag is also per deployment; omission remains1
-rather than adopting a successor's2. They do not inherit the current optional
+rather than adopting a successor's2. Execution-price omission remains0 rather
+than adopting the successor's1. They do not inherit the current optional
 royalty/earnings reporting configuration. They cannot override inherited fields or contain nested predecessor
 lists. Deployment-owned protocol/helper addresses must be distinct across
 deployments. Independently pinned `pool_manager`, `state_view`,
@@ -147,3 +154,20 @@ explicit declaration too. Fresh7 full raw replay preserves pending whole LP unit
 high/low fairness phase and direct credits across verified epochs, without
 recrediting import events. Checkpoint1 cannot seed that state. Existing full-lineage work
 and qualification limits remain open.
+
+## Execution capability at historical peers
+
+For a compatible V10 handoff from LP2 to an execution1/LP3 successor, set the
+predecessor's JSON `execution_price_version` to0 (or omit it), keep its actual
+old runtime pins and retain the successor's explicit1. For an execution1
+predecessor use1 and its own reviewed capability graph; never select0 simply to
+suppress a failed verification. Historical receipt provenance includes1 only
+for execution1 peers; absent retains the original0 wire shape. No live price
+query is added merely to assemble funded claims/history.
+
+After changing the reviewed reader configuration, preserve raw/index/WAL data,
+verify canonical anchors and use a controlled matching-service restart; never
+rewrite deployment labels or on-chain state. The lineage fix itself changes no
+checkpoint semantic source file and checkpoints still disallow lineage. Earlier
+ABI-helper changes retain their separate explicit rebuild/re-pin requirement.
+[Correction and scoped evidence](../reports/remaining-271-20261111/VERIFICATION.md).

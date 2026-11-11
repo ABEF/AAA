@@ -9,7 +9,10 @@ window, strict300-second gap,240-second service checks,60–300-second jitter,
 12-hour cooldown, main/residual rules or financial limits. Reference and same-
 core principal destination remain distinct. [Design](REFERENCE_SWAP_EXECUTION.md).
 
-Fresh [accounting6 / portfolio2](POSITION_V6.md) source candidate, started 30 October 2026.
+Current [accounting7 / portfolio2](POSITION_V7.md) source candidate with mint2/
+canonicalV10 and optional execution-price1/LP-routing3. The original portfolio
+implementation began on30October under accounting6; its earlier evidence retains
+that source scope.
 **Undeployed; production NOT APPROVED.** Normal size/runtime gates, scoped offline
 checks and local actual-v4-core integration pass within their
 [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md).
@@ -18,7 +21,8 @@ Live dependency, target-chain operations and independent review remain open.
 and [sole Todo](../TODO.md#task-passive-inventory) own scope/status. Historical
 [LP1 routing evidence](../reports/atomic-routing-20261028/VERIFICATION.md) and
 [policy2 timing evidence](../reports/maintenance-policy-20261027/VERIFICATION.md)
-retain their original source scope; they do not verify this fresh portfolio.
+retain their original source scope; they do not independently verify later
+portfolio/accounting/reference-execution changes.
 
 ## Current behavior and requested direction
 

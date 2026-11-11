@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+  "finding": "historical/FB-15",
+  "status": "fixed_in_current_campaign_working_tree_not_baseline",
+  "baseline_findings_sha256": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+  "fix": [
+    "Allow explicit per-predecessor execution_price_version0/1, with the same strict Projection validation.",
+    "Exclude successor execution version from inheritance; omitted predecessor remains historical0.",
+    "Emit provenance execution_price_version only for1, retaining historical0 receipt shape and unchanged financial totals."
+  ],
+  "source_evidence": [
+    {
+      "path": "frontend_api/lineage.py",
+      "source_mode": "post_baseline_working_tree_fix_by_backend_owner",
+      "raw_sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "sha256_lf": "0da6287e97602a44b98cc76c97b56342585c3b1a6c286b934f91596608450ebb",
+      "line_start": 48,
+      "line_end": 66,
+      "excerpt": "                    getattr(current,'custody_version',0)==5):\n                fields.add('custody_version')\n            if isinstance(item, dict) and 'mint_integration_version' in item:\n                fields.add('mint_integration_version')\n            if isinstance(item, dict) and 'execution_price_version' in item:\n                fields.add('execution_price_version')\n            if isinstance(item,dict) and 'royalty_reporting' in item or (current.royalty_reporting is not None and current.royalty_reporting.schema >= 4):\n                fields.add('royalty_reporting')\n            _keys(item, fields, 'predecessor')\n            # Do not inherit a successor's new ledger ABI/profile or converter\n            # into an older deployment. Historical event replay needs no new getters.\n            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version','execution_price_version')}\n            previous_config['accounting_version'] = item.get('accounting_version', 1)\n            previous_config['execution_price_version'] = item.get('execution_price_version', 0)\n            if current.accounting_version in (3,4,5,6,7) and previous_config['accounting_version'] != current.accounting_version:\n                raise ValueError('Local handoff requires identical explicit accounting and canonical profiles')\n            previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})\n            previous = Projection(previous_config, current.rpc, clock=current.clock)\n            if current.royalty_reporting is not None and current.royalty_reporting.schema >= 4 and (\n"
+    },
+    {
+      "path": "frontend_api/lineage.py",
+      "source_mode": "post_baseline_working_tree_fix_by_backend_owner",
+      "raw_sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "sha256_lf": "0da6287e97602a44b98cc76c97b56342585c3b1a6c286b934f91596608450ebb",
+      "line_start": 228,
+      "line_end": 238,
+      "excerpt": "            anchors.append((source.history.start - 1, parent))\n            anchors.append((source.history.start, created))\n            receipts.append({'controller': source.contracts['access'].address,\n                             'successor_controller': destination.contracts['access'].address,\n                             **({'mint_integration_version': 2} if source.mint_integration_version == 2 else {}),\n                             **({'execution_price_version': 1} if source.execution_price_version == 1 else {}),\n                             'retirement_transaction_hash': entry.transaction,\n                             'retirement_block': cutoff['number'], 'retirement_block_hash': cutoff['hash'],\n                             'handoff_id': handoff_id, 'state_root': state_root,\n                             'history': dict(history.provenance)})\n\n"
+    },
+    {
+      "path": "tests_python/test_lineage_execution_profiles.py",
+      "source_mode": "post_baseline_working_tree_fix_by_backend_owner",
+      "raw_sha256": "c00cd07229a5a9dcaf14437b3dfd90eac2e615d88db64f37f83154143b15b8a5",
+      "sha256_lf": "c00cd07229a5a9dcaf14437b3dfd90eac2e615d88db64f37f83154143b15b8a5",
+      "line_start": 1,
+      "line_end": 118,
+      "excerpt": "\"\"\"Each explicitly pinned V10 peer retains its own execution-read capability.\"\"\"\nfrom types import SimpleNamespace\nimport unittest\nfrom unittest.mock import patch\n\nfrom frontend_api.lineage import Lineage, Predecessor\nfrom frontend_api.portfolio_v6 import verify_profile\nfrom frontend_api.service import Projection, ProjectionError\nfrom tests_python import test_seadrop_consumer as mint\nfrom tests_python.test_frontend_api import addr, words\nfrom zzz_ops.abi import decode_words\n\n\nclass LineageExecutionProfileTests(unittest.TestCase):\n    def config(self, current, peer=None):\n        fixture = mint.SeaDropAPI(self)\n        config = mint.SeaDropConsumerTests._lineage_config(self, fixture, 2)\n        config['execution_price_version'] = current\n        if peer is not None:\n            config['predecessors'][0]['execution_price_version'] = peer\n        return fixture, config\n\n    def test_omitted_predecessor_never_inherits_successor_execution_profile(self):\n        fixture, config = self.config(1)\n        projection = Projection(config, fixture.rpc, clock=lambda: 4000)\n        peer = projection.lineage.entries[0].projection\n        self.assertEqual(1, projection.execution_price_version)\n        self.assertEqual(0, peer.execution_price_version)\n        self.assertEqual(2, peer.mint_integration_version)\n        self.assertEqual(7, peer.accounting_version)\n        self.assertEqual(projection.contracts['seadrop'], peer.contracts['seadrop'])\n\n    def test_each_explicit_zero_or_one_is_independent_of_successor(self):\n        for current in (0, 1):\n            for previous in (0, 1):\n                with self.subTest(current=current, previous=previous):\n                    fixture, config = self.config(current, previous)\n                    projection = Projection(config, fixture.rpc, clock=lambda: 4000)\n                    self.assertEqual(current, projection.execution_price_version)\n                    self.assertEqual(previous, projection.lineage.entries[0].projection.execution_price_version)\n\n    def test_invalid_predecessor_capability_is_not_coerced_or_inherited(self):\n        for value in (True, False, '1', 1.0, 2, -1, None):\n            with self.subTest(value=value):\n                fixture, config = self.config(1)\n                config['predecessors'][0]['execution_price_version'] = value\n                before = len(fixture.rpc.calls)\n                with self.assertRaises(ValueError): Projection(config, fixture.rpc, clock=lambda: 4000)\n                self.assertEqual(before, len(fixture.rpc.calls))\n\n    def test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors(self):\n        for previous in (0, 1):\n            with self.subTest(previous=previous):\n                fixture, config = self.config(1-previous, previous)\n                projection = Projection(config, fixture.rpc, clock=lambda: 4000)\n                peer = projection.lineage.entries[0].projection\n                old = fixture.old.p\n                inverse = {c.address: old.contracts[role].address for role, c in peer.contracts.items()\n                    if role in old.contracts}\n                forward = {value: key for key, value in inverse.items()}\n                methods = []; routing = [3 if previous else 2]\n                def read(target, method, *args, **kwargs):\n                    methods.append(method)\n                    if method == 'LP_ROUTING_VERSION()': return decode_words(words(routing[0]))\n                    if method == 'EXECUTION_PRICE_VERSION()':\n                        if not previous: self.fail('Historical peer must not require new execution capability')\n                        return decode_words(words(1))\n                    if method == 'executionStrategy()':\n                        return decode_words(words(peer.contracts['lp_balance_math'].address))\n                    result = old._call(inverse.get(target, target), method, *args, **kwargs)\n                    # Only lower-case address getters in verify_profile are\n                    # remapped; all numeric capability getters remain exact.\n                    if method[0].islower() and len(result) == 1:\n                        address = '0x'+result[0][-40:]\n                        if address in forward: return decode_words(words(forward[address]))\n                    return result\n                peer._call = read\n                verify_profile(peer, fixture.old.block(), accounting_version=7)\n                self.assertEqual(previous == 1, 'EXECUTION_PRICE_VERSION()' in methods)\n                routing[0] = 2 if previous else 3\n                with self.assertRaises(ProjectionError):\n                    verify_profile(peer, fixture.old.block(), accounting_version=7)\n\n    def test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals(self):\n        # Isolated serializer/replay composition, not an admission or receipt-\n        # authentication test. Existing lineage tests cover the actual verifier.\n        zero = '0x'+'0'*40; identifier = 7; state = '0x'+'a'*64; handoff = '0x'+'b'*64\n        headers = {i: dict(number=i, hash='0x'+f'{i+1:064x}', timestamp=100+i) for i in (0, 1, 5, 10)}\n        contracts = lambda start: {role: SimpleNamespace(address=addr(start+i), code_hash=state)\n            for i, role in enumerate(('access', 'handoff'))}\n        for previous in (0, 1):\n            with self.subTest(previous=previous):\n                source = SimpleNamespace(start=1, start_hash=headers[1]['hash'],\n                    history=SimpleNamespace(start=1, parent=headers[0]['hash']), contracts=contracts(10),\n                    mint_integration_version=2, execution_price_version=previous)\n                current = SimpleNamespace(contracts=contracts(20))\n                lifecycle = dict(origin=addr(99), predecessor_controller=source.contracts['access'].address)\n                source._header = current._header = lambda n: headers[int(n, 16)]\n                source._verify_deployment = lambda *_, **__: dict(state='retired', origin=addr(99),\n                    predecessor_controller=None, successor_controller=current.contracts['access'].address)\n                source._call = lambda target, method, **_: decode_words(words(handoff if method == 'handoffId()' else state))\n                source._code = current._code = lambda *_: None\n                source._admitted = lambda *_: ([zero], [zero])\n                source._uint = lambda role, method, *_, **__: 1 if method == 'mintOrdinalOf(uint256)' else identifier\n                history = SimpleNamespace(owners={identifier: addr(30)}, claims={(identifier, zero): (5, 2)},\n                    conversions={}, lp_conversions={}, provenance=dict(minted_count=1, start_block_hash=headers[1]['hash']))\n                source._history_snapshot = lambda *_: history\n                local = SimpleNamespace(claims={(identifier, zero): (7, 0)}, conversions={}, lp_conversions={}, provenance={})\n                lineage = object.__new__(Lineage)\n                lineage.entries = [Predecessor(source, state)]\n                lineage.descriptors = {zero: SimpleNamespace(symbol='ETH', decimals=18)}\n                with patch.object(Lineage, '_receipt', return_value=(headers[5], (5, 0, 2), handoff, state)):\n                    result = lineage.financial(current, headers[10], {}, lifecycle, local, identifier, 1)\n                receipt = result['previously_claimed']['provenance']['predecessors'][0]\n                self.assertEqual(previous == 1, 'execution_price_version' in receipt)\n                if previous: self.assertEqual(1, receipt['execution_price_version'])\n                self.assertEqual('12', result['previously_claimed']['assets'][0]['lp_raw'])\n                self.assertEqual('2', result['previously_claimed']['assets'][0]['royalties_raw'])\n"
+    }
+  ],
+  "recorded_execution_evidence": [
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-baseline.json",
+      "raw_sha256": "c95d53232d228e7e22d722ffebc25269c25e508d306b2ab98be395ceb25b7415",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    },
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-baseline.log",
+      "raw_sha256": "a4b0608660e5b4deccca1fe80787e1418b0ade39b33e0b6eb7dd6097e9157c56",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    },
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-affected-attempt1.json",
+      "raw_sha256": "8d2dc9790481ee38ac3fea37f20f65f2b3e42c687f1338b431ec8a8867025612",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    },
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-affected-attempt1.log",
+      "raw_sha256": "43bd55616086d4ef55be7db4675b943742594ebc34d356d524512336b026a1c6",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    },
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-legacy-fixture-final.json",
+      "raw_sha256": "1e0dd5d57fe92d0a8a2fc875746d0cb1aa300485e34ba61ef2feb2a5ee2f54d8",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    },
+    {
+      "path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/remaining-271-20261111-6cfa4f1/backend/lineage-legacy-fixture-final.log",
+      "raw_sha256": "d26302631a2c990b5da0d67030f751f564c9429b8957a9cd547e0d6e93d487d8",
+      "scope": "Backend-owned recorded execution; not rerun by contract reviewer"
+    }
+  ],
+  "verification": {
+    "new_focused_methods": 5,
+    "composed_distinct_passing_methods": 38,
+    "fresh_single38_pass": false,
+    "composition": "37 passing methods in38-method affected run plus exactly the corrected one failed method; its two accounting5/6 SeaDrop-role KeyError subcases are preserved in the first record.",
+    "method_ids": [
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_current_source_commitment_and_successor_binding_are_required",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_retirement_or_activation_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_unknown_and_unbounded_configuration_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_final_historical_anchor_change_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_history_totals_do_not_change_claimable_balances",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_inconsistent_asset_units_are_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_mismatched_roots_peers_and_receipt_log_identity_are_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_predecessor_ingestion_fails_without_partial_total",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_no_configuration_preserves_explicit_unavailable_balance",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_nonretired_source_and_wrong_origin_are_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_old_claim_asset_is_retained_even_when_not_in_current_admission",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_old_ordinal_mismatch_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_omitted_original_or_reordered_predecessor_is_rejected",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_two_handoffs_sum_both_ledgers_and_all_past_owners",
+      "tests_python.test_frontend_lineage.ClaimLineageTests.test_wrong_archival_code_or_unavailable_archive_fails_closed",
+      "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_explicit_zero_or_one_is_independent_of_successor",
+      "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_each_peer_checks_its_own_routing_and_fixed_helper_not_the_successors",
+      "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_invalid_predecessor_capability_is_not_coerced_or_inherited",
+      "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_omitted_predecessor_never_inherits_successor_execution_profile",
+      "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals",
+      "tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_fresh5_and6_reuse_pinned_external_dependencies_without_reusing_protocol",
+      "tests_python.test_portfolio_lineage_admission.PortfolioLineageAdmissionTests.test_protocol_reuse_cross_role_collision_and_dependency_pin_change_are_rejected",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_claim_planner_caches_only_required_new_identity_reads_and_keeps_budgets",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_closed_or_unconfigured_sale_does_not_block_owned_lp_and_currency_claims",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_every_new_binding_and_capability_is_checked",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_funded_nft_and_royalties_read_at_the_same_canonical_hash",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_cannot_infer_new_profile_or_reuse_owned_helper_or_conflicting_core",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_lineage_omitted_peer_flag_stays_v9_and_explicit_two_keeps_v10",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_mint2_refuses_direct_draft_before_any_rpc_or_simulation",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_new_reads_do_not_expand_request_rpc_budget",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_nonowner_or_zero_claim_cannot_create_an_unsigned_success",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_profile_flag_rejects_booleans_unknown_values_and_non7",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_protocol_marks_open_collection_window_as_unverified_opensea_eligibility",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_runtime_changes_and_v9_schema_are_never_relabelled_v10",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_two_extra_distinct_pinned_contract_roles_are_required",
+      "tests_python.test_seadrop_consumer.SeaDropConsumerTests.test_v9_default_and_explicit_one_remain_historical_without_new_roles"
+    ],
+    "scope": "Injected RPC/profile/serializer checks. Metadata case injects already authenticated epochs; no actual EVM handoff, archive/provider, installation or release approval."
+  },
+  "source_inspection": "Contract reviewer independently inspected the patched branching, strict type/profile validation, provenance serialization and all5 focused test bodies; did not rerun tests."
+}

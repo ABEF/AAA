@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "scope": "New report-verifier artifact QA only; no feature tests/compiler/analyzer/environment actions",
+  "python_optimization": true,
+  "positive": {
+    "returncode": 0,
+    "result": {
+      "successful": true,
+      "baseline": "6cfa4f1d478c3d15470519801f9703f9f8a8d656",
+      "assigned_indices": [
+        0,
+        60
+      ],
+      "rows": 60,
+      "expected_rows_derived_from": "Git-baseline inherited310, remaining271, explicit contract topic partition90, first60",
+      "source_references": 201,
+      "unique_evidence_files": 65,
+      "historical_section_references": 135,
+      "git_backed_sections_checked": 134,
+      "external_original_checked": false,
+      "complete_original_raw_checks": false,
+      "external_originals_unchecked": [
+        {
+          "id": "historical/OP-31",
+          "path": "reports/operations-hardening/README.md",
+          "source_mode": "retained_untracked_original_not_git_baseline",
+          "raw_sha256": "5865da5d222fccb9537137b37c93dccb254d155da3f8fa1bad14c73b872f4adb"
+        }
+      ],
+      "integrity_checks_active_under_optimization": true,
+      "read_only": true,
+      "feature_tests_executed": 0,
+      "historical_receipt_rewritten": false,
+      "production_approval": false
+    }
+  },
+  "omitted_row_negative": {
+    "returncode": 1,
+    "result": {
+      "successful": false,
+      "error": "Incomplete assigned contract coverage: expected60 rows"
+    }
+  },
+  "historical_files_before": {
+    "FINDINGS.json": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+    "verification.json": "315b00e22bb8de8fd047e21ba96c7f70ca74bbf48a284c6466ce0e025f73133e"
+  },
+  "historical_files_after": {
+    "FINDINGS.json": "3ec9043e999481c02015de6bf986e6e8c1f401105b19f78aa1c37bd96aa73f16",
+    "verification.json": "315b00e22bb8de8fd047e21ba96c7f70ca74bbf48a284c6466ce0e025f73133e"
+  },
+  "all_expected_checks_passed": true
+}

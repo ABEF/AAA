@@ -1,0 +1,7 @@
+{
+  "kind": "transcribed_tool_output_summary_not_raw_receipt",
+  "method": "tests_python.test_lineage_execution_profiles.LineageExecutionProfileTests.test_receipt_metadata_marks_only_explicit_one_without_changing_claim_totals",
+  "observed_result": "Initial new serializer-only fixture errored for previous0 and1 because the synthetic current peer lacked _code. Added the missing inert callback before the final affected38-method run; no production change or assertion relaxation.",
+  "source_hash_at_attempt": null,
+  "additional_passing_method_claim": false
+}

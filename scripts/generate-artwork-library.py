@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,24 +15,52 @@ CATALOG = ROOT / 'design/nft-metadata/palette-system-v1/packed-catalog.json'
 TARGET = ROOT / 'src/libraries/ZZZArtwork.sol'
 RARITIES = ('commun', 'rare', 'legendary')
 
+def _unique_pairs(items):
+    result = {}
+    for key, value in items:
+        if key in result:
+            raise ValueError('Artwork catalogue contains a duplicate JSON key')
+        result[key] = value
+    return result
+
+def _reject_constant(value):
+    raise ValueError('Artwork catalogue contains a nonfinite JSON constant')
+
+def _finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError('Artwork catalogue contains a nonfinite JSON number')
+    return number
+
 def generate() -> str:
     raw = CATALOG.read_bytes()
-    catalog = json.loads(raw)
+    catalog = json.loads(raw, object_pairs_hook=_unique_pairs, parse_constant=_reject_constant,
+                         parse_float=_finite_float)
     if len(catalog['paletteOrder']) != 58:
         raise ValueError('Artwork catalogue must contain exactly 58 palettes')
     if catalog['patternOrder'] != ['arcs', 'panels', 'orbits', 'ribs']:
         raise ValueError('Artwork catalogue pattern identity differs from the reviewed order')
-    masks = bytes(entry['mask'] for entry in catalog['paletteOrder']).hex()
+    masks = []
+    for entry in catalog['paletteOrder']:
+        mask = entry['mask']
+        # A zero mask has no primaryColor and must never enter generated code.
+        if type(mask) is not int or not 1 <= mask <= 255:
+            raise ValueError('Artwork palette mask must identify at least one color')
+        masks.append(mask)
+    masks = bytes(masks).hex()
     inventories = []
     for rarity, count in zip(RARITIES, (600, 300, 100)):
+        codes = catalog['codes'][rarity]
+        if not isinstance(codes, list) or any(type(code) is not int for code in codes):
+            raise ValueError('Artwork codes must be exact integers')
         data = bytes.fromhex(catalog['hex'][rarity])
         if len(data) != 2 * count:
             raise ValueError('Artwork rarity inventory differs from its fixed supply')
         if hashlib.sha256(data).hexdigest() != catalog['sha256'][rarity]:
             raise ValueError('Artwork rarity inventory digest differs from the catalogue')
-        if [int.from_bytes(data[i:i+2], 'big') for i in range(0,len(data),2)] != catalog['codes'][rarity]:
+        if [int.from_bytes(data[i:i+2], 'big') for i in range(0,len(data),2)] != codes:
             raise ValueError('Artwork decoded inventory differs from the catalogue codes')
-        if not all(0 <= code < 58 * 4 for code in catalog['codes'][rarity]):
+        if not all(0 <= code < 58 * 4 for code in codes):
             raise ValueError('Artwork code exceeds the reviewed palette and pattern inventory')
         inventories.append(f'    bytes private constant {rarity.upper()} = hex"{data.hex()}";')
     return '''// SPDX-License-Identifier: MIT

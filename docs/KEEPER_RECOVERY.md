@@ -49,27 +49,32 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Deployment and journal identity
 
-Fresh configuration explicitly selects `accounting_version: 6`,
-`protocol_policy_version: 1`, portfolio2, maintenance3,
-confirmation3, compound4 and LP routing2 and
-`fee_intake_version: 1`, the exact chain/deployment identity, real Vault/Fees
-addresses and independently reviewed deployed runtimes in `code_hashes`.
-A compiler template is not a deployed runtime pin. Reporting5/canonicalV8 and
-+inventory13 identify matching fresh readers; the keeper does not import an old
-+canonical codec or upgrade a journal by changing that number. Verify actual version getters
-before new work; pending receipt recovery always runs first. Fresh royalty
-+settlement4 additionally requires explicit royalty_settlement_version4. It
-+disables new royalty-conversion jobs, while LP conversion stays independent.
-+Historical2/3 pending work remains under its own original profile; never relabel
-+a saved journal to obtain new-runtime compatibility.
+Current source selects `accounting_version:7`, `protocol_policy_version:1`,
+`fee_intake_version:1`, `custody_version:5`, portfolio2, maintenance3,
+confirmation3, compound4 and execution-quality1, with the exact reviewed
+chain/deployment and runtime graph. Explicit `execution_price_version:1`
+requires `lp_routing_version:3` and additional Oracle/Pricing pins; omitted/0
+retains historical LP2. Check the actual accepted JSON names and configuration
+requirements in [operations](OPERATIONS.md) and the [current profile](POSITION_V7.md).
+Accounting7 also requires the actual Rewards address/runtime and authenticated
+LP-allocation1 capability. Do not invent an `lp_allocation_version` configuration
+key where a consumer verifies that getter directly.
 
-Fresh schema13/LP routing2 requires the reviewed Manager/Balancer/policy/math/physical
-+executor graph,18helper runtimes and reciprocal sealed parent/core/state bindings.
-+The exact-unit royalty allocator is internal code, not an additional deployment. A saved pending transaction is recovered before new
-LP-router metadata checks; an unavailable router never permits a new balance
-operation. Runtime, signer, accounting and nonce/receipt checkpoints still apply.
-Independently due harvesting does not depend on swap-router metadata. Do not
-delete a pending intent or reinitialize a journal to bypass an outage.
+Current mint2/read/inventory peers use reporting5/canonicalV10/schema17; those
+inventory labels do not rewrite the keeper journal. Historical accounting6/V8,
+source6, schema13/18-helper examples and older LP2 deployments keep their exact
+original runtimes, source versions and pending records. The generic local example
+is not an approved fresh7 configuration. Verify every required module/helper/
+external runtime and reciprocal fixed parent/core/state binding before new work;
+helper counts are not admission proof. The [optional execution capability](REFERENCE_SWAP_EXECUTION.md)
+adds no new deployed helper.
+
+Original-currency `royalty_settlement_version:4` disables royalty-conversion jobs;
+LP earned conversion remains separate. Historical2/3 pending jobs recover only
+under their original matching profile. A saved pending transaction is recovered
+before new router work; failed metadata never permits another balance operation.
+Independently due harvesting does not need swap routing. Never delete an intent,
+edit its version/nonce/cost, or initialize a new journal to bypass an outage.
 
 Current Positions have eight local words and terminal Exited5 in addition to
 Dormant3/Parked4; only Active1 before collective exit runs ordinary LP upkeep.
@@ -85,8 +90,10 @@ holder-exit interpretation. The new blocked
 independently reviewed `code_hashes.access` / `code_hashes.principal_exit`, in
 addition to Vault/Fees pins. No example upgrades an installed service.
 
-For fresh accounting6, explicitly configure `custody_version: 5` and verify
-`CUSTODY_VERSION()==5`; historical accounting6/5 uses4 and accounting4 uses3.
+For current accounting7, explicitly configure `custody_version:5` and verify
+`CUSTODY_VERSION()==5`. Historical accounting6 may use its actual4 or5;
+accounting5 uses4 and accounting4 uses3. Never select a permission profile from
+a service-family label rather than the actual pinned runtime.
 Missing custody_version retains the historical default and cannot adopt runtime5.
 Check the fixed Migration/module/access
 binding, and consistent `Access.lpExitStarted()` / `Migration.exitPhase()`.
@@ -99,7 +106,7 @@ permit. Governance alone starts exit and closes every funded bucket. On historic
 in bounded batches, including while paused; it never initiates or closes LP.
 It is disabled by default and is not enabled on any installed service here.
 Never restart LP as a recovery shortcut: retirement is irreversible. Metadata
-profiles4/5/6 accept terminal stage4; old metadata journals cannot be relabeled.
+profiles4/5/6/7 accept terminal stage4; old metadata journals cannot be relabeled.
 
 ### Optional automatic principal delivery
 
@@ -110,7 +117,8 @@ retain disabled configuration, and never place governance credentials on the kee
 Holder LP/royalty reward claims remain current-owner actions. Recover any old
 pending operation with its original profile before changing service configuration.
 
-For a reviewed accounting4/5/6 deployment, replace the disabled object in the keeper
+For a reviewed historical accounting4/5 or accounting6 with actual custody4
+deployment only, replace the disabled object in the keeper
 configuration with the following complete object, using the actual NFT runtime:
 
 ```json

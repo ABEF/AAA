@@ -1,10 +1,12 @@
 # Engineering roadmap
 
-The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
-corrects current summaries and separates remaining source issues from external
-qualification. Next address bounded initial keeper simulation work and qualify
-the admitted dependency callback/fee boundaries; no speculative financial guard
-is added. The sole Todo owns these follow-ups.
+The [remaining271 reconciliation](../reports/remaining-271-20261111/REVIEW.md)
+completes the individual historical review and fixes initial keeper simulation
+bounds, predecessor execution-profile inheritance and catalogue input admission.
+Next qualify actual providers/feeds/routes and complete-operation gas, then
+matching service/site adoption, operating recovery and independent audit. The
+service-only compound choice and unverified dependency fee-netting remain
+explicit; do not silently change policy or claim those are solved.
 
 The [current review](../reports/whole-project-review-20261111/REVIEW.md) closes
 proven cleanup/encoding/indexer/keeper/UI defects. The fresh

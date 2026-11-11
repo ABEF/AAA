@@ -1,10 +1,12 @@
 # AAA / ZZZ PoPL project instructions
 
-The [current daily reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md)
-adds only request-local immutable claim metadata caching (12RPC reads saved in
-one measured plan), corrects two static authority descriptions and rechecks
-selected historical obligations without declaring all old findings closed.
-No Solidity/rights/gas policy or environment changes.
+The [remaining271 reconciliation](reports/remaining-271-20261111/REVIEW.md)
+individually reviews every previously unreviewed row:271now plus39from the prior
+pass cover all310original records, without declaring all obligations resolved.
+Current corrections bound initial keeper simulations, isolate predecessor
+execution profiles and harden offline catalogue admission. Eight source/test/
+runner files change; no Solidity/artwork/rights/budgets or environment changes.
+Use exact baseline and post-fix evidence separately; do not rerun unchanged suites.
 
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
