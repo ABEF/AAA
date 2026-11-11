@@ -136,7 +136,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed9November2026. Exact-LP-integration baseline main64f9bfb; verify actual local/remote
+Reviewed11November2026. Earlier exact-LP-integration baseline was main64f9bfb; verify actual local/remote
 heads before claiming publication. Read AGENTS.md, README.md, the sole TODO.md,
 docs/WORK_HANDOFF.md and docs/OPERATOR_MANUAL.md. Production NOT APPROVED.
 

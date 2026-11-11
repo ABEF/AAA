@@ -143,8 +143,8 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed9November2026. The earlier exact-LP integration used baseline64f9bfb and
-publication5646609. The current code-review baseline is c56e260; later documentation
+Reviewed11November2026. The earlier exact-LP integration used baseline64f9bfb and
+publication5646609. The earlier9November code-review baseline was c56e260; later documentation
 publication is separate from deployment. Inspect actual Git heads
 before claiming publication. Read ../AGENTS.md, ../PROJECT_CONTEXT.md, ../README.md,
 ../TODO.md, OPERATOR_MANUAL.md and ROYALTY_LAUNCH_WINDOW.md. Production NOT APPROVED.
