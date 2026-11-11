@@ -1,0 +1,19 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "all_original_310_pointers_and_matrix_hashes_exact": true,
+  "all_prior_3098_main_blob_ids_retained": true,
+  "selected_reassessments": 25,
+  "distinct_original_rows_reassessed": 39,
+  "original_rows_not_newly_source_reviewed": 271,
+  "original_records_embedded": 310,
+  "missing_current_task_ids": [],
+  "historical_report_byte_preservation": true,
+  "named_structured_findings_files": 25,
+  "structured_scalar_contexts": 4669,
+  "new_execution_tests_run": 0,
+  "old_tests_rerun": 0,
+  "scope": "Document provenance/schema/reference and byte-preservation checks only; no new contract/provider/market/operating approval.",
+  "bulk_extracts_externalized": true,
+  "external_extract_descriptors": "EXTERNAL_EXTRACTION.json",
+  "external_extract_hashes_and_counts_verified_locally": true
+}

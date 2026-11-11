@@ -1,0 +1,16 @@
+{
+  "strict_coverage_pass": true,
+  "checker_regressions": 44,
+  "existing_analyzer_reused": true,
+  "fresh_analyzer": false,
+  "compiler_invoked": false,
+  "unchanged_finding_identities": 567,
+  "rationale_changes": 2,
+  "remaining_records_not_freshly_reaudited": 565,
+  "original_review_sha256": "0546b358f42aa70dd909350a96039cbe1401aa57d4183898bb4707cef33af2b6",
+  "corrected_review_sha256": "1dbb80da0dfe8b6b41dc59f1588c724c9d0ae2402b651994538798c196775efe",
+  "changed_fingerprints": [
+    "a920eeff20d18d97c183838f61892d9d8011e1a5471254b645bc99b8c0c688de",
+    "a1c39258061371b1c035675fa521743c8446e2b9ee32828136a40f75614a0106"
+  ]
+}

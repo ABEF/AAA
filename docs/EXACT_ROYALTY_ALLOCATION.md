@@ -1,8 +1,9 @@
 # Exact-unit royalty allocation
 
-Fresh royalty settlement4 / recovery2, reporting5, inventory13 and canonicalV8.
-This is an undeployed source candidate; production is **NOT APPROVED**. Existing
-royalty3 deployments/readers, checkpoints and journals are not upgraded or relabeled.
+Royalty4/recovery2/reporting5 was introduced in inventory13/canonicalV8 and is
+retained inside current inventory17/mint2/canonicalV10. See the [current profile](POSITION_V7.md).
+This is an undeployed source candidate; production is **NOT APPROVED**. Historical
+deployments/readers, checkpoints and journals are not upgraded or relabeled.
 
 ## Why the accounting changed
 
@@ -13,8 +14,9 @@ tiny synchronizations could also pay less than one combined receipt. Preserving
 backing alone did not establish complete claimability.
 
 The user approved a new deterministic whole-unit allocation rule. Fresh royalty4
-has no royalty index, paid-index or fractional-unit reserve. LP reward fractions
-and explicitly historical royalty ledgers keep their own semantics.
+has no royalty index, paid-index or fractional-unit reserve. Fresh accounting7
+LP rewards also use exact-unit allocation in a separate engine. Historical LP6
+fractions and older royalty ledgers keep their original semantics.
 
 ## The rule
 

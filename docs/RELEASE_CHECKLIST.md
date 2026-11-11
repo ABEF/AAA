@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+does not approve a release. Retain the actual dependency/callback review, bounded
+initial keeper simulation follow-up, complete gas qualification and all
+unresolved historical obligations alongside existing external gates. Selected
+old findings have new dispositions; unreviewed rows are not silently closed.
+
 Fresh [execution-price1/LP-routing3](REFERENCE_SWAP_EXECUTION.md) needs exact new
 runtime/configuration/source-proof admission and matching consumers. Normal size,
 scoped actual-core and internal static checks do not approve its deployment.
@@ -75,7 +81,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-09. This records review of one frozen release; it is not a second Todo.
+Reviewed2026-11-11. This records review of one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.

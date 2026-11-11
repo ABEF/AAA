@@ -1,0 +1,9 @@
+{
+  "file": "tests_python/test_claim_planner_execution_price.py",
+  "original_tested_sha256": "6d5214f8f50f45e18040be3a4368d1000724acc39ceb6b184953c8efb74f005a",
+  "current_sha256": "bce08573fdf4459ed95b2a97ad5bfd3addf4c5c682c469f4f8857f0b16be0b5f",
+  "change": "Remove one extra blank line at EOF only",
+  "complete_python_ast_equal": true,
+  "test_rerun": false,
+  "reason": "No executable test changes; original28-method record retains its exact source hashes."
+}

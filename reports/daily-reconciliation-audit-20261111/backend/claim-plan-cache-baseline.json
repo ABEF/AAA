@@ -1,0 +1,12 @@
+{
+  "successful_plan": true,
+  "plan_trials": 1,
+  "new_identity_reads": {
+    "EXECUTION_PRICE_VERSION()": 15,
+    "executionStrategy()": 3,
+    "executionActive()": 0,
+    "executionSourceRevision()": 0
+  },
+  "source_sha256": "0f19f12b55d55564e5ce1cc734bb4c1f8eac889e95cbedcabbd7637caacffc96",
+  "scope": "Injected same-canonical-block execution1/accounting7 full claim planner; not real gas/market/service acceptance."
+}

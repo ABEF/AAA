@@ -1,0 +1,133 @@
+{
+  "scope": "Read-only backend/keeper/operator consumer reconciliation plus one request-local claim-planner metadata-cache correction. Not an independent audit, complete-project proof, live market/provider qualification or deployment.",
+  "baseline_head": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "reviewed_changes": "0acb123..872a5a5, with prior whole-project fixes at8785728 and explicit execution-price1/LP-routing3 follow-up.",
+  "current_fix_sources": {
+    "frontend_api/claim_planner.py": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b",
+    "tests_python/test_claim_planner_execution_price.py": "6d5214f8f50f45e18040be3a4368d1000724acc39ceb6b184953c8efb74f005a"
+  },
+  "protected_original_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "previous_323_manifest_current_differences": [
+    "frontend_api/claim_planner.py"
+  ],
+  "previous_323_reuse": "Only unchanged components/source-scoped evidence. This cache correction changes one file in the old broad source bracket; do not label that entire323 run fresh current-source proof. New28 methods verify the changed claim planning/HTTP scope. The four actual trace consumer fixtures/tests are unchanged.",
+  "keeper_critical_methods_ast_compared_to_8785728": {
+    "submit": {
+      "found_in_both": true,
+      "ast_equal": true
+    },
+    "_late_lp_submission_review": {
+      "found_in_both": true,
+      "ast_equal": true
+    },
+    "poll_pending": {
+      "found_in_both": true,
+      "ast_equal": true
+    },
+    "_confirmed_rebalance_due": {
+      "found_in_both": true,
+      "ast_equal": true
+    }
+  },
+  "fresh_verification": {
+    "methods": 28,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "new_methods": 3,
+    "source_stable": true,
+    "artifact": "claim-cache-final.json",
+    "overlap_policy": "Do not add this28 to previous323 or to historical117/keeper stages."
+  },
+  "findings": [
+    {
+      "id": "DAILY-BE-01",
+      "status": "fixed",
+      "severity": "efficiency and bounded-work liveness",
+      "source": "frontend_api/claim_planner.py:42",
+      "before": "A one-trial/final execution1 claim plan made15 EXECUTION_PRICE_VERSION reads and3 executionStrategy reads.",
+      "after": "Same successful injected plan makes5 capability reads and1 fixed-binding read, saving12RPC calls. Original metadata cache bounds/request lifetime/target/canonical-block/read-shape validation remain; mutable state is never added.",
+      "security_or_economic_rights_change": false
+    },
+    {
+      "id": "DAILY-BE-02",
+      "status": "open_follow_up",
+      "severity": "provider resource budget / operational resilience",
+      "sources": [
+        "keeper/monitor.py:1811",
+        "keeper/monitor.py:1825",
+        "keeper/monitor.py:1839",
+        "keeper/monitor.py:1850",
+        "keeper/monitor.py:1862",
+        "keeper/monitor.py:1700"
+      ],
+      "finding": "Initial whole-job eth_call and eth_estimateGas omit an explicit gas field; configured max_gas_limit is checked after estimation. Provider execution work may exceed the keeper gas ceiling before refusal. Final ordinary-LP simulation is explicitly bounded.",
+      "limits": "No signing, spend, authority, output-floor or gas-limit bypass established. RPC transport/work/time bounds still apply. An explicit simulation/estimate gas envelope needs consumer/provider/legacy-fixture compatibility review before a shared submit change."
+    },
+    {
+      "id": "DAILY-BE-03",
+      "status": "open_release_blocker",
+      "severity": "default-budget execution qualification",
+      "source": "reports/reference-execution-20261111/backend/rpc-cases.json",
+      "finding": "The four owned-node outer Entry cases reject at default12M. Higher local policy2 simulation and derived reviewed-envelope calls succeed only in explicit diagnostic profiles;1000USD synthetic fixture does not establish100USD browser/real market/target-chain acceptance.",
+      "no_default_change": true
+    },
+    {
+      "id": "DAILY-BE-04",
+      "status": "open_qualification",
+      "severity": "market/source/operating qualification",
+      "sources": [
+        "docs/REFERENCE_SWAP_EXECUTION.md",
+        "reports/whole-project-review-20261111/evidence/backend/findings-and-scope.json",
+        "reports/reference-execution-20261111/REVIEW.md"
+      ],
+      "finding": "Capability/runtime/schema binding does not qualify individual executionSourcePolicies, source independence/depth, ETH publication/liveness, actual route depth, running service behavior or provider/wallet/OpenSea operations. Actual deployment/config/service admission remains explicit."
+    }
+  ],
+  "historical_finding_reconciliation": [
+    {
+      "id": "ABI-EXACT-INPUT",
+      "status": "retained_fixed",
+      "evidence": "Prior whole-project117 proof; current zzz_ops/abi.py unchanged. No claim of rerunning117."
+    },
+    {
+      "id": "INDEXER-CONTRACT-INVENTORY",
+      "status": "retained_fixed",
+      "evidence": "Prior startup13 proof; current indexer/monitor.py unchanged. No database rescan/migration."
+    },
+    {
+      "id": "KEEPER-LATE-DAY-DEADLINE-OUTPUT",
+      "status": "retained_fixed",
+      "evidence": "Critical submit/poll/late-review/confirmation method AST comparisons included; existing source-scoped final keeper evidence retained."
+    },
+    {
+      "id": "REFERENCE-SWAP-COUPLING",
+      "status": "partially_resolved_explicit_capability",
+      "evidence": "Execution1/LP3 permits authenticated quoted swap transitions for registered contextual references. Same-core destination liquidity/reference coincidence and arbitrary external mutations are not admitted by that proof."
+    },
+    {
+      "id": "LIFETIME-ARCHIVE-ROYALTY-RESTORE",
+      "status": "open_qualification",
+      "evidence": "Lifetime raw replay, reviewed currency expansion, real archive/WAL restore, Unix service/locking and workload latency remain open; no budget widening."
+    },
+    {
+      "id": "HISTORICAL-PROFILES-DIAGNOSTICS",
+      "status": "retained_intentionally",
+      "evidence": "Older codecs, checkpoints, journals and explicit profile0 remain needed for old runtimes. Test-only indexer cached ownership helper is not serving authority; no obsolete-feature revival or deletion is required by this fix."
+    }
+  ],
+  "unchanged_environment": [
+    "Solidity and contract ABI/profile/canonical accounting",
+    "website/signers/public-null configurations",
+    "existing Anvil8902 and NFTs/LP/balances",
+    "services/configuration/journals/checkpoints",
+    "user-paused heartbeat",
+    "economic rights and current-owner claims"
+  ],
+  "source_publication_is_not_deployment": true
+}

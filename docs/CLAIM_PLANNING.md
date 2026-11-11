@@ -131,11 +131,20 @@ simulation proves that selected batch, not the reason a larger batch failed.
 
 Successful identity/admission metadata may be reused **only within this request
 at the same block hash**. This includes the exact LP capability and typed
-canonical-module parent links, not tree balances or claimable components. Some
+canonical-module parent links and optional `EXECUTION_PRICE_VERSION()` /
+`executionStrategy()` bindings, not tree balances or claimable components. Some
 of those settings are configurable across blocks.
 Owners, claimable/wallet balances, lifecycle, simulations, estimates, fee prices,
 heads and canonicality checks are not cached. No cache is retained across users,
 requests or blocks.
+
+The [11November follow-up](../reports/daily-reconciliation-audit-20261111/backend/REVIEW.md)
+adds only those two immutable selectors to the existing request-local allowlist.
+One measured fresh-profile selection/trial/final composition drops their reads
+from18 to6 while preserving the same18-unit payout. Live scope, source revision,
+prices, ownership and balances are never cached; healthy claims need no live
+Oracle reads. This is a bounded-RPC improvement,
+not operating latency or gas qualification.
 
 ## Strict bounds and errors
 

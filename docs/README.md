@@ -1,5 +1,10 @@
 # Documentation map
 
+The [daily audit/reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+links current source improvements, historical dispositions and remaining release
+limits. Current task summaries and guides are corrected; historical reports
+remain immutable evidence, not current settings.
+
 [Reference-as-swap execution](REFERENCE_SWAP_EXECUTION.md) documents fresh
 execution-price1/LP3, original valuation, exact market proofs, source admission,
 consumer compatibility and remaining gas/qualification gates.
@@ -36,7 +41,7 @@ Use the new mint procedure for team/allowlist/public quotas, proofs and
 configuration; it does not authorize public deployment or signer changes.
 
 
-Reviewed2026-11-09. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-11. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 
@@ -61,7 +66,7 @@ scope; a historical audit is not a current operating procedure or release sign-o
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
-| LP execution and upkeep | [Policy3/Budget4, LP routing2 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
+| LP execution and upkeep | [Policy3/Budget4, optional LP routing3 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
 | Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md) |

@@ -1,0 +1,44 @@
+{
+  "basis": "Raw SHA256 at report packaging. Review inventory is not a new test-count claim.",
+  "baseline_head": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "reviewed_source_sha256": {
+    "frontend_api/claim_planner.py": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b",
+    "tests_python/test_claim_planner_execution_price.py": "6d5214f8f50f45e18040be3a4368d1000724acc39ceb6b184953c8efb74f005a",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/activation_trace.py": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+    "frontend_api/portfolio_v6.py": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+    "frontend_api/service.py": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+    "frontend_api/transactions.py": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+    "frontend_api/earnings_checkpoint.py": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "keeper/monitor.py": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+    "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+    "keeper/health.py": "ada01741da4119d72a7d15b7ae16a88df221755653787620a3919a9e0b430d63",
+    "keeper/operation_review.py": "6766635fbd2cde84c0d20f999275aa834230d4dcccdda492f3cd853d77164c6a",
+    "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+    "zzz_ops/lp_execution.py": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+    "zzz_ops/manual_lp_review.py": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54",
+    "zzz_ops/management_custody.py": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f",
+    "zzz_ops/management_exit.py": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74",
+    "zzz_ops/production_v15.py": "5fcd494cd0640e8eae1a30d943ab6375751ee5a6ae37109740e54e5ee39f332d",
+    "zzz_ops/production_observer_v15.py": "84f65bbc40e942d9a2a74a0e314207f5a158d10c88376a12fb8fae092287d7b0",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "indexer/monitor.py": "541121865daac31025d2ba567fa15c90f06360b92cb295e2b72184d2a56a515b",
+    "tests_python/test_reference_execution_actual_trace.py": "35a1a203b6214ef5513c94e58885073c4fb030f76e1b32e56e2babea0490965d"
+  },
+  "actual_trace_fixtures_sha256": {
+    "tests_python/fixtures/reference-execution1-actual-eth-activate.json.gz": "de36111deb841209c207284155922221e74b3e4bcad9bbfe56c6cc7b0ef22067",
+    "tests_python/fixtures/reference-execution1-actual-eth-grow.json.gz": "bd4fd01f7fca7a4e50993f907276d7374d7464bcee8a818addbfc1bb66430cdf",
+    "tests_python/fixtures/reference-execution1-actual-zzz-activate.json.gz": "35f9501c21707943df20c1ac51d3f4f6039455f496420ea81ccbe7abfe4da946",
+    "tests_python/fixtures/reference-execution1-actual-zzz-grow.json.gz": "19a51161b5f5d0b7163796a73758a2cedda629a94b6661f80fe277c9e60122b5"
+  },
+  "evidence_sha256": {
+    "claim-cache-final.json": "3f5f05f75d1b70502759237080b1cd802b5ad03e114badf47094cd2a7c89cc7e",
+    "claim-cache-final.log": "7fbe67815add3516eb1f2a2d0e5ee3847db2d9990d86423de31bd9b227558201",
+    "claim-plan-cache-baseline.json": "f050a1348a753d551d32f29cca3b6915cefa7c71f8db07829a938895eae3005f",
+    "FINDINGS.json": "190c175d35cf2561edeb541bdefaa0b41b636537314efd2aae49f3adb916a42f",
+    "REVIEW.md": "1c8ef975c875ab654544c791babde1d052a16d1245153af746ea8541f2192ac3"
+  }
+}

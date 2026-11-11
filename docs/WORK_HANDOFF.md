@@ -1,5 +1,13 @@
 # Work handoff
 
+The [daily audit and historical reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+records the two-selector claim-planner fix,28focused passing methods, two static
+authority-description errata and individualized historical findings. No Solidity
+changed: reuse original exact contract/size/gas evidence, not a new full run.
+Initial keeper simulation gas envelopes and dependency-qualified late-fee
+netting remain follow-ups; current source/route/provider/gas/operating and
+independent qualification stays open.
+
 The fresh [reference-execution capability](REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
 for one transaction, proves the selected actual-core output/full post-state

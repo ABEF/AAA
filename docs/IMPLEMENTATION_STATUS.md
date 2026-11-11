@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+The [daily follow-up](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+adds immutable execution-capability/binding reads to request-local claim caching:
+18→6such RPC reads in one measured plan, unchanged18-unit payout.28focused
+planner/HTTP methods pass. No mutable state, cross-request cache or gas/rights
+change. Historical reconciliation and two static prose errata add traceability,
+not new deployed features or blanket closure.
+
 The fresh [reference-execution capability](REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
 for one transaction, proves the selected actual-core output/full post-state

@@ -1,0 +1,11 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "current_narratives": 653,
+  "main_versions": 3948,
+  "post_prior_new_blobs": 850,
+  "machine_contexts": 13119,
+  "original_rows": 310,
+  "all_original_pointers_and_matrix_hashes_exact": true,
+  "all_old_narrative_blob_ids_retained": true,
+  "reading_scope": "Inventory/full-text extraction + exact structured-pointer preservation; selected substantive reassessments are listed separately, not implied for every extracted paragraph."
+}

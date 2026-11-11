@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "source_commit": "872a5a5",
+  "production_source_unchanged": true,
+  "prior_review": "reports/reference-execution-20261111/static-review.json",
+  "prior_sha256": "0546b358f42aa70dd909350a96039cbe1401aa57d4183898bb4707cef33af2b6",
+  "corrections": [
+    {
+      "current_context_index": 98,
+      "fingerprint": "a920eeff20d18d97c183838f61892d9d8011e1a5471254b645bc99b8c0c688de",
+      "check": "reentrancy-benign",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#330-369):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#348)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#352)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#357)\n\t- poolManager.take(output,address(this),amountOut) (src/ZZZLiquidityManager.sol#364)\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#366)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#336-337)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#336-337)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#366)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#366)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#148)\n",
+      "old_rationale": "The native output recipient is fixed by the typed Vault/Fees operation, never an arbitrary core callback argument. Exact output is proven before take; native credit is scoped/reconciled and its gate reset, and outer Manager nonReentrant plus post-settle/full end validation retain source/venue invariants.",
+      "corrected_rationale": "The native output recipient is fixed by the typed Vault/Buyback operation, never an arbitrary core callback argument. Exact output is proven before take; native credit is scoped/reconciled and its gate reset, and outer Manager nonReentrant plus post-settle/full end validation retain source/venue invariants.",
+      "evidence": "src/ZZZLiquidityManager.sol:220-223; swap authenticates the sealed fixed Vault or Buyback. Typed custody operations retain their own fixed caller checks.",
+      "source_sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750"
+    },
+    {
+      "current_context_index": 142,
+      "fingerprint": "a1c39258061371b1c035675fa521743c8446e2b9ee32828136a40f75614a0106",
+      "check": "missing-inheritance",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#34-370) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#91-117)\n",
+      "old_rationale": "Manager supplies the actual liquidity ABI and fixed-child dispatchers, with onlyVault/onlyFees/onlyPositionExecutor checks on economic operations. The broad interface is a call schema, not missing access control; compile/tests verify concrete selectors separately.",
+      "corrected_rationale": "Manager supplies the actual liquidity ABI and fixed-child dispatchers, with fixed Vault or Buyback authorization on swap, onlyVault on typed custody operations, and onlyPositionExecutor on its parent callbacks. The broad interface is a call schema, not missing access control; compile/tests verify concrete selectors separately.",
+      "evidence": "src/ZZZLiquidityManager.sol:220-223; swap authenticates the sealed fixed Vault or Buyback. Typed custody operations retain their own fixed caller checks.",
+      "source_sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750"
+    }
+  ],
+  "meaning": "Correct two authorizations in prose; no permission, source, detector identity or original finding disposition changes."
+}

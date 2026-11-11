@@ -1,7 +1,9 @@
 # Mint close and the royalty activation window
 
-Fresh royalty settlement4/recovery2, inventory13, reporting5 and canonicalV8.
-Source candidate only: no contract, website, service or existing journal updated.
+Royalty4/recovery2/reporting5 was introduced with inventory13/canonicalV8;
+the current inventory17/mint2/canonicalV10 retains that launch-window layout.
+See the [current profile](POSITION_V7.md) and [OpenSea procedure](OPENSEA_MINT.md).
+Source candidate only: existing contracts, sites, services and journals are unchanged.
 
 ## What changes
 
@@ -103,7 +105,7 @@ rejected early. LP emergency/parking/terminal-return paths remain independent.
 An importing replacement retains the closed sale and never reopens the grace
 window. Prefunds remain classified separately.
 
-Reporting4 exposes the lock/deadline and preserves exact original amounts.
+Current reporting5 exposes the lock/deadline and preserves exact original amounts.
 Initial allocation is credited once in event history; conversion, claims and
 imports are not new income. Source/checkpoint identity changes require a reviewed
 rebuild/re-pin; never rewrite an old checkpoint or transaction journal.

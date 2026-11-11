@@ -1,5 +1,20 @@
 # PoPL operator manual
 
+The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+updates current task/profile guidance and claim-planning efficiency without
+changing callable inputs, permissions or economic rules. Claim planning reuses
+only pinned same-block immutable metadata within one request; mutable ownership,
+balances and financial controls are not cached. Continue fresh exact simulation
+and replan remaining claims after confirmation; no service restart or rollout
+is authorized by this documentation.
+
+**Simulation resource limit:** the keeper's initial call/estimate currently lets
+the provider choose its EVM gas envelope, then checks the configured ceiling
+before signing. Final ordinary-LP simulation is explicitly bounded. This is an
+open provider-resource qualification item, not permission to increase spending
+or treat a successful estimate as an approved operation. Keep RPC/time/fee
+limits and pending-first recovery; see the [source review](../reports/daily-reconciliation-audit-20261111/backend/REVIEW.md).
+
 ## Use a price-reference pool for swaps
 
 Fresh execution-price1/LP-routing3 supports this explicitly. A reviewed external

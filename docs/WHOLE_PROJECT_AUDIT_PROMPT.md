@@ -22,7 +22,7 @@ expansion, chain reset, journal conversion or a heartbeat restart.
    artifacts, actual deployments and journals. Distinguish implemented source,
    published code, running environments, historical evidence and qualification.
 2. Read both applicable repository READMEs, [context](../PROJECT_CONTEXT.md),
-   [profile](POSITION_V6.md), [architecture](ARCHITECTURE.md), [sole Todo](../TODO.md),
+   [profile](POSITION_V7.md), [architecture](ARCHITECTURE.md), [sole Todo](../TODO.md),
    [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md),
    [operator procedures](OPERATOR_MANUAL.md) and relevant original reports.
    Inspect implementations and actual dependencies; do not trust a diagram/title.
@@ -55,10 +55,23 @@ Read current owners for exact settings; never copy obsolete report defaults.
 - Actual LP receipts split80/10/5/5; royalty rarity weights are separate. Harvest,
   conversion, compounding, burn and claims are distinct. Current ownership carries
   unpaid rights; earned, claimable and claimed amounts differ.
-- Admitted royalty outages protect earlier cohorts. Recovery1 of genuinely
+- Current royalty4/recovery2 pays original currencies, with exact whole-unit
+  rarity tickets, a one-hour post-sale opening cohort and reviewed capacity.
+  Admitted currency outages protect earlier cohorts. Recovery of genuinely
   unallocated value is a separate current-weight allocation and cannot consume
-  existing earned/deferred/fractional liabilities. ERC2981 is a request, not
-  universal payment enforcement.
+  earned/deferred/import backing. Fresh accounting7 LP allocation is exact-unit
+  too; historical fractional ledgers keep their own codecs and liabilities.
+  ERC2981 requests payment; it does not universally enforce it.
+- Mint2/canonicalV10 uses the pinned SeaDrop helper with phased TEAM/allowlist/
+  public quotas and original-recipient lifetime counts. Source9/V9 and source10/
+  V10 browser consumers are distinct unsigned profiles; implementation is not
+  live onboarding, deployment, provider or operating acceptance.
+- Optional execution-price1/LP-routing3 captures both independent ETH/ZZZ bounds,
+  proves actual-core output/full post-state before settlement and validates live
+  sources and callbacks. Public pricing2 remains live. Distinguish swap/reference
+  overlap from prohibited same-core principal/reference identity. Omission/0
+  retains LP2, not an implicit upgrade. Qualify full-operation gas separately;
+  controlled expensive Entry execution does not fit the default12M budget.
 - Ordinary sampled trigger/readiness, cooldown/jitter and explicit geometry
   changes differ from manual keeper calls and paused governance emergencies.
   Optional financial bypass never bypasses custody/authentication/accounting or
@@ -84,7 +97,7 @@ limits during normal, concurrent, adversarial and long-lived operation.
 | LP lifecycle | Main/residual mint/increase/harvest/close; bull/bear/reversal/gap markets; one→two→one transitions; active-main/main-floor guards; mixed/outside residuals; idle/dust, gas and range geometry. |
 | Maintenance/execution | Sample/reset timing, cooldown enrollment/inclusion delays/jitter, pending-first priorities, compound scheduling, harvest coalescing/buyback; post-withdrawal depth, swap sizing/fees/impact, MEV and repeated permitted losses. |
 | Prices/dependencies | Dual freshness/independence/agreement, spot/reference disagreement, decimals/rounding, sequencer faults, mutable token/wrapper/router behavior, exact transfers and unavailable-state handling. |
-| Rewards/royalties | Actual funding,80/10/5/5, individual shares vs equal active membership vs rarity; fractions/dust, old cohorts vs unallocated recovery, conversion/claim replay, ownership changes and rejecting receivers. |
+| Rewards/royalties | Actual funding,80/10/5/5, individual shares vs equal active membership vs rarity; exact-unit LP/royalty trees, split carry vs upstream receipt rounding, old fractional codecs, cohorts vs unallocated recovery, LP conversion/claim replay, original royalty currencies, ownership changes and rejecting receivers. |
 | Recovery/migration | Pause vs flags, residual-only close, park/resume/move, manifests/nonces/epochs, optional emergency checks, terminal close/allocation/delivery/defer/fallback,1000-NFT mixed-wallet scenarios, export/import/backing/abort/retirement and late receipts. |
 | Keeper/operations | Nonces/replacement/receipt provenance, outages/restarts/lost server, retries/budgets, stale config, manual same-key signing, Linux locks/users, minimal keys, monitoring and off-host recovery. |
 | API/indexer/history | Canonical hashes/reorgs/complete ingestion, transactional SQLite/WAL, identities/codecs, transfers/history/current-price USD, checkpoints/fractions/cohorts/lineage, bounded work/concurrency/caches and unavailable-vs-zero. |

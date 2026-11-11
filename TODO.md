@@ -180,7 +180,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-post-seal-configuration"></a>
 
-- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Fresh accounting7/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Schema16/19-callable-helper plus2-data-child inventory, accounting7 readers and direct Entry3/review-policy2 reviews are implemented in source; real economics/provider/operating/independent qualification stays open.
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Fresh accounting7/ProtocolPolicy1/Portfolio2 implements bounded future mint/entry terms, separate idle/gas/display settings, planned VRF rotation after all old draws finalize, per-pool main-floor/gap and a reviewed buyback maximum. Defaults and fixed rights remain. Current schema17/mint2/canonicalV10 has20callable helpers plus2data children; accounting7 readers and direct Entry3/review-policy2 reviews are source-implemented. Real economics/provider/operating/independent qualification stays open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -218,7 +218,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-execution-routing"></a>
 
-- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh LP routing2 adds a fixed typed LP child/read-only math child, bounded reviewed-venue sizing and optional captured main-floor placement. Ordinary single/hybrid replacements filter actual stored-tick activity before quote ranking and verify active main before/after mint callbacks; initial/growth and explicit emergency policies stay separate. One contribution pool remains distinct from swap venues. Mode/width are governed; target execution economics/gas/real venue qualification remain open.
+- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh optional execution-price1/LP-routing3 extends the fixed typed LP child/read-only math child and bounded reviewed-venue sizing with captured two-source bounds and exact actual-core output/full-state proofs. Ordinary single/hybrid replacements require an active main; entrant and explicit emergency policies stay separate. A reviewed external reference may also execute swaps, but cannot be the same-core principal destination. Explicit matching consumers, full-operation gas and real venue/source qualification remain open; omitted/0 retains LP2.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -238,6 +238,7 @@ Custody, ownership and reward accounting.
   - [November3 contract/LP audit](reports/smart-contract-lp-audit-20261103/REVIEW.md): two new actual-core journeys verify admitted-but-infeasible residual-gap rollback followed by single-mode recovery, and one-minute USD outage with two-leg harvest/partial claims/raw residual close/later merge. Preflight actual geometry and the whole operation; no production guard or default was loosened. [Verification](reports/smart-contract-lp-audit-20261103/VERIFICATION.md) reuses exact normal/static source scope; real market/operating qualification remains open.
   - Manager guarded paused same-main routing reuses active-aware candidate filtering; ordinary replacement already does so. Actual core quotes must preserve active target geometry; no globally optimal/always-feasible route claim, no ordinary entrant/compound/force regression. Current ABI/storage/profile shapes remain but runtime pins change. [Both-flow review](reports/moving-market-flows-20261106/REVIEW.md), [verification](reports/moving-market-flows-20261106/VERIFICATION.md), [inputs](reports/moving-market-flows-20261106/INPUT_MATRIX.md), [recovery](reports/moving-market-flows-20261106/BLOCKERS.md).
   - [Bounded live market investigation](reports/market-qualification-20261109/markets/MARKET_FINDINGS.json):102 initialized native v4 keys,71 hookless fee-compatible states,3 v3 factory candidates and107 size/direction quotes. Selected upper tick removes all current active L; active L alone is not two-way capacity. Alternative10018 has material price disagreement. Native-v4 principal balancing and v3/WETH earned conversion remain distinct; no discovered venue is automatically approved and no global-optimality or future-availability claim is made.
+  - The [daily review](reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md) rechecks today's14changed Solidity files/dependencies without changing production Solidity or rerunning unchanged suites. Optional execution1/LP3 addresses own-swap/reference overlap; the unchanged12M default still rejects controlled cold Entries. Target transaction/block/provider gas and exact fees require qualification.
 
   </details>
 
@@ -415,6 +416,7 @@ Custody, ownership and reward accounting.
   - [Whole-operation design](reports/normal-operation-design-20261029/REVIEW.md): top-ups deploy entrants only and may move old compound into incumbent idle; idle-only triggering can remain off with zero fresh fee reserve. Evaluate useful reinvestment and the5%whole-bucket ceiling together with out-of-range/cooldown compound policy, so a liveness change does not unnecessarily stop new contributions. No general sweep, new external recipient or zero-dust objective.
   - The user selected keeper waits outside the actual range or for pending manual width changes, including during hard rebalance cooldown. Idle-only trigger enablement and actual-currency thresholds/gas need review; idle remains principal, not a sweepable balance. Monitor the separate 5% whole-bucket ceiling and use reviewed eligible maintenance/recovery rather than subsidizing entry.
   - [Reference-execution implementation](reports/reference-execution-20261111/REVIEW.md): explicit execution-price1/LP3 supports an external reference as a swap venue with original two-source valuation, exact actual-core output/full-state proof and later live agreement/control checks. Old LP2 profiles stay separate; no financial cap,12M default, signer or environment changes. Qualify final full-operation gas, real independent sources/routes and matching consumer adoption separately.
+  - Open [dependency-qualified late-fee question](reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md): verify whether a reachable admitted mutable callback after the final harvest can net new fees against an LP increase debit. No accounting effect or outside-user exploit is reproduced; ordinary transactions cannot interleave atomically. Review actual token/Permit2/periphery powers before deciding on a principal-debit guard; do not silently change accounting.
 
   </details>
 
@@ -435,12 +437,12 @@ Custody, ownership and reward accounting.
 
 <a id="task-callable-reference"></a>
 
-- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers38contracts/844functions,38constructors/13receivers and895short example rows with purpose, permissions, exact inputs/outputs and tuples; zero gaps and readiness false. Operator controls, holder claims, limited keeper, constructor-fixed child and authenticated module/callback work remain distinct. Historical counts keep their original scope.
+- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Current source-bound reference covers40contracts/956functions,40constructors/13receivers and1009short example rows with purpose, permissions, exact inputs/outputs and tuples; zero annotation gaps and readiness false. Operator controls, holder claims, limited keeper, constructor-fixed child and authenticated module/callback work remain distinct. Historical counts keep their original scope.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Derived from the exact current78-source closed compiler input/ABI and39normal size gates.47project source files plus imported dependencies are bound; inherited/generated getters remain distinct from handwritten bodies. Documentation generation executes no contract.
+  - The current normal source/ABI record binds61project/100total compiler inputs and48normal size gates; the reference covers40contracts/956functions/1009call examples. Original78-source/39-gate/47-project evidence is historical, not current. Inherited/generated getters remain distinct from handwritten bodies; documentation generation executes no contract.
   - Keep editable explanations and ABI/source snapshot in sync after source, behavior, permission, input or output changes. Run python scripts/generate-function-reference.py --check; missing purpose/caller/payable-value/input notes or stale generated/source data must fail. A correct signature is not transaction authorization.
   - See the [operator appendix](docs/OPERATOR_MANUAL.md#callable-contract-reference) and [scoped verification](reports/release-services-20261025/function-reference/VERIFICATION.md). Normal verification now checks both Todo and this reference before running broader checks; no fresh full CI pass is claimed.
   - Historical25October source-bound catalog was31contracts/643functions; earlier LP routing1 was32contracts/634functions; fresh fee-quality1 is32contracts/644functions. The removed Buyback setter/event, immutable getter and matching setup order are reflected in exact compiler/reference notes. Maintain all callable purpose, authority and input/output explanations for future changes.
@@ -705,7 +707,7 @@ The data and services behind the app.
 
 <a id="task-royalty-reporting"></a>
 
-- [x] **[Report royalty eligibility & conversion history](docs/ROYALTY_REPORTING.md)** - Implemented. Opt-in confirmed ETH/source balances, deferred currency eligibility and pinned converter enable status are implemented. Complete same-chain event replay separates conversion credits from actual lifetime claims. Missing values stay unavailable; UI, gross earned/USD history and live service qualification remain separate tasks.
+- [x] **[Report royalty eligibility & conversion history](docs/ROYALTY_REPORTING.md)** - Implemented. Confirmed original-currency royalty4 balances, exact-unit income/claim replay and deferred-currency eligibility are implemented through reporting5 and current source9/10 read/unsigned consumers. Historical royalty-converter books remain separately decoded; current royalties are not swapped. Claims/conversions are not new income. Actual currencies, workloads, current-price USD availability and live service/site qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -719,7 +721,7 @@ The data and services behind the app.
 
 <a id="task-unsigned-actions"></a>
 
-- [x] **[Prepare unsigned mint & claim requests](docs/FRONTEND_TRANSACTIONS.md)** - Implemented. Reviewed dynamic direct mint(default0.05ETH) and up to32LP/royalty claim drafts use current lifecycle controls, exact canonical-hash simulation, scoped currency isolation, bounded workers and separate gas review. Fresh7 mint_policy binds sale+VRF fingerprint; claim_operations stays empty for mint. The service never signs or broadcasts; live service/browser qualification remains open.
+- [x] **[Prepare unsigned mint & claim requests](docs/FRONTEND_TRANSACTIONS.md)** - Implemented. Reviewed claim drafts retain explicit selections, current-owner/canonical/runtime checks, exact simulation and separate gas review, without signing or broadcasting. Historical mint1/V9 supports direct mint preparation; explicit mint2/V10 rejects direct mint with Use OpenSea. Source9/10 read/unsigned consumers remain separate from served sites and the unchanged local-only signer. Live service/browser/OpenSea qualification remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -729,6 +731,7 @@ The data and services behind the app.
   - [Current scoped verification](reports/wallet-preparation/VERIFICATION.md) records focused Python/HTTP/worker cases and reusable compiler ABI evidence. No Solidity change or repeated contract suite. Actual deployment/VRF/RPC/fee manifests, ingress/load and wallet signing/receipt rehearsals remain with the service and frontend tasks.
   - [Adversarial reward review](reports/reward-resilience-20261026/REVIEW.md): current3 claim preparation now rejects positive rewards for never-activated NFTs and malformed/unreadable global activation data before a draft. One bounded mapping read per distinct NFT; existing current-owner/ordinal/asset/snapshot/simulation checks remain. Historical, parked/outbound and deferred-currency rights are preserved. Final combined443methods yield437passes/6explicit skips, including14new claim-integrity methods; local checks do not qualify live wallets/services.
   - Explicit transaction policy2 supports reviewed operator gas limits after sealing, default example12M, engineering21k–64M, bounded by the confirmed block and full20% estimate headroom. Schema2 drafts/plans require matching consumer support, never a public-signing extension or relabel of old Anvil journals. Existing policy1/schema1 remains unchanged. Actual provider/per-transaction/fee/workload qualification and separately authorized rollout remain open.
+  - The [two-selector planner correction](reports/daily-reconciliation-audit-20261111/backend/REVIEW.md) saves12RPCreads in one measured request-local claim composition.28affected methods pass; ownership, balances, prices, active scope and source revision are never cached, and healthy claims need no live Oracle data. No cross-request cache, budget, signer or policy change.
 
   </details>
 
@@ -788,7 +791,7 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. The explicit accounting3 website reader and unsigned-review profile are implemented with ETH/fixedZZZ admission and current module/canonical checks. They are published through separate, still-unconfigured poplint; qualify actual contracts/API/providers and preserve popldemo and historical Anvil journals. Actual contracts/API/feeds/routes/extension acceptance remain open; public signing stays disabled.
+- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. Explicit source9/schema4/V9 and source10/schema5/mint2/V10 website reads and unsigned reviews implement accounting7/ETH-fixedZZZ admission, exact module/runtime/canonical checks; source9 retains LP2 and source10 alone supports optional execution-price1/LP3 compatibility. Served current3 poplint and popldemo retain their older separate environments. Actual contracts/API/feeds/routes/extension/hosting acceptance and rollout remain open; source9/10 do not construct the signer and public signing stays disabled.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1383,6 +1386,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md):310original rows retain exact pointers/records,16material specific reassessments,162ledger versions,398pre-ledger unchecked lines and five explicitly retired task IDs. Deleted guides/local-only drafts and233website narrative versions are inventoried without changing original reports or website code. No age/topic-based blanket closure or revival of retired architecture.
   - The [checkpoint follow-up](reports/earnings-checkpoints-20261104/REVIEW.md) partially implements historical later/C09; it does not close lifetime archival/lineage/operating requirements. Retain the immutable original reconciliation rather than editing old open findings into all-fixed claims.
   - The [current project review](reports/whole-project-review-20261111/REVIEW.md) repairs stale current-schema/native fixtures, security/custody/mint guidance and generated records while preserving original report bytes/source scopes. Old explicit codecs/royalty currencies are not deleted by topic alone.
+  - The [11November reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md) inventories653current report/guide/root narratives and3948main-history blobs, preserving all310original rows.25selected split reassessments cover39distinct legacy rows plus9newer prose obligations; the other271rows are explicitly not newly source-reviewed or closed. Whole-text extraction is not full manual semantic audit. Original findings/evidence and still-open qualification remain intact.
 
   </details>
 
@@ -1523,6 +1527,7 @@ Decisions and rehearsals before real funds.
   - [Harvesting follow-up](reports/harvesting-audit-20261106/VERIFICATION.md) refreshes a due180-second collection deadline after successful slow maintenance reads. Current4/5/6 standalone clocks require matching key/calldata/bucket and canonical Vault event; missing proof logs a sanitized warning and preserves paid nonce/spend/receipt recovery without advancing the wrong clock. Historical profiles, journals and live services remain unchanged.
   - [Current keeper corrections](reports/whole-project-review-20261111/REVIEW.md) validate known simulation ABI, recheck generic-job final head/deadline/current-day cost before intent and restore four omitted test modules. Preserve pending-first recovery, exact original intents and same-hash reconciliation; no signer/service/journal change.
   - [Reference-execution implementation](reports/reference-execution-20261111/REVIEW.md): explicit execution-price1/LP3 supports an external reference as a swap venue with original two-source valuation, exact actual-core output/full-state proof and later live agreement/control checks. Old LP2 profiles stay separate; no financial cap,12M default, signer or environment changes. Qualify final full-operation gas, real independent sources/routes and matching consumer adoption separately.
+  - Open [bounded-simulation follow-up](reports/daily-reconciliation-audit-20261111/backend/REVIEW.md): initial keeper eth_call/estimate omit an explicit gas envelope; the configured ceiling is checked before signing, after provider execution work. The final ordinary-LP simulation is bounded. Qualify a shared initial envelope against supported providers/legacy paths with no budget widening; no signing/spending bypass is established.
 
   </details>
 
@@ -1611,4 +1616,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `4c244fc8516a8d3ca916e6b968257f5677dd2275180a83f1de60a7ba5d1e15b4`.
+Snapshot SHA-256: `c25678d2a01344d8d52fac78d722c97d2fe41886da82b2633f87116ea8ec96f8`.

@@ -1,5 +1,12 @@
 # PoPL current project context
 
+The [current daily reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md)
+corrects current documentation/task summaries and two static-review permission
+descriptions, and saves12RPC reads in one claim plan through request-local
+immutable metadata caching. Historical issues are split by current source and
+qualification status; unreviewed rows remain unclosed. No Solidity, rights, gas
+policy, site/service, signer, existing chain/journal or heartbeat changes.
+
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
 for one transaction, proves the selected actual-core output/full post-state

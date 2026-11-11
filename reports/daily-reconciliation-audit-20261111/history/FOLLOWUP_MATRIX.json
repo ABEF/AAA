@@ -1,0 +1,147 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "not_a_second_todo": true,
+  "authoritative_tasks": "docs/project-todo.json",
+  "rows": [
+    {
+      "id": "F01",
+      "title": "Independent ETH/ZZZ sources, external market depth and useful conversion",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "dual-price-qualification",
+        "creator-zzz-price",
+        "activation-assets",
+        "lp-eth-settlement"
+      ],
+      "reassessment": "HR1111-25",
+      "next_evidence": "Exact source/control/publication proposals, two genuine ZZZ paths, bidirectional external depth, full-operation retained/deployed floors and useful gas economics."
+    },
+    {
+      "id": "F02",
+      "title": "Cold Entry and maximum workload/constructor gas",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "deployment-initcode",
+        "native-production-preflight",
+        "mainnet-fork",
+        "reviewed-contribution-policy"
+      ],
+      "reassessment": "HR1111-13",
+      "next_evidence": "Qualify optional gas2 on actual supported providers/chain, exact deployment arguments, currency/claim/canonical/exit batches; do not raise12M default by inference."
+    },
+    {
+      "id": "F03",
+      "title": "Idle-only worker scheduling and backlog",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "asset-liveness-dust",
+        "keeper-guardrails"
+      ],
+      "reassessment": "HR1111-18",
+      "next_evidence": "Choose actual thresholds/intervals and test recovery of meaningful incumbent idle without entrant subsidy; distinguish useful idle from unrepresentable dust."
+    },
+    {
+      "id": "F04",
+      "title": "Compounding policy trust boundary",
+      "disposition": "accepted_risk_pending_explicit_decision",
+      "task_ids": [
+        "keeper-guardrails",
+        "security-keeper-manipulation"
+      ],
+      "reassessment": "HR1111-11",
+      "next_evidence": "Service-side wait was explicitly selected. Review compromised-key/cooldown exposure before accepting it or approve an on-chain redesign; no silent policy change."
+    },
+    {
+      "id": "F05",
+      "title": "Lifetime history and source adoption",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "financial-history",
+        "host-services",
+        "keeper-recovery"
+      ],
+      "reassessment": "HR1111-12",
+      "next_evidence": "Checkpoint milestones are implemented. Qualify lineage/max workload/raw archive/rotation/restore and rebuild source-pinned checkpoints on new ABI-helper adoption."
+    },
+    {
+      "id": "F06",
+      "title": "Actual ZZZ/core/periphery callback behavior",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "creator-market-controls",
+        "security-dependencies"
+      ],
+      "reassessment": "HR1111-14",
+      "next_evidence": "Qualify upgrade/admin/token callback behavior. Existing collect→burn late-fee boundary survives; a separately reproduced increase callback finding must be tracked on its own evidence."
+    },
+    {
+      "id": "F07",
+      "title": "OpenSea and randomness actual acceptance",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "opensea-mint",
+        "fair-draw",
+        "nft-lifecycle"
+      ],
+      "reassessment": "HR1111-05",
+      "next_evidence": "Source mint2/SeaDrop exists, but correct-chain platform settlement/stages/allowlists/fee/payer and live ordered VRF outage/drain/funding remain."
+    },
+    {
+      "id": "F08",
+      "title": "Operating funding and sustained recovery",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "host-services",
+        "keeper-recovery",
+        "authorities-prices",
+        "metadata-ops"
+      ],
+      "reassessment": "HR1111-19",
+      "next_evidence": "Assign/fund gas/provider/archive/VRF/metadata/backup/key recovery, qualify Unix recovery with real source/config. Paused heartbeat stays paused."
+    },
+    {
+      "id": "F09",
+      "title": "Royalty liveness and capacity economics",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "royalty-eth-settlement",
+        "asset-liveness-dust"
+      ],
+      "reassessment": "HR1111-03",
+      "next_evidence": "Admit/recover reviewed currencies, preserve one-hour/zero-cohort rules, qualify capacity and claim batches; exact allocated units do not guarantee all malicious tokens transferable."
+    },
+    {
+      "id": "F10",
+      "title": "Matching unsigned source10 deployment/provider consumer acceptance",
+      "disposition": "still_relevant_open",
+      "task_ids": [
+        "wallet",
+        "portfolio",
+        "transaction-ui",
+        "live-history-ui"
+      ],
+      "reassessment": "HR1111-06",
+      "next_evidence": "Use exact fresh profiles and null/public/signer boundaries; source implementation does not upgrade served current3 or authorize public signing."
+    },
+    {
+      "id": "F11",
+      "title": "Historical unreviewed findings",
+      "disposition": "unknown_current_state_unclosed",
+      "task_ids": [
+        "historical-findings"
+      ],
+      "reassessment": "all_310",
+      "next_evidence": "271 inherited rows have exact original text/pointers but no fresh individual source reassessment in this pass.13,119 extracted prose/ledger contexts and structured leaves are not claimed semantically closed."
+    },
+    {
+      "id": "F12",
+      "title": "Deferred broad capacity campaign",
+      "disposition": "user_deferred_not_newly_required",
+      "task_ids": [
+        "capacity-campaign"
+      ],
+      "reassessment": "HR1111-17",
+      "next_evidence": "Retain explicit deferred scope and local two-wallet evidence. Do not silently present10/25/100-user load testing as completed or newly mandatory."
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # AAA / ZZZ PoPL project instructions
 
+The [current daily reconciliation](reports/daily-reconciliation-audit-20261111/REVIEW.md)
+adds only request-local immutable claim metadata caching (12RPC reads saved in
+one measured plan), corrects two static authority descriptions and rechecks
+selected historical obligations without declaring all old findings closed.
+No Solidity/rights/gas policy or environment changes.
+
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
 for one transaction, proves the selected actual-core output/full post-state
@@ -31,8 +37,9 @@ consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
 Website source packaging/new-demo intents are corrected without changing
 historical replay, public null configurations or the shared Anvil-only signer.
 No live site/service/chain/journal or paused-heartbeat change occurs.
-The review lists unresolved spot-reference/venue coupling, service-only compound
-policy and release qualification; no financial guard was relaxed.
+That earlier review retains its original source scope. Explicit execution-price1/
+LP3 above addresses swap/reference coupling; service-only compound policy and
+actual release qualification remain open. No financial guard was relaxed.
 
 
 The optional [pool-spot composite reader](docs/POOL_SPOT_PRICE_SOURCE.md) implements
@@ -338,9 +345,11 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the [reference-execution review](reports/reference-execution-20261111/static-review.json):567records,
+- CI/check-slither-review selects the [corrected strict review](reports/daily-reconciliation-audit-20261111/static-review.json):567records,
  162individually reassessed contexts(22root/140independent collaborator)/405unique
  exact referenced-source reuse. The previous541(45/496) record remains historical.
+ The daily errata correct only two authority descriptions; other565records are
+ not freshly re-audited. Original review bytes and analysis scopes are retained.
  Prior spot-reader560(2/558), contribution3558(11/547), mint2, fee-flow and
  earlier records retain their exact source scopes.
  Update default/full record together after relevant source changes.

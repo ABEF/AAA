@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+corrects current summaries and separates remaining source issues from external
+qualification. Next address bounded initial keeper simulation work and qualify
+the admitted dependency callback/fee boundaries; no speculative financial guard
+is added. The sole Todo owns these follow-ups.
+
 The [current review](../reports/whole-project-review-20261111/REVIEW.md) closes
 proven cleanup/encoding/indexer/keeper/UI defects. The fresh
 [execution-price1/LP3 capability](REFERENCE_SWAP_EXECUTION.md) addresses reference/
@@ -52,7 +58,7 @@ zero-noop replay. Optional gas policy2 is implemented without rollout; next qual
 actual cheap1% routes/native feeds and matching schema2 consumers/providers/fees,
 then actual gas/recovery and independent audit. The soleTodo owns statuses.
 
-Reviewed9November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed11November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.

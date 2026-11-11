@@ -1,0 +1,11 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "checked_files": 5517,
+  "unchanged": 5517,
+  "changed": [],
+  "exclusions": {
+    "reports/README.md": "maintained navigation; root may update",
+    "reports/source-checks.json": "separately protected preexisting unrelated tracked dirt"
+  },
+  "rule": "Current docs may legitimately change under parent task. This check covers all originally tracked report artifacts except the two explicit exceptions, not new report files."
+}

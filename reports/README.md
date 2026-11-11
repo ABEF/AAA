@@ -1,5 +1,10 @@
 # Verification evidence
 
+The [11November daily audit](daily-reconciliation-audit-20261111/REVIEW.md)
+is the current reconciliation of today's changes and historical findings. Use
+its individualized evidence/status map; original reports retain their original
+source scope, and unreviewed rows are not marked resolved.
+
 [Reference-execution follow-up](reference-execution-20261111/REVIEW.md) records
 explicit execution-price1/LP3, original-value/full-state proofs, actual-core and
 consumer verification, retained failures, gas limits and unqualified dependencies.
@@ -64,7 +69,7 @@ Source publication and report reconciliation do not deploy or qualify a service.
 | What did the whole-project supplement improve? | [November4 review](comprehensive-audit-20261104/REVIEW.md), [coverage](comprehensive-audit-20261104/COVERAGE.md), [verification](comprehensive-audit-20261104/VERIFICATION.md) | Indexer anchor snapshot/validation and streaming replay;33affected Python checks. Solidity/build/static evidence reused at exact unchanged pins; source/docs publication only. |
 | Does terminal return handle1000NFTs and mixed wallets? | [Focused assurance](holder-exit-assurance-20261103/REVIEW.md), [campaign pins](holder-exit-assurance-20261103/campaigns.json) | Test-only fixture repair and perNFT/grouped-wallet/actual local v4 checks; production e26fc74 unchanged. Maximum target gas, receiver/dependency liveness and independent audit remain open. |
 | Which calls are governance-only and can holders still claim? | [Authority review](authority-audit-20261103/REVIEW.md), [verification](authority-audit-20261103/VERIFICATION.md), [permission guide](../docs/ACCESS_PERMISSIONS.md) | Current custody5/schema10/Entry3:43normal gates,471static records, scoped EVM/Python checks. Holder rewards remain claimable; terminal principal batches governance-only. |
-| What did the prior direct-Entry change implement? | [Direct Entry3 change](direct-entry-v3-20261103/REVIEW.md), [exact verification](direct-entry-v3-20261103/VERIFICATION.md), [current profile](../docs/POSITION_V6.md) | Historical custody4/accounting6/Entry3/schema9;52production/31dependency sources,43normal gates,471internal static records. No full-suite/CI/independent approval. |
+| What did the prior direct-Entry change implement? | [Direct Entry3 change](direct-entry-v3-20261103/REVIEW.md), [exact verification](direct-entry-v3-20261103/VERIFICATION.md), [historical profile6](../docs/POSITION_V6.md) | Historical custody4/accounting6/Entry3/schema9;52production/31dependency sources,43normal gates,471internal static records. No full-suite/CI/independent approval. |
 | How do earlier reports apply now? | [Current consolidation](project-consolidation-20261103/REVIEW.md), [finding provenance](project-consolidation-20261103/FINDINGS.json), [baseline catalogue](project-consolidation-20261103/REPORT_CATALOG.md) |310overlapping historical rows,22current topics and5later explicit findings. Not310bugs/tests or a new code audit. |
 | What LP behavior was examined? | [LP lifecycle](lp-lifecycle-audit-20261102/REVIEW.md), [multi-day cases](portfolio-long-horizon-20261102/CASE_MATRIX.md), [contract/LP audit](smart-contract-lp-audit-20261103/COVERAGE.md) | Source/test scopes remain distinct. Virtual days/serialized execution and AST inventories do not prove all markets, live uptime or maximum gas. |
 | What backend faults were corrected? | [Shared-client consolidation](consolidation-20261103/REVIEW.md), [action/output matrix](action-resilience-audit-20261102/ACTION_MATRIX.md), [fee/history integrity](backend-remediation-20261026/HISTORY.md) | Current source mechanisms versus old execution scope and actual provider/host acceptance stay separate. |

@@ -1,0 +1,484 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "files": [
+    {
+      "path": "reports/artwork-palette/new-findings-review.json",
+      "bytes": 9127,
+      "git_bytes_sha256": "0f554a9f3dadd11b05ea9f648096479bc9109e2f358aabfc896b7e5f05191e6b",
+      "top_keys": [
+        "array"
+      ],
+      "extracted_leaf_count": 6,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/auditability-refactor-20261025/solidity/focused-reconciled-summary.json",
+      "bytes": 3039,
+      "git_bytes_sha256": "e4c66a3196feb21716275302ac533dd22db390240c6302daf96ff9db5dd428b7",
+      "top_keys": [
+        "schema",
+        "raw_forge_exit_code",
+        "raw_driver_exit_code",
+        "raw_complete_selection_executed",
+        "all_selected_methods_present",
+        "expected_selected_methods",
+        "actual_runtime_cases",
+        "distinct_selected_method_bodies",
+        "all_successful",
+        "inherited_repeats",
+        "strict_extra_case_policy",
+        "compiler_input_sha256",
+        "compiler_output_sha256",
+        "raw_summary_sha256",
+        "transformation_sha256",
+        "production_source_count",
+        "production_sources_unchanged",
+        "elapsed_seconds",
+        "scope"
+      ],
+      "extracted_leaf_count": 1,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/browser-wallet/local-mint-reconciliation/reconciliation.json",
+      "bytes": 3982,
+      "git_bytes_sha256": "4b84f466c771727bb5b1ff1fbbc7a0b5115abe11b03ff028873f6049233410f0",
+      "top_keys": [
+        "time_utc",
+        "scope",
+        "hash",
+        "actions",
+        "browser_journal",
+        "before",
+        "after",
+        "pass",
+        "assertions"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-admission-findings.json",
+      "bytes": 7089,
+      "git_bytes_sha256": "0eb7ee1753f8cf41a640bd40989b1a678f21d6e9e03bbaa4215aee669d906478",
+      "top_keys": [
+        "schema",
+        "family",
+        "finding_id",
+        "kind",
+        "severity",
+        "confidence",
+        "before",
+        "preimages",
+        "negative_evidence",
+        "correction",
+        "verification",
+        "current_source_sha256",
+        "original_dirty_source_report_unchanged",
+        "scope_reuse_of_18_runtime_methods",
+        "remaining",
+        "task",
+        "operator_docs",
+        "execution_or_policy_changes",
+        "source_provenance_followup"
+      ],
+      "extracted_leaf_count": 2,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/comprehensive-popl-20261029/operations-findings.json",
+      "bytes": 13296,
+      "git_bytes_sha256": "d473696f7e4a3617d8b3800392615008918aead34b4478ef3c82d71448f8055a",
+      "top_keys": [
+        "schema",
+        "reviewer",
+        "baseline",
+        "findings",
+        "remaining",
+        "final_verification",
+        "source_only",
+        "production_approved",
+        "forbidden_actions_performed",
+        "additional_tooling_verification"
+      ],
+      "extracted_leaf_count": 15,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/five-audit-consolidation-20261102/findings.json",
+      "bytes": 24051,
+      "git_bytes_sha256": "ee1db5baeb40aeb2acf1f21b5354f26446f6929ebf872770c403caf2232fe4a5",
+      "top_keys": [
+        "schema",
+        "reviewed",
+        "baseline_commit",
+        "scope",
+        "source_reports",
+        "findings"
+      ],
+      "extracted_leaf_count": 82,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/full-history-reconciliation-20261104/FINDINGS.json",
+      "bytes": 1700962,
+      "git_bytes_sha256": "d7e51c3b469d7fece534f66902b8e09577a689bdb01ecb639ff262b468dcb819",
+      "top_keys": [
+        "schema",
+        "baseline",
+        "scope",
+        "original_rows",
+        "not_independent_defect_count",
+        "topics",
+        "imported_rows",
+        "prior_subsequent_findings",
+        "specific_reassessments",
+        "post_matrix_reviews"
+      ],
+      "extracted_leaf_count": 2264,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/historical-reconciliation-20261029/FINDINGS.json",
+      "bytes": 4332,
+      "git_bytes_sha256": "7a0de7a459e8252528e460359fe0d91cc51cbb150e81a2bed0a96a445a7e136b",
+      "top_keys": [
+        "schema",
+        "full_historical_reconciliation_complete",
+        "findings",
+        "read_services_ledger",
+        "note"
+      ],
+      "extracted_leaf_count": 13,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/historical-reconciliation-completion-20261029/FINDINGS.json",
+      "bytes": 1080961,
+      "git_bytes_sha256": "9f67f75159cd89878deabe28115fce746ac2ec24d71e04a3331e5b43ca074096",
+      "top_keys": [
+        "schema",
+        "source_checkpoint",
+        "coverage",
+        "domains",
+        "proof_boundary",
+        "completion_findings",
+        "groups"
+      ],
+      "extracted_leaf_count": 807,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/feeds/FEED_FINDINGS.json",
+      "bytes": 27995,
+      "git_bytes_sha256": "f60d7f4fea1db610cb0259160ef0eaf8ba433bd70b1091e7227e11096cf78c05",
+      "top_keys": [
+        "anchor",
+        "canonical_rechecks",
+        "chainlink",
+        "pyth",
+        "eth_pair",
+        "runtime_pins",
+        "api3",
+        "qualification",
+        "literal_public_address_overlap",
+        "research_provider_limits",
+        "separately_labeled_fresh_liveness",
+        "fixed_ZZZ_catalog_checks",
+        "liveness",
+        "status",
+        "primary_links",
+        "checks"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/feeds/decoded-findings.json",
+      "bytes": 7299,
+      "git_bytes_sha256": "2925aae2cce8e53454cf4bcdadf5d919392f7b57780935ddb9237c79ede2cd5c",
+      "top_keys": [
+        "anchor",
+        "canonical_rechecks",
+        "chainlink",
+        "pyth",
+        "eth_pair",
+        "runtime_pins",
+        "api3",
+        "qualification"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/review/cex-findings.json",
+      "bytes": 4549,
+      "git_bytes_sha256": "72ba87314ad2f4d6bb6ad2a10fa166ed3d5303538f94bbfaaacdc6903ac7ef70",
+      "top_keys": [
+        "qualification",
+        "source_token",
+        "warning",
+        "captures",
+        "books",
+        "lbank_identity_status",
+        "xt_identity_status",
+        "xt_chain_note",
+        "midpoint_difference_bps_lower_denominator",
+        "required_before_custom_price_use"
+      ],
+      "extracted_leaf_count": 2,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/review/chainlink-config-findings.json",
+      "bytes": 358,
+      "git_bytes_sha256": "cf5b4d2499b5d84400960f1db8b8e2d54a39d6a14e144a1da5c3517133e22b85",
+      "top_keys": [
+        "qualification",
+        "aggregator",
+        "source",
+        "latest_config_count",
+        "latest_config_block",
+        "latest_config_digest",
+        "complete",
+        "error_type"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/review/chainlink-config-map-findings.json",
+      "bytes": 2365,
+      "git_bytes_sha256": "06dcf6ebaa5708f78ea65fd5200198c36b0dc42fbd7b2e6086ec0be2ad54a91b",
+      "top_keys": [
+        "qualification",
+        "aggregator",
+        "latest_config_count",
+        "config_block_number_opcode",
+        "block_number_semantics",
+        "primary_doc",
+        "complete",
+        "first_L2_block_matching_L1",
+        "log_range_L2",
+        "rows",
+        "limitation",
+        "rpc_calls"
+      ],
+      "extracted_leaf_count": 1,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/routes/ROUTE_FINDINGS.json",
+      "bytes": 9167,
+      "git_bytes_sha256": "e5c11a14a2f8265c10428b41ba48e4c98edeabd9ce69f2db62eb1df41c3182e7",
+      "top_keys": [
+        "anchor",
+        "production_approved",
+        "source_baseline",
+        "discovery",
+        "states",
+        "quotes",
+        "replay",
+        "preserved_guards_bps",
+        "no_changes",
+        "interpretation"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/routes/ROUTE_FINDINGS_FINAL.json",
+      "bytes": 10995,
+      "git_bytes_sha256": "3c6a26f7d926ff65afd4d8147bcd324aa1b6a2293b0c0f43db16a34cc525c086",
+      "top_keys": [
+        "anchor",
+        "production_approved",
+        "source_baseline",
+        "discovery",
+        "states",
+        "quotes",
+        "replay",
+        "preserved_guards_bps",
+        "no_changes",
+        "interpretation",
+        "economy_diagnostic",
+        "public_market_scope",
+        "partial_fill_semantics",
+        "cheap_zero_active_failure_classes"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-followup-20261109/routes/ROUTE_FINDINGS_FINAL_v2.json",
+      "bytes": 11923,
+      "git_bytes_sha256": "8073977f1a16313b8ad683052b4b977f4d09623bba61084c61c0fbaa7923dc9e",
+      "top_keys": [
+        "anchor",
+        "production_approved",
+        "source_baseline",
+        "discovery",
+        "states",
+        "quotes",
+        "replay",
+        "preserved_guards_bps",
+        "no_changes",
+        "interpretation",
+        "economy_diagnostic",
+        "public_market_scope",
+        "partial_fill_semantics",
+        "cheap_zero_active_failure_classes",
+        "registry_fee_boundary_correction"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-qualification-20261109/markets/MARKET_FINDINGS.json",
+      "bytes": 23640,
+      "git_bytes_sha256": "e377b2bcbf13a05f522eee2e8e6afed99a71c8c286c46d0b49e91791379e2d51",
+      "top_keys": [
+        "kind",
+        "utc",
+        "chainId",
+        "block_number",
+        "block_hash",
+        "block_timestamp",
+        "fixed_token",
+        "native_currency",
+        "selected_pool",
+        "discovery_scope",
+        "quotes",
+        "prices",
+        "conclusions",
+        "failures_preserved",
+        "independent_core_diagnostic",
+        "limitations"
+      ],
+      "extracted_leaf_count": 1,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/market-qualification-20261109/pricing/pricing-findings.json",
+      "bytes": 8534,
+      "git_bytes_sha256": "6d29683cc08818892546c8c6934bb9d1c0b7a25fa6893271269518bc7da8cf2b",
+      "top_keys": [
+        "recorded_at_utc",
+        "source_commit",
+        "source_sha256",
+        "scope",
+        "asset_identity",
+        "actual_observation",
+        "catalog_coverage",
+        "pair_evaluation",
+        "capability_map",
+        "upstream_and_operations",
+        "required_external_inputs",
+        "evidence_corrections",
+        "qualification",
+        "deployment_authorized",
+        "public_transactions"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/opensea-integration-20261109/python/docs-encoding-reconciliation.json",
+      "bytes": 28350,
+      "git_bytes_sha256": "0b2268f707d8317a6e4ac5e067b698f43e5c67718aca39e7c1bcd10afc53d829",
+      "top_keys": [
+        "originals_archived",
+        "restored_string_count",
+        "restored_strings",
+        "intentional_changed_existing_note_paths",
+        "preserved_existing_example_rows",
+        "changed_existing_example_rows",
+        "added_rows",
+        "retired_rows",
+        "reference_sha256",
+        "notes_utf8_sha256"
+      ],
+      "extracted_leaf_count": 1,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/project-consolidation-20261103/FINDINGS.json",
+      "bytes": 700920,
+      "git_bytes_sha256": "a1e622ec664d7a528508686fa9501eb4eb1a2b0bfb56f98b480e299118bbfbf1",
+      "top_keys": [
+        "schema",
+        "reviewed",
+        "source_base",
+        "scope",
+        "topics",
+        "imported_rows",
+        "later_report_findings",
+        "five_matrix_41_rows_subsumed_by_later_75",
+        "new_execution_tests",
+        "independent_audit",
+        "production_approved"
+      ],
+      "extracted_leaf_count": 1316,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/release-hardening/static-analysis/changed-findings-review.json",
+      "bytes": 8453,
+      "git_bytes_sha256": "8c46ab8a2d6a763a88369ca76be79212424ab65666012752aa8c07bbd680129b",
+      "top_keys": [
+        "array"
+      ],
+      "extracted_leaf_count": 8,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/release-hardening/static-analysis/new-findings-review.json",
+      "bytes": 3,
+      "git_bytes_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "top_keys": [
+        "array"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/ten-audit-consolidation-20261102/findings.json",
+      "bytes": 45039,
+      "git_bytes_sha256": "7829fae7079993d4397dcb23b10663156a6b023441837c0fc3d23f785ce47921",
+      "top_keys": [
+        "schema",
+        "reviewed",
+        "baseline_commit",
+        "scope",
+        "selected_reports",
+        "reused_consolidation",
+        "findings"
+      ],
+      "extracted_leaf_count": 150,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    },
+    {
+      "path": "reports/whole-project-review-20261111/evidence/backend/findings-and-scope.json",
+      "bytes": 6232,
+      "git_bytes_sha256": "f8e13c3c4e3f056d4958a43e41c4265c4e31cdf987f7caa93154583d0ab91776",
+      "top_keys": [
+        "scope",
+        "fixed",
+        "affected_consumer_verification",
+        "checkpoint_adoption",
+        "inspected_workflows",
+        "retained_intentionally",
+        "remaining_review_items",
+        "unchanged_boundaries",
+        "source_publication_or_deployment_performed"
+      ],
+      "extracted_leaf_count": 0,
+      "semantic_review": "Exact original310 rows and selected current reassessments only; other structured contexts remain unreviewed."
+    }
+  ],
+  "counts": {
+    "named_structured_files": 25,
+    "extracted_scalar_contexts": 4669
+  },
+  "rule": "All tracked filenames containing findings/reconcil are parsed at baseline. Other raw analyzer/compiler/RPC JSON is byte-inventoried, not presented as newly reviewed findings. Nested/overlapping rows are not independent defects."
+}

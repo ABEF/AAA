@@ -1,0 +1,1645 @@
+{
+  "schema": 1,
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "scope": "Selected individualized current reassessments; all other inherited rows explicitly not newly source-reviewed. Original reports remain authoritative for their original source.",
+  "original_row_count": 310,
+  "reassessment_count": 25,
+  "distinct_original_rows_reassessed": 39,
+  "rows": [
+    {
+      "id": "HR1111-01",
+      "title": "Royalty conversion is superseded; currency entitlement isolation survives",
+      "original_ids": [
+        "historical/HC-15",
+        "historical/HC-14",
+        "historical/FB-16"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "royalty-eth-settlement",
+        "royalty-reporting",
+        "asset-liveness-dust"
+      ],
+      "subclaims": [
+        {
+          "status": "superseded_requirement",
+          "assessment": "Royalty swaps/unwraps/conversion worker are removed from the fresh original-currency royalty4 release. Do not revive ZZZRoyaltyConverter from an old report."
+        },
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Current royalty allocation, original-currency claims, deferred entry and current-owner entitlement remain. Growth does not add rarity weight."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Actual admitted currencies, pathological token behavior, capacity/gas and marketplace payment qualification remain. LP earned-ZZZ conversion is a different retained subsystem."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "matching_lines": [
+            159,
+            165,
+            167
+          ],
+          "term": "_allocateUnallocated",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/ROYALTY_SETTLEMENT.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "a70e309f95555c16bafa361d2cfc66f51bbf387b3ca769ddf4d3c2a942cecc6b",
+          "matching_lines": [
+            1,
+            8,
+            78,
+            93,
+            100
+          ],
+          "term": "original",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/royalties-in-kind-20261105/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "5201d84d159687d7efcb47cab3e1759918d13068f577e6dd83e0e3c605172087",
+          "matching_lines": [
+            9
+          ],
+          "term": "Royalty swaps removed",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-02",
+      "title": "Allocated whole LP reward units are now integrated, not merely prototyped",
+      "original_ids": [
+        "historical/HC-18"
+      ],
+      "additional_original_pointers": [
+        "reports/harvesting-audit-20261106/REVIEW.md#h05-finite-lp-reward-units-can-remain-unclaimable",
+        "reports/exact-lp-engine-20261106/REVIEW.md#what-is-verified-and-still-open"
+      ],
+      "task_ids": [
+        "lp-exact-unit-allocation",
+        "security-share-accounting",
+        "reward-ledgers"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "ExactLPAllocation now backs actual Rewards individual/equal-collective books, authenticated share/membership changes, whole-unit claims and canonical raw phase. The harvesting H05 finite allocated LP fraction is superseded in fresh accounting7."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Hierarchical rotating rounding is not a proof of optimal economic fairness. The engine does not recover upstream unreceived fees, allocate orphaned funds automatically, divide a token unit, or qualify maximum gas."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZRewards.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "matching_lines": [
+            143,
+            169,
+            190
+          ],
+          "term": "_takeComponents",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/libraries/ExactLPAllocation.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "matching_lines": [
+            11
+          ],
+          "term": "library ExactLPAllocation",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/exact-lp-integration-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "8534ffdca719bc7da244a9fae008580a1843cfdbb981d6505c1af93291596b01",
+          "matching_lines": [
+            11
+          ],
+          "term": "actual Rewards",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-03",
+      "title": "Allocated royalty rounding and unallocated funds are distinct",
+      "original_ids": [
+        "historical/HC-18"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "royalty-eth-settlement",
+        "royalty-reporting",
+        "asset-liveness-dust"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Royalty4 assigns every ALLOCATED raw unit to GCD-normalized rarity tickets with a rotating remainder. Original fractional royalty reserve language is historical."
+        },
+        {
+          "status": "accepted_rule_not_a_bug",
+          "assessment": "Mint plus one-hour initial window, zero-cutoff cohort, constructor/preadmission funds and reviewed unallocated recovery intentionally remain separate categories. Every received unit immediately claimable is not the selected promise."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Freeze/tax/rebase/blacklist, low-decimal indivisible-unit economics and incapable recipients need actual admission/operation review. Capacity is reviewed expandable, not unlimited."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "matching_lines": [
+            178,
+            281,
+            335,
+            347,
+            470
+          ],
+          "term": "_distribute",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "matching_lines": [
+            174,
+            175,
+            176,
+            336,
+            345,
+            469,
+            484,
+            523,
+            579
+          ],
+          "term": "orphaned[asset]",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/last24h-audit-20261105/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "cdc5bc5156a892d62017fba297a96ef3f1a6a823dc23d0c6a53571c9ef954315",
+          "matching_lines": [
+            51
+          ],
+          "term": "Where every unit belongs",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-04",
+      "title": "Three kinds of LP dust must not be conflated",
+      "original_ids": [
+        "historical/HC-18"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "asset-liveness-dust",
+        "reward-ledgers",
+        "security-share-accounting"
+      ],
+      "subclaims": [
+        {
+          "status": "accepted_rule_not_a_bug",
+          "assessment": "FeeController still carries amounts modulo20 and flushes an indivisible remainder to incumbent individual rights before entitlement barriers. The fixed split is exact for distributable groups of20, not an impossible fractional raw-unit split."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Upstream Uniswap fee-growth checkpoint flooring (harvesting H04) concerns money never received by PoPL. Exact downstream allocation does not repair it; actual token raw-unit value/cadence economics remain qualification."
+        },
+        {
+          "status": "superseded_requirement",
+          "assessment": "The old LP allocated fractional-claim H05 problem is corrected by fresh7, independently of these retained H04/H06 rules."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZFeeController.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "matching_lines": [
+            79
+          ],
+          "term": "total / 20",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "matching_lines": [
+            96,
+            98,
+            130
+          ],
+          "term": "_flushHomeDust",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/harvesting-audit-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "7c7fc8484536050e50909502c3b2f50e656c9f844a4de19d6cb3e94d778c9b48",
+          "matching_lines": [
+            32
+          ],
+          "term": "H04:",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "reports/harvesting-audit-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "7c7fc8484536050e50909502c3b2f50e656c9f844a4de19d6cb3e94d778c9b48",
+          "matching_lines": [
+            63
+          ],
+          "term": "H06:",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-05",
+      "title": "OpenSea source implementation exists; live drop acceptance remains",
+      "original_ids": [
+        "historical/FB-17",
+        "historical/HC-44",
+        "historical/RO-17"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "opensea-mint",
+        "fair-draw",
+        "audit-release"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Fresh mint2/helper1/canonicalV10 integrates exact pinned SeaDrop gross/fee/net settlement. Direct paid Vault mint is disabled when bound; initial20 team/500 allowlist/480 public and preserved original-recipient lifetime limits are implemented."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Actual correct-chain OpenSea onboarding, provider/fee/payer/caller/stage/allowlist/VRF/wallet/gas acceptance remain. ERC2981 requests5%; it does not enforce universal marketplace payment."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "matching_lines": [
+            5,
+            36,
+            86,
+            139,
+            143,
+            146,
+            149,
+            155,
+            159,
+            265,
+            354
+          ],
+          "term": "SeaDrop",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/OPENSEA_MINT.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "1eaa7bf371043ecd3ab57fb0547c8227708085901a4d389c5c7a69e95fcaa3b3",
+          "matching_lines": [
+            63,
+            82,
+            83,
+            90
+          ],
+          "term": "gross",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/opensea-integration-20261109/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "d1c608120a0e05ace1c80eb5744d6c929f4fe1d0ed407cf8facb647cab7b79d2",
+          "matching_lines": [
+            78
+          ],
+          "term": "Reviewed risks",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-06",
+      "title": "Current unsigned website source is newer than the served integration",
+      "original_ids": [
+        "historical/FB-19",
+        "later/Q05"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "wallet",
+        "portfolio",
+        "transaction-ui",
+        "live-history-ui"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Website source10/schema5 authenticates mint2/V10 with33 browser roles and unsigned holdings/contribution/claim/history reviews. Earlier source8/9-unimplemented statements are historical source milestones."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Public configurations remain null, source9/10 never construct the unchanged shared signer, served current3 poplint/popldemo are unchanged. Actual matching deployment, extension/provider/hosting/operation and accepted rollout remain open."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/SOURCE10_WEBSITE_PROFILE.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "5cfddf853a7a0310825fcf6b7ba2fd6ec50ceacbfd9d893dd332854113ce996c",
+          "matching_lines": [
+            5,
+            30,
+            72
+          ],
+          "term": "source10",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/SITE_ENVIRONMENTS.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "c6ee9530e1f65c8dd157480933ea4002a1511d43c96c2b52dbe521c14507f140",
+          "matching_lines": [
+            9,
+            27,
+            31,
+            62,
+            80,
+            85
+          ],
+          "term": "poplint",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/v10-website-20261109/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "51cde882f7d3169e6def01e321b23133d56513d9f0fa362e94b3e32b28f205b1",
+          "matching_lines": [
+            10
+          ],
+          "term": "33-role",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-07",
+      "title": "Callable reference gaps are closed at the current generated source scope",
+      "original_ids": [
+        "historical/OP-28"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "callable-reference",
+        "operation-review"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Current generated callable inventory contains40 contracts/956 functions/40 constructors/13 receive hooks,1009 short rows, zero missing current descriptions/inputs/outputs. The old122 missing output annotation count is not current."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Documentation examples remain unresolved templates, not exact live inputs, execution simulations, key ownership proof or whole-body independent audit. Maintain catalogues on every callable/input/permission change."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/CONTRACT_FUNCTIONS.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "d332bb29fafc56c5fa97df9482674f9738e029d9213204f15da63605938a5e25",
+          "matching_lines": [
+            5
+          ],
+          "term": "956",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/OPERATOR_MANUAL.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "e63b9f8636080d86dd57eaceb75b951770f0e913fb7178d059a56c5fd59b5e40",
+          "matching_lines": [
+            3415,
+            5894
+          ],
+          "term": "GENERATED OPERATOR",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "scripts/generate-operator-reference.py",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "e2a24df3007b0e1d88ee05bb8d103b6bc604245208f4f4aac9b4cfcce388a697",
+          "matching_lines": [
+            6,
+            8,
+            9
+          ],
+          "term": "main",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-08",
+      "title": "The reference may execute swaps under an explicit own-transition proof",
+      "original_ids": [
+        "historical/HC-22"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "pool-spot-price-source",
+        "lp-execution-routing",
+        "price-security",
+        "dual-price-qualification"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Execution-price1/LP-routing3 captures original two-source bounds for one transaction and permits an explicitly reviewed reference venue after exact actual-core output/full post-state proof. Public Oracle reads stay live; no keeper-chosen valuation/global cache appears."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "The same-core owned LP destination still cannot also be this external reference. Unexpected source/policy/nested-scope/market changes fail closed, and live agreement can still reject valid own swaps with too much impact."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Actual reference independence, source honesty/depth/freshness, fee viability, runtime consumers and correct-chain gas remain unqualified. Spot/reference manipulation and transaction-order MEV are not eliminated."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZOracle.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+          "matching_lines": [
+            10,
+            13,
+            14,
+            17,
+            25,
+            53,
+            54,
+            58,
+            62,
+            67,
+            69,
+            73
+          ],
+          "term": "execution",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZLiquidityManager.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+          "matching_lines": [
+            16,
+            37,
+            40,
+            75,
+            76,
+            84,
+            85,
+            115,
+            117,
+            118,
+            121,
+            128
+          ],
+          "term": "execution",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/reference-execution-20261111/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "68935a43a2d462dc359daeb15222a2ffb3930a967c3669fdb42a95fa68413912",
+          "matching_lines": [
+            61
+          ],
+          "term": "Remaining risks",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-09",
+      "title": "Strict detector default has a current review, never a global security approval",
+      "original_ids": [
+        "historical/RO-11",
+        "historical/HC-51",
+        "later/T05"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "local-verification",
+        "audit-release"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Current baseline strict review is567 records:162 individually reassessed contexts and405 unique exact referenced-source reuse. Earlier471/399/further stages retain their exact old sources."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Source drift must update strict default/full record together. Analyzer triage is internal, not exploit absence, a green published workflow, independent audit or frozen-release approval."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "scripts/check-slither-review.py",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "029fecd08d5765a556cd1e7ea5eb7b6bcea7262c39d773249bc11e5d80528029",
+          "matching_lines": [
+            14
+          ],
+          "term": "reference-execution-20261111",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/reference-execution-20261111/VERIFICATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "24895fe70bbf0cd83610c1bf912667fc3ac9cfe3be04669e0e900fb3ab1608f0",
+          "matching_lines": [
+            135
+          ],
+          "term": "567",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-10",
+      "title": "Dedicated same-main consolidation now exists; raw close remains idle",
+      "original_ids": [
+        "later/R04"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "liquidity-placement-idle",
+        "passive-inventory",
+        "operator-management-preparation"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Migration.consolidateResidual(request,forced) closes residual and reinvests attributed idle into the existing main ID/ticks, preserves shares/main clock and designated compound, and completes desired modeOFF. It need not close the main."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "Raw closeResidual intentionally leaves principal as attributed idle. Guarded consolidation can reject moving-market infeasibility; explicit forced/full-replacement choices have separate risk/permissions. Pause remains until deliberate unpause."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Real token/core callbacks, operating wallet/provider, target gas and recovery rehearsal remain."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "matching_lines": [
+            114
+          ],
+          "term": "function consolidateResidual",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/residual-main-consolidation-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "0a2dc2035b043d457e04af5565ada53fc03336c88f92c6f325657f4bb65690bc",
+          "matching_lines": [
+            62
+          ],
+          "term": "Remaining limits",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "docs/MANUAL_LP_PREPARATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "79e42b89fa118915623f5ebc0322f819dbc539bdd9383a091c54229e3e2895b0",
+          "matching_lines": [
+            12,
+            137,
+            151,
+            152,
+            163
+          ],
+          "term": "consolidat",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-11",
+      "title": "Compounding wait is implemented in the keeper, not a complete on-chain invariant",
+      "original_ids": [
+        "historical/OP-09",
+        "later/K01"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "keeper-guardrails",
+        "security-keeper-manipulation",
+        "asset-liveness-dust"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Normal keeper waits for in-range/below85% threshold/no pending geometry and shares authenticated harvest-clock coalescing, separate compound interval and pending-first recovery."
+        },
+        {
+          "status": "accepted_risk_pending_explicit_decision",
+          "assessment": "User selected keeper-side coordination. During rebalance cooldown an otherwise authorized compromised keeper can call an on-chain-eligible compound despite service waiting policy. Preserve financial caps and do not silently claim the service restriction is on-chain."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Choose actual reserve/idle economic thresholds and qualify backlog/recovery/cost."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "keeper/monitor.py",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "matching_lines": [
+            757
+          ],
+          "term": "def _compound_policy_allowed",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZCompounder.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+          "matching_lines": [
+            10
+          ],
+          "term": "function compound",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/KEEPER_COORDINATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "523cf42b37a0964738ed5d9f611038e21bd08de32a30f32bf5b052a3029af24a",
+          "matching_lines": [
+            29
+          ],
+          "term": "keeper scheduling policy",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/whole-project-review-20261111/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "215a5213e328fbd8bf47ecf1e0abb70d16da195a5e431789573baa3a06dff35b",
+          "matching_lines": [
+            50
+          ],
+          "term": "service-only",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-12",
+      "title": "Checkpoint milestones do not complete perpetual lifetime history",
+      "original_ids": [
+        "later/C09"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "financial-history",
+        "live-history-ui",
+        "host-services",
+        "keeper-recovery"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Reviewed immutable checkpoint1/accounting6 and checkpoint2/accounting7 earnings artifacts plus bounded raw suffix are implemented; exact trees/raw phase/royalty tickets and complete24h raw window are retained."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "General lineage/readers, lifetime maximum workload, source-complete event/archive ingestion, artifact rotation/restore/retention and hosted operation remain. Never reinterpret old artifacts or prune raw/WAL evidence."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/EARNINGS_CHECKPOINTS.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "12b3c32b38ac500f69158a1ef1a96a17431ecf8889d0b75a59ffae68100f984a",
+          "matching_lines": [
+            7,
+            13,
+            19,
+            51
+          ],
+          "term": "checkpoint2",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "frontend_api/earnings.py",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+          "matching_lines": [
+            6,
+            12,
+            39,
+            40,
+            41,
+            42,
+            45,
+            46,
+            47,
+            48,
+            49,
+            52
+          ],
+          "term": "checkpoint",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/checkpoint2-manual-20261107/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "135a18a3aec83d0f46067f6a16ccc20e3f28bf2a2619237910e8f9972bbe173d",
+          "matching_lines": [
+            33
+          ],
+          "term": "This milestone",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-13",
+      "title": "Cold gas and tight bytecode remain release blockers despite local higher-budget evidence",
+      "original_ids": [
+        "later/Q03",
+        "historical/HC-45",
+        "later/C10"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "deployment-initcode",
+        "mainnet-fork",
+        "reviewed-contribution-policy",
+        "native-production-preflight",
+        "audit-release"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Optional activation/transaction gas policy2 exists with explicit cap, confirmed block bounds, full headroom and separate network-fee ceiling. Baseline controlled cold Entry15.32METH/15.64MZZZ exceeds unchanged12M default."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Actual target transaction/provider/block/deployment-argument/constructor limits, full maximum currency/claims/canonical/exit workloads, economic depth and independent release review remain. A mainnet-pinned Registry is not qualified by a relabeled mock."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "Normal baseline Vault has32bytes runtime headroom; no compiler/size/gas waiver is deployability evidence."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/FRONTEND_TRANSACTIONS.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "93b0563cce7b5800b2cd36e5bc7f3c3b5ffa87aed53ad27149b82adddd70356a",
+          "matching_lines": [
+            22,
+            26,
+            32,
+            41,
+            236
+          ],
+          "term": "policy2",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/reference-execution-20261111/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "68935a43a2d462dc359daeb15222a2ffb3930a967c3669fdb42a95fa68413912",
+          "matching_lines": [
+            63
+          ],
+          "term": "15.32",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "reports/whole-project-review-20261111/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "215a5213e328fbd8bf47ecf1e0abb70d16da195a5e431789573baa3a06dff35b",
+          "matching_lines": [
+            51
+          ],
+          "term": "32bytes",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-14",
+      "title": "Known collect-to-burn dependency fee boundary is not an ordinary interleaving exploit",
+      "original_ids": [],
+      "additional_original_pointers": [
+        "reports/residual-lifecycle-20261106/REVIEW.md#open-dependency-and-economic-boundaries",
+        "reports/harvesting-audit-20261106/REVIEW.md#remaining-risks-and-qualification"
+      ],
+      "task_ids": [
+        "creator-market-controls",
+        "security-dependencies",
+        "asset-liveness-dust"
+      ],
+      "subclaims": [
+        {
+          "status": "still_relevant_open",
+          "assessment": "Existing collect→burn paths can classify new callback-generated fees as principal if reviewed token/periphery dependencies become malicious/upgraded. Atomic hookless exact-transfer operations admit no ordinary outside transaction interleaving inside this gap."
+        },
+        {
+          "status": "not_silently_fixed_or_newly_proven",
+          "assessment": "Actual fixed-ZZZ source/proxy/admin/callback and periphery behavior needs qualification. Do not claim exact allocation solves unreceived/misclassified upstream receipts, or infer arbitrary-token support."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "reports/residual-lifecycle-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "1b57a5727a2cafa82203772726e7c1c6dc22813ee3c21f8c2c3119d1e08628e5",
+          "matching_lines": [
+            49
+          ],
+          "term": "Pre-close collection",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "reports/harvesting-audit-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "7c7fc8484536050e50909502c3b2f50e656c9f844a4de19d6cb3e94d778c9b48",
+          "matching_lines": [
+            108
+          ],
+          "term": "late fees",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-15",
+      "title": "Random assignment and original pending request liveness remain distinct from pool moves",
+      "original_ids": [
+        "historical/HC-08",
+        "historical/RO-16",
+        "later/Q02"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "fair-draw",
+        "nft-lifecycle",
+        "security-chain-recovery"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Fixed prepared images are assigned through ordered verifiable draws; provider changes require pending original requests drained. No administrator reroll or new image generation. Ordinary LP movement needs no reveal completion."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Supported live provider/coordinator/subscription funding/callback/proxy/outage/reveal qualification remains. A permanently unanswered original draw can still block whole-collection replacement; accepted no-reroll constraints are not magically resolved by rotation."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "matching_lines": [
+            201
+          ],
+          "term": "pending",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/NFT_METADATA.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "a207815b6bcd8cce24416a28743ed81c3435b743d1d9adbe4ede34ff6a46acfe",
+          "matching_lines": [
+            25,
+            27,
+            34,
+            88,
+            101
+          ],
+          "term": "random",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/CANONICAL_HANDOFF.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "02df1a53bee782feac2b39a6a1f1068241336d0580574e13ba560bc45154fbd0",
+          "matching_lines": [
+            55,
+            78,
+            112,
+            116,
+            133,
+            202,
+            289
+          ],
+          "term": "draw",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-16",
+      "title": "Old nonce35 local incident has no proven new completion or reset authority",
+      "original_ids": [
+        "historical/FB-09"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "wallet",
+        "transaction-ui"
+      ],
+      "subclaims": [
+        {
+          "status": "unknown_completion_no_new_authority",
+          "assessment": "The prior map explicitly lacks browser completion proof for one abandoned local incident. No later source fix proves that old wallet history completed; preserve old journals/Anvil and do not reset or adopt transactions by guess."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "reports/full-history-reconciliation-20261104/FINDINGS.json",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "d7e51c3b469d7fece534f66902b8e09577a689bdb01ecb639ff262b468dcb819",
+          "matching_lines": [
+            1858,
+            1880
+          ],
+          "term": "Specific abandoned nonce-35",
+          "inspection": "exact_original_pointer"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-17",
+      "title": "Broad load campaign remains explicitly user-deferred",
+      "original_ids": [
+        "historical/FB-11"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "capacity-campaign",
+        "local-verification"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_local_behavior_scale_deferred",
+          "assessment": "Local independent-wallet concurrency fixes keep their original evidence; larger10/25/100-user capacity work is deferred by user. It is not passed and not silently made a new prerequisite or next priority by this reconciliation."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/project-todo.json",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "c41a09dadadf12c5de9c49436563ccc8d145b8eac2395a6d4fd866be0627a4e7",
+          "matching_lines": [
+            1090
+          ],
+          "term": "Deferred: 10/25/100-user",
+          "inspection": "current_task_decision"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-18",
+      "title": "Idle-only scheduling and entry availability remain operating choices",
+      "original_ids": [
+        "historical/OP-15"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "asset-liveness-dust",
+        "keeper-guardrails",
+        "liquidity-placement-idle"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Attributed idle belongs to existing bucket shares and remains in NAV; reinvestment/consolidation mechanisms exist. Entrants cannot consume incumbent idle/compound to satisfy their own deployed-LP floor."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "compound_idle:false and uneconomic thresholds can leave useful idle while the independent5% ceiling blocks new contributions. Select/rehearse actual thresholds, job enablement, backlogs and manual recovery; do not sweep or relax entrant protections."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "keeper/monitor.py",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "279b78d17ace58b79241a7e440b5f9bf2bc2643667e00c883b52fe7ddc4c7801",
+          "matching_lines": [
+            52,
+            641,
+            675,
+            1282,
+            1306,
+            1450
+          ],
+          "term": "compound_idle",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/KEEPER_COORDINATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "523cf42b37a0964738ed5d9f611038e21bd08de32a30f32bf5b052a3029af24a",
+          "matching_lines": [
+            12,
+            21,
+            55,
+            104,
+            220
+          ],
+          "term": "5%",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/IDLE_AND_DUST.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "39198dd2aea83f4e5e10f682df87e615acacbf941dfb35eb43993922d7ede847",
+          "matching_lines": [
+            1,
+            10,
+            17,
+            20,
+            27,
+            30,
+            32,
+            45,
+            62,
+            66,
+            69,
+            70
+          ],
+          "term": "idle",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-19",
+      "title": "Perpetual NFT rights do not fund perpetual services",
+      "original_ids": [
+        "later/C11"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "keeper-recovery",
+        "keeper-guardrails",
+        "host-services",
+        "metadata-ops",
+        "authorities-prices"
+      ],
+      "subclaims": [
+        {
+          "status": "still_relevant_open",
+          "assessment": "Actual gas/RPC/archive/trace/VRF/hosting/metadata/storage/backup/key-recovery ownership and recurring funding need operating acceptance. User-paused monitoring must stay paused; old staging local-Anvil uptime does not qualify Robinhood production."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/RELEASE_CHECKLIST.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "1ee64b2437b20a8c2449bb0f982cb0128bde933ebe69c09b29cb11c4ffbd9db7",
+          "matching_lines": [
+            13,
+            37,
+            51,
+            65,
+            96,
+            102,
+            106,
+            107,
+            125,
+            134,
+            161,
+            171
+          ],
+          "term": "operat",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/KEEPER_RECOVERY.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "ffc0b60310cfb93196e5b9e07a608d4323ace2fcc411fc968917fcf4c44af443",
+          "matching_lines": [
+            4,
+            205,
+            256,
+            313,
+            314,
+            569,
+            580,
+            582
+          ],
+          "term": "backup",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/PRODUCTION_SERVICES.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "f17719513549aa92384e8af6d652d72de3fe7e228f8965a6d4375eafbd6ffe3e",
+          "matching_lines": [
+            19,
+            23,
+            25,
+            28,
+            54,
+            60
+          ],
+          "term": "fund",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-20",
+      "title": "Maintained guide labels must advance; historical report labels must not",
+      "original_ids": [
+        "historical/HC-49",
+        "historical/OP-34",
+        "later/N08"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "historical-findings",
+        "callable-reference",
+        "operation-review"
+      ],
+      "subclaims": [
+        {
+          "status": "current_documentation_correction_required",
+          "assessment": "Baseline maintained texts still contain old38/844/895 callable counts, routing2 task summary, schema16/19-helper summary, freshV8 and Reporting4 royalty guide openings. Root updates current owning docs; original reports retain exact old source/count scope."
+        },
+        {
+          "status": "accepted_rule_not_a_bug",
+          "assessment": "The current240second source schedule, strict300second max gap,600second window and60–300second jitter are separate values. Do not translate an old300second instruction into current source cadence."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/project-todo.json",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "c41a09dadadf12c5de9c49436563ccc8d145b8eac2395a6d4fd866be0627a4e7",
+          "matching_lines": [
+            373
+          ],
+          "term": "844",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/ROYALTY_LAUNCH_WINDOW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "d7f44f81dd3d8b813d945d5307be0ed040bca8503439639ecb3e6aec822bbaac",
+          "matching_lines": [
+            106
+          ],
+          "term": "Reporting4",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/EXACT_ROYALTY_ALLOCATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "057db385848543b029e27cc6aa0fc617010bc78529a08bb08da8162ba5928833",
+          "matching_lines": [
+            3,
+            151
+          ],
+          "term": "V8",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/KEEPER_COORDINATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "523cf42b37a0964738ed5d9f611038e21bd08de32a30f32bf5b052a3029af24a",
+          "matching_lines": [
+            58
+          ],
+          "term": "240",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-21",
+      "title": "Fresh canonical phase work and zero-live-residual boundary survive later profiles",
+      "original_ids": [
+        "historical/HC-06",
+        "historical/OP-26",
+        "historical/OPS-RS-45-3"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "migration-framework",
+        "holder-preflight",
+        "security-chain-recovery",
+        "deployment-initcode"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Current canonicalV10 preserves ownership/traits/shares/both reward ledgers with exact raw LP phase and mint2 original-recipient quotas. Same-chain pre-terminal replacement retains funded abort and one canonical successor."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "Capture/import/activation retain zero-live-residual; close/park the residual under reviewed workflow. No integrated bridge, automatic chain-halt recovery, or post-terminal canonical reopening is present."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "2023 LP node rows plus other domains, lifetime aliases, held-in-contract escrow compatibility, backing/provider/operating gas and actual full restore/abort workload qualification remain."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/CANONICAL_HANDOFF.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "02df1a53bee782feac2b39a6a1f1068241336d0580574e13ba560bc45154fbd0",
+          "matching_lines": [
+            136,
+            161
+          ],
+          "term": "2023",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/POSITION_V7.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "1b78b0414f9b7861261ff5d2ca0c553de7f34274729b40215ac24b2d153b8600",
+          "matching_lines": [
+            13,
+            14,
+            30,
+            35
+          ],
+          "term": "V10",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "reports/exact-lp-integration-20261106/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "8534ffdca719bc7da244a9fae008580a1843cfdbb981d6505c1af93291596b01",
+          "matching_lines": [
+            27
+          ],
+          "term": "ALL weights",
+          "inspection": "prior_scoped_report"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-22",
+      "title": "Retired cross-chain and external custody mechanisms are not unfinished work",
+      "original_ids": [
+        "historical/FB-02",
+        "historical/FB-24",
+        "historical/HC-04",
+        "historical/OP-23",
+        "later/H05"
+      ],
+      "additional_original_pointers": [],
+      "task_ids": [
+        "lp-only-simplification",
+        "migration-framework",
+        "custody-composition"
+      ],
+      "subclaims": [
+        {
+          "status": "superseded_requirement",
+          "assessment": "Fresh principal uses only native ETH and one fixed ZZZ. Creator inboxes, USDG/USDC/WETH principal inputs, mutable ZZZ/buyback identity, integrated bridge/remote positions and external custody-address exits are removed decisions, not missed implementations."
+        },
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Governance terminal holder return pays actual ETH+fixedZZZ to current NFT owners in isolated governed batches; NFTs/previous rewards/future royalty eligibility survive. Pre-terminal same-chain canonical replacement remains separate."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "Historical codecs/events, original-currency royalty assets and optional v3/WETH EARNED conversion are intentionally retained. Deleting them by keyword would break valid recovery/evidence boundaries."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "docs/SIMPLIFIED_RELEASE.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "969ce2bf5702edcb036bcddf32f1f48175d1d70e97e3b01d6ba17d5267a06e98",
+          "matching_lines": [
+            20
+          ],
+          "term": "bridge",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "matching_lines": [
+            287
+          ],
+          "term": "function distributePrincipal",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/HOLDER_COLLECTIVE_EXIT.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "bf61e42ffb1bfe54c656e15db3b27763e5e54430dee2756d2a21d41b8a39fd89",
+          "matching_lines": [
+            44,
+            56,
+            58,
+            77,
+            107,
+            113,
+            128,
+            162
+          ],
+          "term": "current",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-23",
+      "title": "Checkpoint adoption requires explicit rebuild, not hash relabeling",
+      "original_ids": [],
+      "additional_original_pointers": [
+        "reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates"
+      ],
+      "task_ids": [
+        "financial-history",
+        "host-services",
+        "keeper-recovery"
+      ],
+      "subclaims": [
+        {
+          "status": "operating_followup_required_on_adoption",
+          "assessment": "The exact ABI-helper hardening changes source pins even for formerly valid numeric calls. Existing optional checkpoint1/2 artifacts must be retained with raw/WAL backups and explicitly rebuilt/reviewed/re-pinned on consumer adoption. Do not relabel an old artifact."
+        },
+        {
+          "status": "not_a_running_change",
+          "assessment": "No running configuration or artifact mutation is authorized by source publication. Pending intents/journals retain provenance and require their existing nonce/receipt reconciliation."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "reports/whole-project-review-20261111/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "215a5213e328fbd8bf47ecf1e0abb70d16da195a5e431789573baa3a06dff35b",
+          "matching_lines": [
+            53
+          ],
+          "term": "Checkpoint1/2 pins",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "docs/EARNINGS_CHECKPOINTS.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "12b3c32b38ac500f69158a1ef1a96a17431ecf8889d0b75a59ffae68100f984a",
+          "matching_lines": [
+            15,
+            21,
+            124,
+            146,
+            149
+          ],
+          "term": "rebuild",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-24",
+      "title": "Unsigned management preparation is bounded client scope, not a universal force tool",
+      "original_ids": [],
+      "additional_original_pointers": [
+        "reports/operator-management-20261109/REVIEW.md#important-limits"
+      ],
+      "task_ids": [
+        "operator-management-preparation",
+        "operation-review",
+        "migration-framework",
+        "native-custody-recovery"
+      ],
+      "subclaims": [
+        {
+          "status": "implemented_source_with_prior_scoped_evidence",
+          "assessment": "Read-only typed preparers freeze calldata/floors/deadlines, simulate captured confirmed state and later canonical tip, and expose stable local blockers. Active B/C/D plus seven custody/holder-return operations are implemented for direct empty-code governance EOAs."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Contract-wallet/delegated outer envelopes and Parked forced-D remain separate manual procedures. Allocate/distribute inclusion state is not bound by unchanged ABI; count is not a paid prefix, current owner at inclusion may change, exact gas/receipt/ledger reconciliation remains."
+        },
+        {
+          "status": "accepted_risk_or_structural_limit",
+          "assessment": "No simulation guarantees future inclusion, fair dependency behavior or solvency of arbitrary replacement code. Emergency optional mask is only explicit paused governance risk, never a keeper fallback."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "reports/operator-management-20261109/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "3acba25b6ebc4f1417962d38a4b92a47cb3144790582103350bb999c71502b30",
+          "matching_lines": [
+            62
+          ],
+          "term": "Important limits",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "docs/MANUAL_LP_PREPARATION.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "79e42b89fa118915623f5ebc0322f819dbc539bdd9383a091c54229e3e2895b0",
+          "matching_lines": [
+            41,
+            44,
+            136,
+            155
+          ],
+          "term": "Parked",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "matching_lines": [
+            103
+          ],
+          "term": "function emergencyRebalance",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    },
+    {
+      "id": "HR1111-25",
+      "title": "Real price and depth qualification remains unresolved after spot-reader implementation",
+      "original_ids": [],
+      "additional_original_pointers": [
+        "reports/market-followup-20261109/REVIEW.md#safeguards-and-next-steps"
+      ],
+      "task_ids": [
+        "dual-price-qualification",
+        "creator-zzz-price",
+        "activation-assets",
+        "lp-eth-settlement",
+        "mainnet-fork"
+      ],
+      "subclaims": [
+        {
+          "status": "still_relevant_open",
+          "assessment": "Dated Nov9 probes establish no two independently qualified fixed-ZZZ USD paths. Chainlink proxy duplication is one ETH source, stored Pyth was stale/disagreeing, API3 inactive. A public catalog miss is not proof custom feeds cannot exist."
+        },
+        {
+          "status": "still_relevant_open",
+          "assessment": "Selected reverse depth is exceptionally shallow; tiny favorable quotes do not fund useful gas or prove full-operation97% marginal LP acceptance. Price bands, source spread and known/additional/gross/idle/caller loss guards are independent; preserve all."
+        },
+        {
+          "status": "accepted_user_decision",
+          "assessment": "User selected spot for placement AND independent valuation, not TWAP. Largest qualifying external depth excludes PoPL and must be genuinely independent; an ETH oracle cannot repair manipulated ZZZ spot."
+        }
+      ],
+      "current_evidence": [
+        {
+          "path": "reports/market-followup-20261109/REVIEW.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "011e06999abee05e1e38bc3300603a3d090f8fb3ad1abac13f1dbc05385c0474",
+          "matching_lines": [
+            21
+          ],
+          "term": "No two independently",
+          "inspection": "prior_scoped_report"
+        },
+        {
+          "path": "docs/POOL_SPOT_PRICE_SOURCE.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "ccab793104bfd8b5e24475cc5fcae1cc663b32dc6fdc5c41ba91e16c24474848",
+          "matching_lines": [
+            5,
+            24,
+            34,
+            38,
+            47,
+            50,
+            53,
+            110,
+            126,
+            153
+          ],
+          "term": "independen",
+          "inspection": "selected_source_boundary"
+        },
+        {
+          "path": "docs/PRICE_SECURITY.md",
+          "source_revision": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+          "git_blob_bytes_sha256": "78d73e31a5bd8cf95080b80fad7a689d6fcda50c87158c6f09a98e24b7a71779",
+          "matching_lines": [
+            14,
+            15,
+            42,
+            44,
+            76,
+            77,
+            86,
+            87,
+            131,
+            135,
+            150,
+            204
+          ],
+          "term": "spot",
+          "inspection": "selected_source_boundary"
+        }
+      ],
+      "verification": "Selected source/decision/report reconciliation only; no new contract execution or historical test rerun.",
+      "closure_rule": "Each subclaim has its own disposition. Implementation does not close live-service, market, workload or independent acceptance."
+    }
+  ],
+  "limits": [
+    "No whole-corpus paragraph is automatically converted into a finding or closure.",
+    "References to old test reports preserve their exact source and count scope.",
+    "No fresh execution, real provider, target-chain or independent audit evidence is created by document reconciliation."
+  ]
+}

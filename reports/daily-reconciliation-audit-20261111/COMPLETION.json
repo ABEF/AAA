@@ -1,0 +1,61 @@
+{
+  "date_utc": "2026-11-11T05:27:22.425909+00:00",
+  "scope": "Source/document/publication consistency, not another runtime/security test campaign",
+  "baseline_contracts": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "baseline_website": "3f68fb7e878c17e4aaca4403214575f4f9c9b918",
+  "protected_files_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "shared_signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+  "public_configurations_null": true,
+  "unchanged_production_solidity_sources": 61,
+  "website_executable_source_unchanged": true,
+  "current_markdown_local_links_checked": 25,
+  "new_json_artifacts_strictly_parsed": 20,
+  "checks": [
+    {
+      "name": "function-reference",
+      "returncode": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 956, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}",
+      "stderr": ""
+    },
+    {
+      "name": "operator-reference",
+      "returncode": 0,
+      "stdout": "{\"contracts\": 40, \"functions\": 956, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1009, \"ready_for_submission\": false}",
+      "stderr": ""
+    },
+    {
+      "name": "sole-todo",
+      "returncode": 0,
+      "stdout": "Project Todo verified.",
+      "stderr": ""
+    },
+    {
+      "name": "history-provenance",
+      "returncode": 0,
+      "stdout": "{\"artifact_integrity\": true, \"original_pointers\": 310, \"individually_reassessed_original_rows\": 39, \"original_rows_not_newly_source_reviewed\": 271, \"unchanged_old_report_artifacts\": 5517, \"external_extracts_checked\": true, \"new_contract_tests\": 0, \"security_or_production_approval\": false}",
+      "stderr": ""
+    },
+    {
+      "name": "inactive-website-config-syntax",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "errors": [],
+  "successful": true,
+  "publication": "Staged Python closure passes; exact committed HEAD and remote heads are verified after commit in the external publication record. Source publication is not deployment.",
+  "staged_python_publication": {
+    "successful": true,
+    "files": 399,
+    "exact_index_bytes": true,
+    "record_sha256": "8afc10857495cbca171587b38c1545b87ee3f035ea3ffb2236f350e81ed92da5",
+    "record_location": "external daily-reconciliation-audit-20261111-872a5a5/publication-index.json"
+  },
+  "test_eof_cleanup_ast_equal": true
+}

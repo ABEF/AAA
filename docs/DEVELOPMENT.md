@@ -116,9 +116,10 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/reference-execution-20261111/static-review.json)
+records19of47then-changed source pins. The [current strict default](../reports/daily-reconciliation-audit-20261111/static-review.json)
 binds567detector records:162individually reassessed current contexts and405
-unique exact referenced-source reuses. Prior spot560, contribution3558 and
+unique exact referenced-source reuses. The daily errata correct two authority
+descriptions only; the other565records are not newly reviewed. Prior spot560, contribution3558 and
 mint2 records retain their original source/transitive limitations. Earlier fee-flow532 and royalty
 recovery474 records retain their own source scopes. The checker default
 is a real CI input, not just a documentation link. `SlitherReviewTests` checks its

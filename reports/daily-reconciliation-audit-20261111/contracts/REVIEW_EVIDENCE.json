@@ -1,0 +1,75 @@
+{
+  "base": "0acb123",
+  "head": "872a5a5",
+  "changed_solidity_files": 14,
+  "changed_sources": {
+    "src/ZZZContributionPricing.sol": {
+      "sha256": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+      "sha256_lf": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210"
+    },
+    "src/ZZZLPBalanceMath.sol": {
+      "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+      "sha256_lf": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f"
+    },
+    "src/ZZZLPBalancer.sol": {
+      "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+      "sha256_lf": "03037ac397e6f3e2c937aca3df548443de71010f49ec8b775f150239560e6c71"
+    },
+    "src/ZZZLPPositionExecutor.sol": {
+      "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "sha256_lf": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c"
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "sha256_lf": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+      "sha256_lf": "743c97e22d93a7d8fe5129fd76bf3330ee11a6b50e389cf5566f4ffe86b21ac5"
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "sha256_lf": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6"
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+      "sha256_lf": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a"
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "sha256_lf": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711"
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+      "sha256_lf": "d0d1311891307aae7ed0973ec4f64cd56f0233bd456ff81105c0ba437adbe483"
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "sha256_lf": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb"
+    },
+    "src/ZZZV4SpotPriceFeed.sol": {
+      "sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "sha256_lf": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7"
+    },
+    "src/base/ZZZRewardConverter.sol": {
+      "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "sha256_lf": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e"
+    },
+    "src/interfaces/IZZZExecutionOracle.sol": {
+      "sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "sha256_lf": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1"
+    }
+  },
+  "all61production_sources_match_prior_a846_normal": true,
+  "production_edits": false,
+  "fresh_analyzer_run": false,
+  "fresh_compilation": false,
+  "new_evm_test_constructed": false,
+  "completed_checks": {
+    "existing_analyzer_strict_coverage": true,
+    "checker_regressions": 44
+  },
+  "unverified_questions": [
+    "Late fee netting after checkpoint requires a reachable admitted mutable callback; no actual accounting reproduction or ordinary outside-transaction interleaving established"
+  ]
+}

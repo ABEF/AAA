@@ -1,6 +1,6 @@
 # Historical third-pass audit prompt
 
-Use the maintained [whole-project audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md), current [profile](POSITION_V6.md), [findings](AUDIT_FINDINGS.md) and [operator procedure](OPERATOR_MANUAL.md). The old October26-28 checklist is a frozen audit input, not a current launch checklist.
+Use the maintained [whole-project audit brief](WHOLE_PROJECT_AUDIT_PROMPT.md), current [profile](POSITION_V7.md), [findings](AUDIT_FINDINGS.md) and [operator procedure](OPERATOR_MANUAL.md). The old October26-28 checklist is a frozen audit input, not a current launch checklist.
 
 [Full original text at its exact source revision](https://github.com/ABEF/AAA/blob/28f75738a01efae2a2e11cf861e5e94d4d10efb3/docs/THIRD_PASS_AUDIT_PROMPT.md). Original audit reports and failure evidence remain unchanged in [reports](../reports/README.md). No runtime, configuration or pending record is upgraded by this pointer.
 

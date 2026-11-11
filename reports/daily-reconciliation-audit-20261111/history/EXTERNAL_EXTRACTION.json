@@ -1,0 +1,21 @@
+{
+  "baseline": "872a5a50f5b5cffd47e8fd101c44f61b46d06849",
+  "location": "External local audit evidence: daily-reconciliation-audit-20261111-872a5a5/published-context-extracts",
+  "files": [
+    {
+      "name": "open-contexts.json.gz",
+      "bytes": 6175605,
+      "sha256": "4d012cf1738ea001e53c658fd2ef3c3328b2665e9e710f22f3ab42b826146583",
+      "contexts": 13119,
+      "format": "gzip JSON with contexts array"
+    },
+    {
+      "name": "structured-contexts.json.gz",
+      "bytes": 302466,
+      "sha256": "97888e64b7eaecede44c26878c99d1c6adfe8b3a06e6ad9f4596918bcf1911e4",
+      "contexts": 4669,
+      "format": "gzip JSON with contexts array"
+    }
+  ],
+  "rule": "Bulk machine-extracted text is intentionally outside Git. It is derived only from already-tracked repository baseline/main-history material; no private chats, keys, environment credentials or untracked drafts are inputs. Public corpus-inventory.json retains source paths/Git blob IDs/hashes for retrieval. The extracts do not prove semantic review or closure."
+}
