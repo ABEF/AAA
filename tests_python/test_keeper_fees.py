@@ -183,4 +183,4 @@ class KeeperSignedFeeTests(unittest.TestCase):
                 'l1_fee_allowance_wei':0,'maximum_cost_wei':250,'receipt_fee_policy':'included'})
             return subprocess.CompletedProcess(args[0],0,H,'')
         with patch('keeper.monitor.subprocess.run',side_effect=sign):
-            self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'harvest:1'))
+            self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,self.k.rpc.now+180),'harvest:1'))

@@ -1,0 +1,21 @@
+FF
+======================================================================
+FAIL: test_expired_harvest_and_buyback_are_not_sent_after_slow_reads (tests_python.test_keeper_late_job_budget.KeeperLateJobBudgetTests.test_expired_harvest_and_buyback_are_not_sent_after_slow_reads) (buyback=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_late_job_budget.py", line 109, in test_expired_harvest_and_buyback_are_not_sent_after_slow_reads
+    self.assertFalse(self.submit(keeper, rpc, buyback))
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_expired_harvest_and_buyback_are_not_sent_after_slow_reads (tests_python.test_keeper_late_job_budget.KeeperLateJobBudgetTests.test_expired_harvest_and_buyback_are_not_sent_after_slow_reads) (buyback=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_late_job_budget.py", line 109, in test_expired_harvest_and_buyback_are_not_sent_after_slow_reads
+    self.assertFalse(self.submit(keeper, rpc, buyback))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.033s
+
+FAILED (failures=2)

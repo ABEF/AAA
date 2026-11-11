@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "02a242eb73b2027eb379a477736db99187d9296ea2e04dcde3bbb29fc366a715",
+  "reference_sha256": "b852c29b5f9917b6af96078abfa411bad26c5c5fc141dc2f0e314937d3b3ae95",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -1070,7 +1070,7 @@
     },
     "ZZZContributionPricing.historicalValue(uint256)": {
       "role": "R",
-      "short": "Read historical value",
+      "short": "Read zero compatibility sentinel",
       "arguments": [
         "$BUCKET_ID"
       ],
@@ -3125,7 +3125,7 @@
     },
     "ZZZMigrationBudget.historicalCompoundValue(uint256)": {
       "role": "R",
-      "short": "Read historical compound value",
+      "short": "Read zero compatibility sentinel",
       "arguments": [
         "$BUCKET_ID"
       ],
@@ -7712,6 +7712,76 @@
         "$ORIGINAL_MINT_RECIPIENT_ADDRESS",
         "$SOURCE_MINT_STAGE"
       ],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.constructor((address,bytes32,address,bytes32,(address,address,uint24,int24,address),bytes32,address,bytes32,address,bytes32,uint32,uint128,bytes32))": {
+      "role": "D",
+      "short": "Deploy reviewed spot reader",
+      "arguments": [
+        [
+          "$REFERENCE_CORE_ADDRESS",
+          "$REFERENCE_CORE_CODE_HASH",
+          "$REFERENCE_STATE_VIEW_ADDRESS",
+          "$REFERENCE_STATE_VIEW_CODE_HASH",
+          [
+            "0x0000000000000000000000000000000000000000",
+            "$ZZZ_ADDRESS",
+            "$REFERENCE_FEE",
+            "$REFERENCE_TICK_SPACING",
+            "0x0000000000000000000000000000000000000000"
+          ],
+          "$REFERENCE_POOL_ID",
+          "$ZZZ_ADDRESS",
+          "$ZZZ_CODE_HASH",
+          "$ETH_USD_FEED_ADDRESS",
+          "$ETH_USD_FEED_CODE_HASH",
+          "$MAX_ETH_AGE_SECONDS",
+          "$MINIMUM_ACTIVE_LIQUIDITY",
+          "$REVIEW_HASH"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.SOURCE_CALL_GAS()": {
+      "role": "R",
+      "short": "Read upstream gas ceiling",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.config()": {
+      "role": "R",
+      "short": "Read fixed source configuration",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.decimals()": {
+      "role": "R",
+      "short": "Read USD answer precision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.ethFeedDecimals()": {
+      "role": "R",
+      "short": "Read ETH source precision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.latestRoundData()": {
+      "role": "R",
+      "short": "Read composite spot observation",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.poolId()": {
+      "role": "R",
+      "short": "Read reference pool identity",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.zzzDecimals()": {
+      "role": "R",
+      "short": "Read fixed ZZZ precision",
+      "arguments": [],
       "value": null
     }
   }

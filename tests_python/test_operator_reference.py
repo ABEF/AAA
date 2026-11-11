@@ -1,6 +1,7 @@
 """Documentation coverage and ABI boundaries; no compiler, RPC or transactions."""
 import copy
 import json
+import re
 from pathlib import Path
 import unittest
 
@@ -24,6 +25,15 @@ class OperatorReferenceTests(unittest.TestCase):
 
     def test_table_is_current_without_writing_or_compiling(self):
         self.assertFalse(generate(check=True)['ready_for_submission'])
+
+    def test_all_tuple_links_include_constructor_only_inputs(self):
+        text = render(self.reference, self.examples)
+        targets = set(re.findall(r'\]\(#(input-[a-z0-9-]+)\)', text))
+        anchors = set(re.findall(r'<a id="([^"]+)"', text))
+        self.assertIn('input-zzzv4spotpricefeed-config', targets)
+        self.assertFalse(targets - anchors, sorted(targets - anchors))
+        self.assertIn('`c.expectedPoolId`', text)
+        self.assertIn('`c.minimumLiquidity`', text)
 
     def test_every_callable_has_a_row_and_each_explanation_is_at_most_five_words(self):
         text = render(self.reference, self.examples)

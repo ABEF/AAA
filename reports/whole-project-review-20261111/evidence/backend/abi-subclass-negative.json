@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-11T01:51:54.975892+00:00",
+  "selected_methods": [
+    "tests_python.test_abi.AbiTests.test_uint_input_never_truncates_or_coerces_nonintegers"
+  ],
+  "executed_methods": [
+    "tests_python.test_abi.AbiTests.test_uint_input_never_truncates_or_coerces_nonintegers"
+  ],
+  "tests_run": 1,
+  "failures": [
+    [
+      "tests_python.test_abi.AbiTests.test_uint_input_never_truncates_or_coerces_nonintegers",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_abi.py\", line 36, in test_uint_input_never_truncates_or_coerces_nonintegers\n    with self.assertRaises(ValueError):word(DeceptiveDecimal('1'),'uint256')\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [],
+  "source_sha256_before": {
+    "zzz_ops/abi.py": "33c5e1e69cfbfae1bdfae06daff7164ff8b2ae0fa646c0bbf877dea7315324a3",
+    "tests_python/test_abi.py": "2786524a2727ab1b8e42f5abe044cc81847b87d1c65f4f263376a430c86f7ff1"
+  },
+  "source_sha256_after": {
+    "zzz_ops/abi.py": "33c5e1e69cfbfae1bdfae06daff7164ff8b2ae0fa646c0bbf877dea7315324a3",
+    "tests_python/test_abi.py": "2786524a2727ab1b8e42f5abe044cc81847b87d1c65f4f263376a430c86f7ff1"
+  },
+  "successful": false,
+  "seconds": 0.0,
+  "scope": "Exact-type input validation; hostile Python str subclass, not an external JSON exploit. Ordinary ints/decimal strings, leading zeros, precision and static ABI vectors remain checked. No economic/profile/deployment change. Checkpoint rebuild/review before future adoption remains required."
+}

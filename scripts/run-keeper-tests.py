@@ -34,6 +34,9 @@ MODULES=(
  'test_keeper_bucket_fault_reset','test_keeper_telemetry_completion',
  'test_keeper_portfolio_policy','test_keeper_policy_v6','test_keeper_policy_integrity','test_keeper_harvest_identity',
  'test_action_resilience',
+ 'test_keeper_late_job_budget','test_keeper_simulation_outputs',
+ 'test_keeper_standalone_harvest_review','test_keeper_late_lp_review',
+ 'test_keeper_review_retry','test_keeper_confirmation_wakeup',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

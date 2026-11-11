@@ -1,0 +1,13 @@
+{
+  "files": 118,
+  "local_links": 3861,
+  "fragments_checked_heuristically": 1477,
+  "missing_files": [],
+  "suspect_fragments": [
+    [
+      "docs/OPERATOR_MANUAL.md",
+      "#input-zzzv4spotpricefeed-config"
+    ]
+  ],
+  "historical_report_contents_not_rewritten": true
+}

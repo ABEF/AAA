@@ -1,74 +1,26 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The local [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) now implements explicit
-website schema5/source10 over accounting7, with33 browser runtime pins and
-unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
-retains its original profile and evidence. Direct mint preparation is disabled
-for mint2; OpenSea eligibility is unverified. Both public configurations stay
-null, source10 never constructs the unchanged shared signer (even on Anvil),
-and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
-not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
-
-
-The [latest read-only market qualification](reports/market-followup-20261109/REVIEW.md)
-adds actual provider controls, an inactive API3 ETH option, external ZZZ market
-leads, both-direction depth and gas-aware route observations. No independent
-ETH/ZZZ USD pair or practical reward-conversion route is approved. Tiny favorable
-quotes are preserved; they do not prove economical execution. The selected
-reverse pool remains shallow, and alternative principal venues must pass the
-same reference-price guards. Current3% contribution/1% conversion and all other
-safeguards are unchanged. Earlier synthetic-depth positives and2% full-operation
-failures retain their original scope. Public sites/configurations, lab/journals
-and the shared signer remain unchanged.
-
-Current [fee-flow corrections](reports/fee-flow-audit-20261107/REVIEW.md) protect
-the final ETH conversion value, size affordable keeper batches, stop stale sends
-and preserve zero-noop earnings history. Explicit unsigned gas policy2 is an
-optional reviewed backend setting after sealing; no deployed environment changes.
-
 PoPL connects transferable ERC-721 NFTs to vault-managed ETH/ZZZ liquidity.
 Activation attaches an independently accounted LP share and unlocks funded LP
 fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal
 during normal operation. Governance can permanently end LP activity and return
 actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties remain.
 
-**Source candidate; not deployed for production. Production NOT APPROVED.** Fresh
-[accounting7/direct Entry3/custody5](docs/POSITION_V7.md) implements
-[bounded operating policy](docs/ADAPTABLE_POLICY.md) and reviewed
-[manual recovery](docs/OPERATOR_MANUAL.md). Source publication does not update
-existing contracts, services, journals or websites. Public signing remains disabled.
+**Source candidate; undeployed for production. Production NOT APPROVED.**
+Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. Source changes
+do not update existing contracts, services, journals or websites. Public signing
+remains disabled; the shared browser signer stays Anvil-only.
 
+[Project Todo](TODO.md) | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) |
+[Operator manual](docs/OPERATOR_MANUAL.md) | [Release approval](docs/RELEASE_CHECKLIST.md)
 
-Fresh [exact-unit LP accounting7](docs/EXACT_LP_ALLOCATION.md) connects authenticated NFT shares and membership to whole-unit claims, same-NFT conversion and lossless raw-phase accounting. Current mint2 extends the outer canonical schema to V10; original V9 integration evidence keeps its source scope. Every allocated raw unit is assigned without a fractional reserve; historical6/V8 state remains separately interpreted. [Integration verification](reports/exact-lp-integration-20261106/VERIFICATION.md) records source, EVM, backend, size and gas limits. Earlier execution/harvest reviews retain their original source scopes. No running environment is upgraded.
-
-The [operator management preparer](reports/operator-management-20261109/REVIEW.md)
-now fetches exact inputs and simulates unsigned parking, resume, residual-only
-closure and the complete collective-exit sequence. Explicit floors and gas
-budgets remain operator choices; no signing or automatic fallback is added.
-Existing [checkpoint2/B-C-D tools](reports/checkpoint2-manual-20261107/REVIEW.md)
-remain separate. No contract/runtime or installed environment changes.
-
-The new [OpenSea mint source](docs/OPENSEA_MINT.md) implements configurable
-free-team/paid-allowlist/public phases (initially20/500/480). Unused allowlist
-supply rolls into public; unused team slots stay reserved. CanonicalV10 preserves
-original recipients and lifetime mint limits. Actual custom-drop onboarding,
-fee/payer/provider and operating qualification remain open. Explicit mint2/V10 backend read/claim support is implemented; website and installed-service adoption remain separate. The [current review](reports/today-change-review-20261109/REVIEW.md) tightens mint-phase observations and clarifies the fixed transport boundary.
-
-## Project navigation
-
-[Consolidated audit findings](docs/AUDIT_FINDINGS.md) explains past findings against
-the current code; [the report map](reports/README.md) separates current evidence
-from historical scopes. [Todo](TODO.md) remains the only task-status checklist.
-
-| Purpose | Start here |
-| --- | --- |
-| Remaining work | **[Sole Project Todo](TODO.md)**, beside the [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md) |
-| Operate the protocol | **[Operator manual and short call tables](docs/OPERATOR_MANUAL.md#operator-call-tables)**; [full inputs, outputs and permissions](docs/CONTRACT_FUNCTIONS.md) |
-| Current source and compatibility | [Accounting7 profile](docs/POSITION_V7.md), [architecture](docs/ARCHITECTURE.md), [component map](docs/COMPONENT_STATUS.md) |
-| LP policy and protection | [Execution policy](docs/LP_EXECUTION_POLICY.md), [keeper safeguards](docs/KEEPER_SAFEGUARDS.md), [two-source pricing](docs/PRICE_SECURITY.md) |
-| Verify or approve release | [Current review](reports/today-change-review-20261109/REVIEW.md), [current3% build/static evidence](reports/contribution-loss3-20261109/VERIFICATION.md), [mint2/V10 evidence](reports/opensea-integration-20261109/VERIFICATION.md), [release approval](docs/RELEASE_CHECKLIST.md), [production preflight](docs/PRODUCTION_PREFLIGHT.md). Earlier source scopes remain in the [report map](reports/README.md). |
-| Find older work | [Documentation map](docs/README.md), [historical reports](reports/README.md), [reconciliation](reports/historical-reconciliation-completion-20261029/REVIEW.md) |
+The [current project review](reports/whole-project-review-20261111/REVIEW.md)
+records implemented repairs and decisions still needing review. The optional
+[spot composite](docs/POOL_SPOT_PRICE_SOURCE.md) values an external ETH/ZZZ pool
+through ETH/USD; two independent source paths, useful execution depth and actual
+service/market qualification remain open. The local
+[mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) prepares unsigned
+reviews. Popldemo and served poplint remain separate from these source changes.
 
 ## Architecture overview
 

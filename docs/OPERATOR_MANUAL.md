@@ -524,9 +524,9 @@ ZZZ/USD source as redundant coverage for both assets.
 
 Entry freezes prices and both contribution/venue limits before the original
 source transfer and conversion. Callback changes, even a later tighter limit,
-require a fresh review. Existing nonzero historical compound keeps its starting
-mark; newly discovered historical compound is first marked at the final
-checkpoint only for incumbent backing, never the new LP floor. Source uncertainty
+require a fresh review. Existing ETH/fixed-ZZZ compound remains incumbent backing,
+never the new LP floor. Foreign-token LP compound is unsupported in fresh7; the
+historical-value compatibility reads return zero. Source uncertainty
 uses some of the captured execution budget: even agreement inside 3% can fail
 the separate default 3% contribution execution floor. A failed quote does not authorize an
 automatic cap increase, stablecoin peg, spot price or single-source fallback.
@@ -1429,6 +1429,67 @@ The [November3 journeys](../reports/smart-contract-lp-audit-20261103/VERIFICATIO
 exercise infeasible-gap rollback/single-mode recovery and minute-long synthetic
 USD outage with harvest/partial claims/raw close/later merge. They do not qualify
 the actual operator wallet, provider, token, market depth or recovery host.
+
+### Adopting the reviewed source fixes
+
+Use the [review and adoption checklist](../reports/whole-project-review-20261111/REVIEW.md)
+before installing this candidate. Existing deployed code is not patched; source,
+runtime/configuration fingerprints and unsigned reviews must match the reviewed
+release. Old checkpoint1/2 artifacts bind `zzz_ops/abi.py`: retain raw/WAL backups
+and explicitly rebuild/review checkpoints before enabling them with the new backend. Never re-pin
+an old artifact merely to bypass source drift.
+
+The indexer now rejects duplicate/malformed contract inventories before opening
+the database. For an old invalid inventory, preserve a consistent database/WAL
+backup and rebuild a separate index with a reviewed unique list. Do not edit its
+identity/schema in place, delete history or rescan a running database implicitly.
+
+The keeper validates known void/bool simulation output before any intent. Generic
+harvest, buyback and other jobs also recheck the final head/current UTC-day gas
+budget and known deadlines after slow reads. A rejection saves no new intent and
+sends nothing. Preserve an existing pending intent and recover the same hash;
+never repair this by clearing journals or automatic resubmission. No new ABI,
+keeper power, gas ceiling, calldata rewriting or inclusion-time guarantee exists.
+Review remaining budget, gas, expiry and current state before trying new work.
+
+### Pool-spot valuation source: selection and replacement
+
+Activation/growth placement uses current pool price and existing main bounds;
+it does not use an average to decide the required token ratio. The optional
+[spot composite reader](POOL_SPOT_PRICE_SOURCE.md) separately values fixed ZZZ
+as reference-pool ETH per ZZZ times ETH/USD. Spot for both roles is the user
+decision; this accepts transient reference-price manipulation risk.
+
+Prefer the largest **qualifying external** native ETH/ZZZ pool. Record its
+same-block ranking, actual bidirectional depth and exclusion of PoPL-owned
+principal; displayed TVL and the raw active-L floor alone do not prove these.
+Two readers of one pool with different ETH feeds are not independent ZZZ
+references. No automatic TVL selection/rotation or pool-trade freshness claim
+is implemented. Current two-source agreement and all financial/custody guards
+remain; an incompatible hook/venue cannot be admitted by entering its ID.
+
+The frozen contribution basis also requires an untouched reference during the
+transaction. Using this pool as LP destination changes its L; executing a swap
+there can change its spot/tick/L. Either can invalidate the final source
+fingerprint and revert activation/growth. Review the destination **and** every
+candidate execution venue, then simulate the selected complete route. A deepest
+reference/best-swap-venue collision remains a qualification constraint; preserve
+the existing guard rather than hiding the source change.
+
+| Operation | Inputs | Result |
+| --- | --- | --- |
+| Deploy `ZZZV4SpotPriceFeed` | Reviewed `Config`: core/hash, StateView/hash, full PoolKey/PoolId, fixed ZZZ/hash, ETH/USD feed/hash, maximum ETH age, positive active-L minimum, review hash | Optional read-only reader |
+| Verify reader | `config()`, `poolId()`, decimals getters, `latestRoundData()` | Check identity and observation |
+| Activate/replace sources | `Oracle.setDualFeed(ZZZ, primary, secondary, 300, reviewHash)` with both complete reviewed SourcePolicy tuples | Immediate governed policy change |
+| Verify resulting policy | `activePolicy(ZZZ)`, `policy(id)`, `priceBounds(ZZZ)` | Confirm bounds and fingerprint |
+
+These are templates, not reviewed live values. SourcePolicy decimals for this
+reader are18. Changing pool/source/age/L settings deploys a reviewed replacement
+reader and uses `setDualFeed`, including **after sealing**; the keeper cannot
+select it. Preserve pending evidence, stop affected automation, re-review
+consumer pins/configuration and reprepare unsigned reviews before resuming.
+No existing source, site or service is changed by adding the adapter. See the
+[complete input and recovery procedure](POOL_SPOT_PRICE_SOURCE.md).
 
 ### Independent-reference and manual emergency controls
 
@@ -3321,7 +3382,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **906 functions, 39 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **913 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3912,7 +3973,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [MigrationBudget.emergencyBucket](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyBucket()` | Read emergency bucket |
 | `R` [MigrationBudget.emergencyChecks](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyChecks()` | Read emergency checks |
 | `R` [MigrationBudget.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `emergencyFingerprint()` | Read emergency fingerprint |
-| `R` [MigrationBudget.historicalCompoundValue](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `historicalCompoundValue(BUCKET_ID)` | Read historical compound value |
+| `R` [MigrationBudget.historicalCompoundValue](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `historicalCompoundValue(BUCKET_ID)` | Read zero compatibility sentinel |
 | `R` [MigrationBudget.idleValue](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `id: uint256` | `idleValue(BUCKET_ID)` | Read idle value |
 | `R` [MigrationBudget.lastCompound](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | `input0: uint256` | `lastCompound(BUCKET_ID)` | Read last compound |
 | `R` [MigrationBudget.maintenanceBucket](CONTRACT_FUNCTIONS.md#zzzmigrationbudget) | None | `maintenanceBucket()` | Read maintenance bucket |
@@ -4604,7 +4665,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [ContributionPricing.checkMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`beforeValue: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256`<br>`lossBps: uint16`<br>`maxIdleBps: uint16`<br>`expectedMaintenancePolicy: bytes32` | `checkMaintenance(BUCKET_ID, BEFORE_VALUE, PRICE0, PRICE1, SCALE0, SCALE1, LOSS_BPS, MAX_IDLE_BPS, EXPECTED_MAINTENANCE_POLICY)` | Read check maintenance |
 | `R` [ContributionPricing.compoundReady](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `compoundReady(BUCKET_ID)` | Read compound ready |
 | `R` [ContributionPricing.entryIdleLimit](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `entryIdleLimit(BUCKET_ID)` | Read entry idle limit |
-| `R` [ContributionPricing.historicalValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `historicalValue(BUCKET_ID)` | Read historical value |
+| `R` [ContributionPricing.historicalValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `historicalValue(BUCKET_ID)` | Read zero compatibility sentinel |
 | `R` [ContributionPricing.idleValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `idleValue(BUCKET_ID)` | Read idle value |
 | `R` [ContributionPricing.markMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `markMaintenance(BUCKET_ID)` | Read mark maintenance |
 | `R` [ContributionPricing.nav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `nav(BUCKET_ID)` | Read nav |
@@ -4968,6 +5029,25 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [PythPriceFeed.maxAge](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `maxAge()` | Read max age |
 | `R` [PythPriceFeed.maxConfidenceBps](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `maxConfidenceBps()` | Read max confidence bps |
 | `R` [PythPriceFeed.reviewHash](CONTRACT_FUNCTIONS.md#zzzpythpricefeed) | None | `reviewHash()` | Read review hash |
+
+</details>
+
+<a id="zzzv4spotpricefeed"></a>
+
+#### V4SpotPriceFeed
+
+<details>
+<summary>Read functions and constants (7)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `R` [V4SpotPriceFeed.SOURCE_CALL_GAS](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `SOURCE_CALL_GAS()` | Read upstream gas ceiling |
+| `R` [V4SpotPriceFeed.config](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `config()` | Read fixed source configuration |
+| `R` [V4SpotPriceFeed.decimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `decimals()` | Read USD answer precision |
+| `R` [V4SpotPriceFeed.ethFeedDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `ethFeedDecimals()` | Read ETH source precision |
+| `R` [V4SpotPriceFeed.latestRoundData](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `latestRoundData()` | Read composite spot observation |
+| `R` [V4SpotPriceFeed.poolId](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `poolId()` | Read reference pool identity |
+| `R` [V4SpotPriceFeed.zzzDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `zzzDecimals()` | Read fixed ZZZ precision |
 
 </details>
 
@@ -5437,6 +5517,35 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 </details>
 
+<details>
+<summary>ZZZV4SpotPriceFeed.Config</summary>
+
+<a id="input-zzzv4spotpricefeed-config"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `c` | `(address,bytes32,address,bytes32,(address,address,uint24,int24,address),bytes32,address,bytes32,address,bytes32,uint32,uint128,bytes32)` | `["REFERENCE_CORE_ADDRESS", "REFERENCE_CORE_CODE_HASH", "REFERENCE_STATE_VIEW_ADDRESS", "REFERENCE_STATE_VIEW_CODE_HASH", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"], "REFERENCE_POOL_ID", "ZZZ_ADDRESS", "ZZZ_CODE_HASH", "ETH_USD_FEED_ADDRESS", "ETH_USD_FEED_CODE_HASH", "MAX_ETH_AGE_SECONDS", "MINIMUM_ACTIVE_LIQUIDITY", "REVIEW_HASH"]` |
+| `c.core` | `address` | `REFERENCE_CORE_ADDRESS` |
+| `c.expectedCoreCodeHash` | `bytes32` | `REFERENCE_CORE_CODE_HASH` |
+| `c.stateView` | `address` | `REFERENCE_STATE_VIEW_ADDRESS` |
+| `c.expectedStateViewCodeHash` | `bytes32` | `REFERENCE_STATE_VIEW_CODE_HASH` |
+| `c.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
+| `c.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
+| `c.key.currency1` | `address` | `ZZZ_ADDRESS` |
+| `c.key.fee` | `uint24` | `REFERENCE_FEE` |
+| `c.key.tickSpacing` | `int24` | `REFERENCE_TICK_SPACING` |
+| `c.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+| `c.expectedPoolId` | `bytes32` | `REFERENCE_POOL_ID` |
+| `c.zzz` | `address` | `ZZZ_ADDRESS` |
+| `c.expectedZZZCodeHash` | `bytes32` | `ZZZ_CODE_HASH` |
+| `c.ethUsdFeed` | `address` | `ETH_USD_FEED_ADDRESS` |
+| `c.expectedETHFeedCodeHash` | `bytes32` | `ETH_USD_FEED_CODE_HASH` |
+| `c.maxETHAge` | `uint32` | `MAX_ETH_AGE_SECONDS` |
+| `c.minimumLiquidity` | `uint128` | `MINIMUM_ACTIVE_LIQUIDITY` |
+| `c.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
 ### Deployment constructors
 
 <details>
@@ -5589,6 +5698,10 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `D` [V4RouteExecutor.constructor](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | None | `deploy V4RouteExecutor()` | Deploy bound implementation |
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `D` [V4SpotPriceFeed.constructor](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `c` [ZZZV4SpotPriceFeed.Config](#input-zzzv4spotpricefeed-config) | `deploy V4SpotPriceFeed(["REFERENCE_CORE_ADDRESS", "REFERENCE_CORE_CODE_HASH", "REFERENCE_STATE_VIEW_ADDRESS", "REFERENCE_STATE_VIEW_CODE_HASH", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"], "REFERENCE_POOL_ID", "ZZZ_ADDRESS", "ZZZ_CODE_HASH", "ETH_USD_FEED_ADDRESS", "ETH_USD_FEED_CODE_HASH", "MAX_ETH_AGE_SECONDS", "MINIMUM_ACTIVE_LIQUIDITY", "REVIEW_HASH"])` | Deploy reviewed spot reader |
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |

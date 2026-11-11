@@ -1,0 +1,14 @@
+{
+  "observed_utc": "2026-11-11T01:06:02.181416+00:00",
+  "head": "2c6f0c822b909a8d44c457c2fd24d3f546745ba8",
+  "original": {
+    "build.mjs": "4e0a69656ebb2d4919611b391373acec621805442fc93a2f984d84d3d498af71",
+    "server.mjs": "4d1ec1dacf9eaf166b4c989600b1da2672758a33c093fd3f6b6d82558c737e8e",
+    "package.json": "ca6c27ce074550e2021d2d804e09cc0e4a5a05173927a091c06a18d4da7a1c06",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348"
+  },
+  "git_clean": true,
+  "no_build_service_rollout": true
+}

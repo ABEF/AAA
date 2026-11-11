@@ -31,7 +31,7 @@ GROUPS = (
     ('holders', 'NFTs, contributions and metadata', ('ZZZNFT', 'ZZZActivationEntry', 'ZZZNFTMetadata')),
     ('internals', 'Bound modules, helpers and factories', ('ZZZContributionPricing', 'ZZZLiquidityManager',
      'ZZZLPPositionExecutor', 'ZZZLPBalanceMath', 'ZZZV4RouteExecutor', 'ZZZCustodyValidation',
-     'ZZZFeesCanonical', 'ZZZRewardsCanonical', 'ZZZNFTCanonical', 'ZZZVaultCanonical', 'ZZZPythPriceFeed',
+     'ZZZFeesCanonical', 'ZZZRewardsCanonical', 'ZZZNFTCanonical', 'ZZZVaultCanonical', 'ZZZPythPriceFeed', 'ZZZV4SpotPriceFeed',
      'ZZZActivationAssetsFactory', 'ZZZRoyaltyFactory', 'ZZZRoyaltyCodeData')),
 )
 WRITE_ORDER = {
@@ -263,6 +263,12 @@ def render(reference, examples):
                     lines += ['<details>', '<summary>' + title_ + ' (' + str(len(subset)) + ')</summary>', '']
                     lines += table(c, subset)
                     lines += ['</details>', '']
+    # Constructor-only tuples must be registered before rendering the expanded
+    # inputs: their call rows are emitted later in the deployment section.
+    for c in reference['contracts']:
+        for f in c['functions']:
+            if f['kind'] == 'constructor':
+                arguments(f, examples['rows'][key(c, f)])
     lines += ['### Expanded tuple examples', '',
               'Fields are expanded recursively in exact ABI order. Uppercase symbols remain required snapshot/review inputs. These examples prove neither venue feasibility nor historical entitlement. Parameter semantics and bounds remain in the linked function/procedure.', '']
     for name, (anchor, parameter, value) in sorted(tuples.items()):

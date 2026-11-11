@@ -1,0 +1,31 @@
+{
+  "evidence_kind": "Recorded tool-observed unittest outcomes; no rerun",
+  "passed_95_modules": [
+    "tests_python.test_function_reference",
+    "tests_python.test_operator_reference",
+    "tests_python.test_slither_review"
+  ],
+  "passed_95_count": 95,
+  "passed_95_seconds": 6.296,
+  "inventory_first_run": {
+    "tests": 2,
+    "passes": 1,
+    "failures": 1,
+    "reason": "Required source-class list omitted existing ZZZSeaDropMint"
+  },
+  "inventory_targeted_recheck": {
+    "tests": 1,
+    "passes": 1,
+    "method": "tests_python.test_source_inventory.SourceInventoryTests.test_required_source_classes_match_compiler_bound_callable_inventory"
+  },
+  "current_relevant_sha256": {
+    "zzz_ops/function_reference.py": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+    "zzz_ops/operator_reference.py": "cf2a68b279018af11df50c3f8297082fff8fb5420385fbcfe75e39b4486ac520",
+    "scripts/source_checks.py": "04970d1947ca23ec0a52666b0d5473fd9cb03f995eeb3ddab3f0c05e8e1a15ca",
+    "scripts/check-slither-review.py": "8ff58f546dd243734960397271332e147bb6abbaf0c07c3e1f97268bf328a43e",
+    "tests_python/test_function_reference.py": "9cea757d716f039a4bceb3b162709267def17ac2c9f800a582f6b328675a0d76",
+    "tests_python/test_operator_reference.py": "55b28305525db87a544d7c7b5f9bbfcbff7f6bcacb12a0b8a785666b87c58c01",
+    "tests_python/test_slither_review.py": "0eaa0ac9b218771eb518dc5de64ca68f62ed24719a4b233360cc8365e86db54e",
+    "tests_python/test_source_inventory.py": "4b16bae3c47f18078557a22934e79db74f05a410d52e1fdd655ceb8aa0171d43"
+  }
+}

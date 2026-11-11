@@ -1,0 +1,28 @@
+[
+  {
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZV4SpotPriceFeed._eth(ZZZV4SpotPriceFeed.Config) (src/ZZZV4SpotPriceFeed.sol#95-105) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || s == 0 || s > u || u > block.timestamp || block.timestamp - u > c.maxETHAge (src/ZZZV4SpotPriceFeed.sol#99-100)\n",
+    "fingerprint": "7dcd61890abef3adb54d3b8f8912b1c40863b775b903c3540028ca1b8da93aea",
+    "referenced_paths": [
+      "src/ZZZV4SpotPriceFeed.sol"
+    ],
+    "disposition": "accepted_risk",
+    "rationale": "Timestamp comparisons deliberately reject future or stale original ETH/USD observations; maxETHAge is constructor-fixed, positive and at most one day. The original startedAt/updatedAt are propagated rather than replacing them with the read time. Admission and later reads still depend on reviewed chain time/liveness and upstream behavior, and exact-boundary inclusion can safely reject an operation. These timestamps DO NOT establish a native-v4 last-trade time, TWAP, ZZZ market freshness, or resistance to spot manipulation. The user-selected SPOT reference retains that economic exposure; two readers of the same pool are not independent ZZZ confirmation. No live source or recommended window is qualified by this internal review.",
+    "review_scope": "Individually reassessed current standalone adapter and exact detector context; no old source findings relabeled. Internal review, not independent approval."
+  },
+  {
+    "check": "assembly",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZV4SpotPriceFeed._read(address,bytes,uint256) (src/ZZZV4SpotPriceFeed.sol#65-74) uses assembly\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#67-70)\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#73)\n",
+    "fingerprint": "4e2553d1e943ea00aad4fe6eb0f346ec88a11afbb32be0321d1e9101bf73ee6e",
+    "referenced_paths": [
+      "src/ZZZV4SpotPriceFeed.sol"
+    ],
+    "disposition": "informational",
+    "rationale": "The two memory-safe assembly blocks implement bounded zero-value STATICCALL and an exact ABI-length return copy. The private callers supply only fixed 32/128/160-byte expected outputs; no external user controls size. The first call copies no returndata, then checks success and exact returndatasize before allocating bytes and copying exactly that bounded length. Input memory is an already-allocated bytes payload; no storage write, delegatecall, approval, ETH transfer or arbitrary executor is exposed. Targets are constructor-reviewed runtime-pinned dependencies, and their core/decimal bindings are rechecked. The fixed 150k per-subcall ceiling is not proof that arbitrary dependencies fit the outer Oracle source-gas budget or that proxy implementations are immutable; dependency/gas/market qualification remains required.",
+    "review_scope": "Individually reassessed current standalone adapter and exact detector context; no old source findings relabeled. Internal review, not independent approval."
+  }
+]

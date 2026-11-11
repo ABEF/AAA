@@ -1,5 +1,36 @@
 # AAA / ZZZ PoPL project instructions
 
+The [11 November project review](reports/whole-project-review-20261111/REVIEW.md)
+removes unreachable third-currency LP scans while preserving all concrete ABIs,
+storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
+return zero; royalty currencies and historical codecs remain separate. New
+runtime/source pins require explicit candidate/deployment review, not relabeling
+old profiles. The keeper now validates known simulation returns and rechecks
+generic-job deadline/day/cost after slow reads before intent/signing. ABI inputs
+are exact; indexer contract inventories reject duplicates before database work.
+Changing the ABI helper invalidates old source-pinned earnings checkpoints on
+consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
+Website source packaging/new-demo intents are corrected without changing
+historical replay, public null configurations or the shared Anvil-only signer.
+No live site/service/chain/journal or paused-heartbeat change occurs.
+The review lists unresolved spot-reference/venue coupling, service-only compound
+policy and release qualification; no financial guard was relaxed.
+
+
+The optional [pool-spot composite reader](docs/POOL_SPOT_PRICE_SOURCE.md) implements
+native-v4 ETH/fixed-ZZZ spot times reviewed ETH/USD. User explicitly chose spot
+for placement AND independent valuation; no TWAP is added. Placement already
+uses current main geometry/post-swap amounts. Prefer the largest qualifying
+external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
+does not prove independence or bidirectional depth. Keep two genuinely
+independent ZZZ paths; two copies of one pool with different ETH feeds do not
+satisfy that review. Core runtime/ABI/profile/economic guards are unchanged.
+The reader is optional/unconfigured, with no source admission, deployment,
+service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
+ages/depth, second ZZZ reference, ETH publication/liveness and operating
+qualification remain open. [Scope](reports/composite-spot-price-20261109/REVIEW.md).
+
+
 The local [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
@@ -288,10 +319,10 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the strict current [contribution3 review](reports/contribution-loss3-20261109/static-review.json):558records,
- 11individually reassessed contexts/547unique exact referenced-source reuse.
- Prior mint2(186/372), fee-flow532(15/517), exact-LP532(222/310),497 and earlier
- records remain source-scoped.
+- CI/check-slither-review selects the [current project review](reports/whole-project-review-20261111/static-review.json):541records,
+ 45individually reassessed contexts/496unique exact referenced-source reuse.
+ Prior spot-reader560(2/558), contribution3558(11/547), mint2, fee-flow and
+ earlier records retain their exact source scopes.
  Update default/full record together after relevant source changes.
 
 - Checkpoint1 is an implemented first milestone; general lifetime history remains open.

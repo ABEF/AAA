@@ -4,18 +4,20 @@ PoPL is an **undeployed development candidate; production NOT APPROVED**.
 Publishing source or passing scoped checks does not approve real funds.
 
 - [Current security model](docs/SECURITY.md) and [seven-workstream audit plan](docs/SECURITY_AUDIT_PLAN.md).
-- [Latest backend fee-integrity review](reports/backend-remediation-20261026/REVIEW.md)
-  and [source-scoped full audit](reports/full-audit-20261025/REVIEW.md).
-- [Current internal static dispositions](reports/production/slither-review.json):
-  actual399findings/47bindings, internal coverage PASS; not independent audit.
+- [Current review and remaining decisions](reports/whole-project-review-20261111/REVIEW.md)
+  and [source-scoped historical evidence](reports/README.md).
+- [Strict static-review selection](scripts/check-slither-review.py): its default
+  must match the current source. Historical finding counts are not a fresh audit.
 - [Sole security Todo](TODO.md#security--audit), [release approval](docs/RELEASE_CHECKLIST.md),
   [operator response](docs/OPERATOR_MANUAL.md) and [historical evidence index](reports/README.md).
 
-Holders cannot redeem LP principal. Direct governance can immediately change
-supported policy and approve trusted external custody; no timelock notice or
-forced custodian return is promised. Sealed implementations cannot be patched
-in place. External custody does not migrate NFT ownership/reward accounting,
-and permanent chain loss has no implemented canonical recovery.
+Holders cannot withdraw LP principal during ordinary operation. Direct governance
+can configure bounded policy, move/park both LP legs, or irreversibly return
+principal to NFT holders. There is no external custody-address exit or bridge.
+Paused governance emergency maintenance can bypass selected financial guards,
+so governance remains trusted with potential trading losses. Sealed core code
+cannot be patched in place; compatible pre-exit same-chain replacement is a
+separate authenticated process. Permanent chain loss has no implemented recovery.
 
 Actual dependencies, independent prices/routes, randomness, authorities,
 marketplace/services/operations and independent audit/remediation remain open.

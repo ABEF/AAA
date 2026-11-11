@@ -86,6 +86,41 @@ class IndexerStartupAtomicityTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             self.connections[-1].execute('SELECT 1')
 
+    def test_contract_inventory_rejects_nonlist_and_empty_before_resources(self):
+        destination=self.path.parent/'not-created'/'index.sqlite'
+        for contracts in (None,A,{},(),[],1):
+            with self.subTest(contracts=contracts),patch('indexer.monitor.sqlite3.connect') as connect:
+                with self.assertRaises(ValueError):
+                    Indexer(dict(self.config,contracts=contracts,database=str(destination)),self.chain)
+                connect.assert_not_called()
+                self.assertFalse(destination.parent.exists())
+
+    def test_contract_inventory_rejects_normalized_duplicates_before_resources(self):
+        destination=self.path.parent/'not-created'/'index.sqlite'
+        mixed='0x'+'aB'*20
+        for contracts in ([A,A],[mixed,mixed.lower()]):
+            with self.subTest(contracts=contracts),patch('indexer.monitor.sqlite3.connect') as connect:
+                with self.assertRaises(ValueError):
+                    Indexer(dict(self.config,contracts=contracts,database=str(destination)),self.chain)
+                connect.assert_not_called()
+                self.assertFalse(destination.parent.exists())
+
+    def test_rejected_duplicate_inventory_does_not_touch_existing_history(self):
+        self.seed();before=self.snapshot()
+        with patch('indexer.monitor.sqlite3.connect') as connect:
+            with self.assertRaises(ValueError):Indexer(dict(self.config,contracts=[A,A]),self.chain)
+            connect.assert_not_called()
+        self.assertEqual(self.snapshot(),before)
+
+    def test_valid_reordered_inventory_retains_existing_database_identity(self):
+        index=self.open(dict(self.config,contracts=[C,B,A]))
+        index.close()
+        reopened=self.open(dict(self.config,contracts=[A,C,B]))
+        try:
+            self.assertEqual(reopened.contracts,[A,C,B])
+            self.assertEqual(reopened.next_block,self.config['start_block'])
+        finally:reopened.close()
+
     def test_wrong_identity_preserves_schema_journal_cursor_and_history(self):
         self.seed()
         db = CONNECT(self.path)

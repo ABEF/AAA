@@ -1,0 +1,10 @@
+✔ demo build includes the complete configured read-profile module graph (19.3159ms)
+✔ development server allows every browser module for configured profiles (21.6633ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.3272

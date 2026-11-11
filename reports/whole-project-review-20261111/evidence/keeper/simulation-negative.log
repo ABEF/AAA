@@ -1,0 +1,288 @@
+test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) ... 
+  test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x') ... FAIL
+  test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x01') ... FAIL
+  test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x0000000000000000000000000000000000000000000000000000000000000002') ... FAIL
+  test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0xgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg') ... FAIL
+  test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output=None) ... FAIL
+test_valid_void_and_boolean_outputs_preserve_exact_fee_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_valid_void_and_boolean_outputs_preserve_exact_fee_intent) ... 
+  test_valid_void_and_boolean_outputs_preserve_exact_fee_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_valid_void_and_boolean_outputs_preserve_exact_fee_intent) (job=3) ... ERROR
+test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) ... 
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=0) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=3) ... ERROR
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=4) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=5) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=0) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=3) ... ERROR
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=4) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=5) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=0) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=3) ... ERROR
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=4) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=5) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=0) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=3) ... ERROR
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=4) ... FAIL
+  test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=5) ... FAIL
+
+======================================================================
+ERROR: test_valid_void_and_boolean_outputs_preserve_exact_fee_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_valid_void_and_boolean_outputs_preserve_exact_fee_intent) (job=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 78, in test_valid_void_and_boolean_outputs_preserve_exact_fee_intent
+    self.assertTrue(k.submit(name,signature,args,'output:valid'))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1771, in submit
+    data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1290, in _calldata
+    values[index] = self._asset(values[index])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1282, in _asset
+    return address(value)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+======================================================================
+ERROR: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1771, in submit
+    data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1290, in _calldata
+    values[index] = self._asset(values[index])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1282, in _asset
+    return address(value)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+======================================================================
+ERROR: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1771, in submit
+    data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1290, in _calldata
+    values[index] = self._asset(values[index])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1282, in _asset
+    return address(value)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+======================================================================
+ERROR: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1771, in submit
+    data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1290, in _calldata
+    values[index] = self._asset(values[index])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1282, in _asset
+    return address(value)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+======================================================================
+ERROR: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1771, in submit
+    data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1290, in _calldata
+    values[index] = self._asset(values[index])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1282, in _asset
+    return address(value)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+======================================================================
+FAIL: test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 61, in test_observation_requires_exact_canonical_boolean_word
+    with self.assertRaises(RpcError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 61, in test_observation_requires_exact_canonical_boolean_word
+    with self.assertRaises(RpcError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0x0000000000000000000000000000000000000000000000000000000000000002')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 61, in test_observation_requires_exact_canonical_boolean_word
+    with self.assertRaises(RpcError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output='0xgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 61, in test_observation_requires_exact_canonical_boolean_word
+    with self.assertRaises(RpcError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_observation_requires_exact_canonical_boolean_word (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_observation_requires_exact_canonical_boolean_word) (output=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 61, in test_observation_requires_exact_canonical_boolean_word
+    with self.assertRaises(RpcError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x00', job=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output='0x0000000000000000000000000000000000000000000000000000000000000000', job=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output=None, job=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+======================================================================
+FAIL: test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent (tests_python.test_keeper_simulation_outputs.KeeperSimulationOutputTests.test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent) (output={'not': 'ABI'}, job=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_simulation_outputs.py", line 52, in test_void_jobs_reject_nonempty_malformed_or_nonstring_before_intent
+    with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RpcError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.390s
+
+FAILED (failures=17, errors=5)

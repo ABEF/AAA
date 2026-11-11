@@ -1,13 +1,18 @@
 # Security audit plan
 
-Current fresh source: **accounting7 / custody5 / portfolio2 / canonical adaptable-policy V6**.
+[Current review](../reports/whole-project-review-20261111/REVIEW.md) updates
+source/ABI/storage/static evidence and identifies remaining design/release gates.
+This is internal verification, not independent production approval.
+
+
+Current fresh source: **accounting7 / custody5 / portfolio2 / canonical mint2/V10**.
 [Collective holder return](HOLDER_COLLECTIVE_EXIT.md) replaces external principal
 and royalty custody exits. Governance permanently ends LP and pays actual
 ETH+ZZZ by shares; NFTs retain transfers, future royalties and earned rewards.
 No external recipient/bridge/return ingress remains. Whole-collection handoff
 is available only before exit. Earlier source-scoped evidence and accounting3
 service/inventory/website qualification remain historical to their original pins.
-See [profile6](POSITION_V7.md); new release qualification remains open.
+See [profile7](POSITION_V7.md); new release qualification remains open.
 
 
 Current threat model: native ETH/fixedZZZ, accounting7/directgovernance2/fee1/

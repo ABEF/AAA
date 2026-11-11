@@ -1,0 +1,15 @@
+test_uint_input_never_truncates_or_coerces_nonintegers (tests_python.test_abi.AbiTests.test_uint_input_never_truncates_or_coerces_nonintegers) ... FAIL
+
+======================================================================
+FAIL: test_uint_input_never_truncates_or_coerces_nonintegers (tests_python.test_abi.AbiTests.test_uint_input_never_truncates_or_coerces_nonintegers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_abi.py", line 36, in test_uint_input_never_truncates_or_coerces_nonintegers
+    with self.assertRaises(ValueError):word(DeceptiveDecimal('1'),'uint256')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

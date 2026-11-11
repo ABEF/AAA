@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
-import {IZZZAccess, IZZZOracle, IZZZVault, IZZZPools, IZZZFees, IZZZLiquidity, IZZZStrategy} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZOracle, IZZZVault, IZZZPools, IZZZLiquidity, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 
@@ -10,9 +10,7 @@ interface IPricingVault { function migrationBudget() external view returns (addr
 interface IPricingEntry {
     function pricingContext(uint256,bytes32,uint256,uint256) external view returns (bool);
 }
-interface IPricingAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
 interface IPricingBudget {
-    function compositionEpoch(uint256) external view returns(uint64);
     function contributionLossBps() external view returns(uint16);
     function lastCompound(uint256) external view returns(uint64);
     function compoundInterval(bytes32) external view returns(uint32);
@@ -193,22 +191,6 @@ contract ZZZContributionPricing {
         basis.limits = uint32(c.maxSlippageBps) | (uint32(cap) << 16);
         _mark(c.key.currency0); _mark(c.key.currency1);
     }
-    function _historicalMarks(uint256 bucket) private {
-        if (bucket == 0) return;
-        // Before the first custody composition, compound belongs only to the
-        // already marked current pair. Unrelated global reward assets cannot
-        // be this bucket's historical principal backing.
-        IPricingBudget budget = IPricingBudget(IPricingVault(access.module(Ids.VAULT)).migrationBudget());
-        if (budget.compositionEpoch(bucket) == 0) return;
-        IPricingAssets admitted = IPricingAssets(access.module(Ids.REWARDS));
-        uint256 count = admitted.assetCount();
-        if (count > 33) revert InvalidState();
-        for (uint256 i; i < count; ++i) {
-            address token = admitted.assets(i);
-            if (token == basis.token0 || token == basis.token1) continue;
-            if (IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0) _mark(token);
-        }
-    }
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
     /// quote can replace this original-source value or LP-pair price basis.
     /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.
@@ -227,7 +209,6 @@ contract ZZZContributionPricing {
         lowerUSD = Math.mulDiv(amount,m.lower,m.scale);
         basis.lowerInput = lowerUSD;
         basis.upperInput = Math.mulDiv(amount,m.upper,m.scale,Math.Rounding.Ceil);
-        _historicalMarks(IZZZVault(access.module(Ids.VAULT)).poolBucket(pool));
     }
     /// @dev Existing Vault ABI carries both bounded raw amounts in one word:
     /// low128=amount0, high128=amount1. This is not a supplied USD claim.
@@ -243,7 +224,6 @@ contract ZZZContributionPricing {
             basis.lowerInput = _pairValue(a0,a1);
             basis.upperInput = _upper(basis.token0,a0) + _upper(basis.token1,a1);
             if (inputUSD != basis.lowerInput) revert InvalidAmount();
-            _historicalMarks(bucket);
         }
         // A callback cannot adopt a later, wider governance/venue policy.
         // Even a tightening during this operation requires a fresh review.
@@ -297,18 +277,11 @@ contract ZZZContributionPricing {
         ++basis.phase;
         return nav(bucket);
     }
+    /// @notice Compatibility read: fresh principal and LP reserves use only
+    /// native ETH/fixed ZZZ, so there is no foreign-currency compound add-on.
+    /// Current pair compound is already included by its actual release/mark.
     function historicalValue(uint256 bucket) public view returns(uint256 value) {
-        IPricingBudget budget = IPricingBudget(IPricingVault(access.module(Ids.VAULT)).migrationBudget());
-        if (budget.compositionEpoch(bucket) == 0) return 0;
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(access.module(Ids.VAULT)).group(bucket).poolId);
-        IPricingAssets admitted = IPricingAssets(access.module(Ids.REWARDS));
-        uint256 count = admitted.assetCount(); if (count > 33) revert InvalidState();
-        for (uint256 i; i < count; ++i) {
-            address token = admitted.assets(i);
-            if (token == c.key.currency0 || token == c.key.currency1) continue;
-            uint256 amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token);
-            if (amount != 0) value += basis.phase != 0 && basis.bucket == bucket ? _lower(token,amount) : oracle.value(token,amount);
-        }
+        return 0;
     }
     function _putUnchanged() private view {
         if (IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(basis.pool) != basis.putSpot) revert Slippage();
@@ -330,10 +303,6 @@ contract ZZZContributionPricing {
         external onlyBudget returns(uint256 issued,uint256 netUSD) {
         if (basis.phase != 4 || basis.bucket != bucket || basis.lowerInput != inputUSD || basis.limits != limits ||
             uint16(limits) > 1000 || uint16(limits >> 16) > 1000) revert InvalidState();
-        // Previously zero old-currency compound can first arrive during fee
-        // synchronization. Mark it only for incumbent historical backing now;
-        // never overwrite a starting mark or count it as newly deployed LP.
-        _historicalMarks(bucket);
         _putUnchanged(); bytes32 hash = _unchanged();
         if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
@@ -344,7 +313,7 @@ contract ZZZContributionPricing {
         // idle/compound belongs in NAV, never in the marginal deployment test.
         if (netUSD < Math.mulDiv(basis.upperInput,10000-uint16(limits),10000) ||
             netUSD < required || deployed-incumbentDeployed < required) revert Slippage();
-        issued = supply == 0 ? netUSD : Math.mulDiv(supply,netUSD,incumbentNAV+historicalValue(bucket));
+        issued = supply == 0 ? netUSD : Math.mulDiv(supply,netUSD,incumbentNAV);
         if (issued == 0 || supply+issued > 1e36) revert InvalidAmount();
         emit ContributionVerified(basis.nft,bucket,basis.lowerInput,basis.upperInput,
             deployed-incumbentDeployed,netUSD,basis.putSpot,hash);

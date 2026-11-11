@@ -140,11 +140,15 @@ contract ContributionPriceSecurityTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),0);assertFalse(oracle.contributionPricing().active());
     }
     function testFundedClaimsRemainAvailableWhenPricingFails() public {
-        uint256 id=activatedPosition();venue.setFees(100,0);vault.collectFees(vault.nftBucket(id),block.timestamp+100);
+        uint256 id=activatedPosition();venue.setFees(100,100);vault.collectFees(vault.nftBucket(id),block.timestamp+100);
         primary.set(0,block.timestamp,block.timestamp);
         vm.expectRevert();oracle.price(address(t1));
-        uint256 before=t1.balanceOf(alice);vm.prank(alice);uint256 paid=rewards.claim(id,address(t1));
-        assertGt(paid,0);assertEq(t1.balanceOf(alice),before+paid);
+        uint256 before=t1.balanceOf(alice);uint256 beforeETH=alice.balance;
+        assertEq(rewards.claimable(id,address(0)),90);assertEq(rewards.claimable(id,address(t1)),90);
+        vm.prank(alice);uint256 paid=rewards.claim(id,address(t1));
+        vm.prank(alice);uint256 paidETH=rewards.claim(id,address(0));
+        assertEq(paid,90);assertEq(paidETH,90);assertEq(t1.balanceOf(alice),before+paid);assertEq(alice.balance,beforeETH+paidETH);
+        assertEq(rewards.claimable(id,address(0)),0);assertEq(rewards.claimable(id,address(t1)),0);
     }
     function testUnrelatedCallerCannotOpenOrAdoptPriceSnapshot() public {
         ZZZContributionPricing guard=oracle.contributionPricing();

@@ -1,0 +1,696 @@
+[
+  {
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#212-234) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#230)\n",
+    "fingerprint": "70bafc396d1e8cc491bca212369d6819a403cb5ee05c1f9d6e857908a0781e25",
+    "disposition": "false_positive",
+    "rationale": "The native-v4 output recipient is the immutable constructor ledger, not a caller-controlled user. _convertV4 is reachable only through ledger-only/live/operating/nonReentrant convert; actual input/output/native deltas, governed/caller floors, exact approvals and final ledger payment success are checked. The comment-only converter edit does not introduce a recipient or transfer capability.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 0,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\tExternal call allowing reentrancy:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#193-194)\n\tBalance read before the call:\n\t- wrappedBefore = IERC20(wrapper).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#187)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(source).balanceOf(address(this)) != sourceBefore || IERC20(wrapper).balanceOf(address(this)) != wrappedBefore + output (src/base/ZZZRewardConverter.sol#196-197)\n\t\t- stale variable `wrappedBefore`\n\t- IERC20(wrapper).balanceOf(address(this)) != wrappedBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#205-206)\n\t\t- stale variable `wrappedBefore`\n",
+    "fingerprint": "3f578109f1e6ad4f536bf2f2bb63c2790f8f7ac17d97360c65b9a106bffda8b8",
+    "disposition": "false_positive",
+    "rationale": "wrappedBefore is deliberately a pre-swap baseline: the reviewed v3 router must return exactly the measured wrapper increase, then withdrawal must restore that balance. Ledger-only/nonReentrant convert, exact source debit, zeroed router allowance, reviewed route recheck, scoped native receiver and wrapper revalidation prevent this read from being an unlocked stale authorization balance. External token/router honesty remains an admitted dependency.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 1,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#212-234):\n\tExternal call allowing reentrancy:\n\t- output = v4Executor.execute(routeId,amount,minimum,deadline) (src/base/ZZZRewardConverter.sol#225)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#220)\n\tPossible stale balance used after the call in a condition:\n\t- output < minimum || IERC20(source).balanceOf(address(this)) != sourceBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#228-229)\n\t\t- stale variable `sourceBefore`\n\t- ! ok || address(this).balance != nativeBefore || IERC20(source).balanceOf(address(this)) != sourceBefore (src/base/ZZZRewardConverter.sol#231-232)\n\t\t- stale variable `sourceBefore`\n",
+    "fingerprint": "172a119259bb5cef598f9bd591e5fc0810fc23830f5ab652ae1d3ac7d50f5997",
+    "disposition": "false_positive",
+    "rationale": "sourceBefore in _convertV4 is deliberately retained across the fixed executor call to prove that the exact ledger contribution was spent and prefunds were untouched. The outer convert is ledger-only/live/operating/nonReentrant; exact allowance reset and native/source deltas are checked before and after payment to the immutable ledger. A changed balance reverts instead of becoming a new spend allowance.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 2,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\tExternal call allowing reentrancy:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#193-194)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#186)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(source).balanceOf(address(this)) != sourceBefore || IERC20(wrapper).balanceOf(address(this)) != wrappedBefore + output (src/base/ZZZRewardConverter.sol#196-197)\n\t\t- stale variable `sourceBefore`\n",
+    "fingerprint": "683745c979559de93954fb8940bb13d63d19dddd3df386d37ccae4698cdad8c9",
+    "disposition": "false_positive",
+    "rationale": "sourceBefore is an intentional exact prefund baseline across the v3 swap. The source is pulled exactly from immutable ledger, only amount is approved, allowance is reset, source balance must equal its original baseline and wrapper increase must equal returned output. The whole ledger-only conversion is nonReentrant; this is a postcondition, not authorization based on stale user funds.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 3,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\tExternal call allowing reentrancy:\n\t- IRewardWrapper(wrapper).withdraw(output) (src/base/ZZZRewardConverter.sol#202)\n\tBalance read before the call:\n\t- wrappedBefore = IERC20(wrapper).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#187)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(wrapper).balanceOf(address(this)) != wrappedBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#205-206)\n\t\t- stale variable `wrappedBefore`\n",
+    "fingerprint": "84d7d197c0313e7e00848c99814bbf428a8de690977ed593b0e983d63e43e45b",
+    "disposition": "false_positive",
+    "rationale": "The wrapper withdrawal must consume only the newly received wrapper amount and restore wrappedBefore while adding exactly output native ETH. Only the reviewed wrapper is allowed through receive during withdrawal; convert is ledger-only/nonReentrant, the gate is reset and wrapper code/proxy/18-decimal policy is rechecked before the exact immutable-ledger payout. The old balance is the required rollback postcondition.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 4,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#212-234):\n\tExternal call allowing reentrancy:\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#230)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#220)\n\tPossible stale balance used after the call in a condition:\n\t- ! ok || address(this).balance != nativeBefore || IERC20(source).balanceOf(address(this)) != sourceBefore (src/base/ZZZRewardConverter.sol#231-232)\n\t\t- stale variable `sourceBefore`\n",
+    "fingerprint": "b5a3a19d296c7e4cf8d5bf31a5d749ebba5950f4d774d944d4d18bea5c46f129",
+    "disposition": "false_positive",
+    "rationale": "The final sourceBefore comparison after the immutable-ledger ETH call proves that payment callbacks did not alter source prefunds. Outer convert remains nonReentrant and ledger-only; native balance must also return exactly to nativeBefore and failed payment reverts atomically. No mutable recipient or additional source approval is made during that callback.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 5,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLPPositionExecutor.close(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#286-296):\n\tExternal calls:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#291)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#293)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n\t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.primaryOfSecondary (src/ZZZLPPositionExecutor.sol#39) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor._main(uint256) (src/ZZZLPPositionExecutor.sol#86-88)\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- delete secondaryId[id] (src/ZZZLPPositionExecutor.sol#294)\n\tZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#109-120)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#94-107)\n\t- ZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#38)\n",
+    "fingerprint": "ce6d115291aedf4b32341aa1274379a6c7dc174231b6df22f279244667af46e0",
+    "disposition": "false_positive",
+    "rationale": "close is nonReentrant and callable only by the fixed currently sealed LiquidityManager. Each main/residual ID is checked against Vault ownership and the exact pool; typed PosM close/take actions send measured ETH and ZZZ only to the Vault. Scoped nativeSender/nativeReceived are reset per leg; after both closes the secondary mappings/count are cleared atomically. Nested callbacks cannot invoke another economic child operation. Intermediate read-only observations are not a separate execution authorization, and compromised admitted core/token dependencies remain outside this detector dismissal.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 6,
+    "referenced_paths": [
+      "src/ZZZLPPositionExecutor.sol"
+    ]
+  },
+  {
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLPPositionExecutor.collect(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#260-267):\n\tExternal calls:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#281)\n\tExternal calls sending eth:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#264)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#66)\n\tState variables written after the call(s):\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#266)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#278)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#73)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#37) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#55-57)\n",
+    "fingerprint": "dd37374b2063a70f4e3ce36c1b3f3cf00d049be41e136f40c39be2a95fee742e",
+    "disposition": "false_positive",
+    "rationale": "collect is nonReentrant and fixed-Manager-only, validates each actual Vault-owned position/pool, and uses typed zero-liquidity decrease plus TAKE_PAIR for both registered legs. nativeReceived is a scoped callback accumulator, reset and reconciled with actual ETH before fixed Vault transfer on each leg; the only accepted sender is the fixed PoolManager. Reentering collect/close/increase is blocked, and the later second-leg reset cannot authorize arbitrary custody movement.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 7,
+    "referenced_paths": [
+      "src/ZZZLPPositionExecutor.sol"
+    ]
+  },
+  {
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256).residual (src/ZZZContributionPricing.sol#154) is a local variable never initialized\n",
+    "fingerprint": "8a0b31262e61cb7ea09b7a2de9d23d39d97cb19938f45a941e3d551d8d0d5315",
+    "disposition": "false_positive",
+    "rationale": "residual is a uint256 initialized to Solidity zero by design. It receives the second position value only when secondaryId is nonzero; otherwise zero correctly represents no residual. The retained principal includes main, optional residual and attributed idle under the captured vector, with ceiling-rounded main floor and residual ceiling. No uninitialized pointer or omitted backing is introduced.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 8,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata._visualAttributes(NFTMetadataInput).number (src/ZZZNFTMetadata.sol#194) is a local variable never initialized\n",
+    "fingerprint": "f7ad778f811980c313953088b8bd47d5dbaf79f0848e71d077b47dfa5e13dc35",
+    "disposition": "false_positive",
+    "rationale": "number is an intentionally zero-initialized uint256 local. Each present color increments it before rendering Color 1, Color 2, etc; unrevealed traits return before this loop. The finite prepared artwork mask and eight-color loop bound the labels. There is no memory pointer or entitlement state dependent on an uninitialized value.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 9,
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget._beforeMove(uint256,bool).s (src/ZZZMigrationBudget.sol#238) is a local variable never initialized\n",
+    "fingerprint": "496a4f05e27bea29b9d43ba9aedefa9a242bd67173a48314465f852642a4ef8e",
+    "disposition": "false_positive",
+    "rationale": "Snapshot memory s starts as an all-zero value struct. _beforeMove explicitly sets bucket/source pool, captured loss/confirmation controls, price/scale/idle/value and policy fields before writing storage. Ordinary moves additionally set revision/replacement; emergency mode deliberately leaves those ordinary-only fields zero and _afterMove does not consult them in that mode. Nonzero value, bucket identity, compound inclusion and final controls are validated; an old snapshot is rejected.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 10,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256).p (src/base/ZZZRewardConverter.sol#167) is a local variable never initialized\n",
+    "fingerprint": "6d46ce7cd32a9736aaddb8c103972d1c096888be7a17f195f47a48d241ff0359",
+    "disposition": "false_positive",
+    "rationale": "RoutePolicy p intentionally stays zero only for the direct source==wrapper unwrap branch, which requires routeId zero and never reads p. Every v3-swap branch first loads an enabled source-matching route and validates its pinned router/factory/pool. Native-v4 returns through its separate path. The comment-only edit does not change that branch separation.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 11,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#358-363) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#360)\n",
+    "fingerprint": "53c4dcf6cabf56d53cf776615067a32fec87d185628b7a55a5697893c3dce61f",
+    "disposition": "false_positive",
+    "rationale": "Pools.get(poolId) is called for its reverting existence validation, not for a value consumed later. validateReservation is Vault-only, rejects zero pool/bucket and verifies that poolBucket is empty or already the same bucket. Discarding the PoolConfig is intentional; actual movement/configuration reads are performed by their separate validators.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 12,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata._ownedCollection(uint256) (src/ZZZNFTMetadata.sol#114-117) ignores return value by nft.ownerOf(id) (src/ZZZNFTMetadata.sol#116)\n",
+    "fingerprint": "e92acede96aaa1f68af19e66a4fd6121080e9db7c1ae925d8f1b639a2ea431c2",
+    "disposition": "false_positive",
+    "rationale": "_ownedCollection invokes the canonical NFT ownerOf solely to reject nonexistent token IDs before traits/valuation are read. It is a public metadata read, not owner authorization or a payment. The owner address is intentionally discarded; ERC721 ownerOf reverting behavior is the required existence assertion.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 13,
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata.currentValue(uint256) (src/ZZZNFTMetadata.sol#66-86) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId) (src/ZZZNFTMetadata.sol#78)\n",
+    "fingerprint": "02602fd511bc0d7665c683231da7c246d247bd00c69ca7ca1b5ea16b51cf7b71",
+    "disposition": "false_positive",
+    "rationale": "Metadata currentValue calls validateExitPrice for its reverting freshness/price-agreement guard, then values actual portfolio amounts, attributed idle and designated same-pair compound using Oracle values and actual shares/supply. It does not require the returned spot as a second price input. Unavailable active valuation remains an error/unavailable result, while valid terminal exit returns zero.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 14,
+    "referenced_paths": [
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#370-373) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault()).group(id).poolId) (src/ZZZMigrationBudget.sol#372)\n",
+    "fingerprint": "8734c6903df71b2607e25e88b9eaf7aa24418a9edf0c13b64da5fdf515bf54a1",
+    "disposition": "false_positive",
+    "rationale": "validateUnwind uses Strategy.validateExitPrice for validation by revert, not to size a swap. The return value is unnecessary. The sole bypass is the explicitly armed paused governance emergency check mask through Budget._skip(2); ordinary Vault-only unwinds retain this validation. Actual close outputs and custody/accounting proofs are separate checks.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 15,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.canonicalImport(uint256,bytes) (src/ZZZMembership.sol#80-92) should emit an event for: \n\t- (canonicalNFTs,canonicalEligible) = abi.decode(record,(uint256,uint256)) (src/ZZZMembership.sol#84) \n\t- (canonicalNFTs,canonicalEligible) = abi.decode(record,(uint256,uint256)) (src/ZZZMembership.sol#84) \n",
+    "fingerprint": "47a8e44b136b765a5f1c783eaf70b5dafbe44314b8aaffd98e4bfc53796ff56b",
+    "disposition": "informational",
+    "rationale": "canonicalImport header fields are internal sequential import bookkeeping, accepted only from the fixed canonical coordinator in state2 with the exact row cursor and bounded NFT/eligible counts. Later rows and canonicalValidate reconcile membership count; the coordinator emits RecordImported with slot/row and preserves exported bytes. A second Membership-specific header event is optional observability, not missing public configuration authorization.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 16,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.beginEmergency(uint256,uint8) (src/ZZZMigrationBudget.sol#96-100) should emit an event for: \n\t- emergencyBucket = bucket (src/ZZZMigrationBudget.sol#98) \n\t- emergencyChecks = checks (src/ZZZMigrationBudget.sol#98) \n",
+    "fingerprint": "d4c2335ad456a65c30476e275fe68a5f8241240f0cecccedff03fc9f586b8bdd",
+    "disposition": "informational",
+    "rationale": "beginEmergency arms a transient context only for fixed Migration during its already-validated paused governance operation; it records current governance and validates sealed/canonical/principal lifecycle. _executeManual must verify the manifest and endEmergency in the same transaction, otherwise rollback applies. Migration emits the final EmergencyRebalanced or ResidualConsolidated request/review hash. This is not a persistent unlogged user-adjustable numeric policy.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 17,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#295)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "fingerprint": "05736287c7853966e7072cbf0bc734f5112749d366988ee0e268a3993c13e425",
+    "disposition": "accepted_risk",
+    "rationale": "finish deliberately rechecks each frozen asset priceBounds/fingerprint after the complete contribution callbacks, so a changed source cannot weaken marginal LP/share proofs. The current admitted input/pool identities are only native ETH/fixed ZZZ; _mark deduplicates them, and a defensive hard list bound remains. These view calls cannot transfer custody, but a broken source intentionally rejects the contribution. Actual provider/gas qualification remains open.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 18,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#36-55) has external calls inside a loop: position = vault.group(bucket) (src/ZZZMembership.sol#44)\n",
+    "fingerprint": "e3dca5b281b45c5b9845216b14ec0ac85eb4451ca35f8ca1d30f3ce06b169f5f",
+    "disposition": "accepted_risk",
+    "rationale": "settleDust reads each actual Vault group before touching funded dust. It is canonical-economic/Vault-only, caps count by MAX_BUCKETS (four), skips noncustody statuses and flushes only the immutable two pair currencies. A bounded static read failure reverts atomically; removing it would lose the historical-bucket entitlement checkpoint. This does not claim all dependencies remain live.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 19,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#295)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "fingerprint": "81c8882a3959786264f0a835cc15e4aebe5ca7ff4f39e8495f52f30ea505be4a",
+    "disposition": "accepted_risk",
+    "rationale": "begin rechecks captured priceBounds and source fingerprints after the original-source transfer callbacks and before using the frozen basis. Only the authenticated Entry/Budget phase can reach it and assets are deduplicated fixed pair identities with a defensive bound. A source outage intentionally blocks a financial contribution instead of repricing its input. Source/gas availability still needs actual operating qualification.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 20,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#295)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+    "fingerprint": "5adec9c90069f4c0ab5dd25ec55613da15df8a534e36306051d3969ac9707858",
+    "disposition": "accepted_risk",
+    "rationale": "endEntry intentionally rechecks frozen priceBounds/fingerprints after Entry approval reset and final owner/balance callbacks, before deleting the basis. It is callable only by the bound Entry in phase5. Bounded repeated static source checks protect a later boundary than begin/finish; a failing dependency atomically rejects the whole operation rather than using an unverified fallback.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 21,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#36-55) has external calls inside a loop: config = pools.get(position.poolId) (src/ZZZMembership.sol#51)\n",
+    "fingerprint": "afc657e6859d2c53f9b38dfa21ca2d1b0a7bc85b1174d639f34d3375477bbce9",
+    "disposition": "accepted_risk",
+    "rationale": "settleDust uses Pools.get only for immutable admitted currency identities, avoiding live historical venue/oracle queries. At most four canonical buckets are inspected under Vault-only/canonical-economic authorization. Each funded currency flush is separately authenticated by Fees. A corrupt or unavailable bound registry remains a dependency failure, not a reason to guess pair identities.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 22,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#36-55) has external calls inside a loop: fees.flushDust(bucket,config.key.currency0) (src/ZZZMembership.sol#52)\n",
+    "fingerprint": "3786b5c491445e639ae50f84de78d7f8d102b7840931a2dace42569550aa332d",
+    "disposition": "accepted_risk",
+    "rationale": "The first per-bucket flushDust settles currency0 (native ETH) from already funded dust before membership changes. Fees enforces Vault/Membership caller, allowed custody status, nonReentrant accounting, zero-before-credit dust and solvency. The loop is bounded to four buckets and two fixed currencies; dropping it would let new membership absorb incumbent rounding dust. Token/core outages are not universally repairable.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 23,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#36-55) has external calls inside a loop: fees.flushDust(bucket,config.key.currency1) (src/ZZZMembership.sol#53)\n",
+    "fingerprint": "fe2e998b3d218358af6030b0c709656a5ca4c679bcb26628f88801bfca32bde0",
+    "disposition": "accepted_risk",
+    "rationale": "The second per-bucket flushDust settles the fixed ZZZ currency after currency0, still within the atomic Vault-only economic operation. Fees clears funded dust before credit, authenticates Membership and checks solvency under nonReentrant. The fixed two-currency/four-bucket bound replaces the removed obsolete foreign-compound scan. Failure rolls back both currency settlements and activation; no partial entitlement write is accepted.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 24,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#296-297)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+    "fingerprint": "d35aabe026fbe0b60da24b19e335902ce87906e3edbcf0d0c261b6e7cabf19f3",
+    "disposition": "accepted_risk",
+    "rationale": "endEntry compares current tokenDecimals scale with the frozen marked scale after all Entry callbacks; this is a bounded static consistency proof, not a state-changing token action. Native ETH/fixed ZZZ marks are deduplicated and the basis phase/Entry caller are exact. Removing this later recheck could accept a changed price policy/scale after execution; real source liveness/gas remain open.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 25,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#296-297)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "fingerprint": "29b46e4d4b3a4e19cc20dc6d2d16afece669f9df740125290c4126f22d9822e6",
+    "disposition": "accepted_risk",
+    "rationale": "begin checks current tokenDecimals against the originally marked scale after source movement callbacks. Authenticated Entry/Budget phases and fixed pair/input identities bound the loop; a changed scale causes rollback instead of accepting misvalued contribution amounts. This is distinct from source admission or a claim that the feed cannot fail.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 26,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#289-300) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#296-297)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "fingerprint": "7c3d70e501915988895aeac76f6d7bf22c617c813b63279148e25009840503a8",
+    "disposition": "accepted_risk",
+    "rationale": "finish checks the frozen scale together with exact lower/upper/source fingerprint before issuing NFT shares from net added NAV. Bounded view calls intentionally fail closed on changed data rather than silently repricing incumbents or the entrant. The removed historical foreign-compound scan does not remove either pair-scale check; actual gas/provider qualification is still separate.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 27,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#36-55) has external calls inside a loop: bucket = vault.bucketAt(i) (src/ZZZMembership.sol#43)\n",
+    "fingerprint": "cefc79d81616523d9754bacb4bfa6c5ec1b496280b7430467757209bf6806edc",
+    "disposition": "accepted_risk",
+    "rationale": "bucketAt is a bounded read of the canonical Vault inventory, not an attacker-supplied growing array. settleDust authenticates Vault and economic state, rejects count beyond MAX_BUCKETS and then validates each returned group/status before fixed-pair flush. Historical admitted buckets remain necessary for incumbent funded dust; dependency failure reverts rather than skipping their rights.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 28,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#212-234):\n\tExternal calls:\n\t- output = v4Executor.execute(routeId,amount,minimum,deadline) (src/base/ZZZRewardConverter.sol#225)\n\tState variables written after the call(s):\n\t- nativeSender = address(0) (src/base/ZZZRewardConverter.sol#226)\n",
+    "fingerprint": "ebacce9f024c7da70e40423faf8e2ab79f19920f597a0303af0c70cf06f8a716",
+    "disposition": "false_positive",
+    "rationale": "nativeSender is a tightly scoped receive gate set to the fixed v4 executor only for its typed execute call, then cleared before immutable-ledger payout. Outer convert is ledger-only/nonReentrant/live/operating; exact native/source deltas, route output and allowance reset are enforced. Resetting the required callback gate after the call is intentional, not a reentrant economic write.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 29,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\tExternal calls:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#193-194)\n\t- IRewardWrapper(wrapper).withdraw(output) (src/base/ZZZRewardConverter.sol#202)\n\tState variables written after the call(s):\n\t- nativeSender = address(0) (src/base/ZZZRewardConverter.sol#203)\n",
+    "fingerprint": "7dc76d125c6ccb94ba982d256f79c9a215644cc74417bcb597e27ef42523602f",
+    "disposition": "false_positive",
+    "rationale": "The wrapper-only native receive gate is cleared immediately after withdraw under ledger-only/nonReentrant convert. Wrapper code/proxy/18-decimal policy and exact wrapper/native deltas are revalidated before payout. Router callbacks happen before wrapper authorization is installed; the gate cannot persist as arbitrary ETH sender authority.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 30,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\tExternal calls:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#193-194)\n\tState variables written after the call(s):\n\t- nativeSender = wrapper (src/base/ZZZRewardConverter.sol#201)\n",
+    "fingerprint": "1e0e6e2c6b800b2537297c1b6f9eec9936a71c8a05511e1ae4138663160d09b2",
+    "disposition": "false_positive",
+    "rationale": "nativeSender=wrapper is assigned only after the reviewed v3 swap returned exact expected balance deltas and the minimum output was met. It authorizes only the next withdraw callback and is reset afterward. NonReentrant/ledger-only conversion and exact final balances prevent router callbacks from turning this later receive gate into another spend or configurable recipient.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 31,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#56-63):\n\tExternal calls:\n\t- IZZZRewards(access.module(Ids.REWARDS)).syncMembership(id) (src/ZZZMembership.sol#61)\n\tEvent emitted after the call(s):\n\t- MembershipActivated(id) (src/ZZZMembership.sol#62)\n",
+    "fingerprint": "b6e0dd8a26c31f5d4aeadc0ca3cf0295ce4c2209701ac56cb0f2acf4e5824953",
+    "disposition": "false_positive",
+    "rationale": "activate writes eligible=true and increments totalEligible before calling the fixed Rewards module. syncMembership is Membership-only/nonReentrant, requires prior zero weight and an existing reward bucket, sets exactly one equal share and checks total against Membership.totalEligible. Duplicate activation is rejected and economic canonical state is checked before/after. The final MembershipActivated event follows a validated synchronization; callback event ordering does not grant another reward share.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 32,
+    "referenced_paths": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.compoundReady(uint256) (src/ZZZContributionPricing.sol#117-128) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- block.timestamp < previous + budget.compoundInterval(p.poolId) (src/ZZZContributionPricing.sol#125)\n",
+    "fingerprint": "1dacba00a5cfdecf8f8a059a0173bba7f88c97cf9c295444498e32fe7737805d",
+    "disposition": "accepted_risk",
+    "rationale": "block.timestamp intentionally enforces the configured compound cooldown after max(lastCompound,lastRebalance), not randomness or price truth. Times are uint64-derived and interval governed within bounds; minor inclusion-time variation can change eligibility at the boundary but cannot bypass raw need/pending range/operations and later financial checks. The keeper in-range/threshold wait policy remains a separate service safeguard; this finding does not newly approve emergency or market behavior.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 33,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210) has a high cyclomatic complexity (15).\n",
+    "fingerprint": "6724ce89744579ba2356a227a0ecc640c23db7a71fe3c0ac235ca28018576482",
+    "disposition": "accepted_risk",
+    "rationale": "convert retains separate native-v4, reviewed-v3 and direct-wrapper branches because their trust/balance boundaries differ. The current comment-only changes leave nonReentrant/ledger authorization, stronger captured oracle/caller floors, exact allowances/deltas and final native ledger payout intact. Reducing cyclomatic count by merging these checks could obscure security boundaries; actual route/feed/wrapper/gas acceptance and independent audit remain open.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 34,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#212-234):\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#230)\n",
+    "fingerprint": "f9e7b5d102e366b2fe3c5be2a6fbe4aed352a694b31ed8114d445a051d4397a7",
+    "disposition": "informational",
+    "rationale": "_convertV4 deliberately uses a zero-calldata native call only to immutable ledger, under the outer nonReentrant ledger-only operation. Success and exact final native/source prefunds are checked. A rejecting ledger reverts the conversion; there is no governance-selected recipient, arbitrary calldata or rescue transfer.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 35,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#159-210):\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#207)\n",
+    "fingerprint": "4e0d2e792910d9a20197485d8bc0d6f6390f23f405a2304e941cee238ffe84b1",
+    "disposition": "informational",
+    "rationale": "The v3/direct-wrapper branch must return native ETH to immutable ledger, so a low-level zero-calldata call is intentional. convert is nonReentrant/ledger-only; failure and native baseline mismatch revert, while prior exact source/wrapper/output checks retain captured floors. Native-v4 does not depend on the optional wrapper branch.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 36,
+    "referenced_paths": [
+      "src/base/ZZZRewardConverter.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IPricingEntry (src/ZZZContributionPricing.sol#10-12)\n",
+    "fingerprint": "aa92cd3f0c98e62001fc995a590ebb20d4f0072e07b81e81cd1fa4b8e37ac19e",
+    "disposition": "informational",
+    "rationale": "IPricingEntry is a narrow cross-component read interface for the existing pricingContext signature, not an absent concrete implementation. ActivationEntry authenticates only the exact bound Pricing caller and active owner/pool/packed amounts/gross input. Explicit inheritance is optional compile-time organization; this detector does not reveal missing caller checks or grant an execution role.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 37,
+    "referenced_paths": [
+      "src/ZZZActivationEntry.sol",
+      "src/ZZZContributionPricing.sol"
+    ],
+    "prior_exact_context_not_reused": "reports/composite-spot-price-20261109/static-review.json"
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#20-310) should inherit from IPricingPortfolio (src/ZZZContributionPricing.sol#18)\n",
+    "fingerprint": "39dbd35a656a05a4ede18d116e3ee10824cc72eaf5e004f7fe1c2fe6ecc0597a",
+    "disposition": "informational",
+    "rationale": "PortfolioPolicy implements minimumMainBps(bytes32) with its governed/default value; IPricingPortfolio is a narrow read-only call interface kept in the Pricing compilation unit. Explicit inheritance is not required for external ABI compatibility and would not add permission validation. The caller still captures/checks concrete policy controls and runtime bindings.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 38,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol",
+      "src/ZZZPortfolioPolicy.sol"
+    ]
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#51-374) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#22-27)\n",
+    "fingerprint": "9944603e3bb298bef854994af770bf6721b048b7965be0373a4da77858e3be0b",
+    "disposition": "informational",
+    "rationale": "VaultCanonical implements the narrow validateOwner/validateHolderExit/validateContribution signatures read through IBudgetVaultValidation. Its concrete validators remain authenticated by the fixed Budget/Vault graph. The interface exists to limit cross-component coupling; not declaring inheritance does not omit a function, change authorization or accept arbitrary custody targets.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 39,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol",
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#39-432) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#23-26)\n",
+    "fingerprint": "b4b958685dcb67c509bedf64beed476c59d0d9e1367b0af10e738936973e0d64",
+    "disposition": "informational",
+    "rationale": "MigrationBudget implements maintenanceBucket and maintenancePrices queried through the two-method IPortfolioBudget during the fixed Manager operation. Those reads expose the captured active snapshot and validate its lifecycle; explicit interface inheritance is organizational only. This record is not evidence that a caller may arm or alter a maintenance snapshot.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 40,
+    "referenced_paths": [
+      "src/ZZZLiquidityManager.sol",
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigration (src/ZZZMigration.sol#30-369) should inherit from IEmergencyManifest (src/ZZZMigrationBudget.sol#16-19)\n",
+    "fingerprint": "82547afb80ccf60e40dd7f665626811e52b7068cdd97a2326abbdc98803f28d9",
+    "disposition": "informational",
+    "rationale": "Migration implements emergencyFingerprint and emergencyTarget for the fixed Budget manifest protocol. emergencyFingerprint rejects any caller other than the bound Budget and validates the current paused governance emergency; target comes from that typed request. IEmergencyManifest is a narrow dependency interface; explicit inheritance is not an additional security boundary.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 41,
+    "referenced_paths": [
+      "src/ZZZMigration.sol",
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#39-432) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#22-27)\n",
+    "fingerprint": "1cddb0ec183bc6879b89b1ef3a78a03988ea3728a72ad44547beafe2d256cb18",
+    "disposition": "informational",
+    "rationale": "MigrationBudget exposes the same validation signatures as IBudgetVaultValidation while delegating applicable checks to fixed VaultCanonical and Pricing. Its concrete methods retain onlyVault and active emergency context checks. Sharing callable signatures does not require explicit inheritance and is not permission to replace the bound component or bypass the dispatcher.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 42,
+    "referenced_paths": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#293) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "fingerprint": "c34402f4a7c9e9ad8cc641af2a7b1d944ca41d282c692df8fbcff2ad6f34236b",
+    "disposition": "accepted_risk",
+    "rationale": "_unchanged may cache assets.length as a microoptimization, but the fresh admitted list consists of deduplicated ETH/fixed ZZZ and has a defensive hard bound. The loop is view-only and makes no mutable list edits; every entry must be rechecked. No unbounded user list or security defect is established; frozen-source verification is not invalidated for an unmeasured tiny gas change.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 43,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#331) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "fingerprint": "eb01a3f02ee1e2c324763e46c5eb52b99158e727e337261307e4ad4ddbafaaea",
+    "disposition": "accepted_risk",
+    "rationale": "_clear deletes each captured mark then clears the list/basis at the successful end of the authenticated operation. The fresh list is deduplicated fixed ETH/ZZZ with a defensive bound and has no external calls while being cleared. Caching length is an optional small optimization, not a stuck-funds or reentrancy correction; no production gas claim is made.",
+    "review_scope": "Individually reassessed current context after direct source/call-path inspection; no automatic prior disposition reuse, including comment-only changed sources and nonidentical analyzer descriptions.",
+    "review_evidence": "static/current-45.json",
+    "current_context_index": 44,
+    "referenced_paths": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  }
+]

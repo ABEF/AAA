@@ -7,8 +7,6 @@ import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.so
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {IZZZProtocolPolicy} from "./interfaces/IZZZProtocolPolicy.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
-import {IPairVault} from "./ZZZMigrationBudget.sol";
-interface IHistoricalCompound { function historicalCompoundValue(uint256 id) external view returns (uint256); }
 interface IMetadataCollection {
     function ownerOf(uint256 id) external view returns (address);
     function royaltyRewards() external view returns (address);
@@ -36,7 +34,7 @@ struct NFTMetadataInput {
 }
 
 /// @notice Read-only renderer. It never changes custody or reward eligibility.
-/// Valuation fails closed while custody is external/parked or dependencies are
+/// Valuation fails closed while principal is parked or dependencies are
 /// unavailable; the NFT explicitly reports an unavailable marked LP value.
 contract ZZZNFTMetadata {
     IZZZAccess public immutable access;
@@ -84,7 +82,6 @@ contract ZZZNFTMetadata {
         a1 += position.idle1 + fees.compoundBalance(bucket, config.key.currency1);
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         uint256 nav = oracle.value(config.key.currency0, a0) + oracle.value(config.key.currency1, a1);
-        nav += IHistoricalCompound(address(IPairVault(address(vault)).migrationBudget())).historicalCompoundValue(bucket);
         return Math.mulDiv(nav, shares, supply);
     }
 

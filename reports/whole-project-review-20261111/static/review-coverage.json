@@ -1,0 +1,40 @@
+{
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "errors": [],
+  "analyzer_success": true,
+  "analyzer_error": null,
+  "analyzer_exit_code": 4294967295,
+  "expected_findings_exit_explained": "Slither reports findings with nonzero Windows return code; JSON success and source brackets, not process zero alone, establish analyzer completion.",
+  "findings": 541,
+  "current_individual_reviews": 45,
+  "unique_exact_reused": 496,
+  "solidity_sources": 60,
+  "configuration_sources": 3,
+  "current_by_detector": {
+    "arbitrary-send-eth": 1,
+    "reentrancy-balance": 5,
+    "reentrancy-eth": 2,
+    "uninitialized-local": 4,
+    "unused-return": 4,
+    "events-maths": 2,
+    "calls-loop": 11,
+    "reentrancy-benign": 3,
+    "reentrancy-events": 1,
+    "timestamp": 1,
+    "cyclomatic-complexity": 1,
+    "low-level-calls": 2,
+    "missing-inheritance": 6,
+    "cache-array-length": 2
+  },
+  "current_by_disposition": {
+    "false_positive": 20,
+    "informational": 10,
+    "accepted_risk": 15
+  },
+  "source_unchanged": true,
+  "compiler_invoked": false,
+  "normal_limits_relaxed": false,
+  "new_default_selected": false,
+  "production_approved": false
+}

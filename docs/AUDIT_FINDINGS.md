@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+The [current project review](../reports/whole-project-review-20261111/REVIEW.md)
+separates confirmed fixes, stale fixtures/docs, intentional compatibility and
+[decisions requiring review](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates).
+Earlier findings below retain their original source scope.
+
+
 The [9November double-check](../reports/today-change-review-20261109/REVIEW.md)
 fixes inventory phase/time consistency and exact integer-zero mint-family
 observations, adds funded Entry epoch mutation coverage, and corrects operator
@@ -79,7 +85,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The current strict pointer selects the [contribution3 static record](../reports/contribution-loss3-20261109/static-review.json):558records,11current-context dispositions and547unique exact referenced-source reuses, with unchanged matching rules. Prior mint2(186/372) retains its source scope. No installed environment changed.
+The strict pointer selects the [11November project record](../reports/whole-project-review-20261111/static-review.json):541records,45current-context dispositions and496unique exact referenced-source reuses. Prior spot560 and contribution3558 remain source-scoped; no installed environment is upgraded.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
 found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,

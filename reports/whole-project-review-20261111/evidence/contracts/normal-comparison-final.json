@@ -1,0 +1,1631 @@
+{
+  "before": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1",
+  "after": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-review-20261111-0acb123\\contracts\\normal-final-ea7e55d22b",
+  "baseline_input_sha256": "e63be7af631ac2f9af74542d8b188bb87c0acfc473f407a96abe2ce0708f58fa",
+  "final_input_sha256": "f1f5f545d6f13c9890a88ea9496ba459443a1ccaf495054f15b53367ad8c438b",
+  "final_output_sha256": "c0aaadc32cce0b725ed18fd457efb241c70e6aedcfe9a2c116e090a72909b2b6",
+  "changed_sources": [
+    "src/ZZZContributionPricing.sol",
+    "src/ZZZLPRewardConverter.sol",
+    "src/ZZZMembership.sol",
+    "src/ZZZMigrationBudget.sol",
+    "src/ZZZNFTMetadata.sol",
+    "src/base/ZZZRewardConverter.sol"
+  ],
+  "new_sources": [],
+  "removed_interface_artifacts": [
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingAssets",
+      "no_executable_runtime": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IPairAssets",
+      "no_executable_runtime": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IPairVault",
+      "no_executable_runtime": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "name": "IHistoricalCompound",
+      "no_executable_runtime": true
+    }
+  ],
+  "all_shared_abis_identical": false,
+  "all_concrete_abis_identical": true,
+  "interface_only_abi_changes": [
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingBudget",
+      "abi_identical": false,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    }
+  ],
+  "all_shared_semantic_storage_identical": true,
+  "objects": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "ICanonicalOwnerBinding",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "IContributionIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "IContributionRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "IExitIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 10438,
+      "runtime_after_bytes": 10438,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "name": "IActivationAssetsFactoryIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 5849,
+      "runtime_after_bytes": 5849,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 7480,
+      "runtime_after_bytes": 7480,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "name": "IActivationVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 9863,
+      "runtime_after_bytes": 9863,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 7877,
+      "runtime_after_bytes": 7877,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyHop",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalDeploymentConfiguration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalExactLPProfile",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalHelpers",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24400,
+      "runtime_after_bytes": 24400,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "name": "IZZZClaimLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 2885,
+      "runtime_after_bytes": 2885,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 2206,
+      "runtime_after_bytes": 2206,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingBudget",
+      "abi_identical": false,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "IPricingVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 23756,
+      "runtime_after_bytes": 21417,
+      "executable_runtime_identical": false
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyExecutionFingerprint",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyRegistryRevision",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "ILocalParkingState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "IResidualPolicyControl",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 18196,
+      "runtime_after_bytes": 18196,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeCutoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 9702,
+      "runtime_after_bytes": 9702,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 10223,
+      "runtime_after_bytes": 10223,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 8409,
+      "runtime_after_bytes": 8409,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "name": "ILPRegistryRevision",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "name": "IPortfolioRoutePolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24216,
+      "runtime_after_bytes": 24216,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionExecutionParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 20312,
+      "runtime_after_bytes": 20312,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 17178,
+      "runtime_after_bytes": 17178,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "IEmergencyOutput",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "IGuardedConsolidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "IManagerPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "INativePoolAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 22411,
+      "runtime_after_bytes": 22411,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "name": "IZZZMembershipOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 7389,
+      "runtime_after_bytes": 6565,
+      "executable_runtime_identical": false
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "IHolderExitNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "IHolderExitVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "IResidualCompletion",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "IResidualStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 23830,
+      "runtime_after_bytes": 23830,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPositionOperator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetVaultValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IConfirmationControl",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IEmergencyManifest",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "IMigrationIdle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24018,
+      "runtime_after_bytes": 23983,
+      "executable_runtime_identical": false
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "name": "IZZZNFTSuccessor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "name": "IZZZVRFCoordinator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24097,
+      "runtime_after_bytes": 24097,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "name": "INFTMintPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "name": "INFTPolicyHandoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 15912,
+      "runtime_after_bytes": 15912,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataCollection",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataRoyaltyWeight",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 19714,
+      "runtime_after_bytes": 19499,
+      "executable_runtime_identical": false
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 10373,
+      "runtime_after_bytes": 10373,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "name": "ICollectiveExitPhase",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "name": "INativeVenueBindings",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 10719,
+      "runtime_after_bytes": 10719,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioAssociation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioConsolidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 19315,
+      "runtime_after_bytes": 19315,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "name": "IPolicyNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 14746,
+      "runtime_after_bytes": 14746,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 2193,
+      "runtime_after_bytes": 2193,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 14517,
+      "runtime_after_bytes": 14517,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24218,
+      "runtime_after_bytes": 24218,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "name": "IExactLPRewardsParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 18609,
+      "runtime_after_bytes": 18609,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 1893,
+      "runtime_after_bytes": 1893,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyNFTOwner",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltySuccessor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24524,
+      "runtime_after_bytes": 24524,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintCollection",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintRoyaltyEnd",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 20835,
+      "runtime_after_bytes": 20835,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "name": "IRangeRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "name": "IV4FeeState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 23912,
+      "runtime_after_bytes": 23912,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 11164,
+      "runtime_after_bytes": 11164,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZV4SpotPriceFeed.sol",
+      "name": "ZZZV4SpotPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 8242,
+      "runtime_after_bytes": 8242,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "IVaultManualContext",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "IVaultPositionOperator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "IVaultResidualLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24544,
+      "runtime_after_bytes": 24544,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalMintRoyalty",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalRecoveryRoute",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 24312,
+      "runtime_after_bytes": 24312,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZCanonicalLedger.sol",
+      "name": "ZZZCanonicalLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPPools",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPVaultState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "ZZZExactLPRewardsCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZModule.sol",
+      "name": "ZZZModule",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardProxyAdmin",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardWrapper",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "name": "ZZZRewardConverter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZSeaDropToken.sol",
+      "name": "ISeaDropTokenState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/base/ZZZSeaDropToken.sol",
+      "name": "ZZZSeaDropToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IBurnable",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IPermit2Minimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IPoolManagerMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IPositionManagerMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IStateViewMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZAccess",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZActivationEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZBound",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZFees",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMigration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZPools",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "name": "IZZZVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalAccess",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalModule",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZNFTCanonical.sol",
+      "name": "IZZZNFTCanonicalState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZProtocolPolicy.sol",
+      "name": "IZZZProtocolPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "INonFungibleSeaDropToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDrop",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDropTokenMetadata",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RoutePool",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteRouter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 0,
+      "runtime_after_bytes": 0,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_before_bytes": 62,
+      "runtime_after_bytes": 62,
+      "executable_runtime_identical": true
+    }
+  ],
+  "normal_gates_pass": true,
+  "scope": "ABI/storage and compiler object comparison; no claim of full behavioral equivalence from bytecode size alone"
+}

@@ -116,10 +116,10 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/contribution-loss3-20261109/static-review.json)
-binds558 detector records to the contribution3 source:11 current contexts
-individually reassessed and547 unique exact referenced-source reuses, retaining
-their original transitive/upstream limits. Prior mint2(186/372) remains historical. Earlier fee-flow532 and royalty
+records19of47then-changed source pins. The [current strict default](../reports/whole-project-review-20261111/static-review.json)
+binds541detector records:45individually reassessed current contexts and496
+unique exact referenced-source reuses. Prior spot560, contribution3558 and
+mint2 records retain their original source/transitive limitations. Earlier fee-flow532 and royalty
 recovery474 records retain their own source scopes. The checker default
 is a real CI input, not just a documentation link. `SlitherReviewTests` checks its
 current source inventory/descriptions on every focused/full Python run.

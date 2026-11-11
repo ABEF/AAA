@@ -68,8 +68,12 @@ class Indexer:
         # Reject unsupported identities before opening files or connections.
         if self.chain>_SQLITE_MAX or self.start>=_SQLITE_MAX or self.max_reorg>=_SQLITE_MAX:
             raise ValueError('Indexer integer configuration exceeds supported SQLite bounds')
-        self.contracts=[address(a) for a in config['contracts']]
-        if not self.contracts: raise ValueError('At least one contract is required')
+        contracts=config['contracts']
+        if not isinstance(contracts,list) or not contracts:
+            raise ValueError('A nonempty contract address list is required')
+        self.contracts=[address(a) for a in contracts]
+        if len(self.contracts)!=len(set(self.contracts)):
+            raise ValueError('Duplicate contract addresses are not permitted')
         self.rpc=rpc or Rpc(config['rpc_urls'],self.chain)
         identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
             'parent_hash':self.start_parent_hash},sort_keys=True)

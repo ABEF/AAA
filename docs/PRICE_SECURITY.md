@@ -1,5 +1,12 @@
 # Price security and factual LP verification
 
+The user-approved [spot composite source](POOL_SPOT_PRICE_SOURCE.md) separates
+current-price placement from external-pool spot valuation times ETH/USD. It adds
+no TWAP and does not replace the two-independent-source requirement. Temporary
+reference manipulation remains possible; largest TVL is a screening preference,
+not source admission. Current core guards and operating limits remain.
+
+
 Fresh source uses accounting7/LP-allocation1, mint2/canonicalV10, maintenance3,
 confirmation3 and optional portfolio2. Historical pricing-V2 evidence retains
 its original source scope; unchanged pricing semantics do not upgrade old runtimes.
@@ -382,9 +389,11 @@ relaxed to save gas.
 
 ### Bounded inventory capacity
 
-The pricing companion has a defensive ceiling of 34 marked currencies. The
-current release accepts only ETH and fixed ZZZ as original inputs; both already
-belong to its admitted LP-reward inventory. Backend inventories remain bounded
-to 33 currencies, including native ETH. That bound is not permission to add a
-third activation asset or omit required historical backing. Any future expansion
-would require explicit compatible code, inventory and worst-case gas/RPC review.
+The current pricing basis only marks native ETH and the fixed ZZZ. Existing
+pair compound remains incumbent backing; foreign-principal scans were removed
+after proving ordinary and authenticated current canonical admission permit
+only these assets. `historicalValue`/`historicalCompoundValue` remain ABI-compatible
+zero reads. The defensive34-slot engineering ceiling is retained storage/code
+shape, not admission for32extra LP currencies. Historical33/34-currency workloads
+retain their original profiles; royalty-currency capacity is separate. Qualify
+actual pair-source/callback gas without reviving foreign principal.

@@ -1,0 +1,1477 @@
+{
+  "old": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\contribution3-20261109-793c8e0\\contract-agent\\normal-final-a864bb33d5",
+  "new": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1",
+  "settings_equal": true,
+  "original_source_count": 59,
+  "existing_source_changes": [],
+  "new_sources": [
+    "src/ZZZV4SpotPriceFeed.sol"
+  ],
+  "contracts": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ICanonicalOwnerBinding",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IContributionIdentity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IContributionRegistry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IExitIdentity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "IActivationAssetsFactoryIdentity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "IActivationVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyHop",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyLedger",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalController",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalDeploymentConfiguration",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalExactLPProfile",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalHelpers",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "IZZZClaimLedger",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingBudget",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingEntry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingPortfolio",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyExecutionFingerprint",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyRegistryRevision",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenIdentity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenRegistry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ILocalParkingState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IResidualPolicyControl",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeCutoff",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ILPRegistryRevision",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "IPortfolioRoutePolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionExecutionParent",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionPortfolioPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IEmergencyOutput",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IGuardedConsolidation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IManagerPortfolioPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "INativePoolAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioBudget",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "IZZZMembershipOrdinals",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IHolderExitNFT",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IHolderExitVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IResidualCompletion",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IResidualStrategy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioStrategy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPositionOperator",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetVaultValidation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IConfirmationControl",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IEmergencyManifest",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IMigrationIdle",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IPairAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IPairVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "IZZZNFTSuccessor",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "IZZZVRFCoordinator",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTMintPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTPolicyHandoff",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IHistoricalCompound",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataCollection",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataRoyaltyWeight",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ICollectiveExitPhase",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "INativeVenueBindings",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioAssociation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioConsolidation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioParent",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "IPolicyNFT",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationLiquidity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationOracle",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationPortfolio",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationRegistry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationStrategy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "IExactLPRewardsParent",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyNFTOwner",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyOrdinals",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltySuccessor",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintCollection",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintRoyaltyEnd",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "IRangeRegistry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "IV4FeeState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultManualContext",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultPositionOperator",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultResidualLiquidity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalMintRoyalty",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalPortfolio",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalRecoveryRoute",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultNFT",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultRewards",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "name": "ZZZCanonicalLedger",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPAssets",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPMembership",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPOrdinals",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPPools",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPVaultState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "ZZZExactLPRewardsCanonical",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "name": "ZZZModule",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardProxyAdmin",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardWrapper",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "ZZZRewardConverter",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "name": "ISeaDropTokenState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "name": "ZZZSeaDropToken",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IBurnable",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPermit2Minimal",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPoolManagerMinimal",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPositionManagerMinimal",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPriceFeed",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IStateViewMinimal",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZAccess",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZActivationEntry",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZBound",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZFees",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZLiquidity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMembership",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMigration",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZNFT",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZOracle",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZPools",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZRewards",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZStrategy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalAccess",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalModule",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyBudget",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyController",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyLiquidity",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyVault",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "name": "IZZZNFTCanonicalState",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "name": "IZZZProtocolPolicy",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "INonFungibleSeaDropToken",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDrop",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDropTokenMetadata",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteFactory",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RoutePool",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteRouter",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "abi_equal": true,
+      "creation_object_equal": true,
+      "runtime_object_equal": true
+    }
+  ],
+  "all_original_abi_runtime_creation_equal": true,
+  "adapter": {
+    "name": "ZZZV4SpotPriceFeed",
+    "runtime": 8242,
+    "creation": 11644,
+    "minimum_args": 544,
+    "runtime_margin": 16334,
+    "path": "src/ZZZV4SpotPriceFeed.sol",
+    "static_argument_bytes": 544,
+    "constructor_types": [
+      "tuple"
+    ],
+    "maximum_total_argument_bytes": 37508,
+    "dynamic_constructor_exact_argument_qualification_required": false,
+    "runtime_ok": true,
+    "creation_ok": true
+  },
+  "test_methods": 21,
+  "tests": [
+    {
+      "test": "testBadETHRoundsPricesTimesAndWideABIReject()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 738513
+        }
+      }
+    },
+    {
+      "test": "testConstructorRejectsMissingPinsAndUnreviewedConfig()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 293395
+        }
+      }
+    },
+    {
+      "test": "testConstructorRejectsWrongPoolKeyHooksDynamicFeeAndAgeOrFloor()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 437114
+        }
+      }
+    },
+    {
+      "test": "testConstructorRejectsWrongStateViewParentAndUnsupportedDecimals()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 603499
+        }
+      }
+    },
+    {
+      "test": "testDefaultSourceGasEnvelopeAndOracleAdmissionDisagreementAndFingerprint()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 19332865
+        }
+      }
+    },
+    {
+      "test": "testDirectionalProtocolFeeBoundsAndStaticFeeMustMatch()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 190884
+        }
+      }
+    },
+    {
+      "test": "testETHFreshnessBoundaryIsExactAndReadsCannotRefreshIt()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 161382
+        }
+      }
+    },
+    {
+      "test": "testEveryRuntimePinIsRechecked()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 154619
+        }
+      }
+    },
+    {
+      "test": "testExactDownwardCrossingTickAllowedButFalseTickRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 217850
+        }
+      }
+    },
+    {
+      "test": "testExactInvertedSpotAndOriginalETHTimestamps()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 152486
+        }
+      }
+    },
+    {
+      "test": "testFuzzExactPowerOfTwoPricesAcrossDecimals(uint8,uint8,uint8,uint32)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x2990c1e1000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000fd000000000000000000000000000000000000000000000000000000000000006d000000000000000000000000000000000000000000000000000000001dd4feff",
+            "gas": 2624633,
+            "stipend": 21660
+          },
+          "runs": 1000,
+          "mean_gas": 2599317,
+          "median_gas": 2603130,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "test": "testLiquidityAndSamePriceETHRoundChangeFingerprint()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 217994
+        }
+      }
+    },
+    {
+      "test": "testMalformedAndOversizedResponsesAndGasExhaustionRejectBoundedly()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 348267
+        }
+      }
+    },
+    {
+      "test": "testMalformedETHAndLiquidityRepliesCannotTruncate()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 175219
+        }
+      }
+    },
+    {
+      "test": "testNoAdministratorMethodsValueReceptionOrMutatingPriceRead()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 196460
+        }
+      }
+    },
+    {
+      "test": "testPinnedRuntimesAndChangedDecimalsOrStateViewParentReject()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 168167
+        }
+      }
+    },
+    {
+      "test": "testSmallAndLargeSqrtBranchesHaveKnownExactValues()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 238857
+        }
+      }
+    },
+    {
+      "test": "testSpotChangeNeedsNoTWAPAndDoesNotFreshenETH()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 173429
+        }
+      }
+    },
+    {
+      "test": "testUninitializedAndNoncanonicalSlot0Reject()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 196294
+        }
+      }
+    },
+    {
+      "test": "testZeroAndEighteenDecimalsNormalizeCorrectly()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 5094562
+        }
+      }
+    },
+    {
+      "test": "testZeroLiquidityAndOneUnitBelowFloorReject()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 270837
+        }
+      }
+    }
+  ],
+  "new_input_sha256": "e63be7af631ac2f9af74542d8b188bb87c0acfc473f407a96abe2ce0708f58fa",
+  "new_output_sha256": "a09ba2e6354dfbb51162dff58815d1213e9aa2d9e3d2d982d1898925dfbd7102"
+}

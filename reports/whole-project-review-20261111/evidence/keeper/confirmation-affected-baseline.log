@@ -1,0 +1,88 @@
+test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack) ... ERROR
+test_clear_ack_shape_and_bucket_inventory_are_strict_on_restore (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_clear_ack_shape_and_bucket_inventory_are_strict_on_restore) ... ok
+test_failed_observation_receipt_blocks_a_still_fresh_mature_window (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observation_receipt_blocks_a_still_fresh_mature_window) ... ok
+test_failed_observe_intent_save_preserves_clear_ack_and_never_signs (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observe_intent_save_preserves_clear_ack_and_never_signs) ... ERROR
+test_failed_rebalance_receipt_atomically_invalidates_its_old_jitter (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_rebalance_receipt_atomically_invalidates_its_old_jitter) ... ok
+test_foreign_candidate_on_first_recovered_read_requires_another_clear (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_foreign_candidate_on_first_recovered_read_requires_another_clear) ... ok
+test_fresh_confirmation_requires_an_explicit_compatible_outer_poll (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_fresh_confirmation_requires_an_explicit_compatible_outer_poll) ... ok
+test_full_reset_inventory_preserves_failed_transaction_for_reconciliation (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_full_reset_inventory_preserves_failed_transaction_for_reconciliation) ... ok
+test_genuine_raw_clock_retreat_requires_reset_and_discards_old_jitter (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_genuine_raw_clock_retreat_requires_reset_and_discards_old_jitter) ... ok
+test_postmaintenance_health_read_failure_does_not_clear_a_healthy_jitter (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_postmaintenance_health_read_failure_does_not_clear_a_healthy_jitter) ... ok
+test_recovered_empty_record_allows_new_samples_without_duplicate_clear (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_recovered_empty_record_allows_new_samples_without_duplicate_clear) ... ok
+test_restart_preserves_clear_ack_and_does_not_resend_a_known_empty_clear (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restart_preserves_clear_ack_and_does_not_resend_a_known_empty_clear) ... ok
+test_restarted_or_changed_confirmed_window_gets_new_jitter_not_old_expired_timer (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_restarted_or_changed_confirmed_window_gets_new_jitter_not_old_expired_timer) ... ok
+test_same_persistent_fault_after_clear_does_not_pay_for_another_reset (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_same_persistent_fault_after_clear_does_not_pay_for_another_reset) ... ok
+test_unrelated_compound_reserve_fault_does_not_reset_confirmed_window (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_compound_reserve_fault_does_not_reset_confirmed_window) ... ok
+test_unrelated_failed_harvest_receipt_preserves_confirmation_and_gas_accounting (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_failed_harvest_receipt_preserves_confirmation_and_gas_accounting) ... ok
+test_unrelated_pending_receipt_fault_preserves_journal_without_reset (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_pending_receipt_fault_preserves_journal_without_reset) ... ok
+test_unrelated_router_metadata_fault_does_not_invalidate_price_observations (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_unrelated_router_metadata_fault_does_not_invalidate_price_observations) ... ok
+test_foreign_record_after_healthy_empty_clear_still_requires_reset (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_foreign_record_after_healthy_empty_clear_still_requires_reset) ... ok
+test_initial_access_faults_reset_only_known_confirmation_windows (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_initial_access_faults_reset_only_known_confirmation_windows) ... ok
+test_initial_scheduling_clock_fault_resets_known_windows (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_initial_scheduling_clock_fault_resets_known_windows) ... ok
+test_malformed_raw_accounting_policy_requires_reset (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_malformed_raw_accounting_policy_requires_reset) ... ok
+test_malformed_raw_group_requires_reset (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_malformed_raw_group_requires_reset) ... ok
+test_pending_recovery_fault_does_not_apply_global_raw_resets (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_pending_recovery_fault_does_not_apply_global_raw_resets) ... ok
+test_raw_group_outage_discards_mature_jitter_before_recovery (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_raw_group_outage_discards_mature_jitter_before_recovery) ... ok
+test_raw_pool_policy_outage_requires_reset (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_raw_pool_policy_outage_requires_reset) ... ok
+test_unrelated_share_inventory_fault_preserves_confirmation (tests_python.test_keeper_confirmation_followup.KeeperConfirmationFollowupTests.test_unrelated_share_inventory_fault_preserves_confirmation) ... ok
+test_canonical_anchor_change_refuses_policy_record (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_canonical_anchor_change_refuses_policy_record) ... ok
+test_failed_read_retains_old_policy_explicitly_stale_without_secret_text (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_failed_read_retains_old_policy_explicitly_stale_without_secret_text) ... ok
+test_fresh_policy_binds_latest_anchor_runtime_and_helpers_without_candidate_or_oracle_reads (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_fresh_policy_binds_latest_anchor_runtime_and_helpers_without_candidate_or_oracle_reads) ... ok
+test_gap_zero_is_truthful_stop_in_health_and_preflight (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_gap_zero_is_truthful_stop_in_health_and_preflight) ... ok
+test_health_check_cannot_approve_only_schema_and_success_status (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_check_cannot_approve_only_schema_and_success_status) ... ok
+test_health_rejects_stale_future_and_malformed_policy_fields (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_rejects_stale_future_and_malformed_policy_fields) ... ok
+test_health_requires_budget_pin_binding_and_nonboolean_capability (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_health_requires_budget_pin_binding_and_nonboolean_capability) ... ok
+test_loaded_config_mutation_is_not_relabelled_as_fresh_policy (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_loaded_config_mutation_is_not_relabelled_as_fresh_policy) ... ok
+test_policy_future_timestamp_cannot_pass_preflight_observation (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_policy_future_timestamp_cannot_pass_preflight_observation) ... ok
+test_preflight_checks_budget_capability_under_cooldown_with_compounding_off (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_preflight_checks_budget_capability_under_cooldown_with_compounding_off) ... ok
+test_preflight_pending_does_not_read_new_confirmation_dependencies (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_preflight_pending_does_not_read_new_confirmation_dependencies) ... ok
+test_schema_alone_cannot_approve_confirmation_with_quality_zero (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_schema_alone_cannot_approve_confirmation_with_quality_zero) ... ok
+test_subcadence_gap_is_degraded_before_bucket_cooldown_elapses (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_subcadence_gap_is_degraded_before_bucket_cooldown_elapses) ... ok
+test_summary_cannot_echo_arbitrary_confirmation_state (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_summary_cannot_echo_arbitrary_confirmation_state) ... ok
+test_terminal_exit_suppresses_only_stop_or_cadence_reason_with_explicit_boolean (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_terminal_exit_suppresses_only_stop_or_cadence_reason_with_explicit_boolean) ... ok
+test_wrong_budget_binding_and_runtime_refuse_fresh_health (tests_python.test_keeper_confirmation_health.KeeperConfirmationHealthTests.test_wrong_budget_binding_and_runtime_refuse_fresh_health) ... ok
+
+======================================================================
+ERROR: test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1805, in submit
+    try:observed=uint_result(simulation)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 75, in uint_result
+    raise ValueError('Expected one ABI word')
+ValueError: Expected one ABI word
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_confirmation_incidents.py", line 135, in test_ambiguous_new_observe_atomically_invalidates_the_old_clear_ack
+    self.k.submit('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1807, in submit
+    raise RpcError('Malformed observation simulation output') from exc
+zzz_ops.errors.RpcError: Malformed observation simulation output
+
+======================================================================
+ERROR: test_failed_observe_intent_save_preserves_clear_ack_and_never_signs (tests_python.test_keeper_confirmation_incidents.KeeperConfirmationIncidentTests.test_failed_observe_intent_save_preserves_clear_ack_and_never_signs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1805, in submit
+    try:observed=uint_result(simulation)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 75, in uint_result
+    raise ValueError('Expected one ABI word')
+ValueError: Expected one ABI word
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_confirmation_incidents.py", line 145, in test_failed_observe_intent_save_preserves_clear_ack_and_never_signs
+    self.k.submit('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\monitor.py", line 1807, in submit
+    raise RpcError('Malformed observation simulation output') from exc
+zzz_ops.errors.RpcError: Malformed observation simulation output
+
+----------------------------------------------------------------------
+Ran 43 tests in 19.464s
+
+FAILED (errors=2)

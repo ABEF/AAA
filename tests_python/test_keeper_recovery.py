@@ -170,7 +170,7 @@ class RecoveryTests(unittest.TestCase):
         self.k.state['receipt_anchor']={'number':98,'hash':H,'timestamp':self.rpc.now,'nonce':6}
         self.k._validate_code_hashes=lambda:None
         with patch.object(self.k,'save',side_effect=OSError('disk full')),patch('subprocess.run') as signer:
-            with self.assertRaises(OSError):self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'harvest:1')
+            with self.assertRaises(OSError):self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'harvest:1')
             signer.assert_not_called();self.assertIsNotNone(self.k.state['pending'])
 
     def test_shutdown_during_preflight_stops_before_intent_and_signing(self):

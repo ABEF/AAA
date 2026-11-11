@@ -1,0 +1,58 @@
+✖ demo build includes the complete configured read-profile module graph (29.2292ms)
+✖ development server allows every browser module for configured profiles (13.3096ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143.9487
+
+✖ failing tests:
+
+test at tests\deployment-bundle.test.mjs:28:1
+✖ demo build includes the complete configured read-profile module graph (29.2292ms)
+  AssertionError [ERR_ASSERTION]: A configured deployment would request missing build modules
+  + actual - expected
+  
+  + [
+  +   'deployment-source10.js'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/deployment-bundle.test.mjs:31:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'deployment-source10.js' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\deployment-bundle.test.mjs:34:1
+✖ development server allows every browser module for configured profiles (13.3096ms)
+  AssertionError [ERR_ASSERTION]: A configured deployment would receive module404s
+  + actual - expected
+  
+  + [
+  +   'deployment-native.js',
+  +   'deployment-source10.js',
+  +   'deployment-source9-data.js',
+  +   'deployment-source9-prepare.js',
+  +   'deployment-source9.js'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/deployment-bundle.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'deployment-native.js', 'deployment-source10.js', 'deployment-source9-data.js', 'deployment-source9-prepare.js', 'deployment-source9.js' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,5 +1,16 @@
 # Verification evidence
 
+[11 November whole-project review](whole-project-review-20261111/REVIEW.md)
+covers the current contract cleanup, backend/keeper fixes, website source repairs,
+verification scopes and remaining decisions. Historical reports remain immutable.
+
+
+The [pool-spot composite review](composite-spot-price-20261109/REVIEW.md) covers
+the optional new reader and its focused verification. It changes no existing
+core runtime or live source configuration; earlier market observations remain
+dated evidence, not current admission.
+
+
 [Documentation consistency and review-export schema3](documentation-consistency-20261109/REVIEW.md)
 is maintenance evidence, not a new contract audit. Original archive1/2 identities,
 source-scoped reports and existing environments are preserved.

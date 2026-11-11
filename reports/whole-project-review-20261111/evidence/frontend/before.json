@@ -1,0 +1,12 @@
+[
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--test",
+      "tests/deployment-bundle.test.mjs"
+    ],
+    "exit_code": 1,
+    "log": "before-0.log",
+    "log_sha256": "380a8524560d67ea47845904ac55edcd35fc580dd016c3ffebceca457ea8da4b"
+  }
+]

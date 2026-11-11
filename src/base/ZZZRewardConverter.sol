@@ -21,7 +21,7 @@ interface IRewardProxyAdmin {
     function getProxyImplementation(address proxy) external view returns (address);
 }
 
-/// @notice Shared execution guards for separate LP and royalty converter instances.
+/// @notice Execution guards for the fixed-ledger LP reward converter.
 /// Exact input from one immutable bound ledger, exact
 /// native output to that same ledger; no arbitrary calls, recipient or rescue.
 /// Governance admits reviewed dependencies, not tickers. Runtime pins alone do

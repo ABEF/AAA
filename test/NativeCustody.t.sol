@@ -129,7 +129,9 @@ contract NativeCanonicalFundingTest is Test {
     }
     function testCanonicalSchemaNamesNativeAccountingVersion() public {
         MockAccess a=_access();ZZZCanonicalHandoff handoff=new ZZZCanonicalHandoff(address(a));
-        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8"));
+        assertEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_V9"));
+        assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ADAPTABLE_POLICY_V6"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_ROYALTY_OPENING_V7"));
         assertNotEq(handoff.SCHEMA(),keccak256("ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5"));
@@ -145,28 +147,48 @@ contract NativeCanonicalFundingTest is Test {
     }
 }
 
-/// TEST ONLY: includes native as the last item to exercise the full 33-asset
-/// finite bound, even though the ordinary deployed Rewards list adds ETH first.
-contract NativeHistoricalAssets {
-    uint256 public assetCount=33;
-    function setCount(uint256 count) external {assetCount=count;}
-    function assets(uint256 i) external pure returns(address){return i==32?address(0):address(uint160(i+1));}
-    function compoundBalance(uint256,address asset) external pure returns(uint256){return asset==address(0)?3:0;}
+/// TEST ONLY: fixed-pair component fixtures, not real market/feed qualification.
+contract NativePairValueOracle {
+    ZZZContributionPricing public immutable contributionPricing;
+    constructor(address controller) { contributionPricing=new ZZZContributionPricing(controller,address(this)); }
+    function price(address asset) external pure returns(uint256){return asset==address(0)?2000e18:1e18;}
+    function tokenDecimals(address) external pure returns(uint8){return 18;}
+    function value(address asset,uint256 amount) external pure returns(uint256){return amount*(asset==address(0)?2000:1);}
+}
+contract NativePairCompound {
+    mapping(uint256=>mapping(address=>uint256))public compoundBalance;
+    function set(address asset,uint256 amount)external{compoundBalance[1][asset]=amount;}
+}
+contract NativePairPrincipal {
+    function portfolioAmounts(uint256)external pure returns(uint256,uint256){return(2 ether,3e18);}
 }
 contract NativeMigrationBudgetTest is Test {
     Position private p;
     ZZZMigrationBudget public migrationBudget;
     mapping(address=>uint256) public totalIdle;
     function group(uint256) external view returns(Position memory){return p;}
-    function testHistoricalNativeCompoundIncludesFullThirtyThreeAssetBound() public {
-        MockAccess ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));MockPools pools=new MockPools();NativeHistoricalAssets assets=new NativeHistoricalAssets();
-        ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.REWARDS,address(assets));ac.bind(Ids.FEES,address(assets));
-        ac.bind(Ids.ORACLE,address(new NativeCustodyOracle(address(ac))));
-        PoolConfig memory c;c.key=PoolKey(address(100),address(200),3000,60,address(0));p.poolId=keccak256(abi.encode(c.key));pools.set(p.poolId,c);
-        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));migrationBudget=budget;
-        ac.bind(Ids.VAULT,address(this));budget.recordComposition(1);
-        assertEq(budget.historicalCompoundValue(1),3e18);
-        assets.setCount(34);vm.expectRevert();budget.historicalCompoundValue(1);
+    function testFixedPairNAVKeepsActualIdleAndReleasedCompoundWithoutForeignAddOn() public {
+        MockAccess ac=new MockAccess();ProtocolPolicyFixture.bind(address(ac));MockPools pools=new MockPools();
+        MockToken zzz=new MockToken(18);NativePairCompound fees=new NativePairCompound();
+        NativePairValueOracle oracle=new NativePairValueOracle(address(ac));
+        ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.FEES,address(fees));ac.bind(Ids.ORACLE,address(oracle));
+        ac.bind(Ids.LIQUIDITY,address(new NativePairPrincipal()));
+        PoolConfig memory c;c.key=PoolKey(address(0),address(zzz),3000,60,address(0));
+        p.poolId=keccak256(abi.encode(c.key));p.lpTokenId=1;p.status=PositionStatus.Active;
+        p.idle0=0.5 ether;p.idle1=7e18;pools.set(p.poolId,c);
+        ZZZMigrationBudget budget=new ZZZMigrationBudget(address(ac));migrationBudget=budget;ac.bind(Ids.VAULT,address(this));
+        (uint256 deployed,uint256 idle)=budget.nav(1);
+        assertEq(deployed,4003e18);assertEq(idle,1007e18);
+        fees.set(address(0),1 ether);fees.set(address(zzz),11e18);
+        assertEq(budget.historicalCompoundValue(1),0);assertEq(oracle.contributionPricing().historicalValue(1),0);
+        budget.recordComposition(1);
+        assertEq(budget.historicalCompoundValue(1),0);assertEq(oracle.contributionPricing().historicalValue(1),0);
+        // The ordinary Vault explicitly releases these existing pair reserves
+        // into attributed idle. NAV then includes them exactly once.
+        p.idle0+=fees.compoundBalance(1,address(0));p.idle1+=fees.compoundBalance(1,address(zzz));
+        fees.set(address(0),0);fees.set(address(zzz),0);
+        (uint256 afterLP,uint256 afterIdle)=budget.nav(1);
+        assertEq(afterLP,deployed);assertEq(afterIdle,idle+2011e18);assertEq(afterLP+afterIdle,7021e18);
     }
     function testNativeIdleBackingReadsBalanceWithoutERC20Call() public {
         MockAccess ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));MockPools pools=new MockPools();MockToken t=new MockToken(0);ac.bind(Ids.POOLS,address(pools));

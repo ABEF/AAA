@@ -1,0 +1,67 @@
+[
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--test",
+      "--test-reporter=tap",
+      "tests/current-demo-policy.test.mjs",
+      "tests/domain.test.mjs",
+      "tests/ui-state.test.mjs",
+      "tests/contribution-flow.test.mjs",
+      "tests/reward-display-audit.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-0.log",
+    "log_sha256": "adf04df09e897901e41b52a30b16f66d22984b459aef0f4e8ea292f57532a721"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "domain.js"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-1.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "app.js"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "preview-store.js"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-3.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "tests/current-demo-policy.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-4.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "tests/contribution-flow.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "demo-after-5.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

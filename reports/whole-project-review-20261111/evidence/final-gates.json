@@ -1,0 +1,46 @@
+[
+  {
+    "args": [
+      "scripts/generate-function-reference.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 913, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "scripts/generate-operator-reference.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"contracts\": 40, \"functions\": 913, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 966, \"ready_for_submission\": false}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "scripts/sync-project-todo.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Project Todo verified.\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "scripts/check-slither-review.py",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-review-20261111-0acb123\\static\\static-d96917a2cb\\slither.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-review-20261111-0acb123\\final_integrity.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"protected\": true, \"prior_report\": true, \"normal_sources\": true, \"evidence\": true, \"link_count\": 2699, \"missing_links\": [], \"signer_unchanged\": true, \"public_null\": true, \"secret_candidate_files\": [], \"branch\": \"main\"}\n",
+    "stderr": ""
+  }
+]

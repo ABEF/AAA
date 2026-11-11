@@ -1,0 +1,42 @@
+[
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--test",
+      "tests/deployment-bundle.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "after-0.log",
+    "log_sha256": "3ceeee84c8a20faf57cff17cd12630dd612348e77ca9c87ee4909ee548c9c058"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "build.mjs"
+    ],
+    "exit_code": 0,
+    "log": "after-1.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "server.mjs"
+    ],
+    "exit_code": 0,
+    "log": "after-2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "C:/Program Files/nodejs/node.exe",
+      "--check",
+      "tests/deployment-bundle.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "after-3.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

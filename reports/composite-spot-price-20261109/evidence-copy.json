@@ -1,0 +1,184 @@
+[
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1\\compiler-input.json",
+    "file": "contract/compiler-input.json.gz",
+    "decoded_sha256": "e63be7af631ac2f9af74542d8b188bb87c0acfc473f407a96abe2ce0708f58fa",
+    "stored_sha256": "9e158c3aa219f9454caa33ce60ed621ef5193e7e89d7c935fb4b8ebdcc9c1d92",
+    "gzip": true
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1\\compiler-output.json",
+    "file": "contract/compiler-output.json.gz",
+    "decoded_sha256": "a09ba2e6354dfbb51162dff58815d1213e9aa2d9e3d2d982d1898925dfbd7102",
+    "stored_sha256": "fc0d7050c99fe45f1e6134e55ec87883babb0fb0189de0add159c998ea88a47b",
+    "gzip": true
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1\\production-size-gates.json",
+    "file": "contract/production-size-gates.json",
+    "decoded_sha256": "5057bebd7f6f47bf9e8a8b6ca834907f514e390f0647f93cfb1207fb2ba66981",
+    "stored_sha256": "5057bebd7f6f47bf9e8a8b6ca834907f514e390f0647f93cfb1207fb2ba66981",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1\\START.json",
+    "file": "contract/START.json",
+    "decoded_sha256": "0394da0a0a4aab8498943794e71cf7d06cb796db73cc0599b4b7bb3d9ea945f8",
+    "stored_sha256": "0394da0a0a4aab8498943794e71cf7d06cb796db73cc0599b4b7bb3d9ea945f8",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\normal-final-4f5c9bf7d1\\solc-stderr.txt",
+    "file": "contract/solc-stderr.txt",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\START.json",
+    "file": "START.json",
+    "decoded_sha256": "041cd6400468d7cac08f99cc6d11bfae611aaf69eded8196563dbaa05c632efb",
+    "stored_sha256": "041cd6400468d7cac08f99cc6d11bfae611aaf69eded8196563dbaa05c632efb",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\CORE_EQUIVALENCE.json",
+    "file": "CORE_EQUIVALENCE.json",
+    "decoded_sha256": "c680649a6aa1b00025f2e7cf42f79791c90194b88084263d8ce80d09017a698e",
+    "stored_sha256": "c680649a6aa1b00025f2e7cf42f79791c90194b88084263d8ce80d09017a698e",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\TEST_VERIFICATION.json",
+    "file": "TEST_VERIFICATION.json",
+    "decoded_sha256": "767db73cb29c905df94d621ee916ba9e19494dae4eda33cf6de7c776a7fbc327",
+    "stored_sha256": "767db73cb29c905df94d621ee916ba9e19494dae4eda33cf6de7c776a7fbc327",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\START.json",
+    "file": "tests/initial/START.json",
+    "decoded_sha256": "f8c6061128884108e7d67e8e4712acf0a63ceff1a105fc38d470ee01c1c1ed7f",
+    "stored_sha256": "f8c6061128884108e7d67e8e4712acf0a63ceff1a105fc38d470ee01c1c1ed7f",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\VERIFICATION.json",
+    "file": "tests/initial/VERIFICATION.json",
+    "decoded_sha256": "b12cad49f46e3cbc3684db2debbfcbfde4a6ab8fe5661a9acf2dbf1952388f05",
+    "stored_sha256": "b12cad49f46e3cbc3684db2debbfcbfde4a6ab8fe5661a9acf2dbf1952388f05",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\forge.json",
+    "file": "tests/initial/forge.json",
+    "decoded_sha256": "d642971be3fbbd2a5033bbdbe3930acdef753f220de1c004cfdca5c4dad73855",
+    "stored_sha256": "d642971be3fbbd2a5033bbdbe3930acdef753f220de1c004cfdca5c4dad73855",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\forge.stderr.log",
+    "file": "tests/initial/forge.stderr.log",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\foundry.toml",
+    "file": "tests/initial/foundry.toml",
+    "decoded_sha256": "e7e17c9a6c4c54f1e93ca5e904b5d5f069d3180a85436353bb7c35f882cb0283",
+    "stored_sha256": "e7e17c9a6c4c54f1e93ca5e904b5d5f069d3180a85436353bb7c35f882cb0283",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe\\test\\PoolSpotPriceFeed.t.sol",
+    "file": "tests/initial/test/PoolSpotPriceFeed.t.sol",
+    "decoded_sha256": "5b944d3ffbd9c3bfdf12227006e7ba0c921fadfa839da5a39e5d58a7646cfb3a",
+    "stored_sha256": "5b944d3ffbd9c3bfdf12227006e7ba0c921fadfa839da5a39e5d58a7646cfb3a",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\START.json",
+    "file": "tests/boundary/START.json",
+    "decoded_sha256": "7c21583065c7b62b82eb5d568364de29afb4d37f1c87b6d4c67a7884a67041c1",
+    "stored_sha256": "7c21583065c7b62b82eb5d568364de29afb4d37f1c87b6d4c67a7884a67041c1",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\VERIFICATION.json",
+    "file": "tests/boundary/VERIFICATION.json",
+    "decoded_sha256": "8f38abfac04e44f5c592bcf1907e23f1739002faed16ef6954750708b587b550",
+    "stored_sha256": "8f38abfac04e44f5c592bcf1907e23f1739002faed16ef6954750708b587b550",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\forge.json",
+    "file": "tests/boundary/forge.json",
+    "decoded_sha256": "2fda4484a2fb0ffd65172211e52f4bf2fdee3e694dead12af58a830ac8537131",
+    "stored_sha256": "2fda4484a2fb0ffd65172211e52f4bf2fdee3e694dead12af58a830ac8537131",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\forge.stderr.log",
+    "file": "tests/boundary/forge.stderr.log",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\foundry.toml",
+    "file": "tests/boundary/foundry.toml",
+    "decoded_sha256": "e7e17c9a6c4c54f1e93ca5e904b5d5f069d3180a85436353bb7c35f882cb0283",
+    "stored_sha256": "e7e17c9a6c4c54f1e93ca5e904b5d5f069d3180a85436353bb7c35f882cb0283",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410\\test\\PoolSpotPriceFeed.t.sol",
+    "file": "tests/boundary/test/PoolSpotPriceFeed.t.sol",
+    "decoded_sha256": "55198064911ac21ebf307a36bdabe1eccd0f2fb5193f94de6628b4bb9c8cb124",
+    "stored_sha256": "55198064911ac21ebf307a36bdabe1eccd0f2fb5193f94de6628b4bb9c8cb124",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\START.json",
+    "file": "tests/harness-failure/START.json",
+    "decoded_sha256": "bd7c098fb39e6b3e0ffdfa28dbd96820067f7d6a31ad66f3c03ff90f7ef14491",
+    "stored_sha256": "bd7c098fb39e6b3e0ffdfa28dbd96820067f7d6a31ad66f3c03ff90f7ef14491",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\VERIFICATION.json",
+    "file": "tests/harness-failure/VERIFICATION.json",
+    "decoded_sha256": "902cb5f517b9a208f66121cf63f50a5c63e95d667f7fd9eb8d21a705c7e6e756",
+    "stored_sha256": "902cb5f517b9a208f66121cf63f50a5c63e95d667f7fd9eb8d21a705c7e6e756",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\forge.json",
+    "file": "tests/harness-failure/forge.json",
+    "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\forge.stderr.log",
+    "file": "tests/harness-failure/forge.stderr.log",
+    "decoded_sha256": "b731897e7e5e55315e9e351d5ba6baca59756e383d2f8090e589be46c59e29b0",
+    "stored_sha256": "b731897e7e5e55315e9e351d5ba6baca59756e383d2f8090e589be46c59e29b0",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\foundry.toml",
+    "file": "tests/harness-failure/foundry.toml",
+    "decoded_sha256": "4eef7cc0b80c957b305a9ed56c2cd59af40dedfc032d95b055dec651be85fc93",
+    "stored_sha256": "4eef7cc0b80c957b305a9ed56c2cd59af40dedfc032d95b055dec651be85fc93",
+    "gzip": false
+  },
+  {
+    "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-ff0d00cffb\\test\\PoolSpotPriceFeed.t.sol",
+    "file": "tests/harness-failure/test/PoolSpotPriceFeed.t.sol",
+    "decoded_sha256": "5b944d3ffbd9c3bfdf12227006e7ba0c921fadfa839da5a39e5d58a7646cfb3a",
+    "stored_sha256": "5b944d3ffbd9c3bfdf12227006e7ba0c921fadfa839da5a39e5d58a7646cfb3a",
+    "gzip": false
+  }
+]

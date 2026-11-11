@@ -47,12 +47,18 @@ def word(value: int | str, typ: str) -> str:
             raise ValueError('Expected bytes32')
         return value[2:].lower()
     if typ == 'bool':
-        if value not in (False,True,0,1): raise ValueError('Invalid boolean')
+        if type(value) not in (bool,int) or value not in (False,True,0,1):
+            raise ValueError('Invalid boolean')
         return f'{int(value):064x}'
     m = re.fullmatch(r'uint(\d*)',typ)
     if not m: raise ValueError(f'Unsupported static ABI type: {typ}')
     bits = int(m[1] or 256)
     if bits < 8 or bits > 256 or bits % 8: raise ValueError('Invalid integer width')
+    # A codec must not silently change the caller's requested amount. int()
+    # truncates floats and accepts booleans, bytes and custom numeric objects.
+    # Retain exact integers and the existing digits-only decimal-string form.
+    if type(value) is not int and (type(value) is not str or not re.fullmatch(r'[0-9]+',value)):
+        raise ValueError('Expected an integer or decimal string')
     n = int(value)
     if n < 0 or n >= 1 << bits: raise ValueError(f'Value exceeds {typ}')
     return f'{n:064x}'

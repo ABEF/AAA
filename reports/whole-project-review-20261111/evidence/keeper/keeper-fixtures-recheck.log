@@ -1,0 +1,23 @@
+test_broadcast_state_durable_before_signer (tests_python.test_keeper.KeeperTests.test_broadcast_state_durable_before_signer) ... ok
+test_live_command_binds_sender_and_removes_ambient_wallet_overrides (tests_python.test_keeper.KeeperTests.test_live_command_binds_sender_and_removes_ambient_wallet_overrides) ... ok
+test_timeout_preserves_ambiguous_state (tests_python.test_keeper.KeeperTests.test_timeout_preserves_ambiguous_state) ... ok
+test_submit_saves_fee_review_before_external_signer (tests_python.test_keeper_fees.KeeperSignedFeeTests.test_submit_saves_fee_review_before_external_signer) ... ok
+test_pending_intent_save_failure_never_invokes_signer (tests_python.test_keeper_recovery.RecoveryTests.test_pending_intent_save_failure_never_invokes_signer) ... ok
+test_every_keeper_test_module_is_selected (tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected) ... FAIL
+
+======================================================================
+FAIL: test_every_keeper_test_module_is_selected (tests_python.test_keeper_runner_inventory.KeeperRunnerInventoryTests.test_every_keeper_test_module_is_selected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_runner_inventory.py", line 27, in test_every_keeper_test_module_is_selected
+    self.assertEqual(set(RUNNER.MODULES), required)
+AssertionError: Items in the second set but not the first:
+'test_keeper_standalone_harvest_review'
+'test_keeper_late_lp_review'
+'test_keeper_review_retry'
+'test_keeper_confirmation_wakeup'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.130s
+
+FAILED (failures=1)

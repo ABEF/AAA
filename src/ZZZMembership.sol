@@ -3,7 +3,6 @@ pragma solidity 0.8.26;
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {IZZZRewards, IZZZNFT, IZZZVault, IZZZFees, IZZZPools} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IPairVault, IPairAssets} from "./ZZZMigrationBudget.sol";
 interface IZZZMembershipOrdinals {
     function mintedCount() external view returns (uint256);
     function tokenAtOrdinal(uint256) external view returns (uint256);
@@ -52,14 +51,6 @@ contract ZZZMembership is ZZZModule {
             PoolConfig memory config = pools.get(position.poolId);
             fees.flushDust(bucket, config.key.currency0);
             fees.flushDust(bucket, config.key.currency1);
-            if (IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0) {
-                IPairAssets assets = IPairAssets(access.module(Ids.REWARDS));
-                if (assets.assetCount() > 33) revert InvalidState();
-                for (uint256 j; j < assets.assetCount(); ++j) {
-                    address token = assets.assets(j);
-                    if (token != config.key.currency0 && token != config.key.currency1) fees.flushDust(bucket,token);
-                }
-            }
         }
     }
     function activate(uint256 id) external onlyModule(Ids.VAULT) economic {

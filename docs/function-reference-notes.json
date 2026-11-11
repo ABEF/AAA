@@ -4949,14 +4949,14 @@
           }
         },
         "historicalCompoundValue(uint256)": {
-          "purpose": "Value historical compound reserves attributable to incumbent bucket shares.",
+          "purpose": "Read the retained zero compatibility sentinel; current principal supports only native ETH and the fixed ZZZ, with no foreign-currency historical compound.",
           "access": "Anyone; read-only.",
-          "notes": "New contributors cannot claim these old reserves retroactively.",
+          "notes": "ABI and view mutability are retained for matching readers. This is not a sweep, payout, principal donation or hidden entitlement.",
           "inputs": {
             "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
           },
           "outputs": {
-            "0": "Value historical compound reserves attributable to incumbent bucket shares."
+            "0": "Always zero in this fresh release. Existing-pair LP, idle and designated compound are valued through the ordinary pair NAV."
           }
         },
         "idleValue(uint256)": {
@@ -6485,14 +6485,15 @@
           }
         },
         "historicalValue(uint256)": {
-          "purpose": "Value non-current-pair historical compound for incumbent backing; composition epoch zero returns zero.",
+          "purpose": "Read the retained zero compatibility sentinel; current principal supports only native ETH and the fixed ZZZ, with no foreign-currency historical compound.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Shared accounting bucket ID."
           },
           "outputs": {
-            "0": "Conservative historical compound USD value scaled by 1e18; excludes current pair and does not fund an entrant execution floor."
-          }
+            "0": "Always zero in this fresh release. Existing-pair LP, idle and designated compound are valued through the ordinary pair NAV."
+          },
+          "notes": "ABI and view mutability are retained for matching readers. This is not a sweep, payout, principal donation or hidden entitlement."
         },
         "finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
           "purpose": "Verify unchanged marks/spot/caps, actual marginal deployed LP, idle ceiling and retained-value floors; derive nondilutive share issuance and emit ContributionVerified.",
@@ -6592,7 +6593,7 @@
           "outputs": {
             "0": "Conservative original-source USD value, scaled by 1e18."
           },
-          "notes": "Only registry-bound Entry may begin; context must be idle and deployment live. Marks original source plus incumbent historical compounds. Existing maximumLossBps remains a distinct caller budget."
+          "notes": "Only registry-bound Entry may begin; context must be idle and deployment live. Freeze the original native-ETH/fixed-ZZZ source/pair basis before token callbacks. maximumLossBps remains a distinct caller budget."
         },
         "checkMaintenance(uint256,uint256,uint256,uint256,uint256,uint256,uint16,uint16,bytes32)": {
           "purpose": "Verify post-maintenance principal/idle using Budget starting USD vector,captured idle/loss limits and unchanged maintenance policy.",
@@ -8636,6 +8637,71 @@
             "1": "Total completed/reserved whole-collection count.",
             "2": "1000 fixed collection ceiling."
           }
+        }
+      }
+    },
+    "ZZZV4SpotPriceFeed": {
+      "purpose": "Optional immutable-by-interface native-v4 reference-pool spot times ETH/USD reader. No funds, execution, policy setters, TWAP or automatic pool selection. Two readers sharing one ZZZ pool are correlated sources.",
+      "functions": {
+        "SOURCE_CALL_GAS()": {
+          "purpose": "Read the per-upstream-call gas ceiling; the enclosing Oracle source budget remains independent.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "150000 per bounded static call; this is gas, not a service charge."
+          }
+        },
+        "config()": {
+          "purpose": "Read the entire fixed-by-interface source configuration and reference PoolKey.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Config tuple in ABI order: core/hash, StateView/hash, PoolKey/PoolId, fixed ZZZ/hash, ETH feed/hash, maxETHAge, minimumLiquidity, reviewHash. No setter exists."
+          }
+        },
+        "decimals()": {
+          "purpose": "Read the composite USD answer precision.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "18: USD18 per whole fixed ZZZ."
+          }
+        },
+        "ethFeedDecimals()": {
+          "purpose": "Read the constructor-captured ETH/USD feed precision.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "ETH source decimals0..18; rechecked on each read."
+          }
+        },
+        "poolId()": {
+          "purpose": "Read the constructor-validated reference PoolId.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "keccak256 of the complete static hookless native ETH/fixed-ZZZ PoolKey; not a liquidity-position NFT ID."
+          }
+        },
+        "zzzDecimals()": {
+          "purpose": "Read the constructor-captured fixed ZZZ precision.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Fixed ZZZ decimals0..18; rechecked on each read."
+          }
+        },
+        "latestRoundData()": {
+          "purpose": "Read native-v4 reference spot ETH/ZZZ multiplied by a reviewed ETH/USD round. Bounded reads authenticate runtime/decimals/core binding, exact slot0 fee/tick encoding and minimum current liquidity. Stale/future/incomplete ETH rounds and malformed replies reject. No TWAP, own-L subtraction, TVL ranking, market-depth authentication, last-trade freshness or source independence is proved.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Nonzero truncated80-bit snapshot hash of adapter/chain/pool/review plus raw slot0/liquidity and ETH round; synthetic, not monotonic provider rounds or complete cryptographic history.",
+            "1": "Positive USD18 per whole fixed ZZZ, at most1e36; spot is inverted from raw ZZZ per native ETH and normalized for token decimals.",
+            "2": "Original ETH round startedAt; not the current read time or a ZZZ trade timestamp.",
+            "3": "Original ETH round updatedAt; repeated reads cannot renew ETH freshness. v4 has no market last-trade timestamp in this reader.",
+            "4": "Same synthetic value as roundId."
+          }
+        }
+      },
+      "constructor": {
+        "purpose": "Deploy a read-only spot composite for one exact native ETH/fixed-ZZZ reference and ETH/USD feed. Does not admit the source or prove external liquidity/independence.",
+        "access": "Anyone may deploy; governance alone may admit it through the existing Oracle policy setter.",
+        "inputs": {
+          "0": "Config in exact ABI order: reviewed core+hash, StateView+hash, full PoolKey(currency0=native ETH0,currency1=fixed ZZZ,static fee<1e6,valid tickSpacing,hooks0), expectedPoolId, fixed ZZZ+hash, ETH/USD feed+hash, maxETHAge1..86400seconds, positive uint128 minimumLiquidity, nonzero reviewHash. No production values selected. Active L does not prove depth or exclusion of PoPL LP. Proxy/admin/source independence requires separate review."
         }
       }
     }

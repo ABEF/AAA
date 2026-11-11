@@ -1,0 +1,39 @@
+# Solidity review and fixed-pair cleanup
+
+Scope: current local source at main `0acb123` plus the preserved optional November9 spot-reader candidate. Read-only review preceded edits. No deployment, public transaction, service, existing Anvil, journal or website change.
+
+## Implemented, behavior preserving for supported states
+
+The fresh deployment can hold LP principal and designated LP compound only in native ETH and the single fixed ZZZ. The old third-currency compound scans were unreachable. They were removed from contribution price-mark capture, share-denominator computation, membership dust settlement and metadata valuation. Two existing public compatibility reads (`historicalValue` and `historicalCompoundValue`) remain ABI-identical `view` functions and return zero. Current pair/main/residual/idle/compound accounting remains intact. The historical 34-mark engineering bound and all canonical row formats/33-record engineering ceilings remain unchanged; none creates admission for a third LP currency. Royalty currencies are separate and were not restricted or removed.
+
+Evidence chain:
+
+- `base/ZZZExactLPRewardsCanonical.sol`: constructor starts ETH; `MAX_ASSETS=2`, `MAX_ERC20_ASSETS=1`; `_validateZZZ` matches Registry ActivationAssets' fixed token; canonical asset writes validate that same ZZZ and the exact two-entry ordering.
+- `ZZZRewards.sol:addAsset`: pre-seal only, one optional ERC20 and `_validateZZZ`.
+- `ZZZRewardsCanonical.sol:canonicalCapture/canonicalImport`: one or two assets only, native first, exact matching ordered Rewards identities; no wider historical LP book is admitted.
+- `ZZZActivationAssets.sol:configureZZZ` and `ZZZPoolRegistry.sol:configureNative`: one pre-seal fixed ZZZ; native ETH/that ZZZ only for every admitted pool.
+- `ZZZFeeController.sol:allocate`: bound Vault only, Active group, asset must be that admitted group's actual pair; this is the ordinary compound credit path.
+- `ZZZCanonicalHandoff.sol:prepareImport/freeze`: matching exact V10 schema and exact-LP profile; V8/V9 sources are not imported into this release. Compatible source fee rows derive from the source Rewards list. Canonical compatibility is not assumed from tuple shape alone.
+
+The current NativeCustody test incorrectly expected V8 from the current V10 handoff. Its original failure is preserved in `focused-fb8c0ee384`. The assertion now explicitly expects V10 and rejects V9/V8. Its unsupported synthetic 33-LP-currency fixture was replaced by a supported-pair nonzero valuation check: actual principal $4003, initial attributed idle $1007, and explicitly released pair compound $2011, giving $7021 total once, without a foreign add-on. Existing metadata checks separately exercise designated compound in reported NFT NAV. Converter comments now distinguish LP-to-ETH conversion from original-currency royalties; conversion code and optional v3/WETH capability are unchanged.
+
+## Review decisions and open operating risks
+
+1. **External spot reference must not be mutated by the operation it prices.** The optional reader identifies raw pool slot0 and active liquidity. ContributionPricing freezes reference price/round identity; Manager policy contexts also freeze both Oracle price fingerprints around swaps and LP mint/increase. Therefore using the destination pool itself as a reference can reject a valid increase when liquidity changes, and using a swap venue as reference can reject an operation when that swap moves slot0. This affects normal Manager balancing as well as entry; it is not limited to the displayed USD value. Review reference/venue disjointness and the desired source-stability contract before admission. Do not silently weaken callback-time price controls. Spot's economic manipulation exposure remains a user-selected tradeoff, not a TWAP substitute or a qualification result.
+2. **In-range/below-threshold compounding is a service policy.** Contract `compoundReady` consults cooldown-gated `Strategy.needsRebalance`; before the hard rebalance cooldown expires it can still be contract-eligible outside the main range/threshold. The user's last decision explicitly put the stronger wait in keeper code. Claims of protection against a compromised keeper must distinguish service behavior from contract enforcement. Financial/custody guards still apply.
+3. **Vault bytecode headroom remains only32 bytes.** This cleanup saves four other runtimes but does not create Vault capacity. Any new Vault feature still needs a separate size and security assessment.
+4. Actual ZZZ burn semantics, token behavior, independent prices, adequate market depth, VRF/SeaDrop, target gas and operating acceptance remain external qualification work. Code review does not establish them.
+
+## Verification boundaries
+
+The closed normal compiler includes all60 project Solidity sources and their99-source dependency closure, uses the existing Solidity0.8.26/Cancun/viaIR/Yulfalse/optimizer1 profile, and passes48 size gates. `normal-comparison-final.json` records exact compiler bindings and source-level differences; all concrete runtime-bearing contract ABIs and all shared semantic storage layouts are unchanged. One internal compile-only interface drops an unused getter, and four unused interface artifacts are removed. The first comparison's deliberately overbroad all-artifact ABI assertion failure is retained in `normal-comparison.json`; no production ABI changed.
+
+Focused execution is source-scoped synthetic/component evidence, not a live provider/market or deployment rehearsal. Accepted evidence covers52 distinct methods:30 affected methods pass after two test-fixture corrections in `focused-final-c71604bf5a/VERIFICATION.json`;22 NativeCustody/membership/metadata successes from `focused-6cdccb71d2/SELECTED_VERIFICATION.json` have individually unchanged current import closures, proved by `VERIFICATION-SUMMARY.json`. Never add overlapping attempts or the earlier nine contribution successes twice.
+
+The first38-method execution exposed seven stale-test failures, retained with complete offline traces. Six DirectEntry cases did not reach Entry: their native ETH fixture still used a generic ERC20 Registry helper which explicitly requires nonzero token code at currency0. The fixture now uses a dedicated, explicitly synthetic native-pair Registry, retaining actual Registry source/policy checks and bypassing public network pins only in test. Eight positive/negative direct Entry and six review-policy methods also pass under that repaired fixture. The seventh test funded100 raw ETH fees but tried to claim unfunded ZZZ; it now funds100 of each and proves exactly90 ETH plus90 ZZZ remain claimable with a broken ZZZ source, then both claims clear without double payment. Production guards and economics were not changed to accommodate tests.
+
+## Review coverage and limits
+
+Reviewed flow-by-flow: Access/ProtocolPolicy/Oracle/Pyth/optionalSpot, fixed contribution assets/Entry/factory, PoolRegistry, Vault/Migration/Budget/CustodyValidation, LiquidityManager/PositionExecutor/Balancer/Math/Strategy/PortfolioPolicy/Confirmation, FeeController/Compounder/Buyback, Rewards/exact-LP books/RewardsCanonical, Membership, ClaimRouter, RoyaltyRewards/exact royalty books/factory/code carriers, NFT/metadata/SeaDrop/helper, all canonical companions/coordinator, exact asset/token and pricing/venue libraries. Public interface definitions were checked against their consumers and the normal compiler.
+
+This is an architectural and adversarial source review with focused changed-path execution. It is not a new independent audit, exhaustive proof of every state or a fresh rerun of the unchanged complete test corpus. Artwork's large precomputed constant tables were checked through their call/quotas/identity boundaries and existing source commitments; their individual visual content was not re-audited. Historical compatibility codecs and services were not relabeled as current.

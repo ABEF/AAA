@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-11-09 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-11 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 29 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 30 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. Source publication, installed-service adoption and production qualification are separate milestones; this checklist does not approve deployment or rollout.
 
@@ -274,6 +274,7 @@ Custody, ownership and reward accounting.
   - [Deep cleanup review](reports/deep-cleanup-20261025/REVIEW.md) and [verification](reports/deep-cleanup-20261025/VERIFICATION.md): inherited royalty balance/error reuse, guardian and initial role logs, dependency-bound evidence and obsolete native/outage fixtures. 32 scoped Solidity methods,41 Python methods and37 normal gates pass; 75 production/265 AST inputs are explicit. No economic/authority/storage change; new logs and ABI metadata differences are documented. Actual release gates remain open.
   - [Independent day audit](reports/day-readiness-20261025/REVIEW.md) reconstructs all24 reachable Paris-day commits and independently checks reference35007db claims. No production Solidity change; native custody API/replay, contradictory saved evidence and two native-test sensitivity gaps are corrected. See exact fresh/reused scopes and open [release gates](reports/day-readiness-20261025/READINESS.md).
   - [Direct Entry3 removal](reports/direct-entry-v3-20261103/REVIEW.md) removes the redundant whole-input conversion catalogue, route management, receiver and Entry executor child. Fresh schema9 has20helpers; the7-field routing3 ABI retains pricing2/review-policy2 over accounting6. Vault balancing and separate earned LP/royalty conversions remain. Existing deployments/journals/sites are unchanged.
+  - Current fixed-pair proof removes unreachable foreign-LP scans/metadata calls, preserves concrete ABIs/storage and zero compatibility reads; six source changes and exact verification are in the [project review](reports/whole-project-review-20261111/REVIEW.md). Royalties and historical readers remain separate.
 
   </details>
 
@@ -313,7 +314,7 @@ Custody, ownership and reward accounting.
   <summary>Acceptance criteria</summary>
 
   - [Implementation and source-scoped verification](reports/price-security/VERIFICATION.md), [internal review](reports/price-security/REVIEW.md): distinct sources/runtime pins/declared independence, valid rounds/decimals/ages, bounded disagreement and no single-source/spot/peg fallback. Declared independence and matching answers do not prove market/provider independence.
-  - Existing nonzero historical compound keeps its initial mark. Newly discovered old-currency compound is first marked at the final checkpoint only for incumbent backing; it cannot pay the entrant loss floor. Preserve shares, old rewards, exact token/native spending and atomic failure rollback.
+  - Current fresh7 marks ETH/fixedZZZ only; legitimate existing-pair compound remains incumbent NAV, while unreachable foreign-LP scans are removed. Zero compatibility reads preserve matching readers. Verify no incumbent backing subsidizes the entrant and preserve all source/cap/actual-LP checks.
   - The original pricing-V2 extension used15 helper bindings with explicit versions and confirmed observations; fresh schema6 now requires17 separately pinned helpers. Preserve the exact historical evidence scope. Historical single-source profiles retain old deployment/epoch semantics. No website, existing local-chain/journal, public signer or monitor change follows.
   - The unchanged cold 12M gate initially failed at12,394,559 gas; skipping irrelevant epoch-zero historical scans repairs maximum-index activation to11,864,627 gas. This is local substituted-feed/venue evidence, not target-chain provider qualification. Historical epoch>0 checks remain.
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
@@ -500,6 +501,19 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-pool-spot-price-source"></a>
+
+- [x] **[Optional external-pool spot × ETH/USD valuation reader](docs/POOL_SPOT_PRICE_SOURCE.md)** - Implemented. Read-only native-v4 spot composite for the existing dual-source Oracle. Current main placement stays unchanged; exact pool/runtime/round/liquidity checks and original ETH timestamps bind the snapshot. No TWAP, automatic highest-TVL switch, source admission or environment change. Actual market/second-source qualification stays open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - See [focused implementation evidence](reports/composite-spot-price-20261109/REVIEW.md). Distinguish offline fixtures from live qualification; do not infer source independence from two adapters or TVL.
+  - Deploy with reviewed exact Config and qualify both source paths before governance admission. Replace reader and call setDualFeed after sealing for changed pool/source/age/depth settings; current 3% source agreement and execution/custody guards remain.
+  - The [current review](reports/whole-project-review-20261111/REVIEW.md) extends the documented freeze conflict to Manager balance/swap/mint/increase, including rebalancing/compound/buyback paths. Actual independent references and compatible execution venues remain unqualified.
+
+  </details>
+
 
 ## Backend
 
@@ -678,6 +692,7 @@ The data and services behind the app.
   - [Current-profile lifecycle reads](reports/market-lifecycle-20261104/COVERAGE.md): four new accounting6/portfolio2/custody5 Projection methods follow changing main/residual inventory, unavailable USD and restored reads. Three worker decision/restart/pending-first methods pass with inert RPCs and temporary journals. Not browser or deployed-service acceptance.
   - [Residual lifecycle audit](reports/residual-lifecycle-20261106/VERIFICATION.md): fresh6 verifies each leg from captured sqrt/ticks/actual L, aggregate, containment and stable/L-sensitive fingerprints. Contribution proof reuse preserves publicportfolio shape; historical5/raw price-outage claims remain. No RPC-honesty, running-service or website qualification is implied.
   - [Actual source9 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md) fixes the nonexistent Registry.ZZZ getter with the already authenticated Migration.currentZZZ binding. Actual source7 owners/raw claims/LP reads are checked against real runtimes; hosting/provider/history workload qualification remains open.
+  - [Current backend corrections](reports/whole-project-review-20261111/REVIEW.md) reject lossy ABI inputs and malformed/duplicate indexer inventories before side effects. Valid encoding/DB identities persist; no live indexer migration is performed. Checkpoint source pins require reviewed rebuild on consumer adoption.
 
   </details>
 
@@ -814,6 +829,7 @@ What holders see and use.
   - [Source9 website consumer](reports/source9-website-20261109/REVIEW.md): local schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 read/unsigned path, governed minima/metadata, exact approvals, pending LP ZZZ versus ETH, original royalty currencies, terminal principal and complete gas-aware claim plans. Synthetic offline handler/transport evidence does not qualify actual Entry3 traces, providers, wallets, hosts or site rollout. Public configs remain null and signer/live environments unchanged.
   - The [source9 actual unsigned follow-up](reports/source9-actual-entry-20261109/REVIEW.md) verifies ETH/ZZZ reviews and exact approvals against real fork state with optional activation gas2. Execution uses a separate owned-fork controller, not the browser signer. Shared signer bytes, public-null configurations, served sites and existing Anvil/journals remain unchanged; public wallet/production acceptance stays open.
   - [Mint2 website consumer](reports/v10-website-20261109/REVIEW.md): local schema5/source10/accounting7/mint2/V10/33-pin reads, unsigned ETH/ZZZ contributions and exact approvals, original-currency claims and checkpoint2 history. Synthetic current-handler/browser evidence; no actual market, OpenSea, wallet or operating acceptance. Source9/V9, null public configurations, signer and all running environments remain unchanged.
+  - Website source packaging includes the full source9/source10 module graph. New demo_policy2 intents use ETH/ZZZ/97% while legacy saved events retain original interpretation. Actual site/config/provider/wallet adoption remains open; see [current review](reports/whole-project-review-20261111/REVIEW.md).
 
   </details>
 
@@ -936,6 +952,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   - 25October research: the checked Robinhood catalog has an ETH/USD candidate but no ZZZ-named entry. Ask the ZZZ team for two independent defensible ZZZ USD source proposals, market coverage, administrators/update policy, operating costs and who funds any custom service. The [pool-derived reference](reports/price-reference-20261025/OBSERVATION.md) is not an approved substitute.
   - [Official-catalog/chain evidence](reports/market-qualification-20261109/pricing/pricing-findings.json) supplies concrete provider questions; absence in these public catalogs is not proof that no private/custom product exists. Require exact token identity and independence evidence, not ticker matches or the target pool spot. Team-dependent proposals remain open under this stable task ID.
   - [External market evidence](reports/market-followup-20261109/review/cex-findings.json) is a lead, not a feed. Ask providers/team to address source independence, market depth/manipulation and USDT/USD depeg behavior; different signers over the same thin market are insufficient. Public catalog absence does not rule out custom/private services.
+  - A direct branded ZZZ/USD feed is optional: propose independent ZZZ/ETH market paths multiplied by ETH/USD. Supply correct-chain pool identities, external liquidity/control evidence and manipulation/depth review; largest displayed TVL alone is insufficient. The optional spot reader does not qualify a market or replace the independent second ZZZ path.
 
   </details>
 
@@ -1205,6 +1222,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/40% trigger ideas remain unimplemented; sampled confirmation1 has separate [current evidence](reports/practical-improvements-20261028/VERIFICATION.md).
   - Fresh confirmation1 implements sampled15-minute observations with240-second checks/strictgap300; qualify receipt latency, resets and exact bindings. Hidden moves between observations remain possible. See [dedicated task](TODO.md#task-rebalance-confirmation-buffer). The40%trigger and passive second position remain discussion only.
   - Fresh hybrid strategy requires target-market trend/reversal/gap/filled-residual tests,60%placement-floor economics and independent review;60/40 is not proven optimal. Assess narrow-range candidate ranking: an out-of-range candidate fails safely at the final active-main guard but may prevent using another viable venue; qualify/review routing eligibility before release.
+  - Review the now-explicit spot-reference coupling across all Manager-governed operations and service-only compounding restrictions in the [current decision list](reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates). Do not silently remove frozen-price checks or claim service policy constrains a compromised keeper on-chain.
 
   </details>
 
@@ -1354,6 +1372,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Current consolidation](reports/project-consolidation-20261103/REVIEW.md) inventories401baseline report Markdown files, preserves351prior reading scopes and indexes49later narratives.310overlapping imported finding rows plus5later explicit findings map into22current topics with original IDs/JSON pointers and existing task ownership. It is documentation/source-applicability work, not310new bugs/tests or a fresh security audit. [Current findings](docs/AUDIT_FINDINGS.md) supersede stale active-guide conclusions; original reports remain byte-preserved.
   - [Whole-history reconciliation](reports/full-history-reconciliation-20261104/REVIEW.md):310original rows retain exact pointers/records,16material specific reassessments,162ledger versions,398pre-ledger unchecked lines and five explicitly retired task IDs. Deleted guides/local-only drafts and233website narrative versions are inventoried without changing original reports or website code. No age/topic-based blanket closure or revival of retired architecture.
   - The [checkpoint follow-up](reports/earnings-checkpoints-20261104/REVIEW.md) partially implements historical later/C09; it does not close lifetime archival/lineage/operating requirements. Retain the immutable original reconciliation rather than editing old open findings into all-fixed claims.
+  - The [current project review](reports/whole-project-review-20261111/REVIEW.md) repairs stale current-schema/native fixtures, security/custody/mint guidance and generated records while preserving original report bytes/source scopes. Old explicit codecs/royalty currencies are not deleted by topic alone.
 
   </details>
 
@@ -1409,10 +1428,10 @@ Decisions and rehearsals before real funds.
 
   - Record exact network/source/adapter addresses, USD denomination, precision, runtime/implementation/admin/upstream policy and complete append-only Oracle policy/ordinal. Review common reporter, exchange, pool, bridge and USD-reference dependencies; two addresses or provider labels are not proof of independence.
   - Choose source ages and disagreement settings from actual heartbeat, update/deviation behavior and market depth; qualify both-source outage/recovery, sequencer policy, stale/future/incomplete rounds, proxy upgrades, depeg and sustained manipulation. Any admitted USDG/USDC royalty/conversion currency must not be assumed$1; these currencies are not contribution inputs. Missing or disagreeing sources fail closed.
-  - Qualify $100 activation and $5 growth at actual source upper bounds and marginal LP lower bounds through funded routes, exact approvals, swaps, raw accounting and physical LP. Include worst-case 34-mark historical/source work, feed gas/latency, price/cap callbacks, newly discovered historical receipts, loss boundaries and recovery. Network gas is separate; wide uncertainty cannot silently enlarge the loss budget.
+  - Qualify $100 activation and $5 growth at actual source upper bounds and marginal LP lower bounds through funded routes, exact approvals, swaps, raw accounting and physical LP. Include actual ETH/fixed-ZZZ source work, feed gas/latency, price/cap callbacks, existing pair compound, loss boundaries and recovery. Network gas is separate; wide uncertainty cannot silently enlarge the loss budget.
   - Obtain actual ETH/ZZZ USD-source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. Price any additional admitted royalty/conversion asset under its separate review; this does not admit it for contributions. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
   - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
-  - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
+  - Current fresh7 admits only the ETH/fixedZZZ LP pair and now removes unreachable foreign-principal scans. The retained34-slot engineering bound and historical33/34 workloads are not current currency admission or a live capacity blocker. Keep royalty capacity and old-profile readers separate; qualify actual pair-source gas.
   - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default3% contribution execution floor; never average answers or automatically raise a cap to accept a wide quote.
   - Run a separately authorized native/accounting3/fee1/governance2/routing2/pricing2/review1/localV4 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the latest [local cold-capacity workload](reports/onchain-safety/VERIFICATION.md) uses11,507,856 gas, leaving492,144 under its unchanged12M gate. Earlier135,373 margin is historical; neither substituted-feed workload qualifies actual providers or all34-mark compositions.
   - Record [dated candidate readings and cost semantics](reports/price-reference-20261025/OBSERVATION.md) separately from configured policy/qualification. Public Chainlink ETH availability and a ZZZ pool-derived estimate do not close either source pair. Review Shared-SVR/product/secondary-proxy common dependencies, feed ages, source/admin upgrades, per-read versus data/RPC/hosting charges and who pays. No source service or production gas price is selected.
@@ -1421,6 +1440,7 @@ Decisions and rehearsals before real funds.
   - A3%source-agreement pass can still be infeasible under a conservative3%contribution budget plus execution costs; qualify actual spreads/update timing and quote availability without widening caller limits or adding a single-source fallback. [Principal review](reports/system-adversarial-20261026/PRINCIPAL.md).
   - [Actual November9 source review](reports/market-qualification-20261109/pricing/pricing-findings.json) binds real rounds, timestamps, proxy/implementation/owner and official catalogs. Independent ETH coverage needs a fresh qualified Pyth update service or alternative; fixedZZZ needs two defensible actual sources. No correct-chain uptime-feed address is identified in the retrieved official list. Do not copy another chain, fabricate always-up data, duplicate an aggregator or extend the hard age limit to pass.
   - [Latest source/control evidence](reports/market-followup-20261109/feeds/FINDINGS.md): API3 is a real inactive ETH option with verified offers and management mapping; funding/initialization plus a separately reviewed immutable round-compatible reader would be needed if selected. Keep all existing round/age/confidence/agreement guards; no adapter or subscription was added.
+  - User decision2026-11-09: spot for placement and independent valuation. Qualify the optional [pool-spot composite](docs/POOL_SPOT_PRICE_SOURCE.md), largest qualifying external nativeETH/fixedZZZ reference, same-block ranking, depth excluding PoPL LP, runtime/control identity, ETH/USD publication/age and a genuinely independent second ZZZ path. Two ETH feeds sharing one ZZZ pool are correlated; preserve all operating guards. No production pool/age/L default is chosen.
 
   </details>
 
@@ -1490,6 +1510,7 @@ Decisions and rehearsals before real funds.
   - [Confirmation timing/recovery audit](reports/confirmation-audit-20261104/VERIFICATION.md):100distinct selected Python methods pass, including14new wake-up/clear-priority regressions. Actual daemon sleep now honors saved maturity/cooldown/jitter deadlines and accounts for elapsed work; queued incident clear precedes unrelated router metadata. Existing guards, journals, pending/global-error polling and normal600/240/300 policy remain. Retain negative controls; actual matching service rollout, receipt latency/cost and independent qualification remain open.
   - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
   - [Harvesting follow-up](reports/harvesting-audit-20261106/VERIFICATION.md) refreshes a due180-second collection deadline after successful slow maintenance reads. Current4/5/6 standalone clocks require matching key/calldata/bucket and canonical Vault event; missing proof logs a sanitized warning and preserves paid nonce/spend/receipt recovery without advancing the wrong clock. Historical profiles, journals and live services remain unchanged.
+  - [Current keeper corrections](reports/whole-project-review-20261111/REVIEW.md) validate known simulation ABI, recheck generic-job final head/deadline/current-day cost before intent and restore four omitted test modules. Preserve pending-first recovery, exact original intents and same-hash reconciliation; no signer/service/journal change.
 
   </details>
 
@@ -1578,4 +1599,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `a83b0f66f043dc39811e72c5060928e0008932f382beb16fec08c3b4886a45af`.
+Snapshot SHA-256: `7a19db97595550766020ca6e057d9d76968f79b7e65b8eb0dd0cb2d8d4eacc08`.

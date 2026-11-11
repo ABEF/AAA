@@ -11,9 +11,9 @@ EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership'
 HELPERS=['ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
 'ZZZMigrationBudget','ZZZCustodyValidation','ZZZRoyaltyFactory','ZZZActivationAssetsFactory','ZZZLPRewardConverter',
 'ZZZV4RouteExecutor','ZZZContributionPricing','ZZZLPBalancer','ZZZRebalanceConfirmation','ZZZPortfolioPolicy',
-'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZRewardsCanonical','ZZZPythPriceFeed']
+'ZZZLPBalanceMath','ZZZLPPositionExecutor','ZZZProtocolPolicy','ZZZRewardsCanonical','ZZZPythPriceFeed','ZZZV4SpotPriceFeed','ZZZSeaDropMint']
 CODE_DATA=['ZZZRoyaltyCodeData']
-# Required source classes, not deployed instance counts. Pyth is optional;
+# Required source classes, not deployed instance counts. Pyth/spot readers are optional;
 # one CodeData source class produces two inert Factory data children.
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',

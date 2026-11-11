@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [current review](../reports/whole-project-review-20261111/REVIEW.md) closes
+proven cleanup/encoding/indexer/keeper/UI defects. Next resolve the spot-reference
+versus execution-venue coupling and qualify actual dependencies/operations.
+Do not delete historical readers or reinterpret stored demo events.
+
+
 The [read-only feed/route follow-up](../reports/market-followup-20261109/REVIEW.md)
 is complete at its documented anchors. Next obtain two defensible ZZZ USD
 provider proposals, resolve funded ETH publication and Robinhood liveness,

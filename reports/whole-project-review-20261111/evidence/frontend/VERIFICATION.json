@@ -1,0 +1,72 @@
+{
+  "website_head": "2c6f0c822b909a8d44c457c2fd24d3f546745ba8",
+  "working_branch": "main",
+  "changed_files": [
+    "AGENTS.md",
+    "FRONTEND_STATE.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "app.js",
+    "build.mjs",
+    "domain.js",
+    "index.html",
+    "package.json",
+    "preview-store.js",
+    "server.mjs",
+    "styles.css",
+    "tests/contribution-flow.test.mjs"
+  ],
+  "new_files": [
+    "tests/deployment-bundle.test.mjs",
+    "tests/current-demo-policy.test.mjs"
+  ],
+  "sha256": {
+    "AGENTS.md": "95d317404d574f29ef158f60c40150bb2b634f1dc6b97a1608270ce916f99949",
+    "FRONTEND_STATE.md": "f3c74489d3b809e549df5218c64f4619fc0d97e20c186b234922f2b4e0249dc0",
+    "PROJECT_CONTEXT.md": "a176d3cf7dab1ad76d70a34e7446ba4000a10a5d57a37855c5c3f19d88de96d4",
+    "README.md": "f8b5250fcae366eda301e70473bf54e864dc0d79249b04173f72c76e02383899",
+    "app.js": "98399839062756e5640ca42d026247cc4999b7e1586f8fbd448fee5595161406",
+    "build.mjs": "f8c47ff1204fc3082c1bbcc49da7de69ea8e7a5b45e1a147137de6ea982482de",
+    "domain.js": "418659de29f029d55db5773573a9251d9b3abb8bf8dac19eee44b3aa190a3485",
+    "index.html": "17608be2689566a950967098effc0dc0e1613d2360bc5fb2e380d067f259b43f",
+    "package.json": "59ab0b85808f3d45cc5d8c6e235e5950138430bb6495386645ef7951e8c30ff3",
+    "preview-store.js": "004b83c7edfc5f9e021af8f628387cc84951fe46eb961f4ad699ca9a71ad9b0f",
+    "server.mjs": "e7fcddcf0d4d1732cc15446fae4b69024ab1a9292e3a7d9e80c3c8c45a2ce024",
+    "styles.css": "33b7a3eea4a6b96ce6fbceefc837284e2ea495159cf90a5e0a0b19f2a2426703",
+    "tests/contribution-flow.test.mjs": "6571fc88340e05fb0b7a871e5eda38684d70cd64bc70dcd50735e2307ec64ca3",
+    "tests/deployment-bundle.test.mjs": "c585c7e73f752f0725c7dc7ff7c0c1a749446e5b35fae156bda1a90a51487cf2",
+    "tests/current-demo-policy.test.mjs": "62b14681f8d7167fc4590267fd7d9e3cd6799b34a8ffe355ecbcda4e563b4f17"
+  },
+  "preserved_sha256": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "95d16866dfe057ed1341425397a5d145a2995222ace5ad770280195961cca348"
+  },
+  "preserved": {
+    "browser-wallet.js": true,
+    "deployment-config.js": true,
+    "integration-config.js": true
+  },
+  "bundle_methods_passed": 2,
+  "demo_adjacent_methods_passed": 86,
+  "new_methods_in_demo_scope": 6,
+  "bundle_new_methods": 2,
+  "syntax_only_checks": 8,
+  "no_overlapping_stage_counts_added": true,
+  "new_demo_policy": "explicit demo_policy:2; ETH/ZZZ; one ZZZ/ETH pool;3percent illustrative limit",
+  "legacy_seed_sha256": "52ead56bd450875c0195d341c66b3c35065afd109199e985fe7868f65509c96a",
+  "legacy_replay_sha256": "217d865c092f742578e1e1301dec66ed56bba7cbf4023336ab1c56060a010cb4",
+  "current_demo_negative_before_fix_tool_observed": {
+    "methods": 6,
+    "passed": 1,
+    "failed": 5,
+    "producer_log_not_saved": true
+  },
+  "compiled_or_deployed": false,
+  "existing_dist_journal_anvil_service_state_changed": false,
+  "public_configs_null": true,
+  "full_website_suite_rerun": false,
+  "browser_or_market_acceptance": false,
+  "whitespace_check_pass": true,
+  "committed_or_pushed": false
+}

@@ -1,0 +1,57 @@
+{
+  "scope": "Read-only review of current backend boundaries with two focused source corrections; not an independent audit, full-suite run, or live operating qualification.",
+  "fixed": [
+    {
+      "id": "ABI-EXACT-INPUT",
+      "severity": "defensive correctness",
+      "files": ["zzz_ops/abi.py", "tests_python/test_abi.py"],
+      "trigger": "Call shared static ABI codec with float, bool-as-uint, Decimal/Fraction/bytes/custom numeric value; int() previously changed the requested amount or invoked implicit coercion.",
+      "before": "word(1.9,uint256) encoded 1, uint booleans encoded 0/1, bool accepted numeric-equality values 0.0/1.0.",
+      "after": "uint accepts exact int or digits-only decimal strings, retaining leading-zero string support and full uint256 precision; bool accepts only exact bool or int0/1. Invalid types fail before calldata construction.",
+      "economic_rights_change": false,
+      "exploit_claim": "No theft or production external validation bypass established; current public request parsers already validate most fields.",
+      "tool_observed_negative_stage": {"methods": 3, "failing_subtests": 17, "errors": 1},
+      "tool_observed_final_stage": {"distinct_methods": 21, "successful": true, "seconds": 0.232}
+    },
+    {
+      "id": "INDEXER-CONTRACT-INVENTORY",
+      "severity": "operational configuration consistency",
+      "files": ["indexer/monitor.py", "tests_python/test_indexer_startup_atomicity.py"],
+      "trigger": "Duplicate/case-duplicate tracked contract addresses were accepted and persisted in the indexer identity, although the History reader rejects duplicates. Non-list containers could also raise inconsistent errors.",
+      "after": "Require a nonempty list of unique normalized addresses before RPC client construction or directory/database work. Existing valid sorted identity and list-order semantics unchanged; invalid existing databases are not rewritten.",
+      "no_new_count_cap_or_rescan": true,
+      "tool_observed_negative_stage": {"methods": 4, "failures": 3, "errors": 2, "valid_reordering_positive_case_passed": true},
+      "tool_observed_final_stage": {"distinct_methods": 13, "successful": true, "seconds": 0.233}
+    }
+  ],
+  "affected_consumer_verification": "consumer-tests.json and consumer-tests.log contain81 additional distinct source-bracketed ordinary transaction/activation/indexer/config checks. No overlap with21codec or13startup methods; two targeted checkpoint source-drift checks also pass.117distinct final methods,7new methods. Failed pre-fix stages are not pass counts.",
+  "checkpoint_adoption": "zzz_ops/abi.py is included in checkpoint1/2 semantic SOURCE_FILES. Adoption of this fix intentionally invalidates old source-pinned checkpoint artifacts, despite unchanged valid accounting semantics. Preserve old artifacts/raw/WAL; explicitly rebuild/review before service rollout. Do not automatically relabel or re-pin. Existing CheckpointAPITests.test_hash_mismatch_missing_partial_duplicate_json_and_source_drift_reject and Checkpoint2APITests.test_truncation_source_drift_and_checkpoint_hash_mismatch_never_fall_back both pass (tool-observed2methods,1.203seconds).",
+  "inspected_workflows": [
+    "HTTP host/framing/body/depth/admission/sanitized error boundaries",
+    "process worker lease, request budget, timeout, cleanup and quarantine",
+    "read-only RPC method/chain/envelope/redirect/response-size/timeout/failover boundaries",
+    "current Projection schema/accounting/custody/mint-profile and source pins",
+    "activation exact source amounts, allowance, policy, complete trace and unsigned gas/expiry publication",
+    "mint/claim preparation and bounded claim planning",
+    "physical main+residual portfolio verification, collection pagination and terminal principal projection",
+    "indexer startup/identity/WAL, reorg ancestry/rollback, transaction log grouping and commit guards",
+    "raw indexed history, ownership/claim/conversion evidence and checkpoint anchoring",
+    "current royalty reporting, exact LP replay/tree, checkpoint2 and current-price earnings display",
+    "mint readiness, canonical lifecycle and selected management-reader admission",
+    "schema17 SeaDrop inventory gate/observer dispatch and intentional historical profile boundaries"
+  ],
+  "retained_intentionally": [
+    "Historical accounting/read/production observer versions are explicit old-runtime compatibility, not current-feature defaults; deleting them would break historical inspection/journals and violates preservation requirements.",
+    "USDG/USDC/WETH descriptors and historical conversion readers are not new contribution inputs: original-currency royalties and optional earned conversion still need distinct support.",
+    "Direct mint constants/legacy Entry2 routing remain only within explicit older profiles; current mint2 returns Use OpenSea and direct Entry3 has no preliminary conversion layer."
+  ],
+  "remaining_review_items": [
+    "Lifetime raw replay/indexer growth and expanded65-currency workload need actual archive/restore/latency/capacity qualification; caps/fail-closed budgets must not be silently enlarged.",
+    "New live spot reference cannot be mutated by contribution destination/swaps under the existing frozen-source fingerprint invariant; pool/route selection must be qualified together.",
+    "HTTP proxies, actual multi-process/load behavior, supported Unix worker/key/state-lock operation and production service supervision remain operating acceptance, not established by local mocked consumers.",
+    "Backend configuration pins require explicit reinstall/restart/cutover; source fixes do not update served public websites or existing running services.",
+    "Indexer nft_owners is currently used only by tests and trusts cached decoded Transfer labels; serving API correctly replays raw logs instead. Consider relocating this diagnostic helper later, but deletion is not necessary for the safety fixes."
+  ],
+  "unchanged_boundaries": ["protected four dirty files", "production Solidity", "signer", "runtime profiles", "operating configuration", "services", "websites", "existing Anvil", "journals", "paused heartbeat"],
+  "source_publication_or_deployment_performed": false
+}

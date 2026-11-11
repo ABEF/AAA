@@ -1,5 +1,13 @@
 # Production service decisions
 
+A dedicated direct ZZZ/USD provider is not mathematically required: the optional
+[spot composite reader](POOL_SPOT_PRICE_SOURCE.md) composes reviewed native-v4
+ETH/ZZZ spot with ETH/USD. Prefer the largest qualifying external market and
+preserve two independent ZZZ paths. No pool, source age/liquidity policy or
+production source pair is selected; the dated provider findings below retain
+their original scope.
+
+
 Reviewed2026-11-09. [Latest read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 

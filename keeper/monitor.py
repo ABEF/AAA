@@ -57,6 +57,20 @@ CONFIRMATION_RESETS = 'confirmation_reset_v1'
 CONFIRMATION_CLEARS = 'confirmation_clear_v1'
 FEES_COLLECTED_TOPIC = '0x'+keccak256(b'FeesCollected(uint256,uint256,uint256)').hex()
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
+JOB_DEADLINE_ARGUMENTS = {
+    ('vault','collectFees(uint256,uint256)'): 1,
+    ('buyback','execute(address,uint256,bytes32,uint256)'): 3,
+    ('rewards',ROYALTY_BATCH): 4,
+    ('royalties',ROYALTY_BATCH): 4,
+}
+VOID_SIMULATION_RESULTS = frozenset((
+    ('vault','collectFees(uint256,uint256)'),
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('buyback','execute(address,uint256,bytes32,uint256)'),
+    ('nft','refreshMetadataRange(uint256,uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
+))
 
 
 class CompoundPolicyUnconfigured(RpcError):
@@ -1785,6 +1799,14 @@ class Keeper:
         except RemoteRPCError as exc:
             if capacity_failure(exc,'eth_call'):return False
             raise
+        if (name,signature) in VOID_SIMULATION_RESULTS and simulation!='0x':
+            raise RpcError('Unexpected return data from void job simulation')
+        if name=='rebalance_confirmation' and signature=='observe(uint256)':
+            try:observed=uint_result(simulation)
+            except (ValueError,TypeError) as exc:
+                raise RpcError('Malformed observation simulation output') from exc
+            if observed not in (0,1):
+                raise RpcError('Observation simulation output is not a canonical boolean')
         if lp_conversion_action and uint_result(simulation)<args[3]:
             raise RpcError('LP conversion simulation output is below its prepared minimum')
         gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
@@ -1876,6 +1898,35 @@ class Keeper:
                 log('lp_conversion_deferred',action=key,reason='deadline_invalid')
                 return False
             day=dt.datetime.fromtimestamp(fresh,dt.timezone.utc).date().isoformat()
+            if (cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or
+                    int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                gas_review.update(state='blocked',reason='cost_cap')
+                self.blocked_actions+=1
+                log('cost_cap_exceeded',action=key)
+                return False
+            gas_review.update(state='within_configured_caps',reason=None)
+            if self.stop_requested():
+                log('shutdown_before_submission',action=key);return False
+        else:
+            # Every other job can cross UTC midnight during code, nonce or
+            # funding reads too. Recheck the current day's budget immediately
+            # before publishing an intent, just as LP maintenance/conversion do.
+            # This never reprices, resigns, charges or changes the calldata.
+            gas_review.update(state='unavailable',reason='submission_head_invalid')
+            head,fresh=self._head()
+            if head<review_head or fresh<timestamp:
+                raise RpcError('Submission head or timestamp retreated after review')
+            index=JOB_DEADLINE_ARGUMENTS.get((name,signature))
+            if index is not None:
+                deadline=positive(args[index],'submission deadline',zero=True)
+                if not fresh<=deadline<=fresh+600:
+                    gas_review.update(state='blocked',reason='submission_deadline_invalid')
+                    self.blocked_actions+=1
+                    log('job_submission_deferred',action=key,reason='deadline_invalid')
+                    return False
+            try:day=dt.datetime.fromtimestamp(fresh,dt.timezone.utc).date().isoformat()
+            except (OverflowError,OSError,ValueError) as exc:
+                raise RpcError('Submission head timestamp cannot form a UTC date') from exc
             if (cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or
                     int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
                 gas_review.update(state='blocked',reason='cost_cap')

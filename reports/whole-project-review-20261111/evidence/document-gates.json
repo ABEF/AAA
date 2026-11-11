@@ -1,0 +1,39 @@
+[
+  {
+    "arguments": [
+      "scripts/generate-function-reference.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 913, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "scripts/generate-operator-reference.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"contracts\": 40, \"functions\": 913, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 966, \"ready_for_submission\": false}\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "scripts/sync-project-todo.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Project Todo verified.\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "scripts/source_checks.py",
+      "--output",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-review-20261111-0acb123\\source-consistency-final.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"source_files\": 60, \"errors\": [], \"scope\": \"consistency only\", \"output\": \"C:\\\\Users\\\\Ali\\\\.codex\\\\visualizations\\\\2026\\\\10\\\\14\\\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\\\whole-project-review-20261111-0acb123\\\\source-consistency-final.json\"}\n",
+    "stderr": ""
+  }
+]

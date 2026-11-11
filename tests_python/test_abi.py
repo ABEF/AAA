@@ -1,4 +1,6 @@
 import json
+from decimal import Decimal
+from fractions import Fraction
 import unittest
 from pathlib import Path
 from zzz_ops.abi import address,calldata,decode_words,keccak256,uint_result,word
@@ -21,6 +23,29 @@ class AbiTests(unittest.TestCase):
         self.assertEqual(word(255,'uint8'),'0'*62+'ff')
         for value in (-1,256):
             with self.assertRaises(ValueError):word(value,'uint8')
+    def test_uint_input_never_truncates_or_coerces_nonintegers(self):
+        for value in (True,False,1.9,1.0,Decimal('1.9'),Fraction(3,2),b'1',None):
+            with self.subTest(value=repr(value)),self.assertRaises(ValueError):
+                calldata('approve(address,uint256)','0x'+'11'*20,value)
+        class Convertible:
+            def __int__(self):
+                raise AssertionError('Untrusted numeric coercion must not run')
+        with self.assertRaises(ValueError):word(Convertible(),'uint256')
+        class DeceptiveDecimal(str):
+            def __int__(self):return 999
+        with self.assertRaises(ValueError):word(DeceptiveDecimal('1'),'uint256')
+    def test_uint_preserves_integer_and_decimal_string_precision(self):
+        for value in (0,1,255,2**256-1):
+            self.assertEqual(word(value,'uint256'),f'{value:064x}')
+            self.assertEqual(word(str(value),'uint256'),f'{value:064x}')
+        self.assertEqual(word('0001','uint8'),word(1,'uint8'))
+        for value in ('+1',' 1','1 ','1.0','1_000','1e3','-0'):
+            with self.subTest(value=value),self.assertRaises(ValueError):word(value,'uint256')
+    def test_bool_accepts_only_exact_boolean_or_integer_zero_one(self):
+        for value in (False,True,0,1):
+            self.assertEqual(word(value,'bool'),f'{int(value):064x}')
+        for value in (0.0,1.0,Decimal('1'),Fraction(1,1),'0','1',2,None):
+            with self.subTest(value=repr(value)),self.assertRaises(ValueError):word(value,'bool')
     def test_invalid_address(self):
         for value in ('0x0','0x'+'00'*20,'alice',None):
             with self.assertRaises(ValueError):address(value)

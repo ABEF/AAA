@@ -1,0 +1,12 @@
+{
+  "domain.js": "934a69deaf3b4bd20e6d2565b15c84c2d553e4d1fe063a97faf5e681ced00fe1",
+  "app.js": "8a0d2d795e48ea08e703e2befbe4d0b4928fcae76289b2f4e25811ebc3a96d89",
+  "preview-store.js": "b1a248221835231560ca8b2095a99a79e5db0309a737f542075599b6fb497b46",
+  "index.html": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+  "styles.css": "44ae292b395fc632d8d7cc53c15bc3e392a1ff2a8741e6ba0e1bf526837ab307",
+  "README.md": "9a5cfcf5d0c8240d9448a4774074f3601f7a0d012a63f4149d6e4f4600c25fba",
+  "PROJECT_CONTEXT.md": "686ee6754b18ddd691d0c4e934f26b5dc2bdacac6db6b8f23ac9d765cede2f4f",
+  "FRONTEND_STATE.md": "3ca14a5248c111c47af746a747eee09a95f521f96d2cd3119e3f2c5dfe414247",
+  "tests/contribution-flow.test.mjs": "a819711022683df69568b84f9f0b0fb1f99ad5af503fedfc580664684912d0b4",
+  "package.json": "8f7a8d34f86bad74ee3068efd9e46995952a2518960a91bb42a7600e5f419703"
+}

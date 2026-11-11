@@ -1,0 +1,26 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tests_python.test_keeper_late_job_budget"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.43699999999989814,
+  "at_utc": "2026-11-11T01:17:30.235412+00:00",
+  "source_before": {
+    "keeper/monitor.py": "e98375b230145335e90978703df0aad172d3effd0504044b938a86d55c0557e8",
+    "tests_python/test_keeper_late_job_budget.py": "b7240d6319c85bb2408fb122c598cca592f4aad960e3635e80c534ea1169b87a",
+    "zzz_ops/abi.py": "33c5e1e69cfbfae1bdfae06daff7164ff8b2ae0fa646c0bbf877dea7315324a3"
+  },
+  "source_after": {
+    "keeper/monitor.py": "e98375b230145335e90978703df0aad172d3effd0504044b938a86d55c0557e8",
+    "tests_python/test_keeper_late_job_budget.py": "b7240d6319c85bb2408fb122c598cca592f4aad960e3635e80c534ea1169b87a",
+    "zzz_ops/abi.py": "33c5e1e69cfbfae1bdfae06daff7164ff8b2ae0fa646c0bbf877dea7315324a3"
+  },
+  "fixture_scope": "inert RPC, temp journal, mocked signer; no actual submission/service/chain",
+  "no_service_or_chain_change": true
+}

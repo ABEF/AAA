@@ -83,15 +83,15 @@ class KeeperTests(unittest.TestCase):
             state=json.loads(self.k.path.read_text());self.assertIsNone(state['pending']['hash']);self.assertEqual(state['pending']['nonce'],7)
             return subprocess.CompletedProcess(args[0],0,json.dumps(H),'')
         with patch('subprocess.run',side_effect=run):
-            self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c'))
+            self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c'))
         self.assertEqual(self.k.state['pending']['hash'],H)
     def test_timeout_preserves_ambiguous_state(self):
         self.enable_test_signer()
         with patch('subprocess.run',side_effect=subprocess.TimeoutExpired('cast',90)) as run:
             with self.assertRaises(subprocess.TimeoutExpired):
-                self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+                self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
             self.assertIsNotNone(self.k.state['pending']);self.assertIsNone(self.k.state['pending']['hash'])
-            self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+            self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
             self.assertEqual(run.call_count,1)
     def test_pending_waits(self):
         self.pending();self.assertTrue(self.k.poll_pending());self.assertIsNotNone(self.k.state['pending'])
@@ -146,9 +146,9 @@ class KeeperTests(unittest.TestCase):
             'CAST_ASYNC':'false','FOUNDRY_CONFIG':'/unreviewed/config','CHAIN':'2',
             'AWS_KMS_KEY_ID':'other-key','GCP_PROJECT_ID':'other-project','PRIVATE_KEY':'ambient-key'}
         with patch.dict(os.environ,ambient),patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
-            self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+            self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
         command=run.call_args.args[0];environment=run.call_args.kwargs['env']
-        self.assertEqual(command[:4],[self.k.cast,'send',B,calldata('collectFees(uint256,uint256)',1,123)])
+        self.assertEqual(command[:4],[self.k.cast,'send',B,calldata('collectFees(uint256,uint256)',1,self.rpc.now+180)])
         self.assertNotIn('--data',command)
         self.assertEqual(command[command.index('--from')+1],A)
         self.assertEqual(environment['ETH_RPC_URL'],self.rpc.active_url)
@@ -157,7 +157,7 @@ class KeeperTests(unittest.TestCase):
     def test_cast_cli_accepts_generated_command_without_signing(self):
         self.enable_test_signer();self.k.cast=shutil.which('cast')
         with patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
-            self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+            self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
         # --help validates the actual installed parser and exits before RPC/signing.
         result=subprocess.run(run.call_args.args[0]+['--help'],capture_output=True,text=True,timeout=30,check=False)
         self.assertEqual(result.returncode,0,result.stderr)

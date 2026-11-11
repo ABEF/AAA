@@ -1,0 +1,526 @@
+TAP version 13
+# Subtest: ordinary same-account refresh retains confirmed card values without updating every NFT
+ok 1 - ordinary same-account refresh retains confirmed card values without updating every NFT
+  ---
+  duration_ms: 1.4247
+  type: 'test'
+  ...
+# Subtest: one confirmed contribution refresh marks only its NFT LP and artwork
+ok 2 - one confirmed contribution refresh marks only its NFT LP and artwork
+  ---
+  duration_ms: 0.2744
+  type: 'test'
+  ...
+# Subtest: claims touch reward balances only and never redraw evolution
+ok 3 - claims touch reward balances only and never redraw evolution
+  ---
+  duration_ms: 0.1806
+  type: 'test'
+  ...
+# Subtest: approvals and wrapping do not imply deployed LP or change artwork
+ok 4 - approvals and wrapping do not imply deployed LP or change artwork
+  ---
+  duration_ms: 0.1549
+  type: 'test'
+  ...
+# Subtest: failed reads and different sessions do not retain spendable balances
+ok 5 - failed reads and different sessions do not retain spendable balances
+  ---
+  duration_ms: 0.2611
+  type: 'test'
+  ...
+# Subtest: approval acknowledgement includes input identity
+ok 6 - approval acknowledgement includes input identity
+  ---
+  duration_ms: 0.1489
+  type: 'test'
+  ...
+# Subtest: four preloaded evolutions retain fixed identity and never mutate the selected art
+ok 7 - four preloaded evolutions retain fixed identity and never mutate the selected art
+  ---
+  duration_ms: 0.3049
+  type: 'test'
+  ...
+# Subtest: current public selector exposes only native ETH and fixed ZZZ
+ok 8 - current public selector exposes only native ETH and fixed ZZZ
+  ---
+  duration_ms: 0.1206
+  type: 'test'
+  ...
+# Subtest: current demo policy selects ETH/ZZZ, one native pair and3percent total contribution
+ok 9 - current demo policy selects ETH/ZZZ, one native pair and3percent total contribution
+  ---
+  duration_ms: 2.0232
+  type: 'test'
+  ...
+# Subtest: current activation and growth accept ETH/ZZZ without changing prior rewards
+ok 10 - current activation and growth accept ETH/ZZZ without changing prior rewards
+  ---
+  duration_ms: 26.474
+  type: 'test'
+  ...
+# Subtest: current writes reject removed currencies, old pools and subminimum growth
+ok 11 - current writes reject removed currencies, old pools and subminimum growth
+  ---
+  duration_ms: 9.4645
+  type: 'test'
+  ...
+# Subtest: the exact prior seed, storage key and unversioned legacy ledger remain byte-equivalent
+ok 12 - the exact prior seed, storage key and unversioned legacy ledger remain byte-equivalent
+  ---
+  duration_ms: 18.9087
+  type: 'test'
+  ...
+# Subtest: current versioned events replay alongside old events and reject unknown policies
+ok 13 - current versioned events replay alongside old events and reject unknown policies
+  ---
+  duration_ms: 33.0161
+  type: 'test'
+  ...
+# Subtest: public demo copy and new-intent entrypoint no longer advertise removed input choices
+ok 14 - public demo copy and new-intent entrypoint no longer advertise removed input choices
+  ---
+  duration_ms: 7.84
+  type: 'test'
+  ...
+# Subtest: initial collection has exactly $425k liquidity, 100 NFTs, and 20% dormant
+ok 15 - initial collection has exactly $425k liquidity, 100 NFTs, and 20% dormant
+  ---
+  duration_ms: 27.7371
+  type: 'test'
+  ...
+# Subtest: the 100-example seed uses exact 60/30/10 rarity counts inside the 1,000 NFT cap
+ok 16 - the 100-example seed uses exact 60/30/10 rarity counts inside the 1,000 NFT cap
+  ---
+  duration_ms: 7.4286
+  type: 'test'
+  ...
+# Subtest: all remaining preview mints exhaust exact rarity quotas and stop at the supply cap
+ok 17 - all remaining preview mints exhaust exact rarity quotas and stop at the supply cap
+  ---
+  duration_ms: 105.5626
+  type: 'test'
+  ...
+# Subtest: an exhausted rarity is never selected while other preview quotas remain
+ok 18 - an exhausted rarity is never selected while other preview quotas remain
+  ---
+  duration_ms: 41.1602
+  type: 'test'
+  ...
+# Subtest: dormant positions have no fees or rewards
+ok 19 - dormant positions have no fees or rewards
+  ---
+  duration_ms: 11.4975
+  type: 'test'
+  ...
+# Subtest: featured NFT keeps Flowing arcs, $1,432 LP and $184 LP rewards alongside separate royalties
+ok 20 - featured NFT keeps Flowing arcs, $1,432 LP and $184 LP rewards alongside separate royalties
+  ---
+  duration_ms: 6.798
+  type: 'test'
+  ...
+# Subtest: default portfolio spans four colors and the intended evolution and reward states
+ok 21 - default portfolio spans four colors and the intended evolution and reward states
+  ---
+  duration_ms: 6.822
+  type: 'test'
+  ...
+# Subtest: level boundaries match the supplied concept
+ok 22 - level boundaries match the supplied concept
+  ---
+  duration_ms: 0.1256
+  type: 'test'
+  ...
+# Subtest: fee illustration distributes whole dollar values 80/10/5/5
+ok 23 - fee illustration distributes whole dollar values 80/10/5/5
+  ---
+  duration_ms: 0.338
+  type: 'test'
+  ...
+# Subtest: fee allocation conserves cents including small remainders
+ok 24 - fee allocation conserves cents including small remainders
+  ---
+  duration_ms: 0.3333
+  type: 'test'
+  ...
+# Subtest: mint creates a fresh dormant NFT and cannot increase LP
+ok 25 - mint creates a fresh dormant NFT and cannot increase LP
+  ---
+  duration_ms: 6.7013
+  type: 'test'
+  ...
+# Subtest: dormant mint leaves LP and claim balances at zero
+ok 26 - dormant mint leaves LP and claim balances at zero
+  ---
+  duration_ms: 6.5978
+  type: 'test'
+  ...
+# Subtest: repeated minting changes supply only and keeps identifiers unique
+ok 27 - repeated minting changes supply only and keeps identifiers unique
+  ---
+  duration_ms: 6.9127
+  type: 'test'
+  ...
+# Subtest: reward claim cannot redeem principal or change generated fees
+ok 28 - reward claim cannot redeem principal or change generated fees
+  ---
+  duration_ms: 7.0251
+  type: 'test'
+  ...
+# Subtest: bulk claims deduplicate NFT identifiers and reject foreign ownership
+ok 29 - bulk claims deduplicate NFT identifiers and reject foreign ownership
+  ---
+  duration_ms: 6.7939
+  type: 'test'
+  ...
+# Subtest: dormant activation preserves identity and updates active collection totals
+ok 30 - dormant activation preserves identity and updates active collection totals
+  ---
+  duration_ms: 6.5911
+  type: 'test'
+  ...
+# Subtest: activation requires at least $100 and supported contribution assets and pools
+ok 31 - activation requires at least $100 and supported contribution assets and pools
+  ---
+  duration_ms: 7.3597
+  type: 'test'
+  ...
+# Subtest: permanent top-ups increase NFT and collection LP without changing rewards
+ok 32 - permanent top-ups increase NFT and collection LP without changing rewards
+  ---
+  duration_ms: 6.7941
+  type: 'test'
+  ...
+# Subtest: top-ups cannot bypass activation or target foreign NFTs
+ok 33 - top-ups cannot bypass activation or target foreign NFTs
+  ---
+  duration_ms: 6.4253
+  type: 'test'
+  ...
+# Subtest: saved demo events replay and tolerate corrupt events
+ok 34 - saved demo events replay and tolerate corrupt events
+  ---
+  duration_ms: 18.5505
+  type: 'test'
+  ...
+# Subtest: wallet connection requests accounts and chain only; no signing or transactions
+ok 35 - wallet connection requests accounts and chain only; no signing or transactions
+  ---
+  duration_ms: 1.4367
+  type: 'test'
+  ...
+# Subtest: browser wallet rejects malformed or empty returned accounts
+ok 36 - browser wallet rejects malformed or empty returned accounts
+  ---
+  duration_ms: 0.5658
+  type: 'test'
+  ...
+# Subtest: demo wallet never calls a provider and disconnect is local
+ok 37 - demo wallet never calls a provider and disconnect is local
+  ---
+  duration_ms: 0.1758
+  type: 'test'
+  ...
+# Subtest: wallet rejection and pending request errors have useful messages
+ok 38 - wallet rejection and pending request errors have useful messages
+  ---
+  duration_ms: 0.2299
+  type: 'test'
+  ...
+# Subtest: user scenario produces 34% share, $2,544 pool fees and $864.96 collection fees
+ok 39 - user scenario produces 34% share, $2,544 pool fees and $864.96 collection fees
+  ---
+  duration_ms: 14.3041
+  type: 'test'
+  ...
+# Subtest: fee rate is configurable and $720.80 follows a 0.25% LP fee scenario
+ok 40 - fee rate is configurable and $720.80 follows a 0.25% LP fee scenario
+  ---
+  duration_ms: 0.2062
+  type: 'test'
+  ...
+# Subtest: fee model rejects invalid pool shares and unsafe numbers
+ok 41 - fee model rejects invalid pool shares and unsafe numbers
+  ---
+  duration_ms: 0.3419
+  type: 'test'
+  ...
+# Subtest: daily fee apportionment conserves cents and leaves dormant NFTs at zero
+ok 42 - daily fee apportionment conserves cents and leaves dormant NFTs at zero
+  ---
+  duration_ms: 8.3036
+  type: 'test'
+  ...
+# Subtest: 24-hour and 10-week displayed allocations preserve the fee budget
+ok 43 - 24-hour and 10-week displayed allocations preserve the fee budget
+  ---
+  duration_ms: 0.1391
+  type: 'test'
+  ...
+# Subtest: illustrative royalty receipts form a separate funded rarity-weighted ledger
+ok 44 - illustrative royalty receipts form a separate funded rarity-weighted ledger
+  ---
+  duration_ms: 6.8271
+  type: 'test'
+  ...
+# Subtest: combined bulk claims conserve both ledgers, deduplicate IDs and preserve other positions
+ok 45 - combined bulk claims conserve both ledgers, deduplicate IDs and preserve other positions
+  ---
+  duration_ms: 7.9049
+  type: 'test'
+  ...
+# Subtest: previously claimed remains cumulative across both reward sources and later funded claims
+ok 46 - previously claimed remains cumulative across both reward sources and later funded claims
+  ---
+  duration_ms: 0.2311
+  type: 'test'
+  ...
+# Subtest: royalties alone remain claimable after an LP-only legacy claim without overwriting LP history
+ok 47 - royalties alone remain claimable after an LP-only legacy claim without overwriting LP history
+  ---
+  duration_ms: 6.2085
+  type: 'test'
+  ...
+# Subtest: dormant mint, activation and top-ups grant no retroactive royalties or previous claims
+ok 48 - dormant mint, activation and top-ups grant no retroactive royalties or previous claims
+  ---
+  duration_ms: 6.7778
+  type: 'test'
+  ...
+# Subtest: v7 legacy events claim LP only while explicit new events replay combined claims exactly once
+ok 49 - v7 legacy events claim LP only while explicit new events replay combined claims exactly once
+  ---
+  duration_ms: 47.0533
+  type: 'test'
+  ...
+# Subtest: older NFT fixtures without royalty fields retain their LP-only amounts and cumulative history
+ok 50 - older NFT fixtures without royalty fields retain their LP-only amounts and cumulative history
+  ---
+  duration_ms: 0.1519
+  type: 'test'
+  ...
+# Subtest: new top-ups require $5 in value for each supported demo source and preserve historical cents
+ok 51 - new top-ups require $5 in value for each supported demo source and preserve historical cents
+  ---
+  duration_ms: 13.097
+  type: 'test'
+  ...
+# Subtest: NFT earnings retain only credited rewards through claims and never infer dated net history from gross
+ok 52 - NFT earnings retain only credited rewards through claims and never infer dated net history from gross
+  ---
+  duration_ms: 6.3731
+  type: 'test'
+  ...
+# Subtest: demo 444 total is exactly individual plus collective plus royalties, paid once
+ok 53 - demo 444 total is exactly individual plus collective plus royalties, paid once
+  ---
+  duration_ms: 11.6586
+  type: 'test'
+  ...
+# Subtest: top-up and gross display figures cannot increase NFT earned history
+ok 54 - top-up and gross display figures cannot increase NFT earned history
+  ---
+  duration_ms: 7.8483
+  type: 'test'
+  ...
+# Subtest: NFT total uses its equal collective allocation, not 90 percent of its own gross share
+ok 55 - NFT total uses its equal collective allocation, not 90 percent of its own gross share
+  ---
+  duration_ms: 0.425
+  type: 'test'
+  ...
+# Subtest: conversion credits, principal, reserves and past payouts are not added to earned totals
+ok 56 - conversion credits, principal, reserves and past payouts are not added to earned totals
+  ---
+  duration_ms: 20.7448
+  type: 'test'
+  ...
+# Subtest: sum current-price components exactly before display rounding
+ok 57 - sum current-price components exactly before display rounding
+  ---
+  duration_ms: 0.285
+  type: 'test'
+  ...
+# Subtest: missing price and aggregate integer overflow produce unavailable, never partial totals or a render crash
+ok 58 - missing price and aggregate integer overflow produce unavailable, never partial totals or a render crash
+  ---
+  duration_ms: 0.2872
+  type: 'test'
+  ...
+# Subtest: funding conserves holder allocation, equal collective and rarity royalties without changing LP or traits
+ok 59 - funding conserves holder allocation, equal collective and rarity royalties without changing LP or traits
+  ---
+  duration_ms: 13.001
+  type: 'test'
+  ...
+# Subtest: fund once across concurrent tabs, preserving old claims and top-ups, and stay claimed after reload
+ok 60 - fund once across concurrent tabs, preserving old claims and top-ups, and stay claimed after reload
+  ---
+  duration_ms: 72.5079
+  type: 'test'
+  ...
+# Subtest: later activation receives no past receipt; defaults retain four colors and evolution stages
+ok 61 - later activation receives no past receipt; defaults retain four colors and evolution stages
+  ---
+  duration_ms: 7.5402
+  type: 'test'
+  ...
+# Subtest: celebration requires confirmed LP growth and a real upward evolution
+ok 62 - celebration requires confirmed LP growth and a real upward evolution
+  ---
+  duration_ms: 0.2629
+  type: 'test'
+  ...
+# Subtest: ACTI/EV playback starts in the same frame as confirmed image reveal, once per NFT
+ok 63 - ACTI/EV playback starts in the same frame as confirmed image reveal, once per NFT
+  ---
+  duration_ms: 1.5271
+  type: 'test'
+  ...
+# Subtest: unchanged snapshot is reused immutably; external writes and resets invalidate it
+ok 64 - unchanged snapshot is reused immutably; external writes and resets invalidate it
+  ---
+  duration_ms: 36.8502
+  type: 'test'
+  ...
+# Subtest: cached state never conceals broken storage or a changed malformed log
+ok 65 - cached state never conceals broken storage or a changed malformed log
+  ---
+  duration_ms: 13.8139
+  type: 'test'
+  ...
+# Subtest: large valid log is replayed once per version without changing legacy meaning
+ok 66 - large valid log is replayed once per version without changing legacy meaning
+  ---
+  duration_ms: 9.3043
+  type: 'test'
+  ...
+# Subtest: expired action cannot commit after background suspension; cancellation preserves newer locks
+ok 67 - expired action cannot commit after background suspension; cancellation preserves newer locks
+  ---
+  duration_ms: 7.7651
+  type: 'test'
+  ...
+# Subtest: independent NFT actions run together; overlapping batch acquires no partial resources
+ok 68 - independent NFT actions run together; overlapping batch acquires no partial resources
+  ---
+  duration_ms: 1.1096
+  type: 'test'
+  ...
+# Subtest: account or chain round trip invalidates pending operation; old completion cannot release a new lock
+ok 69 - account or chain round trip invalidates pending operation; old completion cannot release a new lock
+  ---
+  duration_ms: 0.3128
+  type: 'test'
+  ...
+# Subtest: two tabs commit independent contributions without overwriting either
+ok 70 - two tabs commit independent contributions without overwriting either
+  ---
+  duration_ms: 27.0845
+  type: 'test'
+  ...
+# Subtest: same NFT sequential contributions accumulate against latest state
+ok 71 - same NFT sequential contributions accumulate against latest state
+  ---
+  duration_ms: 19.1972
+  type: 'test'
+  ...
+# Subtest: competing claims never credit the same funded balance twice
+ok 72 - competing claims never credit the same funded balance twice
+  ---
+  duration_ms: 19.4152
+  type: 'test'
+  ...
+# Subtest: cross-tab resource lock rejects conflicting NFT action, allows another, releases after failure
+ok 73 - cross-tab resource lock rejects conflicting NFT action, allows another, releases after failure
+  ---
+  duration_ms: 13.62
+  type: 'test'
+  ...
+# Subtest: batch cross-tab conflict releases previously acquired resources
+ok 74 - batch cross-tab conflict releases previously acquired resources
+  ---
+  duration_ms: 0.2691
+  type: 'test'
+  ...
+# Subtest: concurrent mints allocate different NFT and artwork inventory IDs
+ok 75 - concurrent mints allocate different NFT and artwork inventory IDs
+  ---
+  duration_ms: 20.5659
+  type: 'test'
+  ...
+# Subtest: reset invalidates a pending action even when the log was already empty
+ok 76 - reset invalidates a pending action even when the log was already empty
+  ---
+  duration_ms: 25.1239
+  type: 'test'
+  ...
+# Subtest: failed storage write never returns success or changes canonical preview state
+ok 77 - failed storage write never returns success or changes canonical preview state
+  ---
+  duration_ms: 6.7574
+  type: 'test'
+  ...
+# Subtest: context is rechecked inside the event lock after waiting
+ok 78 - context is rechecked inside the event lock after waiting
+  ---
+  duration_ms: 6.8049
+  type: 'test'
+  ...
+# Subtest: corrupt, oversized and full logs fail explicitly, without deleting legacy events
+ok 79 - corrupt, oversized and full logs fail explicitly, without deleting legacy events
+  ---
+  duration_ms: 21.4493
+  type: 'test'
+  ...
+# Subtest: unsupported locking fails closed without committing
+ok 80 - unsupported locking fails closed without committing
+  ---
+  duration_ms: 6.8245
+  type: 'test'
+  ...
+# Subtest: demo connection restores across reload and explicit disconnect clears it
+ok 81 - demo connection restores across reload and explicit disconnect clears it
+  ---
+  duration_ms: 0.502
+  type: 'test'
+  ...
+# Subtest: browser restoration reads public account state only and rejects ambiguous provider
+ok 82 - browser restoration reads public account state only and rejects ambiguous provider
+  ---
+  duration_ms: 0.5293
+  type: 'test'
+  ...
+# Subtest: late connect or restore result cannot resurrect a disconnected wallet
+ok 83 - late connect or restore result cannot resurrect a disconnected wallet
+  ---
+  duration_ms: 0.3801
+  type: 'test'
+  ...
+# Subtest: account and chain events invalidate pending operations even when changed back
+ok 84 - account and chain events invalidate pending operations even when changed back
+  ---
+  duration_ms: 0.3893
+  type: 'test'
+  ...
+# Subtest: authorized second account selection survives reload without a permission prompt
+ok 85 - authorized second account selection survives reload without a permission prompt
+  ---
+  duration_ms: 0.2183
+  type: 'test'
+  ...
+# Subtest: authorized account attachment rejects a selection absent from the returned accounts
+ok 86 - authorized account attachment rejects a selection absent from the returned accounts
+  ---
+  duration_ms: 0.1358
+  type: 'test'
+  ...
+1..86
+# tests 86
+# suites 0
+# pass 86
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 552.478

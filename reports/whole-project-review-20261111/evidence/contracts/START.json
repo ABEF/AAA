@@ -1,0 +1,11 @@
+{
+  "originals": {
+    "src/ZZZContributionPricing.sol": "81e206ee22b2625a4540475125eaf07b9f9be302fee5f4ace4766363fe15f540",
+    "src/ZZZMembership.sol": "59c8d9d1ddcb13dda8f721db3f77835efba36d2333e15e2e1bafa94dfd2cbbc5",
+    "src/ZZZMigrationBudget.sol": "617c88b2225d35200606708cbf339b56851197f5a52ecac450f1719172ec07b9",
+    "src/ZZZNFTMetadata.sol": "2e66578c27a917fe91f8c111bab0ef162fbe42f09ee7c7125bcfb1366a608a12",
+    "src/base/ZZZRewardConverter.sol": "8bc96c86a0a8f18d95a1d9e69cd1dc4667e72d486b1367861a30fcd9414eb232",
+    "src/ZZZLPRewardConverter.sol": "88865c4aad55a44891448f26d273fd66421a4a6f3503cfaac5f6b1791c97d2c6",
+    "test/NativeCustody.t.sol": "1fa9134383027d8e9a7893c715ac87073de37f11402e1e67688d2dc4d5c5bb20"
+  }
+}

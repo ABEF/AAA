@@ -42,18 +42,23 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
 
 ## Contributions, shared accounting and execution
 
-1. Direct minting requires the exact current governed price (**0.05 ETH default**), creates one dormant
-   NFT and adds no LP or reward eligibility. OpenSea primary minting, including
-   the agreed 0.05 ETH buyer total net of platform fees to the recipient, is not
-   integrated or qualified. Mint proceeds are not royalties or LP backing.
+1. Current mint2 implements reviewed SeaDrop team/allowlist/public minting. Paid
+   stages use the governed gross price (**0.05 ETH default**), with platform
+   fees deducted before creator proceeds. The NFT callback receives0ETH and
+   direct Vault paid mint is disabled when bound. This creates dormant NFTs,
+   not LP or reward eligibility. Actual OpenSea onboarding/payment/VRF remains
+   unqualified; unbound direct mint is an explicit historical/local profile.
+   Mint proceeds are not royalties or LP backing.
 2. Activation/growth defaults are **$100/$5 original source value**. ProtocolPolicy
    governs future minima (each >=$1, growth<=activation), with stronger pool limits. These are contribution thresholds,
    not a current market-value floor. An activated NFT stays eligible after value
    losses. The same NFT keeps its revealed rarity, palette and pattern.
 3. Two independently reviewed USD sources per priced asset must be fresh, valid
    and within the selected **3% agreement tolerance**. Disagreement fails closed;
-   there is no pool-spot, stale-price or assumed-stable-peg fallback. Two matching
-   addresses or answers do not establish independent price discovery.
+   there is no implicit target-pool, stale-price or assumed-stable-peg fallback.
+   The optional [external-pool spot composite](POOL_SPOT_PRICE_SOURCE.md) is an
+   explicitly reviewed source, not a fallback or a TWAP. Two matching addresses
+   or answers do not establish independent price discovery.
 4. Contribution prices and limits are frozen before external token/conversion
    callbacks. The current **3% contribution** default requires marginal deployed
    LP to satisfy the captured conservative upper-input/lower-LP floor. It cannot
@@ -85,7 +90,7 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    NFT one equal membership, independent of rarity, LP size or current evolution.
    Dormant NFTs do not dilute it; growth, transfers and maintenance add no membership.
 3. Twenty-raw-unit batches implement 16/2/1/1, with carried remainder. Funded dust
-   settles to incumbent owner indexes at entry/move barriers; up to 19 raw units
+   settles to incumbent individual exact-unit books at entry/move barriers; up to19raw units
    per settlement are an explicit rounding exception, not a lifetime dust cap.
    Current-pool fees settle before new shares, including entry-generated fees;
    new membership cannot take previously indexed or locally pending rewards.
@@ -99,14 +104,15 @@ and [release approval record](RELEASE_CHECKLIST.md) for their exact boundaries.
    ERC20 balance/synchronization call defers only that currency's new eligibility;
    recovery assigns previously unseen receipts to the earlier cohort before
    enrolling waiting NFTs. Native ETH has no token balance-read failure or
-   external-custody deferral in accounting4/5/6. Gas bounds and full backing checks
+   external-custody deferral in accounting7. Gas bounds and full backing checks
    remain. Not every technical activation failure is isolated.
 6. LP reward conversions debit the selected NFTs' source entitlements and credit
    actual ETH to those same NFTs. Conversion, claim, transfer and principal return
    are not new earnings. No backing can be counted both as raw funds and as
    converted credit. Retired-currency liabilities remain backed and identifiable.
 7. Current NFT ownership authorizes claims; transfer approvals alone do not.
-   Whole balances, fractions and unclaimed rights follow the NFT. Debiting before
+   Current whole-unit balances and unclaimed rights follow the NFT; fractions
+   belong only to separately interpreted historical profiles. Debiting before
    payout and exact amount/destination checks protect against double claims and
    callbacks. Ordinary strategy pause does not disable funded claims, although
    canonical lifecycle locks or broken dependencies can. LP exit does not remove
@@ -169,9 +175,13 @@ See [holder-return procedure](HOLDER_COLLECTIVE_EXIT.md) and
 [recovery boundaries](CHANGE_AND_RECOVERY.md).
 
 Keepers execute authorized upkeep within on-chain range/cooldown/output/loss
-guards and pay gas. Optional switching between reviewed +/-25% and +/-50% widths
-follows governance's approved rules in ZZZ-price-in-ETH orientation; it is not an
-arbitrary keeper policy change. Polling does not guarantee a rebalance time or continuous
+guards and pay gas. Governance selects the main range; the fresh service rejects
+automatic width switching alongside its ordinary confirmation policy. Historical
+adaptive profiles retain their own explicit rules. The fresh service also waits
+for a suitable in-range/below-threshold main before compounding; that additional
+restriction is service policy, not a complete on-chain keeper capability limit.
+A compromised authorized keeper can bypass that service choice while retaining
+the contract's financial/authorization guards. Polling does not guarantee a rebalance time or continuous
 in-range liquidity. MEV, impermanent loss and losses within authorized caps remain
 possible. Off-chain services are not custody authorities; stale/partial data must
 remain unavailable. Ambiguous broadcasts require same-hash recovery rather than

@@ -6,8 +6,6 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
-interface IPairAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
-interface IPairVault { function migrationBudget() external view returns(ZZZMigrationBudget); }
 interface IConfirmationControl {
     function controlFingerprint(bytes32) external view returns(bytes32);
     function observationFingerprint(uint256,bytes32) external view returns(bytes32);
@@ -426,7 +424,9 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         external onlyVault returns(uint256 issued,uint256 netUSD) {
         return _pricing().finish(bucket,inputUSD,supply,incumbentNAV,incumbentDeployed,deployed,idle,limits);
     }
+    /// @notice Compatibility read: every supported principal/compound asset is
+    /// the current native ETH/fixed-ZZZ pair, already included in its own mark.
     function historicalCompoundValue(uint256 id) public view returns(uint256) {
-        return _pricing().historicalValue(id);
+        return 0;
     }
 }

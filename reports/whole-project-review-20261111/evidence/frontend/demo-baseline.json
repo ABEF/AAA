@@ -1,0 +1,54 @@
+{
+  "initial_sha256": "52ead56bd450875c0195d341c66b3c35065afd109199e985fe7868f65509c96a",
+  "legacy_events": [
+    {
+      "type": "claim",
+      "ids": [
+        444
+      ]
+    },
+    {
+      "type": "mint"
+    },
+    {
+      "type": "activate",
+      "id": 1001,
+      "amount": 100,
+      "pool": "ZZZ/WETH",
+      "fundingAsset": "USDC"
+    },
+    {
+      "type": "increase",
+      "id": 1001,
+      "amount": 0.01,
+      "fundingAsset": "USDG"
+    },
+    {
+      "type": "claim",
+      "ids": [
+        128
+      ],
+      "scope": "all"
+    }
+  ],
+  "legacy_replay_sha256": "217d865c092f742578e1e1301dec66ed56bba7cbf4023336ab1c56060a010cb4",
+  "original_metrics": {
+    "liquidity": 42500000,
+    "feesAllTime": 6054720,
+    "fees24h": 86496,
+    "claimable": 847746,
+    "active": 80,
+    "dormant": 20,
+    "total": 100
+  },
+  "legacy_metrics": {
+    "liquidity": 42510001,
+    "feesAllTime": 6054720,
+    "fees24h": 86496,
+    "claimable": 781547,
+    "active": 81,
+    "dormant": 20,
+    "total": 101
+  },
+  "storage_key": "zzz-popl-preview-v7"
+}

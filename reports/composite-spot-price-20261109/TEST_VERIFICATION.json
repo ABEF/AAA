@@ -1,0 +1,223 @@
+{
+  "scope": "new optional standalone source; no broad existing suite or market acceptance",
+  "successful_distinct_methods": 23,
+  "stages": [
+    {
+      "exit_code": 0,
+      "seconds": 42.55,
+      "command": [
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+        "test",
+        "--root",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-c9581e77fe",
+        "--use",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+        "--match-contract",
+        "PoolSpotPriceFeedTest",
+        "--json"
+      ],
+      "tests": [
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testBadETHRoundsPricesTimesAndWideABIReject()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testConstructorRejectsMissingPinsAndUnreviewedConfig()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testConstructorRejectsWrongPoolKeyHooksDynamicFeeAndAgeOrFloor()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testConstructorRejectsWrongStateViewParentAndUnsupportedDecimals()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testDefaultSourceGasEnvelopeAndOracleAdmissionDisagreementAndFingerprint()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testDirectionalProtocolFeeBoundsAndStaticFeeMustMatch()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testETHFreshnessBoundaryIsExactAndReadsCannotRefreshIt()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testEveryRuntimePinIsRechecked()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testExactDownwardCrossingTickAllowedButFalseTickRejected()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testExactInvertedSpotAndOriginalETHTimestamps()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testFuzzExactPowerOfTwoPricesAcrossDecimals(uint8,uint8,uint8,uint32)",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testLiquidityAndSamePriceETHRoundChangeFingerprint()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testMalformedAndOversizedResponsesAndGasExhaustionRejectBoundedly()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testMalformedETHAndLiquidityRepliesCannotTruncate()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testNoAdministratorMethodsValueReceptionOrMutatingPriceRead()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testPinnedRuntimesAndChangedDecimalsOrStateViewParentReject()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testSmallAndLargeSqrtBranchesHaveKnownExactValues()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testSpotChangeNeedsNoTWAPAndDoesNotFreshenETH()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testUninitializedAndNoncanonicalSlot0Reject()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testZeroAndEighteenDecimalsNormalizeCorrectly()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testZeroLiquidityAndOneUnitBelowFloorReject()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        }
+      ],
+      "source_unchanged": true,
+      "snapshot_exact": true,
+      "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+      "solc_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 42.06,
+      "command": [
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+        "test",
+        "--root",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\composite-price-20261109-0acb123\\focused-1726183410",
+        "--use",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+        "--match-contract",
+        "PoolSpotPriceFeedTest",
+        "--json",
+        "--match-test",
+        "test(ExtremeRepresentableMinimumSqrtAndMaximumSqrtRejection|ExactMaximumOutputAndOneUnitAboveETHBound)"
+      ],
+      "tests": [
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testExactMaximumOutputAndOneUnitAboveETHBound()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        },
+        {
+          "suite": "test/PoolSpotPriceFeed.t.sol:PoolSpotPriceFeedTest",
+          "test": "testExtremeRepresentableMinimumSqrtAndMaximumSqrtRejection()",
+          "status": "Success",
+          "reason": null,
+          "gas": null
+        }
+      ],
+      "source_unchanged": true,
+      "snapshot_exact": true,
+      "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+      "solc_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+    }
+  ],
+  "old_test_source_except_final_closing_brace_is_exact_new_prefix": true,
+  "new_test_source_sha256": "55198064911ac21ebf307a36bdabe1eccd0f2fb5193f94de6628b4bb9c8cb124",
+  "source_sha256": "5d4d99a809e6ec64d0e0e0c485f61d6a35e124955b7eb8018e8faa3708b4c084",
+  "normal_directory": "normal-final-4f5c9bf7d1",
+  "core_equivalence": "CORE_EQUIVALENCE.json",
+  "all_existing_compiler_objects_equal": true,
+  "known_negative_attempt": "focused-ff0d00cffb: external test harness remapping typo; no compilation or test execution",
+  "fuzz_scope": "one property method,1000inputs: exact rational powers-of-two spot prices across bothsqrtbranches,0..18token/feeddecimals,positive and unrepresentable outputs",
+  "gas_scope": "successful explicit500000-gas staticcall and actual Oracle admission on synthetic sources, not target/feed qualification",
+  "rounding": "large-sqrt branch follows truncatedX128 ratio from UniswapOracleLibrary; denominatorrelativeerror<2^-192; acceptedprice may differ by at most1USD18rawunit at a rational rounding boundary",
+  "immutability": "all59existingproduction source hashes and all original ABI/creation/runtime objects unchanged",
+  "environment": "no service/site/Anvil/nonce/journal/signer/publictransaction/productionconfiguration change"
+}

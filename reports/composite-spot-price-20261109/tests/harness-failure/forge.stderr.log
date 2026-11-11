@@ -1,0 +1,2 @@
+Error: failed to extract foundry config:
+foundry config error: invalid remapping format, found `@openzeppelin/contracts/node_modules/@openzeppelin/contracts/`, expected `<key>=<value>` for setting `0.remappings`

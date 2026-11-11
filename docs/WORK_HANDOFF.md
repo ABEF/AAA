@@ -1,5 +1,36 @@
 # Work handoff
 
+The [11 November project review](../reports/whole-project-review-20261111/REVIEW.md)
+removes unreachable third-currency LP scans while preserving all concrete ABIs,
+storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
+return zero; royalty currencies and historical codecs remain separate. New
+runtime/source pins require explicit candidate/deployment review, not relabeling
+old profiles. The keeper now validates known simulation returns and rechecks
+generic-job deadline/day/cost after slow reads before intent/signing. ABI inputs
+are exact; indexer contract inventories reject duplicates before database work.
+Changing the ABI helper invalidates old source-pinned earnings checkpoints on
+consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
+Website source packaging/new-demo intents are corrected without changing
+historical replay, public null configurations or the shared Anvil-only signer.
+No live site/service/chain/journal or paused-heartbeat change occurs.
+The review lists unresolved spot-reference/venue coupling, service-only compound
+policy and release qualification; no financial guard was relaxed.
+
+
+The optional [pool-spot composite reader](POOL_SPOT_PRICE_SOURCE.md) implements
+native-v4 ETH/fixed-ZZZ spot times reviewed ETH/USD. User explicitly chose spot
+for placement AND independent valuation; no TWAP is added. Placement already
+uses current main geometry/post-swap amounts. Prefer the largest qualifying
+external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
+does not prove independence or bidirectional depth. Keep two genuinely
+independent ZZZ paths; two copies of one pool with different ETH feeds do not
+satisfy that review. Core runtime/ABI/profile/economic guards are unchanged.
+The reader is optional/unconfigured, with no source admission, deployment,
+service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
+ages/depth, second ZZZ reference, ETH publication/liveness and operating
+qualification remain open. [Scope](../reports/composite-spot-price-20261109/REVIEW.md).
+
+
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9

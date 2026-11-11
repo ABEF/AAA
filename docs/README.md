@@ -1,5 +1,15 @@
 # Documentation map
 
+Use the [current project review](../reports/whole-project-review-20261111/REVIEW.md)
+for confirmed fixes and unresolved decisions, then the owning procedure below.
+Generated call tables and the sole Todo are updated together.
+
+
+[Pool-spot valuation and post-seal source changes](POOL_SPOT_PRICE_SOURCE.md)
+explains the optional reference-pool spot × ETH/USD adapter, exact inputs,
+external-depth selection, source independence and qualification limits.
+
+
 [Current mint2 website consumer](SOURCE10_WEBSITE_PROFILE.md) documents explicit
 schema5/source10/V10 reads and unsigned reviews,33 browser pins, configuration
 and rollout boundaries. [Verification](../reports/v10-website-20261109/REVIEW.md)

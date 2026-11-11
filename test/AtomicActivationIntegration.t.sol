@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
-import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
+import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
 import {Ids,PoolKey,PoolConfig,Position} from "../src/libraries/ZZZTypes.sol";
@@ -13,11 +13,24 @@ import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
 
+/// @dev TEST ONLY native-pair admission for the deterministic ledger venue.
+/// Retains actual Registry policy/source validation; bypasses public Robinhood
+/// runtime pins only. It does not admit ERC20 pairs or qualify real pool depth.
+contract DirectEntryNativeRegistry is ZZZPoolRegistry {
+    constructor(address controller) ZZZPoolRegistry(controller) {}
+    function configure(PoolConfig calldata config) external onlyGovernance principalOperating returns(bytes32) {
+        if(config.key.currency0!=address(0) || config.key.currency1!=activationAssets.zzz() ||
+            config.key.currency1==address(0) || config.key.hooks!=address(0))revert InvalidConfiguration();
+        return _configure(config,address(0),config.key.currency1);
+    }
+    function _nativeBindings() internal pure override {}
+}
+
 /// @dev Direct-input ledger fixture. This synthetic native-ETH/fixed-ZZZ pair isolates share,
 /// price, policy and callback accounting; actual native/core execution remains
 /// in NativeVaultFlows and OptionalPortfolioCore, not this mock LP manager.
 abstract contract DirectEntryFixture is PooledVaultFixture {
-    ZZZPoolRegistry registry;
+    DirectEntryNativeRegistry registry;
     ZZZActivationAssets assets;
     ZZZActivationEntry entry;
     bytes32 constant REVIEW=keccak256("direct Entry3 test review, not provider qualification");
@@ -31,7 +44,7 @@ abstract contract DirectEntryFixture is PooledVaultFixture {
         MockFeed feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
         t1.mint(alice,10000e18);t1.mint(bob,10000e18);
-        registry=new ZZZPoolRegistry(address(ac));ac.bind(Ids.POOLS,address(registry));
+        registry=new DirectEntryNativeRegistry(address(ac));ac.bind(Ids.POOLS,address(registry));
         assets=registry.activationAssets();entry=registry.activationEntry();
         assets.configureZZZ(address(t1),address(t1).codehash,REVIEW);
         rewards=new ZZZRewards(address(ac));ac.bind(Ids.REWARDS,address(rewards));rewards.addAsset(address(t1));

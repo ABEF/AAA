@@ -35,6 +35,14 @@ class KeeperConfirmationIncidentTests(unittest.TestCase):
     def _signer_context(self):
         self.k.live=True;self.k.cast='/inert/cast';self.k.keystore=Path('/inert/key');self.k.password=Path('/inert/pass')
         self.k.fee_policy='included';self.k.state['next_nonce']=7
+        original=self.rpc.call
+        def call(method,params):
+            if (method=='eth_call' and 'from' in params[0] and params[0]['to']==self.f.helper and
+                    params[0]['data']==calldata('observe(uint256)',7)):
+                self.rpc.calls.append((method,copy.deepcopy(params)))
+                return fixtures.words(False)  # observe returns bool; reset remains void.
+            return original(method,params)
+        self.rpc.call=call
 
     def _failed_receipt(self,key,signature,args,to):
         fixture=fixtures.basic.KeeperTests('runTest');fixture.k=self.k;fixture.rpc=self.rpc
