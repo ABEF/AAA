@@ -1,5 +1,14 @@
 # Consolidated audit findings and evidence
 
+The [gas-feasibility follow-up](../reports/gas-feasibility-20261111/REVIEW.md)
+reduces redundant policy reads while retaining source/market/callback and
+financial proofs.23focused methods and48normal gates pass; original-RPC metrics
+and new full-maintenance measurements retain distinct scopes. Default12M
+feasibility remains open, as do complete real fees/providers and maximum state.
+Oracle's3-byte runtime margin is explicit. A public RPC now supplies bounded
+32M chain-parameter evidence, superseding earlier blanket unavailability only
+for those reads, without approving its archive/trace service or any deployment.
+
 All271previously unreviewed records now have individual source/decision
 assessments in the [complete follow-up](../reports/remaining-271-20261111/REVIEW.md).
 Together with the earlier39, the original310record registry is fully reviewed

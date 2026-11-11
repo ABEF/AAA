@@ -1,0 +1,52 @@
+{
+  "scope": "Proposed changed-scope selection for private Oracle execution-context optimization; no tests executed.",
+  "class_name": "ReferenceExecutionContextTest",
+  "source": "test/ReferenceExecutionContext.t.sol",
+  "selected_existing_methods": [
+    "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares",
+    "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares",
+    "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition",
+    "testActualIndependentReadersUseSeparateFundedCoreStatesAndPublicReadsStayLive",
+    "testCapturedExecutionBoundsPermitExactQuotedETHToZZZReferenceTransition",
+    "testCapturedExecutionBoundsPermitExactQuotedZZZToETHReferenceTransition",
+    "testStandaloneContextsCannotBeBorrowedAndTwoSequentialOperationsRecaptureLivePrices",
+    "testCheapCapturedReadsRejectEveryAssetOtherThanNativeETHAndTheFixedZZZ",
+    "testCoalescedPolicyFingerprintIsByteExactInactiveAndAcrossBothOwnReferenceSwapDirections",
+    "testOnlyPricingOwnsWholeEntryContextAndOnlyTheAuthenticatedVaultManagerCanBorrowIt",
+    "testUnregisteredReferenceMovementCannotHideAtFullValidationOrOwnerEnd",
+    "testWrongExpectedTickLiquidityFeesOrSqrtRejectsAndRollsBackTheWholeContext",
+    "testETHObservationCannotChangeEvenWhenTheReferenceTransitionMatches",
+    "testPostSwapSourceDisagreementRollsBackSwapFundingAndForeignCallbackTrade",
+    "testMutatingCallbackCannotCommitByReadingTheOldCapturedPriceVector",
+    "testSourceKindDisableAndRestoreCannotReviveTheOldExecutionReview",
+    "testWrongQuotedOutputCannotPassEvenWithAValidReferenceTransition",
+    "testActualEntryFinalLPFloorFailureRollsBackSwapSharesMembershipAndApproval"
+  ],
+  "existing_method_count": 18,
+  "regex": "^(testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares|testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares|testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition|testActualIndependentReadersUseSeparateFundedCoreStatesAndPublicReadsStayLive|testCapturedExecutionBoundsPermitExactQuotedETHToZZZReferenceTransition|testCapturedExecutionBoundsPermitExactQuotedZZZToETHReferenceTransition|testStandaloneContextsCannotBeBorrowedAndTwoSequentialOperationsRecaptureLivePrices|testCheapCapturedReadsRejectEveryAssetOtherThanNativeETHAndTheFixedZZZ|testCoalescedPolicyFingerprintIsByteExactInactiveAndAcrossBothOwnReferenceSwapDirections|testOnlyPricingOwnsWholeEntryContextAndOnlyTheAuthenticatedVaultManagerCanBorrowIt|testUnregisteredReferenceMovementCannotHideAtFullValidationOrOwnerEnd|testWrongExpectedTickLiquidityFeesOrSqrtRejectsAndRollsBackTheWholeContext|testETHObservationCannotChangeEvenWhenTheReferenceTransitionMatches|testPostSwapSourceDisagreementRollsBackSwapFundingAndForeignCallbackTrade|testMutatingCallbackCannotCommitByReadingTheOldCapturedPriceVector|testSourceKindDisableAndRestoreCannotReviveTheOldExecutionReview|testWrongQuotedOutputCannotPassEvenWithAValidReferenceTransition|testActualEntryFinalLPFloorFailureRollsBackSwapSharesMembershipAndApproval)\\(\\)$",
+  "gas_assertion_adaptation_required": "Old helper deliberately requires the12Mcall to revert. If optimization makes it execute, preserve old snapshot and replace only candidate gas-outcome assertion with explicit gross call/estimate+20% admission checks. Never raise default or drop financial/rollback assertions.",
+  "new_maintenance_required": [
+    "Actual Compounder\u2192Vault\u2192Budget/Pricing\u2192Manager/core full compound; bind actual Compounder in new fixture, do not label helper-only balance gas full operation.",
+    "Full ordinary keeper Vault.rebalance after hard cooldown and exact sampled reference/physical trigger; refresh bounded MockETH publication after12h, gather240-second samples over600strictmaxgap300. Keeper jitter is a separate service delay, not transaction gas.",
+    "One-main vs enabled residual full replacement, and typed same-main consolidation if its execution-context code closure changes; both leg/reserve/share custody assertions remain.",
+    "Standalone harvest remains source/price-independent and is not automatically rerun for private captured-quote code unless its implementation changes."
+  ],
+  "new_maintenance_methods": [
+    "testGasFeasibilityFullHarvestAllocatesActualFeesWithoutMovingPrincipal",
+    "testGasFeasibilityFullCompoundUsesCapturedPricesAndPreservesOwnerSharesAndMainGeometry",
+    "testGasFeasibilityOrdinaryVaultRebalanceRetainsCooldownSamplesAndFullPriceGuards",
+    "testGasFeasibilityMaintenanceSourceFaultsPreservePrincipalAndEarnedReserveBooks",
+    "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking"
+  ],
+  "new_maintenance_method_count": 5,
+  "proposed_total_method_count": 23,
+  "preparation_typecheck_only": {
+    "source_count": 200,
+    "test_sha256": "a012f266aff560baad94f61fa4c148446d6ad848a50fc4c180f8a1c0b364f13f",
+    "oracle_sha256": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+    "executable_code_generated": false,
+    "evm_or_gas_acceptance": false
+  },
+  "no_unchanged_suite": true,
+  "no_existing_environment_mutation": true
+}

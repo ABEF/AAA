@@ -1,5 +1,11 @@
 # Verification evidence
 
+The [gas-feasibility campaign](gas-feasibility-20261111/REVIEW.md) reuses original
+traces, reduces repeated pricing-policy reads, measures complete single/hybrid
+maintenance and records bounded live Robinhood limits/fees. Defaults and
+safeguards remain;12M Entry admission, real provider/market operation and the
+Oracle's3-byte size margin stay explicit. [Verification](gas-feasibility-20261111/VERIFICATION.md).
+
 The [remaining271 review](remaining-271-20261111/REVIEW.md) completes the
 individual follow-up to the earlier39. All original records retain provenance;
 fixes, retired requirements, accepted risks and actual qualification remain

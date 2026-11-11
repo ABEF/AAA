@@ -1,0 +1,1550 @@
+{
+  "schema": 1,
+  "baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "candidate_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+  "public_contracts": 191,
+  "abi_and_semantic_storage": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ICanonicalOwnerBinding",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IContributionIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IContributionRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "IExitIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "IActivationAssetsFactoryIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "IActivationVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICancelledRoyaltyHop",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICancelledRoyaltyLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalDeploymentConfiguration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalExactLPProfile",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalHelpers",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "IZZZClaimLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingExecutionManager",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingMaintenanceMath",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyExecutionFingerprint",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyRegistryRevision",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "IExitTokenIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "IExitTokenRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ILocalParkingState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "IResidualPolicyControl",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeCutoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathCompoundBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathControls",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathMainFloor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathNativePools",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathZZZ",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "ZZZLPBalanceMath",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "IQuoteLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionExecutionParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "ZZZLPPositionExecutor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IEmergencyOutput",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IGuardedConsolidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IManagerPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "IZZZMembershipOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IHolderExitNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IHolderExitVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IResidualCompletion",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "IResidualStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetExecutionManager",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPositionOperator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetVaultValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IConfirmationControl",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IEmergencyManifest",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "IMigrationIdle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "IZZZNFTSuccessor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "IZZZVRFCoordinator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "INFTMintPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "INFTPolicyHandoff",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "IMetadataCollection",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "IMetadataRoyaltyWeight",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "IExecutionFixedZZZ",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "IExecutionManagerIdentity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": false,
+      "creation_identical": false
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ICollectiveExitPhase",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "INativeVenueBindings",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioAssociation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioConsolidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "ZZZPortfolioPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "contract": "IPolicyNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "contract": "ZZZProtocolPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "ZZZRebalanceConfirmation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "contract": "ZZZRoyaltyCodeData",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyNFTOwner",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltySuccessor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "contract": "ISeaDropMintCollection",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "contract": "ISeaDropMintRoyaltyEnd",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "contract": "ZZZSeaDropMint",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "IRangeRegistry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "IV4FeeState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZV4SpotPriceFeed.sol",
+      "contract": "ZZZV4SpotPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "IVaultManualContext",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "IVaultPositionOperator",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "IVaultResidualLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalMintRoyalty",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalPortfolio",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalRecoveryRoute",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPAssets",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPOrdinals",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPPools",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPVaultState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZModule.sol",
+      "contract": "ZZZModule",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardProxyAdmin",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardWrapper",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZRewardConverter.sol",
+      "contract": "ZZZRewardConverter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZSeaDropToken.sol",
+      "contract": "ISeaDropTokenState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/base/ZZZSeaDropToken.sol",
+      "contract": "ZZZSeaDropToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IBurnable",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPermit2Minimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPoolManagerMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPositionManagerMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IPriceFeed",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IStateViewMinimal",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZActivationEntry",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZBound",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZFees",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMembership",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMigration",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZNFT",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZPools",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZRewards",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyBudget",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyController",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyLiquidity",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyVault",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionOracle",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionSpotSource",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionStrategy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZProtocolPolicy.sol",
+      "contract": "IZZZProtocolPolicy",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "INonFungibleSeaDropToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "IZZZSeaDrop",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "IZZZSeaDropTokenMetadata",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteFactory",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RoutePool",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteRouter",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ExactLPAllocation.sol",
+      "contract": "ExactLPAllocation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ExactRoyaltyAllocation.sol",
+      "contract": "ExactRoyaltyAllocation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "abi_identical": true,
+      "semantic_storage_identical": true,
+      "runtime_identical": true,
+      "creation_identical": true
+    }
+  ],
+  "byte_identical_private_wire_and_guard_functions": {
+    "_loadExecution": "2d5d6d74868ebc63665da8ac7f1e9adefd01715724c6c07e750d6fff63e33f4d",
+    "_loadQuote": "b2c6b89e4d6873ef045f27b9cfddd2ffad49920237a73c3d002dc0d4f967c775",
+    "_saveExecution": "190cd5043ab38af369f5f9aee82d471879420fa62bd77c99c3c86424efa64ec9",
+    "_clearExecution": "2b0fa070568cb42c4817db2b2f46b3450e834b7dda992addc906f1d774940bad",
+    "_executionLength": "18f3dacbd8847016cc403cc3f8062921243422a5a956a2a6241fd6573bce66a3",
+    "_executionCaller": "15798a1ed730590a9e6d53719f96332deb950cd55700c30203bd44a14fb8a59b",
+    "_executionControls": "0357d61477ce90a51e4b3ad455571abc44c082fc51bb76085a7acbfe1f455198",
+    "_decodeRound": "3387b719432a7e786bcba0bc0bf1f959e6539e143cb67d14ec971df3938f43ef"
+  },
+  "full_validation_call_sites_unchanged": true,
+  "oracle_only_vs_full_bytecode_identical": true,
+  "math_bounds_equivalence": "For a>b assign(lower,upper)=(b,a); otherwise(a,b). This equals min/max for all uint256 including equality, with no new arithmetic. The exact spread mulDiv guard is unchanged.",
+  "no_production_source_edited": true
+}

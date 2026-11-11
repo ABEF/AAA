@@ -1,11 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
-The [remaining271 reconciliation](reports/remaining-271-20261111/REVIEW.md)
+The [gas-feasibility source](reports/gas-feasibility-20261111/REVIEW.md) saves
+about680k gas per controlled contribution, with23focused EVM methods passing.
+Exact12M Entry probes still reject. Oracle runtime is24,573/3bytes headroom;
+Vault24,544/32 unchanged. No default, compiler gate or safeguard was relaxed.
+Bounded public reads establish32M execution parameters, not full provider/fee
+or market acceptance. Never adopt the discovered RPC or policy2 automatically.
+
+The earlier [remaining271 reconciliation](reports/remaining-271-20261111/REVIEW.md)
 individually reviews every previously unreviewed row:271now plus39from the prior
 pass cover all310original records, without declaring all obligations resolved.
-Current corrections bound initial keeper simulations, isolate predecessor
+That pass bounds initial keeper simulations, isolates predecessor
 execution profiles and harden offline catalogue admission. Eight source/test/
-runner files change; no Solidity/artwork/rights/budgets or environment changes.
+runner files changed in that pass, without Solidity/artwork/rights/budget or environment changes.
 Use exact baseline and post-fix evidence separately; do not rerun unchanged suites.
 
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
@@ -19,9 +26,12 @@ unplanned market movement and nested scope borrowing fail closed. The fixed
 existing Math child shares read-only work; no new deployed helper, custody
 recipient or authority is added. Accounting7/canonicalV10 and financial limits
 remain. Explicit matching consumers/configuration/runtime pins are required;
-omission/0 remains historical LP2. Cold full-operation costs15.32M ETH/15.64M ZZZ in the controlled fixture
-(18.38M/18.77M with20% headroom), exceeding the unchanged12M default. Qualify
-the existing optional activation policy2 and real target-chain gas separately.
+omission/0 remains historical LP2. The [gas-feasibility follow-up](reports/gas-feasibility-20261111/REVIEW.md)
+shares one freshly read source-call ceiling only within each STATIC capture/full
+validation chain. No mutable-boundary proof,49-word codec, ABI/storage or limit
+is removed. The earlier15.32M/15.64M controlled calls retain their exact baseline
+scope. Current measurements, tight Oracle size and real32M chain-parameter reads
+are recorded separately;12M defaults and complete-operation qualification remain.
 See [review](reports/reference-execution-20261111/REVIEW.md) and [verification](reports/reference-execution-20261111/VERIFICATION.md).
 Source work changes no deployed contract, site/service, signer, existing
 Anvil/journal or user-paused heartbeat.
@@ -347,9 +357,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the [corrected strict review](reports/daily-reconciliation-audit-20261111/static-review.json):567records,
- 162individually reassessed contexts(22root/140independent collaborator)/405unique
- exact referenced-source reuse. The previous541(45/496) record remains historical.
+- CI/check-slither-review selects the [current strict review](reports/gas-feasibility-20261111/static-review.json):567records,
+ 13individually reassessed Oracle contexts/554unique exact referenced-source reuse.
+ The corrected daily567(162/405) and previous541(45/496) retain their original scope.
  The daily errata correct only two authority descriptions; other565records are
  not freshly re-audited. Original review bytes and analysis scopes are retained.
  Prior spot-reader560(2/558), contribution3558(11/547), mint2, fee-flow and

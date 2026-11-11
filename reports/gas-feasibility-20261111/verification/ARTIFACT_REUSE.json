@@ -1,0 +1,537 @@
+{
+  "baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "scope": "Read-only artifact/source comparison and existing-trace reanalysis; no EVM tests, compilation, RPC or live environment changes performed.",
+  "production_sources": [
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "baseline_git_sha256_raw": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "baseline_git_sha256_lf": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "normal_manifest_lf": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "match": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "baseline_git_sha256_raw": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "baseline_git_sha256_lf": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "normal_manifest_lf": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "match": true
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "baseline_git_sha256_raw": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "baseline_git_sha256_lf": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "normal_manifest_lf": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "match": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "baseline_git_sha256_raw": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "baseline_git_sha256_lf": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "normal_manifest_lf": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "match": true
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "baseline_git_sha256_raw": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "baseline_git_sha256_lf": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "normal_manifest_lf": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "baseline_git_sha256_raw": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "baseline_git_sha256_lf": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "normal_manifest_lf": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "baseline_git_sha256_raw": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "baseline_git_sha256_lf": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "normal_manifest_lf": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "baseline_git_sha256_raw": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "baseline_git_sha256_lf": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "normal_manifest_lf": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "baseline_git_sha256_raw": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "baseline_git_sha256_lf": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "normal_manifest_lf": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "baseline_git_sha256_raw": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "baseline_git_sha256_lf": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "normal_manifest_lf": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "baseline_git_sha256_raw": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "baseline_git_sha256_lf": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "normal_manifest_lf": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "baseline_git_sha256_raw": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "baseline_git_sha256_lf": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "normal_manifest_lf": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "match": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "baseline_git_sha256_raw": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "baseline_git_sha256_lf": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "normal_manifest_lf": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "baseline_git_sha256_raw": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "baseline_git_sha256_lf": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "normal_manifest_lf": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "baseline_git_sha256_raw": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "baseline_git_sha256_lf": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "normal_manifest_lf": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "baseline_git_sha256_raw": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "baseline_git_sha256_lf": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "normal_manifest_lf": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "baseline_git_sha256_raw": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "baseline_git_sha256_lf": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "normal_manifest_lf": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "baseline_git_sha256_raw": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "baseline_git_sha256_lf": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "normal_manifest_lf": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "baseline_git_sha256_raw": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "baseline_git_sha256_lf": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "normal_manifest_lf": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "baseline_git_sha256_raw": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "baseline_git_sha256_lf": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "normal_manifest_lf": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "match": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "baseline_git_sha256_raw": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "baseline_git_sha256_lf": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "normal_manifest_lf": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "match": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "baseline_git_sha256_raw": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "baseline_git_sha256_lf": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "normal_manifest_lf": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "match": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "baseline_git_sha256_raw": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "baseline_git_sha256_lf": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "normal_manifest_lf": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "match": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "baseline_git_sha256_raw": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "baseline_git_sha256_lf": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "normal_manifest_lf": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "match": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "baseline_git_sha256_raw": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "baseline_git_sha256_lf": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "normal_manifest_lf": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "match": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "baseline_git_sha256_raw": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "baseline_git_sha256_lf": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "normal_manifest_lf": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "match": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "baseline_git_sha256_raw": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "baseline_git_sha256_lf": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "normal_manifest_lf": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "match": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "baseline_git_sha256_raw": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "baseline_git_sha256_lf": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "normal_manifest_lf": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "match": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "baseline_git_sha256_raw": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "baseline_git_sha256_lf": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "normal_manifest_lf": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "match": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "baseline_git_sha256_raw": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+      "baseline_git_sha256_lf": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+      "normal_manifest_lf": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
+      "match": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "baseline_git_sha256_raw": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+      "baseline_git_sha256_lf": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+      "normal_manifest_lf": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+      "match": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "baseline_git_sha256_raw": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "baseline_git_sha256_lf": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "normal_manifest_lf": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "match": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "baseline_git_sha256_raw": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "baseline_git_sha256_lf": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "normal_manifest_lf": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "match": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "baseline_git_sha256_raw": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+      "baseline_git_sha256_lf": "743c97e22d93a7d8fe5129fd76bf3330ee11a6b50e389cf5566f4ffe86b21ac5",
+      "normal_manifest_lf": "743c97e22d93a7d8fe5129fd76bf3330ee11a6b50e389cf5566f4ffe86b21ac5",
+      "match": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "baseline_git_sha256_raw": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+      "baseline_git_sha256_lf": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+      "normal_manifest_lf": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+      "match": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "baseline_git_sha256_raw": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+      "baseline_git_sha256_lf": "03037ac397e6f3e2c937aca3df548443de71010f49ec8b775f150239560e6c71",
+      "normal_manifest_lf": "03037ac397e6f3e2c937aca3df548443de71010f49ec8b775f150239560e6c71",
+      "match": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "baseline_git_sha256_raw": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "baseline_git_sha256_lf": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+      "normal_manifest_lf": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+      "match": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "baseline_git_sha256_raw": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "baseline_git_sha256_lf": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "normal_manifest_lf": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "match": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "baseline_git_sha256_raw": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "baseline_git_sha256_lf": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "normal_manifest_lf": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "match": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "baseline_git_sha256_raw": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+      "baseline_git_sha256_lf": "4fe0afe1ef2c88cb2d43a849ea7fc4c50f6d9cf0a54638bb50ea5993dc1c8302",
+      "normal_manifest_lf": "4fe0afe1ef2c88cb2d43a849ea7fc4c50f6d9cf0a54638bb50ea5993dc1c8302",
+      "match": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "baseline_git_sha256_raw": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+      "baseline_git_sha256_lf": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+      "normal_manifest_lf": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+      "match": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "baseline_git_sha256_raw": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+      "baseline_git_sha256_lf": "8141e114febf3e55678ecf3c4e169a10476a1d274719e33cf3e6ba9a8a2a3d25",
+      "normal_manifest_lf": "8141e114febf3e55678ecf3c4e169a10476a1d274719e33cf3e6ba9a8a2a3d25",
+      "match": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "baseline_git_sha256_raw": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "baseline_git_sha256_lf": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "normal_manifest_lf": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "match": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "baseline_git_sha256_raw": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "baseline_git_sha256_lf": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "normal_manifest_lf": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "match": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "baseline_git_sha256_raw": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+      "baseline_git_sha256_lf": "d0d1311891307aae7ed0973ec4f64cd56f0233bd456ff81105c0ba437adbe483",
+      "normal_manifest_lf": "d0d1311891307aae7ed0973ec4f64cd56f0233bd456ff81105c0ba437adbe483",
+      "match": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "baseline_git_sha256_raw": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "baseline_git_sha256_lf": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "normal_manifest_lf": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "match": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "baseline_git_sha256_raw": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "baseline_git_sha256_lf": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "normal_manifest_lf": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "match": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "baseline_git_sha256_raw": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "baseline_git_sha256_lf": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "normal_manifest_lf": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "match": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "baseline_git_sha256_raw": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "baseline_git_sha256_lf": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "normal_manifest_lf": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "baseline_git_sha256_raw": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "baseline_git_sha256_lf": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "normal_manifest_lf": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "baseline_git_sha256_raw": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "baseline_git_sha256_lf": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "normal_manifest_lf": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "baseline_git_sha256_raw": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "baseline_git_sha256_lf": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+      "normal_manifest_lf": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "baseline_git_sha256_raw": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "baseline_git_sha256_lf": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "normal_manifest_lf": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "baseline_git_sha256_raw": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "baseline_git_sha256_lf": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "normal_manifest_lf": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "match": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "baseline_git_sha256_raw": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "baseline_git_sha256_lf": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "normal_manifest_lf": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "match": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "baseline_git_sha256_raw": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "baseline_git_sha256_lf": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "normal_manifest_lf": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "match": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "baseline_git_sha256_raw": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "baseline_git_sha256_lf": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "normal_manifest_lf": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "match": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "baseline_git_sha256_raw": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "baseline_git_sha256_lf": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "normal_manifest_lf": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "match": true
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "baseline_git_sha256_raw": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "baseline_git_sha256_lf": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "normal_manifest_lf": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "match": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "baseline_git_sha256_raw": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "baseline_git_sha256_lf": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "normal_manifest_lf": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "match": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "baseline_git_sha256_raw": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "baseline_git_sha256_lf": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "normal_manifest_lf": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "match": true
+    }
+  ],
+  "normal": {
+    "directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\reference-execution-20261111-6654500\\normal-final-a8460b24d0",
+    "compiler_input_sha256": "3e1e27caf2f6aa08ca8eff625f839a37309cbf1e60ebb441ce04fb0d78433e2e",
+    "compiler_output_sha256": "ac94dcb7af9e51fbab0ebcb0fd7b84a842ba2828c2c41f1c253e3ef71ee5b43a",
+    "size_gates_sha256": "c15601e36c0355ab190ddcefc181f84e47390a9d3c334bd1f1a185edba70c550",
+    "source_count": 100,
+    "settings": {
+      "evmVersion": "cancun",
+      "viaIR": true,
+      "optimizer": {
+        "enabled": true,
+        "runs": 1,
+        "details": {
+          "yul": false
+        }
+      },
+      "remappings": [
+        "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+        "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+        "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+        "v4-core/=node_modules/@uniswap/v4-core/",
+        "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+        "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "outputSelection": {
+        "*": {
+          "*": [
+            "abi",
+            "storageLayout",
+            "evm.bytecode.object",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.sourceMap",
+            "metadata"
+          ],
+          "": [
+            "ast"
+          ]
+        }
+      }
+    },
+    "runtime_initcode_gate_count": 48,
+    "all_pass": true
+  },
+  "harness": {
+    "source": "test/ReferenceExecutionContext.t.sol",
+    "class_name": "ReferenceExecutionContextTest",
+    "baseline_git_sha256": "b4d4f519a2c7713ddb0579553b1ebc68a91142c24af832d5ed1da6a7617341d8",
+    "compiled_snapshot": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\reference-execution-20261111-6654500\\tests\\focused-7ab6c5f373",
+    "snapshot_test_sha256": "b4d4f519a2c7713ddb0579553b1ebc68a91142c24af832d5ed1da6a7617341d8",
+    "exact_test_source_match": true,
+    "original_verification_sha256": "d6ea0917257ebc74c543718005c6856cc2076710b9793e64531d7d0f46594aa6",
+    "optional_export_default_skip_not_a_pass": true,
+    "watched_source_inventory_count": 200,
+    "actual_compiled_source_count": 196,
+    "compiled_build_info_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\reference-execution-20261111-6654500\\tests\\focused-7ab6c5f373\\out\\build-info\\834649923d98e829.json"
+  },
+  "tools": {
+    "forge": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+      "sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+      "bytes": 54242304
+    },
+    "anvil": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\anvil.exe",
+      "sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+      "bytes": 25953280
+    },
+    "solc": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+      "sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+      "bytes": 9699328
+    }
+  },
+  "existing_rpc_cases": [
+    {
+      "case": "reference-execution1-actual-eth-activate.json.gz",
+      "path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\fixtures\\reference-execution1-actual-eth-activate.json.gz",
+      "sha256": "de36111deb841209c207284155922221e74b3e4bcad9bbfe56c6cc7b0ef22067",
+      "format": "gzip JSON/schema1; actual_trace_call with exact RPC params/result; request/pins/bounds/expected measurement and source/runtime pins"
+    },
+    {
+      "case": "reference-execution1-actual-eth-grow.json.gz",
+      "path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\fixtures\\reference-execution1-actual-eth-grow.json.gz",
+      "sha256": "bd4fd01f7fca7a4e50993f907276d7374d7464bcee8a818addbfc1bb66430cdf",
+      "format": "gzip JSON/schema1; actual_trace_call with exact RPC params/result; request/pins/bounds/expected measurement and source/runtime pins"
+    },
+    {
+      "case": "reference-execution1-actual-zzz-activate.json.gz",
+      "path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\fixtures\\reference-execution1-actual-zzz-activate.json.gz",
+      "sha256": "35f9501c21707943df20c1ac51d3f4f6039455f496420ea81ccbe7abfe4da946",
+      "format": "gzip JSON/schema1; actual_trace_call with exact RPC params/result; request/pins/bounds/expected measurement and source/runtime pins"
+    },
+    {
+      "case": "reference-execution1-actual-zzz-grow.json.gz",
+      "path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\fixtures\\reference-execution1-actual-zzz-grow.json.gz",
+      "sha256": "19a51161b5f5d0b7163796a73758a2cedda629a94b6661f80fe277c9e60122b5",
+      "format": "gzip JSON/schema1; actual_trace_call with exact RPC params/result; request/pins/bounds/expected measurement and source/runtime pins"
+    }
+  ],
+  "rebuild_rule": "Changed executable production source requires fresh normal source/ABI/storage/size/runtime constructor-data artifacts and strict current static reassessment. Do not etch new Oracle bytes into old exported state or relabel old trace fixtures; regenerate full source-bound graphs for candidate RPC comparison.",
+  "economic_guard_rule": "No price/agreement/round/deployedLP/idle/caller caps, exact accounting/callback/authority checks or default12M budget may be removed or widened. Local policy2 diagnostics remain separate.",
+  "gas_comparison_rule": "Compare same operation/owner/input/range/venue/depth/currency/cohort/cold condition. Foundry inner-call gross, callTracer root and eth_estimateGas are distinct measures; preserve negative root-exclusive trace accounting and use exact reviewed envelope+full20% for admission."
+}

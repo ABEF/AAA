@@ -1,0 +1,32 @@
+{
+  "kind": "Actual current default static-review coverage check",
+  "recorded_at_utc": "2026-11-11T11:03:06.558105+00:00",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/check-slither-review.py",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\gas-feasibility-20261111-db509fb\\static\\static-d078d01d3f\\slither.json"
+  ],
+  "exit_code": 0,
+  "stdout": {
+    "review_coverage_pass": true,
+    "independent_audit": false,
+    "errors": []
+  },
+  "review_sha256": "8cd67f7cd135d440c24c6af5acf5799db50d77b3d5d77310f658e5b174fd2b53",
+  "checker_before_raw_sha256": "783e522930dbf2664c4953c35eec6a2fe4791e61f140fd629cf186d0aaa90103",
+  "checker_after_raw_sha256": "5ecf412b62449556ae7b98799e3e2dd67099020dc85b8a749f00d444e4128273",
+  "sole_pointer_change_verified": true,
+  "checker_implementation_changed": false,
+  "unchanged_checker_regression_methods_rerun": 0,
+  "source_contexts": {
+    "current": 13,
+    "unique_exact_reuse": 554,
+    "total": 567
+  },
+  "analyzer_success": true,
+  "compiler_invoked": false,
+  "public_transactions": 0
+}

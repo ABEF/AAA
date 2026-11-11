@@ -1,12 +1,19 @@
 # PoPL current project context
 
+Current [gas feasibility](reports/gas-feasibility-20261111/REVIEW.md) reduces
+controlled contribution gas by about680k while retaining proofs/rights/defaults.
+Cold Entries still reject12M. Oracle has3bytes runtime headroom; Vault32 remains.
+Whole-maintenance costs and dated32M Robinhood parameters are recorded, but
+actual routes/feeds/provider limits/complete fees and operating acceptance remain
+open. No environment or signing rollout follows from source publication.
+
 All remaining271original findings are individually assessed in the
 [current reconciliation](reports/remaining-271-20261111/REVIEW.md), with exact
 original pointers, current proof and Todo owners. Together with the prior39,
 every original record is reviewed; implementation and real qualification remain
 separate. Keeper simulation bounds, per-predecessor execution profiles and strict
 artwork-generator input validation are corrected. No Solidity/assets, economic
-rights, gas caps, live services/sites, signer, chains/journals or heartbeat change.
+rights, gas caps, live services/sites, signer, chains/journals or heartbeat changed in that pass.
 
 The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
 is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
@@ -19,9 +26,12 @@ unplanned market movement and nested scope borrowing fail closed. The fixed
 existing Math child shares read-only work; no new deployed helper, custody
 recipient or authority is added. Accounting7/canonicalV10 and financial limits
 remain. Explicit matching consumers/configuration/runtime pins are required;
-omission/0 remains historical LP2. Cold full-operation costs15.32M ETH/15.64M ZZZ in the controlled fixture
-(18.38M/18.77M with20% headroom), exceeding the unchanged12M default. Qualify
-the existing optional activation policy2 and real target-chain gas separately.
+omission/0 remains historical LP2. The [gas-feasibility follow-up](reports/gas-feasibility-20261111/REVIEW.md)
+shares one freshly read source-call ceiling only within each STATIC capture/full
+validation chain. No mutable-boundary proof,49-word codec, ABI/storage or limit
+is removed. The earlier15.32M/15.64M controlled calls retain their exact baseline
+scope. Current measurements, tight Oracle size and real32M chain-parameter reads
+are recorded separately;12M defaults and complete-operation qualification remain.
 See [review](reports/reference-execution-20261111/REVIEW.md) and [verification](reports/reference-execution-20261111/VERIFICATION.md).
 Source work changes no deployed contract, site/service, signer, existing
 Anvil/journal or user-paused heartbeat.

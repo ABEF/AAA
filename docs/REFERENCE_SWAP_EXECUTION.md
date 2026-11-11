@@ -68,6 +68,11 @@ twice. This reduces duplicate work; it does not remove the mutable-boundary chec
 The private V1 transient codec is exactly49 static ABI words (1568bytes), written
 only by the compiler's typed encoder. Captured quote getters load named ABI words;
 full validators decode the complete structure. No caller supplies these words.
+The [gas follow-up](../reports/gas-feasibility-20261111/REVIEW.md) retains this
+codec and every validation boundary. Each complete STATIC capture/validation
+reads the governed source-call ceiling once and passes it privately through that
+chain; the next validation reads it again. Ordinary observations/admission keep
+fresh lookups. No source limit is retained across token/core/recipient callbacks.
 Transient words are bounded and explicitly cleared at the successful owner-end;
 transaction rollback also rolls back the scope and all assets/ledgers. Two
 sequential operations recapture current prices. Unrelated/nested operations

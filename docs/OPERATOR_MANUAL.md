@@ -746,6 +746,22 @@ for exact fee/rounding scope, 2% gross-floor interaction and recovery boundaries
 
 ### Qualify current routing gas and telemetry
 
+Use the [Robinhood gas procedure](ROBINHOOD_GAS.md) for current chain/provider
+limits and complete fees. The bounded11November read found a public RPC and
+32M transaction/block execution parameters; the header's synthetic `1<<50`
+is not usable capacity. Its900-block public history cannot serve lifetime
+replay, and complete-operation call/estimate gas caps remain unqualified.
+Keep activation/unsigned20% headroom, keeper25% padding and existing budgets.
+
+The [complete-operation measurements](../reports/gas-feasibility-20261111/REVIEW.md)
+now cover real main/both-leg harvesting, Compounder and ordinary single/hybrid
+replacement. Controlled raw gas is0.66M/1.02M for harvest,10.68M compound,
+13.45M single replacement and16.63M next two-leg replacement. Their keeper25%
+margins are0.83M/1.27M,13.35M,16.81M and20.79M respectively; these are arithmetic
+on call measurements, not target-chain estimates or approved settings. Entry
+activation is now14.64M ETH/14.96M ZZZ in the original$1,000 fixture, still above
+default12M. Requalify actual$100/$5 inputs, cohorts, venue count and complete fees.
+
 The blocked holder-exit keeper example's `max_gas_limit:2500000` is not a qualified
 current-maintenance budget. Earlier cold routing fixtures measured balance alone
 at 2,590,680 gas (one venue) and 5,963,090 gas (four), before full maintenance and the

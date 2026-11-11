@@ -1,0 +1,23 @@
+{
+  "mode": "oracle",
+  "source_count": 100,
+  "production_source_count": 61,
+  "returncode": 0,
+  "seconds": 5.985000000000582,
+  "errors": [],
+  "input_sha256": "b710cb93ed5e147c6130421eadf88f52c3380cc22266c7e733f4147c8559bf58",
+  "output_sha256": "ac97a5310845a1a2b543ea33fea42a663f585dc6487f2846031c85f8c132ff86",
+  "production_unchanged": true,
+  "normal_gates": [
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "runtime": 24627,
+      "runtime_margin": -51,
+      "initcode_object": 48526,
+      "initcode_margin": 626,
+      "passed": false
+    }
+  ],
+  "all_normal_gates_pass": false
+}

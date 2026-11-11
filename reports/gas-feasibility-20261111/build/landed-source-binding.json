@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "scope": "Exact100file rawbyte equality to accepted standard-json input after root applied LFOracle; no extra compile.",
+  "source_count": 100,
+  "production_source_count": 61,
+  "changed_production_raw": [
+    "src/ZZZOracle.sol"
+  ],
+  "all_raw_equals_compiler_content": true
+}

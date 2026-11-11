@@ -26,7 +26,7 @@
       "src/ZZZNFT.sol": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
       "src/ZZZNFTCanonical.sol": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
       "src/ZZZNFTMetadata.sol": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
-      "src/ZZZOracle.sol": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+      "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
       "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "3e1e27caf2f6aa08ca8eff625f839a37309cbf1e60ebb441ce04fb0d78433e2e",
-    "compiler_output_sha256": "ac94dcb7af9e51fbab0ebcb0fd7b84a842ba2828c2c41f1c253e3ef71ee5b43a",
-    "size_evidence_sha256": "c15601e36c0355ab190ddcefc181f84e47390a9d3c334bd1f1a185edba70c550",
+    "compiler_input_sha256": "7741d92ee499a2a8bdda9ae234ffcb474e34518bb0196390d1a0d70079c68b0c",
+    "compiler_output_sha256": "27b773bc781f9cc9f9f4583fa8a9cdaf380c7e7c58eff0a867090a1f3ffa5012",
+    "size_evidence_sha256": "a7675199d04c4a609b682a9f4dc8584c3d622f34e554e01ab222b8cf2bfcbdb5",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",

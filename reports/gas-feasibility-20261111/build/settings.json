@@ -1,0 +1,36 @@
+{
+  "evmVersion": "cancun",
+  "viaIR": true,
+  "optimizer": {
+    "enabled": true,
+    "runs": 1,
+    "details": {
+      "yul": false
+    }
+  },
+  "remappings": [
+    "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+    "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+    "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+    "v4-core/=node_modules/@uniswap/v4-core/",
+    "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+    "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+    "forge-std/=lib/forge-std/src/"
+  ],
+  "outputSelection": {
+    "*": {
+      "*": [
+        "abi",
+        "storageLayout",
+        "evm.bytecode.object",
+        "evm.bytecode.sourceMap",
+        "evm.deployedBytecode.object",
+        "evm.deployedBytecode.sourceMap",
+        "metadata"
+      ],
+      "": [
+        "ast"
+      ]
+    }
+  }
+}

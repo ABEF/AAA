@@ -1,5 +1,13 @@
 # Engineering roadmap
 
+The [gas-feasibility milestone](../reports/gas-feasibility-20261111/REVIEW.md)
+provides lower-cost price proofs, complete maintenance measurements and dated
+Robinhood32M execution parameters. Cold Entries still exceed12M and Oracle
+has3bytes of runtime headroom. Next qualify exact$100/$5 real operations,
+actual provider call/trace/history/fee limits and representative maximum state;
+then review budgets/consumer adoption without weakening guards or auto-widening
+defaults. Public RPC discovery is not archive-service or production acceptance.
+
 The [remaining271 reconciliation](../reports/remaining-271-20261111/REVIEW.md)
 completes the individual historical review and fixes initial keeper simulation
 bounds, predecessor execution-profile inheritance and catalogue input admission.

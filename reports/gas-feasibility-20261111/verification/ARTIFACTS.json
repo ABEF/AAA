@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "hash_mode": "SHA-256 over exact raw published bytes",
+  "sha256": {
+    "ARTIFACT_REUSE.json": "4a1bf28e3fd409a4d5e3a70f0b678459d13ed73a1470777e7bc515a953422f9d",
+    "CHANGED_SCOPE_SELECTION.json": "6ddd77bfa1a85dcfbc94c7b84fbe7f624087bed9a1a676d5dc8d848b5032d246",
+    "EXECUTION.json": "85faae202fdf36eb863bd201b2c70c2642ef840890bda2e041c7c7d537a50a98",
+    "GAS.json": "5f23f5da393add9cf10549253e35b4d5dc7dea238a9bcfcab1d41b4f78c05396",
+    "PREPARATION.md": "035fe8c0ce105bb755524bfd99c5600ba8645e51dcbf12c06c0c03d013984587",
+    "REVIEW.md": "96f60aa1ba890aef9e63c76d39c7d01c0461c938758991483b7747af9f6e707d",
+    "SOURCE_SNAPSHOT.json": "f02013e28214de0012db1eac61c6ceec5dc38b9af53dbefcf38bb6dfcccdfcf3",
+    "TEST_SCOPE.json": "9c7b260095286d59b31a5c3d603aa6cae334b3181ad9b90911bfe1f318b162c7",
+    "baseline-actual-rpc-gas-profile.json": "d2fd81c5c11c14b94d79c9be20ee89e31e3bf7ffb60f39eb4a0922e29c813282",
+    "forge-results.json.gz": "d9fa4188ac8e2ccc8b8d77f229c471efb1442d82ef2520a5c7f257ddfb402c16",
+    "verify.py": "0116e81c4ee4cd21386b0d6ab132545b68f9d5b4329373995f804af05bd85137"
+  }
+}

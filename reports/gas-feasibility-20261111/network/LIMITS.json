@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-11T10:38:31.075405+00:00",
+  "repository_baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "anchor": {
+    "chain_id": 4663,
+    "block_number": 111632516,
+    "block_hash": "0x420f9a45ce0d7fadcda1a4f126f6dd17e2c1c3099432eafd156ca38baf3c5a50",
+    "block_timestamp": 1794392987,
+    "block_time_utc": "2026-11-11T10:29:47+00:00",
+    "read_started_utc": "2026-11-11T10:29:47.343597+00:00",
+    "read_finished_utc": "2026-11-11T10:29:55.105939+00:00",
+    "same_header_rechecked": true,
+    "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+    "qualification": "Single provider observation; not independent finality or production approval"
+  },
+  "identity_corroboration": {
+    "block_number": 111634609,
+    "block_hash": "0xa22edc32d6ac30c01417d464b0cf8bdd14e8d5360fd6458b98853de354ee56b2",
+    "block_timestamp": 1794393206,
+    "same_header_rechecked": true,
+    "selected_core": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "code_bytes": 24009,
+    "code_keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+    "matches_baseline_registry_pin": true,
+    "baseline_registry_raw_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "baseline_registry_commit": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+    "source_lines": [
+      26,
+      170
+    ],
+    "archived_anchor_110324511": "Unavailable: valid RPC-32011 state_window; no old-anchor hash inferred",
+    "scope": "Code corroboration, not proof of provider honesty or finality"
+  },
+  "live_observed": {
+    "header_gas_limit": 1125899906842624,
+    "header_gas_limit_semantics": "Synthetic Nitro1<<50; not usable transaction/block execution capacity",
+    "max_transaction_execution_gas_parameter": 32000000,
+    "max_block_execution_gas_parameter": 32000000,
+    "max_transaction_semantics": "Stored getter; reference Nitro>=50 caps execution after data charging/intrinsic accounting. Not provider gas-field admission/full-operation acceptance proof.",
+    "legacy_gas_accounting_raw": [
+      7000000,
+      32000000,
+      32000000
+    ],
+    "legacy_speed_limit_gas_per_second": 7000000,
+    "legacy_tuple_note": "Reference implementation speed/perBlock/perBlock; second word is not a separate transaction limit.",
+    "arb_sys_version_raw": 116,
+    "arbos_version_decoded_with_documented_nitro_offset": 61,
+    "version_note": "Reference ArbSys returns55+internal version. Raw116 implies61, not initial51/106. Provider binary/commit not established.",
+    "gas_price_wei_unpinned": 20080000,
+    "gas_price_observed_at_utc": "2026-11-11T10:29:48.892626+00:00",
+    "header_base_fee_per_gas_wei": 20132000,
+    "minimum_gas_price_wei": 20000000,
+    "prices_in_wei": {
+      "per_l2_transaction": 0,
+      "per_l1_calldata_unit": 0,
+      "per_storage_allocation": 402640000000,
+      "l2_base": 20000000,
+      "l2_congestion": 132000,
+      "l2_total": 20132000
+    },
+    "l1_price_per_unit_estimate_wei": 0,
+    "fee_note": "Zero L1 snapshot is not permanent. Latest gasPrice differs from pinned basefee. Standard total gas estimate includes posting; do not add twice. No full operation estimate or public transaction.",
+    "gas_pricing_constraints": [
+      {
+        "target_gas_per_second": 60000000,
+        "adjustment_window_seconds": 15,
+        "backlog_gas": 6103394
+      },
+      {
+        "target_gas_per_second": 15000000,
+        "adjustment_window_seconds": 86400,
+        "backlog_gas": 6103394
+      }
+    ],
+    "pricing_constraint_note": "Targets/windows/backlogs affect pricing, not transaction caps. Legacy7M/s does not replace multidimensional constraints.",
+    "fee_history": {
+      "oldestBlock": "0x6a76081",
+      "reward": [
+        [
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        [
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        [
+          "0x0",
+          "0x0",
+          "0x0"
+        ],
+        [
+          "0x0",
+          "0x0",
+          "0x0"
+        ]
+      ],
+      "baseFeePerGas": [
+        "0x1313ca0",
+        "0x132ea50",
+        "0x13328d0",
+        "0x13330a0",
+        "0x1333870"
+      ],
+      "gasUsedRatio": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "fee_history_note": "Ratios1 captured as returned; do not infer use of synthetic header limit.",
+    "precompile_code": {
+      "ArbSys_0x64": "0xfe",
+      "ArbGasInfo_0x6c": "0xfe",
+      "NodeInterface_0xc8": "0x"
+    },
+    "precompile_note": "Virtual NodeInterface may have no code. Its estimate methods were not called."
+  },
+  "documented_initial_configuration": {
+    "chain_id": 4663,
+    "parent_chain_id": 1,
+    "initial_arbos_version": 51,
+    "max_code_size_bytes": 98304,
+    "max_initcode_size_bytes": 196608,
+    "scope": "Published initial config, not live admission test. Project24/48KiB gates unchanged."
+  },
+  "documented_software_reference": {
+    "nitro_release": "v3.11.2",
+    "nitro_commit": "3599acae1ad2fab4059fc46453c9cd3294126641",
+    "precompile_interface_commit": "7e88c8cc53c2e96201a23c638f1536557b9cb68b",
+    "nitro_contracts_commit": "4341b132cfbdcc980ead03765ca5224ff6cb5d97",
+    "geth_commit": "f3a977ddf30b138da2fe673ac5cbff2bc6dd4c88",
+    "scope": "Documented node image and exact dependencies, not provider attestation"
+  },
+  "provider_catalog_observed": {
+    "source_url": "https://api.blockvectra.com/v1/chains",
+    "chain_id": 4663,
+    "public_url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+    "public_method_allowlist": [
+      "eth_getLogs",
+      "eth_chainId",
+      "net_version",
+      "eth_blockNumber",
+      "eth_getBalance",
+      "eth_getTransactionCount",
+      "eth_getCode",
+      "eth_getStorageAt",
+      "eth_call",
+      "eth_estimateGas",
+      "eth_gasPrice",
+      "eth_maxPriorityFeePerGas",
+      "eth_feeHistory",
+      "eth_getBlockByNumber",
+      "eth_getBlockByHash",
+      "eth_getTransactionByHash",
+      "eth_getTransactionReceipt",
+      "eth_syncing",
+      "web3_clientVersion",
+      "eth_sendRawTransaction"
+    ],
+    "rate_limit": {
+      "per_ip_rps": 3,
+      "burst": 20,
+      "batch_max": 10
+    },
+    "public_history_blocks": 900,
+    "state_window_blocks": 900,
+    "public_pool": {
+      "in_flight": 1,
+      "heavy_in_flight": 1,
+      "cu_per_sec": 1250
+    },
+    "gas_call_cap": null,
+    "gas_estimate_cap": null,
+    "note": "Catalog publishes method/rate/history, not numerical call/estimate gas ceiling. Respecting limits did not stress-test them."
+  },
+  "unresolved": {
+    "actual_full_popl_operation_estimate": null,
+    "actual_full_popl_total_fee_eth": null,
+    "current_provider_binary_commit": null,
+    "numeric_provider_call_or_estimate_gas_cap": null,
+    "independent_same_anchor_provider_corroboration": null,
+    "production_provider_qualification": false,
+    "defaults_or_caps_changed": false,
+    "public_transactions_submitted": 0
+  }
+}

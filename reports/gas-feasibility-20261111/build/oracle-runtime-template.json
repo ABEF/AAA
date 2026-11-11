@@ -1,0 +1,10 @@
+{
+  "source": "src/ZZZOracle.sol",
+  "contract": "ZZZOracle",
+  "runtime_bytes": 24573,
+  "runtime_template_sha256": "be161795fdcee62338ba974b3dd932cdaa85b8d590d2cf40f764bc77aaa93327",
+  "runtime_template_keccak256": "0x9e0d0c7d85f807237b165d77989dbb5dc7be9b50fed8a969b1a1729ddfa3ee92",
+  "template_only": true,
+  "immutable_references": "Not selected in exact released compiler output; not invented here.",
+  "not_a_deployed_address_pin": "Constructor immutables require a future separately authorized deployment; none approved."
+}

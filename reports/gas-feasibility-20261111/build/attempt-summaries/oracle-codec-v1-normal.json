@@ -1,0 +1,446 @@
+{
+  "mode": "normal",
+  "source_count": 100,
+  "production_source_count": 61,
+  "returncode": 0,
+  "seconds": 88.64100000000326,
+  "errors": [],
+  "input_sha256": "b6d7463734501603dba83cb22ade9177c2a14d95340dbb0304a3f33a95c5a930",
+  "output_sha256": "87e1750474a2b9ed6dbf1657647a76aee944832a30e66d1c1f6047a1f87bd21f",
+  "production_unchanged": true,
+  "normal_gates": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "runtime": 10438,
+      "runtime_margin": 14138,
+      "initcode_object": 47865,
+      "initcode_margin": 1287,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "runtime": 5849,
+      "runtime_margin": 18727,
+      "initcode_object": 6660,
+      "initcode_margin": 42492,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "runtime": 7480,
+      "runtime_margin": 17096,
+      "initcode_object": 7534,
+      "initcode_margin": 41618,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "runtime": 9863,
+      "runtime_margin": 14713,
+      "initcode_object": 10929,
+      "initcode_margin": 38223,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "runtime": 7877,
+      "runtime_margin": 16699,
+      "initcode_object": 8626,
+      "initcode_margin": 40526,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "runtime": 24400,
+      "runtime_margin": 176,
+      "initcode_object": 25058,
+      "initcode_margin": 24094,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "runtime": 2885,
+      "runtime_margin": 21691,
+      "initcode_object": 3443,
+      "initcode_margin": 45709,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "runtime": 2206,
+      "runtime_margin": 22370,
+      "initcode_object": 2605,
+      "initcode_margin": 46547,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "runtime": 20106,
+      "runtime_margin": 4470,
+      "initcode_object": 20879,
+      "initcode_margin": 28273,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "runtime": 18196,
+      "runtime_margin": 6380,
+      "initcode_object": 18897,
+      "initcode_margin": 30255,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "runtime": 9702,
+      "runtime_margin": 14874,
+      "initcode_object": 10179,
+      "initcode_margin": 38973,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "runtime": 10223,
+      "runtime_margin": 14353,
+      "initcode_object": 11231,
+      "initcode_margin": 37921,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZLPBalanceMath.sol",
+      "contract": "ZZZLPBalanceMath",
+      "runtime": 21776,
+      "runtime_margin": 2800,
+      "initcode_object": 21830,
+      "initcode_margin": 27322,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "runtime": 22442,
+      "runtime_margin": 2134,
+      "initcode_object": 45141,
+      "initcode_margin": 4011,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZLPPositionExecutor.sol",
+      "contract": "ZZZLPPositionExecutor",
+      "runtime": 20323,
+      "runtime_margin": 4253,
+      "initcode_object": 21390,
+      "initcode_margin": 27762,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "runtime": 17178,
+      "runtime_margin": 7398,
+      "initcode_object": 29524,
+      "initcode_margin": 19628,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "runtime": 24386,
+      "runtime_margin": 190,
+      "initcode_object": 48094,
+      "initcode_margin": 1058,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "runtime": 6565,
+      "runtime_margin": 18011,
+      "initcode_object": 7007,
+      "initcode_margin": 42145,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "runtime": 23830,
+      "runtime_margin": 746,
+      "initcode_object": 43473,
+      "initcode_margin": 5679,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "runtime": 24124,
+      "runtime_margin": 452,
+      "initcode_object": 24921,
+      "initcode_margin": 24231,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "runtime": 24097,
+      "runtime_margin": 479,
+      "initcode_object": 30773,
+      "initcode_margin": 18379,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "runtime": 15912,
+      "runtime_margin": 8664,
+      "initcode_object": 16930,
+      "initcode_margin": 32222,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "runtime": 19499,
+      "runtime_margin": 5077,
+      "initcode_object": 19844,
+      "initcode_margin": 29308,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "runtime": 24878,
+      "runtime_margin": -302,
+      "initcode_object": 48721,
+      "initcode_margin": 431,
+      "passed": false
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "runtime": 10719,
+      "runtime_margin": 13857,
+      "initcode_object": 22526,
+      "initcode_margin": 26626,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZPortfolioPolicy.sol",
+      "contract": "ZZZPortfolioPolicy",
+      "runtime": 19315,
+      "runtime_margin": 5261,
+      "initcode_object": 19848,
+      "initcode_margin": 29304,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZProtocolPolicy.sol",
+      "contract": "ZZZProtocolPolicy",
+      "runtime": 14746,
+      "runtime_margin": 9830,
+      "initcode_object": 17755,
+      "initcode_margin": 31397,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "runtime": 2193,
+      "runtime_margin": 22383,
+      "initcode_object": 3259,
+      "initcode_margin": 45893,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "ZZZRebalanceConfirmation",
+      "runtime": 14517,
+      "runtime_margin": 10059,
+      "initcode_object": 15235,
+      "initcode_margin": 33917,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "runtime": 24218,
+      "runtime_margin": 358,
+      "initcode_object": 44703,
+      "initcode_margin": 4449,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "runtime": 18609,
+      "runtime_margin": 5967,
+      "initcode_object": 19361,
+      "initcode_margin": 29791,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRoyaltyCodeData.sol",
+      "contract": "ZZZRoyaltyCodeData",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 455,
+      "initcode_margin": 48697,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "runtime": 1893,
+      "runtime_margin": 22683,
+      "initcode_object": 28983,
+      "initcode_margin": 20169,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "runtime": 24524,
+      "runtime_margin": 52,
+      "initcode_object": 25522,
+      "initcode_margin": 23630,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZSeaDropMint.sol",
+      "contract": "ZZZSeaDropMint",
+      "runtime": 20835,
+      "runtime_margin": 3741,
+      "initcode_object": 22236,
+      "initcode_margin": 26916,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "runtime": 23923,
+      "runtime_margin": 653,
+      "initcode_object": 25400,
+      "initcode_margin": 23752,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "runtime": 11164,
+      "runtime_margin": 13412,
+      "initcode_object": 11322,
+      "initcode_margin": 37830,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZV4SpotPriceFeed.sol",
+      "contract": "ZZZV4SpotPriceFeed",
+      "runtime": 10385,
+      "runtime_margin": 14191,
+      "initcode_object": 13801,
+      "initcode_margin": 35351,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "runtime": 24544,
+      "runtime_margin": 32,
+      "initcode_object": 25970,
+      "initcode_margin": 23182,
+      "passed": true
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "runtime": 24312,
+      "runtime_margin": 264,
+      "initcode_object": 25899,
+      "initcode_margin": 23253,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ExactLPAllocation.sol",
+      "contract": "ExactLPAllocation",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ExactRoyaltyAllocation.sol",
+      "contract": "ExactRoyaltyAllocation",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "initcode_object": 93,
+      "initcode_margin": 49059,
+      "passed": true
+    }
+  ],
+  "all_normal_gates_pass": false
+}

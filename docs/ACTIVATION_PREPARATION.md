@@ -140,6 +140,13 @@ unless ceil(estimate×1.20) fits in full. Network gas remains separate. Matching
 website `activation_policy_schema:2` is mandatory; this is a backend/build setting
 after sealing, not an on-chain governance call or permission to sign.
 
+The [Robinhood gas procedure](ROBINHOOD_GAS.md) records actual32M transaction
+and block execution parameters at its dated anchor, distinct from the synthetic
+header `gasLimit`. The working anonymous provider's900-block public history and
+unknown numerical call/estimate ceiling do not qualify this preparation path.
+Choose an explicitly reviewed envelope within actual chain and provider limits;
+retain the12M default, full20% headroom and complete inclusive network-fee review.
+
 ## Values returned to the wallet
 
 | Value | Source and meaning |

@@ -1,5 +1,13 @@
 # Work handoff
 
+The [gas-feasibility milestone](../reports/gas-feasibility-20261111/REVIEW.md) is
+source-complete: about680k less gas per controlled contribution,23focused EVM
+successes, complete single/hybrid maintenance costs and dated32M chain parameters.
+Default12M still refuses Entries; Oracle3-byte runtime headroom is a known limit.
+Next qualify exact real launch amounts, maximum actual state, archive/trace/RPC
+gas ceilings, complete fees and matching reviewed budgets/consumers. No service,
+site, public signing, existing Anvil/journal or paused-heartbeat change.
+
 The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
 the requested individual reconciliation:271new plus39prior records, not310
 new defects or a declaration that all obligations are closed. The
@@ -25,9 +33,12 @@ unplanned market movement and nested scope borrowing fail closed. The fixed
 existing Math child shares read-only work; no new deployed helper, custody
 recipient or authority is added. Accounting7/canonicalV10 and financial limits
 remain. Explicit matching consumers/configuration/runtime pins are required;
-omission/0 remains historical LP2. Cold full-operation costs15.32M ETH/15.64M ZZZ in the controlled fixture
-(18.38M/18.77M with20% headroom), exceeding the unchanged12M default. Qualify
-the existing optional activation policy2 and real target-chain gas separately.
+omission/0 remains historical LP2. The [gas-feasibility follow-up](../reports/gas-feasibility-20261111/REVIEW.md)
+shares one freshly read source-call ceiling only within each STATIC capture/full
+validation chain. No mutable-boundary proof,49-word codec, ABI/storage or limit
+is removed. The earlier15.32M/15.64M controlled calls retain their exact baseline
+scope. Current measurements, tight Oracle size and real32M chain-parameter reads
+are recorded separately;12M defaults and complete-operation qualification remain.
 See [review](../reports/reference-execution-20261111/REVIEW.md) and [verification](../reports/reference-execution-20261111/VERIFICATION.md).
 Source work changes no deployed contract, site/service, signer, existing
 Anvil/journal or user-paused heartbeat.

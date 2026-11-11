@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "measurement": "Foundry cold external-call gasleft deltas; not RPC estimates/receipts",
+  "baseline_source_sha256": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
+  "candidate_source_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+  "baseline_gas_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d",
+  "entry_like_for_like": [
+    {
+      "test": "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "activate",
+      "baseline_raw_call_gas": 15317541,
+      "candidate_raw_call_gas": 14636780,
+      "raw_call_saving": 680761,
+      "saving_percent": 4.444323,
+      "candidate_full20pct": 17564136,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "grow",
+      "baseline_raw_call_gas": 14103737,
+      "candidate_raw_call_gas": 13422920,
+      "raw_call_saving": 680817,
+      "saving_percent": 4.82721,
+      "candidate_full20pct": 16107504,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "activate",
+      "baseline_raw_call_gas": 15644361,
+      "candidate_raw_call_gas": 14963971,
+      "raw_call_saving": 680390,
+      "saving_percent": 4.349107,
+      "candidate_full20pct": 17956766,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "grow",
+      "baseline_raw_call_gas": 14404957,
+      "candidate_raw_call_gas": 13724583,
+      "raw_call_saving": 680374,
+      "saving_percent": 4.723194,
+      "candidate_full20pct": 16469500,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    },
+    {
+      "test": "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition()",
+      "operation": "activate",
+      "baseline_raw_call_gas": 15317541,
+      "candidate_raw_call_gas": 14636780,
+      "raw_call_saving": 680761,
+      "saving_percent": 4.444323,
+      "candidate_full20pct": 17564136,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    },
+    {
+      "test": "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition()",
+      "operation": "activate",
+      "baseline_raw_call_gas": 15038024,
+      "candidate_raw_call_gas": 14357635,
+      "raw_call_saving": 680389,
+      "saving_percent": 4.524457,
+      "candidate_full20pct": 17229162,
+      "candidate_default12M_call_succeeded": false,
+      "default12M_admitted": false,
+      "baseline_evidence_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d"
+    }
+  ],
+  "maintenance_separate_new_cohort": [
+    {
+      "test": "testGasFeasibilityFullCompoundUsesCapturedPricesAndPreservesOwnerSharesAndMainGeometry()",
+      "operation": "gas-feasibility.compound",
+      "raw_call_gas": 10680943,
+      "frontend_full20pct": 12817132,
+      "keeper_full25pct": 13351179,
+      "default12M_call_succeeded": true,
+      "default12M_frontend_headroom_fits": false,
+      "default12M_keeper_headroom_fits": false,
+      "before_after_saving_established": false
+    },
+    {
+      "test": "testGasFeasibilityFullHarvestAllocatesActualFeesWithoutMovingPrincipal()",
+      "operation": "gas-feasibility.harvest",
+      "raw_call_gas": 661011,
+      "frontend_full20pct": 793214,
+      "keeper_full25pct": 826264,
+      "default12M_call_succeeded": true,
+      "default12M_frontend_headroom_fits": true,
+      "default12M_keeper_headroom_fits": true,
+      "before_after_saving_established": false
+    },
+    {
+      "test": "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking()",
+      "operation": "gas-feasibility.hybrid.open",
+      "raw_call_gas": 16324139,
+      "frontend_full20pct": 19588967,
+      "keeper_full25pct": 20405174,
+      "default12M_call_succeeded": false,
+      "default12M_frontend_headroom_fits": false,
+      "default12M_keeper_headroom_fits": false,
+      "before_after_saving_established": false
+    },
+    {
+      "test": "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking()",
+      "operation": "gas-feasibility.hybrid.harvest-two-legs",
+      "raw_call_gas": 1016015,
+      "frontend_full20pct": 1219218,
+      "keeper_full25pct": 1270019,
+      "default12M_call_succeeded": true,
+      "default12M_frontend_headroom_fits": true,
+      "default12M_keeper_headroom_fits": true,
+      "before_after_saving_established": false
+    },
+    {
+      "test": "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking()",
+      "operation": "gas-feasibility.hybrid.replace-two-legs",
+      "raw_call_gas": 16631798,
+      "frontend_full20pct": 19958158,
+      "keeper_full25pct": 20789748,
+      "default12M_call_succeeded": false,
+      "default12M_frontend_headroom_fits": false,
+      "default12M_keeper_headroom_fits": false,
+      "before_after_saving_established": false
+    },
+    {
+      "test": "testGasFeasibilityOrdinaryVaultRebalanceRetainsCooldownSamplesAndFullPriceGuards()",
+      "operation": "gas-feasibility.rebalance",
+      "raw_call_gas": 13447522,
+      "frontend_full20pct": 16137027,
+      "keeper_full25pct": 16809403,
+      "default12M_call_succeeded": false,
+      "default12M_frontend_headroom_fits": false,
+      "default12M_keeper_headroom_fits": false,
+      "before_after_saving_established": false
+    }
+  ]
+}

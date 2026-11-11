@@ -1,0 +1,4447 @@
+{
+  "schema": 1,
+  "baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "execution_performed": false,
+  "feature_tests_rerun": 0,
+  "source_hash_mode": "raw current source bytes authenticated against existing actual RPC fixtures",
+  "compiler_input_sha256": "3e1e27caf2f6aa08ca8eff625f839a37309cbf1e60ebb441ce04fb0d78433e2e",
+  "compiler_output_sha256": "ac94dcb7af9e51fbab0ebcb0fd7b84a842ba2828c2c41f1c253e3ef71ee5b43a",
+  "full_attribution_path": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/gas-feasibility-20261111-db509fb/trace/final-trace-attribution.json",
+  "full_attribution_sha256": "525d2a7cb836d4d944a634d6fe4a98d4a720add00395d8b8b2a39fa83fb0fcb5",
+  "cold_fixture_source": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/reference-execution-20261111-6654500/tests/FINAL-REFERENCE-VERIFICATION.json",
+  "cold_fixture_sha256": "321a7dc658135a14e2ac97031fffc9ba6c0c8d9894c24eeeda77e9e01ddbf93d",
+  "cold_fixture_gas": [
+    {
+      "test": "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "activate",
+      "raw_call_gas": 15317541,
+      "call_plus_full20pct": 18381050,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "grow",
+      "raw_call_gas": 14103737,
+      "call_plus_full20pct": 16924485,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "activate",
+      "raw_call_gas": 15644361,
+      "call_plus_full20pct": 18773234,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    },
+    {
+      "test": "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "operation": "grow",
+      "raw_call_gas": 14404957,
+      "call_plus_full20pct": 17285949,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    },
+    {
+      "test": "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition()",
+      "operation": "activate",
+      "raw_call_gas": 15317541,
+      "call_plus_full20pct": 18381050,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    },
+    {
+      "test": "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition()",
+      "operation": "activate",
+      "raw_call_gas": 15038024,
+      "call_plus_full20pct": 18045629,
+      "diagnostic_budget": 32000000,
+      "default_budget": 12000000,
+      "default_accepted": false
+    }
+  ],
+  "cases": {
+    "eth-activate": {
+      "fixture": "tests_python/fixtures/reference-execution1-actual-eth-activate.json.gz",
+      "fixture_sha256": "de36111deb841209c207284155922221e74b3e4bcad9bbfe56c6cc7b0ef22067",
+      "source_files_verified": 61,
+      "trace_gas": 14780416,
+      "estimated_gas": 15434990,
+      "reviewed_20_percent": 18521988,
+      "nodes": 2613,
+      "negative_signed_residuals": [
+        {
+          "index": 0,
+          "role": "entry",
+          "method": "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 14780416,
+          "immediate_children": 15193913,
+          "signed_residual": -413497
+        }
+      ],
+      "by_role": {
+        "oracle": {
+          "calls": 102,
+          "inclusive_gas": 8429144,
+          "exclusive_gas": 3961474
+        },
+        "reference": {
+          "calls": 48,
+          "inclusive_gas": 1707014,
+          "exclusive_gas": 1495221
+        },
+        "independent_reference": {
+          "calls": 48,
+          "inclusive_gas": 1702436,
+          "exclusive_gas": 1490643
+        },
+        "access": {
+          "calls": 981,
+          "inclusive_gas": 1029284,
+          "exclusive_gas": 1029284
+        },
+        "rewards": {
+          "calls": 2,
+          "inclusive_gas": 916601,
+          "exclusive_gas": 891895
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3": {
+          "calls": 25,
+          "inclusive_gas": 806896,
+          "exclusive_gas": 723924
+        },
+        "lp_balance_math": {
+          "calls": 37,
+          "inclusive_gas": 3130771,
+          "exclusive_gas": 693485
+        },
+        "vault": {
+          "calls": 51,
+          "inclusive_gas": 13246739,
+          "exclusive_gas": 644908
+        },
+        "contribution_pricing": {
+          "calls": 10,
+          "inclusive_gas": 4023401,
+          "exclusive_gas": 589059
+        },
+        "pool_manager": {
+          "calls": 115,
+          "inclusive_gas": 1536384,
+          "exclusive_gas": 500514
+        },
+        "pools": {
+          "calls": 72,
+          "inclusive_gas": 365890,
+          "exclusive_gas": 357328
+        },
+        "protocol_policy": {
+          "calls": 331,
+          "inclusive_gas": 313294,
+          "exclusive_gas": 313294
+        },
+        "liquidity": {
+          "calls": 44,
+          "inclusive_gas": 10158592,
+          "exclusive_gas": 289804
+        },
+        "position_manager": {
+          "calls": 21,
+          "inclusive_gas": 805216,
+          "exclusive_gas": 238025
+        },
+        "state_view": {
+          "calls": 120,
+          "inclusive_gas": 292685,
+          "exclusive_gas": 237053
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f": {
+          "calls": 2,
+          "inclusive_gas": 222538,
+          "exclusive_gas": 219561
+        },
+        "budget": {
+          "calls": 29,
+          "inclusive_gas": 3699155,
+          "exclusive_gas": 213412
+        },
+        "balancing_router": {
+          "calls": 71,
+          "inclusive_gas": 3257517,
+          "exclusive_gas": 212143
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "calls": 100,
+          "inclusive_gas": 208102,
+          "exclusive_gas": 208102
+        },
+        "independent_state": {
+          "calls": 72,
+          "inclusive_gas": 156304,
+          "exclusive_gas": 127488
+        },
+        "lp_position_executor": {
+          "calls": 6,
+          "inclusive_gas": 1841660,
+          "exclusive_gas": 111890
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a": {
+          "calls": 4,
+          "inclusive_gas": 149096,
+          "exclusive_gas": 103015
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "membership": {
+          "calls": 4,
+          "inclusive_gas": 592355,
+          "exclusive_gas": 72772
+        },
+        "fees": {
+          "calls": 4,
+          "inclusive_gas": 87726,
+          "exclusive_gas": 62289
+        },
+        "nft": {
+          "calls": 17,
+          "inclusive_gas": 282071,
+          "exclusive_gas": 54068
+        },
+        "strategy": {
+          "calls": 52,
+          "inclusive_gas": 51330,
+          "exclusive_gas": 51330
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c": {
+          "calls": 3,
+          "inclusive_gas": 41875,
+          "exclusive_gas": 32763
+        },
+        "independent_core": {
+          "calls": 48,
+          "inclusive_gas": 28816,
+          "exclusive_gas": 28816
+        },
+        "activation_assets": {
+          "calls": 3,
+          "inclusive_gas": 127550,
+          "exclusive_gas": 22469
+        },
+        "principal_exit": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "entry": {
+          "calls": 4,
+          "inclusive_gas": 14816446,
+          "exclusive_gas": -392539
+        }
+      },
+      "by_method": {
+        "oracle.validateExecution()": {
+          "calls": 14,
+          "inclusive_gas": 3965659,
+          "exclusive_gas": 1539411
+        },
+        "reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1568426,
+          "exclusive_gas": 1376410
+        },
+        "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1563848,
+          "exclusive_gas": 1371832
+        },
+        "oracle.executionBounds(address)": {
+          "calls": 34,
+          "inclusive_gas": 1009766,
+          "exclusive_gas": 802298
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)": {
+          "calls": 13,
+          "inclusive_gas": 580177,
+          "exclusive_gas": 580177
+        },
+        "vault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13095907,
+          "exclusive_gas": 507577
+        },
+        "access.module(bytes32)": {
+          "calls": 375,
+          "inclusive_gas": 506500,
+          "exclusive_gas": 506500
+        },
+        "rewards.syncShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 474069,
+          "exclusive_gas": 458750
+        },
+        "rewards.syncMembership(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 442532,
+          "exclusive_gas": 433145
+        },
+        "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1142689,
+          "exclusive_gas": 383072
+        },
+        "oracle.executionReferenceX96(address,address)": {
+          "calls": 12,
+          "inclusive_gas": 439644,
+          "exclusive_gas": 366420
+        },
+        "access.protocolPolicy()": {
+          "calls": 329,
+          "inclusive_gas": 334948,
+          "exclusive_gas": 334948
+        },
+        "lp_balance_math.policyFingerprint(bytes32,bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 1832720,
+          "exclusive_gas": 323584
+        },
+        "pools.accounting(bytes32)": {
+          "calls": 45,
+          "inclusive_gas": 295980,
+          "exclusive_gas": 295980
+        },
+        "oracle.endManagerExecution(bool)": {
+          "calls": 2,
+          "inclusive_gas": 620436,
+          "exclusive_gas": 262124
+        },
+        "oracle.beginManagerExecution(address,bytes32,bool)": {
+          "calls": 2,
+          "inclusive_gas": 610483,
+          "exclusive_gas": 258869
+        },
+        "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)": {
+          "calls": 2,
+          "inclusive_gas": 228032,
+          "exclusive_gas": 228032
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.activate(uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 219795,
+          "exclusive_gas": 216818
+        },
+        "oracle.beginExecution(address)": {
+          "calls": 1,
+          "inclusive_gas": 673440,
+          "exclusive_gas": 207472
+        },
+        "pool_manager.0x5a6bcfda": {
+          "calls": 1,
+          "inclusive_gas": 179059,
+          "exclusive_gas": 179059
+        },
+        "oracle.afterSwap()": {
+          "calls": 1,
+          "inclusive_gas": 344352,
+          "exclusive_gas": 150269
+        },
+        "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+          "calls": 1,
+          "inclusive_gas": 317668,
+          "exclusive_gas": 136825
+        },
+        "position_manager.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 348666,
+          "exclusive_gas": 135605
+        },
+        "protocol_policy.gasFingerprint()": {
+          "calls": 70,
+          "inclusive_gas": 134400,
+          "exclusive_gas": 134400
+        },
+        "protocol_policy.sourceCallGas()": {
+          "calls": 242,
+          "inclusive_gas": 133406,
+          "exclusive_gas": 133406
+        },
+        "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4894459,
+          "exclusive_gas": 127179
+        },
+        "lp_balance_math.executionValidatePrice(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 648200,
+          "exclusive_gas": 126250
+        },
+        "oracle.endExecution()": {
+          "calls": 1,
+          "inclusive_gas": 300920,
+          "exclusive_gas": 123056
+        },
+        "state_view.getSlot0(bytes32)": {
+          "calls": 55,
+          "inclusive_gas": 150245,
+          "exclusive_gas": 117810
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 158565,
+          "exclusive_gas": 111333
+        },
+        "state_view.getLiquidity(bytes32)": {
+          "calls": 41,
+          "inclusive_gas": 127296,
+          "exclusive_gas": 104099
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "lp_position_executor.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1704866,
+          "exclusive_gas": 83832
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)": {
+          "calls": 6,
+          "inclusive_gas": 75514,
+          "exclusive_gas": 75514
+        },
+        "reference.latestRoundData()": {
+          "calls": 1,
+          "inclusive_gas": 88011,
+          "exclusive_gas": 75283
+        },
+        "independent_reference.latestRoundData()": {
+          "calls": 1,
+          "inclusive_gas": 88011,
+          "exclusive_gas": 75283
+        },
+        "vault.group(uint256)": {
+          "calls": 17,
+          "inclusive_gas": 72889,
+          "exclusive_gas": 72889
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.registerAlias(bytes32,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 68464,
+          "exclusive_gas": 68464
+        },
+        "access.isSealed()": {
+          "calls": 80,
+          "inclusive_gas": 65200,
+          "exclusive_gas": 65200
+        },
+        "budget.assertIdle(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 155480,
+          "exclusive_gas": 63992
+        },
+        "oracle.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 95982,
+          "exclusive_gas": 63936
+        },
+        "independent_state.getLiquidity(bytes32)": {
+          "calls": 24,
+          "inclusive_gas": 75344,
+          "exclusive_gas": 60936
+        },
+        "pool_manager.0x1e2eaeaf": {
+          "calls": 100,
+          "inclusive_gas": 57700,
+          "exclusive_gas": 57700
+        },
+        "contribution_pricing.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1133633,
+          "exclusive_gas": 55691
+        },
+        "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 417279,
+          "exclusive_gas": 54196
+        },
+        "membership.activate(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 503592,
+          "exclusive_gas": 53568
+        },
+        "access.canonicalState()": {
+          "calls": 99,
+          "inclusive_gas": 52589,
+          "exclusive_gas": 52589
+        },
+        "balancing_router.plan(bytes32,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1005717,
+          "exclusive_gas": 51805
+        },
+        "independent_state.getSlot0(bytes32)": {
+          "calls": 24,
+          "inclusive_gas": 65816,
+          "exclusive_gas": 51408
+        },
+        "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 454815,
+          "exclusive_gas": 50070
+        },
+        "lp_balance_math.principalAmounts(address,address,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 72046,
+          "exclusive_gas": 44172
+        },
+        "oracle.tokenDecimals(address)": {
+          "calls": 22,
+          "inclusive_gas": 43754,
+          "exclusive_gas": 43754
+        },
+        "access.preparationActive()": {
+          "calls": 79,
+          "inclusive_gas": 43608,
+          "exclusive_gas": 43608
+        },
+        "lp_balance_math.nativeConfig(bytes32,bool)": {
+          "calls": 4,
+          "inclusive_gas": 82432,
+          "exclusive_gas": 43192
+        },
+        "budget.poolTokens(bytes32)": {
+          "calls": 7,
+          "inclusive_gas": 91882,
+          "exclusive_gas": 40530
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 38124,
+          "exclusive_gas": 38124
+        },
+        "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 36479,
+          "exclusive_gas": 36479
+        },
+        "pools.get(bytes32)": {
+          "calls": 6,
+          "inclusive_gas": 36132,
+          "exclusive_gas": 36132
+        },
+        "position_manager.getPoolAndPositionInfo(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 35984,
+          "exclusive_gas": 35984
+        },
+        "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 462367,
+          "exclusive_gas": 35503
+        },
+        "contribution_pricing.endEntry()": {
+          "calls": 1,
+          "inclusive_gas": 761669,
+          "exclusive_gas": 34388
+        },
+        "liquidity.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2463326,
+          "exclusive_gas": 33779
+        },
+        "reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "independent_reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()": {
+          "calls": 70,
+          "inclusive_gas": 32830,
+          "exclusive_gas": 32830
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.recordApplied(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 68154,
+          "exclusive_gas": 32414
+        },
+        "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 164836,
+          "exclusive_gas": 31883
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 31479,
+          "exclusive_gas": 31479
+        },
+        "fees.flushDust(uint256,address)": {
+          "calls": 2,
+          "inclusive_gas": 47812,
+          "exclusive_gas": 31336
+        },
+        "fees.releaseCompound(uint256,address)": {
+          "calls": 2,
+          "inclusive_gas": 39914,
+          "exclusive_gas": 30953
+        },
+        "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 109262,
+          "exclusive_gas": 30779
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)": {
+          "calls": 21,
+          "inclusive_gas": 30155,
+          "exclusive_gas": 30155
+        },
+        "independent_core.0x1e2eaeaf": {
+          "calls": 48,
+          "inclusive_gas": 28816,
+          "exclusive_gas": 28816
+        },
+        "liquidity.balanceContext(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 1871487,
+          "exclusive_gas": 28500
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)": {
+          "calls": 2,
+          "inclusive_gas": 28026,
+          "exclusive_gas": 28026
+        },
+        "strategy.portfolioPolicy()": {
+          "calls": 26,
+          "inclusive_gas": 27794,
+          "exclusive_gas": 27794
+        },
+        "balancing_router.access()": {
+          "calls": 31,
+          "inclusive_gas": 27435,
+          "exclusive_gas": 27435
+        },
+        "lp_balance_math.executionTarget(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 213934,
+          "exclusive_gas": 26362
+        },
+        "position_manager.approve(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 26174,
+          "exclusive_gas": 26174
+        },
+        "vault.0x": {
+          "calls": 2,
+          "inclusive_gas": 38821,
+          "exclusive_gas": 25320
+        },
+        "position_manager.getPositionLiquidity(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 27120,
+          "exclusive_gas": 25052
+        },
+        "nft.ownerOf(uint256)": {
+          "calls": 11,
+          "inclusive_gas": 23505,
+          "exclusive_gas": 23505
+        },
+        "lp_position_executor.portfolioAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 131896,
+          "exclusive_gas": 23160
+        },
+        "liquidity.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 522593,
+          "exclusive_gas": 22420
+        },
+        "protocol_policy.maintenanceFingerprint()": {
+          "calls": 11,
+          "inclusive_gas": 21888,
+          "exclusive_gas": 21888
+        },
+        "contribution_pricing.assertDeployed(uint256,uint16)": {
+          "calls": 1,
+          "inclusive_gas": 97010,
+          "exclusive_gas": 19865
+        },
+        "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19495,
+          "exclusive_gas": 19495
+        },
+        "activation_assets.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 124154,
+          "exclusive_gas": 19073
+        },
+        "liquidity.spot(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 47530,
+          "exclusive_gas": 18940
+        },
+        "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 43501,
+          "exclusive_gas": 18321
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 49407,
+          "exclusive_gas": 18094
+        },
+        "membership.settleDust()": {
+          "calls": 1,
+          "inclusive_gas": 87351,
+          "exclusive_gas": 17792
+        },
+        "access.moduleAuthorized(bytes32,address)": {
+          "calls": 9,
+          "inclusive_gas": 17379,
+          "exclusive_gas": 17379
+        },
+        "protocol_policy.entryFingerprint()": {
+          "calls": 5,
+          "inclusive_gas": 15590,
+          "exclusive_gas": 15590
+        },
+        "lp_balance_math.executionPrices(address)": {
+          "calls": 1,
+          "inclusive_gas": 81097,
+          "exclusive_gas": 15573
+        },
+        "nft.notifyContribution(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 243185,
+          "exclusive_gas": 15182
+        },
+        "state_view.poolManager()": {
+          "calls": 24,
+          "inclusive_gas": 15144,
+          "exclusive_gas": 15144
+        },
+        "independent_state.poolManager()": {
+          "calls": 24,
+          "inclusive_gas": 15144,
+          "exclusive_gas": 15144
+        },
+        "liquidity.executionStrategy()": {
+          "calls": 6,
+          "inclusive_gas": 17044,
+          "exclusive_gas": 13648
+        },
+        "budget.balanceContext(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 973911,
+          "exclusive_gas": 13472
+        },
+        "vault.migrationBudget()": {
+          "calls": 12,
+          "inclusive_gas": 13416,
+          "exclusive_gas": 13416
+        },
+        "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13046,
+          "exclusive_gas": 13046
+        },
+        "budget.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1156202,
+          "exclusive_gas": 12897
+        },
+        "pool_manager.settle()": {
+          "calls": 3,
+          "inclusive_gas": 13624,
+          "exclusive_gas": 12569
+        },
+        "strategy.executionQualityRevision()": {
+          "calls": 11,
+          "inclusive_gas": 11438,
+          "exclusive_gas": 11438
+        },
+        "balancing_router.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 131022,
+          "exclusive_gas": 11291
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 25517,
+          "exclusive_gas": 10749
+        },
+        "strategy.rangeOrientation(bytes32)": {
+          "calls": 13,
+          "inclusive_gas": 10398,
+          "exclusive_gas": 10398
+        },
+        "balancing_router.policyFingerprint(bytes32,bytes32)": {
+          "calls": 8,
+          "inclusive_gas": 1347990,
+          "exclusive_gas": 10320
+        },
+        "liquidity.executionSpot(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 143064,
+          "exclusive_gas": 10108
+        },
+        "liquidity.executionConfig(bytes32,bool)": {
+          "calls": 1,
+          "inclusive_gas": 32546,
+          "exclusive_gas": 10080
+        },
+        "vault.totalIdle(address)": {
+          "calls": 8,
+          "inclusive_gas": 9648,
+          "exclusive_gas": 9648
+        },
+        "balancing_router.balanceMath()": {
+          "calls": 17,
+          "inclusive_gas": 9622,
+          "exclusive_gas": 9622
+        },
+        "reference.decimals()": {
+          "calls": 22,
+          "inclusive_gas": 9460,
+          "exclusive_gas": 9460
+        },
+        "independent_reference.decimals()": {
+          "calls": 22,
+          "inclusive_gas": 9460,
+          "exclusive_gas": 9460
+        },
+        "pools.configurationRevision()": {
+          "calls": 11,
+          "inclusive_gas": 9392,
+          "exclusive_gas": 9392
+        },
+        "balancing_router.executionRevision()": {
+          "calls": 8,
+          "inclusive_gas": 9064,
+          "exclusive_gas": 9064
+        },
+        "pool_manager.sync(address)": {
+          "calls": 3,
+          "inclusive_gas": 9748,
+          "exclusive_gas": 8693
+        },
+        "pool_manager.unlock(bytes)": {
+          "calls": 3,
+          "inclusive_gas": 1010927,
+          "exclusive_gas": 8646
+        },
+        "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 479764,
+          "exclusive_gas": 8562
+        },
+        "budget.mintTarget(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 125514,
+          "exclusive_gas": 8430
+        },
+        "position_manager.ownerOf(uint256)": {
+          "calls": 5,
+          "inclusive_gas": 8350,
+          "exclusive_gas": 8350
+        },
+        "budget.validateReservation(bytes32,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19345,
+          "exclusive_gas": 8109
+        },
+        "protocol_policy.entryPolicy()": {
+          "calls": 3,
+          "inclusive_gas": 8010,
+          "exclusive_gas": 8010
+        },
+        "entry.pricingContext(uint256,bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13152,
+          "exclusive_gas": 7973
+        },
+        "budget.assertDeployed(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 116448,
+          "exclusive_gas": 7962
+        },
+        "balancing_router.principalAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 84820,
+          "exclusive_gas": 7952
+        },
+        "lp_balance_math.fixedZZZ()": {
+          "calls": 1,
+          "inclusive_gas": 15412,
+          "exclusive_gas": 7905
+        },
+        "entry.validateOwner(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14316,
+          "exclusive_gas": 7670
+        },
+        "budget.validateNativeSender(address)": {
+          "calls": 2,
+          "inclusive_gas": 13501,
+          "exclusive_gas": 7588
+        },
+        "budget.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 37270,
+          "exclusive_gas": 7169
+        },
+        "oracle.contributionPricing()": {
+          "calls": 11,
+          "inclusive_gas": 7040,
+          "exclusive_gas": 7040
+        },
+        "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6648,
+          "exclusive_gas": 6648
+        },
+        "pools.isNativePool(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 6444,
+          "exclusive_gas": 6444
+        },
+        "nft.mintOrdinalOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 6280,
+          "exclusive_gas": 6280
+        },
+        "access.lpExitStarted()": {
+          "calls": 6,
+          "inclusive_gas": 6060,
+          "exclusive_gas": 6060
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.bucketIdentity(bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 5708,
+          "exclusive_gas": 5708
+        },
+        "liquidity.executionOrdinaryReplacement()": {
+          "calls": 1,
+          "inclusive_gas": 10242,
+          "exclusive_gas": 5643
+        },
+        "liquidity.positionManager()": {
+          "calls": 5,
+          "inclusive_gas": 5595,
+          "exclusive_gas": 5595
+        },
+        "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 470986,
+          "exclusive_gas": 5395
+        },
+        "entry.sourceValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8562,
+          "exclusive_gas": 5315
+        },
+        "nft.tokenAtOrdinal(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 5180,
+          "exclusive_gas": 5180
+        },
+        "lp_position_executor.secondaryId(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 4898,
+          "exclusive_gas": 4898
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516": {
+          "calls": 1,
+          "inclusive_gas": 13849,
+          "exclusive_gas": 4737
+        },
+        "pools.activationEntry()": {
+          "calls": 4,
+          "inclusive_gas": 4460,
+          "exclusive_gas": 4460
+        },
+        "liquidity.secondaryId(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 9293,
+          "exclusive_gas": 4395
+        },
+        "budget.valueBucket(uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8355,
+          "exclusive_gas": 3989
+        },
+        "vault.nftBucket(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 3980,
+          "exclusive_gas": 3980
+        },
+        "nft.traitsReady(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3921,
+          "exclusive_gas": 3921
+        },
+        "contribution_pricing.entryIdleLimit(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6320,
+          "exclusive_gas": 3910
+        },
+        "position_manager.modifyLiquidities(bytes,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 355966,
+          "exclusive_gas": 3904
+        },
+        "pool_manager.take(address,address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 35292,
+          "exclusive_gas": 3813
+        },
+        "budget.maintenanceBucket()": {
+          "calls": 2,
+          "inclusive_gas": 3794,
+          "exclusive_gas": 3794
+        },
+        "liquidity.poolManager()": {
+          "calls": 3,
+          "inclusive_gas": 3681,
+          "exclusive_gas": 3681
+        },
+        "vault.contributionUSD(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3606,
+          "exclusive_gas": 3606
+        },
+        "budget.contributionLossBps()": {
+          "calls": 1,
+          "inclusive_gas": 3202,
+          "exclusive_gas": 3202
+        },
+        "access.paused()": {
+          "calls": 4,
+          "inclusive_gas": 3000,
+          "exclusive_gas": 3000
+        },
+        "position_manager.nextTokenId()": {
+          "calls": 1,
+          "inclusive_gas": 2956,
+          "exclusive_gas": 2956
+        },
+        "vault.sharesOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 2816,
+          "exclusive_gas": 2816
+        },
+        "liquidity.portfolioAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 134668,
+          "exclusive_gas": 2772
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "activation_assets.zzz()": {
+          "calls": 1,
+          "inclusive_gas": 2737,
+          "exclusive_gas": 2737
+        },
+        "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 22196,
+          "exclusive_gas": 2701
+        },
+        "pools.activationAssets()": {
+          "calls": 1,
+          "inclusive_gas": 2593,
+          "exclusive_gas": 2593
+        },
+        "contribution_pricing.valueBucket(uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2434,
+          "exclusive_gas": 2434
+        },
+        "pools.contributionValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 10889,
+          "exclusive_gas": 2327
+        },
+        "pool_manager.0xf135baaa": {
+          "calls": 2,
+          "inclusive_gas": 2002,
+          "exclusive_gas": 2002
+        },
+        "strategy.additionalLossBps()": {
+          "calls": 2,
+          "inclusive_gas": 1700,
+          "exclusive_gas": 1700
+        },
+        "liquidity.stateView()": {
+          "calls": 2,
+          "inclusive_gas": 1574,
+          "exclusive_gas": 1574
+        },
+        "liquidity.positionOperator()": {
+          "calls": 2,
+          "inclusive_gas": 1490,
+          "exclusive_gas": 1490
+        },
+        "vault.bucketAt(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1403,
+          "exclusive_gas": 1403
+        },
+        "vault.poolBucket(bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1338,
+          "exclusive_gas": 1338
+        },
+        "vault.bucketCount()": {
+          "calls": 1,
+          "inclusive_gas": 1167,
+          "exclusive_gas": 1167
+        },
+        "vault.bucketTotalShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 946,
+          "exclusive_gas": 946
+        },
+        "membership.eligible(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 874,
+          "exclusive_gas": 874
+        },
+        "reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "independent_reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "activation_assets.isContributionAsset(address)": {
+          "calls": 1,
+          "inclusive_gas": 659,
+          "exclusive_gas": 659
+        },
+        "membership.totalEligible()": {
+          "calls": 1,
+          "inclusive_gas": 538,
+          "exclusive_gas": 538
+        },
+        "vault.MAX_BUCKETS()": {
+          "calls": 1,
+          "inclusive_gas": 509,
+          "exclusive_gas": 509
+        },
+        "principal_exit.activePlan(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "independent_reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "vault.canonicalChainId()": {
+          "calls": 1,
+          "inclusive_gas": 293,
+          "exclusive_gas": 293
+        },
+        "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14780416,
+          "exclusive_gas": -413497
+        }
+      },
+      "note": "Signed exclusive residual subtracts immediate child gas; RPC refund accounting can make a parent negative, retained explicitly. Inclusive totals overlap. Exact-call local synthetic-market fixture, not Robinhood fee/limit acceptance."
+    },
+    "zzz-activate": {
+      "fixture": "tests_python/fixtures/reference-execution1-actual-zzz-activate.json.gz",
+      "fixture_sha256": "35f9501c21707943df20c1ac51d3f4f6039455f496420ea81ccbe7abfe4da946",
+      "source_files_verified": 61,
+      "trace_gas": 14995485,
+      "estimated_gas": 15774271,
+      "reviewed_20_percent": 18929126,
+      "nodes": 2661,
+      "negative_signed_residuals": [
+        {
+          "index": 0,
+          "role": "entry",
+          "method": "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 14995485,
+          "immediate_children": 15526261,
+          "signed_residual": -530776
+        }
+      ],
+      "by_role": {
+        "oracle": {
+          "calls": 102,
+          "inclusive_gas": 8533965,
+          "exclusive_gas": 3959773
+        },
+        "reference": {
+          "calls": 50,
+          "inclusive_gas": 1775897,
+          "exclusive_gas": 1545376
+        },
+        "independent_reference": {
+          "calls": 50,
+          "inclusive_gas": 1766377,
+          "exclusive_gas": 1535856
+        },
+        "access": {
+          "calls": 980,
+          "inclusive_gas": 1027712,
+          "exclusive_gas": 1027712
+        },
+        "rewards": {
+          "calls": 2,
+          "inclusive_gas": 916601,
+          "exclusive_gas": 891895
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3": {
+          "calls": 25,
+          "inclusive_gas": 806896,
+          "exclusive_gas": 723924
+        },
+        "lp_balance_math": {
+          "calls": 37,
+          "inclusive_gas": 3126523,
+          "exclusive_gas": 691237
+        },
+        "vault": {
+          "calls": 50,
+          "inclusive_gas": 13384970,
+          "exclusive_gas": 643125
+        },
+        "contribution_pricing": {
+          "calls": 10,
+          "inclusive_gas": 3941666,
+          "exclusive_gas": 589059
+        },
+        "pool_manager": {
+          "calls": 117,
+          "inclusive_gas": 1566018,
+          "exclusive_gas": 482274
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "calls": 136,
+          "inclusive_gas": 402971,
+          "exclusive_gas": 402971
+        },
+        "pools": {
+          "calls": 72,
+          "inclusive_gas": 365890,
+          "exclusive_gas": 357328
+        },
+        "liquidity": {
+          "calls": 44,
+          "inclusive_gas": 10345174,
+          "exclusive_gas": 349229
+        },
+        "protocol_policy": {
+          "calls": 332,
+          "inclusive_gas": 313837,
+          "exclusive_gas": 313837
+        },
+        "state_view": {
+          "calls": 123,
+          "inclusive_gas": 299031,
+          "exclusive_gas": 242365
+        },
+        "position_manager": {
+          "calls": 21,
+          "inclusive_gas": 805216,
+          "exclusive_gas": 238025
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f": {
+          "calls": 2,
+          "inclusive_gas": 222538,
+          "exclusive_gas": 219561
+        },
+        "balancing_router": {
+          "calls": 71,
+          "inclusive_gas": 3195345,
+          "exclusive_gas": 212338
+        },
+        "budget": {
+          "calls": 28,
+          "inclusive_gas": 3690668,
+          "exclusive_gas": 208842
+        },
+        "independent_state": {
+          "calls": 75,
+          "inclusive_gas": 162650,
+          "exclusive_gas": 132800
+        },
+        "lp_position_executor": {
+          "calls": 6,
+          "inclusive_gas": 1862213,
+          "exclusive_gas": 110451
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a": {
+          "calls": 4,
+          "inclusive_gas": 149096,
+          "exclusive_gas": 103015
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "membership": {
+          "calls": 4,
+          "inclusive_gas": 592355,
+          "exclusive_gas": 72772
+        },
+        "fees": {
+          "calls": 4,
+          "inclusive_gas": 87726,
+          "exclusive_gas": 62289
+        },
+        "nft": {
+          "calls": 17,
+          "inclusive_gas": 282071,
+          "exclusive_gas": 54068
+        },
+        "strategy": {
+          "calls": 52,
+          "inclusive_gas": 51330,
+          "exclusive_gas": 51330
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c": {
+          "calls": 3,
+          "inclusive_gas": 41875,
+          "exclusive_gas": 32763
+        },
+        "independent_core": {
+          "calls": 50,
+          "inclusive_gas": 29850,
+          "exclusive_gas": 29850
+        },
+        "activation_assets": {
+          "calls": 3,
+          "inclusive_gas": 312772,
+          "exclusive_gas": 24312
+        },
+        "principal_exit": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "entry": {
+          "calls": 4,
+          "inclusive_gas": 15031515,
+          "exclusive_gas": -509818
+        }
+      },
+      "by_method": {
+        "oracle.validateExecution()": {
+          "calls": 14,
+          "inclusive_gas": 3968836,
+          "exclusive_gas": 1539411
+        },
+        "reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1573368,
+          "exclusive_gas": 1381352
+        },
+        "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1563848,
+          "exclusive_gas": 1371832
+        },
+        "oracle.executionBounds(address)": {
+          "calls": 34,
+          "inclusive_gas": 1009766,
+          "exclusive_gas": 802298
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)": {
+          "calls": 13,
+          "inclusive_gas": 580177,
+          "exclusive_gas": 580177
+        },
+        "vault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13243747,
+          "exclusive_gas": 507504
+        },
+        "access.module(bytes32)": {
+          "calls": 373,
+          "inclusive_gas": 503916,
+          "exclusive_gas": 503916
+        },
+        "rewards.syncShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 474069,
+          "exclusive_gas": 458750
+        },
+        "rewards.syncMembership(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 442532,
+          "exclusive_gas": 433145
+        },
+        "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1059189,
+          "exclusive_gas": 383072
+        },
+        "oracle.executionReferenceX96(address,address)": {
+          "calls": 12,
+          "inclusive_gas": 439644,
+          "exclusive_gas": 366420
+        },
+        "access.protocolPolicy()": {
+          "calls": 330,
+          "inclusive_gas": 335960,
+          "exclusive_gas": 335960
+        },
+        "lp_balance_math.policyFingerprint(bytes32,bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 1832720,
+          "exclusive_gas": 323584
+        },
+        "pools.accounting(bytes32)": {
+          "calls": 45,
+          "inclusive_gas": 295980,
+          "exclusive_gas": 295980
+        },
+        "oracle.endManagerExecution(bool)": {
+          "calls": 2,
+          "inclusive_gas": 621142,
+          "exclusive_gas": 262124
+        },
+        "oracle.beginManagerExecution(address,bytes32,bool)": {
+          "calls": 2,
+          "inclusive_gas": 610836,
+          "exclusive_gas": 258869
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.activate(uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 219795,
+          "exclusive_gas": 216818
+        },
+        "oracle.beginExecution(address)": {
+          "calls": 1,
+          "inclusive_gas": 589940,
+          "exclusive_gas": 202472
+        },
+        "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)": {
+          "calls": 2,
+          "inclusive_gas": 196636,
+          "exclusive_gas": 196636
+        },
+        "pool_manager.0x5a6bcfda": {
+          "calls": 1,
+          "inclusive_gas": 179059,
+          "exclusive_gas": 179059
+        },
+        "oracle.afterSwap()": {
+          "calls": 1,
+          "inclusive_gas": 344705,
+          "exclusive_gas": 150269
+        },
+        "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+          "calls": 1,
+          "inclusive_gas": 317668,
+          "exclusive_gas": 136825
+        },
+        "position_manager.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 348666,
+          "exclusive_gas": 135605
+        },
+        "protocol_policy.gasFingerprint()": {
+          "calls": 70,
+          "inclusive_gas": 134400,
+          "exclusive_gas": 134400
+        },
+        "protocol_policy.sourceCallGas()": {
+          "calls": 243,
+          "inclusive_gas": 133949,
+          "exclusive_gas": 133949
+        },
+        "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4968569,
+          "exclusive_gas": 130422
+        },
+        "lp_balance_math.executionValidatePrice(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 648190,
+          "exclusive_gas": 126240
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)": {
+          "calls": 8,
+          "inclusive_gas": 124552,
+          "exclusive_gas": 124552
+        },
+        "oracle.endExecution()": {
+          "calls": 1,
+          "inclusive_gas": 301273,
+          "exclusive_gas": 123056
+        },
+        "reference.latestRoundData()": {
+          "calls": 2,
+          "inclusive_gas": 151522,
+          "exclusive_gas": 120066
+        },
+        "independent_reference.latestRoundData()": {
+          "calls": 2,
+          "inclusive_gas": 151522,
+          "exclusive_gas": 120066
+        },
+        "state_view.getSlot0(bytes32)": {
+          "calls": 56,
+          "inclusive_gas": 152904,
+          "exclusive_gas": 119952
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)": {
+          "calls": 5,
+          "inclusive_gas": 117660,
+          "exclusive_gas": 117660
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 158565,
+          "exclusive_gas": 111333
+        },
+        "state_view.getLiquidity(bytes32)": {
+          "calls": 42,
+          "inclusive_gas": 130352,
+          "exclusive_gas": 106638
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "lp_position_executor.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1725419,
+          "exclusive_gas": 82393
+        },
+        "vault.group(uint256)": {
+          "calls": 17,
+          "inclusive_gas": 72889,
+          "exclusive_gas": 72889
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.registerAlias(bytes32,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 68464,
+          "exclusive_gas": 68464
+        },
+        "oracle.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 279361,
+          "exclusive_gas": 67235
+        },
+        "access.isSealed()": {
+          "calls": 80,
+          "inclusive_gas": 65200,
+          "exclusive_gas": 65200
+        },
+        "budget.assertIdle(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 153480,
+          "exclusive_gas": 63992
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)": {
+          "calls": 47,
+          "inclusive_gas": 63585,
+          "exclusive_gas": 63585
+        },
+        "independent_state.getLiquidity(bytes32)": {
+          "calls": 25,
+          "inclusive_gas": 78400,
+          "exclusive_gas": 63475
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)": {
+          "calls": 3,
+          "inclusive_gas": 62937,
+          "exclusive_gas": 62937
+        },
+        "pool_manager.0x1e2eaeaf": {
+          "calls": 102,
+          "inclusive_gas": 58734,
+          "exclusive_gas": 58734
+        },
+        "liquidity.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 591939,
+          "exclusive_gas": 57794
+        },
+        "contribution_pricing.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1134339,
+          "exclusive_gas": 55691
+        },
+        "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 417279,
+          "exclusive_gas": 54196
+        },
+        "membership.activate(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 503592,
+          "exclusive_gas": 53568
+        },
+        "independent_state.getSlot0(bytes32)": {
+          "calls": 25,
+          "inclusive_gas": 68475,
+          "exclusive_gas": 53550
+        },
+        "access.canonicalState()": {
+          "calls": 99,
+          "inclusive_gas": 52589,
+          "exclusive_gas": 52589
+        },
+        "balancing_router.plan(bytes32,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 990292,
+          "exclusive_gas": 51805
+        },
+        "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 439384,
+          "exclusive_gas": 50223
+        },
+        "lp_balance_math.principalAmounts(address,address,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 72046,
+          "exclusive_gas": 44172
+        },
+        "oracle.tokenDecimals(address)": {
+          "calls": 22,
+          "inclusive_gas": 43754,
+          "exclusive_gas": 43754
+        },
+        "access.preparationActive()": {
+          "calls": 79,
+          "inclusive_gas": 43608,
+          "exclusive_gas": 43608
+        },
+        "lp_balance_math.nativeConfig(bytes32,bool)": {
+          "calls": 4,
+          "inclusive_gas": 82432,
+          "exclusive_gas": 43192
+        },
+        "budget.poolTokens(bytes32)": {
+          "calls": 7,
+          "inclusive_gas": 91882,
+          "exclusive_gas": 40530
+        },
+        "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 36491,
+          "exclusive_gas": 36491
+        },
+        "pools.get(bytes32)": {
+          "calls": 6,
+          "inclusive_gas": 36132,
+          "exclusive_gas": 36132
+        },
+        "position_manager.getPoolAndPositionInfo(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 35984,
+          "exclusive_gas": 35984
+        },
+        "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 462720,
+          "exclusive_gas": 35503
+        },
+        "contribution_pricing.endEntry()": {
+          "calls": 1,
+          "inclusive_gas": 762375,
+          "exclusive_gas": 34388
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()": {
+          "calls": 73,
+          "inclusive_gas": 34237,
+          "exclusive_gas": 34237
+        },
+        "liquidity.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2484585,
+          "exclusive_gas": 33779
+        },
+        "reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "independent_reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.recordApplied(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 68154,
+          "exclusive_gas": 32414
+        },
+        "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 149180,
+          "exclusive_gas": 31883
+        },
+        "fees.flushDust(uint256,address)": {
+          "calls": 2,
+          "inclusive_gas": 47812,
+          "exclusive_gas": 31336
+        },
+        "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 109450,
+          "exclusive_gas": 30967
+        },
+        "fees.releaseCompound(uint256,address)": {
+          "calls": 2,
+          "inclusive_gas": 39914,
+          "exclusive_gas": 30953
+        },
+        "independent_core.0x1e2eaeaf": {
+          "calls": 50,
+          "inclusive_gas": 29850,
+          "exclusive_gas": 29850
+        },
+        "liquidity.balanceContext(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 1872546,
+          "exclusive_gas": 28500
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)": {
+          "calls": 2,
+          "inclusive_gas": 28026,
+          "exclusive_gas": 28026
+        },
+        "strategy.portfolioPolicy()": {
+          "calls": 26,
+          "inclusive_gas": 27794,
+          "exclusive_gas": 27794
+        },
+        "balancing_router.access()": {
+          "calls": 31,
+          "inclusive_gas": 27435,
+          "exclusive_gas": 27435
+        },
+        "lp_balance_math.executionTarget(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 213934,
+          "exclusive_gas": 26362
+        },
+        "position_manager.approve(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 26174,
+          "exclusive_gas": 26174
+        },
+        "position_manager.getPositionLiquidity(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 27120,
+          "exclusive_gas": 25052
+        },
+        "vault.0x": {
+          "calls": 1,
+          "inclusive_gas": 29212,
+          "exclusive_gas": 23610
+        },
+        "nft.ownerOf(uint256)": {
+          "calls": 11,
+          "inclusive_gas": 23505,
+          "exclusive_gas": 23505
+        },
+        "lp_position_executor.portfolioAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 131896,
+          "exclusive_gas": 23160
+        },
+        "protocol_policy.maintenanceFingerprint()": {
+          "calls": 11,
+          "inclusive_gas": 21888,
+          "exclusive_gas": 21888
+        },
+        "liquidity.0x": {
+          "calls": 1,
+          "inclusive_gas": 21553,
+          "exclusive_gas": 21553
+        },
+        "activation_assets.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 308613,
+          "exclusive_gas": 20153
+        },
+        "contribution_pricing.assertDeployed(uint256,uint16)": {
+          "calls": 1,
+          "inclusive_gas": 97010,
+          "exclusive_gas": 19865
+        },
+        "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19491,
+          "exclusive_gas": 19491
+        },
+        "liquidity.spot(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 47530,
+          "exclusive_gas": 18940
+        },
+        "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 43501,
+          "exclusive_gas": 18321
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 49407,
+          "exclusive_gas": 18094
+        },
+        "membership.settleDust()": {
+          "calls": 1,
+          "inclusive_gas": 87351,
+          "exclusive_gas": 17792
+        },
+        "access.moduleAuthorized(bytes32,address)": {
+          "calls": 9,
+          "inclusive_gas": 17379,
+          "exclusive_gas": 17379
+        },
+        "state_view.poolManager()": {
+          "calls": 25,
+          "inclusive_gas": 15775,
+          "exclusive_gas": 15775
+        },
+        "independent_state.poolManager()": {
+          "calls": 25,
+          "inclusive_gas": 15775,
+          "exclusive_gas": 15775
+        },
+        "protocol_policy.entryFingerprint()": {
+          "calls": 5,
+          "inclusive_gas": 15590,
+          "exclusive_gas": 15590
+        },
+        "lp_balance_math.executionPrices(address)": {
+          "calls": 1,
+          "inclusive_gas": 81097,
+          "exclusive_gas": 15573
+        },
+        "pool_manager.settle()": {
+          "calls": 3,
+          "inclusive_gas": 17636,
+          "exclusive_gas": 15526
+        },
+        "nft.notifyContribution(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 243185,
+          "exclusive_gas": 15182
+        },
+        "liquidity.executionStrategy()": {
+          "calls": 6,
+          "inclusive_gas": 17044,
+          "exclusive_gas": 13648
+        },
+        "budget.balanceContext(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 974264,
+          "exclusive_gas": 13472
+        },
+        "vault.migrationBudget()": {
+          "calls": 12,
+          "inclusive_gas": 13416,
+          "exclusive_gas": 13416
+        },
+        "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13048,
+          "exclusive_gas": 13048
+        },
+        "budget.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1156908,
+          "exclusive_gas": 12897
+        },
+        "strategy.executionQualityRevision()": {
+          "calls": 11,
+          "inclusive_gas": 11438,
+          "exclusive_gas": 11438
+        },
+        "pool_manager.sync(address)": {
+          "calls": 3,
+          "inclusive_gas": 15445,
+          "exclusive_gas": 11335
+        },
+        "balancing_router.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 115366,
+          "exclusive_gas": 11333
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 25517,
+          "exclusive_gas": 10749
+        },
+        "strategy.rangeOrientation(bytes32)": {
+          "calls": 13,
+          "inclusive_gas": 10398,
+          "exclusive_gas": 10398
+        },
+        "pool_manager.take(address,address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 31889,
+          "exclusive_gas": 10336
+        },
+        "balancing_router.policyFingerprint(bytes32,bytes32)": {
+          "calls": 8,
+          "inclusive_gas": 1347990,
+          "exclusive_gas": 10320
+        },
+        "liquidity.executionSpot(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 143064,
+          "exclusive_gas": 10108
+        },
+        "liquidity.executionConfig(bytes32,bool)": {
+          "calls": 1,
+          "inclusive_gas": 32546,
+          "exclusive_gas": 10080
+        },
+        "reference.decimals()": {
+          "calls": 23,
+          "inclusive_gas": 9890,
+          "exclusive_gas": 9890
+        },
+        "independent_reference.decimals()": {
+          "calls": 23,
+          "inclusive_gas": 9890,
+          "exclusive_gas": 9890
+        },
+        "vault.totalIdle(address)": {
+          "calls": 8,
+          "inclusive_gas": 9648,
+          "exclusive_gas": 9648
+        },
+        "balancing_router.balanceMath()": {
+          "calls": 17,
+          "inclusive_gas": 9622,
+          "exclusive_gas": 9622
+        },
+        "pools.configurationRevision()": {
+          "calls": 11,
+          "inclusive_gas": 9392,
+          "exclusive_gas": 9392
+        },
+        "balancing_router.executionRevision()": {
+          "calls": 8,
+          "inclusive_gas": 9064,
+          "exclusive_gas": 9064
+        },
+        "pool_manager.unlock(bytes)": {
+          "calls": 3,
+          "inclusive_gas": 1064617,
+          "exclusive_gas": 8646
+        },
+        "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 479764,
+          "exclusive_gas": 8562
+        },
+        "budget.mintTarget(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 125514,
+          "exclusive_gas": 8430
+        },
+        "position_manager.ownerOf(uint256)": {
+          "calls": 5,
+          "inclusive_gas": 8350,
+          "exclusive_gas": 8350
+        },
+        "budget.validateReservation(bytes32,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19345,
+          "exclusive_gas": 8109
+        },
+        "protocol_policy.entryPolicy()": {
+          "calls": 3,
+          "inclusive_gas": 8010,
+          "exclusive_gas": 8010
+        },
+        "entry.pricingContext(uint256,bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13152,
+          "exclusive_gas": 7973
+        },
+        "budget.assertDeployed(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 116448,
+          "exclusive_gas": 7962
+        },
+        "balancing_router.principalAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 84820,
+          "exclusive_gas": 7952
+        },
+        "entry.validateOwner(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14316,
+          "exclusive_gas": 7670
+        },
+        "budget.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 37270,
+          "exclusive_gas": 7169
+        },
+        "oracle.contributionPricing()": {
+          "calls": 11,
+          "inclusive_gas": 7040,
+          "exclusive_gas": 7040
+        },
+        "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6712,
+          "exclusive_gas": 6712
+        },
+        "pools.isNativePool(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 6444,
+          "exclusive_gas": 6444
+        },
+        "nft.mintOrdinalOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 6280,
+          "exclusive_gas": 6280
+        },
+        "access.lpExitStarted()": {
+          "calls": 6,
+          "inclusive_gas": 6060,
+          "exclusive_gas": 6060
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.bucketIdentity(bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 5708,
+          "exclusive_gas": 5708
+        },
+        "liquidity.executionOrdinaryReplacement()": {
+          "calls": 1,
+          "inclusive_gas": 10242,
+          "exclusive_gas": 5643
+        },
+        "liquidity.positionManager()": {
+          "calls": 5,
+          "inclusive_gas": 5595,
+          "exclusive_gas": 5595
+        },
+        "lp_balance_math.fixedZZZ()": {
+          "calls": 1,
+          "inclusive_gas": 10912,
+          "exclusive_gas": 5405
+        },
+        "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 471339,
+          "exclusive_gas": 5395
+        },
+        "entry.sourceValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8562,
+          "exclusive_gas": 5315
+        },
+        "nft.tokenAtOrdinal(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 5180,
+          "exclusive_gas": 5180
+        },
+        "lp_position_executor.secondaryId(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 4898,
+          "exclusive_gas": 4898
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516": {
+          "calls": 1,
+          "inclusive_gas": 13849,
+          "exclusive_gas": 4737
+        },
+        "pools.activationEntry()": {
+          "calls": 4,
+          "inclusive_gas": 4460,
+          "exclusive_gas": 4460
+        },
+        "liquidity.secondaryId(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 9293,
+          "exclusive_gas": 4395
+        },
+        "budget.valueBucket(uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8355,
+          "exclusive_gas": 3989
+        },
+        "vault.nftBucket(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 3980,
+          "exclusive_gas": 3980
+        },
+        "nft.traitsReady(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3921,
+          "exclusive_gas": 3921
+        },
+        "contribution_pricing.entryIdleLimit(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6320,
+          "exclusive_gas": 3910
+        },
+        "position_manager.modifyLiquidities(bytes,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 355966,
+          "exclusive_gas": 3904
+        },
+        "budget.maintenanceBucket()": {
+          "calls": 2,
+          "inclusive_gas": 3794,
+          "exclusive_gas": 3794
+        },
+        "liquidity.poolManager()": {
+          "calls": 3,
+          "inclusive_gas": 3681,
+          "exclusive_gas": 3681
+        },
+        "vault.contributionUSD(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3606,
+          "exclusive_gas": 3606
+        },
+        "activation_assets.isContributionAsset(address)": {
+          "calls": 1,
+          "inclusive_gas": 3422,
+          "exclusive_gas": 3422
+        },
+        "budget.contributionLossBps()": {
+          "calls": 1,
+          "inclusive_gas": 3202,
+          "exclusive_gas": 3202
+        },
+        "budget.validateNativeSender(address)": {
+          "calls": 1,
+          "inclusive_gas": 5602,
+          "exclusive_gas": 3018
+        },
+        "access.paused()": {
+          "calls": 4,
+          "inclusive_gas": 3000,
+          "exclusive_gas": 3000
+        },
+        "position_manager.nextTokenId()": {
+          "calls": 1,
+          "inclusive_gas": 2956,
+          "exclusive_gas": 2956
+        },
+        "vault.sharesOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 2816,
+          "exclusive_gas": 2816
+        },
+        "liquidity.portfolioAmounts(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 134668,
+          "exclusive_gas": 2772
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 22192,
+          "exclusive_gas": 2701
+        },
+        "pools.activationAssets()": {
+          "calls": 1,
+          "inclusive_gas": 2593,
+          "exclusive_gas": 2593
+        },
+        "contribution_pricing.valueBucket(uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2434,
+          "exclusive_gas": 2434
+        },
+        "pools.contributionValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 10889,
+          "exclusive_gas": 2327
+        },
+        "pool_manager.0xf135baaa": {
+          "calls": 2,
+          "inclusive_gas": 2002,
+          "exclusive_gas": 2002
+        },
+        "strategy.additionalLossBps()": {
+          "calls": 2,
+          "inclusive_gas": 1700,
+          "exclusive_gas": 1700
+        },
+        "liquidity.stateView()": {
+          "calls": 2,
+          "inclusive_gas": 1574,
+          "exclusive_gas": 1574
+        },
+        "vault.bucketAt(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1403,
+          "exclusive_gas": 1403
+        },
+        "vault.poolBucket(bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1338,
+          "exclusive_gas": 1338
+        },
+        "vault.bucketCount()": {
+          "calls": 1,
+          "inclusive_gas": 1167,
+          "exclusive_gas": 1167
+        },
+        "vault.bucketTotalShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 946,
+          "exclusive_gas": 946
+        },
+        "membership.eligible(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 874,
+          "exclusive_gas": 874
+        },
+        "liquidity.positionOperator()": {
+          "calls": 1,
+          "inclusive_gas": 745,
+          "exclusive_gas": 745
+        },
+        "activation_assets.zzz()": {
+          "calls": 1,
+          "inclusive_gas": 737,
+          "exclusive_gas": 737
+        },
+        "reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "independent_reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "membership.totalEligible()": {
+          "calls": 1,
+          "inclusive_gas": 538,
+          "exclusive_gas": 538
+        },
+        "vault.MAX_BUCKETS()": {
+          "calls": 1,
+          "inclusive_gas": 509,
+          "exclusive_gas": 509
+        },
+        "principal_exit.activePlan(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "independent_reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "vault.canonicalChainId()": {
+          "calls": 1,
+          "inclusive_gas": 293,
+          "exclusive_gas": 293
+        },
+        "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14995485,
+          "exclusive_gas": -530776
+        }
+      },
+      "note": "Signed exclusive residual subtracts immediate child gas; RPC refund accounting can make a parent negative, retained explicitly. Inclusive totals overlap. Exact-call local synthetic-market fixture, not Robinhood fee/limit acceptance."
+    },
+    "eth-grow": {
+      "fixture": "tests_python/fixtures/reference-execution1-actual-eth-grow.json.gz",
+      "fixture_sha256": "bd4fd01f7fca7a4e50993f907276d7374d7464bcee8a818addbfc1bb66430cdf",
+      "source_files_verified": 61,
+      "trace_gas": 13594955,
+      "estimated_gas": 14317340,
+      "reviewed_20_percent": 17180808,
+      "nodes": 2697,
+      "negative_signed_residuals": [
+        {
+          "index": 0,
+          "role": "entry",
+          "method": "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 13594955,
+          "immediate_children": 14076370,
+          "signed_residual": -481415
+        }
+      ],
+      "by_role": {
+        "oracle": {
+          "calls": 101,
+          "inclusive_gas": 8366974,
+          "exclusive_gas": 3901044
+        },
+        "reference": {
+          "calls": 48,
+          "inclusive_gas": 1717478,
+          "exclusive_gas": 1505685
+        },
+        "independent_reference": {
+          "calls": 48,
+          "inclusive_gas": 1702436,
+          "exclusive_gas": 1490643
+        },
+        "access": {
+          "calls": 1005,
+          "inclusive_gas": 1060273,
+          "exclusive_gas": 1060273
+        },
+        "lp_balance_math": {
+          "calls": 39,
+          "inclusive_gas": 3027969,
+          "exclusive_gas": 732761
+        },
+        "contribution_pricing": {
+          "calls": 11,
+          "inclusive_gas": 4183907,
+          "exclusive_gas": 612062
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3": {
+          "calls": 22,
+          "inclusive_gas": 649484,
+          "exclusive_gas": 602252
+        },
+        "pools": {
+          "calls": 80,
+          "inclusive_gas": 405354,
+          "exclusive_gas": 396792
+        },
+        "vault": {
+          "calls": 56,
+          "inclusive_gas": 12131479,
+          "exclusive_gas": 391050
+        },
+        "pool_manager": {
+          "calls": 129,
+          "inclusive_gas": 1179296,
+          "exclusive_gas": 357531
+        },
+        "liquidity": {
+          "calls": 46,
+          "inclusive_gas": 10140014,
+          "exclusive_gas": 316148
+        },
+        "protocol_policy": {
+          "calls": 329,
+          "inclusive_gas": 309454,
+          "exclusive_gas": 309454
+        },
+        "budget": {
+          "calls": 34,
+          "inclusive_gas": 3862477,
+          "exclusive_gas": 265804
+        },
+        "rewards": {
+          "calls": 1,
+          "inclusive_gas": 266450,
+          "exclusive_gas": 251131
+        },
+        "position_manager": {
+          "calls": 43,
+          "inclusive_gas": 654164,
+          "exclusive_gas": 242966
+        },
+        "lp_position_executor": {
+          "calls": 8,
+          "inclusive_gas": 2078142,
+          "exclusive_gas": 242462
+        },
+        "state_view": {
+          "calls": 122,
+          "inclusive_gas": 296003,
+          "exclusive_gas": 241337
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "calls": 112,
+          "inclusive_gas": 220762,
+          "exclusive_gas": 220762
+        },
+        "balancing_router": {
+          "calls": 73,
+          "inclusive_gas": 3139881,
+          "exclusive_gas": 220095
+        },
+        "fees": {
+          "calls": 12,
+          "inclusive_gas": 222310,
+          "exclusive_gas": 155167
+        },
+        "independent_state": {
+          "calls": 72,
+          "inclusive_gas": 156304,
+          "exclusive_gas": 127488
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "strategy": {
+          "calls": 46,
+          "inclusive_gas": 45762,
+          "exclusive_gas": 45762
+        },
+        "nft": {
+          "calls": 11,
+          "inclusive_gas": 47363,
+          "exclusive_gas": 39155
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c": {
+          "calls": 3,
+          "inclusive_gas": 41875,
+          "exclusive_gas": 32763
+        },
+        "independent_core": {
+          "calls": 48,
+          "inclusive_gas": 28816,
+          "exclusive_gas": 28816
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a": {
+          "calls": 2,
+          "inclusive_gas": 65957,
+          "exclusive_gas": 26079
+        },
+        "activation_assets": {
+          "calls": 3,
+          "inclusive_gas": 127550,
+          "exclusive_gas": 22469
+        },
+        "membership": {
+          "calls": 1,
+          "inclusive_gas": 91351,
+          "exclusive_gas": 17792
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "principal_exit": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "entry": {
+          "calls": 4,
+          "inclusive_gas": 13630985,
+          "exclusive_gas": -460457
+        }
+      },
+      "by_method": {
+        "oracle.validateExecution()": {
+          "calls": 14,
+          "inclusive_gas": 3971872,
+          "exclusive_gas": 1539411
+        },
+        "reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1578236,
+          "exclusive_gas": 1386220
+        },
+        "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1563848,
+          "exclusive_gas": 1371832
+        },
+        "oracle.executionBounds(address)": {
+          "calls": 34,
+          "inclusive_gas": 1009766,
+          "exclusive_gas": 802298
+        },
+        "access.module(bytes32)": {
+          "calls": 393,
+          "inclusive_gas": 529756,
+          "exclusive_gas": 529756
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)": {
+          "calls": 11,
+          "inclusive_gas": 490919,
+          "exclusive_gas": 490919
+        },
+        "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1143997,
+          "exclusive_gas": 383072
+        },
+        "access.protocolPolicy()": {
+          "calls": 327,
+          "inclusive_gas": 332924,
+          "exclusive_gas": 332924
+        },
+        "pools.accounting(bytes32)": {
+          "calls": 50,
+          "inclusive_gas": 326200,
+          "exclusive_gas": 326200
+        },
+        "lp_balance_math.policyFingerprint(bytes32,bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 1832720,
+          "exclusive_gas": 323584
+        },
+        "oracle.executionReferenceX96(address,address)": {
+          "calls": 10,
+          "inclusive_gas": 366370,
+          "exclusive_gas": 305350
+        },
+        "oracle.endManagerExecution(bool)": {
+          "calls": 2,
+          "inclusive_gas": 621090,
+          "exclusive_gas": 262124
+        },
+        "oracle.beginManagerExecution(address,bytes32,bool)": {
+          "calls": 2,
+          "inclusive_gas": 611464,
+          "exclusive_gas": 258869
+        },
+        "rewards.syncShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 266450,
+          "exclusive_gas": 251131
+        },
+        "vault.increase(uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 11976402,
+          "exclusive_gas": 249474
+        },
+        "oracle.beginExecution(address)": {
+          "calls": 1,
+          "inclusive_gas": 674748,
+          "exclusive_gas": 207472
+        },
+        "oracle.afterSwap()": {
+          "calls": 1,
+          "inclusive_gas": 344679,
+          "exclusive_gas": 150269
+        },
+        "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+          "calls": 1,
+          "inclusive_gas": 318322,
+          "exclusive_gas": 136825
+        },
+        "protocol_policy.sourceCallGas()": {
+          "calls": 242,
+          "inclusive_gas": 133406,
+          "exclusive_gas": 133406
+        },
+        "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4696862,
+          "exclusive_gas": 131888
+        },
+        "protocol_policy.gasFingerprint()": {
+          "calls": 68,
+          "inclusive_gas": 130560,
+          "exclusive_gas": 130560
+        },
+        "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)": {
+          "calls": 2,
+          "inclusive_gas": 127804,
+          "exclusive_gas": 127804
+        },
+        "lp_balance_math.executionValidatePrice(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 646200,
+          "exclusive_gas": 126250
+        },
+        "pool_manager.0x5a6bcfda": {
+          "calls": 3,
+          "inclusive_gas": 124523,
+          "exclusive_gas": 124523
+        },
+        "oracle.endExecution()": {
+          "calls": 1,
+          "inclusive_gas": 301247,
+          "exclusive_gas": 123056
+        },
+        "state_view.getSlot0(bytes32)": {
+          "calls": 57,
+          "inclusive_gas": 153563,
+          "exclusive_gas": 122094
+        },
+        "lp_position_executor.collect(bytes32,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 337132,
+          "exclusive_gas": 119318
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 158565,
+          "exclusive_gas": 111333
+        },
+        "state_view.getLiquidity(bytes32)": {
+          "calls": 41,
+          "inclusive_gas": 127296,
+          "exclusive_gas": 104099
+        },
+        "budget.assertIdle(uint256)": {
+          "calls": 6,
+          "inclusive_gas": 230220,
+          "exclusive_gas": 95988
+        },
+        "vault.group(uint256)": {
+          "calls": 22,
+          "inclusive_gas": 93974,
+          "exclusive_gas": 93974
+        },
+        "position_manager.getPoolAndPositionInfo(uint256)": {
+          "calls": 18,
+          "inclusive_gas": 88964,
+          "exclusive_gas": 88964
+        },
+        "lp_balance_math.principalAmounts(address,address,uint256)": {
+          "calls": 4,
+          "inclusive_gas": 144092,
+          "exclusive_gas": 88344
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "lp_position_executor.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1480252,
+          "exclusive_gas": 79858
+        },
+        "fees.flushDust(uint256,address)": {
+          "calls": 6,
+          "inclusive_gas": 122568,
+          "exclusive_gas": 78308
+        },
+        "fees.releaseCompound(uint256,address)": {
+          "calls": 6,
+          "inclusive_gas": 99742,
+          "exclusive_gas": 76859
+        },
+        "contribution_pricing.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1290427,
+          "exclusive_gas": 75925
+        },
+        "reference.latestRoundData()": {
+          "calls": 1,
+          "inclusive_gas": 88338,
+          "exclusive_gas": 75610
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)": {
+          "calls": 6,
+          "inclusive_gas": 75514,
+          "exclusive_gas": 75514
+        },
+        "independent_reference.latestRoundData()": {
+          "calls": 1,
+          "inclusive_gas": 88011,
+          "exclusive_gas": 75283
+        },
+        "budget.poolTokens(bytes32)": {
+          "calls": 13,
+          "inclusive_gas": 170638,
+          "exclusive_gas": 75270
+        },
+        "position_manager.unlockCallback(bytes)": {
+          "calls": 3,
+          "inclusive_gas": 234462,
+          "exclusive_gas": 71933
+        },
+        "access.isSealed()": {
+          "calls": 83,
+          "inclusive_gas": 67645,
+          "exclusive_gas": 67645
+        },
+        "lp_balance_math.nativeConfig(bytes32,bool)": {
+          "calls": 6,
+          "inclusive_gas": 123518,
+          "exclusive_gas": 64658
+        },
+        "oracle.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 95982,
+          "exclusive_gas": 63936
+        },
+        "independent_state.getLiquidity(bytes32)": {
+          "calls": 24,
+          "inclusive_gas": 75344,
+          "exclusive_gas": 60936
+        },
+        "pool_manager.0x1e2eaeaf": {
+          "calls": 106,
+          "inclusive_gas": 58802,
+          "exclusive_gas": 58802
+        },
+        "access.canonicalState()": {
+          "calls": 105,
+          "inclusive_gas": 55655,
+          "exclusive_gas": 55655
+        },
+        "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 417933,
+          "exclusive_gas": 54196
+        },
+        "balancing_router.plan(bytes32,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 953603,
+          "exclusive_gas": 51805
+        },
+        "independent_state.getSlot0(bytes32)": {
+          "calls": 24,
+          "inclusive_gas": 65816,
+          "exclusive_gas": 51408
+        },
+        "position_manager.getPositionLiquidity(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 54240,
+          "exclusive_gas": 50104
+        },
+        "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 404701,
+          "exclusive_gas": 50070
+        },
+        "oracle.tokenDecimals(address)": {
+          "calls": 22,
+          "inclusive_gas": 43754,
+          "exclusive_gas": 43754
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)": {
+          "calls": 33,
+          "inclusive_gas": 42815,
+          "exclusive_gas": 42815
+        },
+        "lp_position_executor.portfolioAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 259792,
+          "exclusive_gas": 42320
+        },
+        "pools.get(bytes32)": {
+          "calls": 7,
+          "inclusive_gas": 42154,
+          "exclusive_gas": 42154
+        },
+        "access.preparationActive()": {
+          "calls": 75,
+          "inclusive_gas": 41400,
+          "exclusive_gas": 41400
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 38124,
+          "exclusive_gas": 38124
+        },
+        "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 36479,
+          "exclusive_gas": 36479
+        },
+        "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 463029,
+          "exclusive_gas": 35838
+        },
+        "contribution_pricing.endEntry()": {
+          "calls": 1,
+          "inclusive_gas": 762323,
+          "exclusive_gas": 34388
+        },
+        "reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40388,
+          "exclusive_gas": 33339
+        },
+        "independent_reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()": {
+          "calls": 70,
+          "inclusive_gas": 32830,
+          "exclusive_gas": 32830
+        },
+        "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 114722,
+          "exclusive_gas": 31883
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 31479,
+          "exclusive_gas": 31479
+        },
+        "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 109262,
+          "exclusive_gas": 30779
+        },
+        "independent_core.0x1e2eaeaf": {
+          "calls": 48,
+          "inclusive_gas": 28816,
+          "exclusive_gas": 28816
+        },
+        "liquidity.balanceContext(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 1873122,
+          "exclusive_gas": 28500
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)": {
+          "calls": 2,
+          "inclusive_gas": 28026,
+          "exclusive_gas": 28026
+        },
+        "liquidity.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2163087,
+          "exclusive_gas": 28015
+        },
+        "balancing_router.access()": {
+          "calls": 31,
+          "inclusive_gas": 27435,
+          "exclusive_gas": 27435
+        },
+        "liquidity.executionConfig(bytes32,bool)": {
+          "calls": 3,
+          "inclusive_gas": 90632,
+          "exclusive_gas": 25948
+        },
+        "access.moduleAuthorized(bytes32,address)": {
+          "calls": 13,
+          "inclusive_gas": 25103,
+          "exclusive_gas": 25103
+        },
+        "strategy.portfolioPolicy()": {
+          "calls": 22,
+          "inclusive_gas": 23518,
+          "exclusive_gas": 23518
+        },
+        "liquidity.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 472806,
+          "exclusive_gas": 22420
+        },
+        "protocol_policy.maintenanceFingerprint()": {
+          "calls": 11,
+          "inclusive_gas": 21888,
+          "exclusive_gas": 21888
+        },
+        "position_manager.ownerOf(uint256)": {
+          "calls": 11,
+          "inclusive_gas": 20370,
+          "exclusive_gas": 20370
+        },
+        "contribution_pricing.assertDeployed(uint256,uint16)": {
+          "calls": 1,
+          "inclusive_gas": 95010,
+          "exclusive_gas": 19865
+        },
+        "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19495,
+          "exclusive_gas": 19495
+        },
+        "liquidity.collect(bytes32,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 360184,
+          "exclusive_gas": 19190
+        },
+        "activation_assets.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 124154,
+          "exclusive_gas": 19073
+        },
+        "liquidity.spot(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 45530,
+          "exclusive_gas": 18940
+        },
+        "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 43501,
+          "exclusive_gas": 18321
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 51414,
+          "exclusive_gas": 18101
+        },
+        "membership.settleDust()": {
+          "calls": 1,
+          "inclusive_gas": 91351,
+          "exclusive_gas": 17792
+        },
+        "nft.ownerOf(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 17640,
+          "exclusive_gas": 17640
+        },
+        "balancing_router.principalAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 169640,
+          "exclusive_gas": 15904
+        },
+        "protocol_policy.entryFingerprint()": {
+          "calls": 5,
+          "inclusive_gas": 15590,
+          "exclusive_gas": 15590
+        },
+        "lp_balance_math.executionPrices(address)": {
+          "calls": 1,
+          "inclusive_gas": 81097,
+          "exclusive_gas": 15573
+        },
+        "pool_manager.unlock(bytes)": {
+          "calls": 5,
+          "inclusive_gas": 803497,
+          "exclusive_gas": 15321
+        },
+        "state_view.poolManager()": {
+          "calls": 24,
+          "inclusive_gas": 15144,
+          "exclusive_gas": 15144
+        },
+        "independent_state.poolManager()": {
+          "calls": 24,
+          "inclusive_gas": 15144,
+          "exclusive_gas": 15144
+        },
+        "vault.totalIdle(address)": {
+          "calls": 12,
+          "inclusive_gas": 14472,
+          "exclusive_gas": 14472
+        },
+        "nft.notifyContribution(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 21993,
+          "exclusive_gas": 13785
+        },
+        "budget.balanceContext(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 974892,
+          "exclusive_gas": 13472
+        },
+        "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13046,
+          "exclusive_gas": 13046
+        },
+        "budget.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1312996,
+          "exclusive_gas": 12897
+        },
+        "pool_manager.settle()": {
+          "calls": 3,
+          "inclusive_gas": 13624,
+          "exclusive_gas": 12569
+        },
+        "liquidity.executionStrategy()": {
+          "calls": 5,
+          "inclusive_gas": 14620,
+          "exclusive_gas": 11790
+        },
+        "position_manager.modifyLiquidities(bytes,uint256)": {
+          "calls": 3,
+          "inclusive_gas": 256128,
+          "exclusive_gas": 11595
+        },
+        "strategy.executionQualityRevision()": {
+          "calls": 11,
+          "inclusive_gas": 11438,
+          "exclusive_gas": 11438
+        },
+        "balancing_router.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 80908,
+          "exclusive_gas": 11291
+        },
+        "vault.migrationBudget()": {
+          "calls": 10,
+          "inclusive_gas": 11180,
+          "exclusive_gas": 11180
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "balancing_router.policyFingerprint(bytes32,bytes32)": {
+          "calls": 8,
+          "inclusive_gas": 1347990,
+          "exclusive_gas": 10320
+        },
+        "liquidity.executionSpot(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 143064,
+          "exclusive_gas": 10108
+        },
+        "budget.assertDeployed(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 116448,
+          "exclusive_gas": 9962
+        },
+        "pools.isNativePool(bytes32)": {
+          "calls": 6,
+          "inclusive_gas": 9666,
+          "exclusive_gas": 9666
+        },
+        "balancing_router.balanceMath()": {
+          "calls": 17,
+          "inclusive_gas": 9622,
+          "exclusive_gas": 9622
+        },
+        "reference.decimals()": {
+          "calls": 22,
+          "inclusive_gas": 9460,
+          "exclusive_gas": 9460
+        },
+        "independent_reference.decimals()": {
+          "calls": 22,
+          "inclusive_gas": 9460,
+          "exclusive_gas": 9460
+        },
+        "pools.configurationRevision()": {
+          "calls": 11,
+          "inclusive_gas": 9392,
+          "exclusive_gas": 9392
+        },
+        "strategy.rangeOrientation(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 9106,
+          "exclusive_gas": 9106
+        },
+        "balancing_router.executionRevision()": {
+          "calls": 8,
+          "inclusive_gas": 9064,
+          "exclusive_gas": 9064
+        },
+        "pool_manager.sync(address)": {
+          "calls": 3,
+          "inclusive_gas": 9748,
+          "exclusive_gas": 8693
+        },
+        "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 482425,
+          "exclusive_gas": 8562
+        },
+        "protocol_policy.entryPolicy()": {
+          "calls": 3,
+          "inclusive_gas": 8010,
+          "exclusive_gas": 8010
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 14543,
+          "exclusive_gas": 7978
+        },
+        "budget.valueBucket(uint256,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 16710,
+          "exclusive_gas": 7978
+        },
+        "entry.pricingContext(uint256,bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13152,
+          "exclusive_gas": 7973
+        },
+        "lp_balance_math.fixedZZZ()": {
+          "calls": 1,
+          "inclusive_gas": 15412,
+          "exclusive_gas": 7905
+        },
+        "oracle.contributionPricing()": {
+          "calls": 12,
+          "inclusive_gas": 7680,
+          "exclusive_gas": 7680
+        },
+        "entry.validateOwner(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14316,
+          "exclusive_gas": 7670
+        },
+        "budget.validateNativeSender(address)": {
+          "calls": 2,
+          "inclusive_gas": 13501,
+          "exclusive_gas": 7588
+        },
+        "budget.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 26296,
+          "exclusive_gas": 7169
+        },
+        "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6648,
+          "exclusive_gas": 6648
+        },
+        "vault.0x": {
+          "calls": 2,
+          "inclusive_gas": 19721,
+          "exclusive_gas": 6220
+        },
+        "pool_manager.0xf135baaa": {
+          "calls": 6,
+          "inclusive_gas": 6006,
+          "exclusive_gas": 6006
+        },
+        "liquidity.positionManager()": {
+          "calls": 5,
+          "inclusive_gas": 5595,
+          "exclusive_gas": 5595
+        },
+        "liquidity.portfolioAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 265336,
+          "exclusive_gas": 5544
+        },
+        "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 471648,
+          "exclusive_gas": 5395
+        },
+        "entry.sourceValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8562,
+          "exclusive_gas": 5315
+        },
+        "contribution_pricing.valueBucket(uint256,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 4868,
+          "exclusive_gas": 4868
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516": {
+          "calls": 1,
+          "inclusive_gas": 13849,
+          "exclusive_gas": 4737
+        },
+        "pools.activationEntry()": {
+          "calls": 4,
+          "inclusive_gas": 4460,
+          "exclusive_gas": 4460
+        },
+        "nft.mintOrdinalOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4140,
+          "exclusive_gas": 4140
+        },
+        "access.lpExitStarted()": {
+          "calls": 4,
+          "inclusive_gas": 4040,
+          "exclusive_gas": 4040
+        },
+        "contribution_pricing.entryIdleLimit(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6320,
+          "exclusive_gas": 3910
+        },
+        "pool_manager.take(address,address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 35292,
+          "exclusive_gas": 3813
+        },
+        "access.paused()": {
+          "calls": 5,
+          "inclusive_gas": 3750,
+          "exclusive_gas": 3750
+        },
+        "liquidity.poolManager()": {
+          "calls": 3,
+          "inclusive_gas": 3681,
+          "exclusive_gas": 3681
+        },
+        "vault.contributionUSD(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3606,
+          "exclusive_gas": 3606
+        },
+        "nft.tokenAtOrdinal(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3590,
+          "exclusive_gas": 3590
+        },
+        "vault.bucketAt(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3403,
+          "exclusive_gas": 3403
+        },
+        "budget.contributionLossBps()": {
+          "calls": 1,
+          "inclusive_gas": 3202,
+          "exclusive_gas": 3202
+        },
+        "vault.bucketCount()": {
+          "calls": 1,
+          "inclusive_gas": 3167,
+          "exclusive_gas": 3167
+        },
+        "vault.sharesOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 2816,
+          "exclusive_gas": 2816
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "activation_assets.zzz()": {
+          "calls": 1,
+          "inclusive_gas": 2737,
+          "exclusive_gas": 2737
+        },
+        "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 22196,
+          "exclusive_gas": 2701
+        },
+        "pools.activationAssets()": {
+          "calls": 1,
+          "inclusive_gas": 2593,
+          "exclusive_gas": 2593
+        },
+        "pools.contributionValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 10889,
+          "exclusive_gas": 2327
+        },
+        "strategy.additionalLossBps()": {
+          "calls": 2,
+          "inclusive_gas": 1700,
+          "exclusive_gas": 1700
+        },
+        "liquidity.stateView()": {
+          "calls": 2,
+          "inclusive_gas": 1574,
+          "exclusive_gas": 1574
+        },
+        "liquidity.positionOperator()": {
+          "calls": 2,
+          "inclusive_gas": 1490,
+          "exclusive_gas": 1490
+        },
+        "liquidity.secondaryId(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2431,
+          "exclusive_gas": 1465
+        },
+        "vault.nftBucket(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 990,
+          "exclusive_gas": 990
+        },
+        "lp_position_executor.secondaryId(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 966,
+          "exclusive_gas": 966
+        },
+        "vault.bucketTotalShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 946,
+          "exclusive_gas": 946
+        },
+        "reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "independent_reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "activation_assets.isContributionAsset(address)": {
+          "calls": 1,
+          "inclusive_gas": 659,
+          "exclusive_gas": 659
+        },
+        "vault.MAX_BUCKETS()": {
+          "calls": 1,
+          "inclusive_gas": 509,
+          "exclusive_gas": 509
+        },
+        "principal_exit.activePlan(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "independent_reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "vault.canonicalChainId()": {
+          "calls": 1,
+          "inclusive_gas": 293,
+          "exclusive_gas": 293
+        },
+        "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 13594955,
+          "exclusive_gas": -481415
+        }
+      },
+      "note": "Signed exclusive residual subtracts immediate child gas; RPC refund accounting can make a parent negative, retained explicitly. Inclusive totals overlap. Exact-call local synthetic-market fixture, not Robinhood fee/limit acceptance."
+    },
+    "zzz-grow": {
+      "fixture": "tests_python/fixtures/reference-execution1-actual-zzz-grow.json.gz",
+      "fixture_sha256": "19a51161b5f5d0b7163796a73758a2cedda629a94b6661f80fe277c9e60122b5",
+      "source_files_verified": 61,
+      "trace_gas": 13829824,
+      "estimated_gas": 14642230,
+      "reviewed_20_percent": 17570676,
+      "nodes": 2745,
+      "negative_signed_residuals": [
+        {
+          "index": 0,
+          "role": "entry",
+          "method": "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 13829824,
+          "immediate_children": 14394318,
+          "signed_residual": -564494
+        }
+      ],
+      "by_role": {
+        "oracle": {
+          "calls": 101,
+          "inclusive_gas": 8483771,
+          "exclusive_gas": 3899343
+        },
+        "reference": {
+          "calls": 50,
+          "inclusive_gas": 1798337,
+          "exclusive_gas": 1567816
+        },
+        "independent_reference": {
+          "calls": 50,
+          "inclusive_gas": 1766377,
+          "exclusive_gas": 1535856
+        },
+        "access": {
+          "calls": 1004,
+          "inclusive_gas": 1058701,
+          "exclusive_gas": 1058701
+        },
+        "lp_balance_math": {
+          "calls": 39,
+          "inclusive_gas": 3016813,
+          "exclusive_gas": 730513
+        },
+        "contribution_pricing": {
+          "calls": 11,
+          "inclusive_gas": 4106761,
+          "exclusive_gas": 612062
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3": {
+          "calls": 22,
+          "inclusive_gas": 642576,
+          "exclusive_gas": 595344
+        },
+        "pools": {
+          "calls": 80,
+          "inclusive_gas": 405354,
+          "exclusive_gas": 396792
+        },
+        "vault": {
+          "calls": 55,
+          "inclusive_gas": 12252512,
+          "exclusive_gas": 389268
+        },
+        "liquidity": {
+          "calls": 46,
+          "inclusive_gas": 10320643,
+          "exclusive_gas": 375575
+        },
+        "pool_manager": {
+          "calls": 131,
+          "inclusive_gas": 1253839,
+          "exclusive_gas": 371119
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "calls": 148,
+          "inclusive_gas": 364331,
+          "exclusive_gas": 364331
+        },
+        "protocol_policy": {
+          "calls": 330,
+          "inclusive_gas": 309997,
+          "exclusive_gas": 309997
+        },
+        "budget": {
+          "calls": 33,
+          "inclusive_gas": 3858264,
+          "exclusive_gas": 261234
+        },
+        "rewards": {
+          "calls": 1,
+          "inclusive_gas": 266450,
+          "exclusive_gas": 251131
+        },
+        "state_view": {
+          "calls": 125,
+          "inclusive_gas": 302349,
+          "exclusive_gas": 246649
+        },
+        "position_manager": {
+          "calls": 43,
+          "inclusive_gas": 654164,
+          "exclusive_gas": 242966
+        },
+        "lp_position_executor": {
+          "calls": 8,
+          "inclusive_gas": 2081046,
+          "exclusive_gas": 241024
+        },
+        "balancing_router": {
+          "calls": 73,
+          "inclusive_gas": 3133829,
+          "exclusive_gas": 220290
+        },
+        "fees": {
+          "calls": 12,
+          "inclusive_gas": 222310,
+          "exclusive_gas": 155167
+        },
+        "independent_state": {
+          "calls": 75,
+          "inclusive_gas": 162650,
+          "exclusive_gas": 132800
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240": {
+          "calls": 93,
+          "inclusive_gas": 98232,
+          "exclusive_gas": 98232
+        },
+        "strategy": {
+          "calls": 46,
+          "inclusive_gas": 45762,
+          "exclusive_gas": 45762
+        },
+        "nft": {
+          "calls": 11,
+          "inclusive_gas": 47363,
+          "exclusive_gas": 39155
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c": {
+          "calls": 3,
+          "inclusive_gas": 41875,
+          "exclusive_gas": 32763
+        },
+        "independent_core": {
+          "calls": 50,
+          "inclusive_gas": 29850,
+          "exclusive_gas": 29850
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a": {
+          "calls": 2,
+          "inclusive_gas": 65957,
+          "exclusive_gas": 26079
+        },
+        "activation_assets": {
+          "calls": 3,
+          "inclusive_gas": 313452,
+          "exclusive_gas": 24312
+        },
+        "membership": {
+          "calls": 1,
+          "inclusive_gas": 91351,
+          "exclusive_gas": 17792
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "principal_exit": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "entry": {
+          "calls": 4,
+          "inclusive_gas": 13865854,
+          "exclusive_gas": -543536
+        }
+      },
+      "by_method": {
+        "oracle.validateExecution()": {
+          "calls": 14,
+          "inclusive_gas": 3981756,
+          "exclusive_gas": 1539411
+        },
+        "reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1593768,
+          "exclusive_gas": 1401752
+        },
+        "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "calls": 22,
+          "inclusive_gas": 1563848,
+          "exclusive_gas": 1371832
+        },
+        "oracle.executionBounds(address)": {
+          "calls": 34,
+          "inclusive_gas": 1009766,
+          "exclusive_gas": 802298
+        },
+        "access.module(bytes32)": {
+          "calls": 391,
+          "inclusive_gas": 527172,
+          "exclusive_gas": 527172
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)": {
+          "calls": 11,
+          "inclusive_gas": 484011,
+          "exclusive_gas": 484011
+        },
+        "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 1061909,
+          "exclusive_gas": 383072
+        },
+        "access.protocolPolicy()": {
+          "calls": 328,
+          "inclusive_gas": 333936,
+          "exclusive_gas": 333936
+        },
+        "pools.accounting(bytes32)": {
+          "calls": 50,
+          "inclusive_gas": 326200,
+          "exclusive_gas": 326200
+        },
+        "lp_balance_math.policyFingerprint(bytes32,bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 1825812,
+          "exclusive_gas": 323584
+        },
+        "oracle.executionReferenceX96(address,address)": {
+          "calls": 10,
+          "inclusive_gas": 366370,
+          "exclusive_gas": 305350
+        },
+        "oracle.endManagerExecution(bool)": {
+          "calls": 2,
+          "inclusive_gas": 622502,
+          "exclusive_gas": 262124
+        },
+        "oracle.beginManagerExecution(address,bytes32,bool)": {
+          "calls": 2,
+          "inclusive_gas": 612876,
+          "exclusive_gas": 258869
+        },
+        "rewards.syncShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 266450,
+          "exclusive_gas": 251131
+        },
+        "vault.increase(uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 12107044,
+          "exclusive_gas": 249402
+        },
+        "oracle.beginExecution(address)": {
+          "calls": 1,
+          "inclusive_gas": 592660,
+          "exclusive_gas": 202472
+        },
+        "oracle.afterSwap()": {
+          "calls": 1,
+          "inclusive_gas": 345385,
+          "exclusive_gas": 150269
+        },
+        "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+          "calls": 1,
+          "inclusive_gas": 319028,
+          "exclusive_gas": 136825
+        },
+        "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4785542,
+          "exclusive_gas": 135133
+        },
+        "protocol_policy.sourceCallGas()": {
+          "calls": 243,
+          "inclusive_gas": 133949,
+          "exclusive_gas": 133949
+        },
+        "protocol_policy.gasFingerprint()": {
+          "calls": 68,
+          "inclusive_gas": 130560,
+          "exclusive_gas": 130560
+        },
+        "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)": {
+          "calls": 2,
+          "inclusive_gas": 128236,
+          "exclusive_gas": 128236
+        },
+        "lp_balance_math.executionValidatePrice(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 646190,
+          "exclusive_gas": 126240
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)": {
+          "calls": 8,
+          "inclusive_gas": 124552,
+          "exclusive_gas": 124552
+        },
+        "pool_manager.0x5a6bcfda": {
+          "calls": 3,
+          "inclusive_gas": 124523,
+          "exclusive_gas": 124523
+        },
+        "state_view.getSlot0(bytes32)": {
+          "calls": 58,
+          "inclusive_gas": 156222,
+          "exclusive_gas": 124236
+        },
+        "oracle.endExecution()": {
+          "calls": 1,
+          "inclusive_gas": 301953,
+          "exclusive_gas": 123056
+        },
+        "reference.latestRoundData()": {
+          "calls": 2,
+          "inclusive_gas": 152882,
+          "exclusive_gas": 121426
+        },
+        "independent_reference.latestRoundData()": {
+          "calls": 2,
+          "inclusive_gas": 151522,
+          "exclusive_gas": 120066
+        },
+        "lp_position_executor.collect(bytes32,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 337132,
+          "exclusive_gas": 119318
+        },
+        "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 158565,
+          "exclusive_gas": 111333
+        },
+        "state_view.getLiquidity(bytes32)": {
+          "calls": 42,
+          "inclusive_gas": 130352,
+          "exclusive_gas": 106638
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)": {
+          "calls": 5,
+          "inclusive_gas": 100560,
+          "exclusive_gas": 100560
+        },
+        "budget.assertIdle(uint256)": {
+          "calls": 6,
+          "inclusive_gas": 230220,
+          "exclusive_gas": 95988
+        },
+        "vault.group(uint256)": {
+          "calls": 22,
+          "inclusive_gas": 93974,
+          "exclusive_gas": 93974
+        },
+        "position_manager.getPoolAndPositionInfo(uint256)": {
+          "calls": 18,
+          "inclusive_gas": 88964,
+          "exclusive_gas": 88964
+        },
+        "lp_balance_math.principalAmounts(address,address,uint256)": {
+          "calls": 4,
+          "inclusive_gas": 144092,
+          "exclusive_gas": 88344
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()": {
+          "calls": 46,
+          "inclusive_gas": 87234,
+          "exclusive_gas": 87234
+        },
+        "lp_position_executor.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 1483156,
+          "exclusive_gas": 78420
+        },
+        "fees.flushDust(uint256,address)": {
+          "calls": 6,
+          "inclusive_gas": 122568,
+          "exclusive_gas": 78308
+        },
+        "fees.releaseCompound(uint256,address)": {
+          "calls": 6,
+          "inclusive_gas": 99742,
+          "exclusive_gas": 76859
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)": {
+          "calls": 59,
+          "inclusive_gas": 76245,
+          "exclusive_gas": 76245
+        },
+        "contribution_pricing.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1292545,
+          "exclusive_gas": 75925
+        },
+        "budget.poolTokens(bytes32)": {
+          "calls": 13,
+          "inclusive_gas": 170638,
+          "exclusive_gas": 75270
+        },
+        "position_manager.unlockCallback(bytes)": {
+          "calls": 3,
+          "inclusive_gas": 234462,
+          "exclusive_gas": 71933
+        },
+        "access.isSealed()": {
+          "calls": 83,
+          "inclusive_gas": 67645,
+          "exclusive_gas": 67645
+        },
+        "oracle.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 280041,
+          "exclusive_gas": 67235
+        },
+        "lp_balance_math.nativeConfig(bytes32,bool)": {
+          "calls": 6,
+          "inclusive_gas": 123518,
+          "exclusive_gas": 64658
+        },
+        "independent_state.getLiquidity(bytes32)": {
+          "calls": 25,
+          "inclusive_gas": 78400,
+          "exclusive_gas": 63475
+        },
+        "pool_manager.0x1e2eaeaf": {
+          "calls": 108,
+          "inclusive_gas": 59836,
+          "exclusive_gas": 59836
+        },
+        "liquidity.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 539319,
+          "exclusive_gas": 57794
+        },
+        "access.canonicalState()": {
+          "calls": 105,
+          "inclusive_gas": 55655,
+          "exclusive_gas": 55655
+        },
+        "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 418639,
+          "exclusive_gas": 54196
+        },
+        "independent_state.getSlot0(bytes32)": {
+          "calls": 25,
+          "inclusive_gas": 68475,
+          "exclusive_gas": 53550
+        },
+        "balancing_router.plan(bytes32,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 952208,
+          "exclusive_gas": 51805
+        },
+        "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 404556,
+          "exclusive_gas": 50223
+        },
+        "position_manager.getPositionLiquidity(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 54240,
+          "exclusive_gas": 50104
+        },
+        "oracle.tokenDecimals(address)": {
+          "calls": 22,
+          "inclusive_gas": 43754,
+          "exclusive_gas": 43754
+        },
+        "lp_position_executor.portfolioAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 259792,
+          "exclusive_gas": 42320
+        },
+        "pools.get(bytes32)": {
+          "calls": 7,
+          "inclusive_gas": 42154,
+          "exclusive_gas": 42154
+        },
+        "access.preparationActive()": {
+          "calls": 75,
+          "inclusive_gas": 41400,
+          "exclusive_gas": 41400
+        },
+        "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 36491,
+          "exclusive_gas": 36491
+        },
+        "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 463735,
+          "exclusive_gas": 35838
+        },
+        "contribution_pricing.endEntry()": {
+          "calls": 1,
+          "inclusive_gas": 763735,
+          "exclusive_gas": 34388
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()": {
+          "calls": 73,
+          "inclusive_gas": 34237,
+          "exclusive_gas": 34237
+        },
+        "reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40741,
+          "exclusive_gas": 33692
+        },
+        "independent_reference.executionMarket()": {
+          "calls": 1,
+          "inclusive_gas": 40061,
+          "exclusive_gas": 33012
+        },
+        "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 114980,
+          "exclusive_gas": 31883
+        },
+        "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 109450,
+          "exclusive_gas": 30967
+        },
+        "independent_core.0x1e2eaeaf": {
+          "calls": 50,
+          "inclusive_gas": 29850,
+          "exclusive_gas": 29850
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)": {
+          "calls": 3,
+          "inclusive_gas": 28737,
+          "exclusive_gas": 28737
+        },
+        "liquidity.balanceContext(bytes32)": {
+          "calls": 4,
+          "inclusive_gas": 1873434,
+          "exclusive_gas": 28500
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)": {
+          "calls": 2,
+          "inclusive_gas": 28026,
+          "exclusive_gas": 28026
+        },
+        "liquidity.increase(bytes32,uint256,uint256,uint256,uint128,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2167403,
+          "exclusive_gas": 28015
+        },
+        "balancing_router.access()": {
+          "calls": 31,
+          "inclusive_gas": 27435,
+          "exclusive_gas": 27435
+        },
+        "liquidity.executionConfig(bytes32,bool)": {
+          "calls": 3,
+          "inclusive_gas": 90632,
+          "exclusive_gas": 25948
+        },
+        "access.moduleAuthorized(bytes32,address)": {
+          "calls": 13,
+          "inclusive_gas": 25103,
+          "exclusive_gas": 25103
+        },
+        "strategy.portfolioPolicy()": {
+          "calls": 22,
+          "inclusive_gas": 23518,
+          "exclusive_gas": 23518
+        },
+        "protocol_policy.maintenanceFingerprint()": {
+          "calls": 11,
+          "inclusive_gas": 21888,
+          "exclusive_gas": 21888
+        },
+        "liquidity.0x": {
+          "calls": 1,
+          "inclusive_gas": 21553,
+          "exclusive_gas": 21553
+        },
+        "position_manager.ownerOf(uint256)": {
+          "calls": 11,
+          "inclusive_gas": 20370,
+          "exclusive_gas": 20370
+        },
+        "activation_assets.value(address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 309293,
+          "exclusive_gas": 20153
+        },
+        "contribution_pricing.assertDeployed(uint256,uint16)": {
+          "calls": 1,
+          "inclusive_gas": 95010,
+          "exclusive_gas": 19865
+        },
+        "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 19491,
+          "exclusive_gas": 19491
+        },
+        "liquidity.collect(bytes32,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 360184,
+          "exclusive_gas": 19190
+        },
+        "liquidity.spot(bytes32)": {
+          "calls": 10,
+          "inclusive_gas": 45530,
+          "exclusive_gas": 18940
+        },
+        "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 43501,
+          "exclusive_gas": 18321
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 51414,
+          "exclusive_gas": 18101
+        },
+        "membership.settleDust()": {
+          "calls": 1,
+          "inclusive_gas": 91351,
+          "exclusive_gas": 17792
+        },
+        "nft.ownerOf(uint256)": {
+          "calls": 8,
+          "inclusive_gas": 17640,
+          "exclusive_gas": 17640
+        },
+        "balancing_router.principalAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 169640,
+          "exclusive_gas": 15904
+        },
+        "state_view.poolManager()": {
+          "calls": 25,
+          "inclusive_gas": 15775,
+          "exclusive_gas": 15775
+        },
+        "independent_state.poolManager()": {
+          "calls": 25,
+          "inclusive_gas": 15775,
+          "exclusive_gas": 15775
+        },
+        "protocol_policy.entryFingerprint()": {
+          "calls": 5,
+          "inclusive_gas": 15590,
+          "exclusive_gas": 15590
+        },
+        "lp_balance_math.executionPrices(address)": {
+          "calls": 1,
+          "inclusive_gas": 81097,
+          "exclusive_gas": 15573
+        },
+        "pool_manager.settle()": {
+          "calls": 3,
+          "inclusive_gas": 17636,
+          "exclusive_gas": 15526
+        },
+        "pool_manager.unlock(bytes)": {
+          "calls": 5,
+          "inclusive_gas": 870268,
+          "exclusive_gas": 15321
+        },
+        "vault.totalIdle(address)": {
+          "calls": 12,
+          "inclusive_gas": 14472,
+          "exclusive_gas": 14472
+        },
+        "nft.notifyContribution(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 21993,
+          "exclusive_gas": 13785
+        },
+        "budget.balanceContext(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 975048,
+          "exclusive_gas": 13472
+        },
+        "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13048,
+          "exclusive_gas": 13048
+        },
+        "budget.contributionNav(uint256)": {
+          "calls": 3,
+          "inclusive_gas": 1315114,
+          "exclusive_gas": 12897
+        },
+        "liquidity.executionStrategy()": {
+          "calls": 5,
+          "inclusive_gas": 14620,
+          "exclusive_gas": 11790
+        },
+        "position_manager.modifyLiquidities(bytes,uint256)": {
+          "calls": 3,
+          "inclusive_gas": 256128,
+          "exclusive_gas": 11595
+        },
+        "strategy.executionQualityRevision()": {
+          "calls": 11,
+          "inclusive_gas": 11438,
+          "exclusive_gas": 11438
+        },
+        "pool_manager.sync(address)": {
+          "calls": 3,
+          "inclusive_gas": 15445,
+          "exclusive_gas": 11335
+        },
+        "balancing_router.unlockCallback(bytes)": {
+          "calls": 1,
+          "inclusive_gas": 81166,
+          "exclusive_gas": 11333
+        },
+        "vault.migrationBudget()": {
+          "calls": 10,
+          "inclusive_gas": 11180,
+          "exclusive_gas": 11180
+        },
+        "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()": {
+          "calls": 47,
+          "inclusive_gas": 10998,
+          "exclusive_gas": 10998
+        },
+        "pool_manager.take(address,address,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 31889,
+          "exclusive_gas": 10336
+        },
+        "balancing_router.policyFingerprint(bytes32,bytes32)": {
+          "calls": 8,
+          "inclusive_gas": 1342966,
+          "exclusive_gas": 10320
+        },
+        "liquidity.executionSpot(bytes32)": {
+          "calls": 2,
+          "inclusive_gas": 143064,
+          "exclusive_gas": 10108
+        },
+        "budget.assertDeployed(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 116448,
+          "exclusive_gas": 9962
+        },
+        "reference.decimals()": {
+          "calls": 23,
+          "inclusive_gas": 9890,
+          "exclusive_gas": 9890
+        },
+        "independent_reference.decimals()": {
+          "calls": 23,
+          "inclusive_gas": 9890,
+          "exclusive_gas": 9890
+        },
+        "pools.isNativePool(bytes32)": {
+          "calls": 6,
+          "inclusive_gas": 9666,
+          "exclusive_gas": 9666
+        },
+        "balancing_router.balanceMath()": {
+          "calls": 17,
+          "inclusive_gas": 9622,
+          "exclusive_gas": 9622
+        },
+        "pools.configurationRevision()": {
+          "calls": 11,
+          "inclusive_gas": 9392,
+          "exclusive_gas": 9392
+        },
+        "strategy.rangeOrientation(bytes32)": {
+          "calls": 11,
+          "inclusive_gas": 9106,
+          "exclusive_gas": 9106
+        },
+        "balancing_router.executionRevision()": {
+          "calls": 8,
+          "inclusive_gas": 9064,
+          "exclusive_gas": 9064
+        },
+        "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)": {
+          "calls": 1,
+          "inclusive_gas": 483131,
+          "exclusive_gas": 8562
+        },
+        "protocol_policy.entryPolicy()": {
+          "calls": 3,
+          "inclusive_gas": 8010,
+          "exclusive_gas": 8010
+        },
+        "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 14543,
+          "exclusive_gas": 7978
+        },
+        "budget.valueBucket(uint256,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 16710,
+          "exclusive_gas": 7978
+        },
+        "entry.pricingContext(uint256,bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 13152,
+          "exclusive_gas": 7973
+        },
+        "oracle.contributionPricing()": {
+          "calls": 12,
+          "inclusive_gas": 7680,
+          "exclusive_gas": 7680
+        },
+        "entry.validateOwner(uint256,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 14316,
+          "exclusive_gas": 7670
+        },
+        "budget.validateOwner(uint256,address,bool,bool)": {
+          "calls": 1,
+          "inclusive_gas": 26296,
+          "exclusive_gas": 7169
+        },
+        "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6712,
+          "exclusive_gas": 6712
+        },
+        "pool_manager.0xf135baaa": {
+          "calls": 6,
+          "inclusive_gas": 6006,
+          "exclusive_gas": 6006
+        },
+        "liquidity.positionManager()": {
+          "calls": 5,
+          "inclusive_gas": 5595,
+          "exclusive_gas": 5595
+        },
+        "liquidity.portfolioAmounts(uint256)": {
+          "calls": 4,
+          "inclusive_gas": 265336,
+          "exclusive_gas": 5544
+        },
+        "lp_balance_math.fixedZZZ()": {
+          "calls": 1,
+          "inclusive_gas": 10912,
+          "exclusive_gas": 5405
+        },
+        "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)": {
+          "calls": 1,
+          "inclusive_gas": 472354,
+          "exclusive_gas": 5395
+        },
+        "entry.sourceValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 8562,
+          "exclusive_gas": 5315
+        },
+        "contribution_pricing.valueBucket(uint256,uint256,uint256)": {
+          "calls": 2,
+          "inclusive_gas": 4868,
+          "exclusive_gas": 4868
+        },
+        "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516": {
+          "calls": 1,
+          "inclusive_gas": 13849,
+          "exclusive_gas": 4737
+        },
+        "vault.0x": {
+          "calls": 1,
+          "inclusive_gas": 10112,
+          "exclusive_gas": 4510
+        },
+        "pools.activationEntry()": {
+          "calls": 4,
+          "inclusive_gas": 4460,
+          "exclusive_gas": 4460
+        },
+        "nft.mintOrdinalOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 4140,
+          "exclusive_gas": 4140
+        },
+        "access.lpExitStarted()": {
+          "calls": 4,
+          "inclusive_gas": 4040,
+          "exclusive_gas": 4040
+        },
+        "contribution_pricing.entryIdleLimit(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 6320,
+          "exclusive_gas": 3910
+        },
+        "access.paused()": {
+          "calls": 5,
+          "inclusive_gas": 3750,
+          "exclusive_gas": 3750
+        },
+        "liquidity.poolManager()": {
+          "calls": 3,
+          "inclusive_gas": 3681,
+          "exclusive_gas": 3681
+        },
+        "vault.contributionUSD(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3606,
+          "exclusive_gas": 3606
+        },
+        "nft.tokenAtOrdinal(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3590,
+          "exclusive_gas": 3590
+        },
+        "activation_assets.isContributionAsset(address)": {
+          "calls": 1,
+          "inclusive_gas": 3422,
+          "exclusive_gas": 3422
+        },
+        "vault.bucketAt(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 3403,
+          "exclusive_gas": 3403
+        },
+        "budget.contributionLossBps()": {
+          "calls": 1,
+          "inclusive_gas": 3202,
+          "exclusive_gas": 3202
+        },
+        "vault.bucketCount()": {
+          "calls": 1,
+          "inclusive_gas": 3167,
+          "exclusive_gas": 3167
+        },
+        "budget.validateNativeSender(address)": {
+          "calls": 1,
+          "inclusive_gas": 5602,
+          "exclusive_gas": 3018
+        },
+        "vault.sharesOf(uint256)": {
+          "calls": 2,
+          "inclusive_gas": 2816,
+          "exclusive_gas": 2816
+        },
+        "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2743,
+          "exclusive_gas": 2743
+        },
+        "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 22192,
+          "exclusive_gas": 2701
+        },
+        "pools.activationAssets()": {
+          "calls": 1,
+          "inclusive_gas": 2593,
+          "exclusive_gas": 2593
+        },
+        "pools.contributionValue(bytes32,uint256,uint256)": {
+          "calls": 1,
+          "inclusive_gas": 10889,
+          "exclusive_gas": 2327
+        },
+        "strategy.additionalLossBps()": {
+          "calls": 2,
+          "inclusive_gas": 1700,
+          "exclusive_gas": 1700
+        },
+        "liquidity.stateView()": {
+          "calls": 2,
+          "inclusive_gas": 1574,
+          "exclusive_gas": 1574
+        },
+        "liquidity.secondaryId(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 2431,
+          "exclusive_gas": 1465
+        },
+        "vault.nftBucket(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 990,
+          "exclusive_gas": 990
+        },
+        "lp_position_executor.secondaryId(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 966,
+          "exclusive_gas": 966
+        },
+        "vault.bucketTotalShares(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 946,
+          "exclusive_gas": 946
+        },
+        "liquidity.positionOperator()": {
+          "calls": 1,
+          "inclusive_gas": 745,
+          "exclusive_gas": 745
+        },
+        "activation_assets.zzz()": {
+          "calls": 1,
+          "inclusive_gas": 737,
+          "exclusive_gas": 737
+        },
+        "reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "independent_reference.executionAsset()": {
+          "calls": 1,
+          "inclusive_gas": 663,
+          "exclusive_gas": 663
+        },
+        "vault.MAX_BUCKETS()": {
+          "calls": 1,
+          "inclusive_gas": 509,
+          "exclusive_gas": 509
+        },
+        "principal_exit.activePlan(uint256)": {
+          "calls": 1,
+          "inclusive_gas": 462,
+          "exclusive_gas": 462
+        },
+        "reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "independent_reference.EXECUTION_SOURCE_VERSION()": {
+          "calls": 1,
+          "inclusive_gas": 393,
+          "exclusive_gas": 393
+        },
+        "vault.canonicalChainId()": {
+          "calls": 1,
+          "inclusive_gas": 293,
+          "exclusive_gas": 293
+        },
+        "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)": {
+          "calls": 1,
+          "inclusive_gas": 13829824,
+          "exclusive_gas": -564494
+        }
+      },
+      "note": "Signed exclusive residual subtracts immediate child gas; RPC refund accounting can make a parent negative, retained explicitly. Inclusive totals overlap. Exact-call local synthetic-market fixture, not Robinhood fee/limit acceptance."
+    }
+  }
+}

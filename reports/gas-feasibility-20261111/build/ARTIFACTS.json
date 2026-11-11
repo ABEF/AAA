@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "raw_compiler_input_sha256": "7741d92ee499a2a8bdda9ae234ffcb474e34518bb0196390d1a0d70079c68b0c",
+  "raw_compiler_output_sha256": "27b773bc781f9cc9f9f4583fa8a9cdaf380c7e7c58eff0a867090a1f3ffa5012",
+  "artifacts": {
+    "attempt-summaries/oracle-codec-v1-normal.json": "00b57a74379d68aa18f4d49681d0ae5c6656f99f2c3bd60b10f77baf62237573",
+    "attempt-summaries/oracle-codec-v2-normal.json": "8de278f12feae89e57cc51908da830cc19ee50123197942bb79eb130bfbe5b5c",
+    "attempt-summaries/oracle-gas-only-v1-oracle-fit.json": "b8abc1008e09c6a00056a3c1a409e496a41495468a0e87050bb5775b6ac69dff",
+    "attempt-summaries/oracle-gas-only-v2-oracle-fit.json": "a2c203df777f19090856f75e16926ae7dc85380d828c557c070cac3f17bc2d44",
+    "attempt-summaries/oracle-gas-only-v3-normal.json": "fa7dd420e6ef345400ce1e9125887f30a5f09f3de5a37a267e65966c7d567643",
+    "attempt-summaries/oracle-gas-only-v3-oracle-fit.json": "649b7c265e96d06a22d15ea109fa55b321af10055aad59ef6029a00ea6d4d909",
+    "attempt-summaries/oracle-quote-gas-v1-normal.json": "a7c31207509d585dfe90cbff46e5654cc5ed6aa6fbb2ac1f397a2ecfe2626390",
+    "attempt-summaries/oracle-quote-gas-v2-oracle-fit.json": "b86a49b369b8cbc2c974b77ef604a55d780003f865dc25cb0fe2a069e8a62db2",
+    "compiler-input.json.gz": "f2bce62029f76ebcd214dd63012cf5a680d7c85c179a967893309d58aa852664",
+    "compiler-output.json.gz": "ca1e442d8cb3bb74ee044ca60f895a14c129f444c436e9d8763d0be63d75755c",
+    "EOL.json": "b59a44d50760565a8c7c9e394d0250ebd198f6ae100305ee6f18afafe2218536",
+    "EQUIVALENCE.json": "a042a5c6562e62ae4e8489499fff4232114064559ba334e5dafe442339cd5bef",
+    "failed-and-fitting-attempts.json": "b2e0315b5943f5d11a96d82521d0d9ad7a92f7d9a689fb5acdf36ee9c8ed65fc",
+    "landed-source-binding.json": "052eacad1266d9f7869165268bb11ddb219148c731357ec6e4f02114296411eb",
+    "normal-summary.json": "fa7dd420e6ef345400ce1e9125887f30a5f09f3de5a37a267e65966c7d567643",
+    "oracle-runtime-template.json": "800c610b7ffc92aed917b200b5ca279759bbca1fcb9567b3e51c4fd0169614a1",
+    "production-size-gates.json": "a7675199d04c4a609b682a9f4dc8584c3d622f34e554e01ab222b8cf2bfcbdb5",
+    "settings.json": "772279577e031e3a5ac4090feb8b4a98d9fc552c273a82f6e0da46ef551cc0cb",
+    "source-manifest.json": "13309351c4134e2bec5bd29b54eacc44f6e2d76f1f45f444e52dfeb8c1f72f28"
+  }
+}

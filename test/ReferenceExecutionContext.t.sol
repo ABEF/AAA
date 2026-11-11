@@ -35,6 +35,7 @@ import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
+import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
@@ -312,9 +313,9 @@ contract ReferenceExecutionContextTest is Test {
             (delta,)=sourceCore.modifyLiquidity(key,ModifyLiquidityParams(int24(uint24(geometry)),
                 int24(uint24(geometry>>24)),amount,bytes32(uint256(1))),"");
         } else {
-            bool zeroForOne=action==1;
-            delta=sourceCore.swap(key,SwapParams(zeroForOne,-amount,
-                zeroForOne?TickMath.MIN_SQRT_PRICE+1:TickMath.MAX_SQRT_PRICE-1),"");
+            bool zeroForOne=action==1 || action==4;
+            uint160 limit=(action==4 || action==5)?geometry:(zeroForOne?TickMath.MIN_SQRT_PRICE+1:TickMath.MAX_SQRT_PRICE-1);
+            delta=sourceCore.swap(key,SwapParams(zeroForOne,-amount,limit),"");
         }
         _settle(sourceCore,key.currency0,delta.amount0());
         _settle(sourceCore,key.currency1,delta.amount1());
@@ -783,8 +784,8 @@ contract ReferenceExecutionContextTest is Test {
         vm.prank(owner);id=vault.mintDormant{value:0.05 ether}(reviewed);
         vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
     }
-    /// @dev Explicit local policy2 diagnostic. The ordinary12M profile must
-    /// reject first with complete rollback; no production/default budget changes.
+    /// @dev Candidate-only local gas comparison; measure changed default outcome
+    /// without changing any production/default budget or financial assertions.
     function _policy2DiagnosticContribution(address owner,uint256 id,address source,uint256 amount,bool grow) internal {
         ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,target,source,amount,1,block.timestamp+100,grow);
         bytes32 fingerprint=ZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint();
@@ -793,25 +794,34 @@ contract ReferenceExecutionContextTest is Test {
             vault.sharesOf(id),oracle.tokenDecimals(source),_priceCapture(source),_priceCapture(address(0)),_priceCapture(address(token))));
         vm.startPrank(owner);
         if(source!=address(0))token.approve(address(entry),amount);
-        bytes32 beforeState=_entryAtomicState(owner,id);
-        _coolEntry();
-        (bool defaultSucceeded,bytes memory rejected)=address(entry).call{
-            value:source==address(0)?amount:0,gas:DEFAULT_ENTRY_GAS_BUDGET
-        }(abi.encodeCall(ZZZActivationEntry.executeReviewed,(request,uint16(300),fingerprint)));
-        assertFalse(defaultSucceeded,"current heavy composite path must not be labeled default12M accepted");
-        assertEq(_entryAtomicState(owner,id),beforeState,"rejected default call must preserve all economic state");
-        assertFalse(_execution().executionActive());
-        emit ReferenceDefaultBudgetRejected(id,grow,DEFAULT_ENTRY_GAS_BUDGET,keccak256(rejected));
+        _candidateDefaultGasProbe(owner,request,fingerprint);
         _coolEntry();uint256 beforeGas=gasleft();
         entry.executeReviewed{value:source==address(0)?amount:0,gas:POLICY2_DIAGNOSTIC_GAS_BUDGET}(request,300,fingerprint);
         uint256 used=beforeGas-gasleft();
         vm.stopPrank();
         emit log_named_uint(grow?"execution-reference.policy2-diagnostic.cold.grow.call-gas":"execution-reference.policy2-diagnostic.cold.activate.call-gas",used);
         assertLe(used+Math.ceilDiv(used,5),POLICY2_DIAGNOSTIC_GAS_BUDGET,"explicit local policy2 diagnostic still needs full20% headroom");
+        emit log_named_uint("gas-feasibility.candidate.call-with-full20pct",used+Math.ceilDiv(used,5));
         uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
         (uint256 principal0,uint256 principal1)=manager.amounts(p.lpTokenId);
         emit ReferenceEntryOutcome(EntryOutcome(id,bucket,p.lpTokenId,vault.sharesOf(id),vault.bucketTotalShares(bucket),
             positions.getPositionLiquidity(p.lpTokenId),principal0,principal1,p.idle0,p.idle1,_execution().executionActive(),used));
+    }
+    /// @dev TEST ONLY: isolate a bounded probe so changed gas success never
+    /// duplicates activation or consumes approvals before the measured call.
+    function _candidateDefaultGasProbe(address owner,ZZZActivationEntry.Request memory request,bytes32 fingerprint) internal {
+        bytes32 beforeState=_entryAtomicState(owner,request.nftId);
+        uint256 probe=vm.snapshotState();
+        _coolEntry();
+        (bool ok,bytes memory reason)=address(entry).call{
+            value:request.sourceAsset==address(0)?request.amountIn:0,gas:DEFAULT_ENTRY_GAS_BUDGET
+        }(abi.encodeCall(ZZZActivationEntry.executeReviewed,(request,uint16(300),fingerprint)));
+        if(!ok)assertEq(_entryAtomicState(owner,request.nftId),beforeState,"failed default probe must preserve all economic state");
+        assertFalse(_execution().executionActive());
+        assertTrue(vm.revertToState(probe),"restore exact state after candidate default probe");
+        assertEq(_entryAtomicState(owner,request.nftId),beforeState,"candidate probe must not alter the measured starting state");
+        emit log_named_uint("gas-feasibility.candidate.default12M.call-succeeded",ok?1:0);
+        if(!ok)emit ReferenceDefaultBudgetRejected(request.nftId,request.increase,DEFAULT_ENTRY_GAS_BUDGET,keccak256(reason));
     }
     function _entryAtomicState(address owner,uint256 id) internal view returns(bytes32 hash) {
         uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
@@ -1004,5 +1014,194 @@ contract ReferenceExecutionContextTest is Test {
             assertGt(runtime.length,0);vm.etch(targetAddress,runtime);assertEq(targetAddress.codehash,beforeHash);
             emit ReferenceExportCodeMaterialized(targetAddress,beforeHash,runtime.length);
         }
+    }
+    // New maintenance cohort only: its extra real coordinator is never added
+    // to the unchanged Entry comparison graph or its deployment nonce stream.
+    ZZZCompounder internal maintenanceCompounder;
+    function _installMaintenanceGraph() internal returns(address owner,uint256 id,uint256 bucket) {
+        return _installMaintenanceGraph(false);
+    }
+    function _installMaintenanceGraph(bool hybrid) internal returns(address owner,uint256 id,uint256 bucket) {
+        access.beginBootstrap();
+        maintenanceCompounder=new ZZZCompounder(address(access));
+        access.bind(Ids.COMPOUNDER,address(maintenanceCompounder));
+        _installProductionEntryGraph();
+        if(hybrid)strategy.portfolioPolicy().setMode(target,true,REVIEW);
+        owner=address(0xA11CE);vm.deal(owner,10000 ether);token.mint(owner,10000 ether);
+        id=_mint(owner);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,target,address(0),1000 ether,1,block.timestamp+100,false);
+        bytes32 fingerprint=ZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint();
+        (uint256 price0,,)=oracle.priceBounds(address(0));(uint256 price1,,)=oracle.priceBounds(address(token));
+        vm.prank(owner);
+        entry.executeReviewed{value:request.amountIn,gas:POLICY2_DIAGNOSTIC_GAS_BUDGET}(request,300,fingerprint);
+        bucket=vault.nftBucket(id);
+        assertGe(_actualMainValue(bucket,price0,price1),970 ether,"maintenance bootstrap still proves97% deployed LP");
+        assertEq(vault.bucketTotalShares(bucket),vault.sharesOf(id));
+        assertFalse(_execution().executionActive());
+    }
+    function _freshMaintenanceFeeds() internal {
+        ethFirst.set(1e8,block.timestamp,block.timestamp);
+        ethSecond.set(1e8,block.timestamp,block.timestamp);
+    }
+    function _coldMaintenance() internal {
+        _coolEntry();vm.cool(address(maintenanceCompounder));
+    }
+    function _measureMaintenance(address owner,uint256 id,address destination,bytes memory input,string memory label)
+        internal returns(uint256 used) {
+        bytes32 beforeState=_entryAtomicState(owner,id);
+        uint256 probe=vm.snapshotState();
+        _coldMaintenance();
+        (bool defaultSucceeded,)=destination.call{gas:DEFAULT_ENTRY_GAS_BUDGET}(input);
+        if(!defaultSucceeded)assertEq(_entryAtomicState(owner,id),beforeState,"failed maintenance default probe is atomic");
+        assertFalse(_execution().executionActive());
+        assertTrue(vm.revertToState(probe));
+        assertEq(_entryAtomicState(owner,id),beforeState,"probe never consumes principal or reserve funds");
+        emit log_named_uint(string.concat(label,".default12M.call-succeeded"),defaultSucceeded?1:0);
+        _coldMaintenance();uint256 beforeGas=gasleft();
+        (bool ok,bytes memory reason)=destination.call{gas:POLICY2_DIAGNOSTIC_GAS_BUDGET}(input);
+        used=beforeGas-gasleft();
+        if(!ok)emit log_named_bytes("gas-feasibility.maintenance.failure",reason);
+        assertTrue(ok,"full production maintenance operation must succeed under explicit local diagnostic budget");
+        emit log_named_uint(string.concat(label,".cold.call-gas"),used);
+        emit log_named_uint(string.concat(label,".call-with-full20pct"),used+Math.ceilDiv(used,5));
+        assertLe(used+Math.ceilDiv(used,5),POLICY2_DIAGNOSTIC_GAS_BUDGET);
+        assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+    function _tradeToMaintenancePrice(PoolManager sourceCore,CoreKey memory key,uint160 next) internal {
+        // Actions4/5 are test-only real-core swaps with an explicit sqrt limit;
+        // it does not overwrite pool storage or bypass any production guard.
+        StateView sourceState=address(sourceCore)==address(core)?state:independentState;
+        (uint160 current,,,)=sourceState.getSlot0(PoolId.wrap(keccak256(abi.encode(key))));
+        sourceCore.unlock(abi.encode(next<current?uint8(4):uint8(5),key,int256(2_000_000 ether),next));
+    }
+    function _prepareOrdinaryRebalance(uint256 bucket) internal {
+        _prepareOrdinaryRebalanceAt(bucket,uint160(uint256(Q96)*83/100));
+    }
+    function _prepareOrdinaryRebalanceAt(uint256 bucket,uint160 next) internal {
+        Position memory p=vault.group(bucket);
+        vm.warp(uint256(p.lastRebalance)+43200);_freshMaintenanceFeeds();
+        _tradeToMaintenancePrice(core,targetKey,next);
+        _tradeToMaintenancePrice(core,referenceKey,next);
+        _tradeToMaintenancePrice(independentCore,independentKey,next);
+        ZZZRebalanceConfirmation confirmation=strategy.rebalanceConfirmation();
+        confirmation.configure(600,300,REVIEW);
+        (uint8 physical,uint8 independent)=confirmation.marketSides(bucket);
+        assertGt(physical,0);assertEq(physical,independent);
+        (,,bool manual)=confirmation.condition(bucket);assertFalse(manual);
+        assertTrue(strategy.needsRebalance(bucket));assertFalse(strategy.rebalanceReady(bucket));
+        assertFalse(confirmation.observe(bucket));
+        for(uint256 i;i<3;++i){
+            vm.warp(block.timestamp+240);_freshMaintenanceFeeds();
+            assertEq(confirmation.observe(bucket),i==2,"ordinary sampled evidence keeps600s duration and300s maximum gap");
+        }
+        assertTrue(strategy.rebalanceReady(bucket));
+    }
+    function testGasFeasibilityFullHarvestAllocatesActualFeesWithoutMovingPrincipal() public {
+        (address owner,uint256 id,uint256 bucket)=_installMaintenanceGraph();
+        _trade(core,targetKey,true,100 ether);
+        Position memory beforePosition=vault.group(bucket);
+        uint128 beforeL=positions.getPositionLiquidity(beforePosition.lpTokenId);
+        uint256 beforeShares=vault.sharesOf(id);
+        uint256[6] memory beforeBooks=[address(fees).balance,address(rewards).balance,fees.dust(bucket,address(0)),
+            fees.compoundBalance(bucket,address(0)),fees.buybackBalance(address(0)),rewards.liabilities(address(0))];
+        _measureMaintenance(owner,id,address(vault),abi.encodeCall(ZZZVault.collectFees,(bucket,block.timestamp+100)),
+            "gas-feasibility.harvest");
+        uint256 receipt=address(fees).balance-beforeBooks[0]+address(rewards).balance-beforeBooks[1];
+        assertGt(receipt,0,"harvest must receive actual funded fees");uint256 units=(beforeBooks[2]+receipt)/20;
+        assertEq(fees.compoundBalance(bucket,address(0))-beforeBooks[3],units);
+        assertEq(fees.buybackBalance(address(0))-beforeBooks[4],units);
+        assertEq(rewards.liabilities(address(0))-beforeBooks[5],units*18);
+        assertEq(fees.dust(bucket,address(0)),(beforeBooks[2]+receipt)%20);
+        Position memory afterPosition=vault.group(bucket);
+        assertEq(keccak256(abi.encode(afterPosition)),keccak256(abi.encode(beforePosition)));
+        assertEq(positions.getPositionLiquidity(afterPosition.lpTokenId),beforeL);assertEq(vault.sharesOf(id),beforeShares);
+    }
+    function testGasFeasibilityFullCompoundUsesCapturedPricesAndPreservesOwnerSharesAndMainGeometry() public {
+        (address owner,uint256 id,uint256 bucket)=_installMaintenanceGraph();
+        _trade(core,targetKey,true,100 ether);vault.collectFees(bucket,block.timestamp+100);
+        Position memory beforePosition=vault.group(bucket);
+        uint128 beforeL=positions.getPositionLiquidity(beforePosition.lpTokenId);
+        uint256 beforeShares=vault.sharesOf(id);uint256 beforeSupply=vault.bucketTotalShares(bucket);
+        uint256 reserve=fees.compoundBalance(bucket,address(0));assertGt(reserve,0);
+        uint256 rewardLiability=rewards.liabilities(address(0));uint256 buyback=fees.buybackBalance(address(0));
+        vm.warp(uint256(beforePosition.lastRebalance)+3601);_freshMaintenanceFeeds();
+        assertTrue(vault.migrationBudget().compoundReady(bucket));
+        _measureMaintenance(owner,id,address(maintenanceCompounder),
+            abi.encodeCall(ZZZCompounder.compound,(bucket,uint128(1),block.timestamp+100)),"gas-feasibility.compound");
+        Position memory afterPosition=vault.group(bucket);
+        assertEq(afterPosition.lpTokenId,beforePosition.lpTokenId);assertEq(afterPosition.centerX96,beforePosition.centerX96);
+        assertEq(afterPosition.lastRebalance,beforePosition.lastRebalance);assertGt(positions.getPositionLiquidity(afterPosition.lpTokenId),beforeL);
+        assertEq(vault.sharesOf(id),beforeShares);assertEq(vault.bucketTotalShares(bucket),beforeSupply);
+        assertEq(nft.ownerOf(id),owner);assertTrue(membership.eligible(id));assertEq(manager.secondaryId(afterPosition.lpTokenId),0);
+        assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
+        assertGe(rewards.liabilities(address(0)),rewardLiability);assertGe(fees.buybackBalance(address(0)),buyback);
+        assertLt(fees.compoundBalance(bucket,address(0)),reserve,"designated compound was reinvested, never claimed or burned");
+        assertEq(token.allowance(address(vault),address(manager)),0);assertEq(token.allowance(address(vault),manager.positionOperator()),0);
+    }
+    function testGasFeasibilityOrdinaryVaultRebalanceRetainsCooldownSamplesAndFullPriceGuards() public {
+        (address owner,uint256 id,uint256 bucket)=_installMaintenanceGraph();
+        Position memory beforePosition=vault.group(bucket);
+        uint256 beforeShares=vault.sharesOf(id);uint256 beforeSupply=vault.bucketTotalShares(bucket);
+        _prepareOrdinaryRebalance(bucket);
+        _measureMaintenance(owner,id,address(vault),abi.encodeCall(ZZZVault.rebalance,
+            (bucket,uint128(1),block.timestamp+100)),"gas-feasibility.rebalance");
+        Position memory afterPosition=vault.group(bucket);
+        assertTrue(afterPosition.lpTokenId!=beforePosition.lpTokenId);assertTrue(afterPosition.centerX96!=beforePosition.centerX96);
+        assertEq(afterPosition.lastRebalance,block.timestamp);assertEq(vault.sharesOf(id),beforeShares);
+        assertEq(vault.bucketTotalShares(bucket),beforeSupply);assertEq(nft.ownerOf(id),owner);assertTrue(membership.eligible(id));
+        assertEq(positions.ownerOf(afterPosition.lpTokenId),address(vault));assertGt(positions.getPositionLiquidity(afterPosition.lpTokenId),0);
+        assertEq(manager.secondaryId(afterPosition.lpTokenId),0);(int24 lower,int24 upper)=manager.ticks(afterPosition.lpTokenId);
+        (,int24 tick,,)=state.getSlot0(PoolId.wrap(target));assertGe(tick,lower);assertLt(tick,upper);
+        assertEq(token.allowance(address(vault),address(manager)),0);assertEq(token.allowance(address(vault),manager.positionOperator()),0);
+    }
+    function testGasFeasibilityMaintenanceSourceFaultsPreservePrincipalAndEarnedReserveBooks() public {
+        (address owner,uint256 id,uint256 bucket)=_installMaintenanceGraph();
+        _trade(core,targetKey,true,100 ether);vault.collectFees(bucket,block.timestamp+100);
+        vm.warp(block.timestamp+3601);_freshMaintenanceFeeds();
+        ethSecond.set(1e8,block.timestamp-3601,block.timestamp-3601);
+        bytes32 beforeState=_entryAtomicState(owner,id);
+        (bool ok,bytes memory reason)=address(maintenanceCompounder).call{gas:POLICY2_DIAGNOSTIC_GAS_BUDGET}(
+            abi.encodeCall(ZZZCompounder.compound,(bucket,uint128(1),block.timestamp+100)));
+        assertFalse(ok,"stale independent ETH publication must stop compound");
+        assertEq(reason,abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(0)));
+        assertEq(_entryAtomicState(owner,id),beforeState);assertFalse(_execution().executionActive());
+        _freshMaintenanceFeeds();_prepareOrdinaryRebalance(bucket);
+        _tradeToMaintenancePrice(independentCore,independentKey,uint160(uint256(Q96)*80/100));
+        beforeState=_entryAtomicState(owner,id);
+        (ok,reason)=address(vault).call{gas:POLICY2_DIAGNOSTIC_GAS_BUDGET}(
+            abi.encodeCall(ZZZVault.rebalance,(bucket,uint128(1),block.timestamp+100)));
+        assertFalse(ok,"independent ZZZ disagreement must stop ordinary rebalancing");
+        assertEq(reason,abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(token)));
+        assertEq(_entryAtomicState(owner,id),beforeState);assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+    function testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking() public {
+        (address owner,uint256 id,uint256 bucket)=_installMaintenanceGraph(true);
+        uint256 shares=vault.sharesOf(id);_prepareOrdinaryRebalance(bucket);
+        _measureMaintenance(owner,id,address(vault),abi.encodeCall(ZZZVault.rebalance,
+            (bucket,uint128(1),block.timestamp+100)),"gas-feasibility.hybrid.open");
+        uint256 firstMain=vault.group(bucket).lpTokenId;uint256 firstResidual=manager.secondaryId(firstMain);
+        assertGt(firstResidual,0);assertEq(positions.ownerOf(firstResidual),address(vault));
+        assertGt(positions.getPositionLiquidity(firstResidual),0);assertEq(manager.activeSecondaryCount(),1);
+        uint160 mixedPrice=uint160(uint256(Q96)*86/100);
+        _tradeToMaintenancePrice(core,targetKey,mixedPrice);
+        _tradeToMaintenancePrice(core,referenceKey,mixedPrice);
+        _tradeToMaintenancePrice(independentCore,independentKey,mixedPrice);
+        uint256 liability=rewards.liabilities(address(0));uint256 mainL=positions.getPositionLiquidity(firstMain);
+        uint256 residualL=positions.getPositionLiquidity(firstResidual);
+        _measureMaintenance(owner,id,address(vault),abi.encodeCall(ZZZVault.collectFees,
+            (bucket,block.timestamp+100)),"gas-feasibility.hybrid.harvest-two-legs");
+        assertEq(positions.getPositionLiquidity(firstMain),mainL);
+        assertEq(positions.getPositionLiquidity(firstResidual),residualL);assertGe(rewards.liabilities(address(0)),liability);
+        _prepareOrdinaryRebalanceAt(bucket,uint160(uint256(Q96)*69/100));
+        _measureMaintenance(owner,id,address(vault),abi.encodeCall(ZZZVault.rebalance,
+            (bucket,uint128(1),block.timestamp+100)),"gas-feasibility.hybrid.replace-two-legs");
+        uint256 nextMain=vault.group(bucket).lpTokenId;uint256 nextResidual=manager.secondaryId(nextMain);
+        assertTrue(nextMain!=firstMain);assertTrue(nextResidual!=firstResidual);assertGt(nextResidual,0);
+        assertEq(manager.activeSecondaryCount(),1);assertEq(positions.ownerOf(nextMain),address(vault));
+        assertEq(positions.ownerOf(nextResidual),address(vault));assertGt(positions.getPositionLiquidity(nextMain),0);
+        assertGt(positions.getPositionLiquidity(nextResidual),0);
+        assertEq(positions.getPositionLiquidity(firstMain),0);assertEq(positions.getPositionLiquidity(firstResidual),0);
+        assertEq(manager.secondaryId(firstMain),0);assertEq(vault.sharesOf(id),shares);
+        assertEq(vault.bucketTotalShares(bucket),shares);assertEq(nft.ownerOf(id),owner);assertFalse(_execution().executionActive());
     }
 }

@@ -1,5 +1,10 @@
 # Documentation map
 
+[Robinhood gas and RPC qualification](ROBINHOOD_GAS.md) explains actual execution
+parameters versus synthetic headers, complete fees, unchanged budgets and
+provider limitations. The [gas-feasibility review](../reports/gas-feasibility-20261111/REVIEW.md)
+records the source optimization and measured whole-operation costs.
+
 The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
 individual reconciliation of the original310registry across two passes. Use its
 [reading index](../reports/remaining-271-20261111/INDEX.md), current procedures and

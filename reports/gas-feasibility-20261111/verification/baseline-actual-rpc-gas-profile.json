@@ -1,0 +1,4414 @@
+{
+  "scope": "Reanalysis of existing actual-owner local RPC callTracer fixtures at unchanged a846 sources; no new EVM/RPC execution or gas acceptance. Inclusive values overlap; self gas subtracts direct children.",
+  "cases": [
+    {
+      "case": "reference-execution1-actual-eth-activate.json.gz",
+      "fixture_sha256": "de36111deb841209c207284155922221e74b3e4bcad9bbfe56c6cc7b0ef22067",
+      "gas_used": 14780416,
+      "frames": 2613,
+      "self_sum": 14780416,
+      "negative_self_frames": [
+        {
+          "label": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 14780416,
+          "child": 15193913
+        }
+      ],
+      "methods": [
+        {
+          "method": "oracle.validateExecution()",
+          "calls": 14,
+          "self_gas": 1539411,
+          "inclusive_gas": 3965659
+        },
+        {
+          "method": "reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1376410,
+          "inclusive_gas": 1568426
+        },
+        {
+          "method": "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1371832,
+          "inclusive_gas": 1563848
+        },
+        {
+          "method": "oracle.executionBounds(address)",
+          "calls": 34,
+          "self_gas": 802298,
+          "inclusive_gas": 1009766
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)",
+          "calls": 13,
+          "self_gas": 580177,
+          "inclusive_gas": 580177
+        },
+        {
+          "method": "vault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 507577,
+          "inclusive_gas": 13095907
+        },
+        {
+          "method": "access.module(bytes32)",
+          "calls": 375,
+          "self_gas": 506500,
+          "inclusive_gas": 506500
+        },
+        {
+          "method": "rewards.syncShares(uint256)",
+          "calls": 1,
+          "self_gas": 458750,
+          "inclusive_gas": 474069
+        },
+        {
+          "method": "rewards.syncMembership(uint256)",
+          "calls": 1,
+          "self_gas": 433145,
+          "inclusive_gas": 442532
+        },
+        {
+          "method": "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)",
+          "calls": 1,
+          "self_gas": 383072,
+          "inclusive_gas": 1142689
+        },
+        {
+          "method": "oracle.executionReferenceX96(address,address)",
+          "calls": 12,
+          "self_gas": 366420,
+          "inclusive_gas": 439644
+        },
+        {
+          "method": "access.protocolPolicy()",
+          "calls": 329,
+          "self_gas": 334948,
+          "inclusive_gas": 334948
+        },
+        {
+          "method": "lp_balance_math.policyFingerprint(bytes32,bytes32)",
+          "calls": 11,
+          "self_gas": 323584,
+          "inclusive_gas": 1832720
+        },
+        {
+          "method": "pools.accounting(bytes32)",
+          "calls": 45,
+          "self_gas": 295980,
+          "inclusive_gas": 295980
+        },
+        {
+          "method": "oracle.endManagerExecution(bool)",
+          "calls": 2,
+          "self_gas": 262124,
+          "inclusive_gas": 620436
+        },
+        {
+          "method": "oracle.beginManagerExecution(address,bytes32,bool)",
+          "calls": 2,
+          "self_gas": 258869,
+          "inclusive_gas": 610483
+        },
+        {
+          "method": "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)",
+          "calls": 2,
+          "self_gas": 228032,
+          "inclusive_gas": 228032
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.activate(uint256,uint256)",
+          "calls": 1,
+          "self_gas": 216818,
+          "inclusive_gas": 219795
+        },
+        {
+          "method": "oracle.beginExecution(address)",
+          "calls": 1,
+          "self_gas": 207472,
+          "inclusive_gas": 673440
+        },
+        {
+          "method": "pool_manager.0x5a6bcfda",
+          "calls": 1,
+          "self_gas": 179059,
+          "inclusive_gas": 179059
+        },
+        {
+          "method": "oracle.afterSwap()",
+          "calls": 1,
+          "self_gas": 150269,
+          "inclusive_gas": 344352
+        },
+        {
+          "method": "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))",
+          "calls": 1,
+          "self_gas": 136825,
+          "inclusive_gas": 317668
+        },
+        {
+          "method": "position_manager.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 135605,
+          "inclusive_gas": 348666
+        },
+        {
+          "method": "protocol_policy.gasFingerprint()",
+          "calls": 70,
+          "self_gas": 134400,
+          "inclusive_gas": 134400
+        },
+        {
+          "method": "protocol_policy.sourceCallGas()",
+          "calls": 242,
+          "self_gas": 133406,
+          "inclusive_gas": 133406
+        },
+        {
+          "method": "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 127179,
+          "inclusive_gas": 4894459
+        },
+        {
+          "method": "lp_balance_math.executionValidatePrice(bytes32)",
+          "calls": 10,
+          "self_gas": 126250,
+          "inclusive_gas": 648200
+        },
+        {
+          "method": "oracle.endExecution()",
+          "calls": 1,
+          "self_gas": 123056,
+          "inclusive_gas": 300920
+        },
+        {
+          "method": "state_view.getSlot0(bytes32)",
+          "calls": 55,
+          "self_gas": 117810,
+          "inclusive_gas": 150245
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)",
+          "calls": 11,
+          "self_gas": 111333,
+          "inclusive_gas": 158565
+        },
+        {
+          "method": "state_view.getLiquidity(bytes32)",
+          "calls": 41,
+          "self_gas": 104099,
+          "inclusive_gas": 127296
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "lp_position_executor.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 83832,
+          "inclusive_gas": 1704866
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)",
+          "calls": 6,
+          "self_gas": 75514,
+          "inclusive_gas": 75514
+        },
+        {
+          "method": "reference.latestRoundData()",
+          "calls": 1,
+          "self_gas": 75283,
+          "inclusive_gas": 88011
+        },
+        {
+          "method": "independent_reference.latestRoundData()",
+          "calls": 1,
+          "self_gas": 75283,
+          "inclusive_gas": 88011
+        },
+        {
+          "method": "vault.group(uint256)",
+          "calls": 17,
+          "self_gas": 72889,
+          "inclusive_gas": 72889
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.registerAlias(bytes32,uint256)",
+          "calls": 1,
+          "self_gas": 68464,
+          "inclusive_gas": 68464
+        },
+        {
+          "method": "access.isSealed()",
+          "calls": 80,
+          "self_gas": 65200,
+          "inclusive_gas": 65200
+        },
+        {
+          "method": "budget.assertIdle(uint256)",
+          "calls": 4,
+          "self_gas": 63992,
+          "inclusive_gas": 155480
+        },
+        {
+          "method": "oracle.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 63936,
+          "inclusive_gas": 95982
+        },
+        {
+          "method": "independent_state.getLiquidity(bytes32)",
+          "calls": 24,
+          "self_gas": 60936,
+          "inclusive_gas": 75344
+        },
+        {
+          "method": "pool_manager.0x1e2eaeaf",
+          "calls": 100,
+          "self_gas": 57700,
+          "inclusive_gas": 57700
+        },
+        {
+          "method": "contribution_pricing.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 55691,
+          "inclusive_gas": 1133633
+        },
+        {
+          "method": "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 54196,
+          "inclusive_gas": 417279
+        },
+        {
+          "method": "membership.activate(uint256)",
+          "calls": 1,
+          "self_gas": 53568,
+          "inclusive_gas": 503592
+        },
+        {
+          "method": "access.canonicalState()",
+          "calls": 99,
+          "self_gas": 52589,
+          "inclusive_gas": 52589
+        },
+        {
+          "method": "balancing_router.plan(bytes32,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 51805,
+          "inclusive_gas": 1005717
+        },
+        {
+          "method": "independent_state.getSlot0(bytes32)",
+          "calls": 24,
+          "self_gas": 51408,
+          "inclusive_gas": 65816
+        },
+        {
+          "method": "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)",
+          "calls": 1,
+          "self_gas": 50070,
+          "inclusive_gas": 454815
+        },
+        {
+          "method": "lp_balance_math.principalAmounts(address,address,uint256)",
+          "calls": 2,
+          "self_gas": 44172,
+          "inclusive_gas": 72046
+        },
+        {
+          "method": "oracle.tokenDecimals(address)",
+          "calls": 22,
+          "self_gas": 43754,
+          "inclusive_gas": 43754
+        },
+        {
+          "method": "access.preparationActive()",
+          "calls": 79,
+          "self_gas": 43608,
+          "inclusive_gas": 43608
+        },
+        {
+          "method": "lp_balance_math.nativeConfig(bytes32,bool)",
+          "calls": 4,
+          "self_gas": 43192,
+          "inclusive_gas": 82432
+        },
+        {
+          "method": "budget.poolTokens(bytes32)",
+          "calls": 7,
+          "self_gas": 40530,
+          "inclusive_gas": 91882
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)",
+          "calls": 2,
+          "self_gas": 38124,
+          "inclusive_gas": 38124
+        },
+        {
+          "method": "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 36479,
+          "inclusive_gas": 36479
+        },
+        {
+          "method": "pools.get(bytes32)",
+          "calls": 6,
+          "self_gas": 36132,
+          "inclusive_gas": 36132
+        },
+        {
+          "method": "position_manager.getPoolAndPositionInfo(uint256)",
+          "calls": 8,
+          "self_gas": 35984,
+          "inclusive_gas": 35984
+        },
+        {
+          "method": "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 35503,
+          "inclusive_gas": 462367
+        },
+        {
+          "method": "contribution_pricing.endEntry()",
+          "calls": 1,
+          "self_gas": 34388,
+          "inclusive_gas": 761669
+        },
+        {
+          "method": "liquidity.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 33779,
+          "inclusive_gas": 2463326
+        },
+        {
+          "method": "reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "independent_reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()",
+          "calls": 70,
+          "self_gas": 32830,
+          "inclusive_gas": 32830
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.recordApplied(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 32414,
+          "inclusive_gas": 68154
+        },
+        {
+          "method": "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)",
+          "calls": 1,
+          "self_gas": 31883,
+          "inclusive_gas": 164836
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)",
+          "calls": 1,
+          "self_gas": 31479,
+          "inclusive_gas": 31479
+        },
+        {
+          "method": "fees.flushDust(uint256,address)",
+          "calls": 2,
+          "self_gas": 31336,
+          "inclusive_gas": 47812
+        },
+        {
+          "method": "fees.releaseCompound(uint256,address)",
+          "calls": 2,
+          "self_gas": 30953,
+          "inclusive_gas": 39914
+        },
+        {
+          "method": "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)",
+          "calls": 1,
+          "self_gas": 30779,
+          "inclusive_gas": 109262
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)",
+          "calls": 21,
+          "self_gas": 30155,
+          "inclusive_gas": 30155
+        },
+        {
+          "method": "independent_core.0x1e2eaeaf",
+          "calls": 48,
+          "self_gas": 28816,
+          "inclusive_gas": 28816
+        },
+        {
+          "method": "liquidity.balanceContext(bytes32)",
+          "calls": 4,
+          "self_gas": 28500,
+          "inclusive_gas": 1871487
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)",
+          "calls": 2,
+          "self_gas": 28026,
+          "inclusive_gas": 28026
+        },
+        {
+          "method": "strategy.portfolioPolicy()",
+          "calls": 26,
+          "self_gas": 27794,
+          "inclusive_gas": 27794
+        },
+        {
+          "method": "balancing_router.access()",
+          "calls": 31,
+          "self_gas": 27435,
+          "inclusive_gas": 27435
+        },
+        {
+          "method": "lp_balance_math.executionTarget(bytes32)",
+          "calls": 2,
+          "self_gas": 26362,
+          "inclusive_gas": 213934
+        },
+        {
+          "method": "position_manager.approve(address,uint256)",
+          "calls": 1,
+          "self_gas": 26174,
+          "inclusive_gas": 26174
+        },
+        {
+          "method": "vault.0x",
+          "calls": 2,
+          "self_gas": 25320,
+          "inclusive_gas": 38821
+        },
+        {
+          "method": "position_manager.getPositionLiquidity(uint256)",
+          "calls": 4,
+          "self_gas": 25052,
+          "inclusive_gas": 27120
+        },
+        {
+          "method": "nft.ownerOf(uint256)",
+          "calls": 11,
+          "self_gas": 23505,
+          "inclusive_gas": 23505
+        },
+        {
+          "method": "lp_position_executor.portfolioAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 23160,
+          "inclusive_gas": 131896
+        },
+        {
+          "method": "liquidity.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 22420,
+          "inclusive_gas": 522593
+        },
+        {
+          "method": "protocol_policy.maintenanceFingerprint()",
+          "calls": 11,
+          "self_gas": 21888,
+          "inclusive_gas": 21888
+        },
+        {
+          "method": "contribution_pricing.assertDeployed(uint256,uint16)",
+          "calls": 1,
+          "self_gas": 19865,
+          "inclusive_gas": 97010
+        },
+        {
+          "method": "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 19495,
+          "inclusive_gas": 19495
+        },
+        {
+          "method": "activation_assets.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 19073,
+          "inclusive_gas": 124154
+        },
+        {
+          "method": "liquidity.spot(bytes32)",
+          "calls": 10,
+          "self_gas": 18940,
+          "inclusive_gas": 47530
+        },
+        {
+          "method": "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 18321,
+          "inclusive_gas": 43501
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 18094,
+          "inclusive_gas": 49407
+        },
+        {
+          "method": "membership.settleDust()",
+          "calls": 1,
+          "self_gas": 17792,
+          "inclusive_gas": 87351
+        },
+        {
+          "method": "access.moduleAuthorized(bytes32,address)",
+          "calls": 9,
+          "self_gas": 17379,
+          "inclusive_gas": 17379
+        },
+        {
+          "method": "protocol_policy.entryFingerprint()",
+          "calls": 5,
+          "self_gas": 15590,
+          "inclusive_gas": 15590
+        },
+        {
+          "method": "lp_balance_math.executionPrices(address)",
+          "calls": 1,
+          "self_gas": 15573,
+          "inclusive_gas": 81097
+        },
+        {
+          "method": "nft.notifyContribution(uint256)",
+          "calls": 1,
+          "self_gas": 15182,
+          "inclusive_gas": 243185
+        },
+        {
+          "method": "state_view.poolManager()",
+          "calls": 24,
+          "self_gas": 15144,
+          "inclusive_gas": 15144
+        },
+        {
+          "method": "independent_state.poolManager()",
+          "calls": 24,
+          "self_gas": 15144,
+          "inclusive_gas": 15144
+        },
+        {
+          "method": "liquidity.executionStrategy()",
+          "calls": 6,
+          "self_gas": 13648,
+          "inclusive_gas": 17044
+        },
+        {
+          "method": "budget.balanceContext(uint256)",
+          "calls": 2,
+          "self_gas": 13472,
+          "inclusive_gas": 973911
+        },
+        {
+          "method": "vault.migrationBudget()",
+          "calls": 12,
+          "self_gas": 13416,
+          "inclusive_gas": 13416
+        },
+        {
+          "method": "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)",
+          "calls": 1,
+          "self_gas": 13046,
+          "inclusive_gas": 13046
+        },
+        {
+          "method": "budget.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 12897,
+          "inclusive_gas": 1156202
+        },
+        {
+          "method": "pool_manager.settle()",
+          "calls": 3,
+          "self_gas": 12569,
+          "inclusive_gas": 13624
+        },
+        {
+          "method": "strategy.executionQualityRevision()",
+          "calls": 11,
+          "self_gas": 11438,
+          "inclusive_gas": 11438
+        },
+        {
+          "method": "balancing_router.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 11291,
+          "inclusive_gas": 131022
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 10749,
+          "inclusive_gas": 25517
+        },
+        {
+          "method": "strategy.rangeOrientation(bytes32)",
+          "calls": 13,
+          "self_gas": 10398,
+          "inclusive_gas": 10398
+        },
+        {
+          "method": "balancing_router.policyFingerprint(bytes32,bytes32)",
+          "calls": 8,
+          "self_gas": 10320,
+          "inclusive_gas": 1347990
+        },
+        {
+          "method": "liquidity.executionSpot(bytes32)",
+          "calls": 2,
+          "self_gas": 10108,
+          "inclusive_gas": 143064
+        },
+        {
+          "method": "liquidity.executionConfig(bytes32,bool)",
+          "calls": 1,
+          "self_gas": 10080,
+          "inclusive_gas": 32546
+        },
+        {
+          "method": "vault.totalIdle(address)",
+          "calls": 8,
+          "self_gas": 9648,
+          "inclusive_gas": 9648
+        },
+        {
+          "method": "balancing_router.balanceMath()",
+          "calls": 17,
+          "self_gas": 9622,
+          "inclusive_gas": 9622
+        },
+        {
+          "method": "reference.decimals()",
+          "calls": 22,
+          "self_gas": 9460,
+          "inclusive_gas": 9460
+        },
+        {
+          "method": "independent_reference.decimals()",
+          "calls": 22,
+          "self_gas": 9460,
+          "inclusive_gas": 9460
+        },
+        {
+          "method": "pools.configurationRevision()",
+          "calls": 11,
+          "self_gas": 9392,
+          "inclusive_gas": 9392
+        },
+        {
+          "method": "balancing_router.executionRevision()",
+          "calls": 8,
+          "self_gas": 9064,
+          "inclusive_gas": 9064
+        },
+        {
+          "method": "pool_manager.sync(address)",
+          "calls": 3,
+          "self_gas": 8693,
+          "inclusive_gas": 9748
+        },
+        {
+          "method": "pool_manager.unlock(bytes)",
+          "calls": 3,
+          "self_gas": 8646,
+          "inclusive_gas": 1010927
+        },
+        {
+          "method": "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 8562,
+          "inclusive_gas": 479764
+        },
+        {
+          "method": "budget.mintTarget(uint256)",
+          "calls": 1,
+          "self_gas": 8430,
+          "inclusive_gas": 125514
+        },
+        {
+          "method": "position_manager.ownerOf(uint256)",
+          "calls": 5,
+          "self_gas": 8350,
+          "inclusive_gas": 8350
+        },
+        {
+          "method": "budget.validateReservation(bytes32,uint256)",
+          "calls": 1,
+          "self_gas": 8109,
+          "inclusive_gas": 19345
+        },
+        {
+          "method": "protocol_policy.entryPolicy()",
+          "calls": 3,
+          "self_gas": 8010,
+          "inclusive_gas": 8010
+        },
+        {
+          "method": "entry.pricingContext(uint256,bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 7973,
+          "inclusive_gas": 13152
+        },
+        {
+          "method": "budget.assertDeployed(uint256)",
+          "calls": 1,
+          "self_gas": 7962,
+          "inclusive_gas": 116448
+        },
+        {
+          "method": "balancing_router.principalAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 7952,
+          "inclusive_gas": 84820
+        },
+        {
+          "method": "lp_balance_math.fixedZZZ()",
+          "calls": 1,
+          "self_gas": 7905,
+          "inclusive_gas": 15412
+        },
+        {
+          "method": "entry.validateOwner(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 7670,
+          "inclusive_gas": 14316
+        },
+        {
+          "method": "budget.validateNativeSender(address)",
+          "calls": 2,
+          "self_gas": 7588,
+          "inclusive_gas": 13501
+        },
+        {
+          "method": "budget.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7169,
+          "inclusive_gas": 37270
+        },
+        {
+          "method": "oracle.contributionPricing()",
+          "calls": 11,
+          "self_gas": 7040,
+          "inclusive_gas": 7040
+        },
+        {
+          "method": "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)",
+          "calls": 1,
+          "self_gas": 6648,
+          "inclusive_gas": 6648
+        },
+        {
+          "method": "pools.isNativePool(bytes32)",
+          "calls": 4,
+          "self_gas": 6444,
+          "inclusive_gas": 6444
+        },
+        {
+          "method": "nft.mintOrdinalOf(uint256)",
+          "calls": 2,
+          "self_gas": 6280,
+          "inclusive_gas": 6280
+        },
+        {
+          "method": "access.lpExitStarted()",
+          "calls": 6,
+          "self_gas": 6060,
+          "inclusive_gas": 6060
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.bucketIdentity(bytes32)",
+          "calls": 1,
+          "self_gas": 5708,
+          "inclusive_gas": 5708
+        },
+        {
+          "method": "liquidity.executionOrdinaryReplacement()",
+          "calls": 1,
+          "self_gas": 5643,
+          "inclusive_gas": 10242
+        },
+        {
+          "method": "liquidity.positionManager()",
+          "calls": 5,
+          "self_gas": 5595,
+          "inclusive_gas": 5595
+        },
+        {
+          "method": "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 5395,
+          "inclusive_gas": 470986
+        },
+        {
+          "method": "entry.sourceValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 5315,
+          "inclusive_gas": 8562
+        },
+        {
+          "method": "nft.tokenAtOrdinal(uint256)",
+          "calls": 2,
+          "self_gas": 5180,
+          "inclusive_gas": 5180
+        },
+        {
+          "method": "lp_position_executor.secondaryId(uint256)",
+          "calls": 3,
+          "self_gas": 4898,
+          "inclusive_gas": 4898
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516",
+          "calls": 1,
+          "self_gas": 4737,
+          "inclusive_gas": 13849
+        },
+        {
+          "method": "pools.activationEntry()",
+          "calls": 4,
+          "self_gas": 4460,
+          "inclusive_gas": 4460
+        },
+        {
+          "method": "liquidity.secondaryId(uint256)",
+          "calls": 3,
+          "self_gas": 4395,
+          "inclusive_gas": 9293
+        },
+        {
+          "method": "budget.valueBucket(uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 3989,
+          "inclusive_gas": 8355
+        },
+        {
+          "method": "vault.nftBucket(uint256)",
+          "calls": 2,
+          "self_gas": 3980,
+          "inclusive_gas": 3980
+        },
+        {
+          "method": "nft.traitsReady(uint256)",
+          "calls": 1,
+          "self_gas": 3921,
+          "inclusive_gas": 3921
+        },
+        {
+          "method": "contribution_pricing.entryIdleLimit(uint256)",
+          "calls": 1,
+          "self_gas": 3910,
+          "inclusive_gas": 6320
+        },
+        {
+          "method": "position_manager.modifyLiquidities(bytes,uint256)",
+          "calls": 1,
+          "self_gas": 3904,
+          "inclusive_gas": 355966
+        },
+        {
+          "method": "pool_manager.take(address,address,uint256)",
+          "calls": 1,
+          "self_gas": 3813,
+          "inclusive_gas": 35292
+        },
+        {
+          "method": "budget.maintenanceBucket()",
+          "calls": 2,
+          "self_gas": 3794,
+          "inclusive_gas": 3794
+        },
+        {
+          "method": "liquidity.poolManager()",
+          "calls": 3,
+          "self_gas": 3681,
+          "inclusive_gas": 3681
+        },
+        {
+          "method": "vault.contributionUSD(uint256)",
+          "calls": 1,
+          "self_gas": 3606,
+          "inclusive_gas": 3606
+        },
+        {
+          "method": "budget.contributionLossBps()",
+          "calls": 1,
+          "self_gas": 3202,
+          "inclusive_gas": 3202
+        },
+        {
+          "method": "access.paused()",
+          "calls": 4,
+          "self_gas": 3000,
+          "inclusive_gas": 3000
+        },
+        {
+          "method": "position_manager.nextTokenId()",
+          "calls": 1,
+          "self_gas": 2956,
+          "inclusive_gas": 2956
+        },
+        {
+          "method": "vault.sharesOf(uint256)",
+          "calls": 2,
+          "self_gas": 2816,
+          "inclusive_gas": 2816
+        },
+        {
+          "method": "liquidity.portfolioAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 2772,
+          "inclusive_gas": 134668
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)",
+          "calls": 1,
+          "self_gas": 2743,
+          "inclusive_gas": 2743
+        },
+        {
+          "method": "activation_assets.zzz()",
+          "calls": 1,
+          "self_gas": 2737,
+          "inclusive_gas": 2737
+        },
+        {
+          "method": "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2701,
+          "inclusive_gas": 22196
+        },
+        {
+          "method": "pools.activationAssets()",
+          "calls": 1,
+          "self_gas": 2593,
+          "inclusive_gas": 2593
+        },
+        {
+          "method": "contribution_pricing.valueBucket(uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2434,
+          "inclusive_gas": 2434
+        },
+        {
+          "method": "pools.contributionValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2327,
+          "inclusive_gas": 10889
+        },
+        {
+          "method": "pool_manager.0xf135baaa",
+          "calls": 2,
+          "self_gas": 2002,
+          "inclusive_gas": 2002
+        },
+        {
+          "method": "strategy.additionalLossBps()",
+          "calls": 2,
+          "self_gas": 1700,
+          "inclusive_gas": 1700
+        },
+        {
+          "method": "liquidity.stateView()",
+          "calls": 2,
+          "self_gas": 1574,
+          "inclusive_gas": 1574
+        },
+        {
+          "method": "liquidity.positionOperator()",
+          "calls": 2,
+          "self_gas": 1490,
+          "inclusive_gas": 1490
+        },
+        {
+          "method": "vault.bucketAt(uint256)",
+          "calls": 1,
+          "self_gas": 1403,
+          "inclusive_gas": 1403
+        },
+        {
+          "method": "vault.poolBucket(bytes32)",
+          "calls": 1,
+          "self_gas": 1338,
+          "inclusive_gas": 1338
+        },
+        {
+          "method": "vault.bucketCount()",
+          "calls": 1,
+          "self_gas": 1167,
+          "inclusive_gas": 1167
+        },
+        {
+          "method": "vault.bucketTotalShares(uint256)",
+          "calls": 1,
+          "self_gas": 946,
+          "inclusive_gas": 946
+        },
+        {
+          "method": "membership.eligible(uint256)",
+          "calls": 1,
+          "self_gas": 874,
+          "inclusive_gas": 874
+        },
+        {
+          "method": "reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "independent_reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "activation_assets.isContributionAsset(address)",
+          "calls": 1,
+          "self_gas": 659,
+          "inclusive_gas": 659
+        },
+        {
+          "method": "membership.totalEligible()",
+          "calls": 1,
+          "self_gas": 538,
+          "inclusive_gas": 538
+        },
+        {
+          "method": "vault.MAX_BUCKETS()",
+          "calls": 1,
+          "self_gas": 509,
+          "inclusive_gas": 509
+        },
+        {
+          "method": "principal_exit.activePlan(uint256)",
+          "calls": 1,
+          "self_gas": 462,
+          "inclusive_gas": 462
+        },
+        {
+          "method": "reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "independent_reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "vault.canonicalChainId()",
+          "calls": 1,
+          "self_gas": 293,
+          "inclusive_gas": 293
+        },
+        {
+          "method": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "calls": 1,
+          "self_gas": -413497,
+          "inclusive_gas": 14780416
+        }
+      ]
+    },
+    {
+      "case": "reference-execution1-actual-eth-grow.json.gz",
+      "fixture_sha256": "bd4fd01f7fca7a4e50993f907276d7374d7464bcee8a818addbfc1bb66430cdf",
+      "gas_used": 13594955,
+      "frames": 2697,
+      "self_sum": 13594955,
+      "negative_self_frames": [
+        {
+          "label": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 13594955,
+          "child": 14076370
+        }
+      ],
+      "methods": [
+        {
+          "method": "oracle.validateExecution()",
+          "calls": 14,
+          "self_gas": 1539411,
+          "inclusive_gas": 3971872
+        },
+        {
+          "method": "reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1386220,
+          "inclusive_gas": 1578236
+        },
+        {
+          "method": "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1371832,
+          "inclusive_gas": 1563848
+        },
+        {
+          "method": "oracle.executionBounds(address)",
+          "calls": 34,
+          "self_gas": 802298,
+          "inclusive_gas": 1009766
+        },
+        {
+          "method": "access.module(bytes32)",
+          "calls": 393,
+          "self_gas": 529756,
+          "inclusive_gas": 529756
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)",
+          "calls": 11,
+          "self_gas": 490919,
+          "inclusive_gas": 490919
+        },
+        {
+          "method": "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)",
+          "calls": 1,
+          "self_gas": 383072,
+          "inclusive_gas": 1143997
+        },
+        {
+          "method": "access.protocolPolicy()",
+          "calls": 327,
+          "self_gas": 332924,
+          "inclusive_gas": 332924
+        },
+        {
+          "method": "pools.accounting(bytes32)",
+          "calls": 50,
+          "self_gas": 326200,
+          "inclusive_gas": 326200
+        },
+        {
+          "method": "lp_balance_math.policyFingerprint(bytes32,bytes32)",
+          "calls": 11,
+          "self_gas": 323584,
+          "inclusive_gas": 1832720
+        },
+        {
+          "method": "oracle.executionReferenceX96(address,address)",
+          "calls": 10,
+          "self_gas": 305350,
+          "inclusive_gas": 366370
+        },
+        {
+          "method": "oracle.endManagerExecution(bool)",
+          "calls": 2,
+          "self_gas": 262124,
+          "inclusive_gas": 621090
+        },
+        {
+          "method": "oracle.beginManagerExecution(address,bytes32,bool)",
+          "calls": 2,
+          "self_gas": 258869,
+          "inclusive_gas": 611464
+        },
+        {
+          "method": "rewards.syncShares(uint256)",
+          "calls": 1,
+          "self_gas": 251131,
+          "inclusive_gas": 266450
+        },
+        {
+          "method": "vault.increase(uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 249474,
+          "inclusive_gas": 11976402
+        },
+        {
+          "method": "oracle.beginExecution(address)",
+          "calls": 1,
+          "self_gas": 207472,
+          "inclusive_gas": 674748
+        },
+        {
+          "method": "oracle.afterSwap()",
+          "calls": 1,
+          "self_gas": 150269,
+          "inclusive_gas": 344679
+        },
+        {
+          "method": "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))",
+          "calls": 1,
+          "self_gas": 136825,
+          "inclusive_gas": 318322
+        },
+        {
+          "method": "protocol_policy.sourceCallGas()",
+          "calls": 242,
+          "self_gas": 133406,
+          "inclusive_gas": 133406
+        },
+        {
+          "method": "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 131888,
+          "inclusive_gas": 4696862
+        },
+        {
+          "method": "protocol_policy.gasFingerprint()",
+          "calls": 68,
+          "self_gas": 130560,
+          "inclusive_gas": 130560
+        },
+        {
+          "method": "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)",
+          "calls": 2,
+          "self_gas": 127804,
+          "inclusive_gas": 127804
+        },
+        {
+          "method": "lp_balance_math.executionValidatePrice(bytes32)",
+          "calls": 10,
+          "self_gas": 126250,
+          "inclusive_gas": 646200
+        },
+        {
+          "method": "pool_manager.0x5a6bcfda",
+          "calls": 3,
+          "self_gas": 124523,
+          "inclusive_gas": 124523
+        },
+        {
+          "method": "oracle.endExecution()",
+          "calls": 1,
+          "self_gas": 123056,
+          "inclusive_gas": 301247
+        },
+        {
+          "method": "state_view.getSlot0(bytes32)",
+          "calls": 57,
+          "self_gas": 122094,
+          "inclusive_gas": 153563
+        },
+        {
+          "method": "lp_position_executor.collect(bytes32,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 119318,
+          "inclusive_gas": 337132
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)",
+          "calls": 11,
+          "self_gas": 111333,
+          "inclusive_gas": 158565
+        },
+        {
+          "method": "state_view.getLiquidity(bytes32)",
+          "calls": 41,
+          "self_gas": 104099,
+          "inclusive_gas": 127296
+        },
+        {
+          "method": "budget.assertIdle(uint256)",
+          "calls": 6,
+          "self_gas": 95988,
+          "inclusive_gas": 230220
+        },
+        {
+          "method": "vault.group(uint256)",
+          "calls": 22,
+          "self_gas": 93974,
+          "inclusive_gas": 93974
+        },
+        {
+          "method": "position_manager.getPoolAndPositionInfo(uint256)",
+          "calls": 18,
+          "self_gas": 88964,
+          "inclusive_gas": 88964
+        },
+        {
+          "method": "lp_balance_math.principalAmounts(address,address,uint256)",
+          "calls": 4,
+          "self_gas": 88344,
+          "inclusive_gas": 144092
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "lp_position_executor.increase(bytes32,uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 79858,
+          "inclusive_gas": 1480252
+        },
+        {
+          "method": "fees.flushDust(uint256,address)",
+          "calls": 6,
+          "self_gas": 78308,
+          "inclusive_gas": 122568
+        },
+        {
+          "method": "fees.releaseCompound(uint256,address)",
+          "calls": 6,
+          "self_gas": 76859,
+          "inclusive_gas": 99742
+        },
+        {
+          "method": "contribution_pricing.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 75925,
+          "inclusive_gas": 1290427
+        },
+        {
+          "method": "reference.latestRoundData()",
+          "calls": 1,
+          "self_gas": 75610,
+          "inclusive_gas": 88338
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)",
+          "calls": 6,
+          "self_gas": 75514,
+          "inclusive_gas": 75514
+        },
+        {
+          "method": "independent_reference.latestRoundData()",
+          "calls": 1,
+          "self_gas": 75283,
+          "inclusive_gas": 88011
+        },
+        {
+          "method": "budget.poolTokens(bytes32)",
+          "calls": 13,
+          "self_gas": 75270,
+          "inclusive_gas": 170638
+        },
+        {
+          "method": "position_manager.unlockCallback(bytes)",
+          "calls": 3,
+          "self_gas": 71933,
+          "inclusive_gas": 234462
+        },
+        {
+          "method": "access.isSealed()",
+          "calls": 83,
+          "self_gas": 67645,
+          "inclusive_gas": 67645
+        },
+        {
+          "method": "lp_balance_math.nativeConfig(bytes32,bool)",
+          "calls": 6,
+          "self_gas": 64658,
+          "inclusive_gas": 123518
+        },
+        {
+          "method": "oracle.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 63936,
+          "inclusive_gas": 95982
+        },
+        {
+          "method": "independent_state.getLiquidity(bytes32)",
+          "calls": 24,
+          "self_gas": 60936,
+          "inclusive_gas": 75344
+        },
+        {
+          "method": "pool_manager.0x1e2eaeaf",
+          "calls": 106,
+          "self_gas": 58802,
+          "inclusive_gas": 58802
+        },
+        {
+          "method": "access.canonicalState()",
+          "calls": 105,
+          "self_gas": 55655,
+          "inclusive_gas": 55655
+        },
+        {
+          "method": "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 54196,
+          "inclusive_gas": 417933
+        },
+        {
+          "method": "balancing_router.plan(bytes32,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 51805,
+          "inclusive_gas": 953603
+        },
+        {
+          "method": "independent_state.getSlot0(bytes32)",
+          "calls": 24,
+          "self_gas": 51408,
+          "inclusive_gas": 65816
+        },
+        {
+          "method": "position_manager.getPositionLiquidity(uint256)",
+          "calls": 8,
+          "self_gas": 50104,
+          "inclusive_gas": 54240
+        },
+        {
+          "method": "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)",
+          "calls": 1,
+          "self_gas": 50070,
+          "inclusive_gas": 404701
+        },
+        {
+          "method": "oracle.tokenDecimals(address)",
+          "calls": 22,
+          "self_gas": 43754,
+          "inclusive_gas": 43754
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)",
+          "calls": 33,
+          "self_gas": 42815,
+          "inclusive_gas": 42815
+        },
+        {
+          "method": "lp_position_executor.portfolioAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 42320,
+          "inclusive_gas": 259792
+        },
+        {
+          "method": "pools.get(bytes32)",
+          "calls": 7,
+          "self_gas": 42154,
+          "inclusive_gas": 42154
+        },
+        {
+          "method": "access.preparationActive()",
+          "calls": 75,
+          "self_gas": 41400,
+          "inclusive_gas": 41400
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)",
+          "calls": 2,
+          "self_gas": 38124,
+          "inclusive_gas": 38124
+        },
+        {
+          "method": "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 36479,
+          "inclusive_gas": 36479
+        },
+        {
+          "method": "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 35838,
+          "inclusive_gas": 463029
+        },
+        {
+          "method": "contribution_pricing.endEntry()",
+          "calls": 1,
+          "self_gas": 34388,
+          "inclusive_gas": 762323
+        },
+        {
+          "method": "reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33339,
+          "inclusive_gas": 40388
+        },
+        {
+          "method": "independent_reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()",
+          "calls": 70,
+          "self_gas": 32830,
+          "inclusive_gas": 32830
+        },
+        {
+          "method": "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)",
+          "calls": 1,
+          "self_gas": 31883,
+          "inclusive_gas": 114722
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)",
+          "calls": 1,
+          "self_gas": 31479,
+          "inclusive_gas": 31479
+        },
+        {
+          "method": "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)",
+          "calls": 1,
+          "self_gas": 30779,
+          "inclusive_gas": 109262
+        },
+        {
+          "method": "independent_core.0x1e2eaeaf",
+          "calls": 48,
+          "self_gas": 28816,
+          "inclusive_gas": 28816
+        },
+        {
+          "method": "liquidity.balanceContext(bytes32)",
+          "calls": 4,
+          "self_gas": 28500,
+          "inclusive_gas": 1873122
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)",
+          "calls": 2,
+          "self_gas": 28026,
+          "inclusive_gas": 28026
+        },
+        {
+          "method": "liquidity.increase(bytes32,uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 28015,
+          "inclusive_gas": 2163087
+        },
+        {
+          "method": "balancing_router.access()",
+          "calls": 31,
+          "self_gas": 27435,
+          "inclusive_gas": 27435
+        },
+        {
+          "method": "liquidity.executionConfig(bytes32,bool)",
+          "calls": 3,
+          "self_gas": 25948,
+          "inclusive_gas": 90632
+        },
+        {
+          "method": "access.moduleAuthorized(bytes32,address)",
+          "calls": 13,
+          "self_gas": 25103,
+          "inclusive_gas": 25103
+        },
+        {
+          "method": "strategy.portfolioPolicy()",
+          "calls": 22,
+          "self_gas": 23518,
+          "inclusive_gas": 23518
+        },
+        {
+          "method": "liquidity.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 22420,
+          "inclusive_gas": 472806
+        },
+        {
+          "method": "protocol_policy.maintenanceFingerprint()",
+          "calls": 11,
+          "self_gas": 21888,
+          "inclusive_gas": 21888
+        },
+        {
+          "method": "position_manager.ownerOf(uint256)",
+          "calls": 11,
+          "self_gas": 20370,
+          "inclusive_gas": 20370
+        },
+        {
+          "method": "contribution_pricing.assertDeployed(uint256,uint16)",
+          "calls": 1,
+          "self_gas": 19865,
+          "inclusive_gas": 95010
+        },
+        {
+          "method": "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 19495,
+          "inclusive_gas": 19495
+        },
+        {
+          "method": "liquidity.collect(bytes32,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 19190,
+          "inclusive_gas": 360184
+        },
+        {
+          "method": "activation_assets.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 19073,
+          "inclusive_gas": 124154
+        },
+        {
+          "method": "liquidity.spot(bytes32)",
+          "calls": 10,
+          "self_gas": 18940,
+          "inclusive_gas": 45530
+        },
+        {
+          "method": "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 18321,
+          "inclusive_gas": 43501
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 18101,
+          "inclusive_gas": 51414
+        },
+        {
+          "method": "membership.settleDust()",
+          "calls": 1,
+          "self_gas": 17792,
+          "inclusive_gas": 91351
+        },
+        {
+          "method": "nft.ownerOf(uint256)",
+          "calls": 8,
+          "self_gas": 17640,
+          "inclusive_gas": 17640
+        },
+        {
+          "method": "balancing_router.principalAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 15904,
+          "inclusive_gas": 169640
+        },
+        {
+          "method": "protocol_policy.entryFingerprint()",
+          "calls": 5,
+          "self_gas": 15590,
+          "inclusive_gas": 15590
+        },
+        {
+          "method": "lp_balance_math.executionPrices(address)",
+          "calls": 1,
+          "self_gas": 15573,
+          "inclusive_gas": 81097
+        },
+        {
+          "method": "pool_manager.unlock(bytes)",
+          "calls": 5,
+          "self_gas": 15321,
+          "inclusive_gas": 803497
+        },
+        {
+          "method": "state_view.poolManager()",
+          "calls": 24,
+          "self_gas": 15144,
+          "inclusive_gas": 15144
+        },
+        {
+          "method": "independent_state.poolManager()",
+          "calls": 24,
+          "self_gas": 15144,
+          "inclusive_gas": 15144
+        },
+        {
+          "method": "vault.totalIdle(address)",
+          "calls": 12,
+          "self_gas": 14472,
+          "inclusive_gas": 14472
+        },
+        {
+          "method": "nft.notifyContribution(uint256)",
+          "calls": 1,
+          "self_gas": 13785,
+          "inclusive_gas": 21993
+        },
+        {
+          "method": "budget.balanceContext(uint256)",
+          "calls": 2,
+          "self_gas": 13472,
+          "inclusive_gas": 974892
+        },
+        {
+          "method": "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)",
+          "calls": 1,
+          "self_gas": 13046,
+          "inclusive_gas": 13046
+        },
+        {
+          "method": "budget.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 12897,
+          "inclusive_gas": 1312996
+        },
+        {
+          "method": "pool_manager.settle()",
+          "calls": 3,
+          "self_gas": 12569,
+          "inclusive_gas": 13624
+        },
+        {
+          "method": "liquidity.executionStrategy()",
+          "calls": 5,
+          "self_gas": 11790,
+          "inclusive_gas": 14620
+        },
+        {
+          "method": "position_manager.modifyLiquidities(bytes,uint256)",
+          "calls": 3,
+          "self_gas": 11595,
+          "inclusive_gas": 256128
+        },
+        {
+          "method": "strategy.executionQualityRevision()",
+          "calls": 11,
+          "self_gas": 11438,
+          "inclusive_gas": 11438
+        },
+        {
+          "method": "balancing_router.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 11291,
+          "inclusive_gas": 80908
+        },
+        {
+          "method": "vault.migrationBudget()",
+          "calls": 10,
+          "self_gas": 11180,
+          "inclusive_gas": 11180
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "balancing_router.policyFingerprint(bytes32,bytes32)",
+          "calls": 8,
+          "self_gas": 10320,
+          "inclusive_gas": 1347990
+        },
+        {
+          "method": "liquidity.executionSpot(bytes32)",
+          "calls": 2,
+          "self_gas": 10108,
+          "inclusive_gas": 143064
+        },
+        {
+          "method": "budget.assertDeployed(uint256)",
+          "calls": 1,
+          "self_gas": 9962,
+          "inclusive_gas": 116448
+        },
+        {
+          "method": "pools.isNativePool(bytes32)",
+          "calls": 6,
+          "self_gas": 9666,
+          "inclusive_gas": 9666
+        },
+        {
+          "method": "balancing_router.balanceMath()",
+          "calls": 17,
+          "self_gas": 9622,
+          "inclusive_gas": 9622
+        },
+        {
+          "method": "reference.decimals()",
+          "calls": 22,
+          "self_gas": 9460,
+          "inclusive_gas": 9460
+        },
+        {
+          "method": "independent_reference.decimals()",
+          "calls": 22,
+          "self_gas": 9460,
+          "inclusive_gas": 9460
+        },
+        {
+          "method": "pools.configurationRevision()",
+          "calls": 11,
+          "self_gas": 9392,
+          "inclusive_gas": 9392
+        },
+        {
+          "method": "strategy.rangeOrientation(bytes32)",
+          "calls": 11,
+          "self_gas": 9106,
+          "inclusive_gas": 9106
+        },
+        {
+          "method": "balancing_router.executionRevision()",
+          "calls": 8,
+          "self_gas": 9064,
+          "inclusive_gas": 9064
+        },
+        {
+          "method": "pool_manager.sync(address)",
+          "calls": 3,
+          "self_gas": 8693,
+          "inclusive_gas": 9748
+        },
+        {
+          "method": "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 8562,
+          "inclusive_gas": 482425
+        },
+        {
+          "method": "protocol_policy.entryPolicy()",
+          "calls": 3,
+          "self_gas": 8010,
+          "inclusive_gas": 8010
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7978,
+          "inclusive_gas": 14543
+        },
+        {
+          "method": "budget.valueBucket(uint256,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 7978,
+          "inclusive_gas": 16710
+        },
+        {
+          "method": "entry.pricingContext(uint256,bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 7973,
+          "inclusive_gas": 13152
+        },
+        {
+          "method": "lp_balance_math.fixedZZZ()",
+          "calls": 1,
+          "self_gas": 7905,
+          "inclusive_gas": 15412
+        },
+        {
+          "method": "oracle.contributionPricing()",
+          "calls": 12,
+          "self_gas": 7680,
+          "inclusive_gas": 7680
+        },
+        {
+          "method": "entry.validateOwner(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 7670,
+          "inclusive_gas": 14316
+        },
+        {
+          "method": "budget.validateNativeSender(address)",
+          "calls": 2,
+          "self_gas": 7588,
+          "inclusive_gas": 13501
+        },
+        {
+          "method": "budget.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7169,
+          "inclusive_gas": 26296
+        },
+        {
+          "method": "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)",
+          "calls": 1,
+          "self_gas": 6648,
+          "inclusive_gas": 6648
+        },
+        {
+          "method": "vault.0x",
+          "calls": 2,
+          "self_gas": 6220,
+          "inclusive_gas": 19721
+        },
+        {
+          "method": "pool_manager.0xf135baaa",
+          "calls": 6,
+          "self_gas": 6006,
+          "inclusive_gas": 6006
+        },
+        {
+          "method": "liquidity.positionManager()",
+          "calls": 5,
+          "self_gas": 5595,
+          "inclusive_gas": 5595
+        },
+        {
+          "method": "liquidity.portfolioAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 5544,
+          "inclusive_gas": 265336
+        },
+        {
+          "method": "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 5395,
+          "inclusive_gas": 471648
+        },
+        {
+          "method": "entry.sourceValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 5315,
+          "inclusive_gas": 8562
+        },
+        {
+          "method": "contribution_pricing.valueBucket(uint256,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 4868,
+          "inclusive_gas": 4868
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516",
+          "calls": 1,
+          "self_gas": 4737,
+          "inclusive_gas": 13849
+        },
+        {
+          "method": "pools.activationEntry()",
+          "calls": 4,
+          "self_gas": 4460,
+          "inclusive_gas": 4460
+        },
+        {
+          "method": "nft.mintOrdinalOf(uint256)",
+          "calls": 1,
+          "self_gas": 4140,
+          "inclusive_gas": 4140
+        },
+        {
+          "method": "access.lpExitStarted()",
+          "calls": 4,
+          "self_gas": 4040,
+          "inclusive_gas": 4040
+        },
+        {
+          "method": "contribution_pricing.entryIdleLimit(uint256)",
+          "calls": 1,
+          "self_gas": 3910,
+          "inclusive_gas": 6320
+        },
+        {
+          "method": "pool_manager.take(address,address,uint256)",
+          "calls": 1,
+          "self_gas": 3813,
+          "inclusive_gas": 35292
+        },
+        {
+          "method": "access.paused()",
+          "calls": 5,
+          "self_gas": 3750,
+          "inclusive_gas": 3750
+        },
+        {
+          "method": "liquidity.poolManager()",
+          "calls": 3,
+          "self_gas": 3681,
+          "inclusive_gas": 3681
+        },
+        {
+          "method": "vault.contributionUSD(uint256)",
+          "calls": 1,
+          "self_gas": 3606,
+          "inclusive_gas": 3606
+        },
+        {
+          "method": "nft.tokenAtOrdinal(uint256)",
+          "calls": 1,
+          "self_gas": 3590,
+          "inclusive_gas": 3590
+        },
+        {
+          "method": "vault.bucketAt(uint256)",
+          "calls": 1,
+          "self_gas": 3403,
+          "inclusive_gas": 3403
+        },
+        {
+          "method": "budget.contributionLossBps()",
+          "calls": 1,
+          "self_gas": 3202,
+          "inclusive_gas": 3202
+        },
+        {
+          "method": "vault.bucketCount()",
+          "calls": 1,
+          "self_gas": 3167,
+          "inclusive_gas": 3167
+        },
+        {
+          "method": "vault.sharesOf(uint256)",
+          "calls": 2,
+          "self_gas": 2816,
+          "inclusive_gas": 2816
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)",
+          "calls": 1,
+          "self_gas": 2743,
+          "inclusive_gas": 2743
+        },
+        {
+          "method": "activation_assets.zzz()",
+          "calls": 1,
+          "self_gas": 2737,
+          "inclusive_gas": 2737
+        },
+        {
+          "method": "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2701,
+          "inclusive_gas": 22196
+        },
+        {
+          "method": "pools.activationAssets()",
+          "calls": 1,
+          "self_gas": 2593,
+          "inclusive_gas": 2593
+        },
+        {
+          "method": "pools.contributionValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2327,
+          "inclusive_gas": 10889
+        },
+        {
+          "method": "strategy.additionalLossBps()",
+          "calls": 2,
+          "self_gas": 1700,
+          "inclusive_gas": 1700
+        },
+        {
+          "method": "liquidity.stateView()",
+          "calls": 2,
+          "self_gas": 1574,
+          "inclusive_gas": 1574
+        },
+        {
+          "method": "liquidity.positionOperator()",
+          "calls": 2,
+          "self_gas": 1490,
+          "inclusive_gas": 1490
+        },
+        {
+          "method": "liquidity.secondaryId(uint256)",
+          "calls": 1,
+          "self_gas": 1465,
+          "inclusive_gas": 2431
+        },
+        {
+          "method": "vault.nftBucket(uint256)",
+          "calls": 1,
+          "self_gas": 990,
+          "inclusive_gas": 990
+        },
+        {
+          "method": "lp_position_executor.secondaryId(uint256)",
+          "calls": 1,
+          "self_gas": 966,
+          "inclusive_gas": 966
+        },
+        {
+          "method": "vault.bucketTotalShares(uint256)",
+          "calls": 1,
+          "self_gas": 946,
+          "inclusive_gas": 946
+        },
+        {
+          "method": "reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "independent_reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "activation_assets.isContributionAsset(address)",
+          "calls": 1,
+          "self_gas": 659,
+          "inclusive_gas": 659
+        },
+        {
+          "method": "vault.MAX_BUCKETS()",
+          "calls": 1,
+          "self_gas": 509,
+          "inclusive_gas": 509
+        },
+        {
+          "method": "principal_exit.activePlan(uint256)",
+          "calls": 1,
+          "self_gas": 462,
+          "inclusive_gas": 462
+        },
+        {
+          "method": "reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "independent_reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "vault.canonicalChainId()",
+          "calls": 1,
+          "self_gas": 293,
+          "inclusive_gas": 293
+        },
+        {
+          "method": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "calls": 1,
+          "self_gas": -481415,
+          "inclusive_gas": 13594955
+        }
+      ]
+    },
+    {
+      "case": "reference-execution1-actual-zzz-activate.json.gz",
+      "fixture_sha256": "35f9501c21707943df20c1ac51d3f4f6039455f496420ea81ccbe7abfe4da946",
+      "gas_used": 14995485,
+      "frames": 2661,
+      "self_sum": 14995485,
+      "negative_self_frames": [
+        {
+          "label": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 14995485,
+          "child": 15526261
+        }
+      ],
+      "methods": [
+        {
+          "method": "oracle.validateExecution()",
+          "calls": 14,
+          "self_gas": 1539411,
+          "inclusive_gas": 3968836
+        },
+        {
+          "method": "reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1381352,
+          "inclusive_gas": 1573368
+        },
+        {
+          "method": "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1371832,
+          "inclusive_gas": 1563848
+        },
+        {
+          "method": "oracle.executionBounds(address)",
+          "calls": 34,
+          "self_gas": 802298,
+          "inclusive_gas": 1009766
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)",
+          "calls": 13,
+          "self_gas": 580177,
+          "inclusive_gas": 580177
+        },
+        {
+          "method": "vault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 507504,
+          "inclusive_gas": 13243747
+        },
+        {
+          "method": "access.module(bytes32)",
+          "calls": 373,
+          "self_gas": 503916,
+          "inclusive_gas": 503916
+        },
+        {
+          "method": "rewards.syncShares(uint256)",
+          "calls": 1,
+          "self_gas": 458750,
+          "inclusive_gas": 474069
+        },
+        {
+          "method": "rewards.syncMembership(uint256)",
+          "calls": 1,
+          "self_gas": 433145,
+          "inclusive_gas": 442532
+        },
+        {
+          "method": "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)",
+          "calls": 1,
+          "self_gas": 383072,
+          "inclusive_gas": 1059189
+        },
+        {
+          "method": "oracle.executionReferenceX96(address,address)",
+          "calls": 12,
+          "self_gas": 366420,
+          "inclusive_gas": 439644
+        },
+        {
+          "method": "access.protocolPolicy()",
+          "calls": 330,
+          "self_gas": 335960,
+          "inclusive_gas": 335960
+        },
+        {
+          "method": "lp_balance_math.policyFingerprint(bytes32,bytes32)",
+          "calls": 11,
+          "self_gas": 323584,
+          "inclusive_gas": 1832720
+        },
+        {
+          "method": "pools.accounting(bytes32)",
+          "calls": 45,
+          "self_gas": 295980,
+          "inclusive_gas": 295980
+        },
+        {
+          "method": "oracle.endManagerExecution(bool)",
+          "calls": 2,
+          "self_gas": 262124,
+          "inclusive_gas": 621142
+        },
+        {
+          "method": "oracle.beginManagerExecution(address,bytes32,bool)",
+          "calls": 2,
+          "self_gas": 258869,
+          "inclusive_gas": 610836
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.activate(uint256,uint256)",
+          "calls": 1,
+          "self_gas": 216818,
+          "inclusive_gas": 219795
+        },
+        {
+          "method": "oracle.beginExecution(address)",
+          "calls": 1,
+          "self_gas": 202472,
+          "inclusive_gas": 589940
+        },
+        {
+          "method": "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)",
+          "calls": 2,
+          "self_gas": 196636,
+          "inclusive_gas": 196636
+        },
+        {
+          "method": "pool_manager.0x5a6bcfda",
+          "calls": 1,
+          "self_gas": 179059,
+          "inclusive_gas": 179059
+        },
+        {
+          "method": "oracle.afterSwap()",
+          "calls": 1,
+          "self_gas": 150269,
+          "inclusive_gas": 344705
+        },
+        {
+          "method": "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))",
+          "calls": 1,
+          "self_gas": 136825,
+          "inclusive_gas": 317668
+        },
+        {
+          "method": "position_manager.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 135605,
+          "inclusive_gas": 348666
+        },
+        {
+          "method": "protocol_policy.gasFingerprint()",
+          "calls": 70,
+          "self_gas": 134400,
+          "inclusive_gas": 134400
+        },
+        {
+          "method": "protocol_policy.sourceCallGas()",
+          "calls": 243,
+          "self_gas": 133949,
+          "inclusive_gas": 133949
+        },
+        {
+          "method": "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 130422,
+          "inclusive_gas": 4968569
+        },
+        {
+          "method": "lp_balance_math.executionValidatePrice(bytes32)",
+          "calls": 10,
+          "self_gas": 126240,
+          "inclusive_gas": 648190
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)",
+          "calls": 8,
+          "self_gas": 124552,
+          "inclusive_gas": 124552
+        },
+        {
+          "method": "oracle.endExecution()",
+          "calls": 1,
+          "self_gas": 123056,
+          "inclusive_gas": 301273
+        },
+        {
+          "method": "reference.latestRoundData()",
+          "calls": 2,
+          "self_gas": 120066,
+          "inclusive_gas": 151522
+        },
+        {
+          "method": "independent_reference.latestRoundData()",
+          "calls": 2,
+          "self_gas": 120066,
+          "inclusive_gas": 151522
+        },
+        {
+          "method": "state_view.getSlot0(bytes32)",
+          "calls": 56,
+          "self_gas": 119952,
+          "inclusive_gas": 152904
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)",
+          "calls": 5,
+          "self_gas": 117660,
+          "inclusive_gas": 117660
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)",
+          "calls": 11,
+          "self_gas": 111333,
+          "inclusive_gas": 158565
+        },
+        {
+          "method": "state_view.getLiquidity(bytes32)",
+          "calls": 42,
+          "self_gas": 106638,
+          "inclusive_gas": 130352
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "lp_position_executor.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 82393,
+          "inclusive_gas": 1725419
+        },
+        {
+          "method": "vault.group(uint256)",
+          "calls": 17,
+          "self_gas": 72889,
+          "inclusive_gas": 72889
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.registerAlias(bytes32,uint256)",
+          "calls": 1,
+          "self_gas": 68464,
+          "inclusive_gas": 68464
+        },
+        {
+          "method": "oracle.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 67235,
+          "inclusive_gas": 279361
+        },
+        {
+          "method": "access.isSealed()",
+          "calls": 80,
+          "self_gas": 65200,
+          "inclusive_gas": 65200
+        },
+        {
+          "method": "budget.assertIdle(uint256)",
+          "calls": 4,
+          "self_gas": 63992,
+          "inclusive_gas": 153480
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)",
+          "calls": 47,
+          "self_gas": 63585,
+          "inclusive_gas": 63585
+        },
+        {
+          "method": "independent_state.getLiquidity(bytes32)",
+          "calls": 25,
+          "self_gas": 63475,
+          "inclusive_gas": 78400
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)",
+          "calls": 3,
+          "self_gas": 62937,
+          "inclusive_gas": 62937
+        },
+        {
+          "method": "pool_manager.0x1e2eaeaf",
+          "calls": 102,
+          "self_gas": 58734,
+          "inclusive_gas": 58734
+        },
+        {
+          "method": "liquidity.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 57794,
+          "inclusive_gas": 591939
+        },
+        {
+          "method": "contribution_pricing.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 55691,
+          "inclusive_gas": 1134339
+        },
+        {
+          "method": "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 54196,
+          "inclusive_gas": 417279
+        },
+        {
+          "method": "membership.activate(uint256)",
+          "calls": 1,
+          "self_gas": 53568,
+          "inclusive_gas": 503592
+        },
+        {
+          "method": "independent_state.getSlot0(bytes32)",
+          "calls": 25,
+          "self_gas": 53550,
+          "inclusive_gas": 68475
+        },
+        {
+          "method": "access.canonicalState()",
+          "calls": 99,
+          "self_gas": 52589,
+          "inclusive_gas": 52589
+        },
+        {
+          "method": "balancing_router.plan(bytes32,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 51805,
+          "inclusive_gas": 990292
+        },
+        {
+          "method": "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)",
+          "calls": 1,
+          "self_gas": 50223,
+          "inclusive_gas": 439384
+        },
+        {
+          "method": "lp_balance_math.principalAmounts(address,address,uint256)",
+          "calls": 2,
+          "self_gas": 44172,
+          "inclusive_gas": 72046
+        },
+        {
+          "method": "oracle.tokenDecimals(address)",
+          "calls": 22,
+          "self_gas": 43754,
+          "inclusive_gas": 43754
+        },
+        {
+          "method": "access.preparationActive()",
+          "calls": 79,
+          "self_gas": 43608,
+          "inclusive_gas": 43608
+        },
+        {
+          "method": "lp_balance_math.nativeConfig(bytes32,bool)",
+          "calls": 4,
+          "self_gas": 43192,
+          "inclusive_gas": 82432
+        },
+        {
+          "method": "budget.poolTokens(bytes32)",
+          "calls": 7,
+          "self_gas": 40530,
+          "inclusive_gas": 91882
+        },
+        {
+          "method": "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 36491,
+          "inclusive_gas": 36491
+        },
+        {
+          "method": "pools.get(bytes32)",
+          "calls": 6,
+          "self_gas": 36132,
+          "inclusive_gas": 36132
+        },
+        {
+          "method": "position_manager.getPoolAndPositionInfo(uint256)",
+          "calls": 8,
+          "self_gas": 35984,
+          "inclusive_gas": 35984
+        },
+        {
+          "method": "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 35503,
+          "inclusive_gas": 462720
+        },
+        {
+          "method": "contribution_pricing.endEntry()",
+          "calls": 1,
+          "self_gas": 34388,
+          "inclusive_gas": 762375
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()",
+          "calls": 73,
+          "self_gas": 34237,
+          "inclusive_gas": 34237
+        },
+        {
+          "method": "liquidity.mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 33779,
+          "inclusive_gas": 2484585
+        },
+        {
+          "method": "reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "independent_reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.recordApplied(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 32414,
+          "inclusive_gas": 68154
+        },
+        {
+          "method": "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)",
+          "calls": 1,
+          "self_gas": 31883,
+          "inclusive_gas": 149180
+        },
+        {
+          "method": "fees.flushDust(uint256,address)",
+          "calls": 2,
+          "self_gas": 31336,
+          "inclusive_gas": 47812
+        },
+        {
+          "method": "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)",
+          "calls": 1,
+          "self_gas": 30967,
+          "inclusive_gas": 109450
+        },
+        {
+          "method": "fees.releaseCompound(uint256,address)",
+          "calls": 2,
+          "self_gas": 30953,
+          "inclusive_gas": 39914
+        },
+        {
+          "method": "independent_core.0x1e2eaeaf",
+          "calls": 50,
+          "self_gas": 29850,
+          "inclusive_gas": 29850
+        },
+        {
+          "method": "liquidity.balanceContext(bytes32)",
+          "calls": 4,
+          "self_gas": 28500,
+          "inclusive_gas": 1872546
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)",
+          "calls": 2,
+          "self_gas": 28026,
+          "inclusive_gas": 28026
+        },
+        {
+          "method": "strategy.portfolioPolicy()",
+          "calls": 26,
+          "self_gas": 27794,
+          "inclusive_gas": 27794
+        },
+        {
+          "method": "balancing_router.access()",
+          "calls": 31,
+          "self_gas": 27435,
+          "inclusive_gas": 27435
+        },
+        {
+          "method": "lp_balance_math.executionTarget(bytes32)",
+          "calls": 2,
+          "self_gas": 26362,
+          "inclusive_gas": 213934
+        },
+        {
+          "method": "position_manager.approve(address,uint256)",
+          "calls": 1,
+          "self_gas": 26174,
+          "inclusive_gas": 26174
+        },
+        {
+          "method": "position_manager.getPositionLiquidity(uint256)",
+          "calls": 4,
+          "self_gas": 25052,
+          "inclusive_gas": 27120
+        },
+        {
+          "method": "vault.0x",
+          "calls": 1,
+          "self_gas": 23610,
+          "inclusive_gas": 29212
+        },
+        {
+          "method": "nft.ownerOf(uint256)",
+          "calls": 11,
+          "self_gas": 23505,
+          "inclusive_gas": 23505
+        },
+        {
+          "method": "lp_position_executor.portfolioAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 23160,
+          "inclusive_gas": 131896
+        },
+        {
+          "method": "protocol_policy.maintenanceFingerprint()",
+          "calls": 11,
+          "self_gas": 21888,
+          "inclusive_gas": 21888
+        },
+        {
+          "method": "liquidity.0x",
+          "calls": 1,
+          "self_gas": 21553,
+          "inclusive_gas": 21553
+        },
+        {
+          "method": "activation_assets.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 20153,
+          "inclusive_gas": 308613
+        },
+        {
+          "method": "contribution_pricing.assertDeployed(uint256,uint16)",
+          "calls": 1,
+          "self_gas": 19865,
+          "inclusive_gas": 97010
+        },
+        {
+          "method": "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 19491,
+          "inclusive_gas": 19491
+        },
+        {
+          "method": "liquidity.spot(bytes32)",
+          "calls": 10,
+          "self_gas": 18940,
+          "inclusive_gas": 47530
+        },
+        {
+          "method": "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 18321,
+          "inclusive_gas": 43501
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 18094,
+          "inclusive_gas": 49407
+        },
+        {
+          "method": "membership.settleDust()",
+          "calls": 1,
+          "self_gas": 17792,
+          "inclusive_gas": 87351
+        },
+        {
+          "method": "access.moduleAuthorized(bytes32,address)",
+          "calls": 9,
+          "self_gas": 17379,
+          "inclusive_gas": 17379
+        },
+        {
+          "method": "state_view.poolManager()",
+          "calls": 25,
+          "self_gas": 15775,
+          "inclusive_gas": 15775
+        },
+        {
+          "method": "independent_state.poolManager()",
+          "calls": 25,
+          "self_gas": 15775,
+          "inclusive_gas": 15775
+        },
+        {
+          "method": "protocol_policy.entryFingerprint()",
+          "calls": 5,
+          "self_gas": 15590,
+          "inclusive_gas": 15590
+        },
+        {
+          "method": "lp_balance_math.executionPrices(address)",
+          "calls": 1,
+          "self_gas": 15573,
+          "inclusive_gas": 81097
+        },
+        {
+          "method": "pool_manager.settle()",
+          "calls": 3,
+          "self_gas": 15526,
+          "inclusive_gas": 17636
+        },
+        {
+          "method": "nft.notifyContribution(uint256)",
+          "calls": 1,
+          "self_gas": 15182,
+          "inclusive_gas": 243185
+        },
+        {
+          "method": "liquidity.executionStrategy()",
+          "calls": 6,
+          "self_gas": 13648,
+          "inclusive_gas": 17044
+        },
+        {
+          "method": "budget.balanceContext(uint256)",
+          "calls": 2,
+          "self_gas": 13472,
+          "inclusive_gas": 974264
+        },
+        {
+          "method": "vault.migrationBudget()",
+          "calls": 12,
+          "self_gas": 13416,
+          "inclusive_gas": 13416
+        },
+        {
+          "method": "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)",
+          "calls": 1,
+          "self_gas": 13048,
+          "inclusive_gas": 13048
+        },
+        {
+          "method": "budget.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 12897,
+          "inclusive_gas": 1156908
+        },
+        {
+          "method": "strategy.executionQualityRevision()",
+          "calls": 11,
+          "self_gas": 11438,
+          "inclusive_gas": 11438
+        },
+        {
+          "method": "pool_manager.sync(address)",
+          "calls": 3,
+          "self_gas": 11335,
+          "inclusive_gas": 15445
+        },
+        {
+          "method": "balancing_router.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 11333,
+          "inclusive_gas": 115366
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 10749,
+          "inclusive_gas": 25517
+        },
+        {
+          "method": "strategy.rangeOrientation(bytes32)",
+          "calls": 13,
+          "self_gas": 10398,
+          "inclusive_gas": 10398
+        },
+        {
+          "method": "pool_manager.take(address,address,uint256)",
+          "calls": 1,
+          "self_gas": 10336,
+          "inclusive_gas": 31889
+        },
+        {
+          "method": "balancing_router.policyFingerprint(bytes32,bytes32)",
+          "calls": 8,
+          "self_gas": 10320,
+          "inclusive_gas": 1347990
+        },
+        {
+          "method": "liquidity.executionSpot(bytes32)",
+          "calls": 2,
+          "self_gas": 10108,
+          "inclusive_gas": 143064
+        },
+        {
+          "method": "liquidity.executionConfig(bytes32,bool)",
+          "calls": 1,
+          "self_gas": 10080,
+          "inclusive_gas": 32546
+        },
+        {
+          "method": "reference.decimals()",
+          "calls": 23,
+          "self_gas": 9890,
+          "inclusive_gas": 9890
+        },
+        {
+          "method": "independent_reference.decimals()",
+          "calls": 23,
+          "self_gas": 9890,
+          "inclusive_gas": 9890
+        },
+        {
+          "method": "vault.totalIdle(address)",
+          "calls": 8,
+          "self_gas": 9648,
+          "inclusive_gas": 9648
+        },
+        {
+          "method": "balancing_router.balanceMath()",
+          "calls": 17,
+          "self_gas": 9622,
+          "inclusive_gas": 9622
+        },
+        {
+          "method": "pools.configurationRevision()",
+          "calls": 11,
+          "self_gas": 9392,
+          "inclusive_gas": 9392
+        },
+        {
+          "method": "balancing_router.executionRevision()",
+          "calls": 8,
+          "self_gas": 9064,
+          "inclusive_gas": 9064
+        },
+        {
+          "method": "pool_manager.unlock(bytes)",
+          "calls": 3,
+          "self_gas": 8646,
+          "inclusive_gas": 1064617
+        },
+        {
+          "method": "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 8562,
+          "inclusive_gas": 479764
+        },
+        {
+          "method": "budget.mintTarget(uint256)",
+          "calls": 1,
+          "self_gas": 8430,
+          "inclusive_gas": 125514
+        },
+        {
+          "method": "position_manager.ownerOf(uint256)",
+          "calls": 5,
+          "self_gas": 8350,
+          "inclusive_gas": 8350
+        },
+        {
+          "method": "budget.validateReservation(bytes32,uint256)",
+          "calls": 1,
+          "self_gas": 8109,
+          "inclusive_gas": 19345
+        },
+        {
+          "method": "protocol_policy.entryPolicy()",
+          "calls": 3,
+          "self_gas": 8010,
+          "inclusive_gas": 8010
+        },
+        {
+          "method": "entry.pricingContext(uint256,bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 7973,
+          "inclusive_gas": 13152
+        },
+        {
+          "method": "budget.assertDeployed(uint256)",
+          "calls": 1,
+          "self_gas": 7962,
+          "inclusive_gas": 116448
+        },
+        {
+          "method": "balancing_router.principalAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 7952,
+          "inclusive_gas": 84820
+        },
+        {
+          "method": "entry.validateOwner(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 7670,
+          "inclusive_gas": 14316
+        },
+        {
+          "method": "budget.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7169,
+          "inclusive_gas": 37270
+        },
+        {
+          "method": "oracle.contributionPricing()",
+          "calls": 11,
+          "self_gas": 7040,
+          "inclusive_gas": 7040
+        },
+        {
+          "method": "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)",
+          "calls": 1,
+          "self_gas": 6712,
+          "inclusive_gas": 6712
+        },
+        {
+          "method": "pools.isNativePool(bytes32)",
+          "calls": 4,
+          "self_gas": 6444,
+          "inclusive_gas": 6444
+        },
+        {
+          "method": "nft.mintOrdinalOf(uint256)",
+          "calls": 2,
+          "self_gas": 6280,
+          "inclusive_gas": 6280
+        },
+        {
+          "method": "access.lpExitStarted()",
+          "calls": 6,
+          "self_gas": 6060,
+          "inclusive_gas": 6060
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.bucketIdentity(bytes32)",
+          "calls": 1,
+          "self_gas": 5708,
+          "inclusive_gas": 5708
+        },
+        {
+          "method": "liquidity.executionOrdinaryReplacement()",
+          "calls": 1,
+          "self_gas": 5643,
+          "inclusive_gas": 10242
+        },
+        {
+          "method": "liquidity.positionManager()",
+          "calls": 5,
+          "self_gas": 5595,
+          "inclusive_gas": 5595
+        },
+        {
+          "method": "lp_balance_math.fixedZZZ()",
+          "calls": 1,
+          "self_gas": 5405,
+          "inclusive_gas": 10912
+        },
+        {
+          "method": "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 5395,
+          "inclusive_gas": 471339
+        },
+        {
+          "method": "entry.sourceValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 5315,
+          "inclusive_gas": 8562
+        },
+        {
+          "method": "nft.tokenAtOrdinal(uint256)",
+          "calls": 2,
+          "self_gas": 5180,
+          "inclusive_gas": 5180
+        },
+        {
+          "method": "lp_position_executor.secondaryId(uint256)",
+          "calls": 3,
+          "self_gas": 4898,
+          "inclusive_gas": 4898
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516",
+          "calls": 1,
+          "self_gas": 4737,
+          "inclusive_gas": 13849
+        },
+        {
+          "method": "pools.activationEntry()",
+          "calls": 4,
+          "self_gas": 4460,
+          "inclusive_gas": 4460
+        },
+        {
+          "method": "liquidity.secondaryId(uint256)",
+          "calls": 3,
+          "self_gas": 4395,
+          "inclusive_gas": 9293
+        },
+        {
+          "method": "budget.valueBucket(uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 3989,
+          "inclusive_gas": 8355
+        },
+        {
+          "method": "vault.nftBucket(uint256)",
+          "calls": 2,
+          "self_gas": 3980,
+          "inclusive_gas": 3980
+        },
+        {
+          "method": "nft.traitsReady(uint256)",
+          "calls": 1,
+          "self_gas": 3921,
+          "inclusive_gas": 3921
+        },
+        {
+          "method": "contribution_pricing.entryIdleLimit(uint256)",
+          "calls": 1,
+          "self_gas": 3910,
+          "inclusive_gas": 6320
+        },
+        {
+          "method": "position_manager.modifyLiquidities(bytes,uint256)",
+          "calls": 1,
+          "self_gas": 3904,
+          "inclusive_gas": 355966
+        },
+        {
+          "method": "budget.maintenanceBucket()",
+          "calls": 2,
+          "self_gas": 3794,
+          "inclusive_gas": 3794
+        },
+        {
+          "method": "liquidity.poolManager()",
+          "calls": 3,
+          "self_gas": 3681,
+          "inclusive_gas": 3681
+        },
+        {
+          "method": "vault.contributionUSD(uint256)",
+          "calls": 1,
+          "self_gas": 3606,
+          "inclusive_gas": 3606
+        },
+        {
+          "method": "activation_assets.isContributionAsset(address)",
+          "calls": 1,
+          "self_gas": 3422,
+          "inclusive_gas": 3422
+        },
+        {
+          "method": "budget.contributionLossBps()",
+          "calls": 1,
+          "self_gas": 3202,
+          "inclusive_gas": 3202
+        },
+        {
+          "method": "budget.validateNativeSender(address)",
+          "calls": 1,
+          "self_gas": 3018,
+          "inclusive_gas": 5602
+        },
+        {
+          "method": "access.paused()",
+          "calls": 4,
+          "self_gas": 3000,
+          "inclusive_gas": 3000
+        },
+        {
+          "method": "position_manager.nextTokenId()",
+          "calls": 1,
+          "self_gas": 2956,
+          "inclusive_gas": 2956
+        },
+        {
+          "method": "vault.sharesOf(uint256)",
+          "calls": 2,
+          "self_gas": 2816,
+          "inclusive_gas": 2816
+        },
+        {
+          "method": "liquidity.portfolioAmounts(uint256)",
+          "calls": 2,
+          "self_gas": 2772,
+          "inclusive_gas": 134668
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)",
+          "calls": 1,
+          "self_gas": 2743,
+          "inclusive_gas": 2743
+        },
+        {
+          "method": "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2701,
+          "inclusive_gas": 22192
+        },
+        {
+          "method": "pools.activationAssets()",
+          "calls": 1,
+          "self_gas": 2593,
+          "inclusive_gas": 2593
+        },
+        {
+          "method": "contribution_pricing.valueBucket(uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2434,
+          "inclusive_gas": 2434
+        },
+        {
+          "method": "pools.contributionValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2327,
+          "inclusive_gas": 10889
+        },
+        {
+          "method": "pool_manager.0xf135baaa",
+          "calls": 2,
+          "self_gas": 2002,
+          "inclusive_gas": 2002
+        },
+        {
+          "method": "strategy.additionalLossBps()",
+          "calls": 2,
+          "self_gas": 1700,
+          "inclusive_gas": 1700
+        },
+        {
+          "method": "liquidity.stateView()",
+          "calls": 2,
+          "self_gas": 1574,
+          "inclusive_gas": 1574
+        },
+        {
+          "method": "vault.bucketAt(uint256)",
+          "calls": 1,
+          "self_gas": 1403,
+          "inclusive_gas": 1403
+        },
+        {
+          "method": "vault.poolBucket(bytes32)",
+          "calls": 1,
+          "self_gas": 1338,
+          "inclusive_gas": 1338
+        },
+        {
+          "method": "vault.bucketCount()",
+          "calls": 1,
+          "self_gas": 1167,
+          "inclusive_gas": 1167
+        },
+        {
+          "method": "vault.bucketTotalShares(uint256)",
+          "calls": 1,
+          "self_gas": 946,
+          "inclusive_gas": 946
+        },
+        {
+          "method": "membership.eligible(uint256)",
+          "calls": 1,
+          "self_gas": 874,
+          "inclusive_gas": 874
+        },
+        {
+          "method": "liquidity.positionOperator()",
+          "calls": 1,
+          "self_gas": 745,
+          "inclusive_gas": 745
+        },
+        {
+          "method": "activation_assets.zzz()",
+          "calls": 1,
+          "self_gas": 737,
+          "inclusive_gas": 737
+        },
+        {
+          "method": "reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "independent_reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "membership.totalEligible()",
+          "calls": 1,
+          "self_gas": 538,
+          "inclusive_gas": 538
+        },
+        {
+          "method": "vault.MAX_BUCKETS()",
+          "calls": 1,
+          "self_gas": 509,
+          "inclusive_gas": 509
+        },
+        {
+          "method": "principal_exit.activePlan(uint256)",
+          "calls": 1,
+          "self_gas": 462,
+          "inclusive_gas": 462
+        },
+        {
+          "method": "reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "independent_reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "vault.canonicalChainId()",
+          "calls": 1,
+          "self_gas": 293,
+          "inclusive_gas": 293
+        },
+        {
+          "method": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "calls": 1,
+          "self_gas": -530776,
+          "inclusive_gas": 14995485
+        }
+      ]
+    },
+    {
+      "case": "reference-execution1-actual-zzz-grow.json.gz",
+      "fixture_sha256": "19a51161b5f5d0b7163796a73758a2cedda629a94b6661f80fe277c9e60122b5",
+      "gas_used": 13829824,
+      "frames": 2745,
+      "self_sum": 13829824,
+      "negative_self_frames": [
+        {
+          "label": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "gas_used": 13829824,
+          "child": 14394318
+        }
+      ],
+      "methods": [
+        {
+          "method": "oracle.validateExecution()",
+          "calls": 14,
+          "self_gas": 1539411,
+          "inclusive_gas": 3981756
+        },
+        {
+          "method": "reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1401752,
+          "inclusive_gas": 1593768
+        },
+        {
+          "method": "independent_reference.executionProof((uint160,int24,uint24,uint24,uint128))",
+          "calls": 22,
+          "self_gas": 1371832,
+          "inclusive_gas": 1563848
+        },
+        {
+          "method": "oracle.executionBounds(address)",
+          "calls": 34,
+          "self_gas": 802298,
+          "inclusive_gas": 1009766
+        },
+        {
+          "method": "access.module(bytes32)",
+          "calls": 391,
+          "self_gas": 527172,
+          "inclusive_gas": 527172
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)",
+          "calls": 11,
+          "self_gas": 484011,
+          "inclusive_gas": 484011
+        },
+        {
+          "method": "contribution_pricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)",
+          "calls": 1,
+          "self_gas": 383072,
+          "inclusive_gas": 1061909
+        },
+        {
+          "method": "access.protocolPolicy()",
+          "calls": 328,
+          "self_gas": 333936,
+          "inclusive_gas": 333936
+        },
+        {
+          "method": "pools.accounting(bytes32)",
+          "calls": 50,
+          "self_gas": 326200,
+          "inclusive_gas": 326200
+        },
+        {
+          "method": "lp_balance_math.policyFingerprint(bytes32,bytes32)",
+          "calls": 11,
+          "self_gas": 323584,
+          "inclusive_gas": 1825812
+        },
+        {
+          "method": "oracle.executionReferenceX96(address,address)",
+          "calls": 10,
+          "self_gas": 305350,
+          "inclusive_gas": 366370
+        },
+        {
+          "method": "oracle.endManagerExecution(bool)",
+          "calls": 2,
+          "self_gas": 262124,
+          "inclusive_gas": 622502
+        },
+        {
+          "method": "oracle.beginManagerExecution(address,bytes32,bool)",
+          "calls": 2,
+          "self_gas": 258869,
+          "inclusive_gas": 612876
+        },
+        {
+          "method": "rewards.syncShares(uint256)",
+          "calls": 1,
+          "self_gas": 251131,
+          "inclusive_gas": 266450
+        },
+        {
+          "method": "vault.increase(uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 249402,
+          "inclusive_gas": 12107044
+        },
+        {
+          "method": "oracle.beginExecution(address)",
+          "calls": 1,
+          "self_gas": 202472,
+          "inclusive_gas": 592660
+        },
+        {
+          "method": "oracle.afterSwap()",
+          "calls": 1,
+          "self_gas": 150269,
+          "inclusive_gas": 345385
+        },
+        {
+          "method": "oracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))",
+          "calls": 1,
+          "self_gas": 136825,
+          "inclusive_gas": 319028
+        },
+        {
+          "method": "liquidity.balance(bytes32,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 135133,
+          "inclusive_gas": 4785542
+        },
+        {
+          "method": "protocol_policy.sourceCallGas()",
+          "calls": 243,
+          "self_gas": 133949,
+          "inclusive_gas": 133949
+        },
+        {
+          "method": "protocol_policy.gasFingerprint()",
+          "calls": 68,
+          "self_gas": 130560,
+          "inclusive_gas": 130560
+        },
+        {
+          "method": "pool_manager.swap((address,address,uint24,int24,address),(bool,int256,uint160),bytes)",
+          "calls": 2,
+          "self_gas": 128236,
+          "inclusive_gas": 128236
+        },
+        {
+          "method": "lp_balance_math.executionValidatePrice(bytes32)",
+          "calls": 10,
+          "self_gas": 126240,
+          "inclusive_gas": 646190
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.approve(address,uint256)",
+          "calls": 8,
+          "self_gas": 124552,
+          "inclusive_gas": 124552
+        },
+        {
+          "method": "pool_manager.0x5a6bcfda",
+          "calls": 3,
+          "self_gas": 124523,
+          "inclusive_gas": 124523
+        },
+        {
+          "method": "state_view.getSlot0(bytes32)",
+          "calls": 58,
+          "self_gas": 124236,
+          "inclusive_gas": 156222
+        },
+        {
+          "method": "oracle.endExecution()",
+          "calls": 1,
+          "self_gas": 123056,
+          "inclusive_gas": 301953
+        },
+        {
+          "method": "reference.latestRoundData()",
+          "calls": 2,
+          "self_gas": 121426,
+          "inclusive_gas": 152882
+        },
+        {
+          "method": "independent_reference.latestRoundData()",
+          "calls": 2,
+          "self_gas": 120066,
+          "inclusive_gas": 151522
+        },
+        {
+          "method": "lp_position_executor.collect(bytes32,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 119318,
+          "inclusive_gas": 337132
+        },
+        {
+          "method": "0x2a07706473244bc757e10f2a9e86fb532828afe3.controlFingerprint(bytes32)",
+          "calls": 11,
+          "self_gas": 111333,
+          "inclusive_gas": 158565
+        },
+        {
+          "method": "state_view.getLiquidity(bytes32)",
+          "calls": 42,
+          "self_gas": 106638,
+          "inclusive_gas": 130352
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transferFrom(address,address,uint256)",
+          "calls": 5,
+          "self_gas": 100560,
+          "inclusive_gas": 100560
+        },
+        {
+          "method": "budget.assertIdle(uint256)",
+          "calls": 6,
+          "self_gas": 95988,
+          "inclusive_gas": 230220
+        },
+        {
+          "method": "vault.group(uint256)",
+          "calls": 22,
+          "self_gas": 93974,
+          "inclusive_gas": 93974
+        },
+        {
+          "method": "position_manager.getPoolAndPositionInfo(uint256)",
+          "calls": 18,
+          "self_gas": 88964,
+          "inclusive_gas": 88964
+        },
+        {
+          "method": "lp_balance_math.principalAmounts(address,address,uint256)",
+          "calls": 4,
+          "self_gas": 88344,
+          "inclusive_gas": 144092
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.latestRoundData()",
+          "calls": 46,
+          "self_gas": 87234,
+          "inclusive_gas": 87234
+        },
+        {
+          "method": "lp_position_executor.increase(bytes32,uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 78420,
+          "inclusive_gas": 1483156
+        },
+        {
+          "method": "fees.flushDust(uint256,address)",
+          "calls": 6,
+          "self_gas": 78308,
+          "inclusive_gas": 122568
+        },
+        {
+          "method": "fees.releaseCompound(uint256,address)",
+          "calls": 6,
+          "self_gas": 76859,
+          "inclusive_gas": 99742
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.balanceOf(address)",
+          "calls": 59,
+          "self_gas": 76245,
+          "inclusive_gas": 76245
+        },
+        {
+          "method": "contribution_pricing.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 75925,
+          "inclusive_gas": 1292545
+        },
+        {
+          "method": "budget.poolTokens(bytes32)",
+          "calls": 13,
+          "self_gas": 75270,
+          "inclusive_gas": 170638
+        },
+        {
+          "method": "position_manager.unlockCallback(bytes)",
+          "calls": 3,
+          "self_gas": 71933,
+          "inclusive_gas": 234462
+        },
+        {
+          "method": "access.isSealed()",
+          "calls": 83,
+          "self_gas": 67645,
+          "inclusive_gas": 67645
+        },
+        {
+          "method": "oracle.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 67235,
+          "inclusive_gas": 280041
+        },
+        {
+          "method": "lp_balance_math.nativeConfig(bytes32,bool)",
+          "calls": 6,
+          "self_gas": 64658,
+          "inclusive_gas": 123518
+        },
+        {
+          "method": "independent_state.getLiquidity(bytes32)",
+          "calls": 25,
+          "self_gas": 63475,
+          "inclusive_gas": 78400
+        },
+        {
+          "method": "pool_manager.0x1e2eaeaf",
+          "calls": 108,
+          "self_gas": 59836,
+          "inclusive_gas": 59836
+        },
+        {
+          "method": "liquidity.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 57794,
+          "inclusive_gas": 539319
+        },
+        {
+          "method": "access.canonicalState()",
+          "calls": 105,
+          "self_gas": 55655,
+          "inclusive_gas": 55655
+        },
+        {
+          "method": "contribution_pricing.begin(uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 54196,
+          "inclusive_gas": 418639
+        },
+        {
+          "method": "independent_state.getSlot0(bytes32)",
+          "calls": 25,
+          "self_gas": 53550,
+          "inclusive_gas": 68475
+        },
+        {
+          "method": "balancing_router.plan(bytes32,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 51805,
+          "inclusive_gas": 952208
+        },
+        {
+          "method": "balancing_router.routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)",
+          "calls": 1,
+          "self_gas": 50223,
+          "inclusive_gas": 404556
+        },
+        {
+          "method": "position_manager.getPositionLiquidity(uint256)",
+          "calls": 8,
+          "self_gas": 50104,
+          "inclusive_gas": 54240
+        },
+        {
+          "method": "oracle.tokenDecimals(address)",
+          "calls": 22,
+          "self_gas": 43754,
+          "inclusive_gas": 43754
+        },
+        {
+          "method": "lp_position_executor.portfolioAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 42320,
+          "inclusive_gas": 259792
+        },
+        {
+          "method": "pools.get(bytes32)",
+          "calls": 7,
+          "self_gas": 42154,
+          "inclusive_gas": 42154
+        },
+        {
+          "method": "access.preparationActive()",
+          "calls": 75,
+          "self_gas": 41400,
+          "inclusive_gas": 41400
+        },
+        {
+          "method": "lp_balance_math.evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 36491,
+          "inclusive_gas": 36491
+        },
+        {
+          "method": "contribution_pricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 35838,
+          "inclusive_gas": 463735
+        },
+        {
+          "method": "contribution_pricing.endEntry()",
+          "calls": 1,
+          "self_gas": 34388,
+          "inclusive_gas": 763735
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.decimals()",
+          "calls": 73,
+          "self_gas": 34237,
+          "inclusive_gas": 34237
+        },
+        {
+          "method": "reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33692,
+          "inclusive_gas": 40741
+        },
+        {
+          "method": "independent_reference.executionMarket()",
+          "calls": 1,
+          "self_gas": 33012,
+          "inclusive_gas": 40061
+        },
+        {
+          "method": "balancing_router.quoteCandidate((address,address,uint24,int24,address),bool,uint256)",
+          "calls": 1,
+          "self_gas": 31883,
+          "inclusive_gas": 114980
+        },
+        {
+          "method": "lp_balance_math.executionMinimumOutput(bytes32,bool,uint256)",
+          "calls": 1,
+          "self_gas": 30967,
+          "inclusive_gas": 109450
+        },
+        {
+          "method": "independent_core.0x1e2eaeaf",
+          "calls": 50,
+          "self_gas": 29850,
+          "inclusive_gas": 29850
+        },
+        {
+          "method": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a.transfer(address,uint256)",
+          "calls": 3,
+          "self_gas": 28737,
+          "inclusive_gas": 28737
+        },
+        {
+          "method": "liquidity.balanceContext(bytes32)",
+          "calls": 4,
+          "self_gas": 28500,
+          "inclusive_gas": 1873434
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.approve(address,address,uint160,uint48)",
+          "calls": 2,
+          "self_gas": 28026,
+          "inclusive_gas": 28026
+        },
+        {
+          "method": "liquidity.increase(bytes32,uint256,uint256,uint256,uint128,uint256)",
+          "calls": 1,
+          "self_gas": 28015,
+          "inclusive_gas": 2167403
+        },
+        {
+          "method": "balancing_router.access()",
+          "calls": 31,
+          "self_gas": 27435,
+          "inclusive_gas": 27435
+        },
+        {
+          "method": "liquidity.executionConfig(bytes32,bool)",
+          "calls": 3,
+          "self_gas": 25948,
+          "inclusive_gas": 90632
+        },
+        {
+          "method": "access.moduleAuthorized(bytes32,address)",
+          "calls": 13,
+          "self_gas": 25103,
+          "inclusive_gas": 25103
+        },
+        {
+          "method": "strategy.portfolioPolicy()",
+          "calls": 22,
+          "self_gas": 23518,
+          "inclusive_gas": 23518
+        },
+        {
+          "method": "protocol_policy.maintenanceFingerprint()",
+          "calls": 11,
+          "self_gas": 21888,
+          "inclusive_gas": 21888
+        },
+        {
+          "method": "liquidity.0x",
+          "calls": 1,
+          "self_gas": 21553,
+          "inclusive_gas": 21553
+        },
+        {
+          "method": "position_manager.ownerOf(uint256)",
+          "calls": 11,
+          "self_gas": 20370,
+          "inclusive_gas": 20370
+        },
+        {
+          "method": "activation_assets.value(address,uint256)",
+          "calls": 1,
+          "self_gas": 20153,
+          "inclusive_gas": 309293
+        },
+        {
+          "method": "contribution_pricing.assertDeployed(uint256,uint16)",
+          "calls": 1,
+          "self_gas": 19865,
+          "inclusive_gas": 95010
+        },
+        {
+          "method": "lp_balance_math.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 19491,
+          "inclusive_gas": 19491
+        },
+        {
+          "method": "liquidity.collect(bytes32,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 19190,
+          "inclusive_gas": 360184
+        },
+        {
+          "method": "liquidity.spot(bytes32)",
+          "calls": 10,
+          "self_gas": 18940,
+          "inclusive_gas": 45530
+        },
+        {
+          "method": "budget.assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 18321,
+          "inclusive_gas": 43501
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 18101,
+          "inclusive_gas": 51414
+        },
+        {
+          "method": "membership.settleDust()",
+          "calls": 1,
+          "self_gas": 17792,
+          "inclusive_gas": 91351
+        },
+        {
+          "method": "nft.ownerOf(uint256)",
+          "calls": 8,
+          "self_gas": 17640,
+          "inclusive_gas": 17640
+        },
+        {
+          "method": "balancing_router.principalAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 15904,
+          "inclusive_gas": 169640
+        },
+        {
+          "method": "state_view.poolManager()",
+          "calls": 25,
+          "self_gas": 15775,
+          "inclusive_gas": 15775
+        },
+        {
+          "method": "independent_state.poolManager()",
+          "calls": 25,
+          "self_gas": 15775,
+          "inclusive_gas": 15775
+        },
+        {
+          "method": "protocol_policy.entryFingerprint()",
+          "calls": 5,
+          "self_gas": 15590,
+          "inclusive_gas": 15590
+        },
+        {
+          "method": "lp_balance_math.executionPrices(address)",
+          "calls": 1,
+          "self_gas": 15573,
+          "inclusive_gas": 81097
+        },
+        {
+          "method": "pool_manager.settle()",
+          "calls": 3,
+          "self_gas": 15526,
+          "inclusive_gas": 17636
+        },
+        {
+          "method": "pool_manager.unlock(bytes)",
+          "calls": 5,
+          "self_gas": 15321,
+          "inclusive_gas": 870268
+        },
+        {
+          "method": "vault.totalIdle(address)",
+          "calls": 12,
+          "self_gas": 14472,
+          "inclusive_gas": 14472
+        },
+        {
+          "method": "nft.notifyContribution(uint256)",
+          "calls": 1,
+          "self_gas": 13785,
+          "inclusive_gas": 21993
+        },
+        {
+          "method": "budget.balanceContext(uint256)",
+          "calls": 2,
+          "self_gas": 13472,
+          "inclusive_gas": 975048
+        },
+        {
+          "method": "lp_balance_math.seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)",
+          "calls": 1,
+          "self_gas": 13048,
+          "inclusive_gas": 13048
+        },
+        {
+          "method": "budget.contributionNav(uint256)",
+          "calls": 3,
+          "self_gas": 12897,
+          "inclusive_gas": 1315114
+        },
+        {
+          "method": "liquidity.executionStrategy()",
+          "calls": 5,
+          "self_gas": 11790,
+          "inclusive_gas": 14620
+        },
+        {
+          "method": "position_manager.modifyLiquidities(bytes,uint256)",
+          "calls": 3,
+          "self_gas": 11595,
+          "inclusive_gas": 256128
+        },
+        {
+          "method": "strategy.executionQualityRevision()",
+          "calls": 11,
+          "self_gas": 11438,
+          "inclusive_gas": 11438
+        },
+        {
+          "method": "pool_manager.sync(address)",
+          "calls": 3,
+          "self_gas": 11335,
+          "inclusive_gas": 15445
+        },
+        {
+          "method": "balancing_router.unlockCallback(bytes)",
+          "calls": 1,
+          "self_gas": 11333,
+          "inclusive_gas": 81166
+        },
+        {
+          "method": "vault.migrationBudget()",
+          "calls": 10,
+          "self_gas": 11180,
+          "inclusive_gas": 11180
+        },
+        {
+          "method": "0x13aa49bac059d709dd0a18d6bb63290076a702d7.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240.decimals()",
+          "calls": 47,
+          "self_gas": 10998,
+          "inclusive_gas": 10998
+        },
+        {
+          "method": "pool_manager.take(address,address,uint256)",
+          "calls": 1,
+          "self_gas": 10336,
+          "inclusive_gas": 31889
+        },
+        {
+          "method": "balancing_router.policyFingerprint(bytes32,bytes32)",
+          "calls": 8,
+          "self_gas": 10320,
+          "inclusive_gas": 1342966
+        },
+        {
+          "method": "liquidity.executionSpot(bytes32)",
+          "calls": 2,
+          "self_gas": 10108,
+          "inclusive_gas": 143064
+        },
+        {
+          "method": "budget.assertDeployed(uint256)",
+          "calls": 1,
+          "self_gas": 9962,
+          "inclusive_gas": 116448
+        },
+        {
+          "method": "reference.decimals()",
+          "calls": 23,
+          "self_gas": 9890,
+          "inclusive_gas": 9890
+        },
+        {
+          "method": "independent_reference.decimals()",
+          "calls": 23,
+          "self_gas": 9890,
+          "inclusive_gas": 9890
+        },
+        {
+          "method": "pools.isNativePool(bytes32)",
+          "calls": 6,
+          "self_gas": 9666,
+          "inclusive_gas": 9666
+        },
+        {
+          "method": "balancing_router.balanceMath()",
+          "calls": 17,
+          "self_gas": 9622,
+          "inclusive_gas": 9622
+        },
+        {
+          "method": "pools.configurationRevision()",
+          "calls": 11,
+          "self_gas": 9392,
+          "inclusive_gas": 9392
+        },
+        {
+          "method": "strategy.rangeOrientation(bytes32)",
+          "calls": 11,
+          "self_gas": 9106,
+          "inclusive_gas": 9106
+        },
+        {
+          "method": "balancing_router.executionRevision()",
+          "calls": 8,
+          "self_gas": 9064,
+          "inclusive_gas": 9064
+        },
+        {
+          "method": "budget.validateContribution(uint256,uint256,uint256,uint256,uint128,bool)",
+          "calls": 1,
+          "self_gas": 8562,
+          "inclusive_gas": 483131
+        },
+        {
+          "method": "protocol_policy.entryPolicy()",
+          "calls": 3,
+          "self_gas": 8010,
+          "inclusive_gas": 8010
+        },
+        {
+          "method": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7978,
+          "inclusive_gas": 14543
+        },
+        {
+          "method": "budget.valueBucket(uint256,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 7978,
+          "inclusive_gas": 16710
+        },
+        {
+          "method": "entry.pricingContext(uint256,bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 7973,
+          "inclusive_gas": 13152
+        },
+        {
+          "method": "oracle.contributionPricing()",
+          "calls": 12,
+          "self_gas": 7680,
+          "inclusive_gas": 7680
+        },
+        {
+          "method": "entry.validateOwner(uint256,bytes32)",
+          "calls": 1,
+          "self_gas": 7670,
+          "inclusive_gas": 14316
+        },
+        {
+          "method": "budget.validateOwner(uint256,address,bool,bool)",
+          "calls": 1,
+          "self_gas": 7169,
+          "inclusive_gas": 26296
+        },
+        {
+          "method": "lp_balance_math.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)",
+          "calls": 1,
+          "self_gas": 6712,
+          "inclusive_gas": 6712
+        },
+        {
+          "method": "pool_manager.0xf135baaa",
+          "calls": 6,
+          "self_gas": 6006,
+          "inclusive_gas": 6006
+        },
+        {
+          "method": "liquidity.positionManager()",
+          "calls": 5,
+          "self_gas": 5595,
+          "inclusive_gas": 5595
+        },
+        {
+          "method": "liquidity.portfolioAmounts(uint256)",
+          "calls": 4,
+          "self_gas": 5544,
+          "inclusive_gas": 265336
+        },
+        {
+          "method": "lp_balance_math.fixedZZZ()",
+          "calls": 1,
+          "self_gas": 5405,
+          "inclusive_gas": 10912
+        },
+        {
+          "method": "budget.contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)",
+          "calls": 1,
+          "self_gas": 5395,
+          "inclusive_gas": 472354
+        },
+        {
+          "method": "entry.sourceValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 5315,
+          "inclusive_gas": 8562
+        },
+        {
+          "method": "contribution_pricing.valueBucket(uint256,uint256,uint256)",
+          "calls": 2,
+          "self_gas": 4868,
+          "inclusive_gas": 4868
+        },
+        {
+          "method": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c.0x36c78516",
+          "calls": 1,
+          "self_gas": 4737,
+          "inclusive_gas": 13849
+        },
+        {
+          "method": "vault.0x",
+          "calls": 1,
+          "self_gas": 4510,
+          "inclusive_gas": 10112
+        },
+        {
+          "method": "pools.activationEntry()",
+          "calls": 4,
+          "self_gas": 4460,
+          "inclusive_gas": 4460
+        },
+        {
+          "method": "nft.mintOrdinalOf(uint256)",
+          "calls": 1,
+          "self_gas": 4140,
+          "inclusive_gas": 4140
+        },
+        {
+          "method": "access.lpExitStarted()",
+          "calls": 4,
+          "self_gas": 4040,
+          "inclusive_gas": 4040
+        },
+        {
+          "method": "contribution_pricing.entryIdleLimit(uint256)",
+          "calls": 1,
+          "self_gas": 3910,
+          "inclusive_gas": 6320
+        },
+        {
+          "method": "access.paused()",
+          "calls": 5,
+          "self_gas": 3750,
+          "inclusive_gas": 3750
+        },
+        {
+          "method": "liquidity.poolManager()",
+          "calls": 3,
+          "self_gas": 3681,
+          "inclusive_gas": 3681
+        },
+        {
+          "method": "vault.contributionUSD(uint256)",
+          "calls": 1,
+          "self_gas": 3606,
+          "inclusive_gas": 3606
+        },
+        {
+          "method": "nft.tokenAtOrdinal(uint256)",
+          "calls": 1,
+          "self_gas": 3590,
+          "inclusive_gas": 3590
+        },
+        {
+          "method": "activation_assets.isContributionAsset(address)",
+          "calls": 1,
+          "self_gas": 3422,
+          "inclusive_gas": 3422
+        },
+        {
+          "method": "vault.bucketAt(uint256)",
+          "calls": 1,
+          "self_gas": 3403,
+          "inclusive_gas": 3403
+        },
+        {
+          "method": "budget.contributionLossBps()",
+          "calls": 1,
+          "self_gas": 3202,
+          "inclusive_gas": 3202
+        },
+        {
+          "method": "vault.bucketCount()",
+          "calls": 1,
+          "self_gas": 3167,
+          "inclusive_gas": 3167
+        },
+        {
+          "method": "budget.validateNativeSender(address)",
+          "calls": 1,
+          "self_gas": 3018,
+          "inclusive_gas": 5602
+        },
+        {
+          "method": "vault.sharesOf(uint256)",
+          "calls": 2,
+          "self_gas": 2816,
+          "inclusive_gas": 2816
+        },
+        {
+          "method": "0x20067a7558168e12ad53b235f2f7408feea4985f.weightOf(uint256)",
+          "calls": 1,
+          "self_gas": 2743,
+          "inclusive_gas": 2743
+        },
+        {
+          "method": "balancing_router.deploymentAmounts(uint160,int24,int24,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2701,
+          "inclusive_gas": 22192
+        },
+        {
+          "method": "pools.activationAssets()",
+          "calls": 1,
+          "self_gas": 2593,
+          "inclusive_gas": 2593
+        },
+        {
+          "method": "pools.contributionValue(bytes32,uint256,uint256)",
+          "calls": 1,
+          "self_gas": 2327,
+          "inclusive_gas": 10889
+        },
+        {
+          "method": "strategy.additionalLossBps()",
+          "calls": 2,
+          "self_gas": 1700,
+          "inclusive_gas": 1700
+        },
+        {
+          "method": "liquidity.stateView()",
+          "calls": 2,
+          "self_gas": 1574,
+          "inclusive_gas": 1574
+        },
+        {
+          "method": "liquidity.secondaryId(uint256)",
+          "calls": 1,
+          "self_gas": 1465,
+          "inclusive_gas": 2431
+        },
+        {
+          "method": "vault.nftBucket(uint256)",
+          "calls": 1,
+          "self_gas": 990,
+          "inclusive_gas": 990
+        },
+        {
+          "method": "lp_position_executor.secondaryId(uint256)",
+          "calls": 1,
+          "self_gas": 966,
+          "inclusive_gas": 966
+        },
+        {
+          "method": "vault.bucketTotalShares(uint256)",
+          "calls": 1,
+          "self_gas": 946,
+          "inclusive_gas": 946
+        },
+        {
+          "method": "liquidity.positionOperator()",
+          "calls": 1,
+          "self_gas": 745,
+          "inclusive_gas": 745
+        },
+        {
+          "method": "activation_assets.zzz()",
+          "calls": 1,
+          "self_gas": 737,
+          "inclusive_gas": 737
+        },
+        {
+          "method": "reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "independent_reference.executionAsset()",
+          "calls": 1,
+          "self_gas": 663,
+          "inclusive_gas": 663
+        },
+        {
+          "method": "vault.MAX_BUCKETS()",
+          "calls": 1,
+          "self_gas": 509,
+          "inclusive_gas": 509
+        },
+        {
+          "method": "principal_exit.activePlan(uint256)",
+          "calls": 1,
+          "self_gas": 462,
+          "inclusive_gas": 462
+        },
+        {
+          "method": "reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "independent_reference.EXECUTION_SOURCE_VERSION()",
+          "calls": 1,
+          "self_gas": 393,
+          "inclusive_gas": 393
+        },
+        {
+          "method": "vault.canonicalChainId()",
+          "calls": 1,
+          "self_gas": 293,
+          "inclusive_gas": 293
+        },
+        {
+          "method": "entry.executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)",
+          "calls": 1,
+          "self_gas": -564494,
+          "inclusive_gas": 13829824
+        }
+      ]
+    }
+  ],
+  "caveat": "Every root has gasUsed below sum of direct-child gasUsed; root-exclusive is negative. Preserve this measured discrepancy instead of assuming additive gross costs or attributing its cause without tracer qualification. Compare same producer/cold context pre/post; use independently reviewed estimate/envelope for admission."
+}

@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "allowed_rpc_methods": [
+    "eth_chainId",
+    "eth_blockNumber",
+    "eth_getBlockByNumber",
+    "eth_gasPrice",
+    "eth_feeHistory",
+    "eth_getCode",
+    "eth_call"
+  ],
+  "not_invoked": [
+    "signing",
+    "submission",
+    "state overrides",
+    "traces",
+    "gas stress probes",
+    "eth_estimateGas",
+    "NodeInterface gas estimates"
+  ],
+  "precompile_views": [
+    {
+      "signature": "arbOSVersion()",
+      "selector": "0x051038f2",
+      "address": "0x0000000000000000000000000000000000000064"
+    },
+    {
+      "signature": "getGasAccountingParams()",
+      "selector": "0x612af178",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getMaxTxGasLimit()",
+      "selector": "0xaae1cd4c",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getMaxBlockGasLimit()",
+      "selector": "0x0371fdb4",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getPricesInWei()",
+      "selector": "0x41b247a8",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getMinimumGasPrice()",
+      "selector": "0xf918379a",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getL1BaseFeeEstimate()",
+      "selector": "0xf5d6ded7",
+      "address": "0x000000000000000000000000000000000000006c"
+    },
+    {
+      "signature": "getGasPricingConstraints()",
+      "selector": "0x232027d1",
+      "address": "0x000000000000000000000000000000000000006c"
+    }
+  ],
+  "bounds": {
+    "timeout_seconds": 12,
+    "max_response_bytes": 262144,
+    "view_gas": 200000,
+    "working_provider_spacing_seconds": 0.4,
+    "stop_on_http401_or403": true,
+    "per_probe_max_requests": 24,
+    "working_provider_total_rpc_requests": 26
+  },
+  "additional_explicit_identity_scope": {
+    "getCode_address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "reason": "Parent authorized selected actual-core pin corroboration; no call to this core."
+  }
+}

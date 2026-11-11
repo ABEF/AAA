@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "original_raw_sha256": "b4d4f519a2c7713ddb0579553b1ebc68a91142c24af832d5ed1da6a7617341d8",
+  "landed_raw_sha256": "a95b14f6a0cd2311ee310ca9edffaee91b17a4d2cf0a9ec94e5383089fa6fc3e",
+  "compiled_copy_byte_identical": true,
+  "changed_existing_functions": [
+    "unlockCallback[1]",
+    "_policy2DiagnosticContribution[0]"
+  ],
+  "original_test_method_bodies_unchanged": true,
+  "original_test_method_count": 30,
+  "setup_and_entry_installation_unchanged": true,
+  "added_functions": {
+    "_candidateDefaultGasProbe[0]": "c91a4eba3b8d6e0d77bc0ceedc06a349b209803b2296bc7ef217dbbd34c8f317",
+    "_installMaintenanceGraph[0]": "b75fad549a118eb2cda0d6bd2d034c0a49eb0b1ea9e143bbb6d8743aba4cd74d",
+    "_installMaintenanceGraph[1]": "0953cab3ff45a5043d9174e00107d9d17856d508c11739100d0e016c158bd9d5",
+    "_freshMaintenanceFeeds[0]": "66edfcd6a073b4cf6f3856e66eedbe6c04c4c790b9384814e1c84084d4824338",
+    "_coldMaintenance[0]": "dbacef4133808d8386270772791da3e1d5610a33a22c82cc93af941b576101e0",
+    "_measureMaintenance[0]": "5ed95b74f6f6cb5206e17411929c60a3ee3a00c3e32ccee59a8aca4791c6a042",
+    "_tradeToMaintenancePrice[0]": "b2046d5bdde58133c57318fc82e4f604efff1784acd700b75b3fdf9fcfc635dd",
+    "_prepareOrdinaryRebalance[0]": "c0c42b78409ed06d91f9615347c8ddb304d0419540207103d11626fdebb7c990",
+    "_prepareOrdinaryRebalanceAt[0]": "e9cf395bd609e0c0f00baae13d24fa14570a315d795593feaafde275fcd9e12b",
+    "testGasFeasibilityFullHarvestAllocatesActualFeesWithoutMovingPrincipal[0]": "49ba69740c10ed9b1740d6ef9a4da8c41d3829b27bf2fd855d4cc9d9d526a045",
+    "testGasFeasibilityFullCompoundUsesCapturedPricesAndPreservesOwnerSharesAndMainGeometry[0]": "9d262ab53e05230b5fc183e98674b443c14286166e519ac8f87b0470a57002e7",
+    "testGasFeasibilityOrdinaryVaultRebalanceRetainsCooldownSamplesAndFullPriceGuards[0]": "04e3736895b890eb4e1a8b01de1f37100ee9e42c89ca2a7bd83b00ba094acd66",
+    "testGasFeasibilityMaintenanceSourceFaultsPreservePrincipalAndEarnedReserveBooks[0]": "fb08df2ad1245ce92aee23c55716549cb21589b30f0afa5410209b2e559756b4",
+    "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking[0]": "b7ad3b0b95a3cf84df3011f3e35ad7b6d4c3adaeeb29bba66343c068b9e01d23"
+  },
+  "scope": "Five new maintenance workflows, isolated default-budget probe, diagnostic metric, and test-only price-limit swap actions4/5.",
+  "no_production_default_or_economic_change": true
+}

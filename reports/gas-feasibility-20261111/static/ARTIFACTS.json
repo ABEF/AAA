@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-11T11:03:06.561618+00:00",
+  "hash_mode": "Raw bytes; LF normalization only for explicitly labeled source-review inventory. Accepted compiler contents match raw working bytes exactly.",
+  "public_files": [
+    {
+      "path": "static/DEFAULT_CHECK.json",
+      "sha256": "f14d26a7052742d0ccc536209921f7c8b6e19e98118780cc17f1f147369255ef",
+      "bytes": 1233
+    },
+    {
+      "path": "static/EXECUTION.json",
+      "sha256": "12f8b58cc472e250a8d69414ecd725a54817d77d9694933ec5e81c69ce214ac3",
+      "bytes": 16551
+    },
+    {
+      "path": "static/README.md",
+      "sha256": "50d9c3215e2ec92d18f82935d17c47d60bc9a96656a093786bdb34816c49280c",
+      "bytes": 2791
+    },
+    {
+      "path": "static/REASSESSMENTS.json",
+      "sha256": "9433eda5114b100e0a5935c583bfff49bb6062e84c0b68e54bb239f738de2458",
+      "bytes": 113876
+    },
+    {
+      "path": "static-review.json",
+      "sha256": "8cd67f7cd135d440c24c6af5acf5799db50d77b3d5d77310f658e5b174fd2b53",
+      "bytes": 915999
+    }
+  ],
+  "external_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\gas-feasibility-20261111-db509fb",
+  "external_files": [
+    {
+      "path": "static/run-static.py",
+      "sha256": "2bf957b8816431c3501f972c4209153dc419d75a281dde910d84b916f09c3d33",
+      "bytes": 4673
+    },
+    {
+      "path": "static/build_review.py",
+      "sha256": "a5d466d5a5ccb9556353223e9894ab19ad559fb3a2876eb52988839cef0b397f",
+      "bytes": 11296
+    },
+    {
+      "path": "static/static-d078d01d3f/START.json",
+      "sha256": "17db59f7edf69302927b29db6239788abc605b738c9dc5ded3f51e29d1462900",
+      "bytes": 8797
+    },
+    {
+      "path": "static/static-d078d01d3f/EXECUTION.json",
+      "sha256": "a431a827f78b7471b2ce2a7d34a90df878bfcc7c44e84fa2305b891f2ee7f102",
+      "bytes": 16765
+    },
+    {
+      "path": "static/static-d078d01d3f/slither.json",
+      "sha256": "9b3747331a7cc1b2fe90767bbd8286240f812a08a7ed52962840308caef786ce",
+      "bytes": 118119547
+    },
+    {
+      "path": "static/static-d078d01d3f/slither.log",
+      "sha256": "62cca01cd46fda1794566f5e49b126ad6b0cf3fb8a94d2e4db1530b18f410965",
+      "bytes": 302117
+    },
+    {
+      "path": "static/static-d078d01d3f/detectors-only.json",
+      "sha256": "ff6bde4dea85d290574c0bc8ec7b914cb397613317a64ce3b166f69b67a00650",
+      "bytes": 45576065
+    },
+    {
+      "path": "static/static-d078d01d3f/reassessment-selection.json",
+      "sha256": "91679db3e0869138d5ef0fa829e6585ca0dc22aabb82b4a865f875c9ddc37d31",
+      "bytes": 6952
+    },
+    {
+      "path": "ORACLE_PEER_REVIEW.json",
+      "sha256": "95924499c35f586740fdd5f7217c1e92d07082985b0f39d7265f6aaf89207922",
+      "bytes": 2774
+    },
+    {
+      "path": "ORACLE_FINAL_BINDING.json",
+      "sha256": "9745f6eb327ec56fb315e8ab3f747c3a2dcb5b3433a942ee9ee28149894e6c40",
+      "bytes": 16849
+    },
+    {
+      "path": "trace/candidates/oracle-gas-only-v3/normal/compiler-input.json",
+      "sha256": "7741d92ee499a2a8bdda9ae234ffcb474e34518bb0196390d1a0d70079c68b0c",
+      "bytes": 925485
+    },
+    {
+      "path": "trace/candidates/oracle-gas-only-v3/normal/compiler-output.json",
+      "sha256": "27b773bc781f9cc9f9f4583fa8a9cdaf380c7e7c58eff0a867090a1f3ffa5012",
+      "bytes": 26833922
+    },
+    {
+      "path": "trace/candidates/oracle-gas-only-v3/normal/production-size-gates.json",
+      "sha256": "a7675199d04c4a609b682a9f4dc8584c3d622f34e554e01ab222b8cf2bfcbdb5",
+      "bytes": 50503
+    }
+  ],
+  "prior_review": {
+    "path": "reports/daily-reconciliation-audit-20261111/static-review.json",
+    "sha256": "1dbb80da0dfe8b6b41dc59f1588c724c9d0ae2402b651994538798c196775efe",
+    "preserved": true
+  },
+  "checker": {
+    "path": "scripts/check-slither-review.py",
+    "sha256": "5ecf412b62449556ae7b98799e3e2dd67099020dc85b8a749f00d444e4128273",
+    "only_default_pointer_changed": true
+  },
+  "no_new_compilation": true,
+  "production_approved": false
+}

@@ -1,0 +1,359 @@
+{
+  "schema": 1,
+  "baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "scope": "23 changed/new actual EVM methods on one frozen candidate; original source baselines reused explicitly.",
+  "status_counts": {
+    "Success": 23
+  },
+  "selected_method_count": 23,
+  "existing_changed_methods": 18,
+  "new_maintenance_methods": 5,
+  "compiler_supplied_source_inventory": 200,
+  "actual_compiled_source_count": 197,
+  "source_snapshot_unchanged": true,
+  "normal100_sources_exact": true,
+  "oracle_lf_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+  "test_raw_sha256": "a95b14f6a0cd2311ee310ca9edffaee91b17a4d2cf0a9ec94e5383089fa6fc3e",
+  "compiler_normal_input_sha256": "7741d92ee499a2a8bdda9ae234ffcb474e34518bb0196390d1a0d70079c68b0c",
+  "original_test_sha256": "b4d4f519a2c7713ddb0579553b1ebc68a91142c24af832d5ed1da6a7617341d8",
+  "raw_forge_json_sha256": "7ad0d38c6e52ff529e019ad14d57323bafc497d223d80866c84ec61a7a5e865b",
+  "raw_forge_json_bytes": 815568,
+  "original_runner": {
+    "exit_code": 1,
+    "phase": "Postprocessing after Forge completed",
+    "reason": "rglob(*.sol) matched Forge artifact directories; read_bytes raised PermissionError.",
+    "forge_process_exit_code": "Not separately persisted before wrapper error; do not invent a transport receipt.",
+    "tests_rerun_for_receipt": false,
+    "recovery": "Read original result statuses and verify unchanged frozen sources; no EVM/compiler rerun."
+  },
+  "limitations": [
+    "Controlled synthetic market depth, feeds, registry, Permit2, VRF and MockAccess; no real market/provider/wallet acceptance.",
+    "Foundry gasleft outer-call deltas exclude transaction intrinsic and network data-fee estimation.",
+    "Entry uses the original1000USD diagnostic amount; not current website100USD qualification.",
+    "Maintenance is a new one-activated-NFT cohort, not a1000-NFT worst-case bound or a maintenance before/after comparison.",
+    "Default12M and all financial/authority/callback/accounting guards are unchanged.",
+    "Frontend20% and keeper25% padding are separate policies, not interchangeable.",
+    "No RPC, node, transaction broadcast, site, service, signer, journal or existing environment was changed by this verification."
+  ],
+  "cases": [
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testActualEntryFinalLPFloorFailureRollsBackSwapSharesMembershipAndApproval()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 75046176
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testActualIndependentReadersUseSeparateFundedCoreStatesAndPublicReadsStayLive()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 980899
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testCapturedExecutionBoundsPermitExactQuotedETHToZZZReferenceTransition()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 2603711
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testCapturedExecutionBoundsPermitExactQuotedZZZToETHReferenceTransition()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 2582357
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testCheapCapturedReadsRejectEveryAssetOtherThanNativeETHAndTheFixedZZZ()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1058922
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testCoalescedPolicyFingerprintIsByteExactInactiveAndAcrossBothOwnReferenceSwapDirections()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 38504284
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testETHObservationCannotChangeEvenWhenTheReferenceTransitionMatches()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1551506
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testGasFeasibilityFullCompoundUsesCapturedPricesAndPreservesOwnerSharesAndMainGeometry()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 102125757
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.compound.default12M.call-succeeded: 1",
+        "gas-feasibility.compound.cold.call-gas: 10680943",
+        "gas-feasibility.compound.call-with-full20pct: 12817132"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testGasFeasibilityFullHarvestAllocatesActualFeesWithoutMovingPrincipal()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 82181597
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.harvest.default12M.call-succeeded: 1",
+        "gas-feasibility.harvest.cold.call-gas: 661011",
+        "gas-feasibility.harvest.call-with-full20pct: 793214"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testGasFeasibilityHybridOpeningThenTwoLegHarvestAndOrdinaryReplacementKeepAllBacking()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 157937265
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.hybrid.open.default12M.call-succeeded: 0",
+        "gas-feasibility.hybrid.open.cold.call-gas: 16324139",
+        "gas-feasibility.hybrid.open.call-with-full20pct: 19588967",
+        "gas-feasibility.hybrid.harvest-two-legs.default12M.call-succeeded: 1",
+        "gas-feasibility.hybrid.harvest-two-legs.cold.call-gas: 1016015",
+        "gas-feasibility.hybrid.harvest-two-legs.call-with-full20pct: 1219218",
+        "gas-feasibility.hybrid.replace-two-legs.default12M.call-succeeded: 0",
+        "gas-feasibility.hybrid.replace-two-legs.cold.call-gas: 16631798",
+        "gas-feasibility.hybrid.replace-two-legs.call-with-full20pct: 19958158"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testGasFeasibilityMaintenanceSourceFaultsPreservePrincipalAndEarnedReserveBooks()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 90577358
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testGasFeasibilityOrdinaryVaultRebalanceRetainsCooldownSamplesAndFullPriceGuards()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 113578953
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.rebalance.default12M.call-succeeded: 0",
+        "gas-feasibility.rebalance.cold.call-gas: 13447522",
+        "gas-feasibility.rebalance.call-with-full20pct: 16137027"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testMutatingCallbackCannotCommitByReadingTheOldCapturedPriceVector()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 5796618
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testOnlyPricingOwnsWholeEntryContextAndOnlyTheAuthenticatedVaultManagerCanBorrowIt()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1579533
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testPolicy2DiagnosticActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 120764370
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.activate.call-gas: 14636780",
+        "gas-feasibility.candidate.call-with-full20pct: 17564136",
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.grow.call-gas: 13422920",
+        "gas-feasibility.candidate.call-with-full20pct: 16107504"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testPolicy2DiagnosticActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 121617438
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.activate.call-gas: 14963971",
+        "gas-feasibility.candidate.call-with-full20pct: 17956766",
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.grow.call-gas: 13724583",
+        "gas-feasibility.candidate.call-with-full20pct: 16469500"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testPolicy2DiagnosticSecondActualEntrantIssuesOnlyNetNewNAVSharesAndPreservesTheIncumbentPosition()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 120759767
+        }
+      },
+      "decoded_logs": [
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.activate.call-gas: 14636780",
+        "gas-feasibility.candidate.call-with-full20pct: 17564136",
+        "gas-feasibility.candidate.default12M.call-succeeded: 0",
+        "execution-reference.policy2-diagnostic.cold.activate.call-gas: 14357635",
+        "gas-feasibility.candidate.call-with-full20pct: 17229162"
+      ]
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testPostSwapSourceDisagreementRollsBackSwapFundingAndForeignCallbackTrade()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 6518367
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testSourceKindDisableAndRestoreCannotReviveTheOldExecutionReview()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 4598646
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testStandaloneContextsCannotBeBorrowedAndTwoSequentialOperationsRecaptureLivePrices()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 2238193
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testUnregisteredReferenceMovementCannotHideAtFullValidationOrOwnerEnd()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 2570129
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testWrongExpectedTickLiquidityFeesOrSqrtRejectsAndRollsBackTheWholeContext()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 10131046
+        }
+      },
+      "decoded_logs": []
+    },
+    {
+      "suite": "test/ReferenceExecutionContext.t.sol:ReferenceExecutionContextTest",
+      "test": "testWrongQuotedOutputCannotPassEvenWithAValidReferenceTransition()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 5577487
+        }
+      },
+      "decoded_logs": []
+    }
+  ]
+}

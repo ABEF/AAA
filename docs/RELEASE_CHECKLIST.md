@@ -1,5 +1,13 @@
 # Release approval record - NOT APPROVED
 
+The [gas-feasibility candidate](../reports/gas-feasibility-20261111/REVIEW.md)
+passes focused execution and normal size checks with safeguards/defaults intact.
+Oracle runtime headroom is only3bytes; Vault remains32. Dated32M chain execution
+parameters are observed, but default12M still refuses cold Entry operations.
+Complete real-route estimates/fees, maximum actual workloads, provider gas/trace/
+archive limits and separately reviewed operating budgets remain release gates.
+No discovered public RPC, policy2 envelope or source runtime is adopted here.
+
 The [complete remaining-findings review](../reports/remaining-271-20261111/REVIEW.md)
 checks all271previously unreviewed records and implements source corrections.
 Initial keeper simulation work is now bounded by the existing cap; actual

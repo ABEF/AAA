@@ -1,0 +1,3542 @@
+{
+  "current_contexts": [
+    {
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZOracle.executionBounds(address).i (src/ZZZOracle.sol#532) is a local variable never initialized\n",
+      "fingerprint": "04ec5d07048d2bb93dd9853abada4985ae92ba8bdef03b346b61a40ae6a4f5de",
+      "disposition": "false_positive",
+      "rationale": "Both admitted-token branches explicitly assign i: native ETH uses0 and the captured fixed ZZZ uses2; every other token reverts. The pair lookup uses i/i+1 and fingerprint i/2 within the captured four-price/two-fingerprint arrays. Inactive context still calls live priceBounds; no fabricated zero or arbitrary asset price is admitted.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || started == 0 || started > updated || updated == 0 || updated > block.timestamp || block.timestamp - updated > source.maxAge (src/ZZZOracle.sol#233-235)\n",
+      "fingerprint": "5f52c74ceb4a7be67f817b0a749cf28e70d4fd631a51228c0645f2a88ca7b0ee",
+      "disposition": "accepted_risk",
+      "rationale": "Block time intentionally enforces original provider timestamp ordering, nonfuture updatedAt and source.maxAge. Wide uint80 round/answered-round bounds and a positive bounded normalized answer remain checked before narrowing. The gas-only change does not refresh publication time, drop the second source, or prove real feed/chain liveness; those remain deployment qualification.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerCheck(uint256) (src/ZZZOracle.sol#256-261) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- answer != 0 || block.timestamp - startedAt <= SEQUENCER_GRACE (src/ZZZOracle.sol#260)\n",
+      "fingerprint": "38dc230f0f0fb941fb1d213d799a01fc5f02e8b72f5648fb6845b3d74a3d542c",
+      "disposition": "accepted_risk",
+      "rationale": "The source status and recovery-grace comparison intentionally use block.timestamp. _sequencerData first proves nonzero nonfuture startedAt and valid status0/1, so subtraction cannot accept a future recovery time. The new gasLimit is local to this STATIC read chain and does not cache healthy status across calls or mutable execution; actual Robinhood liveness-provider qualification remains open.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerData(address,bytes32,uint256) (src/ZZZOracle.sol#136-149) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answeredRound > type()(uint80).max || answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 || startedAt > block.timestamp || updated < startedAt || updated > block.timestamp (src/ZZZOracle.sol#144-146)\n",
+      "fingerprint": "0eef616aac6b2a3497fce4087d197655bd0540b16da407de6859131d012bc4ff",
+      "disposition": "accepted_risk",
+      "rationale": "Sequencer reads retain exact codehash/zero-decimals admission, bounded160-byte tuple, uint80 round/answered-round bounds, status0/1 and started/updated nonfuture ordering. Healthy unchanged uptime status deliberately has no periodic updatedAt expiry. A privately threaded call-gas cap changes neither that policy nor governance authority; runtime pins do not freeze upstream proxies.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#225-232)\n",
+      "fingerprint": "45daa30159cdb3fbe3d1bdaf497e99aec8acedd4e464a149f8a41c99a7047069",
+      "disposition": "informational",
+      "rationale": "The same original decoder requires encoded.length-offset to equal160, then reads exactly five wide words at the checked offset. Ordinary responses use0 and registered proofs use160 within320bytes. Narrow round widths, positive answer, ordered/fresh timestamps, decimals and normalization bounds are validated before narrowing; no changed pointer arithmetic or short-response padding is introduced.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionWord(uint256) (src/ZZZOracle.sol#338-341) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#340)\n",
+      "fingerprint": "58270295e196e6621bc38eb504def01561be6043101fc1d906749a977dc92961",
+      "disposition": "informational",
+      "rationale": "This private tload reads a word in the Oracle-owned transient execution domain. Only canonical abi.encode(Execution), exactly49words/1568bytes, writes it; quote-only callers use fixed named indices and typed assignments. Full mutable-boundary validation retains the complete compiler ABI decoder. This gas-only patch changes neither index constants, storage domains nor handwritten Solidity memory layouts.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedRead(address,bytes4,uint256,address,uint256) (src/ZZZOracle.sol#183-197) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#188-193)\n\t- INLINE ASM (src/ZZZOracle.sol#196)\n",
+      "fingerprint": "73110bf800b5c5932b626d161e7466c9de70db7e12957f224d5de42e20afb304",
+      "disposition": "informational",
+      "rationale": "STATICCALL still uses only the selected four-byte read selector and copies returndata only after successful exact-length validation. Temporary selector memory is no longer needed before bounded result allocation/copy. The gas cap is either resolved per read for sentinel0 or freshly fetched within the entirely STATIC private capture/validation chain; no user-supplied cap, value transfer, mutable callback or unbounded returndata copy is introduced.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._saveExecution(ZZZOracle.Execution) (src/ZZZOracle.sol#356-367) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#360-366)\n",
+      "fingerprint": "11fefd59855abb1355e5ef2d8a618b0e7e40616beded1e595139c02fc58bd513",
+      "disposition": "informational",
+      "rationale": "The unchanged writer encodes the full typed Execution and requires exactly1568bytes before storing all49 transient words and publishing length. Previous residual words are cleared defensively; no external call occurs while copying. Fixed authorized context operations are the only callers, and a future incompatible struct length fails closed instead of silently using a custom memory decoder.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedExecutionRead(address,bytes,uint256,address,uint256) (src/ZZZOracle.sol#427-441) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#434-437)\n\t- INLINE ASM (src/ZZZOracle.sol#440)\n",
+      "fingerprint": "dcd1caaf560c9cea4a8f4f4ea3f06b3b81ec8357e436ab0c9e3018b2f1a20225",
+      "disposition": "informational",
+      "rationale": "The execution reader retains exact expected return length, bounded STATICCALL and bounded post-validation returndata allocation/copy. Nonzero gasLimit comes only from a fresh private policy lookup inside one STATIC-only chain; ordinary/admission/prepareSwap/postSwap market reads use sentinel0 and resolve afresh. No cap is stored or carried across swaps, token callbacks or later validation boundaries.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._clearExecution() (src/ZZZOracle.sol#368-374) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#370-373)\n",
+      "fingerprint": "ade818d06f681470f251d76a646ccf42741d45d15c6c01359da7f18c2596aad1",
+      "disposition": "informational",
+      "rationale": "The original clearing loop accepts only zero or the exact49-word context length, zeroes that private transient range and resets length without external calls. Successful scope-ending callers first authenticate ownership and fully validate the active execution. Transaction end also clears transient storage; the gas optimization does not add a reset bypass or leave a borrowed manager scope alive.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionLength() (src/ZZZOracle.sol#322-326) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#324)\n",
+      "fingerprint": "d79b688494330cdea00e36f30261a65e9eb8812992446cf21b782116db11efd7",
+      "disposition": "informational",
+      "rationale": "The unchanged reader tloads only its fixed private length slot and accepts0or1568; every other value reverts. Public callers cannot choose the slot or install arbitrary context bytes. The accepted gas-only patch changes no transient domain, delegatecall behavior or writer; exact shape is still checked before quote/full loading and clearing.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadExecution() (src/ZZZOracle.sol#328-337) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#331-335)\n",
+      "fingerprint": "297e776b672c43d7249cbf4a4d1ff7043a1df2826f5f61132be16bf0298f82c4",
+      "disposition": "informational",
+      "rationale": "The unchanged loader first validates zero-or1568bytes, copies every one of the49 ABI words into a correctly allocated bytes value and invokes compiler abi.decode for the full struct. The failed manual-codec experiments are not present. Full validators at every mutable boundary still use this loader, not the narrower quote-only projection.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-276) should inherit from IExecutionFixedZZZ (src/ZZZOracle.sol#13)\n",
+      "fingerprint": "2d9551119ac4d3b2e7fb60871168c0334ee8823f48522c3e5cb10fd05c4c8bd1",
+      "disposition": "informational",
+      "rationale": "The fixed Math child exposes the expected fixedZZZ()address ABI through its immutable Balancer/Access registry/ActivationAssets path and rejects missing contract/zero token identities. It does not acquire configuration, execution, payout or custody authority by omitting explicit interface inheritance. This is optional ABI declaration organization; deployment token admission/runtime review remains separate, and code-length checks are not misrepresented as codehash verification.",
+      "review_scope": "Individually reassessed against the accepted current Oracle source, full gas-only diff and exact analyzer context; not inherited closure.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    }
+  ],
+  "unique_exact_reuse_records": [
+    {
+      "fingerprint": "2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c",
+      "referenced_sources": [
+        "src/libraries/ExactToken.sol"
+      ]
+    },
+    {
+      "fingerprint": "c597bb986a36ba791849165aa6288d09cdfa88c024bcb8fa95d4c73a800f76e1",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "4ecba8661841c978b662cb6eb54659d51f4f6d062a3a8a654b9a164849b61d7f",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "70bafc396d1e8cc491bca212369d6819a403cb5ee05c1f9d6e857908a0781e25",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "7ce6b9bf6a7d92641870562275e7fe80cd52e90b37dc89ab49bb3ed35bb0f95f",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "0daf5644faf78d695df7178e9c12a0e2a30495f40efb26556fc7f1ab9fedd732",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "3f578109f1e6ad4f536bf2f2bb63c2790f8f7ac17d97360c65b9a106bffda8b8",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "172a119259bb5cef598f9bd591e5fc0810fc23830f5ab652ae1d3ac7d50f5997",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "683745c979559de93954fb8940bb13d63d19dddd3df386d37ccae4698cdad8c9",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "1e4e5b2ee85f910242a1960700071d6ba56d9f66d4ddd9e778cd585e85e0c7d5",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "b8eae13f5c4e4b49d19e31e2928013ea7d0a0f8ec0c9423a825dd810165360f3",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "380cae155f91115c1b4290d1772cf24bad9270cc463ed47ec71d6568a3d6bcc3",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "46c1a7faecc945b852f6520cec5a09dfcd2e777e550a2fffca0fa1e4b8303fe9",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "fc02eb3f42facc5aaa5bbe3f33697271cece645c7c00f3c209090bc1f883613e",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "84d7d197c0313e7e00848c99814bbf428a8de690977ed593b0e983d63e43e45b",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "ec66236a83afeb1b52eaf81ddaa8e66e2019aea6b58ec388a13d8978dbcbeaa5",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "25f16c9f6501ef360c7c5ddbfbdfa46ca8ec820ccb38517e9af249ac5132dd3e",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "e402a676be308a1a934c8b0a0cf3f9b80c86cd794fdf2e339b2c09a276cb0949",
+      "referenced_sources": [
+        "src/ZZZBuyback.sol"
+      ]
+    },
+    {
+      "fingerprint": "56c82e44d23f720e92f6bc48018c5c1dbd990c6f1ff745d958e09f92115e53cf",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "4baf22797b3fa2d2a4c50d55cd225b8c6388a43e6da8501a34760b37c6751e76",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "5a559d5a52348b05308b8241d0026aa28385e49e995689307afa9f11a24ae6ae",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "872f75573e30f1478e87e378f245c10e94431365287174c6dc5888fa265b8722",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "042dbb967bb352b3dddddafd29e90341810e0c664277d5120af1d5616901eb24",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ba2af1803c136fa844bb0495b444dcd6115e41b2f0c9107fb35dd21b0bb3ad47",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "399c6a8823aa58230e5e01a3fe6688537e60a5218fffda6954050c111ec680ee",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "1057104682005e02deab0016e4601429a7eafbc37e6773f85f3241ecbbe89250",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "e809b9efa29faa352fce28c907c85643ce6b3fe9f2cc58f056f7c83179e2fe95",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "44144ffcdf9a3d299f6f998d6c36b40f8a7559bf99bebd7414212685fa58387a",
+      "referenced_sources": [
+        "src/ZZZBuyback.sol"
+      ]
+    },
+    {
+      "fingerprint": "708f59e1d05afcf70879aca4cea28a2fcb8e5cf5c08940695fb525d5ea6a21f8",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "0f912a2d6504938b4fc39acd9e128e4845457b276462c85dbd9826c6cf14d67c",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "44e17fa236a4d8294e63081831964b7fe78bf61b56aa383e3064fd2dbcf72f3a",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b5a3a19d296c7e4cf8d5bf31a5d749ebba5950f4d774d944d4d18bea5c46f129",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "8e1cbfc2bd2ca538988c54a7ce22f6ef6a33a3879ef82ef66abf28376c40eda4",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "35acfec63a8df124bb4fc1eef163a2c11aab660b12c5480f16966e85e9ce6d37",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "d49f86625117728f9ced71d1f1445790ef91f25c76305c42dc952abebf31429c",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "13c8daf702012030822d68bab2e22132764c7813e683f7b359783733b2b50b3d",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "18949ba52dbdcf0174cc51e342d9214200a2bd3531594611c8764429235b6fd1",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "1846f761a6ad4828f748d7a216378b9e0ba67286259bfea502dbd34742751b87",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "51fa1c16fdd607dfd98b058a303f3ff5b5ac94074e23985775660699bd6882d8",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "c39e4e480acd1d920d4b3ff79eb7be81ddefbdcbcceb9f6b28388e0b55dbaf75",
+      "referenced_sources": [
+        "src/ZZZBuyback.sol"
+      ]
+    },
+    {
+      "fingerprint": "25549da2d96bf97b0d1cefa8d3d5144745639022ee6d0ba919d8750d60b1ff18",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "488ff08a9125373111ba8e1023ac6af4e960abd75835f7dde6754f463a879fb3",
+      "referenced_sources": [
+        "src/ZZZBuyback.sol"
+      ]
+    },
+    {
+      "fingerprint": "16465d42f5d586413050c13d86aaf69abfd9b83db4a53f8e570e98b7e1e6198a",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "b5ae20c7453e38e96ed431e0cd21c9a993d944dab5db4cdb6f889ae90a158edc",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "92a6db69d7c99c42cf351d11f7ec8e50b48b7b856da626bdf06d3d606c827f83",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "2dfd7b4344e18a42a5f9a6d1a6d7eb23a80e94e22635b6f743b9034c8eca0ea0",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "31ce65b64fb9544bd160459f20c931f160a3e35695b9ecfe25578535c6bb427d",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol",
+        "src/libraries/ExactAsset.sol"
+      ]
+    },
+    {
+      "fingerprint": "e63ad24b6003ac2c4b3abbcac17b13cd954d4aa316d50b5a82f5066ed9188e90",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "abf964a30b56ad1dcf817c891f432bc71b28e14336ed46734f82e626879840a9",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "175c52d0b416e060f318e7d7a6b6458913f7cf66eb3a329c12580bec84084469",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "77b2dc844d191dbd671f166bf6d6b8d3fb2b9b25c68493fca51b5709e65d76ea",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "9fa843d3727158b65d8c32cd6983d7124896e860248bd87be63c5780014bdd09",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "7f03d3f54d8ac1d9c52f176f34b62667ebb7bd88fa750568f11e57aa96ca6bc7",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "e494619f1f4495a63b7a684718aa9fec93f736ebf80c778a2ac61cbe47ad07af",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "0d5285f28ac124e80a88657b798969abe1bcbb02a4389f7726a283107cb36585",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b5dda96d6f1da9ed3654bbdb081b621c0f56671c9d66f3e65ac635d570510846",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "e4f4e47e10eee1de0da82d73e96847df066fd89edfa98942ee7ac8a802e5a619",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ceffe91c8c9f8e9e03b8bc899e7edcd70f435c6382c3a82b1b565d06b9ad11c7",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "c20776c628df448c597f85ee1908c1764b6c933fb078cb5a3fb235aba0f81e6a",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "27bb3765c72a3281f5bf80e6c07ebf6ad4f01c3a08e2f5df146fc6e58afed912",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "639eb70ae268431a84d02a746f8f9b3ab3e7233e49f66dd74240706d481a6b8d",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "9fd5fffb00e9a6a4279fbc802715104638292e4af809bb86d508ccfd57c03bcf",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a2946a552099a5a28beaceae22d62438200987c21ac6af54f68227c50fc92f99",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "25c22942769362b59c472819b52514b60b69509908a925795fe6051f950adb95",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "e5ca60758689c8ff5967193f65634368fd071dae23b1a83585bc4f01d2d61550",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "44381d2b95c60fc0bafed66d05e1365ae364462c508ffd4664e87a52b03fa49a",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7e60eaa34c24d48e3a7df9b4ed57f60c8395d5dfc76e46c4dd72f0387554e33f",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "5b42e46ce1ad51f12edc60d2f9ad059e2f306ad9cf7774c6e0ddf755b5c8ebb1",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "20d76d95289f32c13c46ba5db56d3adfeecb674264519a9aaa13cfc47bfa8b40",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "73f2efb487b3e9cf044c5b70b52cf6ddc622953e4085d542fe00a39d31f4ba2c",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "674b5ad80e908e579a9bf78817f9879d55b35f0d45c1fefad262242b40b89fce",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "c9dd99d90e1c748b127ddeab87ce3200ca5222e78b1f44bd47eb83fdc367e6f9",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7cdfb3c27c8ba8c128d6dc45c698e45dccddebc112869fdc8dcdf8902b0da87c",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "9559efab1cd3121cf4119eb1a32ab1278d97e63317c4c73e0aff30e5e9536585",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "5a3f5d9148a89436b58d938933f4885b1998ae1b56fd904519f7503cf32669c6",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "68b64d2229b8c5edcba8d4755619fa92680f0eef715fe0897bbf89a1af7c2a92",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "11b4ac5f38b33ef0bf8a72950b8fcc9f5c5fcca305664e059ac3500b7b2ce02c",
+      "referenced_sources": [
+        "src/ZZZPortfolioPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "b5d0ad980febc29ba6da843bd680302ef70fe868aed3eafa911a1c9d0ad622a5",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "defed310439a0f931b563cf6f7ce505c5e2aa26cbc56d8943beb41249fb005b6",
+      "referenced_sources": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ]
+    },
+    {
+      "fingerprint": "603fdc19e6a6ca75521ec7ac700bd25a9d8a5c01fcca5be400a946d79ddfca0a",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "edffe753c85f902a04ee56d4a043282ad610fbbf87df0d03d233c87562798bdc",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "9191fe5ec058d9529b6a183f490023f12cc036ec7c8731b6ece896126a93040a",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "3c5449d90c2827c73de214472ce59caf40f25a7e46f10920f051c01572f51b1d",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "b80e6fcdb00ca95bd4c28bfc23b2ce34354322d2736a39401ab48dbc0ec0de37",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "6975e4d8df3316738dbbcd9bc6f55019df7f12b29406c1c4903a4a4f3f9d9d93",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "8163fcaf7f2b56bb5ae723c0e8117b073481635546c71e5beb065c4d55af4212",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "50ac9ba18c16edf3a13f291726e6071def5d7195d9b36e5764dbafd4e7dbcce5",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "441527df6421ed2c6cc02c076fdd649266bd8752c022c65434c3e59b600fb5eb",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "12294906635af2723c2a5491efaadce57d1a370dd429fd55844dc78db7960c0a",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "91d9af64fcd147bf8f73593b05f6093263881b183c2e353f95b048f674291bb6",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "4475caa739f2c4781cc75b5989edede69e1dfd5b092277c7ce04b890c617d5d5",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "858cdc594709ba16b6195cffb96bb8f1ef731bd07785da3c881e4b1f2762930a",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "76c08e7662ecb2713a628a6d54a10e717ea5d9ebdb1d3f5bf2e9da0d366944b5",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7b1277f339c9ad09af44c2cb02ce6a71fb3bafa27a39e56082c5817a9a35f076",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "417c9bcbbd5a341c70046382787366f07744ecf7c877f708220dff2f24b031ae",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "b1c18b9fc534b4bf74504fd5b25b6ee606d5ee19acc67529d6284ba93ff2b992",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "66190b110e6c30693f8f2353c192ff8f45b78ae6ce491f4d593902f0b07ff14b",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "6f192a1a468ceef9702c6c4b31bea9fc091f5a50ef8884d8af76572fe4038867",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "7696ba173a0efd667c771e6d226c3231e11e27da2bbd849105beb5031d974f2a",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "439cef1e57ad029916d3bd7d48168285c254760136cf18359f9027fa6c4b18fe",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "e86ae7aafa35e466de8b1a2b35ecc63a6cd6b62b8e4f7d8ff3d06a157eb24bd7",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "03e67bdba38d4e15d8eac69bc94d1d11e558c8188cd8ff650ed030d9c1f0e807",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "9f8b7a6d46d7934c6f5d6b71c1a0b5c811bc6019591536f2dc79f887283ead80",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "95cee8f17bf2f545efcb3f9e07c7c10c5084e3bb6d2ad6e54db0dd375969e685",
+      "referenced_sources": [
+        "src/ZZZRewards.sol",
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "dd4b2ae65a99524b367a1eaae79e373025b458942d483617cb708371ff048e40",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "bc857e9af6260c3d2265dc46e1e15832f211816f4c3c4eacf01c64e29178f8cb",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "cacf23aef4e590c19787b93695d5f7fe7c0679eb831d17b5e3766e8ab568eb59",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "c01c0b55b5ee4324aade4cf7b3c56a08cb5b2b4f40fada3208e855ab3ec10dba",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "9363066d2969e48924c43fd82d2bd6defee2eee24af56102874ce3c6a055a2e2",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "88143e09b093164e33d7e6770774cf6a1f2e72adf19bcde906d12f2a4a22d386",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "d63796d4c39633342bb8ef91c1ffff19b3dbb7368b60001879dd72df88c51340",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "dfe47d8a319c4f13f296f378a4de69e592b55c5ca9ca4fb4af0937fad3beaa26",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "cf062819507110bc7e004bd0d40e493cb3ea5ffdb8079a6c47145d53f98b088c",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "4c9886722a1a00d978e23b676f53cca5181743a5e61660a6ee5cba6020ee7395",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "84db0ebac32a38b1aad9e8be127e1506e354528661622b082f569645d704ce31",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "ac4bb878f381d9aaa632445b1522f99ea0b2fb14b960a008920f9a11277c755a",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "e1121aba493771388219b0ed6e54db7ae414c7b56f252f6b7069d086c801e1c9",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "7f3399d1bbbf34fec9a2c8d254d36ef883fd666ea5985e94060f871d64e93f38",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "d5dface123394e3e58fe8e98ee1bc789d09a9689f985961019294352eee37eb9",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "3793cb1f1b2efd6cd2c8047ce3dff78f853ab64e9b63dd0d2e4d78c51fae8415",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "9150e44d48ec8ef271b842ec6ef13a20736ff55582970ddba82f8fbe08998223",
+      "referenced_sources": [
+        "src/ZZZSeaDropMint.sol"
+      ]
+    },
+    {
+      "fingerprint": "9bda90b16c67a8d3efedf8e2351ae75edf2605806821d3039bdbce1f45ead9bc",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "58a3f60a71a9f07677bdf15136888fde882be4e067c76b3d2ed75b46ad523d24",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "421c6c1fe6f2171d3c1b8c34e56a79d504127dc78279334a805bfaacc5c9fdbf",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "f7ad778f811980c313953088b8bd47d5dbaf79f0848e71d077b47dfa5e13dc35",
+      "referenced_sources": [
+        "src/ZZZNFTMetadata.sol"
+      ]
+    },
+    {
+      "fingerprint": "77b3a0465b99da503ac64a63e9a10ddfdcf1008c1d7c3a6e907b7f42e46bbe4d",
+      "referenced_sources": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ]
+    },
+    {
+      "fingerprint": "f3a7929608f5eb78cf6864891403f634c8cb0f2ee7755afd1975e63746a4f4be",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "24583d2b0842a0f9ce7a1bfffdebb8f89f551e6b7d039fb29b06e5ed7158b580",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "25a9de8a43e0a1d32eac5067354cde15dd6abba7385c1a2c05d44cfa2af6391f",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "552fd3f3eea889a6878f521234971a87dbd90960b2821fa1780ac655e5396f66",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "4e2c5c10767d9c0864913c18b9312d21184824999a34b4d09877f5e41d4bc99c",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ca4a21403406ca2b252812e8eef9bdd3f695655fa3efd65e0829b6977a55d635",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "0793aa531b137bf13ebaca9ea2dd5a921518c3687a1763fa849abcc693a30366",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "e100bb142e74311a59d4b2fb91215102536f2f2b4c89de80f22732d2e71c4b80",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "74e2c91dbdf7acb38105aea3b3493752b8da0cc37c9a3b944fca9915f256aa3f",
+      "referenced_sources": [
+        "src/ZZZNFTCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "1f9db8a75f6322280bea316c5d8c632ffc373513e30e57600c465d4617e4b84c",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb1e6591d478b9a7fde9eca4d8eb53f9762f2726a34165d2eddb2f5c9f374b4f",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "b8309a803038fc4adc8907358fe237607f981fcf7724aa570766044dd23186d4",
+      "referenced_sources": [
+        "src/ZZZAccessController.sol"
+      ]
+    },
+    {
+      "fingerprint": "ae33705560449cbdb5454fb3f7309728c78c27e2724a5377fde0c8228a6b575d",
+      "referenced_sources": [
+        "src/ZZZSeaDropMint.sol"
+      ]
+    },
+    {
+      "fingerprint": "6d46ce7cd32a9736aaddb8c103972d1c096888be7a17f195f47a48d241ff0359",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "f5c8f82001ed37fd0d0a04bf316afe26668aad4c031a5bd60e710e0d1991a42b",
+      "referenced_sources": [
+        "src/ZZZSeaDropMint.sol"
+      ]
+    },
+    {
+      "fingerprint": "b2614cc01c6054e2ab8c3bd06203bded131771cbeff0686a8bbcab2830aa4394",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "d5b16cab93996acddf045f8f219cbc3187ff7182118a4b469fcb377b72981e36",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "26b6564b17fd62ccd0e68064a201661955d941fe6e90081f45adeb29a9c07b8a",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "ec65def5b200a84b33f42f6392827fcd12882b8a368c65e384c6b9e799ccc6f1",
+      "referenced_sources": [
+        "src/ZZZBuyback.sol"
+      ]
+    },
+    {
+      "fingerprint": "304acd991487767e732c03ac7947d2498cbbc82c767f95c08625f51c74d23bfa",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "59701a90e7d2a6d73c97d9601e5e09ccc9b9be68561f16fbb301015fd39c7852",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "29cf4112ad02ed4b43d0dcb14a27a1711c8e23fe1fd6a898fb9f6a013e3e0a69",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "a9ff38ccfa391617e56121c0e44cf6b099fa64f91321387f66982bf87e14e31e",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "97e31421b9e94303e12d1a345f63df6b00c0822b82fc50c45b1d9af0511d74d8",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "7fadba6f04d1aa44188834f9c20e707aa31bc2356d0f1d72408f1a12b4c4c99b",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "d05bf733c4cab23fae66417fa661058accd4258929bb8c929ea3da1d56120fdb",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "765c2419bfeafab1134bb86130650e0891123e0a2b5bbc752ec0c73a1a4ae894",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "e92acede96aaa1f68af19e66a4fd6121080e9db7c1ae925d8f1b639a2ea431c2",
+      "referenced_sources": [
+        "src/ZZZNFTMetadata.sol"
+      ]
+    },
+    {
+      "fingerprint": "a3d4f2c0ca1dca41574bf9643645c6ee62e5845e3741df12cfa194cd5ab0a219",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "acf52ecd14715f1fd7c0f7a91a365d84f6677c0aebbf84cedc1fc0b77bce2c7a",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "1a8357cd0288f7ad48a7f920b3504979dc0ef6738f4cc22d7d5e01d6cd005a96",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "1b38f8f2e07b74d40f83e6e6bf435579e47daa64ee9d7848990f853792a8c994",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "809de95f5983d15da028b9d7ea3fdc32276e265006113c9d0e187e00731f556e",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "2b88c07f504e7af1e29c686b7feca31f5c21d1b6af4b0a77624f7fd95bd55ddd",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "d17b73c4e6710a6c4bd7191bfa0c0e06c74a697ff21884db4dc513f38270916c",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "5840b7922cb3c0fc8669f43dd601322257045b292f118447e8273fbc64beefb0",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "5c8da74512f9b4747093e6eff118aec11e879de6d1db4f30aa5a0fca56d92e1c",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "9f62888e0da1efda48b4bae5b89a9414d8ac69f45ba9da73853098f641fde8c3",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "1b008d7cea84b1ce0e4b20973352b8f052ebb600cd13350ae9a49622b59614c0",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "10f2fab9a3e9e24dc577b7f7f0c40c75ddcf7ae78e2b608ea5b4fa5592cd7271",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "121ebdcc2489dfd20dd5af25723588b96bd529d3d51e9d727a46770bed31dff5",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol"
+      ]
+    },
+    {
+      "fingerprint": "c59dd680b69bf9f8ff1d6e8b61bd43a0f167ac02b950d6317b15404ba5f337b0",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "2d1bf180e3f8cee3f4dd6370dfd14101c85d28e198b9e763b3a283a5009d6ebb",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol"
+      ]
+    },
+    {
+      "fingerprint": "4acd5938f875215ca41529c891ac6e62fc0514cc4877d1f801b660ef7f5fe0b4",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "02602fd511bc0d7665c683231da7c246d247bd00c69ca7ca1b5ea16b51cf7b71",
+      "referenced_sources": [
+        "src/ZZZNFTMetadata.sol"
+      ]
+    },
+    {
+      "fingerprint": "3ef28478b993b6c5bed173c47c956864d5f20588b28ce767cc3f315b92b1de41",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "5dfe2249c459a784dc4a4b73c9169c0f8645e03fa2be2b1fe1d644035b5fdbc2",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "29098b7899939bd2b2ed01de54cde0f91ef59f43ce435727b792589c21a91c72",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "a1f5489e64d3af9a1a9d79653784486c418deb725899b0123fcb468f8b7aa6d1",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "d3e86927bc4765f963b4c55000d931fe138ed42c5aa092127ca9f78a8eaf6e5f",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "0dac3b6d05b12d9c5d5584316fcf0e02d0e08f7e29b01be171a4085aba023c6a",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "669a826037d8ed04a7082d15594614b591aad4f79a20c5006746069d735ff9a7",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "3884c43b3e867dc5c11e7aa6747d0267225cdaee5fe6cc7242d0f226b08404d0",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "5b6e144334e8ae1ce9a2be365f5b7e9c548b95adb79eab3d6bcff4d036b840f4",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "57e3151c8d0fea9130dcc4766cc9a58c90507d77af8009a3fa0c7778e6f27088",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "5562094a38d5a3b16bfeef7a73201c767ea5e2462dc520a2b6cf0ce7c2647b49",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "78262a19a1b2eac14c90e87f797811fa198660342fbd45d0c5a60c415f66b97c",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "c54b3f10a399b1a7552eba7a1d1eefd0d2d531072d61ac714534e856ee016be9",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "bf876e7b0035c9d03c959f2411ee52e8154be6bb48931601663d89b73f53ce2b",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "6ce0997207bc4655ea1825a382a8567e62dc8d60c01e2a3b8a5c4e37c1fbeba9",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "c671c94910f41a805418b5533740fc6014260d9cf1f4edf12aeb605da27a72f9",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol"
+      ]
+    },
+    {
+      "fingerprint": "a122c120a5a717305c95c22a96f78182e0e86c92ec42a5587c08065e96e0e9ca",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "84152d919de6f3aa2c4f6579e41a5db0ed4bb376932cfd8852b16962b214bf3b",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "ae7d0cba1086d8b627c58c072e9b417aab6b6f4805eedc42d1d6d749caecd614",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "01614d7056074bc6555202e660b38ff2a682aa103894f80a3d66c5acf2af6fc1",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "447b00aa5095dda99f1c8f981f194ddd80d404dd028a5326cdec1482639e52db",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "00d05520f7ab55edf8be29dfaa2ac8da8dc5812e37b02b5c195b9d0b9be28b01",
+      "referenced_sources": [
+        "src/ZZZNFT.sol",
+        "src/base/ZZZSeaDropToken.sol"
+      ]
+    },
+    {
+      "fingerprint": "ba709a25ee0d2ac0458516c040bfc37fe166778262b04f3c2ece1d5ac06d196a",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "264eea7ae0e6924f280775a742d1c342304492f7f1cb6a9a6a2b3ae7ad5c9c10",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "faa9240c090a27dea7830c59d6bda0905124a291307ae9eb02a9af75ba0e5ad9",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "7b87f6193de3cee3cfd9a9225681932706da7fe2ed71b8b2c2ab74aa70b33d27",
+      "referenced_sources": [
+        "src/ZZZNFT.sol",
+        "src/base/ZZZSeaDropToken.sol"
+      ]
+    },
+    {
+      "fingerprint": "47a8e44b136b765a5f1c783eaf70b5dafbe44314b8aaffd98e4bfc53796ff56b",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "c4de7bea9026684cfc921e0c7b855a724d49d74da970ff668aa29cb1ccb6b0cd",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "d3259d4f33a37529a3d476f21e44b9f54e14e6215a79864e8fdd148efc6e4dc4",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "1498359458a51c9369623f453865af7c656000a0cc30ae1c825687ef0771b4d0",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "88d265d3e0f5dde1039b5b69458fc905861f5eadadd9adec763874cbff8b8c00",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "3c255e0779f6742f7bc242008b7eb4fc24ca9301b891fbb407e82951b5d853a9",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "4e6e2da8e2e3d24d2302c243ecc8ea4bcb2e734d9a734e5ffcb63d29638254a1",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "3f9eb81dc0a05c5ccaa554a811093f8f63d96a9309bf568cee62122aaf9d1c50",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "d098676686a44dc8ee27986e62f0dd546d5a25a6cac6c402f8a699c9c9ce5ab8",
+      "referenced_sources": [
+        "src/ZZZAccessController.sol"
+      ]
+    },
+    {
+      "fingerprint": "89d5e60cfd98ba2a4faa7f2991279acf2b34df7fe3f0ebac36df0ecff1300163",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "9750adcd61289de9eeadd0e5e7273043147b1c0075522a815800ea7b5222a8b5",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "1517c9aa1c02dbbefff7bc7a32977516557524496e9af36f89119ba93a80e841",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "a86d4f9b65cb1a53c52c9a03f6d0961ccb8c3d3a02d756316d3182c6d0ed57cc",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a1b75ae2f204a3a370e2d6c0d52d51f3d901cd1a459940884fd6512ff2949958",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "3ac03875b222418c70f04bb749e05605af8bb0a754dd4944e1538815862e9e6e",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "9994cb256dca14d3f3ef93e8c800f823313ad8846d1b102e3b72dbbf312dfc4e",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "ab428f31e7618153f0b804c863b8d0c20dc039828ff6bcefe568acb0fcebd1f5",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "2013e0414baa141d5929bf7198dd3697b14d2e8f70d63cfe5f214f1588d93eb4",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "c955045835ac0bc546a4d6bfbf9c3e8ec467ce470d57653700a31d86ec7fad05",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "e3dca5b281b45c5b9845216b14ec0ac85eb4451ca35f8ca1d30f3ce06b169f5f",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "773810373666335d7b9d458525283e178419482008ae29b5d27294891e8d7e7e",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "425a05a3ea9615235d5d1e5d70c66db2f377ab03fe970860300a25b20c03a888",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "334e7ec2af09a7d81bc1f26ff8f8d812de33f1f77b73950eea46a35442016e31",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "d58d2972c7863968a19f62684709627ad8e8dc6bbb30398901b1e9877a8bf1cf",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol"
+      ]
+    },
+    {
+      "fingerprint": "bd5f590a70e567d3ad2cf2965eba1282c17b71e8c72a4d5c2ea1b9fda3a6aac9",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "0ec9a3f72d746116778a3454a8d47850ec5a8c997d02aa02150fe48bb96238f7",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "de96b9cb9004d3d04badf9afdffbf6a72927f9933f4349054c924721c888e928",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "526860173c6a356aa129120b0d1ab8b08fa08159dec09e502ca32cb83d5c1a45",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "c7ba6f1a271d7bb818b04e1a14ceb6e5c6b0ef7b2fc66fe3135ab9ba9a2f43e3",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "cbc5de9a848aaa1b44c55fc22f52b8978733b35ea4524aa6b50b518b53b60243",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "81c2ba4f504fd443282a79fef3e2bd9fc75b5740c36600852e1b7b7e76b1ba6b",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "4e9106449a0446f5009448b03de36e64b9b1e36b6bb43b8cde3536f313b8b37e",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "e62148015e33722a514563e02f89ea1feed21df3a08593e4656f53994173b775",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "67d963024e72f53b63ca992605487137b72a292331470f59180296521fe261c3",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "71f695be2051361c9a6ddd11c1f0c18c5ec6d532eb768affcaf1016d45872375",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "0660c5ede24d0fdf6482b3283b831e9930ed3f1b24eefcf8486b7e7bffce12a8",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "f4b954f13000d874dd0439d67c915e7d3abcfdb27c63590f5422f18540800b07",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "b91443b6659ef7bfe787344de340cb37cc5eb012b7083138c019e731193f6593",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "89b7d89a30c894b77cad728a2cd1ce2e93470c45d0d7df46a828ad8d4f555f6b",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "925645b45100ee04c9b8647c88bb3928a9ac7e08abe56ca74a61d271d997ac2f",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "43625bba84a48ba354ca3261122ee57bda0ff74924df6adf5bb03e5815dac2cf",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "857923808a7862404a1dc934b1e3323c265260c42f59454140c8f1e8f0c37ce8",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "d5d5964ad7b85d1d3abeeaeddd1b884e455b3a71ddeee85d641382a34f8813c7",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "0b044eea04212e812c997adb6f4d7e02ea9b3d99615a278e13fdd58c2c1d9edb",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "63cf238313ba48468194830938cb7c2cb39d2b155476e927dd386f6dc5fa94a5",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "42d5fa44427bf6744b804f2e1daf8d774c603c34ba72808976922bdbbc4aa3ba",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "e1d82ea5bc116ab0793b37fe629e1187f9a9df5b93480411d3901918eda8ca16",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "619b9d403a1f4f36e4bfe85650318baedb63f3dbc7f9f7198b5b228b8a94d4f5",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "8282b18daf9291a7af6036385e7cd48637e87afad000a6c9a5b3de2e930cb768",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f65c1301f19725a08496a10a308daf65e466184513b6ac40d11b9d0c6b10789f",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "0a4de2012397ff7ea56161baa21ceb27fb66b865c967c6fc9b838ea37fe17fc5",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "8016413c4ec65125c3e0fa55624b3f5e1dae2d92745887a89987ff80bf7fee3a",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "9ac11fa42260ef73fa5faf1f3a4825e31cc7eb2d8da9456d662a21fd900446ab",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "5ff565eac0915bb8364c356191b9b23e697dea458109750e60be6d610a608977",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "28f0fd8b4fbb28e0aa9d9a551dfb84111214d1cbdc944067915f978e7dc757f1",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "5bec158854b95641453c67dece69795923b51173cbe709576a5e8cc982e86d86",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "e42a331c8fa28f216d53662380a521526ba850ea894c5894b334c0647c68ea2b",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "8725abc1e02a72eed8065822e48c00d2a5ed49523c6678926c7aaae9388c3a4f",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "cdc725afa7cac897245ab3e914ee9aa73fc75b60a2181bf658d2b1e6e1bfa10e",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "8a04ee23db6f08ca8488128f8b1612ff00c3835b6a38fb5c1cf7c4a027cf05ce",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol"
+      ]
+    },
+    {
+      "fingerprint": "b597784cbddf0f7e749c9869a03404aa4b2e87d5fd6d993f3d9489f19eea0c58",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "251c4f44e544771eea214e79f7360376daa535d2e4cd74556214f9199b22567a",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "52f72464398bd046e8a0803fdd0c8fd8a00b6d73b98c6373844489a01a4e30df",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "49b364eb14021b21fdfb54864e0ea3b04d89652d212db1e4d8513c526395648a",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "15749e554fc8ae366367d58d7eba6d30a7041a5555f40d914b11f0aa1ed422df",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol"
+      ]
+    },
+    {
+      "fingerprint": "b895b52dd492fcafb0c146ae46ada0657e2ccd2a158ac2d573fdab1d35a8cdb2",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "52d48264a899cdf39c11bd469ac441ba42008dd7aad4ddc4c23772b2ee91d43f",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "0942b14bfef3f815fbc362f82b53238fbbdab1e7bce82f0026b07c4f8d4aa210",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "74a62247587ea12e889e905bddfefd6268e796b72cff56e6bbe1cbd6f27bdb2a",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "02b379d2705f9a7f5e43a5c284df58835961ff18c04cf63274f519ac709daaa9",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "2da41d0b94804249b3b99563a8470ac48f265ef89f1b6fe0ea872727ddab32d9",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "b35070dd978d97105c6fc881443d641d6ebb8e9e39e605f3bc6ef15006a2cfba",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "afc657e6859d2c53f9b38dfa21ca2d1b0a7bc85b1174d639f34d3375477bbce9",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "97978cf38dfa76810fead8f24af19d875632b71e1e1f08ef40c8c8f80a0293ae",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "050ff2d0aed590da0cc82f9ef3b3d850f7eaf9d59af74ed6ca876c6d99d21391",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "297e1fe0f02b7fc905ae7632f227ec52cebc97aeb24cf85249f3f70c47a812eb",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "621add2ea39e57f3bcfd65efdb49149baa6e2284eebfea44872a1e1b10e0cf24",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "31d4a39fa8097d1f2e61597c73ff18d78b2a45069bd746aba54d2d3d23126145",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "13645a1b24475b07a22bdafcec25719c5427341ff1b470227f87bf057db930a8",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "6af4ed1fc9b1c52365a8f96fc30fe4eba73a81cfc3e5764d6852f8c188b076fb",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "2f9a25e25f0dd355b684cbefea0fd91abc8d143bbd7fae799b8295ece4f5c0fa",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "54379576c448aa7227de00867fdb6fc9e4af815a2c696af666528415b0de95d9",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "3786b5c491445e639ae50f84de78d7f8d102b7840931a2dace42569550aa332d",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "f678316196fd4ed3ae2114747aa1cf7f9f60af0ba95aac02be8ea469781eadb1",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "fe2e998b3d218358af6030b0c709656a5ca4c679bcb26628f88801bfca32bde0",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "0a8b2dcc1daf9bd325d515696a6c083aeb5e7d078f44dfe0ef2b9c51094174fd",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "d23e5f4c392d0fee96ba496bd204d330722399f03d9d0d8b237f02367df675b0",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "51f48eb1ce636ef61a1131a7528cf9ad1e7f27ab2153de766c4712851cfbbd39",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "80385a6b7838c2cc22b5e954114103831501557fc96dbfc7cb3926dd08a68c39",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "958a9fbe8a197a05959f8406a352ad52a063d004342fb3213e3702ca995d004d",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "5b2dc1978fed99d084fbdb4547da0fd94e061ee2a05d3958d3b391fbe57486a4",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "377318c5bf7892fd9df194f5cd8bf23a04e4c764ae50102173fb426ca2f2bdbf",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "4a664a5f51ad457745049182dc1b1cdf8f9697f9270187c5cf05a3146ad61525",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f574c5a640cd3a283a35b83f8e6b52804a8e83daf766bc99fccc8d004e0ac42d",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "46d93fbaf3f010d05daf5f541178e54e4fe2d99fe8ddf6dc23d99214b731877f",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "905cf8131712f9eb13af20ddd58231fbc93977f316c9bd59535053a3bd90bc5a",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "42fba44ac5ff33e4162596ff6e49acd0270466f04f484536d3ea4333f0806265",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "c4f18a820947c4162344d884cf41e6dcb0403d00b7e606583357273a95bf32d4",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "4b5bbaae6a4f94749cf9488bd41a344370b426fac75859352e04cc6a5a66c2eb",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "94ad3e746d3955677413f4b6315d9e8934fbac78f3cd7845cf72e84db37ebe31",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "877910c9fe587493bc827925ca126cc03843e8bdca2252d0a4d84ce54216eb2b",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "106a9171fc93a977504a2f17bb98f0e3ae72b5de4c62bdb9353bb985d055828d",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "47d634320fca0c1cc207eaf8e6bcdb89e021b7f61c79c91e65ae98ac4f0a7fcb",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "cedf97cdf1fc037e978ea5af7d6ffdcc8b75878e57fdc20a8e625afa8ea72da4",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "3c0652da0e984e34d0c741c76593aa43ce79418856c7d70322ac43e04401edd9",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "d99c3eabf93b5e815ecf9455e9da408b08640b8ef7df6eb6e511d4c6e77710e0",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "5f023edb095dd7543d262e677af91a3061f837c3985d6c3f65b311e6036b9c98",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "765e6b031b41eae58083445666d623cc7021c454d0f5e5884b6a96051160b1f7",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "bb5a7249d085e3abb8b7ad6a838c7b0291f541c73c0150ab4cc7cdd2f95ae830",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "f70fe982cc1e76d715fe8749d38e22506261965c15f7d9426f880c992531346b",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "283f5d6db3fa97d7b615a56edafcba325148c7d5aeab0053f151b562852c7324",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "8cbd09e891212db8c252218dd71f33b4d779d11b3e67991bb48c82ab985e729c",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "d5382551505b9949d2491d094c0220d2638b8bd47f8c0849c881cf1b28599af5",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "4c3648721f50924df6d2c135d77dd2a92a1949f7b90feb870bca2e6fc1c13052",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "0a9d1436be2ea27881ed15a24be3370964201a41978fd4a20488ddd2774881e3",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f65597ca313c1e70b09485147cf80fd33d4a61bc4b666d762da3d9377cf034e7",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "7cfbe51436e953c419de98bce92be31bb74fec27d885a5a401224da4b4562ea0",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "3a1d2da9dda3b653bd718ad1d24d51da022401713b8a1890f021161dbdc27556",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "724eb3d4810bd78b001bdbfcf5655faec5727b72a165168f57b6d1a297fed35c",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "fc068f1bc299a35a679f459cfd64025cac4c954f36cf9e0eaa63f6484a387447",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "6f97b1adf2ddf84b603d97e40118bee9c4ef0c1a67a3862dea43115b4a368836",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f2258b38c85dfd673475cdce829e7f5eb2cb95f874acd4e81c728c2c5cced64f",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "139bc59cb7206be6f418ff13e8c153425ae37a17b35d73bd5a09cbf216e2068b",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol"
+      ]
+    },
+    {
+      "fingerprint": "21c76177d31d50af3ed7f516e22b01e5820e8b3339e8d19dc209fdb59bd91bb2",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "b1553810e00014bc525f608724eac59ac9eb9c737d65d3846703d6a392d2b2a6",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "870f466a4de21da819c008b4ef9926121586abcae4ea7cf64d6a3ebb172db1c9",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "753bb29a2f66be219bd88c22507104f698cb0195d5060bb9c107d6209104bc84",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "7a6429da44179031b9d79edb1800455e6430b78745fe844b05d97dba7b64245c",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "615a46be552e9013c8a4823bfaa688672f6862f58d2521fdc3ad94d9e9b2321f",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "61ec2f6384d934ba4240b737765d7ad121d1bfef29a49dc5a1cf9a9a7aa9a408",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f4efa573f1a01ca0fa0236b7a2f5e36ab422e5600049b9c868017d9b0f595aa6",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "1a494fc45a5f87e452129cd6960ddfa5619eb21e5add5f10b6cfee60a1a57c67",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "099e64cc02b7d0a012e031fff8f75bc59f95ba33ac7be24a0ba3e74c9f472653",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "7c0abd83c7a59ab27047ed736578d49fe09e75c535a3f0e9657aec98b1cbabad",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "051c3c1b816d87dbd0cd8fcea2c34f3082daf6ce4f42254f00dcb5cc6f3fe841",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "8dc39ae06629bde9a9b2a5bd3720cd5668365ba03ddeaee0f8f7649586c81a25",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "8736b2a7f8aaacf2c6961756f359c54e410c945b64edb6e8ad2f7d80dacc2a1a",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "d034a8feaa2c028807afb60949a65316025fcc58e317451324e60a6a1de8e949",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "cabd9491bd0e0c912bbbcb850192c8ee31a3103f6d7390637ab967b91f2a75eb",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "c2b40516cb82de87c61ec5f867bef0538a0ae8c4e9345f10cb76a05c10ee9ade",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "58e42447e747c6d7aac8bf27eaacb12b9aa67bde5aa9920e269a772d3f3ee239",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "cefc79d81616523d9754bacb4bfa6c5ec1b496280b7430467757209bf6806edc",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "644a2d3d332398f17e23f819dbfd5518f9df11b2c70d5b7fc482e0ad96ca70e7",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "2b645552bc518690b08a2beca130a43f92272d2a7425f790e3f277c5bea745f4",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "497a5015d7a6497ddcb5c47888be4636cdbe6ca796050143a6b9cad831af5ee8",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "2154186eb4d1c8a4444086d20296bcf8de42ac852db7814318d960cba9f86d32",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "02e0247ddf78ff98d34e972006eae5a6002eded0486ef1160d0e14fd3c1a71e1",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "9a02ca2b27e019a6dc5c4bb24fd0df619e1056b146e62c367c991b829a35cc81",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "65add6598ca40810f3edddc6f594a22a8d4a90048aa6f215541aeab3007aa9d3",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "318a27f21313d2990749e036860489f56db3c76e954210fd57c13a4cec0de01f",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "bb52728f9eaadc4b0c3c5e0ff96fb0eb1a83fa01f3e5351c6e4666906f56283b",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "26d300d90414ecf537ca04246b1f25af9f8f457eb654688bab65b26795bd10d4",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "85b099e8a7c3a0fac65507e12b80867937b5e0e51b2f61b8775e3fc246cc3581",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "255d43be7b7983b5ca1ce0a59872e691aa47cc3842b2775fcda071f8c3e1f606",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "bd4e81e6cb804834a25997e56ce01cc3c8e07233a902efa36551f7b1a576cb04",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "b556496500f071851baf199b9cf7597473c7afbabe2d231afea6c9508e312beb",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "99fec5794b1b0c530cd1e5731b84ccb8b02d7695a490c956308ff65f46b38b86",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "ff18e30e6b8564ea936edef0c8deb495914cbaef9bdda091345ff5bb6cdd19b4",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "16fcc4492b281270d7f5b09b0a1addf721923be87a9d3976355483915b0c099d",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "53c573f014a7f179e309dba95493f2197d73317f669b333d4446733fd62d6fc1",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "f1e720f07b071c5094f625c7437f210376cb6da3f57017917a494aee9c0c7942",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "40e0ce7afd50ac74e735385e09ef67dac33b5bd559b3bf6764f6522b9a6f8626",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "a9dfcdeb367492f73f02029fb4ce9214f6cdf8657de77647f8cec6063c248670",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "78e8f229989833a7d2f012fe424ffee85f7ea2d1e873c1f04119075ee2a65078",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "b299d2cfab8535f78ffba84da2ff3aa3caabed36cace2a4b0a2821848ea2efcb",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "47d2303e27a0362796d22735d26a87ec8c348a658aec0f61fdff475ec5dc6be6",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "e02ed767999c270a145460f03e6595364171913280148e015d8445cbafa7b049",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "2960a1ee6f0c9c541c554e33a4060eecf6ba59d0d7c8aba67bcb658a8f5ead73",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "923903bcc24a4c72a7d932e6367da551ce4075d43660f0cd8d8aee1c79256196",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a86ef7fa5efd3005b28c325cff25bcf29b0728b7397fd12c2c30add1abb5519c",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "82eee765841fbd84fa9888a5e1255d5b0683cb67d7c2b59781ed317160f59036",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "97fd34522b9aab8fd770fc1f8f2d90e7af2b393b8a42d9b68f6a53e4637737f7",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "a78635ae2d97d6d86bfa5ebd76068489718bef639eed575e1fe08c8f748f5279",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "f9264f2ebfa6c19e2ae2f34864dad7dbb398846aa8dcdb42e15641b9e0fefb2f",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "55943ef3d80381c8598833dbc221aebc0663958b3e4f9d7d94fb5256794a3ebe",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "6e9ff5c90aa585c3c9c48db0bd41ca94a1e89c456c21f5096843dfb2943dec71",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "7809d9c17cc00fd31f5fa95555686476d0044558237f5270f920fa0ecaea1e59",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "6ee36db4f028499f1f91e7d8012628c162356ca4112ac86ac46f07444f8d1b32",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "ebacce9f024c7da70e40423faf8e2ab79f19920f597a0303af0c70cf06f8a716",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "36cf5be6fef241150cff6779b7292339d16c30923cefbf5f6fdf7153fc07b31a",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "1fde0ae2e72710b5d613ae3ed0605cd0e3323028f3c74be5db71c86c79d882d9",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "299c80d12e3aed67c53623359d7fda64c78604a36735e6552bd733028f31b5be",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "7dc76d125c6ccb94ba982d256f79c9a215644cc74417bcb597e27ef42523602f",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "1e0e6e2c6b800b2537297c1b6f9eec9936a71c8a05511e1ae4138663160d09b2",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "4b0ef57285e696bc9316528df8f31c717ff83dff1645ab0c9b058e8589ec07bb",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "79ab8df96d366a040619c0456206613becd8225f1f0638529ce2c9221c41dc0b",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "666313f6632ecb2467175c6f6a125749d74c6a2396ee8fe9d985d244db31c606",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "f5b4095af55ab4ee3ca0d1fe8eb0a19970222ef0193a51cc4ad5fc7f6c23b483",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "450ddabc5ceb443358c53058244f9fe1133ba46e99727469888c4b176f18a9db",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "063e152b97b4ca0706c96c25007d2a819370e2f37488aac0408a866314a98f9c",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "63ef543322b64b2f1fc4aae809f0bd7b40f80691382802a6eacdaede4a81c00b",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "2a060420889fe4ffcfe1c1a0f1cedd974162d60d075afcbf8b505f017fb19b4e",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "0a10d6f94e4014240e9d745b91386b65ecd7154b3ac652226f617f0a3a6b4dcb",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "a920eeff20d18d97c183838f61892d9d8011e1a5471254b645bc99b8c0c688de",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "04a48c360bd469946c0a4e6a7076315ca4f7cd83aca96a4c9bb6d1b08c9e8563",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "33237a821d7e94972b60988846c58aea33defc85462ab66f743e97dfaf1feb4f",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "fdeba7237ac9fb8a8e91b21ae873820afe6174f67b16af20c0d21598de049848",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "51e60656c6f8fff9198ef48b630b2763095187beeeee30d17543c3429c2b44c8",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "eba10e3329e6c4437f44603bec56a4263b8a9d71733407d01c4a030130e6c273",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "1a895ca68299a4b07abb4255c8e4ee7566854dccc151e9d71545eb2ee693f074",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "e45664de5b4ecc09ed75743fe5cb3014e1ff87023f9330889fb527bcbf6cefda",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "008dba84309ae6ba94843d553c0387f777db7bd74ec2dfd5c6cd4444829a4e56",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "f80e66e3112700df063432f6cb95283226dfd4940954b70c77cfacee7469d4b6",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "4741d472dac95499a8fd7527228115f53fd052f2abaf13dd20fc74c45e1f2ae3",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "b6e0dd8a26c31f5d4aeadc0ca3cf0295ce4c2209701ac56cb0f2acf4e5824953",
+      "referenced_sources": [
+        "src/ZZZMembership.sol"
+      ]
+    },
+    {
+      "fingerprint": "1d705f8e7841f592c304513d6a29426c92e50a843b02700195511fbcd67279d1",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "2e37b68d4baebf7843636559ce8d34c574046218e3e15b358d14b60b67115ec3",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb3994d884cb6a7ecdac8f812712526d0ccd28fc6aef4713f9c59d0dba37d690",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "9e971830ef06dce92b42152da134a50bc06a85a7654295a1f6ec3248e1e3a3a7",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "767d7df92d750064ef01f4afcb0e7939a46f911d2156e0cc1fb929be81e968cd",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "8442168248950647da3edd9f7f64674aacda83e19ac43f2c72df2157a078aa0f",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "1aaddd73575b6c84da6ad4f76e4ce52d9acc2d252a43d57dd4b6390b374ead54",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "f0772df9cfdd23caf08917e3c17f1f9d4041d503ecd4014406a7a49f1cb4c529",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "539fe329b868a41681ee7c32916ff95a381fc14833a00c42393ed0a58c10def6",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "afe4a34ca32785c79396284da77d4ddda71ec9822a63500353a86fb35da42310",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "d3e49084fb504adfaf36f2c8b519c91f7b8acea826d4c77711852d479fd30865",
+      "referenced_sources": [
+        "src/ZZZSeaDropMint.sol"
+      ]
+    },
+    {
+      "fingerprint": "382cb5355fc0aeaf160b9b03f2afbcf957928cf02a129a39c902f5141b659c50",
+      "referenced_sources": [
+        "src/base/ZZZModule.sol"
+      ]
+    },
+    {
+      "fingerprint": "1996f331cf5476c6a4f62ec415c2717ac2c7518ee048a5ad9a409b8fd9d9b3bc",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "4940c45a065df8f6e8ffdb9539562481d7da7ae820d2c2789b9fee115644ff16",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "bf1d1a93095d326f10f766bb6aca071ef0059ec36f01215f22099fb32bdc94df",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "eb447570fd0d331204bb62ce3009b87c975692902f045d3da2f139fc27b2d42e",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "c4c2a1a390979d72797bd58dfe78543c48d7ac93e0b08f051ec172771b8d7ce8",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "35a4e5bc02daa718972fab03e7e3992792baec890a7b486ad092d65262d7c67f",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "d33b718a607d9ed7c932d49c8697c93de382e5445800f74d2dcd978cc1fd1da5",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "4c9d76220a3c8a21ca28082cc03375254b10fa5918bde3d3040fe48161f3324c",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "16bb19b97cac907598d625646704a662baed4f268b7b47208cb9e6b495543435",
+      "referenced_sources": [
+        "src/ZZZPythPriceFeed.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb6e2fea68e54de90dfbe2655636cf270f6a15a803022e2bf048ba2e9d54328a",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "09859dba2561b843c5c89c9a0658fb0c808092062d1136260a1b95553ed8bbea",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "793ca7c24327071e983cae4b332f79dbdf6d35019c7e1a8fb4ac13f999acc556",
+      "referenced_sources": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ]
+    },
+    {
+      "fingerprint": "61e6c1dde0eabd7a89007ccf05a373c35102743dd885d2ae1a03e56f7de3ab66",
+      "referenced_sources": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ]
+    },
+    {
+      "fingerprint": "e7a74689612e5ebfc5249c387ef325e5f7ad18e5e02fefb05575e55befd1bcaa",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "b9ee0ea99eba974d369b904fd51c0a85335799b2c7900c0c448d96824eb54bda",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "d5955b361bf5a75af991fbebae17a87595a1d2ecae7c315bafae5c1d4473aefe",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "6bbe91428493336c5e692ed76f615b6247ea0fc2cfc5f751e7de9d3f13943f27",
+      "referenced_sources": [
+        "src/ZZZRoyaltyFactory.sol"
+      ]
+    },
+    {
+      "fingerprint": "7c8b02c40bdf27df983ffa96b9f5e64d357445d6b8606b9807682293c8c9e3a6",
+      "referenced_sources": [
+        "src/ZZZPythPriceFeed.sol"
+      ]
+    },
+    {
+      "fingerprint": "a5faf520e55eb810ddbf45e75f04c240112f636b1a9319cbfcbf448ab86d24a8",
+      "referenced_sources": [
+        "src/ZZZRoyaltyFactory.sol"
+      ]
+    },
+    {
+      "fingerprint": "42dbb41312354a74b6c0a12b9c8670bc82264bae12b40b1e58a52c67cb30b6c2",
+      "referenced_sources": [
+        "src/ZZZRoyaltyCodeData.sol"
+      ]
+    },
+    {
+      "fingerprint": "8fdd24bb7162bac4b6bfc1fae28350a71b1ce6ace541dd4a1b3723885ee29a1d",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "9506c54d73fee8cdeb7fa03adfe5975180a7d9cdff19a7c62696490fa5273c9b",
+      "referenced_sources": [
+        "src/ZZZNFT.sol"
+      ]
+    },
+    {
+      "fingerprint": "41b25edb018dbcf99bee8b5c2e617cc4e4d09961dc44399a189e7cdaacd2f3d6",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "8388e378bf2531a63df9c853acc2ce010432fa971abe95be9f0385ac4ecf7974",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "f5b591bfa4d5d593f776ac14570f42452d589710ba869838995058b6074f1ac9",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "e63f14f898ce2a83f0e296d5ba65dcb4c8bac200e62e748ed419cd1f891f61c4",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "6855a798f4299832fbdfcd628628c0490a09413408a615de2632853180100b9f",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "d869da2c2f1d71025b5eea9cf078a2e6350797a3ea2e9147c1b05815b159340a",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "446d2190ac590c28a30d4fa538e2657ea43efaa252a0e3b3f2410156c3df7a13",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "124375bed552f4f5caaef7b1e7934a403e659f8a66550a3ec00aa1310df35e4a",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "b8ee3ec37eb915569f7116df5ec4ff59af2c0bbbc484781cd3a68a4bff449370",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "407b7793017418e0d9cf8efec8b2370baa410929b324b4df083648301f05c386",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "84128665feefb25eae35eadec338cfd1ff156b740fd12a6a20e314950690e9cd",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "e19f53b70822d0e0934855461a1c110a12746e1e9d6445746104c6e14e4fac9e",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "7d9a3c9e59cb4b7a2445be3e7d306d9106aedf06c4477de0e3b6a8200a65e549",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "47d5a63f21574e942fa406a73f42b07df2e0efcc6ed89d44e8566a047e0a74b6",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "8d859ca855f8f0835a1c33b6ee026f1c6661525f69f37a07eac496eb56c9a914",
+      "referenced_sources": [
+        "src/ZZZSeaDropMint.sol"
+      ]
+    },
+    {
+      "fingerprint": "7eb4b3e00d31a78b8b2e4a1586bc16ed67d5d5b335390a39336f8c76a7d0a46c",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "cf39537885180918426e6cf3fce180aaea79cd7cc03bc90c74abd2bd450e1841",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "e0e5fb808e412dd121716a602aa606bb1d5765bf8aa41e18ab3f2fa31e437c09",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "76b10341534b45df4842ec3ba66aaf774919777fbe09c3f11b4b07bc2bf2ae59",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "f06d81c7399dfd61e0fb87648395f9668119891a8e4c79029f11fc7673b52722",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "2e8403326d270500c49a111f2cb4e01142f76e83c2b0340b374541c7cb94428a",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "71bd68d2ce7cdcc81d162dd5809edc6f4c76bf5163c73d367ad6bcd27a1a11fa",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "1e73b4489d45680a7a2cefb3f9a048ea4917a63207e56a0996c9bf2dcbb448c7",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "9b4dff89a5cd494307b62e61668bab7fd14642a4024594ba07a347b63f4f6320",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "6724ce89744579ba2356a227a0ecc640c23db7a71fe3c0ac235ca28018576482",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "a28dbef3d8cc1ce2df9b7a2262396a7a3358bfe2e96fdfae2551f25b483ca6a4",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "979e611fa635a8813b4c82614b0fffc02e4e36758d1653618fde09a557a1a096",
+      "referenced_sources": [
+        "src/libraries/ExactAsset.sol"
+      ]
+    },
+    {
+      "fingerprint": "1bcf3bc25e8c21a12a06e91d45ba5f895a8e18fa84247283c861125120adbe89",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "f9e7b5d102e366b2fe3c5be2a6fbe4aed352a694b31ed8114d445a051d4397a7",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "2e8a29a5a5ae39d3f66294f418add2bd0f92d8202ba25a1358df53f7f6103106",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "0a039fdbcecab70cff1d33e67f2efd8cbf57df3e1ee441eb1e4b730b623c8fe0",
+      "referenced_sources": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "03586e8185be9af2f4e4a7f86b8b6aa7facb23b2a50f10af5746e8f003539fe1",
+      "referenced_sources": [
+        "src/base/ZZZSeaDropToken.sol"
+      ]
+    },
+    {
+      "fingerprint": "372132a75d63cc1289d5a543a4e0713b8fb5281000e6ac4c5d0918f7f3c0dfba",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "1aff6341cad3bdac502a2aee92f58a2e18970b27dcc8ac5e6f15dad6a5e3281f",
+      "referenced_sources": [
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "4e0d2e792910d9a20197485d8bc0d6f6390f23f405a2304e941cee238ffe84b1",
+      "referenced_sources": [
+        "src/base/ZZZRewardConverter.sol"
+      ]
+    },
+    {
+      "fingerprint": "9a80c07b9e41412ef337fb9c768e8e2246a6373da7401e9b359ac3dcc9b911eb",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol"
+      ]
+    },
+    {
+      "fingerprint": "715b8cd76fbf809bbf055a1fa99f6c7c473389f5aa1ff85dc688cd7ba55d2313",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "cad42109a0df4584932307a119b7dc9c2c8b6361073b5faba8be3bd96ca4980a",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "554db41d0332c89f205d3a7db3b0acdcc75e538cf34c11f7c39632d202bbbc8c",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "fdd6573fa07073ba5b394a281ece57edd212ced0091014142e1a9b76f305f82a",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "b4a0fc4fce51fabf8ead1e4feece5220527f86e887ebca199f5bd0f89acd34c1",
+      "referenced_sources": [
+        "src/ZZZFeeController.sol",
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "c30d133106f270e4d4b15a51bf1c3bc58a4e3ab2ccfc5a7c3d6d2966e069d2fe",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "6d25e515cfe76231375b4f1c8965fee6e8707a4f6b18db9a87f91c2ed98e0969",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "1e3499409a02c7a8aec5758fa8e381e7c2b3adf93321798ed5a2cb67980313a8",
+      "referenced_sources": [
+        "src/ZZZMigration.sol",
+        "src/interfaces/IZZZEmergency.sol"
+      ]
+    },
+    {
+      "fingerprint": "481f110588f43c039f3d16eda357ff9eb95cbecb82997cb823a6a6c57d4a4788",
+      "referenced_sources": [
+        "src/ZZZMigration.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "e99b6189d949152bed88a3a09cd56280947c48922307029dc1631be98464ef01",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "e55b08ad5b95cc7df527a41ac329751f3c40762ea1c22d8eec2bd716ee238b4a",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "0cd67e05b865c7789c7bf2cef1cf5006fd5998071dcd4cc874060375f16c62bc",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol",
+        "src/ZZZNFTCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "b0bdede3b09c1aa34ed1a2260785ee83878c4a61383f4d1ed1ca1c434251a4eb",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "09d37b672e823ab9f21089f1bba889f67320a74026b6736b31f0ba6bb64b00c3",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol",
+        "src/ZZZRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb0225d846c92a177ea18f1f4bee97051cd3868784f172b133be8da3f0d98794",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "5b868ce30ce7259b15c6f53279acd12d83350ad7eb005df9084929a7e0c63009",
+      "referenced_sources": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7c4cc168e91131b2a4aa338b442e57a136af6679c89b052f40d545e32668023b",
+      "referenced_sources": [
+        "src/ZZZClaimRouter.sol",
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "dcbd797d02643dd404980e16d282ebdc59e2dfc234326c3ed5b59bcc0b4a22ef",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "4722ccca42a92ef163df42fe1777aded3369b2e3d935aac63a8fc5740841a470",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "a4437a54aebd238f4170250c4c87801b150e892aa88b3ed06e16fe199f3089cc",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol",
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "a461ffb1e6507c3d139ab32975cfdd28bccac71b9487ca0d7e497215f549b1b0",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol",
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "0f2929aa748dcf95fd6551a42cee9856957c742b7ba92e0b7359384c8693f513",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "8a032bf11dd9facb9a16dc45896dd34918cb5d21d303c592dddb442750779882",
+      "referenced_sources": [
+        "src/ZZZActivationEntry.sol",
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "fingerprint": "889689cf3c14654df08e9de0e1f9f3545db9aa7829976e8d0e9405aa8ed48f57",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "3ffcc1b0ce9631d64df3052dff8542ad0ed8ee898f7c268d74d430c5a8b64637",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/interfaces/IZZZExecutionOracle.sol"
+      ]
+    },
+    {
+      "fingerprint": "a1c39258061371b1c035675fa521743c8446e2b9ee32828136a40f75614a0106",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "fingerprint": "6e1510f26e8c6ad1d8b81815108b4b441d71d1b023cb3572d7e529e432c9e3fe",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "be2fe7e176ea69c976eb968992c696e3d81de154bf859182432c1ac6e8e34d71",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "5fb75d5133f75ca1e425c7e1665b06efe1e43f405c0220d7757d030cb503616b",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "56c6bcaf3d7ad55bb9e3069043fda2d77220c839ef603e6b1bf7b6999af3bc38",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZEmergency.sol"
+      ]
+    },
+    {
+      "fingerprint": "8a29a185f0b79c55e4219072aeaf51151ff29f7a1e4f1374829fa3c6e6201ee5",
+      "referenced_sources": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    },
+    {
+      "fingerprint": "6d2a40ae588d409dc363df1b2b91243a1aa3d08a079e8e5bf5f9e68f62927ed2",
+      "referenced_sources": [
+        "src/ZZZMigration.sol",
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "26a2b619cbe944f6ceaeef636647a038a531d1ef909430b2c32848af765e8171",
+      "referenced_sources": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "c24d43dd2188a5f8e37c0e2d5b389eefaffb94ddfb488b4d72a495b40c6420a5",
+      "referenced_sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "8e2edf537c71cfe9b23e78db81f116245bc27ea66375e5c2dae92140984c2e9b",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol",
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb3c1393b2ebea18b66782f420bb630890a61a0f24d91ffe2d1a4f3f82c3d74d",
+      "referenced_sources": [
+        "src/interfaces/IZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "0296160c63cfa9498c94450e1ae60448d47412254b62e3da4eecfc91b95953d7",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "dca030ebf720e5b86b9f6804c7c847e5ccd7ddcd77ffb7ecb337db64a9e5ff27",
+      "referenced_sources": [
+        "src/ZZZNFTCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "578575cd23d3ce1c38633c16b0a574682efdfc405f9a9f5215f40f3f9d67a085",
+      "referenced_sources": [
+        "src/interfaces/IZZZ.sol"
+      ]
+    },
+    {
+      "fingerprint": "12ea3e5e348346d147789f20ab1a28c8dfff0850c359e4178a179a248f5109a4",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "1683b125c234d98d40dbe7628460117801fe70d0ee37b24d5eaddaa3338486e0",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "66df31fc0b69c6af5dd1681687bc3462effa7b192c565d7a46ffa63e67fc1544",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "5e7e107b20b7c37bdf35525a3dc2bb4b898d54a052cf7d1cc7bbfc9844ab6f95",
+      "referenced_sources": [
+        "src/interfaces/IZZZExecutionOracle.sol"
+      ]
+    },
+    {
+      "fingerprint": "fb43cf3d2ca1eb762616b4b414f380fb14d06122ce47e9defd617d0014b67c99",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "95591ef7976150407bd90f5f49e70e929062c86dff79842a84778b6c38347e2c",
+      "referenced_sources": [
+        "src/interfaces/IZZZExecutionOracle.sol"
+      ]
+    },
+    {
+      "fingerprint": "a4004f2efc3f74641894c66e5d40baa08a33198f94a03d1943e1a51a7c4e196c",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "4fba6560d97d12bd8b86b7667983358df45cd830f01e43dbcbe5257dd973bc15",
+      "referenced_sources": [
+        "src/ZZZCanonicalHandoff.sol"
+      ]
+    },
+    {
+      "fingerprint": "769fd122c52bce8d1bc9637c4dc3a021cdad24db6330118f820a82f863f3749c",
+      "referenced_sources": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "fe9856e16b6b162c04a25a2ab0aeec3dd60738f0b7e2a0f884f2627be11b2fa1",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "b31de63cc6af13ab901eae2e5b5afc38a3299decf6583f2807bc6534a70570c2",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "2719c2fcb3feda18c466853478c66b0fef8c413f2114807ac663333a7a0c815b",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "d2c0dc3f3d0fab287aca80284562e25769f27d544cd8ecf7dcecbee26d6f91cf",
+      "referenced_sources": [
+        "src/ZZZLPBalanceMath.sol"
+      ]
+    },
+    {
+      "fingerprint": "f9baf3175e8e8fc94ef9dbd88c288a98a0e2a2b16466c954073999913af6dead",
+      "referenced_sources": [
+        "src/libraries/ZZZArtwork.sol"
+      ]
+    },
+    {
+      "fingerprint": "e2619051ed6a660d69957e5740e11c9dbee5431749dc9477c3e6681f36b1c368",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "33ed33803acebb64b370a513d10c260f13d0c95e0d4e0f67b4661aa9ebd29fd0",
+      "referenced_sources": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "c2791153dd09fd7696ea79e0b2b0c77e1d486c7fe94a360d8296d2e24744897b",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "b41cae5ea04de63995bf4a235040b1f2e2d598a8b141255298b17fcdf5dc6bb3",
+      "referenced_sources": [
+        "src/libraries/ZZZArtwork.sol"
+      ]
+    },
+    {
+      "fingerprint": "c7d52b42db5979e397b66bfea0da20dafe7bc573054dcec41a44187c0b636271",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "33fa769ef7fc3443f7b09f3f04d3bf021fd01dda08b61a1e48bb8ff8fa45fc08",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "68eb02999ec1626d9f139d0e1278dab524be3125bc215221e6c9144292da49b6",
+      "referenced_sources": [
+        "src/ZZZProtocolPolicy.sol"
+      ]
+    },
+    {
+      "fingerprint": "aaee1d3d2181c8412da5d235eb6a66056de69656d02a7b45f037ea6f95d68cb4",
+      "referenced_sources": [
+        "src/ZZZRoyaltyFactory.sol"
+      ]
+    },
+    {
+      "fingerprint": "e153b57ba5811b2551fe65c7a0503446d28b503dc33f0b74acc4800b425fad5e",
+      "referenced_sources": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "9cd9d73e666561bc01872aea51ddd01dbc2d89c978abd94f46315c14ec7839a0",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "6b12f620fb7318eb86ce426973b99dfd06cfde272a811c51bb5af0a5c715dfdb",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "02d6a6ce4bec0702be2047583901566423587a5e90ff3716552532a0d5bf92bc",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "9594eb9b2805b1d720be2e005941730a1720c2768224e73450d0ae3e05d38dd4",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "7f70475961db59e42894a553d30c3d56be1fe21845f69b6561f97d5cf28a992a",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "584624e7ed56bffbc673b5c00b8df4361595a82578e52436adf4664523302ef6",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "332e7465867f5ddfb12276e0ca2cd711756159a8fd192352fb25ea968e40c09b",
+      "referenced_sources": [
+        "src/ZZZMigration.sol"
+      ]
+    },
+    {
+      "fingerprint": "7469b6c9b68b301db00587902bcb26e84e912c54aec0152293edd43adeaa6f2d",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "078fb0d33c5e3d6416e399626b9b443a413c68eb7860b8ac6f94be08d049a2fb",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "fd216b783a0e7e593b9c5492320757942b500cbcbbe065700f272a6cbdf390d0",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "012c75f5b6d4282cddd10c1a63d3d20bb0e4511fd5cc5082d0d9cb1b8a3381b7",
+      "referenced_sources": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "cf0cb7fdc8c18587a206e42c5f9bff6ea289e7195505c141babf4325dfc35abc",
+      "referenced_sources": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "ffe2a9be74b97f159cffb9d8b0be24e29f62379727609842b7dc80b271ac42ca",
+      "referenced_sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ]
+    },
+    {
+      "fingerprint": "c469ef0cbe74b89bf42ac26818a8849f5415d9f11fcdc645180d20516b44b0d8",
+      "referenced_sources": [
+        "src/ZZZFeesCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "873ae69fe8bbf16af52a58573f5eed51ccd260b6c26c9d0d326caaadf8a553c5",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "8c6de04ad045556722afaab25e4716411155561f92c0c0d08cf6edc3c70d46ad",
+      "referenced_sources": [
+        "src/ZZZLPBalancer.sol"
+      ]
+    },
+    {
+      "fingerprint": "c34402f4a7c9e9ad8cc641af2a7b1d944ca41d282c692df8fbcff2ad6f34236b",
+      "referenced_sources": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "e88902c17cb78ff7e1f00366463e63a972c4a37082f251eefa9fc3a52e849614",
+      "referenced_sources": [
+        "src/ZZZRewardsCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "87365d6e750abdc53e6712dbd40323a827487ccccbec91b84b11a1eb0e2e2a0c",
+      "referenced_sources": [
+        "src/base/ZZZCanonicalLedger.sol"
+      ]
+    },
+    {
+      "fingerprint": "0f2f839fe61dee0fe29ea3aed739996d1a3aa440ee9c26cc86e74e7259162050",
+      "referenced_sources": [
+        "src/ZZZRebalanceConfirmation.sol"
+      ]
+    }
+  ],
+  "counts": {
+    "current": 13,
+    "exact_reuse": 554,
+    "total": 567
+  }
+}

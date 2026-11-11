@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-11T11:14:44.233408+00:00",
+  "baseline": "db509fbf4e357e5aec1d614ce66923fea0594d7e",
+  "source_and_documentation_ready_for_selective_publication": true,
+  "production_approved": false,
+  "checks": {
+    "function-reference": {
+      "exit_code": 0,
+      "result": {
+        "checked": true,
+        "contracts": 40,
+        "functions": 956,
+        "constructors": 40,
+        "receive_hooks": 13,
+        "fallback_hooks": 0,
+        "explanation_gaps": 0,
+        "unannotated_inputs": 0,
+        "unannotated_outputs": 0
+      }
+    },
+    "operator-reference": {
+      "exit_code": 0,
+      "result": {
+        "contracts": 40,
+        "functions": 956,
+        "constructors": 40,
+        "receive_hooks": 13,
+        "fallback_hooks": 0,
+        "explanation_gaps": 0,
+        "unannotated_inputs": 0,
+        "unannotated_outputs": 0,
+        "example_rows": 1009,
+        "ready_for_submission": false
+      }
+    },
+    "todo": {
+      "exit_code": 0,
+      "result": "Project Todo verified."
+    },
+    "source-consistency": {
+      "exit_code": 0,
+      "result": {
+        "source_files": 61,
+        "errors": [],
+        "scope": "consistency only",
+        "output": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\gas-feasibility-20261111-db509fb\\completion\\source-checks.json"
+      }
+    },
+    "gas-evidence": {
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "kind": "Offline artifact/source reconciliation, not new testing",
+        "published_artifacts": 11,
+        "current_project_sources": 62,
+        "original_actual_rpc_fixtures_unchanged": 4,
+        "actual_evm_methods_reconciled": 23
+      }
+    },
+    "network-evidence": {
+      "exit_code": 0,
+      "result": {
+        "status": "pass",
+        "rpc_attempts": 31,
+        "valid_rpc_results": 23,
+        "public_files": 6,
+        "external_files_checked": 85,
+        "network_calls": 0,
+        "signature_or_configuration_changes": 0
+      }
+    },
+    "static-default": {
+      "exit_code": 0,
+      "result": {
+        "review_coverage_pass": true,
+        "independent_audit": false,
+        "errors": []
+      }
+    }
+  },
+  "local_document_links": {
+    "scope": "Changed current Markdown and new gas-report Markdown only; local targets and GFM-style anchors",
+    "files": 23,
+    "local_links_checked": 2844,
+    "external_urls_fetched": false,
+    "valid_directory_targets": [
+      {
+        "file": "reports/gas-feasibility-20261111/verification/PREPARATION.md",
+        "line": 49,
+        "target": "../network/",
+        "original_file_only_classification": "missing_file"
+      }
+    ],
+    "errors": [],
+    "validator_correction": "Nonempty local directory is a valid GitHub Markdown target; corrected the file-only validator classification. Other2843target checks unchanged."
+  },
+  "final_completion_link_exists_after_write": true,
+  "whitespace_check": {
+    "pass": true,
+    "per_command_rule": "core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol",
+    "preserved_existing_windows_line_endings": true,
+    "prior_file_only_eol_classification_corrected": true
+  },
+  "exact_raw_compiler_source_files": 100,
+  "build_artifacts_reconciled": 19,
+  "static_full_records": 567,
+  "static_new_context_reviews": 13,
+  "static_exact_source_reuse": 554,
+  "protected_dirty_files": {
+    "reports/source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "unchanged": true
+    },
+    "scripts/run-fork-checks.py": {
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "unchanged": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "unchanged": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "unchanged": true
+    }
+  },
+  "website": {
+    "docs_only": [
+      "AGENTS.md",
+      "PROJECT_CONTEXT.md",
+      "README.md"
+    ],
+    "shared_signer_sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "public_null_configurations": {
+      "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+    },
+    "executable_changed_files": [],
+    "no_browser_tests_repeated": true
+  },
+  "preservation": {
+    "historical_report_changes_except_index": false,
+    "original_rpc_fixtures_unchanged": true,
+    "defaults_or_financial_guards_raised": false,
+    "public_transactions": 0,
+    "deployments": 0,
+    "site_or_service_rollouts": 0,
+    "existing_anvil_or_journal_changes": 0,
+    "heartbeat_restarted": false,
+    "abi_or_semantic_storage_or_economic_rights_changed": false,
+    "capability_version_values_changed": false,
+    "oracle_runtime_changed": true,
+    "existing_runtime_profiles_relabelled": false
+  },
+  "owned_file_sha256": {
+    "AGENTS.md": "cd9d7b2d835035d177d28edc03be6b04fbd6e83123a029e40c1be2d6718ff03b",
+    "PROJECT_CONTEXT.md": "0517ae590f97a11bb255d12327f610d62e8e433c67960890df8e18e4a8a16191",
+    "README.md": "67cceba94f272977f3e065078c33b323e956396df070814cf84565531e77b488",
+    "TODO.md": "e5df9ffeac464cc15fd44508e39fb9a5592558b1094c450cad41d8c0a8347101",
+    "docs/ACTIVATION_PREPARATION.md": "9cac459dd90a0b6f9a44f71245c384abc2810a53b72b59c3de518b6a7be304b4",
+    "docs/AUDIT_FINDINGS.md": "70fe388ada3def0d48484b25df0991e5a6e76a24e27b53d85d405ccfeabc4cb0",
+    "docs/IMPLEMENTATION_STATUS.md": "cad0e19512545ccb575e1876a49c4de4e873104e8d78a60cabcba2e83d3fd925",
+    "docs/OPERATOR_MANUAL.md": "fd6c53738af0b7c29ee7c252334b8c54d12835ef62050779633a68e5ef22eafd",
+    "docs/README.md": "b77bff7b472bcb3a358c7e0d9a04ce1c68ed03a8fe55a4ed423a69d3d847edeb",
+    "docs/REFERENCE_SWAP_EXECUTION.md": "01710e1fb949bf2b82b94dbba17a51af8525730b540470ff292ee22fadbf435b",
+    "docs/RELEASE_CHECKLIST.md": "d6c40992e7afb9991a90903fac3c769c9db105f2075b75b5ccf7f1f4fd5de226",
+    "docs/ROADMAP.md": "7108c928d92edfd8acd1c7bb6e25cbc91d3cb1d47ecc7201cd83337abef4db0a",
+    "docs/ROBINHOOD_GAS.md": "f47e24e2ff2066855f97cac19b54166875f26290596506362955cd6e9ac0aaf8",
+    "docs/WORK_HANDOFF.md": "569a71f9fffcfb4196aa1690a99b6ba03fbb4d5e934a35301cbdcfd9688d2082",
+    "docs/function-reference.json": "670aa5ae20c1af98b1efb3c49644da7b473286bbb8149d189d08d202a3efe1e3",
+    "docs/operator-call-examples.json": "26eb4cea481be303967bdcad376b576168f3f79a8e5cf3b86b56bf25427dbde4",
+    "docs/project-todo.json": "c2d4ba56ce72a5c5cd36bdd25ea302809a246dbfa0c71ceb1848848513afe522",
+    "reports/README.md": "2044cd8607aa961e6f6c70fb79cccc08e123f54781f070b1f1c18a5aacb9c3d3",
+    "reports/gas-feasibility-20261111/REVIEW.md": "0da1f57b527d5b1ea5575158a0cda1554980516a21f71382b196019d4b94a46b",
+    "reports/gas-feasibility-20261111/VERIFICATION.md": "82901f16706480497a7e77cd0604728ea886caaa92fd72a8d288ad216bc3e4e2",
+    "reports/gas-feasibility-20261111/build/ARTIFACTS.json": "8e2b5fe983717a0130601a73282af0ac8f0890389947db17a58fa948682e7291",
+    "reports/gas-feasibility-20261111/build/EOL.json": "b59a44d50760565a8c7c9e394d0250ebd198f6ae100305ee6f18afafe2218536",
+    "reports/gas-feasibility-20261111/build/EQUIVALENCE.json": "a042a5c6562e62ae4e8489499fff4232114064559ba334e5dafe442339cd5bef",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-codec-v1-normal.json": "00b57a74379d68aa18f4d49681d0ae5c6656f99f2c3bd60b10f77baf62237573",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-codec-v2-normal.json": "8de278f12feae89e57cc51908da830cc19ee50123197942bb79eb130bfbe5b5c",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-gas-only-v1-oracle-fit.json": "b8abc1008e09c6a00056a3c1a409e496a41495468a0e87050bb5775b6ac69dff",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-gas-only-v2-oracle-fit.json": "a2c203df777f19090856f75e16926ae7dc85380d828c557c070cac3f17bc2d44",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-gas-only-v3-normal.json": "fa7dd420e6ef345400ce1e9125887f30a5f09f3de5a37a267e65966c7d567643",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-gas-only-v3-oracle-fit.json": "649b7c265e96d06a22d15ea109fa55b321af10055aad59ef6029a00ea6d4d909",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-quote-gas-v1-normal.json": "a7c31207509d585dfe90cbff46e5654cc5ed6aa6fbb2ac1f397a2ecfe2626390",
+    "reports/gas-feasibility-20261111/build/attempt-summaries/oracle-quote-gas-v2-oracle-fit.json": "b86a49b369b8cbc2c974b77ef604a55d780003f865dc25cb0fe2a069e8a62db2",
+    "reports/gas-feasibility-20261111/build/compiler-input.json.gz": "f2bce62029f76ebcd214dd63012cf5a680d7c85c179a967893309d58aa852664",
+    "reports/gas-feasibility-20261111/build/compiler-output.json.gz": "ca1e442d8cb3bb74ee044ca60f895a14c129f444c436e9d8763d0be63d75755c",
+    "reports/gas-feasibility-20261111/build/failed-and-fitting-attempts.json": "b2e0315b5943f5d11a96d82521d0d9ad7a92f7d9a689fb5acdf36ee9c8ed65fc",
+    "reports/gas-feasibility-20261111/build/landed-source-binding.json": "052eacad1266d9f7869165268bb11ddb219148c731357ec6e4f02114296411eb",
+    "reports/gas-feasibility-20261111/build/normal-summary.json": "fa7dd420e6ef345400ce1e9125887f30a5f09f3de5a37a267e65966c7d567643",
+    "reports/gas-feasibility-20261111/build/oracle-runtime-template.json": "800c610b7ffc92aed917b200b5ca279759bbca1fcb9567b3e51c4fd0169614a1",
+    "reports/gas-feasibility-20261111/build/production-size-gates.json": "a7675199d04c4a609b682a9f4dc8584c3d622f34e554e01ab222b8cf2bfcbdb5",
+    "reports/gas-feasibility-20261111/build/settings.json": "772279577e031e3a5ac4090feb8b4a98d9fc552c273a82f6e0da46ef551cc0cb",
+    "reports/gas-feasibility-20261111/build/source-manifest.json": "13309351c4134e2bec5bd29b54eacc44f6e2d76f1f45f444e52dfeb8c1f72f28",
+    "reports/gas-feasibility-20261111/network/ARTIFACTS.json": "3eb832cab379fef05a94829ed46fed25f0b4407089335e8e49b6bcc17dfc9c4f",
+    "reports/gas-feasibility-20261111/network/LIMITS.json": "b327f84bc8ad29e98c30a655447774af64bdd841e680325149f79d32d29b1f36",
+    "reports/gas-feasibility-20261111/network/METHODS.json": "7bd1ac73e4f53f6bec6b1ec7e7d63a267957904eafcc59b20db141ab90065718",
+    "reports/gas-feasibility-20261111/network/OBSERVATIONS.json": "3481cb1cac6dfc3173b92311237656a52d5e241976f09936da30441eb445946c",
+    "reports/gas-feasibility-20261111/network/REVIEW.md": "eae85fe491f360edc7ceb7196d9561799c5f67318b13284a99dd3275484452d5",
+    "reports/gas-feasibility-20261111/network/SOURCES.json": "2afbb57efe4fd2f87aa39e6a4b6c981648d614f89ad7afcdbdb5d7426f311dde",
+    "reports/gas-feasibility-20261111/network/verify.py": "72a4147d6d59b5ab0376bf460da0d3df970841fd2f00eb190c470b577a39fa1c",
+    "reports/gas-feasibility-20261111/static-review.json": "8cd67f7cd135d440c24c6af5acf5799db50d77b3d5d77310f658e5b174fd2b53",
+    "reports/gas-feasibility-20261111/static/ARTIFACTS.json": "912b74e52db0eed2e7173e3fc08c8d2b9d8824b97fcdd74aebf8600916b368a5",
+    "reports/gas-feasibility-20261111/static/DEFAULT_CHECK.json": "f14d26a7052742d0ccc536209921f7c8b6e19e98118780cc17f1f147369255ef",
+    "reports/gas-feasibility-20261111/static/EXECUTION.json": "12f8b58cc472e250a8d69414ecd725a54817d77d9694933ec5e81c69ce214ac3",
+    "reports/gas-feasibility-20261111/static/README.md": "50d9c3215e2ec92d18f82935d17c47d60bc9a96656a093786bdb34816c49280c",
+    "reports/gas-feasibility-20261111/static/REASSESSMENTS.json": "9433eda5114b100e0a5935c583bfff49bb6062e84c0b68e54bb239f738de2458",
+    "reports/gas-feasibility-20261111/trace/CANDIDATES.json": "2174598d01fced1ab7f8113b027b584acfad78980cfac792c56296aadacd9e93",
+    "reports/gas-feasibility-20261111/trace/CANDIDATE_REVIEW.md": "92f083f647da334026d92891b73cff27c974c85f7fa77c3961487986d8d3811a",
+    "reports/gas-feasibility-20261111/trace/FINAL_METRICS.json": "ca85ddf53b3b088a5c9477cd661856e7d83f4ca64d4f9fbb1cd142057d6cc51b",
+    "reports/gas-feasibility-20261111/trace/PROPOSAL.md": "7bc163e4ba7e2c180fbc68889d87a6b6f8f2a716c74cd09addcdc93f7ed21a39",
+    "reports/gas-feasibility-20261111/verification/ARTIFACTS.json": "bd011a7b21d3cbe333faafacad58670265e39ceab91ba204f3821444bf641766",
+    "reports/gas-feasibility-20261111/verification/ARTIFACT_REUSE.json": "4a1bf28e3fd409a4d5e3a70f0b678459d13ed73a1470777e7bc515a953422f9d",
+    "reports/gas-feasibility-20261111/verification/CHANGED_SCOPE_SELECTION.json": "6ddd77bfa1a85dcfbc94c7b84fbe7f624087bed9a1a676d5dc8d848b5032d246",
+    "reports/gas-feasibility-20261111/verification/EXECUTION.json": "85faae202fdf36eb863bd201b2c70c2642ef840890bda2e041c7c7d537a50a98",
+    "reports/gas-feasibility-20261111/verification/GAS.json": "5f23f5da393add9cf10549253e35b4d5dc7dea238a9bcfcab1d41b4f78c05396",
+    "reports/gas-feasibility-20261111/verification/PREPARATION.md": "035fe8c0ce105bb755524bfd99c5600ba8645e51dcbf12c06c0c03d013984587",
+    "reports/gas-feasibility-20261111/verification/REVIEW.md": "96f60aa1ba890aef9e63c76d39c7d01c0461c938758991483b7747af9f6e707d",
+    "reports/gas-feasibility-20261111/verification/SOURCE_SNAPSHOT.json": "f02013e28214de0012db1eac61c6ceec5dc38b9af53dbefcf38bb6dfcccdfcf3",
+    "reports/gas-feasibility-20261111/verification/TEST_SCOPE.json": "9c7b260095286d59b31a5c3d603aa6cae334b3181ad9b90911bfe1f318b162c7",
+    "reports/gas-feasibility-20261111/verification/baseline-actual-rpc-gas-profile.json": "d2fd81c5c11c14b94d79c9be20ee89e31e3bf7ffb60f39eb4a0922e29c813282",
+    "reports/gas-feasibility-20261111/verification/forge-results.json.gz": "d9fa4188ac8e2ccc8b8d77f229c471efb1442d82ef2520a5c7f257ddfb402c16",
+    "reports/gas-feasibility-20261111/verification/verify.py": "0116e81c4ee4cd21386b0d6ab132545b68f9d5b4329373995f804af05bd85137",
+    "scripts/check-slither-review.py": "5ecf412b62449556ae7b98799e3e2dd67099020dc85b8a749f00d444e4128273",
+    "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+    "test/ReferenceExecutionContext.t.sol": "a95b14f6a0cd2311ee310ca9edffaee91b17a4d2cf0a9ec94e5383089fa6fc3e"
+  },
+  "hash_scope": "Current intended files excluding this self-referencing receipt and Git publication metadata. Exact staged/HEAD Python closure and remote heads are checked separately during publication."
+}
