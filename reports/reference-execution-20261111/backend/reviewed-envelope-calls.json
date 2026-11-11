@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "case": "eth-activate",
+      "reviewed_transaction": {
+        "from": "0x00000000000000000000000000000000000a11ce",
+        "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+        "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+        "value": "0x3635c9adc5dea00000",
+        "gas": "0x11a9f84"
+      },
+      "simulation_gas_cap": 32000000,
+      "reviewed_network_gas_limit": 18521988,
+      "pinned_block": {
+        "blockHash": "0xa2b4108d9444884ea8f570b762664ef8bf0d9607c5c475ced7e32ef6d5dc0a4b",
+        "requireCanonical": true
+      },
+      "genesis_sha256": "d78beac5fb52687e35f7c74012b4a0645ebab2ab560ab9871e5014ffe0a4dc89",
+      "exact_call_fields_preserved": true,
+      "scope": "Same owner/from,to,value,data and canonical source state; only simulation cap is reduced to the separately reviewed network gas limit. Read-only local diagnostic, no broadcast or enabled production policy.",
+      "owned_pid": 27080,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x"
+      },
+      "expected_output": "0x",
+      "successful": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "zzz-activate",
+      "reviewed_transaction": {
+        "from": "0x00000000000000000000000000000000000a11ce",
+        "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+        "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a00000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+        "value": "0x0",
+        "gas": "0x120d5e6"
+      },
+      "simulation_gas_cap": 32000000,
+      "reviewed_network_gas_limit": 18929126,
+      "pinned_block": {
+        "blockHash": "0xa2b4108d9444884ea8f570b762664ef8bf0d9607c5c475ced7e32ef6d5dc0a4b",
+        "requireCanonical": true
+      },
+      "genesis_sha256": "53b8313676133c33e4f152fa8da048e77a466671caf61204669e86d95065e45b",
+      "exact_call_fields_preserved": true,
+      "scope": "Same owner/from,to,value,data and canonical source state; only simulation cap is reduced to the separately reviewed network gas limit. Read-only local diagnostic, no broadcast or enabled production policy.",
+      "owned_pid": 11848,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x"
+      },
+      "expected_output": "0x",
+      "successful": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "eth-grow",
+      "reviewed_transaction": {
+        "from": "0x00000000000000000000000000000000000a11ce",
+        "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+        "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+        "value": "0x56bc75e2d63100000",
+        "gas": "0x1062888"
+      },
+      "simulation_gas_cap": 32000000,
+      "reviewed_network_gas_limit": 17180808,
+      "pinned_block": {
+        "blockHash": "0x876d56dc32b65b9623b1a4e9d77149a779eab8baa9ebd519c5dcc2fe5a6fd951",
+        "requireCanonical": true
+      },
+      "genesis_sha256": "e4143926d0620357ccf3f20cd6c9b4a66cd9999c16b600b837183ebc6da17517",
+      "exact_call_fields_preserved": true,
+      "scope": "Same owner/from,to,value,data and canonical source state; only simulation cap is reduced to the separately reviewed network gas limit. Read-only local diagnostic, no broadcast or enabled production policy.",
+      "owned_pid": 16292,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x"
+      },
+      "expected_output": "0x",
+      "successful": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "zzz-grow",
+      "reviewed_transaction": {
+        "from": "0x00000000000000000000000000000000000a11ce",
+        "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+        "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+        "value": "0x0",
+        "gas": "0x10c1b74"
+      },
+      "simulation_gas_cap": 32000000,
+      "reviewed_network_gas_limit": 17570676,
+      "pinned_block": {
+        "blockHash": "0x876d56dc32b65b9623b1a4e9d77149a779eab8baa9ebd519c5dcc2fe5a6fd951",
+        "requireCanonical": true
+      },
+      "genesis_sha256": "e321c6e622f42e9d6f500d44049780c1669f97bfb6774425d8525c9a85ee3b99",
+      "exact_call_fields_preserved": true,
+      "scope": "Same owner/from,to,value,data and canonical source state; only simulation cap is reduced to the separately reviewed network gas limit. Read-only local diagnostic, no broadcast or enabled production policy.",
+      "owned_pid": 7968,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x"
+      },
+      "expected_output": "0x",
+      "successful": true,
+      "owned_node_stopped": true
+    }
+  ],
+  "all_four_reviewed_envelopes_succeed": true,
+  "all_owned_nodes_stopped": true,
+  "broadcast_transactions": 0
+}

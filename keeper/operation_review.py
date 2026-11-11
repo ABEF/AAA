@@ -139,7 +139,8 @@ class Review:
         from keeper.compound_policy import observe
         return observe(self.read, lambda target: self.k.rpc.call('eth_getCode', [target, 'latest']),
             contracts=self.k.contracts, code_hashes=self.k.config.get('code_hashes', {}), bucket=bucket,
-            **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6,7) else {}))
+            **({'accounting_version':self.k.accounting_version} if self.k.accounting_version in (5,6,7) else {}),
+            **({'execution_price_version':1} if self.k.execution_price_version else {}))
 
     def _harvest_ticks(self, lp, physical, pool, spacing):
         """Validate physical geometry and consistent getter paths, not independent sources."""
@@ -203,7 +204,7 @@ class Review:
         # Request-local only: every reused observation has this one pinned hash.
         if self._execution is None:
             self._execution = (_attempt(lambda: self.k._lp_routing_snapshot(self.header), 'lp_execution_capability_unavailable')
-                if self.k.lp_routing_version in (1,2) else {'available': False, 'value': None, 'reason': 'lp_execution_profile_unconfigured'})
+                if self.k.lp_routing_version in (1,2,3) else {'available': False, 'value': None, 'reason': 'lp_execution_profile_unconfigured'})
         return self._execution
 
     def budget(self):
@@ -519,7 +520,8 @@ def review(config, buckets, *, rpc=None, simulate=False, now=None):
     if (path.read_bytes() if path.is_file() else None) != original:
         raise RpcError('Journal changed during review construction')
     base = dict(schema=1, kind='keeper_operation_review', read_only=True, production_approved=False,
-        profile={name: getattr(keeper, name) for name in ('accounting_version', 'maintenance_policy_version', 'lp_routing_version', 'execution_quality_version')},
+        profile={**{name: getattr(keeper, name) for name in ('accounting_version', 'maintenance_policy_version', 'lp_routing_version', 'execution_quality_version')},
+            **({'execution_price_version':1} if keeper.execution_price_version else {})},
         configuration_sha256=keeper.configuration_sha256,
         configuration_reviewed_for_live_use=config.get('reviewed_for_live_use') is True,
         journal={'available': original is not None, 'sha256': hashlib.sha256(original).hexdigest() if original is not None else None},

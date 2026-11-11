@@ -1,5 +1,39 @@
 # PoPL operator manual
 
+## Use a price-reference pool for swaps
+
+Fresh execution-price1/LP-routing3 supports this explicitly. A reviewed external
+ETH/ZZZ reference may also be an execution venue; it remains separate from the
+same-core PoPL principal destination. Original two-source bounds price the whole
+operation, while exact quoted output/full state and live source checks validate
+the swap and later callbacks. Public Oracle reads stay live. No financial cap,
+authority or default gas budget changes.
+
+After the fixed Manager/Math graph and both ZZZ feeds are reviewed/bound, governance
+calls `Oracle.setExecutionSource(reader,true,expectedCodeHash,reviewHash)` for each
+approved composite source. Read `executionSourcePolicies(reader)` and
+`executionSourceRevision()` to verify it. Disabling uses the same function with
+`false`; it does not query the failed reader or waive price validity. Do not call
+`beginExecution`, `beforeSwap` or other module-only controls from your wallet.
+
+Adopt matching exact runtimes and explicit `execution_price_version:1`,
+`lp_routing_version:3` in the inventory, read/activation, keeper and unsigned
+website configurations. The current production template is unconfigured; its
+prior LP2 form is preserved separately. Stop affected scheduling, recover pending
+hashes and preserve journals before controlled adoption. New keeper journal
+identity must match; never relabel an old journal or restart a running service
+from this documentation alone. Reprepare reviews after source/policy rotation.
+
+Run complete confirmed-state simulations with the actual route, contribution
+and callback graph. Current source agreement3%, total contributions3%, conversion1%,
+maintenance3%, additional execution1% and gas separation remain. A correct
+reference swap can still fail these limits, or the gas budget, at actual depth.
+The12M default stays; optional policy2 requires a separately reviewed confirmed-
+block gas bound, full20% headroom and fee ceiling. Claims and holdings do not
+depend on a newly live execution context. Source publication changes no signer,
+public configuration, website or operating service.
+[Exact design, inputs and failure boundaries](REFERENCE_SWAP_EXECUTION.md).
+
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
@@ -205,7 +239,7 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 ## Current accounting7 deployment boundary
 
 Fresh source uses Vault.ACCOUNTING_VERSION7, ProtocolPolicy1, Migration.CUSTODY_VERSION5,
-Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing2,
+Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing3 / execution-price1,
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
@@ -326,9 +360,9 @@ Anvil/old releases are not upgraded by changing configuration or this runbook.
 ### Add or remove an execution pool after sealing
 
 This changes the swap venue, not the LP contribution destination. Use the fresh
-Manager `LP_ROUTING_VERSION()==2`, fixed `balancingRouter()` and typed
+Manager `LP_ROUTING_VERSION()==3` with execution-price1, fixed `balancingRouter()` and typed
 position/arithmetic children;
-Entry routing3 is direct ETH/ZZZ input with no pre-Vault conversion child; LP routing2 remains separate. Historical deployments are unchanged.
+Entry routing3 is direct ETH/ZZZ input with no pre-Vault conversion child; LP routing3 is separate. Historical LP2 deployments are unchanged.
 
 1. Review the future pool's full native ETH/fixed-ZZZ static hookless key,
    initialized state, pinned dependencies, actual fees/depth, independent prices
@@ -3382,7 +3416,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **913 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **956 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -3552,10 +3586,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [Strategy.setRangeOrientation](CONTRACT_FUNCTIONS.md#zzzstrategy) | `poolId: bytes32`<br>`orientation: uint8` | `setRangeOrientation(POOL_ID, ORIENTATION)` | Configure human-price range orientation |
 
 <details>
-<summary>Read functions and constants (27)</summary>
+<summary>Read functions and constants (28)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [Strategy.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [Strategy.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
 | `R` [Strategy.MAINTENANCE_POLICY_VERSION](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `MAINTENANCE_POLICY_VERSION()` | Read maintenance policy version |
 | `R` [Strategy.MAX_ADDITIONAL_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzstrategy) | None | `MAX_ADDITIONAL_LOSS_BPS()` | Read max additional loss bps |
@@ -3860,13 +3895,15 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `G` [Oracle.setDualFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`primary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`secondary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`maxDeviationBps: uint16`<br>`reviewHash: bytes32` | `setDualFeed(ZZZ_ADDRESS, ["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"], ["SECONDARY_FEED_ADDRESS", "SECONDARY_CODE_HASH", "SECONDARY_INDEPENDENCE_ID", "SECONDARY_MAX_AGE", "SECONDARY_FEED_DECIMALS"], 300, REVIEW_HASH)` | Configure independent price sources |
+| `G` [Oracle.setExecutionSource](CONTRACT_FUNCTIONS.md#zzzoracle) | `source: address`<br>`enabled: bool`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setExecutionSource(COMPOSITE_READER_ADDRESS, true, READER_RUNTIME_HASH, SOURCE_REVIEW_HASH)` | Configure reviewed execution source |
 | `G` [Oracle.setSequencerFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `source: address`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setSequencerFeed(SOURCE_ADDRESS, EXPECTED_CODE_HASH, REVIEW_HASH)` | Configure sequencer outage guard |
 
 <details>
-<summary>Read functions and constants (21)</summary>
+<summary>Read functions and constants (28)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [Oracle.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [Oracle.FINGERPRINT_DOMAIN](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `FINGERPRINT_DOMAIN()` | Read fingerprint domain |
 | `R` [Oracle.MAX_DEVIATION_BPS](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `MAX_DEVIATION_BPS()` | Read max deviation bps |
 | `R` [Oracle.PRICING_VERSION](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `PRICING_VERSION()` | Read pricing version |
@@ -3875,6 +3912,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [Oracle.activePolicy](CONTRACT_FUNCTIONS.md#zzzoracle) | `input0: address` | `activePolicy(TARGET_ADDRESS)` | Read active policy |
 | `R` [Oracle.activeSequencerPolicy](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `activeSequencerPolicy()` | Read active sequencer policy |
 | `R` [Oracle.contributionPricing](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `contributionPricing()` | Read contribution pricing |
+| `R` [Oracle.executionActive](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `executionActive()` | Read transient execution presence |
+| `R` [Oracle.executionBounds](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address` | `executionBounds(ETH_OR_FIXED_ZZZ_ADDRESS)` | Read captured execution bounds |
+| `R` [Oracle.executionReferenceX96](CONTRACT_FUNCTIONS.md#zzzoracle) | `token0: address`<br>`token1: address` | `executionReferenceX96(0x0000000000000000000000000000000000000000, ZZZ_ADDRESS)` | Read captured price reference |
+| `R` [Oracle.executionSourcePolicies](CONTRACT_FUNCTIONS.md#zzzoracle) | `input0: address` | `executionSourcePolicies(COMPOSITE_READER_ADDRESS)` | Read execution source policy |
+| `R` [Oracle.executionSourceRevision](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `executionSourceRevision()` | Read execution source revision |
 | `R` [Oracle.policy](CONTRACT_FUNCTIONS.md#zzzoracle) | `id: bytes32` | `policy(PRICE_POLICY_ID)` | Read policy |
 | `R` [Oracle.policyAt](CONTRACT_FUNCTIONS.md#zzzoracle) | `ordinal: uint256` | `policyAt(1)` | Read policy at |
 | `R` [Oracle.policyCount](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `policyCount()` | Read policy count |
@@ -3887,7 +3929,22 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [Oracle.sequencerPolicyAt](CONTRACT_FUNCTIONS.md#zzzoracle) | `ordinal: uint256` | `sequencerPolicyAt(1)` | Read sequencer policy at |
 | `R` [Oracle.sequencerPolicyCount](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `sequencerPolicyCount()` | Read sequencer policy count |
 | `R` [Oracle.tokenDecimals](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address` | `tokenDecimals(ZZZ_ADDRESS)` | Read token decimals |
+| `R` [Oracle.validateExecution](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `validateExecution()` | Validate captured execution proof |
 | `R` [Oracle.value](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`amount: uint256` | `value(ZZZ_ADDRESS, AMOUNT)` | Value reviewed asset amount |
+
+</details>
+
+<details>
+<summary>Contract-only calls: use the parent workflow (6)</summary>
+
+| Function name | Expected input | Example call inputs | Explanation |
+| --- | --- | --- | --- |
+| `M` [Oracle.afterSwap](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `afterSwap()` | Verify exact swap transition |
+| `M` [Oracle.beforeSwap](CONTRACT_FUNCTIONS.md#zzzoracle) | `core: address`<br>`stateView: address`<br>`poolId: bytes32`<br>`expectedAfter` [MarketState](#input-marketstate) | `beforeSwap(POOL_MANAGER_ADDRESS, STATE_VIEW_ADDRESS, EXECUTION_POOL_ID, ["POST_SWAP_SQRT_PRICE_X96", "POST_SWAP_TICK", "PROTOCOL_FEE", "LP_FEE", "POST_SWAP_LIQUIDITY"])` | Arm exact swap transition |
+| `M` [Oracle.beginExecution](CONTRACT_FUNCTIONS.md#zzzoracle) | `zzz: address` | `beginExecution(ZZZ_ADDRESS)` | Begin pricing execution context |
+| `M` [Oracle.beginManagerExecution](CONTRACT_FUNCTIONS.md#zzzoracle) | `zzz: address`<br>`destination: bytes32`<br>`borrowVault: bool` | `beginManagerExecution(ZZZ_ADDRESS, LP_DESTINATION_POOL_ID, AUTHENTICATED_VAULT_CALL)` | Begin manager execution context |
+| `M` [Oracle.endExecution](CONTRACT_FUNCTIONS.md#zzzoracle) | None | `endExecution()` | End pricing execution context |
+| `M` [Oracle.endManagerExecution](CONTRACT_FUNCTIONS.md#zzzoracle) | `owned: bool` | `endManagerExecution(RETURNED_OWNED_FLAG)` | End manager execution context |
 
 </details>
 
@@ -3901,10 +3958,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [LPBalancer.configureSolver](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `iterations: uint8`<br>`gasLimit: uint32`<br>`reviewHash: bytes32` | `configureSolver(ITERATIONS, GAS_LIMIT, REVIEW_HASH)` | Configure bounded sizing solver |
 
 <details>
-<summary>Read functions and constants (18)</summary>
+<summary>Read functions and constants (19)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [LPBalancer.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [LPBalancer.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
 | `R` [LPBalancer.LP_ROUTING_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `LP_ROUTING_VERSION()` | Read lp routing version |
 | `R` [LPBalancer.MAX_ADDITIONAL_LOSS_BPS](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | None | `MAX_ADDITIONAL_LOSS_BPS()` | Read max additional loss bps |
@@ -3927,13 +3985,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (5)</summary>
+<summary>Contract-only calls: use the parent workflow (6)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [LPBalancer.plan](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `target: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256` | `plan(TARGET, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1)` | Plan bounded balancing operation |
 | `M` [LPBalancer.planReplacement](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `target: bytes32`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256`<br>`mainFloor: uint16`<br>`marks: uint256[4]` | `planReplacement(POOL_ID, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1, MAIN_FLOOR, ["MARKS", "MARKS", "MARKS", "MARKS"])` | Plan replacement LP inventory |
 | `M` [LPBalancer.quoteCandidate](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `key` [PoolKey](#input-poolkey)<br>`direction: bool`<br>`amount: uint256` | `quoteCandidate(["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], DIRECTION, AMOUNT)` | Quote candidate execution venue |
+| `M` [LPBalancer.quoteSwap](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `poolId: bytes32`<br>`direction: bool`<br>`amount: uint256` | `quoteSwap(EXECUTION_POOL_ID, DIRECTION, INPUT_RAW)` | Quote exact manager swap |
 | `M` [LPBalancer.routePlan](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`id: bytes32`<br>`direction: bool`<br>`requireActive: bool` | `routePlan(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], POOL_ID, DIRECTION, REQUIRE_ACTIVE)` | Choose reviewed balancing route |
 | `C` [LPBalancer.unlockCallback](CONTRACT_FUNCTIONS.md#zzzlpbalancer) | `data: bytes` | `unlockCallback(0x)` | Settle authenticated core callback |
 
@@ -4657,6 +4716,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [ContributionPricing.ENTRY_REVIEW_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `ENTRY_REVIEW_VERSION()` | Read entry review version |
+| `R` [ContributionPricing.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [ContributionPricing.RESIDUAL_REINVEST_VERSION](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `RESIDUAL_REINVEST_VERSION()` | Read residual reinvest capability |
 | `R` [ContributionPricing.access](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `access()` | Read access |
 | `R` [ContributionPricing.active](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `active()` | Read active |
@@ -4667,7 +4727,6 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [ContributionPricing.entryIdleLimit](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `entryIdleLimit(BUCKET_ID)` | Read entry idle limit |
 | `R` [ContributionPricing.historicalValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `historicalValue(BUCKET_ID)` | Read zero compatibility sentinel |
 | `R` [ContributionPricing.idleValue](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `idleValue(BUCKET_ID)` | Read idle value |
-| `R` [ContributionPricing.markMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `markMaintenance(BUCKET_ID)` | Read mark maintenance |
 | `R` [ContributionPricing.nav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `nav(BUCKET_ID)` | Read nav |
 | `R` [ContributionPricing.oracle](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `oracle()` | Read oracle |
 | `R` [ContributionPricing.validateRebalance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`minimumLiquidity: uint128`<br>`emergency: bool`<br>`checks: uint8` | `validateRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, EMERGENCY_ACTIVE, RETAINED_CHECKS)` | Validate public rebalance timing |
@@ -4677,7 +4736,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (5)</summary>
+<summary>Contract-only calls: use the parent workflow (7)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4685,7 +4744,9 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [ContributionPricing.beginEntryReviewed](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `nft: uint256`<br>`pool: bytes32`<br>`source: address`<br>`amount: uint256`<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32` | `beginEntryReviewed(NFT_ID, POOL_ID, SOURCE_ADDRESS, AMOUNT, MAXIMUM_LOSS_BPS, EXPECTED_CONTRIBUTION_POLICY)` | Capture reviewed contribution context |
 | `M` [ContributionPricing.contributionNav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `contributionNav(BUCKET_ID)` | Measure incumbent attributed NAV |
 | `M` [ContributionPricing.endEntry](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `endEntry()` | Close reviewed entry context |
+| `M` [ContributionPricing.endMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `endMaintenance(BUCKET_ID)` | End maintenance pricing scope |
 | `M` [ContributionPricing.finish](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`inputUSD: uint256`<br>`supply: uint256`<br>`incumbentNAV: uint256`<br>`incumbentDeployed: uint256`<br>`deployed: uint256`<br>`idle: uint256`<br>`limits: uint32` | `finish(BUCKET_ID, INPUT_USD, SUPPLY, INCUMBENT_NAV, INCUMBENT_DEPLOYED, DEPLOYED, IDLE, LIMITS)` | Finish contribution pricing context |
+| `M` [ContributionPricing.markMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `markMaintenance(BUCKET_ID)` | Begin captured maintenance scope |
 
 </details>
 
@@ -4694,11 +4755,12 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### LiquidityManager
 
 <details>
-<summary>Read functions and constants (25)</summary>
+<summary>Read functions and constants (27)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [LiquidityManager.EMERGENCY_REBALANCE_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `EMERGENCY_REBALANCE_VERSION()` | Read emergency rebalance version |
+| `R` [LiquidityManager.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [LiquidityManager.EXECUTION_QUALITY_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `EXECUTION_QUALITY_VERSION()` | Read execution quality version |
 | `R` [LiquidityManager.LP_ROUTING_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `LP_ROUTING_VERSION()` | Read lp routing version |
 | `R` [LiquidityManager.PORTFOLIO_VERSION](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `PORTFOLIO_VERSION()` | Read portfolio version |
@@ -4713,6 +4775,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [LiquidityManager.executionOrdinaryReplacement](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `executionOrdinaryReplacement()` | Read execution ordinary replacement |
 | `R` [LiquidityManager.executionPortfolioFingerprint](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `executionPortfolioFingerprint(LP_TOKEN_ID)` | Read execution portfolio fingerprint |
 | `R` [LiquidityManager.executionSpot](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `pool: bytes32` | `executionSpot(POOL_ID)` | Read execution spot |
+| `R` [LiquidityManager.executionStrategy](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `executionStrategy()` | Read execution arithmetic helper |
 | `R` [LiquidityManager.permit2](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `permit2()` | Read permit2 |
 | `R` [LiquidityManager.poolManager](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | None | `poolManager()` | Read pool manager |
 | `R` [LiquidityManager.portfolioAmounts](CONTRACT_FUNCTIONS.md#zzzliquiditymanager) | `main: uint256` | `portfolioAmounts(LP_TOKEN_ID)` | Read portfolio amounts |
@@ -4749,10 +4812,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### LPPositionExecutor
 
 <details>
-<summary>Read functions and constants (15)</summary>
+<summary>Read functions and constants (16)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [LPPositionExecutor.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [LPPositionExecutor.LP_POSITION_EXECUTOR_VERSION](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `LP_POSITION_EXECUTOR_VERSION()` | Read lp position executor version |
 | `R` [LPPositionExecutor.RESIDUAL_EXIT_VERSION](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `RESIDUAL_EXIT_VERSION()` | Read residual exit version |
 | `R` [LPPositionExecutor.access](CONTRACT_FUNCTIONS.md#zzzlppositionexecutor) | None | `access()` | Read access |
@@ -4789,17 +4853,33 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### LPBalanceMath
 
 <details>
-<summary>Read functions and constants (7)</summary>
+<summary>Read functions and constants (23)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [LPBalanceMath.EXECUTION_PRICE_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `EXECUTION_PRICE_VERSION()` | Read execution pricing version |
 | `R` [LPBalanceMath.LP_BALANCE_MATH_VERSION](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `LP_BALANCE_MATH_VERSION()` | Read lp balance math version |
+| `R` [LPBalanceMath.assertPortfolioUtilization](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256` | `assertPortfolioUtilization(BUCKET_ID, ETH_PRICE_USD18, ZZZ_PRICE_USD18, ETH_RAW_SCALE, ZZZ_RAW_SCALE)` | Check main residual allocation |
 | `R` [LPBalanceMath.balancer](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `balancer()` | Read balancer |
+| `R` [LPBalanceMath.checkMaintenance](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`beforeValue: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256`<br>`lossBps: uint16`<br>`maxIdleBps: uint16`<br>`expectedPolicy: bytes32` | `checkMaintenance(BUCKET_ID, STARTING_USD18, ETH_PRICE_USD18, ZZZ_PRICE_USD18, ETH_RAW_SCALE, ZZZ_RAW_SCALE, MAINTENANCE_LOSS_BPS, MAX_IDLE_BPS, MAINTENANCE_POLICY_HASH)` | Check maintenance value budget |
+| `R` [LPBalanceMath.compoundReady](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`budget: address` | `compoundReady(BUCKET_ID, VAULT_BUDGET_ADDRESS)` | Check compound eligibility |
 | `R` [LPBalanceMath.deploymentAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`amount0: uint256`<br>`amount1: uint256` | `deploymentAmounts(CURRENT, LOWER_TICK, UPPER_TICK, AMOUNT0, AMOUNT1)` | Read deployment amounts |
 | `R` [LPBalanceMath.deploymentDebts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`liquidity: uint128` | `deploymentDebts(CURRENT, LOWER_TICK, UPPER_TICK, LIQUIDITY)` | Read deployment debts |
 | `R` [LPBalanceMath.evaluate](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`price: uint160`<br>`a0: uint256`<br>`a1: uint256` | `evaluate(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], PRICE, A0, A1)` | Read evaluate |
+| `R` [LPBalanceMath.executionMinimumOutput](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32`<br>`direction: bool`<br>`amount: uint256` | `executionMinimumOutput(EXECUTION_POOL_ID, DIRECTION, INPUT_RAW)` | Calculate guarded execution minimum |
+| `R` [LPBalanceMath.executionPrices](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `token: address` | `executionPrices(ZZZ_ADDRESS)` | Read execution price vector |
+| `R` [LPBalanceMath.executionTarget](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32` | `executionTarget(LP_DESTINATION_POOL_ID)` | Read captured target geometry |
+| `R` [LPBalanceMath.executionValidatePrice](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32` | `executionValidatePrice(POOL_ID)` | Validate captured venue price |
+| `R` [LPBalanceMath.fixedZZZ](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `fixedZZZ()` | Read fixed ZZZ identity |
+| `R` [LPBalanceMath.maintenanceValues](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256` | `maintenanceValues(BUCKET_ID, ETH_PRICE_USD18, ZZZ_PRICE_USD18, ETH_RAW_SCALE, ZZZ_RAW_SCALE)` | Value maintenance principal |
+| `R` [LPBalanceMath.minimumOutput](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `p` [ZZZLPBalanceMath.Prices](#input-zzzlpbalancemath-prices)<br>`direction: bool`<br>`amount: uint256`<br>`loss: uint16`<br>`fee: uint256` | `minimumOutput(["ETH_LOWER_USD18", "ETH_UPPER_USD18", "ZZZ_LOWER_USD18", "ZZZ_UPPER_USD18", "ZZZ_RAW_SCALE", "REFERENCE_SQRT_PRICE_X96", "ADDITIONAL_LOSS_BPS"], DIRECTION, INPUT_RAW, GROSS_LOSS_BPS, DIRECTIONAL_FEE_PPM)` | Calculate fee-aware output minimum |
+| `R` [LPBalanceMath.nativeConfig](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32`<br>`requireOperations: bool` | `nativeConfig(POOL_ID, REQUIRE_OPERATIONS)` | Validate native pool configuration |
+| `R` [LPBalanceMath.policyFingerprint](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `target: bytes32`<br>`venue: bytes32` | `policyFingerprint(LP_DESTINATION_POOL_ID, EXECUTION_POOL_ID_OR_ZERO)` | Read execution policy commitment |
 | `R` [LPBalanceMath.principalAmounts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `positionManager: address`<br>`state: address`<br>`id: uint256` | `principalAmounts(POSITION_MANAGER_ADDRESS, STATE_ADDRESS, LP_TOKEN_ID)` | Read principal amounts |
 | `R` [LPBalanceMath.seed](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`direction: bool`<br>`fee: uint256` | `seed(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], DIRECTION, FEE)` | Read seed |
+| `R` [LPBalanceMath.validSpot](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `price: uint160`<br>`referencePrice: uint160`<br>`deviation: uint16` | `validSpot(SPOT_SQRT_PRICE_X96, REFERENCE_SQRT_PRICE_X96, MAX_DEVIATION_BPS)` | Check spot deviation band |
+| `R` [LPBalanceMath.validateRebalance](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`minimumLiquidity: uint128`<br>`emergency: bool`<br>`checks: uint8` | `validateRebalance(BUCKET_ID, MINIMUM_LIQUIDITY, EMERGENCY_MODE, RETAINED_CHECKS_MASK)` | Check rebalance prerequisites |
+| `R` [LPBalanceMath.validateResidualClose](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`busy: bool` | `validateResidualClose(BUCKET_ID, ACTUAL_BUDGET_BUSY)` | Check residual close prerequisites |
 
 </details>
 
@@ -5037,16 +5117,21 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### V4SpotPriceFeed
 
 <details>
-<summary>Read functions and constants (7)</summary>
+<summary>Read functions and constants (12)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [V4SpotPriceFeed.EXECUTION_SOURCE_VERSION](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `EXECUTION_SOURCE_VERSION()` | Read execution source version |
 | `R` [V4SpotPriceFeed.SOURCE_CALL_GAS](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `SOURCE_CALL_GAS()` | Read upstream gas ceiling |
 | `R` [V4SpotPriceFeed.config](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `config()` | Read fixed source configuration |
 | `R` [V4SpotPriceFeed.decimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `decimals()` | Read USD answer precision |
 | `R` [V4SpotPriceFeed.ethFeedDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `ethFeedDecimals()` | Read ETH source precision |
+| `R` [V4SpotPriceFeed.executionAsset](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `executionAsset()` | Read execution asset identity |
+| `R` [V4SpotPriceFeed.executionMarket](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `executionMarket()` | Read live reference market |
+| `R` [V4SpotPriceFeed.executionProof](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `captured` [MarketState](#input-marketstate) | `executionProof(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read captured live proof |
 | `R` [V4SpotPriceFeed.latestRoundData](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `latestRoundData()` | Read composite spot observation |
 | `R` [V4SpotPriceFeed.poolId](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `poolId()` | Read reference pool identity |
+| `R` [V4SpotPriceFeed.roundAt](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `state` [MarketState](#input-marketstate) | `roundAt(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read hypothetical captured round |
 | `R` [V4SpotPriceFeed.zzzDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `zzzDecimals()` | Read fixed ZZZ precision |
 
 </details>
@@ -5159,6 +5244,22 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | `request.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` |
 | `request.deadline` | `uint256` | `UNIX_DEADLINE` |
 | `request.reviewHash` | `bytes32` | `REVIEW_HASH` |
+
+</details>
+
+<details>
+<summary>MarketState</summary>
+
+<a id="input-marketstate"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `expectedAfter` | `(uint160,int24,uint24,uint24,uint128)` | `["POST_SWAP_SQRT_PRICE_X96", "POST_SWAP_TICK", "PROTOCOL_FEE", "LP_FEE", "POST_SWAP_LIQUIDITY"]` |
+| `expectedAfter.sqrtPriceX96` | `uint160` | `POST_SWAP_SQRT_PRICE_X96` |
+| `expectedAfter.tick` | `int24` | `POST_SWAP_TICK` |
+| `expectedAfter.protocolFee` | `uint24` | `PROTOCOL_FEE` |
+| `expectedAfter.lpFee` | `uint24` | `LP_FEE` |
+| `expectedAfter.liquidity` | `uint128` | `POST_SWAP_LIQUIDITY` |
 
 </details>
 
@@ -5382,6 +5483,24 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 | `x.mainFloor` | `uint16` | `MAIN_FLOOR` |
 | `x.marks` | `uint256[4]` | `["MARKS", "MARKS", "MARKS", "MARKS"]` |
 | `x.marks[0]` | `uint256` | `MARKS` |
+
+</details>
+
+<details>
+<summary>ZZZLPBalanceMath.Prices</summary>
+
+<a id="input-zzzlpbalancemath-prices"></a>
+
+| Field | ABI type | Example input |
+| --- | --- | --- |
+| `p` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["ETH_LOWER_USD18", "ETH_UPPER_USD18", "ZZZ_LOWER_USD18", "ZZZ_UPPER_USD18", "ZZZ_RAW_SCALE", "REFERENCE_SQRT_PRICE_X96", "ADDITIONAL_LOSS_BPS"]` |
+| `p.lower0` | `uint256` | `ETH_LOWER_USD18` |
+| `p.upper0` | `uint256` | `ETH_UPPER_USD18` |
+| `p.lower1` | `uint256` | `ZZZ_LOWER_USD18` |
+| `p.upper1` | `uint256` | `ZZZ_UPPER_USD18` |
+| `p.scale1` | `uint256` | `ZZZ_RAW_SCALE` |
+| `p.referenceX96` | `uint160` | `REFERENCE_SQRT_PRICE_X96` |
+| `p.extraLoss` | `uint16` | `ADDITIONAL_LOSS_BPS` |
 
 </details>
 

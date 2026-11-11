@@ -112,7 +112,8 @@ def lp_execution_frame(mint,pins,request,create):
     they must never be mistaken for before/after LP liquidity observations.
     """
     if request.get('accounting_version',1) not in (5,6,7):return mint,pins['liquidity']
-    if request.get('lp_routing_version')!=2 or request.get('portfolio_version')!=(2 if request.get('accounting_version') in (6,7) else 1):
+    routing = 3 if request.get('execution_price_version',0) else 2
+    if request.get('lp_routing_version')!=routing or request.get('portfolio_version')!=(2 if request.get('accounting_version') in (6,7) else 1):
         raise ProjectionError('Accounting5 trace requires explicit portfolio1/routing2')
     executor=pins['lp_position_executor'];method=MINT if create else INCREASE
     executed=child(mint,pins['liquidity'],executor,method,'CALL')
@@ -121,6 +122,54 @@ def lp_execution_frame(mint,pins,request,create):
             _quantity(executed.get('value','0x0'))!=_quantity(mint.get('value','0x0'))):
         raise ProjectionError('Accounting5 typed Executor call differs from its Manager wrapper')
     return executed,executor
+
+
+def execution_price_witness(root,begun,ended,pins,req):
+    """Fresh explicit context brackets all Entry funds and callback movement.
+
+    Standalone observational priceBounds stays live. Only executionBounds is
+    a captured transaction basis; old trace profiles never adopt this graph.
+    """
+    helper=pins['contribution_pricing'];oracle=pins['oracle']
+    opened=child(begun,helper,oracle,'beginExecution(address)','CALL')
+    closed=child(ended,helper,oracle,'endExecution()','CALL')
+    if (opened.get('input','').lower()!=calldata('beginExecution(address)',req['token1']) or
+            opened.get('output','0x')!='0x' or closed.get('input','').lower()!=calldata('endExecution()') or
+            closed.get('output','0x')!='0x'):
+        raise ProjectionError('Execution-price context identity or closure differs')
+    begin_changes=[x for x in begun.get('calls',[]) if x.get('type')!='STATICCALL']
+    end_changes=[x for x in ended.get('calls',[]) if x.get('type')!='STATICCALL']
+    if not begin_changes or begin_changes[0] is not opened or not end_changes or end_changes[-1] is not closed:
+        raise ProjectionError('Execution-price context does not bracket Pricing callbacks')
+    ordered=[]
+    def visit(frame):
+        ordered.append(frame)
+        for nested in frame.get('calls',[]):visit(nested)
+    visit(root)
+    starts=[x for x in ordered if x.get('to','').lower()==oracle and
+            x.get('input','')[:10].lower()==selector('beginExecution(address)')]
+    ends=[x for x in ordered if x.get('to','').lower()==oracle and
+          x.get('input','')[:10].lower()==selector('endExecution()')]
+    if starts!=[opened] or ends!=[closed]:
+        raise ProjectionError('Duplicate or foreign execution-price context boundary')
+    first=next(i for i,x in enumerate(ordered) if x is opened)
+    last=next(i for i,x in enumerate(ordered) if x is closed)
+    observed=set()
+    for index,frame in enumerate(ordered):
+        if frame.get('from','').lower()!=helper or frame.get('to','').lower()!=oracle:continue
+        signature=frame.get('input','')[:10].lower()
+        if signature==selector('priceBounds(address)'):
+            raise ProjectionError('Fresh execution pricing cannot reread a live valuation basis')
+        if signature!=selector('executionBounds(address)'):continue
+        successful(frame)
+        asset=_address_word(words('0x'+frame['input'][10:],1)[0],native=True)
+        expected=req['reviewed_price_bounds'].get(asset)
+        if (expected is None or frame.get('type')!='STATICCALL' or not first<index<last or
+                words(frame.get('output'),3)!=[f'{expected["lower"]:064x}',f'{expected["upper"]:064x}',expected['fingerprint'][2:]]):
+            raise ProjectionError('Execution-price bounds differ from the initial reviewed sources')
+        observed.add(asset)
+    if not set(req['reviewed_price_bounds'])<=observed:
+        raise ProjectionError('Initial captured execution-price bounds are missing')
 
 
 def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical):
@@ -139,6 +188,8 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
     ended=child(root,pins['entry'],helper,'endEntry()','CALL')
     if not changing or changing[0] is not begun or changing[-1] is not ended or ended.get('output','0x')!='0x':
         raise ProjectionError('Contribution pricing does not bracket all Entry callbacks')
+    execution_price=req.get('execution_price_version',0)==1
+    if execution_price:execution_price_witness(root,begun,ended,pins,req)
     validation=child(vault,pins['vault'],budget,VALIDATE_PRICING,'CALL')
     packed=req['_contribution_amount0'] | (req['_contribution_amount1'] << 128)
     expected=static_data(VALIDATE_PRICING,req['id'],bucket,gross,packed,req['minimum_lp'],int(not req['increase']))
@@ -186,7 +237,7 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
     if not index(mint_calls[0])<index(buckets[-1])<index(navs[2]) or supply and not index(navs[0])<index(buckets[0])<index(navs[1]):
         raise ProjectionError('Incumbent compound values are outside their captured phases')
     fresh=values[0] if supply else 0;late=values[-1]
-    capped=req.get('lp_routing_version',0) in (1,2)
+    capped=req.get('lp_routing_version',0) in (1,2,3)
     expected_deployed=nav_values[1][0] if capped else nav_values[1][0]+nav_values[0][1]+fresh
     expected_nav=nav_values[1][0]+nav_values[0][1]+fresh+late
     if (incumbent_deployed!=expected_deployed or incumbent_nav!=expected_nav or [deployed,idle]!=nav_values[-1]):
@@ -199,6 +250,27 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
                 not index(navs[0])<index(balanced)<index(navs[1])):
             raise ProjectionError('LP balancing did not isolate the exact entrant budget')
         balances=[int(value,16) for value in words(balanced.get('output'),2)]
+        if execution_price:
+            planner=('plan(bytes32,int24,int24,uint256,uint256)',
+                     'planReplacement(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])')
+            plans=[frame for frame in balanced.get('calls',[]) if frame.get('from','').lower()==pins['liquidity'] and
+                   frame.get('to','').lower()==pins['balancing_router'] and
+                   frame.get('input','')[:10].lower() in tuple(selector(sig) for sig in planner)]
+            if len(plans)!=1 or plans[0].get('type')!='CALL':
+                raise ProjectionError('Missing explicit routing3 market-state plan')
+            plan=[int(value,16) for value in words(successful(plans[0]).get('output'),14)]
+            if (plan[1] not in (0,1) or plan[7]>=2**64 or plan[9]>=2**160 or
+                    plan[11]>=2**24 or plan[12]>=2**24 or plan[13]>=2**128):
+                raise ProjectionError('Malformed routing3 market-state plan')
+            tick=plan[10] if plan[10]<2**255 else plan[10]-2**256
+            if not -887272<=tick<=887272 or plan[2] and (plan[0]==0 or plan[5]!=plan[9] or plan[9]==0):
+                raise ProjectionError('Routing3 market-state plan differs from its swap output')
+            if plan[2]:
+                from zzz_ops.tick_math import validate_slot0
+                try:validate_slot0(plan[9],tick,plan[11],plan[12])
+                except ValueError as exc:raise ProjectionError('Routing3 plan has inconsistent physical market state') from exc
+            elif any(plan[9:]):
+                raise ProjectionError('No-swap routing3 plan contains an unexpected market transition')
         req['_lp_balanced']=balances
         contexts=[x for x in calls if x.get('from','').lower()==pins['vault'] and x.get('to','').lower()==budget and
             x.get('input','')[:10].lower()==selector('balanceContext(uint256)')]
@@ -221,9 +293,12 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
                 x.get('input','')[:10].lower()==selector('swap(bytes32,bool,uint256,uint256,uint256)') for x in calls):
             raise ProjectionError('LP contribution bypassed atomic balancing')
     initial={};final={};epoch=None;epochs=[]
-    exact_epoch_phases=req.get('accounting_version')==7
+    exact_epoch_phases=req.get('accounting_version')==7 and not execution_price
     for frame in finish.get('calls',[]):
         if frame.get('from','').lower()!=helper:continue
+        if execution_price and ((frame.get('to','').lower()==budget and frame.get('input','')[:10].lower()==selector('compositionEpoch(uint256)')) or
+                (frame.get('to','').lower()==pins['fees'] and frame.get('input','')[:10].lower()==selector('compoundBalance(uint256,address)'))):
+            raise ProjectionError('Fresh fixed-pair execution cannot adopt historical compound phases')
         if frame.get('to','').lower()==budget and frame.get('input','')[:10].lower()==selector('compositionEpoch(uint256)'):
             successful(frame)
             if ((not exact_epoch_phases and epoch is not None) or
@@ -247,9 +322,9 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
         if frame.get('type')!='STATICCALL' or int(args[0],16)!=bucket or token in phase:
             raise ProjectionError('Invalid historical compound observation')
         phase[token]=amount
-    # Fresh7 always checks _historicalMarks, including a new bucket's epoch0.
-    # Existing shares additionally execute historicalValue after the mark phase.
-    if ((exact_epoch_phases and (len(epochs)!=(2 if supply else 1) or not supply and epoch!=0)) or
+    # Historical profile7 always checked _historicalMarks. The explicit fresh
+    # execution profile proves a fixed pair and has no foreign-currency phase.
+    if not execution_price and ((exact_epoch_phases and (len(epochs)!=(2 if supply else 1) or not supply and epoch!=0)) or
             (not exact_epoch_phases and bool(supply)!=(epoch is not None)) or
             epoch==0 and (final or exact_epoch_phases and initial) or not supply and final):
         raise ProjectionError('Historical compound denomination does not match the captured epoch')
@@ -270,7 +345,7 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
         raise ProjectionError('Contribution verification event differs from measured LP and original source bounds')
     # Each later guard must observe the same source/pair policy and rounds as
     # the independently reviewed preparation snapshot, never a callback price.
-    stack=[begun,begin,*navs,finish,ended];observed=set()
+    stack=[] if execution_price else [begun,begin,*navs,finish,ended];observed=set()
     while stack:
         frame=stack.pop();stack.extend(frame.get('calls',[]))
         if frame.get('from','').lower()!=helper or frame.get('to','').lower()!=pins['oracle'] or frame.get('input','')[:10].lower()!=selector('priceBounds(address)'):
@@ -281,7 +356,7 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
             if frame.get('type')!='STATICCALL' or words(frame.get('output'),3)!=[f'{expected["lower"]:064x}',f'{expected["upper"]:064x}',expected['fingerprint'][2:]]:
                 raise ProjectionError('Captured price or policy fingerprint changed during execution')
             observed.add(asset)
-    if not set(req['reviewed_price_bounds'])<=observed:
+    if not execution_price and not set(req['reviewed_price_bounds'])<=observed:
         raise ProjectionError('Original source and pool price fingerprints are missing')
     return historical_value,upper
 
@@ -316,6 +391,11 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if not 0 < gas_used <= int(tx['gas'], 16):
         raise ProjectionError('Invalid simulated gas use')
     req = request
+    execution_price=req.get('execution_price_version',0)
+    if (type(execution_price) is not int or execution_price not in (0,1) or execution_price and
+            (req.get('accounting_version')!=7 or req.get('routing_version')!=3 or
+             req.get('pricing_version')!=2 or req.get('review_policy_version')!=2 or req.get('lp_routing_version')!=3)):
+        raise ProjectionError('Unsupported explicit execution-price trace profile')
     reviewed=req.get('review_policy_version',0)
     expected_data=request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
         req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
@@ -414,7 +494,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
             verify_historical(historical)
     issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
     floor = upper_input - upper_input * loss // 10000
-    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0) in (1,2) else 200) or
+    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= (1000 if req.get('lp_routing_version',0) in (1,2,3) else 200) or
             deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
             net < floor or net < upper_input * (10000 - slippage) // 10000 or
             idle > (deployed + idle) * (req['maximum_idle_bps'] if req.get('accounting_version') in (6,7) else 500) // 10000 or deployed == 0 or
@@ -442,7 +522,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         if _quantity(mint.get('value', '0x0')) != expected_value:
             raise ProjectionError('LP child call does not carry the exact declared native budget')
     output = words(mint.get('output'), 3 if create else 2)
-    if req.get('lp_routing_version',0) in (1,2) and any(int(used,16)>budget for used,budget in zip(output[1:] if create else output,req['_lp_balanced'])):
+    if req.get('lp_routing_version',0) in (1,2,3) and any(int(used,16)>budget for used,budget in zip(output[1:] if create else output,req['_lp_balanced'])):
         raise ProjectionError('LP deployment spent more than the entrant budget')
     lp_id = int(output[0], 16) if create else req['old_lp_id']
     measurement,operator=lp_execution_frame(mint,pins,req,create)

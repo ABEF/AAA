@@ -1,5 +1,16 @@
 # Price security and factual LP verification
 
+## Reference execution and captured valuation
+
+Fresh execution-price1/LP-routing3 supports a reviewed external reference as a
+swap venue without adopting its post-trade valuation. Original two-source bounds
+price every contribution/share/maintenance check. Exact output and full quoted
+market state are proven before settlement, then live freshness, agreement and
+mutable-boundary checks remain. Public Oracle views stay live. The reference is
+still separate from the same-core owned LP destination. This is an explicit
+fresh capability, not a semantic change to old pricing2/LP2 deployments.
+See [design, authority, admission and limits](REFERENCE_SWAP_EXECUTION.md).
+
 The user-approved [spot composite source](POOL_SPOT_PRICE_SOURCE.md) separates
 current-price placement from external-pool spot valuation times ETH/USD. It adds
 no TWAP and does not replace the two-independent-source requirement. Temporary
@@ -28,7 +39,7 @@ Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUT
 ## Status and security boundary
 
 The physical-plus-configured-reference confirmation below is implemented.
-Qualification of a genuinely independent higher-liquidity market/TWAP remains
+Qualification of a genuinely independent higher-liquidity external spot market remains
 separate [reference-market work](../TODO.md#task-rebalance-confirmation-buffer);
 no target-pool spot fallback is implemented or approved.
 
@@ -60,9 +71,10 @@ explicitly relax independent-reference confirmation with a review hash and sampl
 invalidation; automatic keeper widths cannot coexist with required protection.
 
 The reference remains the configured two-source USD ratio. A genuinely reviewed
-higher-liquidity independent market/TWAP, source independence, depth, averaging
-window and outage behavior are still unqualified; no new market adapter or
-same-pool spot fallback is inferred. A deeper instantaneous spot or high reported
+higher-liquidity independent market, source independence, external depth and
+outage behavior are still unqualified. The optional composite reader implements
+the selected spot valuation; no TWAP is added or required by this decision.
+No same-destination spot fallback is inferred. A deeper instantaneous spot or high reported
 TVL alone is not manipulation proof. Price disagreement can intentionally leave
 LP inactive until evidence agrees or governance uses a separately reviewed control.
 
@@ -289,16 +301,16 @@ A quote can therefore fail despite a cheap swap if approved bounds are too wide.
 The safe response is to reject or obtain a new qualified quote, not silently
 widen the loss cap or substitute one source. Network gas is separate.
 
-### Historical compound discovered during settlement
+### Incumbent compound during settlement
 
-Previously nonzero old-currency compound is marked at the starting checkpoint.
-An asset with zero recorded compound may first receive historical funding during
-fee synchronization. The final checkpoint marks that newly discovered backing
-before its fingerprint check, without overwriting any existing mark. It affects
-only incumbent historical backing in the share-issuance denominator. It never
-counts as new LP, pays the entrant's execution loss or gives the entrant old
-rewards. Unavailable prices for nonzero historical backing fail closed; an unused
-zero-balance asset need not become a new price dependency.
+Fresh accounting7 marks ETH and the fixed ZZZ before contribution callbacks.
+Fee synchronization may increase their designated incumbent compound; the share
+denominator includes it at that same captured vector. It never counts as the
+entrant's marginal LP, pays their execution loss or transfers old rewards to
+them. No foreign-currency principal scan or late currency marking remains.
+Compatibility historical-value reads return zero; old codecs/evidence retain
+their original profiles. Royalty currencies are a separate ledger. Unavailable
+required pair pricing still rejects the complete contribution atomically.
 
 ## Verify the actual LP, not a quoted dollar figure
 

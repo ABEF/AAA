@@ -1,0 +1,214 @@
+{
+  "testActualEntryETHActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares() Entry0": {
+    "entry_success": true,
+    "entry_gas": 16525422,
+    "nodes": 2729,
+    "outer_test_status": "Failure",
+    "outer_test_reason": "cold call must retain full 20% headroom under unchanged 12M budget: 19840853 > 12000000",
+    "attribution_note": "Inclusive categories overlap; do not add them. Exclusive is exact trace gas_used minus immediate children; zero negative nodes means no negative subtraction in selected methods.",
+    "negative_exclusive_nodes": [],
+    "methods": {
+      "validateExecution()": {
+        "calls": 14,
+        "inclusive_gas": 3967507,
+        "exclusive_gas_by_immediate_children": 1541259
+      },
+      "executionProof((uint160,int24,uint24,uint24,uint128))": {
+        "calls": 44,
+        "inclusive_gas": 3132274,
+        "exclusive_gas_by_immediate_children": 2748242
+      },
+      "executionBounds(address)": {
+        "calls": 34,
+        "inclusive_gas": 1434358,
+        "exclusive_gas_by_immediate_children": 1226890
+      },
+      "executionReferenceX96(address,address)": {
+        "calls": 23,
+        "inclusive_gas": 1129875,
+        "exclusive_gas_by_immediate_children": 989529
+      },
+      "beginExecution(address)": {
+        "calls": 1,
+        "inclusive_gas": 638274,
+        "exclusive_gas_by_immediate_children": 199312
+      },
+      "endManagerExecution(bool)": {
+        "calls": 2,
+        "inclusive_gas": 621504,
+        "exclusive_gas_by_immediate_children": 263192
+      },
+      "beginManagerExecution(address,bytes32,bool)": {
+        "calls": 2,
+        "inclusive_gas": 611551,
+        "exclusive_gas_by_immediate_children": 259937
+      },
+      "afterSwap()": {
+        "calls": 1,
+        "inclusive_gas": 344886,
+        "exclusive_gas_by_immediate_children": 150803
+      },
+      "latestRoundData()": {
+        "calls": 94,
+        "inclusive_gas": 340490,
+        "exclusive_gas_by_immediate_children": 315034
+      },
+      "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+        "calls": 1,
+        "inclusive_gas": 318202,
+        "exclusive_gas_by_immediate_children": 137359
+      },
+      "endExecution()": {
+        "calls": 1,
+        "inclusive_gas": 301184,
+        "exclusive_gas_by_immediate_children": 123320
+      },
+      "value(address,uint256)": {
+        "calls": 2,
+        "inclusive_gas": 207636,
+        "exclusive_gas_by_immediate_children": 75509
+      },
+      "executionMarket()": {
+        "calls": 2,
+        "inclusive_gas": 80122,
+        "exclusive_gas_by_immediate_children": 66024
+      },
+      "decimals()": {
+        "calls": 208,
+        "inclusive_gas": 73746,
+        "exclusive_gas_by_immediate_children": 73746
+      },
+      "access()": {
+        "calls": 41,
+        "inclusive_gas": 36285,
+        "exclusive_gas_by_immediate_children": 36285
+      },
+      "tokenDecimals(address)": {
+        "calls": 11,
+        "inclusive_gas": 23877,
+        "exclusive_gas_by_immediate_children": 23877
+      },
+      "contributionPricing()": {
+        "calls": 11,
+        "inclusive_gas": 7040,
+        "exclusive_gas_by_immediate_children": 7040
+      },
+      "executionAsset()": {
+        "calls": 2,
+        "inclusive_gas": 1326,
+        "exclusive_gas_by_immediate_children": 1326
+      },
+      "EXECUTION_SOURCE_VERSION()": {
+        "calls": 2,
+        "inclusive_gas": 786,
+        "exclusive_gas_by_immediate_children": 786
+      }
+    }
+  },
+  "testActualEntryZZZActivationAndGrowthUseTheReferencedSwapVenueAndExactLPShares() Entry0": {
+    "entry_success": true,
+    "entry_gas": 16858851,
+    "nodes": 2777,
+    "outer_test_status": "Failure",
+    "outer_test_reason": "cold call must retain full 20% headroom under unchanged 12M budget: 20233037 > 12000000",
+    "attribution_note": "Inclusive categories overlap; do not add them. Exclusive is exact trace gas_used minus immediate children; zero negative nodes means no negative subtraction in selected methods.",
+    "negative_exclusive_nodes": [],
+    "methods": {
+      "validateExecution()": {
+        "calls": 14,
+        "inclusive_gas": 3970684,
+        "exclusive_gas_by_immediate_children": 1541259
+      },
+      "executionProof((uint160,int24,uint24,uint24,uint128))": {
+        "calls": 44,
+        "inclusive_gas": 3137216,
+        "exclusive_gas_by_immediate_children": 2753184
+      },
+      "executionBounds(address)": {
+        "calls": 34,
+        "inclusive_gas": 1434358,
+        "exclusive_gas_by_immediate_children": 1226890
+      },
+      "executionReferenceX96(address,address)": {
+        "calls": 23,
+        "inclusive_gas": 1129875,
+        "exclusive_gas_by_immediate_children": 989529
+      },
+      "endManagerExecution(bool)": {
+        "calls": 2,
+        "inclusive_gas": 622210,
+        "exclusive_gas_by_immediate_children": 263192
+      },
+      "beginManagerExecution(address,bytes32,bool)": {
+        "calls": 2,
+        "inclusive_gas": 611904,
+        "exclusive_gas_by_immediate_children": 259937
+      },
+      "beginExecution(address)": {
+        "calls": 1,
+        "inclusive_gas": 572274,
+        "exclusive_gas_by_immediate_children": 199312
+      },
+      "value(address,uint256)": {
+        "calls": 2,
+        "inclusive_gas": 545474,
+        "exclusive_gas_by_immediate_children": 79888
+      },
+      "latestRoundData()": {
+        "calls": 96,
+        "inclusive_gas": 462512,
+        "exclusive_gas_by_immediate_children": 399600
+      },
+      "afterSwap()": {
+        "calls": 1,
+        "inclusive_gas": 345239,
+        "exclusive_gas_by_immediate_children": 150803
+      },
+      "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+        "calls": 1,
+        "inclusive_gas": 318202,
+        "exclusive_gas_by_immediate_children": 137359
+      },
+      "endExecution()": {
+        "calls": 1,
+        "inclusive_gas": 301537,
+        "exclusive_gas_by_immediate_children": 123320
+      },
+      "executionMarket()": {
+        "calls": 2,
+        "inclusive_gas": 80122,
+        "exclusive_gas_by_immediate_children": 66024
+      },
+      "decimals()": {
+        "calls": 213,
+        "inclusive_gas": 76013,
+        "exclusive_gas_by_immediate_children": 76013
+      },
+      "access()": {
+        "calls": 41,
+        "inclusive_gas": 36285,
+        "exclusive_gas_by_immediate_children": 36285
+      },
+      "tokenDecimals(address)": {
+        "calls": 11,
+        "inclusive_gas": 23877,
+        "exclusive_gas_by_immediate_children": 23877
+      },
+      "contributionPricing()": {
+        "calls": 11,
+        "inclusive_gas": 7040,
+        "exclusive_gas_by_immediate_children": 7040
+      },
+      "executionAsset()": {
+        "calls": 2,
+        "inclusive_gas": 1326,
+        "exclusive_gas_by_immediate_children": 1326
+      },
+      "EXECUTION_SOURCE_VERSION()": {
+        "calls": 2,
+        "inclusive_gas": 786,
+        "exclusive_gas_by_immediate_children": 786
+      }
+    }
+  }
+}

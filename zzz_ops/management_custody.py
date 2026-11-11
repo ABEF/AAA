@@ -83,7 +83,7 @@ def _raw_close(reader, selected, governance):
     physical = physical_portfolio(reader.read,
         lambda target: reader.p.rpc.call('eth_getCode', [target, reader.block]),
         contracts=reader.targets, code_hashes=hashes, bucket=bucket,
-        accounting_version=7, physical_only=True)
+        accounting_version=7, physical_only=True,execution_price_version=reader.p.execution_price_version)
     if action == 'close_residual' and not physical['secondary_id']:
         raise ManagementBlocked('residual_absent', 'Residual-only close has no registered residual')
     nonce = reader.uint('principal_exit', 'parkingNonce(uint256)', bucket)

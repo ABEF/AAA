@@ -13,6 +13,7 @@ interface IConfirmationControl {
     function emergencyReady(uint256) external view returns(bool);
 }
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
+import {IZZZExecutionStrategy} from "./interfaces/IZZZExecutionOracle.sol";
 interface IEmergencyManifest {
     function emergencyFingerprint() external view returns(bytes32);
     function emergencyTarget() external view returns(int24,int24);
@@ -31,6 +32,7 @@ interface IBudgetPortfolioPolicy {
     function enabled(bytes32) external view returns(bool);
 }
 interface IBudgetPositionOperator { function positionOperator() external view returns(address); }
+interface IBudgetExecutionManager {function executionStrategy()external view returns(address);}
 
 /// @notice Bounded execution policy for contributions and principal maintenance.
 /// A separately deployed fixed-controller companion. Governance can change
@@ -283,6 +285,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
                 _pricing().assertPortfolioUtilization(id,s.price0,s.price1,s.scale0,s.scale1);
             }
         }
+        _pricing().endMaintenance(id);
         delete snapshot;
         delete compoundIncluded;
         emit MigrationValueChecked(id, s.value, deployed, idle);
@@ -343,7 +346,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
             return(lower,upper,
                 IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(IZZZVault(vault()).group(id).poolId));
         }
-        return IZZZStrategy(access.module(Ids.STRATEGY)).target(IZZZVault(vault()).group(id).poolId);
+        return IZZZExecutionStrategy(IBudgetExecutionManager(access.module(Ids.LIQUIDITY)).executionStrategy()).executionTarget(IZZZVault(vault()).group(id).poolId);
     }
     /// @notice Bind prices, target policy and admitted execution controls across
     /// the Vault's complete approval/balance/reset sequence, not only the router.

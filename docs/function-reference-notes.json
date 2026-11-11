@@ -1503,7 +1503,7 @@
       }
     },
     "ZZZOracle": {
-      "purpose": "Bounded fresh independent dual-source USD pricing with immutable policy history and sequencer safeguards.",
+      "purpose": "Fresh dual-source live USD pricing plus explicitly scoped immutable captured execution valuation and quote-proven own-reference transitions. Ordinary public price reads always remain live.",
       "functions": {
         "access()": {
           "purpose": "Read the immutable controller binding.",
@@ -1719,6 +1719,132 @@
           "outputs": {
             "0": "uint160 sqrt(token1/token0 raw-unit ratio)*2**96; user-facing inverse ZZZ-price orientation is separate Strategy policy."
           }
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
+        },
+        "setExecutionSource(address,bool,bytes32,bytes32)": {
+          "purpose": "Enable or disable proof-aware normalization for an already admitted fixed-ZZZ composite reader. Enabling validates its pinned capability, asset, market and current dual-source agreement; disabling does not query that dependency.",
+          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+          "inputs": {
+            "0": "Exact admitted fixed-ZZZ composite reader address.",
+            "1": "True enables proof-aware execution; false disables it. Every call increments the revision.",
+            "2": "Exact reviewed reader runtime hash; required and verified for enable.",
+            "3": "Nonzero reviewed source/independence/market admission commitment."
+          },
+          "notes": "Bind the fixed Manager/Balancer/Math graph first. Reference selection is explicit governance configuration, never automatic TVL ranking. References must remain independent from one another and distinct from the LP destination on the same core. Outer code pins do not freeze every proxy/upstream dependency."
+        },
+        "executionSourcePolicies(address)": {
+          "purpose": "Read reviewed source-kind admission.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Exact candidate reader address."
+          },
+          "outputs": {
+            "0": "Whether proof-aware normalization is enabled.",
+            "1": "Recorded exact reader runtime hash.",
+            "2": "Recorded nonzero review commitment; not independent acceptance."
+          }
+        },
+        "executionSourceRevision()": {
+          "purpose": "Read monotonic source-kind configuration revision.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "Every source-kind edit advances this value; change-and-restore cannot revive an operation."
+          }
+        },
+        "executionActive()": {
+          "purpose": "Read whether a typed transient execution context currently exists.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "True only inside an active transaction context. Ordinary independent RPC calls see no persisted context; false is not price/market qualification."
+          }
+        },
+        "validateExecution()": {
+          "purpose": "Fully validate an active context after mutable boundaries: unchanged controls/ordinary feed rounds, fresh agreeing live prices, normalized original composite rounds and exact expected reference/chosen-venue state.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "notes": "Inactive validation is a no-op. This read alone is not permission or a future-execution guarantee; action modules invoke it at fixed pre/post-callback boundaries."
+        },
+        "executionBounds(address)": {
+          "purpose": "Read the original lower/upper/fingerprint vector while a context exists; otherwise perform ordinary live priceBounds.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Zero for native ETH or the fixed deployment ZZZ; another token rejects during a context."
+          },
+          "outputs": {
+            "0": "Original lower USD18 bound.",
+            "1": "Original upper USD18 bound.",
+            "2": "Exact original priceBounds fingerprint, never a repriced post-swap fingerprint."
+          },
+          "notes": "Active getters retain control/pending checks but full mutable-boundary validation is explicit. Ordinary priceBounds/price/value/referenceX96 always remain live."
+        },
+        "executionReferenceX96(address,address)": {
+          "purpose": "Derive the ordered-pair reference from the original captured lower bounds/decimals, or current validated prices when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "First accounting currency; zero is ETH.",
+            "1": "Second accounting currency; fixed ZZZ for native LP."
+          },
+          "outputs": {
+            "0": "Q64.96 raw-unit sqrt reference; active context accepts only ETH/fixed-ZZZ currencies."
+          }
+        },
+        "beginExecution(address)": {
+          "purpose": "Capture both ETH and both fixed-ZZZ sources and immutable control commitments before contribution/ordinary-maintenance callbacks.",
+          "access": "Only the constructor-fixed ContributionPricing child; no active context may already exist.",
+          "inputs": {
+            "0": "The one fixed deployment ZZZ token."
+          },
+          "notes": "Creates no custody or arbitrary execution authority. The static V1 transient codec is exactly49 ABI words/1568bytes and clears on successful end; transaction end also clears transient storage.",
+          "status": "internal"
+        },
+        "endExecution()": {
+          "purpose": "Validate the final active Pricing context and clear every transient word.",
+          "access": "Only the constructor-fixed ContributionPricing owner; no Manager loan may remain.",
+          "status": "internal"
+        },
+        "beginManagerExecution(address,bytes32,bool)": {
+          "purpose": "Open a standalone Manager context or borrow the fixed Pricing context for an authenticated Vault operation.",
+          "access": "Only the controller-bound fixed Manager. Existing context requires permitted Pricing ownership, fixed token and no outstanding Manager loan.",
+          "inputs": {
+            "0": "Fixed deployment ZZZ.",
+            "1": "Actual LP destination; zero only for a standalone swap without LP placement.",
+            "2": "Fixed Manager supplies true only for its Vault caller; unrelated nested buyback borrowing is rejected."
+          },
+          "outputs": {
+            "0": "True means Manager owns this context; false means it borrowed Pricing. Pass the returned value unchanged to endManagerExecution."
+          },
+          "status": "internal"
+        },
+        "endManagerExecution(bool)": {
+          "purpose": "Prove the final Manager market/control state and end its owned context or release its loan.",
+          "access": "Only the controller-bound fixed Manager with the matching active loan/owner.",
+          "inputs": {
+            "0": "Exact owned flag returned by beginManagerExecution."
+          },
+          "notes": "After validated balance completion, only nonreference destination active-L comparison may be released for legitimate LP writes; exact price/tick/fees remain. Reference or external venue liquidity is never exempt.",
+          "status": "internal"
+        },
+        "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+          "purpose": "Arm exactly one actual-core quote-proven transition after proving the current expected state.",
+          "access": "Only the fixed Manager with its active context/loan; cannot arm a second swap or pending transition.",
+          "inputs": {
+            "0": "Exact Manager PoolManager core.",
+            "1": "Exact Manager StateView for that core.",
+            "2": "Reviewed chosen swap venue PoolId.",
+            "3": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
+          },
+          "notes": "The Manager derives these values from its real reverted core quote, not keeper-supplied predicted state. Core+PoolId+StateView identity prevents equal PoolIds on different cores being confused.",
+          "status": "internal"
+        },
+        "afterSwap()": {
+          "purpose": "Verify exact quoted post-core price/tick/fees/liquidity before settlement or output callbacks, then retain expected state through later full checks.",
+          "access": "Only the fixed Manager with an armed pending transition immediately after its actual core.swap return.",
+          "status": "internal"
         }
       },
       "constructor": {
@@ -2039,6 +2165,13 @@
             "1": "True for deliberate width/orientation/mode mismatch; never bypasses hard cooldown."
           },
           "notes": "Requires active admitted LP,healthy independent-price agreement and consistent ticks/fees. Confirmation separately checks same-side independent-reference threshold by default."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
         }
       },
       "constructor": {
@@ -2705,7 +2838,7 @@
         "unlockCallback(bytes)": {
           "purpose": "Settle the exact outstanding swap inside the pinned v4 PoolManager unlock callback.",
           "access": "Only bound PoolManager with the matching one-time pending payload hash.",
-          "notes": "Not an arbitrary public swap or executable-call surface. Returns: ABI-encoded measured swap output.",
+          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path.",
           "inputs": {
             "0": "Exact pending ABI payload; callback authentication binds its hash."
           },
@@ -2752,7 +2885,7 @@
             "1": "Exact remaining ZZZ budget, including actual swap output if ETH was input."
           },
           "value": "Exactly amount0 native wei. Network gas is separate.",
-          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate. Guarded paused same-main consolidation uses the existing active-aware route solver for current main bounds, mainFloor10000 and ordinary price marks. Only the fixed Migration active context selects it. Ordinary full replacement keeps its existing active solver; other growth/compound existing-ID paths retain ordinary planning; explicit emergency routing/mask remains unchanged."
+          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path."
         },
         "EXECUTION_QUALITY_VERSION()": {
           "purpose": "Read fee-adjusted execution-quality capability1; historical contracts do not acquire it from a configuration edit.",
@@ -2894,6 +3027,20 @@
             "0": "True only in a nonemergency, captured Budget replacement. False for initial contribution, growth, standalone compound and raw emergency. Used to require actual active main ticks before and after ordinary mint callbacks in single and hybrid modes."
           },
           "notes": "The getter does not arm maintenance or move assets; it observes fixed sealed module context. Historical code does not gain this callback by changing an accounting label. Exact Manager/child runtime identities remain mandatory."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
+        },
+        "executionStrategy()": {
+          "purpose": "Read its fixed Balancer-created read-only execution arithmetic child.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "The immutable Math child; no arbitrary policy target, executor, recipient or module rotation."
+          }
         }
       },
       "constructor": {
@@ -6528,7 +6675,7 @@
           }
         },
         "markMaintenance(uint256)": {
-          "purpose": "Read starting attributed principal/idle value and exact fresh price vector for the fixed Budget snapshot.",
+          "purpose": "Start normal maintenance captured execution pricing and record actual both-leg/idle values at its original vector. Explicit emergency uses its separate retained mask.",
           "access": "Actual Vault-owned Budget only; stateless read.",
           "inputs": {
             "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
@@ -6536,7 +6683,7 @@
           "outputs": {
             "0": "MaintenanceMark(value USD18,price0/price1 USD18,scale0/scale1 raw decimal scales,idle0/idle1 raw units,maxIdleBps captured0..4000,maintenancePolicy scoped fingerprint). Aggregate actual both-leg principal; excludes unclassified gifts and reward/buyback backing."
           },
-          "notes": "Uses actual aggregate quantities from both legs, never raw L addition. Fee/buyback reserves and unclassified gifts are excluded."
+          "notes": "State-changing noncustodial scope start; only fixed Budget. Complete normal operations through endMaintenance after accounting proofs. No new force fallback."
         },
         "assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256)": {
           "purpose": "Require configured per-pool main minimum/complementary residual maximum at captured prices.",
@@ -6642,6 +6789,21 @@
             "1": "Budget-local emergencyActive OR nonempty maintenance snapshot; true rejects the raw-close path."
           },
           "notes": "Requires sealed/paused/nonterminal Active main and actual residual; no USD or swap lookup. This read-only predicate does not authorize a wallet to close anything."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
+        },
+        "endMaintenance(uint256)": {
+          "purpose": "Validate and clear ordinary maintenance captured pricing after Budget custody/portfolio/loss checks. Explicit emergency retains its own mask path.",
+          "access": "Only the immutable Vault migrationBudget companion; matching active normal maintenance scope is required.",
+          "inputs": {
+            "0": "Exact active maintenance bucket ID."
+          },
+          "status": "internal"
         }
       },
       "constructor": {
@@ -6810,7 +6972,7 @@
           "purpose": "Read full/partial LP routing interface, separate from Entry routing.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "2; historical routing1 remains separate."
+            "0": "3; exact quoted full MarketState and transaction-scoped captured execution pricing. Routing2 remains historical and incompatible."
           }
         },
         "MAX_EXECUTION_POOLS()": {
@@ -6888,7 +7050,7 @@
             "4": "Exact available fixed-ZZZ budget in raw units, uint128 bounded."
           },
           "outputs": {
-            "0": "Plan: poolId (zero for no swap), direction, exact input/quoted output/minimum, predicted route/target sqrt prices, execution revision and policy fingerprint."
+            "0": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee."
           },
           "notes": "Full-mode bounded search at one fresh independent vector. Near-full no-swap deployment avoids dust-chasing. Quote reverts restore core state; no funds settle and no global optimum is promised."
         },
@@ -6920,11 +7082,10 @@
             "2": "Positive exact input raw units, bounded to signed-int128 maximum."
           },
           "outputs": {
-            "0": "Actual quoted raw output after directional LP/protocol fees and impact.",
-            "1": "Quoted post-swap sqrtPriceX96.",
-            "2": "Actual quoted stored post-swap int24 tick, not recomputed from sqrt price; exact initialized downward crossings may be one tick lower."
+            "0": "Actual quoted raw output after known directional fees and impact.",
+            "1": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
           },
-          "notes": "QuoteResult carries output,sqrtPriceX96,stored tick with exact100-byte custom-error shape and tick-domain checks. All core price/tick/fee/transient effects revert; no funds settle or change recipient."
+          "notes": "Exact QuoteResult contains output plus5MarketState words:196-byte custom-error payload. Stored tick, protocol/LP fees and active liquidity are authenticated, including legitimate initialized-tick crossings. All quote effects revert; no funds settle."
         },
         "quoteGasLimit()": {
           "purpose": "Read current per-quote gas budget.",
@@ -6948,7 +7109,7 @@
           }
         },
         "unlockCallback(bytes)": {
-          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter,tickAfter).",
+          "purpose": "Authenticate pending quote/core, simulate exact-input swap, then revert QuoteResult(output,sqrtAfter,tick,protocolFee,lpFee,liquidity).",
           "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
           "inputs": {
             "0": "Exact internally armed typed key/direction/input encoding."
@@ -7024,7 +7185,7 @@
             "6": "Captured Budget[price0,price1,scale0,scale1]; USD18 prices/raw decimal scales for allocation only."
           },
           "outputs": {
-            "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill."
+            "0": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee."
           },
           "notes": "Ordinary replacement only, with no permissionless/keeper entry to this helper. Candidates leaving the main inactive are excluded before ranking; final mint/retention guards remain. Initial/growth use plan; paused emergency stays separate. Also used for authenticated guarded same-main consolidation with current bounds, mainFloor10000 and zero replacement marks (ordinary prices are the valuation basis). No LP replacement or new keeper authority is implied by using this solver."
         },
@@ -7038,10 +7199,31 @@
             "3": "True only for ordinary replacement planning: require a physically active target using actual stored ticks, including exact downward boundaries."
           },
           "outputs": {
-            "0": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill.",
+            "0": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee.",
             "1": "Useful main USD18 value at selected fixed valuation basis."
           },
           "notes": "Full objective ranks useful main value; hybrid minimizes sampled qualifying input. Stored-tick activity is required only for ordinary replacement. A target-pool overshoot shrinks the bracket; a trade not yet entering the range increases it. Another venue cannot repair an already inactive target. Bounded search remains non-global; no fallback or financial limit is relaxed."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
+        },
+        "quoteSwap(bytes32,bool,uint256)": {
+          "purpose": "Produce an exact full-input actual-core quote including complete expected MarketState; no funds settle and all quote state reverts.",
+          "access": "Only the sealed controller-bound fixed Manager; not operator, keeper or arbitrary user.",
+          "inputs": {
+            "0": "Reviewed native swap venue PoolId.",
+            "1": "True ETH→ZZZ; false reverse.",
+            "2": "Positive exact input raw units, signed-int128 bounded."
+          },
+          "outputs": {
+            "0": "Quoted raw output after known fees and impact.",
+            "1": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
+          },
+          "status": "internal"
         }
       },
       "constructor": {
@@ -7263,7 +7445,7 @@
       }
     },
     "ZZZLPBalanceMath": {
-      "purpose": "Fixed noncustodial Balancer-created v4 amount, utilization and fee-aware sizing calculations. No custody, approval, callback or execution authority.",
+      "purpose": "Fixed noncustodial read-only native-v4 admission, captured execution geometry/commitments and amount/utilization/maintenance arithmetic. No approvals, callbacks, custody or execution authority.",
       "functions": {
         "LP_BALANCE_MATH_VERSION()": {
           "purpose": "Read arithmetic companion interface version.",
@@ -7349,6 +7531,191 @@
             "1": "Value imbalance/scarce-asset shortfall for bounded search, not idle token units."
           },
           "notes": "Actual-core quotes and all financial guards must subsequently validate this estimate; no optimality guarantee."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
+        },
+        "fixedZZZ()": {
+          "purpose": "Validate and read the fixed registry/assets/token binding.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "The nonzero code-bearing deployment ZZZ token; missing registry/assets/token binding rejects."
+          }
+        },
+        "nativeConfig(bytes32,bool)": {
+          "purpose": "Read native pool configuration and validate key identity/static hookless venue and admission.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Reviewed actual native ETH/fixed-ZZZ PoolId.",
+            "1": "True also requires operationsEnabled; Manager separately chooses its authenticated emergency mask."
+          },
+          "outputs": {
+            "0": "Complete admitted PoolConfig; this helper cannot admit/change it."
+          }
+        },
+        "executionTarget(bytes32)": {
+          "purpose": "Compute reviewed geometry from captured execution reference or live reference when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Admitted operating LP destination PoolId."
+          },
+          "outputs": {
+            "0": "Rounded lower physical tick.",
+            "1": "Rounded upper physical tick.",
+            "2": "Original captured or live Q64.96 independent reference."
+          }
+        },
+        "policyFingerprint(bytes32,bytes32)": {
+          "purpose": "Hash current target/route/monotonic controls and original captured source vector, deriving geometry once within the same STATICCALL chain.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Admitted native LP destination.",
+            "1": "Chosen reviewed swap venue, or bytes32 zero for target-only controls."
+          },
+          "outputs": {
+            "0": "Exact policy/source commitment; not an execution permission."
+          }
+        },
+        "executionValidatePrice(bytes32)": {
+          "purpose": "Check actual LP spot against captured independent reference with the admitted price band.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Admitted operating native pool."
+          },
+          "outputs": {
+            "0": "Actual current Q64.96 pool spot after band validation."
+          }
+        },
+        "executionPrices(address)": {
+          "purpose": "Read complete captured ETH/ZZZ valuation and fee-quality inputs, or validated live values when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Fixed deployment ZZZ token."
+          },
+          "outputs": {
+            "0": "Prices(lower0,upper0,lower1,upper1,scale1,referenceX96,extraLoss):USD18,raw-unit scale,Q64.96 reference,basis-point additional loss."
+          }
+        },
+        "executionMinimumOutput(bytes32,bool,uint256)": {
+          "purpose": "Compute current directional-fee-aware output floor with captured prices and existing venue/additional caps.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Admitted native swap venue.",
+            "1": "True ETH→ZZZ; false ZZZ→ETH.",
+            "2": "Positive exact raw input, <=uint128 maximum."
+          },
+          "outputs": {
+            "0": "Required raw output: stronger gross/slippage and after-known-fee additional-loss floors."
+          }
+        },
+        "validSpot(uint160,uint160,uint16)": {
+          "purpose": "Check squared sqrt-price ratio against its basis-point price band.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Actual Q64.96 pool price.",
+            "1": "Positive independent Q64.96 reference.",
+            "2": "Maximum price deviation, basis points."
+          },
+          "outputs": {
+            "0": "True only for valid TickMath price and the specified band; supplied inputs alone are not source authentication."
+          }
+        },
+        "minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+          "purpose": "Calculate the stronger gross budget and additional-loss output floor after actual known directional trading fees.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Prices tuple(lower0,upper0,lower1,upper1,scale1,referenceX96,extraLoss).",
+            "1": "True ETH→ZZZ; false reverse.",
+            "2": "Exact raw input units.",
+            "3": "Gross loss limit in basis points.",
+            "4": "Actual combined directional LP/protocol fee in millionths."
+          },
+          "outputs": {
+            "0": "Minimum raw output; supplied-data arithmetic grants no swap authority."
+          }
+        },
+        "maintenanceValues(uint256,uint256,uint256,uint256,uint256)": {
+          "purpose": "Value both actual physical legs plus attributed idle at the caller-supplied captured vector.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Bucket ID.",
+            "1": "Captured native ETH USD18 price.",
+            "2": "Captured fixed-ZZZ USD18 price.",
+            "3": "ETH raw scale, normally1e18.",
+            "4": "Fixed-ZZZ raw scale from admitted decimals."
+          },
+          "outputs": {
+            "0": "Deployed USD18, both legs; never sum raw L across ranges.",
+            "1": "Attributed idle USD18, excluding rewards/buyback backing."
+          },
+          "notes": "Fixed Budget/Pricing supply authenticated captured marks in execution; arbitrary public reads are advisory only."
+        },
+        "assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256)": {
+          "purpose": "Check actual main/residual values against governed main-floor and residual-ceiling policy using captured prices.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Bucket ID.",
+            "1": "Captured native ETH USD18 price.",
+            "2": "Captured fixed-ZZZ USD18 price.",
+            "3": "ETH raw scale, normally1e18.",
+            "4": "Fixed-ZZZ raw scale from admitted decimals."
+          },
+          "notes": "Reverts on failed utilization; does not move liquidity or alter the chosen policy."
+        },
+        "checkMaintenance(uint256,uint256,uint256,uint256,uint256,uint256,uint16,uint16,bytes32)": {
+          "purpose": "Check post-maintenance retained/deployed/idle value against captured budget and policy fingerprint.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Bucket ID.",
+            "1": "Starting captured principal USD18.",
+            "2": "Captured ETH USD18 price.",
+            "3": "Captured ZZZ USD18 price.",
+            "4": "ETH raw-unit scale.",
+            "5": "ZZZ raw-unit scale.",
+            "6": "Captured total loss cap,<=1000bps.",
+            "7": "Captured idle cap,<=4000bps.",
+            "8": "Exact original maintenance policy fingerprint."
+          },
+          "outputs": {
+            "0": "Actual deployed USD18.",
+            "1": "Actual attributed idle USD18.",
+            "2": "Actual resulting pool ID."
+          }
+        },
+        "validateResidualClose(uint256,bool)": {
+          "purpose": "Read pause/lifecycle/custody preconditions for closing only an existing registered residual.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Exact bucket ID.",
+            "1": "Budget supplies its actual busy/snapshot state, not an operator bypass."
+          }
+        },
+        "validateRebalance(uint256,uint128,bool,uint8)": {
+          "purpose": "Read ordinary readiness or retained emergency trigger according to the caller-supplied mode/mask.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Bucket ID.",
+            "1": "Caller minimum physical liquidity; ordinary path requires positive.",
+            "2": "True selects explicit emergency guard interpretation.",
+            "3": "Emergency retained-check mask; ordinary path still requires full readiness."
+          },
+          "notes": "Budget/Manager authenticate actual emergency state before using this advisory result; callers cannot enable emergency by querying Math."
+        },
+        "compoundReady(uint256,address)": {
+          "purpose": "Evaluate lastCompound/lastRebalance interval and current raw maintenance need without moving funds.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "Exact bucket ID.",
+            "1": "Actual fixed Vault Budget; Pricing passes its authenticated msg.sender."
+          },
+          "outputs": {
+            "0": "True if active operating LP, elapsed independent compound interval, no raw rebalance need and no pending range target."
+          },
+          "notes": "Public arbitrary dependency queries are advisory. Production Pricing.onlyBudget supplies the actual Budget and retains authorization."
         }
       },
       "constructor": {
@@ -7867,6 +8234,13 @@
             "2": "Unix seconds: block.timestamp <= deadline <= block.timestamp+600 at execution."
           },
           "notes": "The main is not burned or increased. Actual registered residual may be mixed or one-sided; fixed typed BURN/TAKE actions and bounded raw per-leg minima remain. Association/count clear only after successful burn. Vault must harvest fees first; governance does not call this lower-level function directly. No arbitrary LP ID, recipient, swap or sweep is admitted."
+        },
+        "EXECUTION_PRICE_VERSION()": {
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+          }
         }
       },
       "constructor": {
@@ -8641,7 +9015,7 @@
       }
     },
     "ZZZV4SpotPriceFeed": {
-      "purpose": "Optional immutable-by-interface native-v4 reference-pool spot times ETH/USD reader. No funds, execution, policy setters, TWAP or automatic pool selection. Two readers sharing one ZZZ pool are correlated sources.",
+      "purpose": "Optional immutable native-v4 fixed-ZZZ spot × ETH/USD reader with bounded live and captured-state execution proofs. Requires independently reviewed market/depth/feed admission; no TWAP or automatic pool selection.",
       "functions": {
         "SOURCE_CALL_GAS()": {
           "purpose": "Read the per-upstream-call gas ceiling; the enclosing Oracle source budget remains independent.",
@@ -8695,6 +9069,65 @@
             "3": "Original ETH round updatedAt; repeated reads cannot renew ETH freshness. v4 has no market last-trade timestamp in this reader.",
             "4": "Same synthetic value as roundId."
           }
+        },
+        "EXECUTION_SOURCE_VERSION()": {
+          "purpose": "Read immutable composite execution-proof capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "1; requires reviewed typed proof admission, not automatic feed qualification."
+          }
+        },
+        "executionAsset()": {
+          "purpose": "Read the immutable fixed-ZZZ identity priced by this reader.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "The immutable nonzero ZZZ token; no token setter exists."
+          }
+        },
+        "executionMarket()": {
+          "purpose": "Read pinned core/StateView/PoolId and validated complete live market state.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "outputs": {
+            "0": "Immutable PoolManager core.",
+            "1": "Immutable StateView bound to that core.",
+            "2": "Immutable reviewed native ETH/ZZZ PoolId.",
+            "3": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
+          }
+        },
+        "roundAt((uint160,int24,uint24,uint24,uint128))": {
+          "purpose": "Reconstruct this reader round at a supplied validated pool state using current pinned ETH data.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
+          },
+          "outputs": {
+            "0": "Synthetic captured-state round ID.",
+            "1": "Captured-state hypothetical ZZZ USD18 answer.",
+            "2": "Original current ETH source startedAt.",
+            "3": "Original current ETH source updatedAt.",
+            "4": "Same synthetic answered round ID."
+          },
+          "notes": "Hypothetical proof only: never substitute it for a live public price or use it to freshen ETH/source age. It performs no writes or state adoption."
+        },
+        "executionProof((uint160,int24,uint24,uint24,uint128))": {
+          "purpose": "Return a bounded combined original-state commitment and live round under one pinned current ETH observation.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "inputs": {
+            "0": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields."
+          },
+          "outputs": {
+            "0": "Pinned core.",
+            "1": "Pinned StateView.",
+            "2": "Pinned PoolId.",
+            "3": "Hash of complete actual live MarketState.",
+            "4": "Hash of the reconstructed original captured round.",
+            "5": "Actual live synthetic round ID.",
+            "6": "Actual live ZZZ USD18 answer.",
+            "7": "Original ETH startedAt.",
+            "8": "Original ETH updatedAt.",
+            "9": "Actual live answered round ID."
+          },
+          "notes": "Exactly10 ABI words/320bytes. Oracle verifies identity, expected actual state, original round hash and live freshness/agreement. Two reader addresses alone do not prove independent reference markets."
         }
       },
       "constructor": {

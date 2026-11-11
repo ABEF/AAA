@@ -5,6 +5,7 @@
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
+    "Fresh execution-price1/LP-routing3 uses captured original ETH/ZZZ valuation and exact own-swap market-state proofs. The prior exact schema17/LP2 template remains in production.schema17.lp2.example.json. No address/feed/runtime observation is configured or approved by this template;12M default and all financial guards remain.",
     "Fresh schema17/accounting7/LP1/custody5/direct Entry3/royalty4/canonicalV10/mint2.20 callable helpers plus2 inert data children. Exact previous schema16 template preserved in production.schema16.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
     "Only native ETH and one fixed ZZZ for contributions and LP; fixed80/10/5/5, separate original-currency rarity royalties, terminal holder return, no integrated bridge or external custody recipient.",
@@ -399,7 +400,8 @@
             "oracle": null,
             "active": false,
             "ENTRY_REVIEW_VERSION": 2,
-            "RESIDUAL_REINVEST_VERSION": 1
+            "RESIDUAL_REINVEST_VERSION": 1,
+            "EXECUTION_PRICE_VERSION": 1
           }
         },
         "activation_assets_factory": {
@@ -426,7 +428,7 @@
             "liquidityManager": null,
             "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
             "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
-            "LP_ROUTING_VERSION": 2,
+            "LP_ROUTING_VERSION": 3,
             "EXECUTION_QUALITY_VERSION": 1,
             "MAX_EXECUTION_POOLS": 4,
             "MAX_ADDITIONAL_LOSS_BPS": 1000,
@@ -434,7 +436,8 @@
             "executionRevision": null,
             "searchIterations": 8,
             "quoteGasLimit": 200000,
-            "balanceMath": null
+            "balanceMath": null,
+            "EXECUTION_PRICE_VERSION": 1
           }
         },
         "rebalance_confirmation": {
@@ -483,7 +486,8 @@
           "observed_bindings": null,
           "bindings": {
             "balancer": null,
-            "LP_BALANCE_MATH_VERSION": 1
+            "LP_BALANCE_MATH_VERSION": 1,
+            "EXECUTION_PRICE_VERSION": 1
           }
         },
         "lp_position_executor": {
@@ -502,7 +506,8 @@
             "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3",
             "balancingRouter": null,
             "LP_POSITION_EXECUTOR_VERSION": 1,
-            "RESIDUAL_EXIT_VERSION": 1
+            "RESIDUAL_EXIT_VERSION": 1,
+            "EXECUTION_PRICE_VERSION": 1
           }
         },
         "protocol_policy": {
@@ -1153,12 +1158,13 @@
   "custody_version": 5,
   "maintenance_policy_version": 3,
   "compound_capability_version": 4,
-  "lp_routing_version": 2,
+  "lp_routing_version": 3,
   "execution_quality_version": 1,
   "rebalance_confirmation_version": 3,
   "emergency_rebalance_version": 2,
   "portfolio_version": 2,
   "canonical_schema": "ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10",
   "protocol_policy_version": 1,
-  "lp_allocation_version": 1
+  "lp_allocation_version": 1,
+  "execution_price_version": 1
 }

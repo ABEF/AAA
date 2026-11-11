@@ -511,7 +511,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
               service_profiles, route_validator, royalty_conversion=True,token_validator=V._tokens,
               canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,royalty_max_assets=17,
               royalty_mint_revision=False,chain_fields=CHAIN_FIELDS,chain_validator=None,top_fields=TOP_FIELDS,
-              mint_validator=None,mint_implementation=V.MINT_IMPLEMENTATION_PROFILE):
+              mint_validator=None,mint_implementation=V.MINT_IMPLEMENTATION_PROFILE,execution_validator=None):
     """Current profile only. Unsupported OpenSea code always remains a blocker."""
     cfg=copy.deepcopy(config) if isinstance(config,dict) else {};g=V.Gate(cfg.get('release_commit'))
     g.commit=g.hex(g.commit,'release_commit',20,prefix=False)
@@ -559,7 +559,7 @@ def _validate(config, *, expected_commit, now, versions, helpers, binding_factor
         g.check(limits.get('hard_maximum_bps')==1000 and limits.get('gas_separate') is True,path+'.execution_loss_policy','loss.policy','Retain hard1000bps ceilings and separate gas.')
         _safe(g,path+'.protocol_policy',lambda:_protocol_policy(g,chain,path))
         _safe(g,path+'.routes',lambda:route_validator(g,chain,path,tokens,deps,pools,limits))
-        _safe(g,path+'.execution',lambda:_execution(g,chain,path,pools))
+        _safe(g,path+'.execution',lambda:(execution_validator or _execution)(g,chain,path,pools))
         _safe(g,path+'.holder_exit',lambda:_holder_exit(g,chain,path))
         reservation_status=_safe(g,path+'.contribution_reservation',lambda:_contribution_reservation(g,chain,path))
         _safe(g,path+'.portfolio',lambda:_portfolio(g,chain,path))

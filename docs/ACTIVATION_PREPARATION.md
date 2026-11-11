@@ -1,5 +1,17 @@
 # Activation and top-up preparation
 
+## Optional execution-price1 / LP-routing3
+
+Explicit `execution_price_version:1` requires the matching LP3 runtime graph and
+fixed Math binding in read/activation configuration. Its full trace must contain
+the captured scope,14-word Plan and authenticated final closure. Omitted/0 keeps
+historical LP2 trace requirements; a source version alone never upgrades them.
+The fresh cold fixture exceeds the unchanged12M default. Use the already-existing
+optional activation policy2 only after separate block/headroom/fee/configuration
+review; rejection does not trigger an automatic higher-budget retry. Source
+revision/context controls affect financial preparation, not healthy funded claims.
+[Design, exact source admission and qualification limits](REFERENCE_SWAP_EXECUTION.md).
+
 **Mint-profile boundary:** reader/service versions named in this guide retain
 their explicit profiles. In particular, source9/schema16/V9 is not V10. The new [SeaDrop mint2/schema17/V10 source](OPENSEA_MINT.md)
 adds original-recipient mint books and needs matching reviewed consumers

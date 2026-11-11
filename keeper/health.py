@@ -11,7 +11,7 @@ HEALTH_SCHEMA = 2
 OBSERVATION_SCHEMA = 1
 SOURCE_FILES = ('keeper/monitor.py', 'keeper/ops.py', 'keeper/health.py', 'keeper/rebalance_confirmation.py',
     'keeper/compound_policy.py',
-    'zzz_ops/protocol_policy.py', 'zzz_ops/lp_execution.py', 'zzz_ops/rebalance_confirmation.py', 'zzz_ops/abi.py', 'zzz_ops/rpc.py', 'zzz_ops/state.py')
+    'zzz_ops/protocol_policy.py', 'zzz_ops/lp_execution.py', 'zzz_ops/execution_price.py', 'zzz_ops/rebalance_confirmation.py', 'zzz_ops/abi.py', 'zzz_ops/rpc.py', 'zzz_ops/state.py')
 RUNTIME_ROLES = ('access', 'pools', 'liquidity', 'balancing_router', 'pool_manager', 'state_view', 'strategy')
 CONFIRMATION_RUNTIME_ROLES = ('access', 'strategy', 'vault', 'rebalance_confirmation', 'idle_compounding_budget')
 CONFIRMATION_SCOPE = 'latest_canonical_policy_only_not_continuous_evidence'
@@ -45,10 +45,14 @@ def _health_profile_valid(config):
     """
     accounting=config.get('accounting_version',1)
     if type(accounting) is not int or accounting not in (1,2,3,4,5,6,7):return False
+    from zzz_ops.execution_price import version
+    try:execution_price=version(config.get('execution_price_version',0))
+    except ValueError:return False
+    if execution_price and accounting!=7:return False
     if accounting not in (5,6,7):return True
     required={'fee_intake_version':1,'maintenance_policy_version':3,
         'rebalance_confirmation_version':3,'execution_quality_version':1,
-        'lp_routing_version':2,'portfolio_version':2 if accounting in (6,7) else 1}
+        'lp_routing_version':3 if execution_price else 2,'portfolio_version':2 if accounting in (6,7) else 1}
     policy=config.get('protocol_policy_version',0)
     return (type(policy) is int and policy==(1 if accounting in (6,7) else 0) and
         all(type(config.get(key)) is int and config[key]==value for key,value in required.items()))
@@ -159,7 +163,7 @@ def confirmation_reasons(data, config, *, now, max_age):
             config.get('accounting_version') in (6,7) and (type(config.get('protocol_policy_version')) is not int or config['protocol_policy_version']!=1) or
             type(config.get('maintenance_policy_version')) is not int or config['maintenance_policy_version'] != (3 if fresh else 2) or
             fresh and (type(config.get('portfolio_version')) is not int or config['portfolio_version']!=(2 if config.get('accounting_version') in (6,7) else 1) or
-                type(config.get('lp_routing_version')) is not int or config['lp_routing_version']!=2) or
+                type(config.get('lp_routing_version')) is not int or config['lp_routing_version']!=(3 if config.get('execution_price_version')==1 else 2)) or
             type(interval) is not int or not 60 <= interval <= CHECK_SECONDS):
         return ['confirmation_health_profile_invalid']
     outer = data.get('rebalance_confirmation_health')
@@ -265,7 +269,7 @@ def execution_reasons(data, config, *, now, max_age):
     confirmation = confirmation_reasons(data,config,now=now,max_age=max_age)
     if quality_version != 1:
         return confirmation
-    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != (2 if config.get('accounting_version') in (5,6,7) else 1):
+    if type(config.get('lp_routing_version')) is not int or config['lp_routing_version'] != (3 if config.get('execution_price_version')==1 else 2 if config.get('accounting_version') in (5,6,7) else 1):
         return ['execution_health_profile_invalid']
     if version != HEALTH_SCHEMA:
         return ['execution_health_schema_required']
@@ -298,7 +302,8 @@ def execution_reasons(data, config, *, now, max_age):
         reasons.append('execution_observation_source_scope_unknown')
     runtimes = observation.get('runtime_code_hashes')
     expected = config.get('code_hashes', {})
-    roles=RUNTIME_ROLES+(('lp_balance_math','lp_position_executor') if config['lp_routing_version']==2 else ())
+    roles=RUNTIME_ROLES+(('lp_balance_math','lp_position_executor') if config['lp_routing_version'] in (2,3) else ())+(
+        ('oracle','contribution_pricing') if config.get('execution_price_version')==1 else ())
     if (not isinstance(runtimes, dict) or set(runtimes) != set(roles) or
             any(not _hash(runtimes.get(role)) or runtimes.get(role) != str(expected.get(role, '')).lower()
                 for role in roles)):
@@ -324,11 +329,20 @@ def execution_reasons(data, config, *, now, max_age):
             quality.get('known_pool_fees_excluded_from_additional_limit') is not True or
             quality.get('policy_frozen_by_wallet_review') is not False):
         reasons.append('execution_observation_policy_invalid')
-    if config['lp_routing_version']==2 and (not isinstance(policy,dict) or
+    if config['lp_routing_version'] in (2,3) and (not isinstance(policy,dict) or
             type(policy.get('portfolio_version')) is not int or policy['portfolio_version']!=(2 if config.get('accounting_version') in (6,7) else 1) or
             policy.get('math_helper')!=str(config.get('contracts',{}).get('lp_balance_math','')).lower() or
             policy.get('position_executor')!=str(config.get('contracts',{}).get('lp_position_executor','')).lower()):
         reasons.append('execution_portfolio_helper_invalid')
+    if config.get('execution_price_version')==1:
+        from zzz_ops.execution_price import ROLES
+        prices=policy.get('execution_price') if isinstance(policy,dict) else None
+        if (not isinstance(prices,dict) or type(prices.get('version')) is not int or prices['version']!=1 or
+                prices.get('context_active') is not False or not _uint(prices.get('source_revision'),2**64-1) or
+                prices.get('execution_strategy')!=str(config['contracts'].get('lp_balance_math','')).lower() or
+                prices.get('contracts')!={role:str(config['contracts'].get(role,'')).lower() for role in ROLES} or
+                type(policy.get('execution_price_version')) is not int or policy['execution_price_version']!=1):
+            reasons.append('execution_price_observation_invalid')
     return reasons
 
 

@@ -1,0 +1,24 @@
+# Current-source focused compatibility scope
+
+The final closed input in `focused-95ca5293d0` contains 199 source files, including58 of61 production sources, and compiles the final `a846` execution-price1/LP-routing3 graph. The ABI-only diagnostic passed before the EVM run; all77 selected methods then passed, with exact selection and unchanged source/snapshot hashes. This is an isolated offline Forge project: no RPC, existing Anvil, wallet, signing, deployment, service, website or journal is involved. It retains Solidity 0.8.26/Cancun, via-IR, optimizer runs 1, Yul disabled and 1,000 fuzz runs. Actual AccessController/PoolRegistry/Pyth are substituted or outside this execution closure; the normal production build separately compiles all61.
+
+The selection is exactly 77 methods: the 23 original spot-reader methods (including its power-of-two decimal fuzz method), all 24 prior routing methods plus one explicit missing-fixed-ZZZ rejection regression, and 29 selected actual-v4 portfolio/lifecycle/recovery methods. `SELECTION.json` records names and the exact signature-aware matcher. Method and fuzz-case counts must remain separate; overlapping source-stage runs are not additive evidence.
+
+## Test fixture changes
+
+- `LPExecutionRouting.t.sol` now explicitly binds its native/fixed-ZZZ identity through the existing MockPools seam. The production Oracle does not infer or fall back to a token. The new negative clears that binding and verifies rejection before swaps, with caller/Manager balances, both real-v4 states and transient inactivity preserved.
+- `OptionalPortfolioCore.t.sol` retains a guarded-invalid-price/disabled-operation negative and its forced positive control. Its two call expectations now point to the real current beginExecution/full routing-policy gate instead of removed call paths. The first run exposed that the disabled-operations guard fires before target calculation; its original failure/trace remain. Expected exact failures and rollback assertions remain; no production guard is relaxed.
+
+Original test bytes/capture metadata and full closed compiler inputs remain in the external local `reference-execution-20261111-6654500/compat-tests` evidence directory. Published source hashes, raw compressed results and the earlier failed expectation/trace retain the stages' explicit scopes; this report does not imply that external snapshot directories are deployed or hosted.
+
+## Meaningful coverage and limits
+
+The routing fixture uses actual local v4 PoolManager/StateView/PositionManager; native admission, feeds and Permit2 are explicitly test substitutes. It covers quote rollback, bounded venue selection, post-withdrawal depth, cold 1/4-venue gas gates, empty catalog/no fallback, no dust trade, callback changes/restores, native-only validation and physically active replacement selection.
+
+The portfolio fixture uses actual local v4 and production PoPL modules with test authority/VRF/feed/admission dependencies. Selected cases cover initial activation, growth, entrant-only accounting, single/hybrid transitions, main/residual tracking, both-leg harvest, claims, same-pair move, parking, terminal holder return, six-day journeys, price outage recovery, residual-only reinvestment, forced checks-zero and retained-financial-guard recovery, callback rollback and moving-market route selection. Invalid answer feeds prove unavailable financial pricing, rather than a totally inaccessible Oracle contract. These scenarios are not an exhaustive market simulation or acceptance of real markets/providers.
+
+The original `LiquidityFactualChecksTest` is not represented as current execution coverage: its ERC20/ERC20/FactualReference-only host predates the native-only current execution interface. Valid helper contracts imported from that file remain included. The modeled fake-core `NativeVaultFlows` suite is also not reused as actual-core evidence; no production fallback or synthetic liquidity was added to make those obsolete hosts pass.
+
+The new reference-execution context suite is owned and reported separately. It exercises actual independent external reference pools, own-reference swaps, tick/liquidity crossings and source/round/transition negatives. Do not count those tests in these 77 methods or infer current live market/provider qualification from either suite.
+
+Final `VERIFICATION.json` is authoritative for the77-pass EVM outcome. An ABI pass or selected name is not a test pass. The earlier76-pass/one-stale-call-expectation stage and its trace retain their original source scope; they are not additional passing methods. The new reference-context suite is reported separately and still exposes complete cold Entry operations around15.3M/15.6M gas exceeding the unchanged12M budget. Passing the routing-only gas cases here does not close that whole-operation blocker or qualify a real market.

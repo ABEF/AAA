@@ -20,7 +20,7 @@ def classify_range(*, lower, upper, tick, range_update_pending):
             'scope': 'keeper_policy_not_contract_eligibility'}
 
 
-def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4, physical_only=False):
+def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4, physical_only=False,execution_price_version=0):
     """Caller pins every read/code callback to one canonical block hash.
 
     No scheduling, journal, nonce, reset or confirmation observation is mutated.
@@ -31,6 +31,10 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
         raise ValueError('Invalid compound policy bucket')
     if type(accounting_version) is not int or accounting_version not in (4,5,6,7):
         raise ValueError('Unsupported explicit compound physical profile')
+    from zzz_ops.execution_price import version
+    execution_price_version=version(execution_price_version)
+    if execution_price_version and accounting_version!=7:raise ValueError('Execution-price physical profile requires accounting7')
+    routing=3 if execution_price_version else 2
     if type(physical_only) is not bool or physical_only and accounting_version not in (5,6,7):
         raise ValueError('Physical-only inventory requires explicit accounting5')
     portfolio=accounting_version in (5,6,7)
@@ -63,7 +67,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
         raise ValueError('Compound policy physical reader binding differs')
     if portfolio:
         for role,method,value in (('vault','ACCOUNTING_VERSION()',accounting_version),('liquidity','PORTFOLIO_VERSION()',2 if accounting_version in (6,7) else 1),
-                ('liquidity','LP_ROUTING_VERSION()',2),('portfolio_policy','PORTFOLIO_VERSION()',2 if accounting_version in (6,7) else 1),
+                ('liquidity','LP_ROUTING_VERSION()',routing),('portfolio_policy','PORTFOLIO_VERSION()',2 if accounting_version in (6,7) else 1),
                 ('rebalance_confirmation','REBALANCE_CONFIRMATION_VERSION()',3),
                 ('strategy','portfolioPolicy()',int(targets['portfolio_policy'],16)),
                 ('strategy','rebalanceConfirmation()',int(targets['rebalance_confirmation'],16)),
@@ -78,7 +82,7 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
                 ('lp_position_executor','poolManager()',int(targets['pool_manager'],16)),
                 ('lp_position_executor','stateView()',int(targets['state_view'],16)),
                 ('lp_position_executor','balancingRouter()',int(targets['balancing_router'],16)),
-                ('balancing_router','LP_ROUTING_VERSION()',2),
+                ('balancing_router','LP_ROUTING_VERSION()',routing),
                 ('balancing_router','liquidityManager()',int(targets['liquidity'],16)),
                 ('balancing_router','access()',int(targets['access'],16)),
                 ('balancing_router','poolManager()',int(targets['pool_manager'],16)),
@@ -87,6 +91,11 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
                 ('lp_balance_math','LP_BALANCE_MATH_VERSION()',1),
                 ('lp_balance_math','balancer()',int(targets['balancing_router'],16))):
             if number(role,method)!=value:raise ValueError('Compound portfolio binding differs')
+        if execution_price_version:
+            if number('liquidity','executionStrategy()')!=int(targets['lp_balance_math'],16):
+                raise ValueError('Execution-price Strategy helper binding differs')
+            for role in ('liquidity','strategy','balancing_router','lp_position_executor','lp_balance_math'):
+                if number(role,'EXECUTION_PRICE_VERSION()')!=1:raise ValueError('Compound execution-price capability differs')
     position = decode_position(words('vault', 'group(uint256)', bucket, count=8), accounting_version)
     if position['status'] != 'active' or position['lp_token_id'] == 0 or position['center_x96'] == 0:
         raise ValueError('Compound policy requires an active physical LP')

@@ -1,5 +1,9 @@
 # Documentation map
 
+[Reference-as-swap execution](REFERENCE_SWAP_EXECUTION.md) documents fresh
+execution-price1/LP3, original valuation, exact market proofs, source admission,
+consumer compatibility and remaining gas/qualification gates.
+
 Use the [current project review](../reports/whole-project-review-20261111/REVIEW.md)
 for confirmed fixes and unresolved decisions, then the owning procedure below.
 Generated call tables and the sole Todo are updated together.

@@ -1,5 +1,23 @@
 # AAA / ZZZ PoPL project instructions
 
+The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
+is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
+for one transaction, proves the selected actual-core output/full post-state
+before settlement, then preserves live source freshness/agreement and final
+callback checks. Public Oracle reads stay live; no keeper-selected price or
+global cache is added. A reviewed external reference may also execute the swap,
+but cannot be the same-core PoPL principal destination. Policy/source changes,
+unplanned market movement and nested scope borrowing fail closed. The fixed
+existing Math child shares read-only work; no new deployed helper, custody
+recipient or authority is added. Accounting7/canonicalV10 and financial limits
+remain. Explicit matching consumers/configuration/runtime pins are required;
+omission/0 remains historical LP2. Cold full-operation costs15.32M ETH/15.64M ZZZ in the controlled fixture
+(18.38M/18.77M with20% headroom), exceeding the unchanged12M default. Qualify
+the existing optional activation policy2 and real target-chain gas separately.
+See [review](reports/reference-execution-20261111/REVIEW.md) and [verification](reports/reference-execution-20261111/VERIFICATION.md).
+Source work changes no deployed contract, site/service, signer, existing
+Anvil/journal or user-paused heartbeat.
+
 The [11 November project review](reports/whole-project-review-20261111/REVIEW.md)
 removes unreachable third-currency LP scans while preserving all concrete ABIs,
 storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
@@ -24,7 +42,8 @@ uses current main geometry/post-swap amounts. Prefer the largest qualifying
 external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
 does not prove independence or bidirectional depth. Keep two genuinely
 independent ZZZ paths; two copies of one pool with different ETH feeds do not
-satisfy that review. Core runtime/ABI/profile/economic guards are unchanged.
+satisfy that review. Public pricing2 observations and economic guards remain; the new execution
+capability above requires exact fresh runtimes and explicit LP3 consumers.
 The reader is optional/unconfigured, with no source admission, deployment,
 service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
 ages/depth, second ZZZ reference, ETH publication/liveness and operating
@@ -319,8 +338,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the [current project review](reports/whole-project-review-20261111/static-review.json):541records,
- 45individually reassessed contexts/496unique exact referenced-source reuse.
+- CI/check-slither-review selects the [reference-execution review](reports/reference-execution-20261111/static-review.json):567records,
+ 162individually reassessed contexts(22root/140independent collaborator)/405unique
+ exact referenced-source reuse. The previous541(45/496) record remains historical.
  Prior spot-reader560(2/558), contribution3558(11/547), mint2, fee-flow and
  earlier records retain their exact source scopes.
  Update default/full record together after relevant source changes.

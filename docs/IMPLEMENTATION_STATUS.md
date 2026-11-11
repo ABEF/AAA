@@ -1,5 +1,23 @@
 # Feature and evidence reference
 
+The fresh [reference-execution capability](REFERENCE_SWAP_EXECUTION.md)
+is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
+for one transaction, proves the selected actual-core output/full post-state
+before settlement, then preserves live source freshness/agreement and final
+callback checks. Public Oracle reads stay live; no keeper-selected price or
+global cache is added. A reviewed external reference may also execute the swap,
+but cannot be the same-core PoPL principal destination. Policy/source changes,
+unplanned market movement and nested scope borrowing fail closed. The fixed
+existing Math child shares read-only work; no new deployed helper, custody
+recipient or authority is added. Accounting7/canonicalV10 and financial limits
+remain. Explicit matching consumers/configuration/runtime pins are required;
+omission/0 remains historical LP2. Cold full-operation costs15.32M ETH/15.64M ZZZ in the controlled fixture
+(18.38M/18.77M with20% headroom), exceeding the unchanged12M default. Qualify
+the existing optional activation policy2 and real target-chain gas separately.
+See [review](../reports/reference-execution-20261111/REVIEW.md) and [verification](../reports/reference-execution-20261111/VERIFICATION.md).
+Source work changes no deployed contract, site/service, signer, existing
+Anvil/journal or user-paused heartbeat.
+
 The [11 November project review](../reports/whole-project-review-20261111/REVIEW.md)
 removes unreachable third-currency LP scans while preserving all concrete ABIs,
 storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
@@ -13,8 +31,10 @@ consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
 Website source packaging/new-demo intents are corrected without changing
 historical replay, public null configurations or the shared Anvil-only signer.
 No live site/service/chain/journal or paused-heartbeat change occurs.
-The review lists unresolved spot-reference/venue coupling, service-only compound
-policy and release qualification; no financial guard was relaxed.
+That earlier review retains its original source scope. The fresh explicit
+reference-execution capability above addresses swap/reference coupling; service-only
+compound policy and actual release qualification remain open. No financial guard
+was relaxed.
 
 
 The optional [pool-spot composite reader](POOL_SPOT_PRICE_SOURCE.md) implements
@@ -24,7 +44,8 @@ uses current main geometry/post-swap amounts. Prefer the largest qualifying
 external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
 does not prove independence or bidirectional depth. Keep two genuinely
 independent ZZZ paths; two copies of one pool with different ETH feeds do not
-satisfy that review. Core runtime/ABI/profile/economic guards are unchanged.
+satisfy that review. Public pricing2 observations and economic guards remain; the new execution
+capability above requires exact fresh runtimes and explicit LP3 consumers.
 The reader is optional/unconfigured, with no source admission, deployment,
 service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
 ages/depth, second ZZZ reference, ETH publication/liveness and operating
@@ -93,14 +114,14 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed 2026-11-09. This records implemented source, not another task list.
+Reviewed 2026-11-11. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 
 ## Current profile
 
 Fresh **accounting7 / LP-allocation1 / portfolio2 / maintenance3 / confirmation3 / compound4 /
-custody5 / emergency2 / LP routing2**, with pricing2, Entry routing3, reviewed
+custody5 / emergency2 / LP routing3 / execution-price1**, with pricing2, Entry routing3, reviewed
 policy2, direct governance2 and fee intake1. The eight-word Position remains;
 fresh royalty4/canonicalV10 carries sale end/capacity and exact-unit ticket rights,
 and rejects older peers.
@@ -126,6 +147,7 @@ Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-w
 
 | Capability | Implemented behavior | Reference |
 | --- | --- | --- |
+| Reference-as-swap venue | Explicit execution-price1/LP3 captures original bounds and verifies own-swap full state before settlement plus later live checks; no new helper or financial-limit change. Same-core principal destination remains separate. | [Design](REFERENCE_SWAP_EXECUTION.md), [evidence](../reports/reference-execution-20261111/VERIFICATION.md) |
 | NFT identity | ERC-721, fixed artwork draw, exact1,000 rarity quotas; actual VRF provider still unqualified. | [Metadata](NFT_METADATA.md) |
 | Contributions | ETH or the fixed ZZZ; future-governed minima(default$100 activation/$5 growth); checkpoint incumbents, use entrant-only budgets, verify marginal main LP, then issue shares from aggregate NAV. Residuals and rebalance centre/clock remain unchanged. | [Entry](ACTIVATION_ENTRY.md), [pricing](PRICE_SECURITY.md) |
 | Shared LP portfolio | Single main by default, optional one residual in the same pool; both NFTs remain Vault-owned. Aggregate raw principal/valuation includes both actual ranges, not a sum of their liquidity units. | [Portfolio profile](POSITION_V7.md) |

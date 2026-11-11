@@ -72,6 +72,9 @@ contract LPExecutionRoutingTest is Test {
         router = manager.balancingRouter();
         oracle = new ZZZOracle(address(access),address(0)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         registry = new ExecutionPools(); first = new MockFeed(8,1e8); second = new MockFeed(8,1e8);
+        // TEST ONLY explicit native/fixed-ZZZ identity. Mock admission cannot
+        // infer that identity from arbitrary pools or qualify public markets.
+        registry.setFixedZZZ(address(token));
         access.bind(Ids.VAULT,address(this)); access.bind(Ids.LIQUIDITY,address(manager));
         access.bind(Ids.ORACLE,address(oracle)); access.bind(Ids.STRATEGY,address(strategy)); access.bind(Ids.POOLS,address(registry));
         _feeds(address(0)); _feeds(address(token));
@@ -161,6 +164,16 @@ contract LPExecutionRoutingTest is Test {
         _catalog(true,false); ZZZLPBalancer.Plan memory old=_plan(100 ether,0); assertEq(old.poolId,target);
         uint64 previous=router.executionRevision(); _catalog(true,true);
         assertGt(router.executionRevision(),previous); assertEq(_plan(100 ether,0).poolId,alternate);
+    }
+    function test_UnboundFixedIdentityRejectsBeforeSwapWithoutMovingFunds() public {
+        registry.setActivationAssets(address(0));
+        bytes32 a=_snapshot(target);bytes32 b=_snapshot(alternate);
+        uint256 nativeBefore=address(this).balance;uint256 tokenBefore=token.balanceOf(address(this));
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);
+        manager.balance{value:100 ether}(target,0,100 ether,0,block.timestamp+100);
+        assertEq(address(this).balance,nativeBefore);assertEq(token.balanceOf(address(this)),tokenBefore);
+        assertEq(_snapshot(target),a);assertEq(_snapshot(alternate),b);_assertPrefunds();
+        assertFalse(oracle.executionActive());
     }
     function test_PartialInputEmptyVenueDoesNotBlockHealthyAlternative() public {
         _external(targetKey,-int256(1_000_000 ether));

@@ -30,7 +30,7 @@ FIELDS={'implementation_profile','mint_config','expected_mint_price_wei','config
     'operating_evidence','manifest_review_evidence'}
 
 
-def expected_bindings(chain):
+def expected_bindings(chain,execution_price_version=0):
     result=H.expected_bindings(chain)
     primary=V._obj(chain.get('primary_mint'))
     helper=V._obj(V._obj(chain.get('helpers')).get('seadrop_mint')).get('address')
@@ -39,7 +39,39 @@ def expected_bindings(chain):
     result['helpers']['seadrop_mint']=dict(access=chain['modules']['access']['address'],
         nft=chain['modules']['nft']['address'],seaDrop=primary.get('sea_drop'),
         seaDropCodeHash=primary.get('sea_drop_runtime_hash'),MINT_INTEGRATION_VERSION=1)
+    if execution_price_version:
+        from zzz_ops.execution_price import INVENTORY_ROLES,version
+        version(execution_price_version)
+        for group,role in INVENTORY_ROLES:result[group][role]['EXECUTION_PRICE_VERSION']=1
+        result['modules']['oracle']['executionActive']=False
+        result['modules']['liquidity']['executionStrategy']=chain['helpers']['lp_balance_math']['address']
+        result['helpers']['lp_balance_math']['EXECUTION_PRICE_VERSION']=1
+        for group,role in (('modules','liquidity'),('helpers','balancing_router')):
+            result[group][role]['LP_ROUTING_VERSION']=3
     return result
+
+
+def execution_expected(chain,execution_price_version=0):
+    result=BASE.execution_expected(chain)
+    if execution_price_version:result.update(version=3,execution_price_version=1)
+    return result
+
+
+def _execution(g,chain,path,pools):
+    """Explicit routing3 inventory, retaining all existing bounds and evidence."""
+    q=g.obj(chain.get('lp_execution'),path+'.lp_execution')
+    g.keys(q,{'execution_revision','registry_configuration_revision','quality_policy_revision','search_iterations',
+        'quote_gas_limit','additional_loss_bps','execution_pools','observed','review_evidence'},path+'.lp_execution')
+    for key,lo,hi in (('execution_revision',0,2**64-1),('registry_configuration_revision',0,2**64-1),
+            ('quality_policy_revision',0,2**64-1),('search_iterations',4,12),('quote_gas_limit',100000,300000),('additional_loss_bps',0,1000)):
+        g.check(type(q.get(key)) is int,path+'.lp_execution.'+key,'execution.type','Use exact integer observations.')
+        g.num(q.get(key),path+'.lp_execution.'+key,lo,hi)
+    catalog=g.items(q.get('execution_pools'),path+'.lp_execution.execution_pools',4)
+    g.check(len(set(catalog))==len(catalog) and all(pid in pools and pools[pid].get('operationsEnabled') is True for pid in catalog),
+        path+'.lp_execution.execution_pools','execution.catalog','Retain bounded reviewed operations-enabled venues.','routes')
+    g.check(V._equal(q.get('observed'),execution_expected(chain,1)),path+'.lp_execution.observed','execution.observation',
+        'Bind explicit routing3 and captured execution-price capability.','bindings')
+    V._bound_proof(g,q.get('review_evidence'),path+'.lp_execution.review_evidence',chain,kind='lp_execution_quality_qualification')
 
 
 def _config(g,raw,path):
@@ -201,8 +233,17 @@ def mint_integration(g,chain,path):
 
 
 def validate(config,*,expected_commit=None,now=None):
-    return BASE._validate(config,expected_commit=expected_commit,now=now,versions=VERSIONS,helpers=HELPERS,
-        binding_factory=expected_bindings,service_profiles=SERVICE_PROFILES,route_validator=H.LEGACY.validate_routes,
+    # Presence is explicit. Invalid values produce ordinary inventory issues;
+    # omission retains the exact historical schema17/routing2 interpretation.
+    declared=config.get('execution_price_version',0) if isinstance(config,dict) else 0
+    selected=1 if type(declared) is int and declared==1 else 0
+    versions=dict(VERSIONS,lp_routing_version=3) if selected else dict(VERSIONS)
+    top=TOP_FIELDS
+    if isinstance(config,dict) and 'execution_price_version' in config:
+        top=top|{'execution_price_version'};versions['execution_price_version']=selected
+    return BASE._validate(config,expected_commit=expected_commit,now=now,versions=versions,helpers=HELPERS,
+        binding_factory=lambda chain:expected_bindings(chain,selected),service_profiles=SERVICE_PROFILES,route_validator=H.LEGACY.validate_routes,
         royalty_conversion=False,token_validator=validate_tokens,canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,
         royalty_max_assets=65,royalty_mint_revision=True,chain_fields=CHAIN_FIELDS,chain_validator=H.factory_code,
-        top_fields=TOP_FIELDS,mint_validator=mint_integration,mint_implementation=PROFILE)
+        top_fields=top,mint_validator=mint_integration,mint_implementation=PROFILE,
+        execution_validator=_execution if selected else None)

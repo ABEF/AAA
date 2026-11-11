@@ -15,7 +15,10 @@ remains disabled; the shared browser signer stays Anvil-only.
 [Operator manual](docs/OPERATOR_MANUAL.md) | [Release approval](docs/RELEASE_CHECKLIST.md)
 
 The [current project review](reports/whole-project-review-20261111/REVIEW.md)
-records implemented repairs and decisions still needing review. The optional
+records implemented repairs and decisions still needing review. The fresh
+[reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md) allows a reviewed
+external price reference to execute swaps, while keeping original valuation,
+exact state/output proofs and live safeguards. The optional
 [spot composite](docs/POOL_SPOT_PRICE_SOURCE.md) values an external ETH/ZZZ pool
 through ETH/USD; two independent source paths, useful execution depth and actual
 service/market qualification remain open. The local

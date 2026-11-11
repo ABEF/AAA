@@ -1,0 +1,9 @@
+test_actual_eth_activation (tests_python.test_reference_execution_actual_trace.ActualReferenceExecutionTraceTests.test_actual_eth_activation) ... ok
+test_actual_eth_growth (tests_python.test_reference_execution_actual_trace.ActualReferenceExecutionTraceTests.test_actual_eth_growth) ... ok
+test_actual_zzz_activation (tests_python.test_reference_execution_actual_trace.ActualReferenceExecutionTraceTests.test_actual_zzz_activation) ... ok
+test_actual_zzz_growth (tests_python.test_reference_execution_actual_trace.ActualReferenceExecutionTraceTests.test_actual_zzz_growth) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.069s
+
+OK

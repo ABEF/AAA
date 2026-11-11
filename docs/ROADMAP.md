@@ -1,8 +1,10 @@
 # Engineering roadmap
 
 The [current review](../reports/whole-project-review-20261111/REVIEW.md) closes
-proven cleanup/encoding/indexer/keeper/UI defects. Next resolve the spot-reference
-versus execution-venue coupling and qualify actual dependencies/operations.
+proven cleanup/encoding/indexer/keeper/UI defects. The fresh
+[execution-price1/LP3 capability](REFERENCE_SWAP_EXECUTION.md) addresses reference/
+swap-venue coupling without relaxing financial limits. Next qualify complete
+operation gas, independent real sources/routes and matching consumer adoption.
 Do not delete historical readers or reinterpret stored demo events.
 
 

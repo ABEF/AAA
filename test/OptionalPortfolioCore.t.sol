@@ -1608,10 +1608,13 @@ contract OptionalPortfolioCoreTest is Test {
         (uint256 id,uint256 bucket,uint256 main,)=_hybrid();access.setPaused(true);
         ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);
         EmergencyRebalance memory r=_consolidationReview(bucket,false);bytes32 beforeState=_consolidationStateHash(id,bucket);
-        vm.expectCall(address(oracle),abi.encodeCall(ZZZOracle.price,(address(0))));vm.expectRevert();migration.consolidateResidual(r,false);
+        vm.expectCall(address(oracle),abi.encodeCall(ZZZOracle.beginExecution,(address(token))));
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(0)));migration.consolidateResidual(r,false);
         assertEq(_consolidationStateHash(id,bucket),beforeState);_prices();registry.setOperations(false);
         r=_consolidationReview(bucket,false);beforeState=_consolidationStateHash(id,bucket);
-        vm.expectCall(address(strategy),abi.encodeCall(ZZZStrategy.target,(pool)));vm.expectRevert();migration.consolidateResidual(r,false);
+        // Current policy validation rejects disabled operations before target calculation.
+        vm.expectCall(address(manager.balancingRouter()),abi.encodeCall(ZZZLPBalancer.policyFingerprint,(pool,bytes32(0))));
+        vm.expectRevert(ZZZModule.InvalidState.selector);migration.consolidateResidual(r,false);
         assertEq(_consolidationStateHash(id,bucket),beforeState);
         (,int24 upper)=manager.ticks(main);_move(TickMath.getSqrtPriceAtTick(upper+200));
         ethA.set(0,block.timestamp,block.timestamp);ethB.set(0,block.timestamp,block.timestamp);

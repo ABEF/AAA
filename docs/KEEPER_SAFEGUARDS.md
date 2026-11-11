@@ -1,5 +1,13 @@
 # Keeper safeguards
 
+The fresh accounting7 execution-price1/LP-routing3 extension retains the timing,
+authority, accounting and financial safeguards below. It captures original
+two-source valuation and proves the exact own-swap state before settlement plus
+later live checks, allowing an external reference as an execution venue. Same-
+core principal reference use stays unsupported. Explicit service/runtime/journal
+capability selection is required; older source records below keep their scope.
+[Reference execution and remaining gas/dependency limits](REFERENCE_SWAP_EXECUTION.md).
+
 Fresh [accounting6 / portfolio2](POSITION_V6.md) source: Strategy maintenance3,
 confirmation3, Budget compound4, LP routing2, custody5 and emergency2. The
 [current source review](../reports/optional-portfolio-20261030/REVIEW.md) and

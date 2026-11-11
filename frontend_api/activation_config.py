@@ -42,6 +42,9 @@ class ActivationConfig:
         if type(self.routing_version) is not int or self.routing_version not in (1, 2, 3):
             raise ValueError('Unsupported explicit activation routing profile')
         if 'routing_version' in config: fields.add('routing_version')
+        from zzz_ops.execution_price import version as execution_price_version
+        self.execution_price_version = execution_price_version(config.get('execution_price_version', 0))
+        if 'execution_price_version' in config: fields.add('execution_price_version')
         self.review_policy_version = config.get('review_policy_version', 0)
         if type(self.review_policy_version) is not int or self.review_policy_version not in (0,1,2):
             raise ValueError('Unsupported explicit activation review-policy profile')
@@ -68,24 +71,26 @@ class ActivationConfig:
         if self.maintenance_policy_version in (2,3) and self.range_policy_version != 1:
             raise ValueError('Outside-only maintenance requires the explicit reviewed range-policy profile')
         self.lp_routing_version = config.get('lp_routing_version', 0)
-        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0, 1, 2):
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0, 1, 2, 3):
             raise ValueError('Unsupported explicit LP-routing profile')
         if 'lp_routing_version' in config: fields.add('lp_routing_version')
         if self.lp_routing_version == 1 and (projection.accounting_version != 4 or self.maintenance_policy_version != 2):
             raise ValueError('LP routing requires explicit accounting4 and outside-only maintenance2')
-        if self.lp_routing_version == 2 and (projection.accounting_version not in (5,6,7) or self.maintenance_policy_version != 3):
+        if self.lp_routing_version in (2,3) and (projection.accounting_version not in (5,6,7) or self.maintenance_policy_version != 3):
             raise ValueError('LP routing2 requires explicit accounting5 and threshold maintenance3')
+        if (self.lp_routing_version == 3) != bool(self.execution_price_version):
+            raise ValueError('LP routing3 requires the explicit execution-price1 profile')
         self.portfolio_version = config.get('portfolio_version',0)
         if 'portfolio_version' in config: fields.add('portfolio_version')
         if (type(self.portfolio_version) is not int or self.portfolio_version not in (0,1,2) or
                 self.portfolio_version != (2 if projection.accounting_version in (6,7) else 1 if projection.accounting_version==5 else 0) or
-                self.portfolio_version in (1,2) and self.lp_routing_version != 2):
+                self.portfolio_version in (1,2) and self.lp_routing_version not in (2,3)):
             raise ValueError('Portfolio1 requires the explicit fresh accounting5/routing2 profile')
         self.execution_quality_version = config.get('execution_quality_version', 0)
         if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
             raise ValueError('Unsupported explicit execution-quality profile')
         if 'execution_quality_version' in config: fields.add('execution_quality_version')
-        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2):
+        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2,3):
             raise ValueError('Execution quality requires explicit LP-routing profile1')
         self.rebalance_confirmation_version = config.get('rebalance_confirmation_version',0)
         if type(self.rebalance_confirmation_version) is not int or self.rebalance_confirmation_version not in (0,1,2,3):
@@ -95,7 +100,7 @@ class ActivationConfig:
                 self.maintenance_policy_version!=2 or self.execution_quality_version!=1):
             raise ValueError('Confirmation requires accounting4, maintenance2 and execution quality1')
         if projection.accounting_version in (5,6,7) and (self.rebalance_confirmation_version != 3 or
-                self.execution_quality_version != 1 or self.lp_routing_version != 2):
+                self.execution_quality_version != 1 or self.lp_routing_version not in (2,3)):
             raise ValueError('Accounting5 requires confirmation3, execution quality1 and LP routing2')
         if self.rebalance_confirmation_version == 3 and projection.accounting_version not in (5,6,7):
             raise ValueError('Confirmation3 cannot relabel an historical deployment')
@@ -114,9 +119,14 @@ class ActivationConfig:
                 self.pricing_version != 2 or self.review_policy_version != 2 or
                 getattr(projection,'fee_intake_version',0) != 1):
             raise ValueError('Direct Entry3 requires explicit policy accounting6/7, pricing2, review2 and fee1')
+        if self.execution_price_version and (projection.accounting_version != 7 or self.routing_version != 3 or
+                self.pricing_version != 2 or self.review_policy_version != 2 or self.lp_routing_version != 3):
+            raise ValueError('Execution-price1 requires explicit accounting7, direct Entry3 and current dual-price LP routing')
+        if self.execution_price_version != getattr(projection, 'execution_price_version', 0):
+            raise ValueError('Activation and read execution-price profiles differ')
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
-              ({'balancing_router'} if self.lp_routing_version in (1,2) else set()) |
+              ({'balancing_router'} if self.lp_routing_version in (1,2,3) else set()) |
               ({'portfolio_policy','lp_balance_math','lp_position_executor'} if self.portfolio_version in (1,2) else set()) |
               ({'protocol_policy'} if projection.accounting_version in (6,7) else set()) |
               ({'rebalance_confirmation'} if self.rebalance_confirmation_version in (1,2,3) else set()) |
@@ -296,7 +306,7 @@ class ActivationConfig:
         for role, method, expected in (('position_manager','poolManager()','pool_manager'),
                                        ('position_manager','permit2()','permit2'),('state_view','poolManager()','pool_manager')):
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Liquidity venue binding changed')
-        if self.lp_routing_version in (1,2):
+        if self.lp_routing_version in (1,2,3):
             from zzz_ops.lp_execution import observe
             try:
                 execution = observe(
@@ -306,7 +316,8 @@ class ActivationConfig:
                     access=pins['access'], pools=pins['pools'],quality_version=self.execution_quality_version,
                     strategy=pins['strategy'],routing_version=self.lp_routing_version,
                     math_helper=pins.get('lp_balance_math'),
-                    position_executor=pins.get('lp_position_executor'),portfolio_version=self.portfolio_version or 1)
+                    position_executor=pins.get('lp_position_executor'),portfolio_version=self.portfolio_version or 1,
+                    execution_price_version=self.execution_price_version)
                 if execution_observation is not None: execution_observation.update(execution)
             except (ValueError, TypeError, KeyError) as exc:
                 raise ProjectionError('LP execution capability differs from the reviewed profile') from exc
@@ -330,6 +341,14 @@ class ActivationConfig:
             for role,method,expected in bindings[-2:]:
                 if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Contribution pricing helper binding differs')
             if _bool(read('contribution_pricing','active()')[0]): raise ProjectionError('Contribution pricing context is unexpectedly active')
+        if self.execution_price_version:
+            from zzz_ops.execution_price import observe as observe_execution_price
+            try:
+                observed = observe_execution_price(
+                    lambda target, method, *, count: p._call(target, method, block=block, words=count), pins)
+            except (ValueError, TypeError, KeyError) as exc:
+                raise ProjectionError('Execution-price capability differs from the reviewed profile') from exc
+            if execution_observation is not None: execution_observation['execution_price'] = observed
         if self.review_policy_version in (1,2):
             for role,method in (('entry','REVIEW_POLICY_VERSION()'),('contribution_pricing','ENTRY_REVIEW_VERSION()')):
                 if int(read(role,method)[0],16) != self.review_policy_version:

@@ -9,11 +9,32 @@ from zzz_ops import production_observer as O,production_observer_v6 as BASE
 
 
 class Observer(H.Observer):
+    def __init__(self,rpc,chain,*,execution_price_version=0):
+        super().__init__(rpc,chain)
+        self.execution_price_version=execution_price_version
+
     def typed(self,target,getter,expected):
+        if getter=='EXECUTION_PRICE_VERSION':return O._decode(self.read(target,getter+'()')[0],0)
+        if getter=='executionActive':return O._decode(self.read(target,getter+'()')[0],False)
+        if getter=='executionStrategy':return O._decode(self.read(target,getter+'()')[0],O.ZERO)
         if getter=='MINT_INTEGRATION_VERSION':return O._decode(self.read(target,getter+'()')[0],0)
         if getter in ('seaDropMint','seaDrop'):return O._decode(self.read(target,getter+'()')[0],O.ZERO)
         if getter=='seaDropCodeHash':return '0x'+self.read(target,getter+'()')[0]
         return super().typed(target,getter,expected)
+
+    def execution(self):
+        if not self.execution_price_version:return super().execution()
+        from zzz_ops.lp_execution import observe
+        m,h,d=self.chain['modules'],self.chain['helpers'],self.chain['dependencies']
+        self.chain['lp_execution']['observed']=self.attempt('lp_execution','execution.unavailable',lambda:
+            observe(lambda target,method,*args:self.read(target,method,*args),
+                liquidity=m['liquidity']['address'],router=h['balancing_router']['address'],
+                pool_manager=d['pool_manager']['address'],state_view=d['state_view']['address'],
+                access=m['access']['address'],pools=m['pools']['address'],quality_version=1,strategy=m['strategy']['address'],
+                routing_version=3,math_helper=h['lp_balance_math']['address'],position_executor=h['lp_position_executor']['address'],
+                portfolio_version=2,execution_price_version=1))
+        if not O._same(self.chain['lp_execution']['observed'],P.execution_expected(self.chain,1)):
+            self.errors.append(dict(path='lp_execution',code='execution.mismatch'))
 
     def _addresses(self,target,signature,*args,maximum=16):
         data='0x'+O.keccak256(signature.encode()).hex()[:8]+''.join(O._word(a) for a in args)
@@ -88,7 +109,10 @@ class Observer(H.Observer):
 
 
 def observe(config,rpc):
-    if not isinstance(config,dict) or any(type(config.get(k)) is not int or config[k]!=v for k,v in P.VERSIONS.items()):
+    from zzz_ops.execution_price import version
+    selected=version(config.get('execution_price_version',0)) if isinstance(config,dict) else 0
+    versions=dict(P.VERSIONS,lp_routing_version=3) if selected else P.VERSIONS
+    if not isinstance(config,dict) or any(type(config.get(k)) is not int or config[k]!=v for k,v in versions.items()):
         raise ValueError('Use explicit schema17/mint2/V10')
     chains=config.get('chains')
     if not isinstance(chains,list) or len(chains)!=1 or not isinstance(chains[0],dict):raise ValueError('Use one bounded current chain')
@@ -101,4 +125,9 @@ def observe(config,rpc):
         if not isinstance(rows,list) or len(rows)>64:raise ValueError('Unbounded current route inventory')
     if any(not isinstance(row,dict) or row.get('role')!='lp' for row in chain['conversion_routes']):raise ValueError('Only LP conversion routes remain')
     if any(not isinstance(row,dict) or type(row.get('route_kind')) is not int or row['route_kind']!=0 or row.get('route_id')!=P.ZERO_HASH for row in chain['activation_sources']):raise ValueError('Direct Entry3 source routing must be zero')
-    return BASE._observe(config,rpc,profile=P,observer_class=Observer)
+    if not selected:return BASE._observe(config,rpc,profile=P,observer_class=Observer)
+    from types import SimpleNamespace
+    profile=SimpleNamespace(**{**vars(P),'VERSIONS':versions,
+        'expected_bindings':lambda chain:P.expected_bindings(chain,selected)})
+    return BASE._observe(config,rpc,profile=profile,
+        observer_class=lambda rpc,chain:Observer(rpc,chain,execution_price_version=selected))

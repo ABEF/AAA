@@ -1,0 +1,112 @@
+[
+  {
+    "index": 0,
+    "disposition": "false_positive",
+    "rationale": "balance is fixed-Vault-only and nonReentrant. tokenPrefund is deliberately the pre-existing Manager balance, not the entrant amount. plan's actual-core quote reverts its simulated changes; final equality proves the whole entrant budget was refunded/spent without using prefunds. _balanceContext then performs full normal execution validation. A changed balance rejects atomically rather than authorizing a payout from a stale snapshot."
+  },
+  {
+    "index": 1,
+    "disposition": "false_positive",
+    "rationale": "The onlyManager public mint/increase entries are nonReentrant. before1 deliberately excludes the exact Vault amount pulled for this operation; unused1 is the actual post-PosM/reset balance delta. The code rejects unused1 above the provided budget, refunds only it to fixed Vault, and then proves unchanged policy/spot plus exact actual LP owner/ticks/L. PosM is constructor-fixed; there is no arbitrary recipient or action."
+  },
+  {
+    "index": 2,
+    "disposition": "false_positive",
+    "rationale": "beforeOutput is an intentional recipient-balance baseline. beforeSwap is the pinned current Oracle's module-only transition arming, with only bounded static source reads and private transient writes. The guarded outer Manager operation and pendingSwapHash prevent an unrelated nested swap. Post-unlock output must equal the exact recipient delta; normal execution then fully validates. No value is calculated from an attacker-selectable stale balance."
+  },
+  {
+    "index": 3,
+    "disposition": "false_positive",
+    "rationale": "poolManager is immutable; unlockCallback authenticates that core and exact pending payload, clears the pending commitment, checks actual output/full quoted state immediately after swap and before settlement. _swapExact then requires exact recipient delta/minimum and revalidates after output callbacks. The public caller is a typed guarded Manager entry. The baseline is a safety invariant; changing it cannot increase the accepted amount."
+  },
+  {
+    "index": 4,
+    "disposition": "false_positive",
+    "rationale": "Hybrid planReplacement runs under the same fixed-Vault nonReentrant balance operation. It receives only entrant/captured-maintenance amounts and configured main floor. The prior Manager ZZZ balance is retained as an equality invariant after the selected swap and both refunds, followed by source/control and physical-L checks. Simulated quote calls revert, so the baseline must not be updated to accommodate them."
+  },
+  {
+    "index": 5,
+    "disposition": "false_positive",
+    "rationale": "This analyzer context includes explicit emergency quoted=0. It still originates from guarded Vault balance and retains exact supplied-budget/refund/prefund and pending-core-callback proofs. Financial guards may be waived only by the existing paused governance emergency manifest, never by a normal caller or an observed balance. Normal nonzero quote additionally uses the new full-state proof. Emergency loss risk is separately disclosed, not created by this baseline."
+  },
+  {
+    "index": 6,
+    "disposition": "false_positive",
+    "rationale": "Guarded paused same-main consolidation uses planReplacement(...,10000,marks) but keeps fixed-Vault-only/nonReentrant Manager balance. The prefund equality after all refunds preserves unrelated balances while final policy/current LP identity checks retain the same main. An external callback changing funds makes the condition fail; it is not allowed to redefine the starting prefund."
+  },
+  {
+    "index": 7,
+    "disposition": "false_positive",
+    "rationale": "_reset revokes the fixed Permit2/PosM approval inside a nonReentrant onlyManager mint/increase. The subsequent actual token delta is intentionally measured after this callback boundary, bounded by amount1 and returned only to Vault. Final balance-context/physical-position validation follows the refund. Approval/reset dependencies remain constructor-pinned and separately qualified; the detector's pre-call baseline is the required conservation check."
+  },
+  {
+    "index": 8,
+    "disposition": "false_positive",
+    "rationale": "The single-main ordinary replacement variant deliberately requires a10000 main target. It cannot spend tokenPrefund: balance refunds only the supplied budget and verifies the actual native/ZZZ prefunds exactly afterward. onlyModule(VAULT), nonReentrant, policy revision/fingerprint and final execution-state checks remain; a failed inequality reverts rather than creating a new share or payout."
+  },
+  {
+    "index": 9,
+    "disposition": "false_positive",
+    "rationale": "Native refund recipient is msg.sender, authenticated as the fixed Vault before entry. Manager balance is nonReentrant. The ZZZ prefund comparison happens after native and ZZZ refunds, so a recipient/token callback cannot be silently absorbed into the budget. _balanceContext performs full normal source validation and original geometry is checked before return. A malicious dependency may cause denial/revert but does not gain an arbitrary recipient path."
+  },
+  {
+    "index": 10,
+    "disposition": "false_positive",
+    "rationale": "The exact-amount Permit2 approval occurs inside the onlyManager nonReentrant executor entry. before1 precedes the operation's exact pull; after PosM execution and allowance reset the code measures unused1, rejects excess, and refunds it only to Vault. Final source/policy and physical LP checks follow all approval/refund callbacks. The original baseline is intentionally immutable; token/Permit2 honesty remains deployment review scope."
+  },
+  {
+    "index": 11,
+    "disposition": "false_positive",
+    "rationale": "Normal balance supplies a positive router-selected quote to _swapExact. Exact output/full state is checked before settlement, recipient delta afterward, and original Manager native/ZZZ prefunds after both refunds. nonReentrant/fixed-Vault authorization and final context/route revision/geometry checks prevent a nested operation adopting those balances. Equality is a conservation proof, not a stale payout calculation."
+  },
+  {
+    "index": 12,
+    "disposition": "false_positive",
+    "rationale": "collect is onlyManager and nonReentrant; both actual legs are checked as Vault-owned before typed zero-liquidity DECREASE/TAKE_PAIR. Native receive accepts only the immutable core while nativeSender is armed. _finishNativeCredit clears sender and amount before its sole native transfer to fixed Vault, with exact balance proof. Sequential second-leg collection cannot be reentered via mutable executor entries; only authenticated receive can add a core credit."
+  },
+  {
+    "index": 13,
+    "disposition": "false_positive",
+    "rationale": "closeSecondary is paused, onlyManager and nonReentrant. It verifies main/residual association and Vault ownership, executes only the typed burn and fixed-Vault proceeds, and deletes association only after burn succeeds. The native credit is cleared before sending; nested mutable executor calls cannot pass the lock/caller. Read views can observe an in-progress association, but no public withdrawal/approval uses it and the outer custody/lifecycle checks must complete atomically."
+  },
+  {
+    "index": 14,
+    "disposition": "false_positive",
+    "rationale": "close is onlyManager/nonReentrant and both _closeOne calls use exact registered Vault positions and fixed-Vault proceeds. Native sender/receipt counters are armed for core and cleared before the Vault transfer. Association is removed only after successful residual burn; any second-leg failure reverts first-leg settlement too. The receive hook is authenticated receipt accumulation, not an alternate public close/reentry path."
+  },
+  {
+    "index": 15,
+    "disposition": "false_positive",
+    "rationale": "amount==0 is a direct local parameter no-op test, not equality on an externally manipulable account balance. Returning without a zero-value external call is intended. Positive amounts still require a successful fixed-recipient transfer and exact before/after native conservation."
+  },
+  {
+    "index": 16,
+    "disposition": "false_positive",
+    "rationale": "beginEntryReviewed authenticates the configured Entry, checks phase/lifecycle and sets phase1 before _pair. Oracle.beginExecution is the fixed constructor-linked Oracle; capture performs static dependency reads and private transient writes, never an arbitrary mutable source call. Entry's guarded operation and Pricing phase block duplicate adoption; source/policy/minimum checks finish before pulling funds. Later full boundary/final validation protects those marks."
+  },
+  {
+    "index": 17,
+    "disposition": "false_positive",
+    "rationale": "_beforeMove is reached only through the Budget's authenticated typed Vault flow; it rejects a nonempty prior snapshot. markMaintenance calls the fixed Pricing/Oracle, whose external data dependencies are static, and reserves its maintenance scope before returning exact values. No arbitrary receiver or mutable token call occurs before snapshot assignment. The guarded Vault operation, nonzero mark and later source/control/value proof prevent a second movement adopting incomplete state."
+  },
+  {
+    "index": 18,
+    "disposition": "false_positive",
+    "rationale": "_afterMove is inside the authenticated guarded Vault operation and verifies bucket, compound inclusion, accounting, source/portfolio controls and utilization before endMaintenance. The fixed Pricing->Oracle end only performs bounded static validations and clears private execution state; it sends no funds or arbitrary callbacks. Snapshot/compound flags are deleted immediately afterward. A failed end reverts the entire operation, not just cleanup."
+  },
+  {
+    "index": 19,
+    "disposition": "false_positive",
+    "rationale": "begin is onlyBudget, checks live state and existing Entry basis, or reserves phase1 before direct _pair. The fixed Oracle capture has only static external reads and private context writes. Direct contribution amounts are packed raw amounts from the authenticated Vault path, then valued against the captured vector and checked against the supplied input/limits. No external caller can enter this writer from a feed's static context or replace an active scope."
+  },
+  {
+    "index": 20,
+    "disposition": "false_positive",
+    "rationale": "endMaintenance is onlyBudget with exact bucket match. The called immutable Oracle.endExecution authenticates Pricing, rejects an active Manager loan and fully validates using static dependencies before clearing transient words. There is no token/native transfer or arbitrary callback before maintenanceBucket deletion. Oracle failure rolls back both closures; explicit emergency retains its separate no-scope path."
+  },
+  {
+    "index": 21,
+    "disposition": "false_positive",
+    "rationale": "_pair is private and entered after the authenticated caller has reserved phase1. It starts only the fixed Oracle scope and reads governance/Registry/Budget policies through view calls before committing entry limits/marks. A feed cannot mutate through a STATICCALL chain; a nested unrelated scope is rejected. Original policy/source commitments are revalidated around all later mutable boundaries and final owner-end. These storage writes do not follow an attacker-controlled mutable callback."
+  }
+]

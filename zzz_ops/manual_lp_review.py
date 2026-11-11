@@ -152,6 +152,7 @@ class Reader:
 
     def snapshot(self,s,governance,*,full):
         p=self.p;b=s['bucket'];c=self.targets
+        execution_prices=None
         if full:
             life=p._verify_deployment(self.block)
             for role,item in self.extra.items():p._code(item['address'],item['code_hash'],self.block)
@@ -168,6 +169,9 @@ class Reader:
             for role in ('principal_exit','vault','budget','portfolio_policy','contribution_pricing'):
                 if self.uint(role,'RESIDUAL_REINVEST_VERSION()')!=1:raise RpcError('Manual extension capability differs')
             if self.uint('fees','FEE_INTAKE_VERSION()')!=1:raise RpcError('Manual fee profile differs')
+            if p.execution_price_version:
+                from zzz_ops.execution_price import observe
+                execution_prices=observe(lambda target,method,*,count:self.read(target,method,count=count),c)
         if (not self.flag('access','isSealed()') or not self.flag('access','paused()') or
                 self.flag('access','preparationActive()') or self.uint('access','canonicalState()')!=0 or
                 self.flag('access','lpExitStarted()') or self.uint('principal_exit','exitPhase()')!=0 or
@@ -182,7 +186,8 @@ class Reader:
         if position['status']!='active':raise ValueError('Only Active-state manual B/C/D is supported; Parked is unsupported')
         hashes={role:item.code_hash for role,item in p.contracts.items()}
         physical=physical_portfolio(self.read,lambda target:p.rpc.call('eth_getCode',[target,self.block]),
-            contracts=c,code_hashes=hashes,bucket=b,accounting_version=7,physical_only=True)
+            contracts=c,code_hashes=hashes,bucket=b,accounting_version=7,physical_only=True,
+            execution_price_version=p.execution_price_version)
         pool=position['pool_id'];main=position['lp_token_id'];legs=physical['physical_legs']
         config=self.read('pools','accounting(bytes32)',pool,count=14)
         zzz=self.uint('activation_assets','zzz()')
@@ -261,7 +266,8 @@ class Reader:
             'custody_epoch':str(self.uint('principal_exit','custodyEpoch(uint256)',b)),
             'pool_configuration':config,'registry_revision':str(self.uint('pools','configurationRevision()')),
             'portfolio_control':self.hashed('portfolio_policy','controlFingerprint(bytes32)',pool),
-            'compound_reserves_raw':list(map(str,reserves)),'financial':financial,'timing':timing,'swap':swap,'routing':routing}
+            'compound_reserves_raw':list(map(str,reserves)),'financial':financial,'timing':timing,'swap':swap,'routing':routing,
+            **({'execution_price':execution_prices} if p.execution_price_version else {})}
 
 
 def validate_policy(policy,catalog):

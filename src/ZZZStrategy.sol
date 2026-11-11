@@ -23,6 +23,7 @@ contract ZZZStrategy is ZZZModule {
     ZZZRebalanceConfirmation public immutable rebalanceConfirmation;
     ZZZPortfolioPolicy public immutable portfolioPolicy;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
+    uint256 public constant EXECUTION_PRICE_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint16 public additionalLossBps = 100;
     uint64 public executionQualityRevision;

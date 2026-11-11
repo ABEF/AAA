@@ -11,22 +11,22 @@
       "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "bd1ad5cb7aac5b836838114a9158518fabee313479b56b49018b691de844ad7c",
+      "src/ZZZContributionPricing.sol": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
       "src/ZZZCustodyValidation.sol": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
-      "src/ZZZLPBalanceMath.sol": "9840895d979ed21732da24193f44cdcbac46cc02a869128aaddd166370076898",
-      "src/ZZZLPBalancer.sol": "84881584d9bbb989a8ad99917d847928a1b15c04d63016aab31c3cc5f21857ad",
-      "src/ZZZLPPositionExecutor.sol": "0ea31af7f20c307c4448558349fee102ed6c26bceba1039350d4fe6f5e59f62b",
+      "src/ZZZLPBalanceMath.sol": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
+      "src/ZZZLPBalancer.sol": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+      "src/ZZZLPPositionExecutor.sol": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
       "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
-      "src/ZZZLiquidityManager.sol": "d4ad4914446cf74d004b8f772dc5f68206e5246b5448cb5aa1d32851c6a005a6",
+      "src/ZZZLiquidityManager.sol": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
       "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
       "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
-      "src/ZZZMigrationBudget.sol": "b988dbb67f84e497960971519afe4f7b654dff82d7a7b5d0aa2f37710ee8e399",
+      "src/ZZZMigrationBudget.sol": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
       "src/ZZZNFT.sol": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
       "src/ZZZNFTCanonical.sol": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
       "src/ZZZNFTMetadata.sol": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
-      "src/ZZZOracle.sol": "00098f57669766687ae8ff42faaec5684969a9ecd42727ba9d445ecb750adcbe",
+      "src/ZZZOracle.sol": "186799e1cc1c8184a6c9ad31e5a5052e655d5f859d24d5ef271bb5a788338b4d",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
       "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
@@ -38,9 +38,9 @@
       "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
       "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
       "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
-      "src/ZZZStrategy.sol": "e401360d76d5de9cda17787725f647d3484b2979f1f0014f5e88e5704ca64632",
+      "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZV4SpotPriceFeed.sol": "5d4d99a809e6ec64d0e0e0c485f61d6a35e124955b7eb8018e8faa3708b4c084",
+      "src/ZZZV4SpotPriceFeed.sol": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
       "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
       "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
@@ -51,6 +51,7 @@
       "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
       "src/interfaces/IZZZNFTCanonical.sol": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
       "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
       "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
@@ -235,6 +236,7 @@
       "src/interfaces/IZZZ.sol",
       "src/interfaces/IZZZCanonical.sol",
       "src/interfaces/IZZZEmergency.sol",
+      "src/interfaces/IZZZExecutionOracle.sol",
       "src/interfaces/IZZZNFTCanonical.sol",
       "src/interfaces/IZZZProtocolPolicy.sol",
       "src/interfaces/IZZZSeaDrop.sol",
@@ -253,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "f1f5f545d6f13c9890a88ea9496ba459443a1ccaf495054f15b53367ad8c438b",
-    "compiler_output_sha256": "c0aaadc32cce0b725ed18fd457efb241c70e6aedcfe9a2c116e090a72909b2b6",
-    "size_evidence_sha256": "43cab4381e8e6c92f46cc175cb4ad1efce80a17a58ebe209fa04180049e34d23",
+    "compiler_input_sha256": "3e1e27caf2f6aa08ca8eff625f839a37309cbf1e60ebb441ce04fb0d78433e2e",
+    "compiler_output_sha256": "ac94dcb7af9e51fbab0ebcb0fd7b84a842ba2828c2c41f1c253e3ef71ee5b43a",
+    "size_evidence_sha256": "c15601e36c0355ab190ddcefc181f84e47390a9d3c334bd1f1a185edba70c550",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -3604,6 +3606,19 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "RESIDUAL_REINVEST_VERSION",
           "outputs": [
             {
@@ -3896,6 +3911,19 @@
               "type": "uint256"
             }
           ],
+          "name": "endMaintenance",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
           "name": "entryIdleLimit",
           "outputs": [
             {
@@ -4067,7 +4095,7 @@
               "type": "tuple"
             }
           ],
-          "stateMutability": "view",
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -4183,7 +4211,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "b647b3bf13f5d192eb43566a4cd77e6e8e61752cc65a40df706a4421d4f73bc1"
+      "abi_sha256": "87e923abd1a4f8ea4dab48c4cd0ecf05100d533ea95b0e9ac92478c4683d2f3b"
     },
     "ZZZCustodyValidation": {
       "source": "src/ZZZCustodyValidation.sol",
@@ -5668,7 +5696,33 @@
         },
         {
           "inputs": [],
-          "name": "LP_BALANCE_MATH_VERSION",
+          "name": "InvalidConfiguration",
+          "type": "error"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "InvalidPrice",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidState",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "Slippage",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
           "outputs": [
             {
               "internalType": "uint256",
@@ -5681,12 +5735,151 @@
         },
         {
           "inputs": [],
+          "name": "LP_BALANCE_MATH_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale1",
+              "type": "uint256"
+            }
+          ],
+          "name": "assertPortfolioUtilization",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "balancer",
           "outputs": [
             {
               "internalType": "address",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "beforeValue",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint16",
+              "name": "lossBps",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxIdleBps",
+              "type": "uint16"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "expectedPolicy",
+              "type": "bytes32"
+            }
+          ],
+          "name": "checkMaintenance",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "deployed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "budget",
+              "type": "address"
+            }
+          ],
+          "name": "compoundReady",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
             }
           ],
           "stateMutability": "view",
@@ -5918,6 +6111,399 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "executionMinimumOutput",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "executionPrices",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "lower0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "upper0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "lower1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "upper1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "scale1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "referenceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "extraLoss",
+                  "type": "uint16"
+                }
+              ],
+              "internalType": "struct ZZZLPBalanceMath.Prices",
+              "name": "p",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            }
+          ],
+          "name": "executionTarget",
+          "outputs": [
+            {
+              "internalType": "int24",
+              "name": "lower",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "upper",
+              "type": "int24"
+            },
+            {
+              "internalType": "uint160",
+              "name": "referenceX96",
+              "type": "uint160"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            }
+          ],
+          "name": "executionValidatePrice",
+          "outputs": [
+            {
+              "internalType": "uint160",
+              "name": "spot",
+              "type": "uint160"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "fixedZZZ",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "zzz",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price1",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale0",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "scale1",
+              "type": "uint256"
+            }
+          ],
+          "name": "maintenanceValues",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "deployed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "idle",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "lower0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "upper0",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "lower1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "upper1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "scale1",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint160",
+                  "name": "referenceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "extraLoss",
+                  "type": "uint16"
+                }
+              ],
+              "internalType": "struct ZZZLPBalanceMath.Prices",
+              "name": "p",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint16",
+              "name": "loss",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint256",
+              "name": "fee",
+              "type": "uint256"
+            }
+          ],
+          "name": "minimumOutput",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "pure",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "requireOperations",
+              "type": "bool"
+            }
+          ],
+          "name": "nativeConfig",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "currency0",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "currency1",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "fee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "int24",
+                      "name": "tickSpacing",
+                      "type": "int24"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "hooks",
+                      "type": "address"
+                    }
+                  ],
+                  "internalType": "struct PoolKey",
+                  "name": "key",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "depositsEnabled",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "bool",
+                  "name": "operationsEnabled",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "rangeBps",
+                  "type": "uint16"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "triggerBps",
+                  "type": "uint16"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "maxSpotDeviationBps",
+                  "type": "uint16"
+                },
+                {
+                  "internalType": "uint16",
+                  "name": "maxSlippageBps",
+                  "type": "uint16"
+                },
+                {
+                  "internalType": "uint32",
+                  "name": "minRebalanceInterval",
+                  "type": "uint32"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "minDepositUSD",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxPositionUSD",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct PoolConfig",
+              "name": "c",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "target",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "venue",
+              "type": "bytes32"
+            }
+          ],
+          "name": "policyFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "positionManager",
               "type": "address"
@@ -6066,9 +6652,84 @@
           ],
           "stateMutability": "pure",
           "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint160",
+              "name": "price",
+              "type": "uint160"
+            },
+            {
+              "internalType": "uint160",
+              "name": "referencePrice",
+              "type": "uint160"
+            },
+            {
+              "internalType": "uint16",
+              "name": "deviation",
+              "type": "uint16"
+            }
+          ],
+          "name": "validSpot",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "pure",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint128",
+              "name": "minimumLiquidity",
+              "type": "uint128"
+            },
+            {
+              "internalType": "bool",
+              "name": "emergency",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint8",
+              "name": "checks",
+              "type": "uint8"
+            }
+          ],
+          "name": "validateRebalance",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "busy",
+              "type": "bool"
+            }
+          ],
+          "name": "validateResidualClose",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
         }
       ],
-      "abi_sha256": "0315faa6e157a5527acc4ab316d80caf7c1cd8b2b8c3fad74dc9a8341ea6b475"
+      "abi_sha256": "26d0380eace1ea418d74f15e83c2c6c48714258bc89b1782516fefd9538de84e"
     },
     "ZZZLPBalancer": {
       "source": "src/ZZZLPBalancer.sol",
@@ -6115,17 +6776,6 @@
           "type": "error"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            }
-          ],
-          "name": "InvalidPrice",
-          "type": "error"
-        },
-        {
           "inputs": [],
           "name": "InvalidState",
           "type": "error"
@@ -6166,6 +6816,21 @@
               "internalType": "int24",
               "name": "tickAfter",
               "type": "int24"
+            },
+            {
+              "internalType": "uint24",
+              "name": "protocolFee",
+              "type": "uint24"
+            },
+            {
+              "internalType": "uint24",
+              "name": "lpFee",
+              "type": "uint24"
+            },
+            {
+              "internalType": "uint128",
+              "name": "liquidity",
+              "type": "uint128"
             }
           ],
           "name": "QuoteResult",
@@ -6279,6 +6944,19 @@
           ],
           "name": "SolverConfigured",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -6590,6 +7268,38 @@
                   "internalType": "bytes32",
                   "name": "fingerprint",
                   "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint160",
+                      "name": "sqrtPriceX96",
+                      "type": "uint160"
+                    },
+                    {
+                      "internalType": "int24",
+                      "name": "tick",
+                      "type": "int24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "protocolFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "lpFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint128",
+                      "name": "liquidity",
+                      "type": "uint128"
+                    }
+                  ],
+                  "internalType": "struct MarketState",
+                  "name": "afterState",
+                  "type": "tuple"
                 }
               ],
               "internalType": "struct ZZZLPBalancer.Plan",
@@ -6686,6 +7396,38 @@
                   "internalType": "bytes32",
                   "name": "fingerprint",
                   "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint160",
+                      "name": "sqrtPriceX96",
+                      "type": "uint160"
+                    },
+                    {
+                      "internalType": "int24",
+                      "name": "tick",
+                      "type": "int24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "protocolFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "lpFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint128",
+                      "name": "liquidity",
+                      "type": "uint128"
+                    }
+                  ],
+                  "internalType": "struct MarketState",
+                  "name": "afterState",
+                  "type": "tuple"
                 }
               ],
               "internalType": "struct ZZZLPBalancer.Plan",
@@ -6810,14 +7552,36 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint160",
-              "name": "afterPrice",
-              "type": "uint160"
-            },
-            {
-              "internalType": "int24",
-              "name": "afterTick",
-              "type": "int24"
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "state",
+              "type": "tuple"
             }
           ],
           "stateMutability": "nonpayable",
@@ -6834,6 +7598,67 @@
             }
           ],
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "quoteSwap",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "output",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "state",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -6991,6 +7816,38 @@
                   "internalType": "bytes32",
                   "name": "fingerprint",
                   "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint160",
+                      "name": "sqrtPriceX96",
+                      "type": "uint160"
+                    },
+                    {
+                      "internalType": "int24",
+                      "name": "tick",
+                      "type": "int24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "protocolFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint24",
+                      "name": "lpFee",
+                      "type": "uint24"
+                    },
+                    {
+                      "internalType": "uint128",
+                      "name": "liquidity",
+                      "type": "uint128"
+                    }
+                  ],
+                  "internalType": "struct MarketState",
+                  "name": "afterState",
+                  "type": "tuple"
                 }
               ],
               "internalType": "struct ZZZLPBalancer.Plan",
@@ -7052,7 +7909,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "0ca18bc0f6b01acd4e1ee3cb73e1fb34d68642fb75d17880918494ddac40f312"
+      "abi_sha256": "0567b57dbb630c82465d98008cb0bd9abd6fa2b37607255f5ff19efc2f82e5d9"
     },
     "ZZZLPPositionExecutor": {
       "source": "src/ZZZLPPositionExecutor.sol",
@@ -7199,6 +8056,19 @@
           ],
           "name": "PortfolioCreated",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -7622,7 +8492,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "edcbfe32b3fa6b91510e81fce5f4ef7706d9cb589ca306f39b9cd3dd3e54e313"
+      "abi_sha256": "0b6a254edf04b2bf65e03024154ffc3460ae2f644f39a68241f95bf0f830b36f"
     },
     "ZZZLPRewardConverter": {
       "source": "src/ZZZLPRewardConverter.sol",
@@ -8686,6 +9556,19 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "EXECUTION_QUALITY_VERSION",
           "outputs": [
             {
@@ -9119,6 +10002,19 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "executionStrategy",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "bytes32",
@@ -9459,7 +10355,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "6efe92a6f7cd7ab553b30fb568a8d16f5933369425d1e2f88192e17678a4ba53"
+      "abi_sha256": "a1339343bad54ac72cd88ac3fd801209aff6bf53fbbf741ac3c14a93d9a319e2"
     },
     "ZZZMembership": {
       "source": "src/ZZZMembership.sol",
@@ -15129,6 +16025,43 @@
           "inputs": [
             {
               "indexed": true,
+              "internalType": "address",
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "enabled",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "expectedCodeHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            }
+          ],
+          "name": "ExecutionSourceConfigured",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
               "internalType": "bytes32",
               "name": "previousPolicy",
               "type": "bytes32"
@@ -15179,6 +16112,19 @@
           ],
           "name": "SequencerPolicyRecorded",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -15279,12 +16225,244 @@
         },
         {
           "inputs": [],
+          "name": "afterSwap",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "core",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "stateView",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "poolId",
+              "type": "bytes32"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "expectedAfter",
+              "type": "tuple"
+            }
+          ],
+          "name": "beforeSwap",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "zzz",
+              "type": "address"
+            }
+          ],
+          "name": "beginExecution",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "zzz",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "destination",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "borrowVault",
+              "type": "bool"
+            }
+          ],
+          "name": "beginManagerExecution",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "owned",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "contributionPricing",
           "outputs": [
             {
               "internalType": "contract ZZZContributionPricing",
               "name": "",
               "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "endExecution",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bool",
+              "name": "owned",
+              "type": "bool"
+            }
+          ],
+          "name": "endManagerExecution",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionActive",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "executionBounds",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "lower",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "upper",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "fingerprint",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token0",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "token1",
+              "type": "address"
+            }
+          ],
+          "name": "executionReferenceX96",
+          "outputs": [
+            {
+              "internalType": "uint160",
+              "name": "",
+              "type": "uint160"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "executionSourcePolicies",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "enabled",
+              "type": "bool"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "codeHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionSourceRevision",
+          "outputs": [
+            {
+              "internalType": "uint64",
+              "name": "",
+              "type": "uint64"
             }
           ],
           "stateMutability": "view",
@@ -15708,6 +16886,34 @@
               "type": "address"
             },
             {
+              "internalType": "bool",
+              "name": "enabled",
+              "type": "bool"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "expectedCodeHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "setExecutionSource",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "source",
+              "type": "address"
+            },
+            {
               "internalType": "bytes32",
               "name": "expectedCodeHash",
               "type": "bytes32"
@@ -15749,6 +16955,13 @@
           "type": "function"
         },
         {
+          "inputs": [],
+          "name": "validateExecution",
+          "outputs": [],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [
             {
               "internalType": "address",
@@ -15773,7 +16986,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "6fd34f0cc947e97b0714bba2c40438fd55ffebd94afcf77add54cc9480086511"
+      "abi_sha256": "a5c9a8107c13b68408ac2483e10534e6c844376480d15a92a1cd3f5c554e0cf0"
     },
     "ZZZPoolRegistry": {
       "source": "src/ZZZPoolRegistry.sol",
@@ -23230,6 +24443,19 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_PRICE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "EXECUTION_QUALITY_VERSION",
           "outputs": [
             {
@@ -23878,7 +25104,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "0b81968e493db1d1d853d97160c42a7e667ba9155e6385466ff80190e53a38f2"
+      "abi_sha256": "17e17e24990e2703fefe42cc33d1bf0fc91c13fd36ccf64196cea81430c3e8aa"
     },
     "ZZZV4RouteExecutor": {
       "source": "src/ZZZV4RouteExecutor.sol",
@@ -24594,6 +25820,19 @@
         },
         {
           "inputs": [],
+          "name": "EXECUTION_SOURCE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "SOURCE_CALL_GAS",
           "outputs": [
             {
@@ -24740,8 +25979,134 @@
         },
         {
           "inputs": [],
-          "name": "latestRoundData",
+          "name": "executionAsset",
           "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "executionMarket",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "core",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "stateView",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "state",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "captured",
+              "type": "tuple"
+            }
+          ],
+          "name": "executionProof",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "core",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "stateView",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "currentStateHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "capturedRoundHash",
+              "type": "bytes32"
+            },
             {
               "internalType": "uint80",
               "name": "roundId",
@@ -24773,12 +26138,111 @@
         },
         {
           "inputs": [],
+          "name": "latestRoundData",
+          "outputs": [
+            {
+              "internalType": "uint80",
+              "name": "",
+              "type": "uint80"
+            },
+            {
+              "internalType": "int256",
+              "name": "",
+              "type": "int256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint80",
+              "name": "",
+              "type": "uint80"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "poolId",
           "outputs": [
             {
               "internalType": "bytes32",
               "name": "",
               "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint160",
+                  "name": "sqrtPriceX96",
+                  "type": "uint160"
+                },
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "protocolFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint24",
+                  "name": "lpFee",
+                  "type": "uint24"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidity",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct MarketState",
+              "name": "state",
+              "type": "tuple"
+            }
+          ],
+          "name": "roundAt",
+          "outputs": [
+            {
+              "internalType": "uint80",
+              "name": "",
+              "type": "uint80"
+            },
+            {
+              "internalType": "int256",
+              "name": "",
+              "type": "int256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint80",
+              "name": "",
+              "type": "uint80"
             }
           ],
           "stateMutability": "view",
@@ -24798,7 +26262,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "2005fb69844827878602cfc2c180db8c53584e707c8b26b135c348c740d14f4e"
+      "abi_sha256": "1205ae101946f42a4157775e35d8711ae47fa091354a00f74dd034ba6751d6ab"
     },
     "ZZZVault": {
       "source": "src/ZZZVault.sol",
@@ -26640,7 +28104,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "5873824dff95be8a37508418cbca7e52c7aee89a1812a213a151de08af673109",
+  "notes_sha256": "1a1332f6125dc71a5292b8848107bb8a3bdee64cb432c89e63c11189903b164e",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -30458,6 +31922,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "RESIDUAL_REINVEST_VERSION()",
           "kind": "function",
           "name": "RESIDUAL_REINVEST_VERSION",
@@ -30966,6 +32453,29 @@
           "notes": null
         },
         {
+          "signature": "endMaintenance(uint256)",
+          "kind": "function",
+          "name": "endMaintenance",
+          "state_mutability": "nonpayable",
+          "purpose": "Validate and clear ordinary maintenance captured pricing after Budget custody/portfolio/loss checks. Explicit emergency retains its own mask path.",
+          "access": "Only the immutable Vault migrationBudget companion; matching active normal maintenance scope is required.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact active maintenance bucket ID."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "entryIdleLimit(uint256)",
           "kind": "function",
           "name": "entryIdleLimit",
@@ -31173,8 +32683,8 @@
           "signature": "markMaintenance(uint256)",
           "kind": "function",
           "name": "markMaintenance",
-          "state_mutability": "view",
-          "purpose": "Read starting attributed principal/idle value and exact fresh price vector for the fixed Budget snapshot.",
+          "state_mutability": "nonpayable",
+          "purpose": "Start normal maintenance captured execution pricing and record actual both-leg/idle values at its original vector. Explicit emergency uses its separate retained mask.",
           "access": "Actual Vault-owned Budget only; stateless read.",
           "status": "documented",
           "inputs": [
@@ -31283,7 +32793,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Uses actual aggregate quantities from both legs, never raw L addition. Fee/buyback reserves and unclassified gifts are excluded."
+          "notes": "State-changing noncustodial scope start; only fixed Budget. Complete normal operations through endMaintenance after accounting proofs. No new force fallback."
         },
         {
           "signature": "nav(uint256)",
@@ -33679,7 +35189,7 @@
     {
       "name": "ZZZLPBalanceMath",
       "source": "src/ZZZLPBalanceMath.sol",
-      "purpose": "Fixed noncustodial Balancer-created v4 amount, utilization and fee-aware sizing calculations. No custody, approval, callback or execution authority.",
+      "purpose": "Fixed noncustodial read-only native-v4 admission, captured execution geometry/commitments and amount/utilization/maintenance arithmetic. No approvals, callbacks, custody or execution authority.",
       "category": "Project contract",
       "functions": [
         {
@@ -33692,6 +35202,29 @@
           "status": "documented",
           "inputs": [],
           "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
           "native_value": null,
           "notes": null
         },
@@ -33719,6 +35252,65 @@
           "notes": null
         },
         {
+          "signature": "assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256)",
+          "kind": "function",
+          "name": "assertPortfolioUtilization",
+          "state_mutability": "view",
+          "purpose": "Check actual main/residual values against governed main-floor and residual-ceiling policy using captured prices.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "price0",
+              "label": "price0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured native ETH USD18 price."
+            },
+            {
+              "position": 2,
+              "name": "price1",
+              "label": "price1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured fixed-ZZZ USD18 price."
+            },
+            {
+              "position": 3,
+              "name": "scale0",
+              "label": "scale0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ETH raw scale, normally1e18."
+            },
+            {
+              "position": 4,
+              "name": "scale1",
+              "label": "scale1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Fixed-ZZZ raw scale from admitted decimals."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Reverts on failed utilization; does not move liquidity or alter the chosen policy."
+        },
+        {
           "signature": "balancer()",
           "kind": "function",
           "name": "balancer",
@@ -33740,6 +35332,171 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "checkMaintenance(uint256,uint256,uint256,uint256,uint256,uint256,uint16,uint16,bytes32)",
+          "kind": "function",
+          "name": "checkMaintenance",
+          "state_mutability": "view",
+          "purpose": "Check post-maintenance retained/deployed/idle value against captured budget and policy fingerprint.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "beforeValue",
+              "label": "beforeValue",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Starting captured principal USD18."
+            },
+            {
+              "position": 2,
+              "name": "price0",
+              "label": "price0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured ETH USD18 price."
+            },
+            {
+              "position": 3,
+              "name": "price1",
+              "label": "price1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured ZZZ USD18 price."
+            },
+            {
+              "position": 4,
+              "name": "scale0",
+              "label": "scale0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ETH raw-unit scale."
+            },
+            {
+              "position": 5,
+              "name": "scale1",
+              "label": "scale1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ZZZ raw-unit scale."
+            },
+            {
+              "position": 6,
+              "name": "lossBps",
+              "label": "lossBps",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Captured total loss cap,<=1000bps."
+            },
+            {
+              "position": 7,
+              "name": "maxIdleBps",
+              "label": "maxIdleBps",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Captured idle cap,<=4000bps."
+            },
+            {
+              "position": 8,
+              "name": "expectedPolicy",
+              "label": "expectedPolicy",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact original maintenance policy fingerprint."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "deployed",
+              "label": "deployed",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual deployed USD18."
+            },
+            {
+              "position": 1,
+              "name": "idle",
+              "label": "idle",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual attributed idle USD18."
+            },
+            {
+              "position": 2,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Actual resulting pool ID."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "compoundReady(uint256,address)",
+          "kind": "function",
+          "name": "compoundReady",
+          "state_mutability": "view",
+          "purpose": "Evaluate lastCompound/lastRebalance interval and current raw maintenance need without moving funds.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "budget",
+              "label": "budget",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Actual fixed Vault Budget; Pricing passes its authenticated msg.sender."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True if active operating LP, elapsed independent compound interval, no raw rebalance need and no pending range target."
+            }
+          ],
+          "native_value": null,
+          "notes": "Public arbitrary dependency queries are advisory. Production Pricing.onlyBudget supplies the actual Budget and retains authorization."
         },
         {
           "signature": "deploymentAmounts(uint160,int24,int24,uint256,uint256)",
@@ -34135,6 +35892,697 @@
           "notes": "Stateless supplied-data arithmetic, not an oracle, quote or execution permission."
         },
         {
+          "signature": "executionMinimumOutput(bytes32,bool,uint256)",
+          "kind": "function",
+          "name": "executionMinimumOutput",
+          "state_mutability": "view",
+          "purpose": "Compute current directional-fee-aware output floor with captured prices and existing venue/additional caps.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted native swap venue."
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True ETH→ZZZ; false ZZZ→ETH."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive exact raw input, <=uint128 maximum."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Required raw output: stronger gross/slippage and after-known-fee additional-loss floors."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionPrices(address)",
+          "kind": "function",
+          "name": "executionPrices",
+          "state_mutability": "view",
+          "purpose": "Read complete captured ETH/ZZZ valuation and fee-quality inputs, or validated live values when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Fixed deployment ZZZ token."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "p",
+              "label": "p",
+              "type": "tuple",
+              "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint160,uint16)",
+              "internal_type": "struct ZZZLPBalanceMath.Prices",
+              "explanation": "Prices(lower0,upper0,lower1,upper1,scale1,referenceX96,extraLoss):USD18,raw-unit scale,Q64.96 reference,basis-point additional loss.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "lower0",
+                  "label": "lower0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "upper0",
+                  "label": "upper0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "lower1",
+                  "label": "lower1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "upper1",
+                  "label": "upper1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "scale1",
+                  "label": "scale1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "referenceX96",
+                  "label": "referenceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "extraLoss",
+                  "label": "extraLoss",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionTarget(bytes32)",
+          "kind": "function",
+          "name": "executionTarget",
+          "state_mutability": "view",
+          "purpose": "Compute reviewed geometry from captured execution reference or live reference when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted operating LP destination PoolId."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "lower",
+              "label": "lower",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Rounded lower physical tick."
+            },
+            {
+              "position": 1,
+              "name": "upper",
+              "label": "upper",
+              "type": "int24",
+              "canonical_type": "int24",
+              "internal_type": "int24",
+              "explanation": "Rounded upper physical tick."
+            },
+            {
+              "position": 2,
+              "name": "referenceX96",
+              "label": "referenceX96",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Original captured or live Q64.96 independent reference."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionValidatePrice(bytes32)",
+          "kind": "function",
+          "name": "executionValidatePrice",
+          "state_mutability": "view",
+          "purpose": "Check actual LP spot against captured independent reference with the admitted price band.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted operating native pool."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "spot",
+              "label": "spot",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Actual current Q64.96 pool spot after band validation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "fixedZZZ()",
+          "kind": "function",
+          "name": "fixedZZZ",
+          "state_mutability": "view",
+          "purpose": "Validate and read the fixed registry/assets/token binding.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "zzz",
+              "label": "zzz",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "The nonzero code-bearing deployment ZZZ token; missing registry/assets/token binding rejects."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "maintenanceValues(uint256,uint256,uint256,uint256,uint256)",
+          "kind": "function",
+          "name": "maintenanceValues",
+          "state_mutability": "view",
+          "purpose": "Value both actual physical legs plus attributed idle at the caller-supplied captured vector.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "price0",
+              "label": "price0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured native ETH USD18 price."
+            },
+            {
+              "position": 2,
+              "name": "price1",
+              "label": "price1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Captured fixed-ZZZ USD18 price."
+            },
+            {
+              "position": 3,
+              "name": "scale0",
+              "label": "scale0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "ETH raw scale, normally1e18."
+            },
+            {
+              "position": 4,
+              "name": "scale1",
+              "label": "scale1",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Fixed-ZZZ raw scale from admitted decimals."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "deployed",
+              "label": "deployed",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Deployed USD18, both legs; never sum raw L across ranges."
+            },
+            {
+              "position": 1,
+              "name": "idle",
+              "label": "idle",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Attributed idle USD18, excluding rewards/buyback backing."
+            }
+          ],
+          "native_value": null,
+          "notes": "Fixed Budget/Pricing supply authenticated captured marks in execution; arbitrary public reads are advisory only."
+        },
+        {
+          "signature": "minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)",
+          "kind": "function",
+          "name": "minimumOutput",
+          "state_mutability": "pure",
+          "purpose": "Calculate the stronger gross budget and additional-loss output floor after actual known directional trading fees.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "p",
+              "label": "p",
+              "type": "tuple",
+              "canonical_type": "(uint256,uint256,uint256,uint256,uint256,uint160,uint16)",
+              "internal_type": "struct ZZZLPBalanceMath.Prices",
+              "explanation": "Prices tuple(lower0,upper0,lower1,upper1,scale1,referenceX96,extraLoss).",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "lower0",
+                  "label": "lower0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "upper0",
+                  "label": "upper0",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "lower1",
+                  "label": "lower1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "upper1",
+                  "label": "upper1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "scale1",
+                  "label": "scale1",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "referenceX96",
+                  "label": "referenceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "extraLoss",
+                  "label": "extraLoss",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                }
+              ]
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True ETH→ZZZ; false reverse."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact raw input units."
+            },
+            {
+              "position": 3,
+              "name": "loss",
+              "label": "loss",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Gross loss limit in basis points."
+            },
+            {
+              "position": 4,
+              "name": "fee",
+              "label": "fee",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Actual combined directional LP/protocol fee in millionths."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Minimum raw output; supplied-data arithmetic grants no swap authority."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "nativeConfig(bytes32,bool)",
+          "kind": "function",
+          "name": "nativeConfig",
+          "state_mutability": "view",
+          "purpose": "Read native pool configuration and validate key identity/static hookless venue and admission.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Reviewed actual native ETH/fixed-ZZZ PoolId."
+            },
+            {
+              "position": 1,
+              "name": "requireOperations",
+              "label": "requireOperations",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True also requires operationsEnabled; Manager separately chooses its authenticated emergency mask."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "c",
+              "label": "c",
+              "type": "tuple",
+              "canonical_type": "((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)",
+              "internal_type": "struct PoolConfig",
+              "explanation": "Complete admitted PoolConfig; this helper cannot admit/change it.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "key",
+                  "label": "key",
+                  "type": "tuple",
+                  "canonical_type": "(address,address,uint24,int24,address)",
+                  "internal_type": "struct PoolKey",
+                  "explanation": null,
+                  "components": [
+                    {
+                      "position": 0,
+                      "name": "currency0",
+                      "label": "currency0",
+                      "type": "address",
+                      "canonical_type": "address",
+                      "internal_type": "address",
+                      "explanation": null
+                    },
+                    {
+                      "position": 1,
+                      "name": "currency1",
+                      "label": "currency1",
+                      "type": "address",
+                      "canonical_type": "address",
+                      "internal_type": "address",
+                      "explanation": null
+                    },
+                    {
+                      "position": 2,
+                      "name": "fee",
+                      "label": "fee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 3,
+                      "name": "tickSpacing",
+                      "label": "tickSpacing",
+                      "type": "int24",
+                      "canonical_type": "int24",
+                      "internal_type": "int24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 4,
+                      "name": "hooks",
+                      "label": "hooks",
+                      "type": "address",
+                      "canonical_type": "address",
+                      "internal_type": "address",
+                      "explanation": null
+                    }
+                  ]
+                },
+                {
+                  "position": 1,
+                  "name": "depositsEnabled",
+                  "label": "depositsEnabled",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "operationsEnabled",
+                  "label": "operationsEnabled",
+                  "type": "bool",
+                  "canonical_type": "bool",
+                  "internal_type": "bool",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "rangeBps",
+                  "label": "rangeBps",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "triggerBps",
+                  "label": "triggerBps",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                },
+                {
+                  "position": 5,
+                  "name": "maxSpotDeviationBps",
+                  "label": "maxSpotDeviationBps",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                },
+                {
+                  "position": 6,
+                  "name": "maxSlippageBps",
+                  "label": "maxSlippageBps",
+                  "type": "uint16",
+                  "canonical_type": "uint16",
+                  "internal_type": "uint16",
+                  "explanation": null
+                },
+                {
+                  "position": 7,
+                  "name": "minRebalanceInterval",
+                  "label": "minRebalanceInterval",
+                  "type": "uint32",
+                  "canonical_type": "uint32",
+                  "internal_type": "uint32",
+                  "explanation": null
+                },
+                {
+                  "position": 8,
+                  "name": "minDepositUSD",
+                  "label": "minDepositUSD",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "maxPositionUSD",
+                  "label": "maxPositionUSD",
+                  "type": "uint256",
+                  "canonical_type": "uint256",
+                  "internal_type": "uint256",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "policyFingerprint(bytes32,bytes32)",
+          "kind": "function",
+          "name": "policyFingerprint",
+          "state_mutability": "view",
+          "purpose": "Hash current target/route/monotonic controls and original captured source vector, deriving geometry once within the same STATICCALL chain.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "target",
+              "label": "target",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Admitted native LP destination."
+            },
+            {
+              "position": 1,
+              "name": "venue",
+              "label": "venue",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Chosen reviewed swap venue, or bytes32 zero for target-only controls."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact policy/source commitment; not an execution permission."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "principalAmounts(address,address,uint256)",
           "kind": "function",
           "name": "principalAmounts",
@@ -34401,6 +36849,139 @@
           ],
           "native_value": null,
           "notes": "Actual-core quotes and all financial guards must subsequently validate this estimate; no optimality guarantee."
+        },
+        {
+          "signature": "validSpot(uint160,uint160,uint16)",
+          "kind": "function",
+          "name": "validSpot",
+          "state_mutability": "pure",
+          "purpose": "Check squared sqrt-price ratio against its basis-point price band.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "price",
+              "label": "price",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Actual Q64.96 pool price."
+            },
+            {
+              "position": 1,
+              "name": "referencePrice",
+              "label": "referencePrice",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Positive independent Q64.96 reference."
+            },
+            {
+              "position": 2,
+              "name": "deviation",
+              "label": "deviation",
+              "type": "uint16",
+              "canonical_type": "uint16",
+              "internal_type": "uint16",
+              "explanation": "Maximum price deviation, basis points."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only for valid TickMath price and the specified band; supplied inputs alone are not source authentication."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "validateRebalance(uint256,uint128,bool,uint8)",
+          "kind": "function",
+          "name": "validateRebalance",
+          "state_mutability": "view",
+          "purpose": "Read ordinary readiness or retained emergency trigger according to the caller-supplied mode/mask.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "minimumLiquidity",
+              "label": "minimumLiquidity",
+              "type": "uint128",
+              "canonical_type": "uint128",
+              "internal_type": "uint128",
+              "explanation": "Caller minimum physical liquidity; ordinary path requires positive."
+            },
+            {
+              "position": 2,
+              "name": "emergency",
+              "label": "emergency",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True selects explicit emergency guard interpretation."
+            },
+            {
+              "position": 3,
+              "name": "checks",
+              "label": "checks",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Emergency retained-check mask; ordinary path still requires full readiness."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Budget/Manager authenticate actual emergency state before using this advisory result; callers cannot enable emergency by querying Math."
+        },
+        {
+          "signature": "validateResidualClose(uint256,bool)",
+          "kind": "function",
+          "name": "validateResidualClose",
+          "state_mutability": "view",
+          "purpose": "Read pause/lifecycle/custody preconditions for closing only an existing registered residual.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact bucket ID."
+            },
+            {
+              "position": 1,
+              "name": "busy",
+              "label": "busy",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Budget supplies its actual busy/snapshot state, not an operator bypass."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
         }
       ]
     },
@@ -34452,6 +37033,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "EXECUTION_QUALITY_VERSION()",
           "kind": "function",
           "name": "EXECUTION_QUALITY_VERSION",
@@ -34491,7 +37095,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "2; historical routing1 remains separate."
+              "explanation": "3; exact quoted full MarketState and transaction-scoped captured execution pricing. Routing2 remains historical and incompatible."
             }
           ],
           "native_value": null,
@@ -34926,9 +37530,9 @@
               "name": "",
               "label": "output0",
               "type": "tuple",
-              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32)",
+              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32,(uint160,int24,uint24,uint24,uint128))",
               "internal_type": "struct ZZZLPBalancer.Plan",
-              "explanation": "Plan: poolId (zero for no swap), direction, exact input/quoted output/minimum, predicted route/target sqrt prices, execution revision and policy fingerprint.",
+              "explanation": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee.",
               "components": [
                 {
                   "position": 0,
@@ -35010,6 +37614,62 @@
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
                   "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "afterState",
+                  "label": "afterState",
+                  "type": "tuple",
+                  "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+                  "internal_type": "struct MarketState",
+                  "explanation": null,
+                  "components": [
+                    {
+                      "position": 0,
+                      "name": "sqrtPriceX96",
+                      "label": "sqrtPriceX96",
+                      "type": "uint160",
+                      "canonical_type": "uint160",
+                      "internal_type": "uint160",
+                      "explanation": null
+                    },
+                    {
+                      "position": 1,
+                      "name": "tick",
+                      "label": "tick",
+                      "type": "int24",
+                      "canonical_type": "int24",
+                      "internal_type": "int24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 2,
+                      "name": "protocolFee",
+                      "label": "protocolFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 3,
+                      "name": "lpFee",
+                      "label": "lpFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 4,
+                      "name": "liquidity",
+                      "label": "liquidity",
+                      "type": "uint128",
+                      "canonical_type": "uint128",
+                      "internal_type": "uint128",
+                      "explanation": null
+                    }
+                  ]
                 }
               ]
             }
@@ -35096,9 +37756,9 @@
               "name": "",
               "label": "output0",
               "type": "tuple",
-              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32)",
+              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32,(uint160,int24,uint24,uint24,uint128))",
               "internal_type": "struct ZZZLPBalancer.Plan",
-              "explanation": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill.",
+              "explanation": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee.",
               "components": [
                 {
                   "position": 0,
@@ -35180,6 +37840,62 @@
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
                   "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "afterState",
+                  "label": "afterState",
+                  "type": "tuple",
+                  "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+                  "internal_type": "struct MarketState",
+                  "explanation": null,
+                  "components": [
+                    {
+                      "position": 0,
+                      "name": "sqrtPriceX96",
+                      "label": "sqrtPriceX96",
+                      "type": "uint160",
+                      "canonical_type": "uint160",
+                      "internal_type": "uint160",
+                      "explanation": null
+                    },
+                    {
+                      "position": 1,
+                      "name": "tick",
+                      "label": "tick",
+                      "type": "int24",
+                      "canonical_type": "int24",
+                      "internal_type": "int24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 2,
+                      "name": "protocolFee",
+                      "label": "protocolFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 3,
+                      "name": "lpFee",
+                      "label": "lpFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 4,
+                      "name": "liquidity",
+                      "label": "liquidity",
+                      "type": "uint128",
+                      "canonical_type": "uint128",
+                      "internal_type": "uint128",
+                      "explanation": null
+                    }
+                  ]
                 }
               ]
             }
@@ -35386,29 +38102,67 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Actual quoted raw output after directional LP/protocol fees and impact."
+              "explanation": "Actual quoted raw output after known directional fees and impact."
             },
             {
               "position": 1,
-              "name": "afterPrice",
-              "label": "afterPrice",
-              "type": "uint160",
-              "canonical_type": "uint160",
-              "internal_type": "uint160",
-              "explanation": "Quoted post-swap sqrtPriceX96."
-            },
-            {
-              "position": 2,
-              "name": "afterTick",
-              "label": "afterTick",
-              "type": "int24",
-              "canonical_type": "int24",
-              "internal_type": "int24",
-              "explanation": "Actual quoted stored post-swap int24 tick, not recomputed from sqrt price; exact initialized downward crossings may be one tick lower."
+              "name": "state",
+              "label": "state",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
             }
           ],
           "native_value": null,
-          "notes": "QuoteResult carries output,sqrtPriceX96,stored tick with exact100-byte custom-error shape and tick-domain checks. All core price/tick/fee/transient effects revert; no funds settle or change recipient."
+          "notes": "Exact QuoteResult contains output plus5MarketState words:196-byte custom-error payload. Stored tick, protocol/LP fees and active liquidity are authenticated, including legitimate initialized-tick crossings. All quote effects revert; no funds settle."
         },
         {
           "signature": "quoteGasLimit()",
@@ -35428,6 +38182,113 @@
               "canonical_type": "uint32",
               "internal_type": "uint32",
               "explanation": "Default200000gas; governed100000-300000. Low gas may skip a usable venue."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "quoteSwap(bytes32,bool,uint256)",
+          "kind": "function",
+          "name": "quoteSwap",
+          "state_mutability": "nonpayable",
+          "purpose": "Produce an exact full-input actual-core quote including complete expected MarketState; no funds settle and all quote state reverts.",
+          "access": "Only the sealed controller-bound fixed Manager; not operator, keeper or arbitrary user.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Reviewed native swap venue PoolId."
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True ETH→ZZZ; false reverse."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive exact input raw units, signed-int128 bounded."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "output",
+              "label": "output",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Quoted raw output after known fees and impact."
+            },
+            {
+              "position": 1,
+              "name": "state",
+              "label": "state",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
             }
           ],
           "native_value": null,
@@ -35633,9 +38494,9 @@
               "name": "best",
               "label": "best",
               "type": "tuple",
-              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32)",
+              "canonical_type": "(bytes32,bool,uint256,uint256,uint256,uint160,uint160,uint64,bytes32,(uint160,int24,uint24,uint24,uint128))",
               "internal_type": "struct ZZZLPBalancer.Plan",
-              "explanation": "Plan(executionPool zero for no swap,direction,raw input/quoted output/minimum,route/target post-swap Q64.96 prices,execution revision,policy fingerprint). Not a transaction or guaranteed future fill.",
+              "explanation": "Plan has10 top-level fields/14 flattened ABI words:poolId,zeroForOne,amountIn,amountOut,minimumOut,sqrtAfter,targetSqrtAfter,revision,fingerprint,afterState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity). Zero poolId means no swap. This is neither a transaction nor a future-fill guarantee.",
               "components": [
                 {
                   "position": 0,
@@ -35717,6 +38578,62 @@
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
                   "explanation": null
+                },
+                {
+                  "position": 9,
+                  "name": "afterState",
+                  "label": "afterState",
+                  "type": "tuple",
+                  "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+                  "internal_type": "struct MarketState",
+                  "explanation": null,
+                  "components": [
+                    {
+                      "position": 0,
+                      "name": "sqrtPriceX96",
+                      "label": "sqrtPriceX96",
+                      "type": "uint160",
+                      "canonical_type": "uint160",
+                      "internal_type": "uint160",
+                      "explanation": null
+                    },
+                    {
+                      "position": 1,
+                      "name": "tick",
+                      "label": "tick",
+                      "type": "int24",
+                      "canonical_type": "int24",
+                      "internal_type": "int24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 2,
+                      "name": "protocolFee",
+                      "label": "protocolFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 3,
+                      "name": "lpFee",
+                      "label": "lpFee",
+                      "type": "uint24",
+                      "canonical_type": "uint24",
+                      "internal_type": "uint24",
+                      "explanation": null
+                    },
+                    {
+                      "position": 4,
+                      "name": "liquidity",
+                      "label": "liquidity",
+                      "type": "uint128",
+                      "canonical_type": "uint128",
+                      "internal_type": "uint128",
+                      "explanation": null
+                    }
+                  ]
                 }
               ]
             },
@@ -35784,7 +38701,7 @@
           "kind": "function",
           "name": "unlockCallback",
           "state_mutability": "nonpayable",
-          "purpose": "Authenticate pending quote payload/core, execute exact-input simulated swap and deliberately revert QuoteResult(output,sqrtAfter,tickAfter).",
+          "purpose": "Authenticate pending quote/core, simulate exact-input swap, then revert QuoteResult(output,sqrtAfter,tick,protocolFee,lpFee,liquidity).",
           "access": "Only immutable PoolManager with the exact active pending payload. Not callable by operator/user.",
           "status": "documented",
           "inputs": [
@@ -35885,6 +38802,29 @@
             }
           ],
           "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
           "native_value": null,
           "notes": null
         },
@@ -37966,6 +40906,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "EXECUTION_QUALITY_VERSION()",
           "kind": "function",
           "name": "EXECUTION_QUALITY_VERSION",
@@ -38221,7 +41184,7 @@
             }
           ],
           "native_value": "Exactly amount0 native wei. Network gas is separate.",
-          "notes": "Only explicit supplied entrant/maintenance budget is used. Existing-main contribution/compound plans preserve residual and clock; normal enabled replacement uses captured Budget marks for minimum-main sizing. No-swap already at60% needs no route. Actual output,refund,prefund,context/physical state and post-swap price checks remain; final actual NAV/utilization/loss guards are separate. Guarded paused same-main consolidation uses the existing active-aware route solver for current main bounds, mainFloor10000 and ordinary price marks. Only the fixed Migration active context selects it. Ordinary full replacement keeps its existing active solver; other growth/compound existing-ID paths retain ordinary planning; explicit emergency routing/mask remains unchanged."
+          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path."
         },
         {
           "signature": "balanceContext(bytes32)",
@@ -38726,6 +41689,29 @@
               "canonical_type": "uint160",
               "internal_type": "uint160",
               "explanation": "Actual raw Q64.96 sqrt price after required independent validation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionStrategy()",
+          "kind": "function",
+          "name": "executionStrategy",
+          "state_mutability": "view",
+          "purpose": "Read its fixed Balancer-created read-only execution arithmetic child.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "The immutable Math child; no arbitrary policy target, executor, recipient or module rotation."
             }
           ],
           "native_value": null,
@@ -39321,7 +42307,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Not an arbitrary public swap or executable-call surface. Returns: ABI-encoded measured swap output."
+          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path."
         },
         {
           "signature": "receive()",
@@ -47075,7 +50061,7 @@
     {
       "name": "ZZZOracle",
       "source": "src/ZZZOracle.sol",
-      "purpose": "Bounded fresh independent dual-source USD pricing with immutable policy history and sequencer safeguards.",
+      "purpose": "Fresh dual-source live USD pricing plus explicitly scoped immutable captured execution valuation and quote-proven own-reference transitions. Ordinary public price reads always remain live.",
       "category": "Project contract",
       "functions": [
         {
@@ -47107,6 +50093,29 @@
             }
           ],
           "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
           "native_value": null,
           "notes": null
         },
@@ -47282,6 +50291,190 @@
           "notes": null
         },
         {
+          "signature": "afterSwap()",
+          "kind": "function",
+          "name": "afterSwap",
+          "state_mutability": "nonpayable",
+          "purpose": "Verify exact quoted post-core price/tick/fees/liquidity before settlement or output callbacks, then retain expected state through later full checks.",
+          "access": "Only the fixed Manager with an armed pending transition immediately after its actual core.swap return.",
+          "status": "internal",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))",
+          "kind": "function",
+          "name": "beforeSwap",
+          "state_mutability": "nonpayable",
+          "purpose": "Arm exactly one actual-core quote-proven transition after proving the current expected state.",
+          "access": "Only the fixed Manager with its active context/loan; cannot arm a second swap or pending transition.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "core",
+              "label": "core",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact Manager PoolManager core."
+            },
+            {
+              "position": 1,
+              "name": "stateView",
+              "label": "stateView",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact Manager StateView for that core."
+            },
+            {
+              "position": 2,
+              "name": "poolId",
+              "label": "poolId",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Reviewed chosen swap venue PoolId."
+            },
+            {
+              "position": 3,
+              "name": "expectedAfter",
+              "label": "expectedAfter",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "The Manager derives these values from its real reverted core quote, not keeper-supplied predicted state. Core+PoolId+StateView identity prevents equal PoolIds on different cores being confused."
+        },
+        {
+          "signature": "beginExecution(address)",
+          "kind": "function",
+          "name": "beginExecution",
+          "state_mutability": "nonpayable",
+          "purpose": "Capture both ETH and both fixed-ZZZ sources and immutable control commitments before contribution/ordinary-maintenance callbacks.",
+          "access": "Only the constructor-fixed ContributionPricing child; no active context may already exist.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "zzz",
+              "label": "zzz",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "The one fixed deployment ZZZ token."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Creates no custody or arbitrary execution authority. The static V1 transient codec is exactly49 ABI words/1568bytes and clears on successful end; transaction end also clears transient storage."
+        },
+        {
+          "signature": "beginManagerExecution(address,bytes32,bool)",
+          "kind": "function",
+          "name": "beginManagerExecution",
+          "state_mutability": "nonpayable",
+          "purpose": "Open a standalone Manager context or borrow the fixed Pricing context for an authenticated Vault operation.",
+          "access": "Only the controller-bound fixed Manager. Existing context requires permitted Pricing ownership, fixed token and no outstanding Manager loan.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "zzz",
+              "label": "zzz",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Fixed deployment ZZZ."
+            },
+            {
+              "position": 1,
+              "name": "destination",
+              "label": "destination",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Actual LP destination; zero only for a standalone swap without LP placement."
+            },
+            {
+              "position": 2,
+              "name": "borrowVault",
+              "label": "borrowVault",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Fixed Manager supplies true only for its Vault caller; unrelated nested buyback borrowing is rejected."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "owned",
+              "label": "owned",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True means Manager owns this context; false means it borrowed Pricing. Pass the returned value unchanged to endManagerExecution."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "contributionPricing()",
           "kind": "function",
           "name": "contributionPricing",
@@ -47299,6 +50492,232 @@
               "canonical_type": "address",
               "internal_type": "contract ZZZContributionPricing",
               "explanation": "Immutable Oracle-created noncustodial accounting companion for frozen contribution vectors and maintenance valuation."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "endExecution()",
+          "kind": "function",
+          "name": "endExecution",
+          "state_mutability": "nonpayable",
+          "purpose": "Validate the final active Pricing context and clear every transient word.",
+          "access": "Only the constructor-fixed ContributionPricing owner; no Manager loan may remain.",
+          "status": "internal",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "endManagerExecution(bool)",
+          "kind": "function",
+          "name": "endManagerExecution",
+          "state_mutability": "nonpayable",
+          "purpose": "Prove the final Manager market/control state and end its owned context or release its loan.",
+          "access": "Only the controller-bound fixed Manager with the matching active loan/owner.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "owned",
+              "label": "owned",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Exact owned flag returned by beginManagerExecution."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "After validated balance completion, only nonreference destination active-L comparison may be released for legitimate LP writes; exact price/tick/fees remain. Reference or external venue liquidity is never exempt."
+        },
+        {
+          "signature": "executionActive()",
+          "kind": "function",
+          "name": "executionActive",
+          "state_mutability": "view",
+          "purpose": "Read whether a typed transient execution context currently exists.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only inside an active transaction context. Ordinary independent RPC calls see no persisted context; false is not price/market qualification."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionBounds(address)",
+          "kind": "function",
+          "name": "executionBounds",
+          "state_mutability": "view",
+          "purpose": "Read the original lower/upper/fingerprint vector while a context exists; otherwise perform ordinary live priceBounds.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Zero for native ETH or the fixed deployment ZZZ; another token rejects during a context."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "lower",
+              "label": "lower",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original lower USD18 bound."
+            },
+            {
+              "position": 1,
+              "name": "upper",
+              "label": "upper",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original upper USD18 bound."
+            },
+            {
+              "position": 2,
+              "name": "fingerprint",
+              "label": "fingerprint",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact original priceBounds fingerprint, never a repriced post-swap fingerprint."
+            }
+          ],
+          "native_value": null,
+          "notes": "Active getters retain control/pending checks but full mutable-boundary validation is explicit. Ordinary priceBounds/price/value/referenceX96 always remain live."
+        },
+        {
+          "signature": "executionReferenceX96(address,address)",
+          "kind": "function",
+          "name": "executionReferenceX96",
+          "state_mutability": "view",
+          "purpose": "Derive the ordered-pair reference from the original captured lower bounds/decimals, or current validated prices when inactive.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token0",
+              "label": "token0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "First accounting currency; zero is ETH."
+            },
+            {
+              "position": 1,
+              "name": "token1",
+              "label": "token1",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Second accounting currency; fixed ZZZ for native LP."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Q64.96 raw-unit sqrt reference; active context accepts only ETH/fixed-ZZZ currencies."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionSourcePolicies(address)",
+          "kind": "function",
+          "name": "executionSourcePolicies",
+          "state_mutability": "view",
+          "purpose": "Read reviewed source-kind admission.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "input0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact candidate reader address."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "enabled",
+              "label": "enabled",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "Whether proof-aware normalization is enabled."
+            },
+            {
+              "position": 1,
+              "name": "codeHash",
+              "label": "codeHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Recorded exact reader runtime hash."
+            },
+            {
+              "position": 2,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Recorded nonzero review commitment; not independent acceptance."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionSourceRevision()",
+          "kind": "function",
+          "name": "executionSourceRevision",
+          "state_mutability": "view",
+          "purpose": "Read monotonic source-kind configuration revision.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint64",
+              "canonical_type": "uint64",
+              "internal_type": "uint64",
+              "explanation": "Every source-kind edit advances this value; change-and-restore cannot revive an operation."
             }
           ],
           "native_value": null,
@@ -48023,6 +51442,56 @@
           "notes": null
         },
         {
+          "signature": "setExecutionSource(address,bool,bytes32,bytes32)",
+          "kind": "function",
+          "name": "setExecutionSource",
+          "state_mutability": "nonpayable",
+          "purpose": "Enable or disable proof-aware normalization for an already admitted fixed-ZZZ composite reader. Enabling validates its pinned capability, asset, market and current dual-source agreement; disabling does not query that dependency.",
+          "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "source",
+              "label": "source",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact admitted fixed-ZZZ composite reader address."
+            },
+            {
+              "position": 1,
+              "name": "enabled",
+              "label": "enabled",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True enables proof-aware execution; false disables it. Every call increments the revision."
+            },
+            {
+              "position": 2,
+              "name": "expectedCodeHash",
+              "label": "expectedCodeHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact reviewed reader runtime hash; required and verified for enable."
+            },
+            {
+              "position": 3,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero reviewed source/independence/market admission commitment."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Bind the fixed Manager/Balancer/Math graph first. Reference selection is explicit governance configuration, never automatic TVL ranking. References must remain independent from one another and distinct from the LP destination on the same core. Outer code pins do not freeze every proxy/upstream dependency."
+        },
+        {
           "signature": "setSequencerFeed(address,bytes32,bytes32)",
           "kind": "function",
           "name": "setSequencerFeed",
@@ -48105,6 +51574,19 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "validateExecution()",
+          "kind": "function",
+          "name": "validateExecution",
+          "state_mutability": "view",
+          "purpose": "Fully validate an active context after mutable boundaries: unchanged controls/ordinary feed rounds, fresh agreeing live prices, normalized original composite rounds and exact expected reference/chosen-venue state.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [],
+          "native_value": null,
+          "notes": "Inactive validation is a no-op. This read alone is not permission or a future-execution guarantee; action modules invoke it at fixed pre/post-callback boundaries."
         },
         {
           "signature": "value(address,uint256)",
@@ -57748,6 +61230,29 @@
           "notes": null
         },
         {
+          "signature": "EXECUTION_PRICE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_PRICE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read explicit transaction-scoped captured-valuation capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires the complete matching fresh runtime graph. Earlier routing2/source profiles are not upgraded or relabeled."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "EXECUTION_QUALITY_VERSION()",
           "kind": "function",
           "name": "EXECUTION_QUALITY_VERSION",
@@ -59705,7 +63210,7 @@
     {
       "name": "ZZZV4SpotPriceFeed",
       "source": "src/ZZZV4SpotPriceFeed.sol",
-      "purpose": "Optional immutable-by-interface native-v4 reference-pool spot times ETH/USD reader. No funds, execution, policy setters, TWAP or automatic pool selection. Two readers sharing one ZZZ pool are correlated sources.",
+      "purpose": "Optional immutable native-v4 fixed-ZZZ spot × ETH/USD reader with bounded live and captured-state execution proofs. Requires independently reviewed market/depth/feed admission; no TWAP or automatic pool selection.",
       "category": "Project contract",
       "functions": [
         {
@@ -59894,6 +63399,29 @@
             }
           ],
           "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "EXECUTION_SOURCE_VERSION()",
+          "kind": "function",
+          "name": "EXECUTION_SOURCE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read immutable composite execution-proof capability.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "1; requires reviewed typed proof admission, not automatic feed qualification."
+            }
+          ],
           "native_value": null,
           "notes": null
         },
@@ -60156,6 +63684,287 @@
           "notes": null
         },
         {
+          "signature": "executionAsset()",
+          "kind": "function",
+          "name": "executionAsset",
+          "state_mutability": "view",
+          "purpose": "Read the immutable fixed-ZZZ identity priced by this reader.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "The immutable nonzero ZZZ token; no token setter exists."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionMarket()",
+          "kind": "function",
+          "name": "executionMarket",
+          "state_mutability": "view",
+          "purpose": "Read pinned core/StateView/PoolId and validated complete live market state.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "core",
+              "label": "core",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Immutable PoolManager core."
+            },
+            {
+              "position": 1,
+              "name": "stateView",
+              "label": "stateView",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Immutable StateView bound to that core."
+            },
+            {
+              "position": 2,
+              "name": "id",
+              "label": "id",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Immutable reviewed native ETH/ZZZ PoolId."
+            },
+            {
+              "position": 3,
+              "name": "state",
+              "label": "state",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionProof((uint160,int24,uint24,uint24,uint128))",
+          "kind": "function",
+          "name": "executionProof",
+          "state_mutability": "view",
+          "purpose": "Return a bounded combined original-state commitment and live round under one pinned current ETH observation.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "captured",
+              "label": "captured",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "core",
+              "label": "core",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Pinned core."
+            },
+            {
+              "position": 1,
+              "name": "stateView",
+              "label": "stateView",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Pinned StateView."
+            },
+            {
+              "position": 2,
+              "name": "id",
+              "label": "id",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Pinned PoolId."
+            },
+            {
+              "position": 3,
+              "name": "currentStateHash",
+              "label": "currentStateHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Hash of complete actual live MarketState."
+            },
+            {
+              "position": 4,
+              "name": "capturedRoundHash",
+              "label": "capturedRoundHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Hash of the reconstructed original captured round."
+            },
+            {
+              "position": 5,
+              "name": "roundId",
+              "label": "roundId",
+              "type": "uint80",
+              "canonical_type": "uint80",
+              "internal_type": "uint80",
+              "explanation": "Actual live synthetic round ID."
+            },
+            {
+              "position": 6,
+              "name": "answer",
+              "label": "answer",
+              "type": "int256",
+              "canonical_type": "int256",
+              "internal_type": "int256",
+              "explanation": "Actual live ZZZ USD18 answer."
+            },
+            {
+              "position": 7,
+              "name": "startedAt",
+              "label": "startedAt",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original ETH startedAt."
+            },
+            {
+              "position": 8,
+              "name": "updatedAt",
+              "label": "updatedAt",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original ETH updatedAt."
+            },
+            {
+              "position": 9,
+              "name": "answeredInRound",
+              "label": "answeredInRound",
+              "type": "uint80",
+              "canonical_type": "uint80",
+              "internal_type": "uint80",
+              "explanation": "Actual live answered round ID."
+            }
+          ],
+          "native_value": null,
+          "notes": "Exactly10 ABI words/320bytes. Oracle verifies identity, expected actual state, original round hash and live freshness/agreement. Two reader addresses alone do not prove independent reference markets."
+        },
+        {
           "signature": "latestRoundData()",
           "kind": "function",
           "name": "latestRoundData",
@@ -60167,8 +63976,8 @@
           "outputs": [
             {
               "position": 0,
-              "name": "roundId",
-              "label": "roundId",
+              "name": "",
+              "label": "output0",
               "type": "uint80",
               "canonical_type": "uint80",
               "internal_type": "uint80",
@@ -60176,8 +63985,8 @@
             },
             {
               "position": 1,
-              "name": "answer",
-              "label": "answer",
+              "name": "",
+              "label": "output1",
               "type": "int256",
               "canonical_type": "int256",
               "internal_type": "int256",
@@ -60185,8 +63994,8 @@
             },
             {
               "position": 2,
-              "name": "startedAt",
-              "label": "startedAt",
+              "name": "",
+              "label": "output2",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
@@ -60194,8 +64003,8 @@
             },
             {
               "position": 3,
-              "name": "updatedAt",
-              "label": "updatedAt",
+              "name": "",
+              "label": "output3",
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
@@ -60203,8 +64012,8 @@
             },
             {
               "position": 4,
-              "name": "answeredInRound",
-              "label": "answeredInRound",
+              "name": "",
+              "label": "output4",
               "type": "uint80",
               "canonical_type": "uint80",
               "internal_type": "uint80",
@@ -60236,6 +64045,122 @@
           ],
           "native_value": null,
           "notes": null
+        },
+        {
+          "signature": "roundAt((uint160,int24,uint24,uint24,uint128))",
+          "kind": "function",
+          "name": "roundAt",
+          "state_mutability": "view",
+          "purpose": "Reconstruct this reader round at a supplied validated pool state using current pinned ETH data.",
+          "access": "Anyone; read-only. Public helper output grants no execution authority.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "state",
+              "label": "state",
+              "type": "tuple",
+              "canonical_type": "(uint160,int24,uint24,uint24,uint128)",
+              "internal_type": "struct MarketState",
+              "explanation": "MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields.",
+              "components": [
+                {
+                  "position": 0,
+                  "name": "sqrtPriceX96",
+                  "label": "sqrtPriceX96",
+                  "type": "uint160",
+                  "canonical_type": "uint160",
+                  "internal_type": "uint160",
+                  "explanation": null
+                },
+                {
+                  "position": 1,
+                  "name": "tick",
+                  "label": "tick",
+                  "type": "int24",
+                  "canonical_type": "int24",
+                  "internal_type": "int24",
+                  "explanation": null
+                },
+                {
+                  "position": 2,
+                  "name": "protocolFee",
+                  "label": "protocolFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 3,
+                  "name": "lpFee",
+                  "label": "lpFee",
+                  "type": "uint24",
+                  "canonical_type": "uint24",
+                  "internal_type": "uint24",
+                  "explanation": null
+                },
+                {
+                  "position": 4,
+                  "name": "liquidity",
+                  "label": "liquidity",
+                  "type": "uint128",
+                  "canonical_type": "uint128",
+                  "internal_type": "uint128",
+                  "explanation": null
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint80",
+              "canonical_type": "uint80",
+              "internal_type": "uint80",
+              "explanation": "Synthetic captured-state round ID."
+            },
+            {
+              "position": 1,
+              "name": "",
+              "label": "output1",
+              "type": "int256",
+              "canonical_type": "int256",
+              "internal_type": "int256",
+              "explanation": "Captured-state hypothetical ZZZ USD18 answer."
+            },
+            {
+              "position": 2,
+              "name": "",
+              "label": "output2",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original current ETH source startedAt."
+            },
+            {
+              "position": 3,
+              "name": "",
+              "label": "output3",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Original current ETH source updatedAt."
+            },
+            {
+              "position": 4,
+              "name": "",
+              "label": "output4",
+              "type": "uint80",
+              "canonical_type": "uint80",
+              "internal_type": "uint80",
+              "explanation": "Same synthetic answered round ID."
+            }
+          ],
+          "native_value": null,
+          "notes": "Hypothetical proof only: never substitute it for a live public price or use it to freshen ETH/source age. It performs no writes or state adoption."
         },
         {
           "signature": "zzzDecimals()",
@@ -62757,7 +66682,7 @@
   "gaps": [],
   "counts": {
     "contracts": 40,
-    "functions": 913,
+    "functions": 956,
     "constructors": 40,
     "receive_hooks": 13,
     "fallback_hooks": 0,

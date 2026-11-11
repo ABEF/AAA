@@ -1,0 +1,10 @@
+{
+  "files": {
+    "deployment-source10.js": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+    "deployment-api.js": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+    "deployment-source9-prepare.js": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+    "tests/source10-profile.test.mjs": "03ad077da458e1220886fe21ee4fae16bf9273e4ca9f5bac4240d651a9f9150c",
+    "tests/source10-prepare.test.mjs": "e755ae27014dacdeea35848a03086ac480e4d6a841eb31233f4463dff99909cd"
+  },
+  "scope": "Source only; signer/config/dist/services unchanged."
+}

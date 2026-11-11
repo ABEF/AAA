@@ -6,18 +6,18 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZLPBalanceMath} from "./ZZZLPBalanceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
-import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity, IPositionManagerMinimal, IStateViewMinimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
+import {IZZZPools, IZZZStrategy, IZZZLiquidity, IStateViewMinimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
+import {IZZZExecutionStrategy, MarketState} from "./interfaces/IZZZExecutionOracle.sol";
 
-interface IPortfolioRoutePolicy { function controlFingerprint(bytes32) external view returns(bytes32); }
-interface ILPRegistryRevision { function configurationRevision() external view returns (uint64); }
+interface IQuoteLiquidity { function getLiquidity(bytes32) external view returns(uint128); }
 
 /// @notice Bounded, typed ETH/ZZZ balancing. Quotes revert all core changes and
 /// compare useful target LP value at one independent price vector, not raw L.
 /// This is a bounded search of reviewed venues, not a global optimum promise.
 contract ZZZLPBalancer is ZZZModule {
-    uint256 public constant LP_ROUTING_VERSION = 2;
+    uint256 public constant LP_ROUTING_VERSION = 3;
+    uint256 public constant EXECUTION_PRICE_VERSION = 1;
     uint256 public constant EXECUTION_QUALITY_VERSION = 1;
     uint256 public constant MAX_ADDITIONAL_LOSS_BPS = 1000;
     uint256 public constant MAX_EXECUTION_POOLS = 4;
@@ -30,8 +30,8 @@ contract ZZZLPBalancer is ZZZModule {
     uint32 public quoteGasLimit = 200000;
     bytes32 private pendingQuoteHash;
 
-    struct Plan { bytes32 poolId; bool zeroForOne; uint256 amountIn; uint256 amountOut; uint256 minimumOut; uint160 sqrtAfter; uint160 targetSqrtAfter; uint64 revision; bytes32 fingerprint; }
-    error QuoteResult(uint256 output, uint160 sqrtAfter, int24 tickAfter);
+    struct Plan { bytes32 poolId; bool zeroForOne; uint256 amountIn; uint256 amountOut; uint256 minimumOut; uint160 sqrtAfter; uint160 targetSqrtAfter; uint64 revision; bytes32 fingerprint; MarketState afterState; }
+    error QuoteResult(uint256 output, uint160 sqrtAfter, int24 tickAfter,uint24 protocolFee,uint24 lpFee,uint128 liquidity);
     event ExecutionPoolsConfigured(uint64 indexed revision, bytes32[] pools, bytes32 indexed reviewHash);
     event SolverConfigured(uint64 indexed revision, uint8 iterations, uint32 gasLimit, bytes32 indexed reviewHash);
     /// @dev This is a selected quote, not income. The manager verifies exact
@@ -65,18 +65,7 @@ contract ZZZLPBalancer is ZZZModule {
     /// @notice Captures target/venue controls, monotonic registry changes and
     /// both independently validated source rounds. Recheck after token callbacks.
     function policyFingerprint(bytes32 target, bytes32 venue) public view returns (bytes32) {
-        address registry = access.module(Ids.POOLS);
-        PoolConfig memory t = IZZZPools(registry).accounting(target);
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        (,,bytes32 first) = oracle.priceBounds(address(0));
-        (,,bytes32 second) = oracle.priceBounds(t.key.currency1);
-        bytes32 route = venue == bytes32(0) ? bytes32(0) : keccak256(abi.encode(IZZZPools(registry).accounting(venue)));
-        (int24 lower,int24 upper,uint160 referencePrice) = IZZZStrategy(access.module(Ids.STRATEGY)).target(target);
-        return keccak256(abi.encode(registry,ILPRegistryRevision(registry).configurationRevision(),t,route,
-            address(oracle),access.module(Ids.STRATEGY),
-            IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision(),
-            IPortfolioRoutePolicy(IZZZStrategy(access.module(Ids.STRATEGY)).portfolioPolicy()).controlFingerprint(target),
-            lower,upper,referencePrice,first,second));
+        return balanceMath.policyFingerprint(target,venue);
     }
 
     /// @notice Empty removes all swap venues without consulting prices or core.
@@ -115,13 +104,7 @@ contract ZZZLPBalancer is ZZZModule {
             keccak256(abi.encode(c.key)) != id) revert InvalidConfiguration();
     }
     function _prices(address token) private view returns (ZZZLPBalanceMath.Prices memory p) {
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        (p.lower0,p.upper0,) = oracle.priceBounds(address(0));
-        (p.lower1,p.upper1,) = oracle.priceBounds(token);
-        uint8 d1 = oracle.tokenDecimals(token);
-        p.scale1 = 10 ** d1;
-        p.referenceX96 = ZZZPriceMath.referenceX96(p.lower0,p.lower1,18,d1,address(0));
-        p.extraLoss = additionalLossBps();
+        return balanceMath.executionPrices(token);
     }
     function _validSpot(uint160 price, uint160 referencePrice, uint16 deviation) private pure returns (bool) {
         if (price < TickMath.MIN_SQRT_PRICE || price >= TickMath.MAX_SQRT_PRICE) return false;
@@ -133,14 +116,8 @@ contract ZZZLPBalancer is ZZZModule {
         private view returns(ZZZLPBalanceMath.Evaluation memory) {
         return balanceMath.evaluate(x,price,a0,a1);
     }
-    function _quoted(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount) private pure returns (uint256) {
-        uint256 value = Math.mulDiv(amount,direction ? p.upper0 : p.upper1,direction ? 1e18 : p.scale1);
-        return Math.mulDiv(value,direction ? p.scale1 : 1e18,direction ? p.lower1 : p.lower0);
-    }
-    function _minimum(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private pure returns (uint256) {
-        uint256 gross = Math.mulDiv(_quoted(p,direction,amount),10000-loss,10000);
-        uint256 netInput = Math.mulDiv(amount,1_000_000-fee,1_000_000);
-        return Math.max(gross,Math.mulDiv(_quoted(p,direction,netInput),10000-p.extraLoss,10000,Math.Rounding.Ceil));
+    function _minimum(ZZZLPBalanceMath.Prices memory p, bool direction, uint256 amount, uint16 loss, uint256 fee) private view returns (uint256) {
+        return balanceMath.minimumOutput(p,direction,amount,loss,fee);
     }
     /// @dev Fee-aware seed usually gives one quote for deep, small trades.
     function _seed(ZZZLPBalanceMath.Context memory x,bool direction,uint256 fee)
@@ -173,7 +150,7 @@ contract ZZZLPBalancer is ZZZModule {
         if (msg.sender != liquidityManager() || access.module(Ids.LIQUIDITY) != msg.sender || !access.isSealed()) revert Unauthorized();
         if (amount0 > type(uint128).max || amount1 > type(uint128).max || lower >= upper) revert InvalidAmount();
         PoolConfig memory destination = _pool(target);
-        ZZZLPBalanceMath.Context memory x = ZZZLPBalanceMath.Context(target,IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(target),
+        ZZZLPBalanceMath.Context memory x = ZZZLPBalanceMath.Context(target,IZZZExecutionStrategy(address(balanceMath)).executionValidatePrice(target),
             TickMath.getSqrtPriceAtTick(lower),TickMath.getSqrtPriceAtTick(upper),amount0,amount1,_prices(destination.key.currency1),mainFloor,marks);
         ZZZLPBalanceMath.Evaluation memory baseline = _evaluate(x,x.spot,amount0,amount1);
         best.revision = executionRevision;
@@ -221,13 +198,14 @@ contract ZZZLPBalancer is ZZZModule {
         best.revision = executionRevision;
         for (uint256 pass; pass < searchIterations && lo < hi; ++pass) {
             uint256 interpolated;
-            bool quoted; uint256 output; uint160 afterPrice;int24 afterTick;
-            try this.quoteCandidate{gas:quoteGasLimit}(c.key,direction,input) returns (uint256 out,uint160 price,int24 tick) {
-                quoted = true; output = out; afterPrice = price;afterTick=tick;
+            bool quoted; uint256 output; MarketState memory state;
+            try this.quoteCandidate{gas:quoteGasLimit}(c.key,direction,input) returns (uint256 out,MarketState memory result) {
+                quoted = true; output = out; state=result;
             } catch {}
             if (!quoted) hi = input;
             else {
-                int8 outside=requireActive && id==x.target?_tickSide(x.lower,x.upper,afterTick):int8(0);
+                uint160 afterPrice=state.sqrtPriceX96;
+                int8 outside=requireActive && id==x.target?_tickSide(x.lower,x.upper,state.tick):int8(0);
                 uint256 minimum = _minimum(x.prices,direction,input,
                     c.maxSlippageBps < target.maxSlippageBps ? c.maxSlippageBps : target.maxSlippageBps,swapFee);
                 if (minimum == 0) lo = input+1;
@@ -253,7 +231,7 @@ contract ZZZLPBalancer is ZZZModule {
                             if(best.amountIn==0 || input<best.amountIn) {
                                 bestValue=e.deployed;
                                 best=Plan(id,direction,input,output,minimum,afterPrice,id==x.target?afterPrice:x.spot,
-                                    executionRevision,policyFingerprint(x.target,id));
+                                    executionRevision,policyFingerprint(x.target,id),state);
                             }
                             hi=input;
                         } else if(e.excess0==direction)lo=input+1;
@@ -262,7 +240,7 @@ contract ZZZLPBalancer is ZZZModule {
                         if(e.deployed>bestValue) {
                             bestValue=e.deployed;
                             best=Plan(id,direction,input,output,minimum,afterPrice,id==x.target?afterPrice:x.spot,
-                                executionRevision,policyFingerprint(x.target,id));
+                                executionRevision,policyFingerprint(x.target,id),state);
                             if(e.deployed>=Math.mulDiv(e.retained,9990,10000))break;
                         }
                         if(e.excess0==direction)lo=input+1;
@@ -291,7 +269,7 @@ contract ZZZLPBalancer is ZZZModule {
     }
     /// @dev Only our bounded search may quote. No funds settle; the custom
     /// revert rolls back every tick, price, fee and transient core delta.
-    function quoteCandidate(PoolKey calldata key, bool direction, uint256 amount) external returns (uint256 output,uint160 afterPrice,int24 afterTick) {
+    function quoteCandidate(PoolKey calldata key, bool direction, uint256 amount) external returns (uint256 output,MarketState memory state) {
         if (msg.sender != address(this) || amount == 0 || amount > uint256(uint128(type(int128).max))) revert Unauthorized();
         bytes memory payload = abi.encode(key,direction,amount);
         pendingQuoteHash = keccak256(payload);
@@ -299,13 +277,21 @@ contract ZZZLPBalancer is ZZZModule {
         catch (bytes memory reason) {
             pendingQuoteHash = bytes32(0);
             bytes4 selector;
-            if (reason.length == 100) assembly ("memory-safe") { selector := mload(add(reason,32)) }
+            if (reason.length == 196) assembly ("memory-safe") { selector := mload(add(reason,32)) }
             if (selector != QuoteResult.selector) revert InvalidState();
-            int256 tickWord;
-            assembly ("memory-safe") { output := mload(add(reason,36)) afterPrice := mload(add(reason,68)) tickWord := mload(add(reason,100)) }
-            if (output == 0 || afterPrice == 0 || tickWord<TickMath.MIN_TICK || tickWord>=TickMath.MAX_TICK) revert InvalidState();
-            afterTick=int24(tickWord);
+            bytes memory result=new bytes(192);
+            assembly ("memory-safe") { mcopy(add(result,32),add(reason,36),192) }
+            (output,state)=abi.decode(result,(uint256,MarketState));
+            if (output == 0 || state.sqrtPriceX96<TickMath.MIN_SQRT_PRICE || state.sqrtPriceX96>=TickMath.MAX_SQRT_PRICE ||
+                state.tick<TickMath.MIN_TICK || state.tick>=TickMath.MAX_TICK || state.lpFee!=key.fee ||
+                (state.protocolFee & 0xfff)>1000 || state.protocolFee>>12>1000)revert InvalidState();
         }
+    }
+    /// @notice Fresh exact-input proof for a typed standalone Manager swap.
+    /// It transfers nothing and cannot be called by a keeper or arbitrary user.
+    function quoteSwap(bytes32 poolId,bool direction,uint256 amount) external returns(uint256 output,MarketState memory state) {
+        if(msg.sender!=liquidityManager() || !access.isSealed())revert Unauthorized();
+        return this.quoteCandidate(_pool(poolId).key,direction,amount);
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         if (msg.sender != address(poolManager) || pendingQuoteHash == bytes32(0) || keccak256(data) != pendingQuoteHash) revert Unauthorized();
@@ -315,7 +301,8 @@ contract ZZZLPBalancer is ZZZModule {
         int128 d0 = int128(delta >> 128); int128 d1 = int128(uint128(uint256(delta)));
         int128 spent = direction ? d0 : d1; int128 received = direction ? d1 : d0;
         if (spent >= 0 || received <= 0 || uint256(-int256(spent)) != amount) revert Slippage();
-        (uint160 afterPrice,int24 afterTick,,) = stateView.getSlot0(keccak256(abi.encode(key)));
-        revert QuoteResult(uint256(int256(received)),afterPrice,afterTick);
+        bytes32 poolId=keccak256(abi.encode(key));
+        (uint160 afterPrice,int24 afterTick,uint24 protocol,uint24 fee) = stateView.getSlot0(poolId);
+        revert QuoteResult(uint256(int256(received)),afterPrice,afterTick,protocol,fee,IQuoteLiquidity(address(stateView)).getLiquidity(poolId));
     }
 }

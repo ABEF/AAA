@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+The [reference-execution follow-up](../reports/reference-execution-20261111/REVIEW.md)
+addresses the earlier swap/reference fingerprint coupling under explicit
+execution-price1/LP3. Original bounds and full actual-core state/output proofs
+retain financial guards; old LP2 semantics remain. Same-core principal reference
+use, real feed/route qualification, gas/consumer adoption and independent review
+remain separate limits. It does not close service-only compound-policy exposure.
+
 The [current project review](../reports/whole-project-review-20261111/REVIEW.md)
 separates confirmed fixes, stale fixtures/docs, intentional compatibility and
 [decisions requiring review](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates).
@@ -85,7 +92,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The strict pointer selects the [11November project record](../reports/whole-project-review-20261111/static-review.json):541records,45current-context dispositions and496unique exact referenced-source reuses. Prior spot560 and contribution3558 remain source-scoped; no installed environment is upgraded.
+The strict pointer selects the [reference-execution record](../reports/reference-execution-20261111/static-review.json):567records,162current-context dispositions and405unique exact referenced-source reuses. The prior541(45/496) record remains historical. Prior spot560 and contribution3558 remain source-scoped; no installed environment is upgraded.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
 found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,

@@ -55,8 +55,16 @@ qualification and monitoring are required operating controls. If PoPL later
 moves principal into a reference venue, re-review that source before the move;
 pool admission does not automatically rotate or repair the price reference.
 
-**Frozen-basis compatibility:** the reference must remain untouched by the
-complete operation. Contribution finalization freezes source bounds/observations;
+**Fresh execution-price1 / LP-routing3:** the reference may also be a reviewed
+swap venue. [The transaction-only execution context](REFERENCE_SWAP_EXECUTION.md)
+keeps the original two-source valuation, verifies the exact quoted own-swap
+transition before settlement and rechecks live freshness/agreement and callbacks.
+It does not allow the reference to be the same-core PoPL principal destination.
+Enable the explicit source proof after dual-feed admission, and adopt matching
+LP3 consumers; public Oracle reads remain live. No cap is loosened.
+
+**Historical LP-routing2 compatibility:** that implementation requires the
+reference to remain untouched by the complete operation. Contribution finalization freezes source bounds/observations;
 Manager's ordinary balance/swap/mint/increase paths also bind the Oracle
 fingerprints through `LPBalancer.policyFingerprint`. Reference == LP destination
 changes L; reference == executed swap venue can change spot/tick/L. These can
@@ -66,13 +74,13 @@ path; do not infer the identical context-freeze behavior for every conversion.
 Explicit governance emergency uses its separately reviewed emergency context;
 this ordinary-path incompatibility does not add a new force-operation gate.
 
-Choose reference pools not modified by these operations and simulate the whole
-selected route. The largest reference may also be the best swap venue: this is
-a real architecture/configuration tradeoff. A different snapshot/context design
-requires separate review. Do not remove fingerprint checks, substitute a prior
-price or silently loosen caps to make it pass. The
-[current decision list](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates)
-keeps that choice open.
+For old LP2 deployments, choose references not modified by the operation and
+simulate the complete route; they do not inherit the new capability. For the
+fresh LP3 graph use the explicit source admission and full-operation procedure
+in [reference execution](REFERENCE_SWAP_EXECUTION.md). Existing fingerprints and
+financial guards are retained under that transaction-scoped design. The earlier
+[decision list](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates)
+is historical evidence of the issue, not approval of a current configuration.
 
 The [dated market review](../reports/market-followup-20261109/REVIEW.md) does not
 qualify such a pair or select a production pool, source age or minimum liquidity.
@@ -112,6 +120,7 @@ encoded malicious source can lie; source/control review remains necessary.
 | Read `latestRoundData()` | None | Positive composite observation |
 | Call `Oracle.setDualFeed(...)` | Fixed ZZZ; both complete SourcePolicy tuples; reviewed agreement tolerance (currently 300bps); nonzero review hash | Validate and activate both sources |
 | Read `activePolicy(ZZZ)` / `policy(id)` / `priceBounds(ZZZ)` | Exact ZZZ/policy | Verify bounds and fingerprint |
+| Fresh execution1 only: `Oracle.setExecutionSource(reader,true,expectedCodeHash,reviewHash)` | Matching admitted fixed-ZZZ reader/runtime; nonzero review hash | Explicit market proof; verify policy/revision and LP3 consumers |
 
 Each adapter SourcePolicy uses that adapter's runtime hash and `feedDecimals=18`,
 plus its genuine reviewed independence identity and age bound. Preserve original

@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "contracts": 40,
+    "functions": 956,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "example_rows": 1009,
+  "manual_outside_generated_unchanged": false,
+  "source_bound_normal": "normal-final-a8460b24d0",
+  "no_compile": true,
+  "no_rpc": true,
+  "sha256": {
+    "docs/function-reference-notes.json": "c9fa53a52ed9bd6d77cc817ef42eab566bfd428097e2e1967f8d6ca6ec1101d4",
+    "docs/operator-call-examples.json": "af50dd9d3e09b50a7b29cbddb338abfdaeee028bfd612394590acb2917dd969c",
+    "docs/function-reference.json": "8fb11feeff1a99d37b4b0860539ee56aa11f974da994b047982addbc5462f449",
+    "docs/CONTRACT_FUNCTIONS.md": "d332bb29fafc56c5fa97df9482674f9738e029d9213204f15da63605938a5e25",
+    "docs/OPERATOR_MANUAL.md": "dbe8b0f02801bb5dbbc1146cec5082f9a1053d860b1fc2b7329ccd6be47ef06f"
+  },
+  "manual_outside_generated_delta_explanation": "Parent added Use a price-reference pool for swaps prose after archival. Generator preserved that current prose and changed only its marked generated-call block; parent owns subsequent prose edits."
+}

@@ -153,6 +153,10 @@ class Keeper:
             raise ValueError('Original-currency royalty profile requires accounting6')
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported keeper accounting version')
+        from zzz_ops.execution_price import version as execution_price_version
+        self.execution_price_version=execution_price_version(config.get('execution_price_version',0))
+        if self.execution_price_version and self.accounting_version!=7:
+            raise ValueError('Execution-price1 requires explicit keeper accounting7')
         historical_custody = 4 if self.accounting_version in (5,6,7) else 3 if self.accounting_version==4 else 0
         self.custody_version = config.get('custody_version',historical_custody)
         allowed_custody = (5,) if self.accounting_version==7 else (4,5) if self.accounting_version==6 else (historical_custody,)
@@ -191,14 +195,16 @@ class Keeper:
         if self.maintenance_policy_version in (2,3) and self.adaptive_range_enabled:
             raise ValueError('Outside-only policy requires operator-selected ranges')
         self.lp_routing_version = config.get('lp_routing_version',0)
-        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1,2):
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1,2,3):
             raise ValueError('Unsupported keeper LP-routing profile')
+        if (self.lp_routing_version==3)!=bool(self.execution_price_version):
+            raise ValueError('Keeper LP routing3 requires explicit execution-price1')
         self.execution_quality_version = config.get('execution_quality_version',0)
         if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
             raise ValueError('Unsupported keeper execution-quality profile')
-        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2):
+        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2,3):
             raise ValueError('Execution quality requires explicit LP-routing profile1')
-        if self.lp_routing_version in (1,2):
+        if self.lp_routing_version in (1,2,3):
             if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):
                 raise ValueError('LP routing requires explicit accounting4 and maintenance2')
             for role in ('liquidity','balancing_router','pool_manager','state_view'):
@@ -210,10 +216,10 @@ class Keeper:
             raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
         self.portfolio_version = config.get('portfolio_version',0)
         if (type(self.portfolio_version) is not int or
-                (self.accounting_version in (5,6,7) and (self.portfolio_version!=(2 if self.accounting_version in (6,7) else 1) or self.lp_routing_version!=2 or
+                (self.accounting_version in (5,6,7) and (self.portfolio_version!=(2 if self.accounting_version in (6,7) else 1) or self.lp_routing_version!=(3 if self.execution_price_version else 2) or
                  self.maintenance_policy_version!=3 or config.get('rebalance_confirmation_version')!=3 or
                  self.execution_quality_version!=1)) or
-                (self.accounting_version not in (5,6,7) and (self.portfolio_version!=0 or self.lp_routing_version==2))):
+                (self.accounting_version not in (5,6,7) and (self.portfolio_version!=0 or self.lp_routing_version in (2,3)))):
             raise ValueError('Fresh portfolio requires explicit accounting5/portfolio1/routing2/maintenance3/confirmation3/quality1')
         if self.accounting_version in (5,6,7):
             for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version in (6,7) else ()):
@@ -221,6 +227,11 @@ class Keeper:
                 pin=config.get('code_hashes',{}).get(role,'')
                 if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
                     raise ValueError('Missing reviewed portfolio helper runtime: '+role)
+        if self.execution_price_version:
+            for role in ('oracle','contribution_pricing'):
+                pin=config.get('code_hashes',{}).get(role,'')
+                if role not in self.contracts or not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed execution-price runtime: '+role)
         self.rebalance_confirmation=RebalanceConfirmation(self)
         self._rebalance_observation_due=None
         self._confirmation_seen_buckets=set()
@@ -251,7 +262,8 @@ class Keeper:
         if live and not self.path.is_file():
             raise ValueError('Live state is missing; restore a verified backup or initialize an unused keeper')
         self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,'accounting_version':self.accounting_version,'fee_intake_version':self.fee_intake_version,
-            'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None})
+            'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None,
+            **({'execution_price_version':1} if self.execution_price_version else {})})
         if not isinstance(self.state,dict): raise ValueError('Malformed persistent state')
         if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
             raise ValueError('Persistent state belongs to another chain or sender')
@@ -265,6 +277,8 @@ class Keeper:
             raise ValueError('Persistent keeper state belongs to another fee-intake version; preserve recovery records')
         if self.state.get('contracts') != self.contracts:
             raise ValueError('Persistent keeper state belongs to another deployment')
+        if type(self.state.get('execution_price_version',0)) is not int or self.state.get('execution_price_version',0)!=self.execution_price_version:
+            raise ValueError('Persistent keeper state belongs to another execution-price profile; preserve recovery records')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
         self._validate_state()
         # Recover an existing validated intent before checking new scheduling
@@ -725,6 +739,7 @@ class Keeper:
             def read(target,signature,*args,count=1):
                 return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
             profile={'accounting_version':self.accounting_version} if self.accounting_version in (5,6,7) else {}
+            if self.execution_price_version:profile['execution_price_version']=1
             proof=observe(read,lambda target:self.rpc.call('eth_getCode',[target,block]),
                 contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket,**profile)
             if proof['last_rebalance']>stamp:raise ValueError('Compound position checkpoint is in the future')
@@ -849,7 +864,7 @@ class Keeper:
 
     def _lp_routing_snapshot(self,header: dict[str,Any],*,use_cache: bool = False) -> dict[str,Any]:
         """Read one exact canonical state; only cycle discovery can reuse it."""
-        if self.lp_routing_version not in (1,2): return
+        if self.lp_routing_version not in (1,2,3): return
         from zzz_ops.lp_execution import observe
         if not isinstance(header,dict): raise RpcError('Missing LP execution header')
         block={'blockHash':rpc_hash(header.get('hash'),'LP execution block hash'),'requireCanonical':True}
@@ -867,12 +882,15 @@ class Keeper:
             current=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
             if current != header: raise RpcError('Cached LP execution anchor changed')
             return copy.deepcopy(cache[cache_key])
-        def read(target,method,*args):
-            return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
+        def read(target,method,*args,count=1):
+            values=decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
+            if len(values)!=count:raise ValueError('LP execution getter ABI differs')
+            return values
         try:
             runtime_roles=('access','pools','liquidity','balancing_router','pool_manager','state_view')+(
                 ('strategy',) if self.execution_quality_version==1 else ())+(
-                ('lp_balance_math','lp_position_executor') if self.lp_routing_version==2 else ())
+                ('lp_balance_math','lp_position_executor') if self.lp_routing_version in (2,3) else ())+(
+                ('oracle','contribution_pricing') if self.execution_price_version else ())
             for role in runtime_roles:
                 expected=self.config.get('code_hashes',{}).get(role,'')
                 code=self.rpc.call('eth_getCode',[self.contracts[role],block])
@@ -888,8 +906,17 @@ class Keeper:
                 router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
                 state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'],
                 quality_version=self.execution_quality_version,strategy=self.contracts['strategy'],
-                **({'routing_version':2,'math_helper':self.contracts['lp_balance_math'],
-                    'position_executor':self.contracts['lp_position_executor'],'portfolio_version':self.portfolio_version} if self.lp_routing_version==2 else {}))
+                **({'routing_version':self.lp_routing_version,'math_helper':self.contracts['lp_balance_math'],
+                    'position_executor':self.contracts['lp_position_executor'],'portfolio_version':self.portfolio_version,
+                    'execution_price_version':self.execution_price_version} if self.lp_routing_version in (2,3) else {}))
+            if self.execution_price_version:
+                from zzz_ops.execution_price import observe as observe_prices
+                if (read(self.contracts['oracle'],'access()')!=[f'{int(self.contracts["access"],16):064x}'] or
+                        read(self.contracts['contribution_pricing'],'access()')!=[f'{int(self.contracts["access"],16):064x}'] or
+                        read(self.contracts['oracle'],'contributionPricing()')!=[f'{int(self.contracts["contribution_pricing"],16):064x}'] or
+                        read(self.contracts['contribution_pricing'],'oracle()')!=[f'{int(self.contracts["oracle"],16):064x}']):
+                    raise ValueError('Execution-price parent binding differs')
+                observation['execution_price']=observe_prices(read,self.contracts)
         except (ValueError,TypeError,KeyError) as exc:
             raise RpcError('LP execution capability differs from the reviewed profile') from exc
         if hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest() != identity:
@@ -906,7 +933,7 @@ class Keeper:
 
     def _validate_lp_routing(self,*,use_cache: bool = False) -> None:
         """Fresh pre-simulation/signing checks never reuse discovery metadata."""
-        if self.lp_routing_version not in (1,2): return
+        if self.lp_routing_version not in (1,2,3): return
         try:
             header=self.rpc.call('eth_getBlockByNumber',['latest',False])
             result=self._lp_routing_snapshot(header,use_cache=use_cache)

@@ -1,0 +1,48 @@
+{
+  "changed_files": [
+    "deployment-source10.js",
+    "deployment-api.js",
+    "deployment-source9-prepare.js",
+    "tests/source10-profile.test.mjs",
+    "tests/source10-prepare.test.mjs"
+  ],
+  "original_sha256": {
+    "deployment-source10.js": "64e6ab78491b6dc7ceec0341a81a270d29fabdbe973377c55f7ed49525d320b3",
+    "deployment-api.js": "3f905bf36c1a37128a73d22ccd1ca4918cb44f58fc2ec59913fa09c8542ea0c0",
+    "deployment-source9-prepare.js": "6405b37dd198c25e02b935422aa562e76179850aca0ac33c325c9d4d56047760",
+    "tests/source10-profile.test.mjs": "394106ac9c765ba61f64f88f39f00d034624e3427604e3707e67f60e367ebf93",
+    "tests/source10-prepare.test.mjs": "8282d9e28c2a3225ed7cf5d3d47f244fe064cc6c57b305d172cd9fccb6514b30"
+  },
+  "prepared_sha256": {
+    "deployment-source10.js": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+    "deployment-api.js": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+    "deployment-source9-prepare.js": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+    "tests/source10-profile.test.mjs": "03ad077da458e1220886fe21ee4fae16bf9273e4ca9f5bac4240d651a9f9150c",
+    "tests/source10-prepare.test.mjs": "e755ae27014dacdeea35848a03086ac480e4d6a841eb31233f4463dff99909cd"
+  },
+  "website_unchanged": true,
+  "synthetic_external_mirror_checks": {
+    "command": "node --test tests/source10-profile.test.mjs tests/source10-prepare.test.mjs",
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "skip": 0,
+    "new_methods": 10
+  },
+  "scope": "Prepared patch and focused synthetic browser validators only. No W writes, production signing, service/site/configuration or live state changes. Parent will apply with baseline hash guards and rerun affected checks. Actual new Entry RPC/API trace and gas acceptance remain open.",
+  "semantics": [
+    "Omitted/0 preserves routing2; explicit execution1 requires routing3 and all33same roles.",
+    "Seven immutable capabilities and fixed Math binding; public observational pricing2 remains live.",
+    "Activation proof authenticates exact6contracts/math/source revision/inactive context; conservative JS safe-number revision check rejects unsafeJSON integers.",
+    "Mutable execution controls do not gate holdings, claims or liveness; no shared signer changes."
+  ],
+  "historical_source9_compatibility": {
+    "command": "node --test tests/source9-profile.test.mjs tests/source9-prepare.test.mjs",
+    "tests": 92,
+    "pass": 92,
+    "fail": 0,
+    "skip": 0,
+    "log": "historical-source9.log",
+    "scope": "Unmodified original source9 tests/fixtures on prepared shared source; distinct tests from source10focused48."
+  }
+}

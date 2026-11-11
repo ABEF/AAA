@@ -1,5 +1,14 @@
 # LP execution and operator-selected maintenance
 
+## Reference and venue overlap
+
+The fresh explicit execution-price1/LP-routing3 graph permits a reviewed external
+reference as a swap venue, using captured valuation and exact quoted full-state
+proof before settlement. It does not change the85% trigger,600-second sampled
+window, strict300-second gap,240-second service checks,60–300-second jitter,
+12-hour cooldown, main/residual rules or financial limits. Reference and same-
+core principal destination remain distinct. [Design](REFERENCE_SWAP_EXECUTION.md).
+
 Fresh [accounting6 / portfolio2](POSITION_V6.md) source candidate, started 30 October 2026.
 **Undeployed; production NOT APPROVED.** Normal size/runtime gates, scoped offline
 checks and local actual-v4-core integration pass within their

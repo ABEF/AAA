@@ -15,6 +15,8 @@ def verify_profile(p, block, *, accounting_version=6):
     if accounting_version not in (6,7) or p.accounting_version!=accounting_version:
         raise ProjectionError('Explicit policy portfolio accounting profile differs')
     pins = {role: item.address for role, item in p.contracts.items()}
+    execution_price = getattr(p, 'execution_price_version', 0)
+    routing = 3 if execution_price else 2
     def number(role, method, *args):
         return int(p._call(pins[role], method, *args, block=block)[0], 16)
     def binding(role, method, expected):
@@ -49,11 +51,16 @@ def verify_profile(p, block, *, accounting_version=6):
             ('budget','IDLE_COMPOUNDING_VERSION()',4), ('budget','REBALANCE_CONFIRMATION_VERSION()',3),
             ('budget','EMERGENCY_REBALANCE_VERSION()',2), ('principal_exit','EMERGENCY_REBALANCE_VERSION()',2),
             ('liquidity','PORTFOLIO_VERSION()',2), ('strategy','PORTFOLIO_VERSION()',2), ('portfolio_policy','PORTFOLIO_VERSION()',2), ('protocol_policy','PROTOCOL_POLICY_VERSION()',1),
-            ('liquidity','LP_ROUTING_VERSION()',2), ('balancing_router','LP_ROUTING_VERSION()',2),
+            ('liquidity','LP_ROUTING_VERSION()',routing), ('balancing_router','LP_ROUTING_VERSION()',routing),
             ('lp_balance_math','LP_BALANCE_MATH_VERSION()',1), ('lp_position_executor','LP_POSITION_EXECUTOR_VERSION()',1),
             ('liquidity','EMERGENCY_REBALANCE_VERSION()',2)):
         if number(role, method) != expected:
             raise ProjectionError('Accounting6 portfolio capability differs from the explicit profile')
+    if execution_price:
+        binding('liquidity','executionStrategy()','lp_balance_math')
+        for role in ('liquidity', 'balancing_router', 'strategy', 'lp_position_executor','lp_balance_math'):
+            if number(role, 'EXECUTION_PRICE_VERSION()') != 1:
+                raise ProjectionError('Read profile execution-price capability differs')
 
 
 def read_bucket(p, bucket, block):
@@ -77,7 +84,8 @@ def _read_bucket_proof(p, bucket, block, *, accounting_version=6):
         result = observe(
             lambda target, method, *args, count: p._call(target, method, *args, block=block, words=count),
             lambda target: p.rpc.call('eth_getCode', [target, block]),
-            contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=accounting_version, physical_only=True)
+            contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=accounting_version, physical_only=True,
+            execution_price_version=getattr(p,'execution_price_version',0))
     except (ValueError, TypeError, KeyError) as exc:
         raise ProjectionError('Accounting6 portfolio identity or aggregate principal is inconsistent') from exc
     payload={'version': 2, 'minimum_main_bps':result['minimum_main_bps'],

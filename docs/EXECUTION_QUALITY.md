@@ -1,5 +1,13 @@
 # Fee-aware execution quality
 
+## Fresh LP routing3 extension
+
+Explicit execution-price1 adds an actual-core full-state quote and transaction-
+only original valuation to the existing fee/output/spot/loss checks. It allows
+the reference to execute a swap, while preserving exact settlement, live source
+agreement and final callback checks. Existing LP2 fixtures and profiles below
+retain their original scope. [Full procedure](REFERENCE_SWAP_EXECUTION.md).
+
 The current candidate retains an independent limit on oracle-relative execution
 loss **after known trading fees**, alongside the existing all-in loss controls.
 It does not discount those fees from contribution, maintenance, venue or caller

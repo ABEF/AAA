@@ -1,0 +1,27 @@
+{
+  "scope": "Anonymous bounded read-only RPC/precompile observation; no signing/transaction submission or production qualification",
+  "observed_utc": "2026-11-11T04:27:51.107969+00:00",
+  "rpc": "https://rpc.mainnet.chain.robinhood.com",
+  "official_rpc_source": "https://docs.robinhood.com/chain/connecting/",
+  "interface_source": "https://github.com/OffchainLabs/nitro-precompile-interfaces/blob/main/ArbGasInfo.sol",
+  "calls": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "response": {
+        "error": {
+          "type": "HTTPError",
+          "message": "HTTP Error 403: Forbidden"
+        }
+      }
+    }
+  ],
+  "failure": {
+    "type": "ValueError",
+    "message": "invalid uint"
+  }
+}

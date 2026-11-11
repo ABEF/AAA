@@ -3,14 +3,18 @@ from zzz_ops.abi import address, keccak256
 
 
 def observe(read, *, liquidity, router, pool_manager, state_view, access, pools, quality_version=0, strategy=None,
-            routing_version=1, math_helper=None, position_executor=None,portfolio_version=1):
+            routing_version=1, math_helper=None, position_executor=None,portfolio_version=1,execution_price_version=0):
     """``read`` must use one canonical block for every address/ABI result."""
     if type(quality_version) is not int or quality_version not in (0,1):
         raise ValueError('Unsupported explicit execution-quality capability')
-    if type(routing_version) is not int or routing_version not in (1,2):
+    if type(routing_version) is not int or routing_version not in (1,2,3):
         raise ValueError('Unsupported explicit LP-routing capability')
+    from zzz_ops.execution_price import version
+    execution_price_version=version(execution_price_version)
+    if (routing_version==3) != bool(execution_price_version):
+        raise ValueError('LP routing3 requires the explicit execution-price1 capability')
     if type(portfolio_version) is not int or portfolio_version not in (1,2):raise ValueError('Unsupported explicit portfolio capability')
-    if routing_version==2 and (math_helper is None or position_executor is None):
+    if routing_version in (2,3) and (math_helper is None or position_executor is None):
         raise ValueError('Portfolio routing requires reviewed arithmetic and position helpers')
     def number(target, method, *args):
         values = read(target, method, *args)
@@ -31,7 +35,7 @@ def observe(read, *, liquidity, router, pool_manager, state_view, access, pools,
             (router, 'liquidityManager()', liquidity), (router, 'poolManager()', pool_manager),
             (router, 'stateView()', state_view)):
         binding(target, method, expected)
-    if routing_version==2:
+    if routing_version in (2,3):
         if number(liquidity,'PORTFOLIO_VERSION()')!=portfolio_version:
             raise ValueError('Unsupported explicit portfolio capability')
         binding(router,'balanceMath()',math_helper)
@@ -48,6 +52,11 @@ def observe(read, *, liquidity, router, pool_manager, state_view, access, pools,
         binding(position_executor,'permit2()', '0x'+f'{number(liquidity,"permit2()"):040x}')
         if number(position_executor,'LP_POSITION_EXECUTOR_VERSION()')!=1:
             raise ValueError('Unsupported typed position executor capability')
+        if execution_price_version:
+            binding(liquidity,'executionStrategy()',math_helper)
+            for target in (liquidity,router,position_executor,strategy,math_helper):
+                if target is None or number(target,'EXECUTION_PRICE_VERSION()')!=1:
+                    raise ValueError('Execution-price helper capability differs')
     revision = number(router, 'executionRevision()')
     registry_revision = number(pools, 'configurationRevision()')
     iterations = number(router, 'searchIterations()')
@@ -88,4 +97,5 @@ def observe(read, *, liquidity, router, pool_manager, state_view, access, pools,
             'search_iterations': iterations, 'quote_gas_limit': quote_gas,
             'execution_pools': ['0x' + f'{value:064x}' for value in catalog],
             'swaps_enabled': bool(catalog), 'catalog_frozen_by_wallet_review': False,
-            **({'math_helper':math_helper,'position_executor':position_executor,'portfolio_version':portfolio_version} if routing_version==2 else {}), **quality}
+            **({'math_helper':math_helper,'position_executor':position_executor,'portfolio_version':portfolio_version} if routing_version in (2,3) else {}),
+            **({'execution_price_version':execution_price_version} if execution_price_version else {}), **quality}

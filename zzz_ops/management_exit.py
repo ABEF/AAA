@@ -99,7 +99,7 @@ def _position(reader, bucket, zzz):
             physical = physical_portfolio(reader.read,
                 lambda target: reader.p.rpc.call('eth_getCode', [target, reader.block]),
                 contracts=reader.targets, code_hashes=hashes, bucket=bucket,
-                accounting_version=7, physical_only=True)
+                accounting_version=7, physical_only=True,execution_price_version=reader.p.execution_price_version)
             market['physical_amounts'] = physical.pop('portfolio_amounts')
             record['physical'] = physical
     elif position['lp_token_id'] or position['idle0'] or position['idle1'] or position['status'] != 'none':

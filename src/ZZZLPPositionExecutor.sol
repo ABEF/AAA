@@ -26,6 +26,7 @@ interface IPositionPortfolioPolicy {
 contract ZZZLPPositionExecutor is ZZZModule,ReentrancyGuard {
     using SafeERC20 for IERC20;
     uint256 public constant LP_POSITION_EXECUTOR_VERSION=1;
+    uint256 public constant EXECUTION_PRICE_VERSION=1;
     uint256 public constant RESIDUAL_EXIT_VERSION=1;
     address public immutable liquidityManager;
     IPositionManagerMinimal private immutable posm;

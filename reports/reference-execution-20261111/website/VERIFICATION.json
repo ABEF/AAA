@@ -1,0 +1,11 @@
+{
+  "scope": "Source-only actual website checkout tests; synthetic RPC/browser fixtures, no signing/service/site rollout",
+  "command": "node --test tests/source10-profile.test.mjs tests/source10-prepare.test.mjs tests/source9-profile.test.mjs tests/source9-prepare.test.mjs",
+  "tests": 140,
+  "pass": 140,
+  "fail": 0,
+  "skip": 0,
+  "source10_methods": 48,
+  "unmodified_source9_methods": 92,
+  "log_sha256": "78232e9acc12c2ba82b6594c4bf3f32da11ec685a46e7fa140a31073decf0086"
+}

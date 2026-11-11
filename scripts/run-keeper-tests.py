@@ -37,6 +37,7 @@ MODULES=(
  'test_keeper_late_job_budget','test_keeper_simulation_outputs',
  'test_keeper_standalone_harvest_review','test_keeper_late_lp_review',
  'test_keeper_review_retry','test_keeper_confirmation_wakeup',
+ 'test_keeper_execution_price',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

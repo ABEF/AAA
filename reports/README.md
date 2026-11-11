@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Reference-execution follow-up](reference-execution-20261111/REVIEW.md) records
+explicit execution-price1/LP3, original-value/full-state proofs, actual-core and
+consumer verification, retained failures, gas limits and unqualified dependencies.
+
 [11 November whole-project review](whole-project-review-20261111/REVIEW.md)
 covers the current contract cleanup, backend/keeper fixes, website source repairs,
 verification scopes and remaining decisions. Historical reports remain immutable.

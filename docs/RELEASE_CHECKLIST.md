@@ -1,5 +1,12 @@
 # Release approval record - NOT APPROVED
 
+Fresh [execution-price1/LP-routing3](REFERENCE_SWAP_EXECUTION.md) needs exact new
+runtime/configuration/source-proof admission and matching consumers. Normal size,
+scoped actual-core and internal static checks do not approve its deployment.
+The controlled cold Entry exceeds default12M; separately qualify the existing
+optional activation policy2 with actual block/fee/provider limits and full20%
+headroom. No gas budget, financial guard or running environment is widened here.
+
 [Latest dependency qualification](../reports/market-followup-20261109/REVIEW.md)
 retains release blocks: no independent ETH/fixedZZZ USD pair, inactive API3 ETH,
 stale Pyth, uneconomic tiny conversion quotes and unqualified archive service.

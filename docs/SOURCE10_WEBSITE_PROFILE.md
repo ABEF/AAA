@@ -1,5 +1,16 @@
 # Mint2/V10 website read and unsigned profile
 
+## Optional execution-price1
+
+Fresh source10/schema5 also accepts explicit execution_price_version1 with
+LP-routing3 and the exact matching existing33 runtime roles. Omission/0 retains
+LP2. Oracle/Pricing/Manager/Balancer/Executor/Strategy advertise capability1;
+the existing fixed Math child and Manager getter must match. Financial reviews
+check inactive context and current source revision; ordinary funded claims and
+holdings do not acquire a new live-Oracle dependency. There is no signer change,
+automatic configuration discovery, public deployment or journal migration.
+[Backend/operator profile and evidence](REFERENCE_SWAP_EXECUTION.md).
+
 The local website consumer now supports current mint2 contracts explicitly.
 Website manifest **schema5/source_profile10** means accounting7, LP-allocation1,
 custody5, direct Entry3/review2, royalty4/reporting5 and canonical

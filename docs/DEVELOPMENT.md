@@ -116,8 +116,8 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/whole-project-review-20261111/static-review.json)
-binds541detector records:45individually reassessed current contexts and496
+records19of47then-changed source pins. The [current strict default](../reports/reference-execution-20261111/static-review.json)
+binds567detector records:162individually reassessed current contexts and405
 unique exact referenced-source reuses. Prior spot560, contribution3558 and
 mint2 records retain their original source/transitive limitations. Earlier fee-flow532 and royalty
 recovery474 records retain their own source scopes. The checker default

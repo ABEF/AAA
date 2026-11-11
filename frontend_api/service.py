@@ -120,6 +120,8 @@ class Projection:
             expected.add('accounting_version')
         if isinstance(config, dict) and 'mint_integration_version' in config:
             expected.add('mint_integration_version')
+        if isinstance(config, dict) and 'execution_price_version' in config:
+            expected.add('execution_price_version')
         if isinstance(config, dict) and 'fee_intake_version' in config:
             expected.add('fee_intake_version')
         if isinstance(config, dict) and 'protocol_policy_version' in config:
@@ -140,6 +142,10 @@ class Projection:
         self.accounting_version = config.get('accounting_version', 1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported deployment accounting version')
+        from zzz_ops.execution_price import version as execution_price_version
+        self.execution_price_version = execution_price_version(config.get('execution_price_version', 0))
+        if self.execution_price_version and self.accounting_version != 7:
+            raise ValueError('Execution-price1 requires the explicit accounting7 read profile')
         # V10 is a separately selected source profile, never inferred from a
         # matching Position tuple or a successor's mint configuration.
         self.mint_integration_version = config.get('mint_integration_version', 1)

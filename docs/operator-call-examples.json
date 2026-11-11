@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "b852c29b5f9917b6af96078abfa411bad26c5c5fc141dc2f0e314937d3b3ae95",
+  "reference_sha256": "791ccf639db9af7e83fbd33791456d6d412b5f67152c9ce6316adbdedac2f923",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -1085,8 +1085,8 @@
       "value": null
     },
     "ZZZContributionPricing.markMaintenance(uint256)": {
-      "role": "R",
-      "short": "Read mark maintenance",
+      "role": "M",
+      "short": "Begin captured maintenance scope",
       "arguments": [
         "$BUCKET_ID"
       ],
@@ -7782,6 +7782,384 @@
       "role": "R",
       "short": "Read fixed ZZZ precision",
       "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLiquidityManager.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPPositionExecutor.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalancer.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZStrategy.EXECUTION_PRICE_VERSION()": {
+      "role": "R",
+      "short": "Read execution pricing version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.setExecutionSource(address,bool,bytes32,bytes32)": {
+      "role": "G",
+      "short": "Configure reviewed execution source",
+      "arguments": [
+        "$COMPOSITE_READER_ADDRESS",
+        true,
+        "$READER_RUNTIME_HASH",
+        "$SOURCE_REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZOracle.executionSourcePolicies(address)": {
+      "role": "R",
+      "short": "Read execution source policy",
+      "arguments": [
+        "$COMPOSITE_READER_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.executionSourceRevision()": {
+      "role": "R",
+      "short": "Read execution source revision",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.executionActive()": {
+      "role": "R",
+      "short": "Read transient execution presence",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.validateExecution()": {
+      "role": "R",
+      "short": "Validate captured execution proof",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.executionBounds(address)": {
+      "role": "R",
+      "short": "Read captured execution bounds",
+      "arguments": [
+        "$ETH_OR_FIXED_ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.executionReferenceX96(address,address)": {
+      "role": "R",
+      "short": "Read captured price reference",
+      "arguments": [
+        "0x0000000000000000000000000000000000000000",
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.beginExecution(address)": {
+      "role": "M",
+      "short": "Begin pricing execution context",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZOracle.endExecution()": {
+      "role": "M",
+      "short": "End pricing execution context",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZOracle.beginManagerExecution(address,bytes32,bool)": {
+      "role": "M",
+      "short": "Begin manager execution context",
+      "arguments": [
+        "$ZZZ_ADDRESS",
+        "$LP_DESTINATION_POOL_ID",
+        "$AUTHENTICATED_VAULT_CALL"
+      ],
+      "value": null
+    },
+    "ZZZOracle.endManagerExecution(bool)": {
+      "role": "M",
+      "short": "End manager execution context",
+      "arguments": [
+        "$RETURNED_OWNED_FLAG"
+      ],
+      "value": null
+    },
+    "ZZZOracle.beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+      "role": "M",
+      "short": "Arm exact swap transition",
+      "arguments": [
+        "$POOL_MANAGER_ADDRESS",
+        "$STATE_VIEW_ADDRESS",
+        "$EXECUTION_POOL_ID",
+        [
+          "$POST_SWAP_SQRT_PRICE_X96",
+          "$POST_SWAP_TICK",
+          "$PROTOCOL_FEE",
+          "$LP_FEE",
+          "$POST_SWAP_LIQUIDITY"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZOracle.afterSwap()": {
+      "role": "M",
+      "short": "Verify exact swap transition",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZContributionPricing.endMaintenance(uint256)": {
+      "role": "M",
+      "short": "End maintenance pricing scope",
+      "arguments": [
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
+    "ZZZLiquidityManager.executionStrategy()": {
+      "role": "R",
+      "short": "Read execution arithmetic helper",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.fixedZZZ()": {
+      "role": "R",
+      "short": "Read fixed ZZZ identity",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZLPBalanceMath.nativeConfig(bytes32,bool)": {
+      "role": "R",
+      "short": "Validate native pool configuration",
+      "arguments": [
+        "$POOL_ID",
+        "$REQUIRE_OPERATIONS"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionTarget(bytes32)": {
+      "role": "R",
+      "short": "Read captured target geometry",
+      "arguments": [
+        "$LP_DESTINATION_POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.policyFingerprint(bytes32,bytes32)": {
+      "role": "R",
+      "short": "Read execution policy commitment",
+      "arguments": [
+        "$LP_DESTINATION_POOL_ID",
+        "$EXECUTION_POOL_ID_OR_ZERO"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionValidatePrice(bytes32)": {
+      "role": "R",
+      "short": "Validate captured venue price",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionPrices(address)": {
+      "role": "R",
+      "short": "Read execution price vector",
+      "arguments": [
+        "$ZZZ_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionMinimumOutput(bytes32,bool,uint256)": {
+      "role": "R",
+      "short": "Calculate guarded execution minimum",
+      "arguments": [
+        "$EXECUTION_POOL_ID",
+        "$DIRECTION",
+        "$INPUT_RAW"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.validSpot(uint160,uint160,uint16)": {
+      "role": "R",
+      "short": "Check spot deviation band",
+      "arguments": [
+        "$SPOT_SQRT_PRICE_X96",
+        "$REFERENCE_SQRT_PRICE_X96",
+        "$MAX_DEVIATION_BPS"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)": {
+      "role": "R",
+      "short": "Calculate fee-aware output minimum",
+      "arguments": [
+        [
+          "$ETH_LOWER_USD18",
+          "$ETH_UPPER_USD18",
+          "$ZZZ_LOWER_USD18",
+          "$ZZZ_UPPER_USD18",
+          "$ZZZ_RAW_SCALE",
+          "$REFERENCE_SQRT_PRICE_X96",
+          "$ADDITIONAL_LOSS_BPS"
+        ],
+        "$DIRECTION",
+        "$INPUT_RAW",
+        "$GROSS_LOSS_BPS",
+        "$DIRECTIONAL_FEE_PPM"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.maintenanceValues(uint256,uint256,uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Value maintenance principal",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ETH_PRICE_USD18",
+        "$ZZZ_PRICE_USD18",
+        "$ETH_RAW_SCALE",
+        "$ZZZ_RAW_SCALE"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256)": {
+      "role": "R",
+      "short": "Check main residual allocation",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ETH_PRICE_USD18",
+        "$ZZZ_PRICE_USD18",
+        "$ETH_RAW_SCALE",
+        "$ZZZ_RAW_SCALE"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.checkMaintenance(uint256,uint256,uint256,uint256,uint256,uint256,uint16,uint16,bytes32)": {
+      "role": "R",
+      "short": "Check maintenance value budget",
+      "arguments": [
+        "$BUCKET_ID",
+        "$STARTING_USD18",
+        "$ETH_PRICE_USD18",
+        "$ZZZ_PRICE_USD18",
+        "$ETH_RAW_SCALE",
+        "$ZZZ_RAW_SCALE",
+        "$MAINTENANCE_LOSS_BPS",
+        "$MAX_IDLE_BPS",
+        "$MAINTENANCE_POLICY_HASH"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.validateResidualClose(uint256,bool)": {
+      "role": "R",
+      "short": "Check residual close prerequisites",
+      "arguments": [
+        "$BUCKET_ID",
+        "$ACTUAL_BUDGET_BUSY"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.validateRebalance(uint256,uint128,bool,uint8)": {
+      "role": "R",
+      "short": "Check rebalance prerequisites",
+      "arguments": [
+        "$BUCKET_ID",
+        "$MINIMUM_LIQUIDITY",
+        "$EMERGENCY_MODE",
+        "$RETAINED_CHECKS_MASK"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.compoundReady(uint256,address)": {
+      "role": "R",
+      "short": "Check compound eligibility",
+      "arguments": [
+        "$BUCKET_ID",
+        "$VAULT_BUDGET_ADDRESS"
+      ],
+      "value": null
+    },
+    "ZZZLPBalancer.quoteSwap(bytes32,bool,uint256)": {
+      "role": "M",
+      "short": "Quote exact manager swap",
+      "arguments": [
+        "$EXECUTION_POOL_ID",
+        "$DIRECTION",
+        "$INPUT_RAW"
+      ],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.EXECUTION_SOURCE_VERSION()": {
+      "role": "R",
+      "short": "Read execution source version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.executionAsset()": {
+      "role": "R",
+      "short": "Read execution asset identity",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.executionMarket()": {
+      "role": "R",
+      "short": "Read live reference market",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.roundAt((uint160,int24,uint24,uint24,uint128))": {
+      "role": "R",
+      "short": "Read hypothetical captured round",
+      "arguments": [
+        [
+          "$CAPTURED_SQRT_PRICE_X96",
+          "$CAPTURED_TICK",
+          "$PROTOCOL_FEE",
+          "$LP_FEE",
+          "$CAPTURED_LIQUIDITY"
+        ]
+      ],
+      "value": null
+    },
+    "ZZZV4SpotPriceFeed.executionProof((uint160,int24,uint24,uint24,uint128))": {
+      "role": "R",
+      "short": "Read captured live proof",
+      "arguments": [
+        [
+          "$CAPTURED_SQRT_PRICE_X96",
+          "$CAPTURED_TICK",
+          "$PROTOCOL_FEE",
+          "$LP_FEE",
+          "$CAPTURED_LIQUIDITY"
+        ]
+      ],
       "value": null
     }
   }

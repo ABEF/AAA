@@ -1,0 +1,109 @@
+{
+  "kind": "authenticated-export-completeness-result",
+  "test_source_sha256": "b4d4f519a2c7713ddb0579553b1ebc68a91142c24af832d5ed1da6a7617341d8",
+  "fixture_fix": "Actual setup baseline plus actual later delta; raw baseline Keccak authenticated by EVM event, per-slot explicit-zero override independently EVM-proven. No invented state.",
+  "cases": {
+    "eth-activate": {
+      "evidence": "backend-actual/rpc-baseline-eth-activate/VERIFICATION.json",
+      "sha256": "30c1f60500be079dbb285325d76b5d8bb0f80eeab1b10868c466c3b96b9e2107",
+      "default12M_rejected": true,
+      "diagnostic32M_pass": true,
+      "node_stopped": true,
+      "exact_owner": true,
+      "raw_gas": 14780416,
+      "estimate": 15434990,
+      "full20percent_limit": 18521988,
+      "marginal_deployed_usd_18": 999023158074252307974,
+      "net_contribution_usd_18": 999260854051831031649,
+      "state_merge": {
+        "baseline_sha256": "46fdcb2516eec0a58656b098366c837bdda2c7d0c91cf9ebeb8a799538efb855",
+        "baseline_keccak256": "0x78b5b3b66de1ea7df2fa5527b5db816742c56b653fab46624fae4c469d101843",
+        "delta_sha256": "55e04fc116eff0bad95bd90ca845adec6b1a112fa9b9040f482e6069a880f278",
+        "baseline_accounts": 29,
+        "delta_accounts": 49,
+        "merged_accounts": 49,
+        "nonzero_to_zero_overrides": 0,
+        "semantics": "baseline account fields then delta fields; per-slot storage override including explicit zero; no guessed values; exact source/runtime binding retained."
+      }
+    },
+    "zzz-activate": {
+      "evidence": "backend-actual/rpc-baseline-zzz-activate/VERIFICATION.json",
+      "sha256": "13148fb7a1f91ef0a2241347d3bf2b88bc7e275349a182f5a27c59f2e1bc6c8a",
+      "default12M_rejected": true,
+      "diagnostic32M_pass": true,
+      "node_stopped": true,
+      "exact_owner": true,
+      "raw_gas": 14995485,
+      "estimate": 15774271,
+      "full20percent_limit": 18929126,
+      "marginal_deployed_usd_18": 998477864128479689080,
+      "net_contribution_usd_18": 998715352468991920940,
+      "state_merge": {
+        "baseline_sha256": "46fdcb2516eec0a58656b098366c837bdda2c7d0c91cf9ebeb8a799538efb855",
+        "baseline_keccak256": "0x78b5b3b66de1ea7df2fa5527b5db816742c56b653fab46624fae4c469d101843",
+        "delta_sha256": "85bd9d399b71d07ab99e9fcb0b5776fe6680de534872d4ced35483016792917e",
+        "baseline_accounts": 29,
+        "delta_accounts": 49,
+        "merged_accounts": 49,
+        "nonzero_to_zero_overrides": 0,
+        "semantics": "baseline account fields then delta fields; per-slot storage override including explicit zero; no guessed values; exact source/runtime binding retained."
+      }
+    },
+    "eth-grow": {
+      "evidence": "backend-actual/rpc-baseline-eth-grow/VERIFICATION.json",
+      "sha256": "1af7e1eaba869616617df952f225a2633615fab3b763f9843a88593cf53c9465",
+      "default12M_rejected": true,
+      "diagnostic32M_pass": true,
+      "node_stopped": true,
+      "exact_owner": true,
+      "raw_gas": 13594955,
+      "estimate": 14317340,
+      "full20percent_limit": 17180808,
+      "marginal_deployed_usd_18": 99859417091434072593,
+      "net_contribution_usd_18": 99909322019220649058,
+      "state_merge": {
+        "baseline_sha256": "46fdcb2516eec0a58656b098366c837bdda2c7d0c91cf9ebeb8a799538efb855",
+        "baseline_keccak256": "0x78b5b3b66de1ea7df2fa5527b5db816742c56b653fab46624fae4c469d101843",
+        "delta_sha256": "4a9757aa71742dc3aac7c0c8e3dbc89f9a595a7f6181890c9924c16e124e8736",
+        "baseline_accounts": 29,
+        "delta_accounts": 49,
+        "merged_accounts": 49,
+        "nonzero_to_zero_overrides": 0,
+        "semantics": "baseline account fields then delta fields; per-slot storage override including explicit zero; no guessed values; exact source/runtime binding retained."
+      }
+    },
+    "zzz-grow": {
+      "evidence": "backend-actual/rpc-baseline-zzz-grow/VERIFICATION.json",
+      "sha256": "42edd38c26ec5af3824f6b19a6e745b29840514fcacbd2f5b55c22d4ba0a24c2",
+      "default12M_rejected": true,
+      "diagnostic32M_pass": true,
+      "node_stopped": true,
+      "exact_owner": true,
+      "raw_gas": 13829824,
+      "estimate": 14642230,
+      "full20percent_limit": 17570676,
+      "marginal_deployed_usd_18": 99780932396466104631,
+      "net_contribution_usd_18": 99783303613669988395,
+      "state_merge": {
+        "baseline_sha256": "46fdcb2516eec0a58656b098366c837bdda2c7d0c91cf9ebeb8a799538efb855",
+        "baseline_keccak256": "0x78b5b3b66de1ea7df2fa5527b5db816742c56b653fab46624fae4c469d101843",
+        "delta_sha256": "7f7777d3a05d5d269e6225a6850e291bc1acadd3f896303d4a6a633ed835cea2",
+        "baseline_accounts": 29,
+        "delta_accounts": 49,
+        "merged_accounts": 49,
+        "nonzero_to_zero_overrides": 0,
+        "semantics": "baseline account fields then delta fields; per-slot storage override including explicit zero; no guessed values; exact source/runtime binding retained."
+      }
+    }
+  },
+  "all_29_verification_bodies_and_production_sources_unchanged": true,
+  "source_scoped_reference": "BODY-PRESERVATION.json and immutable original FINAL-REFERENCE-VERIFICATION.json",
+  "production_or_default_configuration_change": false,
+  "actual_market_qualification": false,
+  "limitations": [
+    "Controlled ETH feeds/admission/Permit2/VRF and synthetic funded pools remain test seams.",
+    "Running Foundry harness is omitted; Entry trace must not call it. Governance/controller management behavior is not proven by these Entry cases.",
+    "Default12M is rejected;32M is a separately labeled local diagnostic with full20% headroom and fee/block bounds, not enabled configuration.",
+    "No signed/broadcast transaction, existing Anvil/site/service/journal or signer change."
+  ]
+}
