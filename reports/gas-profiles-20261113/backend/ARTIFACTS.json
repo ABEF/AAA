@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "scope": "New profile software checks, offline actual contribution-reader reconciliation and non-live templates only; unchanged suites not rerun",
+  "new_python_methods_passed": 13,
+  "new_browser_checks_passed": 12,
+  "actual_contribution_reconciliations_passed": 4,
+  "actual_replay_evm_executions": 0,
+  "actual_replay_network_requests": 0,
+  "keeper_inventory_selected": 951,
+  "keeper_inventory_executed": 0,
+  "runner_AST_only_inventory_addition": true,
+  "production_code_or_defaults_changed": false,
+  "website_executables_changed": false,
+  "preserved_unrelated_dirty_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "artifacts": {
+    "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json": {
+      "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+      "bytes": 14959
+    },
+    "reports/gas-profiles-20261113/backend/browser-check.mjs": {
+      "sha256": "65b5f9ad96a1b920069f7c68470bd73d5411411befebe4353aeb5e2ac1f3d828",
+      "bytes": 7655
+    },
+    "reports/gas-profiles-20261113/backend/browser-import-closure.json": {
+      "sha256": "6bdd948f5901304bbc162c425c0d2116ac604c495e269496257832d3cc46929f",
+      "bytes": 1615
+    },
+    "reports/gas-profiles-20261113/backend/browser-inputs.json": {
+      "sha256": "2a0a35868138c7f8b051fad3ce1d1144871236a7e157bede25532aaebfe9da21",
+      "bytes": 1170
+    },
+    "reports/gas-profiles-20261113/backend/BROWSER.json": {
+      "sha256": "bf8301014415d76c0c13c2441b786b87c72f43dbb5c1457fcc36b6422628ae6d",
+      "bytes": 3510
+    },
+    "reports/gas-profiles-20261113/backend/BROWSER_PRECHECK_FAILURE.json": {
+      "sha256": "f7371fa6eb08da0c677d1e85c5c98076803cba2b30758ad92b34c39dddb296a4",
+      "bytes": 392
+    },
+    "reports/gas-profiles-20261113/backend/KEEPER_FULL_INVENTORY.json": {
+      "sha256": "5072ee6092b7a0bdd4d410301a01f25fd1ce0dd61397d2c8e79aa66709525a51",
+      "bytes": 2122
+    },
+    "reports/gas-profiles-20261113/backend/KEEPER_INVENTORY.json": {
+      "sha256": "8a2180d650972704312570f0d25b538c7d64fa55d7ca176d7c64947da44511f4",
+      "bytes": 2485
+    },
+    "reports/gas-profiles-20261113/backend/profiles.template.json": {
+      "sha256": "804f2b8e02c800fb0a0dfb115e94fdc385563b69d7e07fcae82b5d99ae49847a",
+      "bytes": 4583
+    },
+    "reports/gas-profiles-20261113/backend/PYTHON.json": {
+      "sha256": "e06b4977eae13c6e3ed8c095ddfd59f4aea8bcdf7f122887e5e5c2c9b14bc9a2",
+      "bytes": 2338
+    },
+    "reports/gas-profiles-20261113/backend/python.log": {
+      "sha256": "b3955510eded8510eab7243a80b96b5ff8ad7db1327bee21fa88bfcf0a190ff7",
+      "bytes": 2754
+    },
+    "reports/gas-profiles-20261113/backend/README.md": {
+      "sha256": "32fb1f2dd44d53666e927d571c20e594679631ce2859ba18f6513bf9dba6c384",
+      "bytes": 9137
+    },
+    "reports/gas-profiles-20261113/backend/reconcile-recorded.py": {
+      "sha256": "92d6b7293043b955c54c898bc061f9697aa7cf31dc1a074664c96c6411f1b3b9",
+      "bytes": 6889
+    },
+    "reports/gas-profiles-20261113/backend/REPLAY_PRECHECK_FAILURE.json": {
+      "sha256": "d957db25d4ce938e0303253b5b4d920f8ed3f5beab85dfa0382da6d628169879",
+      "bytes": 431
+    },
+    "tests_python/test_reviewed_gas_profiles_20_24.py": {
+      "sha256": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+      "bytes": 11990
+    },
+    "scripts/run-keeper-tests.py": {
+      "sha256": "264c017e025552f72e544cb87a4ffedd3e23638a91475dfc7217f22c8f10e189",
+      "bytes": 6486
+    }
+  },
+  "production_approved": false
+}

@@ -1,5 +1,14 @@
 # Feature and evidence reference
 
+[20M contribution / 24M maintenance profiles](../reports/gas-profiles-20261113/REVIEW.md)
+now have controlled exact$100/$5 ETH/ZZZ and six keeper-operation execution evidence,
+full20%/25% padding, exact padded calls and four production-reader replays. Five
+new EVM methods,13Python and12browser checks pass; no unchanged suites repeat.
+Matching caps, fee/balance/day refusal, pending recovery and unchanged12M claims
+are checked. All61 production sources/defaults remain. These are incomplete
+candidate configuration overlays, not provider/fees/market/max-state or actual
+manual Migration C/D approval. [Procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m).
+
 The [remaining-findings implementation](../reports/remaining-271-20261111/REVIEW.md)
 adds bounded initial keeper RPC execution work, independent per-predecessor
 execution-profile admission and strict offline artwork-catalogue validation.
@@ -125,7 +134,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed 2026-11-11. This records implemented source, not another task list.
+Reviewed 2026-11-13. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 

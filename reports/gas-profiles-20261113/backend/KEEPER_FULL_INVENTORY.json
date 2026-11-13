@@ -1,0 +1,22 @@
+{
+  "scope": "Selection inventory only; no tests executed.",
+  "full_selected_methods": 951,
+  "new_profile_methods": [
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test20m_cap_and_full20pct_boundary_are_never_clipped",
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test_confirmed_hash_failure_does_not_fall_back_or_widen",
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test_explicit20m_and_historical_default_have_distinct_review_identity",
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test_incomplete_real_fee_review_is_not_made_valid_by20m",
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test_price_fee_and_native_funding_remain_separate_failures",
+    "tests_python.test_reviewed_gas_profiles_20_24.Activation20MProfileTests.test_synthetic_header_does_not_raise20m_and_lower_block_stays_binding",
+    "tests_python.test_reviewed_gas_profiles_20_24.Keeper24MProfileTests.test24m_bound_and_padded_only_mock_signing_for_both_lp_actions",
+    "tests_python.test_reviewed_gas_profiles_20_24.Keeper24MProfileTests.test24m_limit_does_not_bypass_padding_price_transaction_or_daily_caps",
+    "tests_python.test_reviewed_gas_profiles_20_24.Keeper24MProfileTests.test_older_pending_operation_blocks_new24m_work_without_relabeling",
+    "tests_python.test_reviewed_gas_profiles_20_24.Keeper24MProfileTests.test_provider_refusal_never_widens24m_or_creates_intent",
+    "tests_python.test_reviewed_gas_profiles_20_24.Manual24MProfileTests.test24m_manual_cap_retains_full25pct_and_exact_frozen_call",
+    "tests_python.test_reviewed_gas_profiles_20_24.Manual24MProfileTests.test_lower_block_price_fee_and_governance_funding_still_bind",
+    "tests_python.test_reviewed_gas_profiles_20_24.Manual24MProfileTests.test_one_unit_above_full25pct_boundary_fails_without_larger_probe"
+  ],
+  "executed_methods": [],
+  "source_changes_during_inventory": [],
+  "raw_external_inventory_sha256": "a30d709f64ff0d6c9a55ae3198b597df333bb33a361ca97a911c7ea6069aeb70"
+}

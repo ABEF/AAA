@@ -1,0 +1,21 @@
+{
+  "scope": "Post-run static literal-import closure review; every file equals unchanged website HEAD; does not rerun tests or imply a before-run full source bracket",
+  "website_revision": "206892ab8b93d65cae3564e71feaf4435f90cdee",
+  "source_sha256": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-api.js": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+    "deployment-native.js": "ee715a6d93e2a27c2999eff34142725b16b2382b0031bd57f49eb00e321969be",
+    "deployment-source10.js": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+    "deployment-source9-data.js": "21f891a5ccdcdf8a6cb71dfcae4558000932191fe98958926c5683a9dea631e4",
+    "deployment-source9-prepare.js": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+    "deployment-source9.js": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+    "tests/fixtures/source9-api-v3.json": "9f0ae09579cc4d7e596f24d5d0951d52a0992346f6de1386faec47e6c49b595d",
+    "tests/helpers/source10-profile-fixture.mjs": "3ffddc8b9255e88d6328d15f4b2b50b9041e8ea4ad2500450f49511367704374",
+    "tests/helpers/source9-profile-fixture.mjs": "e2cccb088822112470c6710d4fa2ecab52d34d5b4b2ba8e91b657d4d66cd6224",
+    "tests/source10-prepare.test.mjs": "e755ae27014dacdeea35848a03086ac480e4d6a841eb31233f4463dff99909cd",
+    "tests/source9-prepare.test.mjs": "beec1fe9e08a1c4a3eb68f11b0a0581e35b6c23e231678770daca5e180317c11"
+  },
+  "source_file_count": 12,
+  "runtime_network_calls": 0,
+  "old_test_programs_executed": 0
+}

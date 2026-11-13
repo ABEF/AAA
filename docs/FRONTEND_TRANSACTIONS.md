@@ -55,6 +55,35 @@ keeper gas limits or ProtocolPolicy internal-call budgets to accomplish this.
 Keep the prior file for a reviewed rollback; old signed transactions still recover
 by their saved hash. Publishing this procedure changes no actual configuration.
 
+### Boundary with the 20M/24M qualification
+
+The [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) supports
+an explicit 20M **activation/growth** policy and separate 24M keeper/manual policies.
+It does not select a higher mint/claim policy: transaction policy1 and checked-in
+defaults remain 12M. Claim-policy2 adoption still requires its own exact policy,
+consumer, workload and complete-fee review. Mint2/OpenSea selection is independent.
+
+Activation/growth has a complete, separate `ActivationConfig` supplied through
+`--activation-config`; this service uses `TransactionConfig` through
+`--transaction-config`. They share an independently pinned read inventory, but
+must run on separate listeners. Production worker admission rejects combining
+the two policies. Never apply an activation schema/fee overlay to a claim file.
+
+For source9/source10 **activation** reviews, the configured backend gas ceiling
+must equal website `manifest.limits.gas` exactly; a 20M backend needs integer
+`limits.gas:20000000`, explicit activation policy2 and matching activation/fee
+identities. A lower confirmed-block effective ceiling does not permit a different
+configured value. That activation ceiling can coexist with unchanged 12M claim
+policy1. Both transaction APIs require full 20% policy2 estimate headroom; the
+separate keeper/manual maintenance reviews retain 25% padding.
+
+The qualification preserves financial, fee, funding, work and recovery checks.
+It does not install a provider or approve target fees, live consumer admission,
+hosted latency or maximum-state workloads. Use the
+[operator procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) for exact files,
+ceilings, pending-first reconciliation, controlled restart and rollback; source
+publication changes no running service or signer.
+
 ## Supported actions
 
 | Action | Fixed target and call | Native value | Approvals |

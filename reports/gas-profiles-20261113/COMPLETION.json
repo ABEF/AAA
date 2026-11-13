@@ -1,0 +1,501 @@
+{
+  "schema": 1,
+  "completed_at_utc": "2026-11-13T09:11:49.959063+00:00",
+  "baseline": "fbe47c330a11ab3370417ae999b31c8ab61fc66d",
+  "qualification": {
+    "controlled_20M_contribution": true,
+    "controlled_24M_six_keeper_calls": true,
+    "exact_padded_calls_passed": 10,
+    "worst_contribution_padded_gas": 18098846,
+    "worst_maintenance_padded_gas": 21046237,
+    "new_solidity_methods_passed": 5,
+    "new_python_methods_passed": 13,
+    "new_browser_checks_passed": 12,
+    "recorded_contribution_helper_reconciliations": 4,
+    "keeper_inventory_selected": 951,
+    "keeper_inventory_executed": 0,
+    "unchanged_test_methods_rerun": 0,
+    "new_normal_or_static_builds": 0,
+    "note": "The RPC cases and reader replays overlap the five new EVM workflows; do not add them as independent features."
+  },
+  "mechanical_checks": {
+    "source_preservation_and_introduced_links": {
+      "successful": true,
+      "checked_at_utc": "2026-11-13T09:10:05.065519+00:00",
+      "scope": "Offline source, evidence, newly introduced links and preservation only; no tests/RPC/compiler rerun",
+      "production_sources_unchanged": 61,
+      "normal_input_sources_exact": 100,
+      "backend_artifacts_verified": 16,
+      "website_import_inputs_unchanged": 12,
+      "public_configurations_null": true,
+      "protected_dirty_sha256": {
+        "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+        "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+        "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+        "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+      },
+      "all_existing_tasks_and_statuses_preserved": true,
+      "historical_acceptance_entries_preserved": true,
+      "introduced_local_links_checked": 68,
+      "introduced_anchors_checked": 11,
+      "completion_link_pending_creation": false,
+      "errors": []
+    },
+    "project_todo_generated_and_check_passed": true,
+    "operator_reference_check": {
+      "contracts": 40,
+      "functions": 956,
+      "example_rows": 1009,
+      "explanation_gaps": 0
+    },
+    "function_reference_check": {
+      "contracts": 40,
+      "functions": 956,
+      "explanation_gaps": 0
+    },
+    "offline_evm_public_reconciliation_passed": true,
+    "offline_network_public_reconciliation_passed": true,
+    "entrypoint_review": "Activation and claim modules invoke main; manual uses scripts/prepare-manual-lp.py wrapper, not inert module invocation.",
+    "staged_scope_review": {
+      "successful": true,
+      "staged_files": 100,
+      "staged_bytes_exact": true,
+      "protected_unstaged_and_identical": 4,
+      "all_completion_hashes_exact": true,
+      "new_test_executions": 0
+    },
+    "python_publication_index": {
+      "kind": "static_python_publication_closure",
+      "revision": "index",
+      "successful": true,
+      "files": 402,
+      "errors": []
+    }
+  },
+  "website": {
+    "revision": "206892ab8b93d65cae3564e71feaf4435f90cdee",
+    "local_matches_remote_before_publication": true,
+    "working_tree_clean": true,
+    "source_and_signer_unchanged": true,
+    "public_configurations_null": true
+  },
+  "preservation": {
+    "production_solidity_unchanged": 61,
+    "global_defaults_changed": false,
+    "financial_safeguards_weakened": false,
+    "live_configs_or_sites_or_services_changed": false,
+    "existing_Anvil_or_journals_changed": false,
+    "public_signing_enabled": false,
+    "public_transactions": 0,
+    "heartbeat_restarted": false,
+    "owned_nodes_stopped": 10
+  },
+  "remaining_release_gates": [
+    "Complete canonical-hash tracing/estimate provider and numerical full-work/response/archive/reliability bounds",
+    "Complete target fees, nonzero fee-review hash and approved gas-price/transaction/day/native-funding budgets",
+    "Actual independent feeds and routes/depth, exact deployment/runtime/config/consumer admission",
+    "Representative maximum NFT/currency/bucket/history workload and hosted latency limits",
+    "Actual manual governance C/D and other unmeasured jobs; six actual keeper cases are not universal maintenance admission",
+    "OpenSea/mint2, VRF, authorities, operating/recovery and independent audit approval",
+    "Oracle runtime has only3bytes headroom; Vault32unchanged"
+  ],
+  "candidate_templates_production_approved": false,
+  "artifacts_excluding_this_receipt": {
+    "AGENTS.md": {
+      "sha256": "8bf1c736dd771ce72d18f1cb8de56814e555afc9a0de1c21a1a39b8eb1671193",
+      "bytes": 47671
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "ffaf9b6332c8b60abf08c567fd9dda89354f41d75eec79daaa37f8f7a8d01474",
+      "bytes": 27346
+    },
+    "README.md": {
+      "sha256": "128493fa2f2e6ef0c1af087bbbd288d0a5e98e7f856975e8a5411f4aff6183b6",
+      "bytes": 17668
+    },
+    "TODO.md": {
+      "sha256": "dee2d4ee56212907d2e060cb3f3647bb37bf606dd8cffa298a32d8f9a511c740",
+      "bytes": 366483
+    },
+    "docs/ACTIVATION_PREPARATION.md": {
+      "sha256": "0125c923673092778fcc23789ad964ab556357b2a78fec0cf7ec2a083121116f",
+      "bytes": 33839
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "f30562e31341251a3768f6bb0fe364c13a294b83918a3d5178fa5cd56cf32e0c",
+      "bytes": 36172
+    },
+    "docs/FRONTEND_TRANSACTIONS.md": {
+      "sha256": "b43c086d6cfa0c7927d39f52a38d440d2e43acc040b41ccda058d4fe3e3d8ec7",
+      "bytes": 22309
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "29d5f2613c7e3ee8da8aeda9d654031468216b7ff64dc9c35b4a0427a020e125",
+      "bytes": 33271
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "6e75213403187d6e231aef70c8792a079ed91c192bf166ba8ba3a5e8efca2188",
+      "bytes": 518246
+    },
+    "docs/README.md": {
+      "sha256": "105e5a0c61b69d1151d5da90547979bcade673b8856a1f2dea534950b9b44c82",
+      "bytes": 13219
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "sha256": "7805214bb50b22167e1bfcb83f35883442e7b8cf6a72a7ee376f8e29047378b5",
+      "bytes": 18890
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "df6d0baad1d13714106621a7fa6ff2be9f14fe31ab637792ff976118e9d50d77",
+      "bytes": 12315
+    },
+    "docs/ROBINHOOD_GAS.md": {
+      "sha256": "872b093d70e900643628d17fa564035db25e2b0e555cfd4cacea2d4d2b5177fb",
+      "bytes": 8150
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "376bbe873a04882a6d12f9f19782555214b27f5daa19a5d3001d98caf9c62345",
+      "bytes": 25256
+    },
+    "docs/project-todo.json": {
+      "sha256": "d1c9000bd29c79b00ac3ef7d2cd4481f170852bfbbf928e4aeb09ba3e4ee05c2",
+      "bytes": 381321
+    },
+    "reports/README.md": {
+      "sha256": "4c0418d925a9c3c8494f49dbd17a1df06974a57a021f309ed6a38add203c3632",
+      "bytes": 21170
+    },
+    "scripts/run-keeper-tests.py": {
+      "sha256": "264c017e025552f72e544cb87a4ffedd3e23638a91475dfc7217f22c8f10e189",
+      "bytes": 6486
+    },
+    "test/ReferenceExecutionContext.t.sol": {
+      "sha256": "02de7cd31580d16c8e97ea53e9ccc6642733973c1c0d4ec84ee71f9ef7d3e78d",
+      "bytes": 86200
+    },
+    "test/GasProfileQualification.t.sol": {
+      "sha256": "1ec4df10cb994e26697d587c666c35aa01818f7551c9bed9266320170ee0d124",
+      "bytes": 16657
+    },
+    "tests_python/test_reviewed_gas_profiles_20_24.py": {
+      "sha256": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+      "bytes": 11990
+    },
+    "reports/gas-profiles-20261113/REVIEW.md": {
+      "sha256": "e4490b5c6f16f596fc245a3be4ca4347fcff464bcea70978d6445038baf62ccb",
+      "bytes": 7631
+    },
+    "reports/gas-profiles-20261113/VERIFICATION.md": {
+      "sha256": "72f502d9102b0a2b23189c80d0d7eb4644729f122acce70ceafb88ad46ad175d",
+      "bytes": 3341
+    },
+    "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json": {
+      "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+      "bytes": 14959
+    },
+    "reports/gas-profiles-20261113/backend/ARTIFACTS.json": {
+      "sha256": "3181c799a5393522c498f681e54ebf31870aef61a5e6747ad29536f09658dc77",
+      "bytes": 3909
+    },
+    "reports/gas-profiles-20261113/backend/BROWSER.json": {
+      "sha256": "bf8301014415d76c0c13c2441b786b87c72f43dbb5c1457fcc36b6422628ae6d",
+      "bytes": 3510
+    },
+    "reports/gas-profiles-20261113/backend/BROWSER_PRECHECK_FAILURE.json": {
+      "sha256": "f7371fa6eb08da0c677d1e85c5c98076803cba2b30758ad92b34c39dddb296a4",
+      "bytes": 392
+    },
+    "reports/gas-profiles-20261113/backend/KEEPER_FULL_INVENTORY.json": {
+      "sha256": "5072ee6092b7a0bdd4d410301a01f25fd1ce0dd61397d2c8e79aa66709525a51",
+      "bytes": 2122
+    },
+    "reports/gas-profiles-20261113/backend/KEEPER_INVENTORY.json": {
+      "sha256": "8a2180d650972704312570f0d25b538c7d64fa55d7ca176d7c64947da44511f4",
+      "bytes": 2485
+    },
+    "reports/gas-profiles-20261113/backend/PYTHON.json": {
+      "sha256": "e06b4977eae13c6e3ed8c095ddfd59f4aea8bcdf7f122887e5e5c2c9b14bc9a2",
+      "bytes": 2338
+    },
+    "reports/gas-profiles-20261113/backend/README.md": {
+      "sha256": "32fb1f2dd44d53666e927d571c20e594679631ce2859ba18f6513bf9dba6c384",
+      "bytes": 9137
+    },
+    "reports/gas-profiles-20261113/backend/REPLAY_PRECHECK_FAILURE.json": {
+      "sha256": "d957db25d4ce938e0303253b5b4d920f8ed3f5beab85dfa0382da6d628169879",
+      "bytes": 431
+    },
+    "reports/gas-profiles-20261113/backend/browser-check.mjs": {
+      "sha256": "65b5f9ad96a1b920069f7c68470bd73d5411411befebe4353aeb5e2ac1f3d828",
+      "bytes": 7655
+    },
+    "reports/gas-profiles-20261113/backend/browser-import-closure.json": {
+      "sha256": "6bdd948f5901304bbc162c425c0d2116ac604c495e269496257832d3cc46929f",
+      "bytes": 1615
+    },
+    "reports/gas-profiles-20261113/backend/browser-inputs.json": {
+      "sha256": "2a0a35868138c7f8b051fad3ce1d1144871236a7e157bede25532aaebfe9da21",
+      "bytes": 1170
+    },
+    "reports/gas-profiles-20261113/backend/profiles.template.json": {
+      "sha256": "804f2b8e02c800fb0a0dfb115e94fdc385563b69d7e07fcae82b5d99ae49847a",
+      "bytes": 4583
+    },
+    "reports/gas-profiles-20261113/backend/python.log": {
+      "sha256": "b3955510eded8510eab7243a80b96b5ff8ad7db1327bee21fa88bfcf0a190ff7",
+      "bytes": 2754
+    },
+    "reports/gas-profiles-20261113/backend/reconcile-recorded.py": {
+      "sha256": "92d6b7293043b955c54c898bc061f9697aa7cf31dc1a074664c96c6411f1b3b9",
+      "bytes": 6889
+    },
+    "reports/gas-profiles-20261113/evm/ARTIFACTS.json": {
+      "sha256": "5206a4738abd6e665cde3875f7a9f0553d542a27083e3f703b0aaef9aa9e2585",
+      "bytes": 9367
+    },
+    "reports/gas-profiles-20261113/evm/EXECUTION.json": {
+      "sha256": "7966b446fd3867c1d32c8feaebcf924b3ceaca4dd9b239e8e510079b3c609e9d",
+      "bytes": 2781
+    },
+    "reports/gas-profiles-20261113/evm/EXTERNAL.json": {
+      "sha256": "f67b756a0e4b1368521ca87cc93dd0cdda3f0952b8f4b5462df66255e969b752",
+      "bytes": 8160
+    },
+    "reports/gas-profiles-20261113/evm/GAS.json": {
+      "sha256": "7ea1dd20376cbc5eb12cfab832392922b08e649376f8b6ef3dceeb61b375fad5",
+      "bytes": 10406
+    },
+    "reports/gas-profiles-20261113/evm/PRODUCER_STAGES.json": {
+      "sha256": "baa7a784ae30454a170c13e82fed82f3cb4f44b46a42f9c3805cc0e7cb12ee78",
+      "bytes": 655
+    },
+    "reports/gas-profiles-20261113/evm/REVIEW.md": {
+      "sha256": "c522d145cbfab24626d0dcecb5b2657d6b076d9be74a24fb422d1091374107a4",
+      "bytes": 7334
+    },
+    "reports/gas-profiles-20261113/evm/SOURCE_SNAPSHOT.json": {
+      "sha256": "98ca1df1f9cebd64851350e1d11274b00f1a49e563a4175d9cc7a12a5f3269ab",
+      "bytes": 37689
+    },
+    "reports/gas-profiles-20261113/evm/TEST_SCOPE.json": {
+      "sha256": "9ac20b8325974391871a38307a4774f7ccbbaf89ee90234ca91bdfa4f5123787",
+      "bytes": 805
+    },
+    "reports/gas-profiles-20261113/evm/VERIFICATION.json": {
+      "sha256": "cffa1d373a6a0fdb6c7ea87dcf1131f92b28df527eeba3160ff90610f3de9801",
+      "bytes": 1969
+    },
+    "reports/gas-profiles-20261113/evm/cases/compound/VERIFICATION.json": {
+      "sha256": "39685b4bd174d427efc94b07430982bc63b7d3c81d482529cde9fd1cd1f8d07a",
+      "bytes": 11085
+    },
+    "reports/gas-profiles-20261113/evm/cases/compound/actual-profile-fixture.json.gz": {
+      "sha256": "795123b3e7e3dc43729087f36846ab5c160dba9deb998bb4ca4f59f2daa725f4",
+      "bytes": 44236
+    },
+    "reports/gas-profiles-20261113/evm/cases/compound/rpc-records.json.gz": {
+      "sha256": "60c0f01dfd8f4be6ebef658062865e2de4f5f677ae0150f1b29ca0514852dc0e",
+      "bytes": 400422
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-activate100/VERIFICATION.json": {
+      "sha256": "72bf7b5ec0df97eabc3c139a3693834cfd8acdae1ead252a81405b1d0228c0f9",
+      "bytes": 11923
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-activate100/actual-profile-fixture.json.gz": {
+      "sha256": "d3a6744e762c55feb65f5e4fdaf937c2086159a5f69ac38e7f6af7a47c53075a",
+      "bytes": 49609
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-activate100/rpc-records.json.gz": {
+      "sha256": "2f0c061835f71fcd2792532ae69c78d663f37f02bfcdc0eb744de77dac4e2240",
+      "bytes": 404689
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-grow5/VERIFICATION.json": {
+      "sha256": "bfdea8c72857b944b4148522b9cec297e8340c35a4114ffd0858a9aeb5e62014",
+      "bytes": 11970
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-grow5/actual-profile-fixture.json.gz": {
+      "sha256": "3f222921567f14028e40c567d7248f9abccae49350a5b0aa9334335b2fa01a66",
+      "bytes": 53926
+    },
+    "reports/gas-profiles-20261113/evm/cases/eth-grow5/rpc-records.json.gz": {
+      "sha256": "c43359234e063394bca65e207a1dbc67f8139b620a723a0ba9ca2dac1a5c85e5",
+      "bytes": 408993
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-harvest/VERIFICATION.json": {
+      "sha256": "9e7618c0e858bc93fab1076c2ce9710bb4201bd67ed45164040386589c03d3df",
+      "bytes": 11031
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-harvest/actual-profile-fixture.json.gz": {
+      "sha256": "2ce1b91e4e836f7bb4a42b7e95ef7fab58362c5e2ff2736792e9910fae2110a8",
+      "bytes": 11906
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-harvest/rpc-records.json.gz": {
+      "sha256": "6842eb24391617a7f9b6267733ad96c03d85b3aa1271019ccdff830131f47b7d",
+      "bytes": 368192
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-open/VERIFICATION.json": {
+      "sha256": "f119126e3cbea986926ce1d575c01c1aa555d0c9e2851d688b782f8afb9f2fdd",
+      "bytes": 11092
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-open/actual-profile-fixture.json.gz": {
+      "sha256": "a66ff59dabed55fcff2e69c9aead8486680c5ce59548a53a15dfc3b11813bb1a",
+      "bytes": 58363
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-open/rpc-records.json.gz": {
+      "sha256": "ac43448cbec3b250c28eb430c8495e04238d1394f6ae8c53110ebdd120973b92",
+      "bytes": 414673
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-replace/VERIFICATION.json": {
+      "sha256": "4fc543501291fbeab6908543a7a45d460dde7ad1cba213f5710e816dd1a0b3e5",
+      "bytes": 11099
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-replace/actual-profile-fixture.json.gz": {
+      "sha256": "aa6fe455fbe679ed3c5270dd1938755dd703d455ac6ea5832cddfd95270e847a",
+      "bytes": 60144
+    },
+    "reports/gas-profiles-20261113/evm/cases/hybrid-replace/rpc-records.json.gz": {
+      "sha256": "8eb4c8452948d6421f9cc09ba8456ba6ec67947581ac3abfb9d997cbadc7e941",
+      "bytes": 416409
+    },
+    "reports/gas-profiles-20261113/evm/cases/main-harvest/VERIFICATION.json": {
+      "sha256": "4798c78511d1fbdf6a616addc5b9b80a6c41aa5948271d98da17920c8e2eb457",
+      "bytes": 11024
+    },
+    "reports/gas-profiles-20261113/evm/cases/main-harvest/actual-profile-fixture.json.gz": {
+      "sha256": "deade523bebae7b6bede177ddc8c837d4a1f2c38ddb7fa2a08e6dc95b6a0f33d",
+      "bytes": 11046
+    },
+    "reports/gas-profiles-20261113/evm/cases/main-harvest/rpc-records.json.gz": {
+      "sha256": "c236a8d41fbea2b61ae35716a497abb9799b69d890892a0fd145f56fcc229995",
+      "bytes": 367243
+    },
+    "reports/gas-profiles-20261113/evm/cases/single-rebalance/VERIFICATION.json": {
+      "sha256": "61fb5dad660732513fb22521e2cd5be0da341b1b997bb807ea7a0bc30960a927",
+      "bytes": 11102
+    },
+    "reports/gas-profiles-20261113/evm/cases/single-rebalance/actual-profile-fixture.json.gz": {
+      "sha256": "00349d7fe2d3526545addfc3f4a3928d30ec40295195551246d0ffb15e1c7271",
+      "bytes": 52017
+    },
+    "reports/gas-profiles-20261113/evm/cases/single-rebalance/rpc-records.json.gz": {
+      "sha256": "76a38f75d77b56f6ed5634b244c08fb88618b3b46d98d0aa2dc9357996bcdfae",
+      "bytes": 408331
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-activate100/VERIFICATION.json": {
+      "sha256": "d01c5174074b5e65a340edc08a33385bc05768e371bccac7111886f687e1edad",
+      "bytes": 11902
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-activate100/actual-profile-fixture.json.gz": {
+      "sha256": "5199af4c2c235ae702f5fb39093e2a80d4e8cb84de2bb95cda9d65d19b7c326b",
+      "bytes": 51623
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-activate100/rpc-records.json.gz": {
+      "sha256": "885caa6e73d22022c203f667ff00cc473ce014932542726029f51b7a5d6783ef",
+      "bytes": 406783
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-grow5/VERIFICATION.json": {
+      "sha256": "cb72cebbb89bf467e290266de9fb1edf4bf9585517875ff5e6421971e5c0fdaa",
+      "bytes": 11951
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-grow5/actual-profile-fixture.json.gz": {
+      "sha256": "470212300707634fa861bc5395b7d1d05e61e7d1aa9fbe072b056ada415182d7",
+      "bytes": 55272
+    },
+    "reports/gas-profiles-20261113/evm/cases/zzz-grow5/rpc-records.json.gz": {
+      "sha256": "5c837b97995590b9292eeeaf2581fd7dd1788a7a7f7e8183ef5cc01be1b52740",
+      "bytes": 410357
+    },
+    "reports/gas-profiles-20261113/evm/unit/0/PROCESS.json": {
+      "sha256": "7b313c65d869f1ed3f59b23a88a21b506f02ee4fc794a66dbf96f4dadca328f6",
+      "bytes": 58
+    },
+    "reports/gas-profiles-20261113/evm/unit/0/RESULT.json.gz": {
+      "sha256": "4b58d4add3843f75c0bad69e82f75fe226b151cb5506a119abcd1bbe519d038e",
+      "bytes": 9400
+    },
+    "reports/gas-profiles-20261113/evm/unit/0/START.json": {
+      "sha256": "4fdff72983db5b89a637614dd5244fc6de2a0fc482511bcb443477ba1f1febf8",
+      "bytes": 902
+    },
+    "reports/gas-profiles-20261113/evm/unit/1/PROCESS.json": {
+      "sha256": "f91abf176e71a59e615aa8d515fe73611587a129077a74c786abeb938dddf409",
+      "bytes": 58
+    },
+    "reports/gas-profiles-20261113/evm/unit/1/RESULT.json.gz": {
+      "sha256": "1bc85fe8f7be2e9918a31f92dca73ba5b0ebe9f5d3fa7236560a3b94a6d5e7d6",
+      "bytes": 13099
+    },
+    "reports/gas-profiles-20261113/evm/unit/1/START.json": {
+      "sha256": "ff648f8818eca7af8b2b6190db4169ee77c20ff330ba8887b23a803de769c6f3",
+      "bytes": 902
+    },
+    "reports/gas-profiles-20261113/evm/unit/2/PROCESS.json": {
+      "sha256": "c3341d448b3077a389f2116fa0d07016b6c7127b22bb04f810d9ff9b111fef1a",
+      "bytes": 58
+    },
+    "reports/gas-profiles-20261113/evm/unit/2/RESULT.json.gz": {
+      "sha256": "8e3a935d9bcf72bf3d4013a367914d65e71ec00d27b0b800d543d20432406553",
+      "bytes": 9754
+    },
+    "reports/gas-profiles-20261113/evm/unit/2/START.json": {
+      "sha256": "817813dc4ec33b385285d3089bafdab63291b395bf7b2e80b4b413b95c078f68",
+      "bytes": 938
+    },
+    "reports/gas-profiles-20261113/evm/unit/3/PROCESS.json": {
+      "sha256": "130fb733b36285c3989986e5e35fee2780e6fd61c3de7db052eb7efeca931d6d",
+      "bytes": 58
+    },
+    "reports/gas-profiles-20261113/evm/unit/3/RESULT.json.gz": {
+      "sha256": "36676b0aacf861a22330291fee6acfb32308b76971a9691d03827f858612e0ce",
+      "bytes": 9728
+    },
+    "reports/gas-profiles-20261113/evm/unit/3/START.json": {
+      "sha256": "98fe379d7f361aa3685ccf6044e904854e89e3bb21564ba0ac9752e3a6504f6e",
+      "bytes": 940
+    },
+    "reports/gas-profiles-20261113/evm/unit/4/PROCESS.json": {
+      "sha256": "802fee3bb39d9d428bdf5d1b64da63886d65c6e343340288f77a080b7b5e3c09",
+      "bytes": 58
+    },
+    "reports/gas-profiles-20261113/evm/unit/4/RESULT.json.gz": {
+      "sha256": "69e905732ca5ba0a88b80c7a34fa66bc83809c777f3f898ea8b145be6d47e21d",
+      "bytes": 16273
+    },
+    "reports/gas-profiles-20261113/evm/unit/4/START.json": {
+      "sha256": "15757826f33cd38eeae1692051304964a9086007b27165e42b535e0b6e959ad1",
+      "bytes": 940
+    },
+    "reports/gas-profiles-20261113/evm/verify.py": {
+      "sha256": "fba3c7f56410e5217a7920453b9b13fd699bc92ad217a48cf5964312cc6a5ed7",
+      "bytes": 8257
+    },
+    "reports/gas-profiles-20261113/network/ARTIFACTS.json": {
+      "sha256": "aa580a07a5b236eca5ee530787cb3478daaf3f95cdeea257eac7dd7ed71884ac",
+      "bytes": 3522
+    },
+    "reports/gas-profiles-20261113/network/METHODS.json": {
+      "sha256": "666a325ed32bfcfbfb2cce46c390d5b69617331b703e794af11712994807a9ad",
+      "bytes": 1233
+    },
+    "reports/gas-profiles-20261113/network/OBSERVATIONS.json": {
+      "sha256": "52d6ce1d8dcffdd1cb112eed07a74dd7d5b138adac0f0db446e712a9d36f835b",
+      "bytes": 32837
+    },
+    "reports/gas-profiles-20261113/network/RESULTS.json": {
+      "sha256": "902732726757de69b9bed84e69d72e6ae96736334796bad3103eb339bd898a8e",
+      "bytes": 4822
+    },
+    "reports/gas-profiles-20261113/network/REVIEW.md": {
+      "sha256": "0439db8bfeb353101c4e8ac5c5641b04e0818093f9a0aad3e6e38ae174961ce8",
+      "bytes": 6227
+    },
+    "reports/gas-profiles-20261113/network/SOURCES.json": {
+      "sha256": "012eee47e8a04b69e43dcadbdb5f130cc4212d33a1b54b5cc3ee06a5210ee20c",
+      "bytes": 2067
+    },
+    "reports/gas-profiles-20261113/network/verify.py": {
+      "sha256": "22cb2bc984759d5998439729b6d8fa96e7cd03d398c9d3ede17418e4a54b3f55",
+      "bytes": 7288
+    }
+  }
+}

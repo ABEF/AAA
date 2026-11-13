@@ -243,7 +243,9 @@ hash and gas-price ceiling. Example engineering limits are `"16000000"` gas and
 `"1000000000000000000"` wei total fee, not production recommendations.
 
 Pin the resulting activation configuration hash in a matching source9/V9 or source10/V10 manifest,
-set `activation_policy_schema:2` and an equal/lower reviewed `limits.gas`. Both
+set `activation_policy_schema:2` and `limits.gas` EXACTLY equal to the backend's
+configured `fee_policy.max_gas_limit`. A smaller effective confirmed-block cap
+remains binding; it does not change that configuration equality. Both
 simulations, the final estimate and independent consumer checks use the same
 confirmed-block cap and require full20% headroom. Claim policy1 still caps12M.
 Do not widen budgets automatically after failure. Reconcile saved operations,
@@ -253,6 +255,81 @@ financial caps are unchanged. Revert by restoring the earlier reviewed config /
 consumer artifact, never by rewriting pending operations. Source9 stays unsigned.
 See [configuration](ACTIVATION_PREPARATION.md) and
 [actual rehearsal/market limits](../reports/source9-actual-entry-20261109/REVIEW.md).
+
+<a id="gas-profiles-20m-24m"></a>
+
+### Explicit20M contribution and24M maintenance profiles
+
+The [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) passes
+all four $100/$5 contribution cases and six keeper operations at full padding;
+worst measured padded gas is18,098,846/20M and21,046,237/24M. This is not maximum-
+state, real-market/provider or actual manual Migration C/D acceptance.
+The [profile package](../reports/gas-profiles-20261113/backend/profiles.template.json)
+contains gas-only candidate overlays, not complete runnable configurations or
+permission to deploy. Fee approvals, runtime/chain/configuration identities and
+provider acceptance remain separate. The legacy12M defaults and both public
+null configurations remain unchanged.
+
+| Consumer | Operator-owned field | Candidate value and type | Full estimate margin |
+| --- | --- | --- | --- |
+| Activation/growth API | `schema:2`, `fee_policy.max_gas_limit` | `"20000000"`, decimal string |20%; maximum estimate16,666,666 |
+| Matching source9/source10 website manifest | `activation_policy_schema:2`, `limits.gas` | `20000000`, JSON integer; exact backend configured value | Independently verifies the same20% |
+| Keeper | `max_gas_limit` | `24000000`, JSON integer |25%; maximum estimate19,200,000 |
+| Manual LP policy | `fee_policy.max_gas_limit` | `"24000000"`, decimal string |25%; maximum estimate19,200,000 |
+
+The signed/reviewed gas allowance is the freshly padded estimate, not automatically the
+entire20M/24M ceiling. A successful raw call without full padding is insufficient.
+All smaller chain/provider bounds and separate fee/balance limits still apply.
+Manual maintenance and keeper25% padding must not be replaced with the activation
+API's20%. Claim policy1 remains12M; explicit holder-return distribution batches
+retain their own frozen gas review. No source-call, solver, payout or royalty-sync
+subcall budget changes with these profiles.
+
+To prepare a future adoption, first select the exact current runtime/read
+configuration and a provider supporting canonical-hash calls, complete estimates
+and `callTracer` with logs. Review complete fee semantics, a nonzero fee evidence
+hash and explicit gas-price/network/per-transaction/daily ceilings. The package's
+false/null placeholders deliberately do not grant those approvals. Merge only
+the named fields into a complete reviewed copy; never replace entire fee/limits
+objects and accidentally discard existing financial or value limits.
+Do not blindly copy false/null placeholders over reviewed operating values.
+
+Activation `ActivationConfig` and mint/claim `TransactionConfig` are separate
+policies, served by separate listeners. The existing command templates are:
+
+```text
+python -m frontend_api.activation_server --config READ_CONFIG --activation-config ACTIVATION20_CONFIG --port 8788
+python -m frontend_api.server --config READ_CONFIG --transaction-config UNCHANGED_CLAIM_CONFIG --port 8787
+```
+
+These templates start nothing here; replace every path from the reviewed
+inventory before later authorized use. A reviewed reverse proxy must route
+`/v1/activation/prepare` to the activation listener and transaction/claim paths
+to their own listener. Never combine the two policy JSON files or treat a gas-only
+overlay as the read/deployment inventory. The existing request-time, worker,
+response-size, trace-depth/frame and ingress limits remain unchanged.
+
+For activation, hash the complete new API configuration, put that exact identity
+and fee review in the matching unsigned website manifest, and verify the20M
+configured ceilings match. For the keeper, reconcile pending receipts/spend and
+stop new work before loading a reviewed24M configuration through a controlled
+restart. Keep the original journal and pending review intact. Manual preparation
+uses the new complete policy through the runnable wrapper:
+
+```text
+python scripts/prepare-manual-lp.py --read-config READ_CONFIG --policy REVIEWED_POLICY --selection SELECTION --output NEW_OUTPUT
+```
+
+It never signs. Contract sealing requires no change and no on-chain governance
+setter is called.
+
+Dry-run exact actions, amounts and current state before any separately authorized
+service/site rollout. Expire old unsigned reviews and verify new configuration
+identities. A failed simulation, missing trace or exceeded fee ceiling stops the
+operation; it must not raise budgets or choose a forced path. Roll back by restoring
+the prior reviewed configuration/consumer and reconciling the same pending hashes,
+never by deleting or relabeling journal entries. This qualification installs
+nothing in a running environment.
 
 ## Current accounting7 deployment boundary
 
@@ -751,7 +828,8 @@ limits and complete fees. The bounded11November read found a public RPC and
 32M transaction/block execution parameters; the header's synthetic `1<<50`
 is not usable capacity. Its900-block public history cannot serve lifetime
 replay, and complete-operation call/estimate gas caps remain unqualified.
-Keep activation/unsigned20% headroom, keeper25% padding and existing budgets.
+Keep explicit activation/transaction-policy2 full20% headroom and manual-LP/keeper25%
+padding. Legacy policy1 retains its original advisory-padding behavior and12M cap.
 
 The [complete-operation measurements](../reports/gas-feasibility-20261111/REVIEW.md)
 now cover real main/both-leg harvesting, Compounder and ordinary single/hybrid

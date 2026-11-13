@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "scope": "New exact-dollar launch cases and explicit20M/24M profiles, not before/after optimization or production qualification",
+  "cases": [
+    {
+      "case": "compound",
+      "unit_measurement": {
+        "raw_outer_call_gas": 10681002,
+        "arithmetic_padded_call_gas": 13351253,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 10310034,
+        "estimate_gas": 10987750,
+        "padded_gas": 13734688,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 10265312,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xe3f0773a608e63db08d435d5d77f9fdc431b5a59d5d28113fba388b635d43296",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/compound/actual-profile-fixture.json.gz",
+      "fixture_sha256": "795123b3e7e3dc43729087f36846ab5c160dba9deb998bb4ca4f59f2daa725f4"
+    },
+    {
+      "case": "eth-activate100",
+      "unit_measurement": {
+        "raw_outer_call_gas": 14624921,
+        "arithmetic_padded_call_gas": 17549906,
+        "cap": 20000000
+      },
+      "actual_rpc": {
+        "gas_used": 14094485,
+        "estimate_gas": 14748028,
+        "padded_gas": 17697634,
+        "profile_cap": 20000000,
+        "padding_bps": 2000,
+        "remaining_profile_margin": 2302366,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x00000000000000000000000000000000000a11ce",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/eth-activate100/actual-profile-fixture.json.gz",
+      "fixture_sha256": "d3a6744e762c55feb65f5e4fdaf937c2086159a5f69ac38e7f6af7a47c53075a"
+    },
+    {
+      "case": "eth-grow5",
+      "unit_measurement": {
+        "raw_outer_call_gas": 13401732,
+        "arithmetic_padded_call_gas": 16082079,
+        "cap": 20000000
+      },
+      "actual_rpc": {
+        "gas_used": 12894696,
+        "estimate_gas": 13616039,
+        "padded_gas": 16339247,
+        "profile_cap": 20000000,
+        "padding_bps": 2000,
+        "remaining_profile_margin": 3660753,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x00000000000000000000000000000000000a11ce",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/eth-grow5/actual-profile-fixture.json.gz",
+      "fixture_sha256": "3f222921567f14028e40c567d7248f9abccae49350a5b0aa9334335b2fa01a66"
+    },
+    {
+      "case": "hybrid-harvest",
+      "unit_measurement": {
+        "raw_outer_call_gas": 1016074,
+        "arithmetic_padded_call_gas": 1270093,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 927866,
+        "estimate_gas": 1083316,
+        "padded_gas": 1354145,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 22645855,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xe575db52969fe014a67aacf08695257eea6d019d946cba889321a7db0da23547",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/hybrid-harvest/actual-profile-fixture.json.gz",
+      "fixture_sha256": "2ce1b91e4e836f7bb4a42b7e95ef7fab58362c5e2ff2736792e9910fae2110a8"
+    },
+    {
+      "case": "hybrid-open",
+      "unit_measurement": {
+        "raw_outer_call_gas": 16324198,
+        "arithmetic_padded_call_gas": 20405248,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 15636730,
+        "estimate_gas": 16473330,
+        "padded_gas": 20591663,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 3408337,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xe575db52969fe014a67aacf08695257eea6d019d946cba889321a7db0da23547",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/hybrid-open/actual-profile-fixture.json.gz",
+      "fixture_sha256": "a66ff59dabed55fcff2e69c9aead8486680c5ce59548a53a15dfc3b11813bb1a"
+    },
+    {
+      "case": "hybrid-replace",
+      "unit_measurement": {
+        "raw_outer_call_gas": 16631857,
+        "arithmetic_padded_call_gas": 20789822,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 15848089,
+        "estimate_gas": 16836989,
+        "padded_gas": 21046237,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 2953763,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0x942e41e5791306a847642cad53460b492f0e933aec58d66ee3777cf2b2fc040f",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/hybrid-replace/actual-profile-fixture.json.gz",
+      "fixture_sha256": "aa6fe455fbe679ed3c5270dd1938755dd703d455ac6ea5832cddfd95270e847a"
+    },
+    {
+      "case": "main-harvest",
+      "unit_measurement": {
+        "raw_outer_call_gas": 661070,
+        "arithmetic_padded_call_gas": 826338,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 672362,
+        "estimate_gas": 728312,
+        "padded_gas": 910390,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 23089610,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/main-harvest/actual-profile-fixture.json.gz",
+      "fixture_sha256": "deade523bebae7b6bede177ddc8c837d4a1f2c38ddb7fa2a08e6dc95b6a0f33d"
+    },
+    {
+      "case": "single-rebalance",
+      "unit_measurement": {
+        "raw_outer_call_gas": 13447581,
+        "arithmetic_padded_call_gas": 16809477,
+        "cap": 24000000
+      },
+      "actual_rpc": {
+        "gas_used": 12847413,
+        "estimate_gas": 13535113,
+        "padded_gas": 16918892,
+        "profile_cap": 24000000,
+        "padding_bps": 2500,
+        "remaining_profile_margin": 7081108,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x000000000000000000000000000000000000beef",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xe575db52969fe014a67aacf08695257eea6d019d946cba889321a7db0da23547",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/single-rebalance/actual-profile-fixture.json.gz",
+      "fixture_sha256": "00349d7fe2d3526545addfc3f4a3928d30ec40295195551246d0ffb15e1c7271"
+    },
+    {
+      "case": "zzz-activate100",
+      "unit_measurement": {
+        "raw_outer_call_gas": 14946723,
+        "arithmetic_padded_call_gas": 17936068,
+        "cap": 20000000
+      },
+      "actual_rpc": {
+        "gas_used": 14304627,
+        "estimate_gas": 15082371,
+        "padded_gas": 18098846,
+        "profile_cap": 20000000,
+        "padding_bps": 2000,
+        "remaining_profile_margin": 1901154,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x00000000000000000000000000000000000a11ce",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/zzz-activate100/actual-profile-fixture.json.gz",
+      "fixture_sha256": "5199af4c2c235ae702f5fb39093e2a80d4e8cb84de2bb95cda9d65d19b7c326b"
+    },
+    {
+      "case": "zzz-grow5",
+      "unit_measurement": {
+        "raw_outer_call_gas": 13691008,
+        "arithmetic_padded_call_gas": 16429210,
+        "cap": 20000000
+      },
+      "actual_rpc": {
+        "gas_used": 13117736,
+        "estimate_gas": 13929079,
+        "padded_gas": 16714895,
+        "profile_cap": 20000000,
+        "padding_bps": 2000,
+        "remaining_profile_margin": 3285105,
+        "cap_call_passed": true,
+        "exact_padded_call_passed": true,
+        "actual_sender": "0x00000000000000000000000000000000000a11ce",
+        "sender_code_empty": true,
+        "sender_funded_for_value_and_calculated_local_gas": true,
+        "block_hash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+        "block_gas_limit": 32000000,
+        "owned_node_stopped": true
+      },
+      "fixture": "cases/zzz-grow5/actual-profile-fixture.json.gz",
+      "fixture_sha256": "470212300707634fa861bc5395b7d1d05e61e7d1aa9fbe072b056ada415182d7"
+    }
+  ]
+}

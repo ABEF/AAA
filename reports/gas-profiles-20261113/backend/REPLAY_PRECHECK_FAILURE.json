@@ -1,0 +1,9 @@
+{
+  "scope": "Offline reconciliation runner precheck only",
+  "cause": "Initial source manifest named a nonexistent frontend_api/lp_trace.py; corrected to existing activation_v4.py before production helpers ran",
+  "cases_executed": 0,
+  "network_requests": 0,
+  "evm_executions": 0,
+  "production_code_changed": false,
+  "rerun_reason": "Changed runner source manifest; initial attempt stopped before reading captures"
+}

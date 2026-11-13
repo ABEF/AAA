@@ -1,5 +1,12 @@
 # Verification evidence
 
+The [20M/24M qualification](gas-profiles-20261113/REVIEW.md) adds controlled
+exact$100/$5 contributions, six complete keeper calls and consumer boundary checks.
+All ten actual RPC cases succeed at their caps and full-padded estimates. No
+production/default changes or unchanged suite reruns. [Verification](gas-profiles-20261113/VERIFICATION.md)
+separates new checks, reuse, real provider failures and still-unapproved fees/
+market/max-state/hosting adoption. Manual helper checks are not actual C/D calls.
+
 The [gas-feasibility campaign](gas-feasibility-20261111/REVIEW.md) reuses original
 traces, reduces repeated pricing-policy reads, measures complete single/hybrid
 maintenance and records bounded live Robinhood limits/fees. Defaults and

@@ -38,6 +38,7 @@ MODULES=(
  'test_keeper_standalone_harvest_review','test_keeper_late_lp_review',
  'test_keeper_review_retry','test_keeper_confirmation_wakeup',
  'test_keeper_execution_price',
+ 'test_reviewed_gas_profiles_20_24',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

@@ -1,5 +1,25 @@
 # AAA / ZZZ PoPL project instructions
 
+The [20M/24M profile qualification](reports/gas-profiles-20261113/REVIEW.md)
+passes controlled exact$100 activation/$5 growth in ETH/ZZZ and six keeper
+operations, with full20%/25% padding and exact padded-call success. Worst padded
+contribution18,098,846/20M; maintenance21,046,237/24M. Five new EVM methods,
+13Python methods and12browser checks pass; ten actual RPC cases overlap those
+workflows, not ten extra features. Four recorded contributions reconcile with
+production trace/gas helpers offline. No unchanged suite or normal/static build reruns;
+production Solidity remains unchanged. Source9/mint1 fixtures are not mint2/OpenSea
+acceptance. Manual24M helpers have injected-input coverage, not actual C/D
+qualification. Candidate overlays are incomplete/unapproved, not live settings.
+Website configured activation gas must exactly equal backend configured gas;
+activation/claim listeners remain separate. Keeper/manual padding25%, explicit
+activation policy2 padding20%; claim policy1/default12M stays. Public Daybreak
+accepts canonical-hash cheap calls/estimates but lacks tracing; BlockVectra
+hash-state calls and tracing fail. No complete provider/fees/market/max-state or
+hosting/operating approval. All61 production sources, Oracle3-byte/Vault32-byte
+headroom, signer/public-null/site/service/Anvil/journals and paused heartbeat stay.
+Use the [operator adoption procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m);
+never adopt these profiles, a public RPC or a fee budget automatically.
+
 The [gas-feasibility source](reports/gas-feasibility-20261111/REVIEW.md) saves
 about680k gas per controlled contribution, with23focused EVM methods passing.
 Exact12M Entry probes still reject. Oracle runtime is24,573/3bytes headroom;
@@ -174,7 +194,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-11. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-13. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.

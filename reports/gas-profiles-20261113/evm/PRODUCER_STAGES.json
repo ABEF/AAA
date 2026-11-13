@@ -1,0 +1,11 @@
+{
+  "changed_at_utc": "2026-11-13T08:48:04.025687+00:00",
+  "v1_sha256": "7cead8576fa90b5e73948d255e3e4157cd3e01d63da1fe2819d419529312d268",
+  "v2_sha256": "b51870a42acb23fd4fab3b2b7b642ba2817c94dc1cc714b510a8904277661d13",
+  "changes": [
+    "Future Anvil children receive minimal Windows/runtime environment",
+    "Future captures include exact numbered-header read"
+  ],
+  "v1_scope": "Earlier completed and already-running producers inherited Python environment; no claim that it was whitelisted. --accounts0/--silent/read-only RPC/no signing remain true. No env names or values inspected/logged.",
+  "no_case_repeated_for_hygiene": true
+}

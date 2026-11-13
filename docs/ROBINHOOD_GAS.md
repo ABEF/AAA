@@ -51,10 +51,23 @@ The [reference source and observed values](../reports/gas-feasibility-20261111/n
 1. Use the exact fresh runtime profile, source/configuration pins, entry calldata, representative state, assets, routes and feeds. A successful empty transfer or getter does not qualify activation, growth, claim, rebalance or exit.
 2. Estimate/simulate the complete operation on the approved local fork and validate target execution/data-fee semantics. Do not deploy or submit a public transaction as part of this read-only procedure.
 3. Keep the reviewed gas budget below the applicable live transaction/block execution parameters and provider caps; use a conservative gas-field ceiling no greater than the observed 32 million unless separately reviewed target semantics justify a different envelope. A synthetic header bound alone is insufficient.
-4. Preserve full **20% headroom** for activation/unsigned reviews, the keeper's separate **25% padding**, reviewed network-fee ceilings, all financial guards and explicit matching consumers. Do not raise a budget automatically when simulation fails.
+4. Preserve full **20% headroom** for explicit activation/transaction policy2 and **25% padding** for keeper/manual LP maintenance reviews, reviewed network-fee ceilings, all financial guards and explicit matching consumers. Legacy policy1 keeps its original advisory-padding behavior. Do not raise a budget automatically when simulation fails.
 5. Account for throughput: an expensive operation can consume a significant portion of block execution capacity. Multiple concurrent website users do not imply simultaneous chain inclusion. Qualify queueing, timeout, retry and recovery behavior separately.
 
 Optional activation `schema:2` uses decimal-string `fee_policy.max_gas_limit` and `fee_policy.max_network_fee_wei`, with a matching website `activation_policy_schema:2` and reviewed configuration hash. The engineering maximum is not chain/provider approval. See [activation preparation](ACTIVATION_PREPARATION.md) and [operator settings](OPERATOR_MANUAL.md#unsigned-activation-gas-settings). Defaults stay unchanged; this guide does not install or adopt a new configuration. Preserve existing journals and pending operation identities through any later authorized rollout.
+
+The explicit [20M/24M candidate package](../reports/gas-profiles-20261113/backend/profiles.template.json)
+and [operator procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) keep activation
+and maintenance policies separate. Website `limits.gas` must equal the configured
+activation ceiling exactly, even when the confirmed block imposes a smaller
+effective cap. Null fee approvals and unsigned profiles are not deployable policy.
+
+The [13 November provider review](../reports/gas-profiles-20261113/network/REVIEW.md)
+corroborates32M execution parameters. Daybreak accepts canonical-hash20M/24M
+cheap calls/estimates but does not expose the required tracer. BlockVectra's
+fresh hash-anchored calls fail; its numbered calls are diagnostics only, never a
+production fallback. Neither provider qualifies complete transaction preparation,
+full-operation gas ceilings/fees or lifetime history through these reads.
 
 ## Calculate fees without double counting
 

@@ -1,0 +1,7 @@
+{
+  "phase": "Before importing extracted fixture factories or running newcases",
+  "newcases_run": 0,
+  "oldcases_run": 0,
+  "failure": "Guard pattern incorrectly included RegExp.test(method), not node:test registration",
+  "correction": "Disallow bare test(...) calls; permit the existing RegExp.test(...) expression. No old node:test import/test body remains in extracted prefix."
+}

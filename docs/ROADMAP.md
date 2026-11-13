@@ -1,12 +1,15 @@
 # Engineering roadmap
 
-The [gas-feasibility milestone](../reports/gas-feasibility-20261111/REVIEW.md)
-provides lower-cost price proofs, complete maintenance measurements and dated
-Robinhood32M execution parameters. Cold Entries still exceed12M and Oracle
-has3bytes of runtime headroom. Next qualify exact$100/$5 real operations,
-actual provider call/trace/history/fee limits and representative maximum state;
-then review budgets/consumer adoption without weakening guards or auto-widening
-defaults. Public RPC discovery is not archive-service or production acceptance.
+The [20M/24M milestone](../reports/gas-profiles-20261113/REVIEW.md) completes
+controlled exact$100/$5 ETH/ZZZ and six keeper-operation qualification with full
+padding and actual RPC estimates/padded calls. Defaults and safeguards remain;
+Oracle has3bytes headroom. Next qualify a complete canonical-hash tracing provider,
+actual independent prices/routes/depth, all network fees and operator spending
+ceilings, representative maximum state and complete consumer/host admission.
+Daybreak cheap hash calls/estimates work but tracing does not; no provider or
+incomplete profile template is approved for adoption. Manual Migration C/D
+workloads remain separate from measured keeper calls. Use the reviewed rollout/
+rollback [procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m), not automatic widening.
 
 The [remaining271 reconciliation](../reports/remaining-271-20261111/REVIEW.md)
 completes the individual historical review and fixes initial keeper simulation
@@ -68,7 +71,7 @@ zero-noop replay. Optional gas policy2 is implemented without rollout; next qual
 actual cheap1% routes/native feeds and matching schema2 consumers/providers/fees,
 then actual gas/recovery and independent audit. The soleTodo owns statuses.
 
-Reviewed11November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed13November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.

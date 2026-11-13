@@ -1,12 +1,14 @@
 # Release approval record - NOT APPROVED
 
-The [gas-feasibility candidate](../reports/gas-feasibility-20261111/REVIEW.md)
-passes focused execution and normal size checks with safeguards/defaults intact.
-Oracle runtime headroom is only3bytes; Vault remains32. Dated32M chain execution
-parameters are observed, but default12M still refuses cold Entry operations.
-Complete real-route estimates/fees, maximum actual workloads, provider gas/trace/
-archive limits and separately reviewed operating budgets remain release gates.
-No discovered public RPC, policy2 envelope or source runtime is adopted here.
+The [20M/24M profiles](../reports/gas-profiles-20261113/REVIEW.md) pass controlled
+exact$100/$5 contributions and six keeper operations, including actual estimates
+and full-padded calls. This closes that bounded local gas milestone only. All61
+production sources/default12M and safeguards remain; Oracle headroom3bytes/Vault32.
+Complete real-route estimates/fees, maximum actual state, full canonical-hash
+tracing/archive/provider limits, approved transaction/day spending and matching
+configuration/host admission remain release gates. Neither public provider nor
+incomplete candidate overlay is approved or installed. Manual C/D actual execution
+qualification is separate from keeper-call and injected manual-helper evidence.
 
 The [complete remaining-findings review](../reports/remaining-271-20261111/REVIEW.md)
 checks all271previously unreviewed records and implements source corrections.
@@ -90,7 +92,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-11. This records review of one frozen release; it is not a second Todo.
+Reviewed2026-11-13. This records review of one frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.

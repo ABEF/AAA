@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "allowed": [
+    "eth_chainId",
+    "eth_getBlockByNumber",
+    "eth_getBlockByHash",
+    "eth_gasPrice",
+    "eth_call",
+    "eth_estimateGas",
+    "debug_traceCall",
+    "eth_getCode"
+  ],
+  "gas_info_address": "0x000000000000000000000000000000000000006c",
+  "allowed_selectors": [
+    "0xaae1cd4c",
+    "0x0371fdb4",
+    "0x41b247a8"
+  ],
+  "gas_fields": [
+    200000,
+    20000000,
+    24000000
+  ],
+  "selected_core_read": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+  "unknown_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "trace_options": {
+    "tracer": "callTracer",
+    "timeout": "5s",
+    "tracerConfig": {
+      "withLog": true
+    }
+  },
+  "bounds": {
+    "timeout_seconds": 12,
+    "max_response_bytes": 262144,
+    "spacing_seconds": 0.45,
+    "blockvectra_first_max_rpc": 13,
+    "blockvectra_numbered_max_rpc": 7,
+    "alternate_max_each": 12,
+    "stop_on_http401_or403": true,
+    "one_trace_per_public_provider": true,
+    "no_state_override": true,
+    "no_send": true
+  },
+  "scope": "Cheap getter work; not a gas stress/cap-consumption test. Number diagnostics never replace required canonical-hash reads."
+}

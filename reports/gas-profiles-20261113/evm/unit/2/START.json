@@ -1,0 +1,20 @@
+{
+  "method": "testProfile24MainHarvestAndCompoundPreservePrincipalAndRewards",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\gas-profiles-20261113-fbe47c3\\focused-profiles",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "GasProfileQualificationTest",
+    "--match-test",
+    "^testProfile24MainHarvestAndCompoundPreservePrincipalAndRewards(?:\\(\\))?$",
+    "--json",
+    "-vvv"
+  ],
+  "test_source_sha256": "1ec4df10cb994e26697d587c666c35aa01818f7551c9bed9266320170ee0d124",
+  "no_original_test_methods_selected": true,
+  "started_at_utc": "2026-11-13T08:40:03.478968+00:00"
+}

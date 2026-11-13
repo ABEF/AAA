@@ -1,0 +1,16 @@
+{
+  "baseline": "fbe47c330a11ab3370417ae999b31c8ab61fc66d",
+  "original_parent_sha256": "a95b14f6a0cd2311ee310ca9edffaee91b17a4d2cf0a9ec94e5383089fa6fc3e",
+  "current_parent_sha256": "02de7cd31580d16c8e97ea53e9ccc6642733973c1c0d4ec84ee71f9ef7d3e78d",
+  "parent_change": "Only test field exportSetupHash private->internal to authenticate derived export utility",
+  "original35test_method_bodies_unchanged": true,
+  "original_methods_rerun": 0,
+  "new_test_path": "test/GasProfileQualification.t.sol",
+  "new_test_sha256": "1ec4df10cb994e26697d587c666c35aa01818f7551c9bed9266320170ee0d124",
+  "new_test_methods": 5,
+  "new_fixture_states": 10,
+  "production_solidity_files_changed": 0,
+  "normal_sources_exact": 100,
+  "single_new_test_compile": true,
+  "new_normal_or_static_compiles": 0
+}

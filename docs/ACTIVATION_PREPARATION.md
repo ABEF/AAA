@@ -40,8 +40,11 @@ The [current read-only campaign](../reports/market-followup-20261109/REVIEW.md)
 adds source/control/ABI and direction/size/spot/depth evidence, not a ready live
 configuration. Keep unavailable prices unavailable. Quote output or retained
 idle cannot substitute for actual marginal LP or independent USD valuation.
-No new complete activation/growth transaction was performed; previous2% fork
-rejections retain that scope. Current3% total does not alter swap/spot/idle/caller
+That read-only market campaign performed no new complete activation/growth
+operation; previous2% fork rejections retain their original scope. The later
+[20M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) executes
+current $100/$5 ETH/ZZZ operations with controlled feeds and synthetic depth; it
+does not qualify those real market dependencies. Current3% total does not alter swap/spot/idle/caller
 guards, and a source spread can consume the available marginal-LP budget.
 
 ## Current deployment and review profile
@@ -137,15 +140,35 @@ Opt-in `schema:2` additionally requires decimal-string
 existing exact fee-review and gas-price fields. It binds the same confirmed block
 gas limit, applies the smaller cap to both full traces/final estimate, and rejects
 unless ceil(estimate×1.20) fits in full. Network gas remains separate. Matching
-website `activation_policy_schema:2` is mandatory; this is a backend/build setting
-after sealing, not an on-chain governance call or permission to sign.
+website `activation_policy_schema:2` is mandatory; its configured `limits.gas`
+must equal the backend's configured `fee_policy.max_gas_limit` exactly. A smaller
+effective block limit remains binding, but does not permit different configured
+ceilings. Pin the complete activation-configuration hash and fee-review identity
+in the matching consumer. This is a backend/build setting after sealing, not an
+on-chain governance call or permission to sign.
 
 The [Robinhood gas procedure](ROBINHOOD_GAS.md) records actual32M transaction
 and block execution parameters at its dated anchor, distinct from the synthetic
-header `gasLimit`. The working anonymous provider's900-block public history and
-unknown numerical call/estimate ceiling do not qualify this preparation path.
-Choose an explicitly reviewed envelope within actual chain and provider limits;
-retain the12M default, full20% headroom and complete inclusive network-fee review.
+header `gasLimit`. Earlier public history observations do not qualify this
+preparation path. The [latest bounded provider checks](../reports/gas-profiles-20261113/REVIEW.md#public-provider-outcome)
+still find no complete canonical-hash call/estimate/trace provider. Missing
+`callTracer` logs or unsupported canonical-hash calls stop preparation; numbered
+blocks are not a fallback.
+
+The [20M activation/growth profile](../reports/gas-profiles-20261113/REVIEW.md)
+passes controlled current ETH/ZZZ $100 activation/$5 growth and matching unsigned
+source9/source10 consumer checks. It requires `schema:2` and the decimal string
+`fee_policy.max_gas_limit:"20000000"`; the matching website uses integer
+`limits.gas:20000000`. Full 20% padding allows estimates at most 16,666,666; the next
+estimated unit rejects rather than clipping the margin. The 12M default remains.
+The separate 24M keeper/manual profiles retain 25% padding and do not raise claim
+policy1, activation defaults or internal source/solver/payout gas budgets.
+
+These controlled results do not approve a production provider, complete network
+fees, full hosted preparation or maximum-state workload. Candidate fee approvals
+and ceilings remain explicitly unqualified; never infer them from a calculated
+local gas cost. Follow the [exact configuration/restart procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m)
+before any separately authorized adoption. All financial guards remain.
 
 ## Values returned to the wallet
 
@@ -219,6 +242,11 @@ state-override or conversion-only fallback.
 Both commands require the existing schema-2 [read-service configuration](FRONTEND_API.md)
 and a **separate reviewed activation configuration**. Paths are relative to the
 checkout or may be absolute; no production manifest is supplied by this example.
+The complete `ActivationConfig` JSON supplied with `--activation-config` is
+distinct from mint/claim `TransactionConfig` supplied with `--transaction-config`.
+Use separate activation and mint/claim listeners; production workers reject
+combining both policies. Changing activation to schema2 must not change the claim
+policy or overwrite the separate deployment/read inventory.
 
 The CLI loads the deployment, activation and request files as strict UTF-8 JSON
 objects before constructing the projection/preparer or doing RPC work. Duplicate
@@ -257,7 +285,9 @@ examples deliberately contain placeholders, not purported live addresses.
 
 ## Activation configuration schema 1
 
-Fresh activation uses a separate schema1 configuration with the exact fields below.
+The default activation profile uses a separate schema1 configuration with the
+exact fields below. Explicit schema2 adds the gas-policy fields described above;
+it is not selected by changing the parent read schema or mint profile.
 The parent read configuration is schema2 and explicitly selects
 `accounting_version:7`, `custody_version:5`, `fee_intake_version:1`, `protocol_policy_version:1` and the
 complete source9 contract graph. LP-allocation1 is authenticated on Rewards;
@@ -298,7 +328,7 @@ verified at Entry-to-Vault and Vault-to-manager boundaries, not only outside.
 | `sequencer` | `{address,policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed; no implicit omission. Nonzero sequencer needs its dependency code pin. |
 | `call_pins` | Up to128 `{target,data,expected}` exact getter checks on reviewed contracts, tokens, feeds or dependencies. Include applicable implementation/admin policy. |
 | `storage_pins` | Up to64 `{target,slot,expected}` exact32-byte storage checks. Include applicable proxy implementation/admin/beacon slots and implementation code pins. |
-| `fee_policy` | `{estimate_includes_all_fees:true,review_hash,max_gas_price_wei}`. Positive bounded decimal-string gas ceiling; independent review must establish complete network-fee estimation. No missing-component zero fallback. |
+| `fee_policy` | Schema1: `{estimate_includes_all_fees:true,review_hash,max_gas_price_wei}`. Positive bounded decimal-string gas-price ceiling; independent review must establish complete network-fee estimation. Schema2 additionally requires `max_gas_limit` and `max_network_fee_wei`. No missing-component zero fallback. |
 
 Historical accounting4 keeps its explicit maintenance1/2, LP-routing0/1 and
 confirmation0/1/2 shapes; accounting5 keeps Portfolio1/Entry-review1 with its own

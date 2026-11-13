@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "observed_date": "2026-11-13",
+  "baseline": "fbe47c330a11ab3370417ae999b31c8ab61fc66d",
+  "counts": {
+    "attempts": 33,
+    "valid_rpc_results": 24,
+    "rpc_errors": 8,
+    "transport_failures": 1,
+    "http_denials": 0
+  },
+  "chain_parameters": {
+    "anchor": {
+      "chain_id": 4663,
+      "number": 113212776,
+      "hash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+      "timestamp": 1794558095,
+      "time_utc": "2026-11-13T08:21:35+00:00",
+      "header_gas_limit": 1125899906842624,
+      "same_header_rechecked": true
+    },
+    "max_tx_execution": 32000000,
+    "max_block_execution": 32000000,
+    "gas_price_wei_unpinned": 20034000,
+    "base_fee_wei_pinned": 20014000,
+    "prices_in_wei_pinned": [
+      0,
+      0,
+      400280000000,
+      20000000,
+      14000,
+      20014000
+    ]
+  },
+  "public_catalog": {
+    "scope": "per_instance",
+    "url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+    "methods": [
+      "eth_getLogs",
+      "eth_chainId",
+      "net_version",
+      "eth_blockNumber",
+      "eth_getBalance",
+      "eth_getTransactionCount",
+      "eth_getCode",
+      "eth_getStorageAt",
+      "eth_call",
+      "eth_estimateGas",
+      "eth_gasPrice",
+      "eth_maxPriorityFeePerGas",
+      "eth_feeHistory",
+      "eth_getBlockByNumber",
+      "eth_getBlockByHash",
+      "eth_getTransactionByHash",
+      "eth_getTransactionReceipt",
+      "eth_syncing",
+      "web3_clientVersion",
+      "eth_sendRawTransaction"
+    ],
+    "rate_limit": {
+      "per_ip_rps": 3,
+      "burst": 20,
+      "batch_max": 10
+    },
+    "history_blocks": 900,
+    "pool": {
+      "in_flight": 1,
+      "heavy_in_flight": 1,
+      "cu_per_sec": 1250
+    },
+    "logs": {
+      "address_required": true,
+      "max_addresses": 1,
+      "max_block_range": 100,
+      "max_results": 1000,
+      "max_response_bytes": 1048576,
+      "batch_max": 1,
+      "block_hash_supported": false
+    },
+    "send_raw_rate_limit": {
+      "per_ip_rps": 1,
+      "burst": 3
+    }
+  },
+  "provider_results": [
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "canonical_hash_calls": "failed -32011 state_window at a fresh rechecked anchor",
+      "canonical_hash_estimates": "failed -32011 state_window at a fresh rechecked anchor",
+      "trace": "failed -32601 method_not_public",
+      "numbered_diagnostic_calls_gas_fields": [
+        20000000,
+        24000000
+      ],
+      "numbered_diagnostic_estimates_gas_fields": [
+        20000000,
+        24000000
+      ],
+      "numbered_diagnostic_estimate_gas": 23182,
+      "same_header_rechecked": true,
+      "not_a_production_fallback": true
+    },
+    {
+      "provider": "https://rpc.ordofi.network",
+      "chain_handshake": "URLError transport failure; stopped without retry/alias",
+      "cause_or_provider_outage_not_inferred": true
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "anchor": {
+        "number": 113214617,
+        "hash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+        "timestamp": 1794558288,
+        "time_utc": "2026-11-13T08:24:48+00:00",
+        "header_gas_limit": 1125899906842624,
+        "selector": "requireCanonical hash"
+      },
+      "canonical_hash_calls_gas_fields": [
+        20000000,
+        24000000
+      ],
+      "canonical_hash_estimates_gas_fields": [
+        20000000,
+        24000000
+      ],
+      "canonical_hash_cheap_view_estimate_gas": 23182,
+      "unknown_hash_rejected": {
+        "code": -32000,
+        "message": "header not found"
+      },
+      "trace": "failed -32601 Method not found",
+      "same_header_rechecked": true,
+      "own_header_by_hash_matches": true,
+      "same_prior_blockvectra_anchor_matches": true,
+      "selected_core_bytes": 24009,
+      "selected_core_keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+      "matches_registry_pin": true
+    }
+  ],
+  "qualification": {
+    "twenty_and_twentyfour_million_gas_field_compatibility": "Daybreak canonical-hash cheap calls/estimates pass; BlockVectra numbered diagnostics pass",
+    "actual_full_popl_operation_executed": false,
+    "effective_provider_execution_ceiling_proven": false,
+    "required_trace_provider_qualified": false,
+    "archive_or_sustained_service_qualified": false,
+    "complete_popl_fee_quote_obtained": false,
+    "fee_policy_review_hash_attested": false,
+    "operator_spending_caps_selected": false,
+    "provider_adopted": false,
+    "configuration_changes": 0,
+    "public_transactions": 0,
+    "signatures": 0,
+    "keys_or_accounts_used": false
+  }
+}

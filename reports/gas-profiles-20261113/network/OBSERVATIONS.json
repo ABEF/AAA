@@ -1,0 +1,1005 @@
+{
+  "schema": 1,
+  "counts": {
+    "attempts": 33,
+    "valid_rpc_results": 24,
+    "rpc_errors": 8,
+    "transport_failures": 1,
+    "http_denials": 0
+  },
+  "rows": [
+    {
+      "observed_at_utc": "2026-11-13T08:21:34.808340+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 1,
+      "response_text_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:35.319637+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 2,
+      "response_text_sha256": "20b4402f4509a2c31c94969232af63e03464e673d91e43a7c28063310266a90c",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result_header": {
+          "number": "0x6bf7d68",
+          "hash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+          "parentHash": "0xbd87216e543fe6c851597352c2de6db6a9e871d11d73bbeda8d2e09b48b4addc",
+          "timestamp": "0x6af6c88f",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x46e5b",
+          "baseFeePerGas": "0x13163b0"
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:35.828242+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_gasPrice",
+        "params": []
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 3,
+      "response_text_sha256": "54aaa076c752a486ddace6952ad5d47542b67af9f4e79599124599067e6dc04d",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "0x131b1d0"
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:36.337241+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x30d40"
+          },
+          "0x6bf7d68"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 4,
+      "response_text_sha256": "2fd471068668983df7f5f290babd03172afe2527d690604f5d96c1ca04b504af",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:36.842392+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0x0371fdb4",
+            "gas": "0x30d40"
+          },
+          "0x6bf7d68"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 5,
+      "response_text_sha256": "b3b5582a24d581ccc374a9180371beb9d28a49e801746b213d1c0a917cd19e11",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:37.354224+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0x41b247a8",
+            "gas": "0x30d40"
+          },
+          "0x6bf7d68"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 6,
+      "response_text_sha256": "fc02159a6c3a17753c3f56b6f3b83fddc10f7f67b2718f1c42e504034d98b0bf",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005d328c16000000000000000000000000000000000000000000000000000000000001312d0000000000000000000000000000000000000000000000000000000000000036b000000000000000000000000000000000000000000000000000000000013163b0"
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:37.851420+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 7,
+      "response_text_sha256": "d70ab43227b28ac9941acbb1acb1edb024375233116578fc9ed19cc468181b33",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "error": {
+          "code": -32011,
+          "message": "block reference is outside the public history window",
+          "data": {
+            "reason": "state_window",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+            "retryable": false,
+            "request_id": "01a1d3ff-7a5b-7572-95a7-23d549762c59"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:38.372729+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 8,
+      "response_text_sha256": "eea3d72418121b1b24368831a8d7a4a6867fc52e4c400928e61a90cdc4abe72d",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "error": {
+          "code": -32011,
+          "message": "block reference is outside the public history window",
+          "data": {
+            "reason": "state_window",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+            "retryable": false,
+            "request_id": "01a1d3ff-7c60-74e5-9270-c0b4e8a0a434"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:38.890574+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 9,
+      "response_text_sha256": "e489ee43385eaaa21d9e2737e02f97d22dbc30db1ae205ca05a40b8c87fdbe7d",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "error": {
+          "code": -32011,
+          "message": "block reference is outside the public history window",
+          "data": {
+            "reason": "state_window",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+            "retryable": false,
+            "request_id": "01a1d3ff-7e4e-7756-bb9f-2f1e6d206070"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:39.384053+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 10,
+      "response_text_sha256": "c081e7f4b803c49a21a572f7551a4a453af2e2e27c1b1598bed177989bcebe56",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "error": {
+          "code": -32011,
+          "message": "block reference is outside the public history window",
+          "data": {
+            "reason": "state_window",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+            "retryable": false,
+            "request_id": "01a1d3ff-8052-756d-8c6c-195884600a97"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:39.901209+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 11,
+      "response_text_sha256": "b2c087efac1bae22d5d312f2a19e66f11a825bd604b16495d3cb86a7601e12b6",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "error": {
+          "code": -32011,
+          "message": "block reference is outside the public history window",
+          "data": {
+            "reason": "state_window",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+            "retryable": false,
+            "request_id": "01a1d3ff-8241-71a5-94d6-02f83414683a"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:40.403803+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "debug_traceCall",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+            "requireCanonical": true
+          },
+          {
+            "tracer": "callTracer",
+            "timeout": "5s",
+            "tracerConfig": {
+              "withLog": true
+            }
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 12,
+      "response_text_sha256": "3092736c5affbc69ea3ad87c80d9187692f721b991d63baf6170c6035fadca72",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "error": {
+          "code": -32601,
+          "message": "method is not available on the public endpoint",
+          "data": {
+            "reason": "method_not_public",
+            "docs_url": "https://docs.blockvectra.com/en/errors/#method_not_public",
+            "retryable": false,
+            "request_id": "01a1d3ff-8443-76a4-a972-70569795ed70"
+          }
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "observed_at_utc": "2026-11-13T08:21:40.911347+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6bf7d68",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 13,
+      "response_text_sha256": "1d135e70f71c8a7f24ca1b4dc87e43aca39ba642758c0ca14c39b03ec376cd8c",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result_header": {
+          "number": "0x6bf7d68",
+          "hash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+          "parentHash": "0xbd87216e543fe6c851597352c2de6db6a9e871d11d73bbeda8d2e09b48b4addc",
+          "timestamp": "0x6af6c88f",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x46e5b",
+          "baseFeePerGas": "0x13163b0"
+        }
+      },
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-canonical-capability"
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:43.452563+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 14,
+      "response_text_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:43.986897+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 15,
+      "response_text_sha256": "e7601dd19f637895672c43b6358404de9ac379721b65e83ed90378dc70271cba",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result_header": {
+          "number": "0x6bf846b",
+          "hash": "0xde5dce1271086d532171c4b8fdd71e59c9a7b86e0bb606e4ae4c56269125dfa5",
+          "parentHash": "0x14687035584199ff15dccdf57b70ab26b1d24fd3a61bb8863b1a88e31346708c",
+          "timestamp": "0x6af6c94b",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x135eb",
+          "baseFeePerGas": "0x13301c0"
+        }
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:44.482139+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          "0x6bf846b"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 16,
+      "response_text_sha256": "5f5275f4ed139033a2edf7eb08d10f2577f2b10006605e40bf6f5d9516a8cab8",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:44.996563+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          "0x6bf846b"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 17,
+      "response_text_sha256": "2fd471068668983df7f5f290babd03172afe2527d690604f5d96c1ca04b504af",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:45.507611+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          "0x6bf846b"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 18,
+      "response_text_sha256": "88dc3edfdee41c19746105ba20d0813577d4711c2da4d9f6fe8547ebfe472857",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x5a8e"
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:46.004740+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          "0x6bf846b"
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 19,
+      "response_text_sha256": "2f5b13ecaa741e00837d1d362f9f92d182caa5236447c4fd4f132b2499fc57c0",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x5a8e"
+      }
+    },
+    {
+      "provider": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "label": "blockvectra-numbered-diagnostic",
+      "observed_at_utc": "2026-11-13T08:24:46.517269+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6bf846b",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 20,
+      "response_text_sha256": "78320a2635a07bed3520cdae792e044cd201d04137587f20111245ab40ed9599",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result_header": {
+          "number": "0x6bf846b",
+          "hash": "0xde5dce1271086d532171c4b8fdd71e59c9a7b86e0bb606e4ae4c56269125dfa5",
+          "parentHash": "0x14687035584199ff15dccdf57b70ab26b1d24fd3a61bb8863b1a88e31346708c",
+          "timestamp": "0x6af6c94b",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x135eb",
+          "baseFeePerGas": "0x13301c0"
+        }
+      }
+    },
+    {
+      "provider": "https://rpc.ordofi.network",
+      "label": "ordofi-capability",
+      "observed_at_utc": "2026-11-13T08:24:47.026542+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "transport_error_class": "URLError",
+      "sequence": 21
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:47.972679+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 22,
+      "response_text_sha256": "75ea0f516604d743a7a785da0919b7b26debc20e260ff9d0a045c6cfa40f876f",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:48.595707+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 23,
+      "response_text_sha256": "4a9b46a9413f5634418e69f8db968b357fac0252e6a1b0bff14e2d84dafe07ea",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result_header": {
+          "number": "0x6bf8499",
+          "hash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+          "parentHash": "0x65912c52cef4a4ecb2219c8b3be0ed90ff3e77c198409405bade8c0482c85ae4",
+          "timestamp": "0x6af6c950",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x5d39e",
+          "baseFeePerGas": "0x131c170"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:49.092466+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 24,
+      "response_text_sha256": "5577e1f8ba8e5844316ae2a01163644b9b325553fd5ff6c209c2cb05c3c964cb",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:49.604252+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 25,
+      "response_text_sha256": "77ea7ed03011b51b9876e4080203882f96aee31026c84d40279d42dab1820698",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:50.143766+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 26,
+      "response_text_sha256": "f58e5f371cf32d1fd8324aca6869f85c48f5ca14725a3a9e4a6ad1d0a31021af",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x5a8e"
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:50.644710+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 27,
+      "response_text_sha256": "739bc90498011cd27e90064d7c6fa35c4d4410c9607bc9909db46af9d87282de",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x5a8e"
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:51.155276+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 28,
+      "response_text_sha256": "45116ba086f97bcac61199a7eed05a9501cddbdbb82f11817946db100699ce58",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "error": {
+          "code": -32000,
+          "message": "header not found"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:51.672363+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "debug_traceCall",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          },
+          {
+            "tracer": "callTracer",
+            "timeout": "5s",
+            "tracerConfig": {
+              "withLog": true
+            }
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 29,
+      "response_text_sha256": "ddb14dd5038f5c5db941b3c4e6d317c8b1ea799d3a6b18d934cd5c7876037563",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "error": {
+          "code": -32601,
+          "message": "Method not found"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:52.151356+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 30,
+      "response_text_sha256": "2dc6e04b2ad84649175286ff4d025979963aa674f57d3dd967329fec8e2dff70",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result_header": {
+          "number": "0x6bf8499",
+          "hash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+          "parentHash": "0x65912c52cef4a4ecb2219c8b3be0ed90ff3e77c198409405bade8c0482c85ae4",
+          "timestamp": "0x6af6c950",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x5d39e",
+          "baseFeePerGas": "0x131c170"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:52.670904+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6bf7d68",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 31,
+      "response_text_sha256": "048096eac48614d1ff5e3ca80da28909201a521e463b7c2fe371b6f737e5edfc",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result_header": {
+          "number": "0x6bf7d68",
+          "hash": "0x3d0c507677cf75fc617f4455edfdef12656ebc5d46093e277e19f62fecfc7678",
+          "parentHash": "0xbd87216e543fe6c851597352c2de6db6a9e871d11d73bbeda8d2e09b48b4addc",
+          "timestamp": "0x6af6c88f",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x46e5b",
+          "baseFeePerGas": "0x13163b0"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:53.186864+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "eth_getCode",
+        "params": [
+          "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          {
+            "blockHash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 32,
+      "response_text_sha256": "675cbd7a14deb5159cf070628a2ae7c8ed98bd1cd7eca5a9a3b754ba5e39d376",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result_code": {
+          "bytes": 24009,
+          "keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+        }
+      }
+    },
+    {
+      "provider": "https://robinhood.daybreak-rpc.network",
+      "label": "daybreak-capability",
+      "observed_at_utc": "2026-11-13T08:24:53.690815+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6bf8499",
+          false
+        ]
+      },
+      "http_status": 200,
+      "body_truncated": false,
+      "sequence": 33,
+      "response_text_sha256": "f2815dd890306545e186baa9fb9c062692bf51de8a8d44368b4f1eff67bded17",
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result_header": {
+          "number": "0x6bf8499",
+          "hash": "0xf0e5783f4a6e87f2a40a697980f3eeaf720aebfaa90b853ea6ee4e63f62e1145",
+          "parentHash": "0x65912c52cef4a4ecb2219c8b3be0ed90ff3e77c198409405bade8c0482c85ae4",
+          "timestamp": "0x6af6c950",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x5d39e",
+          "baseFeePerGas": "0x131c170"
+        }
+      }
+    }
+  ]
+}

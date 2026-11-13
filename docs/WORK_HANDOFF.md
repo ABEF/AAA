@@ -1,12 +1,20 @@
 # Work handoff
 
-The [gas-feasibility milestone](../reports/gas-feasibility-20261111/REVIEW.md) is
-source-complete: about680k less gas per controlled contribution,23focused EVM
-successes, complete single/hybrid maintenance costs and dated32M chain parameters.
-Default12M still refuses Entries; Oracle3-byte runtime headroom is a known limit.
-Next qualify exact real launch amounts, maximum actual state, archive/trace/RPC
-gas ceilings, complete fees and matching reviewed budgets/consumers. No service,
-site, public signing, existing Anvil/journal or paused-heartbeat change.
+The [20M/24M profile milestone](../reports/gas-profiles-20261113/REVIEW.md) is
+controlled-source qualified: exact$100 activation/$5 growth in ETH/ZZZ, main/both-leg
+harvest, compound and single/hybrid replacements fit their caps and full20%/25%
+padding. Worst padded contribution18,098,846; maintenance21,046,237. Five new EVM,
+13Python and12browser checks pass; ten actual RPC cases overlap those workflows.
+Four captured contributions reconcile offline; no unchanged suite/build repeats.
+All61 production Solidity sources and default12M stay. Oracle3-byte headroom
+remains. Candidate overlays are incomplete: no approved fee ceilings/review hash,
+provider or live configuration. Manual24M injected helper checks are not actual
+Migration C/D qualification. Next qualify trace-capable canonical RPC, complete
+fees, real independent feeds/routes and full actual workload/configuration/hosting;
+then seek separate rollout authorization. Daybreak cheap hash calls/estimates
+work but tracing is unavailable; BlockVectra hash-state and tracing fail. Use the
+[operator procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m). No service/site,
+public signing, existing Anvil/journal or paused-heartbeat change.
 
 The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
 the requested individual reconciliation:271new plus39prior records, not310

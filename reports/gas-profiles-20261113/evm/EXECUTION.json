@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-13T09:01:29.632821+00:00",
+  "test_methods": [
+    {
+      "method": "testProfile20ETHExact100ActivationAnd5Growth",
+      "status": "Success",
+      "process_exit_code": 0,
+      "raw_forge_sha256": "afdce1011ca0b22cf91f4573059aa53d6460960931c409fdae41b0c9840bd935",
+      "process_seconds": 312.14100000000326
+    },
+    {
+      "method": "testProfile20ZZZExact100ActivationAnd5Growth",
+      "status": "Success",
+      "process_exit_code": 0,
+      "raw_forge_sha256": "dbdb109f0bb11fe03975b9f756d6f33a47fc529de435bff06f2a58e91d4bac95",
+      "process_seconds": 1.2660000000032596
+    },
+    {
+      "method": "testProfile24MainHarvestAndCompoundPreservePrincipalAndRewards",
+      "status": "Success",
+      "process_exit_code": 0,
+      "raw_forge_sha256": "5138af9627f47dfd8929ba47df7631f0c3a183f7712503296e476bdbd4586b16",
+      "process_seconds": 1.0150000000139698
+    },
+    {
+      "method": "testProfile24OrdinarySingleReplacementKeepsTimingAndShareRights",
+      "status": "Success",
+      "process_exit_code": 0,
+      "raw_forge_sha256": "6228b62d070bbd6d4c570b24cd90acae14e8200b62b3c0a78639fe4fc0d63a00",
+      "process_seconds": 1.0929999999934807
+    },
+    {
+      "method": "testProfile24HybridOpenHarvestAndTwoLegReplacementKeepsBothLegs",
+      "status": "Success",
+      "process_exit_code": 0,
+      "raw_forge_sha256": "707d0ce0f62be62a1ba4eca5e99faec58545b223fd741e3b2d0dd9e0abf3cc25",
+      "process_seconds": 1.4839999999967404
+    }
+  ],
+  "all5_successful": true,
+  "all10_actual_rpc_successful": true,
+  "all10_exact_padded_calls_successful": true,
+  "all10_owned_nodes_stopped": true,
+  "public_transactions": 0,
+  "source_environment_rollouts": 0,
+  "normal_or_static_rebuilds": 0,
+  "no_old_test_methods_repeated": true,
+  "compile_scope": "One201supplied/198compiled new test host, exact normal production sources reused",
+  "actual_rpc_scope": "Independent new owned32M Anvil genesis states, actual owner/keeper EOA; no state overrides/signing/broadcast",
+  "fee_scope": "reviewed_fee_wei is only calculated local padded gas cost; not operator-approved or complete target-chain fee ceiling",
+  "state_scope": "Authenticated setup+delta per-slot state plus exact runtime checks for production graph, explicit running-harness omission. pre_state is metadata, not recomputed whole-VM digest.",
+  "environment_scope": "All actual10cases used v1 producer with inherited Python environment, not an asserted credential-free environment. No environment names/values inspected/logged; --accounts0 --silent and read-only RPC allowlist; no key/signature/transaction use. Future v2 sanitizes child environment; no successful cases repeated for hygiene."
+}

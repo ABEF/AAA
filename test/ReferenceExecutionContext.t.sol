@@ -153,7 +153,7 @@ contract ReferenceExecutionContextTest is Test {
     ZZZActivationEntry internal entry;
     MockVRF internal vrf;
     ContextExternalTrader internal callbackTrader;
-    bytes32 private exportSetupHash;
+    bytes32 internal exportSetupHash;
     struct PriceCapture { uint256 lower; uint256 upper; bytes32 fingerprint; }
     PriceCapture internal callbackExpectedPrice;
     struct EntryScenario {

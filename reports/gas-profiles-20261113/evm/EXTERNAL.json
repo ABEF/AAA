@@ -1,0 +1,226 @@
+{
+  "external_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\gas-profiles-20261113-fbe47c3",
+  "files": [
+    {
+      "path": "exports/0/eth-activate100.json",
+      "sha256": "ec64ef10c14a61d9ed65b1c0b40c5be423f06af7c0e2f9f15b5008b88c1b45e5"
+    },
+    {
+      "path": "exports/0/eth-grow5.json",
+      "sha256": "674a61ed82bb9b5fb2b02c6fb5f562d9c09051dab167edd1c1355e6eef19ea47"
+    },
+    {
+      "path": "exports/0/forge.json",
+      "sha256": "afdce1011ca0b22cf91f4573059aa53d6460960931c409fdae41b0c9840bd935"
+    },
+    {
+      "path": "exports/0/parent.json.setup.json",
+      "sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b"
+    },
+    {
+      "path": "exports/0/PROCESS.json",
+      "sha256": "7b313c65d869f1ed3f59b23a88a21b506f02ee4fc794a66dbf96f4dadca328f6"
+    },
+    {
+      "path": "exports/0/RPC_SUMMARY.json",
+      "sha256": "bddd3f10e424cdf99e383ccd3e557f6ff1eb03fe58a9df16874e35d55b817962"
+    },
+    {
+      "path": "exports/0/START.json",
+      "sha256": "4fdff72983db5b89a637614dd5244fc6de2a0fc482511bcb443477ba1f1febf8"
+    },
+    {
+      "path": "exports/1/forge.json",
+      "sha256": "dbdb109f0bb11fe03975b9f756d6f33a47fc529de435bff06f2a58e91d4bac95"
+    },
+    {
+      "path": "exports/1/parent.json.setup.json",
+      "sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b"
+    },
+    {
+      "path": "exports/1/PROCESS.json",
+      "sha256": "f91abf176e71a59e615aa8d515fe73611587a129077a74c786abeb938dddf409"
+    },
+    {
+      "path": "exports/1/RPC_PROCESS.json",
+      "sha256": "fc1ca2418008cfc49743b015520c10e38fc32f3a6a437c54e901c62e33bb86c7"
+    },
+    {
+      "path": "exports/1/RPC_SUMMARY.json",
+      "sha256": "3b5f768ef43af675721e73e0d221e47f36cbe7d748e8abd39b21c86804ae3eb3"
+    },
+    {
+      "path": "exports/1/START.json",
+      "sha256": "ff648f8818eca7af8b2b6190db4169ee77c20ff330ba8887b23a803de769c6f3"
+    },
+    {
+      "path": "exports/1/zzz-activate100.json",
+      "sha256": "4a9a296b8bddea60ef585a4c4ed9cacdf7c86ac32ea1caa54db04a8d24e17c2b"
+    },
+    {
+      "path": "exports/1/zzz-grow5.json",
+      "sha256": "5ee3922f7bb23d764cef31d997a191dec589fba479290f12d545600d62501a82"
+    },
+    {
+      "path": "exports/2/compound.json",
+      "sha256": "d5b85268c3dc332fb5957c3dd60aae7170a60d6237945d783254a96700734164"
+    },
+    {
+      "path": "exports/2/forge.json",
+      "sha256": "5138af9627f47dfd8929ba47df7631f0c3a183f7712503296e476bdbd4586b16"
+    },
+    {
+      "path": "exports/2/main-harvest.json",
+      "sha256": "3e87713852615f8261cd851a621c240fcfceb207a252ee1f9b076f830595bcf8"
+    },
+    {
+      "path": "exports/2/parent.json.setup.json",
+      "sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b"
+    },
+    {
+      "path": "exports/2/PROCESS.json",
+      "sha256": "c3341d448b3077a389f2116fa0d07016b6c7127b22bb04f810d9ff9b111fef1a"
+    },
+    {
+      "path": "exports/2/RPC_PROCESS.json",
+      "sha256": "5bf008e70b65fd00c04b2fbd5e2dc057111fe5790874d342a066110b6d0c951a"
+    },
+    {
+      "path": "exports/2/RPC_SUMMARY.json",
+      "sha256": "1f4de8e209c74d0bf28a864e4a3ad1747788342bdcd6a3673b2512725e28b0bd"
+    },
+    {
+      "path": "exports/2/START.json",
+      "sha256": "817813dc4ec33b385285d3089bafdab63291b395bf7b2e80b4b413b95c078f68"
+    },
+    {
+      "path": "exports/3/forge.json",
+      "sha256": "6228b62d070bbd6d4c570b24cd90acae14e8200b62b3c0a78639fe4fc0d63a00"
+    },
+    {
+      "path": "exports/3/parent.json.setup.json",
+      "sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b"
+    },
+    {
+      "path": "exports/3/PROCESS.json",
+      "sha256": "130fb733b36285c3989986e5e35fee2780e6fd61c3de7db052eb7efeca931d6d"
+    },
+    {
+      "path": "exports/3/RPC_PROCESS.json",
+      "sha256": "81a93babe58430e9855401c2c28922c024c589ea909da62c0f258eb45981c3ff"
+    },
+    {
+      "path": "exports/3/RPC_SUMMARY.json",
+      "sha256": "7a0f0cd32207399ece7370300c3e7dcf8b25c87453a2cb22cfac1a5b7b5c1b58"
+    },
+    {
+      "path": "exports/3/single-rebalance.json",
+      "sha256": "193c9e7e5ba472633ef8387e6aa1f6abf6ae858f5b9a625751b8c7bf315b6541"
+    },
+    {
+      "path": "exports/3/START.json",
+      "sha256": "98fe379d7f361aa3685ccf6044e904854e89e3bb21564ba0ac9752e3a6504f6e"
+    },
+    {
+      "path": "exports/4/forge.json",
+      "sha256": "707d0ce0f62be62a1ba4eca5e99faec58545b223fd741e3b2d0dd9e0abf3cc25"
+    },
+    {
+      "path": "exports/4/hybrid-harvest.json",
+      "sha256": "c6d035c53a567f9c89eb31fabcbb034d6dc2636a8728b900eb19c852d47771cc"
+    },
+    {
+      "path": "exports/4/hybrid-open.json",
+      "sha256": "780c6b84c1d0891e3e4f776da908a0952ffcda4caa6e78a09781b9bf45d0fe64"
+    },
+    {
+      "path": "exports/4/hybrid-replace.json",
+      "sha256": "e1fb35bc7c1877e7b58255b355a9350a0f685ef9c44413b66a6d3a63f502d855"
+    },
+    {
+      "path": "exports/4/parent.json.setup.json",
+      "sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b"
+    },
+    {
+      "path": "exports/4/PROCESS.json",
+      "sha256": "802fee3bb39d9d428bdf5d1b64da63886d65c6e343340288f77a080b7b5e3c09"
+    },
+    {
+      "path": "exports/4/RPC_PROCESS.json",
+      "sha256": "737db32d635c90fe8b99670393f540dd22c25b54462e79cc79b7ab190650069e"
+    },
+    {
+      "path": "exports/4/RPC_SUMMARY.json",
+      "sha256": "945428ba3c3008f6cff3663f26a6403878af7468bd3384a050ee2cee50bf1302"
+    },
+    {
+      "path": "exports/4/START.json",
+      "sha256": "15757826f33cd38eeae1692051304964a9086007b27165e42b535e0b6e959ad1"
+    },
+    {
+      "path": "rpc/compound/genesis.json",
+      "sha256": "c8658d45d1709ac26f6ed115edd8a543289b077e9a5ac0bebb1ff4acb08c9d5d"
+    },
+    {
+      "path": "rpc/eth-activate100/genesis.json",
+      "sha256": "fbac07252f171efe2cc960902c9d76e0f9d2ed461cf3ad8b6e9202820b810712"
+    },
+    {
+      "path": "rpc/eth-grow5/genesis.json",
+      "sha256": "f351e4eb93c2ed39956b0c05d37f4bedee69d91ff3310633fd1f4ca028de39c5"
+    },
+    {
+      "path": "rpc/hybrid-harvest/genesis.json",
+      "sha256": "8c827bef0835ccd5ec4a8b6c47c378657927d1a16c76089b7f575f525b816962"
+    },
+    {
+      "path": "rpc/hybrid-open/genesis.json",
+      "sha256": "7854e72ae5c802b6b200b8a90bca02c8493c060929396fcd01c89423f9e6309c"
+    },
+    {
+      "path": "rpc/hybrid-replace/genesis.json",
+      "sha256": "8e833827a39953c9cf4307fc35e67672158050e72d1f37f2307c99903109a621"
+    },
+    {
+      "path": "rpc/main-harvest/genesis.json",
+      "sha256": "eb337ee66f12e96f8787876b7cabd85f132aa9e68bf775e89465bdd87d0c0ad3"
+    },
+    {
+      "path": "rpc/single-rebalance/genesis.json",
+      "sha256": "b289b0d45c8a783ff5baad5f7e5cb4b4285ed1c08796b34efef2167e7dff8143"
+    },
+    {
+      "path": "rpc/zzz-activate100/genesis.json",
+      "sha256": "77f90a082d929ab51888e100d0323f04400f4196a33d2df52416847ae7a19d29"
+    },
+    {
+      "path": "rpc/zzz-grow5/genesis.json",
+      "sha256": "5978fe4c7f223c06a7ac12e4063fc7bd251385f286ef25f6f2c3096a40abe465"
+    },
+    {
+      "path": "producer-v1.py",
+      "sha256": "7cead8576fa90b5e73948d255e3e4157cd3e01d63da1fe2819d419529312d268"
+    },
+    {
+      "path": "produce_profile_rpc.py",
+      "sha256": "b51870a42acb23fd4fab3b2b7b642ba2817c94dc1cc714b510a8904277661d13"
+    },
+    {
+      "path": "run_profiles.py",
+      "sha256": "04fd0c243de1295a4ba8356c0306335af229f254abd95e5029987fcf4fc631e2"
+    },
+    {
+      "path": "run_remaining_rpc.py",
+      "sha256": "ef37d37509b47b79e3a46f6f7bd4a365515582210aed3474739129cd07a3a94b"
+    },
+    {
+      "path": "EVM_RUN.json",
+      "sha256": "ceb9afaf25beb23942e8b00c338da06f464fa546a9621d17d33eb1fcedd6bffc"
+    },
+    {
+      "path": "focused-profiles/foundry.toml",
+      "sha256": "6a47198a7bdc42b347d511c866d203ca06e97c47393981dafeb4c1e06d36a9b8"
+    }
+  ],
+  "scope": "Optional local full-state/process provenance; none of these paths is a production wallet/configuration."
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "Only new20M/24M software-profile boundary methods; injected RPC and inert signing, no network/EVM rerun",
+  "tests_run": 13,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "source_before": {
+    "tests_python/test_reviewed_gas_profiles_20_24.py": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "zzz_ops/manual_lp_review.py": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54",
+    "tests_python/test_execution_price_profile.py": "e496b13f5e4319f6fe2c265badcd6bbd47756b51d633aa48fbf01505898f7e76",
+    "tests_python/test_keeper_late_lp_review.py": "b031b7e74fb72d530723265cd215391e87c7b90a5821510e3f0c5808e7ae5111",
+    "tests_python/test_keeper.py": "fbf2b6de581c018e7d903d7e125772116c345ca5b70ecd51799e5e5f0b123bbe"
+  },
+  "source_after": {
+    "tests_python/test_reviewed_gas_profiles_20_24.py": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "zzz_ops/manual_lp_review.py": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54",
+    "tests_python/test_execution_price_profile.py": "e496b13f5e4319f6fe2c265badcd6bbd47756b51d633aa48fbf01505898f7e76",
+    "tests_python/test_keeper_late_lp_review.py": "b031b7e74fb72d530723265cd215391e87c7b90a5821510e3f0c5808e7ae5111",
+    "tests_python/test_keeper.py": "fbf2b6de581c018e7d903d7e125772116c345ca5b70ecd51799e5e5f0b123bbe"
+  },
+  "sources_unchanged": true,
+  "successful": true,
+  "recorded_at_utc": "2026-11-13T08:23:08.982996+00:00"
+}

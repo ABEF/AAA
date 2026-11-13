@@ -1,5 +1,15 @@
 # Consolidated audit findings and evidence
 
+The [20M/24M profile review](../reports/gas-profiles-20261113/REVIEW.md) closes
+controlled exact$100/$5 contribution and six keeper-operation gas feasibility
+with actual RPC estimates and full-padded calls. Software boundary/matching,
+fee/balance/day refusal and pending-first checks pass; production sources,
+safeguards/default12M stay unchanged. This does not close complete fees/provider,
+real market/configuration/maximum-state or manual Migration C/D qualification.
+Daybreak canonical-hash cheap calls/estimates work but tracing is absent;
+BlockVectra fresh hash-state calls fail. No weaker numbered-state/trace fallback
+is admitted. Oracle3-byte runtime headroom remains an explicit release risk.
+
 The [gas-feasibility follow-up](../reports/gas-feasibility-20261111/REVIEW.md)
 reduces redundant policy reads while retaining source/market/callback and
 financial proofs.23focused methods and48normal gates pass; original-RPC metrics
@@ -101,7 +111,7 @@ and [blocker/recovery](../reports/moving-market-flows-20261106/BLOCKERS.md) are
 mapped. Separate retained guards are not removed as duplicates. Future-boundary,
 RPC honesty, operating latency and independent approval limits remain.
 
-Reviewed11November2026; mint2 source starts from main1579186 and earlier exact-LP evidence retains its original baseline. Production
+Reviewed13November2026; mint2 source starts from main1579186 and earlier exact-LP evidence retains its original baseline. Production
 **NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
 [features](IMPLEMENTATION_STATUS.md) record source and
 [operator](OPERATOR_MANUAL.md) describes actions.

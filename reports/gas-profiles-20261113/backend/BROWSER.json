@@ -1,0 +1,83 @@
+{
+  "scope": "New20M consumer checks with actual website source and injected typed fixtures; no old tests, signer, network or site changes",
+  "fixture_factories": [
+    {
+      "source": "tests/source10-prepare.test.mjs",
+      "source_sha256": "e755ae27014dacdeea35848a03086ac480e4d6a841eb31233f4463dff99909cd",
+      "prefix_sha256": "56cf1f92d3677ad4a2aef723abe03e14ef6c656b6d9034172f0ece5bc16b18cd",
+      "generated_sha256": "98af1235c7920e6767ea7f24fb23881a8e1a70d27255b0713c8c9de7b5d218ec",
+      "old_tests_registered": 0
+    },
+    {
+      "source": "tests/source9-prepare.test.mjs",
+      "source_sha256": "beec1fe9e08a1c4a3eb68f11b0a0581e35b6c23e231678770daca5e180317c11",
+      "prefix_sha256": "539509bbf093f88b971c75513170f03251fe59b59ce5d0914ffe31d4e4841cc1",
+      "generated_sha256": "122bfeb7a3bac141a34066ed57cd64d69d8f8e7045986c7b351b7ee131a35b01",
+      "old_tests_registered": 0
+    }
+  ],
+  "source_sha256": {
+    "deployment-api.js": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+    "deployment-source9-prepare.js": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+    "deployment-source9.js": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+    "deployment-source10.js": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "tests/source10-prepare.test.mjs": "e755ae27014dacdeea35848a03086ac480e4d6a841eb31233f4463dff99909cd",
+    "tests/source9-prepare.test.mjs": "beec1fe9e08a1c4a3eb68f11b0a0581e35b6c23e231678770daca5e180317c11",
+    "tests/helpers/source10-profile-fixture.mjs": "3ffddc8b9255e88d6328d15f4b2b50b9041e8ea4ad2500450f49511367704374",
+    "tests/helpers/source9-profile-fixture.mjs": "e2cccb088822112470c6710d4fa2ecab52d34d5b4b2ba8e91b657d4d66cd6224",
+    "tests/fixtures/source9-api-v3.json": "9f0ae09579cc4d7e596f24d5d0951d52a0992346f6de1386faec47e6c49b595d"
+  },
+  "cases": [
+    {
+      "name": "source10/execution1 unsigned20M {\"asset\":\"ETH\"}",
+      "status": "pass"
+    },
+    {
+      "name": "source10/execution1 unsigned20M {\"asset\":\"ZZZ\"}",
+      "status": "pass"
+    },
+    {
+      "name": "source10/execution1 unsigned20M {\"asset\":\"ETH\",\"action\":\"increase\"}",
+      "status": "pass"
+    },
+    {
+      "name": "source10/execution1 unsigned20M {\"asset\":\"ZZZ\",\"action\":\"increase\"}",
+      "status": "pass"
+    },
+    {
+      "name": "source10/execution1 unsigned20M {\"asset\":\"ZZZ\",\"approval\":true}",
+      "status": "pass"
+    },
+    {
+      "name": "historical source9 accepts explicit20M without adopting execution1",
+      "status": "pass"
+    },
+    {
+      "name": "source10 rejects backend configured cap 19000000 versus manifest20M",
+      "status": "pass"
+    },
+    {
+      "name": "source10 rejects backend configured cap 21000000 versus manifest20M",
+      "status": "pass"
+    },
+    {
+      "name": "full20pct at20M is accepted but one estimated unit above rejects",
+      "status": "pass"
+    },
+    {
+      "name": "fee ceiling remains binding independently of20M",
+      "status": "pass"
+    },
+    {
+      "name": "unknown block or independent estimate refusal does not produce review",
+      "status": "pass"
+    },
+    {
+      "name": "activation20M leaves claim policy1 capped at12M",
+      "status": "pass"
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

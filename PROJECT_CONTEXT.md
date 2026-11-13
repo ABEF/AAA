@@ -1,11 +1,16 @@
 # PoPL current project context
 
-Current [gas feasibility](reports/gas-feasibility-20261111/REVIEW.md) reduces
-controlled contribution gas by about680k while retaining proofs/rights/defaults.
-Cold Entries still reject12M. Oracle has3bytes runtime headroom; Vault32 remains.
-Whole-maintenance costs and dated32M Robinhood parameters are recorded, but
-actual routes/feeds/provider limits/complete fees and operating acceptance remain
-open. No environment or signing rollout follows from source publication.
+Current [20M/24M controlled qualification](reports/gas-profiles-20261113/REVIEW.md)
+passes exact$100/$5 ETH/ZZZ contributions and six complete keeper operations.
+Worst full-padded estimates are18,098,846/20M and21,046,237/24M. Five new EVM
+methods,13Python and12browser checks pass; ten actual RPC cases and four offline
+reader replays retain explicit overlapping scope. No unchanged suites rerun.
+All61 production sources and default12M remain unchanged; Oracle3-byte/Vault32
+headroom remains. The incomplete profile overlays grant no fee/provider approval.
+Daybreak supports canonical-hash cheap estimates/calls but not required tracing;
+BlockVectra hash-state/tracing fails. Real markets/fees/full provider/max-state,
+complete configuration/hosted service and operating approval remain open. No
+site/service/signer, existing Anvil/journal or paused-heartbeat rollout occurs.
 
 All remaining271original findings are individually assessed in the
 [current reconciliation](reports/remaining-271-20261111/REVIEW.md), with exact

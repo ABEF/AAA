@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "primary_research": [
+    {
+      "url": "https://docs.blockvectra.com/en/guides/robinhood-chain/",
+      "access": "web research tool,13November2026",
+      "basis": "Documents chain4663/public endpoint; anonymous methods determined separately by public.methods; claim of tracing network support is not anonymous-tier support."
+    },
+    {
+      "url": "https://api.blockvectra.com/v1/chains",
+      "access": "One bounded direct GET",
+      "sha256": "f004a4b18f1d7752af4f18c8c85e9bbaa49dda45b2ffc2fcfe31a21edf6d2181",
+      "basis": "Fresh selected anonymous method/rate/history catalog; full body retained externally."
+    },
+    {
+      "url": "https://rpc.ordofi.network/",
+      "access": "Primary provider page through web research",
+      "basis": "Public endpoint and anonymous tracing are provider claims only; our chain handshake failed in transport."
+    },
+    {
+      "url": "https://app.ordofi.network/docs",
+      "access": "Primary provider docs through web research",
+      "basis": "Documented mainnet4663/anonymous access; no signup/key/payment requested or performed."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ethereum-lists/chains/master/_data/chains/eip155-4663.json",
+      "access": "Primary chain-registry JSON through web research",
+      "basis": "Lists Daybreak public mainnet endpoint. We independently verified chain4663 and code/anchor compatibility."
+    }
+  ],
+  "code_pin": {
+    "file": "src/ZZZPoolRegistry.sol",
+    "baseline_raw_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "core_runtime_keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+  },
+  "known_denials_not_retried": [
+    "official Robinhood RPC",
+    "PublicNode",
+    "dRPC",
+    "BlockReq"
+  ],
+  "other_unproven_claims_not_adopted": [
+    "private send/MEV protection",
+    "provider independence/finality",
+    "full execution ceiling",
+    "archive retention",
+    "complete operation fee accounting"
+  ]
+}

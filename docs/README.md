@@ -1,5 +1,11 @@
 # Documentation map
 
+[20M/24M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
+records exact launch amounts, actual estimates/padded calls and consumer checks.
+Use the [gas-profile procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) for exact
+field types, matching caps, separate listeners, fee review and restart/rollback.
+Templates are incomplete/unapproved; defaults, safeguards and live sites stay.
+
 [Robinhood gas and RPC qualification](ROBINHOOD_GAS.md) explains actual execution
 parameters versus synthetic headers, complete fees, unchanged budgets and
 provider limitations. The [gas-feasibility review](../reports/gas-feasibility-20261111/REVIEW.md)
@@ -46,7 +52,7 @@ Use the new mint procedure for team/allowlist/public quotas, proofs and
 configuration; it does not authorize public deployment or signer changes.
 
 
-Reviewed2026-11-11. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-13. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 

@@ -1,11 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [gas-feasibility review](reports/gas-feasibility-20261111/REVIEW.md) reduces
-controlled activation/growth gas by about4.4–4.8%, preserves safeguards and records
-complete single/two-leg maintenance costs. Bounded Robinhood reads establish
-dated32M execution parameters;12M defaults remain unchanged. Oracle fits with
-only3bytes of runtime headroom. Actual routes, providers and release approval
-remain open.
+The [20M contribution / 24M maintenance review](reports/gas-profiles-20261113/REVIEW.md)
+qualifies controlled $100 activation/$5 growth and single/two-leg maintenance,
+including full gas padding and actual RPC estimates. Safeguards, production
+implementations and 12M defaults are unchanged. Real markets, tracing providers,
+complete fees and release approval remain open; these profiles are not deployed.
+Oracle still has only 3 bytes of runtime headroom.
 
 The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
 individually checks all271previously unreviewed records, fixes three concrete

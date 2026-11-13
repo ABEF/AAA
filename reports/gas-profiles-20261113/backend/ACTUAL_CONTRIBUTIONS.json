@@ -1,0 +1,317 @@
+{
+  "schema": 1,
+  "scope": "Four new actual-owner local Anvil captures reconciled by production trace measurement and schema2 gas helpers, offline; no EVM/RPC rerun",
+  "passed": 4,
+  "cases": [
+    {
+      "case": "eth-activate100",
+      "fixture_sha256": "d3a6744e762c55feb65f5e4fdaf937c2086159a5f69ac38e7f6af7a47c53075a",
+      "rpc_records_sha256": "2f0c061835f71fcd2792532ae69c78d663f37f02bfcdc0eb744de77dac4e2240",
+      "fixture_bytes": 49609,
+      "rpc_records_bytes": 404689,
+      "actual_owner": "0x00000000000000000000000000000000000a11ce",
+      "confirmed_block_hash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+      "confirmed_block_gas_limit": 32000000,
+      "selected_gas_limit": 20000000,
+      "estimate_gas": 14748028,
+      "padded_gas": 17697634,
+      "remaining_padded_margin": 2302366,
+      "local_execution_price_wei": 1000000000,
+      "local_execution_fee_ceiling_wei": 17697634000000000,
+      "exact_recorded_rpc_calls": [
+        {
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+            false
+          ]
+        },
+        {
+          "method": "eth_estimateGas",
+          "params": [
+            {
+              "from": "0x00000000000000000000000000000000000a11ce",
+              "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+              "value": "0x56bc75e2d63100000",
+              "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+              "gas": "0x1312d00"
+            },
+            {
+              "blockHash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+              "requireCanonical": true
+            }
+          ]
+        },
+        {
+          "method": "eth_gasPrice",
+          "params": []
+        },
+        {
+          "method": "eth_getBalance",
+          "params": [
+            "0x00000000000000000000000000000000000a11ce",
+            {
+              "blockHash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+              "requireCanonical": true
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "source_usd_18": 100000000000000000000,
+        "required_deployed_usd_18": 97000000000000000000,
+        "marginal_deployed_usd_18": 99937428463788150145,
+        "net_contribution_usd_18": 99939806258993738290,
+        "shares_added_raw": 99939806258993738290,
+        "lp_liquidity_added_raw": 206181187990636966437,
+        "lp_token_id": 1,
+        "converted_amount_raw": 100000000000000000000,
+        "simulation_gas_used": 14094485
+      },
+      "production_measurement_matches": true,
+      "production_gas_helper_matches": true,
+      "full_service_config_inventory_admitted": false,
+      "target_chain_fee_qualification": false,
+      "live_adoption": false
+    },
+    {
+      "case": "eth-grow5",
+      "fixture_sha256": "3f222921567f14028e40c567d7248f9abccae49350a5b0aa9334335b2fa01a66",
+      "rpc_records_sha256": "c43359234e063394bca65e207a1dbc67f8139b620a723a0ba9ca2dac1a5c85e5",
+      "fixture_bytes": 53926,
+      "rpc_records_bytes": 408993,
+      "actual_owner": "0x00000000000000000000000000000000000a11ce",
+      "confirmed_block_hash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+      "confirmed_block_gas_limit": 32000000,
+      "selected_gas_limit": 20000000,
+      "estimate_gas": 13616039,
+      "padded_gas": 16339247,
+      "remaining_padded_margin": 3660753,
+      "local_execution_price_wei": 1000000000,
+      "local_execution_fee_ceiling_wei": 16339247000000000,
+      "exact_recorded_rpc_calls": [
+        {
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+            false
+          ]
+        },
+        {
+          "method": "eth_estimateGas",
+          "params": [
+            {
+              "from": "0x00000000000000000000000000000000000a11ce",
+              "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+              "value": "0x4563918244f40000",
+              "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004563918244f40000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+              "gas": "0x1312d00"
+            },
+            {
+              "blockHash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+              "requireCanonical": true
+            }
+          ]
+        },
+        {
+          "method": "eth_gasPrice",
+          "params": []
+        },
+        {
+          "method": "eth_getBalance",
+          "params": [
+            "0x00000000000000000000000000000000000a11ce",
+            {
+              "blockHash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+              "requireCanonical": true
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "source_usd_18": 5000000000000000000,
+        "required_deployed_usd_18": 4850000000000000000,
+        "marginal_deployed_usd_18": 4996666527771295332,
+        "net_contribution_usd_18": 4996910246661072105,
+        "shares_added_raw": 4996910246661072105,
+        "lp_liquidity_added_raw": 10308636679222054540,
+        "lp_token_id": 1,
+        "converted_amount_raw": 5000000000000000000,
+        "simulation_gas_used": 12894696
+      },
+      "production_measurement_matches": true,
+      "production_gas_helper_matches": true,
+      "full_service_config_inventory_admitted": false,
+      "target_chain_fee_qualification": false,
+      "live_adoption": false
+    },
+    {
+      "case": "zzz-activate100",
+      "fixture_sha256": "5199af4c2c235ae702f5fb39093e2a80d4e8cb84de2bb95cda9d65d19b7c326b",
+      "rpc_records_sha256": "885caa6e73d22022c203f667ff00cc473ce014932542726029f51b7a5d6783ef",
+      "fixture_bytes": 51623,
+      "rpc_records_bytes": 406783,
+      "actual_owner": "0x00000000000000000000000000000000000a11ce",
+      "confirmed_block_hash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+      "confirmed_block_gas_limit": 32000000,
+      "selected_gas_limit": 20000000,
+      "estimate_gas": 15082371,
+      "padded_gas": 18098846,
+      "remaining_padded_margin": 1901154,
+      "local_execution_price_wei": 1000000000,
+      "local_execution_fee_ceiling_wei": 18098846000000000,
+      "exact_recorded_rpc_calls": [
+        {
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+            false
+          ]
+        },
+        {
+          "method": "eth_estimateGas",
+          "params": [
+            {
+              "from": "0x00000000000000000000000000000000000a11ce",
+              "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+              "value": "0x0",
+              "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+              "gas": "0x1312d00"
+            },
+            {
+              "blockHash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+              "requireCanonical": true
+            }
+          ]
+        },
+        {
+          "method": "eth_gasPrice",
+          "params": []
+        },
+        {
+          "method": "eth_getBalance",
+          "params": [
+            "0x00000000000000000000000000000000000a11ce",
+            {
+              "blockHash": "0x8c39f60419907c094f55470265056f0191340055355016c247f6a1b4ac5a014c",
+              "requireCanonical": true
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "source_usd_18": 100000000000000000000,
+        "required_deployed_usd_18": 97000000000000000000,
+        "marginal_deployed_usd_18": 99902480567917838503,
+        "net_contribution_usd_18": 99904856752225523614,
+        "shares_added_raw": 99904856752225523614,
+        "lp_liquidity_added_raw": 206109086888986899024,
+        "lp_token_id": 1,
+        "converted_amount_raw": 100000000000000000000,
+        "simulation_gas_used": 14304627
+      },
+      "production_measurement_matches": true,
+      "production_gas_helper_matches": true,
+      "full_service_config_inventory_admitted": false,
+      "target_chain_fee_qualification": false,
+      "live_adoption": false
+    },
+    {
+      "case": "zzz-grow5",
+      "fixture_sha256": "470212300707634fa861bc5395b7d1d05e61e7d1aa9fbe072b056ada415182d7",
+      "rpc_records_sha256": "5c837b97995590b9292eeeaf2581fd7dd1788a7a7f7e8183ef5cc01be1b52740",
+      "fixture_bytes": 55272,
+      "rpc_records_bytes": 410357,
+      "actual_owner": "0x00000000000000000000000000000000000a11ce",
+      "confirmed_block_hash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+      "confirmed_block_gas_limit": 32000000,
+      "selected_gas_limit": 20000000,
+      "estimate_gas": 13929079,
+      "padded_gas": 16714895,
+      "remaining_padded_margin": 3285105,
+      "local_execution_price_wei": 1000000000,
+      "local_execution_fee_ceiling_wei": 16714895000000000,
+      "exact_recorded_rpc_calls": [
+        {
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+            false
+          ]
+        },
+        {
+          "method": "eth_estimateGas",
+          "params": [
+            {
+              "from": "0x00000000000000000000000000000000000a11ce",
+              "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+              "value": "0x0",
+              "data": "0x6169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a0000000000000000000000000000000000000000000000004565bb1d147639ee000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+              "gas": "0x1312d00"
+            },
+            {
+              "blockHash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+              "requireCanonical": true
+            }
+          ]
+        },
+        {
+          "method": "eth_gasPrice",
+          "params": []
+        },
+        {
+          "method": "eth_getBalance",
+          "params": [
+            "0x00000000000000000000000000000000000a11ce",
+            {
+              "blockHash": "0xabbc44e10dd449a860ce800d4f00e021cb42e184aacc46d2312dcf91469dceb3",
+              "requireCanonical": true
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "source_usd_18": 5000000000000000000,
+        "required_deployed_usd_18": 4850590433991445676,
+        "marginal_deployed_usd_18": 4995412647889793060,
+        "net_contribution_usd_18": 4995418588897127815,
+        "shares_added_raw": 4995656219760255168,
+        "lp_liquidity_added_raw": 10306540034269018208,
+        "lp_token_id": 1,
+        "converted_amount_raw": 5000608694836541934,
+        "simulation_gas_used": 13117736
+      },
+      "production_measurement_matches": true,
+      "production_gas_helper_matches": true,
+      "full_service_config_inventory_admitted": false,
+      "target_chain_fee_qualification": false,
+      "live_adoption": false
+    }
+  ],
+  "source_sha256_before": {
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_trace.py": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "frontend_api/activation_v4.py": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+    "frontend_api/liquidity_context.py": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3",
+    "frontend_api/service.py": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "source_sha256_after": {
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_trace.py": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "frontend_api/activation_v4.py": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+    "frontend_api/liquidity_context.py": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3",
+    "frontend_api/service.py": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "runner_sha256": "92d6b7293043b955c54c898bc061f9697aa7cf31dc1a074664c96c6411f1b3b9",
+  "network_requests": 0,
+  "evm_executions": 0,
+  "unchanged_tests_rerun": 0,
+  "full_service_config_inventory_admitted": false,
+  "production_fee_approved": false
+}
