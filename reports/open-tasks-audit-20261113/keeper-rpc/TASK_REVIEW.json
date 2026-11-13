@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "scope": "Source-level keeper/RPC task review, not fresh execution of every listed behavior",
+  "rows": [
+    {
+      "task_id": "host-services",
+      "disposition": "probe_source_gap_fixed_operating_qualification_open",
+      "inspected": [
+        "keeper/probe.py:probe",
+        "keeper/probe.py:_EndpointBudget",
+        "zzz_ops/rpc.py:Rpc.call",
+        "zzz_ops/rpc.py:Rpc._read_http",
+        "docs/RPC_PREPARATION_QUALIFICATION.md",
+        "reports/predeployment-qualification-20261113/rpc/REVIEW.md"
+      ],
+      "conclusion": "New explicit per-actual-HTTP pacing can reproduce a reviewed cadence without a one-off runner. Denials/rate limits stop that endpoint; same90s/100logical and200actual-post ceiling plus remaining timeout apply. Generic transports/services unchanged.",
+      "remaining": "Actual selected plan/resource/SLA/history/trace workload/fees/concurrency and rollout remain unqualified; no new public probe ran."
+    },
+    {
+      "task_id": "mainnet-fork",
+      "disposition": "capability_source_improved_no_target_workload_claim",
+      "inspected": [
+        "keeper/probe.py:_approval_trace",
+        "keeper/probe.py:probe",
+        "reports/predeployment-qualification-20261113/capacity/REVIEW.md"
+      ],
+      "conclusion": "Preserves exact genesis/runtime pin, canonical selectors, actual discarded Approval0 trace/log, unknown-hash negative evidence, receipt/header checks. Pacing and refusals do not create or substitute a financial operation.",
+      "remaining": "Fresh current4663/mint2 graph, real qualified prices/routes, full20M/24M workloads and complete fees still required; old31337/mint1 state not relabeled."
+    },
+    {
+      "task_id": "keeper-recovery",
+      "disposition": "source_controls_present_actual_rehearsal_open",
+      "inspected": [
+        "keeper/monitor.py:cycle",
+        "keeper/monitor.py:poll_pending",
+        "keeper/monitor.py:resolve_pending",
+        "keeper/watchdog.py:ProgressWatchdog",
+        "keeper/watchdog.py:ProgressRPC",
+        "docs/KEEPER_RECOVERY.md"
+      ],
+      "conclusion": "Pending intent recovery precedes new config/job work. Canonical transaction/receipt/inclusion/fee and final header/depth checks precede a copy-on-write persisted nonce/spend transition. Ambiguous hash-less intents block instead of resending. Optional watchdog pulses only completed work.",
+      "remaining": "Real Linux service-group kill, stuck DNS/headers/children, exclusive signer fencing, keystore/funding loss, off-host backup/restore/alerts and sustained outage/restart require approved host rehearsal. A socket timeout or source hash does not prove these."
+    },
+    {
+      "task_id": "keeper-guardrails",
+      "disposition": "bounded_source_milestones_preserved_operating_acceptance_open",
+      "inspected": [
+        "keeper/monitor.py:submit",
+        "keeper/monitor.py:_late_lp_submission_review",
+        "keeper/monitor.py:_fee_review",
+        "keeper/monitor.py:_validate_pending_transaction",
+        "keeper/health.py:source_hashes"
+      ],
+      "conclusion": "Initial call/estimate use existing max_gas_limit; signed amount remains full125percent estimate. Exact latest/pending nonce, gas-price/tx/day/funding, lifecycle and late deadlines remain. Future explicit4663 zero-tip profile and captured pending schema remain distinct. Probe is not in keeper health source fingerprint and changes no installed journal identity.",
+      "remaining": "Actual24M complete workload/fee/native-funding/spend policy and signer-host recovery acceptance remain; defaults/caps never auto-increase."
+    },
+    {
+      "task_id": "rebalance-confirmation-buffer",
+      "disposition": "implemented_sampled_policy_not_continuous_price_proof",
+      "inspected": [
+        "keeper/rebalance_confirmation.py:RebalanceConfirmation.status",
+        "keeper/monitor.py:_confirmed_rebalance_due",
+        "keeper/monitor.py:_confirmation_enrollment_at",
+        "keeper/monitor.py:_confirmation_priority",
+        "keeper/monitor.py:poll_delay"
+      ],
+      "conclusion": "Current240second source scheduling, strict300maximum observed gap,600second sampled window and durable60to300jitter are explicit. Same-side/identity evidence, reset acknowledgements and pending-first priority are retained. Near-eligibility enrollment avoids redundant paid writes; raw checks may occur during cooldown.",
+      "remaining": "Moving market, multi-bucket serial nonce/finality/provider delays can restart a strict window. No uninterrupted history or inclusion SLA is inferred. Real timing and resource rehearsal still needed."
+    },
+    {
+      "task_id": "security-keeper-manipulation",
+      "disposition": "accepted_authority_boundary_and_operating_review_remain",
+      "inspected": [
+        "keeper/monitor.py:_compound_policy_allowed",
+        "keeper/monitor.py:_compound_submission_ready",
+        "keeper/compound_policy.py:observe",
+        "docs/KEEPER_SAFEGUARDS.md"
+      ],
+      "conclusion": "Approved automation waits before compound swaps when main outside/near adjustment threshold or desired geometry pending. Physical custody/metadata proof and resets use canonical snapshots. This is SERVICE policy; a compromised authorized keeper can bypass its own service. Contract-side routes/loss/time/callback restrictions remain separate.",
+      "remaining": "On-chain compound-policy hardening would be a new consequential decision, not silently introduced. Repeated allowed losses/keeper-private trading/market exposure and actual controls require review; source hashes cannot attest which code a key runs."
+    },
+    {
+      "task_id": "security-external-manipulation",
+      "disposition": "market_and_execution_risk_not_solved_by_jitter_or_probe",
+      "inspected": [
+        "keeper/monitor.py:_rebalance_submission_ready",
+        "keeper/monitor.py:_late_lp_submission_review",
+        "keeper/rebalance_confirmation.py:RebalanceConfirmation.status",
+        "docs/KEEPER_SAFEGUARDS.md"
+      ],
+      "conclusion": "Service repeatedly observes canonical policy/trigger and freshly simulates exact calldata; jitter is modest unpredictability. No changes to financial guards, spot choice, independent valuation policy or emergency authority.",
+      "remaining": "Qualify genuine independent sources/depth/route execution after withdrawal, adversarial timing and reviewed monitoring/parameter decisions. No manipulation-immunity guarantee."
+    },
+    {
+      "task_id": "operation-review",
+      "disposition": "bounded_diagnostics_implemented_cause_uncertainty_preserved",
+      "inspected": [
+        "keeper/ops.py:health_check",
+        "keeper/monitor.py:_compound_policy_status",
+        "keeper/monitor.py:submit",
+        "keeper/probe.py:probe"
+      ],
+      "conclusion": "Health/profile/configuration and explicit blocked/unavailable/source-scope distinctions remain. Probe denial errors retain sanitized actualHTTP/RPC reason; remaining checks cannot fabricate a green endpoint after a terminal refusal.",
+      "remaining": "Generic simulation reverts cannot always reveal exact cause. Actual host thresholds, approved resource/cost policy and operator remediation must remain explicit, without guessing token fault or zero balance."
+    },
+    {
+      "task_id": "asset-liveness-dust",
+      "disposition": "configured_economic_threshold_and_real_asset_qualification_open",
+      "inspected": [
+        "keeper/monitor.py:_compound_due",
+        "keeper/monitor.py:_receipt_harvest_bucket",
+        "keeper/monitor.py:cycle",
+        "keeper/principal.py:PrincipalDistribution.configure"
+      ],
+      "conclusion": "Independent hourly harvest remains available when swap-related RPC qualification fails, under its separate guards. Only authenticated successful receipt events coalesce harvest clock. Idle and compound handling stays configured; raw residual closure is not treated as reinvestment. Fresh custody5 rejects keeper principal distribution.",
+      "remaining": "Actual min conversion/compound/idle economics and real token payout failures need reviewed parameters and operations; arbitrary dust sweeps, principal delivery or royalty swaps are not added."
+    }
+  ]
+}

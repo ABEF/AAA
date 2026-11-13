@@ -1,0 +1,6 @@
+test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.034s
+
+OK

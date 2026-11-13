@@ -40,6 +40,7 @@ MODULES=(
  'test_keeper_execution_price',
  'test_reviewed_gas_profiles_20_24',
  'test_keeper_zero_tip_profile',
+ 'test_keeper_probe_transport_budget',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

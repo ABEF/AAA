@@ -345,7 +345,7 @@ PoPL target fees remain unqualified; nothing is adopted or restarted.
 | Review | Operator action | Required result |
 | --- | --- | --- |
 | Identity and tracing | Reuse reviewed genesis derivation and13-check evidence; check the intended endpoint/runtime | Point-in-time pass; no trust/SLA shortcut |
-| Rate and history | Obtain endpoint/tier limits and sustained/history acceptance; keep429 evidence | No automatic retry or CLI-cadence assumption |
+| Rate and history | Obtain endpoint/tier limits, history and a reviewed optional `--request-interval-ms` | Pacing consumes90s; refusal stops that endpoint |
 |20M/24M capacity | Obtain effective call/estimate/trace caps and exercise exact deployed operations | Full padding fits; no clamp/fallback |
 | Complete estimates | Reconcile Nitro total/posting components and real receipts | Posting included once; no fabricated full quote |
 | Fees and funding | Approve gas-price, per-transaction/day/native-balance bounds and evidence hash | Explicit reviewed values; no automatic increase |
@@ -356,10 +356,12 @@ file outside Git. The existing read-only probe expects `chain_id:4663` and
 `rpc_urls:[REVIEWED_URL]`. The [reviewed public identity pins](RPC_PREPARATION_QUALIFICATION.md#observed-tracing-candidate-and-scope)
 include independently derived genesis and the exact WETH probe runtime. Read
 their derivation/limitations and recheck the intended network/runtime. The CLI
-below shows argument shape only: it has no pacing flag and its default cadence
-was not qualified. The successful recorded helper wrapper is inert evidence,
-not a portable operator runner. Use a reviewed provider rate policy before a
-new profile run; a prior pass does not authorize anonymous high-rate use:
+below shows argument shape only. The earlier passing network profile used an
+inert captured wrapper. Current source now supports optional
+`--request-interval-ms 1500`, with exact integer0–5000and default0. The13new
+transport/CLI checks use inert bytes/fake clocks; they are not a fresh public
+profile or provider-cadence approval. Review the provider's rate policy before
+a new run; an earlier pass does not authorize anonymous high-rate use:
 
 ```text
 python -m keeper.probe --config PRIVATE_RPC_CONFIG.json --profile activation_api_v1 --address REVIEWED_ERC20_ADDRESS --calldata 0x18160ddd --genesis-hash REVIEWED_GENESIS_HASH --runtime-hash REVIEWED_RUNTIME_HASH --output NEW_RPC_OBSERVATION.json
@@ -370,7 +372,13 @@ and changes no allowance. The WETH witness is only a probe, not admission of a
 new contribution asset. The full probe's90-second/100-logical-call bounds and
 other receipt/tag checks remain. A failing required check stays unavailable;
 never use numbered-block substitution or omit the financial trace. Cheap gas
-field acceptance is insufficient numerical-capacity evidence.
+field acceptance is insufficient numerical-capacity evidence. Current pacing
+is per actual HTTP start, including internal chain checks, within the same90s/
+100logical/200post bounds. A too-large interval can leave required checks
+incomplete. HTTP401/403/429 or sanitized rate-limit replies stop that endpoint;
+never label those as missing-hash rejection. The remaining transport timeout
+does not preempt stuck DNS/headers. Source publication neither runs this probe
+nor changes an operating keeper's source identity/journal.
 
 Before scheduling the full operation campaign, resolve [current market blockers](../reports/predeployment-qualification-20261113/markets/REVIEW.md):
 two healthy independent ETH/ZZZ valuation paths and real compatible bidirectional
@@ -512,7 +520,7 @@ and the distinction between on-chain enforcement and bypassable service policy.
 
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
 default to 3% (97% marginal deployed LP), conversion 1%, maintenance 3%, gas separate.
-Fresh LP routing2 selects one bounded route/size using actual-core quotes and
+Reviewed LP routing2/3 selects one bounded route/size using actual-core quotes and
 executes zero or one balancing swap. Contributions can swap/deploy only their
 own amounts; old idle/compound stays attributed for guarded maintenance and in
 incumbent share NAV. Retained idle still backs the same bucket. There is no
@@ -1865,7 +1873,7 @@ This procedure submits nothing by itself; current source is undeployed.
 | `triggerBps` | At least 100 and less than range | Retained ABI/config field; historical policy1 movement trigger. Fresh policy3 uses PortfolioPolicy.thresholdBps and explicit geometry, never this legacy movement field. |
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
-| `maxSlippageBps` | 1-1000 in fresh LP routing2; pool fee must be strictly below it in equivalent units | Operating values are not raised automatically. Selected LP fee10020 pips requires at least 101bps before other costs. Routing uses the tighter target/venue guard, plus actual protocol fee, impact, captured loss and caller floors. Historical profiles retain their original ceiling. |
+| `maxSlippageBps` | 1-1000 in reviewed LP routing2/3; pool fee must be strictly below it in equivalent units | Operating values are not raised automatically. Selected LP fee10020 pips requires at least 101bps before other costs. Routing uses the tighter target/venue guard, plus actual protocol fee, impact, captured loss and caller floors. Historical profiles retain their original ceiling. |
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the current helper action floors(default$100 activation/$5 growth). The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full `configureNative` for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
@@ -2120,11 +2128,34 @@ by wallet for reconciliation, accounting separately for network gas and other
 transactions when comparing wallet ETH balances. No service restart or protocol
 setting change is required for multiple NFTs per wallet.
 
+## Indexer fetch failures and retry limits
+
+A refused `eth_getLogs` request does not always mean its block range is too
+large. Current source stops range shrinking for known rate/authentication,
+wrong-chain, expired work, invalid-parameter, missing-block, protocol and transport
+failures. It preserves the original error and makes no new ingestion/cursor
+advance from that refused fetch. A legitimate reorg reconciliation can already
+have rolled back stale history before the later failure.
+
+Opaque range-size errors and HTTP413retain bounded shrinking down to one block.
+The shared transport's existing retries and the next normal polling iteration
+remain; this change does not promise no retries anywhere. If the provider
+documents a smaller supported range, review a smaller positive `block_chunk`
+in the indexer configuration and use the normal controlled restart; preserve
+its existing cursor, confirmations and database identity. Do not infer a new
+chunk size from a rate/authentication or malformed-response failure. Inspect sanitized
+failure evidence, review provider limits and recover at the same confirmed
+history boundary. Do not reset a database, accept missing logs as zero or lower
+confirmation/canonical checks. Preserve DB/raw/WAL backups and authorize the
+normal stop/dry-run/restart process separately before adopting source changes.
+No schema, stored event format or checkpoint identity changes solely for this
+indexer scheduling correction. [Evidence](../reports/open-tasks-audit-20261113/REVIEW.md).
+
 ## Dependencies and pricing
 
 | Change/problem | Control and checks | Fallback/limit |
 | --- | --- | --- |
-| USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale/spot or $1 fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
+| USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale or $1 fallback. Spot composite sources require explicit review; an unreviewed target-pool spot is not a fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
 | Contradictory pool sqrt/tick/fee observation | Unsigned contribution/route reviews and observed/manual inventory gates reject inconsistent integer slot0, malformed directional protocol fees or reviewed static-fee mismatch. Valid downward-crossing boundary ticks are preserved. | Stop the affected preparation/release review; retain sanitized block/hash/error evidence. Compare the same canonical block using a reviewed independent provider and check runtime/key pins. Do not edit the tick, relax checks or substitute latest state. Consistent fabrication still requires provider review; this validator is not authentication. [Market/input review](../reports/market-adversarial-20261026/REVIEW.md). |
@@ -2456,13 +2487,16 @@ of the selected hookless-pool operation. Marketplace royalties remain separate.
 
 The shipped `keeper/config.example.json` is a historical accounting3 template;
 `keeper/config.holder-exit.example.json` is historical accounting4. Neither is a
-ready-made profile6 operating configuration. Do not merely relabel their version.
+ready-made profile7 operating configuration. Do not merely relabel their version.
 
 Prepare a separately reviewed configuration with accounting7, protocol_policy_version1, maintenance3,
-confirmation3, portfolio2, LP routing2 and quality1; exact module/Budget/helper
+confirmation3, portfolio2 and quality1. Select explicit `execution_price_version:1`
+with `lp_routing_version:3` for the fresh execution-source capability; omission/0
+retains the separately reviewed historical LP2 profile. Exact module/Budget/helper
 runtime pins and reciprocal parents; the complete new policy/math/physical
 executor graph; explicit 60–240 second main loop and new private state paths.
-Schema15 production observation is separate from keeper live configuration.
+Current schema17/mint2 production observation is separate from keeper live
+configuration; an inventory schema is not a keeper version or journal upgrade.
 Leave live review/runtime pins unset and dry run enabled until real deployment
 bindings, gas/spend limits, providers and schedules are qualified. Enable
 compounding/conversions only with reviewed per-currency thresholds/routes, and

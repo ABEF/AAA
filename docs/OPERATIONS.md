@@ -26,7 +26,11 @@ binary. The matching writer/checker must be rolled out together. See the
 Indexer startup/restart uses the [single operator procedure](OPERATOR_MANUAL.md#indexer-startup-failure-and-durable-storage):
 atomic identity/schema admission, cleanup on failure, SQLite integer bounds and
 verified durable WAL. A successful local regression does not qualify production
-storage or authorize a service restart.
+storage or authorize a service restart. Known global/refusal/work-limit faults
+now stop adaptive log-range shrinking, while genuine range-size/HTTP413fallback
+remains bounded. Shared transport retries and normal polling are separate.
+No new ingestion/cursor advance follows a refused fetch; a prior legitimate
+reorg rollback remains possible. [Failure procedure](OPERATOR_MANUAL.md#indexer-fetch-failures-and-retry-limits).
 
 ## Initial simulation gas envelope
 

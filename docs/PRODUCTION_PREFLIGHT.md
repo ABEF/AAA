@@ -36,8 +36,11 @@ handoff remains pre-exit only and requires no live residual during parked export
 Schema17 explicitly requires royalty settlement4/recovery2/reporting5,
 accounting7, LP-allocation1, custody5, governance2, fee intake1,
 Strategy maintenance3, confirmation3, portfolio2, Budget compound4, emergency2,
-LP routing2, quality1, Entry routing3, pricing2, entry-review-policy2 and mint
-integration2/helper1. The predeployed metadata renderer is passed as the third
+quality1, Entry routing3, pricing2, entry-review-policy2 and mint integration2/
+helper1. The current execution-source candidate explicitly sets
+`execution_price_version:1` and `lp_routing_version:3`, with matching runtime/
+helper observations. Omission/0 retains the separate schema17/LP2 interpretation;
+it never upgrades an old deployment or supplies the new capability. The predeployed metadata renderer is passed as the third
 NFT constructor argument; the collection-specific mint helper is bound once
 before sealing/any mint. A matching
 canonicalV10 wire does not make an old accounting profile current. Unknown,

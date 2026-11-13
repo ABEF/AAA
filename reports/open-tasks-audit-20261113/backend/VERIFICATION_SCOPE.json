@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "unique_new_methods": 7,
+  "current_successful_stage": "whole-final.json",
+  "all7_on_final_source_passed": true,
+  "current_source_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+  "current_test_sha256": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+  "shared_RPC_unchanged_sha256": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+  "current_scope": "Final whole7 changed-source bracket; earlier7/one/two stages overlap, never add as extra methods.",
+  "earlier_stages": [
+    "baseline.json",
+    "post-edit-attempt-unmodified.json",
+    "final.json",
+    "typed-baseline.json",
+    "typed-final.json",
+    "diagnostic-baseline.json",
+    "diagnostic-final.json"
+  ],
+  "preserved_prior_scope": "VERIFICATION_SCOPE.prior-stage.json",
+  "baseline_original_failure": "28 failed subtests across4methods;3new positive methods passed",
+  "diagnostic_followup_baseline": "New local-diagnostic cases reproduce10 failed subtests on exact pre-extension5b09 source; two changed methods final pass",
+  "unnecessary_new_method_repeat_reason": "First byte replacement assumedCRLF onLF source and made no edit; subsequent new-only rerun remained failed. Retained, not claimed as success.",
+  "unchanged_old_test_methods_executed": 0,
+  "network_EVM_compiler_executions": 0,
+  "operator_boundary": "Known terminal/global errors stop only adaptive range-halving; existing shared transport retries and normal indexer poll remain. Healthy DB/schema/cursor/event semantics unchanged. No checkpoint rebuild solely from this indexer edit."
+}

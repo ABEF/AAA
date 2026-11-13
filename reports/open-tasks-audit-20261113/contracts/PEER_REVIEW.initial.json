@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "review_kind": "Read-only source/control-flow/new-test assertions peer review; no network/tests/EVM or edits",
+  "source_sha256": {
+    "keeper/probe.py": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+    "indexer/monitor.py": "5b09a36d7d36cbb8c9b4de7e6af1eeea7454d919a1698195ebb30abeb60c5c78",
+    "tests_python/test_keeper_probe_transport_budget.py": "0d666c7015e9c37c5925118c7ce858fa33dbdd6d1f9b14101372667a8cbd31d2",
+    "tests_python/test_indexer_log_retry_policy.py": "a2838b2207173d29125c5dec91cd8547ad0ddcf6b5d2d8c0fee407dc427fdb23",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+  },
+  "blocking_findings": [],
+  "conclusions": [
+    "Optional probe pacing operates per actual transport post, preserving default0 shape and100logical/90second bounds; remaining-time clamp and final checkpoint reject late results.",
+    "HTTP401/403/429 and classified JSONRPC rate limit stop further same-endpoint transport, preserving first refusal and unrelated endpoint evaluations.",
+    "Bounded cause traversal is cycle-safe; missing canonical hash cannot be relabeled pass by rate/timeouts.",
+    "Indexer range reduction stops on known global/terminal causes, retaining opaque provider-range and413 reduction; downstream ancestry/chronology/confirmation/atomic ingestion proofs are unchanged."
+  ],
+  "documentation_precision": "Indexer.reconcile can legitimately commit an authenticated rollback before a later refused fetch. Guarantee no new ingestion or cursor advance from the failed fetch, not absolute no database change for every failed step.",
+  "new_suite_or_network_executions": 0,
+  "source_changes": 0
+}

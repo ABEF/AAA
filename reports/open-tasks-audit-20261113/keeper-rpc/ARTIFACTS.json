@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-13T15:47:52.606343+00:00",
+  "files": {
+    "BASELINE_SUMMARY.json": {
+      "sha256": "8a403e574fc7004440267960763fdbb0484bb889b54d9820a1af5d09239b2029",
+      "bytes": 1127
+    },
+    "corrected-scenario-baseline.json": {
+      "sha256": "06599dd30c86e266ad6127630469e0c1b4471a39c8bfc81700dea4b44301b257",
+      "bytes": 450
+    },
+    "corrected-scenario-baseline.log": {
+      "sha256": "dd13e60b5d1bd2676e4222f96463749f43d7a4fc9745de4804e0853d88b9a538",
+      "bytes": 1461
+    },
+    "focused-final-reviewed.json": {
+      "sha256": "a8752c5b6e4d9f3a2d8c2ac34dffcb96d7e4cac662912ab6e61b3ea35e672696",
+      "bytes": 625
+    },
+    "focused-final-reviewed.log": {
+      "sha256": "0ff4ba2228fcbecdbcad046e790be45966c059a6f09a97eac40600c42a48917b",
+      "bytes": 2870
+    },
+    "review-boundary-before.json": {
+      "sha256": "1e09723c073e6af63fe14c6bed719e4bb5ea039374a309ff4034c7cadcbedba9",
+      "bytes": 207
+    },
+    "review-boundary-before.log": {
+      "sha256": "8f46b54d16836ab2eec0a5bf71bcc1622acb732186afe2c79d01ff687ea2de12",
+      "bytes": 1359
+    },
+    "REVIEW.md": {
+      "sha256": "8de42f792d2ace5774bea80b8bded0e22f90295f0d2b7c7663d893bcd8f8168d",
+      "bytes": 4431
+    },
+    "SOURCE_PINS.json": {
+      "sha256": "ef9d010f24c7507f1399f4c590815446bd73e88c6aa8c9f487edacf314f624a9",
+      "bytes": 1287
+    },
+    "TASK_REVIEW.json": {
+      "sha256": "bdb506458fe52cc1ac399b8821cde239c2282efa68cafbf9bacf11e32bbf37bf",
+      "bytes": 8273
+    }
+  },
+  "external_before_source": {
+    "path": "baseline-probe.py",
+    "sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b"
+  },
+  "source_pin_scope": "After final reviewed13method run; later unrelated source work has its own scope",
+  "new_network_tests_or_evm_executed_by_this_publisher": 0
+}

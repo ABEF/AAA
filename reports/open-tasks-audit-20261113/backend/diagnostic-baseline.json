@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "stage": "diagnostic-baseline",
+  "utc": "2026-11-13T15:58:29.965192+00:00",
+  "tests_run": 2,
+  "failure_entries": 10,
+  "errors": 0,
+  "skipped": 0,
+  "successful": false,
+  "source_before_after_exact": true,
+  "sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\audit-open44-20261113-53633b9\\backend\\monitor.pre-diagnostic-extension.py": "5b09a36d7d36cbb8c9b4de7e6af1eeea7454d919a1698195ebb30abeb60c5c78",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_indexer_log_retry_policy.py": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee"
+  },
+  "failed_tests": [
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)",
+    "test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)"
+  ],
+  "scope": "Two changed methods overlap original seven. Exact locally generated diagnostics only; known response-size/HTTP413 recovery retained. No old suite/shared-RPC change/network/EVM/compiler."
+}

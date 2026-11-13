@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "stage": "typed-baseline",
+  "utc": "2026-11-13T15:43:07.975693+00:00",
+  "tests_run": 1,
+  "failure_entries": 18,
+  "errors": 0,
+  "skipped": 0,
+  "successful": false,
+  "source_before_after_exact": true,
+  "sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\audit-open44-20261113-53633b9\\backend\\monitor.baseline.py": "541121865daac31025d2ba567fa15c90f06360b92cb295e2b72184d2a56a515b",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_indexer_log_retry_policy.py": "a2838b2207173d29125c5dec91cd8547ad0ddcf6b5d2d8c0fee407dc427fdb23"
+  },
+  "failed_tests": [
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=None, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=None, reason='unclassified', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32700, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32700, reason='unclassified', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='unclassified', wrapped=True)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32603, reason='unclassified', wrapped=False)",
+    "test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32603, reason='unclassified', wrapped=True)"
+  ],
+  "scope": "One changed method with expanded reserved-code cases; overlaps original seven, not an additional unique method. Old source injected read-only, no shared source reset, no old suite/network/EVM/compiler."
+}

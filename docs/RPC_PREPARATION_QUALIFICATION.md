@@ -33,10 +33,13 @@ from the candidate endpoint merely to make the check pass.
 
 This result invokes unchanged `keeper.probe.probe()` through a recording transport
 paced at1.5seconds. The [exact runner source](../reports/predeployment-qualification-20261113/rpc/profile-runner.py.txt)
-is inert evidence with local paths. Stock CLI parsing/default request cadence
-was not this execution; it has no pacing flag. The command below is shape only,
-not a qualified anonymous-endpoint cadence. Honor rate limits and stop denials;
-do not rerun an unchanged profile for a green result.
+is inert evidence with local paths. At that source the stock CLI had no pacing
+flag; its parsing/default cadence was not the passing network execution. The
+[current source correction](../reports/open-tasks-audit-20261113/keeper-rpc/REVIEW.md)
+adds optional `--request-interval-ms`, tested with inert transport/fake clocks.
+No new public profile was run. Neither that option nor this command template
+qualifies a cadence or adopts an anonymous endpoint. Honor provider limits;
+do not rerun unchanged observations simply to obtain a green result.
 
 [Specific history/logs and tiny temporary simulation](../reports/predeployment-qualification-20261113/capacity/REVIEW.md)
 also work. Full20M/24M gas/body/response/time/rate capacity, provider plan/SLA,
@@ -77,6 +80,17 @@ Replace the uppercase values below with reviewed public identifiers:
 python3 -m keeper.probe --config PRIVATE_RPC_CONFIG.json --profile activation_api_v1 --address REVIEWED_ERC20_ADDRESS --calldata 0x18160ddd --genesis-hash REVIEWED_GENESIS_HASH --runtime-hash REVIEWED_RUNTIME_HASH --output var/rpc-preparation-observation.json
 ```
 
+Optional `--request-interval-ms 1500` sets a reviewed minimum start-to-start
+interval for each actual HTTP request, including internal chain checks. Exact
+integers0–5000are accepted; omission/default0 preserves no pacing and the old
+report shape. Pacing consumes the original90-second endpoint budget; a large
+interval may prevent the profile finishing. It never increases a deadline or
+retries an access refusal. HTTP401/403/429 and sanitized RPC rate-limit errors
+stop further requests to that endpoint; other explicitly configured endpoints
+remain independent. The timeout is clamped to remaining time, but DNS/headers
+still need operating-system/process supervision. No public run of this new
+source or provider acceptance is claimed.
+
 Optional `--confirmations` and `--receipt-blocks` retain the existing defaults of
 12 and bounds of 1-1000 and 1-32. The tool never discovers a key, submits a
 transaction, signs, starts a service or modifies a journal. Running the command
@@ -103,8 +117,8 @@ results. Outputs contain endpoint indices, public probe identities, fixed
 diagnostics and sanitized remote error codes/reasons; they omit endpoint URLs,
 credentials and raw provider error messages. Redirects are refused even on the
 same host. Each endpoint permits at most 100 logical RPC calls, refuses new
-calls or late results beyond its 90-second deadline, and uses bounded transport
-timeouts. This is not a hard wall-clock process watchdog: an in-flight transport
+calls or late results beyond its90-second deadline, at most200actual posts,
+and remaining-time-clamped transport timeouts. This is not a hard wall-clock process watchdog: an in-flight transport
 can take longer to return before its result is rejected. Receipt sampling remains
 limited to three ordinary receipts.
 

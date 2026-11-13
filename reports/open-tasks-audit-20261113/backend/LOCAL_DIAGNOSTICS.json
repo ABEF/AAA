@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "scope": "Static exact locally generated source-diagnostic membership, not a parser for untrusted provider messages",
+  "terminal_exact_strings": [
+    "Malformed RPC chain identity",
+    "RPC redirects are not permitted; configure the reviewed endpoint explicitly",
+    "RPC stream cannot provide bounded reads",
+    "RPC response deadline exceeded",
+    "Malformed RPC transport payload",
+    "Malformed JSON-RPC payload",
+    "Malformed JSON-RPC response",
+    "Malformed JSON-RPC response envelope",
+    "Missing JSON-RPC result",
+    "RPC method is not on the read-only allowlist"
+  ],
+  "all_strings_in_unchanged_shared_RPC_source": true,
+  "response_size_diagnostic_remains_reducible": true,
+  "arbitrary_RPC_errors_not_claimed_classified": true,
+  "source_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+  "shared_RPC_sha256": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee"
+}

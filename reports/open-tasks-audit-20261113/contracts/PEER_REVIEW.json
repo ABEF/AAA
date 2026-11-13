@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "review_kind": "Read-only source/control-flow/new-test assertions peer review; no network/tests/EVM or edits",
+  "source_sha256": {
+    "keeper/probe.py": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+    "indexer/monitor.py": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+    "tests_python/test_keeper_probe_transport_budget.py": "0d666c7015e9c37c5925118c7ce858fa33dbdd6d1f9b14101372667a8cbd31d2",
+    "tests_python/test_indexer_log_retry_policy.py": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+  },
+  "blocking_findings": [],
+  "conclusions": [
+    "Optional probe pacing operates per actual transport post, preserving default0 shape and100logical/90second bounds; remaining-time clamp and final checkpoint reject late results.",
+    "HTTP401/403/429 and classified JSONRPC rate limit stop further same-endpoint transport, preserving first refusal and unrelated endpoint evaluations.",
+    "Bounded cause traversal is cycle-safe; missing canonical hash cannot be relabeled pass by rate/timeouts.",
+    "Indexer range reduction stops on known global/terminal causes, retaining opaque provider-range and413 reduction; downstream ancestry/chronology/confirmation/atomic ingestion proofs are unchanged."
+  ],
+  "documentation_precision": "Indexer.reconcile can legitimately commit an authenticated rollback before a later refused fetch. Guarantee no new ingestion or cursor advance from the failed fetch, not absolute no database change for every failed step.",
+  "new_suite_or_network_executions": 0,
+  "source_changes": 0,
+  "previous_peer_review_sha256": "83e1f67a6bf47ea97f6b2ace7cb31a8ea4a9837c7aac87ce7857b6d8ab127477",
+  "previous_peer_review_path": "prior-stage/PEER_REVIEW-initial.json",
+  "narrow_extension_review": {
+    "source": "indexer/monitor.py",
+    "previous_sha256": "5b09a36d7d36cbb8c9b4de7e6af1eeea7454d919a1698195ebb30abeb60c5c78",
+    "current_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+    "new_test_sha256": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+    "scope": "Read-only exact local-diagnostic extension and new test subcases; no test or network execution",
+    "conclusion": "No blocking defect. Exact local RpcError diagnostics stop malformed-chain, redirects, unbounded stream, deadline, malformed transport/JSON/envelope/result and disallowed-method errors. Matching is exact only on base RpcError, not provider message text. Response-size remains eligible for shrinking alongside opaque range and HTTP413. Cause traversal, one-block stop and ingestion/reorg proofs are unchanged."
+  }
+}

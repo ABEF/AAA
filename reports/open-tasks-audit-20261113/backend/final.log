@@ -1,0 +1,12 @@
+test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) ... ok
+test_existing_opaque_range_limit_reduction_preserves_exact_chunk (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_existing_opaque_range_limit_reduction_preserves_exact_chunk) ... ok
+test_one_block_opaque_rejection_does_not_loop_or_commit (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_one_block_opaque_rejection_does_not_loop_or_commit) ... ok
+test_payload_too_large_can_reduce_without_retrying_other_http_errors (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_payload_too_large_can_reduce_without_retrying_other_http_errors) ... ok
+test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) ... ok
+test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) ... ok
+test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.171s
+
+OK

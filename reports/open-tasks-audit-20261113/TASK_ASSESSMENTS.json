@@ -1,0 +1,1580 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "scope": "All44 linked task owners reviewed at source/obligation level; not44bugs, not a fresh execution of every feature",
+  "task_count": 44,
+  "current_task_status_source": "docs/project-todo.json",
+  "not_a_second_status_ledger": true,
+  "original_records": 310,
+  "earlier_assessments": 39,
+  "later_assessments": 271,
+  "rows": [
+    {
+      "task_id": "activation-assets",
+      "title_at_baseline": "Qualify ETH and ZZZ contributions only",
+      "task_link": "../../TODO.md#task-activation-assets",
+      "original_finding_ids": [
+        "historical/FB-01",
+        "historical/HC-20",
+        "historical/HC-50",
+        "historical/OPS-RS-12-2",
+        "historical/OPS-RS-20-2",
+        "historical/OPS-RS-43-1",
+        "historical/OPS-RS-44-1",
+        "historical/OPS-RS-44-2",
+        "historical/OPS-RS-46-1",
+        "historical/OPS-RS-46-2",
+        "historical/RO-04"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/0",
+          "assessment_sha256": "5b35cc8309f8fe980e1bcc416c3634a988348a8cf412b081940be733efc4dc8a"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "activation-quotes",
+      "title_at_baseline": "Complete activation & top-up quotes",
+      "task_link": "../../TODO.md#task-activation-quotes",
+      "original_finding_ids": [
+        "historical/FB-01",
+        "historical/HC-20",
+        "historical/HC-50",
+        "historical/OP-27",
+        "historical/OPS-RS-41-2",
+        "historical/OPS-RS-44-1",
+        "historical/OPS-RS-44-2",
+        "historical/OPS-RS-46-1",
+        "historical/OPS-RS-46-2",
+        "historical/RO-04"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/0",
+          "assessment_sha256": "d4ab79fabc9ddadfb79899048f188c8d37518947987f8d9f656dc284b0f78975"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "asset-liveness-dust",
+      "title_at_baseline": "Approve reward-token liveness and dust economics",
+      "task_link": "../../TODO.md#task-asset-liveness-dust",
+      "original_finding_ids": [
+        "historical/HC-09",
+        "historical/HC-11",
+        "historical/HC-28",
+        "historical/HC-32",
+        "historical/HC-33",
+        "historical/OP-03",
+        "historical/OP-05",
+        "historical/OP-08",
+        "historical/OP-09",
+        "historical/OP-10",
+        "historical/OP-11",
+        "historical/OP-15",
+        "historical/OP-17",
+        "historical/OP-22",
+        "historical/OP-25",
+        "historical/OP-26",
+        "historical/OP-32",
+        "historical/OP-34",
+        "historical/OPS-RS-09-3",
+        "historical/OPS-RS-31-1",
+        "historical/OPS-RS-31-4",
+        "historical/OPS-RS-44-5",
+        "historical/OPS-RS-45-4",
+        "historical/OPS-RS-47-3",
+        "historical/RO-09",
+        "later/N03",
+        "later/T04",
+        "later/M02",
+        "later/C01",
+        "later/Q04",
+        "later/C05",
+        "later/C11",
+        "later/K01",
+        "later/K03"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/1",
+          "assessment_sha256": "b9310d580f85d91dc23e40fdec71139c8029a09ebf314c18bb31d15b12f7592a"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/8",
+          "assessment_sha256": "33a7d4a9e43f7509a94ca3fbb2ec56fec5f5822660dc46c8dadb2448a536db83"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "audit-release",
+      "title_at_baseline": "Independent audit and release approval",
+      "task_link": "../../TODO.md#task-audit-release",
+      "original_finding_ids": [
+        "historical/FB-11",
+        "historical/FB-18",
+        "historical/FB-21",
+        "historical/FB-27",
+        "historical/HC-37",
+        "historical/HC-39",
+        "historical/HC-40",
+        "historical/HC-45",
+        "historical/HC-49",
+        "historical/HC-51",
+        "historical/OP-01",
+        "historical/OP-18",
+        "historical/OP-19",
+        "historical/OP-20",
+        "historical/OP-24",
+        "historical/OP-28",
+        "historical/OP-33",
+        "historical/OP-36",
+        "historical/OP-40",
+        "historical/OPS-RS-05-1",
+        "historical/OPS-RS-07-1",
+        "historical/OPS-RS-10-1",
+        "historical/OPS-RS-13-1",
+        "historical/OPS-RS-14-1",
+        "historical/OPS-RS-15-2",
+        "historical/OPS-RS-16-1",
+        "historical/OPS-RS-18-1",
+        "historical/OPS-RS-19-1",
+        "historical/OPS-RS-19-2",
+        "historical/OPS-RS-20-1",
+        "historical/OPS-RS-21-1",
+        "historical/OPS-RS-22-1",
+        "historical/OPS-RS-23-1",
+        "historical/OPS-RS-24-1",
+        "historical/OPS-RS-24-2",
+        "historical/OPS-RS-24-3",
+        "historical/OPS-RS-25-1",
+        "historical/OPS-RS-26-1",
+        "historical/OPS-RS-26-2",
+        "historical/OPS-RS-28-1",
+        "historical/OPS-RS-28-2",
+        "historical/OPS-RS-29-2",
+        "historical/OPS-RS-29-3",
+        "historical/OPS-RS-30-1",
+        "historical/OPS-RS-32-1",
+        "historical/OPS-RS-34-1",
+        "historical/OPS-RS-35-1",
+        "historical/OPS-RS-35-2",
+        "historical/OPS-RS-36-1",
+        "historical/OPS-RS-37-1",
+        "historical/OPS-RS-37-2",
+        "historical/OPS-RS-38-1",
+        "historical/OPS-RS-41-3",
+        "historical/OPS-RS-41-4",
+        "historical/OPS-RS-42-1",
+        "historical/OPS-RS-43-1",
+        "historical/OPS-RS-48-1",
+        "historical/OPS-RS-49-1",
+        "historical/OPS-RS-49-2",
+        "historical/OPS-RS-49-3",
+        "historical/RO-02",
+        "historical/RO-06",
+        "historical/RO-07",
+        "historical/RO-11",
+        "historical/RO-12",
+        "historical/RO-18",
+        "historical/RO-19",
+        "historical/RO-20",
+        "later/N02",
+        "later/N05",
+        "later/N06",
+        "later/N07",
+        "later/N08",
+        "later/T03",
+        "later/T05",
+        "later/A01",
+        "later/A02",
+        "later/A03",
+        "later/A05",
+        "later/M01",
+        "later/D02",
+        "later/D04",
+        "later/H01",
+        "later/H02",
+        "later/C02",
+        "later/Q01",
+        "later/Q03",
+        "later/Q05",
+        "later/Q06",
+        "later/B01",
+        "later/B02",
+        "later/B04",
+        "later/R01",
+        "later/R02",
+        "later/P06",
+        "later/P07",
+        "later/C07",
+        "later/C08",
+        "later/C10",
+        "later/C12",
+        "later/H03",
+        "later/H04",
+        "later/H06",
+        "later/K05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/2",
+          "assessment_sha256": "7071444c7c05065fbb6c55999263e53997f35ebb34308ac5225db849c5cd7e6b"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "authorities-prices",
+      "title_at_baseline": "Select authorities & price services",
+      "task_link": "../../TODO.md#task-authorities-prices",
+      "original_finding_ids": [
+        "historical/FB-18",
+        "historical/HC-02",
+        "historical/HC-23",
+        "historical/HC-45",
+        "historical/OP-18",
+        "historical/OP-36",
+        "historical/OPS-RS-19-1",
+        "historical/OPS-RS-19-2",
+        "historical/OPS-RS-20-1",
+        "historical/OPS-RS-21-1",
+        "historical/OPS-RS-28-2",
+        "historical/OPS-RS-29-3",
+        "historical/OPS-RS-38-1",
+        "historical/OPS-RS-41-3",
+        "historical/OPS-RS-49-3",
+        "historical/RO-02",
+        "historical/RO-19",
+        "later/N02",
+        "later/A05",
+        "later/D02",
+        "later/Q01",
+        "later/K05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/3",
+          "assessment_sha256": "dde2a54dbe5b851f6e5b57fe3a426843b0e718741021b6fd1dde577976efe82c"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "creator-input-liquidity",
+      "title_at_baseline": "Confirm ETH/ZZZ market and token references",
+      "task_link": "../../TODO.md#task-creator-input-liquidity",
+      "original_finding_ids": [
+        "historical/HC-19",
+        "historical/HC-24",
+        "historical/HC-25",
+        "historical/HC-26",
+        "historical/HC-29",
+        "historical/RO-03",
+        "historical/RO-15",
+        "later/M04",
+        "later/D03",
+        "later/I01",
+        "later/B03",
+        "later/R03",
+        "later/R04",
+        "later/P02",
+        "later/P03",
+        "later/P04",
+        "later/C03",
+        "later/K06"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/4",
+          "assessment_sha256": "5d5371d693801db31ff4b01c1053e4152107246ddcffc0a26c88886bbeec398c"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "creator-market-controls",
+      "title_at_baseline": "Confirm ZZZ token and selected pool controls",
+      "task_link": "../../TODO.md#task-creator-market-controls",
+      "original_finding_ids": [
+        "historical/FB-02",
+        "historical/FB-24",
+        "historical/HC-03",
+        "historical/HC-04",
+        "historical/HC-05",
+        "historical/HC-12",
+        "historical/HC-38",
+        "historical/OP-23",
+        "historical/RO-08",
+        "later/H05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/5",
+          "assessment_sha256": "df52a721d9853952571babd3062b5dc9b94c1287adf02ca51835139b67c1dc39"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "creator-zzz-price",
+      "title_at_baseline": "Identify two defensible independent ZZZ USD sources",
+      "task_link": "../../TODO.md#task-creator-zzz-price",
+      "original_finding_ids": [
+        "historical/HC-21",
+        "historical/HC-22",
+        "historical/HC-23",
+        "historical/HC-48",
+        "historical/RO-14"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/6",
+          "assessment_sha256": "b169c6c4bbd6e22691e3da78a222229b09fe31bdba4bd9afe15777bff5e8798f"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "custody-composition",
+      "title_at_baseline": "Qualify collective LP return to NFT holders",
+      "task_link": "../../TODO.md#task-custody-composition",
+      "original_finding_ids": [
+        "historical/HC-10",
+        "historical/HC-18",
+        "historical/HC-27",
+        "historical/HC-46",
+        "historical/HC-53",
+        "historical/OP-13",
+        "historical/OPS-RS-45-2",
+        "historical/OPS-RS-47-2"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/7",
+          "assessment_sha256": "4e97b108bf13c32e0d9c295fe03b63bb0e3369dee98b782af20086549d40c596"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/10",
+          "assessment_sha256": "38362ba32aea7568b5605aeaa7482c85de9e0289d5bd78817519b6f8424a3427"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "deployment-initcode",
+      "title_at_baseline": "Qualify exact constructor arguments and deployment size",
+      "task_link": "../../TODO.md#task-deployment-initcode",
+      "original_finding_ids": [
+        "historical/FB-11",
+        "historical/FB-21",
+        "historical/FB-27",
+        "historical/HC-39",
+        "historical/HC-40",
+        "historical/HC-49",
+        "historical/HC-51",
+        "historical/OP-01",
+        "historical/OP-19",
+        "historical/OP-20",
+        "historical/OP-24",
+        "historical/OP-28",
+        "historical/OP-33",
+        "historical/OP-40",
+        "historical/OPS-RS-05-1",
+        "historical/OPS-RS-07-1",
+        "historical/OPS-RS-10-1",
+        "historical/OPS-RS-12-2",
+        "historical/OPS-RS-13-1",
+        "historical/OPS-RS-14-1",
+        "historical/OPS-RS-16-1",
+        "historical/OPS-RS-18-1",
+        "historical/OPS-RS-22-1",
+        "historical/OPS-RS-23-1",
+        "historical/OPS-RS-24-1",
+        "historical/OPS-RS-24-2",
+        "historical/OPS-RS-24-3",
+        "historical/OPS-RS-25-1",
+        "historical/OPS-RS-26-1",
+        "historical/OPS-RS-26-2",
+        "historical/OPS-RS-28-1",
+        "historical/OPS-RS-29-2",
+        "historical/OPS-RS-30-1",
+        "historical/OPS-RS-32-1",
+        "historical/OPS-RS-34-1",
+        "historical/OPS-RS-35-1",
+        "historical/OPS-RS-35-2",
+        "historical/OPS-RS-36-1",
+        "historical/OPS-RS-37-1",
+        "historical/OPS-RS-37-2",
+        "historical/OPS-RS-41-4",
+        "historical/OPS-RS-42-1",
+        "historical/OPS-RS-48-1",
+        "historical/OPS-RS-49-1",
+        "historical/OPS-RS-49-2",
+        "historical/RO-06",
+        "historical/RO-07",
+        "historical/RO-11",
+        "historical/RO-12",
+        "historical/RO-18",
+        "historical/RO-20",
+        "later/N05",
+        "later/N06",
+        "later/N07",
+        "later/N08",
+        "later/T03",
+        "later/T05",
+        "later/A01",
+        "later/A02",
+        "later/A03",
+        "later/M01",
+        "later/D04",
+        "later/H01",
+        "later/H02",
+        "later/C02",
+        "later/Q03",
+        "later/Q05",
+        "later/Q06",
+        "later/B01",
+        "later/B02",
+        "later/B04",
+        "later/R01",
+        "later/R02",
+        "later/P06",
+        "later/P07",
+        "later/C07",
+        "later/C08",
+        "later/C10",
+        "later/C12",
+        "later/H03",
+        "later/H04",
+        "later/H06"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/8",
+          "assessment_sha256": "7d08fc7b38056b7aad8d95c2621f7ae6bce5a753a9be0670d6a2adea38e553f7"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "destination-slots",
+      "title_at_baseline": "Qualify destination LP capacity and contribution cutover",
+      "task_link": "../../TODO.md#task-destination-slots",
+      "original_finding_ids": [
+        "historical/HC-01",
+        "historical/HC-06",
+        "historical/HC-07",
+        "historical/OP-25",
+        "historical/OP-31",
+        "historical/OPS-RS-45-3"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/9",
+          "assessment_sha256": "6c43e4e1e5b227e35c469835eecf155ce5c0d634c9735b77c1461fc130f54f01"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "dual-price-qualification",
+      "title_at_baseline": "Qualify two independent USD sources per input and LP asset",
+      "task_link": "../../TODO.md#task-dual-price-qualification",
+      "original_finding_ids": [
+        "historical/HC-21",
+        "historical/HC-22",
+        "historical/HC-23",
+        "historical/HC-48",
+        "historical/OPS-RS-15-2",
+        "historical/OPS-RS-41-2",
+        "historical/RO-14"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/10",
+          "assessment_sha256": "3644955b43a1b77cb446b31fce3e1b32a39a318c011dc3a9fbfa92354017f40b"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "fair-draw",
+      "title_at_baseline": "Fair assignment of prepared NFT designs",
+      "task_link": "../../TODO.md#task-fair-draw",
+      "original_finding_ids": [
+        "historical/HC-08",
+        "historical/OPS-RS-09-3",
+        "historical/OPS-RS-43-1",
+        "historical/RO-16",
+        "later/A04",
+        "later/Q02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/11",
+          "assessment_sha256": "7024fecc88fc82d9aacc3d4f81c3a5ccb006dd0abf32c33857926acab088be27"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/15",
+          "assessment_sha256": "4d0333428b492d151eb8b76ba00f5b6ea9d1d69394f221bdcab18b85c14b181b"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "financial-history",
+      "title_at_baseline": "Qualify processed earnings & current-price USD",
+      "task_link": "../../TODO.md#task-financial-history",
+      "original_finding_ids": [
+        "historical/FB-12",
+        "historical/FB-13",
+        "historical/FB-14",
+        "historical/FB-20",
+        "historical/FB-26",
+        "historical/HC-16",
+        "historical/HC-43",
+        "historical/OP-37",
+        "historical/OPS-RS-00-1",
+        "historical/OPS-RS-00-2",
+        "historical/OPS-RS-00-3",
+        "historical/OPS-RS-01-1",
+        "historical/OPS-RS-02-1",
+        "historical/OPS-RS-04-1",
+        "historical/OPS-RS-04-2",
+        "historical/OPS-RS-29-1",
+        "historical/OPS-RS-31-2",
+        "historical/OPS-RS-33-1",
+        "historical/OPS-RS-44-3",
+        "historical/OPS-RS-46-3",
+        "later/C06",
+        "later/C09"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/2",
+          "assessment_sha256": "1b188fca8019db6dfdf7d1206bcf593e11d259956ee91305bc9d762b7ba8cbfd"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "host-services",
+      "title_at_baseline": "Host and monitor the API & indexer",
+      "task_link": "../../TODO.md#task-host-services",
+      "original_finding_ids": [
+        "historical/FB-03",
+        "historical/FB-04",
+        "historical/FB-25",
+        "historical/FB-28",
+        "historical/HC-41",
+        "historical/HC-42",
+        "historical/OP-02",
+        "historical/OP-04",
+        "historical/OP-06",
+        "historical/OP-07",
+        "historical/OP-14",
+        "historical/OP-35",
+        "historical/OPS-RS-03-1",
+        "historical/OPS-RS-06-2",
+        "historical/OPS-RS-08-1",
+        "historical/OPS-RS-17-2",
+        "historical/OPS-RS-20-3",
+        "historical/OPS-RS-27-1",
+        "historical/OPS-RS-39-1",
+        "historical/OPS-RS-43-1",
+        "historical/OPS-RS-46-4",
+        "historical/OPS-RS-46-5",
+        "historical/RO-05",
+        "historical/RO-13",
+        "later/N01",
+        "later/N04",
+        "later/T01",
+        "later/T02",
+        "later/M03",
+        "later/D01",
+        "later/K04",
+        "later/K07",
+        "later/T10-01",
+        "later/T10-02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/11",
+          "assessment_sha256": "457c66a844ed652adb37cbbf4a91526a22bcce7a96c1513f27d84458c48ef567"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/0",
+          "assessment_sha256": "3fd07b77931e4e08f2ad2bec505d4ea2e0f6ae8baeb0d700c75f219d3d051cdb"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "keeper-guardrails",
+      "title_at_baseline": "Harden keeper recovery and monitoring",
+      "task_link": "../../TODO.md#task-keeper-guardrails",
+      "original_finding_ids": [
+        "historical/HC-28",
+        "historical/HC-32",
+        "historical/HC-33",
+        "historical/HC-41",
+        "historical/OP-02",
+        "historical/OP-03",
+        "historical/OP-04",
+        "historical/OP-05",
+        "historical/OP-06",
+        "historical/OP-07",
+        "historical/OP-08",
+        "historical/OP-09",
+        "historical/OP-10",
+        "historical/OP-11",
+        "historical/OP-15",
+        "historical/OP-17",
+        "historical/OP-22",
+        "historical/OP-32",
+        "historical/OP-34",
+        "historical/OPS-RS-06-1",
+        "historical/OPS-RS-06-2",
+        "historical/OPS-RS-17-2",
+        "historical/OPS-RS-31-4",
+        "historical/OPS-RS-44-5",
+        "historical/OPS-RS-45-4",
+        "historical/OPS-RS-47-3",
+        "historical/RO-05",
+        "later/N03",
+        "later/T04",
+        "later/M02",
+        "later/C01",
+        "later/Q04",
+        "later/C05",
+        "later/C11",
+        "later/K01",
+        "later/K03"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/3",
+          "assessment_sha256": "0a2b892c6d6574b81638de791a966e60740afe5a3443c48ccec5edb6023501d1"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "keeper-recovery",
+      "title_at_baseline": "Rehearse keeper outage & server recovery",
+      "task_link": "../../TODO.md#task-keeper-recovery",
+      "original_finding_ids": [
+        "historical/HC-34",
+        "historical/HC-41",
+        "historical/OP-02",
+        "historical/OP-04",
+        "historical/OP-06",
+        "historical/OP-07",
+        "historical/OPS-RS-06-2",
+        "historical/OPS-RS-17-2",
+        "historical/RO-05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/2",
+          "assessment_sha256": "68e66963c47e5cc4992e21681fbbb2975bcbe2df3a0984a7cd9a59674f424148"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "live-history-ui",
+      "title_at_baseline": "Connect live history & cumulative claims",
+      "task_link": "../../TODO.md#task-live-history-ui",
+      "original_finding_ids": [
+        "historical/FB-05",
+        "historical/FB-06",
+        "historical/FB-07",
+        "historical/FB-08",
+        "historical/FB-09",
+        "historical/FB-10",
+        "historical/FB-12",
+        "historical/FB-13",
+        "historical/FB-14",
+        "historical/FB-19",
+        "historical/FB-20",
+        "historical/FB-26",
+        "historical/HC-16",
+        "historical/HC-43",
+        "historical/OP-29",
+        "historical/OP-37",
+        "historical/OPS-RS-00-1",
+        "historical/OPS-RS-00-3",
+        "historical/OPS-RS-01-1",
+        "historical/OPS-RS-01-2",
+        "historical/OPS-RS-02-1",
+        "historical/OPS-RS-02-2",
+        "historical/OPS-RS-04-1",
+        "historical/OPS-RS-04-2",
+        "historical/OPS-RS-29-1",
+        "historical/OPS-RS-31-2",
+        "historical/OPS-RS-33-1",
+        "historical/OPS-RS-40-1",
+        "historical/OPS-RS-44-3",
+        "historical/OPS-RS-44-4",
+        "historical/OPS-RS-46-3",
+        "later/C06",
+        "later/C09"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/3",
+          "assessment_sha256": "6bdeef69c3ee614e69d63c09c3b83ab506440a626c6b29fa125d4aacbd3d6a2f"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "lp-eth-settlement",
+      "title_at_baseline": "Settle holder LP rewards in ETH",
+      "task_link": "../../TODO.md#task-lp-eth-settlement",
+      "original_finding_ids": [
+        "historical/HC-13",
+        "historical/HC-17",
+        "historical/HC-19",
+        "historical/HC-24",
+        "historical/HC-25",
+        "historical/HC-26",
+        "historical/HC-29",
+        "historical/HC-47",
+        "historical/OPS-RS-09-2",
+        "historical/OPS-RS-45-1",
+        "historical/OPS-RS-47-1",
+        "historical/RO-03",
+        "historical/RO-15",
+        "later/M04",
+        "later/D03",
+        "later/I01",
+        "later/B03",
+        "later/R03",
+        "later/R04",
+        "later/P02",
+        "later/P03",
+        "later/P04",
+        "later/C03",
+        "later/K06"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/12",
+          "assessment_sha256": "258bbbaf5fab1be4d165c5a285b53dc1c966f05c25f7dd17733b1c813a3444ea"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/8",
+          "assessment_sha256": "169924a3040eedfbd56fac0b11b1fb8835e2f8be6b974f290dabf980adf15c18"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "lp-execution-routing",
+      "title_at_baseline": "Reviewed best-route LP execution and operator-selected upkeep",
+      "task_link": "../../TODO.md#task-lp-execution-routing",
+      "original_finding_ids": [
+        "historical/HC-19",
+        "historical/HC-24",
+        "historical/HC-25",
+        "historical/HC-26",
+        "historical/HC-29",
+        "historical/HC-31",
+        "historical/OPS-RS-11-1",
+        "historical/OPS-RS-21-2",
+        "historical/RO-03",
+        "historical/RO-15",
+        "later/M04",
+        "later/D03",
+        "later/I01",
+        "later/B03",
+        "later/R03",
+        "later/R04",
+        "later/P02",
+        "later/P03",
+        "later/P04",
+        "later/C03",
+        "later/K06"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/13",
+          "assessment_sha256": "6c89d80b8a934b82f32748a2ebe0471d3b4d0d2884436b48144f63f8e8026002"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "mainnet-fork",
+      "title_at_baseline": "Robinhood mainnet-fork qualification",
+      "task_link": "../../TODO.md#task-mainnet-fork",
+      "original_finding_ids": [
+        "historical/FB-18",
+        "historical/HC-45",
+        "historical/OP-18",
+        "historical/OP-36",
+        "historical/OPS-RS-19-1",
+        "historical/OPS-RS-19-2",
+        "historical/OPS-RS-20-1",
+        "historical/OPS-RS-20-2",
+        "historical/OPS-RS-21-1",
+        "historical/OPS-RS-28-2",
+        "historical/OPS-RS-29-3",
+        "historical/OPS-RS-38-1",
+        "historical/OPS-RS-41-3",
+        "historical/OPS-RS-49-3",
+        "historical/RO-02",
+        "historical/RO-19",
+        "later/N02",
+        "later/A05",
+        "later/D02",
+        "later/Q01",
+        "later/K05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/14",
+          "assessment_sha256": "c4ffc3fdf640d9228b83088aeb0f18f87e86b95f1f979f0600ab14d6a25dccab"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/1",
+          "assessment_sha256": "1700773003b174cee1163f9c9a6cde233adc3688e9f6f204269b347d202403fa"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "metadata-ops",
+      "title_at_baseline": "Publish artwork & operate metadata refresh",
+      "task_link": "../../TODO.md#task-metadata-ops",
+      "original_finding_ids": [
+        "historical/FB-23",
+        "historical/OP-12",
+        "historical/OP-39",
+        "historical/OPS-RS-09-1",
+        "historical/OPS-RS-15-2",
+        "historical/RO-10"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/15",
+          "assessment_sha256": "967ebe420230b1d2d88f28ad3703b91c350d8365d8f0d64096446aa84b3b45b4"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "migration-framework",
+      "title_at_baseline": "Qualify same-pair pool moves and collective holder exit",
+      "task_link": "../../TODO.md#task-migration-framework",
+      "original_finding_ids": [
+        "historical/HC-09",
+        "historical/HC-11",
+        "historical/OP-13",
+        "historical/OP-26",
+        "historical/OPS-RS-06-1",
+        "historical/RO-09"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/16",
+          "assessment_sha256": "5bc0e7f1e8eff3625d72293051b718aedda2d4efd42ae0e10a531ab4e3e9cb3b"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "native-custody-recovery",
+      "title_at_baseline": "Qualify native ETH holder return and failed-payout recovery",
+      "task_link": "../../TODO.md#task-native-custody-recovery",
+      "original_finding_ids": [
+        "historical/HC-10",
+        "historical/HC-11",
+        "historical/OP-26",
+        "historical/RO-09"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/17",
+          "assessment_sha256": "601ad744837eb2ae164e1c6ed4e151b9f85ec82e13496d4f6b6cd760297a77f0"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/9",
+          "assessment_sha256": "1811caa2bb9df44675fb044417ee3e9019aa1f4d922d9bdf3265ca472801e9e9"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "native-production-preflight",
+      "title_at_baseline": "Qualify the accounting7 production inventory and preflight",
+      "task_link": "../../TODO.md#task-native-production-preflight",
+      "original_finding_ids": [
+        "historical/FB-18",
+        "historical/HC-45",
+        "historical/OP-18",
+        "historical/OP-36",
+        "historical/OPS-RS-19-1",
+        "historical/OPS-RS-19-2",
+        "historical/OPS-RS-20-1",
+        "historical/OPS-RS-21-1",
+        "historical/OPS-RS-28-2",
+        "historical/OPS-RS-29-3",
+        "historical/OPS-RS-38-1",
+        "historical/OPS-RS-41-3",
+        "historical/OPS-RS-49-3",
+        "historical/RO-02",
+        "historical/RO-19",
+        "later/N02",
+        "later/A05",
+        "later/D02",
+        "later/Q01",
+        "later/K05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/18",
+          "assessment_sha256": "ea1682030c4a0a41355b26c062b93ebc6bbada61d5b4091de1bed42cb311b5d7"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "opensea-mint",
+      "title_at_baseline": "Qualify OpenSea primary mint integration",
+      "task_link": "../../TODO.md#task-opensea-mint",
+      "original_finding_ids": [
+        "historical/FB-17",
+        "historical/HC-44",
+        "historical/OP-38",
+        "historical/OPS-RS-43-1",
+        "historical/RO-17"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/19",
+          "assessment_sha256": "28385961b1fcc01946f354d3df3f712d57507339047b0abb33704a117dd1c0ff"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/14",
+          "assessment_sha256": "7c359868bffbf47d46343e51878167a9fd428d6177199f0b704bd927fe287cca"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "operation-review",
+      "title_at_baseline": "Unify operation readiness and financial diagnostics",
+      "task_link": "../../TODO.md#task-operation-review",
+      "original_finding_ids": [
+        "historical/FB-03",
+        "historical/FB-04",
+        "historical/FB-11",
+        "historical/FB-21",
+        "historical/FB-25",
+        "historical/FB-27",
+        "historical/FB-28",
+        "historical/HC-39",
+        "historical/HC-40",
+        "historical/HC-42",
+        "historical/HC-49",
+        "historical/HC-51",
+        "historical/OP-01",
+        "historical/OP-14",
+        "historical/OP-19",
+        "historical/OP-20",
+        "historical/OP-24",
+        "historical/OP-28",
+        "historical/OP-30",
+        "historical/OP-33",
+        "historical/OP-35",
+        "historical/OP-40",
+        "historical/OPS-RS-03-1",
+        "historical/OPS-RS-05-1",
+        "historical/OPS-RS-07-1",
+        "historical/OPS-RS-08-1",
+        "historical/OPS-RS-10-1",
+        "historical/OPS-RS-13-1",
+        "historical/OPS-RS-14-1",
+        "historical/OPS-RS-16-1",
+        "historical/OPS-RS-18-1",
+        "historical/OPS-RS-20-3",
+        "historical/OPS-RS-21-2",
+        "historical/OPS-RS-22-1",
+        "historical/OPS-RS-23-1",
+        "historical/OPS-RS-24-1",
+        "historical/OPS-RS-24-2",
+        "historical/OPS-RS-24-3",
+        "historical/OPS-RS-25-1",
+        "historical/OPS-RS-26-1",
+        "historical/OPS-RS-26-2",
+        "historical/OPS-RS-27-1",
+        "historical/OPS-RS-28-1",
+        "historical/OPS-RS-29-2",
+        "historical/OPS-RS-30-1",
+        "historical/OPS-RS-32-1",
+        "historical/OPS-RS-34-1",
+        "historical/OPS-RS-35-1",
+        "historical/OPS-RS-35-2",
+        "historical/OPS-RS-36-1",
+        "historical/OPS-RS-37-1",
+        "historical/OPS-RS-37-2",
+        "historical/OPS-RS-39-1",
+        "historical/OPS-RS-41-2",
+        "historical/OPS-RS-41-4",
+        "historical/OPS-RS-42-1",
+        "historical/OPS-RS-46-4",
+        "historical/OPS-RS-46-5",
+        "historical/OPS-RS-48-1",
+        "historical/OPS-RS-49-1",
+        "historical/OPS-RS-49-2",
+        "historical/RO-06",
+        "historical/RO-07",
+        "historical/RO-11",
+        "historical/RO-12",
+        "historical/RO-13",
+        "historical/RO-18",
+        "historical/RO-20",
+        "later/N01",
+        "later/N04",
+        "later/N05",
+        "later/N06",
+        "later/N07",
+        "later/N08",
+        "later/T01",
+        "later/T02",
+        "later/T03",
+        "later/T05",
+        "later/A01",
+        "later/A02",
+        "later/A03",
+        "later/M01",
+        "later/M03",
+        "later/D01",
+        "later/D04",
+        "later/H01",
+        "later/H02",
+        "later/C02",
+        "later/Q03",
+        "later/Q05",
+        "later/Q06",
+        "later/B01",
+        "later/B02",
+        "later/B04",
+        "later/R01",
+        "later/R02",
+        "later/P06",
+        "later/P07",
+        "later/C07",
+        "later/C08",
+        "later/C10",
+        "later/C12",
+        "later/H03",
+        "later/H04",
+        "later/H06",
+        "later/K04",
+        "later/K07",
+        "later/T10-01",
+        "later/T10-02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/7",
+          "assessment_sha256": "3a3af49b16f7a654e55cd8173f377fb5a41aaf1e362c67c6b750881d1ee7b077"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "portfolio",
+      "title_at_baseline": "Show actual holdings & claimable fees",
+      "task_link": "../../TODO.md#task-portfolio",
+      "original_finding_ids": [
+        "historical/FB-05",
+        "historical/FB-06",
+        "historical/FB-07",
+        "historical/FB-08",
+        "historical/FB-09",
+        "historical/FB-10",
+        "historical/FB-19",
+        "historical/OP-29",
+        "historical/OPS-RS-01-2",
+        "historical/OPS-RS-02-2",
+        "historical/OPS-RS-40-1",
+        "historical/OPS-RS-44-4"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/4",
+          "assessment_sha256": "b09f24c5791c5729f201549f67f5bfb87a0389eefb6c0db5f057cbc69e458a1d"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "post-seal-configuration",
+      "title_at_baseline": "Keep operational settings configurable after sealing",
+      "task_link": "../../TODO.md#task-post-seal-configuration",
+      "original_finding_ids": [
+        "historical/HC-36",
+        "historical/HC-52"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/20",
+          "assessment_sha256": "344f7cfaf3d258f0f6489b5884916810d1ae1cfd0cd58a334ddf7254586cc839"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "rebalance-confirmation-buffer",
+      "title_at_baseline": "Add configurable rebalance confirmation buffer",
+      "task_link": "../../TODO.md#task-rebalance-confirmation-buffer",
+      "original_finding_ids": [
+        "historical/HC-30",
+        "historical/HC-34",
+        "historical/HC-35",
+        "historical/OP-16",
+        "historical/OPS-RS-11-1",
+        "historical/OPS-RS-17-1",
+        "historical/RO-01",
+        "later/P05",
+        "later/C04",
+        "later/K02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/21",
+          "assessment_sha256": "21f9cccce60442ca644b30e92e0c7b9cc2fbb09c1c4bf3a1457b727bd3af2f63"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/4",
+          "assessment_sha256": "de785d26d4eb51eb616a8903019181f0e3ce4c7abfc3bba8c7016e3bd2bb6497"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "reviewed-contribution-policy",
+      "title_at_baseline": "Qualify caller-bound activation review policy",
+      "task_link": "../../TODO.md#task-reviewed-contribution-policy",
+      "original_finding_ids": [
+        "historical/FB-01",
+        "historical/HC-20",
+        "historical/HC-50",
+        "historical/OPS-RS-12-1",
+        "historical/OPS-RS-15-1",
+        "historical/OPS-RS-44-1",
+        "historical/OPS-RS-44-2",
+        "historical/OPS-RS-46-1",
+        "historical/OPS-RS-46-2",
+        "historical/RO-04"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/22",
+          "assessment_sha256": "9204e3a47a1b9e52b6196d26e1c3fb6d82407aa153fe0f5556c7ce6bcadfffd7"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/1",
+          "assessment_sha256": "c982bdc5d972505abe57eb6d516db4ec9891b649f351415b08cf24acd5f2bad0"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "royalty-eth-settlement",
+      "title_at_baseline": "Qualify original-currency royalty claims",
+      "task_link": "../../TODO.md#task-royalty-eth-settlement",
+      "original_finding_ids": [
+        "historical/FB-16",
+        "historical/HC-14",
+        "historical/HC-15",
+        "historical/OPS-RS-31-3"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/23",
+          "assessment_sha256": "f97ffb6549595d5b6955d4fefacc68d319ec41d2986babb85ebf55b9c988e123"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/7",
+          "assessment_sha256": "3768f1696a797aaffb2109405e2c62ae33471003d3db0366bfcb6f4b3f7c0730"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-chain-recovery",
+      "title_at_baseline": "Whole-protocol recovery & canonical chain loss",
+      "task_link": "../../TODO.md#task-security-chain-recovery",
+      "original_finding_ids": [
+        "historical/FB-15",
+        "historical/FB-22",
+        "historical/HC-06",
+        "historical/HC-07",
+        "historical/OP-25",
+        "historical/OPS-RS-45-3"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/24",
+          "assessment_sha256": "a101048ec46773e061cf5ea472d435bb0d70a442256b46e22f2467948ddab6ef"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-dependencies",
+      "title_at_baseline": "External dependencies & receipt backing",
+      "task_link": "../../TODO.md#task-security-dependencies",
+      "original_finding_ids": [
+        "historical/HC-09",
+        "historical/OPS-RS-09-2",
+        "historical/OPS-RS-41-1"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/25",
+          "assessment_sha256": "c8bff6b74cadbd3920ae0867fdc5fa94e5910e9ae5255a306365a783c3b72365"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-external-manipulation",
+      "title_at_baseline": "Assess outside-actor price manipulation, ordering and MEV exposure",
+      "task_link": "../../TODO.md#task-security-external-manipulation",
+      "original_finding_ids": [
+        "historical/HC-30",
+        "historical/HC-31",
+        "historical/HC-34",
+        "historical/HC-35",
+        "historical/HC-37",
+        "historical/OP-16",
+        "historical/OP-21",
+        "historical/RO-01",
+        "later/P05",
+        "later/C04",
+        "later/K02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/26",
+          "assessment_sha256": "ddf5d776708bfb7d3b0041c2f8a7919240bfb93ddb77db1e69f6c23e5e9b6afd"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/6",
+          "assessment_sha256": "6c44717e0b83e756a0660874a822ea33889b0390ac9deef0ff7eb149f00630e2"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-governance",
+      "title_at_baseline": "Governance, permissions & sealing",
+      "task_link": "../../TODO.md#task-security-governance",
+      "original_finding_ids": [
+        "historical/HC-02",
+        "historical/HC-36",
+        "historical/HC-52",
+        "historical/OPS-RS-11-1"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/27",
+          "assessment_sha256": "a75ab6cc3e2e0b3d9b1bc0924019d6acb3568b139c6b5f81cdec1b90e05de897"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-integration",
+      "title_at_baseline": "Cross-contract & infrastructure audit",
+      "task_link": "../../TODO.md#task-security-integration",
+      "original_finding_ids": [
+        "historical/OPS-RS-15-1"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/28",
+          "assessment_sha256": "da6d7f61e8e36a4bc4576feed3f952faeb70e3cc6637f436bc6eba7b03d8d532"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/12",
+          "assessment_sha256": "8809376c56959490c5d41926239f996efaa5a599edbe74a46e31f795e7d2fc36"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-keeper-manipulation",
+      "title_at_baseline": "Assess keeper-originated manipulation and repeated maintenance losses",
+      "task_link": "../../TODO.md#task-security-keeper-manipulation",
+      "original_finding_ids": [
+        "historical/HC-30",
+        "historical/HC-31",
+        "historical/HC-35",
+        "historical/HC-37",
+        "historical/OP-21",
+        "historical/RO-01",
+        "later/P05",
+        "later/C04",
+        "later/K02"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/29",
+          "assessment_sha256": "7bb2327555e27b422105a5668132d33aef4e6345df6203220e7a596183d7bf14"
+        },
+        {
+          "assessment_file": "keeper-rpc/TASK_REVIEW.json",
+          "json_pointer": "/rows/5",
+          "assessment_sha256": "cb063fa30cbaabddf40928074d883f0c77f4c420eff739951d81e1b4ec8c73c7"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-ownership-rewards",
+      "title_at_baseline": "Ownership, claims & allocation rules",
+      "task_link": "../../TODO.md#task-security-ownership-rewards",
+      "original_finding_ids": [
+        "historical/FB-12",
+        "historical/FB-13",
+        "historical/FB-14",
+        "historical/FB-20",
+        "historical/FB-26",
+        "historical/HC-10",
+        "historical/HC-13",
+        "historical/HC-16",
+        "historical/HC-17",
+        "historical/HC-43",
+        "historical/HC-47",
+        "historical/OP-37",
+        "historical/OPS-RS-00-1",
+        "historical/OPS-RS-00-2",
+        "historical/OPS-RS-00-3",
+        "historical/OPS-RS-01-1",
+        "historical/OPS-RS-02-1",
+        "historical/OPS-RS-04-1",
+        "historical/OPS-RS-04-2",
+        "historical/OPS-RS-09-3",
+        "historical/OPS-RS-29-1",
+        "historical/OPS-RS-31-1",
+        "historical/OPS-RS-31-2",
+        "historical/OPS-RS-31-3",
+        "historical/OPS-RS-33-1",
+        "historical/OPS-RS-44-3",
+        "historical/OPS-RS-45-1",
+        "historical/OPS-RS-46-3",
+        "historical/OPS-RS-47-1",
+        "later/C06",
+        "later/C09"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/30",
+          "assessment_sha256": "4330668000a52558d4d68fbab64edc803838ce80d373c4b1a340339e143126c3"
+        },
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/13",
+          "assessment_sha256": "4c973356b31d958e3d9ef6b594c12b084b18cae7f351a444e3e68da42bc85740"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-share-accounting",
+      "title_at_baseline": "Shared LP accounting & economic manipulation",
+      "task_link": "../../TODO.md#task-security-share-accounting",
+      "original_finding_ids": [
+        "historical/HC-18",
+        "historical/HC-27",
+        "historical/HC-46",
+        "historical/HC-53",
+        "historical/OPS-RS-41-1",
+        "historical/OPS-RS-45-2",
+        "historical/OPS-RS-47-2"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/31",
+          "assessment_sha256": "e12a014473ad38559c2f4fc647a31076c4dceca4fd834c64624da88b75fedc4d"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "security-strategy",
+      "title_at_baseline": "Oracles, keepers, strategies & MEV",
+      "task_link": "../../TODO.md#task-security-strategy",
+      "original_finding_ids": [
+        "historical/OP-30"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/32",
+          "assessment_sha256": "ea06212ac089c20db75a2be70aa764f6897bc37ff78c990bf55ee827d6f9ab9c"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "testnet-rehearsal",
+      "title_at_baseline": "Robinhood Testnet end-to-end rehearsal",
+      "task_link": "../../TODO.md#task-testnet-rehearsal",
+      "original_finding_ids": [
+        "historical/FB-18",
+        "historical/HC-45",
+        "historical/OP-18",
+        "historical/OP-36",
+        "historical/OPS-RS-19-1",
+        "historical/OPS-RS-19-2",
+        "historical/OPS-RS-20-1",
+        "historical/OPS-RS-21-1",
+        "historical/OPS-RS-21-2",
+        "historical/OPS-RS-28-2",
+        "historical/OPS-RS-29-3",
+        "historical/OPS-RS-38-1",
+        "historical/OPS-RS-41-3",
+        "historical/OPS-RS-49-3",
+        "historical/RO-02",
+        "historical/RO-19",
+        "later/N02",
+        "later/A05",
+        "later/D02",
+        "later/Q01",
+        "later/K05"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "contracts/TASK_ASSESSMENTS.json",
+          "json_pointer": "/rows/33",
+          "assessment_sha256": "6ad73d49169bdc6e992f7582b8ced54b8573a52548a7251567e898531aad6432"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "transaction-ui",
+      "title_at_baseline": "Handle the complete transaction journey",
+      "task_link": "../../TODO.md#task-transaction-ui",
+      "original_finding_ids": [
+        "historical/FB-05",
+        "historical/FB-06",
+        "historical/FB-07",
+        "historical/FB-08",
+        "historical/FB-09",
+        "historical/FB-10",
+        "historical/FB-19",
+        "historical/OP-29",
+        "historical/OPS-RS-01-2",
+        "historical/OPS-RS-02-2",
+        "historical/OPS-RS-40-1",
+        "historical/OPS-RS-44-4"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/6",
+          "assessment_sha256": "bc86208a3cd86bdd99bbd5143b7eaf26b3c9f88349645101183bc8354911e2bd"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    },
+    {
+      "task_id": "wallet",
+      "title_at_baseline": "Connect real wallet transactions",
+      "task_link": "../../TODO.md#task-wallet",
+      "original_finding_ids": [
+        "historical/FB-05",
+        "historical/FB-06",
+        "historical/FB-07",
+        "historical/FB-08",
+        "historical/FB-09",
+        "historical/FB-10",
+        "historical/FB-19",
+        "historical/OP-29",
+        "historical/OPS-RS-01-2",
+        "historical/OPS-RS-02-2",
+        "historical/OPS-RS-40-1",
+        "historical/OPS-RS-44-4"
+      ],
+      "review_views": [
+        {
+          "assessment_file": "backend/TASK_ASSESSMENTS.json",
+          "json_pointer": "/tasks/5",
+          "assessment_sha256": "853522de93050a53f700d43987159ee1db3ab239da1fafd177eeeb53fd38f1cf"
+        }
+      ],
+      "closure": "No broad task is closed by source inspection or these focused resource fixes; see sole Todo for current status."
+    }
+  ],
+  "questions": "No new economic/authority/strategy behavior decision was required for the confirmed fixes. Actual addresses, provider/source/route selection, funding, hosting/metadata and independent acceptance remain explicit required inputs, not inferred.",
+  "source_or_runtime_relabeling": false,
+  "production_approved": false
+}

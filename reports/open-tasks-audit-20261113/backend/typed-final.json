@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "stage": "typed-final",
+  "utc": "2026-11-13T15:43:09.672687+00:00",
+  "tests_run": 1,
+  "failure_entries": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_before_after_exact": true,
+  "sha256": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\indexer\\monitor.py": "5b09a36d7d36cbb8c9b4de7e6af1eeea7454d919a1698195ebb30abeb60c5c78",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_indexer_log_retry_policy.py": "a2838b2207173d29125c5dec91cd8547ad0ddcf6b5d2d8c0fee407dc427fdb23"
+  },
+  "failed_tests": [],
+  "scope": "One changed method with expanded reserved-code cases; overlaps original seven, not an additional unique method. Old source injected read-only, no shared source reset, no old suite/network/EVM/compiler."
+}

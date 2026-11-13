@@ -1,16 +1,24 @@
 # PoPL current project context
 
-The [13November external qualification](reports/predeployment-qualification-20261113/REVIEW.md) independently derives
-chain4663 genesis from the official Ethereum rollup's initial assertion; all13
-existing activation_api_v1 checks pass through the unchanged helper with recorded
-1.5-second transport pacing. Stock CLI default cadence is NOT qualified and has
-no pacing flag. Specific historical state/logs and a tiny temporary override
-work; numerical20M/24M capacity, provider plan/SLA/lifetime archive, actual full
-PoPL fees and adoption stay open. Current selected501122 has activeL0 (not zero
-total liquidity); four new conditional quotes and independent-source failures
-leave real feeds/routes unqualified. No code/tests/defaults/guards/live state
-changed or unchanged suites rerun. Use the report's next actions; never adopt the
-endpoint, invent budgets or relabel source9/mint1 fixtures as current mint2.
+The [44-linked-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes read-only request amplification:
+the probe now supports optional actual-HTTP pacing, stops a refused/rate-limited
+endpoint and bounds internal posts/timeouts by the original90s budget. Indexer
+range shrinking no longer retries known global/work-limit/wrong-chain failures.
+13new probe and7new indexer methods pass at explicit source stages; old suites,
+Solidity/compiler/static and public RPC work are not rerun. Register the new
+probe module in the maintained keeper runner; inventory-only checks execute0tests.
+Current guides distinguish reviewed spot sources from unreviewed spot fallback,
+LP2 from explicit execution1/LP3 and the exact schema17 inventory. All44broad
+tasks remain open; individual fixes do not qualify markets, services or release.
+
+The earlier external qualification independently derives chain4663 genesis and
+passes13checks at its original source through a paced wrapper. Current CLI now
+offers `--request-interval-ms 1500` (integer0–5000, default0); that new source was
+unit-checked, NOT run against the public provider. No provider/cadence is adopted.
+Specific history/logs and a tiny override retain their original scope; full-work
+20M/24M capacity/fees, two-source ETH/ZZZ markets and operating approval remain
+open. All61Solidity files/defaults/rights, Anvil/journals, browser signer/public
+null configurations, sites/services and user-paused heartbeat stay unchanged.
 
 Current [20M/24M controlled qualification](reports/gas-profiles-20261113/REVIEW.md)
 passes exact$100/$5 ETH/ZZZ contributions and six complete keeper operations.

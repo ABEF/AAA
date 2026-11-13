@@ -29,6 +29,60 @@ def _remote_error(exc):
         exc=exc.__cause__
     return None
 
+class _EndpointBudget:
+    """Probe-local pacing/deadline; never changes shared service transports."""
+    def __init__(self,client,request_interval_ms):
+        self.client=client;self.original_call=client.call
+        self.deadline=time.monotonic()+90;self.calls=0;self.posts=0
+        self.interval=request_interval_ms/1000;self.next_post=None;self.stopped=False
+        if isinstance(client,Rpc):
+            self.original_transport=client._read_http
+            client._read_http=self.transport
+        elif request_interval_ms:
+            raise ValueError('Transport pacing requires the bounded RPC transport')
+
+    def check(self):
+        if self.stopped:raise RpcError('Endpoint probe stopped after access denial or rate limit')
+        if time.monotonic()>=self.deadline:raise TimeoutError('Endpoint probe budget exhausted')
+
+    def transport(self,url,raw):
+        self.check()
+        if self.next_post is not None:
+            wait=self.next_post-time.monotonic()
+            if wait>0:
+                # Waiting consumes the same endpoint budget; never enlarge it
+                # or begin a request which pacing places at/after its deadline.
+                if wait>=self.deadline-time.monotonic():raise TimeoutError('Endpoint probe pacing exceeds its deadline')
+                time.sleep(wait)
+        self.check()
+        now=time.monotonic();remaining=self.deadline-now
+        if remaining<=0:raise TimeoutError('Endpoint probe budget exhausted')
+        self.posts+=1
+        if self.posts>200:raise TimeoutError('Endpoint probe transport budget exhausted')
+        self.next_post=now+self.interval
+        original_timeout=self.client.timeout
+        self.client.timeout=min(original_timeout,remaining)
+        try:
+            return self.original_transport(url,raw)
+        except HTTPError as exc:
+            if exc.code in (401,403,429):self.stopped=True
+            raise
+        finally:
+            self.client.timeout=original_timeout
+
+    def call(self,method,params):
+        self.calls+=1
+        self.check()
+        if self.calls>100:raise TimeoutError('Endpoint probe budget exhausted')
+        try:
+            result=self.original_call(method,params)
+        except Exception as exc:
+            remote=_remote_error(exc)
+            if remote and remote.reason=='rate_limited':self.stopped=True
+            raise
+        self.check()
+        return result
+
 def _approval_trace(client,target,selector):
     """Discarded approve(0) simulation, never a wallet transaction or override."""
     data=calldata('approve(address,uint256)',PROBE_FROM,0)
@@ -65,11 +119,13 @@ def _approval_trace(client,target,selector):
             'scope':'discarded read-only simulation, not a submitted approval or persistent state change'}
 
 def probe(config, target, data, *, confirmations=12, receipt_blocks=12, factory=Rpc,
-          profile='keeper_v1', expected_genesis=None, expected_runtime=None):
+          profile='keeper_v1', expected_genesis=None, expected_runtime=None,request_interval_ms=0):
     target = address(target)
     if not isinstance(data,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2}){4,4096}',data): raise ValueError('Invalid probe calldata')
     positive(confirmations,'confirmations');positive(receipt_blocks,'receipt_blocks')
     if confirmations>1000 or receipt_blocks>32: raise ValueError('Probe exceeds bounded range')
+    if type(request_interval_ms) is not int or not 0<=request_interval_ms<=5000:
+        raise ValueError('Probe request interval must be an integer from0to5000milliseconds')
     if profile not in ('keeper_v1','activation_api_v1'):raise ValueError('Unsupported explicit probe profile')
     if profile=='activation_api_v1':
         expected_genesis=rpc_hash(expected_genesis,'reviewed genesis pin')
@@ -83,21 +139,13 @@ def probe(config, target, data, *, confirmations=12, receipt_blocks=12, factory=
         'scope':'read_only_point_in_time_compatibility; not finality, uptime or fee-budget qualification',
         'production_approved':False,'probe_address':target,'probe_calldata':data,'endpoints':[]}
     if profile=='activation_api_v1':report['reviewed_pins']={'genesis_hash':expected_genesis,'runtime_code_hash':expected_runtime}
+    if request_interval_ms:report['request_interval_ms']=request_interval_ms
     reference = None
     for index,url in enumerate(urls):
         endpoint = {'index':index,'checks':[],'receipts':[]};report['endpoints'].append(endpoint)
         client = factory([url],chain,timeout=8,retries=1)
-        original_call = client.call
-        deadline = time.monotonic()+90
-        calls = 0
-        def bounded_call(method,params):
-            nonlocal calls
-            calls += 1
-            if calls>100 or time.monotonic()>deadline:raise TimeoutError('Endpoint probe budget exhausted')
-            result=original_call(method,params)
-            if time.monotonic()>deadline:raise TimeoutError('Endpoint probe result exceeded its deadline')
-            return result
-        client.call = bounded_call
+        budget=_EndpointBudget(client,request_interval_ms)
+        client.call=budget.call
         def observe(name, fn):
             start = time.monotonic()
             try: value = fn();entry = {'name':name,'ok':True,'value':value}
@@ -229,12 +277,15 @@ def main(argv=None):
     parser.add_argument('--profile',choices=('keeper_v1','activation_api_v1'),default='keeper_v1')
     parser.add_argument('--genesis-hash');parser.add_argument('--runtime-hash')
     parser.add_argument('--confirmations',type=int,default=12);parser.add_argument('--receipt-blocks',type=int,default=12)
+    parser.add_argument('--request-interval-ms',type=int,default=0)
     try:
         args=parser.parse_args(argv)
         if Path(args.config).resolve()==Path(args.output).resolve():raise ValueError('Preserve the probe input configuration')
         config=_read_config(args.config)
+        if not 0<=args.request_interval_ms<=5000:raise ValueError('Probe request interval exceeds supported bounds')
         report=probe(config,args.address,args.calldata,profile=args.profile,confirmations=args.confirmations,
-            receipt_blocks=args.receipt_blocks,expected_genesis=args.genesis_hash,expected_runtime=args.runtime_hash)
+            receipt_blocks=args.receipt_blocks,expected_genesis=args.genesis_hash,expected_runtime=args.runtime_hash,
+            request_interval_ms=args.request_interval_ms)
         report['probe_source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
         atomic_json(args.output,report)
         print(json.dumps({'compatibility_checks_passed':report['compatibility_checks_passed'],'production_approved':False,

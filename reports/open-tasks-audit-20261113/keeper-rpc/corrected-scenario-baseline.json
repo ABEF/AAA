@@ -1,0 +1,9 @@
+{
+  "source_sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+  "only_changed_test_scenario_executed": true,
+  "methods": 1,
+  "failures": 0,
+  "errors": 1,
+  "network_calls": 0,
+  "reason": "Initial new test mistakenly treated minimum start-to-start spacing as a wait after response. Corrected before final and only corrected scenario replayed against immutable baseline; remaining baseline methods not rerun."
+}

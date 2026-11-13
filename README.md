@@ -1,15 +1,13 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [20M contribution / 24M maintenance review](reports/gas-profiles-20261113/REVIEW.md)
-qualifies controlled $100 activation/$5 growth and single/two-leg maintenance,
-including full gas padding and actual RPC estimates. Safeguards, contract
-implementations and 12M defaults are unchanged. The later
-[RPC/fee review](reports/rpc-fees-20261113/REVIEW.md) verifies a Pinax trace/log
-witness and target fee components, and adds an opt-in zero-tip keeper profile
-for correct future fee accounting. The [new external qualification](reports/predeployment-qualification-20261113/REVIEW.md)
-independently establishes genesis and passes all13 paced RPC checks. Real feed/
-route blockers, full provider capacity and complete operation fees remain open;
-nothing is deployed or installed. Oracle has only3bytes of runtime headroom.
+The [current44-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes
+RPC-probe deadlines/refusal handling and unnecessary indexer log retries, with
+20distinct new regression methods. It corrects operator pricing/profile guidance;
+contract implementations, financial safeguards and live environments are unchanged.
+The [20M/24M controlled profiles](reports/gas-profiles-20261113/REVIEW.md) and
+[independent RPC identity](reports/predeployment-qualification-20261113/REVIEW.md)
+retain their original scope. Real feeds/routes, full-work fees/provider capacity
+and release approval remain open. Oracle still has only3bytes runtime headroom.
 
 The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
 individually checks all271previously unreviewed records, fixes three concrete

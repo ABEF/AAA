@@ -1,0 +1,19 @@
+{
+  "stage": "Initial11-new-methoddraft against unchanged Git baseline53633b9",
+  "source_sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+  "methods_run": 11,
+  "failure_entries": 7,
+  "error_entries": 11,
+  "failure_entries_include_subtests": true,
+  "actual_existing_defects_reproduced": [
+    "Continued requests afterHTTP401/403/429",
+    "Continued requests after sanitized JSON-RPC rate limit",
+    "Started actual method post after internal chain check exhausted endpoint deadline",
+    "Transport timeout remained8seconds with3seconds endpoint time left"
+  ],
+  "missing_feature": "Explicit request_interval_ms and CLI pacing option absent",
+  "initial_draft_correction": "One pacing test initially confused minimum start-to-start interval with mandatory post-response delay. Its corrected scenario alone was later run against the immutable baseline, then final13methods passed.",
+  "evidence_provenance": "Initial unittest stdout/stderr retained in tool result; this is its recorded summary, not a reconstructed original raw log.",
+  "network_calls": 0,
+  "unchanged_suites_executed": 0
+}

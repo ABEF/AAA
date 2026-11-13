@@ -1,0 +1,345 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "reviewed_utc": "2026-11-13T16:00:14.649369+00:00",
+  "tasks": [
+    {
+      "task_id": "activation-quotes",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/activation.py",
+          "symbol": "ActivationTransactions.prepare/_trace/_gas",
+          "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+        },
+        {
+          "path": "frontend_api/transaction_gas.py",
+          "symbol": "observe",
+          "sha256": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b"
+        }
+      ],
+      "source_milestone": "Canonical confirmed snapshot, profile/owner/admission binding, entrant-only two-trace marginal-LP measurement, exact allowance replacement, output equality and policy2 full20% padding remain.",
+      "precise_remainder": "Real two-source ETH/ZZZ valuation, compatible meaningful bidirectional route depth, actual current mint2 launch-state provider/time/fee and maximum-state acceptance are not established. No current-market success is inferred from controlled20M fixtures.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "reviewed-contribution-policy",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/activation.py",
+          "symbol": "ActivationTransactions.prepare",
+          "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+        },
+        {
+          "path": "frontend_api/activation_config.py",
+          "symbol": "Configuration.verify",
+          "sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+        }
+      ],
+      "source_milestone": "Current contribution-loss and entry-policy fingerprints/minima are read and frozen into reviewed calldata; stale/conflicting profiles fail closed.",
+      "precise_remainder": "Explicit complete reviewed deployment/configuration adoption and actual economic/market execution are still required; code/source publication selects no policy or route.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "financial-history",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/history.py",
+          "symbol": "History.read/_read",
+          "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+        },
+        {
+          "path": "frontend_api/earnings.py",
+          "symbol": "Earnings.reconcile/read",
+          "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75"
+        },
+        {
+          "path": "frontend_api/earnings_checkpoint.py",
+          "symbol": "schema/source_identity/Checkpoint.seed/check_anchor",
+          "sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78"
+        },
+        {
+          "path": "frontend_api/earnings_checkpoint_v2.py",
+          "symbol": "validate/capture/restore",
+          "sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49"
+        },
+        {
+          "path": "frontend_api/wallet_earnings.py",
+          "symbol": "read",
+          "sha256": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576"
+        }
+      ],
+      "source_milestone": "Raw history preserves canonical ancestry/provenance/current ownership, exact accounting7 components and royalty tickets; exact checkpoints are explicit source/config/anchor pins and old codecs remain distinct.",
+      "precise_remainder": "Lifetime archival/workload, checkpoint build/rotation/WAL recovery, actual mixed-runtime lineage handoff and true complete logs are not qualified by bounded replay or a local digest. The indexer retry correction improves availability, not log-completeness proof.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "live-history-ui",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/wallet_earnings.py",
+          "symbol": "read",
+          "sha256": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576"
+        },
+        {
+          "path": "frontend_api/earnings.py",
+          "symbol": "Earnings.read/check_paid",
+          "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75"
+        }
+      ],
+      "source_milestone": "Current-holdings history uses one pinned inventory/epoch chain; claims/conversions/import are not income; separate current USD and unavailable prices remain.",
+      "precise_remainder": "Matching source10 website manifest/API rollout and actual browser/hosting/market history acceptance remain open. No website source, public manifest or signer changed.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "portfolio",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/portfolio.py",
+          "symbol": "read",
+          "sha256": "73df57f8212b2122e2ac04fccf6b5a25c49f3bdc5761d2eab2b7504f7a1afeec"
+        },
+        {
+          "path": "frontend_api/service.py",
+          "symbol": "Projection.nft/_verify_deployment/_finish",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d"
+        }
+      ],
+      "source_milestone": "Sixteen-NFT chunks bind one inventory/block; dormant, active, parked and exited rights are validated against actual custody/shares, including physical portfolio checks. Missing LP/reward data is not guessed zero.",
+      "precise_remainder": "Actual current deployment/complete history and matching unsigned website rollout remain unqualified. Full wallet totals require every matching chunk; current ownership is not personal lifetime income.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "wallet",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/service.py",
+          "symbol": "Projection.wallet",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d"
+        },
+        {
+          "path": "frontend_api/transactions.py",
+          "symbol": "Transactions.prepare",
+          "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+        }
+      ],
+      "source_milestone": "Backend exposes confirmed holdings and unsigned reviewed transactions; no key, submission or public signing route is introduced.",
+      "precise_remainder": "Public browser signing is deliberately disabled and existing signer remains Anvil-only by user decision. Real extension/network/payer acceptance cannot be closed from read-only source review.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "transaction-ui",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/transactions.py",
+          "symbol": "Transactions.prepare/_gas",
+          "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+        },
+        {
+          "path": "frontend_api/claim_planner.py",
+          "symbol": "ClaimPlanner.plan",
+          "sha256": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b"
+        }
+      ],
+      "source_milestone": "Only exact freshly simulated unsigned next batch is executable; blocked/unresolved claims remain selected, full budget/fee/funding limits and final freshness/canonical checks apply. No queue/resend or changed signing behavior.",
+      "precise_remainder": "Actual wallet/provider interruption/recovery and current source10 hosting rollout remain. Expiry is a client rule for claims, not a contract deadline; on-chain ownership still decides execution.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "royalty-eth-settlement",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/royalty_reporting.py",
+          "symbol": "Reporting.opening/read/balance",
+          "sha256": "94985af003bd51ebd5435ea3fa43b99464483b2357e410e6b3cabaa266e4f1c3"
+        },
+        {
+          "path": "frontend_api/transactions.py",
+          "symbol": "Transactions.prepare",
+          "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+        }
+      ],
+      "source_milestone": "Despite historical task ID, current original-currency royalty4 reporting preserves one-hour opening, exact ticket/cohort eligibility and isolated currency unavailability; no royalty conversion exists.",
+      "precise_remainder": "Actual unexpected/frozen/taxed/rebasing token admission, capacity/gas, zero-cohort/prefund allocation and ownership/claim operating acceptance remain economic/dependency gates, not universal payout guarantees.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "lp-eth-settlement",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/transactions.py",
+          "symbol": "Transactions.prepare",
+          "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+        },
+        {
+          "path": "frontend_api/history.py",
+          "symbol": "LP_CONVERTED replay",
+          "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+        },
+        {
+          "path": "frontend_api/earnings.py",
+          "symbol": "Earnings.check_paid",
+          "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75"
+        }
+      ],
+      "source_milestone": "LP ZZZ-to-ETH conversion remains separate from original-currency royalties. Claims consume actual funded balances; replay tracks conversion as denomination change rather than income.",
+      "precise_remainder": "A useful qualified fixed-ZZZ-to-ETH route under default1% loss, exact current conversion gas/fee and operator economics remain open. Backend does not fake ETH if ZZZ is still unconverted.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "native-custody-recovery",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/principal_return.py",
+          "symbol": "read",
+          "sha256": "f26827b19f4229fe772fc494d0aa4eb5fb827c87837595fca6962957b54a762a"
+        },
+        {
+          "path": "frontend_api/portfolio.py",
+          "symbol": "read",
+          "sha256": "73df57f8212b2122e2ac04fccf6b5a25c49f3bdc5761d2eab2b7504f7a1afeec"
+        }
+      ],
+      "source_milestone": "Collective principal return is reported separately from rewards/earnings; allocated/paid/phase and actual claimable amounts must agree, and unpaid beneficiary follows current ownership.",
+      "precise_remainder": "Actual authorized governance batch payout, hostile/failed receiver, target gas, restart and reserve-only completion rehearsals remain. A read does not guarantee delivery or authorize a claim/batch.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "custody-composition",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/service.py",
+          "symbol": "Projection._verify_deployment",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d"
+        },
+        {
+          "path": "frontend_api/principal_return.py",
+          "symbol": "read",
+          "sha256": "f26827b19f4229fe772fc494d0aa4eb5fb827c87837595fca6962957b54a762a"
+        }
+      ],
+      "source_milestone": "Lifecycle and exact fixed-token deployment identities remain enforced before financial output; current terminal return does not restore external custody-address exit.",
+      "precise_remainder": "Actual two-leg closure/share allocation/delivery/backing and post-exit operating acceptance must use contract-specific source/gas evidence; no financial contract changes made here.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "host-services",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/worker.py",
+          "symbol": "WorkerClient._request/_run",
+          "sha256": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62"
+        },
+        {
+          "path": "indexer/monitor.py",
+          "symbol": "Indexer.step/_reduce_log_range",
+          "sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36"
+        }
+      ],
+      "source_milestone": "New correction stops indexer adaptive shrinking on known terminal/global faults. Worker process deadline/quarantine, request budgets and independent listener/profile boundaries remain. Final follow-up also stops exact locally generated malformed-payload/envelope/chain/redirect/deadline diagnostics, without parsing untrusted provider text. Genuine response-size/HTTP413 range reduction stays.",
+      "precise_remainder": "Actual Linux process supervision, pinned endpoint/tier limits, supported deployment workload, TLS/proxy identity, distributed fairness, off-host monitoring, archive/restore and full PoPL fees remain unqualified. Existing bounded transport retries and normal service poll remain; this is not an uptime guarantee.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "security-integration",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "indexer/monitor.py",
+          "symbol": "Indexer.step/reconcile",
+          "sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36"
+        },
+        {
+          "path": "frontend_api/history.py",
+          "symbol": "History._read",
+          "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+        },
+        {
+          "path": "frontend_api/worker.py",
+          "symbol": "WorkerClient._request",
+          "sha256": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62"
+        }
+      ],
+      "source_milestone": "Ingestion/replay validate exact provenance and transaction chronology with atomic cursor/DB writes; terminal dependency failures no longer trigger shrinking-loop amplification. Runtime/profile/policy readers retain financial fail-closed behavior. Final follow-up also stops exact locally generated malformed-payload/envelope/chain/redirect/deadline diagnostics, without parsing untrusted provider text. Genuine response-size/HTTP413 range reduction stays.",
+      "precise_remainder": "Actual supported-OS crash/WAL/process containment, dishonest-but-consistent providers, complete logs and independent release audit remain. No broad security approval is inferred.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "security-ownership-rewards",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/history.py",
+          "symbol": "History._read",
+          "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+        },
+        {
+          "path": "frontend_api/wallet_earnings.py",
+          "symbol": "read",
+          "sha256": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576"
+        },
+        {
+          "path": "frontend_api/claim_planner.py",
+          "symbol": "ClaimPlanner.plan",
+          "sha256": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b"
+        }
+      ],
+      "source_milestone": "Transfer chronology, canonical current owner, exact LP components and royalty cohorts are independently reconciled; earlier earned NFT rights follow its current owner. Planner does not auto-skip opaque currency faults or spend unsupported assets.",
+      "precise_remainder": "Actual maximum-state/currency/receiver/lineage handoff and marketplace/recovery acceptance remain separate. Existing code checks do not prove arbitrary token transferability or log completeness.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "opensea-mint",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/service.py",
+          "symbol": "Projection._verify_deployment",
+          "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d"
+        },
+        {
+          "path": "frontend_api/transactions.py",
+          "symbol": "Transactions.prepare",
+          "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+        }
+      ],
+      "source_milestone": "Explicit mint2/V10 helper/SeaDrop runtime and reciprocal bindings are authenticated without making past sale stages a condition of existing LP/reward claims. Direct mint preparation is disabled for mint2.",
+      "precise_remainder": "Actual OpenSea onboarding, sale-stage fee/payer/on-chain execution, VRF and reviewed matching consumers remain unqualified. Source9/mint1 controlled gas fixtures are not OpenSea acceptance.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    },
+    {
+      "task_id": "fair-draw",
+      "disposition": "implementation_reviewed_qualification_still_open",
+      "inspected_boundaries": [
+        {
+          "path": "frontend_api/mint_readiness.py",
+          "symbol": "inspect/sale_window",
+          "sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d"
+        }
+      ],
+      "source_milestone": "Readiness reports exact reveal inventory/ordered pending draw and provider identity without presenting snapshot funding/liveness as verified; pending draws affect whole-collection replacement, not ordinary LP pool changes.",
+      "precise_remainder": "Live correct-chain verifiable coordinator, funded subscription, callback latency/order/outage/drain and official sale-stage acceptance remain. No reroll, synthetic provider or signer added.",
+      "evidence_kind": "Targeted current source inspection plus original source-scoped reports; not a new full-file audit or financial operation"
+    }
+  ],
+  "scope": "Targeted backend source/interaction audit for these16owning tasks, not exhaustive fresh execution of each function or production qualification",
+  "new_correction": {
+    "id": "BE44-01",
+    "path": "indexer/monitor.py",
+    "summary": "Do not adaptively shrink log range after known global or terminal failures",
+    "source_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+    "test_sha256": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830"
+  },
+  "guard_default_profile_economic_signer_or_live_changes": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "stage": "diagnostic-final",
+  "utc": "2026-11-13T15:58:47.940391+00:00",
+  "tests_run": 2,
+  "failure_entries": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_before_after_exact": true,
+  "sha256": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\indexer\\monitor.py": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_indexer_log_retry_policy.py": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee"
+  },
+  "failed_tests": [],
+  "scope": "Two changed methods overlap original seven. Exact locally generated diagnostics only; known response-size/HTTP413 recovery retained. No old suite/shared-RPC change/network/EVM/compiler."
+}

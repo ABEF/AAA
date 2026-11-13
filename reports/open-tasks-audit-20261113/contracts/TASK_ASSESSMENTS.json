@@ -1,0 +1,1648 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "inspected_task_count": 34,
+  "rows": [
+    {
+      "task_id": "activation-assets",
+      "classification": "implemented_but_actual_market_qualification_open",
+      "current_implemented_milestone": "Entrant-only value, incumbent harvest/checkpoints, marginal physical-main LP proof, net-NAV share issuance, native/fixed-ZZZ source admission and per-NFT cumulative contribution cap are enforced. Contributions do not recenter or change residual liquidity.",
+      "remaining_obligation": "Real qualified dual-source USD vector, actual external bidirectional depth and complete ETH/ZZZ activation/growth at real market sizes remain absent. Selected pool activeL0 is not zero total liquidity; four latest diagnostic quotes are not actual acceptance. No guard relaxation is justified.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "asset-liveness-dust",
+      "classification": "accepted_economic_boundaries_and_external_qualification",
+      "current_implemented_milestone": "80/10/5/5 baskets allocate20raw units exactly; <=19raw split carry is paid to incumbent individual rights at the existing membership barrier. Exact LP/royalty allocation assigns every allocated unit. Optional ERC20 royalty failures preserve old eligibility cohorts.",
+      "remaining_obligation": "Actual conventional exact-transfer token behavior, outage/deferral and expanded gas capacity remain qualification. Split carry is a deliberate economic exception; frozen/taxed/rebasing or untransferable tokens cannot have a universal payout promise. Changing that exception requires an economic decision, not a speculative refactor.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "term": "function allocate(",
+          "lines": [
+            68
+          ]
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "term": "function _flushHomeDust(",
+          "lines": [
+            98
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function activate(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function _allocateUnallocated(",
+          "lines": [
+            167
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function _claim(",
+          "lines": [
+            383
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "audit-release",
+      "classification": "external_independent_release_gate",
+      "current_implemented_milestone": "Source/ABI/control boundaries are recorded and canonical/emergency/terminal paths remain distinct.",
+      "remaining_obligation": "Independent frozen-release audit/remediation, actual deployment inventory and live-service/market/authority acceptance cannot be certified by this internal pass.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function canConfigure(",
+          "lines": [
+            82
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function seal(",
+          "lines": [
+            182
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function emergencyRebalance(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function beginCollectiveExit(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function allocatePrincipal(",
+          "lines": [
+            243
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function exitBucketToHolders(",
+          "lines": [
+            554
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "authorities-prices",
+      "classification": "operator_selection_and_external_services",
+      "current_implemented_milestone": "One governance/operator uses direct canConfigure; keeper/guardian remain distinct. Sealing checks module uniqueness, fixed contribution/exit identity, recipient and source randomness configuration.",
+      "remaining_obligation": "Choose actual governance, guardian, keeper, payee and VRF funder keys and qualified providers. Do not invent addresses or source independence. Access.seal is not a complete optional graph/dependency admission audit.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function canConfigure(",
+          "lines": [
+            82
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function seal(",
+          "lines": [
+            182
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function emergencyRebalance(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "creator-input-liquidity",
+      "classification": "external_team_and_market_gate",
+      "current_implemented_milestone": "Current ratio placement, exact output/full core-state checks and factual marginal LP guards reject unsafe execution.",
+      "remaining_obligation": "ZZZ team/operator must resolve meaningful external bidirectional liquidity and target/reference price compatibility. Current larger-activeL known pools cannot simply be assumed compatible or independently truthful.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _minimum(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _checkedSpot(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _activeMainMark(",
+          "lines": [
+            134
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "creator-market-controls",
+      "classification": "actual_dependency_control_review_open",
+      "current_implemented_milestone": "Native principal pins core/PosM/State/Permit2/fixed ZZZ runtimes and exact parent wiring; buyback verifies both actual balance and supply reduction.",
+      "remaining_obligation": "Review actual token implementation/admin/mint/freeze/tax/burn behavior and upstream permissions. Runtime identity does not by itself establish immutable proxy behavior or honest dependency operators.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function _nativeBindings(",
+          "lines": [
+            168
+          ]
+        },
+        {
+          "path": "src/ZZZBuyback.sol",
+          "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+          "term": "IBurnable(zzz).burn(acquired)",
+          "lines": [
+            74
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "creator-zzz-price",
+      "classification": "external_independence_and_publication_gate",
+      "current_implemented_milestone": "Oracle requires coherent fresh rounds, decimals/code pins, reviewed source policies and bounded disagreement.",
+      "remaining_obligation": "No two independent exact-ZZZ valuation paths are qualified. Two wrappers over the same ZZZ pool repeat the same exposure even with different ETH feeds. Provider/team evidence and publication/liveness plan are needed.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "custody-composition",
+      "classification": "implemented_terminal_accounting_qualification_open",
+      "current_implemented_milestone": "Governance starts terminal exit while paused; actual ETH/ZZZ principal plus designated compound closes without swaps, cumulative floors assign every raw unit, current-owner bounded isolated pushes preserve backing and other ledgers.",
+      "remaining_obligation": "Actual target gas/cohort/token/receiver acceptance and operating completion remain qualification. Zero-share dormant NFTs receive no principal; several NFTs owned by one wallet keep separate shares. Rejecting receivers retain backed retry/owner fallback rather than confiscation.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function beginCollectiveExit(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function allocatePrincipal(",
+          "lines": [
+            243
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function exitBucketToHolders(",
+          "lines": [
+            554
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "deployment-initcode",
+      "classification": "exact_deployment_and_target_gas_gate",
+      "current_implemented_milestone": "Current controller has3static address arguments; NFT uses predeployed renderer and3constructor arguments; RewardsCanonical parent is constructor-fixed. Source compilation/size evidence remains unchanged and reusable only at exact source bytes.",
+      "remaining_obligation": "Exact approved arguments/configuration, CREATE graph and target deployment/initcode gas still require the actual frozen deployment package. Oracle3-byte/Vault32-byte runtime headroom is not repaired by a comment edit. No needless rebuild was performed.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "constructor(address initialGovernance",
+          "lines": [
+            70
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "constructor(address controller",
+          "lines": [
+            85
+          ]
+        },
+        {
+          "path": "src/ZZZRewardsCanonical.sol",
+          "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+          "term": "constructor(address controller)",
+          "lines": [
+            49
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "destination-slots",
+      "classification": "implemented_capacity_policy_operating_plan_open",
+      "current_implemented_milestone": "One contribution pool and at most4logical custody buckets are explicit; moving an existing bucket preserves its share domain while reserving destination identity. This is not a four-pool lifetime migration count.",
+      "remaining_obligation": "Plan reviewed destination reservations and atomic cutover under actual liquidity/prices. A fifth independent bucket is deliberately unavailable; do not silently remove the cap or reinterpret historical IDs.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _reserve(",
+          "lines": [
+            117
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _movePool(",
+          "lines": [
+            632
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function _setContributionPool(",
+          "lines": [
+            133
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "dual-price-qualification",
+      "classification": "implemented_source_validation_external_gate",
+      "current_implemented_milestone": "Two-source positive/fresh/coherent round validation and conservative bounds remain mandatory; execution_price1 captures a transaction-scoped vector while proving own reference swaps and retaining final live checks.",
+      "remaining_obligation": "Actual healthy independent ETH and ZZZ paths, ages/depth/admin/liveness policy are unqualified. Present Chainlink proxies share aggregator; stale Pyth/inactive API3 are not a valid second service. No single-source fallback is authorized.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "fair-draw",
+      "classification": "implemented_original_async_draw_provider_gate",
+      "current_implemented_milestone": "Original coordinator request is code-pinned for mint; synchronous replay/ID reuse is rejected; callback stores original words; strict ordinal draw without replacement has no reroll/provider bypass.",
+      "remaining_obligation": "Actual supported proof-verifying Robinhood coordinator, funded subscription, callback gas/confirmation/outage and ordered-drain operation remain unqualified. A permanently missing first draw can block later reveal/canonical replacement by selected policy, not ordinary LP movement.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function _mintDormant(",
+          "lines": [
+            162
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function rawFulfillRandomWords(",
+          "lines": [
+            198
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function finalizeTraits(",
+          "lines": [
+            213
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "lp-eth-settlement",
+      "classification": "implemented_conversion_and_raw_recovery_actual_route_gate",
+      "current_implemented_milestone": "Only earned fixed-ZZZ LP balances convert; source components and exact ETH output stay attached to the same NFTs. Principal, compound/buyback and royalties are separate. Explicit original-ZZZ claim is a documented owner recovery path, not a royalty conversion.",
+      "remaining_obligation": "Usable default1% full-input conversion route, actual economic batch sizes/gas and operation remain unqualified. A zero immutable wrapper cannot later enable v3; native-v4 automation is the current profile.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "term": "function convertBatch(",
+          "lines": [
+            180
+          ]
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "term": "function _claim(",
+          "lines": [
+            167
+          ]
+        },
+        {
+          "path": "src/base/ZZZRewardConverter.sol",
+          "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+          "term": "function convert(",
+          "lines": [
+            159
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "lp-execution-routing",
+      "classification": "implemented_atomic_routing_actual_market_gate",
+      "current_implemented_milestone": "Ordinary replacements verify active main before/after callbacks; optional hybrid uses one residual only, configured main floor and bounded single-swap execution. Full consolidate and same-main residual reinvest remain distinct.",
+      "remaining_obligation": "Best among bounded reviewed candidates is not a globally optimal market promise; real post-withdrawal depth and route fees need qualification. No new reference/venue was admitted and no financial bound changed.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _minimum(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _checkedSpot(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _activeMainMark(",
+          "lines": [
+            134
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _auxiliaryPlan(",
+          "lines": [
+            231
+          ]
+        },
+        {
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "term": "function completeConsolidation(",
+          "lines": [
+            154
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "mainnet-fork",
+      "classification": "evidence_scope_and_actual_target_gate",
+      "current_implemented_milestone": "Current principal admission is chain4663 and exact-runtime bound; prior controlled fixture evidence is explicitly synthetic/local.",
+      "remaining_obligation": "Current mint2 full-operation state on real qualified feeds/routes/provider remains outstanding. Do not relabel source9/mint1 chain31337 snapshots or old successful mock fixtures as current actual mainnet acceptance.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function _nativeBindings(",
+          "lines": [
+            168
+          ]
+        },
+        {
+          "path": "reports/predeployment-qualification-20261113/REVIEW.md",
+          "sha256": "e9f5b0be5e065a74953f5a579209184ee671b9b87ad00728db67005ddb0e08d4",
+          "term": "Remaining work, in order",
+          "lines": [
+            39
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "metadata-ops",
+      "classification": "implemented_draw_and_notification_publication_gate",
+      "current_implemented_milestone": "Contribution notifies only after committed shares; metadata notices are bounded, permissionless and nonfinancial; initial URI may be filled only once before sealing, while actual evolution reads current marked holdings.",
+      "remaining_obligation": "Immutable catalogue/root/artwork distribution, actual publication/availability and marketplace refresh acceptance remain operational. Unknown/stale valuation is unavailable, never invented artwork/tier or zero.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function notifyContribution(",
+          "lines": [
+            247
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function refreshMetadataRange(",
+          "lines": [
+            290
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function setBaseURI(",
+          "lines": [
+            303
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "migration-framework",
+      "classification": "implemented_same_pair_and_terminal_rights_actual_operation_gate",
+      "current_implemented_milestone": "Same-pair moves/parking/manual same-main consolidate and terminal owner return are distinct; no external custody address, arbitrary sweep, bridge or principal reopening is restored.",
+      "remaining_obligation": "Actual governance C/D gas/cohort/receiver and recovery rehearsals remain. Terminal return ends LP but preserves NFT transfers, old funded claims and future royalties. New token/chain migration uses terminal return/redeployment, not changing fixed ZZZ.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function beginCollectiveExit(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function allocatePrincipal(",
+          "lines": [
+            243
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function exitBucketToHolders(",
+          "lines": [
+            554
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function consolidateResidual(",
+          "lines": [
+            114
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function moveFunds(",
+          "lines": [
+            332
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "native-custody-recovery",
+      "classification": "implemented_isolated_payout_and_raw_close_external_gate",
+      "current_implemented_milestone": "Native returns are measured exact deltas; current-owner distribution is governance-only and self-call isolated. A bad receiver cannot redirect others; owner fallback can choose a compatible recipient.",
+      "remaining_obligation": "Actual receiver/token/gas behaviors and long-term retry/funding operation need rehearsal. Emergency/raw floors can be zero by explicit review but cannot repair a broken core/token or guarantee every possible holder accepts native ETH.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function beginCollectiveExit(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function allocatePrincipal(",
+          "lines": [
+            243
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function exitBucketToHolders(",
+          "lines": [
+            554
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function claimPrincipal(",
+          "lines": [
+            306
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function closeResidual(",
+          "lines": [
+            582
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "native-production-preflight",
+      "classification": "implemented_seal_subset_full_graph_gate",
+      "current_implemented_milestone": "Sealing checks required modules, duplicate addresses, fixed source/exit identities, mint recipient and source randomness. Optional bindings have their own typed constructor/one-time checks.",
+      "remaining_obligation": "Verify actual complete fresh profile/mint2 helper/SeaDrop, policy/reader/balancer/converter/factory-data graph, authority and runtime inventory independently; sealing alone is not complete graph certification.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function canConfigure(",
+          "lines": [
+            82
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function seal(",
+          "lines": [
+            182
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function emergencyRebalance(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "term": "function bindConverter(",
+          "lines": [
+            41
+          ]
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "term": "function validateBinding(",
+          "lines": [
+            87
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "opensea-mint",
+      "classification": "implemented_typed_mint_manifest_and_marketplace_gate",
+      "current_implemented_milestone": "Free TEAM/same-price one-per-address allowlist/public phases preserve lifetime original recipients and disjoint windows; unused allowlist rolls forward while team reservation remains. SeaDrop owns payment rollback and NFT callback receives0ETH.",
+      "remaining_obligation": "Actual OpenSea onboarding, SeaDrop deployment/code/control, fee recipient/payer, actual public/allowlist manifests and final stage/royalty-end synchronization remain unqualified. Callback ABI cannot independently prove approved leaf terms; reviewed root construction is essential.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "term": "function beginMint(",
+          "lines": [
+            162
+          ]
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "term": "function _validatedFingerprint(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function mintSeaDrop(",
+          "lines": [
+            146
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "post-seal-configuration",
+      "classification": "implemented_bounded_governance_and_accepted_trust",
+      "current_implemented_milestone": "Governance can change bounded reviewed policies/routes/ranges/caps; immutable parent/implementation/fixed-token identities remain. Exact source/review fingerprints and revisions invalidate stale reviews instead of reviving them on restore.",
+      "remaining_obligation": "Actual authority/key custody, source/consumer configuration and operational procedures require adoption. Direct immediate governance/emergency optional financial bypass are accepted trust, not backdoors that this audit may silently remove.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function canConfigure(",
+          "lines": [
+            82
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function seal(",
+          "lines": [
+            182
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function emergencyRebalance(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "term": "function setTriggerBps(",
+          "lines": [
+            121
+          ]
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "term": "function configure(",
+          "lines": [
+            63
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function _configure(",
+          "lines": [
+            108
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "rebalance-confirmation-buffer",
+      "classification": "implemented_sampled_window_and_operating_acceptance",
+      "current_implemented_milestone": "85%actual centre-boundary threshold, same-side physical/reference observation and identity controls remain;600s window/maxgap300 and hard cooldown are distinct. Manual pending geometry is a deliberate exception; failed reads clear recorded samples via successful reset.",
+      "remaining_obligation": "Actual inclusion/cadence/RPC/gas/recovery scheduling remains qualification. Sampling cannot prove uninterrupted prices or MEV immunity. No unnecessary time-policy change or repeated unchanged tests is justified.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "term": "function _condition(",
+          "lines": [
+            93
+          ]
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "term": "function _ready(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "term": "function observe(",
+          "lines": [
+            192
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function needsRebalance(",
+          "lines": [
+            224
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "reviewed-contribution-policy",
+      "classification": "implemented_captured_limits_real_operation_gate",
+      "current_implemented_milestone": "Caller policy, upper input/lower deployed LP and governed3%/97% default are captured before ingress; final callbacks cannot widen policy. Direct and Entry flows retain their own exact basis and measured LP.",
+      "remaining_obligation": "Actual affordable20M schema2 configuration, fee ceiling and complete real-market operation remain unapproved. Per-NFT maxPositionUSD is enforced on contributionUSD(id)+inputUSD, not shared-bucket NAV.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "royalty-eth-settlement",
+      "classification": "implemented_original_currency_exact_units_qualification_open",
+      "current_implemented_milestone": "Current royalty4 pays original currencies, not ETH conversion. Mint final end plus1hour seals opening cohort before any later activation; new currency prefunds/zero-cohort amounts require reviewed allocation, and optional faults preserve eligibility cohorts.",
+      "remaining_obligation": "Conventional actual-token behavior, capacity expansion/claims gas and pre-admission entitlement review remain. No universal all-token transferability promise is possible; no automatic royalty swaps or keeper conversion should be restored.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function activate(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function _allocateUnallocated(",
+          "lines": [
+            167
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function _claim(",
+          "lines": [
+            383
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-chain-recovery",
+      "classification": "implemented_same_chain_only_accepted_post_halt_limit",
+      "current_implemented_milestone": "Current V10 same-chain handoff authenticates an inert sealed replacement, exact6domain cutoffs/records/backing and atomic retirement/activation with funded abort. Post-terminal LP exit cannot reopen canonical replacement.",
+      "remaining_obligation": "Actual complete mixed-state/escrow cutover and recovery operations remain qualification. Original-chain permanent-halt recovery and cross-chain transport are intentionally not implemented; do not invent bridge/finality behavior.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+          "term": "function freeze(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+          "term": "function prepareImport(",
+          "lines": [
+            200
+          ]
+        },
+        {
+          "path": "src/ZZZRewardsCanonical.sol",
+          "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+          "term": "function _roots(",
+          "lines": [
+            68
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function startPreparation(",
+          "lines": [
+            128
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-dependencies",
+      "classification": "dependency_reachability_and_actual_control_review",
+      "current_implemented_milestone": "Exact balances, stored physical L/ownership/ticks, final prices/controls and atomic rollback protect admitted operations. Current code excludes hooks/dynamic principal fees and pins actual settlement graph.",
+      "remaining_obligation": "Late fee credit during token/Permit2/PosM callback remains unverified dependency-qualified behavior: ordinary transactions cannot interleave; a reachable mutable callback must first be established on actual fixed dependencies. No speculative guard or demonstrated share-inflation claim is justified.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "ExactToken.pull(t1,access.module(Ids.VAULT),amount1);",
+          "lines": [
+            172
+          ]
+        },
+        {
+          "path": "node_modules/@uniswap/v4-periphery/src/PositionManager.sol",
+          "sha256": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+          "term": "function _increase(",
+          "lines": [
+            287
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-external-manipulation",
+      "classification": "implemented_bounded_exposure_accepted_permissionless_market",
+      "current_implemented_milestone": "Independent same-side sampled trigger, captured valuation, actual-core full-output/poststate proof, gross/additional caps and active-main checks constrain extraction. No keeper-selectable cached USD price is added.",
+      "remaining_obligation": "Chosen spot/no-TWAP reference is still temporarily manipulable; sampled persistence/jitter and execution caps do not prevent all sandwiches or normal ZZZ trading. Actual source independence/liquidity/economics and protected submission availability remain qualification.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _minimum(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _checkedSpot(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _activeMainMark(",
+          "lines": [
+            134
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function priceBounds(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+          "term": "function _validateExecution(",
+          "lines": [
+            466
+          ]
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function contributionValue(",
+          "lines": [
+            151
+          ]
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+          "term": "function _condition(",
+          "lines": [
+            93
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-governance",
+      "classification": "accepted_explicit_governance_and_key_risk",
+      "current_implemented_milestone": "Only governance configures and invokes paused emergency/terminal management; current keeper authority does not include arbitrary configuration, recipient or sweep. Two-step governance rotation avoids address typo takeover.",
+      "remaining_obligation": "One human operator/direct no-timelock governance and reviewed replacement-code approval remain selected trust. Real key management/role addresses/recovery need operator setup; do not silently impose a timelock or alter custody rights.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function canConfigure(",
+          "lines": [
+            82
+          ]
+        },
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+          "term": "function seal(",
+          "lines": [
+            182
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function emergencyRebalance(",
+          "lines": [
+            103
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-integration",
+      "classification": "implemented_fixed_boundaries_dependency_and_operation_gate",
+      "current_implemented_milestone": "Entrant accounting, fixed LP executor, Rewards/FeeController reserve separation, current-owner claims, sale callback and terminal custody have distinct authenticated boundaries.",
+      "remaining_obligation": "This targeted source inspection is not exhaustive cross-contract exploit absence. Actual fixed dependency/admin admission, full-operation integration, escrow cutover, consumer provenance and independent audit remain release gates.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function beginCollectiveExit(",
+          "lines": [
+            179
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function allocatePrincipal(",
+          "lines": [
+            243
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        },
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function exitBucketToHolders(",
+          "lines": [
+            554
+          ]
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "term": "function beginMint(",
+          "lines": [
+            162
+          ]
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "term": "function _validatedFingerprint(",
+          "lines": [
+            262
+          ]
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+          "term": "function mintSeaDrop(",
+          "lines": [
+            146
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-keeper-manipulation",
+      "classification": "implemented_limits_service_policy_accepted_boundary",
+      "current_implemented_milestone": "Keeper can execute only typed authorized work under exact custody/price/loss/interval checks. Compound has a separate on-chain interval from rebalance; harvest has no swap. Keeper cannot choose arbitrary recipients or economic splits.",
+      "remaining_obligation": "In-range/below-threshold compound waiting is deliberately selected service policy, not complete on-chain restriction against a compromised authorized keeper. Repeated individually permitted losses and actual market extraction remain operating/accepted-risk review. No silent cumulative cap or policy change.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZCompounder.sol",
+          "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+          "term": "function compound(",
+          "lines": [
+            10
+          ]
+        },
+        {
+          "path": "src/ZZZMigrationBudget.sol",
+          "sha256": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+          "term": "function compoundReady(",
+          "lines": [
+            196
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _minimum(",
+          "lines": [
+            103
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-ownership-rewards",
+      "classification": "implemented_current_owner_exact_rights_actual_workload_gate",
+      "current_implemented_milestone": "Each ledger checks current NFT owner; router rechecks after preceding callbacks; fee shares, royalty rarity tickets and terminal principal remain separate books. Transfer carries prior unclaimed rights. Claims/conversions are not new income.",
+      "remaining_obligation": "Actual maximum claims/currencies, pathological receivers/token faults and authentic lineage/recovery need qualification. Single atomic action uses its authenticated owner at that action; external concurrent transactions cannot interleave inside it.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "term": "function _claim(",
+          "lines": [
+            167
+          ]
+        },
+        {
+          "path": "src/ZZZClaimRouter.sol",
+          "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+          "term": "function claimBatch(",
+          "lines": [
+            48
+          ]
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "term": "function _claim(",
+          "lines": [
+            383
+          ]
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+          "term": "function _pay(",
+          "lines": [
+            311
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-share-accounting",
+      "classification": "implemented_entrant_only_and_exact_allocation_economic_review_open",
+      "current_implemented_milestone": "Harvest/checkpoint before joining, incumbent repricing and entrant-only main deployment precede net-NAV shares; old residual/idle/compound cannot subsidize entrant floor. LP exact-unit personal/equal books preserve split rights through claim/conversion/import.",
+      "remaining_obligation": "Real economic prices/routes, receipt/dust exception acceptance and dependency-qualified late-fee reachability remain. No raw liquidity addition across ranges or rounding-reserve confiscation is introduced.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+          "term": "function _join(",
+          "lines": [
+            289
+          ]
+        },
+        {
+          "path": "src/ZZZVaultCanonical.sol",
+          "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+          "term": "function validateContribution(",
+          "lines": [
+            104
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _mintOrIncrease(",
+          "lines": [
+            139
+          ]
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+          "term": "function settleDust(",
+          "lines": [
+            36
+          ]
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "term": "function allocate(",
+          "lines": [
+            68
+          ]
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "term": "function syncShares(",
+          "lines": [
+            62
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "security-strategy",
+      "classification": "implemented_captured_execution_accepted_strategy_economics",
+      "current_implemented_milestone": "Threshold uses actual ZZZ-in-ETH centre-to-boundary price distance, not raw tick/root distance. At replacement, main>=configured60% and residual<=40% is not a continuously maintained ratio. Disabling mode preserves physical backing until reviewed consolidate.",
+      "remaining_obligation": "Volatility/IL/turnover/main-residual allocation performance are economic strategy questions, not bugs resolved by this source pass. Actual manipulation/depth/cost qualification remains; 40%trigger/passive-strategy discussion was not silently implemented.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _minimum(",
+          "lines": [
+            103
+          ]
+        },
+        {
+          "path": "src/ZZZStrategy.sol",
+          "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+          "term": "function _checkedSpot(",
+          "lines": [
+            216
+          ]
+        },
+        {
+          "path": "src/ZZZLPPositionExecutor.sol",
+          "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+          "term": "function _activeMainMark(",
+          "lines": [
+            134
+          ]
+        },
+        {
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "term": "function thresholdSide(",
+          "lines": [
+            212
+          ]
+        },
+        {
+          "path": "src/ZZZPortfolioPolicy.sol",
+          "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+          "term": "function completeConsolidation(",
+          "lines": [
+            154
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    },
+    {
+      "task_id": "testnet-rehearsal",
+      "classification": "distinct_chain_evidence_gate",
+      "current_implemented_milestone": "Fresh native Registry deliberately requires Robinhood mainnet4663 and exact real dependencies. Local/testnet test-only overrides retain explicit source scope.",
+      "remaining_obligation": "An unchanged exact mainnet-bound contract cannot be honestly called native46630 integration. Keep actual mainnet-pinned fork, testnet rehearsal and synthetic source fixtures distinct; explicit testnet harness/plan remains needed rather than relaxing production chain checks.",
+      "inspected_sources": [
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+          "term": "function _nativeBindings(",
+          "lines": [
+            168
+          ]
+        },
+        {
+          "path": "reports/predeployment-qualification-20261113/REVIEW.md",
+          "sha256": "e9f5b0be5e065a74953f5a579209184ee671b9b87ad00728db67005ddb0e08d4",
+          "term": "current mint2",
+          "lines": [
+            44,
+            47
+          ]
+        }
+      ],
+      "question": null,
+      "conclusion_scope": "Targeted current source/control-flow and prior exact evidence inspection; not a new full independent audit, EVM execution, market/provider acceptance or task closure",
+      "production_change": false,
+      "task_status_changed": false
+    }
+  ],
+  "source_change_count": 0,
+  "test_or_EVM_or_RPC_execution_count": 0,
+  "material_document_correction": {
+    "path": "docs/OPERATOR_MANUAL.md",
+    "line_at_baseline": 2127,
+    "before": "No single-source, stale/spot or $1 fallback.",
+    "problem": "Categorical spot exclusion contradicts explicitly approved spot composite valuation.",
+    "recommended": "No single-source, stale or $1 fallback; explicitly reviewed spot composite sources retain both-source and independence rules.",
+    "root_notified": true
+  },
+  "additional_precisions": [
+    "Permissionless Vault.collectFees is explicit source/documented policy, not missing governance check; no arbitrary payout or swap.",
+    "Explicit holder ZZZ LP-source claim is documented recovery, distinct from standard ETH claims and original-currency royalties.",
+    "Stale WETH admission comment in ActivationAssets has no reachable third-principal path; comment-only edit would churn metadata/runtime with no execution improvement.",
+    "No new exploitable Solidity defect established; absence is not a security guarantee. No speculative deployment/profile/guard changes justified."
+  ]
+}

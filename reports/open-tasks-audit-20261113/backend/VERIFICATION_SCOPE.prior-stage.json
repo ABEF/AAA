@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "unique_new_methods": 7,
+  "first_pass_stage": "final.json",
+  "expanded_reserved_error_method": "typed-final.json",
+  "expanded_method_overlaps_first7": true,
+  "all_nonhelper_AST_equal_to_first_passing_source": true,
+  "baseline_failed_stage": "baseline.json",
+  "expanded_baseline_failed_stage": "typed-baseline.json",
+  "retained_unsuccessful_harness_stage": "post-edit-attempt-unmodified.json",
+  "unnecessary_new_method_repeat_reason": "First byte replacement assumedCRLF onLF source and made no edit; subsequent new-only rerun remained failed. Retained, not claimed as success.",
+  "unchanged_old_test_methods_executed": 0,
+  "network_EVM_compiler_executions": 0,
+  "current_source_sha256": "5b09a36d7d36cbb8c9b4de7e6af1eeea7454d919a1698195ebb30abeb60c5c78",
+  "current_test_sha256": "a2838b2207173d29125c5dec91cd8547ad0ddcf6b5d2d8c0fee407dc427fdb23"
+}

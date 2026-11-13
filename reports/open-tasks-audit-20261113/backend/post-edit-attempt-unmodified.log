@@ -1,0 +1,516 @@
+test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) ... 
+  test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) (cycle=True) ... FAIL
+  test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) (cycle=False) ... FAIL
+test_existing_opaque_range_limit_reduction_preserves_exact_chunk (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_existing_opaque_range_limit_reduction_preserves_exact_chunk) ... ok
+test_one_block_opaque_rejection_does_not_loop_or_commit (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_one_block_opaque_rejection_does_not_loop_or_commit) ... ok
+test_payload_too_large_can_reduce_without_retrying_other_http_errors (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_payload_too_large_can_reduce_without_retrying_other_http_errors) ... ok
+test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) ... 
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='deadline', wrapped=False) ... FAIL
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='deadline', wrapped=True) ... FAIL
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='rpc_budget', wrapped=False) ... FAIL
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='rpc_budget', wrapped=True) ... FAIL
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='snapshot_expired', wrapped=False) ... FAIL
+  test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='snapshot_expired', wrapped=True) ... FAIL
+test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) ... 
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='WrongChain', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='OSError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='TimeoutError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPException', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=401) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=403) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=404) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=429) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=500) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=503) ... FAIL
+test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) ... 
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=False) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=True) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=False) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=True) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=False) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=True) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=False) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=True) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=False) ... FAIL
+  test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=True) ... FAIL
+
+======================================================================
+FAIL: test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) (cycle=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 79, in test_cyclic_and_excessively_nested_failure_causes_fail_closed
+    self.rejected_once(error)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_cyclic_and_excessively_nested_failure_causes_fail_closed (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_cyclic_and_excessively_nested_failure_causes_fail_closed) (cycle=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 79, in test_cyclic_and_excessively_nested_failure_causes_fail_closed
+    self.rejected_once(error)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='deadline', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='deadline', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='rpc_budget', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='rpc_budget', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='snapshot_expired', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_terminal_work_limits_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_terminal_work_limits_do_not_start_smaller_log_requests) (reason='snapshot_expired', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 47, in test_terminal_work_limits_do_not_start_smaller_log_requests
+    self.rejected_once(factory(WorkLimit(reason)))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='WrongChain', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='OSError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='TimeoutError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPException', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=401)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=403)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=404)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=429)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=500)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='HTTPError', code=503)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 69, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32005, reason='rate_limited', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32602, reason='invalid_params', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32000, reason='unavailable_block', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32600, reason='unclassified', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_typed_provider_refusals_do_not_start_smaller_log_requests (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_typed_provider_refusals_do_not_start_smaller_log_requests) (code=-32601, reason='unclassified', wrapped=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 59, in test_typed_provider_refusals_do_not_start_smaller_log_requests
+    self.rejected_once(factory(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.150s
+
+FAILED (failures=28)

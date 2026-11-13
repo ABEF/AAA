@@ -1,12 +1,17 @@
 # Documentation map
 
-The [current external-qualification milestone](../reports/predeployment-qualification-20261113/REVIEW.md)
-closes independently established genesis and the13 existing RPC checks through
-a paced helper. Specific history/logs and tiny nonpersistent simulation pass.
-Provider numerical capacity/plan/SLA/lifetime archive, real qualified sources/
-routes, full launch-state operations/fees and adoption remain open. The selected
-pool has activeL0 at the new market anchor, not zero total liquidity; conditional
-quotes are poor. No source/default/safeguard/live change or unchanged suite rerun.
+The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
+refusal handling and indexer retry amplification;20distinct new regression
+methods pass at their recorded stages. Existing task implementation milestones
+are separated from actual qualification and accepted boundaries. Operator spot/
+LP-profile instructions are corrected. All44broad tasks remain unfinished;
+source fixes do not approve providers, markets, fees, authorities or operating
+rollout. Contracts/defaults/financial rights and all live environments stay.
+
+The [earlier external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+retains independently derived genesis and13checks at its original paced-wrapper
+source. New optional CLI pacing is not a fresh public provider profile; complete
+20M/24M capacity/fees and genuine independent ETH/ZZZ sources/routes stay open.
 
 [Current RPC/fee evidence](../reports/rpc-fees-20261113/REVIEW.md) and the
 [operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) separate actual Pinax

@@ -1,5 +1,11 @@
 # Verification evidence
 
+[44-linked-task audit](open-tasks-audit-20261113/REVIEW.md) separates actual code
+defects from qualification/accepted boundaries, fixes RPC-probe and indexer
+request amplification, and records20new focused methods without unchanged
+suites. The [prompt](open-tasks-audit-20261113/PROMPT.md) and44-task assessment
+retain scope and precise remaining actions; no production approval or rollout.
+
 [External qualification13November](predeployment-qualification-20261113/REVIEW.md)
 independently establishes genesis and passes the existing13-check profile via
 paced transport. Separate history/capacity and current market packages preserve

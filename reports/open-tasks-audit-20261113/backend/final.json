@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "stage": "final",
+  "utc": "2026-11-13T15:41:49.883876+00:00",
+  "tests_run": 7,
+  "failure_entries": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_before_after_exact": true,
+  "sha256": {
+    "indexer/monitor.py": "bd3e2bf9e2ff9e3c3803a32139122caa87abe2ea0610a660e7c5cdde148f7bb3",
+    "tests_python/test_indexer_log_retry_policy.py": "67278965fefc7aa102178e9300262dd9247045c4f96cbcbd1ba056a9336bcebc"
+  },
+  "failed_tests": [],
+  "scope": "Seven new methods only, in-memory injected RPC and temporary SQLite; no old method/network/EVM/compiler execution"
+}

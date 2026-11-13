@@ -1,0 +1,14 @@
+{
+  "stage": "final-after-boundary-review",
+  "created_at_utc": "2026-11-13T15:44:50.524132+00:00",
+  "source_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+  "test_sha256": "0d666c7015e9c37c5925118c7ce858fa33dbdd6d1f9b14101372667a8cbd31d2",
+  "source_bracket_stable": true,
+  "tests_run": 13,
+  "failures": 0,
+  "errors": 0,
+  "network_calls": 0,
+  "only_new_methods": true,
+  "unchanged_suites_run": 0,
+  "scope": "13unique NEW methods includes prior11 rerun only after relevant final transport-boundary source fix, plus2new review methods. Stages overlap, do not add counts."
+}

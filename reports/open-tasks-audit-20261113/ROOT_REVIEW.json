@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "scope": "Root source/readiness/procedure review; no extra financial execution",
+  "source_pins_at_completion": {
+    "zzz_ops/production_v15.py": "5fcd494cd0640e8eae1a30d943ab6375751ee5a6ae37109740e54e5ee39f332d",
+    "zzz_ops/production_observer_v15.py": "84f65bbc40e942d9a2a74a0e314207f5a158d10c88376a12fb8fae092287d7b0",
+    "scripts/validate-production-config.py": "dcdd205a9228050c249134b11dcde81d736f99aebdc987d8b7e44b195ed7e305",
+    "zzz_ops/management_review.py": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+    "zzz_ops/operator_review.py": "ed3d6d025286fa5284a985112dc7d07f27b0420c5d88aee4b3730780780762ad",
+    "frontend_api/earnings_checkpoint.py": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+    "scripts/prepare_ipfs_bundle.py": "e22e0ab885bdd50c9e915858eef68f6e4dd14c5d9e693a663c0f4eb908bab1a9",
+    "scripts/run-keeper-tests.py": "80a69d9355821d95c6941e1e7423a7a4db97817530f17153e72cac1736dfe2fd",
+    "scripts/run_python_tests.py": "a33da98711bdde169c0717eefdaa1777b9e554e1f74c583607110943ba17c912"
+  },
+  "conclusions": [
+    "Production schema17 explicitly supports LP2 omission0 or execution-price1/LP3; owning guides omitted that distinction and are corrected.",
+    "Production examples remain deliberately incomplete; no null authority/provider/price/route/review values were manufactured to satisfy gates.",
+    "Typed management reviews keep exact canonical initial/final snapshots, frozen calldata/gas, authority/policy/fingerprint checks and false submission approval. Contract-wallet/Parked forced-D qualification remains open.",
+    "Checkpoint source lists exclude changed probe/indexer files. No checkpoint rebuild is required solely for these corrections; preserve raw/WAL and actual review identities.",
+    "Metadata bundle tooling is prepared but actual importer/CID/provider/pinning/retrieval and marketplace acceptance remain required; no public upload/account was created.",
+    "The new13probe methods are added to specialized keeper inventory; general discovery already selects the new7indexer methods. Inventory execution count is zero."
+  ],
+  "new_decisions_needed_for_confirmed_fixes": []
+}

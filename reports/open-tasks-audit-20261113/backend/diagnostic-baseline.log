@@ -1,0 +1,187 @@
+test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) ... 
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+  test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None) ... FAIL
+test_payload_too_large_can_reduce_without_retrying_other_http_errors (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_payload_too_large_can_reduce_without_retrying_other_http_errors) ... ok
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+======================================================================
+FAIL: test_transport_authentication_and_wrong_chain_faults_are_terminal (tests_python.test_indexer_log_retry_policy.IndexerLogRetryPolicyTests.test_transport_authentication_and_wrong_chain_faults_are_terminal) (kind='RpcError', code=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 87, in test_transport_authentication_and_wrong_chain_faults_are_terminal
+    self.rejected_once(wrapped(error))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_retry_policy.py", line 39, in rejected_once
+    self.assertEqual(ranges, [('0x1', '0x5')])
+AssertionError: Lists differ: [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')] != [('0x1', '0x5')]
+
+First list contains 3 additional elements.
+First extra element 1:
+('0x1', '0x3')
+
+- [('0x1', '0x5'), ('0x1', '0x3'), ('0x1', '0x2'), ('0x1', '0x1')]
++ [('0x1', '0x5')]
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.101s
+
+FAILED (failures=10)

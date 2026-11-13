@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "baseline": "53633b9854b5efea090a91388c3df0c04a5ca3e0",
+  "changed_source": "keeper/probe.py",
+  "new_test": "tests_python/test_keeper_probe_transport_budget.py",
+  "sha256": {
+    "keeper/probe.py": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+    "tests_python/test_keeper_probe_transport_budget.py": "0d666c7015e9c37c5925118c7ce858fa33dbdd6d1f9b14101372667a8cbd31d2",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "keeper/monitor.py": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+    "keeper/rebalance_confirmation.py": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+    "keeper/health.py": "ada01741da4119d72a7d15b7ae16a88df221755653787620a3919a9e0b430d63",
+    "keeper/watchdog.py": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+    "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+    "keeper/ops.py": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+    "keeper/principal.py": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+  },
+  "production_solidity_changed": false,
+  "network_requests": 0,
+  "signatures_or_public_transactions": 0
+}

@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "stage": "whole-final",
+  "utc": "2026-11-13T15:59:37.079901+00:00",
+  "tests_run": 7,
+  "failure_entries": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_before_after_exact": true,
+  "sha256": {
+    "indexer/monitor.py": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+    "tests_python/test_indexer_log_retry_policy.py": "90d552d983215f6ec58f0b54211752861bc37977eb1669a45069ca7555619830",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee"
+  },
+  "failed_tests": [],
+  "scope": "All seven NEW affected methods on final source; prior seven/one/two stages overlap and are not extra unique methods. No old test suite/network/EVM/compiler."
+}
