@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "rpc_attempts": 19,
+  "actual_diagnostics_verified": 3,
+  "external_files_checked": 28,
+  "public_rpc_sha256": "7c0ccbf330f9362074bb16e39ce1422b1843c394712be1ce3fc1bf533c844567",
+  "sources_unchanged": true,
+  "new_network_requests": 0,
+  "new_tests_evm_or_compiles": 0,
+  "numerical_capacity_qualified": false,
+  "production_approved": false,
+  "verifier_sha256": "042740aebefb98871a75360747c8c6ef12f4a2b5ec9df42fead77e60c723a094"
+}

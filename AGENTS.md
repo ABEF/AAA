@@ -1,5 +1,17 @@
 # AAA / ZZZ PoPL project instructions
 
+The [13November external qualification](reports/predeployment-qualification-20261113/REVIEW.md) independently derives
+chain4663 genesis from the official Ethereum rollup's initial assertion; all13
+existing activation_api_v1 checks pass through the unchanged helper with recorded
+1.5-second transport pacing. Stock CLI default cadence is NOT qualified and has
+no pacing flag. Specific historical state/logs and a tiny temporary override
+work; numerical20M/24M capacity, provider plan/SLA/lifetime archive, actual full
+PoPL fees and adoption stay open. Current selected501122 has activeL0 (not zero
+total liquidity); four new conditional quotes and independent-source failures
+leave real feeds/routes unqualified. No code/tests/defaults/guards/live state
+changed or unchanged suites rerun. Use the report's next actions; never adopt the
+endpoint, invent budgets or relabel source9/mint1 fixtures as current mint2.
+
 The [20M/24M profile qualification](reports/gas-profiles-20261113/REVIEW.md)
 passes controlled exact$100 activation/$5 growth in ETH/ZZZ and six keeper
 operations, with full20%/25% padding and exact padded-call success. Worst padded
@@ -22,7 +34,7 @@ exact captured fee_review schema2 recovery. Omission/1 and old pending reviews
 retain their original behavior; do not rewrite journals or roll old source back
 onto schema2 pending. Generic Ethereum helper stays unchanged. Profile2 does
 not adopt an endpoint, attest complete fees or choose spending caps. Full RPC
-profile/genesis, numerical capacity/archive/hosting, undeployed PoPL fee quotes,
+numerical capacity/archive/hosting, undeployed PoPL fee quotes,
 markets/max-state and operating approval remain open. All61 Solidity sources,
 Oracle3-byte/Vault32-byte headroom, browser signer/public-null/site/service/Anvil/
 journals and paused heartbeat stay.

@@ -1,0 +1,48 @@
+{
+  "scope": "Offline exact JSON sizing of old authenticated graph, not a valid current fixture or provider/body-cap approval",
+  "cases": [
+    {
+      "case": "zzz-activate100",
+      "scope": "Sizing only, NOT an execution-ready current-chain fixture",
+      "source_fixture_sha256": "5199af4c2c235ae702f5fb39093e2a80d4e8cb84de2bb95cda9d65d19b7c326b",
+      "authenticated_baseline_sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b",
+      "authenticated_delta_sha256": "4a9a296b8bddea60ef585a4c4ed9cacdf7c86ac32ea1caa54db04a8d24e17c2b",
+      "merged_accounts": 49,
+      "code_bytes": 691968,
+      "storage_slots": 364,
+      "eth_call_body_bytes": 1440000,
+      "estimate_body_bytes": 1440007,
+      "trace_body_bytes": 1440095,
+      "old_chain": 31337,
+      "old_timestamp": 1000000,
+      "harness_omitted": [
+        "0x7fa9385be102ac3eac297483dd6233d62b3e1496"
+      ],
+      "public_execution_allowed": false,
+      "requires_fresh_builder_and_new_review": true
+    },
+    {
+      "case": "hybrid-replace",
+      "scope": "Sizing only, NOT an execution-ready current-chain fixture",
+      "source_fixture_sha256": "aa6fe455fbe679ed3c5270dd1938755dd703d455ac6ea5832cddfd95270e847a",
+      "authenticated_baseline_sha256": "4a3fc9205868b8771d47a94dd77656e382e5f42f201e9e4cc60f162233b4610b",
+      "authenticated_delta_sha256": "e1fb35bc7c1877e7b58255b355a9350a0f685ef9c44413b66a6d3a63f502d855",
+      "merged_accounts": 51,
+      "code_bytes": 694174,
+      "storage_slots": 648,
+      "eth_call_body_bytes": 1483462,
+      "estimate_body_bytes": 1483469,
+      "trace_body_bytes": 1483557,
+      "old_chain": 31337,
+      "old_timestamp": 1087840,
+      "harness_omitted": [
+        "0x7fa9385be102ac3eac297483dd6233d62b3e1496"
+      ],
+      "public_execution_allowed": false,
+      "requires_fresh_builder_and_new_review": true
+    }
+  ],
+  "new_rpc_requests": 0,
+  "new_evm_tests_or_compiles": 0,
+  "production_approved": false
+}

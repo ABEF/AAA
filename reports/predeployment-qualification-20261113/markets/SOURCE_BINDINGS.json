@@ -1,0 +1,65 @@
+{
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "files": [
+    {
+      "path": "src/ZZZOracle.sol",
+      "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7"
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa"
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "sha256": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c"
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "sha256": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f"
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02"
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/StateLibrary.sol",
+      "sha256": "eebdbc1b6e431072ce5521b9e1b603d43831e3b6e062743e6665e070d5cf8a1a"
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/Extsload.sol",
+      "sha256": "ac157c05d62562eed212cdf290046a85d192e7b1f8aba69c3ce358b0ebac4279"
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/base/BaseV4Quoter.sol",
+      "sha256": "78c4d90510c21e90dfd20242bf42bf79ed911d172a6f5fa67912cee936a2632a"
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/lens/V4Quoter.sol",
+      "sha256": "0466f1e83d6362836c0b5256996d13e222a33a2b2810d7992d32a84753a8c0ef"
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/QuoterRevert.sol",
+      "sha256": "954b9e18c2b4d9b48f3d1d761c9d68dd94b995ff871ab561884a803bc09e6c75"
+    },
+    {
+      "path": "zzz_ops/abi.py",
+      "sha256": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+    },
+    {
+      "path": "zzz_ops/tick_math.py",
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+    },
+    {
+      "path": "reports/market-followup-20261109/routes/v4-state.json",
+      "sha256": "35e990f33b83c00cf37e0d6da8c586ce5aed73f89d94281fa83b74a5c320caf8"
+    },
+    {
+      "path": "reports/market-qualification-20261109/markets/bindings-runtime-hashes.json",
+      "sha256": "b0c246c5e04a6b9a3bf5351bb397505396b30ef20cd1b2cc46e12a1b1ab80351"
+    }
+  ]
+}

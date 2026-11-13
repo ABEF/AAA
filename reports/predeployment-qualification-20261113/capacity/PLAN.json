@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "endpoint": "https://robinhood.rpc.pinax.network",
+  "purpose": "Two separately approved bounded read-only method/capability diagnostics; NOT public PoPL operation or capacity approval",
+  "rate_hold": "Do not execute while A/C provider work or429 cooldown is active; root must release hold",
+  "wire_limits": {
+    "maximum_rpc_attempts": 19,
+    "minimum_spacing_seconds": 2,
+    "response_bytes": 262144,
+    "timeout_seconds": 12,
+    "automatic_retries": 0,
+    "redirects": false,
+    "send_or_sign": false
+  },
+  "logs": {
+    "maximum_attempts": 4,
+    "chain_id": 4663,
+    "block_number": 113263446,
+    "block_hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+    "filter": {
+      "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+      "address": "0x9b6fd26a9c8af688e5e82ecf226835c70dede8b3",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x0000000000000000000000001890966740359cf8ee700c5687b3eab8fb0febff",
+        "0x0000000000000000000000008ca6e1f017a979541230c1731225ea340c8ba1c9"
+      ]
+    },
+    "expected_event": {
+      "address": "0x9b6fd26a9c8af688e5e82ecf226835c70dede8b3",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x0000000000000000000000001890966740359cf8ee700c5687b3eab8fb0febff",
+        "0x0000000000000000000000008ca6e1f017a979541230c1731225ea340c8ba1c9"
+      ],
+      "data": "0x000000000000000000000000000000000000000000024655cc78b38d7ac00000",
+      "blockNumber": "0x6c04356",
+      "transactionHash": "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+      "transactionIndex": "0x1",
+      "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+      "blockTimestamp": "0x6af6dd78",
+      "logIndex": "0x0",
+      "removed": false
+    },
+    "calls": [
+      "eth_chainId",
+      "eth_getBlockByNumber before",
+      "eth_getLogs exact filter",
+      "eth_getBlockByNumber after"
+    ],
+    "scope": "This event/history point only; no generalized archive/log completeness or submission proof"
+  },
+  "override": {
+    "maximum_attempts": 11,
+    "chain_id": 4663,
+    "maximum_gas": 50000,
+    "target": "0x938bdd9107b7c8d330b4cf53c6c12f63357c6d49",
+    "runtime": "0x600160005260206000f3",
+    "runtime_bytes": 10,
+    "allowed_override_fields": [
+      "code"
+    ],
+    "prohibited_override_fields": [
+      "balance",
+      "nonce",
+      "state",
+      "stateDiff",
+      "blockOverrides",
+      "movePrecompileToAddress"
+    ],
+    "requirements": [
+      "Fresh canonical anchor",
+      "Abort if target has code,balance or nonce",
+      "No-override call0x before",
+      "Call override returns exactlyuint1",
+      "Estimate exact same code-onlyoverride under50k",
+      "callTracer stateOverrides returns exactlyuint1 with5s andwithLog",
+      "No-override call0x after",
+      "Same numbered header after"
+    ],
+    "calls": [
+      "eth_chainId",
+      "eth_getBlockByNumber latest",
+      "eth_getCode",
+      "eth_getBalance",
+      "eth_getTransactionCount",
+      "eth_call before",
+      "eth_call code override",
+      "eth_estimateGas code override",
+      "debug_traceCall code override",
+      "eth_call after",
+      "eth_getBlockByNumber after"
+    ],
+    "scope": "A tiny ephemeral code-only getter, not a gas stress or PoPL/deployment/fee qualification"
+  },
+  "heavy_graph_phase": {
+    "authorized_by_this_plan": false,
+    "blocked_until": [
+      "Small override capability passes",
+      "Fresh current4663/time fixture is independently constructed/authenticated",
+      "Exact request bytes/gas/time/provider resource review",
+      "New explicit root review"
+    ]
+  },
+  "production_approved": false,
+  "provider_adopted": false,
+  "phase_order": [
+    "tiny_override",
+    "single_block_logs",
+    "old_state_archive"
+  ],
+  "stop_policy": "Stop affected independent diagnostic on unsupported/ignored result; stop entire campaign on HTTP401/403/429,transport failure or budget failure; no retries or alternate semantics",
+  "archive": {
+    "maximum_attempts": 4,
+    "block_number": 110324511,
+    "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+    "call_params": [
+      {
+        "to": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+        "data": "0xfeaf968c",
+        "gas": "0x7a120"
+      },
+      {
+        "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+        "requireCanonical": true
+      }
+    ],
+    "expected_call_result": "0x0000000000000000000000000000000000000000000000010000000000000c9c000000000000000000000000000000000000000000000000000000317d9f7640000000000000000000000000000000000000000000000000000000006af226d1000000000000000000000000000000000000000000000000000000006af226dd0000000000000000000000000000000000000000000000010000000000000c9c",
+    "code_params": [
+      "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+      {
+        "blockHash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+        "requireCanonical": true
+      }
+    ],
+    "expected_runtime_hash": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+    "expected_runtime_bytes": 9571,
+    "retained_source": "reports/market-followup-20261109/feeds/anchor-rpc.json",
+    "retained_source_sha256": "4bb0e64fe6a0aa69568eddb0551c9a39f1b319a74ed0554f5f8b80300554b998",
+    "calls": [
+      "eth_getBlockByNumber before",
+      "eth_getCode exact canonical hash",
+      "eth_call exact canonical hash",
+      "eth_getBlockByNumber after"
+    ],
+    "scope": "One independently retained historical state/result, not lifetime archive completeness or current feed qualification"
+  }
+}

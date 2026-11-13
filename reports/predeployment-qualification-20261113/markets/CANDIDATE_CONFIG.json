@@ -1,0 +1,105 @@
+{
+  "source_baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "anchor": {
+    "chain_id": 4663,
+    "number": 113296579,
+    "hash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+    "timestamp": 1794566911,
+    "selector": {
+      "blockHash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+      "requireCanonical": true
+    }
+  },
+  "production_approved": false,
+  "deployable_configuration": false,
+  "reason": "No qualified two-source USD vector or meaningful compatible bidirectional route established; observations below are candidate pins only.",
+  "fixed_assets": {
+    "native_eth": "0x0000000000000000000000000000000000000000",
+    "zzz": {
+      "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "bytes": 3248,
+      "keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+      "matches_prior_runtime": true
+    }
+  },
+  "market_runtime_pins": {
+    "core": {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "bytes": 24009,
+      "keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+      "matches_prior_runtime": true
+    },
+    "state_view": {
+      "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+      "bytes": 3531,
+      "keccak256": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+      "matches_prior_runtime": true
+    },
+    "quoter": {
+      "address": "0x8dc178efb8111bb0973dd9d722ebeff267c98f94",
+      "bytes": 6118,
+      "keccak256": "0xd707b1da8cb165e5ea35a3b4450d971eb562ec171e23492aa117036b78a868f6",
+      "matches_prior_runtime": true
+    },
+    "zzz": {
+      "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "bytes": 3248,
+      "keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+      "matches_prior_runtime": true
+    }
+  },
+  "eth_primary_candidate": {
+    "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+    "bytes": 9571,
+    "keccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+    "aggregator": "0x6091e64eb7138eef066a80fd3a0d7427b91f2721",
+    "feedDecimals": 8,
+    "independenceId": null,
+    "maxAge": null,
+    "reviewHash": null
+  },
+  "eth_secondary": null,
+  "zzz_primary": null,
+  "zzz_secondary": null,
+  "maxDeviationBps": 300,
+  "selected_lp_pool": [
+    "0x0000000000000000000000000000000000000000",
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    10020,
+    200,
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "selected_lp_pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+  "observed_external_pool_lead": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+  "external_reader_constructor_lead_unapproved": {
+    "core": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "expectedCoreCodeHash": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+    "stateView": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+    "expectedStateViewCodeHash": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+    "key": [
+      "0x0000000000000000000000000000000000000000",
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      10009,
+      200,
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "expectedPoolId": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+    "zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "expectedZZZCodeHash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+    "ethUsdFeed": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+    "expectedETHFeedCodeHash": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+    "maxETHAge": null,
+    "minimumLiquidity": null,
+    "reviewHash": null,
+    "blocker": "Only a known-active-L lead; incompatible price band with selected principal destination, meaningful bidirectional depth and independent second ZZZ path unqualified."
+  },
+  "reviewed_reference_reader_config": null,
+  "minimumLiquidity": null,
+  "reviewed_swap_venues": [],
+  "operator_decisions_needed": [
+    "Independent feed/service choice and round-compatible adapters",
+    "Source max ages, liquidity floors, independence IDs, real reviewHash",
+    "External liquidity/pricing remediation or separate explicit target-pool decision",
+    "Provider/funding/operating qualification; no automatic adoption"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schema": 2,
+  "profile": "activation_api_v1",
+  "created_at": "2026-11-13T10:52:37.253725+00:00",
+  "chain_id": 4663,
+  "scope": "read_only_point_in_time_compatibility; not finality, uptime or fee-budget qualification",
+  "production_approved": false,
+  "probe_address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+  "probe_calldata": "0x18160ddd",
+  "endpoints": [
+    {
+      "index": 0,
+      "checks": [
+        {
+          "name": "genesis_identity",
+          "ok": true,
+          "value": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+          "duration_ms": 1828.0
+        },
+        {
+          "name": "fresh_head",
+          "ok": true,
+          "value": {
+            "number": 113298945,
+            "hash": "0xaabec4056d5b1d69c34d90b8a54a8e727a60526b602d475b1492df1312d0ccd9",
+            "timestamp": 1794567161
+          },
+          "duration_ms": 2984.0
+        },
+        {
+          "name": "common_block_hash",
+          "ok": true,
+          "value": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+          "duration_ms": 2985.0
+        },
+        {
+          "name": "canonical_hash_eth_call",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "02f988291c46c6db46e20426b21dbbe1e254cf5e94d090b67429741db75c5523"
+          },
+          "duration_ms": 3000.0
+        },
+        {
+          "name": "canonical_hash_code",
+          "ok": true,
+          "value": {
+            "bytes": 2202,
+            "sha256": "e980519ff078267da54a92bba9536e7f89e1fdea4fca384ed43fe11c5d06a079"
+          },
+          "duration_ms": 3015.0
+        },
+        {
+          "name": "canonical_hash_storage",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "4eaddc8cfcdd27223821e3e31ab54b2416dd3b0c1a86afd7e8d6538ca1bd0a77"
+          },
+          "duration_ms": 3032.0
+        },
+        {
+          "name": "unknown_hash_rejected",
+          "ok": true,
+          "value": true,
+          "duration_ms": 2968.0
+        },
+        {
+          "name": "actual_call_tracer_with_log",
+          "ok": true,
+          "value": {
+            "gas_used": 33297,
+            "approval_event_verified": true,
+            "state_overrides": false,
+            "scope": "discarded read-only simulation, not a submitted approval or persistent state change"
+          },
+          "duration_ms": 5985.0
+        },
+        {
+          "name": "gas_price_wei",
+          "ok": true,
+          "value": 20086000,
+          "duration_ms": 3015.0
+        },
+        {
+          "name": "safe_tag",
+          "ok": true,
+          "value": {
+            "number": 113293046,
+            "hash": "0x3d95fe2c3f653a847b037dfe22b525bbd29c7003cf536e45556e58b6e2436df5"
+          },
+          "duration_ms": 2985.0
+        },
+        {
+          "name": "finalized_tag",
+          "ok": true,
+          "value": {
+            "number": 113289478,
+            "hash": "0x6c1cff366cd43b275c54ad43b49b48ed5cb5a21fa9361d705a6447783e1e9c4a"
+          },
+          "duration_ms": 3000.0
+        },
+        {
+          "name": "ordinary_receipt_samples",
+          "ok": true,
+          "value": 3,
+          "duration_ms": 30031.0
+        },
+        {
+          "name": "reference_still_canonical",
+          "ok": true,
+          "value": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+          "duration_ms": 3016.0
+        }
+      ],
+      "receipts": [
+        {
+          "transaction": "0xf7c09214f5729140edd75bb543a1c5160db7b4e92f718b8bb71bc43b4d7401b3",
+          "block": 113298933,
+          "gas_used": 31082,
+          "effective_gas_price_wei": 20136000,
+          "status": 1,
+          "l1Fee": null,
+          "gasUsedForL1": 52,
+          "l1GasUsed": null,
+          "gas_times_price_wei": "625867152000"
+        },
+        {
+          "transaction": "0x356188d66ca02aa2b3eb9b8b451fc26922eb0371ee5baee03aa628f332ac032a",
+          "block": 113298932,
+          "gas_used": 232919,
+          "effective_gas_price_wei": 20130000,
+          "status": 1,
+          "l1Fee": null,
+          "gasUsedForL1": 42,
+          "l1GasUsed": null,
+          "gas_times_price_wei": "4688659470000"
+        },
+        {
+          "transaction": "0x4bf67fa80312d9f4eabd90479c3125ebae04ca0cbbd9780cca9fb143b118938c",
+          "block": 113298932,
+          "gas_used": 37325,
+          "effective_gas_price_wei": 20130000,
+          "status": 1,
+          "l1Fee": null,
+          "gasUsedForL1": 52,
+          "l1GasUsed": null,
+          "gas_times_price_wei": "751352250000"
+        }
+      ]
+    }
+  ],
+  "reviewed_pins": {
+    "genesis_hash": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+    "runtime_code_hash": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353"
+  },
+  "reference_block": {
+    "number": 113298933,
+    "hash": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+    "timestamp": 1794567160
+  },
+  "compatibility_checks_passed": true,
+  "source_baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "probe_source_sha256": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+  "rpc_source_sha256": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+  "independent_genesis_evidence_sha256": "63e1b850e97fdb6c9e3a6840d1a7c9a5cfe1d51cde0c413cbc873d2d4d4629da",
+  "root_genesis_review_sha256": "295e69c06ffbbed8d5e62c38b8ecf32e2dc01dfd2a090ffbf0bc2060cf3549df",
+  "actual_http_attempts": 48,
+  "configured_monotonic_spacing_seconds": 1.5,
+  "no_provider_adoption": true,
+  "public_transactions": 0,
+  "invocation_scope": "Existing unchanged probe function and profile; CLI argument-parser validation is not separately retested"
+}

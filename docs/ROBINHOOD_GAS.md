@@ -1,5 +1,12 @@
 # Robinhood gas and RPC qualification
 
+The [latest external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+now proves independently derived genesis and all13 existing RPC checks through
+a paced helper call. Specific historical state/logs and tiny code-only override
+simulation work. Full-work provider caps/plan, real financial inputs, exact current
+launch-state operations and complete Nitro fees remain unqualified. No old gas
+operation/test was repeated and no budget or provider is adopted.
+
 This is an operator review procedure, not a deployment or provider-adoption instruction. Keep the activation/unsigned-review default of 12 million gas, the keeper's separate configured limits and the public signing restriction. Contract sealing does not change backend gas settings.
 
 ## Current evidence
@@ -10,8 +17,8 @@ tracing witness at the documented public Pinax endpoint
 returns the actual expected Approval log through unchanged `callTracer/withLog`
 validation at a rechecked canonical hash. Cheap calls/estimates accept20M/24M
 gas fields, and unknown hashes reject. This qualifies the observed interfaces,
-not effective full-work gas capacity, the complete `activation_api_v1` profile,
-archive reliability, a service plan or production adoption.
+not effective full-work gas capacity, archive reliability, a service plan or
+production adoption. The later full-profile milestone is linked above.
 
 The same campaign reads actual NodeInterface posting components for the ten
 previously captured payloads, a complete harmless approval estimate and genuine

@@ -1,5 +1,12 @@
 # Pool spot price multiplied by ETH/USD
 
+[13November source and market review](../reports/predeployment-qualification-20261113/markets/REVIEW.md)
+still qualifies no source pair. Shared-aggregator Chainlink proxies are one
+ETH service; Pyth is stale/disagreeing and API3 ETH inactive. No two independent
+ZZZ paths are established. Raw activeL cannot choose a truthful reference, and
+the deeper known native markets currently conflict with selected-pool bands.
+The optional reader, spot choice and every safeguard stay unchanged.
+
 ## Scope and economic decision
 
 The user selected **spot for both placement and independent valuation** on

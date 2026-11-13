@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "primary_sources": [
+    {
+      "label": "official-node-guide",
+      "url": "https://docs.robinhood.com/chain/run-a-full-node/",
+      "observed_at_utc": "2026-11-13T10:42:47.648825+00:00",
+      "http_status": 200,
+      "response_sha256": "baab868e2148fd4ad5c7de553825be12a6c137bebbff9d236e2f268d55524185",
+      "bytes": 65092,
+      "body_truncated": false,
+      "raw_relative_path": "official-node-guide.raw"
+    },
+    {
+      "label": "official-chain-info",
+      "url": "https://cdn.robinhood.com/assets/generated_assets/hoodchain_docsite/chain-node-configs/robinhood-chain-info.json",
+      "observed_at_utc": "2026-11-13T10:42:49.146166+00:00",
+      "http_status": 200,
+      "response_sha256": "cf6c0aa2bc520a28fe8983f783676bc43de94cc25a57a1cdc9b1f0afc5208f0a",
+      "bytes": 1563,
+      "body_truncated": false,
+      "raw_relative_path": "official-chain-info.raw"
+    },
+    {
+      "label": "official-genesis",
+      "url": "https://cdn.robinhood.com/assets/generated_assets/hoodchain_docsite/chain-node-configs/robinhood-genesis.json",
+      "observed_at_utc": "2026-11-13T10:42:50.203053+00:00",
+      "http_status": 200,
+      "response_sha256": "353e6f6441b47695b41cee0c3645cde8dd7492d2f7f574bfb6aa4371e41bb6ba",
+      "bytes": 626691,
+      "body_truncated": false,
+      "raw_relative_path": "official-genesis.raw"
+    },
+    {
+      "label": "nitro-main-RollupAdminLogic",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/RollupAdminLogic.sol",
+      "observed_at_utc": "2026-11-13T10:42:51.253756+00:00",
+      "http_status": 200,
+      "response_sha256": "b09c457fffbc68a9ceec497e2946258368a9a908caabce0f35773f0be2be0ce3",
+      "bytes": 20076,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-RollupAdminLogic.raw"
+    },
+    {
+      "label": "nitro-main-RollupCore",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/RollupCore.sol",
+      "observed_at_utc": "2026-11-13T10:42:52.566234+00:00",
+      "http_status": 200,
+      "response_sha256": "399c0c0d78e2d801bca88e874e696f489639d9c1557852cdd0b43301c7a44d83",
+      "bytes": 28852,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-RollupCore.raw"
+    },
+    {
+      "label": "nitro-main-Config",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/Config.sol",
+      "observed_at_utc": "2026-11-13T10:42:53.833839+00:00",
+      "http_status": 200,
+      "response_sha256": "c0bf20d956a97ad2f6cb5062d570cae2b33a49dfb1743d7f178a6477e5c9452a",
+      "bytes": 1907,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-Config.raw"
+    },
+    {
+      "label": "nitro-main-AssertionState",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/AssertionState.sol",
+      "observed_at_utc": "2026-11-13T10:42:55.137713+00:00",
+      "http_status": 200,
+      "response_sha256": "d88f95777ad5e4a24e93cc460de27099c6dcd74863630729bb7739a4bac663ac",
+      "bytes": 804,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-AssertionState.raw"
+    },
+    {
+      "label": "nitro-main-IRollupCore",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/IRollupCore.sol",
+      "observed_at_utc": "2026-11-13T10:42:56.365582+00:00",
+      "http_status": 200,
+      "response_sha256": "e1bda885f25df1cc4421c92d44676c31623261b4a89396e5808c756bdd5409e3",
+      "bytes": 5534,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-IRollupCore.raw"
+    },
+    {
+      "label": "nitro-main-RollupCreator",
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/RollupCreator.sol",
+      "observed_at_utc": "2026-11-13T10:42:57.587054+00:00",
+      "http_status": 200,
+      "response_sha256": "1f229aa8709b6471faacbc011c10d12adebb8a5152e6940e966e2530bc248f91",
+      "bytes": 15822,
+      "body_truncated": false,
+      "raw_relative_path": "nitro-main-RollupCreator.raw"
+    },
+    {
+      "label": "flashbots-primary",
+      "url": "https://docs.flashbots.net/flashbots-protect/quick-start",
+      "observed_at_utc": "2026-11-13T10:44:44.403972+00:00",
+      "http_status": 200,
+      "response_sha256": "08f5927057672d9a7995f3ba50a97cdcfb810b826bdfb42442b833479be2339d",
+      "bytes": 28043,
+      "body_truncated": false,
+      "raw_relative_path": "flashbots/flashbots-primary.raw"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/Assertion.sol",
+      "label": "nitro-main-Assertion",
+      "observed_at_utc": "2026-11-13T10:46:33.038465+00:00",
+      "http_status": 200,
+      "response_sha256": "5055b86d16e3a72b420a9093b1145d04517a86283931f9360a9b959b5fbca998",
+      "bytes": 3723,
+      "body_truncated": false,
+      "raw_relative_path": "identity-finish/nitro-main-Assertion.raw"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/state/GlobalState.sol",
+      "label": "nitro-main-GlobalState",
+      "observed_at_utc": "2026-11-13T10:46:33.263836+00:00",
+      "http_status": 200,
+      "response_sha256": "510e694cd7b6c4d13b18d4e9d943e71efece76c836716c67c2484634c2557c44",
+      "bytes": 2770,
+      "body_truncated": false,
+      "raw_relative_path": "identity-finish/nitro-main-GlobalState.raw"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OffchainLabs/nitro-contracts/main/src/rollup/RollupLib.sol",
+      "label": "nitro-main-RollupLib",
+      "observed_at_utc": "2026-11-13T10:46:33.466892+00:00",
+      "http_status": 200,
+      "response_sha256": "95b4754b7483bcb82c190f8ff0d83b0fb2e11f6875225b85527c8aced42aaf13",
+      "bytes": 2686,
+      "body_truncated": false,
+      "raw_relative_path": "identity-finish/nitro-main-RollupLib.raw"
+    },
+    {
+      "url": "https://llamarpc.com/eth",
+      "label": "llama-primary",
+      "observed_at_utc": "2026-11-13T10:46:33.727965+00:00",
+      "http_status": 403,
+      "response_sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+      "bytes": 17,
+      "body_truncated": false,
+      "raw_relative_path": "identity-finish/llama-primary.raw"
+    }
+  ],
+  "local_source_sha256": {
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "campaign_source_sha256": {
+    "research_identity.py": "be9d253ee2c2fa9d777286b9a998fd2551f27d6063fca78795f13af3b530022c",
+    "research_l1_flashbots.py": "4636d353d64994a42186c8dfb0517aa943b987fc6bd86c50f89492debaf7d94c",
+    "finish_l1_identity.py": "e92b43a932b421032d8b24481c2e42953e4e46297f5dc3fc5e817ceac87dc571",
+    "derive_identity.py": "eb828a6c788814f4331e355adb010e8ba3c19bdfa961d76ca0b706bcc4c69888",
+    "run_full_probe.py": "1b02160771ab4e6dbe68cd923c0b5d806f567723d56181c9f8c365551d9595f2"
+  },
+  "trusted_weth_runtime_origin": "reports/market-followup-20261109/routes/runtime-pins.json",
+  "not_performed": [
+    "Genesis allocation/ArbOS state rebuild",
+    "L1 consensus or receipt-trie proof",
+    "Provider/service/deployment adoption",
+    "Public transaction or signing"
+  ]
+}

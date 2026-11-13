@@ -1,0 +1,83 @@
+"""Run the existing explicit profile once, with recorded bounded public transport."""
+from pathlib import Path
+import datetime as dt
+import hashlib
+import json
+import sys
+import time
+import urllib.error
+
+HERE=Path(__file__).resolve().parent
+ROOT=Path('C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2')
+sys.path.insert(0,str(ROOT))
+from keeper.probe import probe
+from zzz_ops.rpc import Rpc,RpcError
+
+URL='https://robinhood.rpc.pinax.network'
+identity=json.loads((HERE/'IDENTITY_PROOF.json').read_bytes())
+require_hash=identity['genesis_block_hash']
+assert identity['new_expected_genesis_pin_candidate_is_independent']is True
+assert require_hash=='0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c'
+review_path=HERE.parent/'GENESIS_REVIEW.json'
+assert review_path.is_file(),'Separate root review receipt required'
+review=json.loads(review_path.read_bytes())
+assert review['identity_proof_sha256']==hashlib.sha256((HERE/'IDENTITY_PROOF.json').read_bytes()).hexdigest()
+assert review['genesis_pin_for_bounded_probe']==require_hash and review['root_independent_layout_topic_and_assertion_reconciliation']is True
+config={'chain_id':4663,'rpc_urls':[URL]}
+config_path=HERE/'ephemeral-public-probe-config.json'
+with config_path.open('x',encoding='utf-8')as stream:json.dump(config,stream)
+rows=[]
+START=time.monotonic()
+last=0
+stopped=False
+
+class RecordedRpc(Rpc):
+ def _read_http(self,url,raw):
+  global last,stopped
+  if stopped:raise RpcError('Public transport was stopped after a denial or deadline')
+  if url!=URL or len(rows)>=100 or time.monotonic()-START>=90:
+   stopped=True;raise RpcError('Recorded public transport budget exhausted')
+  delay=1.5-(time.monotonic()-last)
+  if delay>0:time.sleep(delay)
+  if time.monotonic()-START>=90:
+   stopped=True;raise RpcError('Recorded public transport deadline elapsed')
+  request=json.loads(raw)
+  if request['method']not in Rpc.READ_METHODS:raise RpcError('Method outside read-only policy')
+  last=time.monotonic()
+  row={'provider':URL,'observed_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
+       'request':request,'sequence':len(rows)+1}
+  rows.append(row);began=time.monotonic()
+  try:
+   data=super()._read_http(url,raw)
+   filename=f'full-probe-{len(rows):02d}.raw'
+   with(HERE/filename).open('xb')as stream:stream.write(data)
+   row.update(http_status=200,raw_relative_path=filename,response_sha256=hashlib.sha256(data).hexdigest(),
+              response_bytes=len(data),rpc_response=json.loads(data))
+   return data
+  except Exception as exc:
+   row['error_class']=type(exc).__name__
+   if isinstance(exc,urllib.error.HTTPError):
+    row['http_status']=exc.code
+    retry=exc.headers.get('Retry-After')if exc.headers is not None else None
+    if isinstance(retry,str)and len(retry)<=128:row['retry_after']=retry
+    if exc.code in(401,403,429):stopped=True
+   raise
+  finally:row['duration_ms']=round((time.monotonic()-began)*1000,3)
+
+report=probe(config,'0x0bd7d308f8e1639fab988df18a8011f41eacad73','0x18160ddd',
+ profile='activation_api_v1',expected_genesis=require_hash,
+ expected_runtime='0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353',
+ confirmations=12,receipt_blocks=12,factory=RecordedRpc)
+report.update(source_baseline='11e74883787e32e816b5c01b1213189400fe01fe',
+ probe_source_sha256=hashlib.sha256((ROOT/'keeper/probe.py').read_bytes()).hexdigest(),
+ rpc_source_sha256=hashlib.sha256((ROOT/'zzz_ops/rpc.py').read_bytes()).hexdigest(),
+ independent_genesis_evidence_sha256=hashlib.sha256((HERE/'IDENTITY_PROOF.json').read_bytes()).hexdigest(),
+ root_genesis_review_sha256=hashlib.sha256(review_path.read_bytes()).hexdigest(),
+ actual_http_attempts=len(rows),configured_monotonic_spacing_seconds=1.5,
+ no_provider_adoption=True,public_transactions=0,
+ invocation_scope='Existing unchanged probe function and profile; CLI argument-parser validation is not separately retested')
+for name,value in(('FULL_PROBE.json',report),('FULL_PROBE_RPC.json',{'schema':1,'rows':rows})):
+ with(HERE/name).open('x',encoding='utf-8',newline='\n')as stream:json.dump(value,stream,indent=2);stream.write('\n')
+print(json.dumps({'compatibility_checks_passed':report['compatibility_checks_passed'],
+ 'actual_http_attempts':len(rows),'checks':[{'name':c['name'],'ok':c['ok']}for c in report['endpoints'][0]['checks']],
+ 'production_approved':False,'new_tests_or_compilers':0}))

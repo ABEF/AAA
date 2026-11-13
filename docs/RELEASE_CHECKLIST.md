@@ -1,9 +1,17 @@
 # Release approval record - NOT APPROVED
 
+The [current external-qualification milestone](../reports/predeployment-qualification-20261113/REVIEW.md)
+closes independently established genesis and the13 existing RPC checks through
+a paced helper. Specific history/logs and tiny nonpersistent simulation pass.
+Provider numerical capacity/plan/SLA/lifetime archive, real qualified sources/
+routes, full launch-state operations/fees and adoption remain open. The selected
+pool has activeL0 at the new market anchor, not zero total liquidity; conditional
+quotes are poor. No source/default/safeguard/live change or unchanged suite rerun.
+
 The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) proves actual
 canonical trace/log support and target component/receipt evidence, and adds an
 explicit future zero-tip keeper profile. This does not sign off a production
-provider, full RPC/genesis/capacity/archive profile, undeployed PoPL fee quote,
+provider, full-work RPC capacity/archive qualification, undeployed PoPL fee quote,
 fee ceiling or actual signer/host adoption. Keep all original pending records,
 12M defaults,20M/24M opt-in ceilings and financial guards unchanged.
 

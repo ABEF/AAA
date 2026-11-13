@@ -1,0 +1,194 @@
+{
+  "scope": "Offline sizing of existing frozen10 local trace responses only; no test/EVM/RPC rerun",
+  "cases": [
+    {
+      "case": "compound",
+      "source": "reports/gas-profiles-20261113/evm/cases/compound/rpc-records.json.gz",
+      "sha256": "60c0f01dfd8f4be6ebef658062865e2de4f5f677ae0150f1b29ca0514852dc0e",
+      "actual_local_trace_frames": 1836,
+      "actual_local_trace_max_depth": 10,
+      "actual_local_trace_logs": 18,
+      "compact_reencoded_response_bytes_NOT_original_wire": 724524,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 10987750,
+      "actual_local_padded": 13734688,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1003601,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "eth-activate100",
+      "source": "reports/gas-profiles-20261113/evm/cases/eth-activate100/rpc-records.json.gz",
+      "sha256": "2f0c061835f71fcd2792532ae69c78d663f37f02bfcdc0eb744de77dac4e2240",
+      "actual_local_trace_frames": 2189,
+      "actual_local_trace_max_depth": 9,
+      "actual_local_trace_logs": 26,
+      "compact_reencoded_response_bytes_NOT_original_wire": 836257,
+      "configured_gas": 20000000,
+      "actual_local_estimate": 14748028,
+      "actual_local_padded": 17697634,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1000000,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "eth-grow5",
+      "source": "reports/gas-profiles-20261113/evm/cases/eth-grow5/rpc-records.json.gz",
+      "sha256": "c43359234e063394bca65e207a1dbc67f8139b620a723a0ba9ca2dac1a5c85e5",
+      "actual_local_trace_frames": 2273,
+      "actual_local_trace_max_depth": 9,
+      "actual_local_trace_logs": 22,
+      "compact_reencoded_response_bytes_NOT_original_wire": 884528,
+      "configured_gas": 20000000,
+      "actual_local_estimate": 13616039,
+      "actual_local_padded": 16339247,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1000017,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "hybrid-harvest",
+      "source": "reports/gas-profiles-20261113/evm/cases/hybrid-harvest/rpc-records.json.gz",
+      "sha256": "6842eb24391617a7f9b6267733ad96c03d85b3aa1271019ccdff830131f47b7d",
+      "actual_local_trace_frames": 100,
+      "actual_local_trace_max_depth": 7,
+      "actual_local_trace_logs": 15,
+      "compact_reencoded_response_bytes_NOT_original_wire": 53770,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 1083316,
+      "actual_local_padded": 1354145,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1043920,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "hybrid-open",
+      "source": "reports/gas-profiles-20261113/evm/cases/hybrid-open/rpc-records.json.gz",
+      "sha256": "ac43448cbec3b250c28eb430c8495e04238d1394f6ae8c53110ebdd120973b92",
+      "actual_local_trace_frames": 2611,
+      "actual_local_trace_max_depth": 10,
+      "actual_local_trace_logs": 31,
+      "compact_reencoded_response_bytes_NOT_original_wire": 1057539,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 16473330,
+      "actual_local_padded": 20591663,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1043920,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "hybrid-replace",
+      "source": "reports/gas-profiles-20261113/evm/cases/hybrid-replace/rpc-records.json.gz",
+      "sha256": "8eb4c8452948d6421f9cc09ba8456ba6ec67947581ac3abfb9d997cbadc7e941",
+      "actual_local_trace_frames": 2682,
+      "actual_local_trace_max_depth": 10,
+      "actual_local_trace_logs": 35,
+      "compact_reencoded_response_bytes_NOT_original_wire": 1093991,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 16836989,
+      "actual_local_padded": 21046237,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1087840,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation",
+      "export_baseline_bytes": 800578,
+      "export_delta_bytes": 1474636,
+      "export_root_shapes": [
+        "dict",
+        "dict"
+      ],
+      "export_sample_keys": [
+        [
+          "0x037eda3adb1198021a9b2e88c22b464fd38db3f3",
+          "0x03a6a84cd762d9707a21605b548aaab891562aab",
+          "0x0401911641c4781d93c41f9aa8094b171368e6a9"
+        ],
+        [
+          "0x0000000000000000000000000000000000007ea5",
+          "0x000000000000000000000000000000000000beef",
+          "0x00000000000000000000000000000000000a11ce"
+        ]
+      ]
+    },
+    {
+      "case": "main-harvest",
+      "source": "reports/gas-profiles-20261113/evm/cases/main-harvest/rpc-records.json.gz",
+      "sha256": "c236a8d41fbea2b61ae35716a497abb9799b69d890892a0fd145f56fcc229995",
+      "actual_local_trace_frames": 64,
+      "actual_local_trace_max_depth": 7,
+      "actual_local_trace_logs": 4,
+      "compact_reencoded_response_bytes_NOT_original_wire": 31592,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 728312,
+      "actual_local_padded": 910390,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1000000,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "single-rebalance",
+      "source": "reports/gas-profiles-20261113/evm/cases/single-rebalance/rpc-records.json.gz",
+      "sha256": "76a38f75d77b56f6ed5634b244c08fb88618b3b46d98d0aa2dc9357996bcdfae",
+      "actual_local_trace_frames": 2261,
+      "actual_local_trace_max_depth": 10,
+      "actual_local_trace_logs": 28,
+      "compact_reencoded_response_bytes_NOT_original_wire": 882921,
+      "configured_gas": 24000000,
+      "actual_local_estimate": 13535113,
+      "actual_local_padded": 16918892,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1043920,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    },
+    {
+      "case": "zzz-activate100",
+      "source": "reports/gas-profiles-20261113/evm/cases/zzz-activate100/rpc-records.json.gz",
+      "sha256": "885caa6e73d22022c203f667ff00cc473ce014932542726029f51b7a5d6783ef",
+      "actual_local_trace_frames": 2237,
+      "actual_local_trace_max_depth": 9,
+      "actual_local_trace_logs": 33,
+      "compact_reencoded_response_bytes_NOT_original_wire": 855391,
+      "configured_gas": 20000000,
+      "actual_local_estimate": 15082371,
+      "actual_local_padded": 18098846,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1000000,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation",
+      "export_baseline_bytes": 800578,
+      "export_delta_bytes": 1427063,
+      "export_root_shapes": [
+        "dict",
+        "dict"
+      ],
+      "export_sample_keys": [
+        [
+          "0x037eda3adb1198021a9b2e88c22b464fd38db3f3",
+          "0x03a6a84cd762d9707a21605b548aaab891562aab",
+          "0x0401911641c4781d93c41f9aa8094b171368e6a9"
+        ],
+        [
+          "0x0000000000000000000000000000000000007ea5",
+          "0x00000000000000000000000000000000000a11ce",
+          "0x037eda3adb1198021a9b2e88c22b464fd38db3f3"
+        ]
+      ]
+    },
+    {
+      "case": "zzz-grow5",
+      "source": "reports/gas-profiles-20261113/evm/cases/zzz-grow5/rpc-records.json.gz",
+      "sha256": "5c837b97995590b9292eeeaf2581fd7dd1788a7a7f7e8183ef5cc01be1b52740",
+      "actual_local_trace_frames": 2321,
+      "actual_local_trace_max_depth": 9,
+      "actual_local_trace_logs": 29,
+      "compact_reencoded_response_bytes_NOT_original_wire": 903653,
+      "configured_gas": 20000000,
+      "actual_local_estimate": 13929079,
+      "actual_local_padded": 16714895,
+      "original_chain_id": 31337,
+      "original_block_timestamp": 1000017,
+      "scope": "Reused frozen controlled Anvil evidence, not a current Nitro or market operation"
+    }
+  ],
+  "provider_capacity_qualified": false,
+  "original_wire_size_claimed": false,
+  "production_approved": false
+}

@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "scope": "Bounded approved capability/history requests and exact primary-source/offline scope; no deployment/service/source/test/compile change",
+  "public_files": [
+    {
+      "path": "OVERRIDE_SIZING.json",
+      "sha256": "4e4beacf8e33ae049223d1953fd1350dbe84d6ccc9ea878b9210426aadced485",
+      "bytes": 1972
+    },
+    {
+      "path": "PLAN.json",
+      "sha256": "60c05b8f400a1cb165aa958c4aeafbf43c41cd4b0c1b04bab5c3229e16e1c1bd",
+      "bytes": 5864
+    },
+    {
+      "path": "PRIMARY_SOURCES.json",
+      "sha256": "dd087d02949e140104a5be2b90966ddcfb7600c2f393f9003bea1c75a3e613c3",
+      "bytes": 6462
+    },
+    {
+      "path": "PROVIDER_ACCEPTANCE.json",
+      "sha256": "aa49737520dbcc23da8cd7e5eb33a86238150726af1f2273921d797438472b1e",
+      "bytes": 2603
+    },
+    {
+      "path": "RESULTS.json",
+      "sha256": "bbb256aef7deb59c10ef140dc5dd7d370eaa375ab9c86088aef1b7517754f098",
+      "bytes": 2796
+    },
+    {
+      "path": "REUSED_TRACE_FOOTPRINTS.json",
+      "sha256": "da801ff52b811e06b3bf3a0ab88f49d200e09e02947f958a5108959f60647a50",
+      "bytes": 8301
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "86bf3e1a12b7c86105491c8ee1171ceaba8ae54dc3ccd711f8efa9a0d053ce10",
+      "bytes": 7298
+    },
+    {
+      "path": "RPC.json",
+      "sha256": "7c0ccbf330f9362074bb16e39ce1422b1843c394712be1ce3fc1bf533c844567",
+      "bytes": 56879
+    },
+    {
+      "path": "SOURCES.json",
+      "sha256": "b0c4e0532da38064b2d5f5b6008398692d89afd59692f3e07cfd24448ced8057",
+      "bytes": 1239
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "41e39bf6fc3ab59926d4c18c23469cf6c4a53deac9ab52bff1a63229026c724e",
+      "bytes": 466
+    },
+    {
+      "path": "verify.py",
+      "sha256": "042740aebefb98871a75360747c8c6ef12f4a2b5ec9df42fead77e60c723a094",
+      "bytes": 9546
+    }
+  ],
+  "external_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\predeployment-qualification-20261113-11e7488\\capacity",
+  "external_files": [
+    {
+      "path": "docs/INDEX.json",
+      "sha256": "fb7bf6be5dac44726d6a8fc18f8369ef40633e8b843a83905a65f000666be1ba",
+      "bytes": 1819
+    },
+    {
+      "path": "docs-permitted/INDEX.json",
+      "sha256": "ac25cd395c6470f4398312650ca1eebcc22773b7fcce31d07e83bb97b1e6a426",
+      "bytes": 3365
+    },
+    {
+      "path": "docs-permitted/pinax-call.html",
+      "sha256": "00bba71917a06e5fe5bae5537d4ffb12e9fd732e377c4841a049ec99b64fffa9",
+      "bytes": 127627
+    },
+    {
+      "path": "docs-permitted/pinax-estimate.html",
+      "sha256": "95f8bede8de38d71ef39eb6f51a69c3b6fe1879798743f847ca696f9682f9e22",
+      "bytes": 127394
+    },
+    {
+      "path": "docs-permitted/pinax-help.html",
+      "sha256": "27e60687bee047fb0728b1b7c15e48aad9fd3d7620c2b0d8d54df59fff9b5e2b",
+      "bytes": 90802
+    },
+    {
+      "path": "docs-permitted/pinax-pricing.html",
+      "sha256": "634038faa6f6946624c9214b09506ccb42a51c49ac1ec52d07fe1fb362ebd06a",
+      "bytes": 116654
+    },
+    {
+      "path": "docs-permitted/pinax-robinhood.html",
+      "sha256": "4e93489e83e77563466b45d01a44c317b060676567d61103d3b5ddd87f9230f5",
+      "bytes": 102159
+    },
+    {
+      "path": "docs-permitted/pinax-rpc-pricing.html",
+      "sha256": "4598c1ec9a784ff703b93b20f585634e0483d969a2456cadb6039e0ba440769b",
+      "bytes": 91096
+    },
+    {
+      "path": "docs-permitted/pinax-rpc.html",
+      "sha256": "bab91ba0e0eaac94de8e7c3394d970b68f09e426ea809cd94d42cf8bca90f335",
+      "bytes": 133824
+    },
+    {
+      "path": "docs-permitted/pinax-trace.html",
+      "sha256": "5e569cc88d2e52749151870716a18912bf3aca90c92fa87a3923d6add75f354c",
+      "bytes": 130647
+    },
+    {
+      "path": "PLAN.initial.json",
+      "sha256": "e9e3747d08a7b220facc509fce9ea75614030d5009ff5ed59373bfcaf17ec4c9",
+      "bytes": 3911
+    },
+    {
+      "path": "PLAN.json",
+      "sha256": "60c05b8f400a1cb165aa958c4aeafbf43c41cd4b0c1b04bab5c3229e16e1c1bd",
+      "bytes": 5864
+    },
+    {
+      "path": "probe_capacity.py",
+      "sha256": "332bd9eab90e4a18694c6652b6a0f161f51f416d4adc22531bfc7e3bf3eee7bd",
+      "bytes": 10880
+    },
+    {
+      "path": "rpc-permitted/response-01.raw",
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "bytes": 42
+    },
+    {
+      "path": "rpc-permitted/response-02.raw",
+      "sha256": "8fef90ef18f36a4f120b8d81e97ae41083ed9fc8fa862f9d77105ee5e51b1365",
+      "bytes": 1958
+    },
+    {
+      "path": "rpc-permitted/response-03.raw",
+      "sha256": "94bda524de213b755d37bce44a822fcba0ed1c58f4b99945b2cf101ee31cccd2",
+      "bytes": 38
+    },
+    {
+      "path": "rpc-permitted/response-04.raw",
+      "sha256": "e2c4b10f1e146bbc8da6398a19c28ab108d3bdfb0c4f387ff1c0fe40fa7dd3fe",
+      "bytes": 39
+    },
+    {
+      "path": "rpc-permitted/response-05.raw",
+      "sha256": "6df302ca54b0ef2937a471dbbeec8975cfac784fe216d6457480cf8a5aa4cfe2",
+      "bytes": 39
+    },
+    {
+      "path": "rpc-permitted/response-06.raw",
+      "sha256": "47bb4db4e2048a2dfd5efc310d13bacd23e67cff1d7e0ff6d4ab5bc0ad2b4944",
+      "bytes": 38
+    },
+    {
+      "path": "rpc-permitted/response-07.raw",
+      "sha256": "c06d7849e42cd5f6ef8ef994e7df30daffaa512327d48492e341f8425653effd",
+      "bytes": 102
+    },
+    {
+      "path": "rpc-permitted/response-08.raw",
+      "sha256": "04510201b90b31656e7c4881c745355cfcc0f0f7f57a8a07a7f4425c65cda135",
+      "bytes": 42
+    },
+    {
+      "path": "rpc-permitted/response-09.raw",
+      "sha256": "9d153a8bbf5f213f69f5d67cb4c61ec8da27e16b981047292e0a716e3e07a9d8",
+      "bytes": 871
+    },
+    {
+      "path": "rpc-permitted/response-10.raw",
+      "sha256": "d9992f1261b03bb094a8c0be582af6681615a11e0d5048ac78f64cf1573cfbff",
+      "bytes": 39
+    },
+    {
+      "path": "rpc-permitted/response-11.raw",
+      "sha256": "623db07c7fa91a93920cdee75f0f94379759f1ccf801440b6bbcf02df17fc417",
+      "bytes": 1959
+    },
+    {
+      "path": "rpc-permitted/response-12.raw",
+      "sha256": "92a326cafc4569fd4ee6fb0e4e8b295f1c381b098309c75fdc998377df7b8a79",
+      "bytes": 43
+    },
+    {
+      "path": "rpc-permitted/response-13.raw",
+      "sha256": "8f8e1be199dac293dd8d7f26adf10ed736b62541f43dd34f719a3dae9d0c3f79",
+      "bytes": 2718
+    },
+    {
+      "path": "rpc-permitted/response-14.raw",
+      "sha256": "a7e8fc0be853cd2dad2c3854a016c491b37462ee22cd22551def1387a9e0a6a5",
+      "bytes": 669
+    },
+    {
+      "path": "rpc-permitted/response-15.raw",
+      "sha256": "f6321b605db24d70ef7a974dc74dc1bfeef847cee55dca99583c13dd10e0d895",
+      "bytes": 2718
+    },
+    {
+      "path": "rpc-permitted/response-16.raw",
+      "sha256": "9eee92bf9763555329369572df0dfdb33dda33ced3f12d35fc4d7adbf13b9e9b",
+      "bytes": 1821
+    },
+    {
+      "path": "rpc-permitted/response-17.raw",
+      "sha256": "a8b8b95d019289187044c5a02171cc38b881c0ffa1c9791b115f51f45b32ad80",
+      "bytes": 19181
+    },
+    {
+      "path": "rpc-permitted/response-18.raw",
+      "sha256": "f948f4be7bfc5129c2c6b2cd3fa85b7706fcad6db5bd6beab6e718625c477df2",
+      "bytes": 359
+    },
+    {
+      "path": "rpc-permitted/response-19.raw",
+      "sha256": "db2943cb35c5acc1ae8742e19c79476e12d3f36f8afac89c67ea866ee1f5a7a3",
+      "bytes": 1821
+    },
+    {
+      "path": "rpc-permitted/RPC.json",
+      "sha256": "7c0ccbf330f9362074bb16e39ce1422b1843c394712be1ce3fc1bf533c844567",
+      "bytes": 56879
+    },
+    {
+      "path": "SOURCES.json",
+      "sha256": "1218a965ee79ddc308740633d7dba379f4a8c4a60108335498c8bf2c68251408",
+      "bytes": 1149
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "41e39bf6fc3ab59926d4c18c23469cf6c4a53deac9ab52bff1a63229026c724e",
+      "bytes": 466
+    }
+  ],
+  "actual_rpc_attempts": 19,
+  "actual_diagnostics": 3,
+  "document_get_stages": {
+    "initial_restricted_errors": 8,
+    "permitted_http200": 8
+  },
+  "offline_external_files_verified": 28,
+  "peer_review": "Independent read-only capacity-scope review found no actionable/blocking correction; no extra RPC/tests",
+  "protected_unrelated_dirty_files_unchanged": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "heavy_graph_requests": 0,
+  "public_transactions": 0,
+  "new_test_evm_or_compile_runs": 0,
+  "numerical20m24m_work_capacity_qualified": false,
+  "provider_adopted": false,
+  "production_approved": false
+}

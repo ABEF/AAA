@@ -335,14 +335,17 @@ nothing in a running environment.
 
 ### Review a Robinhood tracing RPC and complete fees
 
-The [RPC/fee evidence](../reports/rpc-fees-20261113/REVIEW.md) verifies a discarded
-Approval(0) event through the existing trace helper at the public Pinax endpoint.
-It does not approve that anonymous endpoint for sustained service, qualify every
-20M/24M workload or provide full target-chain quotes for undeployed PoPL.
+The [new external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+independently establishes genesis and passes all13 existing RPC checks through
+unchanged `probe()` with1.5-second recording transport pacing. Specific historic
+reads/logs and a tiny nonpersistent code override also work. Anonymous sustained
+service, numerical20M/24M capacity, provider plan/SLA, real sources/routes and full
+PoPL target fees remain unqualified; nothing is adopted or restarted.
 
 | Review | Operator action | Required result |
 | --- | --- | --- |
-| Identity and tracing | Review chain4663, independent genesis pin, exact probe runtime and canonical-hash traces with logs | Actual expected log; unknown hashes fail |
+| Identity and tracing | Reuse reviewed genesis derivation and13-check evidence; check the intended endpoint/runtime | Point-in-time pass; no trust/SLA shortcut |
+| Rate and history | Obtain endpoint/tier limits and sustained/history acceptance; keep429 evidence | No automatic retry or CLI-cadence assumption |
 |20M/24M capacity | Obtain effective call/estimate/trace caps and exercise exact deployed operations | Full padding fits; no clamp/fallback |
 | Complete estimates | Reconcile Nitro total/posting components and real receipts | Posting included once; no fabricated full quote |
 | Fees and funding | Approve gas-price, per-transaction/day/native-balance bounds and evidence hash | Explicit reviewed values; no automatic increase |
@@ -350,9 +353,13 @@ It does not approve that anonymous endpoint for sustained service, qualify every
 
 For a future private endpoint, keep its full URL/credentials in a local JSON
 file outside Git. The existing read-only probe expects `chain_id:4663` and
-`rpc_urls:[REVIEWED_URL]`. Obtain an independently reviewed genesis hash and
-probe-token runtime before using this command; do not substitute unreviewed
-values from the same endpoint:
+`rpc_urls:[REVIEWED_URL]`. The [reviewed public identity pins](RPC_PREPARATION_QUALIFICATION.md#observed-tracing-candidate-and-scope)
+include independently derived genesis and the exact WETH probe runtime. Read
+their derivation/limitations and recheck the intended network/runtime. The CLI
+below shows argument shape only: it has no pacing flag and its default cadence
+was not qualified. The successful recorded helper wrapper is inert evidence,
+not a portable operator runner. Use a reviewed provider rate policy before a
+new profile run; a prior pass does not authorize anonymous high-rate use:
 
 ```text
 python -m keeper.probe --config PRIVATE_RPC_CONFIG.json --profile activation_api_v1 --address REVIEWED_ERC20_ADDRESS --calldata 0x18160ddd --genesis-hash REVIEWED_GENESIS_HASH --runtime-hash REVIEWED_RUNTIME_HASH --output NEW_RPC_OBSERVATION.json
@@ -364,6 +371,18 @@ new contribution asset. The full probe's90-second/100-logical-call bounds and
 other receipt/tag checks remain. A failing required check stays unavailable;
 never use numbered-block substitution or omit the financial trace. Cheap gas
 field acceptance is insufficient numerical-capacity evidence.
+
+Before scheduling the full operation campaign, resolve [current market blockers](../reports/predeployment-qualification-20261113/markets/REVIEW.md):
+two healthy independent ETH/ZZZ valuation paths and real compatible bidirectional
+depth. Selected activeL0 does not mean every tick is empty; current conditional
+quotes still show poor execution. Do not widen spot/loss guards, seed artificial
+depth or switch destination merely to make qualification pass. The [provider
+worksheet](../reports/predeployment-qualification-20261113/capacity/PROVIDER_ACCEPTANCE.json)
+leaves plan/caps and operator spending approval unset. Qualify exact fresh mint2/
+4663 state and complete execution/posting estimates next; old31337/mint1 override
+payload sizes are a worksheet only. A tiny override success is not20M/24M work
+acceptance. No deployment, paid subscription, service change or public transaction
+is part of this procedure.
 
 Robinhood uses inclusive Nitro fee accounting: a complete `eth_estimateGas`
 contains execution and posting gas. A component quote is a reconciliation tool;

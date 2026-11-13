@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "purpose": "Reviewable provider acceptance worksheet, not a runnable service configuration",
+  "candidate_public_endpoint": "https://robinhood.rpc.pinax.network",
+  "chain_id": 4663,
+  "candidate_profiles": {
+    "activation_gas": 20000000,
+    "keeper_gas": 24000000,
+    "activation_padding_percent": 20,
+    "keeper_padding_percent": 25,
+    "defaults_changed": false
+  },
+  "required_confirmations": [
+    {
+      "area": "execution",
+      "required_answer": "Exact effective eth_call/eth_estimateGas/debug_traceCall EVM gas caps for4663, including whether requested20M/24M is clamped and how L1 gas is treated",
+      "reviewed_value": null
+    },
+    {
+      "area": "time",
+      "required_answer": "Per-method wallclock/server trace deadlines; must fit existing5s trace option and25s request/30s worker budgets",
+      "reviewed_value": null
+    },
+    {
+      "area": "bytes",
+      "required_answer": "Per-method request/response byte limits and compression semantics; current transport caps8MiB, controlled compact traces reach1,093,991bytes",
+      "reviewed_value": null
+    },
+    {
+      "area": "rate",
+      "required_answer": "Anonymous vs reviewed-plan per-IP/key RPS, burst, concurrency, trace weight, quotas and documented429/Retry-After behavior",
+      "reviewed_value": null
+    },
+    {
+      "area": "archive",
+      "required_answer": "Exact state/receipt/log retention, ranges, response completeness and historical trace limits for this endpoint/tier",
+      "reviewed_value": null
+    },
+    {
+      "area": "method_roles",
+      "required_answer": "Clarify catalog/FAQ conflict for eth_getLogs and submission; no send method is probed by this campaign",
+      "reviewed_value": null
+    },
+    {
+      "area": "isolation",
+      "required_answer": "Supported nonpersistent state overrides/body limits for separately approved controlled predeployment simulations only",
+      "reviewed_value": null
+    },
+    {
+      "area": "operations",
+      "required_answer": "Reviewed production endpoint/plan, outage/support commitments, independent failover and change notification",
+      "reviewed_value": null
+    }
+  ],
+  "observed_rate_failure": "Separate market campaign encounteredHTTP429; this does not establish a precise numerical rate cap",
+  "approval": {
+    "review_hash": null,
+    "provider_plan": null,
+    "qualified_gas_limit": null,
+    "max_gas_price_wei": null,
+    "max_network_fee_wei": null,
+    "max_daily_cost_wei": null,
+    "complete_fee_semantics_attested": false,
+    "live_adoption": false,
+    "production_approved": false
+  }
+}

@@ -6,9 +6,10 @@ including full gas padding and actual RPC estimates. Safeguards, contract
 implementations and 12M defaults are unchanged. The later
 [RPC/fee review](reports/rpc-fees-20261113/REVIEW.md) verifies a Pinax trace/log
 witness and target fee components, and adds an opt-in zero-tip keeper profile
-for correct future fee accounting. Full provider/operation-fee, real-market and
-release approval remain open; nothing is deployed or installed. Oracle still
-has only 3 bytes of runtime headroom.
+for correct future fee accounting. The [new external qualification](reports/predeployment-qualification-20261113/REVIEW.md)
+independently establishes genesis and passes all13 paced RPC checks. Real feed/
+route blockers, full provider capacity and complete operation fees remain open;
+nothing is deployed or installed. Oracle has only3bytes of runtime headroom.
 
 The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
 individually checks all271previously unreviewed records, fixes three concrete

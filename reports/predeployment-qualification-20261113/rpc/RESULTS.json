@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "independent_genesis_for_bounded_probe": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+  "genesis_derived_without_candidate_rpc": true,
+  "independent_root_review": true,
+  "full_existing_profile": "activation_api_v1",
+  "compatibility_checks_passed": true,
+  "actual_pinax_http_attempts": 48,
+  "l1_http_attempts": 9,
+  "point_in_time_profile_checks": [
+    {
+      "name": "genesis_identity",
+      "ok": true,
+      "value": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+      "duration_ms": 1828.0
+    },
+    {
+      "name": "fresh_head",
+      "ok": true,
+      "value": {
+        "number": 113298945,
+        "hash": "0xaabec4056d5b1d69c34d90b8a54a8e727a60526b602d475b1492df1312d0ccd9",
+        "timestamp": 1794567161
+      },
+      "duration_ms": 2984.0
+    },
+    {
+      "name": "common_block_hash",
+      "ok": true,
+      "value": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+      "duration_ms": 2985.0
+    },
+    {
+      "name": "canonical_hash_eth_call",
+      "ok": true,
+      "value": {
+        "bytes": 32,
+        "sha256": "02f988291c46c6db46e20426b21dbbe1e254cf5e94d090b67429741db75c5523"
+      },
+      "duration_ms": 3000.0
+    },
+    {
+      "name": "canonical_hash_code",
+      "ok": true,
+      "value": {
+        "bytes": 2202,
+        "sha256": "e980519ff078267da54a92bba9536e7f89e1fdea4fca384ed43fe11c5d06a079"
+      },
+      "duration_ms": 3015.0
+    },
+    {
+      "name": "canonical_hash_storage",
+      "ok": true,
+      "value": {
+        "bytes": 32,
+        "sha256": "4eaddc8cfcdd27223821e3e31ab54b2416dd3b0c1a86afd7e8d6538ca1bd0a77"
+      },
+      "duration_ms": 3032.0
+    },
+    {
+      "name": "unknown_hash_rejected",
+      "ok": true,
+      "value": true,
+      "duration_ms": 2968.0
+    },
+    {
+      "name": "actual_call_tracer_with_log",
+      "ok": true,
+      "value": {
+        "gas_used": 33297,
+        "approval_event_verified": true,
+        "state_overrides": false,
+        "scope": "discarded read-only simulation, not a submitted approval or persistent state change"
+      },
+      "duration_ms": 5985.0
+    },
+    {
+      "name": "gas_price_wei",
+      "ok": true,
+      "value": 20086000,
+      "duration_ms": 3015.0
+    },
+    {
+      "name": "safe_tag",
+      "ok": true,
+      "value": {
+        "number": 113293046,
+        "hash": "0x3d95fe2c3f653a847b037dfe22b525bbd29c7003cf536e45556e58b6e2436df5"
+      },
+      "duration_ms": 2985.0
+    },
+    {
+      "name": "finalized_tag",
+      "ok": true,
+      "value": {
+        "number": 113289478,
+        "hash": "0x6c1cff366cd43b275c54ad43b49b48ed5cb5a21fa9361d705a6447783e1e9c4a"
+      },
+      "duration_ms": 3000.0
+    },
+    {
+      "name": "ordinary_receipt_samples",
+      "ok": true,
+      "value": 3,
+      "duration_ms": 30031.0
+    },
+    {
+      "name": "reference_still_canonical",
+      "ok": true,
+      "value": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+      "duration_ms": 3016.0
+    }
+  ],
+  "full_20m_24m_capacity_proven": false,
+  "archive_uptime_recovery_qualified": false,
+  "provider_approved_or_adopted": false,
+  "full_popl_operation_fees_approved": false,
+  "public_transactions": 0,
+  "signatures": 0,
+  "service_site_anvil_journal_heartbeat_changes": 0,
+  "scope": "Full existing read-only compatibility profile only; no CLI-parser retest, capacity/market/provider approval or consensus proof"
+}

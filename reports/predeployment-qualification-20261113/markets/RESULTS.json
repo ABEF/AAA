@@ -1,0 +1,4532 @@
+{
+  "source_baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "production_approved": false,
+  "anchor": {
+    "chain_id": 4663,
+    "number": 113296579,
+    "hash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+    "timestamp": 1794566911,
+    "selector": {
+      "blockHash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+      "requireCanonical": true
+    }
+  },
+  "canonical_final_recheck": true,
+  "read_boundary": {
+    "attempts": 51,
+    "successful_rpc_responses": 48,
+    "rpc_errors": 2,
+    "http_429": 1,
+    "stop": {
+      "id": 51,
+      "label": "stateview.liquidity.0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+      "observed_at_utc": "2026-11-13T10:49:04.424158+00:00",
+      "http_status": 429,
+      "error_class": "HTTPError"
+    },
+    "retry_after_captured": false,
+    "quotes_executed": 4,
+    "closure_attempts": 7,
+    "total_attempts": 58,
+    "total_valid_results": 53,
+    "total_rpc_errors": 4
+  },
+  "feeds": {
+    "chainlink": {
+      "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "secondary_proxy": "0x5058adee53b04e374d8bedbad634bc4778f50b22",
+      "aggregator": "0x6091e64eb7138eef066a80fd3a0d7427b91f2721",
+      "round": "18446744073709554943",
+      "answer_raw": "195206966758",
+      "decimals": 8,
+      "usd": {
+        "numerator": "97603483379",
+        "denominator": "50000000",
+        "decimal": "1952.069667580000000000000000"
+      },
+      "started_at": 1794564664,
+      "updated_at": 1794564676,
+      "age_seconds": 2235,
+      "structurally_valid_under_hard_one_day_bound": true,
+      "same_aggregator_for_both_proxies": true,
+      "same_answer_and_time": true,
+      "chosen_max_age": null,
+      "qualified_independent_eth_pair": false
+    },
+    "pyth": {
+      "address": "0x8250f4af4b972684f7b336503e2d6dfedeb1487a",
+      "usd": {
+        "numerator": "112086259",
+        "denominator": "50000",
+        "decimal": "2241.725180000000000000000000"
+      },
+      "publish_time": 1794025153,
+      "age_seconds": 541758,
+      "within_hard_86400_seconds": false,
+      "spread_vs_chainlink_bps": {
+        "numerator": "144827756210000",
+        "denominator": "97603483379",
+        "decimal": "1483.837986064753480994714407"
+      },
+      "passes_300bps_agreement": false,
+      "single_update_fee_wei": "0",
+      "transaction_fee_wei": "0",
+      "qualified": false
+    },
+    "api3": {
+      "address": "0x3c57b17052bdd5ff75b1f03c5f3afddbcfb8de1c",
+      "read_error": {
+        "rpc_error": {
+          "code": 3,
+          "message": "execution reverted",
+          "data": "0x8086c764"
+        }
+      },
+      "latest_round_error": {
+        "rpc_error": {
+          "code": 3,
+          "message": "execution reverted",
+          "data": "0x8086c764"
+        }
+      },
+      "eth_name_binding_zero": true,
+      "eth_subscription_zero": true,
+      "zzz_name_binding_zero": true,
+      "zzz_subscription_zero": true,
+      "base_feed_zero": true,
+      "round_compatible_adapter_required_if_selected": true,
+      "activated_or_paid": false,
+      "qualified": false
+    }
+  },
+  "markets": {
+    "known_inventory_count": 95,
+    "new_pool_initialization_scan": false,
+    "global_highest_tvl_established": false,
+    "changed_count": 8,
+    "strict_principal_fee_candidate_count": 70,
+    "active_strict_candidate_count": 7,
+    "selected": {
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "active_liquidity": "0",
+      "prior_active_liquidity": "962337799357516411500",
+      "changed_since_nov9": true,
+      "strict_principal_fee_candidate": true,
+      "slot0": {
+        "sqrtPriceX96": 42277818571609234285824917886142,
+        "tick": 125599,
+        "protocolFee": 4097000,
+        "lpFee": 10020
+      },
+      "combined_directional_fees_pips": [
+        11010,
+        11010
+      ],
+      "zzz_per_eth": {
+        "numerator": "446853485793476668812012109334398305007234838768954246418911041",
+        "denominator": "1569275433846670190958947355801916604025588861116008628224",
+        "decimal": "284751.469471571143737312365584"
+      },
+      "price_ratio_to_selected": {
+        "numerator": "1",
+        "denominator": "1",
+        "decimal": "1.000000000000000000000000"
+      },
+      "common_reference_at_hard_500bps_possible": true,
+      "conditional_zzz_usd_single_eth_feed": {
+        "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+        "denominator": "174552142888076823754692230208749337893451108894122752507387125390625",
+        "decimal": "0.006855345369077681364270"
+      },
+      "not_a_qualified_usd_price": true
+    },
+    "ranked_active_candidates": [
+      {
+        "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10009,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "2183174546570489921452",
+        "prior_active_liquidity": "2183174546570489921452",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17536888241349456165021772949212,
+          "tick": 107999,
+          "protocolFee": 4097000,
+          "lpFee": 10009
+        },
+        "combined_directional_fees_pips": [
+          10999,
+          10999
+        ],
+        "zzz_per_eth": {
+          "numerator": "19221403074348801343959543168455459414990575290329836770713809",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "48994.338813378440989592476367"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "76885612297395205375838172673821837659962301161319347082855236",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.172060003427901221403888"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "7508360575917500524984196550177913833980693472785092488560081640625",
+          "decimal": "0.039842759691390426328321"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10023,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "265494416382117651707",
+        "prior_active_liquidity": "265494416382117651707",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 31635408945578930574549486684402,
+          "tick": 119799,
+          "protocolFee": 4097000,
+          "lpFee": 10023
+        },
+        "combined_directional_fees_pips": [
+          11013,
+          11013
+        ],
+        "zzz_per_eth": {
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "159436.494953090703464095871123"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.559914564265342392310220"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "97734287026759318747911015762883500421024838772444443667001719140625",
+          "decimal": "0.012243556082654329568241"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10018,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "150095629180827131515",
+        "prior_active_liquidity": "150095629180827131515",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51694214345990926982943951054464,
+          "tick": 129621,
+          "protocolFee": 4097000,
+          "lpFee": 10018
+        },
+        "combined_directional_fees_pips": [
+          11008,
+          11008
+        ],
+        "zzz_per_eth": {
+          "numerator": "163103747366287485518742643197438230690683746453156719817769",
+          "denominator": "383123885216472214589586756787577295904684780545900544",
+          "decimal": "425720.644574615322642098709076"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "668072949212313540684769866536706992909040625472129924373581824",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.495060395525432678164030"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "292142388772061325107109783770272000269614576142547392913211392",
+          "denominator": "63712401314956049030758844998999308863548338458264343678816015625",
+          "decimal": "0.004585330057297383703351"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          96500,
+          965,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "9003301259096843454",
+        "prior_active_liquidity": "9003301259096843454",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 50817854831671276522159715531905,
+          "tick": 129279,
+          "protocolFee": 4097000,
+          "lpFee": 96500
+        },
+        "combined_directional_fees_pips": [
+          97404,
+          97404
+        ],
+        "zzz_per_eth": {
+          "numerator": "2582454369692815704270592569162411320823668645919951697072929025",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "411408.716722628021487624471710"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2582454369692815704270592569162411320823668645919951697072929025",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1.444799275263097500582045"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "1008771238161256134480700222329066922196745564812481131669112900390625",
+          "decimal": "0.004744842751827464126883"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          49000,
+          490,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "8873927460709817880",
+        "prior_active_liquidity": "8873927460709817880",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51226168705801867450638324229102,
+          "tick": 129439,
+          "protocolFee": 4097000,
+          "lpFee": 49000
+        },
+        "combined_directional_fees_pips": [
+          49951,
+          49951
+        ],
+        "zzz_per_eth": {
+          "numerator": "656030090068818642909134276301332362662488482720314665645931601",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "418046.491979251637029446339796"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "656030090068818642909134276301332362662488482720314665645931601",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.468110042610292223298333"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "256261753933132282386380576680207954165034563562622916267942031640625",
+          "decimal": "0.004669503763416066553133"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "112025816170762569",
+        "prior_active_liquidity": "112025816170762569",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51773757877180605103913492829176,
+          "tick": 129652,
+          "protocolFee": 4097000,
+          "lpFee": 20000
+        },
+        "combined_directional_fees_pips": [
+          20980,
+          20980
+        ],
+        "zzz_per_eth": {
+          "numerator": "41883156323826886827683872249778554599711635233112687073700609",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "427031.792333981628119955523039"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "670130501181230189242941955996456873595386163729802993179209744",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.499664929302903516139015"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "16360607938994877667064012597569747890512357512934643388164300390625",
+          "decimal": "0.004571251374308182711284"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10015,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "1824799176298748",
+        "prior_active_liquidity": "1824799176298748",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 41168973704219627594273315504392,
+          "tick": 125068,
+          "protocolFee": 4097000,
+          "lpFee": 10015
+        },
+        "combined_directional_fees_pips": [
+          11005,
+          11005
+        ],
+        "zzz_per_eth": {
+          "numerator": "26482568685292611951916719535290402704769933189853703958926401",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "270010.662134715144272647531643"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "423721098964681791230667512564646443276318931037659263342822416",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.948232726018196426354861"
+        },
+        "common_reference_at_hard_500bps_possible": true,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "10344753392692426543717468568472813556550755152286603108955625390625",
+          "decimal": "0.007229602165139919923937"
+        },
+        "not_a_qualified_usd_price": true
+      }
+    ],
+    "largest_current_active_L_known_candidate": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+    "common_reference_active_candidates": [
+      "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417"
+    ],
+    "common_band_formula": "max(P)/min(P) <= 105/95, P = sqrtPriceX96^2 / 2^192; necessary hard-ceiling geometry only",
+    "independent_zzz_paths_qualified": 0,
+    "bidirectional_meaningful_depth_qualified": false,
+    "all_bands": [
+      {
+        "pool_id": "0xc837935ce0bd8402ccea5d698f55bd5fa739601022e1d59e0273f85c04961bd2",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          810000,
+          19988,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 48675645826859958831101748196286,
+          "tick": 128418,
+          "protocolFee": 4097000,
+          "lpFee": 810000
+        },
+        "combined_directional_fees_pips": [
+          810190,
+          810190
+        ],
+        "zzz_per_eth": {
+          "numerator": "592329624165477331313009706583723303571337821724694863596048449",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "377454.213192858987776400474041"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "592329624165477331313009706583723303571337821724694863596048449",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.325556682440731173011745"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "231378759439639582544144416634266915457553836611208931092206425390625",
+          "decimal": "0.005171672746920952843936"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x5f0b1299e5ac608e2fd5d9ed283e5373a22594e1a101edbd2b4a356f95a6069e",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          802731,
+          9303,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 46775233422437590594579197640964,
+          "tick": 127621,
+          "protocolFee": 4097000,
+          "lpFee": 802731
+        },
+        "combined_directional_fees_pips": [
+          802929,
+          802929
+        ],
+        "zzz_per_eth": {
+          "numerator": "136745153857720164655851185035724367119591071305783141415678081",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "348556.157595674633945510793558"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "546980615430880658623404740142897468478364285223132565662712324",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.224071497304331160256325"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "53416075725671939318691869154579830906090262228821539615499250390625",
+          "decimal": "0.005600445222500995276221"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x0a8950921ede75744e253dbb16a2410cca6741b1bd2aa37be0d63d7787c1335c",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          912630,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 108519885491599116304855136920197,
+          "tick": 144454,
+          "protocolFee": 4097000,
+          "lpFee": 912630
+        },
+        "combined_directional_fees_pips": [
+          912718,
+          912718
+        ],
+        "zzz_per_eth": {
+          "numerator": "11776565547109784376678699952192552963682269998336060010346518809",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "1876115.131402171984173556754684"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "240338072389995599524055101065154142115964693843593061435643241",
+          "denominator": "36477835574977687249960172190563126939366109287261571136237636",
+          "decimal": "6.588605617676991501004465"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "4600220916839759522140117168825216001438386718100023441541608909765625",
+          "decimal": "0.001040485008039491196777"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xd9fcac854d9b8149d38bf9859cfe34ac6b2af3948e83e68a2f38119e53b32b52",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          50000,
+          1000,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 21908725798736348689837012432074,
+          "tick": 112451,
+          "protocolFee": 4097000,
+          "lpFee": 50000
+        },
+        "combined_directional_fees_pips": [
+          50950,
+          50950
+        ],
+        "zzz_per_eth": {
+          "numerator": "119998066531053914969813379691169354406468343178354608115985369",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "76467.179656862335757757071402"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "119998066531053914969813379691169354406468343178354608115985369",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.268540070394602907641104"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "46874244738692935535083351441863029065026696554044768795306784765625",
+          "decimal": "0.025528202770648634760988"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          49000,
+          490,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "8873927460709817880",
+        "prior_active_liquidity": "8873927460709817880",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51226168705801867450638324229102,
+          "tick": 129439,
+          "protocolFee": 4097000,
+          "lpFee": 49000
+        },
+        "combined_directional_fees_pips": [
+          49951,
+          49951
+        ],
+        "zzz_per_eth": {
+          "numerator": "656030090068818642909134276301332362662488482720314665645931601",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "418046.491979251637029446339796"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "656030090068818642909134276301332362662488482720314665645931601",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.468110042610292223298333"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "256261753933132282386380576680207954165034563562622916267942031640625",
+          "decimal": "0.004669503763416066553133"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x30c913e26fefc2977a95f8feeb892ef9b1fee4020d9edae02a2c2d54efd546b9",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          98000,
+          980,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 22905779284996094603449633061572,
+          "tick": 113341,
+          "protocolFee": 4097000,
+          "lpFee": 98000
+        },
+        "combined_directional_fees_pips": [
+          98902,
+          98902
+        ],
+        "zzz_per_eth": {
+          "numerator": "32792170290809762432637112768583519368126415105118163121444449",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "83585.505982027116472003876608"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "131168681163239049730548451074334077472505660420472652485777796",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.293538453505231441744239"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "12809441519847563450248872175227937253174380900436782469314237890625",
+          "decimal": "0.023354164632319647389947"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x8713aa35ccea9dbb98d15cec7e72579510332c07e8d04fc3eef416c2253b9559",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          200000,
+          2000,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "2902755569488206966",
+        "prior_active_liquidity": "2902755569488206966",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 54597683523225589432071522251415,
+          "tick": 130714,
+          "protocolFee": 4097000,
+          "lpFee": 200000
+        },
+        "combined_directional_fees_pips": [
+          200800,
+          200800
+        ],
+        "zzz_per_eth": {
+          "numerator": "2980907046102299012365799446959079569822239257525007470469502225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "474885.890298330456097092733232"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2980907046102299012365799446959079569822239257525007470469502225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1.667720595716686354797007"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "1164416814883710551705390408968390456961812209970706043152149306640625",
+          "decimal": "0.004110607848032040888518"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x3a637d9367101ea308d998f2a6aeb195aefd90f78eb77ffeb94b247e3818c3fb",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          833690,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 74901471210499820882152854374361,
+          "tick": 137038,
+          "protocolFee": 4097000,
+          "lpFee": 833690
+        },
+        "combined_directional_fees_pips": [
+          833857,
+          833857
+        ],
+        "zzz_per_eth": {
+          "numerator": "5610230389497333502929707470395282064834064710872565292734158321",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "893761.265309766914933215616579"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "5610230389497333502929707470395282064834064710872565292734158321",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "3.138741538255688429274335"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "2191496245897395899581916980623157056575806527684595817474280594140625",
+          "decimal": "0.002184106364134538891318"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x817e2dfc5a7866c86bdb8ecd515bdfb69ab18d4d77e4546da652b45ce539e9f7",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          990000,
+          9900,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 35237881106821537284286555070132,
+          "tick": 121957,
+          "protocolFee": 4097000,
+          "lpFee": 990000
+        },
+        "combined_directional_fees_pips": [
+          990010,
+          990010
+        ],
+        "zzz_per_eth": {
+          "numerator": "77606766556155640595771651418796171466008216213199647214906089",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "197815.539279609713973373785487"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "310427066224622562383086605675184685864032864852798588859624356",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.694695411569628826710007"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "30315143185998297107723301335467254478909459458281112193322691015625",
+          "decimal": "0.009868131061335756320378"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa8a131c720e3d86c41867180c60f4bc96fd55beead9c007fdb7be20ad3dcca23",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          56800,
+          568,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 110036787098676869578297550336562,
+          "tick": 144732,
+          "protocolFee": 4097000,
+          "lpFee": 56800
+        },
+        "combined_directional_fees_pips": [
+          57744,
+          57744
+        ],
+        "zzz_per_eth": {
+          "numerator": "3027023628749885092241234831946111695544931373506115039868494961",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "1928930.743107298061950858664732"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "3027023628749885092241234831946111695544931373506115039868494961",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "6.774085298618195749878161"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "1182431104980423864156732356228949881072238817775826187448630844140625",
+          "decimal": "0.001011995725899120484860"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xc8fd8f851298065b0a7961289cb5e4858c72b89ae99c8f80b3a6336726c0a324",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          141400,
+          1414,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 39879640901965724577066425572996,
+          "tick": 124432,
+          "protocolFee": 4097000,
+          "lpFee": 141400
+        },
+        "combined_directional_fees_pips": [
+          142259,
+          142259
+        ],
+        "zzz_per_eth": {
+          "numerator": "99399109904358599405455682981762338247785218862633240432776001",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "253363.068739838890876155347800"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "397596439617434397621822731927049352991140875450532961731104004",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.889769135204178497585772"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "38827777306390077892756126164750913378041101118216109544053125390625",
+          "decimal": "0.007704633817742577468609"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xdf3219818c2af71bfd5be4d36e9adb1fc6822025f12bb487ba694422e364a899",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          56200,
+          562,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 81873839480266960219448994095185,
+          "tick": 138819,
+          "protocolFee": 4097000,
+          "lpFee": 56200
+        },
+        "combined_directional_fees_pips": [
+          57144,
+          57144
+        ],
+        "zzz_per_eth": {
+          "numerator": "6703325591240520786709496300952057316892762184588540996840184225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "1067901.377709243685896002780624"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "6703325591240520786709496300952057316892762184588540996840184225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "3.750292771766925754346497"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "2618486559078328432308396992559397389411235228354898826890696962890625",
+          "decimal": "0.001827949385894965879341"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x443679c5b20058bd2d333ab27bbed97d2b586f02dee34ddc040d5795f7b4da1f",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          30000,
+          300,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 4097000,
+          "lpFee": 30000
+        },
+        "combined_directional_fees_pips": [
+          30970,
+          30970
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa442b03f5a51827f623eb2d36cb354a901ed067bb56b5096ba3a0328ba9207e3",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          60000,
+          600,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 4097000,
+          "lpFee": 60000
+        },
+        "combined_directional_fees_pips": [
+          60940,
+          60940
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x8c89839957cf553924077940fce78ab18052b628e3b23942a0a08917931f9c6b",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          30543,
+          305,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 1724474780758422924440376123429,
+          "tick": 61609,
+          "protocolFee": 4097000,
+          "lpFee": 30543
+        },
+        "combined_directional_fees_pips": [
+          31513,
+          31513
+        ],
+        "zzz_per_eth": {
+          "numerator": "2973813269471810812117753809451647711815545302878353842718041",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "473.755786481389338630737521"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2973813269471810812117753809451647711815545302878353842718041",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.001663751858280358764107"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "1161645808387426098483497581817049887427947383936856969811734765625",
+          "decimal": "4.120413350680379747870163"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6f573d8102f5e9683ad47845cd1e7a068e8e607e1ec00e31ac3cd9089facc6f4",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          30001,
+          300,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 53626892910621298654893025697505,
+          "tick": 130356,
+          "protocolFee": 4097000,
+          "lpFee": 30001
+        },
+        "combined_directional_fees_pips": [
+          30971,
+          30971
+        ],
+        "zzz_per_eth": {
+          "numerator": "2875843643247244900962536685190529261423592030212944291763225025",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "458148.324573886766368654207666"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2875843643247244900962536685190529261423592030212944291763225025",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1.608941036982522472440375"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "1123376423143455039438490892652550492743590636801931363970009775390625",
+          "decimal": "0.004260780980473027291728"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xb21d7557cf03c3662a0f90d189234108fb91edd8fcd39b73a1eaaefd6e3dc342",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          3000,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 2048500,
+          "lpFee": 3000
+        },
+        "combined_directional_fees_pips": [
+          3499,
+          3499
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          75,
+          1,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 35528656393238211267704446410635,
+          "tick": 122121,
+          "protocolFee": 81940,
+          "lpFee": 75
+        },
+        "combined_directional_fees_pips": [
+          95,
+          95
+        ],
+        "zzz_per_eth": {
+          "numerator": "1262285425108786423007481173411527551312628175994546535041103225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "201093.670028119652433586958945"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "1262285425108786423007481173411527551312628175994546535041103225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.706207663831551635241912"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "493080244183119696487297333363877949731495381247869740250430947265625",
+          "decimal": "0.009707265610633268888814"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x4d9cd3f1c7a5508b2a024be59983b00521e597563a1c772c3ee76c241e7187d3",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          899900,
+          8999,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "33550706298976055",
+        "prior_active_liquidity": "33550706298976055",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 43951155411834944862066499655320,
+          "tick": 126376,
+          "protocolFee": 4097000,
+          "lpFee": 899900
+        },
+        "combined_directional_fees_pips": [
+          900001,
+          900001
+        ],
+        "zzz_per_eth": {
+          "numerator": "30182875969301065026660914107159152375126763002122463731317225",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "307738.211593008650669265300666"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "482926015508817040426574625714546438002028208033959419701075600",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.080725631246417305317443"
+        },
+        "common_reference_at_hard_500bps_possible": true,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "3936234290823563117232637086588928003632701657499585925567479808",
+          "denominator": "620536101342538343475758924900475994554415357773899336581357421875",
+          "decimal": "0.006343280080413478580652"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xe196a07890b3f4ea0bfbfbac0678313f4412aed4872f9cabed6b1623520d8cce",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          29800,
+          298,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 32103387275595727069077387225503,
+          "tick": 120093,
+          "protocolFee": 4097000,
+          "lpFee": 29800
+        },
+        "combined_directional_fees_pips": [
+          30771,
+          30771
+        ],
+        "zzz_per_eth": {
+          "numerator": "1030627474566881639242938968831752665439709877264085052173603009",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "164188.429312336632374725422844"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "1030627474566881639242938968831752665439709877264085052173603009",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.576602570715543871770234"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "402588857252688140329273034699903384937386670806283223505313675390625",
+          "decimal": "0.011889203616574991291144"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x7ca3f2f7c93dcc5fabebd500345798f6a565aa407d2e03e42bb8678d7422bd14",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          47500,
+          475,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 32742486927238066763674255548072,
+          "tick": 120487,
+          "protocolFee": 4097000,
+          "lpFee": 47500
+        },
+        "combined_directional_fees_pips": [
+          48453,
+          48453
+        ],
+        "zzz_per_eth": {
+          "numerator": "16751100784068057798808932770662120217976112568843404267233081",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "170790.676234645132763859547287"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "268017612545088924780942924330593923487617801101494468275729296",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.599788568436857305714288"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "6543398743776585077659739363539890710146918972204454791887922265625",
+          "decimal": "0.011429603246597016975119"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa35f063456d1ab7c9a1769252528d8fe2327c48b196ffa51e58ea0ca0d901fe7",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          330000,
+          3300,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 32070172143851148208025994106996,
+          "tick": 120073,
+          "protocolFee": 4097000,
+          "lpFee": 330000
+        },
+        "combined_directional_fees_pips": [
+          330670,
+          330670
+        ],
+        "zzz_per_eth": {
+          "numerator": "64280996333515384471932728983259776385252067938745907468509001",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "163848.856477533090448560419056"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "257123985334061537887730915933039105541008271754983629874036004",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.575410047160059835868134"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "25109764192779447059348722259085850150489089038572620104886328515625",
+          "decimal": "0.011913843706609372943450"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "112025816170762569",
+        "prior_active_liquidity": "112025816170762569",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51773757877180605103913492829176,
+          "tick": 129652,
+          "protocolFee": 4097000,
+          "lpFee": 20000
+        },
+        "combined_directional_fees_pips": [
+          20980,
+          20980
+        ],
+        "zzz_per_eth": {
+          "numerator": "41883156323826886827683872249778554599711635233112687073700609",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "427031.792333981628119955523039"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "670130501181230189242941955996456873595386163729802993179209744",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.499664929302903516139015"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "16360607938994877667064012597569747890512357512934643388164300390625",
+          "decimal": "0.004571251374308182711284"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x32fa7519f26fc52a1b9b0481593fc17167c02577b28259a353827e2616e16085",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          100000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 23133856625566615711978131060438,
+          "tick": 113540,
+          "protocolFee": 4097000,
+          "lpFee": 100000
+        },
+        "combined_directional_fees_pips": [
+          100900,
+          100900
+        ],
+        "zzz_per_eth": {
+          "numerator": "133793830593068100977517452885081071944494815763557391602187961",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "85258.347710896968741552958596"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "133793830593068100977517452885081071944494815763557391602187961",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.299413196599531309779010"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "52263215075417226944342755033234793728318287407639606094604672265625",
+          "decimal": "0.022895935940481564150087"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x2dad1a9db3321a9a9b2d5a4498aedd3f1b6cd3c042833dc020b52819d68aad4d",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19999,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 27160446966532999771777718135943,
+          "tick": 116749,
+          "protocolFee": 4097000,
+          "lpFee": 19999
+        },
+        "combined_directional_fees_pips": [
+          20980,
+          20980
+        ],
+        "zzz_per_eth": {
+          "numerator": "737689879421851629224801722700267559416201177237080654628499249",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "117520.777983122589143078729401"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "737689879421851629224801722700267559416201177237080654628499249",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.412713508384038601600959"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "288160109149160792665938172929792015396953584858234630714257519140625",
+          "decimal": "0.016610421587409342283604"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x98023f1157cd17a32cc593df3508739d50f19099a1fb7441bf38359a8893bd29",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20001,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 27051295336068048942620722792148,
+          "tick": 116669,
+          "protocolFee": 4097000,
+          "lpFee": 20001
+        },
+        "combined_directional_fees_pips": [
+          20981,
+          20981
+        ],
+        "zzz_per_eth": {
+          "numerator": "45735786209948561061517250676684748629150200712470250575653369",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "116578.097696563535005450336165"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "182943144839794244246069002706738994516600802849881002302613476",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.409402971345165940333591"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "17865541488261156664655176045579979933261797153308691631114597265625",
+          "decimal": "0.016744737700738298330901"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x8281eb5cd5e1b28bb101a93bdbec4654244e2d4edb3e2ec09d9c2367148aadef",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19998,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 25901142040018794214133109506261,
+          "tick": 115799,
+          "protocolFee": 4097000,
+          "lpFee": 19998
+        },
+        "combined_directional_fees_pips": [
+          20979,
+          20979
+        ],
+        "zzz_per_eth": {
+          "numerator": "670869158977228944819584042799565741797989925288365047198200121",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "106875.623059485461288212862602"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "670869158977228944819584042799565741797989925288365047198200121",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.375329487351971854653731"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "262058265225480056570150016718580367889839814565767596561796922265625",
+          "decimal": "0.018264872865288519649029"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x10a5ec60423aa0b45043fefd34fcbc954da5f11fac92ded27144b23bd9bc1b53",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          790000,
+          7900,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "140804759258110720",
+        "prior_active_liquidity": "140804759258110720",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 25399620425230444733345689772729,
+          "tick": 115408,
+          "protocolFee": 4097000,
+          "lpFee": 790000
+        },
+        "combined_directional_fees_pips": [
+          790210,
+          790210
+        ],
+        "zzz_per_eth": {
+          "numerator": "645140717745783598136894825849368998843524231591683427672107441",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "102776.845898299236161783708299"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "645140717745783598136894825849368998843524231591683427672107441",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.360935260804897137892880"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "252008092869446718022224541347409765173251652965501338934416969140625",
+          "decimal": "0.018993282490023398237288"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1c35dd4c4a6e9102b9d8759e33d9588b98bcf0e124712d9fe7c23d797978bf93",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          30000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 24150149317497434743788258560679,
+          "tick": 114400,
+          "protocolFee": 4097000,
+          "lpFee": 30000
+        },
+        "combined_directional_fees_pips": [
+          30970,
+          30970
+        ],
+        "zzz_per_eth": {
+          "numerator": "583229712057421813165147606267930400251205168099477728724941041",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "92913.853661078796146125373864"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "583229712057421813165147606267930400251205168099477728724941041",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.326298065585066548537816"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "227824106272430395767635783698410312598127018788858487783180094140625",
+          "decimal": "0.021009457585308544591528"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          2999,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 29822356785502885035681744783021,
+          "tick": 118619,
+          "protocolFee": 2044403,
+          "lpFee": 2999
+        },
+        "combined_directional_fees_pips": [
+          3497,
+          3497
+        ],
+        "zzz_per_eth": {
+          "numerator": "889372964241829970137129790620241974018575941930646350369886441",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "141685.287531355104750458843336"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "889372964241829970137129790620241974018575941930646350369886441",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.497575263770502158564135"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "347411314156964832084816324461032021101006227316658730613236891015625",
+          "decimal": "0.013777504366132615621082"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xba990d4ccfbe67f394e57bdb19e810a233e1e8fd51e00dc2cd149af473756c59",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          810620,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 30497846188926649498721047772090,
+          "tick": 119067,
+          "protocolFee": 4097000,
+          "lpFee": 810620
+        },
+        "combined_directional_fees_pips": [
+          810810,
+          810810
+        ],
+        "zzz_per_eth": {
+          "numerator": "232529655540856939777305578659070441925610585927818988145742025",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "148176.445336221841248226950355"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "232529655540856939777305578659070441925610585927818988145742025",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.520371134910035635288744"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "90831896695647242100509991663699391377191635128054292244430478515625",
+          "decimal": "0.013173953951659651072434"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x154211d0e06c563735b28e8955a068cf098ccd62a5a214931a6ff648267b10c4",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20002,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 19575936346140171883150829870624,
+          "tick": 110200,
+          "protocolFee": 4097000,
+          "lpFee": 20002
+        },
+        "combined_directional_fees_pips": [
+          20982,
+          20982
+        ],
+        "zzz_per_eth": {
+          "numerator": "374235628738409983828260585044577859866002709550641066970849",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "61050.035507274592400402418152"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "95804320957032955860034709771411932125696693644964113144537344",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.214397613541972155964064"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "146185792475941399932914291033038226510157308418219166785487890625",
+          "decimal": "0.031974914532971819971094"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x35983e58bb96b73ab03d763865256a9ce97016a12ae88b8595c0332fa998678b",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          900000,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "26834233608609276",
+        "prior_active_liquidity": "26834233608609276",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 26780075023811037356117432560952,
+          "tick": 116467,
+          "protocolFee": 4097000,
+          "lpFee": 900000
+        },
+        "combined_directional_fees_pips": [
+          900100,
+          900100
+        ],
+        "zzz_per_eth": {
+          "numerator": "11205819035639808328378415711779579933238928566440558518674161",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "114252.157845067747870554566998"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "179293104570236933254054651388473278931822857063048936298786576",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.401234655810878581710747"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "4377273060796800128272818637413898411421456471265843171357094140625",
+          "decimal": "0.017085626253353696430610"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xd0ad42e0f491e7a40c81a5892df899b952e9d06ad194bf8593b4c0e593e67bba",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          880000,
+          8800,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "3211615466002690223",
+        "prior_active_liquidity": "3211615466002690223",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 21502008945875461384089488328369,
+          "tick": 112077,
+          "protocolFee": 4097000,
+          "lpFee": 880000
+        },
+        "combined_directional_fees_pips": [
+          880120,
+          880120
+        ],
+        "zzz_per_eth": {
+          "numerator": "462336388708508370049154950069158553129029550566306277970200161",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "73654.436107371392863885490504"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "462336388708508370049154950069158553129029550566306277970200161",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.258662180897805209834826"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "180600151839261082050451152370765059816027168189963389832109437890625",
+          "decimal": "0.026503083463083296345938"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xe90aab0591bba4fc75a62df5c8b2b82b9711fe466258e41135a4956f94e79cee",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          860610,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 30935589269598007121290392988708,
+          "tick": 119352,
+          "protocolFee": 4097000,
+          "lpFee": 860610
+        },
+        "combined_directional_fees_pips": [
+          860750,
+          860750
+        ],
+        "zzz_per_eth": {
+          "numerator": "59813167716079209983106933629103131796266252579201672788469329",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "152460.597868311238911460978500"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "239252670864316839932427734516412527185065010316806691153877316",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.535416369057693357779466"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "23364518639093441399651145948868410857916504913750653432995831640625",
+          "decimal": "0.012803765004687387824204"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1af54ba1282f99225f026cb332f084c6aca0549dc546ea686c3a0c5d3e1de465",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          808670,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 34560185947907525629870523706932,
+          "tick": 121568,
+          "protocolFee": 4097000,
+          "lpFee": 808670
+        },
+        "combined_directional_fees_pips": [
+          808862,
+          808862
+        ],
+        "zzz_per_eth": {
+          "numerator": "74650403297121549740613174778784699785021972590299164414053289",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "190279.925848671498197412779312"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "298601613188486198962452699115138799140087890361196657656213156",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.668231585254974629322552"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "29160313787938105367427021397962773353524208043085611099239566015625",
+          "decimal": "0.010258936453088958440807"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xb9dd41bd4b6083abd5691840a1388ecaaec65df13113a195debd0941336ea16a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19997,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 23793261148616969247633245635865,
+          "tick": 114102,
+          "protocolFee": 4097000,
+          "lpFee": 19997
+        },
+        "combined_directional_fees_pips": [
+          20978,
+          20978
+        ],
+        "zzz_per_eth": {
+          "numerator": "566119276086285698762826439734459652921692330522652068174298225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "90188.003946922127192161144779"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "566119276086285698762826439734459652921692330522652068174298225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.316725332846530810104940"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "221140342221205351079229078021273301922536066610410964130585244140625",
+          "decimal": "0.021644449174513733780832"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x290f0d8b194f825a3be4e9ae8cef794cfcbbc0a339a98068821e6566c6bc6117",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20003,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 22982588192560988697579715128961,
+          "tick": 113408,
+          "protocolFee": 4097000,
+          "lpFee": 20003
+        },
+        "combined_directional_fees_pips": [
+          20983,
+          20983
+        ],
+        "zzz_per_eth": {
+          "numerator": "528199360028843773297996748121977856736014106338380268860939521",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "84147.012792728894988477416301"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "528199360028843773297996748121977856736014106338380268860939521",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.295510372427173433394144"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "206327875011267098944529979735147600287505510288429792523804500390625",
+          "decimal": "0.023198324014048392339335"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xe89f63981f7da36f36de50d0d329f905e2359ffcf9cbd770a487ec18e770498a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19996,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 21050986634778140910903823840064,
+          "tick": 111653,
+          "protocolFee": 4097000,
+          "lpFee": 19996
+        },
+        "combined_directional_fees_pips": [
+          20977,
+          20977
+        ],
+        "zzz_per_eth": {
+          "numerator": "108189462475001933053275259841449674834165793059167000745001",
+          "denominator": "1532495540865888858358347027150309183618739122183602176",
+          "decimal": "70596.918287848882139906443195"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2260938970906162845848038083217234021024199430460959362507776",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.247924684704382525988473"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1168569555088245300428439135081088001078458304570189571652845568",
+          "denominator": "42261508779297630098935648375566279232096012913737109666016015625",
+          "decimal": "0.027650918976671387870275"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x8a202a5c1a0e9dcc9b93c182e5cd3a526766f211b68f2ccd5b67e770cd913f30",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20004,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 21560711369218297281678093164368,
+          "tick": 112131,
+          "protocolFee": 4097000,
+          "lpFee": 20004
+        },
+        "combined_directional_fees_pips": [
+          20984,
+          20984
+        ],
+        "zzz_per_eth": {
+          "numerator": "1815876073229449779401738168272065200582563481665541435409529",
+          "denominator": "24519928653854221733733552434404946937899825954937634816",
+          "decimal": "74057.151587348403487926939782"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "116216068686684785881711242769412172837284062826594651866209856",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.260076450965399072434751"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "18697112881411924806855026161297408017255332873123033146445529088",
+          "denominator": "709326591105253820078803971981275468977563860025602123206847265625",
+          "decimal": "0.026358962311392529383221"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1fd9360ecaa56714e337eb43b877a40c76192116c5f9067c5f7c4d2f7657f082",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10002,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 22823561187677113142707413750000,
+          "tick": 113269,
+          "protocolFee": 4097000,
+          "lpFee": 10002
+        },
+        "combined_directional_fees_pips": [
+          10992,
+          10992
+        ],
+        "zzz_per_eth": {
+          "numerator": "2034824005029848107248701263012997472493802496928472900390625",
+          "denominator": "24519928653854221733733552434404946937899825954937634816",
+          "decimal": "82986.538572574499994516372705"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "130228736321910278863916880832831838239603359803422265625000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.291434979164733206502767"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "18697112881411924806855026161297408017255332873123033146445529088",
+          "denominator": "794853126964784416894023930864452137692891600362684726715087890625",
+          "decimal": "0.023522726711547920153360"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x05298040bf08eabb25b24d3865fff755b2046367b31e69f83a82ab0fd82df190",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10003,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 22517528779399592262078090385811,
+          "tick": 112999,
+          "protocolFee": 4097000,
+          "lpFee": 10003
+        },
+        "combined_directional_fees_pips": [
+          10993,
+          10993
+        ],
+        "zzz_per_eth": {
+          "numerator": "507039102331088891363577895191637496781357438497320110830127721",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "80775.989255151744029970592736"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "507039102331088891363577895191637496781357438497320110830127721",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.283671896075030480533663"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "198062149348081598188897615309233397180217749413015668293018641015625",
+          "decimal": "0.024166459434051444772434"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x05c29dad68ef47de2fc5b100b8cf12f6ab2c5aa00b83bef587e7656e6a361a8d",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19995,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 18435977641577970635794533821339,
+          "tick": 109000,
+          "protocolFee": 4097000,
+          "lpFee": 19995
+        },
+        "combined_directional_fees_pips": [
+          20976,
+          20976
+        ],
+        "zzz_per_eth": {
+          "numerator": "339885271600762832318659209656288923022725840753781553971752921",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "54146.847690023186774840585519"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "339885271600762832318659209656288923022725840753781553971752921",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.190154761239710017193748"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "132767684219047981374476253771987860555752281544445919520215984765625",
+          "decimal": "0.036051400051118360576612"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x3cbff8b8053e64eb16dc990014c96c6da70cc50b4da3a32803c79f08d25f448a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10004,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 4097000,
+          "lpFee": 10004
+        },
+        "combined_directional_fees_pips": [
+          10994,
+          10994
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x5b334743729c4ce37d60a3ef38abccb561c525df7e5e970812ff46f1b3a9b3a8",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10005,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 4097000,
+          "lpFee": 10005
+        },
+        "combined_directional_fees_pips": [
+          10995,
+          10995
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x2469c0c5596d427b5d52eb3ecc82a7e2e16562b22cabeafef947641a4701a316",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10006,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 4295128740,
+          "tick": -887272,
+          "protocolFee": 4097000,
+          "lpFee": 10006
+        },
+        "combined_directional_fees_pips": [
+          10996,
+          10996
+        ],
+        "zzz_per_eth": {
+          "numerator": "1153008180823374225",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "0.000000000000000000000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "94123116801908100",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "450393820634130556640625",
+          "decimal": "664204952193611672672786077396981621864338.095364880241586295172954"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x8e696d3ebb44d2470f9bc6d55250554ca3dd1456d6581ab4d9b422bae7288411",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10007,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17891139746883696814797827941786,
+          "tick": 108400,
+          "protocolFee": 4097000,
+          "lpFee": 10007
+        },
+        "combined_directional_fees_pips": [
+          10997,
+          10997
+        ],
+        "zzz_per_eth": {
+          "numerator": "80023220360630407732516740236999396067475365191075621251217449",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "50993.738023716025268501452655"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "80023220360630407732516740236999396067475365191075621251217449",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.179081562312383814626030"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "31259070453371253020514351655077889088857564527763914551256816015625",
+          "decimal": "0.038280576071362662031145"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x20ce5422622698e7eebde01763b5ac4e6f5a8742d68c352f539691b6961ed911",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10008,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16862592142127660368923755500544,
+          "tick": 107215,
+          "protocolFee": 4097000,
+          "lpFee": 10008
+        },
+        "combined_directional_fees_pips": [
+          10998,
+          10998
+        ],
+        "zzz_per_eth": {
+          "numerator": "271174443961854474670155885859488307580597178177995010361",
+          "denominator": "5986310706507378352962293074805895248510699696029696",
+          "decimal": "45299.092756257395570740338307"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "71086753437936379407933344542749702902408066676292323996073984",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.159082911285133651573711"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4564724824563458204798590371410500004212727752227303014268928",
+          "denominator": "105927517172599404168029642913862620148670772725779300922265625",
+          "decimal": "0.043092908683261666958552"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10009,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "2183174546570489921452",
+        "prior_active_liquidity": "2183174546570489921452",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17536888241349456165021772949212,
+          "tick": 107999,
+          "protocolFee": 4097000,
+          "lpFee": 10009
+        },
+        "combined_directional_fees_pips": [
+          10999,
+          10999
+        ],
+        "zzz_per_eth": {
+          "numerator": "19221403074348801343959543168455459414990575290329836770713809",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "48994.338813378440989592476367"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "76885612297395205375838172673821837659962301161319347082855236",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.172060003427901221403888"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "7508360575917500524984196550177913833980693472785092488560081640625",
+          "decimal": "0.039842759691390426328321"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xe8403e5fb2e5d6c8d821d4dc2bc7e857ebfe656e7a5c11d85c9ef12e53426584",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10010,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17191370741764340028450804790000,
+          "tick": 107601,
+          "protocolFee": 4097000,
+          "lpFee": 10010
+        },
+        "combined_directional_fees_pips": [
+          11000,
+          11000
+        ],
+        "zzz_per_eth": {
+          "numerator": "1154465734299964822984971725501990140061818332807370875390625",
+          "denominator": "24519928653854221733733552434404946937899825954937634816",
+          "decimal": "47082.752588617237051948905009"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "73885806995197748671038190432127368963956373299671736025000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.165346829205100408772120"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "18697112881411924806855026161297408017255332873123033146445529088",
+          "denominator": "450963177460923758978504580274214898461647786252879248199462890625",
+          "decimal": "0.041460398134240220349689"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x2997f509fb36e54a1e6cca4353762409e0c3edb67a919b3ae19144130f21079f",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10011,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17362403268991026034739823438572,
+          "tick": 107800,
+          "protocolFee": 4097000,
+          "lpFee": 10011
+        },
+        "combined_directional_fees_pips": [
+          11001,
+          11001
+        ],
+        "zzz_per_eth": {
+          "numerator": "18840815454691891697091357287546444864969740142947281116087449",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "48024.241120014317708766664250"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "75363261818767566788365429150185779459878960571789124464349796",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.168653180997223737767512"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "7359693536989020194176311440447830025378804743338781685971659765625",
+          "decimal": "0.040647590093130409046284"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x85e9780e10f3f8ae93e533752b7f132fa7268343cf8efdb18279d7c7bc8115a8",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10012,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15633441512690324121757517380000,
+          "tick": 105701,
+          "protocolFee": 4097000,
+          "lpFee": 10012
+        },
+        "combined_directional_fees_pips": [
+          11002,
+          11002
+        ],
+        "zzz_per_eth": {
+          "numerator": "238676263213583134480580445904479731250542264200197328515625",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "38935.882168819647631607949708"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "61101123382677282427028594151546811200138819635250516100000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.136736369582482194102777"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "93232915317805911906476736681437395019743071953202081451416015625",
+          "decimal": "0.050135493504838124706574"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa58ce389ae4a2a54b6b4c40006b729097aca3e90cc70bb0c0eb4d36a4a4f106a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10013,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15710229513745899098100139361922,
+          "tick": 105800,
+          "protocolFee": 4097000,
+          "lpFee": 10013
+        },
+        "combined_directional_fees_pips": [
+          11003,
+          11003
+        ],
+        "zzz_per_eth": {
+          "numerator": "61702827843643177304735537182676646732861464646129536325883521",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "39319.310372682479432609802920"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "61702827843643177304735537182676646732861464646129536325883521",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.138082905930738378569277"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "24102667126423116134662319211983065130024009627394350127298250390625",
+          "decimal": "0.049646589654741801727891"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xef1f42cc5d95db098df4fba05bfb7813b1006745a64574e94d0fc8c33cd83493",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20005,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15869698822961758008850705523190,
+          "tick": 106002,
+          "protocolFee": 4097000,
+          "lpFee": 20005
+        },
+        "combined_directional_fees_pips": [
+          20985,
+          20985
+        ],
+        "zzz_per_eth": {
+          "numerator": "62961835182878451891284798124515736781959831074556492906944025",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "40121.596135959322336039115400"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "62961835182878451891284798124515736781959831074556492906944025",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.140900400656106041881714"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "24594466868311895270033124267388959680453059013498630041775009765625",
+          "decimal": "0.048653838719802100061243"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xcbdeace366c8c0e9a85c953bc3441dbaf40190234ddbccfb67706d873db3b0e0",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10014,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15635004856841592696257611900000,
+          "tick": 105703,
+          "protocolFee": 4097000,
+          "lpFee": 10014
+        },
+        "combined_directional_fees_pips": [
+          11004,
+          11004
+        ],
+        "zzz_per_eth": {
+          "numerator": "238724000852988469259992254329414970510695047549825791015625",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "38943.669734612230968195945001"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "61113344218365048130558017108330232450737932172755402500000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.136763718223762378355452"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "93251562833198620804684474347427722855740252949150699615478515625",
+          "decimal": "0.050125467910001448253608"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6d5f4224f996349a22b36076c5125cdcc841939c6fb531768f27ec7cb2584d36",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19994,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 1461446703485210103287273052203988822378723970341,
+          "tick": 887271,
+          "protocolFee": 4097000,
+          "lpFee": 19994
+        },
+        "combined_directional_fees_pips": [
+          20975,
+          20975
+        ],
+        "zzz_per_eth": {
+          "numerator": "2135826467127787620658378172340578879409046921160902883960306419552291698753478902314850647656281",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "340256786836388094070642339899681172762.184831912254825631508232"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2135826467127787620658378172340578879409046921160902883960306419552291698753478902314850647656281",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1194925481746665608817309626129608.134413595172562818842722"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "834307213721792039319678973570538624769158953578477689046994695137613944825577696216738534240734765625",
+          "decimal": "0.000000000000000000000000"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xaefdf192738991fadd330cd7a0b7e65de1a3b31b14599b559930a3bb1b15a72a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20006,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15460105450741109436910369152724,
+          "tick": 105479,
+          "protocolFee": 4097000,
+          "lpFee": 20006
+        },
+        "combined_directional_fees_pips": [
+          20986,
+          20986
+        ],
+        "zzz_per_eth": {
+          "numerator": "14938428784252185161862381362284874620442683437597463352288761",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "38077.264097952558837032251001"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "59753715137008740647449525449139498481770733750389853409155044",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.133721045122662993695703"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "5835323743848509828852492719642529148610423217811509121987797265625",
+          "decimal": "0.051266016974285822006171"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x00f538197e004ca178773b31f68c361e72b66ae95c8847cb6b79c157c9b2927d",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19993,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15259671770270462173369139742006,
+          "tick": 105218,
+          "protocolFee": 4097000,
+          "lpFee": 19993
+        },
+        "combined_directional_fees_pips": [
+          20974,
+          20974
+        ],
+        "zzz_per_eth": {
+          "numerator": "58214395634097315220925241201942910335975867106801064060226009",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "37096.353118457911169147793135"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "58214395634097315220925241201942910335975867106801064060226009",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.130276248222000890865616"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "22739998294569263758173922344508949349990573088594165648525784765625",
+          "decimal": "0.052621605723520975326745"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x58797c397875c1d2393225ca8cc1295b8c43e3bf4f8fa66fd6604d1e661511d3",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20007,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 14885160229221793613724844678381,
+          "tick": 104721,
+          "protocolFee": 4097000,
+          "lpFee": 20007
+        },
+        "combined_directional_fees_pips": [
+          20987,
+          20987
+        ],
+        "zzz_per_eth": {
+          "numerator": "221567995049606199397175685518767440228187289768883255328781161",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "35297.818067936286545613770174"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "221567995049606199397175685518767440228187289768883255328781161",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.123960090999496422809323"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "251918994612708039502888773541691392232492906079973499236318707712",
+          "denominator": "4555263056118548507343250113461501649428192635051053769095007421875",
+          "decimal": "0.055302842340649222452185"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10015,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "1824799176298748",
+        "prior_active_liquidity": "1824799176298748",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 41168973704219627594273315504392,
+          "tick": 125068,
+          "protocolFee": 4097000,
+          "lpFee": 10015
+        },
+        "combined_directional_fees_pips": [
+          11005,
+          11005
+        ],
+        "zzz_per_eth": {
+          "numerator": "26482568685292611951916719535290402704769933189853703958926401",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "270010.662134715144272647531643"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "423721098964681791230667512564646443276318931037659263342822416",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.948232726018196426354861"
+        },
+        "common_reference_at_hard_500bps_possible": true,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "10344753392692426543717468568472813556550755152286603108955625390625",
+          "decimal": "0.007229602165139919923937"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xe28ff5e56888cb05dae6886c7b1f833d85546fffeb7aa1a908b939560468295b",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19992,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15846851289914190138771043457877,
+          "tick": 105973,
+          "protocolFee": 4097000,
+          "lpFee": 19992
+        },
+        "combined_directional_fees_pips": [
+          20973,
+          20973
+        ],
+        "zzz_per_eth": {
+          "numerator": "251122695804655031879785741402492529001821651647986921073347129",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "40006.153538817134030609121856"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "251122695804655031879785741402492529001821651647986921073347129",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.140494985374645259821752"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "98094803048693371828041305235348644141336582674994891044276222265625",
+          "decimal": "0.048794235258982037101643"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x7b820f619c879afc597c272ae19fe453e69852df0583eac075954476d8384593",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 1000000000000000000000000000000,
+          "tick": 50711,
+          "protocolFee": 4097000,
+          "lpFee": 10000
+        },
+        "combined_directional_fees_pips": [
+          10990,
+          10990
+        ],
+        "zzz_per_eth": {
+          "numerator": "867361737988403547205962240695953369140625",
+          "denominator": "5444517870735015415413993718908291383296",
+          "decimal": "159.309191113245227702888040"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "250000000000000000000000000000000000000000000000000000000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.000559467494263976919287"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4151593042991824590716160283964654812928281673728",
+          "denominator": "338813178901720135627329000271856784820556640625",
+          "decimal": "12.253339897962119041420510"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1106d8c0902b13270cbd46f4d9ec5ee7514b7215cd5a98e8126d5806f4a8a698",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20008,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16243785285833734820111239242000,
+          "tick": 106468,
+          "protocolFee": 4097000,
+          "lpFee": 20008
+        },
+        "combined_directional_fees_pips": [
+          20988,
+          20988
+        ],
+        "zzz_per_eth": {
+          "numerator": "1030705314110424023557520522948805579682906199410002869390625",
+          "denominator": "24519928653854221733733552434404946937899825954937634816",
+          "decimal": "42035.412445966078425836862954"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "1346227349042186479748598234055582797953183607392656809000000",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.147621406568940590399591"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "18697112881411924806855026161297408017255332873123033146445529088",
+          "denominator": "402619263324384384202156454276877179563635234144532370855712890625",
+          "decimal": "0.046438694281619450381736"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          96500,
+          965,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "9003301259096843454",
+        "prior_active_liquidity": "9003301259096843454",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 50817854831671276522159715531905,
+          "tick": 129279,
+          "protocolFee": 4097000,
+          "lpFee": 96500
+        },
+        "combined_directional_fees_pips": [
+          97404,
+          97404
+        ],
+        "zzz_per_eth": {
+          "numerator": "2582454369692815704270592569162411320823668645919951697072929025",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "411408.716722628021487624471710"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2582454369692815704270592569162411320823668645919951697072929025",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1.444799275263097500582045"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "1008771238161256134480700222329066922196745564812481131669112900390625",
+          "decimal": "0.004744842751827464126883"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x53dda9ed188587bf0198be0e503a5e1de5d493834f51b41ee8122bcdb780f330",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          19991,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17369347971046827891417372263655,
+          "tick": 107808,
+          "protocolFee": 4097000,
+          "lpFee": 19991
+        },
+        "combined_directional_fees_pips": [
+          20972,
+          20972
+        ],
+        "zzz_per_eth": {
+          "numerator": "301694248939308556722555279335149899794921918809678498833959025",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "48062.666762039288188631678982"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "301694248939308556722555279335149899794921918809678498833959025",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.168788125487927434723832"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "117849315991917404969748155990292929607391374535030663607015244140625",
+          "decimal": "0.040615092733925821828608"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xd081a62886ffb1d9ee6d456d20d3ab678101f297c7d2626b0b0ac8f0cec52b84",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          841730,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 20739138359184288167985560361902,
+          "tick": 111354,
+          "protocolFee": 4097000,
+          "lpFee": 841730
+        },
+        "combined_directional_fees_pips": [
+          841889,
+          841889
+        ],
+        "zzz_per_eth": {
+          "numerator": "107527964970347292127148075862030713728183220413555100303264401",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "68520.772485917579901247107951"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "107527964970347292127148075862030713728183220413555100303264401",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.240633604501059539064399"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "42003111316541910987167217133605747550071570474044961055962656640625",
+          "decimal": "0.028488728260925403890471"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x1372458bc3a9e82e73366ec33611b1324cf53d818b45c6a6424900c0ba0defc1",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9690,
+          97,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 20048829332084951513454130397529,
+          "tick": 110677,
+          "protocolFee": 4097000,
+          "lpFee": 9690
+        },
+        "combined_directional_fees_pips": [
+          10681,
+          10681
+        ],
+        "zzz_per_eth": {
+          "numerator": "401955557587069923013481141060702618339200994440713847569305841",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "64035.214742669570141099022322"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "8203174644634080061499615123687808537534714172259466276924609",
+          "denominator": "36477835574977687249960172190563126939366109287261571136237636",
+          "decimal": "0.224881068608717686413119"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "157013889682449188677141070726836960288750388453403846706760094140625",
+          "decimal": "0.030484315160408876962188"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x064243647c5f6d319bf6abf4017f35eb0b7e88e48d5f8354e7e60e6734c98721",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9699,
+          97,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17741493080633905127005870266707,
+          "tick": 108232,
+          "protocolFee": 4097000,
+          "lpFee": 9699
+        },
+        "combined_directional_fees_pips": [
+          10690,
+          10690
+        ],
+        "zzz_per_eth": {
+          "numerator": "314760576730180733248704172622364318288444883873609211312623849",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "50144.252873223651081339543203"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "314760576730180733248704172622364318288444883873609211312623849",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.176098311156318456355866"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "3548154853700113232435053148474526651161871916619345059666460672",
+          "denominator": "91144069892681133376779145612017095501426080625002667286133203125",
+          "decimal": "0.038929080716693231426186"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6476654903958402cf271a6c9088ba044a15917e1364465f38a97d3d128c3108",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          830369,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 20435439125956604406987627634130,
+          "tick": 111059,
+          "protocolFee": 4097000,
+          "lpFee": 830369
+        },
+        "combined_directional_fees_pips": [
+          830539,
+          830539
+        ],
+        "zzz_per_eth": {
+          "numerator": "104401793067669506969329967570582731350516909074314305285214225",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "66528.660817531368956763401208"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "104401793067669506969329967570582731350516909074314305285214225",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.233637638256941180745421"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "40781950417058401159894518582258879433795667607154025502036806640625",
+          "decimal": "0.029341785083183251749097"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          6942,
+          69,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 18514990420111693199524727922098,
+          "tick": 109085,
+          "protocolFee": 4097000,
+          "lpFee": 6942
+        },
+        "combined_directional_fees_pips": [
+          7936,
+          7936
+        ],
+        "zzz_per_eth": {
+          "numerator": "85701217564206943359592861858080505821010709053808321189180401",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "54611.966590296210402691696432"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "85701217564206943359592861858080505821010709053808321189180401",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.191788181784075144362032"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "33477038111018337249840961663312697586332308224143875464523594140625",
+          "decimal": "0.035744357683080684485871"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xb4535c48a18c52cd6ad8e86fe0f0e9192cb3e24c269010d4848fdfbcb7b2c9cf",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9777,
+          98,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17877042462544227544458708503135,
+          "tick": 108384,
+          "protocolFee": 4097000,
+          "lpFee": 9777
+        },
+        "combined_directional_fees_pips": [
+          10768,
+          10768
+        ],
+        "zzz_per_eth": {
+          "numerator": "319588647207609379286852833052597265777096568191728352304828225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "50913.408875620548382484359825"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "319588647207609379286852833052597265777096568191728352304828225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.178799459648455343689373"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "124839315315472413783926887911170806944178346949893887619073525390625",
+          "decimal": "0.038340973639161134853894"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x33a0ad0843913d5821777907525c3fdb4e1b272bbe22ddadadf88cfe6cb40de1",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10016,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 14073837679326380034073852519594,
+          "tick": 103600,
+          "protocolFee": 4097000,
+          "lpFee": 10016
+        },
+        "combined_directional_fees_pips": [
+          11006,
+          11006
+        ],
+        "zzz_per_eth": {
+          "numerator": "49518226756006736570887575711136073774092401241760595538481209",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "31554.834599446761832341758691"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "49518226756006736570887575711136073774092401241760595538481209",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.110815352974314029216090"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "19343057326565131473002959262162528818004844235062732632219222265625",
+          "decimal": "0.061862776096257048639188"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x4fc83b0264edb9fd55a08d79cf5ccd165959d8446b0f992fc4f0136f0e62702a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10017,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 14208169075922257595282686380000,
+          "tick": 103789,
+          "protocolFee": 4097000,
+          "lpFee": 10017
+        },
+        "combined_directional_fees_pips": [
+          11007,
+          11007
+        ],
+        "zzz_per_eth": {
+          "numerator": "197140691884759315737118378990757812838863304481872562890625",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "32160.075939498510706471279266"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "50468017122498384828702305021634000086749005947359376100000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.112940860319982616246665"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "77008082767484107709811866793264770640180978313231469879150390625",
+          "decimal": "0.060698540365773765275700"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10018,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "150095629180827131515",
+        "prior_active_liquidity": "150095629180827131515",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 51694214345990926982943951054464,
+          "tick": 129621,
+          "protocolFee": 4097000,
+          "lpFee": 10018
+        },
+        "combined_directional_fees_pips": [
+          11008,
+          11008
+        ],
+        "zzz_per_eth": {
+          "numerator": "163103747366287485518742643197438230690683746453156719817769",
+          "denominator": "383123885216472214589586756787577295904684780545900544",
+          "decimal": "425720.644574615322642098709076"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "668072949212313540684769866536706992909040625472129924373581824",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.495060395525432678164030"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "292142388772061325107109783770272000269614576142547392913211392",
+          "denominator": "63712401314956049030758844998999308863548338458264343678816015625",
+          "decimal": "0.004585330057297383703351"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x758382d90259ba1efc5df255ead129b63b73018aa32c33c951adb237944b1e36",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9750,
+          98,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 15423671292080986583125142821672,
+          "tick": 105431,
+          "protocolFee": 4097000,
+          "lpFee": 9750
+        },
+        "combined_directional_fees_pips": [
+          10741,
+          10741
+        ],
+        "zzz_per_eth": {
+          "numerator": "3717025564471299533412116137354545146070188249677625468638681",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "37898.005505483294580004477113"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "59472409031540792534593858197672722337123011994842007498218896",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.133091518634873749907226"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "1451963111121601380239107866154119197683667285030322448686984765625",
+          "decimal": "0.051508506623061302917634"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x6779af72eb1ab2c1dd015f7c5fde53a14b7101cb3074dd10e80fdbed7e2aff65",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9742,
+          97,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16117581783341036085044447631338,
+          "tick": 106311,
+          "protocolFee": 4097000,
+          "lpFee": 9742
+        },
+        "combined_directional_fees_pips": [
+          10733,
+          10733
+        ],
+        "zzz_per_eth": {
+          "numerator": "64944110635671703268108090346901035287167011313847889689917561",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "41384.774931751861544530203710"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "64944110635671703268108090346901035287167011313847889689917561",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.145336475378166964342152"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "25368793217059259089104722791758216909049613794471831910124047265625",
+          "decimal": "0.047168787816272577576214"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9da18ab2e4dfdee3e1e173955edcc110f9793551190395f9502a35e37c912fac",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9753,
+          98,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16132092360789362277635169589426,
+          "tick": 106329,
+          "protocolFee": 4097000,
+          "lpFee": 9753
+        },
+        "combined_directional_fees_pips": [
+          10744,
+          10744
+        ],
+        "zzz_per_eth": {
+          "numerator": "65061100984259624984311032301780101331726091343333898352752369",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "41459.325482958255143108210573"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "65061100984259624984311032301780101331726091343333898352752369",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.145598284566877179354307"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "25414492571976416009496496992882852082705504430989804044043894140625",
+          "decimal": "0.047083970731322993087588"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x37a6ca3d585edd278f0f32eb1743b17b537e2a20e47e99faacf24e589bad67c6",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9765,
+          98,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16510690695000148529571306432084,
+          "tick": 106793,
+          "protocolFee": 4097000,
+          "lpFee": 9765
+        },
+        "combined_directional_fees_pips": [
+          10756,
+          10756
+        ],
+        "zzz_per_eth": {
+          "numerator": "17037681701622780479788862682279183129327030815513284381536441",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "43428.148645287435027765700834"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "68150726806491121919155450729116732517308123262053137526145764",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.152512465434785719291536"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "6655344414696398624917524485265305909893371412309876711537672265625",
+          "decimal": "0.044949410197614468560125"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa79b2540a5051e595d72478c279d0121638d5dcdcb8af6ba7147f7534d7a749d",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9722,
+          97,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 16507413561076149326202606128505,
+          "tick": 106790,
+          "protocolFee": 4097000,
+          "lpFee": 9722
+        },
+        "combined_directional_fees_pips": [
+          10713,
+          10713
+        ],
+        "zzz_per_eth": {
+          "numerator": "272494702476400757561041624798331402228909299518567784573535025",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "43410.910634159825908607407570"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "272494702476400757561041624798331402228909299518567784573535025",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.152451928394679838054038"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "106443243154844045922281884686848203995667695124440540849037119140625",
+          "decimal": "0.044967259130563509914319"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9834b25879c518634b1a0bea0c9c56b7e7319002d957163ecc67f4fd60416fb7",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9757,
+          98,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 17968232669442720347286545491285,
+          "tick": 108485,
+          "protocolFee": 4097000,
+          "lpFee": 9757
+        },
+        "combined_directional_fees_pips": [
+          10748,
+          10748
+        ],
+        "zzz_per_eth": {
+          "numerator": "322857385263228667975886265707225103027078069670365762010951225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "51434.148891222339252939428411"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "322857385263228667975886265707225103027078069670365762010951225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.180628212337837971152167"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "251918994612708039502888773541691392232492906079973499236318707712",
+          "denominator": "6637692953602563075162135396941305572102756366578243462396201171875",
+          "decimal": "0.037952794197264081721134"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x719b599b7a492252c04b81b43b9c21d05448b715b7d32c71671589481582fc21",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          790000,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "21143702381770390",
+        "prior_active_liquidity": "21143702381770390",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 25376935777008448058416755537688,
+          "tick": 115391,
+          "protocolFee": 4097000,
+          "lpFee": 790000
+        },
+        "combined_directional_fees_pips": [
+          790210,
+          790210
+        ],
+        "zzz_per_eth": {
+          "numerator": "10062326084850177584386949539545718297519282874968775218568521",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "decimal": "102593.345874892131575973596225"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "160997217357602841350191192632731492760308525999500403497096336",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.360290839114123651797035"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "74788451525647699227420104645189632069021331492492132585782116352",
+          "denominator": "3930596126894600618901152163885046209968469873034677819753328515625",
+          "decimal": "0.019027254164811616637611"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x60c8e9794766966c7d0384ff4cbeabc681317046a1c2213fb9460169fb9892d0",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          9710,
+          97,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 21736872809784143352881287339449,
+          "tick": 112294,
+          "protocolFee": 4097000,
+          "lpFee": 9710
+        },
+        "combined_directional_fees_pips": [
+          10701,
+          10701
+        ],
+        "zzz_per_eth": {
+          "numerator": "472491639548733199132821573945437749406120068760769096951623601",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "75272.260904279714337098897524"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "472491639548733199132821573945437749406120068760769096951623601",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.264343713639007941190229"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "184567046698723905911258427322436620861765651859675428496727969140625",
+          "decimal": "0.025933453361555826840297"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xa3c2920d2660d5baefc7c6267e6ca751ae94ce91b6ab661c7dce05d74f160184",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          830269,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 24252837468263875642158199763799,
+          "tick": 114484,
+          "protocolFee": 4097000,
+          "lpFee": 830269
+        },
+        "combined_directional_fees_pips": [
+          830439,
+          830439
+        ],
+        "zzz_per_eth": {
+          "numerator": "588200125262024117146123525584310676734362446133182059390912401",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "93705.686168202582245203356314"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "588200125262024117146123525584310676734362446133182059390912401",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.329078850206101983178012"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "229765673930478170760204502181371358099360330520774241949575156640625",
+          "decimal": "0.020831923305870859392871"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x7959f277d49b4fac6d3af1689699b69fde1cc93eef4e14e33de47c354c13161a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10019,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 23909937371417129696987388735530,
+          "tick": 114200,
+          "protocolFee": 4097000,
+          "lpFee": 10019
+        },
+        "combined_directional_fees_pips": [
+          11009,
+          11009
+        ],
+        "zzz_per_eth": {
+          "numerator": "142921276276272370375569835317703788931601460778202883071095225",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "91074.691665782385182712926599"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2916760740332089191338159904442934467991866546493936389206025",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.319839233261182691709562"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "55828623545418894677956966920978042551406820616485501199646572265625",
+          "decimal": "0.021433722496075283013792"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10020,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "962337799357516411500",
+        "changed_since_nov9": true,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 42277818571609234285824917886142,
+          "tick": 125599,
+          "protocolFee": 4097000,
+          "lpFee": 10020
+        },
+        "combined_directional_fees_pips": [
+          11010,
+          11010
+        ],
+        "zzz_per_eth": {
+          "numerator": "446853485793476668812012109334398305007234838768954246418911041",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "284751.469471571143737312365584"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "1",
+          "denominator": "1",
+          "decimal": "1.000000000000000000000000"
+        },
+        "common_reference_at_hard_500bps_possible": true,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "174552142888076823754692230208749337893451108894122752507387125390625",
+          "decimal": "0.006855345369077681364270"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x02232a2f67a83b6670dcde3cd05c57b9cde219457f26090f9867ddae57776095",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          880279,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 30367983703677638147869342518513,
+          "tick": 118982,
+          "protocolFee": 4097000,
+          "lpFee": 880279
+        },
+        "combined_directional_fees_pips": [
+          880399,
+          880399
+        ],
+        "zzz_per_eth": {
+          "numerator": "922214434226830600671513789010503312503740681445316525747731169",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "146917.235549635477081930415264"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "922214434226830600671513789010503312503740681445316525747731169",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.515948998690956068989113"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "360240013369855703387310073832227856446773703689576767870207487890625",
+          "decimal": "0.013286866311342347928352"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x9a600e4779a3c5c4227d03c9df09e090fbe5dac3a2c57c449e96f18d2e52d27a",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10021,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 24885594047527601948118163696932,
+          "tick": 115000,
+          "protocolFee": 4097000,
+          "lpFee": 10021
+        },
+        "combined_directional_fees_pips": [
+          11011,
+          11011
+        ],
+        "zzz_per_eth": {
+          "numerator": "38705799443646325875489269907096441514061898269146539846638289",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "98659.033612140693388233723176"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "154823197774585303501957079628385766056247593076586159386553156",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.346474186051533469688466"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "15119452907674346045112996057459547466430429011385367127593081640625",
+          "decimal": "0.019786020561018185272346"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x0aedbc98a68a117f8e8004b1a48044833a03722f90409e839a26f89a90792bcb",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10022,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 23013775532574393066230154100000,
+          "tick": 113435,
+          "protocolFee": 4097000,
+          "lpFee": 10022
+        },
+        "combined_directional_fees_pips": [
+          11012,
+          11012
+        ],
+        "zzz_per_eth": {
+          "numerator": "517220570570038856651411991414914297455425695419674619140625",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "84375.542502035517827607691326"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "132408466065929947302761469802218060148588978027436702500000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.296312930916970581426348"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "202039285378921428379457809146450897443525662273310398101806640625",
+          "decimal": "0.023135491751450454900358"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10023,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "265494416382117651707",
+        "prior_active_liquidity": "265494416382117651707",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 31635408945578930574549486684402,
+          "tick": 119799,
+          "protocolFee": 4097000,
+          "lpFee": 10023
+        },
+        "combined_directional_fees_pips": [
+          11013,
+          11013
+        ],
+        "zzz_per_eth": {
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "decimal": "159436.494953090703464095871123"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.559914564265342392310220"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1196615224410363187638721674323034113104341303879874121372513861632",
+          "denominator": "97734287026759318747911015762883500421024838772444443667001719140625",
+          "decimal": "0.012243556082654329568241"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xeccead3071ea31dd19613fd38e1181eba8fa9ea98367c5f92b99aa24c426cd4b",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          887333,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 26393887081199178774239317835328,
+          "tick": 116176,
+          "protocolFee": 4097000,
+          "lpFee": 887333
+        },
+        "combined_directional_fees_pips": [
+          887446,
+          887446
+        ],
+        "zzz_per_eth": {
+          "numerator": "170077459779075416189806827494223790609684375703625507745329",
+          "denominator": "1532495540865888858358347027150309183618739122183602176",
+          "decimal": "110980.720820224016142322097378"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "3554271812525984207721677374573166562945240831030867753698304",
+          "denominator": "9119458893744421812490043047640781734841527321815392784059409",
+          "decimal": "0.389745910797851199919319"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "1168569555088245300428439135081088001078458304570189571652845568",
+          "denominator": "66436507726201334449143291989931168206907959259228713963019140625",
+          "decimal": "0.017589268236436560927929"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xc5a0a8f17476e1b163e74aa3ec97c45705059c6ad3ea6172175a7cb262cfe8ff",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10024,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 29035852256191978820215079100000,
+          "tick": 118084,
+          "protocolFee": 4097000,
+          "lpFee": 10024
+        },
+        "combined_directional_fees_pips": [
+          11014,
+          11014
+        ],
+        "zzz_per_eth": {
+          "numerator": "823321011956453932476688771141912180530952717792242978515625",
+          "denominator": "6129982163463555433433388108601236734474956488734408704",
+          "decimal": "134310.506947912886971607804302"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "210770179060852206714032325412329518215923895754814202500000000",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.471676255778978880562620"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4674278220352981201713756540324352004313833218280758286611382272",
+          "denominator": "321609770295489817373706551227309445519903405387594913482666015625",
+          "decimal": "0.014534005655544390099991"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x06fc3c39faf5809e0d04cb1ced0ab5248a144b68f2f0d717b218e4fa81ea2a24",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          880238,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 32107776649345399809262951182683,
+          "tick": 120096,
+          "protocolFee": 4097000,
+          "lpFee": 880238
+        },
+        "combined_directional_fees_pips": [
+          880358,
+          880358
+        ],
+        "zzz_per_eth": {
+          "numerator": "1030909321364249709061963376796591204196153207939568388439078489",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "164233.330097643198311570994498"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "1030909321364249709061963376796591204196153207939568388439078489",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "0.576760254837033712636781"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "402698953657910042602329444061168439139122346851393901734015034765625",
+          "decimal": "0.011885953152258542886709"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0xc39c6bfba948ee0bb67a34d3fd597df65d84748ab2f8768692842e97d5ce389e",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          836226,
+          9303,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 49920179653662201917303166772585,
+          "tick": 128923,
+          "protocolFee": 4097000,
+          "lpFee": 836226
+        },
+        "combined_directional_fees_pips": [
+          836390,
+          836390
+        ],
+        "zzz_per_eth": {
+          "numerator": "2492024336653909677766108780485806780551054890182889605107582225",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "decimal": "397002.381306855861197500000000"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "2492024336653909677766108780485806780551054890182889605107582225",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "decimal": "1.394206611272612099899481"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "4786460897641452750554886697292136452417365215519496485490055446528",
+          "denominator": "973447006505433467877386242377268273652755816477691251995149306640625",
+          "decimal": "0.004917022565844971106181"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x667a9f04bb69ab4036518c8c7103d868ef90407c45e372f720ba83a7b66c3ee0",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          40000,
+          800,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": true,
+        "slot0": {
+          "sqrtPriceX96": 34697666755128334188277393260544,
+          "tick": 121647,
+          "protocolFee": 4097000,
+          "lpFee": 40000
+        },
+        "combined_directional_fees_pips": [
+          40960,
+          40960
+        ],
+        "zzz_per_eth": {
+          "numerator": "231868113679013487262071137041",
+          "denominator": "1208925819614629174706176",
+          "decimal": "191796.808304521431734418508674"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "300982019562484505955315326843189505362803530094384807866793984",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "0.673558625212537956981743"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "921838837040628209677208878317568",
+          "denominator": "90573481905864643461746537906640625",
+          "decimal": "0.010177800584046433109767"
+        },
+        "not_a_qualified_usd_price": true
+      },
+      {
+        "pool_id": "0x11d940e1d286e4d5e34016d96807b324f5f0a87ff168163f4544827cbdc3bf8f",
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          883131,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "active_liquidity": "0",
+        "prior_active_liquidity": "0",
+        "changed_since_nov9": false,
+        "strict_principal_fee_candidate": false,
+        "slot0": {
+          "sqrtPriceX96": 44639604111984591595012852527676,
+          "tick": 126687,
+          "protocolFee": 4097000,
+          "lpFee": 883131
+        },
+        "combined_directional_fees_pips": [
+          883248,
+          883248
+        ],
+        "zzz_per_eth": {
+          "numerator": "124543390954669478646672061137095910922407547134619228896622561",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "decimal": "317454.509943824911730311242506"
+        },
+        "price_ratio_to_selected": {
+          "numerator": "498173563818677914586688244548383643689630188538476915586490244",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "decimal": "1.114847661832764503655523"
+        },
+        "common_reference_at_hard_500bps_possible": false,
+        "conditional_zzz_usd_single_eth_feed": {
+          "numerator": "299153806102590796909680418580758528276085325969968530343128465408",
+          "denominator": "48649762091667765096356273881678090204065448099460636287743187890625",
+          "decimal": "0.006149131943110299581777"
+        },
+        "not_a_qualified_usd_price": true
+      }
+    ]
+  },
+  "unchanged_safeguards": {
+    "contribution_total_bps": 300,
+    "minimum_marginal_deployed_lp_bps": 9700,
+    "conversion_total_bps": 100,
+    "maintenance_total_bps": 300,
+    "additional_execution_loss_bps": 100,
+    "source_agreement_bps": 300,
+    "principal_spot_hard_ceiling_bps": 500
+  },
+  "qualification": {
+    "usable_feed_route_config": false,
+    "new_quotes": true,
+    "full_contribution_execution": false,
+    "provider_adoption": false,
+    "signing_or_transactions": false
+  },
+  "limitations": [
+    "Original successful reads use one canonical hash; a separate cooled-down phase rechecked the exact numbered header before and after four new quotes and completed the third StateView liquidity cross-check. Original429 and partial files remain unchanged.",
+    "No fresh initialize-log scan: known95 historical inventory, not a global market catalogue.",
+    "Current L is neither TVL nor full-input bidirectional depth; active L zero does not prove all ticks empty.",
+    "No chosen source maxAge/minL/independenceId/reviewHash is inferred from observations.",
+    "Observed pool-derived USD values use one ETH feed and one pool only; they are diagnostic, not independently qualified USD truth."
+  ],
+  "canonical_closure": {
+    "original_partial_immutable": true,
+    "original_partial_final_recheck": false,
+    "separate_phase": "CLOSURE.json",
+    "original_hash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+    "header_before_hash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+    "header_after_hash": "0x3b7d5a7153c2e60e8b2beadd3e46b4e1e5859a1611f54585abd3c222b9423e31",
+    "third_candidate_liquidity_crosschecked": "265494416382117651707"
+  },
+  "quotes": [
+    {
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "zero_for_one": true,
+      "input_raw": "25613839931228220",
+      "input_kind": "ETH_single_CL_nominal_100USD_half",
+      "gas_ceiling": 200000,
+      "result": "0x000000000000000000000000000000000000000000000153323f18a0b885d32200000000000000000000000000000000000000000000000000000000000180d8",
+      "qualified_usd": false,
+      "postspot": null,
+      "amount_out_raw": "6257066880691536778018",
+      "quoter_reported_gas": 98520,
+      "conditional_own_spot_gross_loss_bps": {
+        "numerator": "813286157010316046992067498267921534267300267980224410022314901008994535598494000",
+        "denominator": "572281682891273741073088267194061327012266266916166914747028405681015102438851",
+        "decimal": "1421.129107088388321276972408"
+      },
+      "known_directional_fee_pips": 11010,
+      "conditional_analytic_floors_at_own_initial_spot": {
+        "100": {
+          "gross_floor_raw": "7220642773634573987017",
+          "additional_1pct_floor_raw": "7141143496696857243470",
+          "passes_both": false
+        },
+        "300": {
+          "gross_floor_raw": "7074771202450037138795",
+          "additional_1pct_floor_raw": "7141143496696857243470",
+          "passes_both": false
+        }
+      },
+      "postspot_not_inferred": "Official ABI returns output and gas only; current tick/bitmap replay was not captured.",
+      "interpretation": "Authenticated official full-input quote at exact200k; analytical own-spot floors use the exact physical ratio, without the production two-USD-source rounding chain. They are conditional diagnostics, not independently priced protocol admission."
+    },
+    {
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "zero_for_one": false,
+      "input_raw": "1000000000000000000000",
+      "input_kind": "ZZZ_exact_1000_whole_units_not_USD_qualified",
+      "gas_ceiling": 200000,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "message": "execution reverted",
+          "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b00000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      "qualified_usd": false,
+      "postspot": null,
+      "error_decode": {
+        "classification": "full_input_incomplete",
+        "reason": "Exact source-authenticated NotEnoughLiquidity(poolId) inside canonical wrapper"
+      }
+    },
+    {
+      "pool_id": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10015,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "zero_for_one": true,
+      "input_raw": "25613839931228220",
+      "input_kind": "ETH_single_CL_nominal_100USD_half",
+      "gas_ceiling": 200000,
+      "result": "0x000000000000000000000000000000000000000000000039882bb5abd87d9c630000000000000000000000000000000000000000000000000000000000017d9e",
+      "qualified_usd": false,
+      "postspot": null,
+      "amount_out_raw": "1061276548164277345379",
+      "quoter_reported_gas": 97694,
+      "conditional_own_spot_gross_loss_bps": {
+        "numerator": "287115287150427435879442964954343610128815556566438690719770376084565442887582000",
+        "denominator": "33916013763642096412932490135960775710642524730587980033199512307071225711811",
+        "decimal": "8465.478553915864044173246400"
+      },
+      "known_directional_fee_pips": 11005,
+      "conditional_analytic_floors_at_own_initial_spot": {
+        "100": {
+          "gross_floor_raw": "6846849780847102914023",
+          "additional_1pct_floor_raw": "6771500199008880429133",
+          "passes_both": false
+        },
+        "300": {
+          "gross_floor_raw": "6708529583254232148083",
+          "additional_1pct_floor_raw": "6771500199008880429133",
+          "passes_both": false
+        }
+      },
+      "postspot_not_inferred": "Official ABI returns output and gas only; current tick/bitmap replay was not captured.",
+      "interpretation": "Authenticated official full-input quote at exact200k; analytical own-spot floors use the exact physical ratio, without the production two-USD-source rounding chain. They are conditional diagnostics, not independently priced protocol admission."
+    },
+    {
+      "pool_id": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10015,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "zero_for_one": false,
+      "input_raw": "1000000000000000000000",
+      "input_kind": "ZZZ_exact_1000_whole_units_not_USD_qualified",
+      "gas_ceiling": 200000,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "message": "execution reverted",
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      "qualified_usd": false,
+      "postspot": null,
+      "error_decode": {
+        "classification": "unavailable",
+        "reason": "Canonical UnexpectedRevertBytes(empty); may be gas or another unavailable condition; no zero-liquidity conclusion"
+      }
+    }
+  ],
+  "next_actions": [
+    {
+      "owner": "operator and feed provider",
+      "action": "Choose a second independent ETH service and qualify publication, round-compatible adaptation, maxAge, liveness and outage recovery. Pyth needs fresh authenticated updates; API3 needs activation and a reviewed adapter if selected.",
+      "code_or_funding_applied": false
+    },
+    {
+      "owner": "ZZZ creator and operator",
+      "action": "Identify and qualify TWO genuinely independent ZZZ price paths. Two proxy addresses sharing one aggregator or two readers of one ZZZ pool do not satisfy this.",
+      "code_or_funding_applied": false
+    },
+    {
+      "owner": "ZZZ creator and operator",
+      "action": "Establish meaningful external ETH/ZZZ bidirectional depth and compatible target/reference/route prices. Current larger-activeL candidates cannot share the selected target's500bps band; do not silently change the selected pool.",
+      "code_or_funding_applied": false
+    },
+    {
+      "owner": "operator",
+      "action": "After reviewed sources exist, record exact Oracle policies/reader constructor pins and re-qualify actual$100 activation,$5 growth and whole earned conversion under unchanged guards.",
+      "code_or_funding_applied": false
+    }
+  ]
+}

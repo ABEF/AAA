@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "scope": "Nineteen new bounded public capability/history reads plus primary documentation and offline reuse; no heavy public PoPL execution",
+  "rpc_attempts": 19,
+  "valid_http200_results": 19,
+  "rpc_errors": 0,
+  "automatic_retries": 0,
+  "minimum_requested_spacing_seconds": 2,
+  "rpc_response_max_bytes": 19181,
+  "last_rpc_started_utc": "2026-11-13T10:59:23.333736+00:00",
+  "last_rpc_duration_ms": 329.0,
+  "diagnostics": [
+    {
+      "diagnostic": "tiny",
+      "ok": true,
+      "result": {
+        "anchor_hash": "0xeeb08edcf1d7144dc305c3fe89eeb0fcfbd17721401cfb703dc134dd1d83bce0",
+        "anchor_number": 113302353,
+        "code_override_only": true,
+        "no_persistence_observed": true,
+        "estimated_gas": 21221,
+        "trace_gas_used": 21052,
+        "heavy_graph_approved": false
+      }
+    },
+    {
+      "diagnostic": "logs",
+      "ok": true,
+      "result": {
+        "block_number": 113263446,
+        "block_hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+        "matched_retained_event": true,
+        "returned_logs": 1,
+        "full_archive_qualified": false
+      }
+    },
+    {
+      "diagnostic": "archive",
+      "ok": true,
+      "result": {
+        "block_number": 110324511,
+        "block_hash": "0x49759bb8363ba4e95b5b090fd7bee113949b100ab1fa408a839603dc31f4e6b9",
+        "exact_retained_state_matched": true,
+        "lifetime_archive_or_current_feed_qualified": false
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "RPC.json": "7c0ccbf330f9362074bb16e39ce1422b1843c394712be1ce3fc1bf533c844567",
+    "PLAN.json": "60c05b8f400a1cb165aa958c4aeafbf43c41cd4b0c1b04bab5c3229e16e1c1bd",
+    "PRIMARY_SOURCES.json": "dd087d02949e140104a5be2b90966ddcfb7600c2f393f9003bea1c75a3e613c3",
+    "REUSED_TRACE_FOOTPRINTS.json": "da801ff52b811e06b3bf3a0ab88f49d200e09e02947f958a5108959f60647a50",
+    "OVERRIDE_SIZING.json": "4e4beacf8e33ae049223d1953fd1350dbe84d6ccc9ea878b9210426aadced485"
+  },
+  "reused_trace_case_count": 10,
+  "reused_trace_max_frames": 2682,
+  "reused_trace_max_depth": 10,
+  "reused_trace_max_compact_reencoded_response_bytes_NOT_wire": 1093991,
+  "unsent_old_graph_request_sizes": [
+    {
+      "case": "zzz-activate100",
+      "eth_call_bytes": 1440000,
+      "trace_bytes": 1440095
+    },
+    {
+      "case": "hybrid-replace",
+      "eth_call_bytes": 1483462,
+      "trace_bytes": 1483557
+    }
+  ],
+  "full20m_24m_work_capacity_qualified": false,
+  "provider_limits_or_plan_reviewed": false,
+  "lifetime_archive_qualified": false,
+  "full_operation_fees_qualified": false,
+  "public_transactions": 0,
+  "heavy_graph_requests": 0,
+  "new_tests_evm_or_compiles": 0,
+  "production_approved": false,
+  "provider_adopted": false
+}

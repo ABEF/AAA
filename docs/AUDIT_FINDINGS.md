@@ -1,12 +1,20 @@
 # Consolidated audit findings and evidence
 
+The [current external-qualification milestone](../reports/predeployment-qualification-20261113/REVIEW.md)
+closes independently established genesis and the13 existing RPC checks through
+a paced helper. Specific history/logs and tiny nonpersistent simulation pass.
+Provider numerical capacity/plan/SLA/lifetime archive, real qualified sources/
+routes, full launch-state operations/fees and adoption remain open. The selected
+pool has activeL0 at the new market anchor, not zero total liquidity; conditional
+quotes are poor. No source/default/safeguard/live change or unchanged suite rerun.
+
 The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) resolves the
 missing trace-interface witness through Pinax and confirms nonzero posting
 components, but not full provider/workload acceptance. A real nonzero-tip receipt
 exposes generic Ethereum daily-spend overstatement on Nitro. The new explicit
 future-only keeper profile2 requires zero-tip type2 and canonical receipt price;
 old profile1/pending semantics and spending guards remain. Complete target PoPL
-quotes, caps/genesis/archive/service/real-signing approval remain open. No
+quotes, caps/archive/service/real-signing approval remain open. No
 contract/default/live environment change or unchanged suite rerun.
 
 The [20M/24M profile review](../reports/gas-profiles-20261113/REVIEW.md) closes

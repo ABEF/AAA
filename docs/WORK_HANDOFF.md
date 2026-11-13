@@ -1,5 +1,17 @@
 # Work handoff
 
+The [13November external qualification](../reports/predeployment-qualification-20261113/REVIEW.md) independently derives
+chain4663 genesis from the official Ethereum rollup's initial assertion; all13
+existing activation_api_v1 checks pass through the unchanged helper with recorded
+1.5-second transport pacing. Stock CLI default cadence is NOT qualified and has
+no pacing flag. Specific historical state/logs and a tiny temporary override
+work; numerical20M/24M capacity, provider plan/SLA/lifetime archive, actual full
+PoPL fees and adoption stay open. Current selected501122 has activeL0 (not zero
+total liquidity); four new conditional quotes and independent-source failures
+leave real feeds/routes unqualified. No code/tests/defaults/guards/live state
+changed or unchanged suites rerun. Use the report's next actions; never adopt the
+endpoint, invent budgets or relabel source9/mint1 fixtures as current mint2.
+
 The [20M/24M profile milestone](../reports/gas-profiles-20261113/REVIEW.md) is
 controlled-source qualified: exact$100 activation/$5 growth in ETH/ZZZ, main/both-leg
 harvest, compound and single/hybrid replacements fit their caps and full20%/25%
@@ -19,7 +31,7 @@ keeper submission_fee_profile2:4663/included/L1allowance0, type2/priority0,
 matching simulation/Cast and captured schema2 recovery. Generic Ethereum helper
 and original schema1 pending behavior remain; never edit old reviews/spend or
 roll old source onto a schema2 pending. Profile2 actual signing/host rehearsal,
-complete PoPL target quotes/provider/workload/genesis and approved fee ceilings
+complete PoPL target quotes/provider/workload and approved fee ceilings
 remain unqualified. Use the [operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 No service/site/public signing, existing Anvil/journal or paused-heartbeat change.
 

@@ -1,12 +1,20 @@
 # Feature and evidence reference
 
+The [current external-qualification milestone](../reports/predeployment-qualification-20261113/REVIEW.md)
+closes independently established genesis and the13 existing RPC checks through
+a paced helper. Specific history/logs and tiny nonpersistent simulation pass.
+Provider numerical capacity/plan/SLA/lifetime archive, real qualified sources/
+routes, full launch-state operations/fees and adoption remain open. The selected
+pool has activeL0 at the new market anchor, not zero total liquidity; conditional
+quotes are poor. No source/default/safeguard/live change or unchanged suite rerun.
+
 The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) adds actual Pinax
 canonical trace/log and fee-component evidence without rerunning unchanged suites.
 A future-only keeper submission_fee_profile2 binds type2/priority0 simulations,
 Cast arguments and exact saved schema2 recovery, avoiding observed Nitro
 base+nonzero-tip overstatement. Omission/1, old pending records and generic
 Ethereum derivation stay unchanged. No defaults, Solidity, browser signer or live
-environment change. Full provider/genesis/capacity/archive/operation fees,
+environment change. Full provider/capacity/archive/operation fees,
 operator caps and real hosting/signing approval remain separate.
 
 [20M contribution / 24M maintenance profiles](../reports/gas-profiles-20261113/REVIEW.md)

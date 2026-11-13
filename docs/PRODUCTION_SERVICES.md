@@ -8,10 +8,12 @@ production source pair is selected; the dated provider findings below retain
 their original scope.
 
 
-The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) verifies a Pinax
-canonical trace/log witness and target components/receipts. The future-only
-zero-tip keeper profile does not select a live endpoint or approve complete
-PoPL fees, transaction/day caps, archive capacity or an operating service.
+The [latest qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+independently establishes genesis, passes all13 paced RPC checks and verifies
+specific history/logs/tiny nonpersistent simulation. Full provider capacities/
+plan/SLA/archive, exact real-market PoPL fees and operator spending approval
+remain open. Current market/source failures are retained; no live endpoint,
+source/route, zero-tip policy or operating service is selected.
 [Operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 
 Reviewed2026-11-13. [Feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
@@ -21,10 +23,10 @@ Reviewed2026-11-13. [Feed/market read-only qualification](../reports/market-foll
 
 | Dependency | Required capability / current boundary | Procedure/evidence |
 | --- | --- | --- |
-| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, exact original age/round/decimals, runtime/upstream controls and300bps agreement. No usable pair: Chainlink proxies share one aggregator; Pyth is stale; API3 ETH is inactive/direct-ABI incompatible; no two fixedZZZ sources are established. Exact-token CEX books are USDT market leads, not USD feeds. | [Price security](PRICE_SECURITY.md), [latest findings](../reports/market-followup-20261109/feeds/FINDINGS.md) |
+| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, exact original age/round/decimals, runtime/upstream controls and300bps agreement. No usable pair: Chainlink proxies share one aggregator; Pyth is stale; API3 ETH is inactive/direct-ABI incompatible; no two fixedZZZ sources are established. Exact-token CEX books are USDT market leads, not USD feeds. The [13November refresh](../reports/predeployment-qualification-20261113/markets/REVIEW.md) retains current age541758s/Pyth disagreement1483.837986bps and source controls. | [Price security](PRICE_SECURITY.md), [latest findings](../reports/market-followup-20261109/feeds/FINDINGS.md) |
 | Optional Pyth reader | Existing immutable reader preserves original publishTime and hard86400s age ceiling. Captured age229537s and546.2675655bps disagreement fail unchanged guards. Live on-chain update-fee getters are0; authenticated data access, funded updates, gas, upstream controls and recovery remain unqualified. | [Reader policy](PYTH_PRICE_SOURCE.md), [feed evidence](../reports/market-followup-20261109/feeds/FEED_FINDINGS.json) |
 | Sequencer liveness | Chainlink lists no Robinhood uptime feed and says expansion to additional networks has stopped. Review an actual correct-chain outage/recovery policy; never copy another chain or synthesize always-up data. | [Primary-source findings](../reports/market-followup-20261109/feeds/FINDINGS.md), [operator procedure](OPERATOR_MANUAL.md#configure-stop-and-recover-usd-pricing---2026-10-24) |
-| Contribution/conversion markets | Actual full-input/direction/size/spot/fee/depth and gas qualification, then whole operation with independent prices. Latest696quote calls include23overlapping gas rechecks; tiny favorable reverse outputs are not economically useful conversion acceptance. Selected and alternative10018 cannot jointly pass ordinary principal reference bands at the anchor. Native-v4 principal and optional v3/WETH earned conversion stay separate. | [Route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
+| Contribution/conversion markets | Actual full-input/direction/size/spot/fee/depth and gas qualification, then whole operation with independent prices. Historical9November696quote calls include23overlapping gas rechecks; tiny favorable reverse outputs are not economically useful conversion acceptance. Selected and alternative10018 cannot jointly pass ordinary principal reference bands at the anchor. Native-v4 principal and optional v3/WETH earned conversion stay separate. | [Route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
 | RPC/archive | Canonical hashes/ancestry, complete logs, durable historical state, trace/simulation/gas and recovery. The official endpoint retained an anchor header but refused its state roughly11minutes later; a bounded alternate-provider read recovered it. This is not provider approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [current failures](../reports/market-followup-20261109/VERIFICATION.md), [history](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. No qualified provider yet. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Mint2 source implements free TEAM and governed-price AL/public dormant minting(default0.05ETH gross), recipient net after the actual platform fee, gas separate. The pinned SeaDrop runtime is observed; actual custom-drop onboarding, fees/payers, VRF and operating acceptance remain open. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |

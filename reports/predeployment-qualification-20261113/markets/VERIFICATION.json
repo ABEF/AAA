@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "public_files": 70,
+  "raw_rpc_responses": 57,
+  "attempts": 58,
+  "canonical_original_anchor_rechecked": true,
+  "new_quotes": 4,
+  "network_calls": 0,
+  "evm_executions": 0,
+  "test_suites_executed": 0,
+  "manifest_sha256": "9c959506603ab2280034cee151bd8fb34f916dbd22e5d447fa9795a92fe27d7b",
+  "verification_scope": "Offline integrity/interpretation verification of final changed artifacts, not an EVM or test suite",
+  "source_baseline": "11e74883787e32e816b5c01b1213189400fe01fe"
+}

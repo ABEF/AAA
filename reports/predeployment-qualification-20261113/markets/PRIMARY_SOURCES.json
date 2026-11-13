@@ -1,0 +1,34 @@
+{
+  "reviewed_at_utc_date": "2026-11-13",
+  "scope": "Primary documentation supports semantics, not actual feed activation, publication, market depth or production acceptance. Exact chain observations are in the raw RPC captures.",
+  "sources": [
+    {
+      "url": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html",
+      "supports": "API3 proxy compatibility omits round functionality; integrations relying on rounds require an appropriate adapter. PoPL's current Oracle validates positive coherent rounds."
+    },
+    {
+      "url": "https://api-reference.pyth.network/price-feeds/evm/getPriceUnsafe",
+      "supports": "Stored values can be arbitrarily old. Publish time must be checked and authenticated updates supplied before relying on a current observation."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/contract-addresses",
+      "supports": "Robinhood Pyth Core and Pro are separate deployed interfaces; the observed core address is the documented Core address."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/on-chain-fees",
+      "supports": "Current Pyth Core EVM update fees are zero; this does not remove update gas, data access or publication requirements. Actual zero values were separately read on-chain."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/use-prices-on-blockchain/evm",
+      "supports": "Core integration updates signed prices then reads with a specified maximum age. No price update was performed by this qualification."
+    },
+    {
+      "url": "https://docs.chain.link/data-feeds/selecting-data-feeds",
+      "supports": "Feed users must evaluate source quality, liquidity and concentration risks. A feed address or current positive answer alone is not project acceptance."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/guides/state-view",
+      "supports": "StateView exposes current slot0 and active liquidity off-chain. Exact return layouts are pinned to dependency implementations in SOURCE_BINDINGS.json, rather than inferred from documentation prose."
+    }
+  ]
+}

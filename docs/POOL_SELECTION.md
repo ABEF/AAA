@@ -1,5 +1,15 @@
 # Selected Robinhood ETH / ZZZ pool
 
+[Fresh13November qualification](../reports/predeployment-qualification-20261113/markets/REVIEW.md)
+binds block113296579/10:48:31UTC. Selected activeL is now0, independently
+cross-checked in core/StateView; distant ticks remain and an ETH quote crosses
+the gap. Conditional nominal$50 ETH diagnostics lose14.211291% against selected
+initial spot and84.654786% against the only geometrically compatible active
+candidate. Selected1000ZZZ reverse cannot fill; the other reverse is unavailable.
+These are not whole-operation/USD qualification. Deeper known venues disagree
+too much for the shared500bps reference bands. Destination/settings remain
+unchanged; the9November observations below are historical, not current depth.
+
 ## Selected integration target
 
 The selected integration target is the existing pool
@@ -24,7 +34,7 @@ TVL or a volume forecast. Protocol and LP fees compose sequentially with roundin
 The creator cannot change this static fee or add a hook, but may remove their own
 LP; token permissions, market depth and external governance remain separate risks.
 
-## Latest execution qualification
+## Historical9November execution qualification
 
 [Read-only follow-up](../reports/market-followup-20261109/REVIEW.md) keeps this
 destination unchanged. Selected reverse capacity at its shared anchor is only

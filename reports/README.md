@@ -1,5 +1,11 @@
 # Verification evidence
 
+[External qualification13November](predeployment-qualification-20261113/REVIEW.md)
+independently establishes genesis and passes the existing13-check profile via
+paced transport. Separate history/capacity and current market packages preserve
+actual replies, denial boundaries and offline integrity. Full real operation
+fees/provider/market/release approval remain open; no unchanged suite repeats.
+
 The [RPC/fee follow-up](rpc-fees-20261113/REVIEW.md) finds a real Pinax
 canonical-hash Approval(0) log witness, target posting components and ordinary
 receipt evidence. It adds an explicit future-only zero-tip keeper fee profile,

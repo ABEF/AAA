@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "completed_at_utc": "2026-11-13T11:18:51.484318+00:00",
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "scope": "Independent RPC identity/profile and bounded capacity/history/real-market qualification; no source or live changes",
+  "qualification": {
+    "genesis_independently_derived_for_bounded_probe": true,
+    "genesis_hash": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+    "existing_profile": "activation_api_v1",
+    "profile_checks_passed": 13,
+    "unchanged_helper_invoked_with_paced_recording_transport": true,
+    "stock_CLI_cadence_or_parsing_executed": false,
+    "rpc_attempts_by_phase": {
+      "independent_ethereum": 9,
+      "full_robinhood_profile": 48,
+      "capacity_history": 19,
+      "market_partial_plus_closure": 58
+    },
+    "new_market_quote_diagnostics": 4,
+    "specific_historical_state_and_log_observed": true,
+    "tiny_code_only_state_override_nonpersistence": true,
+    "full_work_20M_24M_capacity_qualified": false,
+    "provider_plan_SLA_lifetime_archive_qualified": false,
+    "real_ETH_ZZZ_price_pairs_qualified": false,
+    "real_routes_qualified": false,
+    "complete_PoPL_target_fee_quote": false,
+    "operator_spending_ceilings_approved": false,
+    "provider_or_configuration_adopted": false,
+    "production_approved": false
+  },
+  "verification": {
+    "new_evidence_verifiers_passed": [
+      "rpc/verify.py",
+      "capacity/verify.py",
+      "markets/verify.py"
+    ],
+    "generated_todo_check_passed": true,
+    "function_and_operator_reference_check": {
+      "contracts": 40,
+      "functions": 956,
+      "constructors": 40,
+      "receive_hooks": 13,
+      "annotation_gaps": 0,
+      "operator_example_rows": 1009
+    },
+    "root_setup_corrections": [
+      "External RPC verifier parent directory corrected to rpc subfolder",
+      "Mechanical website-null matcher corrected to the existing INTEGRATION_DEPLOYMENT name"
+    ],
+    "new_tests_EVM_compilers_or_unchanged_suites_run": 0,
+    "new_signatures_or_public_transactions": 0,
+    "peer_review": "Independent genesis recomputation; cross-review of three evidence packages; final root-report/operator cadence and scope review"
+  },
+  "mechanical_checks": {
+    "schema": 1,
+    "successful": true,
+    "checked_at_utc": "2026-11-13T11:18:06.483902+00:00",
+    "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+    "source_scope": "Mechanical evidence/preservation only; no RPC/test/EVM/compiler execution",
+    "production_solidity_unchanged": 61,
+    "normal_closure_sources_exact": 100,
+    "backend_pins_unchanged": 10,
+    "ethereum_fee_helper_unchanged": true,
+    "website_import_closure_unchanged": 12,
+    "website_head": "206892ab8b93d65cae3564e71feaf4435f90cdee",
+    "public_configurations_null": true,
+    "protected_sha256": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "archived_originals_verified": 20,
+    "stable_task_ids_statuses_evidence_counts": 78,
+    "introduced_local_links_checked": 91,
+    "introduced_local_anchors_checked": 2,
+    "frozen_manifests": {
+      "rpc": {
+        "manifest_sha256": "9acc7a358bc5faa481709e36b0988603df8ba4a3f0691c962b2a06d23c13d8cb",
+        "public_files": 11
+      },
+      "capacity": {
+        "manifest_sha256": "e5cf194a08a4e58f549ac9880a4e95c56f2009807c344213e68a3efcc561ad1e",
+        "public_files": 11
+      },
+      "markets": {
+        "manifest_sha256": "9c959506603ab2280034cee151bd8fb34f916dbd22e5d447fa9795a92fe27d7b",
+        "public_files": 70
+      }
+    },
+    "owned_current_docs": [
+      "AGENTS.md",
+      "PROJECT_CONTEXT.md",
+      "README.md",
+      "TODO.md",
+      "docs/WORK_HANDOFF.md",
+      "docs/OPERATOR_MANUAL.md",
+      "docs/ROBINHOOD_GAS.md",
+      "docs/RPC_PREPARATION_QUALIFICATION.md",
+      "docs/PRODUCTION_SERVICES.md",
+      "docs/IMPLEMENTATION_STATUS.md",
+      "docs/ROADMAP.md",
+      "docs/RELEASE_CHECKLIST.md",
+      "docs/AUDIT_FINDINGS.md",
+      "docs/README.md",
+      "docs/project-todo.json",
+      "reports/README.md",
+      "docs/POOL_SELECTION.md",
+      "docs/POOL_SPOT_PRICE_SOURCE.md"
+    ],
+    "root_offline_verifier_setup_correction": "First RPC verifier invocation used parent external-root, failed missing derive_identity.py before network/work; corrected to rpc subdirectory and passed. Evidence unchanged."
+  },
+  "preservation": {
+    "production_and_test_source_changes": 0,
+    "financial_or_gas_defaults_changed": false,
+    "safeguards_relaxed": false,
+    "public_signing_enabled": false,
+    "deployed_or_changed_service_website_Anvil_journal_heartbeat": false,
+    "historical_reports_modified": false,
+    "historical_report_navigation_index_updated": true
+  },
+  "current_doc_sha256": {
+    "AGENTS.md": "0e550e581b2f21d20f340345c53a8dcac99462031c6a59fa0a07f7a182b28d3e",
+    "PROJECT_CONTEXT.md": "790fb21addeb29641f99addf59ac6022281e14f213868bdcae4327485dc3773c",
+    "README.md": "de7361c15a2939d9f34a257264186d491b0cb79043b770dda51e94e14cbe6444",
+    "TODO.md": "f9dfddbeed5b8e8c8bbb7b488d00e6c808dd698bc85326f584fbdd77eb11a0ec",
+    "docs/WORK_HANDOFF.md": "10000ea2fb7617e54a7fd1e5809e3b5ed975887465eacae41408d846cde56a71",
+    "docs/OPERATOR_MANUAL.md": "f8056a04f46a0612b8924a9670afaf61521df30a0e806f8c4eeb17810cd04180",
+    "docs/ROBINHOOD_GAS.md": "93ef7c752158e69d028964ec2248677d21f133ceeb4f70cbc69f521251ca8ec6",
+    "docs/RPC_PREPARATION_QUALIFICATION.md": "a49f78455e014b7080ba637a4bf962428c37d22504dddee7a82c809fc7caeb4d",
+    "docs/PRODUCTION_SERVICES.md": "a86a0a3b71bbf176d4cb798c64fa76cc92fe7409ea73df5cd104d3c9d3a3ae64",
+    "docs/IMPLEMENTATION_STATUS.md": "248ad95aa1eaab8e44253d49e20634e8dce0a60f6d346413b692e376fb9d2973",
+    "docs/ROADMAP.md": "ac0bf8f8f1976fd63238264989d98bc7157c8cc46b51026f68e1d8091724f7f2",
+    "docs/RELEASE_CHECKLIST.md": "e25994d7cdc039e9b79c88ba0b53dca3818f6d5fd71f4183c02449716c90fec8",
+    "docs/AUDIT_FINDINGS.md": "201b7c6bf29453eb4e81b8cdde48b7038a1730f92bfbee249b4ecee506f45ddb",
+    "docs/README.md": "294cacb73a5dc8ee32ff874986d747b8b992a95c7b7fa35165b03544ae5d9fad",
+    "docs/project-todo.json": "4e83c8c294b8209a25f2917c84902ba50792390eea37e6d412525f162e022672",
+    "reports/README.md": "d4f12555c7ae3506ab38028f750716afe11908906ad850868eb351934591e5c0",
+    "docs/POOL_SELECTION.md": "e108a1c207fce053f61ba59826d3065f70a4607f097c68a42c48afa0e4c7cd0a",
+    "docs/POOL_SPOT_PRICE_SOURCE.md": "9211310667c5ac6816aba2490f52f9a8b8bc8abcd345477fe921a50c7d8e4ab7"
+  },
+  "root_review_sha256": "e9f5b0be5e065a74953f5a579209184ee671b9b87ad00728db67005ddb0e08d4",
+  "root_verification_sha256": "dc4153018ccb8c4544fb813d4b8f92dce8bb03547176d3b68d6b202a2464cf29",
+  "external_mechanical_script_sha256": "3e8bc9cc16dc201d40ee8ba9f8c60cc7245f22be3e1a72319bc567cbd0306707",
+  "publication_requirement": "Main only; verify exact staged bytes, run static Python import/publication check on index and committed HEAD, then compare remote HEAD. Separate external PUBLICATION.json records actual outcome without self-referential commit hashes."
+}

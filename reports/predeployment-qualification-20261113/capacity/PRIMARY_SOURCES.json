@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "baseline": "11e74883787e32e816b5c01b1213189400fe01fe",
+  "scope": "Bounded current primary public-document observations; no account, signup, payment or provider adoption",
+  "primary_documents": [
+    {
+      "label": "pinax-help",
+      "url": "https://app.pinax.network/help",
+      "observed_at_utc": "2026-11-13T10:46:56.065972+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-help.html",
+      "bytes": 90802,
+      "sha256": "27e60687bee047fb0728b1b7c15e48aad9fd3d7620c2b0d8d54df59fff9b5e2b",
+      "assessment": "FAQ says eth_getLogs and eth_sendRawTransaction are unsupported, conflicting with the same provider method catalog; collapsed questions are not a numerical capacity contract.",
+      "external_relative_path": "docs-permitted/pinax-help.html"
+    },
+    {
+      "label": "pinax-rpc",
+      "url": "https://app.pinax.network/docs/rpc",
+      "observed_at_utc": "2026-11-13T10:46:57.233003+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-rpc.html",
+      "bytes": 133824,
+      "sha256": "bab91ba0e0eaac94de8e7c3394d970b68f09e426ea809cd94d42cf8bca90f335",
+      "assessment": "Generic catalog lists standard reads, tracing, logs and submission; no reviewed Robinhood anonymous gas, byte, RPS or archive-resource cap is supplied.",
+      "external_relative_path": "docs-permitted/pinax-rpc.html"
+    },
+    {
+      "label": "pinax-call",
+      "url": "https://app.pinax.network/docs/rpc/eth_call",
+      "observed_at_utc": "2026-11-13T10:46:58.368694+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-call.html",
+      "bytes": 127627,
+      "sha256": "00bba71917a06e5fe5bae5537d4ffb12e9fd732e377c4841a049ec99b64fffa9",
+      "assessment": "Documents simulation but omits provider numerical resource and state-override contract; generic sample is not the exact EIP-1898 method evidence.",
+      "external_relative_path": "docs-permitted/pinax-call.html"
+    },
+    {
+      "label": "pinax-estimate",
+      "url": "https://app.pinax.network/docs/rpc/eth_estimateGas",
+      "observed_at_utc": "2026-11-13T10:46:59.563309+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-estimate.html",
+      "bytes": 127394,
+      "sha256": "95f8bede8de38d71ef39eb6f51a69c3b6fe1879798743f847ca696f9682f9e22",
+      "assessment": "Generic page is labeled key required while the earlier anonymous selected-field estimate actually succeeded; no numerical full-work cap is given.",
+      "external_relative_path": "docs-permitted/pinax-estimate.html"
+    },
+    {
+      "label": "pinax-trace",
+      "url": "https://app.pinax.network/docs/rpc/debug_traceCall",
+      "observed_at_utc": "2026-11-13T10:47:00.669509+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-trace.html",
+      "bytes": 130647,
+      "sha256": "5e569cc88d2e52749151870716a18912bf3aca90c92fa87a3923d6add75f354c",
+      "assessment": "Page describes historical/latest traces and a30s illustrative option, says Reth archive only despite actual Nitro witness; no guaranteed timeout/resource ceiling or override policy.",
+      "external_relative_path": "docs-permitted/pinax-trace.html"
+    },
+    {
+      "label": "pinax-robinhood",
+      "url": "https://pinax.network/chain/robinhood",
+      "observed_at_utc": "2026-11-13T10:47:01.773215+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-robinhood.html",
+      "bytes": 102159,
+      "sha256": "4e93489e83e77563466b45d01a44c317b060676567d61103d3b5ddd87f9230f5",
+      "assessment": "Advertises complete archive infrastructure, but observed page still says chainID TBD; marketing is not independently checked identity or exact public-tier retention.",
+      "external_relative_path": "docs-permitted/pinax-robinhood.html"
+    },
+    {
+      "label": "pinax-pricing",
+      "url": "https://pinax.network/pricing",
+      "observed_at_utc": "2026-11-13T10:47:03.042476+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-pricing.html",
+      "bytes": 116654,
+      "sha256": "634038faa6f6946624c9214b09506ccb42a51c49ac1ec52d07fe1fb362ebd06a",
+      "assessment": "Free/Pro/Enterprise plan descriptions and usage credits are published; custom dedicated/support options are not approval of the anonymous endpoint or its numerical limits.",
+      "external_relative_path": "docs-permitted/pinax-pricing.html"
+    },
+    {
+      "label": "pinax-rpc-pricing",
+      "url": "https://pinax.network/pricing/rpc",
+      "observed_at_utc": "2026-11-13T10:47:04.256881+00:00",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "truncated": false,
+      "file": "pinax-rpc-pricing.html",
+      "bytes": 91096,
+      "sha256": "4598c1ec9a784ff703b93b20f585634e0483d969a2456cadb6039e0ba440769b",
+      "assessment": "Publishes archive-oriented usage billing6USD per1M requests; does not establish trace billing weights, quota or guaranteed per-method limits.",
+      "external_relative_path": "docs-permitted/pinax-rpc-pricing.html"
+    }
+  ],
+  "upstream_method_references": [
+    {
+      "url": "https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-eth",
+      "scope": "eth_call optional state override set; upstream compatibility reference, not Pinax proof"
+    },
+    {
+      "url": "https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug",
+      "scope": "debug_traceCall stateOverrides within TraceCallConfig; upstream reference, not actual target implementation guarantee"
+    },
+    {
+      "url": "https://geth.ethereum.org/docs/interacting-with-geth/rpc/objects",
+      "scope": "Ephemeral account override semantics and fields; no block override is authorized by small capability plan"
+    }
+  ],
+  "transport_stages": {
+    "initial_restricted_document_GET_attempts": 8,
+    "initial_restricted_document_errors": 8,
+    "permitted_document_GET_attempts": 8,
+    "permitted_http200": 8,
+    "denied_RPC_methods_retried": 0
+  },
+  "numerical_capacity_documented_and_reviewed": false,
+  "production_plan_selected": false,
+  "production_approved": false
+}

@@ -12,19 +12,38 @@ the actual deployed PoPL bindings and inventory.
 
 ## Observed tracing candidate and scope
 
-The [current Pinax/fee report](../reports/rpc-fees-20261113/REVIEW.md) records a
-successful canonical-hash Approval(0) witness through this unchanged probe's
-trace helper, with exact retained WETH runtime and unknown-hash controls. It
-also records20M/24M cheap field admission and separate target fee components.
-No submitted approval, persistent state change or PoPL deployment occurs.
+The [current independent qualification](../reports/predeployment-qualification-20261113/rpc/REVIEW.md)
+establishes chain4663 genesis from the officially listed Ethereum rollup's initial
+assertion through a separate L1 RPC. All13 existing `activation_api_v1` checks
+pass at113298933 with exact retained WETH runtime, a real discarded Approval(0)
+trace/log, canonical reads, missing-hash rejection and bounded receipts/headers.
+The original [trace/fee campaign](../reports/rpc-fees-20261113/REVIEW.md) retains
+its earlier scope.
 
-This is not a complete `activation_api_v1` pass. In particular, an RPC-returned
-genesis hash is an observation, not an independently reviewed input pin. Do not
-copy it into `--genesis-hash` just to obtain a pass. Full profile checks,
-representative gas/response/time/history workloads, production plan and fee
-approval remain separate. The current point-in-time witness does not install an
-endpoint in a service or alter the12M default. Use the
-[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) before future adoption.
+| Reviewed public identity | Exact value |
+| --- | --- |
+| Mainnet genesis | `0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c` |
+| Probe token (not a contribution asset) | `0x0bd7d308f8e1639fab988df18a8011f41eacad73` |
+| Probe runtime Keccak256 | `0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353` |
+
+Review the [proof and limitations](../reports/predeployment-qualification-20261113/rpc/IDENTITY_PROOF.json),
+including the null L1 deployment receipt and separate-provider trust; this is not
+a locally verified consensus/genesis rebuild. Never derive the expected pin
+from the candidate endpoint merely to make the check pass.
+
+This result invokes unchanged `keeper.probe.probe()` through a recording transport
+paced at1.5seconds. The [exact runner source](../reports/predeployment-qualification-20261113/rpc/profile-runner.py.txt)
+is inert evidence with local paths. Stock CLI parsing/default request cadence
+was not this execution; it has no pacing flag. The command below is shape only,
+not a qualified anonymous-endpoint cadence. Honor rate limits and stop denials;
+do not rerun an unchanged profile for a green result.
+
+[Specific history/logs and tiny temporary simulation](../reports/predeployment-qualification-20261113/capacity/REVIEW.md)
+also work. Full20M/24M gas/body/response/time/rate capacity, provider plan/SLA,
+lifetime archive, complete real PoPL operation/fees and independent operating
+approval remain separate. No endpoint is installed, no allowance/transaction is
+submitted and the12M default stays. See the
+[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) before adoption.
 
 ## Prepare public identity and private endpoint configuration
 
