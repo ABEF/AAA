@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "scope": "Offline unchanged-helper replay of new actual interface observations only",
+  "provider_label": "pinax",
+  "anchor": {
+    "number": 113260778,
+    "hash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+    "timestamp": 1794563179
+  },
+  "probe_address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+  "independently_retained_runtime_pin": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353",
+  "approval_witness": {
+    "gas_used": 33237,
+    "approval_event_verified": true,
+    "state_overrides": false,
+    "scope": "discarded read-only simulation, not a submitted approval or persistent state change"
+  },
+  "gas_field_admission": [
+    {
+      "gas_field": 20000000,
+      "cheap_estimate": 23003,
+      "observed_execution_parameter": 32000000,
+      "numerical_provider_work_capacity_qualified": false
+    },
+    {
+      "gas_field": 24000000,
+      "cheap_estimate": 23003,
+      "observed_execution_parameter": 32000000,
+      "numerical_provider_work_capacity_qualified": false
+    }
+  ],
+  "method_specific_unknown_hash_controls": [
+    {
+      "method": "eth_call",
+      "explicit_error_code": -32000,
+      "rejected": true,
+      "production_error_reason": "unavailable_block",
+      "production_recognized_unavailable_block": true
+    },
+    {
+      "method": "eth_estimateGas",
+      "explicit_error_code": -32000,
+      "rejected": true,
+      "production_error_reason": "unavailable_block",
+      "production_recognized_unavailable_block": true
+    },
+    {
+      "method": "debug_traceCall",
+      "explicit_error_code": -32000,
+      "rejected": true,
+      "production_error_reason": "unclassified",
+      "production_recognized_unavailable_block": false
+    }
+  ],
+  "original_response_bytes_checked": true,
+  "network_index_sha256": "e293193f66ef96ad8ff274306e3eb8ffbb3644ae6c09e61a1879ea4fc32e53ca",
+  "source_manifest_sha256": "4416e39f2e9204e6ca43f2cb2739c91dd0cdd1ac8826dea427c429234f8d57dc",
+  "independent_runtime_manifest_sha256": "880888d7c431c5d717686219de525ee639ede4ce5a02a74e39ff105d641ae884",
+  "offline_rpc_parser_replays": [
+    {
+      "method": "eth_call",
+      "id": 6,
+      "response_sha256": "a1243243c44a6ba006e0bda974f5133f1ee1b5e8601bdee8ab3299e4fa8bac91"
+    },
+    {
+      "method": "debug_traceCall",
+      "id": 7,
+      "response_sha256": "27e3c0a3232d036dc97555df800464e3d4345655e1d7fb7792bccdaa73b6fd5b"
+    },
+    {
+      "method": "eth_getCode",
+      "id": 4,
+      "response_sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f"
+    },
+    {
+      "method": "eth_call",
+      "id": 8,
+      "response_sha256": "de7c0c1848b01be1c812c4010636418abcd65b7c0f625cad9fdb319a48500d78"
+    },
+    {
+      "method": "eth_estimateGas",
+      "id": 9,
+      "response_sha256": "9d4288a7072ee1fe63422d632df59ea50815e4decad43e7dc8a95c690884ed79"
+    },
+    {
+      "method": "eth_call",
+      "id": 10,
+      "response_sha256": "54fd58b93dc4bc2a25fdec26c5dacc1a12055eead253bd9ad4f51bcb908bfb5f"
+    },
+    {
+      "method": "eth_estimateGas",
+      "id": 11,
+      "response_sha256": "20fb9907e449003606e70fd91767651c7fea59eb4ca3b605e374b006ce2294e9"
+    },
+    {
+      "method": "eth_call",
+      "id": 12,
+      "response_sha256": "9fa31b787e192d8f302b02b405eb54b54beec8a168fc01246889b48a7c4284f6"
+    },
+    {
+      "method": "eth_estimateGas",
+      "id": 13,
+      "response_sha256": "7b4010a2bed04d6ecf964d813fcd775e0a459a04f58082cc4f97e3ea6c078224"
+    },
+    {
+      "method": "debug_traceCall",
+      "id": 14,
+      "response_sha256": "e093f23cd3ae8dce099059ded1615dea2af87da9c3edae018a717c08c243cceb"
+    }
+  ],
+  "new_network_calls": 0,
+  "new_evm_test_executions": 0,
+  "unchanged_tests_rerun": 0,
+  "independent_genesis_reviewed": false,
+  "full_activation_api_v1_profile_passed": false,
+  "actual_popl_public_operation_qualified": false,
+  "complete_fee_policy_approved": false,
+  "provider_adopted": false,
+  "production_approved": false,
+  "verifier_sha256": "b8b69923b5d6794e28e3feaf5621f9c2e632eac7da12518ae2f3599d7c09431d"
+}

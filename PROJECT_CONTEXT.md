@@ -7,10 +7,15 @@ methods,13Python and12browser checks pass; ten actual RPC cases and four offline
 reader replays retain explicit overlapping scope. No unchanged suites rerun.
 All61 production sources and default12M remain unchanged; Oracle3-byte/Vault32
 headroom remains. The incomplete profile overlays grant no fee/provider approval.
-Daybreak supports canonical-hash cheap estimates/calls but not required tracing;
-BlockVectra hash-state/tracing fails. Real markets/fees/full provider/max-state,
-complete configuration/hosted service and operating approval remain open. No
-site/service/signer, existing Anvil/journal or paused-heartbeat rollout occurs.
+The [later RPC/fee review](reports/rpc-fees-20261113/REVIEW.md) finds a Pinax
+canonical-hash actual trace/log witness and nonzero posting components for all
+ten captured payloads. Two real receipts prove base-only zero/nonzero-tip behavior
+at the anchor. Future-only keeper submission_fee_profile2 forces type2/priority0
+under captured schema2, avoiding generic Ethereum fee overstatement without
+changing old pending reviews or the generic helper. No running configuration
+or signer is used or changed. Full RPC/genesis/capacity/archive, complete undeployed
+PoPL fee quotes, market/max-state/hosting and operating approval remain open.
+No site/service/browser signer, existing Anvil/journal or paused-heartbeat rollout.
 
 All remaining271original findings are individually assessed in the
 [current reconciliation](reports/remaining-271-20261111/REVIEW.md), with exact

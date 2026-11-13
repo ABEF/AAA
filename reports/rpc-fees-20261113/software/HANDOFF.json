@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "purpose": "Incomplete inputs for existing unchanged keeper.probe; no new CLI/configuration installed",
+  "existing_module": "keeper.probe",
+  "existing_profile": "activation_api_v1",
+  "example_private_config": {
+    "chain_id": 4663,
+    "rpc_urls": []
+  },
+  "reviewed_public_probe": {
+    "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+    "calldata": "0x18160ddd",
+    "runtime_hash": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353",
+    "runtime_pin_source": "reports/market-followup-20261109/routes/runtime-pins.json",
+    "scope": "probe token only, not PoPL contribution/LP wrapper adoption"
+  },
+  "independent_genesis_hash": null,
+  "required_command_arguments": [
+    "python",
+    "-m",
+    "keeper.probe",
+    "--config",
+    "PRIVATE_REVIEWED_RPC_CONFIG.json",
+    "--profile",
+    "activation_api_v1",
+    "--address",
+    "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+    "--calldata",
+    "0x18160ddd",
+    "--genesis-hash",
+    "INDEPENDENTLY_REVIEWED_GENESIS_HASH_REQUIRED",
+    "--runtime-hash",
+    "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353",
+    "--output",
+    "NEW_OBSERVATION_OUTPUT.json"
+  ],
+  "defaults_preserved": {
+    "confirmations": 12,
+    "receipt_blocks": 12,
+    "endpoint_logical_call_ceiling": 100,
+    "endpoint_deadline_seconds": 90
+  },
+  "before_running": [
+    "Choose explicit provider URLs in a private config outside reports/Git; do not infer approval from discovery",
+    "Independently establish/review genesis and intended chain; do not copy candidate self-report to manufacture pass",
+    "Retain provider rate/history/trace/time/response limits and original evidence; no fallback after failure",
+    "Full CLI success is point-in-time compatibility only; separately qualify full20M/24M PoPL workloads and current fee model",
+    "Complete fee approvals and operator spending ceilings remain separate; preserve original pending fee reviews and journals"
+  ],
+  "ready_to_run": false,
+  "provider_adopted": false,
+  "complete_fee_policy_approved": false,
+  "production_approved": false
+}

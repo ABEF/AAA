@@ -1,5 +1,14 @@
 # Feature and evidence reference
 
+The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) adds actual Pinax
+canonical trace/log and fee-component evidence without rerunning unchanged suites.
+A future-only keeper submission_fee_profile2 binds type2/priority0 simulations,
+Cast arguments and exact saved schema2 recovery, avoiding observed Nitro
+base+nonzero-tip overstatement. Omission/1, old pending records and generic
+Ethereum derivation stay unchanged. No defaults, Solidity, browser signer or live
+environment change. Full provider/genesis/capacity/archive/operation fees,
+operator caps and real hosting/signing approval remain separate.
+
 [20M contribution / 24M maintenance profiles](../reports/gas-profiles-20261113/REVIEW.md)
 now have controlled exact$100/$5 ETH/ZZZ and six keeper-operation execution evidence,
 full20%/25% padding, exact padded calls and four production-reader replays. Five

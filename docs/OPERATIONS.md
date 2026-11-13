@@ -46,6 +46,31 @@ is not a production approval. A gas field does not enforce a hard network/OS
 wall timeout; keep worker/watchdog/RPC containment and fee policy separate.
 [Focused change and evidence](../reports/remaining-271-20261111/VERIFICATION.md).
 
+## Future-only Robinhood zero-tip submissions
+
+Explicit `submission_fee_profile:2` is a source-only opt-in for chain4663 with
+`receipt_fee_policy:"included"` and `l1_fee_allowance_wei:0`. It fixes type2 and
+priority0 in initial/final simulations, estimation and Cast arguments, while
+keeping the existing maximum fee, gas, transaction/day and native-funding checks.
+Initial simulation may require funding for the full configured ceiling. The
+matching saved `fee_review` is schema2 with
+`execution_fee_model:"eip1559_zero_tip"`; recovery independently requires the
+actual signed type2/zero-tip shape and receipt price equal to canonical base.
+
+Omission/profile1 retains the original flow and schema1. Future settings do not
+reinterpret pending reviews: recover the exact saved hash/review first even if
+the new submission setting is invalid. Do not edit a journal, resend, drop its
+captured limits or roll old source onto a schema2 pending. Generic Ethereum fee
+arithmetic remains unchanged. This avoids an actual Nitro nonzero-tip spend
+overstatement without adding a mutable consensus-price rule or new oracle.
+
+The [RPC/fee report](../reports/rpc-fees-20261113/REVIEW.md) separates actual
+provider/receipt observations, new source checks, harmless unsigned construction
+and still-open actual signer/host/full-operation fee acceptance. No running
+configuration or service is changed. Use the
+[operator adoption procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) and original
+journals for any later separately approved restart.
+
 ## Current deployment and configuration
 
 Current [keeper coordination](KEEPER_COORDINATION.md) adds service-only compound

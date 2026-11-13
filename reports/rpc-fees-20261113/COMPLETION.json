@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "completed_at_utc": "2026-11-13T10:17:51.467079+00:00",
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "scope": "Read-only RPC/fee qualification and explicit future-only keeper zero-tip correction; no rollout",
+  "qualification": {
+    "canonical_trace_with_actual_log_observed": true,
+    "full_activation_api_v1_profile_approved": false,
+    "effective_full_work_20M_24M_provider_capacity_proven": false,
+    "l1_payload_component_reads": 10,
+    "full_non_PoPL_approval_components": 1,
+    "genuine_public_receipts": 2,
+    "complete_PoPL_mainnet_fee_quote": false,
+    "operator_spending_caps_approved": false,
+    "provider_adopted": false,
+    "new_keeper_methods_passed": 14,
+    "old_methods_rerun": 0,
+    "new_EVM_or_compiler_executions": 0,
+    "unsigned_Cast_builder_constructions": 1,
+    "signatures_or_submitted_transactions": 0,
+    "runner_methods_selected": 965,
+    "runner_methods_executed": 0,
+    "RPC_attempts": 56,
+    "valid_results": 50,
+    "missing_hash_RPC_errors": 3,
+    "HTTP_denials": 1,
+    "restricted_transport_failures": 2
+  },
+  "source": {
+    "changed_production_file": "keeper/monitor.py",
+    "sha256": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+    "future_submission_fee_profile": 2,
+    "pending_fee_review_schema": 2,
+    "model": "eip1559_zero_tip",
+    "default_profile": 1,
+    "generic_Ethereum_fee_helper_changed": false,
+    "Solidity_sources_changed": 0,
+    "Solidity_source_count": 61,
+    "existing_gas_or_financial_defaults_changed": false,
+    "existing_pending_reviews_reinterpreted": false,
+    "default_static_review_reused_for_unchanged_Solidity_only": true
+  },
+  "mechanical_checks": {
+    "successful": true,
+    "checked_at_utc": "2026-11-13T10:16:08.544576+00:00",
+    "production_solidity_unchanged": 61,
+    "normal_compiler_input_sources_exact": 100,
+    "generic_ethereum_fee_helper_unchanged": true,
+    "source_test_bracket_verified": true,
+    "new_methods_passed": 14,
+    "old_methods_rerun": 0,
+    "all_original_tasks_statuses_evidence_preserved": true,
+    "introduced_local_links_checked": {
+      "links": 64,
+      "anchors": 8
+    },
+    "protected_sha256": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "website_inputs_unchanged": 12,
+    "public_configurations_null": true,
+    "errors": [],
+    "scope": "Mechanical source/data/preservation/links only; no suite, RPC, EVM or compiler execution",
+    "all_three_frozen_manifests": {
+      "network": {
+        "manifest_sha256": "aaa4e85b151c391b8ed808145a803b5c2f38b72ee80ecf2631056b4d3edba7c3",
+        "public_artifacts_verified": 6
+      },
+      "software": {
+        "manifest_sha256": "1774e6868f617ec3332e80d725a08a25771087fa40a1b3a375399674d1ff811e",
+        "public_artifacts_verified": 13
+      },
+      "fees": {
+        "manifest_sha256": "8b5609c14c48414561c994dbf7da87be0ce07ac87c6b1a2df8e671f2a06ae6a9",
+        "public_artifacts_verified": 13
+      }
+    },
+    "generated_todo_check_passed": true,
+    "operator_reference_check": {
+      "contracts": 40,
+      "functions": 956,
+      "example_rows": 1009,
+      "explanation_gaps": 0
+    },
+    "function_reference_check_passed": true,
+    "staged_scope": {
+      "successful": true,
+      "checked_at_utc": "2026-11-13T10:19:45.068466+00:00",
+      "staged_files": 59,
+      "staged_bytes_exact": true,
+      "protected_unstaged_identical": 4,
+      "completion_hashes_exact": true,
+      "new_tests_or_network": 0
+    },
+    "python_publication_index": {
+      "kind": "static_python_publication_closure",
+      "revision": "index",
+      "successful": true,
+      "files": 403,
+      "errors": []
+    }
+  },
+  "website": {
+    "revision": "206892ab8b93d65cae3564e71feaf4435f90cdee",
+    "working_tree_clean": true,
+    "inputs_signer_and_null_configs_unchanged": true
+  },
+  "preservation": {
+    "four_protected_dirty_files_byte_identical_and_unstaged": true,
+    "unrelated_untracked_drafts_preserved": true,
+    "existing_Anvil_NFTs_LP_balances_preserved": true,
+    "live_configs_services_sites_or_signers_changed": false,
+    "journals_rewritten": false,
+    "heartbeat_restarted": false
+  },
+  "remaining_requirements": [
+    "Independent genesis/full provider profile and numerical full-work capacity, response/time/history/plan reliability",
+    "Exact full deployed or separately authorized target-state PoPL operations and complete fee envelope",
+    "Actual independent feeds, routes/depth and maximum state",
+    "Explicit approved fee hashes, gas-price/transaction/day/funding ceilings and configuration/consumer rollout",
+    "Actual Linux signer/recovery/hosting, authorities, VRF/OpenSea and independent approval",
+    "Finish schema2 pending recovery before unsupported source downgrade; original schema1 records stay original"
+  ],
+  "artifact_sha256_excluding_this_receipt": {
+    "AGENTS.md": {
+      "sha256": "5c35d7994df8b8afe930ab739d4fdc2a5ef7e691cf01cd898ec42271758a6f4e",
+      "bytes": 48318
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "3627b9c0c3b153063ee4b0ff3d18bbdf20543a8fcc533d68e71ed31155a7ab18",
+      "bytes": 27753
+    },
+    "README.md": {
+      "sha256": "4d2a93714cff6a87caaf1277d7b6f037965bba69136e7f51e87d310a51ea8bea",
+      "bytes": 17868
+    },
+    "TODO.md": {
+      "sha256": "ecf7f5fe113f90d99c0940786c81abfa2c5d56c3da86d6bebfec1be9f7a74885",
+      "bytes": 368813
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "beb6d6045954cad20ec1615d0ef642bc97ab5540e3f4a681c991ef31f3c00cc4",
+      "bytes": 36797
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "2b1e75a814372aa972d52ba40c3947c16c84e74aa2182329a0c4da0321eb2745",
+      "bytes": 33888
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "sha256": "2816c8b9784986cb8fedaf1a9e0027051d81d74508200c7f0d43323aa3531273",
+      "bytes": 43669
+    },
+    "docs/OPERATIONS.md": {
+      "sha256": "b3ce1aec86cae28da514e24c051acec90bf5fa57a9fdfe6c4f0834fa58868a64",
+      "bytes": 36781
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "e6ad216deac3aa8580e352ed40f642214d1a2f36054498540fc4535b6f3bf7d6",
+      "bytes": 522991
+    },
+    "docs/PRODUCTION_SERVICES.md": {
+      "sha256": "64b4a1ab2ab262f931fdee5c84da95b7860214eeb73368010a86d5759f3f090d",
+      "bytes": 7963
+    },
+    "docs/README.md": {
+      "sha256": "8515a8a5c7636d214c5db265f80b7fb6a206266b4c7dcb8757e43daa6ab88379",
+      "bytes": 13613
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "sha256": "57f3158ae57a3858440234cfa764d1f5ec38c6132faa37acdb95fa793cd9abfd",
+      "bytes": 19360
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "3fb3cbfe38a5581a379171c3356d50c129f2388df667f110073bd99e99253feb",
+      "bytes": 12877
+    },
+    "docs/ROBINHOOD_GAS.md": {
+      "sha256": "a831d56e609d694efdaeb845d25233679b83525f2686ad9ec6dc06bba210ce11",
+      "bytes": 9198
+    },
+    "docs/RPC_PREPARATION_QUALIFICATION.md": {
+      "sha256": "432c77281369d579b997ada6c02a983d93bb5634d20a723d54361dbd5366a0c5",
+      "bytes": 6908
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "65b2662480fcea50f3162d064fb5d59b08c4baea679ef2066841defaa52a50b9",
+      "bytes": 25814
+    },
+    "docs/project-todo.json": {
+      "sha256": "9e6786eb6ba96e2500ef86d7919e4c2f42eec825f7b346439aa6e8f7b9331ed0",
+      "bytes": 383711
+    },
+    "keeper/monitor.py": {
+      "sha256": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+      "bytes": 187485
+    },
+    "reports/README.md": {
+      "sha256": "97b4477b77eaa0ecafa1aff728088caed563f9e1c1eefe93f9a2f984e4a45d7e",
+      "bytes": 21561
+    },
+    "scripts/run-keeper-tests.py": {
+      "sha256": "da6735c005d8fbb86889d9154f8e0830855fef0313974926cf4ba03737f47d9b",
+      "bytes": 6519
+    },
+    "tests_python/test_keeper_zero_tip_profile.py": {
+      "sha256": "5e2db513c4ffac76f2834df9086939d12c57c51a3115c0a8881cb7005097a9f7",
+      "bytes": 15149
+    },
+    "reports/rpc-fees-20261113/REVIEW.md": {
+      "sha256": "f47d33c31c48857f94fc2372382d015c4031c7465055d3585b7980cf918d1d50",
+      "bytes": 7608
+    },
+    "reports/rpc-fees-20261113/VERIFICATION.md": {
+      "sha256": "ae01bbb1fc88c85c2ae6f52cf7b238fb8c950637f6231db54edae04e66ea9aea",
+      "bytes": 2651
+    },
+    "reports/rpc-fees-20261113/fees/ARTIFACTS.json": {
+      "sha256": "8b5609c14c48414561c994dbf7da87be0ce07ac87c6b1a2df8e671f2a06ae6a9",
+      "bytes": 2208
+    },
+    "reports/rpc-fees-20261113/fees/CAST_UNSIGNED.json": {
+      "sha256": "4a15e19d1c8cb40bb25d8dac1dbc8ae5736ad4204868c3d38701bd244e41d680",
+      "bytes": 1702
+    },
+    "reports/rpc-fees-20261113/fees/COMPANION_REQUESTS.json": {
+      "sha256": "eb0e15b0811c3fd25ac38350d841f4138299772457f85f124cc1fe9b915129ac",
+      "bytes": 1560
+    },
+    "reports/rpc-fees-20261113/fees/EXTERNAL.json": {
+      "sha256": "2f490485d1babe9fec1a6a5c47235d18fe49775178ca1d7852bf4c3c2d9e628a",
+      "bytes": 2428
+    },
+    "reports/rpc-fees-20261113/fees/FIX_BASELINE.json": {
+      "sha256": "27f11844e13a0133ee48295a9a121af07e248c8dee3c7a8a48a6d14cc815e8ff",
+      "bytes": 467
+    },
+    "reports/rpc-fees-20261113/fees/KEEPER_FOCUSED.json": {
+      "sha256": "b41e91086eaf82331b9ca8dc72fa147280d712ae9476fbcca7111ee7604c2adb",
+      "bytes": 5856
+    },
+    "reports/rpc-fees-20261113/fees/KEEPER_FOCUSED.log": {
+      "sha256": "5fc4c7cde86c83095e0976520cfddafb4caccbcbc21e3169a6224d05497dc624",
+      "bytes": 3216
+    },
+    "reports/rpc-fees-20261113/fees/PRIMARY_SOURCES.json": {
+      "sha256": "dbcfcef5d991738fd9ece535384295a84d3dbbcb677fa8fe0ac55cd183ab0aac",
+      "bytes": 4186
+    },
+    "reports/rpc-fees-20261113/fees/REQUEST_PLAN.json": {
+      "sha256": "51facaad9b6140d3ca482eaaf3f2905d6d9876f264ab0bfd3ba6969dbce826ec",
+      "bytes": 22646
+    },
+    "reports/rpc-fees-20261113/fees/RESULTS.json": {
+      "sha256": "7bac535150cfbd9ce71abc8101234e66e8746c0e05f0982dbc8a759930181720",
+      "bytes": 13759
+    },
+    "reports/rpc-fees-20261113/fees/REVIEW.md": {
+      "sha256": "c77aea1807145ba5808ad2b74bbb3ce6109cc5ad4b3d520634298b518d22bc9d",
+      "bytes": 10497
+    },
+    "reports/rpc-fees-20261113/fees/SOURCE_ASSESSMENT.json": {
+      "sha256": "43bd9bb440a3c1fa7798e105b4d4c0a64f8bc6a7f8652b02b425c16bb1f921f1",
+      "bytes": 3417
+    },
+    "reports/rpc-fees-20261113/fees/VERIFICATION.json": {
+      "sha256": "8c0b341315f84f9e3f4692e4d96e23d9a5ecf7a9f1df7515ec08b16f4797611d",
+      "bytes": 863
+    },
+    "reports/rpc-fees-20261113/fees/reconcile.py": {
+      "sha256": "3f9dd72e71a9a71f1a42eca1428c08839a81d14dc9a4c9ff6a8420a6bfe9604e",
+      "bytes": 14363
+    },
+    "reports/rpc-fees-20261113/network/ARTIFACTS.json": {
+      "sha256": "aaa4e85b151c391b8ed808145a803b5c2f38b72ee80ecf2631056b4d3edba7c3",
+      "bytes": 14482
+    },
+    "reports/rpc-fees-20261113/network/METHODS.json": {
+      "sha256": "eb2bade52ae7a0114ffc85086e4a1843a415a62ff808244dfb98e86793a53f9c",
+      "bytes": 1393
+    },
+    "reports/rpc-fees-20261113/network/RESULTS.json": {
+      "sha256": "a9201d42c4a2194a8c2f5cf57479b914daddc7fd9bb9d3770b377e5d4077f083",
+      "bytes": 3619
+    },
+    "reports/rpc-fees-20261113/network/REVIEW.md": {
+      "sha256": "406fb0536f801f98c6404a029e953ba8117da61db9e84da410a6f143efe1b3fe",
+      "bytes": 7462
+    },
+    "reports/rpc-fees-20261113/network/RPC.json": {
+      "sha256": "8f612d2b88d03cf05be171dbb5fcfc66cc2b3d0e547b3c899cd7184691a8d453",
+      "bytes": 118272
+    },
+    "reports/rpc-fees-20261113/network/SOURCES.json": {
+      "sha256": "7284515c9fa5c18d9f8d2efa4d073eb35ea87bbb572c348c1face4cdd01f9749",
+      "bytes": 3704
+    },
+    "reports/rpc-fees-20261113/network/verify.py": {
+      "sha256": "034f490557ec4ea87facf990dabe6a06d85449e0bb70bb33ff2dd6e09cc4d816",
+      "bytes": 11784
+    },
+    "reports/rpc-fees-20261113/software/ACCEPTANCE.json": {
+      "sha256": "d84d38f0d6c08d5c53a0fbbe65c080a27218c0104833d87e729b4d76dc6cf359",
+      "bytes": 4373
+    },
+    "reports/rpc-fees-20261113/software/ARTIFACTS.json": {
+      "sha256": "1774e6868f617ec3332e80d725a08a25771087fa40a1b3a375399674d1ff811e",
+      "bytes": 3637
+    },
+    "reports/rpc-fees-20261113/software/BASELINE_RECEIPT.json": {
+      "sha256": "d8cf1b0563d639df0361ed07dc453998570c199e3a90d75ca81c5cd06e244864",
+      "bytes": 1139
+    },
+    "reports/rpc-fees-20261113/software/BASELINE_TRACE_REPLAY.json": {
+      "sha256": "a82b6898f219be88c6f9e97bf9d596a6665f750826723b2fd49c38ce408a22c7",
+      "bytes": 4142
+    },
+    "reports/rpc-fees-20261113/software/HANDOFF.json": {
+      "sha256": "2723525fa330190cf194b13664355b39e2fe26c0141e8a2511ab5f662fa530fe",
+      "bytes": 2115
+    },
+    "reports/rpc-fees-20261113/software/KEEPER_FULL_INVENTORY.json": {
+      "sha256": "9fa3937df29041d5a7100ce2df644eada521b5422c28acc64fcfeea83bc50392",
+      "bytes": 2424
+    },
+    "reports/rpc-fees-20261113/software/KEEPER_INVENTORY.json": {
+      "sha256": "737abb0da8ee8278ba970e18f4ab3881fb50d80912ddd0c9103d853c040c0a15",
+      "bytes": 2665
+    },
+    "reports/rpc-fees-20261113/software/PRECHECK_FAILURE.json": {
+      "sha256": "48719e161d9d84f2971c1da71e595dcafc1fc91dc4bc13e56593f201a3f37275",
+      "bytes": 444
+    },
+    "reports/rpc-fees-20261113/software/README.md": {
+      "sha256": "aad1b225aeaf0fa0fef2424d97b530e188d111a2b98d90dd0f9e914c9601d4e0",
+      "bytes": 7565
+    },
+    "reports/rpc-fees-20261113/software/RESULTS.json": {
+      "sha256": "11b4ec4baea96eec07da9b3b7f0480dbf88f46e9398ef059889bc6563445a9ac",
+      "bytes": 9741
+    },
+    "reports/rpc-fees-20261113/software/SOURCES.json": {
+      "sha256": "4416e39f2e9204e6ca43f2cb2739c91dd0cdd1ac8826dea427c429234f8d57dc",
+      "bytes": 1390
+    },
+    "reports/rpc-fees-20261113/software/TRACE_CLOSURE.json": {
+      "sha256": "1bb20c0ced2f206812a910537d3b1cafc771f4e45fb7546fe2dcae250cdb433c",
+      "bytes": 8218
+    },
+    "reports/rpc-fees-20261113/software/verify-current.py": {
+      "sha256": "e42421da74cd2de79f5abc20ec1c9827437e844470c5430ae9845608714ee336",
+      "bytes": 8102
+    },
+    "reports/rpc-fees-20261113/software/verify.py": {
+      "sha256": "b8b69923b5d6794e28e3feaf5621f9c2e632eac7da12518ae2f3599d7c09431d",
+      "bytes": 11076
+    }
+  }
+}

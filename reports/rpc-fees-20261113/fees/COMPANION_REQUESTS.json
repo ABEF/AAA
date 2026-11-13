@@ -1,0 +1,40 @@
+{
+  "scope": "Optional chain fee controls at same new canonical hash; raw errors retained, no fallback or setting adoption",
+  "requests": [
+    {
+      "label": "collect-tips",
+      "method": "eth_call",
+      "transaction": {
+        "to": "0x000000000000000000000000000000000000006b",
+        "data": "0x8e34a64d",
+        "gas": "0x7a120"
+      },
+      "expected": "exact ABI bool 0 or1",
+      "source": "https://raw.githubusercontent.com/OffchainLabs/nitro/v3.12.2/precompiles/ArbOwnerPublic.go#L107-L110"
+    },
+    {
+      "label": "arbos-version",
+      "method": "eth_call",
+      "transaction": {
+        "to": "0x0000000000000000000000000000000000000064",
+        "data": "0x051038f2",
+        "gas": "0x7a120"
+      },
+      "expected": "exact ABI uint256; compare actual only, not docs assumption"
+    },
+    {
+      "label": "client-version",
+      "method": "web3_clientVersion",
+      "params": []
+    }
+  ],
+  "weth_component_witness": {
+    "rule": "Use exact target already runtime/trace-validated by RPC agent, no guess",
+    "signature": "gasEstimateComponents(address,bool,bytes)",
+    "from": "0x000000000000000000000000000000000000dead",
+    "value": "0x0",
+    "gas": "0x7a120",
+    "inner_data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+    "expected": "exact4words,uint64 first2,total>=poster,baseFee>0; L1base may0; no need exact equality to independently adjusted eth_estimateGas"
+  }
+}

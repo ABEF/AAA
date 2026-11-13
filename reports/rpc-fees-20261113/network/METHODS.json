@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "allowed_methods": [
+    "debug_traceCall",
+    "eth_call",
+    "eth_chainId",
+    "eth_estimateGas",
+    "eth_feeHistory",
+    "eth_gasPrice",
+    "eth_getBlockByHash",
+    "eth_getBlockByNumber",
+    "eth_getCode",
+    "eth_getTransactionByHash",
+    "eth_getTransactionReceipt",
+    "eth_maxPriorityFeePerGas",
+    "web3_clientVersion"
+  ],
+  "approved_endpoints": [
+    "https://triport.io/public/robinhood",
+    "https://robinhood.rpc.pinax.network"
+  ],
+  "bounds": {
+    "one_inflight": true,
+    "configured_monotonic_spacing_seconds_within_phase": 1.0,
+    "timeout_seconds": 12,
+    "minimum_observed_utc_interval_seconds_within_phase": 0.98665,
+    "monotonic_intervals_recorded": false,
+    "between_phase_delay_seconds": "No extra one-second delay promised; phases remain sequential",
+    "ordinary_response_bytes": 262144,
+    "trace_response_bytes": 1048576,
+    "per_recorder_max_calls": 22,
+    "per_recorder_new_call_time_bound_seconds": 75,
+    "global_rpc_attempts_max": 60,
+    "no_redirects": true,
+    "no_retries": true,
+    "stop_on_401_403_429": true,
+    "no_state_overrides": true
+  },
+  "witness": "Unchanged keeper.probe._approval_trace; approve(probeAddress,0),500000 gas,zeroETH,discarded simulation",
+  "fee_requests": "Exact frozen source payloads routed only to virtual NodeInterface L1 estimator, not their undeployed PoPL destination"
+}

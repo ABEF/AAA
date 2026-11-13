@@ -1,0 +1,60 @@
+{
+  "observed_at_utc": "2026-11-13T10:06:50.471356+00:00",
+  "scope": "Only 14 new zero-tip profile methods; imported old classes supply fixtures, never executed tests. Inert signer and actual read-only receipt fields with explicitly constructed test journal.",
+  "selected_methods": [
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_actual_zero_tip_receipt_replays_without_changing_its_public_fields",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_new_profile_keeps_original_gas_price_transaction_and_daily_caps",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_omitted_and_explicit_profile1_keep_original_order_command_and_schema",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_final_rebalance_and_compound_use_the_same_frozen_dynamic_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_is_explicit_strict_and_robinhood_inclusive_only",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_persists_exact_review_before_mock_signer_and_fixes_fee_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_provider_upfront_full_cap_funding_failure_does_not_sign_or_widen",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema1_pending_is_not_reinterpreted_when_future_profile2_is_configured",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_bad_receipt_price_or_canonical_cap_preserves_journal",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_recovery_uses_saved_model_even_with_invalid_future_settings",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_rejects_nonzero_priority_legacy_wrong_chain_and_missing_priority",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_review_is_exact_and_cannot_enable_separate_fees_or_unknown_models",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_signer_failure_keeps_schema2_intent_and_never_resends",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_zero_tip_revert_counts_only_gas_once_and_keeps_native_value_unspent"
+  ],
+  "executed_methods": [
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_actual_zero_tip_receipt_replays_without_changing_its_public_fields",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_new_profile_keeps_original_gas_price_transaction_and_daily_caps",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_omitted_and_explicit_profile1_keep_original_order_command_and_schema",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_final_rebalance_and_compound_use_the_same_frozen_dynamic_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_is_explicit_strict_and_robinhood_inclusive_only",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_persists_exact_review_before_mock_signer_and_fixes_fee_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_provider_upfront_full_cap_funding_failure_does_not_sign_or_widen",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema1_pending_is_not_reinterpreted_when_future_profile2_is_configured",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_bad_receipt_price_or_canonical_cap_preserves_journal",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_recovery_uses_saved_model_even_with_invalid_future_settings",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_rejects_nonzero_priority_legacy_wrong_chain_and_missing_priority",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_review_is_exact_and_cannot_enable_separate_fees_or_unknown_models",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_signer_failure_keeps_schema2_intent_and_never_resends",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_zero_tip_revert_counts_only_gas_once_and_keeps_native_value_unspent"
+  ],
+  "tests_run": 14,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "elapsed_seconds": 0.469,
+  "source_sha256_before": {
+    "keeper/monitor.py": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+    "tests_python/test_keeper_zero_tip_profile.py": "5e2db513c4ffac76f2834df9086939d12c57c51a3115c0a8881cb7005097a9f7",
+    "scripts/run-keeper-tests.py": "da6735c005d8fbb86889d9154f8e0830855fef0313974926cf4ba03737f47d9b",
+    "reports/rpc-fees-20261113/network/RPC.json": "8f612d2b88d03cf05be171dbb5fcfc66cc2b3d0e547b3c899cd7184691a8d453"
+  },
+  "source_sha256_after": {
+    "keeper/monitor.py": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+    "tests_python/test_keeper_zero_tip_profile.py": "5e2db513c4ffac76f2834df9086939d12c57c51a3115c0a8881cb7005097a9f7",
+    "scripts/run-keeper-tests.py": "da6735c005d8fbb86889d9154f8e0830855fef0313974926cf4ba03737f47d9b",
+    "reports/rpc-fees-20261113/network/RPC.json": "8f612d2b88d03cf05be171dbb5fcfc66cc2b3d0e547b3c899cd7184691a8d453"
+  },
+  "sources_unchanged": true,
+  "old_methods_executed": 0,
+  "signatures": 0,
+  "submitted_transactions": 0,
+  "successful": true
+}

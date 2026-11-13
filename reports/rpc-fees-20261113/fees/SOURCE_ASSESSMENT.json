@@ -1,0 +1,64 @@
+{
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "baseline_findings": [
+    {
+      "id": "F-FEE-01",
+      "state": "confirmed baseline mismatch; future-only opt-in implemented",
+      "scope": "Generic Ethereum positive-tip cost overstates actual current Robinhood sample, with legacy mismatch only conditional/unmeasured. Existing saved reviews remain explicit original semantics."
+    },
+    {
+      "id": "F-FEE-02",
+      "state": "partially evidenced; actual complete operation still open",
+      "scope": "Inclusive fee mechanics and actual posting component/ordinary receipts captured. No imported target state or synthetic public PoPL execution."
+    },
+    {
+      "id": "F-FEE-03",
+      "state": "operating qualification remains open",
+      "scope": "Full target configuration, meaningful PoPL tracing/provider capacity, actual fee ceilings and funding, Linux signer/receipt recovery, archive/load/uptime and authority/feed/route/OpenSea readiness."
+    }
+  ],
+  "implemented": {
+    "source_files": [
+      "keeper/monitor.py",
+      "tests_python/test_keeper_zero_tip_profile.py",
+      "scripts/run-keeper-tests.py"
+    ],
+    "keeper_runner_change": "One new module selection line, inventory only.",
+    "future_submission_fee_profile": 2,
+    "chain_id": 4663,
+    "receipt_fee_policy": "included",
+    "separate_l1_allowance_wei": 0,
+    "pending_fee_review_schema": 2,
+    "additional_review_field": {
+      "execution_fee_model": "eip1559_zero_tip"
+    },
+    "profile1_and_existing_saved_review_semantics": "Preserved, never automatically upgraded/relabelled",
+    "receipt_requirements": "Exact original gas/cap/chain/from/to/nonce/payload/value; type2; signed priority0; canonical price equals reported receipt price.",
+    "simulation_envelope": "One early existing price read, type2/maxFee/priority0 consistently for initial/estimate/finalLP; no extra RPC, fee bump or conflicting fixed gasPrice.",
+    "defaults_or_running_config_changed": false
+  },
+  "verification": {
+    "new_focused_methods": 14,
+    "passes": 14,
+    "skips": 0,
+    "old_methods_executed": 0,
+    "actual_recorded_receipts": 2,
+    "new_solidity_build_or_evm_execution": false,
+    "actual_signer_execution": false,
+    "unsigned_builder_only": true
+  },
+  "source_sha256_at_focus": {
+    "keeper/monitor.py": "2b88b97005f2990d2d245917cee32ba1723de4cf53c0247ba59a656742039805",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+    "tests_python/test_keeper_zero_tip_profile.py": "5e2db513c4ffac76f2834df9086939d12c57c51a3115c0a8881cb7005097a9f7",
+    "scripts/run-keeper-tests.py": "da6735c005d8fbb86889d9154f8e0830855fef0313974926cf4ba03737f47d9b",
+    "reports/rpc-fees-20261113/network/RPC.json": "8f612d2b88d03cf05be171dbb5fcfc66cc2b3d0e547b3c899cd7184691a8d453"
+  },
+  "baseline_raw_hashes": {
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+  },
+  "ethereum_fees_unchanged": true,
+  "contracts_economic_limits_authority_rights_changed": false,
+  "journal_rollback_rule": "Finish schema2 pending recovery before downgrading to source without schema2 support; preserve original evidence and never delete or reinterpret pending records."
+}

@@ -1,0 +1,71 @@
+{
+  "external_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\rpc-fees-20261113-0330a98\\fees",
+  "scope": "Original source bracket, offline runner, primary rendered web archives and direct-capture failure records. No credential or private wallet material.",
+  "files": [
+    {
+      "path": "capture_sources.py",
+      "sha256": "ee1ae082f61d2ff179bfc7480d073faee6047d42ea58e1080c60e5d2f3692865",
+      "bytes": 3146
+    },
+    {
+      "path": "CAST_UNSIGNED.json",
+      "sha256": "4a15e19d1c8cb40bb25d8dac1dbc8ae5736ad4204868c3d38701bd244e41d680",
+      "bytes": 1702
+    },
+    {
+      "path": "COMPANION_REQUESTS.json",
+      "sha256": "eb0e15b0811c3fd25ac38350d841f4138299772457f85f124cc1fe9b915129ac",
+      "bytes": 1560
+    },
+    {
+      "path": "FIX_BASELINE.json",
+      "sha256": "27f11844e13a0133ee48295a9a121af07e248c8dee3c7a8a48a6d14cc815e8ff",
+      "bytes": 467
+    },
+    {
+      "path": "KEEPER_FOCUSED.json",
+      "sha256": "b41e91086eaf82331b9ca8dc72fa147280d712ae9476fbcca7111ee7604c2adb",
+      "bytes": 5856
+    },
+    {
+      "path": "KEEPER_FOCUSED.log",
+      "sha256": "5fc4c7cde86c83095e0976520cfddafb4caccbcbc21e3169a6224d05497dc624",
+      "bytes": 3216
+    },
+    {
+      "path": "originals/keeper/monitor.py",
+      "sha256": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+      "bytes": 184904
+    },
+    {
+      "path": "originals/zzz_ops/ethereum_fees.py",
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "bytes": 2464
+    },
+    {
+      "path": "primary-web-docs.json",
+      "sha256": "d76bed9674ebe571b406c5a4cff2dbde7d33852d60df9d3d03763d6438ba5296",
+      "bytes": 14744
+    },
+    {
+      "path": "primary-web-source.json",
+      "sha256": "1b4d12308b8ee6a479682d5135ada88d1201e16f94e3795e647e332d8b9a65e0",
+      "bytes": 28321
+    },
+    {
+      "path": "PRIMARY_CAPTURE.json",
+      "sha256": "111a1d8e21d9d97e51df682f39ddf77cd1c7cf74e82ceb70eb3fdc5ec09a0387",
+      "bytes": 2859
+    },
+    {
+      "path": "REQUEST_PLAN.json",
+      "sha256": "51facaad9b6140d3ca482eaaf3f2905d6d9876f264ab0bfd3ba6969dbce826ec",
+      "bytes": 22646
+    },
+    {
+      "path": "run_focused.py",
+      "sha256": "f71fd1e28675b061c45b0fc30620fa134f4efb73e83216559f7d3025fda12ade",
+      "bytes": 2456
+    }
+  ]
+}

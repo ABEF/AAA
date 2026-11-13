@@ -8,7 +8,13 @@ production source pair is selected; the dated provider findings below retain
 their original scope.
 
 
-Reviewed2026-11-09. [Latest read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
+The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) verifies a Pinax
+canonical trace/log witness and target components/receipts. The future-only
+zero-tip keeper profile does not select a live endpoint or approve complete
+PoPL fees, transaction/day caps, archive capacity or an operating service.
+[Operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
+
+Reviewed2026-11-13. [Feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory

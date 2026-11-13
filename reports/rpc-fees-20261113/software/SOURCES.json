@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "recorded_at_utc": "2026-11-13T09:46:21.023849+00:00",
+  "scope": "Existing production qualification, trace, gas and fee/recovery readers; no source modification or test execution",
+  "source_sha256": {
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_trace.py": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "frontend_api/transactions.py": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+    "frontend_api/worker.py": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62",
+    "zzz_ops/manual_lp_review.py": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54"
+  }
+}

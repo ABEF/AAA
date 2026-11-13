@@ -1,5 +1,13 @@
 # Engineering roadmap
 
+The [RPC/fee milestone](../reports/rpc-fees-20261113/REVIEW.md) now supplies a
+positive Pinax trace/log witness, target posting-component observations and a
+future-only zero-tip keeper accounting profile. Next qualify the full provider
+profile/genesis, effective capacity/archive/host reliability, complete actual
+PoPL estimates and reviewed operator fee ceilings. Matching configuration/source
+adoption and operating rehearsal remain separate; do not rerun unchanged EVM
+evidence, install an anonymous endpoint or raise defaults to declare completion.
+
 The [20M/24M milestone](../reports/gas-profiles-20261113/REVIEW.md) completes
 controlled exact$100/$5 ETH/ZZZ and six keeper-operation qualification with full
 padding and actual RPC estimates/padded calls. Defaults and safeguards remain;

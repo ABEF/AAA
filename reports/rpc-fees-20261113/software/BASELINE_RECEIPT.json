@@ -1,0 +1,23 @@
+{
+  "scope": "Baseline unchanged generic Ethereum fee helper applied offline to a NEW actual Robinhood nonzero-tip transaction/receipt; no RPC or test suite run",
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "capture_sha256": "b0fe82d28c079d4626c030da65d883e2ae330cb02c14b3858a717bdc65d64d59",
+  "ethereum_fees_source_sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+  "transaction_hash": "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+  "canonical_block_hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+  "canonical_block_number": 113263446,
+  "transaction_chain_id": 4663,
+  "signed_fee_cap_wei": 650900000,
+  "signed_priority_fee_wei": 50000000,
+  "canonical_base_fee_wei": 20100000,
+  "helper_execution_price_wei": 70100000,
+  "reported_execution_price_wei": 20100000,
+  "gas_used": 56722,
+  "helper_gas_cost_wei": 3976212200000,
+  "reported_gas_cost_wei": 1140112200000,
+  "helper_matches_reported_price": false,
+  "new_network_calls": 0,
+  "new_evm_test_executions": 0,
+  "complete_fee_policy_approved": false,
+  "source_changed": false
+}

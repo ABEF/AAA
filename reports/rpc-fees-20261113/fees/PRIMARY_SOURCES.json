@@ -1,0 +1,86 @@
+{
+  "review_date_utc": "2026-11-13",
+  "sources": [
+    {
+      "id": "rh-fees",
+      "url": "https://docs.robinhood.com/chain/gas-and-fees/",
+      "kind": "official chain documentation",
+      "used_for": "Execution and posting are bundled in standard gas accounting; no separate second posting addition."
+    },
+    {
+      "id": "rh-protocol",
+      "url": "https://docs.robinhood.com/chain/protocol-contracts/",
+      "kind": "official chain documentation",
+      "used_for": "Published ArbGasInfo, ArbSys, ArbOwnerPublic and virtual NodeInterface addresses."
+    },
+    {
+      "id": "rh-differences",
+      "url": "https://docs.robinhood.com/chain/differences-from-ethereum/",
+      "kind": "official chain documentation",
+      "used_for": "Nitro gas differences and sequencer arrival ordering; faster priority inclusion must not be promised."
+    },
+    {
+      "id": "rh-node",
+      "url": "https://docs.robinhood.com/chain/run-a-full-node/",
+      "kind": "official chain documentation",
+      "used_for": "Nitro architecture; documentation example is not attestation of the observed v3.12.4 client."
+    },
+    {
+      "id": "arbitrum-estimation",
+      "url": "https://docs.arbitrum.io/arbitrum-essentials/how-to-estimate-gas",
+      "kind": "upstream official documentation",
+      "used_for": "Inclusive estimator and total/poster decomposition. Estimates remain approximate."
+    },
+    {
+      "id": "node-interface-reference",
+      "url": "https://docs.arbitrum.io/arbitrum-essentials/nodeinterface/reference",
+      "kind": "upstream official documentation",
+      "used_for": "Virtual RPC-only interface and fee-component methods."
+    },
+    {
+      "id": "node-interface-abi",
+      "url": "https://github.com/OffchainLabs/nitro-contracts/blob/4341b132cfbdcc980ead03765ca5224ff6cb5d97/src/node-interface/NodeInterface.sol#L68-L113",
+      "kind": "commit-pinned upstream interface",
+      "used_for": "Exact payable input/return tuples and distinction between full-target and posting-only estimation."
+    },
+    {
+      "id": "nitro311-node-interface",
+      "url": "https://github.com/OffchainLabs/nitro/blob/v3.11.2/execution/nodeinterface/node_interface.go#L403-L518",
+      "kind": "version-tagged upstream implementation",
+      "used_for": "Sender/value/fee forwarding, full execution versus posting-only calculation; implementation padding differs from ABI comment."
+    },
+    {
+      "id": "nitro312-processing",
+      "url": "https://github.com/OffchainLabs/nitro/blob/v3.12.2/arbos/tx_processor.go#L922-L968",
+      "kind": "version-tagged upstream implementation",
+      "used_for": "Conditional tip collection, base-only paid price and receipt fee fields. Not an attestation of actual v3.12.4 binary."
+    },
+    {
+      "id": "nitro312-owner",
+      "url": "https://github.com/OffchainLabs/nitro/blob/v3.12.2/precompiles/ArbOwnerPublic.go#L107-L110",
+      "kind": "version-tagged upstream implementation",
+      "used_for": "Public getCollectTips read."
+    },
+    {
+      "id": "nitro312-arbsys",
+      "url": "https://github.com/OffchainLabs/nitro/blob/v3.12.2/precompiles/ArbSys.go#L59-L63",
+      "kind": "version-tagged upstream implementation",
+      "used_for": "Public version getter adds55; raw116 normalizes to internal61."
+    }
+  ],
+  "retrieval": "Official pages/implementation excerpts inspected using the web tool; rendered response archives remain external. Direct Python origin-byte retrieval failed without a retry, and no origin-body hash is claimed.",
+  "external_rendered_archives": [
+    {
+      "path": "primary-web-docs.json",
+      "sha256": "d76bed9674ebe571b406c5a4cff2dbde7d33852d60df9d3d03763d6438ba5296",
+      "origin_raw_bytes": false
+    },
+    {
+      "path": "primary-web-source.json",
+      "sha256": "1b4d12308b8ee6a479682d5135ada88d1201e16f94e3795e647e332d8b9a65e0",
+      "origin_raw_bytes": false
+    }
+  ],
+  "actual_deployed_binary_attestation": false,
+  "advertised_exact_tag_or_commit_source_retrieval": "v3.12.4 and960ca0a web retrieval unavailable; source semantics plus live getter/receipt are distinguished."
+}

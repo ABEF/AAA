@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "passed within recorded-source/offline scope",
+  "new_keeper_methods": 14,
+  "old_test_methods_repeated": 0,
+  "new_rpc_calls_by_this_fee_interpreter": 0,
+  "shared_actual_rpc_evidence": "../network/RPC.json; do not add these shared events to the network campaign count",
+  "poster_component_cases": 10,
+  "genuine_ordinary_receipts": 2,
+  "unsigned_type2_builder": true,
+  "all_focused_sources_unchanged_during_run": true,
+  "production_approved": false,
+  "complete_popl_fee_quote": false,
+  "contract_default_or_live_adoption": false,
+  "commands": [
+    "python reports/rpc-fees-20261113/fees/reconcile.py",
+    "python scripts/run-keeper-tests.py --list (inventory only)"
+  ],
+  "source_scope": "14 new methods once; actual captured data interpretation; no unchanged EVM/build/browser/Python suite reruns."
+}

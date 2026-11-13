@@ -331,6 +331,82 @@ the prior reviewed configuration/consumer and reconciling the same pending hashe
 never by deleting or relabeling journal entries. This qualification installs
 nothing in a running environment.
 
+<a id="robinhood-rpc-fees"></a>
+
+### Review a Robinhood tracing RPC and complete fees
+
+The [RPC/fee evidence](../reports/rpc-fees-20261113/REVIEW.md) verifies a discarded
+Approval(0) event through the existing trace helper at the public Pinax endpoint.
+It does not approve that anonymous endpoint for sustained service, qualify every
+20M/24M workload or provide full target-chain quotes for undeployed PoPL.
+
+| Review | Operator action | Required result |
+| --- | --- | --- |
+| Identity and tracing | Review chain4663, independent genesis pin, exact probe runtime and canonical-hash traces with logs | Actual expected log; unknown hashes fail |
+|20M/24M capacity | Obtain effective call/estimate/trace caps and exercise exact deployed operations | Full padding fits; no clamp/fallback |
+| Complete estimates | Reconcile Nitro total/posting components and real receipts | Posting included once; no fabricated full quote |
+| Fees and funding | Approve gas-price, per-transaction/day/native-balance bounds and evidence hash | Explicit reviewed values; no automatic increase |
+| Adoption | Reconcile pending records, pin complete configuration/consumer and dry-run | Separate authorized restart; original journals |
+
+For a future private endpoint, keep its full URL/credentials in a local JSON
+file outside Git. The existing read-only probe expects `chain_id:4663` and
+`rpc_urls:[REVIEWED_URL]`. Obtain an independently reviewed genesis hash and
+probe-token runtime before using this command; do not substitute unreviewed
+values from the same endpoint:
+
+```text
+python -m keeper.probe --config PRIVATE_RPC_CONFIG.json --profile activation_api_v1 --address REVIEWED_ERC20_ADDRESS --calldata 0x18160ddd --genesis-hash REVIEWED_GENESIS_HASH --runtime-hash REVIEWED_RUNTIME_HASH --output NEW_RPC_OBSERVATION.json
+```
+
+This simulates `approve(probeAddress,0)` and discards it; it sends no transaction
+and changes no allowance. The WETH witness is only a probe, not admission of a
+new contribution asset. The full probe's90-second/100-logical-call bounds and
+other receipt/tag checks remain. A failing required check stays unavailable;
+never use numbered-block substitution or omit the financial trace. Cheap gas
+field acceptance is insufficient numerical-capacity evidence.
+
+Robinhood uses inclusive Nitro fee accounting: a complete `eth_estimateGas`
+contains execution and posting gas. A component quote is a reconciliation tool;
+adding its posting fee again double counts. The10captured PoPL payloads have
+L1-only component observations, not complete public PoPL execution estimates.
+NodeInterface's prospective price may differ from the inclusion block price.
+Prepare each real operation against exact current runtimes and state, retain
+20% contribution/25% keeper padding and refresh the fee envelope before signing.
+No approved fee hash or operator spending ceiling is invented here.
+
+A new explicit future-only keeper `submission_fee_profile:2` is restricted to
+Robinhood4663 and inclusive receipt accounting. It prepares/simulates type2
+transactions with priority0, passes the same envelope to Cast, and requires that
+signed shape and canonical base-fee receipt during recovery. This avoids the
+observed generic base+nonzero-tip overstatement without trusting an arbitrary
+reported price. Profile omission/1 and original schema1 pending reviews retain
+their original behavior. It enables no public signing or running service here.
+
+For a later approved configuration, review these fields together with the
+existing24M cap, complete gas-price/transaction/day ceilings and funding:
+
+```json
+{
+  "submission_fee_profile": 2,
+  "receipt_fee_policy": "included",
+  "l1_fee_allowance_wei": 0
+}
+```
+
+This is an incomplete future-only overlay, not a runnable or approved service
+configuration. Stop new work, reconcile the exact pending hash under its saved
+review, then separately authorize a configuration/source restart with the original
+journal preserved. Never upgrade an old pending review to schema2, zero its tip,
+resend it, edit historical spend or enable force as a qualification shortcut.
+A source/provider/price failure stops preparation. Type2 simulation can require
+native funding for the full configured gas ceiling, even when the later padded
+transaction is smaller; fund and budget for this rather than overriding balances.
+Rolling back source/config
+must not make a schema2 pending review unreadable: finish its recovery with the
+matching source first. A compatible source upgrade may recover an original
+schema1 review unchanged; it does not require journal migration. No on-chain
+setter, sealing or existing Anvil reset is needed for these backend settings.
+
 ## Current accounting7 deployment boundary
 
 Fresh source uses Vault.ACCOUNTING_VERSION7, ProtocolPolicy1, Migration.CUSTODY_VERSION5,

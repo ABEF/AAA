@@ -12,11 +12,20 @@ acceptance. Manual24M helpers have injected-input coverage, not actual C/D
 qualification. Candidate overlays are incomplete/unapproved, not live settings.
 Website configured activation gas must exactly equal backend configured gas;
 activation/claim listeners remain separate. Keeper/manual padding25%, explicit
-activation policy2 padding20%; claim policy1/default12M stays. Public Daybreak
-accepts canonical-hash cheap calls/estimates but lacks tracing; BlockVectra
-hash-state calls and tracing fail. No complete provider/fees/market/max-state or
-hosting/operating approval. All61 production sources, Oracle3-byte/Vault32-byte
-headroom, signer/public-null/site/service/Anvil/journals and paused heartbeat stay.
+activation policy2 padding20%; claim policy1/default12M stays. The later
+[RPC/fee qualification](reports/rpc-fees-20261113/REVIEW.md) proves a Pinax
+canonical-hash actual Approval(0) trace,20M/24M cheap field admission and ten
+nonzero L1-only payload components. Actual Nitro receipts reveal generic
+base+nonzero-tip overstatement. Future-only keeper submission_fee_profile2
+requires4663/included/L1allowance0, type2/priority0 through simulation/Cast and
+exact captured fee_review schema2 recovery. Omission/1 and old pending reviews
+retain their original behavior; do not rewrite journals or roll old source back
+onto schema2 pending. Generic Ethereum helper stays unchanged. Profile2 does
+not adopt an endpoint, attest complete fees or choose spending caps. Full RPC
+profile/genesis, numerical capacity/archive/hosting, undeployed PoPL fee quotes,
+markets/max-state and operating approval remain open. All61 Solidity sources,
+Oracle3-byte/Vault32-byte headroom, browser signer/public-null/site/service/Anvil/
+journals and paused heartbeat stay.
 Use the [operator adoption procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m);
 never adopt these profiles, a public RPC or a fee budget automatically.
 

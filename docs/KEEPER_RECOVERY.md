@@ -250,13 +250,24 @@ are separate approvals. [Internal evidence](../reports/system-adversarial-202610
 
 ## Fee-review upgrades and legacy pending intents
 
-The current keeper writes `pending.fee_review` schema 1 before invoking its signer.
-It captures exact gas limit, maximum fee per gas, L1 allowance, maximum total
-cost and `included`/`separate_l1_fee` semantics. Signed transaction gas/cap/chain
-must match. For type 2, use signed fee caps plus canonical inclusion-block base
-fee to derive spend; the provider's reported effective price is separate evidence.
-The signer selects priority within the maximum, not a separately reviewed fixed
-priority. Failed transactions consume gas; reverted native value is not spent.
+Omitted/explicit submission profile1 writes `pending.fee_review` schema1 before
+invoking its signer. It captures exact gas limit, maximum fee per gas, L1
+allowance, maximum total cost and `included`/`separate_l1_fee` semantics. Signed
+transaction gas/cap/chain must match. Its type2 calculation retains generic
+Ethereum signed caps plus canonical inclusion-block base, with priority selected
+by the signer. An observed nonzero-tip Nitro receipt exposes overstatement under
+that historical model; it is not automatically reinterpreted or relabeled.
+
+The new explicit future `submission_fee_profile:2` requires4663/included/zero
+separate L1 allowance. It writes exact schema2 with
+`execution_fee_model:"eip1559_zero_tip"`, binds type2/priority0 throughout review
+and Cast, and requires that actual signed shape plus canonical base/receipt-price
+equality in recovery. The saved schema governs recovery even if current future
+settings differ or are invalid. The generic Ethereum helper stays unchanged;
+no mutable `collectTips` assumption or arbitrary reported fee is accepted.
+Failed transactions consume gas; reverted native value is not spent. See the
+[fee evidence](../reports/rpc-fees-20261113/fees/REVIEW.md) and
+[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 
 Before upgrading a keeper that may have pending work:
 
@@ -281,7 +292,11 @@ Before upgrading a keeper that may have pending work:
    A preflight result is supplied-evidence consistency, not release approval.
 
 Current configuration changes apply to new work. They do not reinterpret pending
-review limits. The [internal audit and scoped checks](../reports/preproduction-audit-20261025/services/REVIEW.md)
+review limits. A source rollback must retain schema2 readers until every schema2
+pending is recovered; an older source cannot safely read that new review. A
+compatible upgrade can recover original schema1 unchanged. Preserve
+historical schema1 costs and discrepancies for explicit operator reconciliation,
+never edit past spending to make a new budget pass. The [internal audit and scoped checks](../reports/preproduction-audit-20261025/services/REVIEW.md)
 do not upgrade any running service or journal. Stage this procedure on Linux and
 the actual chain fee model before production.
 

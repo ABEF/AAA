@@ -10,6 +10,22 @@ the actual deployed PoPL bindings and inventory.
 | `keeper_v1` (existing default) | Fresh heads, common confirmed block, canonical-hash call/code/storage reads, explicit missing-block rejection, gas-price observation, safe/finalized tags and bounded ordinary receipts. |
 | `activation_api_v1` | All of the above, plus the independently reviewed genesis and probe-token runtime, and an actual `callTracer`/`withLog` event witness at the same canonical block hash. |
 
+## Observed tracing candidate and scope
+
+The [current Pinax/fee report](../reports/rpc-fees-20261113/REVIEW.md) records a
+successful canonical-hash Approval(0) witness through this unchanged probe's
+trace helper, with exact retained WETH runtime and unknown-hash controls. It
+also records20M/24M cheap field admission and separate target fee components.
+No submitted approval, persistent state change or PoPL deployment occurs.
+
+This is not a complete `activation_api_v1` pass. In particular, an RPC-returned
+genesis hash is an observation, not an independently reviewed input pin. Do not
+copy it into `--genesis-hash` just to obtain a pass. Full profile checks,
+representative gas/response/time/history workloads, production plan and fee
+approval remain separate. The current point-in-time witness does not install an
+endpoint in a service or alter the12M default. Use the
+[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) before future adoption.
+
 ## Prepare public identity and private endpoint configuration
 
 Use one to eight reviewed URLs in a private JSON file containing `chain_id` and

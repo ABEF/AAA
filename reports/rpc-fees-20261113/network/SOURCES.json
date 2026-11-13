@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "source_sha256": {
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "reports/market-followup-20261109/routes/runtime-pins.json": "880888d7c431c5d717686219de525ee639ede4ce5a02a74e39ff105d641ae884",
+    "reports/gas-profiles-20261113/network/RESULTS.json": "902732726757de69b9bed84e69d72e6ae96736334796bad3103eb339bd898a8e"
+  },
+  "independent_witness_runtime": "reports/market-followup-20261109/routes/runtime-pins.json, WETH2202/hash5706be52...5353",
+  "raw_primary_sources": [
+    {
+      "label": "triport-public",
+      "url": "https://triport.io/docs/robinhood/public",
+      "observed_at_utc": "2026-11-13T09:46:13.720809+00:00",
+      "error_class": "HTTPError"
+    },
+    {
+      "label": "triport-debug",
+      "url": "https://triport.io/docs/robinhood/debug",
+      "observed_at_utc": "2026-11-13T09:46:14.828017+00:00",
+      "error_class": "HTTPError"
+    },
+    {
+      "label": "triport-landing",
+      "url": "https://triport.io/robinhood-rpc",
+      "observed_at_utc": "2026-11-13T09:46:15.880638+00:00",
+      "http_status": 200,
+      "file": "triport-landing.html",
+      "bytes": 244933,
+      "sha256": "f8705e54e261b9903312c4878fee4ee92b135d4a94baa3b04526b1d2ed60cb21"
+    },
+    {
+      "label": "robinhood-connecting",
+      "url": "https://docs.robinhood.com/chain/connecting/",
+      "observed_at_utc": "2026-11-13T09:46:17.018863+00:00",
+      "http_status": 200,
+      "file": "robinhood-connecting.html",
+      "bytes": 35249,
+      "sha256": "c312c7b2873ff9198c123842e0df0803cd12cfcd55a22a582ad829e7e5e59285"
+    },
+    {
+      "label": "robinhood-contracts",
+      "url": "https://docs.robinhood.com/chain/contracts/",
+      "observed_at_utc": "2026-11-13T09:46:18.484594+00:00",
+      "http_status": 200,
+      "file": "robinhood-contracts.html",
+      "bytes": 23364,
+      "sha256": "d702ed8d6a33a61fdeab84d10bab6b78bc570f81dca02f72438e058c678d55b8"
+    }
+  ],
+  "web_primary_research": [
+    {
+      "url": "https://docs.robinhood.com/chain/connecting/",
+      "finding": "Mainnet4663; official public-provider lead Pinax; recommended production providers require separate admission."
+    },
+    {
+      "url": "https://docs.robinhood.com/chain/contracts/",
+      "finding": "Canonical WETH address used only for an independently runtime-pinned zero-allowance witness, not principal-asset admission."
+    },
+    {
+      "url": "https://triport.io/docs/robinhood/public",
+      "finding": "Contemporaneous specific public reference advertises keyless heavy reads/debug. Direct documentation fetch failed and public RPC returned403; no alternate URL tried."
+    },
+    {
+      "url": "https://triport.io/robinhood-rpc",
+      "finding": "Older landing documentation lists a different light-only URL and limits. That conflict remains explicit; no keyed or older alias used."
+    },
+    {
+      "url": "https://triport.io/docs/robinhood/debug",
+      "finding": "Provider describes debug methods as best-effort/no SLA. Not treated as actual availability."
+    }
+  ],
+  "new_probe_scripts": {
+    "probe_candidates.py": "bb983709964bd37f6ba272c2ccb1f749ccb000c26d5594dff92beb9cecdc1e50",
+    "capture_fees.py": "3d13da424187dec8275044e46b5d84e302d161210e47ef4b9bfbbb9db3f08fc9",
+    "capture_zero_tip.py": "cfa180be9c7665dfa0b25fc4be3e16962b231160f3cce47dc46620be0762f383"
+  }
+}

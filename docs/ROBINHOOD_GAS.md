@@ -4,9 +4,26 @@ This is an operator review procedure, not a deployment or provider-adoption inst
 
 ## Current evidence
 
-The [11 November read-only report](../reports/gas-feasibility-20261111/network/REVIEW.md) found a working anonymous mainnet candidate at `https://api.blockvectra.com/v1/robinhood_mainnet/public`. Chain ID was 4663. At block 111632516 the ArbGasInfo transaction and block execution parameters were **32 million gas** each, despite the header advertising the synthetic Nitro `1 << 50` gas limit. A later selected-core runtime hash matched the Registry pin. This is limited read evidence, not approval for production or complete PoPL transaction acceptance.
+The [current RPC/fee review](../reports/rpc-fees-20261113/REVIEW.md) finds a positive
+tracing witness at the documented public Pinax endpoint
+`https://robinhood.rpc.pinax.network`, chain4663. A discarded `approve(0)` call
+returns the actual expected Approval log through unchanged `callTracer/withLog`
+validation at a rechecked canonical hash. Cheap calls/estimates accept20M/24M
+gas fields, and unknown hashes reject. This qualifies the observed interfaces,
+not effective full-work gas capacity, the complete `activation_api_v1` profile,
+archive reliability, a service plan or production adoption.
 
-The provider's [public catalog](https://api.blockvectra.com/v1/chains) advertised 3 requests/second, burst 20, batch 10 and only 900 recent blocks. An actual old-anchor read failed with `-32011 state_window`. The public tier is unsuitable for lifetime event/history replay. Its numerical call/estimate gas cap and sustained availability remain unqualified. [Published endpoint documentation](https://docs.blockvectra.com/en/guides/robinhood-chain/) distinguishes mainnet 4663 from testnet 46630.
+The same campaign reads actual NodeInterface posting components for the ten
+previously captured payloads, a complete harmless approval estimate and genuine
+ordinary receipts. Posting fees are nonzero; earlier zero snapshots were not a
+permanent waiver. PoPL itself is undeployed: these component observations do
+not supply complete mainnet PoPL quotes or approve operator spending limits.
+
+The [earlier read evidence](../reports/gas-feasibility-20261111/network/REVIEW.md)
+establishes32M execution parameters despite the synthetic `1 << 50` header.
+BlockVectra's public tier has a900-block history limit and rejects hash-state/
+tracing; Daybreak accepts cheap hash calls but lacks tracing. Their failures
+remain preserved, without weaker fallback or automatic provider adoption.
 
 ## Read the limits before choosing a budget
 
@@ -15,7 +32,7 @@ Use one recent numbered block, record its hash, read the precompiles at that blo
 These PowerShell examples use the public, uncredentialed candidate only. They do not change a service configuration and do not sign or send transactions:
 
 ```powershell
-$publicRpc = 'https://api.blockvectra.com/v1/robinhood_mainnet/public'
+$publicRpc = 'https://robinhood.rpc.pinax.network'
 cast chain-id --rpc-url $publicRpc
 $anchor = cast block-number --rpc-url $publicRpc
 cast block $anchor --json --rpc-url $publicRpc
@@ -62,12 +79,13 @@ and maintenance policies separate. Website `limits.gas` must equal the configure
 activation ceiling exactly, even when the confirmed block imposes a smaller
 effective cap. Null fee approvals and unsigned profiles are not deployable policy.
 
-The [13 November provider review](../reports/gas-profiles-20261113/network/REVIEW.md)
-corroborates32M execution parameters. Daybreak accepts canonical-hash20M/24M
-cheap calls/estimates but does not expose the required tracer. BlockVectra's
-fresh hash-anchored calls fail; its numbered calls are diagnostics only, never a
-production fallback. Neither provider qualifies complete transaction preparation,
-full-operation gas ceilings/fees or lifetime history through these reads.
+The [earlier provider review](../reports/gas-profiles-20261113/network/REVIEW.md)
+retains the Daybreak/BlockVectra scope. The later
+[Pinax witness and fee observations](../reports/rpc-fees-20261113/REVIEW.md) add
+actual trace logs and fee-component evidence, without turning the earlier local
+20M/24M estimates into complete target-chain quotes. Never estimate an empty
+mainnet account at a recorded local Entry address and call that a PoPL result.
+Verify deployed runtime/bindings and exact current operation state first.
 
 ## Calculate fees without double counting
 
@@ -75,6 +93,20 @@ Robinhood's [fee guide](https://docs.robinhood.com/chain/gas-and-fees/) and [Arb
 
 `estimated total ETH = complete estimated gas × reviewed wei-per-gas / 10^18`
 
-Do not add the posting fee again to an already-inclusive estimate. A separate component estimate is for reconciliation. Apply the actual fee envelope/ceilings and refreshed state; the formula is not a guarantee of final charged gas or inclusion. The November 11 snapshot's zero L1 price estimate is not a permanent guarantee. No complete PoPL target-chain fee quote was produced by that read-only campaign.
+Do not add the posting fee again to an already-inclusive estimate. NodeInterface
+`gasEstimateComponents` returns total gas, posting gas, prospective L2 base fee
+and estimated L1 price; total already contains posting. Its prospective price
+can differ from the inclusion header or a later `eth_gasPrice`. The L1-only
+method can inspect calldata without executing PoPL; it cannot provide the
+missing full-operation execution estimate. Apply refreshed fee ceilings and
+full20%/25% padding to a complete estimate. Neither the gas ceiling nor a local
+benchmark multiplied by a live price guarantees final fees or inclusion.
+
+Nitro may ignore priority fees. The observed nonzero-tip receipt pays only its
+canonical base fee; using generic Ethereum base+tip would overstate daily spend.
+The explicit future-only [zero-tip keeper profile](OPERATOR_MANUAL.md#robinhood-rpc-fees)
+avoids that mismatch by requiring type2 with signed priority0. It does not
+reinterpret existing pending fee reviews, approve a gas-price/day budget or
+adopt a live provider. See the current report for exact source and receipt scope.
 
 Provider rotation, budget changes and source publication require separate reviewed configuration/consumer adoption. They do not authorize public signing, deployment, service restart, existing Anvil changes or website rollout.

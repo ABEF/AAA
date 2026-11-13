@@ -1,0 +1,9 @@
+{
+  "scope": "Initial report-local verifier precheck only",
+  "cause": "Public index uses raw_relative_path and omits response_file; an eagerly evaluated fallback raised KeyError before any production RPC parser result completed",
+  "production_rpc_parser_replays_completed": 0,
+  "new_network_calls": 0,
+  "new_evm_test_executions": 0,
+  "production_code_changed": false,
+  "rerun_reason": "Changed report-local metadata-path handling only"
+}

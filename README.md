@@ -2,10 +2,13 @@
 
 The [20M contribution / 24M maintenance review](reports/gas-profiles-20261113/REVIEW.md)
 qualifies controlled $100 activation/$5 growth and single/two-leg maintenance,
-including full gas padding and actual RPC estimates. Safeguards, production
-implementations and 12M defaults are unchanged. Real markets, tracing providers,
-complete fees and release approval remain open; these profiles are not deployed.
-Oracle still has only 3 bytes of runtime headroom.
+including full gas padding and actual RPC estimates. Safeguards, contract
+implementations and 12M defaults are unchanged. The later
+[RPC/fee review](reports/rpc-fees-20261113/REVIEW.md) verifies a Pinax trace/log
+witness and target fee components, and adds an opt-in zero-tip keeper profile
+for correct future fee accounting. Full provider/operation-fee, real-market and
+release approval remain open; nothing is deployed or installed. Oracle still
+has only 3 bytes of runtime headroom.
 
 The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
 individually checks all271previously unreviewed records, fixes three concrete

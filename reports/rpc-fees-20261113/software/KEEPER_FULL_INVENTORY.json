@@ -1,0 +1,26 @@
+{
+  "scope": "Selection inventory only; no tests executed.",
+  "selected_methods": 965,
+  "new_profile_method_count": 14,
+  "new_profile_methods": [
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_actual_zero_tip_receipt_replays_without_changing_its_public_fields",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_new_profile_keeps_original_gas_price_transaction_and_daily_caps",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_omitted_and_explicit_profile1_keep_original_order_command_and_schema",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_final_rebalance_and_compound_use_the_same_frozen_dynamic_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_is_explicit_strict_and_robinhood_inclusive_only",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_profile2_persists_exact_review_before_mock_signer_and_fixes_fee_envelope",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_provider_upfront_full_cap_funding_failure_does_not_sign_or_widen",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema1_pending_is_not_reinterpreted_when_future_profile2_is_configured",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_bad_receipt_price_or_canonical_cap_preserves_journal",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_recovery_uses_saved_model_even_with_invalid_future_settings",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_rejects_nonzero_priority_legacy_wrong_chain_and_missing_priority",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_schema2_review_is_exact_and_cannot_enable_separate_fees_or_unknown_models",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_signer_failure_keeps_schema2_intent_and_never_resends",
+    "tests_python.test_keeper_zero_tip_profile.KeeperZeroTipProfileTests.test_zero_tip_revert_counts_only_gas_once_and_keeps_native_value_unspent"
+  ],
+  "tests_run": 0,
+  "executed_methods": [],
+  "source_changes_during_inventory": [],
+  "raw_external_inventory_sha256": "f9a8dd919b6e60baab2cdc482e5e05592efb7c78690955eb6036ef9cdf6b6bba",
+  "successful": true
+}

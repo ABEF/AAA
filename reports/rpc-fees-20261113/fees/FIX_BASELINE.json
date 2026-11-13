@@ -1,0 +1,9 @@
+{
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "captured_at_utc": "2026-11-13T09:59:55.775982+00:00",
+  "raw_files_sha256": {
+    "keeper/monitor.py": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+    "zzz_ops/ethereum_fees.py": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+  },
+  "scope": "Only monitor.py authorized for future-only explicit zero-tip profile; ethereum_fees.py must remain exact"
+}

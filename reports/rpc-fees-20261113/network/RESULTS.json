@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "source_baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "counts": {
+    "attempts": 56,
+    "valid_rpc_results": 50,
+    "rpc_errors": 3,
+    "http_denials": 1,
+    "restricted_network_transport_failures": 2
+  },
+  "capability_anchor": {
+    "number": 113260778,
+    "hash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+    "timestamp": 1794563179,
+    "timestamp_utc": "2026-11-13T09:46:19+00:00",
+    "header_gas_limit": 1125899906842624,
+    "base_fee_per_gas_wei": 20340000
+  },
+  "fee_anchor": {
+    "number": 113263446,
+    "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+    "timestamp": 1794563448,
+    "timestamp_utc": "2026-11-13T09:50:48+00:00",
+    "header_gas_limit": 1125899906842624,
+    "base_fee_per_gas_wei": 20100000
+  },
+  "public_provider": "https://robinhood.rpc.pinax.network",
+  "token_witness": {
+    "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+    "bytes": 2202,
+    "keccak256": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353",
+    "historical_pin_match": true,
+    "ok": true,
+    "gas_used": 33237,
+    "approval_event_verified": true,
+    "state_overrides": false,
+    "scope": "discarded read-only simulation, not a submitted approval or persistent state change"
+  },
+  "canonical_hash_cheap_getter": {
+    "gas_fields": [
+      20000000,
+      24000000
+    ],
+    "call_results_maximum_transaction_execution": [
+      32000000,
+      32000000
+    ],
+    "estimate_gas": [
+      23003,
+      23003
+    ]
+  },
+  "unknown_hash_controls": [
+    {
+      "method": "eth_call",
+      "error": {
+        "code": -32000,
+        "message": "header not found"
+      },
+      "explicit_requested_missing_hash": true,
+      "current_generic_classifier_reason": "unavailable_block"
+    },
+    {
+      "method": "eth_estimateGas",
+      "error": {
+        "code": -32000,
+        "message": "header not found"
+      },
+      "explicit_requested_missing_hash": true,
+      "current_generic_classifier_reason": "unavailable_block"
+    },
+    {
+      "method": "debug_traceCall",
+      "error": {
+        "code": -32000,
+        "message": "block 0x0000000000000000000000000000000000000000000000000000000000000000 not found"
+      },
+      "explicit_requested_missing_hash": true,
+      "current_generic_classifier_reason": "unclassified"
+    }
+  ],
+  "fee_evidence": {
+    "same_anchor_complete": true,
+    "l1_only_payload_calls": 10,
+    "full_approval_component_calls": 1,
+    "ordinary_transaction_receipt_header_samples": 2,
+    "actual_nonzero_tip_samples": 1,
+    "actual_zero_tip_samples": 1,
+    "fee_interpretation_owner": "../fees/REVIEW.md",
+    "complete_undeployed_popl_fee_quote": false
+  },
+  "triport": {
+    "url": "https://triport.io/public/robinhood",
+    "first_network_permitted_handshake_http": 403,
+    "body": "error code: 1010",
+    "retries_after_denial": 0,
+    "valid_chain_data": false
+  },
+  "qualification": {
+    "actual_call_tracer_log_witness": true,
+    "canonical_hash_call_estimate_fields_20m_24m": true,
+    "full_activation_api_v1_profile_pass": false,
+    "independent_genesis_pin_approved": false,
+    "effective_20m_24m_provider_execution_proven": false,
+    "full_popl_operation_on_public_provider": false,
+    "complete_popl_fee_policy_approved": false,
+    "operator_spending_caps_selected": false,
+    "archive_uptime_load_recovery_qualified": false,
+    "provider_adopted": false,
+    "public_transactions": 0,
+    "signatures": 0,
+    "keys_accounts_or_state_overrides_used": false,
+    "service_site_journal_heartbeat_changes": 0
+  }
+}

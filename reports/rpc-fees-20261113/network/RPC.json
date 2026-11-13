@@ -1,0 +1,2431 @@
+{
+  "schema": 1,
+  "source_baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "counts": {
+    "attempts": 56,
+    "valid_rpc_results": 50,
+    "rpc_errors": 3,
+    "http_denials": 1,
+    "restricted_network_transport_failures": 2
+  },
+  "rows": [
+    {
+      "provider": "https://triport.io/public/robinhood",
+      "provider_name": "triport",
+      "observed_at_utc": "2026-11-13T09:45:33.549406+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "error_class": "URLError",
+      "duration_ms": 31.0,
+      "phase": "restricted/triport",
+      "transport_environment": "restricted_network",
+      "sequence": 1
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:45:33.574991+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "error_class": "URLError",
+      "duration_ms": 172.0,
+      "phase": "restricted/pinax",
+      "transport_environment": "restricted_network",
+      "sequence": 2
+    },
+    {
+      "provider": "https://triport.io/public/robinhood",
+      "provider_name": "triport",
+      "observed_at_utc": "2026-11-13T09:46:19.875498+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 403,
+      "response_bytes": 17,
+      "response_sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+      "body_truncated": false,
+      "error_class": "Refusal",
+      "duration_ms": 31.0,
+      "phase": "permitted/triport",
+      "transport_environment": "network_permitted",
+      "sequence": 3,
+      "raw_relative_path": "network-permitted/triport-01.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:19.898226+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      },
+      "duration_ms": 313.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 4,
+      "raw_relative_path": "network-permitted/pinax-01.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:20.909804+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2235,
+      "response_sha256": "4f87fc73c25b87138db2ec20f807eab9c7609e46a285c7fc93a0139bd481cb58",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "baseFeePerGas": "0x1320f90",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x26f0d6",
+          "hash": "0xe6c586f0d123d12890b39fb0d76f733bf6b37b4204d3ce4e569a6be3c924f29f",
+          "l1BlockNumber": "0x192e972",
+          "logsBloom": "0x0400008000400020000000881100001003000148008c08004002001004000020080014004001400000009808100000400000021224002000000080208025000004200080020048284008040804200400000000000004042002010000000208800000000002000010200008000000080180001000400040000000085214088a000800006200000800000000400000000040085000110000000000008004080000020004000000000000002160800c20000000000200000404000000000000002080100402200000202000000000001100000000800088000100000000200060160018000201000200004000a00108000000000000a08000040200004006041000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e972000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c038f6",
+          "parentHash": "0x494194fec8f0f5d4675d7b46bb8b9be67d87d6ad6561a312d6c880c331dfdb05",
+          "receiptsRoot": "0xf58ab80993d7ae3b26f1b427a7788c85a6dc5c936be5a51b87b5960c48212405",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc4e",
+          "stateRoot": "0xc5bd37809dcc60d7c7daefbd9617240cb976706fb84254c97ea9372b2146d5e2",
+          "timestamp": "0x6af6dc6c",
+          "transactions": [
+            "0x106d7304023a4c8a11122d9999d39317c2a97ef5a973fb9d391c90666564d503",
+            "0x6ac93dde9f71726eead5d4e661c43eaac5e6330ac3010bbe12ffc7ce9adcf376",
+            "0x5ae274d73cda7615c2d75a318a416a7a860dc26beda5562c346447a8a4f5e911",
+            "0xa7946634d2505c5799b4456b881efdc4f852e92be6ecb6ff884b04e812807a21",
+            "0xf498bcb2124015824fbf9d8fc8f3cda8697c5a8e61b89b66c52f7da81bbe4c1f",
+            "0xe0e45ae568a5302c0f025367fe7a2f5d432058dcba8aabca06d59910231fad4e",
+            "0x55e3daa28160a6134c3f8d7ded8c9bdfed9e8798910a7d8f47eed4330d96eb93",
+            "0x412367675be804b77eea58b7981bb269a0f108f287d4bd32fee49a73ba83c1bf",
+            "0x18795be1ba8f1ee37e42be03a9d97a40ca7a4841c6e7b0790626275d82cfc030"
+          ],
+          "transactionsRoot": "0xda365ae09170da916faf7ef16250a5fcf03df1e3e2a1315e5e3f49b8ac05d1c1",
+          "uncles": []
+        }
+      },
+      "duration_ms": 312.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 5,
+      "raw_relative_path": "network-permitted/pinax-02.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:21.924710+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c038ea",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1820,
+      "response_sha256": "bb3b687cb39855e0be35080b740bfaae6e0247ac76b6bdfbadc8f4e78b2f6baf",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "baseFeePerGas": "0x1365d20",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x29bf8",
+          "hash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+          "l1BlockNumber": "0x192e972",
+          "logsBloom": "0x00000000000000000000000000008000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000010000000040000000000000000000000000000000000000040000000000000000000020000000000000000000800000000000000040000000000000000000000000000000000008000000000000000000000000000000200000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000010000000000000000000000000000028000000000000000000000000200000000000002000000000000000000002000000",
+          "miner": "0x089c2eda7c1e20ff9906b31fe3612195bce9e7df",
+          "mixHash": "0x0000000000000eef000000000192e972000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7bb",
+          "number": "0x6c038ea",
+          "parentHash": "0xe142ab7f48ee43f1dcc476273b0c48d6d7a6ff711f4e59931d75d06a11e9a53b",
+          "receiptsRoot": "0x2fdeb7bab7d8e0e6408d8976362d44e9d8c1f90f3460e0967dfbd24b515fb1df",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0x3e9",
+          "stateRoot": "0xeb7381d4c63e84bc20496e41a57a7e6109b3d72975cd3ceb4e6509a151eccb62",
+          "timestamp": "0x6af6dc6b",
+          "transactions": [
+            "0xf7f9bbf80e370dc4029c520498c77a94f4da8539082c74576b64792a49afa179",
+            "0xd1ef504626ee37779db7d4efdd5d64f60ecfcda64672f22eb56f1c707028791a",
+            "0x9c95690855bdbf3ad3546f9f3ec7e8c7ac1c2056791c2dda665620779eadd30d"
+          ],
+          "transactionsRoot": "0xbd17eb96effe0e4bb432377195859ef597d5427279bffbb89bd8d356e45269dc",
+          "uncles": []
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 6,
+      "raw_relative_path": "network-permitted/pinax-03.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:22.919468+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_getCode",
+        "params": [
+          "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 4442,
+      "response_sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x60806040523661001357610011610017565b005b6100115b61001f6101a7565b6001600160a01b0316330361015f5760606001600160e01b0319600035166364d3180d60e11b810161005a576100536101da565b9150610157565b63587086bd60e11b6001600160e01b031982160161007a57610053610231565b63070d7c6960e41b6001600160e01b031982160161009a57610053610277565b621eb96f60e61b6001600160e01b03198216016100b9576100536102a8565b63a39f25e560e01b6001600160e01b03198216016100d9576100536102e8565b60405162461bcd60e51b815260206004820152604260248201527f5472616e73706172656e745570677261646561626c6550726f78793a2061646d60448201527f696e2063616e6e6f742066616c6c6261636b20746f2070726f78792074617267606482015261195d60f21b608482015260a4015b60405180910390fd5b815160208301f35b6101676102fc565b565b606061018e838360405180606001604052806027815260200161083e6027913961030c565b9392505050565b90565b6001600160a01b03163b151590565b60007fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035b546001600160a01b0316919050565b60606101e4610384565b60006101f33660048184610691565b81019061020091906106d7565b905061021d8160405180602001604052806000815250600061038f565b505060408051602081019091526000815290565b60606000806102433660048184610691565b8101906102509190610708565b915091506102608282600161038f565b604051806020016040528060008152509250505090565b6060610281610384565b60006102903660048184610691565b81019061029d91906106d7565b905061021d816103bb565b60606102b2610384565b60006102bc6101a7565b604080516001600160a01b03831660208201529192500160405160208183030381529060405291505090565b60606102f2610384565b60006102bc610412565b610167610307610412565b610421565b6060600080856001600160a01b03168560405161032991906107ee565b600060405180830381855af49150503d8060008114610364576040519150601f19603f3d011682016040523d82523d6000602084013e610369565b606091505b509150915061037a86838387610445565b9695505050505050565b341561016757600080fd5b610398836104c4565b6000825111806103a55750805b156103b6576103b48383610169565b505b505050565b7f7e644d79422f17c01e4894b5f4f588d331ebfa28653d42ae832dc59e38c9798f6103e46101a7565b604080516001600160a01b03928316815291841660208301520160405180910390a161040f81610504565b50565b600061041c6105ad565b905090565b3660008037600080366000845af43d6000803e808015610440573d6000f35b3d6000fd5b606083156104b25782516000036104ab5761045f85610198565b6104ab5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a2063616c6c20746f206e6f6e2d636f6e7472616374000000604482015260640161014e565b50816104bc565b6104bc83836105d5565b949350505050565b6104cd816105ff565b6040516001600160a01b038216907fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b90600090a250565b6001600160a01b0381166105695760405162461bcd60e51b815260206004820152602660248201527f455243313936373a206e65772061646d696e20697320746865207a65726f206160448201526564647265737360d01b606482015260840161014e565b807fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035b80546001600160a01b0319166001600160a01b039290921691909117905550565b60007f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc6101cb565b8151156105e55781518083602001fd5b8060405162461bcd60e51b815260040161014e919061080a565b61060881610198565b61066a5760405162461bcd60e51b815260206004820152602d60248201527f455243313936373a206e657720696d706c656d656e746174696f6e206973206e60448201526c1bdd08184818dbdb9d1c9858dd609a1b606482015260840161014e565b807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc61058c565b600080858511156106a157600080fd5b838611156106ae57600080fd5b5050820193919092039150565b80356001600160a01b03811681146106d257600080fd5b919050565b6000602082840312156106e957600080fd5b61018e826106bb565b634e487b7160e01b600052604160045260246000fd5b6000806040838503121561071b57600080fd5b610724836106bb565b9150602083013567ffffffffffffffff8082111561074157600080fd5b818501915085601f83011261075557600080fd5b813581811115610767576107676106f2565b604051601f8201601f19908116603f0116810190838211818310171561078f5761078f6106f2565b816040528281528860208487010111156107a857600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b60005b838110156107e55781810151838201526020016107cd565b50506000910152565b600082516108008184602087016107ca565b9190910192915050565b60208152600082518060208401526108298160408501602087016107ca565b601f01601f1916919091016040019291505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a264697066735822122072007c277cc5d8471be1434c6b2d5b70fb7c2f6f77a0697617733c4d4ae5b76964736f6c63430008100033"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 7,
+      "raw_relative_path": "network-permitted/pinax-04.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:23.919073+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "data": "0x18160ddd",
+            "gas": "0x30d40"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 102,
+      "response_sha256": "da55cdce51c6761228b2c95de293db5be4e1de22547483c225bcdd5cf3ce0d16",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x0000000000000000000000000000000000000000000008865f237d4a381832dd"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 8,
+      "raw_relative_path": "network-permitted/pinax-05.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:24.919429+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000dead",
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "value": "0x0",
+            "data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 102,
+      "response_sha256": "a1243243c44a6ba006e0bda974f5133f1ee1b5e8601bdee8ab3299e4fa8bac91",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 9,
+      "raw_relative_path": "network-permitted/pinax-06.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:25.925043+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "debug_traceCall",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000dead",
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "value": "0x0",
+            "data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          },
+          {
+            "tracer": "callTracer",
+            "timeout": "5s",
+            "tracerConfig": {
+              "withLog": true
+            }
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1805,
+      "response_sha256": "27e3c0a3232d036dc97555df800464e3d4345655e1d7fb7792bccdaa73b6fd5b",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "beforeEVMTransfers": [
+            {
+              "purpose": "feePayment",
+              "from": "0x000000000000000000000000000000000000dEaD",
+              "to": null,
+              "value": "0x0"
+            }
+          ],
+          "afterEVMTransfers": [
+            {
+              "purpose": "gasRefund",
+              "from": null,
+              "to": "0x000000000000000000000000000000000000dEaD",
+              "value": "0x0"
+            },
+            {
+              "purpose": "feeCollection",
+              "from": null,
+              "to": "0x5a2B80a9b7effc06129bD5462D77BC20A8A59BE7",
+              "value": "0x9ac5977100"
+            },
+            {
+              "purpose": "feeCollection",
+              "from": null,
+              "to": "0xbC5C3a7Adecf54D34169fd90dbD1B7d3142DF067",
+              "value": "0x2a1912aa0"
+            },
+            {
+              "purpose": "feeCollection",
+              "from": null,
+              "to": "0xa4B00000000000000000000000000000000000F6",
+              "value": "0x0"
+            }
+          ],
+          "from": "0x000000000000000000000000000000000000dead",
+          "gas": "0x7a120",
+          "gasUsed": "0x81d5",
+          "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+          "input": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "calls": [
+            {
+              "from": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+              "gas": "0x7153b",
+              "gasUsed": "0x128f",
+              "to": "0xc6b81b429797e0f555440b70cd99e032d7ae947e",
+              "input": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+              "output": "0x0000000000000000000000000000000000000000000000000000000000000001",
+              "logs": [
+                {
+                  "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+                  "topics": [
+                    "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+                    "0x000000000000000000000000000000000000000000000000000000000000dead",
+                    "0x000000000000000000000000000000000000000000000000000000000000dead"
+                  ],
+                  "data": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                  "index": "0x0",
+                  "position": "0x0"
+                }
+              ],
+              "value": "0x0",
+              "type": "DELEGATECALL"
+            }
+          ],
+          "value": "0x0",
+          "type": "CALL"
+        }
+      },
+      "duration_ms": 313.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 10,
+      "raw_relative_path": "network-permitted/pinax-07.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:26.937955+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 102,
+      "response_sha256": "de7c0c1848b01be1c812c4010636418abcd65b7c0f625cad9fdb319a48500d78",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 11,
+      "raw_relative_path": "network-permitted/pinax-08.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:27.938803+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "9d4288a7072ee1fe63422d632df59ea50815e4decad43e7dc8a95c690884ed79",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": "0x59db"
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 12,
+      "raw_relative_path": "network-permitted/pinax-09.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:28.939977+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 103,
+      "response_sha256": "54fd58b93dc4bc2a25fdec26c5dacc1a12055eead253bd9ad4f51bcb908bfb5f",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 13,
+      "raw_relative_path": "network-permitted/pinax-10.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:29.938359+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0xaae1cd4c",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 43,
+      "response_sha256": "20fb9907e449003606e70fd91767651c7fea59eb4ca3b605e374b006ce2294e9",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": "0x59db"
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 14,
+      "raw_relative_path": "network-permitted/pinax-11.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:30.937487+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "data": "0x18160ddd",
+            "gas": "0x30d40"
+          },
+          {
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 78,
+      "response_sha256": "9fa31b787e192d8f302b02b405eb54b54beec8a168fc01246889b48a7c4284f6",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "error": {
+          "code": -32000,
+          "message": "header not found"
+        }
+      },
+      "error_class": "Refusal",
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 15,
+      "raw_relative_path": "network-permitted/pinax-12.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:31.940225+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "data": "0x18160ddd",
+            "gas": "0x30d40"
+          },
+          {
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 78,
+      "response_sha256": "7b4010a2bed04d6ecf964d813fcd775e0a459a04f58082cc4f97e3ea6c078224",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "error": {
+          "code": -32000,
+          "message": "header not found"
+        }
+      },
+      "error_class": "Refusal",
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 16,
+      "raw_relative_path": "network-permitted/pinax-13.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:32.926875+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "method": "debug_traceCall",
+        "params": [
+          {
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "data": "0x18160ddd",
+            "gas": "0x30d40"
+          },
+          {
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "requireCanonical": true
+          },
+          {
+            "tracer": "callTracer",
+            "timeout": "5s",
+            "tracerConfig": {
+              "withLog": true
+            }
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 144,
+      "response_sha256": "e093f23cd3ae8dce099059ded1615dea2af87da9c3edae018a717c08c243cceb",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "error": {
+          "code": -32000,
+          "message": "block 0x0000000000000000000000000000000000000000000000000000000000000000 not found"
+        }
+      },
+      "error_class": "Refusal",
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 17,
+      "raw_relative_path": "network-permitted/pinax-14.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:33.930133+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1821,
+      "response_sha256": "b26e3ce40f6a83c51ed7b59903aeeb8e8860a920a7b2f1503caf272c41861d16",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": {
+          "baseFeePerGas": "0x1365d20",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x29bf8",
+          "hash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+          "l1BlockNumber": "0x192e972",
+          "logsBloom": "0x00000000000000000000000000008000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000010000000040000000000000000000000000000000000000040000000000000000000020000000000000000000800000000000000040000000000000000000000000000000000008000000000000000000000000000000200000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000010000000000000000000000000000028000000000000000000000000200000000000002000000000000000000002000000",
+          "miner": "0x089c2eda7c1e20ff9906b31fe3612195bce9e7df",
+          "mixHash": "0x0000000000000eef000000000192e972000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7bb",
+          "number": "0x6c038ea",
+          "parentHash": "0xe142ab7f48ee43f1dcc476273b0c48d6d7a6ff711f4e59931d75d06a11e9a53b",
+          "receiptsRoot": "0x2fdeb7bab7d8e0e6408d8976362d44e9d8c1f90f3460e0967dfbd24b515fb1df",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0x3e9",
+          "stateRoot": "0xeb7381d4c63e84bc20496e41a57a7e6109b3d72975cd3ceb4e6509a151eccb62",
+          "timestamp": "0x6af6dc6b",
+          "transactions": [
+            "0xf7f9bbf80e370dc4029c520498c77a94f4da8539082c74576b64792a49afa179",
+            "0xd1ef504626ee37779db7d4efdd5d64f60ecfcda64672f22eb56f1c707028791a",
+            "0x9c95690855bdbf3ad3546f9f3ec7e8c7ac1c2056791c2dda665620779eadd30d"
+          ],
+          "transactionsRoot": "0xbd17eb96effe0e4bb432377195859ef597d5427279bffbb89bd8d356e45269dc",
+          "uncles": []
+        }
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 18,
+      "raw_relative_path": "network-permitted/pinax-15.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax",
+      "observed_at_utc": "2026-11-13T09:46:34.932173+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c038ea",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1821,
+      "response_sha256": "1270ad641404b31cac705aad4ca49fd66d14cae55ba77d550bede3fdda6c6896",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": {
+          "baseFeePerGas": "0x1365d20",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x29bf8",
+          "hash": "0x2b948af7b0f9a46e2009c112527abe67eb18573d792a14d916272cc3a9c5cf1e",
+          "l1BlockNumber": "0x192e972",
+          "logsBloom": "0x00000000000000000000000000008000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000010000000040000000000000000000000000000000000000040000000000000000000020000000000000000000800000000000000040000000000000000000000000000000000008000000000000000000000000000000200000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000010000000000000000000000000000028000000000000000000000000200000000000002000000000000000000002000000",
+          "miner": "0x089c2eda7c1e20ff9906b31fe3612195bce9e7df",
+          "mixHash": "0x0000000000000eef000000000192e972000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7bb",
+          "number": "0x6c038ea",
+          "parentHash": "0xe142ab7f48ee43f1dcc476273b0c48d6d7a6ff711f4e59931d75d06a11e9a53b",
+          "receiptsRoot": "0x2fdeb7bab7d8e0e6408d8976362d44e9d8c1f90f3460e0967dfbd24b515fb1df",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0x3e9",
+          "stateRoot": "0xeb7381d4c63e84bc20496e41a57a7e6109b3d72975cd3ceb4e6509a151eccb62",
+          "timestamp": "0x6af6dc6b",
+          "transactions": [
+            "0xf7f9bbf80e370dc4029c520498c77a94f4da8539082c74576b64792a49afa179",
+            "0xd1ef504626ee37779db7d4efdd5d64f60ecfcda64672f22eb56f1c707028791a",
+            "0x9c95690855bdbf3ad3546f9f3ec7e8c7ac1c2056791c2dda665620779eadd30d"
+          ],
+          "transactionsRoot": "0xbd17eb96effe0e4bb432377195859ef597d5427279bffbb89bd8d356e45269dc",
+          "uncles": []
+        }
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax",
+      "transport_environment": "network_permitted",
+      "sequence": 19,
+      "raw_relative_path": "network-permitted/pinax-16.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:49.268475+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      },
+      "duration_ms": 515.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 20,
+      "raw_relative_path": "fee-permitted/pinax-fees-01.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:50.266425+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2579,
+      "response_sha256": "c3072d73d885e0eaa88ecdb307227843e46178b6976e6fbc49539687656dfd99",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "baseFeePerGas": "0x1339630",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0xb19d3",
+          "hash": "0xe0e448fbf8e1bf80a0964d262549090b5a655d0da2b7edac0bc7408254c9be66",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x0000000000040000002000040208000000080000100008000008000008c00000040000001000010000000040000080000000000010202020020000000010200001000000000000080000005800200000020100000000000000000000000000080000000002000000000800800100080800000000000400000000805c000800000000000000400000800000000000000000008000000000000200000000000000000000000000000000000000000000000000008000000008010300000000200000000002000000010000000000081040008000002000002840001000002020000000080000040000000000000000200000000020001108000000000004000000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04362",
+          "parentHash": "0xb616e77b600e3b3ecfdfa7606a914dce1798890c7a097b02316b309ccfad53f9",
+          "receiptsRoot": "0x93661e2d2f06e14b6ac13b89f8021979c24b7a7a17336ee39dd91a5afd0960aa",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xdfd",
+          "stateRoot": "0x622aa6d62893ea3f348bba40170ecb950878419ba21c6581894726c893f01b04",
+          "timestamp": "0x6af6dd79",
+          "transactions": [
+            "0xa13caba325f54ae8f572071cb1a8f7d48f8ccd0433c491f1c603ae46b4faf571",
+            "0x27cb0e408a9ee5cbdfb67442d6918cdcb079de61d2e7445344ef8e1278dc2683",
+            "0x41e1cda33fbf3d047dcd3aae5f19eb6d47e5d97b75ac8535fd48b4fb43b0a404",
+            "0x59cedc940162637bc2246f9af59f8045fb942f9e488a8a9e3d05fe74fecbc474",
+            "0x1113091e017b0543950e387a79c57d8194bf8ccae55afbf3441eff49050b13fb",
+            "0xbef4d7f82393628551d779bbeb4c375f81feabf32c3b970b287c6fdd2e8cdbdc",
+            "0x9c7667b711d1e4c96b780ada12c2eec7c124535a7ccdfcbb00cb3e7219488e79",
+            "0xe54bf781b388e58d684ceaae3086ec0f517248299931383aeb860f035154d1ca",
+            "0x38d4d0dad1abbebf38103de0533856cdffe71559d87b54f7954e8c5001ebea50",
+            "0x30356ab60c8ff02d0ba260b226aae8ad1789b6ec624ba0cddced12e8a86e1840",
+            "0x525dfaa0d0b0bb0d66400d3c7ca640c9d353dfef5ecf0fb92f90efcfd30d0ea1",
+            "0x9525a369e16751c3df9f12575ab2256e50be9a1365bc4f7544477144354672b3",
+            "0xe49cbe9da937ba13182850d4806abf29c765b2b3b7fed41417ecf5d7b173a0e2",
+            "0xe75d9b1a0d8c8c146b6a6a9c4645899529c7d465e05e05749bc4e5d05fb76a2f"
+          ],
+          "transactionsRoot": "0x798448b69edd343deaedcdbd74a90871c98732b57c6c0755a5f7e1aaf2ebdc1e",
+          "uncles": []
+        }
+      },
+      "duration_ms": 343.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 21,
+      "raw_relative_path": "fee-permitted/pinax-fees-02.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:51.271011+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c04356",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2717,
+      "response_sha256": "80aa46e68ae3d47979ff49d0551b85c5721b7657ea6cd50be6703f8e946409ca",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 22,
+      "raw_relative_path": "fee-permitted/pinax-fees-03.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:52.277220+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_getCode",
+        "params": [
+          "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 4442,
+      "response_sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x60806040523661001357610011610017565b005b6100115b61001f6101a7565b6001600160a01b0316330361015f5760606001600160e01b0319600035166364d3180d60e11b810161005a576100536101da565b9150610157565b63587086bd60e11b6001600160e01b031982160161007a57610053610231565b63070d7c6960e41b6001600160e01b031982160161009a57610053610277565b621eb96f60e61b6001600160e01b03198216016100b9576100536102a8565b63a39f25e560e01b6001600160e01b03198216016100d9576100536102e8565b60405162461bcd60e51b815260206004820152604260248201527f5472616e73706172656e745570677261646561626c6550726f78793a2061646d60448201527f696e2063616e6e6f742066616c6c6261636b20746f2070726f78792074617267606482015261195d60f21b608482015260a4015b60405180910390fd5b815160208301f35b6101676102fc565b565b606061018e838360405180606001604052806027815260200161083e6027913961030c565b9392505050565b90565b6001600160a01b03163b151590565b60007fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035b546001600160a01b0316919050565b60606101e4610384565b60006101f33660048184610691565b81019061020091906106d7565b905061021d8160405180602001604052806000815250600061038f565b505060408051602081019091526000815290565b60606000806102433660048184610691565b8101906102509190610708565b915091506102608282600161038f565b604051806020016040528060008152509250505090565b6060610281610384565b60006102903660048184610691565b81019061029d91906106d7565b905061021d816103bb565b60606102b2610384565b60006102bc6101a7565b604080516001600160a01b03831660208201529192500160405160208183030381529060405291505090565b60606102f2610384565b60006102bc610412565b610167610307610412565b610421565b6060600080856001600160a01b03168560405161032991906107ee565b600060405180830381855af49150503d8060008114610364576040519150601f19603f3d011682016040523d82523d6000602084013e610369565b606091505b509150915061037a86838387610445565b9695505050505050565b341561016757600080fd5b610398836104c4565b6000825111806103a55750805b156103b6576103b48383610169565b505b505050565b7f7e644d79422f17c01e4894b5f4f588d331ebfa28653d42ae832dc59e38c9798f6103e46101a7565b604080516001600160a01b03928316815291841660208301520160405180910390a161040f81610504565b50565b600061041c6105ad565b905090565b3660008037600080366000845af43d6000803e808015610440573d6000f35b3d6000fd5b606083156104b25782516000036104ab5761045f85610198565b6104ab5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a2063616c6c20746f206e6f6e2d636f6e7472616374000000604482015260640161014e565b50816104bc565b6104bc83836105d5565b949350505050565b6104cd816105ff565b6040516001600160a01b038216907fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b90600090a250565b6001600160a01b0381166105695760405162461bcd60e51b815260206004820152602660248201527f455243313936373a206e65772061646d696e20697320746865207a65726f206160448201526564647265737360d01b606482015260840161014e565b807fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035b80546001600160a01b0319166001600160a01b039290921691909117905550565b60007f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc6101cb565b8151156105e55781518083602001fd5b8060405162461bcd60e51b815260040161014e919061080a565b61060881610198565b61066a5760405162461bcd60e51b815260206004820152602d60248201527f455243313936373a206e657720696d706c656d656e746174696f6e206973206e60448201526c1bdd08184818dbdb9d1c9858dd609a1b606482015260840161014e565b807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc61058c565b600080858511156106a157600080fd5b838611156106ae57600080fd5b5050820193919092039150565b80356001600160a01b03811681146106d257600080fd5b919050565b6000602082840312156106e957600080fd5b61018e826106bb565b634e487b7160e01b600052604160045260246000fd5b6000806040838503121561071b57600080fd5b610724836106bb565b9150602083013567ffffffffffffffff8082111561074157600080fd5b818501915085601f83011261075557600080fd5b813581811115610767576107676106f2565b604051601f8201601f19908116603f0116810190838211818310171561078f5761078f6106f2565b816040528281528860208487010111156107a857600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b60005b838110156107e55781810151838201526020016107cd565b50506000910152565b600082516108008184602087016107ca565b9190910192915050565b60208152600082518060208401526108298160408501602087016107ca565b601f01601f1916919091016040019291505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a264697066735822122072007c277cc5d8471be1434c6b2d5b70fb7c2f6f77a0697617733c4d4ae5b76964736f6c63430008100033"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 23,
+      "raw_relative_path": "fee-permitted/pinax-fees-04.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:53.287710+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000001af7f588a501ea2b5bb3feefa744892aa2cf00e6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000064d65cdd98cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f50b500000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 230,
+      "response_sha256": "a310707616baf8e0030c79e633b0a041e7b90c6d7abe5ece6ae60472195f2768",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000275000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 24,
+      "raw_relative_path": "fee-permitted/pinax-fees-05.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:54.295535+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x00000000000000000000000000000000000a11ce",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a2000000000000000000000000fa0e6015e8ad40aa4535c477142a2ecdb824f2f70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001246169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a00000000000000000000000000000000000000000000000000000000",
+            "value": "0x56bc75e2d63100000",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 230,
+      "response_sha256": "ff2ca2a9191dcec7cc677624c82bb79a46f0b09e953f3aeb0548f10f6ab8f46a",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x00000000000000000000000000000000000000000000000000000000000003eb000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 25,
+      "raw_relative_path": "fee-permitted/pinax-fees-06.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:55.289579+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x00000000000000000000000000000000000a11ce",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a2000000000000000000000000fa0e6015e8ad40aa4535c477142a2ecdb824f2f70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001246169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004563918244f40000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a00000000000000000000000000000000000000000000000000000000",
+            "value": "0x4563918244f40000",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 230,
+      "response_sha256": "84d49d3a256bfdeb33f79c4684754f8c98598f12261f49c5ce3ce533b27053b6",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": "0x00000000000000000000000000000000000000000000000000000000000003e3000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 26,
+      "raw_relative_path": "fee-permitted/pinax-fees-07.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:56.287335+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000003cff5e7ebecb676c3cb602d0ef2d46710b88854e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000446cae7bf7cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c00000000000000000000000000000000000000000000000000000000000fee3400000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 230,
+      "response_sha256": "08cebdcecb0381da443145e47bd7a4705175a87e4bb2d014a33f6d9a35ea0e6b",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000222000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 27,
+      "raw_relative_path": "fee-permitted/pinax-fees-08.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:57.300895+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000003cff5e7ebecb676c3cb602d0ef2d46710b88854e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645b2a63eecf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000fee3400000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 230,
+      "response_sha256": "424feb4a603f05e8baca6ad04595fa1ea8d51b7a81342ce5285ae8cca9d70211",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000275000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 28,
+      "raw_relative_path": "fee-permitted/pinax-fees-09.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:58.300051+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000003cff5e7ebecb676c3cb602d0ef2d46710b88854e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645b2a63eecf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000001099c400000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 231,
+      "response_sha256": "ae43cfa880cd576cb946fd72378a28ab34eeae521a6f264d81f2dc0454c83f03",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000275000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 29,
+      "raw_relative_path": "fee-permitted/pinax-fees-10.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:50:59.299917+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000003cff5e7ebecb676c3cb602d0ef2d46710b88854e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000446cae7bf7cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c00000000000000000000000000000000000000000000000000000000000f42a400000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 231,
+      "response_sha256": "11c0e488ceb33b6455b0bd14e8062cd27b34142596c744ce6d8df73529eb7cb9",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000222000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 30,
+      "raw_relative_path": "fee-permitted/pinax-fees-11.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:00.297221+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000beef",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a20000000000000000000000003cff5e7ebecb676c3cb602d0ef2d46710b88854e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645b2a63eecf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000fee3400000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x16e3600"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 231,
+      "response_sha256": "dfd0d59304cb391cd5b144849f8788997e1b242f206b2a576110e99825722e3b",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000275000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 31,
+      "raw_relative_path": "fee-permitted/pinax-fees-12.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:01.300070+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x00000000000000000000000000000000000a11ce",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a2000000000000000000000000fa0e6015e8ad40aa4535c477142a2ecdb824f2f70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001246169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a00000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 231,
+      "response_sha256": "e47be027827707384f4d217ee48170fbba72acf81780f6b0bb0d33657d125e02",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000426000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 32,
+      "raw_relative_path": "fee-permitted/pinax-fees-13.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:02.294020+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x00000000000000000000000000000000000a11ce",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "data": "0x77d488a2000000000000000000000000fa0e6015e8ad40aa4535c477142a2ecdb824f2f70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001246169e438f01933679c2d779877613cb99e3bcf480609ed16534372eef2d5f6783bdb758f1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a0000000000000000000000000000000000000000000000004565bb1d147639ee000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000f42b50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000012c7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a00000000000000000000000000000000000000000000000000000000",
+            "value": "0x0",
+            "gas": "0x1312d00"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 231,
+      "response_sha256": "be50c10d945d0a968873f227d000ffffb4bf34eb9625cdb328a52bd6012211b3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000426000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 359.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 33,
+      "raw_relative_path": "fee-permitted/pinax-fees-14.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:03.296608+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000dead",
+            "to": "0x00000000000000000000000000000000000000c8",
+            "value": "0x0",
+            "gas": "0x7a120",
+            "data": "0xc94e6eeb0000000000000000000000000bd7d308f8e1639fab988df18a8011f41eacad73000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000044095ea7b3000000000000000000000000000000000000000000000000000000000000dead000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 295,
+      "response_sha256": "2efa3c0a3bae474b4aa864694fe07cd03cdfb7d77738270f56ebfb7f4b5a4f49",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "result": "0x00000000000000000000000000000000000000000000000000000000000085600000000000000000000000000000000000000000000000000000000000000225000000000000000000000000000000000000000000000000000000000132dab000000000000000000000000000000000000000000000000000000000002cc0c1"
+      },
+      "duration_ms": 359.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 34,
+      "raw_relative_path": "fee-permitted/pinax-fees-15.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:04.287966+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0x41b247a8",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 423,
+      "response_sha256": "41a9fe660df29978ba51e025154b374cfcae9af5030e9a349bc973dfe72d8545",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 16,
+        "result": "0x00000000000000000000000000000000000000000000000000000001879698c00000000000000000000000000000000000000000000000000000000002cc0c100000000000000000000000000000000000000000000000000000005d991134000000000000000000000000000000000000000000000000000000000001312d0000000000000000000000000000000000000000000000000000000000000186a0000000000000000000000000000000000000000000000000000000000132b3a0"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 35,
+      "raw_relative_path": "fee-permitted/pinax-fees-16.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:05.297745+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 17,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006b",
+            "data": "0x8e34a64d",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 103,
+      "response_sha256": "bb6dfbedea44d86f6cf12e72e4d3bd240d3f2679c96b41ff4c00b5a4c79958ba",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 17,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "duration_ms": 359.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 36,
+      "raw_relative_path": "fee-permitted/pinax-fees-17.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:06.292070+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x0000000000000000000000000000000000000064",
+            "data": "0x051038f2",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 103,
+      "response_sha256": "7133b2ff21bd5783e90b60ab16813e4d8bdc63d38d44da46333489fabd3cc1fc",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 18,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000074"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 37,
+      "raw_relative_path": "fee-permitted/pinax-fees-18.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:07.290941+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 19,
+        "method": "eth_gasPrice",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 46,
+      "response_sha256": "f99ce3bcbbed4a5943e7a6dbbd4389522a1bdf69387df5de5aef732fdb4360fa",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 19,
+        "result": "0x132cb10"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 38,
+      "raw_relative_path": "fee-permitted/pinax-fees-19.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:08.294239+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 20,
+        "method": "eth_maxPriorityFeePerGas",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 40,
+      "response_sha256": "2de95544880f603f6115c8fcc0a844e0ee1deba10ada3c1928997666367ac930",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 20,
+        "result": "0x0"
+      },
+      "duration_ms": 312.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 39,
+      "raw_relative_path": "fee-permitted/pinax-fees-20.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:09.298369+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 21,
+        "method": "eth_feeHistory",
+        "params": [
+          "0x4",
+          "0x6c04356",
+          [
+            25,
+            50,
+            75
+          ]
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 256,
+      "response_sha256": "17c2b0f742801d785803756d590d474f73024e4ae71a550edebef3c2e32473e2",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 21,
+        "result": {
+          "oldestBlock": "0x6c04353",
+          "reward": [
+            [
+              "0x0",
+              "0x0",
+              "0x0"
+            ],
+            [
+              "0x0",
+              "0x0",
+              "0x0"
+            ],
+            [
+              "0x0",
+              "0x0",
+              "0x0"
+            ],
+            [
+              "0x0",
+              "0x0",
+              "0x0"
+            ]
+          ],
+          "baseFeePerGas": [
+            "0x131b1d0",
+            "0x1323e70",
+            "0x13255e0",
+            "0x132b3a0",
+            "0x132dab0"
+          ],
+          "gasUsedRatio": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 40,
+      "raw_relative_path": "fee-permitted/pinax-fees-21.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-fees",
+      "observed_at_utc": "2026-11-13T09:51:10.294994+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 22,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c04356",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2718,
+      "response_sha256": "8fca4c8054d02b4f69d4075aaf3b3d74e90986ada9a86c1676d24170cba1d104",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 22,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 312.0,
+      "phase": "permitted/pinax-fees",
+      "transport_environment": "network_permitted",
+      "sequence": 41,
+      "raw_relative_path": "fee-permitted/pinax-fees-22.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:10.613784+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 42,
+      "raw_relative_path": "fee-permitted/pinax-receipt-01.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:11.612946+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2717,
+      "response_sha256": "a3ce035e4fea3a31dc648cab41537a931f7b21ee1f95e7eea59428c3068007b5",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 43,
+      "raw_relative_path": "fee-permitted/pinax-receipt-02.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:12.600887+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "web3_clientVersion",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 96,
+      "response_sha256": "461beeaafdd39efa674c9dde04b735f78ad103a01333c26476b741b5920a996b",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": "nitro/v3.12.4+960ca0a-20261110T061047Z/linux-amd64/go1.25.12"
+      },
+      "duration_ms": 313.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 44,
+      "raw_relative_path": "fee-permitted/pinax-receipt-03.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:13.610882+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x000000000000000000000000000000000000006c",
+            "data": "0x0371fdb4",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 102,
+      "response_sha256": "2fd471068668983df7f5f290babd03172afe2527d690604f5d96c1ca04b504af",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": "0x0000000000000000000000000000000000000000000000000000000001e84800"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 45,
+      "raw_relative_path": "fee-permitted/pinax-receipt-04.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:14.608935+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x0",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1589,
+      "response_sha256": "2f268af0937f384601a180ff8cd788e47fb9a5d7b527b114c153acc8b24f65e8",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "baseFeePerGas": "0x5f5e100",
+          "difficulty": "0x1",
+          "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x0",
+          "hash": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+          "l1BlockNumber": "0x0",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "miner": "0x0000000000000000000000000000000000000000",
+          "mixHash": "0x0000000000000000000000000000000000000000000000330000000000000000",
+          "nonce": "0x0000000000000001",
+          "number": "0x0",
+          "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+          "sendCount": "0x0",
+          "sendRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0x221",
+          "stateRoot": "0xbff31855ecf33b2db87febb9e571d57497a45d20d94c3024173bf82fedd44fd0",
+          "timestamp": "0x0",
+          "transactions": [],
+          "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+          "uncles": []
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 46,
+      "raw_relative_path": "fee-permitted/pinax-receipt-05.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:15.608890+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "eth_estimateGas",
+        "params": [
+          {
+            "from": "0x000000000000000000000000000000000000dead",
+            "to": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "value": "0x0",
+            "data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000000",
+            "gas": "0x7a120"
+          },
+          {
+            "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "50e0483d4329acb60828b4d58b4c64f995fc44ab618cecf683b0194ec1154ef5",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": "0x8560"
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 47,
+      "raw_relative_path": "fee-permitted/pinax-receipt-06.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:16.615572+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc"
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 772,
+      "response_sha256": "1700fc99fa303df9648f968445a6b2a580d8de6e15103c7f64812d93140ee024",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "blockNumber": "0x6c04356",
+          "blockTimestamp": "0x6af6dd78",
+          "from": "0x00000000000000000000000000000000000a4b05",
+          "gas": "0x0",
+          "gasPrice": "0x0",
+          "hash": "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+          "input": "0x6bf6a42d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000192e9880000000000000000000000000000000000000000000000000000000006c043560000000000000000000000000000000000000000000000000000000000000000",
+          "nonce": "0x0",
+          "to": "0x00000000000000000000000000000000000a4b05",
+          "transactionIndex": "0x0",
+          "value": "0x0",
+          "type": "0x6a",
+          "chainId": "0x1237",
+          "v": "0x0",
+          "r": "0x0",
+          "s": "0x0"
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 48,
+      "raw_relative_path": "fee-permitted/pinax-receipt-07.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:17.624776+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91"
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 877,
+      "response_sha256": "c67775751f02839e4e257036e6f7e1d3f90ce30bb6f4ad8b26a055c973cedaca",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "blockNumber": "0x6c04356",
+          "blockTimestamp": "0x6af6dd78",
+          "from": "0x1890966740359cf8ee700c5687b3eab8fb0febff",
+          "gas": "0x57e40",
+          "gasPrice": "0x42da420",
+          "maxFeePerGas": "0x26cbf220",
+          "maxPriorityFeePerGas": "0x2faf080",
+          "hash": "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+          "input": "0xa9059cbb0000000000000000000000008ca6e1f017a979541230c1731225ea340c8ba1c9000000000000000000000000000000000000000000024655cc78b38d7ac00000",
+          "nonce": "0x1cf6",
+          "to": "0x9b6fd26a9c8af688e5e82ecf226835c70dede8b3",
+          "transactionIndex": "0x1",
+          "value": "0x0",
+          "type": "0x2",
+          "accessList": [],
+          "chainId": "0x1237",
+          "v": "0x0",
+          "r": "0x3afdd8da4525cb59892193f7ff914dde069bd0ec9708a69f7d6f0aaf4f83dc69",
+          "s": "0x4607c2f1bc97f0b376eb23636da6829a7e39e733636c715e6f2762a0a965fae8",
+          "yParity": "0x0"
+        }
+      },
+      "duration_ms": 328.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 49,
+      "raw_relative_path": "fee-permitted/pinax-receipt-08.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:18.626679+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91"
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1709,
+      "response_sha256": "10a0f5ce8eef80b5b3266f06512b085b6b9f594458cf4216d970a0638d9b9bc4",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "blockNumber": "0x6c04356",
+          "contractAddress": null,
+          "cumulativeGasUsed": "0xdd92",
+          "effectiveGasPrice": "0x132b3a0",
+          "from": "0x1890966740359cf8ee700c5687b3eab8fb0febff",
+          "gasUsed": "0xdd92",
+          "gasUsedForL1": "0x1b4",
+          "l1BlockNumber": "0x192e988",
+          "logs": [
+            {
+              "address": "0x9b6fd26a9c8af688e5e82ecf226835c70dede8b3",
+              "topics": [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "0x0000000000000000000000001890966740359cf8ee700c5687b3eab8fb0febff",
+                "0x0000000000000000000000008ca6e1f017a979541230c1731225ea340c8ba1c9"
+              ],
+              "data": "0x000000000000000000000000000000000000000000024655cc78b38d7ac00000",
+              "blockNumber": "0x6c04356",
+              "transactionHash": "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+              "transactionIndex": "0x1",
+              "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+              "blockTimestamp": "0x6af6dd78",
+              "logIndex": "0x0",
+              "removed": false
+            }
+          ],
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000800000020000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000808000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000002000000000000400000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000",
+          "status": "0x1",
+          "to": "0x9b6fd26a9c8af688e5e82ecf226835c70dede8b3",
+          "transactionHash": "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+          "transactionIndex": "0x1",
+          "type": "0x2"
+        }
+      },
+      "duration_ms": 359.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 50,
+      "raw_relative_path": "fee-permitted/pinax-receipt-09.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:19.626186+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2718,
+      "response_sha256": "672ed8efda99f3117831b11e4ba551563c2c8cfab5130d9d327d5e3a3ffe9c56",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 51,
+      "raw_relative_path": "fee-permitted/pinax-receipt-10.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-receipt",
+      "observed_at_utc": "2026-11-13T09:51:20.621315+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c04356",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2718,
+      "response_sha256": "022059f1abf7da03f6da074f042a93347d954e4a5339a62b677649cb864e4371",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 344.0,
+      "phase": "permitted/pinax-receipt",
+      "transport_environment": "network_permitted",
+      "sequence": 52,
+      "raw_relative_path": "fee-permitted/pinax-receipt-11.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-zero-tip",
+      "observed_at_utc": "2026-11-13T09:57:04.433645+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "http_status": 200,
+      "response_bytes": 42,
+      "response_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": "0x1237"
+      },
+      "duration_ms": 454.0,
+      "phase": "permitted/pinax-zero-tip",
+      "transport_environment": "network_permitted",
+      "sequence": 53,
+      "raw_relative_path": "zero-tip-permitted/pinax-zero-tip-01.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-zero-tip",
+      "observed_at_utc": "2026-11-13T09:57:05.431577+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129"
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 934,
+      "response_sha256": "0c438542c622208f1207419f51ee20a47b8101ffbd3ab23ec0edbb3ba5161404",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "blockNumber": "0x6c04356",
+          "blockTimestamp": "0x6af6dd78",
+          "from": "0x265729b6fad77f986e45a8fa44d0fbc2e4e5c5a9",
+          "gas": "0x493e0",
+          "gasPrice": "0x132b3a0",
+          "maxFeePerGas": "0x264abc0",
+          "maxPriorityFeePerGas": "0x0",
+          "hash": "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+          "input": "0xd7282316000000000000000000000000000000000000000000000000000000084ff3bcff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "nonce": "0xf80a",
+          "to": "0xcaba59f5cd2b0489dcb0cb1d7321912de13727ee",
+          "transactionIndex": "0x2",
+          "value": "0x0",
+          "type": "0x2",
+          "accessList": [],
+          "chainId": "0x1237",
+          "v": "0x0",
+          "r": "0x1fde75ecd8a89c641ed47d769a13d039a9e5ef3fe3dd870bf020ef39fa385bb6",
+          "s": "0x61f4ac0b6803ba5634347e6e4815af52e710b798918231acbafbddf331ae2a89",
+          "yParity": "0x0"
+        }
+      },
+      "duration_ms": 360.0,
+      "phase": "permitted/pinax-zero-tip",
+      "transport_environment": "network_permitted",
+      "sequence": 54,
+      "raw_relative_path": "zero-tip-permitted/pinax-zero-tip-02.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-zero-tip",
+      "observed_at_utc": "2026-11-13T09:57:06.430086+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129"
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 1764,
+      "response_sha256": "ed6b38084dde0fece3d3ca375b43bd5ee095838a1b78e906f286bf5718038e46",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "blockNumber": "0x6c04356",
+          "contractAddress": null,
+          "cumulativeGasUsed": "0x17224",
+          "effectiveGasPrice": "0x132b3a0",
+          "from": "0x265729b6fad77f986e45a8fa44d0fbc2e4e5c5a9",
+          "gasUsed": "0x9492",
+          "gasUsedForL1": "0x1f5",
+          "l1BlockNumber": "0x192e988",
+          "logs": [
+            {
+              "address": "0xcaba59f5cd2b0489dcb0cb1d7321912de13727ee",
+              "topics": [
+                "0x79538f348255ddb6da30bd8902cdf9f3bdfbbe9714a23efc2feee97234bc62a2"
+              ],
+              "data": "0x000000000000000000000000000000000000000000000000000000084ff3bcff0000000000000000000000000000000000000000000000000000000006c0435600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "blockNumber": "0x6c04356",
+              "transactionHash": "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+              "transactionIndex": "0x2",
+              "blockHash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+              "blockTimestamp": "0x6af6dd78",
+              "logIndex": "0x1",
+              "removed": false
+            }
+          ],
+          "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000008000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000040000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000",
+          "status": "0x1",
+          "to": "0xcaba59f5cd2b0489dcb0cb1d7321912de13727ee",
+          "transactionHash": "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+          "transactionIndex": "0x2",
+          "type": "0x2"
+        }
+      },
+      "duration_ms": 329.0,
+      "phase": "permitted/pinax-zero-tip",
+      "transport_environment": "network_permitted",
+      "sequence": 55,
+      "raw_relative_path": "zero-tip-permitted/pinax-zero-tip-03.raw"
+    },
+    {
+      "provider": "https://robinhood.rpc.pinax.network",
+      "provider_name": "pinax-zero-tip",
+      "observed_at_utc": "2026-11-13T09:57:07.440721+00:00",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x6c04356",
+          false
+        ]
+      },
+      "http_status": 200,
+      "response_bytes": 2717,
+      "response_sha256": "5e3e05f9f2ba1f9c310110df244eb70b551d63079df51038fa602b9db3c478b3",
+      "body_truncated": false,
+      "rpc_response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "baseFeePerGas": "0x132b3a0",
+          "difficulty": "0x1",
+          "extraData": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "gasLimit": "0x4000000000000",
+          "gasUsed": "0x80979",
+          "hash": "0x2c662ff9ff253f4ea68a1dbd6affdc9547b4c0c8a3bb33f44832c63d3f79bfd5",
+          "l1BlockNumber": "0x192e988",
+          "logsBloom": "0x00000000000000000000000000000000000000000000000200000000000000000000000000400004000100000000000000000000040000000000000000000000800000020000400000000008000000000000000000080020000000000000000000000000000100000008000000000000000000000808400000000010000000001000000020000000000000000000000000080000010000000000000000000000000000000080800000000020000000000000000004000000000000000000000010002402000000000000400400000040000000000000000101000000002000000000000000000000004000000100400000000000000000000000000002001000",
+          "miner": "0xa4b000000000000000000073657175656e636572",
+          "mixHash": "0x0000000000000eef000000000192e988000000000000003d0000000000000000",
+          "nonce": "0x000000000006c7c4",
+          "number": "0x6c04356",
+          "parentHash": "0xacd7407b6448d50482d345465770d1109aa4e7d22c5e3be3db39db0cbb3e988b",
+          "receiptsRoot": "0xf3d14ddac082391fe44b542569e914b8d402b8f3555172aff19ad1e6de55ae4f",
+          "sendCount": "0xeef",
+          "sendRoot": "0x41b37e621ea66ee639f882e99ad56972dcc9e70eb4aafca085a565879c3ff136",
+          "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+          "size": "0xc62",
+          "stateRoot": "0xffb73fd7ddfbea73f6f2fecfec13b60beb6a0bc9329278ea170ee274ecf13c09",
+          "timestamp": "0x6af6dd78",
+          "transactions": [
+            "0x91c877fa0737195f019306162bcc9542b56e5e1c3596373c0ed23e6449a73edc",
+            "0xf269696c59813665b4e02717d7ae96f21b5a29536eacc3b318c2b6d8f0fc9e91",
+            "0xaecc8ba944a66d9387db33ae32a63b5a77bdc0af2b3521868b78b88349b7f129",
+            "0x520df76be5cf74a256d8d7ab465bf28685e1a8096c4dd2e8841d0a8f4fd071d4",
+            "0xf7e036e58d5c3d05850beaad18fd9a3e52fdea4888a1fe27993af9ada5863eaf",
+            "0x62410d75e873fccd2bd512722a5d2468dc5a3b2787bc496c69efcb82c1281e96",
+            "0x4a3f938c285cd1bf8095c8eeaaa80660569594fad19bdcd4b9296f6d95d9a6a4",
+            "0xb136794efaea116dea16f25ed90a0fd9dcd3cce71f635bb1c1d2d2c6f5ddd70e",
+            "0x52f14a93bf443f52f65897549ef7c29e4e05d70bbd1e4f449d982783af3fd895",
+            "0xc5f10f5752fd6ec233d8603f4857c0636a61fc75bbbf305782f6128d2f6ce0c9",
+            "0x197cb76140067dc311fd6a518b1a00a103cb12b73115430e3c0a7e8abef13959",
+            "0xfc25e5f91225b2fa78f834fb465b6322fff14eba2c56a223aa8242190f930816",
+            "0x7e83be6ee21b66f8761ae56bd85a7ef094e272cbac1363ec019709771e292f65",
+            "0xf21754f3f5898f3cde5dc21237de892f41152867f38b694560a3347434988d52",
+            "0xb37f58b1ef4d951b553d5c071f0c6b04a93a8dc56a069b8951b136177a148184",
+            "0xdbb7354083927e42116e36c64cd4324b6afd32e4cc0c4095896db965a8c2c633"
+          ],
+          "transactionsRoot": "0x079a54e7228fdab77f10e522c90b31af68299afc8c0463772bf09dd6f2303259",
+          "uncles": []
+        }
+      },
+      "duration_ms": 360.0,
+      "phase": "permitted/pinax-zero-tip",
+      "transport_environment": "network_permitted",
+      "sequence": 56,
+      "raw_relative_path": "zero-tip-permitted/pinax-zero-tip-04.raw"
+    }
+  ]
+}

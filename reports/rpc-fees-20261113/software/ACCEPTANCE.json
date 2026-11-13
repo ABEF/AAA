@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "purpose": "Acceptance boundaries; observations do not automatically approve provider, fees or release",
+  "requirements": [
+    {
+      "area": "chain_identity",
+      "required_evidence": "Existing activation_api_v1 requires intended chain and independently reviewed nonzero genesis; candidate self-report is not independent approval",
+      "current_scope": "Point-in-time chain4663 observed; independent genesis remains unapproved"
+    },
+    {
+      "area": "runtime_identity",
+      "required_evidence": "Exact reviewed ERC20 runtime must match before approve0 tracing; proxy code alone does not review implementations",
+      "current_scope": "Retained WETH2202-byte pin matches new capture; no PoPL runtime admission inferred"
+    },
+    {
+      "area": "canonical_state",
+      "required_evidence": "Same numbered/hash selector, requireCanonical, before/after header and actual required method behavior",
+      "current_scope": "New witness/cap reads use exact hash and rechecked headers; not consensus/finality proof"
+    },
+    {
+      "area": "negative_controls",
+      "required_evidence": "Explicit missing-block rejection for each separately investigated method; no timeout or silent latest substitution",
+      "current_scope": "Call/estimate production-classified unavailable; trace explicit literal rejection remains production-unclassified"
+    },
+    {
+      "area": "actual_trace_logs",
+      "required_evidence": "Exact discarded approve0 caller/calldata/zero-value/output and actual Approval0 emitter/topics/data, bounded frame tree",
+      "current_scope": "Unchanged helper replays NEW actual33,237-gas witness; no persistent approval or submitted tx"
+    },
+    {
+      "area": "20m_24m_admission",
+      "required_evidence": "Cap fields accepted independently of numeric work ceiling; no stress or hidden-clamp inference",
+      "current_scope": "New cheap precompile calls/estimates accept20M/24M; actual heavy public PoPL work remains unqualified"
+    },
+    {
+      "area": "full_popl_operation",
+      "required_evidence": "Admit exact deployment/runtime/configuration, independent feeds/routes, owner action and complete marginalLP/share proofs",
+      "current_scope": "No production PoPL graph exists on public state; earlier controlled local20/24M remains separate"
+    },
+    {
+      "area": "fee_components",
+      "required_evidence": "Strict actual NodeInterface response and canonical context; component-only is not total, different estimator padding is not an equality proof",
+      "current_scope": "Fee partition owns typed decode/current chain-model investigation; no automatic fee attestation"
+    },
+    {
+      "area": "receipt_model",
+      "required_evidence": "Derive costs with the reviewed chain model, signed caps and canonical inclusion; preserve original pending fee policy",
+      "current_scope": "NEW nonzero-tip receipt exposes the preserved generic Ethereum baseline mismatch; separate future-only keeper profile2 constrains new submissions to type2/priority0 with exact saved-model recovery, while fee partition owns its focused verification"
+    },
+    {
+      "area": "operator_budgets",
+      "required_evidence": "Review inclusive estimate semantics, price/pertransaction/day limits and receipt accounting before live policy approval",
+      "current_scope": "Fee-review hashes/ceilings and live approval remain unset; calculated local cost is not operator authorization"
+    },
+    {
+      "area": "bounded_hosted_operation",
+      "required_evidence": "Unchanged request25s,worker30s,trace8192/depth64 and provider response/rate/history bounds must fit actual workload",
+      "current_scope": "Small witness does not qualify hosted preparation,collection maximum state,archive completeness or sustained operation"
+    },
+    {
+      "area": "recovery_and_rollout",
+      "required_evidence": "Pending-first receipt/spend reconciliation, matching configuration/consumer identities, original journals and separate authorized rollout",
+      "current_scope": "No current signer/service/site/Anvil/journal/monitoring change or provider adoption"
+    }
+  ],
+  "production_approved": false,
+  "full_activation_api_v1_profile_passed": false,
+  "complete_fee_policy_approved": false,
+  "actual_public_popl_operation_qualified": false
+}

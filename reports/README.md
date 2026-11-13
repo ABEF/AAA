@@ -1,5 +1,11 @@
 # Verification evidence
 
+The [RPC/fee follow-up](rpc-fees-20261113/REVIEW.md) finds a real Pinax
+canonical-hash Approval(0) log witness, target posting components and ordinary
+receipt evidence. It adds an explicit future-only zero-tip keeper fee profile,
+with old pending/default behavior retained. New source verification and reused
+contract traces remain distinct; full provider/workload/fee approval stays open.
+
 The [20M/24M qualification](gas-profiles-20261113/REVIEW.md) adds controlled
 exact$100/$5 contributions, six complete keeper calls and consumer boundary checks.
 All ten actual RPC cases succeed at their caps and full-padded estimates. No

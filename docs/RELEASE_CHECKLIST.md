@@ -1,5 +1,12 @@
 # Release approval record - NOT APPROVED
 
+The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) proves actual
+canonical trace/log support and target component/receipt evidence, and adds an
+explicit future zero-tip keeper profile. This does not sign off a production
+provider, full RPC/genesis/capacity/archive profile, undeployed PoPL fee quote,
+fee ceiling or actual signer/host adoption. Keep all original pending records,
+12M defaults,20M/24M opt-in ceilings and financial guards unchanged.
+
 The [20M/24M profiles](../reports/gas-profiles-20261113/REVIEW.md) pass controlled
 exact$100/$5 contributions and six keeper operations, including actual estimates
 and full-padded calls. This closes that bounded local gas milestone only. All61

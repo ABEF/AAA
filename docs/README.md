@@ -1,5 +1,11 @@
 # Documentation map
 
+[Current RPC/fee evidence](../reports/rpc-fees-20261113/REVIEW.md) and the
+[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) separate actual Pinax
+traces, fee components and future zero-tip keeper recovery from still-open
+provider, complete-operation, fee-budget and rollout approval. The existing
+[read-only probe](RPC_PREPARATION_QUALIFICATION.md) remains the reusable tool.
+
 [20M/24M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
 records exact launch amounts, actual estimates/padded calls and consumer checks.
 Use the [gas-profile procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) for exact

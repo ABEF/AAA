@@ -1,0 +1,444 @@
+{
+  "schema": 1,
+  "source_baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "scope": "Hashes only; proof scope remains REVIEW.md. No full provider or fee approval.",
+  "public_files": [
+    {
+      "path": "METHODS.json",
+      "bytes": 1393,
+      "sha256": "eb2bade52ae7a0114ffc85086e4a1843a415a62ff808244dfb98e86793a53f9c"
+    },
+    {
+      "path": "RESULTS.json",
+      "bytes": 3619,
+      "sha256": "a9201d42c4a2194a8c2f5cf57479b914daddc7fd9bb9d3770b377e5d4077f083"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 7462,
+      "sha256": "406fb0536f801f98c6404a029e953ba8117da61db9e84da410a6f143efe1b3fe"
+    },
+    {
+      "path": "RPC.json",
+      "bytes": 118272,
+      "sha256": "8f612d2b88d03cf05be171dbb5fcfc66cc2b3d0e547b3c899cd7184691a8d453"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 3704,
+      "sha256": "7284515c9fa5c18d9f8d2efa4d073eb35ea87bbb572c348c1face4cdd01f9749"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 11784,
+      "sha256": "034f490557ec4ea87facf990dabe6a06d85449e0bb70bb33ff2dd6e09cc4d816"
+    }
+  ],
+  "external_files": [
+    {
+      "path": "campaign-result.json",
+      "bytes": 502,
+      "sha256": "798f44cc6f07188443dc38d921e0d05c93c0d4fd3b9ee17830d08e140d164fd5"
+    },
+    {
+      "path": "capture_fees.py",
+      "bytes": 6937,
+      "sha256": "3d13da424187dec8275044e46b5d84e302d161210e47ef4b9bfbbb9db3f08fc9"
+    },
+    {
+      "path": "capture_zero_tip.py",
+      "bytes": 2301,
+      "sha256": "cfa180be9c7665dfa0b25fc4be3e16962b231160f3cce47dc46620be0762f383"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-01.raw",
+      "bytes": 42,
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-02.raw",
+      "bytes": 2579,
+      "sha256": "c3072d73d885e0eaa88ecdb307227843e46178b6976e6fbc49539687656dfd99"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-03.raw",
+      "bytes": 2717,
+      "sha256": "80aa46e68ae3d47979ff49d0551b85c5721b7657ea6cd50be6703f8e946409ca"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-04.raw",
+      "bytes": 4442,
+      "sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-05.raw",
+      "bytes": 230,
+      "sha256": "a310707616baf8e0030c79e633b0a041e7b90c6d7abe5ece6ae60472195f2768"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-06.raw",
+      "bytes": 230,
+      "sha256": "ff2ca2a9191dcec7cc677624c82bb79a46f0b09e953f3aeb0548f10f6ab8f46a"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-07.raw",
+      "bytes": 230,
+      "sha256": "84d49d3a256bfdeb33f79c4684754f8c98598f12261f49c5ce3ce533b27053b6"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-08.raw",
+      "bytes": 230,
+      "sha256": "08cebdcecb0381da443145e47bd7a4705175a87e4bb2d014a33f6d9a35ea0e6b"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-09.raw",
+      "bytes": 230,
+      "sha256": "424feb4a603f05e8baca6ad04595fa1ea8d51b7a81342ce5285ae8cca9d70211"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-10.raw",
+      "bytes": 231,
+      "sha256": "ae43cfa880cd576cb946fd72378a28ab34eeae521a6f264d81f2dc0454c83f03"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-11.raw",
+      "bytes": 231,
+      "sha256": "11c0e488ceb33b6455b0bd14e8062cd27b34142596c744ce6d8df73529eb7cb9"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-12.raw",
+      "bytes": 231,
+      "sha256": "dfd0d59304cb391cd5b144849f8788997e1b242f206b2a576110e99825722e3b"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-13.raw",
+      "bytes": 231,
+      "sha256": "e47be027827707384f4d217ee48170fbba72acf81780f6b0bb0d33657d125e02"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-14.raw",
+      "bytes": 231,
+      "sha256": "be50c10d945d0a968873f227d000ffffb4bf34eb9625cdb328a52bd6012211b3"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-15.raw",
+      "bytes": 295,
+      "sha256": "2efa3c0a3bae474b4aa864694fe07cd03cdfb7d77738270f56ebfb7f4b5a4f49"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-16.raw",
+      "bytes": 423,
+      "sha256": "41a9fe660df29978ba51e025154b374cfcae9af5030e9a349bc973dfe72d8545"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-17.raw",
+      "bytes": 103,
+      "sha256": "bb6dfbedea44d86f6cf12e72e4d3bd240d3f2679c96b41ff4c00b5a4c79958ba"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-18.raw",
+      "bytes": 103,
+      "sha256": "7133b2ff21bd5783e90b60ab16813e4d8bdc63d38d44da46333489fabd3cc1fc"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-19.raw",
+      "bytes": 46,
+      "sha256": "f99ce3bcbbed4a5943e7a6dbbd4389522a1bdf69387df5de5aef732fdb4360fa"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-20.raw",
+      "bytes": 40,
+      "sha256": "2de95544880f603f6115c8fcc0a844e0ee1deba10ada3c1928997666367ac930"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-21.raw",
+      "bytes": 256,
+      "sha256": "17c2b0f742801d785803756d590d474f73024e4ae71a550edebef3c2e32473e2"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-22.raw",
+      "bytes": 2718,
+      "sha256": "8fca4c8054d02b4f69d4075aaf3b3d74e90986ada9a86c1676d24170cba1d104"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-result.json",
+      "bytes": 8416,
+      "sha256": "f1c8266da97aa8eee63238c1de2babc560f75106db8716b28928163c93b93ccc"
+    },
+    {
+      "path": "fee-permitted/pinax-fees-rpc.json",
+      "bytes": 44430,
+      "sha256": "6b1d8e63b7e2bd2ccf995bd320b5d4d13768591a6898b8f7486b0f09793da98f"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-01.raw",
+      "bytes": 42,
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-02.raw",
+      "bytes": 2717,
+      "sha256": "a3ce035e4fea3a31dc648cab41537a931f7b21ee1f95e7eea59428c3068007b5"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-03.raw",
+      "bytes": 96,
+      "sha256": "461beeaafdd39efa674c9dde04b735f78ad103a01333c26476b741b5920a996b"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-04.raw",
+      "bytes": 102,
+      "sha256": "2fd471068668983df7f5f290babd03172afe2527d690604f5d96c1ca04b504af"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-05.raw",
+      "bytes": 1589,
+      "sha256": "2f268af0937f384601a180ff8cd788e47fb9a5d7b527b114c153acc8b24f65e8"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-06.raw",
+      "bytes": 42,
+      "sha256": "50e0483d4329acb60828b4d58b4c64f995fc44ab618cecf683b0194ec1154ef5"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-07.raw",
+      "bytes": 772,
+      "sha256": "1700fc99fa303df9648f968445a6b2a580d8de6e15103c7f64812d93140ee024"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-08.raw",
+      "bytes": 877,
+      "sha256": "c67775751f02839e4e257036e6f7e1d3f90ce30bb6f4ad8b26a055c973cedaca"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-09.raw",
+      "bytes": 1709,
+      "sha256": "10a0f5ce8eef80b5b3266f06512b085b6b9f594458cf4216d970a0638d9b9bc4"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-10.raw",
+      "bytes": 2718,
+      "sha256": "672ed8efda99f3117831b11e4ba551563c2c8cfab5130d9d327d5e3a3ffe9c56"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-11.raw",
+      "bytes": 2718,
+      "sha256": "022059f1abf7da03f6da074f042a93347d954e4a5339a62b677649cb864e4371"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-result.json",
+      "bytes": 8738,
+      "sha256": "b0fe82d28c079d4626c030da65d883e2ae330cb02c14b3858a717bdc65d64d59"
+    },
+    {
+      "path": "fee-permitted/pinax-receipt-rpc.json",
+      "bytes": 24430,
+      "sha256": "9d416fb78952843af5c819518e35f7d3689f61eca4e0ae5ea647f812f6b2277c"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1166,
+      "sha256": "b1dd8d4a3826058e8ad18d270029f5219365a24948345a022df754f65ff4523c"
+    },
+    {
+      "path": "network-permitted/campaign-result.json",
+      "bytes": 2256,
+      "sha256": "b821c6480034c78b561329cafa8eefb5df917fabb9e9d6012421e8c1ec82fa55"
+    },
+    {
+      "path": "network-permitted/pinax-01.raw",
+      "bytes": 42,
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3"
+    },
+    {
+      "path": "network-permitted/pinax-02.raw",
+      "bytes": 2235,
+      "sha256": "4f87fc73c25b87138db2ec20f807eab9c7609e46a285c7fc93a0139bd481cb58"
+    },
+    {
+      "path": "network-permitted/pinax-03.raw",
+      "bytes": 1820,
+      "sha256": "bb3b687cb39855e0be35080b740bfaae6e0247ac76b6bdfbadc8f4e78b2f6baf"
+    },
+    {
+      "path": "network-permitted/pinax-04.raw",
+      "bytes": 4442,
+      "sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f"
+    },
+    {
+      "path": "network-permitted/pinax-05.raw",
+      "bytes": 102,
+      "sha256": "da55cdce51c6761228b2c95de293db5be4e1de22547483c225bcdd5cf3ce0d16"
+    },
+    {
+      "path": "network-permitted/pinax-06.raw",
+      "bytes": 102,
+      "sha256": "a1243243c44a6ba006e0bda974f5133f1ee1b5e8601bdee8ab3299e4fa8bac91"
+    },
+    {
+      "path": "network-permitted/pinax-07.raw",
+      "bytes": 1805,
+      "sha256": "27e3c0a3232d036dc97555df800464e3d4345655e1d7fb7792bccdaa73b6fd5b"
+    },
+    {
+      "path": "network-permitted/pinax-08.raw",
+      "bytes": 102,
+      "sha256": "de7c0c1848b01be1c812c4010636418abcd65b7c0f625cad9fdb319a48500d78"
+    },
+    {
+      "path": "network-permitted/pinax-09.raw",
+      "bytes": 42,
+      "sha256": "9d4288a7072ee1fe63422d632df59ea50815e4decad43e7dc8a95c690884ed79"
+    },
+    {
+      "path": "network-permitted/pinax-10.raw",
+      "bytes": 103,
+      "sha256": "54fd58b93dc4bc2a25fdec26c5dacc1a12055eead253bd9ad4f51bcb908bfb5f"
+    },
+    {
+      "path": "network-permitted/pinax-11.raw",
+      "bytes": 43,
+      "sha256": "20fb9907e449003606e70fd91767651c7fea59eb4ca3b605e374b006ce2294e9"
+    },
+    {
+      "path": "network-permitted/pinax-12.raw",
+      "bytes": 78,
+      "sha256": "9fa31b787e192d8f302b02b405eb54b54beec8a168fc01246889b48a7c4284f6"
+    },
+    {
+      "path": "network-permitted/pinax-13.raw",
+      "bytes": 78,
+      "sha256": "7b4010a2bed04d6ecf964d813fcd775e0a459a04f58082cc4f97e3ea6c078224"
+    },
+    {
+      "path": "network-permitted/pinax-14.raw",
+      "bytes": 144,
+      "sha256": "e093f23cd3ae8dce099059ded1615dea2af87da9c3edae018a717c08c243cceb"
+    },
+    {
+      "path": "network-permitted/pinax-15.raw",
+      "bytes": 1821,
+      "sha256": "b26e3ce40f6a83c51ed7b59903aeeb8e8860a920a7b2f1503caf272c41861d16"
+    },
+    {
+      "path": "network-permitted/pinax-16.raw",
+      "bytes": 1821,
+      "sha256": "1270ad641404b31cac705aad4ca49fd66d14cae55ba77d550bede3fdda6c6896"
+    },
+    {
+      "path": "network-permitted/pinax-result.json",
+      "bytes": 1705,
+      "sha256": "82170a9d16fee1d3044e81a2a363a9bdee9eeff5e81962baab05d2073b0a770b"
+    },
+    {
+      "path": "network-permitted/pinax-rpc.json",
+      "bytes": 31485,
+      "sha256": "60574bd64ea46eafb18b35a830a65e5145982e101f1ecfdba5409f59496babe4"
+    },
+    {
+      "path": "network-permitted/robinhood-connecting.html",
+      "bytes": 35249,
+      "sha256": "c312c7b2873ff9198c123842e0df0803cd12cfcd55a22a582ad829e7e5e59285"
+    },
+    {
+      "path": "network-permitted/robinhood-contracts.html",
+      "bytes": 23364,
+      "sha256": "d702ed8d6a33a61fdeab84d10bab6b78bc570f81dca02f72438e058c678d55b8"
+    },
+    {
+      "path": "network-permitted/sources-raw.json",
+      "bytes": 1337,
+      "sha256": "d3ccc0416a6b7f36f2f511e1c8c3f311be1e052bc44969933ae0eceddbbb7c4d"
+    },
+    {
+      "path": "network-permitted/triport-01.raw",
+      "bytes": 17,
+      "sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c"
+    },
+    {
+      "path": "network-permitted/triport-landing.html",
+      "bytes": 244933,
+      "sha256": "f8705e54e261b9903312c4878fee4ee92b135d4a94baa3b04526b1d2ed60cb21"
+    },
+    {
+      "path": "network-permitted/triport-result.json",
+      "bytes": 171,
+      "sha256": "f63c2286f63f1cbc1716f3dad5b7124d10246424a0839ad18481b69f4576ab20"
+    },
+    {
+      "path": "network-permitted/triport-rpc.json",
+      "bytes": 666,
+      "sha256": "ed168765ea2ee905a0dbbfdffada7f0e0eaba9249aec96c760d17f5d6956e872"
+    },
+    {
+      "path": "OFFLINE_CHECK_STAGES.json",
+      "bytes": 532,
+      "sha256": "d7df99ef704be73755784f939973921e1d60b1584619adf7fe85d6594cbd8821"
+    },
+    {
+      "path": "pinax-result.json",
+      "bytes": 170,
+      "sha256": "de4f57ffa02b4d1d3424f599f35e1e992d1b7a756c44d3b24e108be929b8a7b7"
+    },
+    {
+      "path": "pinax-rpc.json",
+      "bytes": 447,
+      "sha256": "c61f65efbc5bb007c27b6d0360324d571c424360c841186f2085bb00edf3700f"
+    },
+    {
+      "path": "probe_candidates.py",
+      "bytes": 8488,
+      "sha256": "bb983709964bd37f6ba272c2ccb1f749ccb000c26d5594dff92beb9cecdc1e50"
+    },
+    {
+      "path": "publish_records.py",
+      "bytes": 8339,
+      "sha256": "d52c5cafc68b2ea83516fb63342d74f8ee681345968b92ddb6864c87dad5f391"
+    },
+    {
+      "path": "sources-raw.json",
+      "bytes": 932,
+      "sha256": "ed52dd711ce453a65065afd50fa5887294911cdf382f9e83ad566ecd816e9238"
+    },
+    {
+      "path": "triport-result.json",
+      "bytes": 172,
+      "sha256": "92f57ecffeff0765cd62926cdd357881166165b89726888d6a2d6f846bd36b73"
+    },
+    {
+      "path": "triport-rpc.json",
+      "bytes": 448,
+      "sha256": "ce0e611e885710d29bdcb533effbe89dc232291207e2d10737b98d12e8c1c6be"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-01.raw",
+      "bytes": 42,
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-02.raw",
+      "bytes": 934,
+      "sha256": "0c438542c622208f1207419f51ee20a47b8101ffbd3ab23ec0edbb3ba5161404"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-03.raw",
+      "bytes": 1764,
+      "sha256": "ed6b38084dde0fece3d3ca375b43bd5ee095838a1b78e906f286bf5718038e46"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-04.raw",
+      "bytes": 2717,
+      "sha256": "5e3e05f9f2ba1f9c310110df244eb70b551d63079df51038fa602b9db3c478b3"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-result.json",
+      "bytes": 6715,
+      "sha256": "d5843bd9a18b034040d9eeebe7adf59c63a2fd802f5deb947451f9a5ff07707c"
+    },
+    {
+      "path": "zero-tip-permitted/pinax-zero-tip-rpc.json",
+      "bytes": 9460,
+      "sha256": "8db1c710343fef4e26487caec6e5d99ec5eed87b000e863deb01c14035007b83"
+    }
+  ]
+}

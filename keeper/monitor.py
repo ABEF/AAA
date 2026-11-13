@@ -307,6 +307,8 @@ class Keeper:
         self.fee_policy = config.get('receipt_fee_policy','unverified')
         if self.fee_policy not in ('unverified','included','separate_l1_fee'):
             raise ValueError('Unsupported receipt fee policy')
+        # Future submission settings never reinterpret an existing fee review.
+        if not self.state.get('pending'): self._submission_fee_profile()
         self._configure_metadata()
         self.royalties = RoyaltyAutomation(self)
         self.lp_rewards = RoyaltyAutomation(self, lp=True)
@@ -420,6 +422,16 @@ class Keeper:
             # with an explicit diagnostic until an operator reviews that record.
             if 'fee_review' in pending: self._fee_review(pending)
 
+    def _submission_fee_profile(self) -> int:
+        """Explicit future-only Robinhood type-2 zero-tip opt-in; never adoption."""
+        profile = self.config.get('submission_fee_profile',1)
+        if type(profile) is not int or profile not in (1,2):
+            raise ValueError('Unsupported keeper submission fee profile')
+        if profile == 2 and (self.chain != 4663 or self.fee_policy != 'included' or
+                positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True) != 0):
+            raise ValueError('Submission fee profile2 requires Robinhood4663 and reviewed inclusive fees without a separate L1 allowance')
+        return profile
+
     @staticmethod
     def _fee_review(pending: dict[str,Any]) -> dict[str,Any]:
         review = pending.get('fee_review')
@@ -428,7 +440,9 @@ class Keeper:
         if review is None:
             log('pending_fee_review_required',operator_action='preserve_and_review_original_evidence_never_resend')
             raise RpcError('Legacy pending intent lacks its original fee review; preserve it and perform reviewed operator reconciliation, never resend')
-        if not isinstance(review,dict) or set(review) != fields or type(review.get('schema')) is not int or review['schema'] != 1:
+        if isinstance(review,dict) and type(review.get('schema')) is int and review['schema'] == 2:
+            fields.add('execution_fee_model')
+        if not isinstance(review,dict) or set(review) != fields or type(review.get('schema')) is not int or review['schema'] not in (1,2):
             raise RpcError('Malformed pending fee review')
         for name in ('gas_limit','max_fee_per_gas','l1_fee_allowance_wei','maximum_cost_wei'):
             if type(review[name]) is not int or not 0 <= review[name] < 1 << 256:
@@ -438,6 +452,10 @@ class Keeper:
             raise RpcError('Pending fee review arithmetic differs')
         if review['receipt_fee_policy'] not in ('included','separate_l1_fee'):
             raise RpcError('Pending network fee semantics are unqualified')
+        if review['schema'] == 2 and (review['execution_fee_model'] != 'eip1559_zero_tip' or
+                review['receipt_fee_policy'] != 'included' or review['l1_fee_allowance_wei'] != 0 or
+                review['max_fee_per_gas'] == 0):
+            raise RpcError('Malformed zero-tip pending fee review')
         return review
 
     def _validate_runtime_files(self) -> None:
@@ -1589,6 +1607,8 @@ class Keeper:
             raise RpcError('Receipt gas exceeds the transaction limit')
         try: gas_price = execution_price(transaction,header,receipt)
         except (ValueError,TypeError,KeyError) as exc: raise RpcError('Canonical transaction execution fee cannot be verified') from exc
+        if review['schema'] == 2 and reported_price != gas_price:
+            raise RpcError('Zero-tip receipt price differs from the canonical base fee')
         if rpc_quantity(transaction.get('type','0x0'),'transaction type') in (0,1) and gas_price != fee_cap(transaction):
             raise RpcError('Legacy receipt price differs from signed gas price')
         if gas_price > review['max_fee_per_gas']:
@@ -1683,6 +1703,9 @@ class Keeper:
                 transaction_chain_id(transaction) == self.chain and \
                 rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1) == review['gas_limit'] and \
                 fee_cap(transaction) == review['max_fee_per_gas']
+            if valid and review['schema'] == 2:
+                valid = (self.chain == 4663 and rpc_quantity(transaction.get('type'),'transaction type') == 2 and
+                    rpc_quantity(transaction.get('maxPriorityFeePerGas'),'transaction priority fee') == 0)
         except (KeyError,TypeError,ValueError,AttributeError,RpcError):
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
@@ -1697,7 +1720,9 @@ class Keeper:
         about later inclusion. Non-LP actions keep their separate review paths.
         """
         gas_review.update(state='unavailable',reason='lp_final_simulation_unavailable')
-        result=self.rpc.call('eth_call',[{**tx,'gas':hex(gas_limit),'gasPrice':hex(gas_price)},'latest'])
+        exact_tx={**tx,'gas':hex(gas_limit)}
+        if 'maxFeePerGas' not in tx:exact_tx['gasPrice']=hex(gas_price)
+        result=self.rpc.call('eth_call',[exact_tx,'latest'])
         if result != '0x':
             raise RpcError('Unexpected return data from void LP submission simulation')
         gas_review.update(state='within_configured_caps',reason=None)
@@ -1768,6 +1793,7 @@ class Keeper:
                 raise ValueError('Capacity review requires an accounting7 LP conversion')
             capacity_review.clear()
         if self.state.get('pending'): return False
+        submission_fee_profile=self._submission_fee_profile()
         if getattr(self,'royalty_settlement_version',0) in (2,3,4) and name == 'royalties' and signature == ROYALTY_BATCH:
             raise ValueError('Original-currency royalties cannot be swapped')
         if signature == 'bridgeRewards(uint256,address,bytes32)':
@@ -1810,6 +1836,12 @@ class Keeper:
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
                 'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
+        # Profile2 fixes the type-2 fee envelope before provider execution.
+        # Reuse this single quote; never bump its cap after a slow read.
+        profile_gas_price = None
+        if submission_fee_profile == 2:
+            profile_gas_price=rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price',minimum=1)
+            tx.update(type='0x2',maxFeePerGas=hex(profile_gas_price),maxPriorityFeePerGas='0x0')
         # Bound provider EVM work before estimation; signed gas remains the
         # padded estimate below, never this larger simulation ceiling.
         simulation_tx={**tx,'gas':hex(gas_cap)}
@@ -1856,7 +1888,7 @@ class Keeper:
             raise
         gas_limit = (estimated*125+99)//100
         gas_review.update(estimated_gas=estimated,padded_gas_required=gas_limit)
-        gas_price = rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
+        gas_price = profile_gas_price if profile_gas_price is not None else rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
         gas_review['gas_price_wei']=gas_price
         cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
         within_daily = int(self.state['spent'].get(day,0))+cost <= positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')
@@ -1970,6 +2002,8 @@ class Keeper:
         pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
             'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
             'maximum_cost_wei':cost,'receipt_fee_policy':self.fee_policy}
+        if submission_fee_profile == 2:
+            pending['fee_review'].update(schema=2,execution_fee_model='eip1559_zero_tip')
         self._fee_review(pending)
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         if confirmation_action and signature=='observe(uint256)':
@@ -1990,6 +2024,7 @@ class Keeper:
         command = [self.cast,'send',to,data,'--from',self.sender,'--keystore',str(self.keystore),
             '--password-file',str(self.password),'--chain',str(self.chain),'--nonce',str(nonce),
             '--gas-limit',str(gas_limit),'--gas-price',str(gas_price),'--value',str(value),'--async','--json']
+        if submission_fee_profile == 2:command.extend(['--priority-gas-price','0'])
         environment = signer_environment(self.rpc.active_url)
         try:
             result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)

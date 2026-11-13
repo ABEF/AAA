@@ -1,5 +1,14 @@
 # Consolidated audit findings and evidence
 
+The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) resolves the
+missing trace-interface witness through Pinax and confirms nonzero posting
+components, but not full provider/workload acceptance. A real nonzero-tip receipt
+exposes generic Ethereum daily-spend overstatement on Nitro. The new explicit
+future-only keeper profile2 requires zero-tip type2 and canonical receipt price;
+old profile1/pending semantics and spending guards remain. Complete target PoPL
+quotes, caps/genesis/archive/service/real-signing approval remain open. No
+contract/default/live environment change or unchanged suite rerun.
+
 The [20M/24M profile review](../reports/gas-profiles-20261113/REVIEW.md) closes
 controlled exact$100/$5 contribution and six keeper-operation gas feasibility
 with actual RPC estimates and full-padded calls. Software boundary/matching,

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "baseline": "0330a98a0be91c979fcba291258eb6019e528b1f",
+  "scope": "Exact unchanged trace/RPC/ABI and shared error/budget/state sources plus imported monitor function ASTs; separately changed fee source is never relabeled",
+  "full_source_sha256": {
+    "keeper/probe.py": "59e67a03e62a97a4aeef29baac9749bfa29bb04d8781f76abb4ccf55f76eb78b",
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4"
+  },
+  "monitor_baseline_sha256": "723551c2a8c09f9657e05517c9a173f92257a2b2fdceb27993cc4457ee83d5d4",
+  "imported_monitor_function_AST_sha256": {
+    "error_context": "baffa3fd09f3c92afbb08f6cf8f221a2070fcdd297723e6aa5c2f20b65cf9c5e",
+    "positive": "9d24e4a94188a8b281793534ad0660f6a448d1673071b07b5a8c5bf2f60fd3a7",
+    "rpc_quantity": "1c94fca227aaa077fb8776493a7bb4ab78ab0a4b9292c5ef47f0d1d105ba4013",
+    "rpc_hash": "46dcd1c1471d53b8fdd3f44315083d3dbe00f942dd557e18966f08e4d3a2e16a"
+  },
+  "monitor_selected_function_source_sha256": {
+    "error_context": "529373712e32a50bbd0b4905414890d7a9dbab62933809ca39705e6e94fbc1c5",
+    "positive": "60f7a836783ddd54be6660231574cd1ecd66788878861f4a5ed35f66152f87bb",
+    "rpc_quantity": "ee47ecbdbc3ae1ad3e749b53d322daa51faabe84fc5bbea6ca0d44393168df6d",
+    "rpc_hash": "a2e6f27dafe3925328382a1c834ce80cdce05e67758956a3988fe04993f67ad9"
+  },
+  "baseline_capability_rows": [
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_chainId",
+      "id": 1,
+      "request_semantic_sha256": "7cd718c15e7d48ea187956a752c86b96515cded0520142627ba5da9729233bee",
+      "response_sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3",
+      "parsed_response_semantic_sha256": "edff27af8298a21232625978a0b0ec6101b24a0d677606fc82725a017159f54e"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_getBlockByNumber",
+      "id": 2,
+      "request_semantic_sha256": "6042deefd2f94f002ee608e9c38aba1c6e23564a490ab26d20c4d9aa72b3adbe",
+      "response_sha256": "4f87fc73c25b87138db2ec20f807eab9c7609e46a285c7fc93a0139bd481cb58",
+      "parsed_response_semantic_sha256": "91c78a894150bd4e9e883d055f9186ab6d8bd534de57e662f4a09f1f2ac044ec"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_getBlockByNumber",
+      "id": 3,
+      "request_semantic_sha256": "996df9a7c6ebc44428a4e6208240de9fa6a385c4aa4b46511b1d0119504cdaf4",
+      "response_sha256": "bb3b687cb39855e0be35080b740bfaae6e0247ac76b6bdfbadc8f4e78b2f6baf",
+      "parsed_response_semantic_sha256": "c8d99cb3197e55395007a0fea889d73d953c58d0f9df8002b216311752c98d10"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_getCode",
+      "id": 4,
+      "request_semantic_sha256": "2935ea0e44e21814ab398b2acc95166d93cdafaed836b2cb9f73125213966e6d",
+      "response_sha256": "0523da2e3bd9c2543584db5adf8bdb4593d58ee15a8aebac6f18d606d253d92f",
+      "parsed_response_semantic_sha256": "9e8d6164bd7a8a9b1024ba5a86d0136d2ebce3ed8fd18144ade947482eb3fcfb"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_call",
+      "id": 5,
+      "request_semantic_sha256": "25613cddbe17fe66c4943a208bff57b3ad73226e61be9c4f299cafdc03dd2180",
+      "response_sha256": "da55cdce51c6761228b2c95de293db5be4e1de22547483c225bcdd5cf3ce0d16",
+      "parsed_response_semantic_sha256": "d742a926e8ee87783051dd63a5ea55bb41b3914a1d882c0666592d9cda6ce4fd"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_call",
+      "id": 6,
+      "request_semantic_sha256": "677f123c341a8b74addbdebcc7a5f427b749527cb6e9ee5f567fe5dfaf2c5aca",
+      "response_sha256": "a1243243c44a6ba006e0bda974f5133f1ee1b5e8601bdee8ab3299e4fa8bac91",
+      "parsed_response_semantic_sha256": "e424e43d43806e55d00bbfe30fd6bc67a4dba88307a8de137dbf2e1eb23bcfbf"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "debug_traceCall",
+      "id": 7,
+      "request_semantic_sha256": "4dc515e6ece88382ddd19d5c4e5e6ba345e6657fff0e678b882acc186d30d8cc",
+      "response_sha256": "27e3c0a3232d036dc97555df800464e3d4345655e1d7fb7792bccdaa73b6fd5b",
+      "parsed_response_semantic_sha256": "3d309326652cb1f05b704b2b4a0d60e548c8b6785bf02f18abf914324f97ba56"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_call",
+      "id": 8,
+      "request_semantic_sha256": "704095e5f50774644f9926ebf457cd38a7606e598be3b7a6ef467ba2aa6c8249",
+      "response_sha256": "de7c0c1848b01be1c812c4010636418abcd65b7c0f625cad9fdb319a48500d78",
+      "parsed_response_semantic_sha256": "421d1f2f21f5eed1a87d059d19cdc7bd64ba3182848831e0a1c486cc3f391255"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_estimateGas",
+      "id": 9,
+      "request_semantic_sha256": "a8f8d81c073b6fdcc5ab4541c11d979b2aea724cec146faaefafb339bb9c2cb5",
+      "response_sha256": "9d4288a7072ee1fe63422d632df59ea50815e4decad43e7dc8a95c690884ed79",
+      "parsed_response_semantic_sha256": "80a0906a5d805b716703f9dfc51f4dde13b605b1ef9d17e7cda81263db1c7c21"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_call",
+      "id": 10,
+      "request_semantic_sha256": "9a2364873a41742c1c10cf005eab62c74a067336159143aa0d4dc90cb70e3109",
+      "response_sha256": "54fd58b93dc4bc2a25fdec26c5dacc1a12055eead253bd9ad4f51bcb908bfb5f",
+      "parsed_response_semantic_sha256": "ed979da722ab95316e5ce10ce3799568c4a3ee65bcde80b2e585b1163e5c698e"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_estimateGas",
+      "id": 11,
+      "request_semantic_sha256": "95d7e6946efecf361487a231d9bc9302cc84649b27b44fe4f52bcf4beb5931b4",
+      "response_sha256": "20fb9907e449003606e70fd91767651c7fea59eb4ca3b605e374b006ce2294e9",
+      "parsed_response_semantic_sha256": "2359b2857296ef76a5be009e8a70f574e947613243ddd8d73c5dcaf67929434c"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_call",
+      "id": 12,
+      "request_semantic_sha256": "0e915e72904cd96aeea0f4fa12d68c90dbc3930982eb3e9846f1b0d5968bfa77",
+      "response_sha256": "9fa31b787e192d8f302b02b405eb54b54beec8a168fc01246889b48a7c4284f6",
+      "parsed_response_semantic_sha256": "b5c4559276666d4ce8d7bb150ea882aeb1d9548428eb5ee4f9b24bae96caf6d5"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_estimateGas",
+      "id": 13,
+      "request_semantic_sha256": "6ef5e12872be7f570a2720e21b86c54d37eb2799cde2cd5e3a382c14d29e0f73",
+      "response_sha256": "7b4010a2bed04d6ecf964d813fcd775e0a459a04f58082cc4f97e3ea6c078224",
+      "parsed_response_semantic_sha256": "e51d990bab6a934da31bb3e4c4c1ff8745090a8c3384b7c7a625b8611d8823c8"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "debug_traceCall",
+      "id": 14,
+      "request_semantic_sha256": "8af31780ce0cc11229e8a193e6855fa89693aaa5c72a22720bb8d67c8f67e424",
+      "response_sha256": "e093f23cd3ae8dce099059ded1615dea2af87da9c3edae018a717c08c243cceb",
+      "parsed_response_semantic_sha256": "b2d3e0a534456ca6205d3ef4205c59cde010dfd76ccb801ab87e99604270ffd7"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_getBlockByHash",
+      "id": 15,
+      "request_semantic_sha256": "b10366fe6989f7635970d823398c853d0dc63045230e2c5d25327b6009f032d2",
+      "response_sha256": "b26e3ce40f6a83c51ed7b59903aeeb8e8860a920a7b2f1503caf272c41861d16",
+      "parsed_response_semantic_sha256": "277a7c79c35e9394445adf3573f20323209ff081b902a4a32d88c23ea1748615"
+    },
+    {
+      "phase": "permitted/pinax",
+      "method": "eth_getBlockByNumber",
+      "id": 16,
+      "request_semantic_sha256": "eb5efdee917f36d2c967adb99c5c260f7d4c55ec7bdc09bb84d752c65c6b3622",
+      "response_sha256": "1270ad641404b31cac705aad4ca49fd66d14cae55ba77d550bede3fdda6c6896",
+      "parsed_response_semantic_sha256": "bf6e554a61e894288cbd056ef8f8b780badba066f3f884e2d8d00dd23a94d7a8"
+    }
+  ],
+  "initial_network_index_sha256": "e293193f66ef96ad8ff274306e3eb8ffbb3644ae6c09e61a1879ea4fc32e53ca"
+}

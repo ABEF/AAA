@@ -11,10 +11,17 @@ remains. Candidate overlays are incomplete: no approved fee ceilings/review hash
 provider or live configuration. Manual24M injected helper checks are not actual
 Migration C/D qualification. Next qualify trace-capable canonical RPC, complete
 fees, real independent feeds/routes and full actual workload/configuration/hosting;
-then seek separate rollout authorization. Daybreak cheap hash calls/estimates
-work but tracing is unavailable; BlockVectra hash-state and tracing fail. Use the
-[operator procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m). No service/site,
-public signing, existing Anvil/journal or paused-heartbeat change.
+then seek separate rollout authorization. The later
+[RPC/fee review](../reports/rpc-fees-20261113/REVIEW.md) supplies a Pinax actual
+canonical-hash Approval(0) trace, cheap20M/24M field admission, ten posting-only
+payload estimates and two genuine receipts. Source now offers explicit future
+keeper submission_fee_profile2:4663/included/L1allowance0, type2/priority0,
+matching simulation/Cast and captured schema2 recovery. Generic Ethereum helper
+and original schema1 pending behavior remain; never edit old reviews/spend or
+roll old source onto a schema2 pending. Profile2 actual signing/host rehearsal,
+complete PoPL target quotes/provider/workload/genesis and approved fee ceilings
+remain unqualified. Use the [operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
+No service/site/public signing, existing Anvil/journal or paused-heartbeat change.
 
 The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
 the requested individual reconciliation:271new plus39prior records, not310

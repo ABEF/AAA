@@ -1,0 +1,71 @@
+{
+  "algorithm": "sha256",
+  "scope": "Fee partition public files, excluding self-referential manifest; network partition owns raw RPC records",
+  "files": [
+    {
+      "path": "CAST_UNSIGNED.json",
+      "sha256": "4a15e19d1c8cb40bb25d8dac1dbc8ae5736ad4204868c3d38701bd244e41d680",
+      "bytes": 1702
+    },
+    {
+      "path": "COMPANION_REQUESTS.json",
+      "sha256": "eb0e15b0811c3fd25ac38350d841f4138299772457f85f124cc1fe9b915129ac",
+      "bytes": 1560
+    },
+    {
+      "path": "EXTERNAL.json",
+      "sha256": "2f490485d1babe9fec1a6a5c47235d18fe49775178ca1d7852bf4c3c2d9e628a",
+      "bytes": 2428
+    },
+    {
+      "path": "FIX_BASELINE.json",
+      "sha256": "27f11844e13a0133ee48295a9a121af07e248c8dee3c7a8a48a6d14cc815e8ff",
+      "bytes": 467
+    },
+    {
+      "path": "KEEPER_FOCUSED.json",
+      "sha256": "b41e91086eaf82331b9ca8dc72fa147280d712ae9476fbcca7111ee7604c2adb",
+      "bytes": 5856
+    },
+    {
+      "path": "KEEPER_FOCUSED.log",
+      "sha256": "5fc4c7cde86c83095e0976520cfddafb4caccbcbc21e3169a6224d05497dc624",
+      "bytes": 3216
+    },
+    {
+      "path": "PRIMARY_SOURCES.json",
+      "sha256": "dbcfcef5d991738fd9ece535384295a84d3dbbcb677fa8fe0ac55cd183ab0aac",
+      "bytes": 4186
+    },
+    {
+      "path": "reconcile.py",
+      "sha256": "3f9dd72e71a9a71f1a42eca1428c08839a81d14dc9a4c9ff6a8420a6bfe9604e",
+      "bytes": 14363
+    },
+    {
+      "path": "REQUEST_PLAN.json",
+      "sha256": "51facaad9b6140d3ca482eaaf3f2905d6d9876f264ab0bfd3ba6969dbce826ec",
+      "bytes": 22646
+    },
+    {
+      "path": "RESULTS.json",
+      "sha256": "7bac535150cfbd9ce71abc8101234e66e8746c0e05f0982dbc8a759930181720",
+      "bytes": 13759
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "c77aea1807145ba5808ad2b74bbb3ce6109cc5ad4b3d520634298b518d22bc9d",
+      "bytes": 10497
+    },
+    {
+      "path": "SOURCE_ASSESSMENT.json",
+      "sha256": "43bd9bb440a3c1fa7798e105b4d4c0a64f8bc6a7f8652b02b425c16bb1f921f1",
+      "bytes": 3417
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "8c0b341315f84f9e3f4692e4d96e23d9a5ecf7a9f1df7515ec08b16f4797611d",
+      "bytes": 863
+    }
+  ]
+}
