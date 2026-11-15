@@ -11,9 +11,12 @@ guarded request into a forced request.
 | `scripts/prepare-operator-management.py` | Park, resume, raw residual close and each collective-exit step below. |
 | `scripts/prepare-manual-lp.py` | Schema1 Active B/C/D, plus explicit schema2 Parked emergency D below. |
 
-This is a source implementation. Actual matching deployment/configuration,
-provider support, gas/fee semantics, wallet execution and operator rehearsal
-remain qualification work. No existing service, site, signer or chain is changed.
+The [controlled local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+now exercises current mint2/V10 manual C/D, Parked recovery and an actual
+park-to-recovery journey through the unchanged production CLIs. Matching
+production deployments, target providers/fees, contract-wallet execution and
+operating acceptance remain unqualified. No existing service, site, signer or
+chain is changed.
 
 This adapter supports **direct empty-code governance EOAs only**. It checks the
 governance address's code at both pinned snapshots. Contract wallets, including
@@ -227,12 +230,112 @@ paused**. Review restored prices/settings and reconcile pending work before
 separate governance unpause. A revert leaves Parked state/funds unchanged except
 for transaction gas. Never repeat an ambiguous submitted transaction as new work.
 
-[Source review and verification](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-cover injected-RPC preparation only, not actual provider, target-gas, wallet or
-operating qualification. Contract-wallet envelopes remain unsupported here.
+The earlier [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md)
+retains its injected-RPC scope. The later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+adds current-contract CLI, gas and receipt evidence described below. It does not
+qualify a target provider, production fee budget or contract-wallet envelope.
 
 Use the [complete B/C/D matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
 and the maintained [operator procedure](OPERATOR_MANUAL.md#same-main-residual-consolidation).
+
+<a id="local-manual-recovery-rehearsal"></a>
+
+## Actual local manual recovery rehearsal
+
+The [15 November record](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+covers four explicit manual flows on newly owned Anvil chains. Each actual
+production CLI uses its normal wall clock and unchanged 25-second review budget,
+two genuine canonical anchors, frozen caller inputs and the same exact unsigned
+calldata through local inclusion. No browser signer, public transaction, existing
+Anvil, keeper journal or running configuration is used.
+
+| Explicit flow | RPC estimate | Required 25% padded gas | Actual receipt gas |
+| --- | ---: | ---: | ---: |
+| Active C, checks14; residual into the existing main |10,233,104|12,791,380|9,388,004|
+| Active D, checks14; replace both legs with one main |10,408,641|13,010,802|9,520,341|
+| Parked D, checks14; retain financial/operations guards |8,822,193|11,027,742|8,181,893|
+| Parked D, explicitly chosen checks0 outage scenario |3,007,714|3,759,643|2,626,114|
+
+Every row passes at the full 24M cap and at exactly
+`ceil(estimate × 1.25)`, below the actual local 32M block limit. Estimates,
+trace gas and receipt gas are separate measurements. These values do not change
+the 12M defaults, approve a spending ceiling or quote Robinhood's complete fees.
+Checks0 is a separately selected emergency case with broken prices/disabled
+operations; its lower gas is not a reason to remove safeguards from checks14.
+
+The same owned-chain journey also prepares and includes `park` before Parked
+D14. Its estimate is 1,616,054, padded gas 2,020,068 and receipt gas 1,367,950.
+The report retains all six local receipts, including an earlier confirmed park
+before a rehearsal-verifier failure. C's post-receipt verifier correction was
+reconciled offline without resending its transaction.
+
+### Verify the operation's actual result
+
+| Operation | LP and principal result | Counters and clocks | Residual policy / pause |
+| --- | --- | --- | --- |
+| `park` | Both legs close into attributed Vault idle. Designated compound stays in Fees; rewards/buyback stay separate. | Parking nonce +1; custody epoch unchanged. Main centre, last rebalance and last compound remain unchanged. | Desired mode unchanged; stays paused. |
+| C consolidation | Close the residual; increase the existing main by at least the selected added-L floor. Preserve its ID, ticks, centre and rebalance clock. Designated compound is not released. | Parking nonce +1 and custody epoch +1; last compound becomes inclusion time. | Completes consolidation with mode OFF and advances control revisions even if already OFF; stays paused. |
+| Active or Parked D | Create one Vault-owned main in the selected ticks; close any old legs. Use only attributed principal and designated compound. | Last rebalance becomes inclusion time; last compound, parking nonce and custody epoch unchanged. | Desired mode is not disabled by D; stays paused. |
+
+For a lasting single-position policy after D, disable residual mode through
+governance **before preparing** the review. A new physical main alone does not
+disable future residual creation. C completes that policy change itself.
+An independent pending main-range change is not cancelled by consolidation.
+
+Inspect the confirmed receipt and both asset ledgers: current owners/shares,
+active versus dormant membership, exact LP closure, attributed idle, released
+compound, funded reward liabilities, buyback/dust backing, cleared allowances
+and inactive execution contexts. New fees collected during a real close may
+increase reward/reserve books; reconcile their events rather than requiring
+balances to be numerically unchanged. The measured critical receipts had no
+new fees, so they preserved existing books exactly. Reconcile pending work and
+choose any later unpause separately.
+
+### Retained guards and the execution venue
+
+Actual checks14 probes reject when the explicit swap changes a pool used by
+the live price reference. Recorded traces show a successful core swap followed
+by a changed emergency fingerprint and atomic rejection. This is a remaining
+manual-execution limitation; normal LP-routing3 evidence does not close it.
+
+The successful checks14 flows use a separately admitted execution venue that
+does not alter either live reference. Select and review that venue, swap amount
+and original floors explicitly; preparation does not choose another route.
+If no suitable venue is available, stop and review the dependency or make a
+separate governance emergency decision. There is no automatic checks14-to0
+retry, and bypassing financial guards can permit near-total principal loss.
+
+### Reproduce only on a new owned local chain
+
+Use fresh authenticated exports and the artifact from the four new methods in
+`test/ManualRecoveryQualification.t.sol`; the report records the isolated build
+and source scope. The producer accepts no RPC URL, key or existing-node target:
+
+```text
+python scripts/rehearse-manual-recovery.py --exports FRESH_METHOD_EXPORTS --host-artifact MATCHING_HOST_ARTIFACT --anvil REVIEWED_LOCAL_ANVIL_EXE --python LOCAL_PYTHON_EXE --case parked-d14 --new-review-deadline-seconds 500 --output NEW_OWNED_REHEARSAL_OUTPUT
+```
+
+The placeholder paths must identify that fresh controlled export, matching host
+artifact and reviewed local tools. The deadline option records a **new explicit
+review intent before preparation**; it never edits a prepared artifact or pending
+transaction. Stale feeds, expired inputs and failed simulations still refuse.
+Do not reuse an old output path or resubmit an uncertain hash.
+
+The producer starts a new PID-verified loopback chain 31337 with `--accounts 0`,
+32M blocks and a minimal child environment. Its read-only recording proxy
+rejects mutation requests. Only its owned node may be mined or impersonate the
+disposable governance EOA for local receipts; it records exact state/receipts and
+stops its own processes. Inspect `cleanup.json` and every pending intent. It
+cannot target the existing local chain or deploy to a public network.
+
+This controlled graph has two active NFTs, one dormant NFT and one active bucket,
+with real Access, current
+mint2/V10 and Uniswap v4, but fixture token/feeds/VRF/Permit2/depth and a derived
+local-network admission seam. It does not qualify actual ZZZ markets, OpenSea,
+provider latency, maximum workloads, target-chain fees or production operation.
+The inner offline catalogue still carries its historical V9/LP-routing2 label;
+actual current profile admission comes from explicit configuration, runtime
+pins and unchanged Projection/Reader checks. Do not relabel old artifacts.
 
 ## Explicit inputs
 

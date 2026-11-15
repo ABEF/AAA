@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Actual manual recovery rehearsal](manual-recovery-rehearsal-20261115/REVIEW.md)
+records four controlled current-profile manual workflows, six local receipts,
+exact25% padded gas and a portable offline evidence checker. New fixtures and
+failed setup/verifier attempts remain explicit; unchanged suites are not rerun.
+No production contract, default, existing chain, service or website is changed.
+
 [Manual LP diagnostics](manual-lp-diagnostics-20261115/REVIEW.md) adds typed
 local cause/stage and conservative uncertain-file reporting without changing
 successful manual reviews, safeguards, authority or running environments.

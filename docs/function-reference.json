@@ -28104,7 +28104,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "1a1332f6125dc71a5292b8848107bb8a3bdee64cb432c89e63c11189903b164e",
+  "notes_sha256": "b9c65d77f4a4fdfee4b7a25d204bdf1a29e91ec671d43ec0dd125163b9cf2bf1",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -43531,7 +43531,7 @@
           "kind": "function",
           "name": "custodyEpoch",
           "state_mutability": "view",
-          "purpose": "Read the bucket custody epoch bound by parking and residual-close manifests.",
+          "purpose": "Read the bucket custody epoch bound by parking, residual-close and same-main consolidation reviews.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -43553,7 +43553,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": "Epoch advances on terminal bucket closure or successful residual-only close; no external custody departure plan exists."
+              "explanation": "Advances on successful same-main consolidation, residual-only closure or terminal bucket closure. Parking, normal resume/move and full emergency replacement do not advance it."
             }
           ],
           "native_value": null,
@@ -44020,7 +44020,7 @@
           "kind": "function",
           "name": "invalidateParking",
           "state_mutability": "nonpayable",
-          "purpose": "Advance the shared bucket nonce to invalidate unused parking and residual-close reviews.",
+          "purpose": "Advance the shared bucket nonce to invalidate unused parking, residual-close and same-main consolidation reviews.",
           "access": "Drain-authorized governance before irreversible LP exit.",
           "status": "documented",
           "inputs": [
@@ -44036,7 +44036,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Does not undo mined parking or residual closure, move principal, cancel collective exit or reopen retired LP. An already-broadcast operation still needs same-hash receipt reconciliation."
+          "notes": "Does not undo mined parking, residual closure or consolidation, move principal, cancel collective exit or reopen retired LP. Full emergency replacement uses a separate custody hash without this nonce. An already-broadcast operation still needs same-hash receipt reconciliation."
         },
         {
           "signature": "moveFunds(uint256,bytes32,uint128,uint256)",
@@ -44267,7 +44267,7 @@
           "kind": "function",
           "name": "parkingNonce",
           "state_mutability": "view",
-          "purpose": "Read the shared anti-replay nonce for parking and residual-only close reviews.",
+          "purpose": "Read the shared anti-replay nonce for parking, residual-only close and same-main consolidation reviews.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -44289,7 +44289,7 @@
               "type": "uint64",
               "canonical_type": "uint64",
               "internal_type": "uint64",
-              "explanation": "Current nonce; advances on successful parking, residual-only close or explicit invalidateParking. Read again before reviewing another operation."
+              "explanation": "Advances on successful parking, residual-only close, same-main consolidation or explicit invalidateParking. Normal resume/move, full emergency replacement and terminal bucket closure do not advance it. Read again before another review."
             }
           ],
           "native_value": null,

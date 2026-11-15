@@ -1,0 +1,15 @@
+{
+  "scope": "Explanation-only function reference reconciliation; no function/ABI/authority/example argument/short role change",
+  "changed_reference_paths": [
+    "/notes_sha256",
+    "/contracts/18/functions/21/purpose",
+    "/contracts/18/functions/21/outputs/0/explanation",
+    "/contracts/18/functions/31/purpose",
+    "/contracts/18/functions/31/notes",
+    "/contracts/18/functions/35/purpose",
+    "/contracts/18/functions/35/outputs/0/explanation"
+  ],
+  "old_examples_reference_sha256": "5f5fa032e6b4ff352c287313593e4516288526af0104e78f397d4278b42840dd",
+  "new_examples_reference_sha256": "1eb9ffb23de14e0eac1294cf15c44ccb4041bb6aee51370e0aa09c88df7b2182",
+  "example_row_count": 1009
+}

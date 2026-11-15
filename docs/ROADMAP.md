@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [controlled manual recovery milestone](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is now complete:
+actual local C14/D14, park→Parked D14 and explicit outage D0 fit24M with full25%
+padding. Next qualify real configuration/depth/fees, maximum workloads and actual
+operator/host envelopes. Resolve retained emergency reference-as-venue coupling
+without automatic mask fallback. Existing keeper/source evidence is reused.
+
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression
 methods pass at their recorded stages. Existing task implementation milestones
@@ -152,8 +158,8 @@ operator-selected floors, provider/hash/complete-fee support, target gas and wal
 execution; contract-wallet envelopes remain separate manual procedures.
 [Manual diagnostic source completion](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 adds stage/cause and uncertain-output reporting, preserving successful reviews
-and safeguards. Actual manual C/D and Parked recovery gas/provider/operator
-rehearsals remain. Preparation adds no signing, queue, force/recenter fallback or
+and safeguards. Controlled local C/D and Parked gas receipts are now recorded above; real
+provider/complete-fee, contract-wallet and operator/host rehearsals remain. Preparation adds no signing, queue, force/recenter fallback or
 execution approval.
 
 Qualify the new explicit claim planner with actual worst-case currencies/fees,

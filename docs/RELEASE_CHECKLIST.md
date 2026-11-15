@@ -1,5 +1,12 @@
 # Release approval record - NOT APPROVED
 
+The [actual local C/D and Parked recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+passes with a real governance EOA and current mint2/V10/execution1/LP3 graph under
+controlled markets. This is local composition/gas acceptance only. Real feeds,
+routes/depth, complete Robinhood fees, maximum workloads, contract-wallet/host
+operation and independent approval remain mandatory; no profile or service is
+adopted. Retained emergency reference-as-venue coupling is unresolved.
+
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression
 methods pass at their recorded stages. Existing task implementation milestones

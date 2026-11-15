@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "Exact report raw bytes; this manifest excluded from its own map",
+  "sha256": {
+    "BUNDLE.json": "5341aeca9334eda37b18cd7ee9afa3c30601763c5a6f225c0bfb09f12befe8d9",
+    "CAMPAIGN_LEDGER.json": "652872ba27238ca45d32f438c226b588f30c693adad9626776897648f13d3f95",
+    "COMPLETION.json": "f8c4d3b57bfc41f87940e1e19e997381380267dc827c36396dd7dc54ea47363b",
+    "EVIDENCE_MANIFEST.json": "c53a1306b91456e94e80b988b80ac66f99471ccde6454ae33f48517317e353cd",
+    "GAS_AND_TRANSACTIONS.json": "2a07f0e8fca4f8f020f46febc18b2632c53616eaa1263b6e8662ef159462e430",
+    "OFFLINE_VERIFICATION.json": "3c5f056729305557731bbd6e1fd41b8949fe6a83e2ee7d4c07b34e590aba51d9",
+    "OPERATOR_REFERENCE_REVIEW.json": "98cbdc459414573fba3ecaa89a51850ee7ff122f9c06cfa4f55bb4b679531fcd",
+    "PRESERVATION.json": "07b975560c00f71c3687f80ff2298b396d5b084e484e181fb81bf3efa96a5be7",
+    "public-evidence.zip": "ba2a8a96d346c8553bfeacc1e7eb42f592feabbdb99ff36270d81f92be4636f0",
+    "REVIEW.md": "8c8553806776b9ad412fb33523e45a13243e8f374ece2c104f334fb9fc585cd1",
+    "ROOT_REVIEW.json": "f957f478c940a93540359b77ca44bb83a0a350961e98d2fa437d5f1ec2d3327a",
+    "SOURCE_SCOPE.json": "2d48ea3ea00699ff1b39933634f25f3feca19251e2d4474086eaded1481de4d0",
+    "VERIFICATION.md": "be9e31a4ca6b39be69e9fb9ece76256cb830bb33098f8ddd985e1a84e36993db",
+    "verify_evidence.py": "d23827734a4a0a742da29c2311222d5d9e3102315b4cf3d6c17f0bcf640c2a01"
+  }
+}

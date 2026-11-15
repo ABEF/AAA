@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Actual local recovery and manual gas checks](reports/manual-recovery-rehearsal-20261115/REVIEW.md) now cover C/D,
+including a complete park→recovery journey, without changing production contracts
+or safeguards. Worst padded manual call:13,010,802/24M. Target-chain fees, real
+markets and operating approval remain open.
+
 [Manual LP diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 now identify the failing review stage and known local cause, with safe unknown
 RPC errors and uncertain-output handling. Successful unsigned manual reviews,

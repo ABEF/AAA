@@ -4717,23 +4717,23 @@
           "notes": "Reverts NotReady before phase3 or for an unprocessed/nonexistent NFT; never guess an unallocated amount as zero. A processed dormant/zero-output NFT legitimately has zero principal."
         },
         "custodyEpoch(uint256)": {
-          "purpose": "Read the bucket custody epoch bound by parking and residual-close manifests.",
+          "purpose": "Read the bucket custody epoch bound by parking, residual-close and same-main consolidation reviews.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
           "outputs": {
-            "0": "Epoch advances on terminal bucket closure or successful residual-only close; no external custody departure plan exists."
+            "0": "Advances on successful same-main consolidation, residual-only closure or terminal bucket closure. Parking, normal resume/move and full emergency replacement do not advance it."
           }
         },
         "parkingNonce(uint256)": {
-          "purpose": "Read the shared anti-replay nonce for parking and residual-only close reviews.",
+          "purpose": "Read the shared anti-replay nonce for parking, residual-only close and same-main consolidation reviews.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
           "outputs": {
-            "0": "Current nonce; advances on successful parking, residual-only close or explicit invalidateParking. Read again before reviewing another operation."
+            "0": "Advances on successful parking, residual-only close, same-main consolidation or explicit invalidateParking. Normal resume/move, full emergency replacement and terminal bucket closure do not advance it. Read again before another review."
           }
         },
         "activePlan(uint256)": {
@@ -4848,12 +4848,12 @@
           "notes": "Requires fresh ordinary deployment/maintenance guards. Cannot resume Exited principal or clear lpExitStarted."
         },
         "invalidateParking(uint256)": {
-          "purpose": "Advance the shared bucket nonce to invalidate unused parking and residual-close reviews.",
+          "purpose": "Advance the shared bucket nonce to invalidate unused parking, residual-close and same-main consolidation reviews.",
           "access": "Drain-authorized governance before irreversible LP exit.",
           "inputs": {
             "0": "Stable shared bucket ID, not an individual NFT ID, mint ordinal or Uniswap LP token ID."
           },
-          "notes": "Does not undo mined parking or residual closure, move principal, cancel collective exit or reopen retired LP. An already-broadcast operation still needs same-hash receipt reconciliation."
+          "notes": "Does not undo mined parking, residual closure or consolidation, move principal, cancel collective exit or reopen retired LP. Full emergency replacement uses a separate custody hash without this nonce. An already-broadcast operation still needs same-hash receipt reconciliation."
         },
         "EMERGENCY_REBALANCE_VERSION()": {
           "purpose": "Read manual paused-governance emergency integration with full current portfolio review identity.",

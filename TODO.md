@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 32 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 33 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. Source publication, installed-service adoption and production qualification are separate milestones; this checklist does not approve deployment or rollout.
 
@@ -219,7 +219,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-execution-routing"></a>
 
-- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh optional execution-price1/LP-routing3 extends the fixed typed LP child/read-only math child and bounded reviewed-venue sizing with captured two-source bounds and exact actual-core output/full-state proofs. Ordinary single/hybrid replacements require an active main; entrant and explicit emergency policies stay separate. A reviewed external reference may also execute swaps, but cannot be the same-core principal destination. Explicit matching consumers, full-operation gas and real venue/source qualification remain open; omitted/0 retains LP2.
+- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh optional execution-price1/LP-routing3 extends the fixed typed LP child/read-only math child and bounded reviewed-venue sizing with captured two-source bounds and exact actual-core output/full-state proofs. Ordinary single/hybrid replacements require an active main; entrant and explicit emergency policies stay separate. In ordinary captured execution a reviewed external reference may also swap, but cannot be the same-core principal destination. Explicit matching consumers, full-operation gas and real venue/source qualification remain open; omitted/0 retains LP2.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -243,6 +243,7 @@ Custody, ownership and reward accounting.
   - [Gas optimization](reports/gas-feasibility-20261111/REVIEW.md) shares a fresh source-call ceiling only inside each STATIC capture/full-validation chain, with all mutable-boundary proofs/49-word codec/ABI/storage and budgets unchanged.23focused EVM methods succeed; no unchanged broad suite repeats. Exact runtime admission and actual market/provider qualification remain open.
   - [20M/24M controlled completion](reports/gas-profiles-20261113/REVIEW.md) verifies exact launch contributions and single/hybrid main-residual lifecycle without relaxing routing, pricing, accounting, time or financial guards. All61 production sources remain byte-identical. These bounded fixtures do not qualify real routes/depth, full cohorts or production adoption.
   - [Current real routing blocker](reports/predeployment-qualification-20261113/markets/REVIEW.md): only tiny07ee2b among seven active fee-compatible known native pools can share selected-pool500bps reference bands. Conditional ETH quotes lose14.211291%/84.654786% against respective initial spots; these are diagnostic, not actual whole contribution acceptance. Preserve target/venue/additional/caller guards; obtain compatible external depth before full real-market qualification.
+  - [Actual manual limitation](reports/manual-recovery-rehearsal-20261115/REVIEW.md): C/D retaining price-dependent guards use a live fingerprint, not the ordinary captured-transition exception. Actual swap traces reproduce reference mutation followed by Manager.balance rejection despite feasible original floors; atomic state is preserved. A separately reviewed third execution venue succeeds. Review a safe emergency-compatible transition design before claiming reference-as-venue support there; no automatic14→0 fallback or guard/default change.
 
   </details>
 
@@ -688,8 +689,9 @@ The data and services behind the app.
   - [Typed manual-LP preparation](docs/MANUAL_LP_PREPARATION.md) implements explicit Active-state B/C/D as a bounded source-only milestone for direct empty-code governance wallets; contract/delegated-wallet envelopes explicitly reject before funding review, without restricting contract authority. Authenticate runtime/governance/pause/main/residual/control snapshots, prepare exact added-L versus new-L floors and custody/review commitments, retain the original expiry and exact calldata, and simulate freshly before publication. Healthy market movement is re-evaluated rather than treated as a geometry change. Schema1 remains Active-only; separate explicit schema2 now supports Parked D. No automatic force, floor choice, signing, deadline extension or intent deletion. Actual provider/manual rehearsal and wider adapters remain open. [Both-flow scope](reports/moving-market-flows-20261106/INPUT_MATRIX.md).
   - [Retry diagnostics](reports/exact-lp-engine-20261106/VERIFICATION.md): rebalance/compound/harvest rows expose matching journal-backed retry waits and return not_due before simulation. Pending/lifecycle/authority remain first; missing timing staysnull/unavailable. Decimal-string legacy counters normalize through the existing parser. No added RPC, journal writes, signing or worker-policy change; universal report and actual hosting/provider qualification remain open.
   - [Operator management extension](reports/operator-management-20261109/REVIEW.md): seven source-only typed custody/terminal actions, automatic exact request/hash inputs, confirmed/latest controls, unchanged calldata/gas simulations, explicit batch-budget partial payouts, current-owner/cursor inclusion limits, sanitized blockers and durable exclusive publication. Existing Active B/C/D unchanged. No Solidity/profile/authority/service/site/signing change; actual operator/provider/target-gas and independent acceptance remain open.
-  - The [operator gas-profile procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m) specifies exact20M browser/backend equality, decimal-string vs numeric fields, full20% activation policy2 vs25% manual/keeper padding, separate activation/claim listeners, fee approval, pending-first restart and rollback. Manual24M gas helpers have injected-input evidence; actual governance Migration C/D workloads are not represented by the six keeper calls. Templates remain incomplete, with no signed/submitted operation or rollout.
+  - The [operator gas-profile procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m) specifies exact20M browser/backend equality, decimal-string vs numeric fields, full20% activation policy2 vs25% manual/keeper padding, separate activation/claim listeners, fee approval, pending-first restart and rollback. Earlier manual24M helper evidence is injected-only; the new separate manual-recovery-gas-rehearsal milestone records actual controlled C/D/Parked receipts, without changing the scope of the six keeper calls. Templates remain incomplete, with no signed/submitted operation or rollout.
   - [44-task assessment](reports/open-tasks-audit-20261113/TASK_ASSESSMENTS.json) records concrete source milestones and remaining operator/provider/host boundaries without claiming44bugs or universal diagnostics. No unresolved new contract-policy decision was established; required external inputs remain explicit.
+  - [Controlled manual recovery](reports/manual-recovery-rehearsal-20261115/REVIEW.md) passes actual unchanged CLI/default clock/current full graph and exact local governance receipts for C14/D14/Parked14/explicit0. Four new EVM methods overlap these workflows, six total receipts reconcile and all owned nodes stop. Worst exact25%-padded13,010,802/24M; defaults unchanged. Real markets/complete target fees, maximum state, contract-wallet/host acceptance and emergency reference-venue coupling remain open. The legacy offline Catalog profile label is provenance, not runtime identity; exact current runtime/config pins are separately verified.
 
   </details>
 
@@ -779,6 +781,20 @@ The data and services behind the app.
 
   </details>
 
+<a id="task-manual-recovery-gas-rehearsal"></a>
+
+- [x] **[Rehearse actual local manual C/D and Parked recovery](docs/OPERATOR_MANUAL.md#local-manual-recovery-rehearsal)** - Implemented. Current-profile actual CLI-to-local-governance receipts verify C14 existing-main consolidation, D14 whole replacement, complete park→Parked D14 and separately selected oracle-outage D0. Exact25% padding fits24M without raising defaults or relaxing safeguards. This bounded controlled milestone is separate from production market/provider/fee/host approval.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Review](reports/manual-recovery-rehearsal-20261115/REVIEW.md) and [verification](reports/manual-recovery-rehearsal-20261115/VERIFICATION.md): four unique new Solidity methods; six invocations retain two earlier new-fixture failures. Four focused compile/list stages run zero test methods. Seven actual CLI attempts retain one bounded25s timeout; six successful reviews match six receipts including one earlier park. These overlap, not extra feature counts. No unchanged EVM/Python/browser/normal/static suite repeats.
+  - Controlled real Access/governance, mint2/V10 graph, actual v4 and current reader runtime pins; local Registry admission, token, feeds, VRF/Permit2 and depth seams explicit. Two unequal active NFTs, distinct owners and a dormant NFT, nonzero earned reserves and stray prefunds reconcile. Main/residual closure, nonce/epoch/clocks, exact shares/reward books, compound and pause verified.
+  - C14 padded12,791,380; D14 13,010,802; Parked14 11,027,742; Parked0 3,759,643, each<=24M with full25%. Actual tx calldata/mask/floors/expiry equal the reviews. Keeper governance impersonation rejects; explicit0 never automatic. All six owned nodes stopped. No existing-node URL/private-key input accepted; no public transaction or old environment/journal change.
+  - Portable hashed evidence and offline checker retain failed attempts, original Catalog/source identity and exact receipt proofs. Old Anvil read endpoint was unavailable, so old live state-root/balance equality is not claimed; source/dist bytes and no-touch process isolation are checked. Production all61/defaults remain.
+
+  </details>
+
 <a id="task-manual-lp-diagnostics"></a>
 
 - [x] **[Explain manual LP review failures and uncertain output](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)** - Implemented. Active B/C/D and explicit Parked D report failing stage and typed known local cause, safe bounded RPC/work categories and preserved/uncertain output. Successful manual artifacts and RPC order, original safeguards/permissions/limits stay. No automatic retry, signing or fallback; actual provider/gas/operator acceptance remains separate.
@@ -803,7 +819,7 @@ The data and services behind the app.
   - [Source review and focused verification](reports/parked-recovery-preparation-20261115/VERIFICATION.md) preserve schema1 Active B/C/D and reject silent schema/state coercion. Parked requires schema2/D/expected_position_status:parked, exact admitted current-pool identity, positive shares and nonempty attributed idle/designated compound; reward/buyback/royalty backing stays separate.
   - Bits1/16 require Active LP and reject clearly. Select bits2/4/8 explicitly; bit4 still requires USD data when2 is bypassed. Mask0 keeps governance, pause/seal/lifecycle, structural admission, custody/balances/callbacks, caller floors and expiry; it does not promise economically sensible or active placement. No automatic bypass or route selection.
   - Confirmed/latest control drift, reorg, expiry, funding/budget or retained-simulation failure refuses publication. New output only, no nonce/gas/signing fields in transaction, no journal writes/signing/unpause/service or chain changes. After separate authorized execution verify receipt, new main/Active bucket, funds/shares/rights and still-paused state before separate unpause.
-  - Actual governance C/D gas, complete provider fees, contract-wallet envelopes and operating/independent acceptance remain under operation-review and release gates; unchanged contracts and suites are not rerun for this Python preparation extension.
+  - Controlled local C/D/Parked gas and direct-EOA receipts are now in the [separate rehearsal](reports/manual-recovery-rehearsal-20261115/REVIEW.md); complete target fees/providers, maximum state, contract-wallet/host operation and independent approval remain under operation-review. Earlier source-only tests retain their scope; unchanged suites are not rerun.
 
   </details>
 
@@ -1679,4 +1695,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `582eb4a16bf7f1e6e7711748f2774b663e923f3e4b195e9a575ea62c0eafc228`.
+Snapshot SHA-256: `7aa14ad7a3349a8ea833cbb7eb1c154676a01270bce93ece61feecf20342e8aa`.

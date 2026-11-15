@@ -234,7 +234,10 @@ idle/designated compound are redeployed in the current pool into one new main;
 shares and earned rewards stay. Recovery remains paused; verify the actual
 receipt/post-state, reconcile pending work, then separately unpause. No holder
 or keeper permission is added, and no service restart or live setting is applied
-by preparation. [Verification](../reports/parked-recovery-preparation-20261115/REVIEW.md).
+by preparation. The earlier [source verification](../reports/parked-recovery-preparation-20261115/REVIEW.md)
+retains its injected-RPC scope; the later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+adds full current-contract CLI and receipt evidence. Target-provider, complete-fee
+and contract-wallet acceptance remain open.
 
 The seven management actions preserve exact calldata and frozen transaction gas.
 Manual B/C/D and Parked D preserve exact calldata with bounded gas/fee envelopes
@@ -280,10 +283,12 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 
 ### Explicit20M contribution and24M maintenance profiles
 
-The [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) passes
-all four $100/$5 contribution cases and six keeper operations at full padding;
-worst measured padded gas is18,098,846/20M and21,046,237/24M. This is not maximum-
-state, real-market/provider or actual manual Migration C/D acceptance.
+The earlier [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
+passes all four $100/$5 contribution cases and six keeper operations at full
+padding; worst measured padded gas is18,098,846/20M and21,046,237/24M. Its keeper
+cases did not measure manual Migration C/D. The later [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+adds actual current mint2/V10 C14, D14 and Parked D14/D0 CLI/receipt evidence.
+Neither report qualifies maximum state, real markets, target providers or fees.
 The [profile package](../reports/gas-profiles-20261113/backend/profiles.template.json)
 contains gas-only candidate overlays, not complete runnable configurations or
 permission to deploy. Fee approvals, runtime/chain/configuration identities and
@@ -350,6 +355,54 @@ operation; it must not raise budgets or choose a forced path. Roll back by resto
 the prior reviewed configuration/consumer and reconciling the same pending hashes,
 never by deleting or relabeling journal entries. This qualification installs
 nothing in a running environment.
+
+<a id="local-manual-recovery-rehearsal"></a>
+
+### Actual local manual recovery evidence
+
+The [current rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+uses a disposable EOA with actual governance authority, current Access/mint2/V10
+and actual v4 contracts on
+new owned local nodes. The production CLI retains two exact simulations, its
+25-second budget, original caller inputs and full 25% padding:
+
+| Flow | RPC estimate | Exact padded gas | Receipt gas |
+| --- | ---: | ---: | ---: |
+| C, checks14; same main |10,233,104|12,791,380|9,388,004|
+| Active D, checks14; new main |10,408,641|13,010,802|9,520,341|
+| Parked D, checks14 |8,822,193|11,027,742|8,181,893|
+| Parked D, explicitly selected checks0 outage |3,007,714|3,759,643|2,626,114|
+
+All pass a 24M cap, the exact padded call and local receipt under 32M blocks.
+Trace, estimate and receipt gas are distinct; these are not Robinhood fee quotes
+or automatic profile adoption. The fixture's token, feeds, VRF, Permit2, depth
+and local admission remain controlled. The earlier source9/keeper evidence
+retains its original scope. No unchanged suites were rerun; running services
+were unchanged.
+
+For the verified same-chain park/recovery journey: park closes both legs into
+attributed idle, increments only the parking nonce and stays paused. Parked D
+then redeploys idle/designated compound into one main, updates last rebalance
+and preserves shares, earned rewards, last compound and custody counters.
+C instead preserves the existing main/ticks/rebalance time, updates last
+compound, increments both nonce and epoch, and completes residual mode OFF.
+D does **not** turn desired residual mode OFF; disable it before preparing D
+if future automatic adjustments must remain single-position. Both remain paused.
+Inspect [the complete post-state checklist and reproduction inputs](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal)
+before separately unpausing.
+
+Retained checks14 can still reject if their explicit swap changes a live price
+reference. Successful guarded rows use a separately admitted non-reference
+execution venue. This limitation is open: do not silently change route, mask
+or floors after failure. Checks0 is an explicit manual emergency choice, never
+the keeper's fallback or a way to make a gas estimate look smaller.
+
+The reproduction helper `scripts/rehearse-manual-recovery.py` accepts fresh
+authenticated method exports, a matching host artifact and local binary paths.
+It creates only a new PID-verified loopback chain 31337, records local intents/
+receipts and stops its own node. It accepts no RPC URL or key, touches no existing
+Anvil/journal and does not change either website. Its deadline option records
+a new review before preparation; it does not extend an existing review.
 
 <a id="robinhood-rpc-fees"></a>
 
@@ -3466,7 +3519,10 @@ governance, target, expiry and exact inputs before any authorized wallet action.
 After submitting elsewhere, recover that hash/receipt before preparing a repeat.
 Both operations leave the protocol paused; verify the intended main/residual and
 accounting state, then governance may unpause ordinary work deliberately.
-Parked-state recovery and other actions retain their existing manual procedures.
+Parked-state recovery requires the [explicit schema2 D selection](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2),
+with its own current-pool custody and bypass disclosure. The [actual local
+rehearsal](#local-manual-recovery-rehearsal) covers that path; other actions retain
+their separate pause/lifecycle procedures.
 
 ## Prepare and check an offline reviewHash
 

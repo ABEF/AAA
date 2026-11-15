@@ -4,8 +4,15 @@
 
 The fresh `execution_price_version:1` / `LP_ROUTING_VERSION()==3` candidate permits
 an independently reviewed external native-v4 ETH/fixed-ZZZ reference pool to be a
-reviewed swap venue. It does not require a different swap venue merely because
-the reference price changes during our own trade. Public Oracle price reads stay
+reviewed swap venue **on ordinary captured-execution paths**. Those paths do not
+require another venue merely because their own trade changes the reference.
+Paused emergency/manual C/D instead retain a live price fingerprint when their
+price-dependent guards are selected; they do not use this captured transition
+exception. The [actual manual rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) reproduces
+atomic rejection when that emergency swap changes the reference, despite feasible
+output/L floors. A separately reviewed non-reference venue succeeds. This remains
+an open emergency-path limitation, not permission to retry with fewer guards.
+Public Oracle price reads stay
 live; no public Oracle cache or keeper-supplied price replaces them.
 
 The reference remains separate from PoPL's principal LP destination on the same

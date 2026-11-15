@@ -1,5 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
+The [isolated manual recovery rehearsal](reports/manual-recovery-rehearsal-20261115/REVIEW.md) completes actual local C14,
+D14, park→Parked D14 and separately selected oracle-outage D0 through the unchanged
+production unsigned CLI and real local governance transactions. Four new EVM
+methods overlap these workflows; six local receipts reconcile. Worst exact25%
+padded manual call13,010,802/24M; defaults and all61 production Solidity sources
+remain unchanged. No old suite is rerun. Emergency retained-price checks still
+reject a swap through their live reference: use a separately reviewed execution
+venue; no automatic bypass. Real markets/complete target fees, maximum state,
+contract-wallet/host operation and independent approval remain open. Existing
+Anvil is not touched; its historical RPC was unavailable, so old state-root
+equality is not claimed. Website bytes/journals/signing and paused heartbeat stay.
+
+
 Manual LP preparation now has [stage/cause diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 for Active B/C/D and explicit Parked D. Known local errors are typed; opaque
 RPC/reverts remain unknown. Existing output paths are preserved, and uncertain
@@ -87,8 +100,9 @@ is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
 for one transaction, proves the selected actual-core output/full post-state
 before settlement, then preserves live source freshness/agreement and final
 callback checks. Public Oracle reads stay live; no keeper-selected price or
-global cache is added. A reviewed external reference may also execute the swap,
-but cannot be the same-core PoPL principal destination. Policy/source changes,
+global cache is added. In ordinary captured execution a reviewed external reference may also swap,
+but cannot be the same-core PoPL principal destination. Emergency retained-price
+fingerprints remain stricter; see the new manual rehearsal limitation above. Policy/source changes,
 unplanned market movement and nested scope borrowing fail closed. The fixed
 existing Math child shares read-only work; no new deployed helper, custody
 recipient or authority is added. Accounting7/canonicalV10 and financial limits

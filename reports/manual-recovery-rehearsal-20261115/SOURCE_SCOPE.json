@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "baseline": "a5a0233a12e3477e7348811d4a3d97c77764a695",
+  "production_solidity": "All61 unchanged; normal100 exact source pins and existing strict567 review reused, not rerun.",
+  "production_preparers": "Unchanged; exact captured source hashes remain in each actual CLI record.",
+  "new_host": "test/ManualRecoveryQualification.t.sol",
+  "new_runner": "scripts/rehearse-manual-recovery.py",
+  "documentation_provenance": "Current custodyEpoch/parkingNonce notes corrected; captured old reference/notes/Markdown/source snapshots archived in portable evidence. Never regenerate/relabel prior reviews.",
+  "public_deployment": "None; no deployment/profile/configuration/fee budget is adopted.",
+  "current_source_sha256": {
+    "test/ManualRecoveryQualification.t.sol": "2cea70dcab9906d8282e3bed7f1a525cfab414e42152da8d87f46c015c7b232b",
+    "scripts/rehearse-manual-recovery.py": "b03f8403eb70508b1d57f36b329a36aa82d12faaa0fd34813a1a16d59f5b7aa0",
+    "zzz_ops/manual_lp_review.py": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+    "docs/function-reference-notes.json": "e9d31ec5ec0c281d68f71afafede367b3f161db73f9221c3f5aeb4b19dc77f48",
+    "docs/function-reference.json": "7a77dc2d0a4975653f2d6c813b05d39d216370acacf895d825b7a7a53c1a5514",
+    "docs/CONTRACT_FUNCTIONS.md": "b01e3f74c8e5807391779dafec135043c3fa80c8c544c56e5051b2e9ddb3ffbd"
+  },
+  "actual_execution_runner_sha256": "863891c298c80a5b31befe6acd14249fd1413ce89be4e675b11aa21874400dee",
+  "reporting_only_runner_correction_sha256": "b03f8403eb70508b1d57f36b329a36aa82d12faaa0fd34813a1a16d59f5b7aa0"
+}

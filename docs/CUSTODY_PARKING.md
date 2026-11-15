@@ -66,7 +66,10 @@ pool; it is not an automatic force fallback. Deposits-disabled/operations-enable
 destinations can receive resumed existing LP. Existing bucket aliases cannot be
 reassigned. The tool neither signs nor changes pause state, mode or pending work.
 After actual execution inspect the receipt and source state before preparing
-the next step. [Current verification](../reports/operator-management-20261109/REVIEW.md).
+the next step. The earlier [source verification](../reports/operator-management-20261109/REVIEW.md)
+retains its injected-RPC scope. The later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+includes a production-CLI park receipt followed by schema2 D14 recovery on the
+same newly owned chain; it does not approve a live provider or deployment.
 
 ## Exact price-independent close
 
@@ -108,6 +111,41 @@ Ordinary `resume` remains guarded and may choose another reviewed same-pair pool
 Old runtimes may reject both-zero floors despite sharing the same ABI/version;
 verify exact source/runtime pins rather than relabeling installed contracts.
 
+## Actual recovery outcome and remaining venue limit
+
+The [current local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+verifies both-leg parking and Parked D14 recovery through unchanged production
+CLIs, exact padded calls and included local receipts. Parking increments
+`parkingNonce` by 1, preserves `custodyEpoch`, previous centre/rebalance time and
+last compound, and leaves designated compound in Fees. Recovery releases only
+designated compound with attributed idle, creates one Vault-owned main and
+updates last rebalance to inclusion time; it does not increment either custody
+counter or reset last compound. Shares, active/dormant rights, old claims,
+buyback backing and protected prefunds remain separated.
+
+Neither step unpauses. D also leaves desired residual mode unchanged: one
+physical main does not prevent a later ordinary adjustment from creating a
+residual. Set mode OFF through governance **before preparing** D if that is the
+intended continuing policy. C consolidation instead completes mode OFF, advances
+its control revision, increments both parking nonce/custody epoch and updates
+last compound while preserving the main and rebalance clock.
+
+Checks14 recovery requires working financial protections. Actual traces also
+show a guarded manual rejection when the swap changes its live reference pool.
+Use an explicitly reviewed, admitted execution venue distinct from both live
+references for the measured guarded path; admission alone does not cure this
+coupling. No route or checks0 fallback is selected automatically. The separately
+selected checks0 outage scenario is emergency-only and can accept near-total
+loss; mandatory custody, caller floors and settlement checks still apply.
+
+Measured Parked D14 uses 8,822,193 estimated gas, 11,027,742 with full 25% padding and
+8,181,893 receipt gas. Explicit D0 uses 3,007,714 / 3,759,643 / 2,626,114 respectively.
+Both passed the full 24M cap and exact padded call under a local 32M block bound.
+These controlled token/feed/VRF/Permit2/depth and local-admission results do not
+qualify real markets, target-chain fees, maximum workloads or production operation.
+Use the [complete gas/post-state table and strictly owned-node reproduction](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal);
+no existing Anvil, journal or public funds are used by that helper.
+
 ## Resume or choose another action
 
 While parked, activation into the bucket, top-ups, compounding and keeper
@@ -144,6 +182,6 @@ not venue settlement or exact-token requirements. Historical custody/native2/
 delayed-governance evidence retains its recorded source scope, including the
 [earlier pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
 Use the [holder-exit guide](HOLDER_COLLECTIVE_EXIT.md) for current terminal return.
-Actual raw minima/snapshots, authority review,
-real operating gas/recovery and independent audit remain release gates. This
-manual authorizes no deployment or public transaction.
+Actual raw minima/snapshots, authority review, target-chain operating
+gas/recovery beyond the controlled local rehearsal and independent audit remain
+release gates. This manual authorizes no deployment or public transaction.

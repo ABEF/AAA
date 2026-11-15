@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "successful": true,
+  "scope": "Mechanical source/JSON/AST/link/ledger/preservation checks only; no EVM/test-suite/compiler/static-analyzer/RPC operation repeated",
+  "four_new_evm_methods": 4,
+  "actual_manual_cases": 4,
+  "unique_local_receipts": 6,
+  "unchanged_test_methods_rerun": 0,
+  "source_boundary": "Actual execution runner863891; later b03f8403 reporting-only closure label verified offline, no operation rerun.",
+  "reused_normal_source_files": 100,
+  "production_solidity_unchanged": 61,
+  "protected_dirty_files_unchanged": 4,
+  "new_local_links": [
+    {
+      "source": "AGENTS.md",
+      "href": "reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "href": "reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "README.md",
+      "href": "reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "TODO.md",
+      "href": "reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "TODO.md",
+      "href": "reports/manual-recovery-rehearsal-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "TODO.md",
+      "href": "docs/OPERATOR_MANUAL.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "docs/AUDIT_FINDINGS.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/CUSTODY_PARKING.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/CUSTODY_PARKING.md",
+      "href": "MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "docs/IMPLEMENTATION_STATUS.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/MANUAL_LP_PREPARATION.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "OPERATOR_MANUAL.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/REFERENCE_SWAP_EXECUTION.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/RELEASE_CHECKLIST.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/ROADMAP.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/ROBINHOOD_GAS.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "href": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/README.md",
+      "href": "manual-recovery-rehearsal-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "SOURCE_SCOPE.json"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "VERIFICATION.md"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "../../docs/MANUAL_LP_PREPARATION.md"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "public-evidence.zip"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "EVIDENCE_MANIFEST.json"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "OFFLINE_VERIFICATION.json"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "../../docs/OPERATOR_MANUAL.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "verify_evidence.py"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "ROOT_REVIEW.json"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+      "href": "GAS_AND_TRANSACTIONS.json"
+    },
+    {
+      "source": "reports/manual-recovery-rehearsal-20261115/VERIFICATION.md",
+      "href": "REVIEW.md"
+    }
+  ],
+  "function_reference": {
+    "passed": true,
+    "contracts": 40,
+    "functions": 956,
+    "explanation_gaps": 0,
+    "scope": "Agent-generated/check; unchanged ABI/source snapshot"
+  },
+  "operator_reference": {
+    "passed": true,
+    "example_rows": 1009,
+    "unchanged_arguments_roles": true,
+    "ready_for_submission": false
+  },
+  "todo_check": "Project Todo verified.",
+  "open_tasks": 47,
+  "portable_bundle_text_members_scanned": 221,
+  "public_archive_sha256": "ba2a8a96d346c8553bfeacc1e7eb42f592feabbdb99ff36270d81f92be4636f0",
+  "website_dist_unchanged": 5598,
+  "old_rpc_unavailable": true,
+  "old_live_state_equality_claimed": false,
+  "exact_python_index_head_and_remote_publication": "Required separately; recorded externally to avoid self-reference"
+}

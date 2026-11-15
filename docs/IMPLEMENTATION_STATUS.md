@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Actual local manual recovery](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is verified for C14,
+D14, park→Parked D14 and separately chosen outage D0. The unchanged production
+CLI prepares exact reviewed calls, and actual governance transactions preserve
+rights/reserves/pause. Worst padded gas13,010,802/24M. Controlled markets and EOA
+receipts do not qualify target fees, real dependencies, maximum state or hosted
+operator/wallet acceptance. No production Solidity/default change.
+
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression
 methods pass at their recorded stages. Existing task implementation milestones

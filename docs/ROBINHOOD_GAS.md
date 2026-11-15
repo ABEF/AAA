@@ -1,5 +1,23 @@
 # Robinhood gas and RPC qualification
 
+The [isolated manual C/D rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) adds actual local
+governance receipts with full25% padding. These are execution-gas measurements
+on Anvil31337, not Robinhood4663 complete-fee quotes or provider admission.
+
+| Controlled manual action | Estimate | Exact25% padded transaction | Receipt gas used |
+| --- | ---: | ---: | ---: |
+| Active C14, existing-main consolidation | 10,233,104 | 12,791,380 | 9,388,004 |
+| Active D14, whole replacement | 10,408,641 | 13,010,802 | 9,520,341 |
+| Parked D14, retained financial guards | 8,822,193 | 11,027,742 | 8,181,893 |
+| Parked D0, explicit oracle-outage scenario | 3,007,714 | 3,759,643 | 2,626,114 |
+
+24M is the reviewed ceiling, not charged gas. The actual transaction uses its
+exact padded estimate; worst remaining ceiling margin10,989,198. D0 has a
+different selected safeguard mask and is not a cheaper substitute for14. The
+unchanged12M default would not admit the full padded Active C/D calls. This
+rehearsal neither raises defaults nor approves any production fee ceiling.
+
+
 The [latest external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
 now proves independently derived genesis and all13 existing RPC checks through
 a paced helper call. Specific historical state/logs and tiny code-only override

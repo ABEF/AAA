@@ -1,5 +1,13 @@
 # Consolidated audit findings and evidence
 
+The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) closes controlled actual
+local C/D/Parked CLI-to-receipt composition and gas measurement. The verified
+worst padded call is13,010,802/24M. It also reproduces an open emergency-only
+coupling: retaining the live price fingerprint rejects a successful swap through
+that reference even when original output/L floors are feasible. Healthy14 uses a
+separately reviewed third venue; explicit0 remains a separate outage decision,
+never an automatic workaround. Production sources/defaults remain unchanged.
+
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression
 methods pass at their recorded stages. Existing task implementation milestones

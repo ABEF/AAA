@@ -1,5 +1,10 @@
 # Documentation map
 
+Use the [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) and
+[operator procedure](OPERATOR_MANUAL.md#local-manual-recovery-rehearsal) for actual
+local C/D receipts, gas and post-state checks. This closes controlled local
+composition only; emergency reference-as-venue coupling remains open.
+
 Use [manual LP failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 to interpret failed stages, known local causes, opaque RPC errors and uncertain
 review files. [Source verification](../reports/manual-lp-diagnostics-20261115/VERIFICATION.md)
