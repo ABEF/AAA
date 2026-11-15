@@ -1,0 +1,294 @@
+test_configuration_binding_cause_preserves_valueerror (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_configuration_binding_cause_preserves_valueerror) ... FAIL
+test_dangling_symlink_is_preserved_without_prepare (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_dangling_symlink_is_preserved_without_prepare) ... FAIL
+test_directory_fsync_failure_preserves_complete_published_artifact (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_directory_fsync_failure_preserves_complete_published_artifact) ... ERROR
+test_existing_specific_wallet_and_parked_mask_reason_codes_stay (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_specific_wallet_and_parked_mask_reason_codes_stay) ... ERROR
+test_final_canonicality_reorg_and_local_input_mutation_are_identified (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified) ... 
+  test_final_canonicality_reorg_and_local_input_mutation_are_identified (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified) (variant='reorg') ... FAIL
+  test_final_canonicality_reorg_and_local_input_mutation_are_identified (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified) (variant='input') ... FAIL
+test_final_controls_failure_is_distinct_from_final_simulation (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation) ... FAIL
+test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks) ... 
+  test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks) (variant='paused') ... FAIL
+  test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks) (variant='ticks') ... FAIL
+test_input_local_cause_preserves_valueerror_and_stops_before_rpc (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_input_local_cause_preserves_valueerror_and_stops_before_rpc) ... FAIL
+test_manifest_failure_has_its_own_stage_without_claiming_known_cause (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_manifest_failure_has_its_own_stage_without_claiming_known_cause) ... ERROR
+test_policy_source_and_fee_policy_codes_are_local_not_guessed (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed) ... 
+  test_policy_source_and_fee_policy_codes_are_local_not_guessed (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed) (variant='source') ... FAIL
+  test_policy_source_and_fee_policy_codes_are_local_not_guessed (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed) (variant='fee') ... FAIL
+test_post_publication_reporting_failure_keeps_complete_file (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_post_publication_reporting_failure_keeps_complete_file) ... ERROR
+test_preexisting_regular_output_is_preserved_without_prepare (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_preexisting_regular_output_is_preserved_without_prepare) ... FAIL
+test_publication_failure_before_link_is_uncertain_without_retry (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_publication_failure_before_link_is_uncertain_without_retry) ... ERROR
+test_remote_mutable_metadata_and_exception_class_cannot_leak (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak) ... 
+  test_remote_mutable_metadata_and_exception_class_cannot_leak (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak) (variant='remote') ... ERROR
+  test_remote_mutable_metadata_and_exception_class_cannot_leak (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak) (variant='unknown') ... FAIL
+test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata) ... 
+  test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata) (reason='rpc_rate_limited') ... FAIL
+  test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata) (reason='work_limit_rpc_budget') ... FAIL
+test_render_failure_has_no_publication_attempt (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_render_failure_has_no_publication_attempt) ... ERROR
+test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) ... 
+  test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='output') ... FAIL
+  test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='gas') ... FAIL
+  test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='fee') ... FAIL
+  test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='balance') ... FAIL
+test_success_cli_payload_and_transaction_boundary_stay_unchanged (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_success_cli_payload_and_transaction_boundary_stay_unchanged) ... ok
+test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard) ... ERROR
+
+======================================================================
+ERROR: test_directory_fsync_failure_preserves_complete_published_artifact (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_directory_fsync_failure_preserves_complete_published_artifact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 224, in test_directory_fsync_failure_preserves_complete_published_artifact
+    self.assertTrue(response['output_may_exist']);self.assertEqual('artifact_publication',response['stage'])
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'output_may_exist'
+
+======================================================================
+ERROR: test_existing_specific_wallet_and_parked_mask_reason_codes_stay (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_specific_wallet_and_parked_mask_reason_codes_stay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 162, in test_existing_specific_wallet_and_parked_mask_reason_codes_stay
+    self.assertEqual('initial_snapshot',response['stage'])
+                                        ~~~~~~~~^^^^^^^^^
+KeyError: 'stage'
+
+======================================================================
+ERROR: test_manifest_failure_has_its_own_stage_without_claiming_known_cause (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_manifest_failure_has_its_own_stage_without_claiming_known_cause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 107, in test_manifest_failure_has_its_own_stage_without_claiming_known_cause
+    self.assertEqual('manifest_preparation',response['stage'])
+                                            ~~~~~~~~^^^^^^^^^
+KeyError: 'stage'
+
+======================================================================
+ERROR: test_post_publication_reporting_failure_keeps_complete_file (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_post_publication_reporting_failure_keeps_complete_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 234, in test_post_publication_reporting_failure_keeps_complete_file
+    self.assertTrue(response['output_may_exist']);self.assertEqual('artifact_publication',response['stage'])
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'output_may_exist'
+
+======================================================================
+ERROR: test_publication_failure_before_link_is_uncertain_without_retry (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_publication_failure_before_link_is_uncertain_without_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 205, in test_publication_failure_before_link_is_uncertain_without_retry
+    self.assertEqual('artifact_publication',response['stage']);self.assertTrue(response['output_may_exist'])
+                                            ~~~~~~~~^^^^^^^^^
+KeyError: 'stage'
+
+======================================================================
+ERROR: test_remote_mutable_metadata_and_exception_class_cannot_leak (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak) (variant='remote')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 154, in test_remote_mutable_metadata_and_exception_class_cannot_leak
+    self.assertIsNone(response['rpc_method']);self.assertIsNone(response['rpc_code'])
+                      ~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'rpc_method'
+
+======================================================================
+ERROR: test_render_failure_has_no_publication_attempt (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_render_failure_has_no_publication_attempt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 199, in test_render_failure_has_no_publication_attempt
+    self.assertEqual('artifact_rendering',response['stage']);self.assertFalse(response['output_may_exist'])
+                                          ~~~~~~~~^^^^^^^^^
+KeyError: 'stage'
+
+======================================================================
+ERROR: test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 99, in test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard
+    self.assertEqual('initial_simulation',response['stage'])
+                                          ~~~~~~~~^^^^^^^^^
+KeyError: 'stage'
+
+======================================================================
+FAIL: test_configuration_binding_cause_preserves_valueerror (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_configuration_binding_cause_preserves_valueerror)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 62, in test_configuration_binding_cause_preserves_valueerror
+    self.error(ValueError,'read_configuration_mismatch','configuration_validation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'read_configuration_mismatch' != None
+
+======================================================================
+FAIL: test_dangling_symlink_is_preserved_without_prepare (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_dangling_symlink_is_preserved_without_prepare)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 190, in test_dangling_symlink_is_preserved_without_prepare
+    self.assertEqual('existing_output_preserved',response['reason'])
+AssertionError: 'existing_output_preserved' != 'manual_preparation_unavailable_or_invalid'
+- existing_output_preserved
++ manual_preparation_unavailable_or_invalid
+
+
+======================================================================
+FAIL: test_final_canonicality_reorg_and_local_input_mutation_are_identified (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified) (variant='reorg')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 127, in test_final_canonicality_reorg_and_local_input_mutation_are_identified
+    self.error(RpcError,code,'final_canonicality')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'final_anchor_changed' != None
+
+======================================================================
+FAIL: test_final_canonicality_reorg_and_local_input_mutation_are_identified (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified) (variant='input')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 127, in test_final_canonicality_reorg_and_local_input_mutation_are_identified
+    self.error(RpcError,code,'final_canonicality')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'local_inputs_changed' != None
+
+======================================================================
+FAIL: test_final_controls_failure_is_distinct_from_final_simulation (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 113, in test_final_controls_failure_is_distinct_from_final_simulation
+    self.error(RpcError,'custody_or_controls_changed','final_snapshot')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'custody_or_controls_changed' != None
+
+======================================================================
+FAIL: test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks) (variant='paused')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 80, in test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks
+    self.error(RpcError if variant=='paused' else ValueError,code,'initial_snapshot')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'authority_or_lifecycle_mismatch' != None
+
+======================================================================
+FAIL: test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks) (variant='ticks')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 80, in test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks
+    self.error(RpcError if variant=='paused' else ValueError,code,'initial_snapshot')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'same_main_ticks_changed' != None
+
+======================================================================
+FAIL: test_input_local_cause_preserves_valueerror_and_stops_before_rpc (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_input_local_cause_preserves_valueerror_and_stops_before_rpc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 57, in test_input_local_cause_preserves_valueerror_and_stops_before_rpc
+    self.error(ValueError,'invalid_request_bounds','input_validation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'invalid_request_bounds' != None
+
+======================================================================
+FAIL: test_policy_source_and_fee_policy_codes_are_local_not_guessed (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed) (variant='source')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 71, in test_policy_source_and_fee_policy_codes_are_local_not_guessed
+    self.error(ValueError,code,'configuration_validation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'source_catalog_mismatch' != None
+
+======================================================================
+FAIL: test_policy_source_and_fee_policy_codes_are_local_not_guessed (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed) (variant='fee')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 71, in test_policy_source_and_fee_policy_codes_are_local_not_guessed
+    self.error(ValueError,code,'configuration_validation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'invalid_fee_policy' != None
+
+======================================================================
+FAIL: test_preexisting_regular_output_is_preserved_without_prepare (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_preexisting_regular_output_is_preserved_without_prepare)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 179, in test_preexisting_regular_output_is_preserved_without_prepare
+    self.assertEqual('existing_output_preserved',response['reason'])
+AssertionError: 'existing_output_preserved' != 'manual_preparation_unavailable_or_invalid'
+- existing_output_preserved
++ manual_preparation_unavailable_or_invalid
+
+
+======================================================================
+FAIL: test_remote_mutable_metadata_and_exception_class_cannot_leak (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak) (variant='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 152, in test_remote_mutable_metadata_and_exception_class_cannot_leak
+    self.assertNotIn('secret',json.dumps(response))
+AssertionError: 'secret' unexpectedly found in '{"ok": false, "error_type": "secret_class_name", "reason": "manual_preparation_unavailable_or_invalid"}'
+
+======================================================================
+FAIL: test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata) (reason='rpc_rate_limited')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 136, in test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata
+    self.assertEqual(reason,response['reason']);self.assertEqual('initial_simulation',response['stage'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'rpc_rate_limited' != 'manual_preparation_unavailable_or_invalid'
+- rpc_rate_limited
++ manual_preparation_unavailable_or_invalid
+
+
+======================================================================
+FAIL: test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata) (reason='work_limit_rpc_budget')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 136, in test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata
+    self.assertEqual(reason,response['reason']);self.assertEqual('initial_simulation',response['stage'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'work_limit_rpc_budget' != 'manual_preparation_unavailable_or_invalid'
+- work_limit_rpc_budget
++ manual_preparation_unavailable_or_invalid
+
+
+======================================================================
+FAIL: test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='output')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 94, in test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes
+    self.error(RpcError,code,'initial_simulation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'unexpected_simulation_output' != None
+
+======================================================================
+FAIL: test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='gas')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 94, in test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes
+    self.error(RpcError,code,'initial_simulation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'gas_or_fee_budget_exceeded' != None
+
+======================================================================
+FAIL: test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='fee')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 94, in test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes
+    self.error(RpcError,code,'initial_simulation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'gas_or_fee_budget_exceeded' != None
+
+======================================================================
+FAIL: test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes) (variant='balance')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 94, in test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes
+    self.error(RpcError,code,'initial_simulation')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_diagnostics.py", line 36, in error
+    self.assertEqual(reason,getattr(caught.exception,'manual_code',None))
+AssertionError: 'insufficient_governance_gas' != None
+
+----------------------------------------------------------------------
+Ran 19 tests in 22.536s
+
+FAILED (failures=18, errors=8)

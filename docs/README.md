@@ -1,5 +1,10 @@
 # Documentation map
 
+Use [manual LP failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
+to interpret failed stages, known local causes, opaque RPC errors and uncertain
+review files. [Source verification](../reports/manual-lp-diagnostics-20261115/VERIFICATION.md)
+keeps successful manual reviews and all financial/authority controls intact.
+
 For paused parked-liquidity recovery, use the [explicit schema2 D inputs](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
 and [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md).
 Selected bypasses are disclosed; no permissions, signing or live settings change.

@@ -1,0 +1,46 @@
+{
+  "stage": "post-fix-final27",
+  "source_before": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_manual_lp_diagnostics.py": "acd807e5d347b877a334639816143889b6031ac5c0b28119c6594fa3ce43966d"
+  },
+  "source_after": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_manual_lp_diagnostics.py": "acd807e5d347b877a334639816143889b6031ac5c0b28119c6594fa3ce43966d"
+  },
+  "unchanged": true,
+  "methods": [
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_actual_success_reporting_failure_is_publication_uncertain",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_configuration_binding_cause_preserves_valueerror",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_dangling_symlink_is_preserved_without_prepare",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_directory_fsync_failure_preserves_complete_published_artifact",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_output_is_preserved_even_with_missing_input_files",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_specific_wallet_and_parked_mask_reason_codes_stay",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_head_retreat_and_opaque_finish_failure_are_not_guessed_expiry",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_header_mismatch_and_estimate_failure_remain_distinct",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_input_local_cause_preserves_valueerror_and_stops_before_rpc",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_manifest_failure_has_its_own_stage_without_claiming_known_cause",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_mutable_unhashable_and_valid_foreign_metadata_cannot_invent_causes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_post_publication_reporting_failure_keeps_complete_file",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_preexisting_regular_output_is_preserved_without_prepare",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_publication_failure_before_link_is_uncertain_without_retry",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_render_failure_has_no_publication_attempt",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_static_human_messages_distinguish_known_gas_failures",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_success_cli_payload_and_transaction_boundary_stay_unchanged",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_temporary_cleanup_failure_preserves_complete_linked_bytes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_temporary_fsync_failure_is_uncertain_without_publishing_partial_bytes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard"
+  ],
+  "method_count": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "successful": true
+}

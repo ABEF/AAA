@@ -1,0 +1,216 @@
+{
+  "before_source_sha256": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+  "after_source_sha256": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+  "before_test_sha256": "acd807e5d347b877a334639816143889b6031ac5c0b28119c6594fa3ce43966d",
+  "after_test_sha256": "ab8d7e5821e14d22fed68724fef86abcd13547cf65c2a92da95ab35dc6149ad5",
+  "unchanged_source_functions_and_classes": [
+    {
+      "name": "ManualInputBlocked",
+      "ast_identical": true
+    },
+    {
+      "name": "ManualReadBlocked",
+      "ast_identical": true
+    },
+    {
+      "name": "UnsupportedGovernanceEnvelope",
+      "ast_identical": true
+    },
+    {
+      "name": "IncompatibleParkedGuards",
+      "ast_identical": true
+    },
+    {
+      "name": "digest",
+      "ast_identical": true
+    },
+    {
+      "name": "integer",
+      "ast_identical": true
+    },
+    {
+      "name": "selection",
+      "ast_identical": true
+    },
+    {
+      "name": "parked_safeguards",
+      "ast_identical": true
+    },
+    {
+      "name": "encode",
+      "ast_identical": true
+    },
+    {
+      "name": "controls",
+      "ast_identical": true
+    },
+    {
+      "name": "simulation",
+      "ast_identical": true
+    },
+    {
+      "name": "Reader",
+      "ast_identical": true
+    },
+    {
+      "name": "validate_policy",
+      "ast_identical": true
+    },
+    {
+      "name": "prepare",
+      "ast_identical": true
+    },
+    {
+      "name": "write_exclusive",
+      "ast_identical": true
+    },
+    {
+      "name": "_metadata",
+      "ast_identical": true
+    }
+  ],
+  "stages_only_added_preparation": true,
+  "main_only_added_stage": true,
+  "diagnostic_only_changed_fallback": true,
+  "module_only_expected_delta": true,
+  "unchanged_test_methods_and_helpers": [
+    {
+      "name": "setUpClass",
+      "ast_identical": true
+    },
+    {
+      "name": "setUp",
+      "ast_identical": true
+    },
+    {
+      "name": "prepare",
+      "ast_identical": true
+    },
+    {
+      "name": "error",
+      "ast_identical": true
+    },
+    {
+      "name": "cli",
+      "ast_identical": true
+    },
+    {
+      "name": "test_input_local_cause_preserves_valueerror_and_stops_before_rpc",
+      "ast_identical": true
+    },
+    {
+      "name": "test_configuration_binding_cause_preserves_valueerror",
+      "ast_identical": true
+    },
+    {
+      "name": "test_policy_source_and_fee_policy_codes_are_local_not_guessed",
+      "ast_identical": true
+    },
+    {
+      "name": "test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks",
+      "ast_identical": true
+    },
+    {
+      "name": "q_lower",
+      "ast_identical": true
+    },
+    {
+      "name": "test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes",
+      "ast_identical": true
+    },
+    {
+      "name": "test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard",
+      "ast_identical": true
+    },
+    {
+      "name": "test_manifest_failure_has_its_own_stage_without_claiming_known_cause",
+      "ast_identical": true
+    },
+    {
+      "name": "test_final_controls_failure_is_distinct_from_final_simulation",
+      "ast_identical": true
+    },
+    {
+      "name": "test_final_canonicality_reorg_and_local_input_mutation_are_identified",
+      "ast_identical": true
+    },
+    {
+      "name": "test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata",
+      "ast_identical": true
+    },
+    {
+      "name": "test_remote_mutable_metadata_and_exception_class_cannot_leak",
+      "ast_identical": true
+    },
+    {
+      "name": "test_existing_specific_wallet_and_parked_mask_reason_codes_stay",
+      "ast_identical": true
+    },
+    {
+      "name": "test_success_cli_payload_and_transaction_boundary_stay_unchanged",
+      "ast_identical": true
+    },
+    {
+      "name": "test_preexisting_regular_output_is_preserved_without_prepare",
+      "ast_identical": true
+    },
+    {
+      "name": "test_dangling_symlink_is_preserved_without_prepare",
+      "ast_identical": true
+    },
+    {
+      "name": "test_render_failure_has_no_publication_attempt",
+      "ast_identical": true
+    },
+    {
+      "name": "test_publication_failure_before_link_is_uncertain_without_retry",
+      "ast_identical": true
+    },
+    {
+      "name": "test_directory_fsync_failure_preserves_complete_published_artifact",
+      "ast_identical": true
+    },
+    {
+      "name": "test_post_publication_reporting_failure_keeps_complete_file",
+      "ast_identical": true
+    },
+    {
+      "name": "test_header_mismatch_and_estimate_failure_remain_distinct",
+      "ast_identical": true
+    },
+    {
+      "name": "test_final_head_retreat_and_opaque_finish_failure_are_not_guessed_expiry",
+      "ast_identical": true
+    },
+    {
+      "name": "test_mutable_unhashable_and_valid_foreign_metadata_cannot_invent_causes",
+      "ast_identical": true
+    },
+    {
+      "name": "test_existing_output_is_preserved_even_with_missing_input_files",
+      "ast_identical": true
+    },
+    {
+      "name": "test_temporary_fsync_failure_is_uncertain_without_publishing_partial_bytes",
+      "ast_identical": true
+    },
+    {
+      "name": "test_temporary_cleanup_failure_preserves_complete_linked_bytes",
+      "ast_identical": true
+    },
+    {
+      "name": "test_actual_success_reporting_failure_is_publication_uncertain",
+      "ast_identical": true
+    },
+    {
+      "name": "test_static_human_messages_distinguish_known_gas_failures",
+      "ast_identical": true
+    }
+  ],
+  "previous_test_count": 27,
+  "new_method_names": [
+    "test_nonannotatable_rpc_failure_uses_honest_preparation_stage_fallback"
+  ],
+  "success_artifact_and_ordered_rpc_equivalence_reused_from": "artifact-and-ordered-read-equivalence.json",
+  "successful": true
+}

@@ -718,7 +718,7 @@
           "status": "progress",
           "title": "Unify operation readiness and financial diagnostics",
           "href": "docs/KEEPER_COORDINATION.md#read-only-operation-review",
-          "text": "Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Explicit schema2 Parked D is implemented with selected bypass disclosure; contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.",
+          "text": "Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Explicit schema2 Parked D and manual stage/cause/uncertain-output diagnostics are implemented; contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.",
           "acceptance": [
             "Cover NFT/reveal/ownership, activation/growth, principal NAV, fee allocation/reserves, LP conversion/claims, original-currency royalty claims, harvest/compound/rebalance/buyback, same-pair move/parking, terminal return and canonical handoff. Historical conversion records keep their original meaning. Existing on-chain functions without typed preparation adapters remain explicitly unsupported by the report; do not create arbitrary-call drafts.",
             "Bind exact chain/deployment/profile/runtime/config, action/input units/caller, canonical block and expiry. Separate principal, earned/claimable/paid rewards, compound/buyback, royalties/cohorts/dust and returned principal. Reuse existing projection/accounting math, not a second balance ledger.",
@@ -738,6 +738,19 @@
             "[Operator management extension](reports/operator-management-20261109/REVIEW.md): seven source-only typed custody/terminal actions, automatic exact request/hash inputs, confirmed/latest controls, unchanged calldata/gas simulations, explicit batch-budget partial payouts, current-owner/cursor inclusion limits, sanitized blockers and durable exclusive publication. Existing Active B/C/D unchanged. No Solidity/profile/authority/service/site/signing change; actual operator/provider/target-gas and independent acceptance remain open.",
             "The [operator gas-profile procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m) specifies exact20M browser/backend equality, decimal-string vs numeric fields, full20% activation policy2 vs25% manual/keeper padding, separate activation/claim listeners, fee approval, pending-first restart and rollback. Manual24M gas helpers have injected-input evidence; actual governance Migration C/D workloads are not represented by the six keeper calls. Templates remain incomplete, with no signed/submitted operation or rollout.",
             "[44-task assessment](reports/open-tasks-audit-20261113/TASK_ASSESSMENTS.json) records concrete source milestones and remaining operator/provider/host boundaries without claiming44bugs or universal diagnostics. No unresolved new contract-policy decision was established; required external inputs remain explicit."
+          ]
+        },
+        {
+          "id": "manual-lp-diagnostics",
+          "status": "done",
+          "title": "Explain manual LP review failures and uncertain output",
+          "href": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics",
+          "text": "Active B/C/D and explicit Parked D report failing stage and typed known local cause, safe bounded RPC/work categories and preserved/uncertain output. Successful manual artifacts and RPC order, original safeguards/permissions/limits stay. No automatic retry, signing or fallback; actual provider/gas/operator acceptance remains separate.",
+          "acceptance": [
+            "[Source-scoped verification](reports/manual-lp-diagnostics-20261115/VERIFICATION.md): new focused failure cases and exact baseline/current manual artifact/call-order comparisons; no unchanged Solidity, browser or old Python suites rerun. Known local causes are not inferred from provider/revert text. Existing mask/wallet reason codes and ValueError/RpcError families stay.",
+            "Failing stages distinguish input/configuration, confirmed snapshot, manifest, initial simulation, later snapshot/simulation, final canonicality, rendering and publication. First observed local authority/state/custody/geometry/gas/fee/funding/expiry causes are explicit; opaque helper/decoder/RPC failures remain unavailable, never invented as exact financial blockers.",
+            "Existing output including dangling symlinks is preserved before input loading. After writer entry or final reporting failure, a complete artifact may exist: expose artifact_publication_uncertain and never overwrite/delete/retry it. Bounded whitelist messages/types/stages/RPC metadata exclude raw exception/provider/input/path/credential text.",
+            "Management source commitments include the new shared manual source hash; preserve historical artifacts and pending journals. No contract/runtime/profile/checkpoint/health identity relabeling, signer/service/site/chain change, guard bypass selection or budget increase."
           ]
         },
         {

@@ -150,7 +150,11 @@ steps, alongside schema1 Active B/C/D. The [explicit schema2 Parked D adapter](M
 now prepares paused recovery with selected safeguard bypasses. Qualify actual
 operator-selected floors, provider/hash/complete-fee support, target gas and wallet
 execution; contract-wallet envelopes remain separate manual procedures.
-Preparation adds no signing, queue, force/recenter fallback or execution approval.
+[Manual diagnostic source completion](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
+adds stage/cause and uncertain-output reporting, preserving successful reviews
+and safeguards. Actual manual C/D and Parked recovery gas/provider/operator
+rehearsals remain. Preparation adds no signing, queue, force/recenter fallback or
+execution approval.
 
 Qualify the new explicit claim planner with actual worst-case currencies/fees,
 confirmation/replanning and no silent omission; bounded local planning is not a

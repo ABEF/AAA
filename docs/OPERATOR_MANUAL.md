@@ -197,6 +197,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Publish poplint without changing the demo | [Demo/integration environment map](SITE_ENVIRONMENTS.md) |
 | Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
 | Prepare park/resume/residual close or each holder-return step without signing | [Typed custody and terminal management](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections) |
+| Diagnose a refused manual LP review or uncertain output file | [Manual LP failure stages and causes](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics) |
 | Prepare paused Parked emergency recovery with explicit safeguard bypasses | [Parked D selection and inputs](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2) |
 | Prepare a reviewHash and exact ordered explorer inputs without signing | [Offline review preparation](#prepare-and-check-an-offline-reviewhash) |
 | Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
@@ -235,9 +236,16 @@ receipt/post-state, reconcile pending work, then separately unpause. No holder
 or keeper permission is added, and no service restart or live setting is applied
 by preparation. [Verification](../reports/parked-recovery-preparation-20261115/REVIEW.md).
 
-The two simulations preserve exact calldata and frozen gas, with known blockers
-reported separately from opaque RPC failures. Manual reviews retain25% estimate
-headroom. Distribution uses the reviewed block-bounded gas budget and may pay
+The seven management actions preserve exact calldata and frozen transaction gas.
+Manual B/C/D and Parked D preserve exact calldata with bounded gas/fee envelopes
+rechecked at each snapshot. Manual reviews retain25% estimate headroom.
+Their [failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
+now show the failing stage and known local cause, including authority/lifecycle,
+geometry, stale custody, original gas/fee limits, funding and expiry. Unexplained
+RPC/revert errors stay unavailable. No guard, budget or route changes on failure.
+`existing_output_preserved` protects existing files/symlinks;
+`artifact_publication_uncertain` means inspect any complete review before another
+attempt. The preparer sends nothing and never repeats a wallet transaction. Distribution uses the reviewed block-bounded gas budget and may pay
 only a subset: simulated counts do not identify a paid prefix. Inspect actual
 receipts/ledgers, then prepare the next explicit batch. No tool submits, pauses,
 unpauses, manages pending nonces or starts a future action automatically. The

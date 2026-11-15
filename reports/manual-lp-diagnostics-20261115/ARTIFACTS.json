@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "scope": "Exact raw report bytes, excluding this manifest itself",
+  "sha256": {
+    "artifact-and-ordered-read-equivalence.json": "5a7ae45d2d38c702ac7d10d549dba1639d4dcf354c7ac4c19d4cda0f33b6ca2b",
+    "baseline-final27.json": "db508d56ca5cdc69ca21942e965c8ef8498b36ea1458da0b32031056ce7b71f8",
+    "baseline-final27.log": "eb1d38898951b82a8473c2459b1e39f08c825370e93615e9158fa7ab722fcd52",
+    "baseline-new-tests.log": "772119754ad29f20fea76f958c2a351084cfe1b253efc6e1e9a02fd93380b6ee",
+    "COMPLETION.json": "920d3a98b12e045dc9e9973a6f0685ad9a27e8bd313e1a07fa1c6c33a7c6581e",
+    "first-post-tests.log": "018fc1018ffd68284429fa51766e0c4b4acbdaab049a7070277c5a18ad79fe1d",
+    "post-fix-final27.json": "9bc92a15812bb46c3a03c26e04665e18b4682f1c8194751e19cfa727cdfae6d7",
+    "post-fix-final27.log": "41c1ba3576cba2e23ef115d31928749d75dd341a5f24fc909563e8495e029797",
+    "preparation-fallback-final-before.json": "f21c78f29ba09846891c6ea80e78663812895aff90fa46d3fc7c6f3c1c3a7adf",
+    "preparation-fallback-final-before.log": "75f175863106e406dd3391690c383e95e4a19e1d60e1ed856f670a4720a08733",
+    "preparation-fallback-post.json": "ceea1bd8dd0cae5b966c5495d3f5dc3bc781ae7d698af4b996a7f287f2211031",
+    "preparation-fallback-post.log": "47b7110493e7be02ecce179d75c16eb0ab92767ad39f549bca1ef47077c0bd66",
+    "preparation-fallback-scoped-reuse.json": "eee3013ccd9036b7918ab6418801d07e1e45024d2d3b01565c75804db4820daa",
+    "preparation-fallback.source.patch": "df4e5940fbc9fa34489df26a275ac2989f9372d684ac284905fd7062cddeb69d",
+    "REVIEW.md": "40148bb088c3778992967a3c2abc1e7640176a6de620f651455a11a404ceeecf",
+    "ROOT_REVIEW.json": "380e3895c4dbae19d45aaeeed81a804b0e5f65542c0806ad004dc19efcf27c2e",
+    "VERIFICATION.md": "8f611b62c24025f389058d056e41765077578d3caf601dd0e7451a65b362e962"
+  }
+}

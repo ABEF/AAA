@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Manual LP diagnostics](manual-lp-diagnostics-20261115/REVIEW.md) adds typed
+local cause/stage and conservative uncertain-file reporting without changing
+successful manual reviews, safeguards, authority or running environments.
+[Verification](manual-lp-diagnostics-20261115/VERIFICATION.md) separates new
+focused error checks from unchanged evidence and actual release qualification.
+
 [Parked recovery preparation](parked-recovery-preparation-20261115/REVIEW.md)
 adds explicit schema2 D with selected bypass disclosure and authenticated Parked
 fund/custody controls. [Verification](parked-recovery-preparation-20261115/VERIFICATION.md)

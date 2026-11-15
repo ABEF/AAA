@@ -138,6 +138,12 @@ environment changes, so unchanged normal/static contract evidence is reused.
 
 ## Unsigned management extension
 
+[Manual LP diagnostics](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
+are source-complete: local stage/cause, safe unknown RPC errors and uncertain
+file publication. No successful manual transaction/artifact or safeguard changes.
+New management source hashes differ; retain original saved provenance. This is
+not actual provider/manual C/D gas, wallet or operating acceptance.
+
 The [operator extension](../reports/operator-management-20261109/REVIEW.md)
 implements seven typed custody/exit preparations and verifies their input,
 permission, control-drift, gas-sensitive payout and publication handling.

@@ -285,6 +285,82 @@ excludes the operation's future harvest. It is not a preflight spending ceiling.
 Both exact full simulations must authorize the unchanged explicit amount using
 the source's real harvest/release/accounting; the tool forecasts no extra funds.
 
+## Manual LP failure diagnostics
+
+The same `scripts/prepare-manual-lp.py` command now reports bounded JSON errors
+on stderr and returns exit1. Schema1 Active B/C/D and explicit schema2 Parked D
+share this diagnostic surface. Successful unsigned reviews, their commitments,
+calldata, floors, deadlines and read order are preserved.
+
+| Field | Operator meaning |
+| --- | --- |
+| `stage` | Where this invocation stopped; not a transaction status. |
+| `reason` | Stable local cause, sanitized RPC/work category, or explicit unknown. |
+| `message` | Fixed explanatory text; never raw provider/revert/input text. |
+| `error_type` | A bounded known exception family, not an arbitrary class name. |
+| `read_only`, `transaction_submitted` | Always true/false: this preparer cannot send a transaction. Other wallets/processes may have pending work. |
+| `output_may_exist` | Existing output was preserved, or writing/reporting started and a complete artifact may exist. False means this invocation did not reach publication, not that another process cannot create the path. |
+| `rpc_method`, `rpc_code` | Optional trusted RPC metadata only; recognized read method and signed32-bit code, otherwise null. |
+
+| Stage | Work being checked |
+| --- | --- |
+| `input_validation` | CLI/files/selection; preserve any existing output path. |
+| `preparation` | Honest fallback when preparation started but the precise exception stage cannot be attached/read. Never mislabel it as input validation. |
+| `configuration_validation` | Manual policy, exact source/configuration and runtime role setup. |
+| `initial_snapshot` | Confirmed authority/lifecycle, current custody, pool, position and selected protections. |
+| `manifest_preparation` | Offline exact request and review commitment. |
+| `initial_simulation` | First exact call, estimate, gas/fee limits and governance funding. |
+| `final_snapshot` | Later canonical tip, original deadline and unchanged custody/controls. |
+| `final_simulation` | Same exact calldata and original limits at that later tip. |
+| `final_canonicality` | Both anchors, last head/expiry and unchanged local inputs. |
+| `artifact_rendering` | Convert the completed review to bytes; writer has not started. |
+| `artifact_publication` | Exclusive creation/durability or final CLI reporting. Inspect any complete file. |
+
+Important known causes, with no new eligibility conditions:
+
+| Cause | Response |
+| --- | --- |
+| `not_sealed`, `pause_required`, `preparation_active`, `canonical_not_operating`, `terminal_exit_started`, `exit_phase_not_idle` | Inspect the exact lifecycle; use only its authorized procedure. Terminal exit cannot be reopened. |
+| `governance_changed`, `governance_permission_missing`, `unsupported_contract_wallet_envelope` | Reconcile the actual authority/envelope. A configured address grants no permission. |
+| `position_state_mismatch`, `same_main_ticks_changed`, `invalid_tick_spacing`, `main_outside_range` | Review the selected action and current geometry. No recenter/force fallback is selected. |
+| `no_residual_or_idle`, `no_parked_principal`, `swap_exceeds_principal` | Inspect attributed operation funds; never borrow other principal/reward reserves. Active D retains its future-harvest lower-bound rule. |
+| `operations_disabled`, `swap_operations_disabled`, `invalid_swap_pool`, `fixed_asset_mismatch` | Review exact admitted current assets/venue and selected guard bits. No automatic venue admission or bypass. |
+| `custody_hash_mismatch`, `custody_or_controls_changed`, `local_inputs_changed` | Preserve the previous artifact; capture a new review of the changed inputs. |
+| `gas_headroom_exceeded`, `gas_price_exceeded`, `network_fee_budget_exceeded`, `insufficient_governance_gas` | Review the original25% padding, approved fee limits and payer funding. No budget increases automatically. |
+| `invalid_original_deadline`, `review_expired`, `original_deadline_or_head_changed`, `final_anchor_changed` | Capture fresh canonical state and an explicitly reviewed original expiry. No extension or automatic retry. Composite head/deadline failures are not misreported as proven expiry alone. |
+| `parked_active_trigger_or_confirmation_incompatible` | Parked cannot retain Active-only bits1/16. Choose the mask explicitly; it is never silently cleared. |
+| `existing_output_preserved` | Preserve/inspect that path, including a dangling symlink; choose a genuinely new filename. |
+| `artifact_publication_uncertain` | A complete review may already exist even if durability, cleanup or final stdout failed. Inspect it; do not overwrite, delete or assume a transaction was sent. |
+
+Other typed local codes cover exact ABI/pool/inventory/fingerprint/source/config
+comparisons. The [source's `LOCAL_CODES` catalogue](../zzz_ops/manual_lp_review.py)
+is authoritative. A cause names the first comparison that failed, not every
+latent problem and not proof that a dependency was compromised.
+
+For example, a final snapshot can report `stage:"final_snapshot"`,
+`reason:"custody_or_controls_changed"`, `output_may_exist:false`. This asks for a
+fresh reviewed snapshot, not a weaker safeguard or repeat of an already-submitted
+transaction. Neither preparer examines the pending journal or reserves a nonce.
+
+Opaque RPC, decoder or simulation failures remain
+`manual_preparation_unavailable_or_invalid` (or sanitized `rpc_*` when a typed
+RPC error survives). Never interpret them as a proven slippage/oracle/buffer
+inequality. Transport may have retried reads within existing limits; this feature
+adds no retry or force path. `work_limit_*` identifies the bounded work category.
+An unavailable endpoint may be wrapped generically and have no numeric RPC code.
+Credentials, endpoints, paths, raw inputs and provider messages are not echoed.
+
+New seven-action management reviews embed the updated manual-helper source hash,
+so their **source commitments change**. Where a function takes a `reviewHash`,
+new calldata carries that new hash too; targets, economic inputs and contract
+behavior stay. Preserve saved artifacts with their original provenance; do not
+rehash old reviews, pending records or journals. No contract/runtime/profile, earnings
+checkpoint or keeper-health identity is automatically refreshed by this change.
+
+[Source review and verification](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
+cover these local diagnostics; actual provider, gas and operating acceptance stay
+separate. No signer, service restart, deployment or setting change is performed.
+
 <a id="procedure-and-review-boundaries"></a>
 
 ## B/C/D procedure and review boundaries

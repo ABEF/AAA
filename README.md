@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Manual LP diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
+now identify the failing review stage and known local cause, with safe unknown
+RPC errors and uncertain-output handling. Successful unsigned manual reviews,
+financial guards and permissions stay unchanged. [Source review](reports/manual-lp-diagnostics-20261115/REVIEW.md).
+
 [Parked emergency recovery](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
 now has explicit unsigned preparation with selected safeguards, exact custody
 proofs and fresh simulations. Governance permissions, contract code and live

@@ -1,0 +1,197 @@
+{
+  "source_before": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-lp-diagnostics-20261115-aaf1423\\implementation\\manual_lp_review.baseline.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21"
+  },
+  "source_after": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-lp-diagnostics-20261115-aaf1423\\implementation\\manual_lp_review.baseline.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21"
+  },
+  "source_unchanged": true,
+  "old_test_methods_executed": 0,
+  "success_comparisons": [
+    {
+      "kind": "B",
+      "statuses": [
+        "success",
+        "success"
+      ],
+      "full_artifact_bytes_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "artifact_sha256": "30a71a17ce0ceaf2dfd479545fdfd2bdf71379be84874d86e61af9a2c15cb159",
+      "rpc_sha256": "e1d2ab24d37929df7b18f5dcc42a5e21f98a226f4c4cb7d0a8312718fe0afe52",
+      "rpc_call_count": 565
+    },
+    {
+      "kind": "C",
+      "statuses": [
+        "success",
+        "success"
+      ],
+      "full_artifact_bytes_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "artifact_sha256": "7b7d517d51bd8164fb706b35df61aeaeee46378713700fc83a1ee5f1a33408e1",
+      "rpc_sha256": "6e350ba92f93db9cc8250caeb0a1452fa57b3ad85899ce25a6d1d1981aa0aaaa",
+      "rpc_call_count": 557
+    },
+    {
+      "kind": "D",
+      "statuses": [
+        "success",
+        "success"
+      ],
+      "full_artifact_bytes_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "artifact_sha256": "ff1103800d257c09ced05cee024790aaaab1be17857cd6005a6a139fae704e26",
+      "rpc_sha256": "b9de0c4027e90a48d7c64c8378149cbcdc374ae9e311024ffe82c09bfbb4aa42",
+      "rpc_call_count": 557
+    },
+    {
+      "kind": "Parked0",
+      "statuses": [
+        "success",
+        "success"
+      ],
+      "full_artifact_bytes_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "artifact_sha256": "4a5389562dbf89bab13d8033cb2eb3ac3656d3b4f9957315bbd396524ccf467b",
+      "rpc_sha256": "f3da320da456b1b8c6b5bc3be388d2597287126fb68fd1db1bce7f7946d98a0a",
+      "rpc_call_count": 385
+    },
+    {
+      "kind": "Parked14",
+      "statuses": [
+        "success",
+        "success"
+      ],
+      "full_artifact_bytes_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "artifact_sha256": "2e33d7f2ec9ca25e7f91044c5c0687546e2d0261ea9be3c813042f492775fd8d",
+      "rpc_sha256": "f4cb809f9d978713a7c4336609968fbcf8cd4729c9349f6c1275daab50a21e4c",
+      "rpc_call_count": 411
+    }
+  ],
+  "negative_comparisons": [
+    {
+      "variant": "paused",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 155
+    },
+    {
+      "variant": "preparing",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 156
+    },
+    {
+      "variant": "phase",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 129
+    },
+    {
+      "variant": "permission",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 161
+    },
+    {
+      "variant": "gas",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 275
+    },
+    {
+      "variant": "price",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 275
+    },
+    {
+      "variant": "fee",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 275
+    },
+    {
+      "variant": "funding",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 276
+    },
+    {
+      "variant": "opaque_call",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 273
+    },
+    {
+      "variant": "control",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 545
+    },
+    {
+      "variant": "opaque_final",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 547
+    },
+    {
+      "variant": "reorg",
+      "statuses": [
+        "RpcError",
+        "RpcError"
+      ],
+      "base_error_type_identical": true,
+      "ordered_rpc_reads_identical": true,
+      "rpc_call_count": 557
+    }
+  ],
+  "successful": true
+}

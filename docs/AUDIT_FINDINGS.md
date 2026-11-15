@@ -295,6 +295,13 @@ route qualification. Historical reports keep their original evidence scope.
 
 ## Operator management preparation
 
+The [manual diagnostics follow-up](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
+closes generic local cause/stage and uncertain-publication handling for Active
+B/C/D and explicit Parked D. Actual opaque provider/decoder/revert causes remain
+unproven; no financial inequality is invented. Successful manual outputs and
+safeguards remain; management source commitments update naturally, without
+rewriting historical evidence. Actual gas/provider/operator gates stay open.
+
 The [unsigned management follow-up](../reports/operator-management-20261109/REVIEW.md)
 implements previously missing park/resume/residual-close and terminal-return
 adapters. It handles exact custody inputs, phase-specific pause/preparation,

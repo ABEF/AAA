@@ -1,0 +1,221 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "scope": "Root source/mechanical verification; no test bodies/RPC/EVM/compiler/static analyzer executed",
+  "successful": true,
+  "unique_new_focused_methods": 28,
+  "source_stages": "27 at742957d3;1new delta at9c139431 with recorded unchanged preparation/test AST reuse",
+  "inventory_only_methods": [
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_actual_success_reporting_failure_is_publication_uncertain",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_configuration_binding_cause_preserves_valueerror",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_dangling_symlink_is_preserved_without_prepare",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_directory_fsync_failure_preserves_complete_published_artifact",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_output_is_preserved_even_with_missing_input_files",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_existing_specific_wallet_and_parked_mask_reason_codes_stay",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_head_retreat_and_opaque_finish_failure_are_not_guessed_expiry",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_header_mismatch_and_estimate_failure_remain_distinct",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_initial_snapshot_lifecycle_and_geometry_codes_preserve_checks",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_input_local_cause_preserves_valueerror_and_stops_before_rpc",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_manifest_failure_has_its_own_stage_without_claiming_known_cause",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_mutable_unhashable_and_valid_foreign_metadata_cannot_invent_causes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_nonannotatable_rpc_failure_uses_honest_preparation_stage_fallback",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_policy_source_and_fee_policy_codes_are_local_not_guessed",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_post_publication_reporting_failure_keeps_complete_file",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_preexisting_regular_output_is_preserved_without_prepare",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_publication_failure_before_link_is_uncertain_without_retry",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_mutable_metadata_and_exception_class_cannot_leak",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_render_failure_has_no_publication_attempt",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_simulation_output_header_gas_fee_and_funding_have_grouped_local_codes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_static_human_messages_distinguish_known_gas_failures",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_success_cli_payload_and_transaction_boundary_stay_unchanged",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_temporary_cleanup_failure_preserves_complete_linked_bytes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_temporary_fsync_failure_is_uncertain_without_publishing_partial_bytes",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_unknown_rpc_revert_is_not_misreported_as_a_financial_guard"
+  ],
+  "inventory_only_methods_executed": 0,
+  "todo_check": "Project Todo verified.",
+  "new_local_links_checked": [
+    {
+      "source": "AGENTS.md",
+      "href": "reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "AGENTS.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "href": "reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "README.md",
+      "href": "reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "README.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "TODO.md",
+      "href": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "TODO.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/AUDIT_FINDINGS.md",
+      "href": "../reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/IMPLEMENTATION_STATUS.md",
+      "href": "MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/MANUAL_LP_PREPARATION.md",
+      "href": "../reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/MANUAL_LP_PREPARATION.md",
+      "href": "../zzz_ops/manual_lp_review.py"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "../reports/manual-lp-diagnostics-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/RELEASE_CHECKLIST.md",
+      "href": "../reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/ROADMAP.md",
+      "href": "MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "href": "MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "href": "../reports/manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/README.md",
+      "href": "manual-lp-diagnostics-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "reports/README.md",
+      "href": "manual-lp-diagnostics-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/REVIEW.md",
+      "href": "../../TODO.md#task-operation-review"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/REVIEW.md",
+      "href": "../../docs/OPERATOR_MANUAL.md"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/REVIEW.md",
+      "href": "../../docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/REVIEW.md",
+      "href": "VERIFICATION.md"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "first-post-tests.log"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback-scoped-reuse.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "artifact-and-ordered-read-equivalence.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "baseline-new-tests.log"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "post-fix-final27.log"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback.source.patch"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback-post.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "baseline-final27.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "ROOT_REVIEW.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "COMPLETION.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback-final-before.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "baseline-final27.log"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback-final-before.log"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "post-fix-final27.json"
+    },
+    {
+      "source": "reports/manual-lp-diagnostics-20261115/VERIFICATION.md",
+      "href": "preparation-fallback-post.log"
+    }
+  ],
+  "function_reference_check": {
+    "passed": true,
+    "contracts": 40,
+    "functions": 956,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "operator_reference_check": {
+    "passed": true,
+    "example_rows": 1009,
+    "ready_for_submission": false
+  },
+  "source_doc_whitespace": "Passed with CRLF recognized; raw logs/exact evidence patch excluded and preserved; index checks cover new document/source blobs",
+  "protected_dirty_files_unchanged": 4,
+  "production_solidity_unchanged": 61,
+  "open_tasks": 47,
+  "publication_gate": "Exact index/HEAD static Python closure and blob checks required separately; external evidence avoids self-reference",
+  "external_evidence_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-lp-diagnostics-20261115-aaf1423"
+}

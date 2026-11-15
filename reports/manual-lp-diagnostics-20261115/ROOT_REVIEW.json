@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "baseline": "aaf1423189e1f8436418540ef7cf85cbbccc9e29",
+  "scope": "Manual LP diagnostic source improvement; injected RPC/temporary filesystem only",
+  "new_focused_method_count": 28,
+  "local_cause_code_count": 68,
+  "source_sha256": {
+    "zzz_ops/manual_lp_review.py": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+    "tests_python/test_manual_lp_diagnostics.py": "ab8d7e5821e14d22fed68724fef86abcd13547cf65c2a92da95ab35dc6149ad5"
+  },
+  "unchanged_success_artifact_and_rpc_comparisons": 5,
+  "unchanged_negative_base_error_and_rpc_comparisons": 12,
+  "unchanged_function_asts": [
+    "digest",
+    "encode",
+    "controls",
+    "parked_safeguards",
+    "write_exclusive"
+  ],
+  "unchanged_operating_constants": [
+    "MAX_CALLS",
+    "MAX_SECONDS",
+    "MAX_GAS",
+    "EXTRAS",
+    "TUPLE",
+    "FIELDS"
+  ],
+  "unchanged_solidity_files": 61,
+  "unchanged_normal_compiler_inputs": 100,
+  "unchanged_strict_source_pins": 64,
+  "protected_dirty_file_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "website_byte_pins_unchanged": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "new_management_manual_source_pin": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+  "management_provenance": "New source commitment/reviewHash changes; where passed, that hash in new calldata changes. Economic inputs/targets/behavior stay; preserve old artifacts.",
+  "no_old_test_methods": true,
+  "no_EVM_compiler_static_analyzer_or_provider_runs": true,
+  "no_permissions_safeguards_limits_signer_journal_site_service_chain_or_heartbeat_changes": true,
+  "intentional_cli_preflight_change": "Existing output including dangling symlink is detected before loading input files; writer remains unchanged.",
+  "original_draft_archive": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-lp-diagnostics-20261115-aaf1423\\originals",
+  "source_stages": {
+    "accepted27_source": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+    "fallback_delta_source": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+    "earlier27_and_helpers_AST_unchanged": true,
+    "all_preparation_functions_classes_except_diagnostic_main_AST_unchanged": true,
+    "delta_only": "Add honest preparation stage/fallback and one main assignment; no preparation/guard/RPC/calldata changes"
+  }
+}

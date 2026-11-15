@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 31 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 32 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. Source publication, installed-service adoption and production qualification are separate milestones; this checklist does not approve deployment or rollout.
 
@@ -667,7 +667,7 @@ The data and services behind the app.
 
 <a id="task-operation-review"></a>
 
-- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Explicit schema2 Parked D is implemented with selected bypass disclosure; contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.
+- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Explicit schema2 Parked D and manual stage/cause/uncertain-output diagnostics are implemented; contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -776,6 +776,20 @@ The data and services behind the app.
 
   - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
   - [Holder input hardening](reports/system-adversarial-20261026/ops-input/VERIFICATION.md) caps reads before allocation, rejects duplicate/nonfinite/overflow JSON, normalizes parser limits and sanitizes argument errors.24affected methods pass,12new included once; valid flags/static help/exclusive outputs and unresolved-escrow/nonapproval semantics remain. Actual holder/escrow rehearsal still required.
+
+  </details>
+
+<a id="task-manual-lp-diagnostics"></a>
+
+- [x] **[Explain manual LP review failures and uncertain output](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)** - Implemented. Active B/C/D and explicit Parked D report failing stage and typed known local cause, safe bounded RPC/work categories and preserved/uncertain output. Successful manual artifacts and RPC order, original safeguards/permissions/limits stay. No automatic retry, signing or fallback; actual provider/gas/operator acceptance remains separate.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Source-scoped verification](reports/manual-lp-diagnostics-20261115/VERIFICATION.md): new focused failure cases and exact baseline/current manual artifact/call-order comparisons; no unchanged Solidity, browser or old Python suites rerun. Known local causes are not inferred from provider/revert text. Existing mask/wallet reason codes and ValueError/RpcError families stay.
+  - Failing stages distinguish input/configuration, confirmed snapshot, manifest, initial simulation, later snapshot/simulation, final canonicality, rendering and publication. First observed local authority/state/custody/geometry/gas/fee/funding/expiry causes are explicit; opaque helper/decoder/RPC failures remain unavailable, never invented as exact financial blockers.
+  - Existing output including dangling symlinks is preserved before input loading. After writer entry or final reporting failure, a complete artifact may exist: expose artifact_publication_uncertain and never overwrite/delete/retry it. Bounded whitelist messages/types/stages/RPC metadata exclude raw exception/provider/input/path/credential text.
+  - Management source commitments include the new shared manual source hash; preserve historical artifacts and pending journals. No contract/runtime/profile/checkpoint/health identity relabeling, signer/service/site/chain change, guard bypass selection or budget increase.
 
   </details>
 
@@ -1665,4 +1679,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ad8e81a8ebc44adb53721f34f576f47f77f639034e86350a61011162ab6053b3`.
+Snapshot SHA-256: `582eb4a16bf7f1e6e7711748f2774b663e923f3e4b195e9a575ea62c0eafc228`.

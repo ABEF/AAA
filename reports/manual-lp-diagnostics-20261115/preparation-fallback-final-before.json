@@ -1,0 +1,20 @@
+{
+  "stage": "preparation-fallback-final-before",
+  "source_before": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_manual_lp_diagnostics.py": "ab8d7e5821e14d22fed68724fef86abcd13547cf65c2a92da95ab35dc6149ad5"
+  },
+  "source_after": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "742957d3627085f4e002fb255e2083bcb9cf85c34e80e5a8b5092156e9a81f21",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_manual_lp_diagnostics.py": "ab8d7e5821e14d22fed68724fef86abcd13547cf65c2a92da95ab35dc6149ad5"
+  },
+  "unchanged": true,
+  "methods": [
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_nonannotatable_rpc_failure_uses_honest_preparation_stage_fallback"
+  ],
+  "method_count": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": [],
+  "successful": false
+}

@@ -1,0 +1,6 @@
+test_nonannotatable_rpc_failure_uses_honest_preparation_stage_fallback (tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_nonannotatable_rpc_failure_uses_honest_preparation_stage_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.872s
+
+OK

@@ -1,0 +1,28 @@
+--- accepted27
++++ fallback28
+@@ -56,7 +56,7 @@
+     'duplicate_runtime_roles','invalid_original_deadline','original_deadline_or_head_changed',
+     'custody_or_controls_changed','final_anchor_changed','review_expired','local_inputs_changed',
+     'invalid_cli_arguments','existing_output_preserved'))
+-STAGES=frozenset(('input_validation','configuration_validation','initial_snapshot','manifest_preparation',
++STAGES=frozenset(('input_validation','configuration_validation','preparation','initial_snapshot','manifest_preparation',
+     'initial_simulation','final_snapshot','final_simulation','final_canonicality',
+     'artifact_rendering','artifact_publication'))
+ LOCAL_MESSAGES={
+@@ -650,7 +650,7 @@
+         if isinstance(exc,kind)),'Exception')
+     recorded=_metadata(exc,'manual_stage')
+     if type(recorded) is str and recorded in STAGES:stage=recorded
+-    if type(stage) is not str or stage not in STAGES:stage='input_validation'
++    if type(stage) is not str or stage not in STAGES:stage='preparation'
+     if publishing:stage='artifact_publication'
+     existing=reason=='existing_output_preserved'
+     if publishing:
+@@ -671,6 +671,7 @@
+         args=parser.parse_args(argv)
+         if os.path.lexists(args.output):raise ManualInputBlocked('existing_output_preserved','Output must be a new file')
+         config=offline.load(args.read_config);policy=offline.load(args.policy);chosen=offline.load(args.selection)
++        stage='preparation'
+         result=prepare(config,policy,chosen)
+         stage='artifact_rendering';raw=offline.render(result)
+         stage='artifact_publication';publishing=True

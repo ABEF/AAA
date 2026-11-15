@@ -1,5 +1,14 @@
 # Work handoff
 
+Manual LP preparation now has [stage/cause diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
+for Active B/C/D and explicit Parked D. Known local errors are typed; opaque
+RPC/reverts remain unknown. Existing output paths are preserved, and uncertain
+publication/reporting exposes possible complete artifacts. Successful manual
+reviews/call order, safeguards, permissions and budgets stay unchanged. New
+management reviews naturally record the changed manual-helper source hash;
+preserve historical artifacts/journals. No deployment/service/site/signing or
+paused-heartbeat change. [Review](../reports/manual-lp-diagnostics-20261115/REVIEW.md).
+
 The [Parked recovery preparation](../reports/parked-recovery-preparation-20261115/REVIEW.md) adds explicit schema2/actionD with
 `expected_position_status:"parked"` to the unsigned manual tool. Schema1 Active
 B/C/D stays unchanged. Governance/paused/operating authority, current-pool fixed
