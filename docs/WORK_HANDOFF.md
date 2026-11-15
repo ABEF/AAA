@@ -1,5 +1,17 @@
 # Work handoff
 
+The [offline deployment planner](DEPLOYMENT_PREPARATION.md) reviews fresh schema17/mint2/V10/
+execution1/LP3 constructors, original size limits and binding/setup order from
+the accepted manual-reference-swap normal build. Planned addresses are unverified
+assignments, not CREATE predictions; factory-created ledger/assets addresses
+remain getter-discovered. No RPC/signing/broadcast/seal capability is added.
+Full static payloads do not verify constructor execution, actual bindings,
+runtime immutables, gas, markets/VRF/OpenSea or operating/independent approval.
+Solidity, historical artifacts, sites/services, Anvil/journals, signer/public
+nulls and paused heartbeat remain unchanged. New focused planner verification
+and [source evidence](../reports/deployment-preparation-20261115/REVIEW.md) record21passes/1Windows symlink skip,
+7independent offline Cast encodings and2actual CLI cases, with overlap explicit.
+
 The [guarded manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) extends execution1/LP3 to priced
 paused manual C/D. One transaction-bound vector precedes fingerprints/harvest;
 the exact caller-selected core swap/output/full post-state is proved before

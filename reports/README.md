@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Offline deployment preparation](deployment-preparation-20261115/REVIEW.md)
+validates current constructor payloads, byte limits and binding order using the
+accepted build.21new unit checks pass/1Windows symlink check skips; independent
+Cast/CLI/graph checks retain their overlap and offline limits. No unchanged
+suite, compiler/static rerun, public action or production approval.
+
 [Guarded manual reference-swap fix](manual-reference-swap-fix-20261115/REVIEW.md)
 records six-file code changes,25 new/3 adapted methods, actual same-reference C/D/
 Parked local receipts,48 normal gates and565 source-bound static dispositions.

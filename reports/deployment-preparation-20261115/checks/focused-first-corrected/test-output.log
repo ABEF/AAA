@@ -1,0 +1,6 @@
+test_template_is_blocked_but_complete_source_bound_graph (tests_python.test_deployment_plan.DeploymentPlanTests.test_template_is_blocked_but_complete_source_bound_graph) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.914s
+
+OK

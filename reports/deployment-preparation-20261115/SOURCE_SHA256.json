@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "source_sha256": {
+    "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "tests_python/test_deployment_plan.py": "fcd1090723b263a4f792e0a7a99c19ae78cf534d0020c122823d416f6a524e6a",
+    "config/deployment-preparation.example.json": "4f94f09506b32c3448a514e6ee2a8e8139a05ce6f990030d42a022f5c53945f6"
+  },
+  "solidity_changed": false,
+  "accepted_normal_build": "reports/manual-reference-swap-fix-20261115/build/ARTIFACTS.json"
+}

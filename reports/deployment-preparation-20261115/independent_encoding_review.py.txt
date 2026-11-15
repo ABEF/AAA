@@ -1,0 +1,210 @@
+"""NEW offline independent constructor/graph/CLI checks; no chain or compiler."""
+from pathlib import Path
+import argparse, copy, gzip, hashlib, json, os, subprocess, sys
+
+ROOT = Path('C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2')
+E = Path(__file__).resolve().parent
+BUILD = ROOT / 'reports/manual-reference-swap-fix-20261115/build'
+ZERO = '0x' + '0' * 40
+NATIVE = {
+    'pool_manager': '0x8366a39cc670b4001a1121b8f6a443a643e40951',
+    'position_manager': '0x58daec3116aae6d93017baaea7749052e8a04fa7',
+    'state_view': '0xf3334192d15450cdd385c8b70e03f9a6bd9e673b',
+    'permit2': '0x000000000022d473030f116ddee9f6b43ac78ba3',
+    'zzz': '0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a',
+}
+# Independent source-derived expected constructor graph. No child addresses/nonces.
+TOP = (
+    ('access','ZZZAccessController',('i:governance','i:keeper','i:guardian')),
+    ('protocol_policy','ZZZProtocolPolicy',('p:access','i:mint_recipient')),
+    ('migration_budget','ZZZMigrationBudget',('p:access',)),
+    ('metadata_renderer','ZZZNFTMetadata',('p:access',)),
+    ('portfolio_policy','ZZZPortfolioPolicy',('p:access',)),
+    ('rebalance_confirmation','ZZZRebalanceConfirmation',('p:access',)),
+    ('balancing_router','ZZZLPBalancer',('p:access','i:pool_manager','i:state_view')),
+    ('oracle','ZZZOracle',('p:access','i:sequencer')),
+    ('liquidity','ZZZLiquidityManager',('p:access','i:position_manager','i:state_view','i:pool_manager','i:permit2','p:balancing_router')),
+    ('pools','ZZZPoolRegistry',('p:access',)),
+    ('strategy','ZZZStrategy',('p:access','p:portfolio_policy','p:rebalance_confirmation')),
+    ('vault','ZZZVault',('p:access','chain','p:migration_budget')),
+    ('rewards','ZZZRewards',('p:access',)),
+    ('fees','ZZZFeeController',('p:access',)),
+    ('membership','ZZZMembership',('p:access',)),
+    ('migration','ZZZMigration',('p:access',)),
+    ('compounder','ZZZCompounder',('p:access',)),
+    ('buyback','ZZZBuyback',('p:access','i:zzz','i:buyback_maximum_trade_usd')),
+    ('nft','ZZZNFT',('p:access','i:base_uri','p:metadata_renderer')),
+    ('nft_canonical','ZZZNFTCanonical',('p:access','p:nft')),
+    ('vault_canonical','ZZZVaultCanonical',('p:access','p:vault','chain')),
+    ('fees_canonical','ZZZFeesCanonical',('p:access','p:fees')),
+    ('canonical','ZZZCanonicalHandoff',('p:access',)),
+    ('lp_converter','ZZZLPRewardConverter',('p:access','p:rewards','zero')),
+    ('seadrop_mint','ZZZSeaDropMint',('p:access','p:nft','i:seadrop','i:seadrop_codehash')),
+)
+CHILDREN = (
+    ('royalty_factory','ZZZRoyaltyFactory','access',()),
+    ('activation_assets_factory','ZZZActivationAssetsFactory','access',()),
+    ('lp_balance_math','ZZZLPBalanceMath','balancing_router',()),
+    ('lp_position_executor','ZZZLPPositionExecutor','liquidity',('p:access','i:position_manager','i:state_view','i:pool_manager','i:permit2','p:balancing_router')),
+    ('contribution_pricing','ZZZContributionPricing','oracle',('p:access','p:oracle')),
+    ('activation_assets','ZZZActivationAssets','activation_assets_factory',('p:access','p:pools')),
+    ('activation_entry','ZZZActivationEntry','pools',('p:access','p:pools',None)),
+    ('royalty_rewards','ZZZRoyaltyRewards','royalty_factory',('p:nft',)),
+    ('claim_router','ZZZClaimRouter','nft',('p:access','p:nft',None)),
+    ('rewards_canonical','ZZZRewardsCanonical','rewards',('p:access',)),
+    ('custody_validation','ZZZCustodyValidation','migration',('p:access',)),
+    ('lp_v4_executor','ZZZV4RouteExecutor','lp_converter',()),
+)
+GETTERS = (
+    ('ZZZAccessController','royaltyFactory',()),
+    ('ZZZAccessController','activationAssetsFactory',()),
+    ('ZZZLPBalancer','balanceMath',()),
+    ('ZZZLiquidityManager','positionOperator',()),
+    ('ZZZOracle','contributionPricing',()),
+    ('ZZZPoolRegistry','activationAssets',()),
+    ('ZZZActivationAssetsFactory','assetsOf',('address',)),
+    ('ZZZPoolRegistry','activationEntry',()),
+    ('ZZZNFT','royaltyRewards',()),
+    ('ZZZNFT','claimRouter',()),
+    ('ZZZRewards','canonicalModule',()),
+    ('ZZZMigration','validation',()),
+    ('ZZZLPRewardConverter','v4Executor',()),
+    ('ZZZRoyaltyFactory','part0',()),
+    ('ZZZRoyaltyFactory','part1',()),
+)
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+def canonical(obj):
+    return json.dumps(obj, sort_keys=True, separators=(',',':'), ensure_ascii=True, allow_nan=False).encode('ascii')
+
+def encode(types, values):
+    """Independent standard ABI head/tail implementation, checked against Cast."""
+    if any(v is None for v in values):
+        return None
+    head=[]; tail=b''
+    for typ,v in zip(types,values):
+        if typ in ('string','bytes'):
+            payload=v.encode('utf-8') if typ=='string' else v
+            head.append((32*len(types)+len(tail)).to_bytes(32,'big'))
+            tail+=len(payload).to_bytes(32,'big')+payload+b'\0'*((-len(payload))%32)
+        elif typ=='address':
+            head.append(bytes.fromhex(v[2:]).rjust(32,b'\0'))
+        elif typ=='bytes32':
+            head.append(bytes.fromhex(v[2:]))
+        elif typ=='uint256':
+            head.append(int(v).to_bytes(32,'big'))
+        else:
+            raise AssertionError(('unexpected constructor type',typ))
+    return b''.join(head)+tail
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--cast',required=True,type=Path)
+    args=parser.parse_args();cast=args.cast.resolve();assert cast.is_file()
+    destination=E/'independent-review-run';destination.mkdir(exist_ok=False)
+    sys.path.insert(0,str(ROOT))
+    from zzz_ops import deployment_plan as actual
+    source_files=[ROOT/'zzz_ops/deployment_plan.py',ROOT/'scripts/prepare-deployment.py',ROOT/'zzz_ops/abi.py']
+    source_before={str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in source_files}
+    artifact_manifest=json.loads((BUILD/'ARTIFACTS.json').read_bytes())
+    assert all(sha((BUILD/p).read_bytes())==h for p,h in artifact_manifest['sha256'].items())
+    compiler=json.loads(gzip.decompress((BUILD/'compiler-output.json.gz').read_bytes()))
+    contracts=compiler['contracts']
+    get=lambda name:contracts['src/'+name+'.sol'][name]
+    fixture=actual.template();assert set(fixture['planned_addresses'])=={r for r,_,_ in TOP}
+    for i,(role,_,_) in enumerate(TOP,1):fixture['planned_addresses'][role]='0x'+format(0x1000+i,'040x')
+    fixture['inputs'].update(NATIVE)
+    fixture['inputs'].update(governance='0x'+'a1'*20,keeper='0x'+'b2'*20,guardian='0x'+'a1'*20,
+        mint_recipient='0x'+'c3'*20,sequencer=ZERO,base_uri='ipfs://œuf-🥚/',
+        seadrop='0x00005ea00ac477b1030ce78506496e8c2de24bf5',
+        seadrop_codehash='0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c',
+        buyback_maximum_trade_usd=str((1<<128)-1))
+    for k in fixture['qualification_evidence']:fixture['qualification_evidence'][k]='1'*64
+    partial=actual.template()
+    env={k:v for k,v in os.environ.items() if k.upper() in ('PATH','SYSTEMROOT','WINDIR','COMSPEC','PATHEXT','TEMP','TMP')}
+    cli=[]; plans=[]
+    for label,value,expected_code in [('complete',fixture,0),('partial',partial,2)]:
+        input_path=destination/(label+'-input.json');output_path=destination/(label+'-output.json')
+        input_path.write_bytes(json.dumps(value,ensure_ascii=True,indent=2).encode('ascii'))
+        command=[sys.executable,'-I','-B','-X','utf8',str(ROOT/'scripts/prepare-deployment.py'),'--input',str(input_path),'--output',str(output_path)]
+        result=subprocess.run(command,cwd=E,env=env,capture_output=True,timeout=60,check=False)
+        (destination/(label+'-stdout.txt')).write_bytes(result.stdout);(destination/(label+'-stderr.txt')).write_bytes(result.stderr)
+        assert result.returncode==expected_code,(label,result.returncode,result.stderr[:500])
+        plan=json.loads(output_path.read_bytes());payload=copy.deepcopy(plan);digest=payload.pop('manifest_sha256')
+        assert sha(canonical(payload))==digest
+        assert plan['ready_for_submission'] is False and plan['production_approved'] is False
+        assert all(plan[k] is False for k in ('rpc_performed','simulation_performed','transaction_submitted','address_predictions_performed','binding_addresses_verified'))
+        assert plan['counts']=={'top_level':25,'internal_helpers':12,'inert_data_children':2,'total_instances':39}
+        assert len(plan['instances'])==len({r['role'] for r in plan['instances']})==39
+        assert all(q['verified'] is False for q in plan['qualification_evidence'].values())
+        plans.append(plan);cli.append({'case':label,'returncode':result.returncode,'input_sha256':sha(input_path.read_bytes()),'output_sha256':sha(output_path.read_bytes()),'stdout_sha256':sha(result.stdout),'stderr_sha256':sha(result.stderr),'manifest_sha256':digest})
+    full,preview=plans;rows={r['role']:r for r in full['instances']}
+    assert full['top_level_constructor_payloads_complete'] and full['input_assignments_complete']
+    assert not full['all_instance_constructor_payloads_complete']
+    assert not preview['top_level_constructor_payloads_complete'] and not preview['input_assignments_complete']
+    assert next(r for r in preview['instances'] if r['role']=='nft')['full_initcode_bytes'] is None
+    assert {r['role'] for r in full['instances'] if not r['constructor_payload_complete']}=={'activation_entry','claim_router'}
+    ledger=bytes.fromhex(get('ZZZRoyaltyRewards')['evm']['bytecode']['object']);parts=[ledger[:24573],ledger[24573:]]
+    def resolve(ref):
+        if ref is None:return None
+        if ref=='chain':return '4663'
+        if ref=='zero':return ZERO
+        key,name=ref.split(':',1)
+        return fixture['inputs'][name] if key=='i' else fixture['planned_addresses'][name]
+    specs=[(r,n,'top_level',None,tuple(resolve(x) for x in refs)) for r,n,refs in TOP]
+    specs += [(r,n,'internal_create_only',parent,tuple(resolve(x) for x in refs)) for r,n,parent,refs in CHILDREN]
+    specs += [('royalty_data_part'+str(i),'ZZZRoyaltyCodeData','inert_internal_create_only','royalty_factory',(part,)) for i,part in enumerate(parts)]
+    reviewed=[]
+    for role,name,mode,parent,values in specs:
+        row=rows[role];obj=get(name);types=[i['type'] for a in obj['abi'] if a['type']=='constructor' for i in a['inputs']]
+        creation=bytes.fromhex(obj['evm']['bytecode']['object']);runtime=bytes.fromhex(obj['evm']['deployedBytecode']['object'])
+        assert row['contract']==name and row['mode']==mode and row['creator_role']==parent and row['constructor_types']==types
+        expected_values=['0x'+v.hex() if isinstance(v,bytes) else v for v in values]
+        assert [a['value'] for a in row['arguments']]==expected_values
+        if mode!='top_level':assert row['planned_address'] is None
+        data=encode(types,values)
+        if data is None:
+            assert row['full_initcode_hex'] is None and row['constructor_argument_bytes']==96
+            assert row['full_initcode_bytes']==len(creation)+96
+        else:
+            assert row['constructor_arguments_hex']=='0x'+data.hex() and row['full_initcode_hex']=='0x'+(creation+data).hex()
+            assert row['full_initcode_bytes']==len(creation)+len(data)<=49152
+        if name=='ZZZRoyaltyCodeData':
+            runtime=b'\x5f\x5f\xfd'+values[0]
+            assert row['returned_runtime_hex']=='0x'+runtime.hex() and row['runtime_hash_scope']=='exact_returned_inert_data'
+        assert row['runtime_bytes']==len(runtime)<=24576 and row['runtime_sha256']==sha(runtime)
+        assert row['runtime_is_actual_deployment_pin'] is False
+        reviewed.append({'role':role,'creation_bytes':len(creation),'argument_bytes':row['constructor_argument_bytes'],'initcode_bytes':row['full_initcode_bytes'],'runtime_bytes':len(runtime),'argument_sha256':None if data is None else sha(data)})
+    assert rows['oracle']['full_initcode_bytes']==49073 and rows['oracle']['initcode_margin']==79
+    assert [rows['royalty_data_part'+str(i)]['runtime_bytes'] for i in range(2)]==[24576,952]
+    assert [rows['royalty_data_part'+str(i)]['full_initcode_bytes'] for i in range(2)]==[25095,1479]
+    assert rows['royalty_rewards']['full_initcode_bytes']==25554
+    getter_checks=[]
+    for contract,name,types in GETTERS:
+        matches=[a for a in get(contract)['abi'] if a['type']=='function' and a['name']==name and tuple(x['type'] for x in a['inputs'])==types]
+        assert len(matches)==1 and matches[0]['stateMutability']=='view' and [x['type'] for x in matches[0]['outputs']]==['address']
+        getter_checks.append(contract+'.'+name+'('+','.join(types)+')')
+    seen=set();bindings=[]
+    for step in full['construction_order']:
+        assert set(step['requires'])<=seen;seen.add(step['id'])
+        if step['kind']=='bootstrap_module_binding':bindings.append(step['role'])
+    assert len(bindings)==len(set(bindings))==16
+    cast_checks=[]
+    for role in ('access','oracle','liquidity','vault','buyback','nft','seadrop_mint'):
+        row=rows[role];values=[a['value'] for a in row['arguments']]
+        command=[str(cast),'abi-encode','f('+','.join(row['constructor_types'])+')',*values]
+        result=subprocess.run(command,cwd=E,env=env,capture_output=True,timeout=15,check=False)
+        assert result.returncode==0,(role,result.stderr[:400])
+        encoded=result.stdout.decode('ascii').strip();assert encoded.lower()==row['constructor_arguments_hex']
+        cast_checks.append({'role':role,'types':row['constructor_types'],'input_arguments':values,'cast_stdout_sha256':sha(result.stdout),'expected_argument_sha256':sha(bytes.fromhex(encoded[2:]))})
+    source_after={str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in source_files};assert source_before==source_after
+    summary={'schema':1,'kind':'new_independent_offline_encoding_and_constructor_graph_review','all_passed':True,
+        'source_before':source_before,'source_after':source_after,'script_sha256':sha(Path(__file__).read_bytes()),'cast_sha256':sha(cast.read_bytes()),
+        'accepted_build_manifest_sha256':sha((BUILD/'ARTIFACTS.json').read_bytes()),'cli_cases':cli,'instances_checked':reviewed,'getter_abi_checks':getter_checks,
+        'cast_checks':cast_checks,'normal_limits_unchanged':{'runtime':24576,'initcode':49152},'rpc_requests':0,'compiler_invocations':0,'old_test_suites':0,
+        'limitations':['Only constructor bytes, graph, input completeness and offline publication checked; no deployment, RPC, live code/gas/provider/authority qualification or production approval.','Child addresses remain getter discoveries and compiler templates remain unpatched, not deployed runtime pins.','Fixture addresses, maximum buyback setting and evidence hashes are synthetic encoding inputs, never adopted settings.']}
+    output=E/'INDEPENDENT_ENCODING_REVIEW.json';assert not output.exists();output.write_text(json.dumps(summary,indent=2)+'\n',encoding='utf8')
+    print(json.dumps({'all_passed':True,'instances':39,'cast_encodings':len(cast_checks),'getter_checks':len(getter_checks),'output_sha256':sha(output.read_bytes())}))
+
+if __name__=='__main__':main()

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scope": "Exact new report/evidence bytes; excludes this manifest",
+  "sha256": {
+    "checks/focused-first/RESULT.json": "f8209f95c3e5120da8741547958cb2f61a0a3dc27202494aa9809fb2aee54ebf",
+    "checks/focused-first/test-output.log": "0aa1061e74c5c43309a4ad082eff845f19f96c138881d37a8e964bcc0475e200",
+    "checks/focused-first-corrected/RESULT.json": "805180dd1d7af0d8ea794864e5698cb04a4029fa8a608a3b6279fd21d5c2cb07",
+    "checks/focused-first-corrected/test-output.log": "f6afbbdd16e460bfda13f8cf522a3c555830ce86102d9f9a3b64552b5f36e351",
+    "checks/focused-remaining/RESULT.json": "930603b12cc8d157868ff7bea40a1e4ef7f226a48da6abbcac130a30d3e73bef",
+    "checks/focused-remaining/test-output.log": "e964986080fb6bd0933f14149dc85ebd5bacda40cce94dd8b891846c10814a54",
+    "checks/sample-drift-only/RESULT.json": "d437161453fdacd46b0ff7957d0b2b464f4a0f7aced555f333ea37cb3597f04b",
+    "checks/sample-drift-only/test-output.log": "3446e00c49e3755bafd72744d139b813481dc5d19796642a96c21d89fb82f40b",
+    "INDEPENDENT_ENCODING_REVIEW.json": "449b78e22ea9b0a8eddfa760a211a68bd19ad851f74e3d93a3bc655aa7e0c2b4",
+    "independent_encoding_review.py.txt": "a84aae7a229902a3bd9e4d43229f6efe19723621c0e6e128e9d83cfdf013590f",
+    "REUSED_BUILD.json": "96c427aa24da2147dd83a5fef70929b361bc156c7c672cc8a1a731f4722e7bd2",
+    "REVIEW.md": "8ac0a034d31beaaf976415c07ef461cd940f773ad6907f810e5e1df782cd7565",
+    "SOURCE_SHA256.json": "27067df8bbe325bd677ee3af5cb0c80b8d95501e1d7d7a98aab4406593e397ff",
+    "TEST_RUNNER_NOTE.json": "996ad3d0e76d4b0dfd04b3a526ac022505d0aa08a9557513136befc3a285082e",
+    "TEST_SAMPLE_DELTA.json": "e4260fb7cf0a629ce00552af231851df5938868eb621593f6dc912494affec12",
+    "VERIFICATION.json": "6f6aa79039b4580be386517de8a6085259fabbe5b52c191eb6790aabb2a7455f"
+  }
+}

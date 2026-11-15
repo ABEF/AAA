@@ -24,6 +24,15 @@ and only the explicit historical CLI mode can inspect it. Fresh read/keeper
 configs require custody_version5; new keeper principal_distribution must remain
 disabled. Runtime/config/receipt provenance is never upgraded by changing a label.
 
+## Prepare construction before observing deployment
+
+Use the separate [offline deployment planner](DEPLOYMENT_PREPARATION.md) for
+constructor payloads, normal byte-size limits and bootstrap binding order.
+Its incomplete or complete static plan is never a deployed inventory, address
+prediction, constructor simulation or production approval. The read-only
+preflight below still requires actual creation-to-anchor runtime/getter/control
+evidence and independently reviewed configuration. No seal call is prepared.
+
 ## Current release scope
 
 One fixed ZZZ/native ETH pair, one contribution destination at a time, independent

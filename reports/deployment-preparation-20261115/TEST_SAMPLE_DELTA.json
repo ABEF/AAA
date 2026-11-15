@@ -1,0 +1,7 @@
+{
+  "old_test_sha256": "4d40cc6ff34210af7fe6e98bf83bb5cb4592352477e71a736f40cc51a955aacd",
+  "new_test_sha256": "fcd1090723b263a4f792e0a7a99c19ae78cf534d0020c122823d416f6a524e6a",
+  "all21_prior_method_and_helper_ASTs_unchanged": true,
+  "only_new_method": "test_checked_in_sample_matches_exact_nullable_template",
+  "sample_bytes_unchanged": "4f94f09506b32c3448a514e6ee2a8e8139a05ce6f990030d42a022f5c53945f6"
+}

@@ -1,0 +1,39 @@
+{
+  "stage": "focused-remaining",
+  "methods_requested": [
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_complete_inputs_still_never_approve_or_verify_runtime",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_exact_static_oracle_arguments_no_selector_and_79_margin",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_dynamic_utf8_constructor_has_exact_offsets",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_ascii_uri_initcode_boundary",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_multibyte_uri_uses_bytes_not_character_count",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_empty_uri_is_constructor_valid_but_explicit_release_gap",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_unknowns_are_not_filled_with_zero_and_fixed_lengths_remain_known",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_external_factory_children_and_getter_dependencies",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_exact_data_parts_reconstruct_ledger_creation",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_binding_order_has_all_modules_policy_helpers_and_required_edges",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_nullable_unused_address_does_not_turn_preview_into_complete_input",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_strict_schema_profile_native_and_numeric_inputs",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_duplicates_and_invalid_payees_rejected_authority_reuse_allowed",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_bounded_duplicate_json_and_unsupported_codec",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_build_and_source_changes_fail_closed",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_deterministic_complete_output_and_no_network",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_actual_cli_template_exit2_and_complete_exit0_are_never_ready",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_cli_existing_path_preserved_before_loading_invalid_input",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_publication_failure_is_uncertain_and_never_replaces_existing_file",
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_dangling_symlink_is_preserved"
+  ],
+  "tests_run": 20,
+  "failures": 0,
+  "errors": 0,
+  "skips": 1,
+  "successful": true,
+  "elapsed_seconds": 13.514999999999418,
+  "source_sha256": {
+    "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "tests_python/test_deployment_plan.py": "4d40cc6ff34210af7fe6e98bf83bb5cb4592352477e71a736f40cc51a955aacd",
+    "config.deployment.offline.example.json": "4f94f09506b32c3448a514e6ee2a8e8139a05ce6f990030d42a022f5c53945f6"
+  },
+  "source_unchanged": true,
+  "compiler_rpc_old_suites_executed": false
+}

@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "baseline": "ecb9dce6902c70c167e9d7e2ac11c7c52c7cb843",
+  "scope": "Only new offline planner behavior and source/document integrity; no deployment qualification",
+  "new_unique_methods": 22,
+  "passed": 21,
+  "skipped": 1,
+  "skip_reason": "Windows symlink creation not permitted; existing-output and exclusive publication checks passed separately.",
+  "initial_setup_failure_preserved": true,
+  "successful_stages": [
+    "focused-first-corrected",
+    "focused-remaining",
+    "sample-drift-only"
+  ],
+  "test_source_addition_only_delta": "TEST_SAMPLE_DELTA.json",
+  "independent_constructor_instances": 39,
+  "independent_getter_abis": 15,
+  "independent_cast_encodings": 7,
+  "independent_actual_cli_cases": 2,
+  "overlap_notice": "Independent encodings/CLI/graph checks overlap unit workflows; do not sum these as distinct product features.",
+  "normal_gates_reused_original_scope": 48,
+  "exact_source_pins_rechecked": 100,
+  "unchanged_test_suites_rerun": 0,
+  "solidity_compiler_invocations": 0,
+  "static_analyzer_invocations": 0,
+  "public_rpc_requests": 0,
+  "public_transactions": 0,
+  "deployments": 0,
+  "seal_calls": 0,
+  "source_sha256": {
+    "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "tests_python/test_deployment_plan.py": "fcd1090723b263a4f792e0a7a99c19ae78cf534d0020c122823d416f6a524e6a",
+    "config/deployment-preparation.example.json": "4f94f09506b32c3448a514e6ee2a8e8139a05ce6f990030d42a022f5c53945f6"
+  },
+  "production_approved": false
+}

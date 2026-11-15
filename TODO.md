@@ -1655,7 +1655,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. Fresh factory storage2 uses two immutable inert code-data children; current schema17 authenticates exact payload3 bytes and the mint2/metadata constructor graph. Historical normal44 and later48-gate evidence keep their own source scope. Exact release constructor arguments, all reciprocal bindings, target-chain deployment gas and independent approval remain unqualified.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The offline schema17/mint2/V10/execution1/LP3 planner validates accepted normal artifacts, resolvable constructor payloads, original size limits and binding order; incomplete inputs remain blocked previews. Planned addresses are not predictions and factory children require getter discovery. Actual release constructor execution, address/runtime/reciprocal bindings, target-chain deployment gas and independent approval remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1671,6 +1671,7 @@ Decisions and rehearsals before real funds.
   - [Factory/claim improvement](reports/factory-claims-20261105/VERIFICATION.md) preserves Royalty creation payload and unchanged economic code;44 normal compiler-object gates plus2 actual returned data-runtime/initcode checks. Historical20/69-byte claims above are original source scopes, not current headroom. Target construction/URI/bindings/max-state gas stay open.
   - Fresh7 normal87-source graph passes46object and2actual carrier gates with unchanged compiler settings; runtime headroomVault133/Rewards358/Handoff32. Cold32-entry host claim measured31,085,813raw gas and exceeds12M; cold8 measured8,819,431in its controlled fixture, not universal size approval. Measure actual chain claim/pages and costs:32claim entries and8canonical rows are count limits, not gas approval. Constructor-created RewardsCanonical must match exact source/runtime/parent pins; no limit raising or older-runtime relabeling.
   - [Current accepted normal build](reports/gas-feasibility-20261111/build/production-size-gates.json) passes48gates at100closed sources/61project files. Only Oracle objects change:24,573runtime/3bytes headroom(+85bytes versus baseline),48,530creation including64argument bytes. Vault24,544/32margin unchanged. All191projectABI/storage entities match; current raw sources exactly match compiler contents. This tight pre-deployment margin remains explicit; no code-size/compiler or gas default is raised.
+  - The [offline deployment preparation milestone](reports/deployment-preparation-20261115/REVIEW.md) adds a bounded unsigned construction/size/binding plan from the accepted normal build. No RPC, key, broadcast or seal operation is supported. Unresolved inputs, unobserved addresses, external constructor calls, exact runtime immutables and all live release qualifications remain separate; no unchanged suites or compiler/static checks are rerun.
 
   </details>
 
@@ -1710,4 +1711,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `15429649a5a3e9fddfe8abd92ae62cdf2af501040935117b1f94ae262d65733e`.
+Snapshot SHA-256: `55da8688687a22f121173c12c0b55c7bcd4c25bee4c2299673e4cc122092fe06`.

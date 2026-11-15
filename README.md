@@ -54,6 +54,11 @@ service/market qualification remain open. The local
 [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) prepares unsigned
 reviews. Popldemo and served poplint remain separate from these source changes.
 
+The [offline deployment planner](docs/DEPLOYMENT_PREPARATION.md) now reviews
+current constructors, original size limits and bootstrap binding order using
+the accepted build. It produces unsigned, explicitly unapproved plans; actual
+deployment, sealing and live qualification remain separate.
+
 ## Architecture overview
 
 | Layer | Owns this responsibility | Explore |

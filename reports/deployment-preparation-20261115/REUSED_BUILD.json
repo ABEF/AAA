@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only integrity reuse, NOT a new compiler/static/EVM/test run",
+  "accepted_build": "reports/manual-reference-swap-fix-20261115/build",
+  "accepted_build_manifest_sha256": "8adb7a01a5e159b04348baebfcb8022ed633e1cc3df55d32ad9b7367323a67b1",
+  "artifact_files_checked": 14,
+  "current_exact_source_pins": 100,
+  "production_solidity_unchanged": 61,
+  "protected_dirty_files_unchanged": 4,
+  "normal_gates_reused_at_original_scope": 48,
+  "compiler_invocations": 0,
+  "solidity_tests": 0,
+  "static_analyzer_invocations": 0,
+  "public_rpc_requests": 0,
+  "source_manifest_sha256": "c1fbb683be3735d4558f553acb1af0153ffaf74b808e113a760fcde30bd8af4b",
+  "compiler_settings": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "storageLayout",
+          "evm.bytecode.object",
+          "evm.bytecode.sourceMap",
+          "evm.deployedBytecode.object",
+          "evm.deployedBytecode.sourceMap",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    }
+  }
+}

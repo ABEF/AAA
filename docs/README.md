@@ -1,5 +1,10 @@
 # Documentation map
 
+For fresh constructor/size/binding preparation use the
+[offline deployment planner](DEPLOYMENT_PREPARATION.md). For an actual deployed
+graph use [production preflight](PRODUCTION_PREFLIGHT.md); an offline plan cannot
+satisfy live identity, market, gas, operating or release approval requirements.
+
 Use the [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) and
 [operator procedure](OPERATOR_MANUAL.md#local-manual-recovery-rehearsal) for actual
 local C/D receipts, gas and post-state checks. That earlier record closes its controlled local

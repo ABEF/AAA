@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+The [offline deployment planner](DEPLOYMENT_PREPARATION.md) supports current
+schema17/mint2/V10/execution1/LP3 construction, exact resolvable constructor
+payloads, original size gates and ordered binding/setup review. Missing inputs
+and factory-discovered addresses remain explicit. No constructor execution,
+deployed runtime, gas, actual binding or production approval is implied.
+
 The [current manual reference fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) is locally verified:
 25 new/3 adapted methods, exact same-reference C/D/Parked local receipts,48 normal
 gates and source-bound static coverage. Existing ABIs stay; three fixed helper
@@ -303,8 +309,6 @@ durable rollback/WAL. Valid restart retains history/cursor/ownership.93selected
 Python methods pass, including9new regressions. Table/index names/columns/keys and
 identity format are unchanged; no migration/rescan or operating rollout occurs.
 Actual storage/recovery qualification remains open.
-
-
 
 ## Current evidence and limits
 

@@ -1,0 +1,39 @@
+setUpClass (tests_python.test_deployment_plan.DeploymentPlanTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (tests_python.test_deployment_plan.DeploymentPlanTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_deployment_plan.py", line 20, in setUpClass
+    cls.preview=D.prepare(D.template());cls.complete=D.prepare(complete_input())
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 271, in prepare
+    value=validate(raw);artifacts=Artifacts(root);rows=[];ledger=bytes.fromhex(artifacts.contract('ZZZRoyaltyRewards')[1]['evm']['bytecode']['object']);parts=(ledger[:24573],ledger[24573:])
+                                  ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 198, in __init__
+    gates=decode(raws['production-size-gates.json'],MAX_BUILD)['gates']
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 102, in decode
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 102, in <lambda>
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 91, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: noninteger_json
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.595s
+
+FAILED (errors=1)

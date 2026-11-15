@@ -1,0 +1,494 @@
+{
+  "schema": 1,
+  "kind": "new_independent_offline_encoding_and_constructor_graph_review",
+  "all_passed": true,
+  "source_before": {
+    "zzz_ops\\deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+    "scripts\\prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "zzz_ops\\abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "source_after": {
+    "zzz_ops\\deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+    "scripts\\prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "zzz_ops\\abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "script_sha256": "a84aae7a229902a3bd9e4d43229f6efe19723621c0e6e128e9d83cfdf013590f",
+  "cast_sha256": "610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8",
+  "accepted_build_manifest_sha256": "8adb7a01a5e159b04348baebfcb8022ed633e1cc3df55d32ad9b7367323a67b1",
+  "cli_cases": [
+    {
+      "case": "complete",
+      "returncode": 0,
+      "input_sha256": "f8f418f4425118e1ae6ad3c9e516a43bd37617f1ae562dd582d1ffa89a98fa29",
+      "output_sha256": "140fa94af01b54d94130a5039345d7b4e2b3ae9b172903dada917206c4f1d28e",
+      "stdout_sha256": "4efcd205fd62fe44c7199f5e629426da0c97fc51e0886b76c3e85af6cefb3567",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "manifest_sha256": "d135792d5754167a7709d513a3215a7f1eb59c688e2f847283e7fbfa358361b6"
+    },
+    {
+      "case": "partial",
+      "returncode": 2,
+      "input_sha256": "76a1b3c5f1256e9259936ea4279f8930003e76ed5032d58138575b6da1881129",
+      "output_sha256": "1ac7dd054ce1190c5aef27c4fedc12f76350987640266044146e6b8c73db8931",
+      "stdout_sha256": "c1965ba4ab1cc07fb85be56a811c01d3bccb060c40a43cc5524add03487b44a9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "manifest_sha256": "57eb1e988534c9f265b5ecd99b9c16132503be329df9a0dbd761fbc268d32734"
+    }
+  ],
+  "instances_checked": [
+    {
+      "role": "access",
+      "creation_bytes": 47865,
+      "argument_bytes": 96,
+      "initcode_bytes": 47961,
+      "runtime_bytes": 10438,
+      "argument_sha256": "cf813db11cb12f38f657947abd5bfce3567358c1b3c8e853d65e2b96a0d8c304"
+    },
+    {
+      "role": "protocol_policy",
+      "creation_bytes": 17755,
+      "argument_bytes": 64,
+      "initcode_bytes": 17819,
+      "runtime_bytes": 14746,
+      "argument_sha256": "1278af4c826e925b58c4f5e0470914320a9d4ed7aa9baf2b355816dcf7cfb3bb"
+    },
+    {
+      "role": "migration_budget",
+      "creation_bytes": 25129,
+      "argument_bytes": 32,
+      "initcode_bytes": 25161,
+      "runtime_bytes": 24332,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "metadata_renderer",
+      "creation_bytes": 19844,
+      "argument_bytes": 32,
+      "initcode_bytes": 19876,
+      "runtime_bytes": 19499,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "portfolio_policy",
+      "creation_bytes": 19848,
+      "argument_bytes": 32,
+      "initcode_bytes": 19880,
+      "runtime_bytes": 19315,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "rebalance_confirmation",
+      "creation_bytes": 15235,
+      "argument_bytes": 32,
+      "initcode_bytes": 15267,
+      "runtime_bytes": 14517,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "balancing_router",
+      "creation_bytes": 45325,
+      "argument_bytes": 96,
+      "initcode_bytes": 45421,
+      "runtime_bytes": 22479,
+      "argument_sha256": "e652fc46bca62a0ed256e91434947d6d4082477f0dce8ccbab6e585b4cbbf691"
+    },
+    {
+      "role": "oracle",
+      "creation_bytes": 49009,
+      "argument_bytes": 64,
+      "initcode_bytes": 49073,
+      "runtime_bytes": 24573,
+      "argument_sha256": "4aaa7d7c5789e9ece8aec84b1cba4cda3ac40c4868a40f7be8020907163b365b"
+    },
+    {
+      "role": "liquidity",
+      "creation_bytes": 48183,
+      "argument_bytes": 192,
+      "initcode_bytes": 48375,
+      "runtime_bytes": 24475,
+      "argument_sha256": "03f488d8fd99253600bee10ae9a2ff3fa6e1d2cf66ee33930c666f6e517bf127"
+    },
+    {
+      "role": "pools",
+      "creation_bytes": 22526,
+      "argument_bytes": 32,
+      "initcode_bytes": 22558,
+      "runtime_bytes": 10719,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "strategy",
+      "creation_bytes": 25400,
+      "argument_bytes": 96,
+      "initcode_bytes": 25496,
+      "runtime_bytes": 23923,
+      "argument_sha256": "1ea07a44bb715a32a9a5fca4afe8b2f8765e3d680a2f4ac06af67ef8d3721ab8"
+    },
+    {
+      "role": "vault",
+      "creation_bytes": 25970,
+      "argument_bytes": 96,
+      "initcode_bytes": 26066,
+      "runtime_bytes": 24544,
+      "argument_sha256": "19bc79c6885cd18caa3611e274a557a43ce55c22f39a40820a1da24fdda4016c"
+    },
+    {
+      "role": "rewards",
+      "creation_bytes": 44703,
+      "argument_bytes": 32,
+      "initcode_bytes": 44735,
+      "runtime_bytes": 24218,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "fees",
+      "creation_bytes": 10179,
+      "argument_bytes": 32,
+      "initcode_bytes": 10211,
+      "runtime_bytes": 9702,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "membership",
+      "creation_bytes": 7007,
+      "argument_bytes": 32,
+      "initcode_bytes": 7039,
+      "runtime_bytes": 6565,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "migration",
+      "creation_bytes": 43561,
+      "argument_bytes": 32,
+      "initcode_bytes": 43593,
+      "runtime_bytes": 23830,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "compounder",
+      "creation_bytes": 2605,
+      "argument_bytes": 32,
+      "initcode_bytes": 2637,
+      "runtime_bytes": 2206,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "buyback",
+      "creation_bytes": 8626,
+      "argument_bytes": 96,
+      "initcode_bytes": 8722,
+      "runtime_bytes": 7877,
+      "argument_sha256": "c4def41aebc5df235f1c3bde02f66d75f69a0fc36f59c35202b33dc70f411ae8"
+    },
+    {
+      "role": "nft",
+      "creation_bytes": 30773,
+      "argument_bytes": 160,
+      "initcode_bytes": 30933,
+      "runtime_bytes": 24097,
+      "argument_sha256": "e340805dcac6cbe078cef35371720b0bc57294037e0a474be5d1d410b63bc2ec"
+    },
+    {
+      "role": "nft_canonical",
+      "creation_bytes": 16930,
+      "argument_bytes": 64,
+      "initcode_bytes": 16994,
+      "runtime_bytes": 15912,
+      "argument_sha256": "be5967efd6a635de2ce18a61c3e22b04a9f63e3cab024cd1ba6ce06bd1375c80"
+    },
+    {
+      "role": "vault_canonical",
+      "creation_bytes": 25899,
+      "argument_bytes": 96,
+      "initcode_bytes": 25995,
+      "runtime_bytes": 24312,
+      "argument_sha256": "89122fa2df39bec5deb76ae12fce1e61de96bd82a5be428b839db43145cb09cc"
+    },
+    {
+      "role": "fees_canonical",
+      "creation_bytes": 11231,
+      "argument_bytes": 64,
+      "initcode_bytes": 11295,
+      "runtime_bytes": 10223,
+      "argument_sha256": "d4e240d0a50d2a8c845527a271bc4380c3a87b1d0fff72677a409bffbca341ae"
+    },
+    {
+      "role": "canonical",
+      "creation_bytes": 25058,
+      "argument_bytes": 32,
+      "initcode_bytes": 25090,
+      "runtime_bytes": 24400,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "lp_converter",
+      "creation_bytes": 29524,
+      "argument_bytes": 96,
+      "initcode_bytes": 29620,
+      "runtime_bytes": 17178,
+      "argument_sha256": "f8c6d61f5e2b074f9f63035e22ce7e75782e373cb32a1cf96aa555217c9cbd31"
+    },
+    {
+      "role": "seadrop_mint",
+      "creation_bytes": 22236,
+      "argument_bytes": 128,
+      "initcode_bytes": 22364,
+      "runtime_bytes": 20835,
+      "argument_sha256": "9a351a727426b2c7ab241e0b446acb34835ffddcc68fd65b96b62098633c6da1"
+    },
+    {
+      "role": "royalty_factory",
+      "creation_bytes": 28983,
+      "argument_bytes": 0,
+      "initcode_bytes": 28983,
+      "runtime_bytes": 1893,
+      "argument_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "activation_assets_factory",
+      "creation_bytes": 7534,
+      "argument_bytes": 0,
+      "initcode_bytes": 7534,
+      "runtime_bytes": 7480,
+      "argument_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "lp_balance_math",
+      "creation_bytes": 21977,
+      "argument_bytes": 0,
+      "initcode_bytes": 21977,
+      "runtime_bytes": 21923,
+      "argument_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "lp_position_executor",
+      "creation_bytes": 21390,
+      "argument_bytes": 192,
+      "initcode_bytes": 21582,
+      "runtime_bytes": 20323,
+      "argument_sha256": "03f488d8fd99253600bee10ae9a2ff3fa6e1d2cf66ee33930c666f6e517bf127"
+    },
+    {
+      "role": "contribution_pricing",
+      "creation_bytes": 21422,
+      "argument_bytes": 64,
+      "initcode_bytes": 21486,
+      "runtime_bytes": 20628,
+      "argument_sha256": "1a9da5f81e23ef75e64932c2e7c2386d2813245e06a636e27ed4abbafc53a0bb"
+    },
+    {
+      "role": "activation_assets",
+      "creation_bytes": 6660,
+      "argument_bytes": 64,
+      "initcode_bytes": 6724,
+      "runtime_bytes": 5849,
+      "argument_sha256": "6f4057f480428ca8022e332db66525bf9771779b221f8408cd19bb1ec72c0366"
+    },
+    {
+      "role": "activation_entry",
+      "creation_bytes": 10929,
+      "argument_bytes": 96,
+      "initcode_bytes": 11025,
+      "runtime_bytes": 9863,
+      "argument_sha256": null
+    },
+    {
+      "role": "royalty_rewards",
+      "creation_bytes": 25522,
+      "argument_bytes": 32,
+      "initcode_bytes": 25554,
+      "runtime_bytes": 24524,
+      "argument_sha256": "533a7aceeebc7cb7aac15ed0268a3c444cbee842836dfefc1eff337b20eaf62e"
+    },
+    {
+      "role": "claim_router",
+      "creation_bytes": 3443,
+      "argument_bytes": 96,
+      "initcode_bytes": 3539,
+      "runtime_bytes": 2885,
+      "argument_sha256": null
+    },
+    {
+      "role": "rewards_canonical",
+      "creation_bytes": 19361,
+      "argument_bytes": 32,
+      "initcode_bytes": 19393,
+      "runtime_bytes": 18609,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "custody_validation",
+      "creation_bytes": 18985,
+      "argument_bytes": 32,
+      "initcode_bytes": 19017,
+      "runtime_bytes": 18284,
+      "argument_sha256": "3877134a9367e9b4c9fbc22bfecc067c11ac39dd88063403526b7d91dd697d77"
+    },
+    {
+      "role": "lp_v4_executor",
+      "creation_bytes": 11322,
+      "argument_bytes": 0,
+      "initcode_bytes": 11322,
+      "runtime_bytes": 11164,
+      "argument_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "royalty_data_part0",
+      "creation_bytes": 455,
+      "argument_bytes": 24640,
+      "initcode_bytes": 25095,
+      "runtime_bytes": 24576,
+      "argument_sha256": "6b2a06d5449285f4f2c6c3c9ae686088a3dd25caccefc5de30fd10c30b7998d3"
+    },
+    {
+      "role": "royalty_data_part1",
+      "creation_bytes": 455,
+      "argument_bytes": 1024,
+      "initcode_bytes": 1479,
+      "runtime_bytes": 952,
+      "argument_sha256": "7592e24c7400afdfc15434a16fff417c5432b38eee4ca393c7ab705031815154"
+    }
+  ],
+  "getter_abi_checks": [
+    "ZZZAccessController.royaltyFactory()",
+    "ZZZAccessController.activationAssetsFactory()",
+    "ZZZLPBalancer.balanceMath()",
+    "ZZZLiquidityManager.positionOperator()",
+    "ZZZOracle.contributionPricing()",
+    "ZZZPoolRegistry.activationAssets()",
+    "ZZZActivationAssetsFactory.assetsOf(address)",
+    "ZZZPoolRegistry.activationEntry()",
+    "ZZZNFT.royaltyRewards()",
+    "ZZZNFT.claimRouter()",
+    "ZZZRewards.canonicalModule()",
+    "ZZZMigration.validation()",
+    "ZZZLPRewardConverter.v4Executor()",
+    "ZZZRoyaltyFactory.part0()",
+    "ZZZRoyaltyFactory.part1()"
+  ],
+  "cast_checks": [
+    {
+      "role": "access",
+      "types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "input_arguments": [
+        "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+        "0xb2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2",
+        "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+      ],
+      "cast_stdout_sha256": "a5bc8a8a924046ce15c2786d265dfa93974546b625086e3ee4ae9504652785da",
+      "expected_argument_sha256": "cf813db11cb12f38f657947abd5bfce3567358c1b3c8e853d65e2b96a0d8c304"
+    },
+    {
+      "role": "oracle",
+      "types": [
+        "address",
+        "address"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "cast_stdout_sha256": "fd024bc7840a26b169594504063968d00a1754cf0d015d340f8a2d83a8eb8ae3",
+      "expected_argument_sha256": "4aaa7d7c5789e9ece8aec84b1cba4cda3ac40c4868a40f7be8020907163b365b"
+    },
+    {
+      "role": "liquidity",
+      "types": [
+        "address",
+        "address",
+        "address",
+        "address",
+        "address",
+        "address"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+        "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "0x000000000022d473030f116ddee9f6b43ac78ba3",
+        "0x0000000000000000000000000000000000001007"
+      ],
+      "cast_stdout_sha256": "e556bad40cb170b42259e1b20f658c8e1cd1e5741749c0a8006d8486e044d181",
+      "expected_argument_sha256": "03f488d8fd99253600bee10ae9a2ff3fa6e1d2cf66ee33930c666f6e517bf127"
+    },
+    {
+      "role": "vault",
+      "types": [
+        "address",
+        "uint256",
+        "address"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "4663",
+        "0x0000000000000000000000000000000000001003"
+      ],
+      "cast_stdout_sha256": "ca0812906e395e19d6a3f6505c8b0eb01c4fcbe5b2298c69eabbd8ff7b36a82a",
+      "expected_argument_sha256": "19bc79c6885cd18caa3611e274a557a43ce55c22f39a40820a1da24fdda4016c"
+    },
+    {
+      "role": "buyback",
+      "types": [
+        "address",
+        "address",
+        "uint256"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "340282366920938463463374607431768211455"
+      ],
+      "cast_stdout_sha256": "015a2a333530f50d60bbf6cd38552e704b73f4ca7fc2a77d62c41243bfb3242d",
+      "expected_argument_sha256": "c4def41aebc5df235f1c3bde02f66d75f69a0fc36f59c35202b33dc70f411ae8"
+    },
+    {
+      "role": "nft",
+      "types": [
+        "address",
+        "string",
+        "address"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "ipfs://\u0153uf-\ud83e\udd5a/",
+        "0x0000000000000000000000000000000000001004"
+      ],
+      "cast_stdout_sha256": "e5bfb28e5abb3519e7e626f4d88c70751fafe9e3e85723def4ffa17196dca482",
+      "expected_argument_sha256": "e340805dcac6cbe078cef35371720b0bc57294037e0a474be5d1d410b63bc2ec"
+    },
+    {
+      "role": "seadrop_mint",
+      "types": [
+        "address",
+        "address",
+        "address",
+        "bytes32"
+      ],
+      "input_arguments": [
+        "0x0000000000000000000000000000000000001001",
+        "0x0000000000000000000000000000000000001013",
+        "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+        "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c"
+      ],
+      "cast_stdout_sha256": "1dfcc2cf875d78728e5252b689e56bfe702ff7ace825d607a4952a5766dd3f27",
+      "expected_argument_sha256": "9a351a727426b2c7ab241e0b446acb34835ffddcc68fd65b96b62098633c6da1"
+    }
+  ],
+  "normal_limits_unchanged": {
+    "runtime": 24576,
+    "initcode": 49152
+  },
+  "rpc_requests": 0,
+  "compiler_invocations": 0,
+  "old_test_suites": 0,
+  "limitations": [
+    "Only constructor bytes, graph, input completeness and offline publication checked; no deployment, RPC, live code/gas/provider/authority qualification or production approval.",
+    "Child addresses remain getter discoveries and compiler templates remain unpatched, not deployed runtime pins.",
+    "Fixture addresses, maximum buyback setting and evidence hashes are synthetic encoding inputs, never adopted settings."
+  ]
+}

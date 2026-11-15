@@ -573,6 +573,19 @@ Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
   vault. Existing accounting3 poplint stays unconfigured and is not a profile7
   frontend. Public signing stays Anvil-only; no deployment is authorized here.
 
+### Offline deployment preparation
+
+Use the [offline construction planner](DEPLOYMENT_PREPARATION.md) before preparing
+an actual deployment. It checks the accepted normal artifacts, exact known
+constructor payloads, EIP-170/EIP-3860 limits and required construction/binding
+order for schema17/mint2/V10/execution1/LP3. Planned addresses remain unverified
+assignments, not CREATE predictions; factory-created ledger/assets addresses must
+be discovered through actual getters. Partial inputs produce blocked previews.
+It has no RPC, signer, broadcast or seal path. All outputs remain not ready for
+submission and not production approved; live prerequisites and actual address,
+nonce, runtime, gas and binding reconciliation are separate. Follow the owning
+guide for typed inputs, output preservation and the pre-seal boundary.
+
 ### Fixed ZZZ setup order
 
 For a fresh deployment, bootstrap first deploys Access and the separately

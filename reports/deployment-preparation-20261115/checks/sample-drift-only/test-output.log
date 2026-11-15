@@ -1,0 +1,6 @@
+test_checked_in_sample_matches_exact_nullable_template (tests_python.test_deployment_plan.DeploymentPlanTests.test_checked_in_sample_matches_exact_nullable_template) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.909s
+
+OK

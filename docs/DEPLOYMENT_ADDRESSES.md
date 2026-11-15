@@ -278,6 +278,17 @@ never reinterpret old WETH as ETH or reset pending transactions to change versio
 The existing 8902 fixture remains on its old profile. Public `DEPLOYMENT` remains
 null, shared browser signing remains Anvil-only and actual current-profile qualification is open.
 
+## Offline constructor and binding review
+
+The [deployment preparation tool](DEPLOYMENT_PREPARATION.md) consumes the accepted
+normal build without recompiling. It distinguishes25 explicit constructions,
+12 internally created contracts and2 inert carriers, encodes exact resolvable
+constructor payloads and checks original byte limits. Missing inputs and
+getter-discovered addresses remain unresolved; template runtimes are not live
+pins. The output documents binding order and unresolved setup requirements,
+with no signer, RPC, deployment or seal call. Actual release addresses,
+constructor execution, full deployment gas and independent approval remain open.
+
 ## Exact controller constructor size
 
 The current direct controller has three static address arguments, adding96 ABI

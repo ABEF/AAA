@@ -1,0 +1,6 @@
+{
+  "scope": "One initial isolated Python -m unittest invocation could not import tests_python because -I excludes checkout CWD. No tests loaded/executed. Corrected owned runner explicitly adds the checkout path, without changing production behavior.",
+  "tests_loaded": 0,
+  "tests_executed": 0,
+  "old_suites_compiler_rpc_executed": false
+}

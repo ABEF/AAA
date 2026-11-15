@@ -1,0 +1,20 @@
+{
+  "stage": "focused-first",
+  "methods_requested": [
+    "tests_python.test_deployment_plan.DeploymentPlanTests.test_template_is_blocked_but_complete_source_bound_graph"
+  ],
+  "tests_run": 0,
+  "failures": 0,
+  "errors": 1,
+  "skips": 0,
+  "successful": false,
+  "elapsed_seconds": 1.1090000000040163,
+  "source_sha256": {
+    "zzz_ops/deployment_plan.py": "5fdf3b9f53f46ced8265acfc188f1f42e798e35c7458a9468614b62a96188a35",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "tests_python/test_deployment_plan.py": "4d40cc6ff34210af7fe6e98bf83bb5cb4592352477e71a736f40cc51a955aacd",
+    "config.deployment.offline.example.json": "4f94f09506b32c3448a514e6ee2a8e8139a05ce6f990030d42a022f5c53945f6"
+  },
+  "source_unchanged": true,
+  "compiler_rpc_old_suites_executed": false
+}
