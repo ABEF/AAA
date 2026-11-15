@@ -1,0 +1,1593 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "reviewer": "Independent internal child-agent read-only evidence review",
+  "record_count": 9,
+  "actual_callbacks_completed": 9,
+  "independent_audit": false,
+  "records": [
+    {
+      "method": "testManualReferenceRejectsETHRoundDuringInputPull",
+      "raw_artifact": "exports/new-testManualReferenceRejectsETHRoundDuringInputPull/forge.json",
+      "raw_artifact_sha256": "cb82a6b0155ebb7c179621da00ebdd7ca9f21fa72b397f89ff8b2db252b43370",
+      "start_artifact_sha256": "0195e3d22b0bc520b0003b904ca65448e6897e9ee6311227bce08c9d69493dd2",
+      "result_artifact_sha256": "f5bb652f5b707a3d9e33cbe6e3c21e96723344f97a623bff2af5ae822d95a6b4",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 8634,
+        "parent": 8633,
+        "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0x0ddba9fa",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 134
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 8635,
+          "parent": 8634,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8636,
+          "parent": 8634,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x8d419681",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8475,
+        "parent": 7893,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 8643,
+          "parent": 8475,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8651,
+          "parent": 8643,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8661,
+          "parent": 8651,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8675,
+          "parent": 8661,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 8633,
+          "parent": 8475,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0x23b872dd",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8475,
+          "parent": 7893,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7893,
+          "parent": 7675,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7675,
+          "parent": 0,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0x1f6877cc",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceRejectsStaleETHDuringRefund",
+      "raw_artifact": "exports/new-testManualReferenceRejectsStaleETHDuringRefund/forge.json",
+      "raw_artifact_sha256": "19ee62818860e41285b29b31cdd64595a1a92c566e9cb55354df87d960f9317a",
+      "start_artifact_sha256": "ddcf8fc9dd73deb5d9b382a0c8fb464255655f84cf5d211227521390112641e1",
+      "result_artifact_sha256": "c7febb0d6bb621d29db8905e6f977da00a4082645c2d9b75d258b383a46df714",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 8988,
+        "parent": 8987,
+        "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0x0ddba9fa",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 138
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 8989,
+          "parent": 8988,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8990,
+          "parent": 8988,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x8d419681",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8473,
+        "parent": 7891,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 8996,
+          "parent": 8473,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 9004,
+          "parent": 8996,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 9014,
+          "parent": 9004,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 9028,
+          "parent": 9014,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 8987,
+          "parent": 8473,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8473,
+          "parent": 7891,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 7891,
+          "parent": 7673,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 7673,
+          "parent": 0,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0x75bc70fd",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund",
+      "raw_artifact": "exports/new-testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund/forge.json",
+      "raw_artifact_sha256": "76febefa40b0b9c1851ffb0d33a5c940937c6ed954e70b94ae3d5f52839f0137",
+      "start_artifact_sha256": "5ea77e0532b8a8e9f5fe3b5f768dfc73011a42c31d785da522d19bdf894ebddc",
+      "result_artifact_sha256": "3c12749517068948fc7b2774b8d83d4d77909a2660036b5844d4b58e034f2eaf",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9034,
+        "parent": 9033,
+        "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0x0ddba9fa",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9035,
+          "parent": 9034,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9036,
+          "parent": 9034,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x8d419681",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8519,
+        "parent": 7937,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 9088,
+          "parent": 8519,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9096,
+          "parent": 9088,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9106,
+          "parent": 9096,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9120,
+          "parent": 9106,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9033,
+          "parent": 8519,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8519,
+          "parent": 7937,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7937,
+          "parent": 7719,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7719,
+          "parent": 0,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0xf9d33ace",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund",
+      "raw_artifact": "exports/new-testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund/forge.json",
+      "raw_artifact_sha256": "1cbdd0c9c4430078352f192ffd8cea3ed8e6983aaed5fc5da49d08a53dc95857",
+      "start_artifact_sha256": "0217a7fa8c864446d009d18745204ae6c68898d4def81cf2423468392834445d",
+      "result_artifact_sha256": "5dd8c05fa708e95264a4392be7cfb36490232661141bd4fd104671ff628e620a",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9034,
+        "parent": 9033,
+        "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0x0ddba9fa",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9035,
+          "parent": 9034,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9036,
+          "parent": 9034,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x8d419681",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8519,
+        "parent": 7937,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 9088,
+          "parent": 8519,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9096,
+          "parent": 9088,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9106,
+          "parent": 9096,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9120,
+          "parent": 9106,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9033,
+          "parent": 8519,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8519,
+          "parent": 7937,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7937,
+          "parent": 7719,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7719,
+          "parent": 0,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0xbb59ca52",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceRejectsLiveDisagreementAfterOwnSwap",
+      "raw_artifact": "exports/new-testManualReferenceRejectsLiveDisagreementAfterOwnSwap/forge.json",
+      "raw_artifact_sha256": "a9b53ba04eeec5d1621b29802fe4560c2c4a04efda207bed92cf323ecbf9b30c",
+      "start_artifact_sha256": "c243042daa8410bdf24ced9be4fe400782d6b629ec81da43d3a06538d09626d2",
+      "result_artifact_sha256": "20ce8119539dd18311de471470c3a065ae2848c754f5eefad98529525e936cdd",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9033,
+        "parent": 9032,
+        "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0x0ddba9fa",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9034,
+          "parent": 9033,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9035,
+          "parent": 9033,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x8d419681",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8518,
+        "parent": 7936,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 9086,
+          "parent": 8518,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9094,
+          "parent": 9086,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9104,
+          "parent": 9094,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9118,
+          "parent": 9104,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9032,
+          "parent": 8518,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8518,
+          "parent": 7936,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7936,
+          "parent": 7718,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7718,
+          "parent": 0,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0x0adc5398",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceSourceDisableRestoreCannotReviveCapture",
+      "raw_artifact": "exports/new-testManualReferenceSourceDisableRestoreCannotReviveCapture/forge.json",
+      "raw_artifact_sha256": "4588e89b6f0715c45b65ebf428a41de24b1665036d39efd41f2e271fa7f11ab6",
+      "start_artifact_sha256": "1f0a045d76e582cdd669dff50be7cc6d6b652f4f10129867612484c85cc1779d",
+      "result_artifact_sha256": "842f639a1859693f1ea08a917a6d5cb4f8a2a50995e9b21ef830f3b757b8fd26",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9320,
+        "parent": 9319,
+        "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0xa2fd14dc",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x000000000000000000000000212224d2f2d262cd093ee13240ca4873fccbba3c0000000000000000000000000000000000000000000000000000000000000004"
+          },
+          "decoded": null,
+          "position": 4,
+          "index": 146
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9321,
+          "parent": 9320,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9322,
+          "parent": 9320,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0xf10b1fd3",
+          "success": true,
+          "output": "0x"
+        },
+        {
+          "index": 9325,
+          "parent": 9320,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0xf10b1fd3",
+          "success": true,
+          "output": "0x"
+        },
+        {
+          "index": 9380,
+          "parent": 9320,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0x6c43adbc",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000004"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8805,
+        "parent": 8223,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 9385,
+          "parent": 8805,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9393,
+          "parent": 9385,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9403,
+          "parent": 9393,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9417,
+          "parent": 9403,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9319,
+          "parent": 8805,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8805,
+          "parent": 8223,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8223,
+          "parent": 8005,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8005,
+          "parent": 8004,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8004,
+          "parent": 0,
+          "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0xa3d6bde9",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0xd1b74513",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceQualityChangeDuringApprovalResetReverts",
+      "raw_artifact": "exports/new-testManualReferenceQualityChangeDuringApprovalResetReverts/forge.json",
+      "raw_artifact_sha256": "0123c491021db110562cbdc7b981fa76295c725b9ef30bcafb3a12d7632906d5",
+      "start_artifact_sha256": "cac33d0f821d430320f2e48b3c1d2c3abe4be637733b7aad2e264e78bb700787",
+      "result_artifact_sha256": "e41144d420f9b13b15aa795d29aee696c58c7017d90cf4dbc96fce7061e2cec5",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9425,
+        "parent": 9424,
+        "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0xa2fd14dc",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x000000000000000000000000d16d567549a2a2a2005aeacf7fb193851603dd700000000000000000000000000000000000000000000000000000000000000001"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 145
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9426,
+          "parent": 9425,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9427,
+          "parent": 9425,
+          "target": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x38aef577",
+          "success": true,
+          "output": "0x"
+        },
+        {
+          "index": 9434,
+          "parent": 9425,
+          "target": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0x6eac0756",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8172,
+        "parent": 7954,
+        "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+        "kind": "CALL",
+        "selector": "0x42831bbd",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [],
+      "production_rejection_location": "Inline production guard after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9424,
+          "parent": 8172,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0x095ea7b3",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8172,
+          "parent": 7954,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "parent": 7953,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7953,
+          "parent": 0,
+          "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0xa3d6bde9",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0xbf7cd9a1",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceSourceGasPolicyChangeDuringRefundReverts",
+      "raw_artifact": "exports/new-testManualReferenceSourceGasPolicyChangeDuringRefundReverts/forge.json",
+      "raw_artifact_sha256": "11bae9282d6dbc7c60f2024e306daf5db7318045be77ba820ebfa30c7c914a0d",
+      "start_artifact_sha256": "9184d81153e5eae95c9a5cc652bb27c474afb8d19c78c9e9b6d739f8bd841478",
+      "result_artifact_sha256": "30d2da41c9c5f85127e9933d54ef83df3043aa8a093beda2a7510c056dbfe573",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9269,
+        "parent": 9268,
+        "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0xa2fd14dc",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b000000000000000000000000000000000000000000000000000000000007a121"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 144
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9270,
+          "parent": 9269,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9271,
+          "parent": 9269,
+          "target": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0xf3b2df7e",
+          "success": true,
+          "output": "0x"
+        },
+        {
+          "index": 9278,
+          "parent": 9269,
+          "target": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0x1dd46c26",
+          "success": true,
+          "output": "0x000000000000000000000000000000000000000000000000000000000007a121"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8754,
+        "parent": 8172,
+        "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "kind": "CALL",
+        "selector": "0xdcd87610",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 9283,
+          "parent": 8754,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9291,
+          "parent": 9283,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0x4a0f2c44",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9301,
+          "parent": 9291,
+          "target": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "STATICCALL",
+          "selector": "0x5fd57f63",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 9315,
+          "parent": 9301,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+          "kind": "STATICCALL",
+          "selector": "0x7ae3ab18",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9268,
+          "parent": 8754,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8754,
+          "parent": 8172,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 8172,
+          "parent": 7954,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "parent": 7953,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7953,
+          "parent": 0,
+          "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0xa3d6bde9",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0x196635aa",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    },
+    {
+      "method": "testManualReferenceMaintenancePolicyChangeDuringRefundReverts",
+      "raw_artifact": "exports/new-testManualReferenceMaintenancePolicyChangeDuringRefundReverts/forge.json",
+      "raw_artifact_sha256": "36ae160797c3cde6663ed60f64ba4043a692e555be9c4accc9a0a66b25f95d97",
+      "start_artifact_sha256": "a0f7c4fe5dd33bc52c2a08f4110e210d09be7601ff381de3f61b04650f262018",
+      "result_artifact_sha256": "902360ef3fd4d22759c8a95456ee6f51153dc187112e7c653bd8e977fcc06250",
+      "source_stage": "NEW_HOST_STAGE2.sol",
+      "host_source_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212"
+      },
+      "actual_test_status": "Success",
+      "old_test_methods_executed": 0,
+      "actual_callback": {
+        "index": 9270,
+        "parent": 9269,
+        "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+        "caller": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+        "kind": "CALL",
+        "selector": "0xa2fd14dc",
+        "success": true,
+        "output": "0x"
+      },
+      "callback_completion_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b9d3bc85c802db79177fca01b0da3a1b53d21631138a4e53598ebb3df372f1876"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 144
+        }
+      ],
+      "successful_direct_mutation_and_proof_children": [
+        {
+          "index": 9271,
+          "parent": 9270,
+          "target": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0xcbfced1c",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 9272,
+          "parent": 9270,
+          "target": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x6e2de80c",
+          "success": true,
+          "output": "0x"
+        },
+        {
+          "index": 9279,
+          "parent": 9270,
+          "target": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "STATICCALL",
+          "selector": "0xae6d967f",
+          "success": true,
+          "output": "0x9d3bc85c802db79177fca01b0da3a1b53d21631138a4e53598ebb3df372f1876"
+        }
+      ],
+      "first_failed_production_ancestor": {
+        "index": 8173,
+        "parent": 7955,
+        "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+        "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+        "kind": "CALL",
+        "selector": "0x42831bbd",
+        "success": false,
+        "output": "0xbaf3f0f7"
+      },
+      "post_callback_failed_production_children": [
+        {
+          "index": 10169,
+          "parent": 8173,
+          "target": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0x2223d7d8",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 10179,
+          "parent": 10169,
+          "target": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "caller": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+          "kind": "STATICCALL",
+          "selector": "0xd79092e6",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 10185,
+          "parent": 10179,
+          "target": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+          "caller": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "kind": "STATICCALL",
+          "selector": "0xd79092e6",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        }
+      ],
+      "production_rejection_location": "Production validation call after successful callback returns",
+      "all_ancestor_frames": [
+        {
+          "index": 9269,
+          "parent": 8755,
+          "target": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "caller": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "kind": "CALL",
+          "selector": "0xa9059cbb",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+          "index": 8755,
+          "parent": 8173,
+          "target": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "caller": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "kind": "CALL",
+          "selector": "0xdcd87610",
+          "success": true,
+          "output": "0x0000000000000000000000000000000000000000000000350fc7ddf9864770a2000000000000000000000000000000000000000000000019083e338548f1af4e"
+        },
+        {
+          "index": 8173,
+          "parent": 7955,
+          "target": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "caller": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "kind": "CALL",
+          "selector": "0x42831bbd",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7955,
+          "parent": 7954,
+          "target": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "caller": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "kind": "CALL",
+          "selector": "0x42ef002c",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "parent": 0,
+          "target": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "caller": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "kind": "CALL",
+          "selector": "0xa3d6bde9",
+          "success": false,
+          "output": "0xbaf3f0f7"
+        },
+        {
+          "index": 0,
+          "parent": null,
+          "target": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+          "caller": "0x1804c8ab1f12e6bbf3894d4083f33e07309d1f38",
+          "kind": "CALL",
+          "selector": "0x9866d16e",
+          "success": true,
+          "output": "0x"
+        }
+      ],
+      "atomic_and_capture_assertions_passed": true,
+      "assertion_evidence": "Exact source-pinned method Success includes unchanged rights/backing/world hash, rollback of token arm and cleared Oracle/Budget contexts. Actual captured callback returns normally with completion log before production ancestor rejects. Method separately asserts control-success and genuine standalone mutation.",
+      "review_scope": "Existing Execution-arena parsing only; no test/EVM/transaction/analyzer/compiler/network replay. Controlled callback proof is not live market/provider qualification."
+    }
+  ],
+  "limitations": [
+    "Controlled token/feed/market/governance fixtures, not deployed-market qualification.",
+    "Each source stage remains explicit; reviewer did not rerun tests or merge stages.",
+    "Disagreement test moves independent market after own swap; not a separate own-swap-alone greater-than3% experiment.",
+    "Arena node indices record call entry order. A reverting parent can have a lower index than its successful callback; its return happens later. Approval-reset quality rejection is an inline Vault guard and has no later reverting child frame."
+  ]
+}

@@ -4,16 +4,14 @@
 
 The fresh `execution_price_version:1` / `LP_ROUTING_VERSION()==3` candidate permits
 an independently reviewed external native-v4 ETH/fixed-ZZZ reference pool to be a
-reviewed swap venue **on ordinary captured-execution paths**. Those paths do not
-require another venue merely because their own trade changes the reference.
-Paused emergency/manual C/D instead retain a live price fingerprint when their
-price-dependent guards are selected; they do not use this captured transition
-exception. The [actual manual rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) reproduces
-atomic rejection when that emergency swap changes the reference, despite feasible
-output/L floors. A separately reviewed non-reference venue succeeds. This remains
-an open emergency-path limitation, not permission to retry with fewer guards.
-Public Oracle price reads stay
-live; no public Oracle cache or keeper-supplied price replaces them.
+reviewed swap venue on ordinary captured paths and on priced paused manual C/D
+with matching fresh runtimes. [Current fix and verification](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+extend the same authenticated own-swap proof to retained bit2 or bit4; no separate
+venue is required merely because our selected trade changes that reference.
+The [earlier manual rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` remains historical evidence of the former atomic rejection, not the
+new source's behavior or gas qualification. Public Oracle price reads stay live;
+no public Oracle cache or keeper-supplied price replaces them.
 
 The reference remains separate from PoPL's principal LP destination on the same
 core. Own LP additions/removals would also alter its liquidity and undermine the
@@ -31,7 +29,10 @@ No integrated bridge, custody recipient or new signing capability is introduced.
    maintenance harvests/closes the old LP. Direct Vault contribution captures its
    scope before incoming asset pulls too. The Oracle validates and captures both
    ETH and ZZZ source observations, bounds, decimals, policy/sequencer IDs, gas
-   policy and monotonic source-kind revision.
+   policy and monotonic source-kind revision. For forced manual C/D, Budget asks
+   its fixed Pricing companion to capture before the first emergency fingerprint,
+   harvest or unwind whenever retained `checks & 6` is nonzero. Bit2 alone starts
+   the scope even when the value checkpoints are bypassed.
 2. Explicit execution reads use those starting bounds. Contribution minima,
    incumbent repricing, issued shares, idle loss, swap output floors, aggregate
    maintenance loss and main/residual utilization cannot adopt a favorable later
@@ -39,7 +40,9 @@ No integrated bridge, custody recipient or new signing capability is introduced.
 3. The bounded router compares its reviewed venues using actual-core simulations
    at current depth, after any principal withdrawal. A selected quote includes
    output and the full post-swap sqrt price, stored tick, directional protocol
-   fee, LP fee and active liquidity. All simulated state changes revert.
+   fee, LP fee and active liquidity. Forced manual C/D instead quotes the exact
+   caller-selected pool, direction and amount; it does not substitute a router
+   candidate or edit the caller's floors. All simulated state changes revert.
 4. Manager authenticates the current observation, arms exactly one selected
    transition, and calls the real core. Immediately after `core.swap`, before
    settlement/output callbacks, it proves the exact output and quoted full state.
@@ -60,6 +63,9 @@ No integrated bridge, custody recipient or new signing capability is introduced.
    **non-reference destination** only; price/tick/fees and the existing exact
    position-L/ownership checks remain. Reference/external-venue liquidity is not
    relaxed. Placement uses actual destination geometry and token requirements.
+   Manual Pricing remains active through Vault settlement/economic proofs and
+   the final emergency fingerprint, then clears before Budget disarms. C's later
+   static custody proof and local portfolio bookkeeping retain their own checks.
 
 Captured execution getters are **data reads, not readiness or price-validation
 authorization**. Full validation occurs at capture, Manager entry/exit,
@@ -92,9 +98,9 @@ TWAP, uninterrupted price history or MEV guarantee.
 | --- | --- |
 | [Oracle](../src/ZZZOracle.sol) | Owns bounded transient scope, original commitments, live validation and exact market transitions. |
 | [Composite reader](../src/ZZZV4SpotPriceFeed.sol) | Immutable market/ETH pins and read-only captured-state proofs. `roundAt`/`executionProof` are hypothetical proof reads, not live price feeds. |
-| [Pricing](../src/ZZZContributionPricing.sol) | Starts/ends whole contribution and maintenance scopes; keeps captured values through final Entry callbacks. |
+| [Pricing](../src/ZZZContributionPricing.sol) | Owns whole contribution, maintenance and priced manual scopes. Only the fixed Budget may call `emergencyExecution(bucket,opening)`; no operator-selected prices or nested scope adoption. |
 | [Manager](../src/ZZZLiquidityManager.sol) | Authenticates the actual core transition; only typed authorized operations can advance it. Standalone swapping owns its scope; Vault calls can borrow the expected Pricing scope. |
-| [Balancer](../src/ZZZLPBalancer.sol) | Routing3 uses a14-word Plan, including full post-state; compares bounded reviewed venues, not a global highest-TVL promise. |
+| [Balancer](../src/ZZZLPBalancer.sol) | Routing3 uses a14-word Plan with full post-state. Ordinary routing compares bounded reviewed venues; forced manual quoting preserves the exact supplied trade. |
 | [Fixed Math child](../src/ZZZLPBalanceMath.sol) | Read-only captured geometry, price/maintenance/admission calculations. Its immutable parent and Manager getter bind the same existing helper. No funds, approvals, setter or arbitrary execution. |
 | [Backend and keeper](../zzz_ops/execution_price.py) | Explicit capability/runtime/configuration authentication, complete fresh trace validation and preserved pending-first recovery. |
 
@@ -105,9 +111,21 @@ hypothetical arithmetic/proof reads grant no management authority.
 
 Unpriced harvesting, raw parking/closure, terminal holder return and funded
 original-asset claims retain their separate existing paths. Explicit governance
-emergency uses its existing manifest/mask and does not enter the normal context;
-this capability is not an automatic force fallback. Earned-LP conversion remains
+emergency keeps its existing manifest/mask. Bits2/4 enter the captured scope;
+masks0/8 do not introduce an Oracle-health dependency. Bit4 still needs USD
+sources without bit2; raw eligibility/confirmation bits1/16 keep their independent
+existing requirements and require an Active main. No failed operation changes
+its mask automatically. Earned-LP conversion remains
 its separate output-floor route, not a Manager context or royalty swap.
+
+Manager-only `quoteSwap` is a nonsettling quote, not a Solidity `view` entry:
+its simulated core changes revert. Every structural admission check remains,
+while operations-enabled is enforced by the actual Manager path
+and retained bit8 rather than redundantly imposed by the quote. Ordinary price
+checks still require enabled operations. No quote grants execution permission.
+The common output-floor arithmetic preserves gross/additional-loss formulas;
+ordinary operations admission occurs immediately before it, with only STATIC
+reads in between and the final price/context checks still present.
 
 ## Operator setup and rotation
 
@@ -131,6 +149,13 @@ and backups. Reprepare unsigned reviews against the new configuration. Do not
 relabel LP2 deployments/journals as LP3, reset a chain or rotate a signer silently.
 Publishing source performs none of these operating steps.
 
+The manual fix preserves existing ABI shapes, capability numbers, accounting and
+the49-word execution codec, but changes exact source/runtime identities and adds
+three typed helper methods. Adopt only explicitly matching freshly reviewed
+runtimes/consumers. Existing LP3/emergency2 profiles, artifacts and pending
+journals retain their original source scope; a version number alone does not
+select these new semantics.
+
 The inventory's retained `services.keeper.profile` family identifier contains
 `lp2`; do not rename that code-owned evidence identifier alone. Explicit version1/
 LP3 configuration, runtime/capability proofs, health metadata and journal identity
@@ -141,11 +166,14 @@ installed process runs those bytes; actual operating qualification remains open.
 
 ### Gas admission
 
-The focused final cold Entry fixture uses15,317,541gas for ETH and15,644,361gas
+The original reference-execution cold Entry fixture uses15,317,541gas for ETH and15,644,361gas
 for ZZZ. Required full20% headroom makes those18,381,050 and18,773,234 respectively,
 before treating them as a production provider estimate. They **fail the unchanged
 12M default**. Initial and intermediate failures remain evidence, not passes.
 These are controlled market/authority fixtures, not qualified live gas prices.
+These historical values do not qualify the later manual fix. Use its
+[source-specific gas and verification record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+for current measurements; earlier C/D gas at `da24f65` is a separate baseline.
 
 Use the already-existing optional activation policy2 only after reviewing the
 complete route/consumer configuration, confirmed-block gas bound, full20%

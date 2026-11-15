@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "1eb9ffb23de14e0eac1294cf15c44ccb4041bb6aee51370e0aa09c88df7b2182",
+  "reference_sha256": "921d93016e92bb66809f4945dd9ffc12883c13565faf21ace5274045a02c5099",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -8159,6 +8159,33 @@
           "$LP_FEE",
           "$CAPTURED_LIQUIDITY"
         ]
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionValidateExitPrice(bytes32)": {
+      "role": "R",
+      "short": "Validate manual spot band",
+      "arguments": [
+        "$POOL_ID"
+      ],
+      "value": null
+    },
+    "ZZZLPBalanceMath.executionMinimumOutputForExit(bytes32,bool,uint256)": {
+      "role": "R",
+      "short": "Read guarded manual output",
+      "arguments": [
+        "$POOL_ID",
+        "$ZERO_FOR_ONE",
+        "$EXACT_INPUT"
+      ],
+      "value": null
+    },
+    "ZZZContributionPricing.emergencyExecution(uint256,bool)": {
+      "role": "M",
+      "short": "Manage priced manual scope",
+      "arguments": [
+        "$BUCKET_ID",
+        "$OPENING_SCOPE"
       ],
       "value": null
     }

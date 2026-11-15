@@ -15,7 +15,6 @@ import {IZZZPools, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
     IPermit2Minimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 import {IZZZExecutionOracle, IZZZExecutionStrategy, MarketState} from "./interfaces/IZZZExecutionOracle.sol";
 
-interface IEmergencyOutput { function minimumOutputForExit(bytes32,bool,uint256) external view returns(uint256); }
 interface IPortfolioVault { function migrationBudget() external view returns(address); }
 interface IGuardedConsolidation { function consolidationActive() external view returns(bool); }
 interface IPortfolioBudget {
@@ -111,7 +110,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     function _policySpot(bytes32 poolId) private view returns(uint160) {
         address budget = _emergencyBudget();
         if(budget != address(0)) return (IZZZEmergencyBudget(budget).emergencyChecks() & 2) != 0 ?
-            IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(poolId) : spot(poolId);
+            balancingRouter.balanceMath().executionValidateExitPrice(poolId) : spot(poolId);
         return IZZZExecutionStrategy(address(balancingRouter.balanceMath())).executionValidatePrice(poolId);
     }
     function _executionOracle() private view returns(IZZZExecutionOracle) {
@@ -121,7 +120,8 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         return _executionOracle().beginManagerExecution(zzz,destination,msg.sender==access.module(Ids.VAULT));
     }
     function _beginPlacement(bytes32 pool)private returns(uint8){
-        if(_emergencyBudget()!=address(0))return 0;
+        address budget=_emergencyBudget();
+        if(budget!=address(0) && (IZZZEmergencyBudget(budget).emergencyChecks() & 6)==0)return 0;
         return _beginPrice(_config(pool,true).key.currency1,pool)?2:1;
     }
     function _endPlacement(uint8 scope)private {
@@ -239,9 +239,11 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         _policySpot(poolId);
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
         if (minimumOut == 0) revert Slippage();
+        // Ordinary _policySpot immediately above already requires operations;
+        // only STATIC reads intervene. Share the same captured floor without
+        // repeating that admission or reinstating an omitted emergency bit8.
         if(_retains(4)) minimumOut = Math.max(minimumOut,
-            _emergencyBudget() == address(0) ? IZZZExecutionStrategy(address(balancingRouter.balanceMath())).executionMinimumOutput(poolId,zeroForOne,amountIn) :
-            IEmergencyOutput(access.module(Ids.STRATEGY)).minimumOutputForExit(poolId,zeroForOne,amountIn));
+            balancingRouter.balanceMath().executionMinimumOutputForExit(poolId,zeroForOne,amountIn));
         uint256 beforeOutput = _balance(output,recipient);
         bytes memory payload = abi.encode(c.key, zeroForOne, amountIn, minimumOut, recipient,quoted);
         pendingSwapHash = keccak256(payload);
@@ -260,8 +262,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if (amount0 > type(uint128).max || amount1 > type(uint128).max || msg.value != amount0) revert InvalidAmount();
         PoolConfig memory target = _config(targetPool,true);
         bool emergency = _emergencyBudget() != address(0);
-        bool owned;
-        if(!emergency)owned=_beginPrice(target.key.currency1,targetPool);
+        uint8 scope=_beginPlacement(targetPool);
         // _config already requires native currency0, including in emergencies.
         bytes32 context = _balanceContext(targetPool);
         uint256 nativePrefund = address(this).balance-msg.value;
@@ -306,7 +307,12 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             PoolConfig memory venue = _config(p.poolId,true);
             if (venue.key.currency1 != target.key.currency1 ||
                 p.amountIn > (p.zeroForOne ? amount0 : amount1)) revert InvalidState();
-            uint256 output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender,emergency?0:p.amountOut,p.afterState);
+            // Quote the EXACT operator-selected pool/direction/amount. This is
+            // authentication, not automatic routing or a substitute trade.
+            if(emergency && scope!=0)(p.amountOut,p.afterState)=balancingRouter.quoteSwap(p.poolId,p.zeroForOne,p.amountIn);
+            // An unpriced manual Plan sets only request fields above, so its
+            // compiler-created amountOut remains zero; no caller supplies it.
+            uint256 output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender,p.amountOut,p.afterState);
             // The exact quote output is proven before settlement. _swapExact's
             // final price read also verifies the complete expected venue state
             // after settlement callbacks, not just its square-root price.
@@ -325,7 +331,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             balancingRouter.policyFingerprint(targetPool,p.poolId) != p.fingerprint ||
             _policySpot(targetPool) != p.targetSqrtAfter)) revert InvalidState();
         if(emergency) _policySpot(targetPool);
-        else _executionOracle().endManagerExecution(owned);
+        _endPlacement(scope);
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         if (msg.sender != address(poolManager) || pendingSwapHash == bytes32(0) ||

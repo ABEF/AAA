@@ -99,10 +99,14 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         if(msg.sender != access.module(Ids.MIGRATION) || emergencyActive || snapshot.value != 0) revert Unauthorized();
         emergencyBucket = bucket; emergencyChecks = checks; emergencyGovernor = access.governance(); emergencyActive = true;
         validateEmergency(bucket);
+        // Retained price OR value checks need one starting vector. Zero/8-only
+        // emergencies remain independent of unavailable Oracle observations.
+        if((checks & 6)!=0)_pricing().emergencyExecution(bucket,true);
     }
     function endEmergency() external nonReentrant {
         if(msg.sender != access.module(Ids.MIGRATION) || snapshot.value != 0) revert Unauthorized();
         validateEmergency(emergencyBucket);
+        if((emergencyChecks & 6)!=0)_pricing().emergencyExecution(emergencyBucket,false);
         delete emergencyBucket; delete emergencyChecks; delete emergencyGovernor; emergencyActive = false;
     }
     function validateEmergency(uint256 bucket) public view {

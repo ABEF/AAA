@@ -1,0 +1,924 @@
+{
+  "schema": 1,
+  "scope": "Read-only changed-source and changed-document mechanical checks; no tests/EVM/network/Git mutation.",
+  "checks": {
+    "exact_six_production_changes": {
+      "passed": true,
+      "production_count": 61,
+      "changed": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZLPBalancer.sol",
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "baseline": "da24f65e6e10e5e0185cb0a0b229944f803b58b2"
+    },
+    "normal100_source_pins_current": {
+      "passed": true,
+      "compiler_source_count": 100,
+      "production_sources": 61,
+      "mismatches": []
+    },
+    "four_protected_files": {
+      "passed": true,
+      "files": {
+        "reports/source-checks.json": {
+          "baseline": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+          "current": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4"
+        },
+        "scripts/run-fork-checks.py": {
+          "baseline": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+          "current": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b"
+        },
+        "tests_python/test_fork_runner.py": {
+          "baseline": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+          "current": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9"
+        },
+        "tests_python/test_frontend_history.py": {
+          "baseline": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+          "current": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+        }
+      }
+    },
+    "historical_base_runner_b03_unchanged": {
+      "passed": true,
+      "sha256": "b03f8403eb70508b1d57f36b329a36aa82d12faaa0fd34813a1a16d59f5b7aa0"
+    },
+    "old_d0_body_unchanged_and_not_run": {
+      "passed": true,
+      "method": "testActualParkedD0ExplicitOracleOutage",
+      "body_sha256": "c139eea3ce7c7325253f993f913078c4447d89b7f268a143d78640ff2f8bc9e9",
+      "unchanged_methods_executed": 0
+    },
+    "accepted28_distinct_stage_sources": {
+      "passed": true,
+      "unique_new": 25,
+      "unique_adapted": 3,
+      "attempts": 34,
+      "host_stage_counts": {
+        "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f": 20,
+        "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8": 7,
+        "15365c5245a2d697e4880c5d965498d35c758de1a9a6b33549f7180146415927": 1
+      },
+      "methods": [
+        {
+          "method": "testManualReferenceC14ETHToZZZ",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceC14ETHToZZZ-stage2",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceC14ZZZToETH",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceC14ZZZToETH-stage3",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testManualReferenceD14ETHToZZZ",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD14ETHToZZZ",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "15365c5245a2d697e4880c5d965498d35c758de1a9a6b33549f7180146415927"
+        },
+        {
+          "method": "testManualReferenceD14ZZZToETH",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD14ZZZToETH-stage3",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testManualReferenceParkedD14ETHToZZZ",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceParkedD14ETHToZZZ",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceParkedD14ZZZToETH",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceParkedD14ZZZToETH-stage3",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testManualReferenceD2PriceOnlyWithOperationsDisabled",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD2PriceOnlyWithOperationsDisabled",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceD4ValueOnlyWithOperationsDisabled",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD4ValueOnlyWithOperationsDisabled-stage3",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testManualReferenceD0ExplicitSwapWithOracleOutage",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD0ExplicitSwapWithOracleOutage",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceD8OperationsOnlyWithOracleOutage",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD8OperationsOnlyWithOracleOutage-stage3",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testManualReferenceD0NoSwapWithOracleOutage",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD0NoSwapWithOracleOutage",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceD2NoSwapAndSequentialRecapture",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceD2NoSwapAndSequentialRecapture",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceGuardedBStillRoutesAutomatically",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceGuardedBStillRoutesAutomatically",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceRejectsETHRoundDuringInputPull",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceRejectsETHRoundDuringInputPull",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceRejectsStaleETHDuringRefund",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceRejectsStaleETHDuringRefund",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceRejectsLiveDisagreementAfterOwnSwap",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceRejectsLiveDisagreementAfterOwnSwap",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceInitialIndependentDisagreementStillReverts",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceInitialIndependentDisagreementStillReverts",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceExactOutputAndLiquidityFloorsRemainMandatory",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceExactOutputAndLiquidityFloorsRemainMandatory",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceNestedExternalCaptureCannotBorrowScope",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceNestedExternalCaptureCannotBorrowScope",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceSourceDisableRestoreCannotReviveCapture",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceSourceDisableRestoreCannotReviveCapture",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceQualityChangeDuringApprovalResetReverts",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceQualityChangeDuringApprovalResetReverts",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceSourceGasPolicyChangeDuringRefundReverts",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceSourceGasPolicyChangeDuringRefundReverts",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testManualReferenceMaintenancePolicyChangeDuringRefundReverts",
+          "scope": "new",
+          "stage": "exports/new-testManualReferenceMaintenancePolicyChangeDuringRefundReverts",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testActualManualC14ConsolidatesExistingMain",
+          "scope": "adapted",
+          "stage": "exports/adapted-testActualManualC14ConsolidatesExistingMain",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+        },
+        {
+          "method": "testActualManualD14ReplacesBothLegs",
+          "scope": "adapted",
+          "stage": "exports/adapted-testActualManualD14ReplacesBothLegs",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        },
+        {
+          "method": "testActualParkedD14RetainsFinancialGuards",
+          "scope": "adapted",
+          "stage": "exports/adapted-testActualParkedD14RetainsFinancialGuards",
+          "result_sha_matches": true,
+          "forge_sha_matches": true,
+          "all_imported_production_sources_current": true,
+          "imported_production_count": 60,
+          "not_imported_optional_sources": [
+            "src/ZZZPythPriceFeed.sol"
+          ],
+          "mismatches": [],
+          "host_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+        }
+      ]
+    },
+    "explicit_fixture_stage_deltas": {
+      "passed": true,
+      "proofs": {
+        "stage1_sha": true,
+        "stage2_sha": true,
+        "stage3_sha": true,
+        "stage2_exact_declared_change": true,
+        "stage3_exact_declared_change": true
+      },
+      "scope": "Stage reuse is conditional on the archived branch reachability review; complete final-host equivalence is not claimed for prior successes."
+    },
+    "actual_catalog_reference_still_frozen": {
+      "passed": true,
+      "reference_sha256": "7158ee98be7a96cb417200d19750e41a127c8c989b9d80d63f7a87255ff2ddb6",
+      "captured_reference_sha256": "7158ee98be7a96cb417200d19750e41a127c8c989b9d80d63f7a87255ff2ddb6",
+      "notes_sha256": "362b8890686b7790989f51c3a7f6dd1eea361927570b71e63479f32c04167115",
+      "source_snapshot_sha256": "e7e8fe20554ae07e91ff460014e7f230607e51e7ccaf076668b69b7f31c6b2db"
+    },
+    "reference_hash_domains": {
+      "passed": true,
+      "examples_canonical_json_sha256": "921d93016e92bb66809f4945dd9ffc12883c13565faf21ace5274045a02c5099",
+      "catalog_raw_file_sha256": "7158ee98be7a96cb417200d19750e41a127c8c989b9d80d63f7a87255ff2ddb6",
+      "scope": "Canonical examples identity and raw Catalog file identity intentionally use different hash domains."
+    },
+    "function_reference_mechanical_check": {
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 959, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n",
+      "stderr": "",
+      "elapsed_seconds": 0.422,
+      "tests_executed": 0
+    },
+    "operator_reference_mechanical_check": {
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"contracts\": 40, \"functions\": 959, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1012, \"ready_for_submission\": false}\r\n",
+      "stderr": "",
+      "elapsed_seconds": 0.547,
+      "tests_executed": 0
+    },
+    "todo_mechanical_check": {
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\r\n",
+      "stderr": "",
+      "elapsed_seconds": 0.187,
+      "tests_executed": 0
+    },
+    "new_local_links_and_anchors": {
+      "passed": true,
+      "updated_owner_files": 22,
+      "new_local_targets": 64,
+      "failures": [],
+      "new_links": [
+        {
+          "source": "AGENTS.md",
+          "target": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "AGENTS.md",
+          "target": "reports/manual-reference-swap-fix-20261115/static-review.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "PROJECT_CONTEXT.md",
+          "target": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "README.md",
+          "target": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "TODO.md",
+          "target": "docs/REFERENCE_SWAP_EXECUTION.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "TODO.md",
+          "target": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/AUDIT_FINDINGS.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/AUDIT_FINDINGS.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/static-review.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/CUSTODY_PARKING.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/EMERGENCY_REBALANCE.md",
+          "target": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/EMERGENCY_REBALANCE.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/IMPLEMENTATION_STATUS.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/LP_EXECUTION_POLICY.md",
+          "target": "../reports/manual-recovery-rehearsal-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/LP_EXECUTION_POLICY.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/LP_EXECUTION_POLICY.md",
+          "target": "MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/MANUAL_LP_PREPARATION.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/OPERATOR_MANUAL.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/README.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/REFERENCE_SWAP_EXECUTION.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/RELEASE_CHECKLIST.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/ROADMAP.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/ROBINHOOD_GAS.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/WORK_HANDOFF.md",
+          "target": "../reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "docs/project-todo.json",
+          "target": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/README.md",
+          "target": "manual-reference-swap-fix-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../docs/MANUAL_LP_PREPARATION.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../docs/OPERATOR_MANUAL.md#local-manual-recovery-rehearsal",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZContributionPricing.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZCustodyValidation.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZLPBalanceMath.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZLPBalancer.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZLiquidityManager.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../../src/ZZZMigrationBudget.sol",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "../manual-recovery-rehearsal-20261115/REVIEW.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "CALLBACK_TRACE_REVIEW.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "GAS_AND_TRANSACTIONS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "UNIT_METHODS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "VERIFICATION.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "VERIFICATION.md#inspect-original-evidence-without-replaying-transactions",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "build/EQUIVALENCE.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "build/production-size-gates.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "public-evidence.zip",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "static-review.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+          "target": "unit-evidence.zip",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "../../docs/MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "ACTUAL_RECEIPT_REVIEW.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "BUNDLE.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "CALLBACK_TRACE_REVIEW.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "EVIDENCE_MANIFEST.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "FINAL_TESTS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "FUNCTION_REFERENCE_REVIEW.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "GAS_AND_TRANSACTIONS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "PLAN.md",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "PRESERVATION.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "RAW_CAPTURE_MANIFEST.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "UNIT_BUNDLE.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "UNIT_MANIFEST.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "UNIT_METHODS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "build/ATTEMPTS.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "build/EQUIVALENCE.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "build/source-manifest.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "public-evidence.zip",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "static-review.json",
+          "new_target": true,
+          "passed": true
+        },
+        {
+          "source": "reports/manual-reference-swap-fix-20261115/VERIFICATION.md",
+          "target": "unit-evidence.zip",
+          "new_target": true,
+          "passed": true
+        }
+      ],
+      "observed_existing_pointer_failures": [],
+      "scope": "Only changed owner docs/new report pages; no full historical-repository link rescan."
+    },
+    "no_stale_current_coupling_open_phrases": {
+      "passed": true,
+      "matches": [],
+      "scope": "Current main owner guides only; historical reports are intentionally not rewritten."
+    },
+    "public-evidence.zip_packaged_hash": {
+      "passed": true,
+      "bytes": 2737819,
+      "sha256": "d2eb6fa25249864129149343c17699312d6f9c422f8526745906cc64de43d6b2"
+    },
+    "unit-evidence.zip_packaged_hash": {
+      "passed": true,
+      "bytes": 20416336,
+      "sha256": "6928fa9b6c85a245651ce79a087ac0e640d3846e0547653c7802fce2f77780d5"
+    }
+  },
+  "limitations": [
+    "Portable bundle publication is pending when named files are absent; this checker does not create/copy them or treat old evidence as current."
+  ],
+  "publication_pending_files": [],
+  "all_required_checks_passed": true,
+  "ready_for_publication_mechanical": true
+}

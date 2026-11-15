@@ -27,6 +27,15 @@ operation, while exact quoted output/full state and live source checks validate
 the swap and later callbacks. Public Oracle reads stay live. No financial cap,
 authority or default gas budget changes.
 
+The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+extends that proof to paused forced C/D retaining bit2 or4, before their first
+fingerprint/harvest/unwind. Manager proves the exact supplied swap; it does not
+select a replacement venue or change its amount/floors. Masks0/8 introduce no
+Oracle-health read; eligibility/confirmation bits1/16 retain their own Active-LP
+requirements. Same function/request schemas and capability numbers do not mean
+the same runtime: use freshly reviewed matching source/runtime/consumer pins
+before any separately authorized future adoption, never relabel old profiles.
+
 After the fixed Manager/Math graph and both ZZZ feeds are reviewed/bound, governance
 calls `Oracle.setExecutionSource(reader,true,expectedCodeHash,reviewHash)` for each
 approved composite source. Read `executionSourcePolicies(reader)` and
@@ -235,9 +244,11 @@ shares and earned rewards stay. Recovery remains paused; verify the actual
 receipt/post-state, reconcile pending work, then separately unpause. No holder
 or keeper permission is added, and no service restart or live setting is applied
 by preparation. The earlier [source verification](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-retains its injected-RPC scope; the later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
-adds full current-contract CLI and receipt evidence. Target-provider, complete-fee
-and contract-wallet acceptance remain open.
+retains its injected-RPC scope; the [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` adds CLI and receipt evidence for that baseline. The
+[current manual reference-swap record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+separately owns the changed source's results. Target-provider, complete-fee and
+contract-wallet acceptance remain open.
 
 The seven management actions preserve exact calldata and frozen transaction gas.
 Manual B/C/D and Parked D preserve exact calldata with bounded gas/fee envelopes
@@ -286,8 +297,10 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 The earlier [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
 passes all four $100/$5 contribution cases and six keeper operations at full
 padding; worst measured padded gas is18,098,846/20M and21,046,237/24M. Its keeper
-cases did not measure manual Migration C/D. The later [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
-adds actual current mint2/V10 C14, D14 and Parked D14/D0 CLI/receipt evidence.
+cases did not measure manual Migration C/D. The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+adds mint2/V10 C14, D14 and Parked D14/D0 CLI/receipt evidence at `da24f65`.
+Use the [current reference-swap report](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+for changed-source gas; historical values do not qualify its new runtimes.
 Neither report qualifies maximum state, real markets, target providers or fees.
 The [profile package](../reports/gas-profiles-20261113/backend/profiles.template.json)
 contains gas-only candidate overlays, not complete runnable configurations or
@@ -358,9 +371,15 @@ nothing in a running environment.
 
 <a id="local-manual-recovery-rehearsal"></a>
 
-### Actual local manual recovery evidence
+### Manual reference swaps and historical recovery evidence
 
-The [current rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [current source](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+supports an admitted external reference as the exact selected manual swap venue
+without discarding selected financial guards. Refer to that report for its
+source-specific verification/gas. The table below is exclusively the earlier
+`da24f65` baseline; it must not approve a current runtime or spending budget.
+
+The [historical rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 uses a disposable EOA with actual governance authority, current Access/mint2/V10
 and actual v4 contracts on
 new owned local nodes. The production CLI retains two exact simulations, its
@@ -391,14 +410,21 @@ if future automatic adjustments must remain single-position. Both remain paused.
 Inspect [the complete post-state checklist and reproduction inputs](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal)
 before separately unpausing.
 
-Retained checks14 can still reject if their explicit swap changes a live price
-reference. Successful guarded rows use a separately admitted non-reference
-execution venue. This limitation is open: do not silently change route, mask
-or floors after failure. Checks0 is an explicit manual emergency choice, never
-the keeper's fallback or a way to make a gas estimate look smaller.
+The baseline guarded rows used a non-reference execution venue and reproduced
+the former reference-swap rejection. Current bit2/4 execution instead captures
+starting bounds and authenticates only the actual quoted own-swap transition.
+Live freshness/agreement, source/control revisions, spot/loss/idle limits, exact
+settlement and caller floors remain; real market conditions can still reject.
+The reference must remain separate from the same-core principal LP destination.
+No route/mask/floor/expiry changes automatically. Checks0 is an explicit manual
+emergency choice, never a keeper fallback or a way to improve a gas estimate.
 
-The reproduction helper `scripts/rehearse-manual-recovery.py` accepts fresh
-authenticated method exports, a matching host artifact and local binary paths.
+The current reproduction helper `scripts/rehearse-manual-reference.py` accepts
+fresh authenticated exports from `test/ManualReferenceSwapQualification.t.sol`,
+the matching host artifact and local binary paths. Select exactly one guarded14
+case: `active-c14`, `active-d14` or `parked-d14`. The earlier
+`scripts/rehearse-manual-recovery.py` rejection probe and old gas captures remain
+historical; the current wrapper reuses its pinned owned-node infrastructure.
 It creates only a new PID-verified loopback chain 31337, records local intents/
 receipts and stops its own node. It accepts no RPC URL or key, touches no existing
 Anvil/journal and does not change either website. Its deadline option records
@@ -1839,6 +1865,16 @@ legs and mints one emergency target, without independently creating a residual.
 No principal goes to governance; financial bypass can still destroy nearly all
 value. Simulate the whole operation, reconcile pending hashes and verify cleared
 emergency state before separately authorized unpause/service restart.
+
+Retaining bit2 or4 opens a whole manual price scope before the first fingerprint,
+harvest or unwind; bit4 still needs USD data when bit2 is omitted. Exact selected
+swap output/full post-state is proved before settlement, and source freshness,
+agreement and callback checks remain live. Manager-only `quoteSwap` settles no
+assets and does not independently require operations-enabled, but actual
+execution still applies retained bit8; ordinary price paths still require the
+flag. The same-core principal pool cannot double as the reference. Full details
+and remaining real-market/gas/operating qualifications are in the
+[current fix record](../reports/manual-reference-swap-fix-20261115/REVIEW.md).
 
 ### Force, close and redeploy: choose the correct call
 
@@ -3733,7 +3769,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **956 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **959 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -5053,13 +5089,14 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 </details>
 
 <details>
-<summary>Contract-only calls: use the parent workflow (7)</summary>
+<summary>Contract-only calls: use the parent workflow (8)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `M` [ContributionPricing.begin](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `nft: uint256`<br>`bucket: uint256`<br>`packed: uint256`<br>`inputUSD: uint256`<br>`limits: uint32` | `begin(NFT_ID, BUCKET_ID, PACKED, INPUT_USD, LIMITS)` | Begin contribution pricing |
 | `M` [ContributionPricing.beginEntryReviewed](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `nft: uint256`<br>`pool: bytes32`<br>`source: address`<br>`amount: uint256`<br>`maximumLossBps: uint16`<br>`expectedContributionPolicy: bytes32` | `beginEntryReviewed(NFT_ID, POOL_ID, SOURCE_ADDRESS, AMOUNT, MAXIMUM_LOSS_BPS, EXPECTED_CONTRIBUTION_POLICY)` | Capture reviewed contribution context |
 | `M` [ContributionPricing.contributionNav](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `contributionNav(BUCKET_ID)` | Measure incumbent attributed NAV |
+| `M` [ContributionPricing.emergencyExecution](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`opening: bool` | `emergencyExecution(BUCKET_ID, OPENING_SCOPE)` | Manage priced manual scope |
 | `M` [ContributionPricing.endEntry](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | None | `endEntry()` | Close reviewed entry context |
 | `M` [ContributionPricing.endMaintenance](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256` | `endMaintenance(BUCKET_ID)` | End maintenance pricing scope |
 | `M` [ContributionPricing.finish](CONTRACT_FUNCTIONS.md#zzzcontributionpricing) | `bucket: uint256`<br>`inputUSD: uint256`<br>`supply: uint256`<br>`incumbentNAV: uint256`<br>`incumbentDeployed: uint256`<br>`deployed: uint256`<br>`idle: uint256`<br>`limits: uint32` | `finish(BUCKET_ID, INPUT_USD, SUPPLY, INCUMBENT_NAV, INCUMBENT_DEPLOYED, DEPLOYED, IDLE, LIMITS)` | Finish contribution pricing context |
@@ -5170,7 +5207,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### LPBalanceMath
 
 <details>
-<summary>Read functions and constants (23)</summary>
+<summary>Read functions and constants (25)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -5184,8 +5221,10 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [LPBalanceMath.deploymentDebts](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `current: uint160`<br>`lower: int24`<br>`upper: int24`<br>`liquidity: uint128` | `deploymentDebts(CURRENT, LOWER_TICK, UPPER_TICK, LIQUIDITY)` | Read deployment debts |
 | `R` [LPBalanceMath.evaluate](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `x` [ZZZLPBalanceMath.Context](#input-zzzlpbalancemath-context)<br>`price: uint160`<br>`a0: uint256`<br>`a1: uint256` | `evaluate(["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]], PRICE, A0, A1)` | Read evaluate |
 | `R` [LPBalanceMath.executionMinimumOutput](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32`<br>`direction: bool`<br>`amount: uint256` | `executionMinimumOutput(EXECUTION_POOL_ID, DIRECTION, INPUT_RAW)` | Calculate guarded execution minimum |
+| `R` [LPBalanceMath.executionMinimumOutputForExit](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32`<br>`direction: bool`<br>`amount: uint256` | `executionMinimumOutputForExit(POOL_ID, ZERO_FOR_ONE, EXACT_INPUT)` | Read guarded manual output |
 | `R` [LPBalanceMath.executionPrices](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `token: address` | `executionPrices(ZZZ_ADDRESS)` | Read execution price vector |
 | `R` [LPBalanceMath.executionTarget](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32` | `executionTarget(LP_DESTINATION_POOL_ID)` | Read captured target geometry |
+| `R` [LPBalanceMath.executionValidateExitPrice](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32` | `executionValidateExitPrice(POOL_ID)` | Validate manual spot band |
 | `R` [LPBalanceMath.executionValidatePrice](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `pool: bytes32` | `executionValidatePrice(POOL_ID)` | Validate captured venue price |
 | `R` [LPBalanceMath.fixedZZZ](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | None | `fixedZZZ()` | Read fixed ZZZ identity |
 | `R` [LPBalanceMath.maintenanceValues](CONTRACT_FUNCTIONS.md#zzzlpbalancemath) | `bucket: uint256`<br>`price0: uint256`<br>`price1: uint256`<br>`scale0: uint256`<br>`scale1: uint256` | `maintenanceValues(BUCKET_ID, ETH_PRICE_USD18, ZZZ_PRICE_USD18, ETH_RAW_SCALE, ZZZ_RAW_SCALE)` | Value maintenance principal |

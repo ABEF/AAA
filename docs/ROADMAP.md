@@ -3,8 +3,9 @@
 The [controlled manual recovery milestone](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is now complete:
 actual local C14/D14, park→Parked D14 and explicit outage D0 fit24M with full25%
 padding. Next qualify real configuration/depth/fees, maximum workloads and actual
-operator/host envelopes. Resolve retained emergency reference-as-venue coupling
-without automatic mask fallback. Existing keeper/source evidence is reused.
+operator/host envelopes. The [current source fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) resolves
+retained emergency reference-as-venue self-rejection with exact own-transition
+proof; no mask fallback. Its new source/gas scope stays separate from old receipts. Existing keeper/source evidence is reused.
 
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression

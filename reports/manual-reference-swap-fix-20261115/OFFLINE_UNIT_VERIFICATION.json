@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "successful": true,
+  "offline_only": true,
+  "new_evm_or_cli_runs": 0,
+  "zip_sha256": "6928fa9b6c85a245651ce79a087ac0e640d3846e0547653c7802fce2f77780d5",
+  "manifest_sha256": "6176ce87a3d2aae3e7572b9cc583b77b68ab2a2fc72475acd628f6d116c34be4",
+  "complete_original_unit_files_verified": 28,
+  "new_methods": 25,
+  "adapted_methods": 3,
+  "callback_actual_success_before_later_outer_failure_verified": [
+    "testManualReferenceMaintenancePolicyChangeDuringRefundReverts",
+    "testManualReferenceQualityChangeDuringApprovalResetReverts",
+    "testManualReferenceRejectsETHRoundDuringInputPull",
+    "testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund",
+    "testManualReferenceRejectsLiveDisagreementAfterOwnSwap",
+    "testManualReferenceRejectsStaleETHDuringRefund",
+    "testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund",
+    "testManualReferenceSourceDisableRestoreCannotReviveCapture",
+    "testManualReferenceSourceGasPolicyChangeDuringRefundReverts"
+  ],
+  "source_stage_equivalence_verified": true,
+  "actual_governance_call_counts": [
+    {
+      "path": "rpc/c14-2/active-c14/rpc-records.read-calls.json.gz",
+      "original_records": 1336,
+      "governance_call_groups": [
+        {
+          "to": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "selector": "0x573f99e1",
+          "calldata_sha256": "3044bfa16cd08fddff58bbc507d0ec83205af340e22bbf4149244defdadb44c9",
+          "gas_counts": {
+            "24000000": 3,
+            "15997859": 1
+          }
+        }
+      ]
+    },
+    {
+      "path": "rpc/d14-1/active-d14/rpc-records.read-calls.json.gz",
+      "original_records": 1342,
+      "governance_call_groups": [
+        {
+          "to": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "selector": "0x42ef002c",
+          "calldata_sha256": "234e9a5bd8c4bfa8062b52fc6019f74e4fa3f641a914b9151456cdeb241cf041",
+          "gas_counts": {
+            "24000000": 3,
+            "16315867": 1
+          }
+        }
+      ]
+    },
+    {
+      "path": "rpc/parked14-1/parked-d14/rpc-records.read-calls.json.gz",
+      "original_records": 2258,
+      "governance_call_groups": [
+        {
+          "to": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "selector": "0xa4ff29f8",
+          "calldata_sha256": "9e1db5fc375e3d33298b71aa18a2136e8e7ee328fe728746dfb90844adbc9cdb",
+          "gas_counts": {
+            "24000000": 3,
+            "2020129": 3
+          }
+        },
+        {
+          "to": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "selector": "0x42ef002c",
+          "calldata_sha256": "cf10d2b469158fe38c43b9747469596a06e9413a9d4290e62af20b371b34c177",
+          "gas_counts": {
+            "24000000": 3,
+            "14307814": 1
+          }
+        }
+      ]
+    }
+  ],
+  "fullsize_source_or_profile_adoption": false
+}

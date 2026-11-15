@@ -1,0 +1,1258 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "reviewer": "Independent internal existing-artifact reconciliation",
+  "all_passed": true,
+  "actual_confirmed_transactions": 4,
+  "unique_transactions": 4,
+  "cases": [
+    {
+      "case": "active-c14",
+      "path": "rpc/c14-2/active-c14",
+      "verification_sha256": "bc5721a798f56c485d9a8d7764b9d5be879d9a4a2decbde32f35f9c76abc948a",
+      "cleanup_sha256": "9ca62fca97a71f0051142603387f658bd5fafc6944f2ab82bf022b7780065fdd",
+      "process_sha256": "c321dc9a05803188f8d50a5f6e8ff4708599dc0ce8aa019b3a1899b3805fb3c5",
+      "wire_sha256": "58d3801d26a4cd972a65e9608896647f6854754e122dd0bc76cb8a73b3697353",
+      "owned_pid": 18356,
+      "owned_port": 54143,
+      "owned_node_stopped": true,
+      "old_environment_mutations": 0,
+      "once_only_submissions": 1,
+      "operations": [
+        {
+          "operation": "manual",
+          "transaction_hash": "0x7f9489135b1ae93c026dd4ce797716349b28bbb28bc38fe30583d235bc8a7830",
+          "raw_sha256": {
+            "review.json": "64cacec7b3e7b5486e2e017332f8d431185b5290cd02f5a8146074412fb7ed07",
+            "selection.json": "6e6acf20558fd95238a75ca8f34b8dbc343807ef6d2b974049a7f7b1c4796f9c",
+            "transaction.json": "c9643ee4a629cec0765b45916a2f6d9afdb18647f70353b672334595f9dc0b0c",
+            "receipt.json": "494aad39d62a29abab8cb668dbb426847b56fd06d674f380940ed182fa11f989",
+            "receipt-trace.json": "a87afd16dd613f13f8b5945c211fd189af6d2c0c72dc3dd8faa98131d55586d5",
+            "before.json": "ff87264224ae0890e23d53e8f18cd731db5f9433dc9d89e9a7278aec7219a3da",
+            "after.json": "d299116eea1efa74f0fcf0a4753be777e29e17da87f8dab3d45092e5e5fd122a",
+            "cli-execution.json": "47ef49207bd58354917129304d4fb826221f113b6ca33023af8c47beef237cf9"
+          },
+          "exact_selected_calldata_and_governance": true,
+          "initial_confirmed_header": {
+            "number": 2,
+            "hash": "0x5f3f25331a24f1ffafb15aecf52b1f780d5c029684082bfd54f30d7210cb1f03",
+            "timestamp": 1794753492
+          },
+          "final_canonical_header": {
+            "number": 3,
+            "hash": "0x6f8099b844ccbab369f2f41264b4019914712f7a067ea0b59f4df51e27ec77c2",
+            "timestamp": 1794753500
+          },
+          "inclusion_header": {
+            "number": "0x4",
+            "hash": "0x1aa067862e5070a596c510588bc5362c2f5f06a55c5665ba674ab6cbaa274154",
+            "timestamp": "0x6af9c3f7"
+          },
+          "original_deadline": 1794753814,
+          "review_expiry": 1794753612,
+          "gas": {
+            "actual_local_receipt_success": true,
+            "cold_trace_call_gas": 11916187,
+            "effective_gas_price_wei": 1000000000,
+            "exact_padded_call_passed": true,
+            "fee_scope": "Controlled local EVM gas only; no complete Robinhood fee or spending-policy approval.",
+            "final_estimate": 12798287,
+            "full_cap_call_passed": true,
+            "initial_estimate": 12798287,
+            "profile_cap": 24000000,
+            "receipt_gas_used": 11916187,
+            "receipt_local_gas_cost_wei": 11916187000000000,
+            "remaining_profile_margin": 8002141,
+            "required_25_percent_padded_gas": 15997859,
+            "transaction_hash": "0x7f9489135b1ae93c026dd4ce797716349b28bbb28bc38fe30583d235bc8a7830"
+          },
+          "exact_successful_pre_submission_calls": [
+            {
+              "wire_index": 817,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x5f3f25331a24f1ffafb15aecf52b1f780d5c029684082bfd54f30d7210cb1f03",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1429,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x6f8099b844ccbab369f2f41264b4019914712f7a067ea0b59f4df51e27ec77c2",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1450,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x6f8099b844ccbab369f2f41264b4019914712f7a067ea0b59f4df51e27ec77c2",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1451,
+              "gas": 15997859,
+              "anchor": {
+                "blockHash": "0x6f8099b844ccbab369f2f41264b4019914712f7a067ea0b59f4df51e27ec77c2",
+                "requireCanonical": true
+              }
+            }
+          ],
+          "rights_books_prefunds_pause_and_scope_reconciled": true,
+          "actual_cli_seconds": 15.718999999997322,
+          "inner_catalogue_profile_unchanged_label": "accounting7/LP-allocation1/canonicalV9/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/pricing2/Entry-routing3/reviewedEntry2/directgovernance2/fee-intake1/residual-reinvest1",
+          "explicit_schema": 1,
+          "retained_mask": 14,
+          "no_mask_downgrade": true,
+          "original_floors_retained": true,
+          "actual_output": "131149760283063244661",
+          "minimum_output": "129793104485344328142",
+          "minimum_liquidity": "1049098836543445001781",
+          "quote": {
+            "calls_path": [
+              9,
+              32,
+              35
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+            "selector": "0x3a111353",
+            "output": "0x0000000000000000000000000000000000000000000000071c118c1dc19e57750000000000000000000000000000000000000000dc205d6ea0f2e06c8660641dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff434000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000d3c21bcecceda1000000",
+            "error": null
+          },
+          "actual_core_swap": {
+            "calls_path": [
+              9,
+              32,
+              47,
+              0,
+              0
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+            "selector": "0xf3cd914c",
+            "output": "0xfffffffffffffff66182d8d31f4da90900000000000000071c118c1dc19e5775",
+            "error": null
+          },
+          "oracle_capture": {
+            "calls_path": [
+              7,
+              10,
+              6
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x4ce11f5d",
+            "output": null,
+            "error": null
+          },
+          "oracle_armed": {
+            "calls_path": [
+              9,
+              32,
+              46
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0xca9d9f15",
+            "output": null,
+            "error": null
+          },
+          "oracle_after_swap": {
+            "calls_path": [
+              9,
+              32,
+              47,
+              0,
+              2
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x5c0736c6",
+            "output": null,
+            "error": null
+          },
+          "oracle_final_end": {
+            "calls_path": [
+              11,
+              9,
+              2
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x0f8ebca6",
+            "output": null,
+            "error": null
+          },
+          "quoted_full_state_words": [
+            "0000000000000000000000000000000000000000dc205d6ea0f2e06c8660641d",
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff434",
+            "0000000000000000000000000000000000000000000000000000000000000000",
+            "00000000000000000000000000000000000000000000000000000000000001f4",
+            "00000000000000000000000000000000000000000000d3c21bcecceda1000000"
+          ],
+          "reference_acceptance_sha256": "2436d1670337f80f8f28c6ed466ac79fe09a3779549f738157132f23812594f7",
+          "runtime_pins": {
+            "access": {
+              "address": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+              "code_hash": "0xa4a231ef82a6160eb8c874541abdf1ba63a3d9720c79158fb21b1feb7bc66e23"
+            },
+            "nft": {
+              "address": "0x756e0562323adcda4430d6cb456d9151f605290b",
+              "code_hash": "0x2b2b3ebf69b926664d235770ffe7b9c0aaeba3b47e659392d3ed4b1869e43c8e"
+            },
+            "vault": {
+              "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+              "code_hash": "0xe2be8379571eba0a14f2d4d14fd021ca4e36e96a7a03e3b9281836506f3eed26"
+            },
+            "rewards": {
+              "address": "0x1af7f588a501ea2b5bb3feefa744892aa2cf00e6",
+              "code_hash": "0x62c578726c4706e393aebbeb18526d907c59b669197751192fceffe681da9612"
+            },
+            "royalties": {
+              "address": "0x20067a7558168e12ad53b235f2f7408feea4985f",
+              "code_hash": "0x2f01c469f0ae9784ca169be72b9850605ff1e248e466ad2e66ef650a9182b24d"
+            },
+            "claim_router": {
+              "address": "0x514dd0bcaf5994ef889f482b79d39d18b6e4363f",
+              "code_hash": "0xd3c682e6fcd6e047eded4545da778f34b42d8225b2e133bb469074892a6f285a"
+            },
+            "handoff": {
+              "address": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a",
+              "code_hash": "0x53354cc5eeb8ed05a6e71f852259d5ef0312b7b45b6517abdb00bdb38c054438"
+            },
+            "vault_canonical": {
+              "address": "0xe916cadb12c49389e487eb1e8194b1459b29b0ec",
+              "code_hash": "0xd22c882cef37fa1a8a9ef4dc5ee6ad70a19efa30477df68f8694185c43e4da07"
+            },
+            "principal_exit": {
+              "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+              "code_hash": "0x96c8e427f0470d8da3b564999374d923601a32dded6c76488f16f0cd2f79c10d"
+            },
+            "rewards_canonical": {
+              "address": "0x1f8fc9dbebe2d5471b686313fd2546f2d3d4f9cc",
+              "code_hash": "0x4af7afd8c608748fccf4425ff8b966ea0f626e42977fc4b45a8563c19650c73d"
+            },
+            "seadrop_mint": {
+              "address": "0x94771550282853f6e0124c302f7de1cf50aa45ca",
+              "code_hash": "0x2217931eca50b502474663ef222acb9ec7b5521c2604676ebfcc0479dadc96c3"
+            },
+            "seadrop": {
+              "address": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+              "code_hash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c"
+            },
+            "pools": {
+              "address": "0x96d3f6c20eed2697647f543fe6c08bc2fbf39758",
+              "code_hash": "0x7618ffcebd819ff7bf9a93b87996ee600fdee636f5179439dc4aef33625725dc"
+            },
+            "liquidity": {
+              "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+              "code_hash": "0x9c1a09167d90197725b33a731564bb341c480b76e11817b6f224be426bda0b0e"
+            },
+            "strategy": {
+              "address": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+              "code_hash": "0xd2c5ca5b86e8824e531883de7c715e07bbcfa4f9e9162ee50430502a9b245110"
+            },
+            "budget": {
+              "address": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+              "code_hash": "0x66d4abdbbbf752d2f9ad8618446c0b700520aa357b450ad1832eb36d66804df2"
+            },
+            "portfolio_policy": {
+              "address": "0x2a07706473244bc757e10f2a9e86fb532828afe3",
+              "code_hash": "0x11a92280dc4b1b54d497d3ec27fa7f9f5e4ff685307d5d4615145c093b13c95d"
+            },
+            "rebalance_confirmation": {
+              "address": "0x3d7ebc40af7092e3f1c81f2e996cba5cae2090d7",
+              "code_hash": "0xe24c2449112a4f97ff0aacb117ebcd7bb727604984d29f5eed5f079771145b8a"
+            },
+            "balancing_router": {
+              "address": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+              "code_hash": "0xc805cc5e08c3c3103f9e5e911ab22f556f27766e9621eca4f2325835ac84195b"
+            },
+            "lp_balance_math": {
+              "address": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+              "code_hash": "0xee598b9c0b60b33a3e9090a965cc8f2d9e7c77201d71f167b47bc7e30130de07"
+            },
+            "lp_position_executor": {
+              "address": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+              "code_hash": "0x80ee750c33cd8dd140f4f250b16827acff27d41be7d97a92f01c90d660a75d89"
+            },
+            "protocol_policy": {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "code_hash": "0xe195668e7233a6b18797ede6c42d716c82fdb9a4db4f57093ebefa31c4463558"
+            },
+            "pool_manager": {
+              "address": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+              "code_hash": "0x51ae509f929c3312b1f597e4af4960973ebca0689f0e814935d06decc9ec469e"
+            },
+            "state_view": {
+              "address": "0xa0cb889707d426a7a386870a03bc70d1b0697598",
+              "code_hash": "0x1b447fa5407c296ee533b9f1ee4df1b4a25220cb362479545ce7ad7a60d40d0e"
+            },
+            "position_manager": {
+              "address": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+              "code_hash": "0x7dea2c3689feda69e20f5f694f9b9a11f5a1187490a283da590cf67dfcb27578"
+            },
+            "permit2": {
+              "address": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+              "code_hash": "0xdf019c2ed616b85fe931e3ad2caaf0396966563f76f5ebb3039c07a39c708c28"
+            },
+            "activation_assets": {
+              "address": "0x671cef55a1373e85d4522dace6eea7cf52b573c8",
+              "code_hash": "0x5aa6cf8358c9e8fccb76c5254de15f11481a7c2aa3c23e2e13dcd3de96988c77"
+            },
+            "contribution_pricing": {
+              "address": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+              "code_hash": "0x26ba4b24f018e6d78f945c87c248c97010d627e4c877ff7c9c479bf561d39e4a"
+            },
+            "custody_validation": {
+              "address": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+              "code_hash": "0x44de55ccc24912d165a5ef24e45eb7e055c7c2f110004a06c2c9869ae3189fe5"
+            },
+            "fees": {
+              "address": "0x3cff5e7ebecb676c3cb602d0ef2d46710b88854e",
+              "code_hash": "0x4314d1d2de478ee7c0906b9b62bd9703fa103201ebdd7cb826c59459e3d2d578"
+            },
+            "oracle": {
+              "address": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+              "code_hash": "0x915d389590337386c0d795fb871ab3dca24157ef7e92728b2ea8b439b483740e"
+            }
+          },
+          "full_cap_exact_call_count": 3,
+          "padded_exact_call_count": 1,
+          "scope_cleanup": {
+            "after_execution_active": false,
+            "after_emergency_active": false,
+            "after_consolidation_active": false,
+            "verified_by_raw_after_snapshot": true
+          }
+        }
+      ],
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      },
+      "normal4_exact_source_pins_match": true,
+      "outer_actual_runtime_profile": "accounting7/custody5/mint2/V10/execution1/LP3"
+    },
+    {
+      "case": "active-d14",
+      "path": "rpc/d14-1/active-d14",
+      "verification_sha256": "9f6e63176ce2c873ba24414945d8c7a9923bdbdbb53e1d5a83e81ba8c2ccff46",
+      "cleanup_sha256": "674456ef0966bb1e3837b5e484afd34cccf72a993b67cce1e7a38d893e3d5b75",
+      "process_sha256": "b4e67b749ff94d5f2cbf51fe576797cb3c92521eed3231d7748652b51f24300f",
+      "wire_sha256": "d1b44d68403fadbf92d2bec570f9af9877155dad2fa42459f25bd7d31e5d23fc",
+      "owned_pid": 7904,
+      "owned_port": 65187,
+      "owned_node_stopped": true,
+      "old_environment_mutations": 0,
+      "once_only_submissions": 1,
+      "operations": [
+        {
+          "operation": "manual",
+          "transaction_hash": "0x8fa621994e6922309755f5d2262fba80bf9e1e4d24e2f602626f8258a05b0a31",
+          "raw_sha256": {
+            "review.json": "b99f341addf6e3dc4022d7522e9ab3ca348d0e236adea0ce3387a27d08adfe55",
+            "selection.json": "dc941f2b249e5e452487ee2a15a23cd4d8974e4be0526eb3dbab27f960b5574b",
+            "transaction.json": "a884b20215c1d32d39aa3150ae12d891b105a9d8dfd87acdd7d1fd726ee35428",
+            "receipt.json": "4e7ae33690f17f1fe9207b1ea757cce8c51333b64c0ca2884deeec9b95c46eb8",
+            "receipt-trace.json": "62a175c3a814a25a8f688160422b2a6995a7bdc575589c8264027b4e89ec2f26",
+            "before.json": "a001c9ae7f0e4cc04a18499a6421089b2992ea04eb1f66d31850e25a2f3d138b",
+            "after.json": "9c59aa0c34996a934303ac2de13859db6a6756402096e5cd47dd093f657f0f29",
+            "cli-execution.json": "59133cf4d539df17efb7b8634eaa40614033bf8bdf0a4668e72528b89c7ecc63"
+          },
+          "exact_selected_calldata_and_governance": true,
+          "initial_confirmed_header": {
+            "number": 2,
+            "hash": "0xf753bbbdf18a2aa5abf75fb5e7ce7eec67022443fa15a475593397ed5ffa21c7",
+            "timestamp": 1794753784
+          },
+          "final_canonical_header": {
+            "number": 3,
+            "hash": "0xc27f047429fe067862de6212d787f77d5136d216924d318f8a5c6cd2925183cf",
+            "timestamp": 1794753789
+          },
+          "inclusion_header": {
+            "number": "0x4",
+            "hash": "0xd2da1e478df1d4b38e3232896f0175c920aca6b5f57132018254beaa451d6795",
+            "timestamp": "0x6af9c517"
+          },
+          "original_deadline": 1794754253,
+          "review_expiry": 1794753904,
+          "gas": {
+            "actual_local_receipt_success": true,
+            "cold_trace_call_gas": 12124593,
+            "effective_gas_price_wei": 1000000000,
+            "exact_padded_call_passed": true,
+            "fee_scope": "Controlled local EVM gas only; no complete Robinhood fee or spending-policy approval.",
+            "final_estimate": 13052693,
+            "full_cap_call_passed": true,
+            "initial_estimate": 13052693,
+            "profile_cap": 24000000,
+            "receipt_gas_used": 12124593,
+            "receipt_local_gas_cost_wei": 12124593000000000,
+            "remaining_profile_margin": 7684133,
+            "required_25_percent_padded_gas": 16315867,
+            "transaction_hash": "0x8fa621994e6922309755f5d2262fba80bf9e1e4d24e2f602626f8258a05b0a31"
+          },
+          "exact_successful_pre_submission_calls": [
+            {
+              "wire_index": 819,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0xf753bbbdf18a2aa5abf75fb5e7ce7eec67022443fa15a475593397ed5ffa21c7",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1433,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0xc27f047429fe067862de6212d787f77d5136d216924d318f8a5c6cd2925183cf",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1454,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0xc27f047429fe067862de6212d787f77d5136d216924d318f8a5c6cd2925183cf",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1455,
+              "gas": 16315867,
+              "anchor": {
+                "blockHash": "0xc27f047429fe067862de6212d787f77d5136d216924d318f8a5c6cd2925183cf",
+                "requireCanonical": true
+              }
+            }
+          ],
+          "rights_books_prefunds_pause_and_scope_reconciled": true,
+          "actual_cli_seconds": 16.702999999994063,
+          "inner_catalogue_profile_unchanged_label": "accounting7/LP-allocation1/canonicalV9/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/pricing2/Entry-routing3/reviewedEntry2/directgovernance2/fee-intake1/residual-reinvest1",
+          "explicit_schema": 1,
+          "retained_mask": 14,
+          "no_mask_downgrade": true,
+          "original_floors_retained": true,
+          "actual_output": "75172320608049045477",
+          "minimum_output": "74389870883257535706",
+          "minimum_liquidity": "2702590775697494938524",
+          "quote": {
+            "calls_path": [
+              9,
+              36,
+              31
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+            "selector": "0x3a111353",
+            "output": "0x0000000000000000000000000000000000000000000000041339bb50208a1fe50000000000000000000000000000000000000000dc240893e6c3b932a1f6a4e6fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff435000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000d3c21bcecceda1000000",
+            "error": null
+          },
+          "actual_core_swap": {
+            "calls_path": [
+              9,
+              36,
+              43,
+              0,
+              0
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+            "selector": "0xf3cd914c",
+            "output": "0xfffffffffffffffa7ca4f4ebfd2846d900000000000000041339bb50208a1fe5",
+            "error": null
+          },
+          "oracle_capture": {
+            "calls_path": [
+              7,
+              10,
+              6
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x4ce11f5d",
+            "output": null,
+            "error": null
+          },
+          "oracle_armed": {
+            "calls_path": [
+              9,
+              36,
+              42
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0xca9d9f15",
+            "output": null,
+            "error": null
+          },
+          "oracle_after_swap": {
+            "calls_path": [
+              9,
+              36,
+              43,
+              0,
+              2
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x5c0736c6",
+            "output": null,
+            "error": null
+          },
+          "oracle_final_end": {
+            "calls_path": [
+              11,
+              9,
+              2
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x0f8ebca6",
+            "output": null,
+            "error": null
+          },
+          "quoted_full_state_words": [
+            "0000000000000000000000000000000000000000dc240893e6c3b932a1f6a4e6",
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff435",
+            "0000000000000000000000000000000000000000000000000000000000000000",
+            "00000000000000000000000000000000000000000000000000000000000001f4",
+            "00000000000000000000000000000000000000000000d3c21bcecceda1000000"
+          ],
+          "reference_acceptance_sha256": "ad473d611d74c53f8ce47fa7fa73148128e938e992cdaccc23f22f5a5db12972",
+          "runtime_pins": {
+            "access": {
+              "address": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+              "code_hash": "0xa4a231ef82a6160eb8c874541abdf1ba63a3d9720c79158fb21b1feb7bc66e23"
+            },
+            "nft": {
+              "address": "0x756e0562323adcda4430d6cb456d9151f605290b",
+              "code_hash": "0x2b2b3ebf69b926664d235770ffe7b9c0aaeba3b47e659392d3ed4b1869e43c8e"
+            },
+            "vault": {
+              "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+              "code_hash": "0xe2be8379571eba0a14f2d4d14fd021ca4e36e96a7a03e3b9281836506f3eed26"
+            },
+            "rewards": {
+              "address": "0x1af7f588a501ea2b5bb3feefa744892aa2cf00e6",
+              "code_hash": "0x62c578726c4706e393aebbeb18526d907c59b669197751192fceffe681da9612"
+            },
+            "royalties": {
+              "address": "0x20067a7558168e12ad53b235f2f7408feea4985f",
+              "code_hash": "0x2f01c469f0ae9784ca169be72b9850605ff1e248e466ad2e66ef650a9182b24d"
+            },
+            "claim_router": {
+              "address": "0x514dd0bcaf5994ef889f482b79d39d18b6e4363f",
+              "code_hash": "0xd3c682e6fcd6e047eded4545da778f34b42d8225b2e133bb469074892a6f285a"
+            },
+            "handoff": {
+              "address": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a",
+              "code_hash": "0x53354cc5eeb8ed05a6e71f852259d5ef0312b7b45b6517abdb00bdb38c054438"
+            },
+            "vault_canonical": {
+              "address": "0xe916cadb12c49389e487eb1e8194b1459b29b0ec",
+              "code_hash": "0xd22c882cef37fa1a8a9ef4dc5ee6ad70a19efa30477df68f8694185c43e4da07"
+            },
+            "principal_exit": {
+              "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+              "code_hash": "0x96c8e427f0470d8da3b564999374d923601a32dded6c76488f16f0cd2f79c10d"
+            },
+            "rewards_canonical": {
+              "address": "0x1f8fc9dbebe2d5471b686313fd2546f2d3d4f9cc",
+              "code_hash": "0x4af7afd8c608748fccf4425ff8b966ea0f626e42977fc4b45a8563c19650c73d"
+            },
+            "seadrop_mint": {
+              "address": "0x94771550282853f6e0124c302f7de1cf50aa45ca",
+              "code_hash": "0x2217931eca50b502474663ef222acb9ec7b5521c2604676ebfcc0479dadc96c3"
+            },
+            "seadrop": {
+              "address": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+              "code_hash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c"
+            },
+            "pools": {
+              "address": "0x96d3f6c20eed2697647f543fe6c08bc2fbf39758",
+              "code_hash": "0x7618ffcebd819ff7bf9a93b87996ee600fdee636f5179439dc4aef33625725dc"
+            },
+            "liquidity": {
+              "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+              "code_hash": "0x9c1a09167d90197725b33a731564bb341c480b76e11817b6f224be426bda0b0e"
+            },
+            "strategy": {
+              "address": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+              "code_hash": "0xd2c5ca5b86e8824e531883de7c715e07bbcfa4f9e9162ee50430502a9b245110"
+            },
+            "budget": {
+              "address": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+              "code_hash": "0x66d4abdbbbf752d2f9ad8618446c0b700520aa357b450ad1832eb36d66804df2"
+            },
+            "portfolio_policy": {
+              "address": "0x2a07706473244bc757e10f2a9e86fb532828afe3",
+              "code_hash": "0x11a92280dc4b1b54d497d3ec27fa7f9f5e4ff685307d5d4615145c093b13c95d"
+            },
+            "rebalance_confirmation": {
+              "address": "0x3d7ebc40af7092e3f1c81f2e996cba5cae2090d7",
+              "code_hash": "0xe24c2449112a4f97ff0aacb117ebcd7bb727604984d29f5eed5f079771145b8a"
+            },
+            "balancing_router": {
+              "address": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+              "code_hash": "0xc805cc5e08c3c3103f9e5e911ab22f556f27766e9621eca4f2325835ac84195b"
+            },
+            "lp_balance_math": {
+              "address": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+              "code_hash": "0xee598b9c0b60b33a3e9090a965cc8f2d9e7c77201d71f167b47bc7e30130de07"
+            },
+            "lp_position_executor": {
+              "address": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+              "code_hash": "0x80ee750c33cd8dd140f4f250b16827acff27d41be7d97a92f01c90d660a75d89"
+            },
+            "protocol_policy": {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "code_hash": "0xe195668e7233a6b18797ede6c42d716c82fdb9a4db4f57093ebefa31c4463558"
+            },
+            "pool_manager": {
+              "address": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+              "code_hash": "0x51ae509f929c3312b1f597e4af4960973ebca0689f0e814935d06decc9ec469e"
+            },
+            "state_view": {
+              "address": "0xa0cb889707d426a7a386870a03bc70d1b0697598",
+              "code_hash": "0x1b447fa5407c296ee533b9f1ee4df1b4a25220cb362479545ce7ad7a60d40d0e"
+            },
+            "position_manager": {
+              "address": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+              "code_hash": "0x7dea2c3689feda69e20f5f694f9b9a11f5a1187490a283da590cf67dfcb27578"
+            },
+            "permit2": {
+              "address": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+              "code_hash": "0xdf019c2ed616b85fe931e3ad2caaf0396966563f76f5ebb3039c07a39c708c28"
+            },
+            "activation_assets": {
+              "address": "0x671cef55a1373e85d4522dace6eea7cf52b573c8",
+              "code_hash": "0x5aa6cf8358c9e8fccb76c5254de15f11481a7c2aa3c23e2e13dcd3de96988c77"
+            },
+            "contribution_pricing": {
+              "address": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+              "code_hash": "0x26ba4b24f018e6d78f945c87c248c97010d627e4c877ff7c9c479bf561d39e4a"
+            },
+            "custody_validation": {
+              "address": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+              "code_hash": "0x44de55ccc24912d165a5ef24e45eb7e055c7c2f110004a06c2c9869ae3189fe5"
+            },
+            "fees": {
+              "address": "0x3cff5e7ebecb676c3cb602d0ef2d46710b88854e",
+              "code_hash": "0x4314d1d2de478ee7c0906b9b62bd9703fa103201ebdd7cb826c59459e3d2d578"
+            },
+            "oracle": {
+              "address": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+              "code_hash": "0x915d389590337386c0d795fb871ab3dca24157ef7e92728b2ea8b439b483740e"
+            }
+          },
+          "full_cap_exact_call_count": 3,
+          "padded_exact_call_count": 1,
+          "scope_cleanup": {
+            "after_execution_active": false,
+            "after_emergency_active": false,
+            "after_consolidation_active": false,
+            "verified_by_raw_after_snapshot": true
+          }
+        }
+      ],
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      },
+      "normal4_exact_source_pins_match": true,
+      "outer_actual_runtime_profile": "accounting7/custody5/mint2/V10/execution1/LP3"
+    },
+    {
+      "case": "parked-d14",
+      "path": "rpc/parked14-1/parked-d14",
+      "verification_sha256": "f4440d7c833d316da451fa2c3e1db793adbb4d7106cea573fdcaa5ee8a0c4cd6",
+      "cleanup_sha256": "2b5a39d64afdb3ac249f5e4d3ddd0d4c785b13813034d2c4a3baacc3c4734806",
+      "process_sha256": "71b7a484f13a48653f2c78c75f190105bd593040ba8b4e9bd2ac32ec09361485",
+      "wire_sha256": "aad84b0e617258d9451cd68e302a178342e6c38e51b9ec1aa0b67d0d818197a1",
+      "owned_pid": 14208,
+      "owned_port": 61205,
+      "owned_node_stopped": true,
+      "old_environment_mutations": 0,
+      "once_only_submissions": 2,
+      "operations": [
+        {
+          "operation": "park",
+          "transaction_hash": "0xd7fe210b5acc4a1eaa8382ab9230471cc6f213f31a3e1ab9403105b2f6dd76f6",
+          "raw_sha256": {
+            "review.json": "0e6347cdfd471edb8e6853209fde221e83362045d4c93bec6af0a07ce9adf703",
+            "selection.json": "172190c62ed82617646ddffcfb71c9e6ccfbe9920127c8964c6b8c58f5184d6f",
+            "transaction.json": "e15cf5971f9d4ada5dead0799966626fb3e0c4bbb8509ef9786b82e28ff11ec9",
+            "receipt.json": "f6cf0381a86a2076d9ea25c43b4d325da6feedb430c42c3fa40f6c12464daa93",
+            "receipt-trace.json": "9488d72b16492682af7dee5a501103e68e9ba0f2ec21ecd2872b6ea6ffcfa353",
+            "before.json": "e042ad2a23a031d9331aaa753d5df09c47d5fb6cd07bfa47568f68eb013d57dd",
+            "after.json": "0f91c42fb9ea38e98f8084f0c23ad9846b9c811fc069e8313500ef3c094c2306",
+            "cli-execution.json": "fa8b6fe152436cff2586a1602007b90039ea381d6c4f745268737442bb1d2624"
+          },
+          "exact_selected_calldata_and_governance": true,
+          "initial_confirmed_header": {
+            "number": 2,
+            "hash": "0xeeb06cfde90f49e71cbed248df19c376b935a9efc91aa1ad09142c7af22985e2",
+            "timestamp": 1794753948
+          },
+          "final_canonical_header": {
+            "number": 3,
+            "hash": "0x30d5263258a2b519eb187e99857d41a7199f56007ca9adf29edeb609f5d74778",
+            "timestamp": 1794753953
+          },
+          "inclusion_header": {
+            "number": "0x4",
+            "hash": "0x58ca6658404516114dd3ab3a9629bb194cd5c711898a80393826e13c020bd902",
+            "timestamp": "0x6af9c5bc"
+          },
+          "original_deadline": 1794754312,
+          "review_expiry": 1794754068,
+          "gas": {
+            "actual_local_receipt_success": true,
+            "cold_trace_call_gas": 1367998,
+            "effective_gas_price_wei": 1000000000,
+            "exact_padded_call_passed": true,
+            "fee_scope": "Controlled local EVM gas only; no complete Robinhood fee or spending-policy approval.",
+            "final_estimate": 1616103,
+            "full_cap_call_passed": true,
+            "initial_estimate": 1616103,
+            "profile_cap": 24000000,
+            "receipt_gas_used": 1367998,
+            "receipt_local_gas_cost_wei": 1367998000000000,
+            "remaining_profile_margin": 21979871,
+            "required_25_percent_padded_gas": 2020129,
+            "transaction_hash": "0xd7fe210b5acc4a1eaa8382ab9230471cc6f213f31a3e1ab9403105b2f6dd76f6"
+          },
+          "exact_successful_pre_submission_calls": [
+            {
+              "wire_index": 769,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0xeeb06cfde90f49e71cbed248df19c376b935a9efc91aa1ad09142c7af22985e2",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 777,
+              "gas": 2020129,
+              "anchor": {
+                "blockHash": "0xeeb06cfde90f49e71cbed248df19c376b935a9efc91aa1ad09142c7af22985e2",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1335,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x30d5263258a2b519eb187e99857d41a7199f56007ca9adf29edeb609f5d74778",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1343,
+              "gas": 2020129,
+              "anchor": {
+                "blockHash": "0x30d5263258a2b519eb187e99857d41a7199f56007ca9adf29edeb609f5d74778",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1357,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x30d5263258a2b519eb187e99857d41a7199f56007ca9adf29edeb609f5d74778",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 1358,
+              "gas": 2020129,
+              "anchor": {
+                "blockHash": "0x30d5263258a2b519eb187e99857d41a7199f56007ca9adf29edeb609f5d74778",
+                "requireCanonical": true
+              }
+            }
+          ],
+          "rights_books_prefunds_pause_and_scope_reconciled": true,
+          "actual_cli_seconds": 17.4059999999954,
+          "inner_catalogue_profile_unchanged_label": "accounting7/LP-allocation1/canonicalV9/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/pricing2/Entry-routing3/reviewedEntry2/directgovernance2/fee-intake1/residual-reinvest1",
+          "runtime_pins": {
+            "access": {
+              "address": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+              "code_hash": "0xa4a231ef82a6160eb8c874541abdf1ba63a3d9720c79158fb21b1feb7bc66e23"
+            },
+            "nft": {
+              "address": "0x756e0562323adcda4430d6cb456d9151f605290b",
+              "code_hash": "0x2b2b3ebf69b926664d235770ffe7b9c0aaeba3b47e659392d3ed4b1869e43c8e"
+            },
+            "vault": {
+              "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+              "code_hash": "0xe2be8379571eba0a14f2d4d14fd021ca4e36e96a7a03e3b9281836506f3eed26"
+            },
+            "rewards": {
+              "address": "0x1af7f588a501ea2b5bb3feefa744892aa2cf00e6",
+              "code_hash": "0x62c578726c4706e393aebbeb18526d907c59b669197751192fceffe681da9612"
+            },
+            "royalties": {
+              "address": "0x20067a7558168e12ad53b235f2f7408feea4985f",
+              "code_hash": "0x2f01c469f0ae9784ca169be72b9850605ff1e248e466ad2e66ef650a9182b24d"
+            },
+            "claim_router": {
+              "address": "0x514dd0bcaf5994ef889f482b79d39d18b6e4363f",
+              "code_hash": "0xd3c682e6fcd6e047eded4545da778f34b42d8225b2e133bb469074892a6f285a"
+            },
+            "handoff": {
+              "address": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a",
+              "code_hash": "0x53354cc5eeb8ed05a6e71f852259d5ef0312b7b45b6517abdb00bdb38c054438"
+            },
+            "vault_canonical": {
+              "address": "0xe916cadb12c49389e487eb1e8194b1459b29b0ec",
+              "code_hash": "0xd22c882cef37fa1a8a9ef4dc5ee6ad70a19efa30477df68f8694185c43e4da07"
+            },
+            "principal_exit": {
+              "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+              "code_hash": "0x96c8e427f0470d8da3b564999374d923601a32dded6c76488f16f0cd2f79c10d"
+            },
+            "rewards_canonical": {
+              "address": "0x1f8fc9dbebe2d5471b686313fd2546f2d3d4f9cc",
+              "code_hash": "0x4af7afd8c608748fccf4425ff8b966ea0f626e42977fc4b45a8563c19650c73d"
+            },
+            "seadrop_mint": {
+              "address": "0x94771550282853f6e0124c302f7de1cf50aa45ca",
+              "code_hash": "0x2217931eca50b502474663ef222acb9ec7b5521c2604676ebfcc0479dadc96c3"
+            },
+            "seadrop": {
+              "address": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+              "code_hash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c"
+            },
+            "pools": {
+              "address": "0x96d3f6c20eed2697647f543fe6c08bc2fbf39758",
+              "code_hash": "0x7618ffcebd819ff7bf9a93b87996ee600fdee636f5179439dc4aef33625725dc"
+            },
+            "liquidity": {
+              "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+              "code_hash": "0x9c1a09167d90197725b33a731564bb341c480b76e11817b6f224be426bda0b0e"
+            },
+            "strategy": {
+              "address": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+              "code_hash": "0xd2c5ca5b86e8824e531883de7c715e07bbcfa4f9e9162ee50430502a9b245110"
+            },
+            "budget": {
+              "address": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+              "code_hash": "0x66d4abdbbbf752d2f9ad8618446c0b700520aa357b450ad1832eb36d66804df2"
+            },
+            "portfolio_policy": {
+              "address": "0x2a07706473244bc757e10f2a9e86fb532828afe3",
+              "code_hash": "0x11a92280dc4b1b54d497d3ec27fa7f9f5e4ff685307d5d4615145c093b13c95d"
+            },
+            "rebalance_confirmation": {
+              "address": "0x3d7ebc40af7092e3f1c81f2e996cba5cae2090d7",
+              "code_hash": "0xe24c2449112a4f97ff0aacb117ebcd7bb727604984d29f5eed5f079771145b8a"
+            },
+            "balancing_router": {
+              "address": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+              "code_hash": "0xc805cc5e08c3c3103f9e5e911ab22f556f27766e9621eca4f2325835ac84195b"
+            },
+            "lp_balance_math": {
+              "address": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+              "code_hash": "0xee598b9c0b60b33a3e9090a965cc8f2d9e7c77201d71f167b47bc7e30130de07"
+            },
+            "lp_position_executor": {
+              "address": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+              "code_hash": "0x80ee750c33cd8dd140f4f250b16827acff27d41be7d97a92f01c90d660a75d89"
+            },
+            "protocol_policy": {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "code_hash": "0xe195668e7233a6b18797ede6c42d716c82fdb9a4db4f57093ebefa31c4463558"
+            },
+            "pool_manager": {
+              "address": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+              "code_hash": "0x51ae509f929c3312b1f597e4af4960973ebca0689f0e814935d06decc9ec469e"
+            },
+            "state_view": {
+              "address": "0xa0cb889707d426a7a386870a03bc70d1b0697598",
+              "code_hash": "0x1b447fa5407c296ee533b9f1ee4df1b4a25220cb362479545ce7ad7a60d40d0e"
+            },
+            "position_manager": {
+              "address": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+              "code_hash": "0x7dea2c3689feda69e20f5f694f9b9a11f5a1187490a283da590cf67dfcb27578"
+            },
+            "permit2": {
+              "address": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+              "code_hash": "0xdf019c2ed616b85fe931e3ad2caaf0396966563f76f5ebb3039c07a39c708c28"
+            },
+            "activation_assets": {
+              "address": "0x671cef55a1373e85d4522dace6eea7cf52b573c8",
+              "code_hash": "0x5aa6cf8358c9e8fccb76c5254de15f11481a7c2aa3c23e2e13dcd3de96988c77"
+            },
+            "contribution_pricing": {
+              "address": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+              "code_hash": "0x26ba4b24f018e6d78f945c87c248c97010d627e4c877ff7c9c479bf561d39e4a"
+            },
+            "custody_validation": {
+              "address": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+              "code_hash": "0x44de55ccc24912d165a5ef24e45eb7e055c7c2f110004a06c2c9869ae3189fe5"
+            },
+            "fees": {
+              "address": "0x3cff5e7ebecb676c3cb602d0ef2d46710b88854e",
+              "code_hash": "0x4314d1d2de478ee7c0906b9b62bd9703fa103201ebdd7cb826c59459e3d2d578"
+            },
+            "oracle": {
+              "address": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+              "code_hash": "0x915d389590337386c0d795fb871ab3dca24157ef7e92728b2ea8b439b483740e"
+            }
+          },
+          "full_cap_exact_call_count": 3,
+          "padded_exact_call_count": 3,
+          "scope_cleanup": {
+            "after_execution_active": false,
+            "after_emergency_active": false,
+            "after_consolidation_active": false,
+            "verified_by_raw_after_snapshot": true
+          }
+        },
+        {
+          "operation": "manual",
+          "transaction_hash": "0xe334595fc5705f9558cc1432fdacb29db9c71bd801a4f21595a248f66365e063",
+          "raw_sha256": {
+            "review.json": "d3b3638ada5f489356c6bfb80fe17bbc04e265f288e0015a09d02d8b75a36280",
+            "selection.json": "ca119acc253df04be9025e259c0734de5a17b90b4104e25713d4a5b9bec8fac7",
+            "transaction.json": "65912a33fb2ee6a090e174d44c14b4bda610a83386a273b0417cf5fceb1776d8",
+            "receipt.json": "416e1adc2a231c616ef0e5f621df42f64f3545a003665481a14fa0f25ec34f13",
+            "receipt-trace.json": "a33ab338adb4f07266e0f578f2575af7771d2ca1092b166d1958f02d50d2b83d",
+            "before.json": "0f91c42fb9ea38e98f8084f0c23ad9846b9c811fc069e8313500ef3c094c2306",
+            "after.json": "2656a131ca81d46feddedc898994b9c2b81d23812f69a37a3a538d983d900fc8",
+            "cli-execution.json": "7b0644a45bc0bb13308fc3106f2307f39bf6ce5cbb9d780fa73e749f480f67a2"
+          },
+          "exact_selected_calldata_and_governance": true,
+          "initial_confirmed_header": {
+            "number": 5,
+            "hash": "0x0c7b556d30bbbec7d269783ada65cc049acc6058352e208fec4b8e64990de803",
+            "timestamp": 1794753984
+          },
+          "final_canonical_header": {
+            "number": 6,
+            "hash": "0x935ef7bd6d07aa3d2da6982180d7b25e2cf108dfa694cde348856e479f34e565",
+            "timestamp": 1794753989
+          },
+          "inclusion_header": {
+            "number": "0x7",
+            "hash": "0x1f4cb98d2d866d937943cd0a7d5c0e922e771cdd5d274a90ddb8de2c7574aac8",
+            "timestamp": "0x6af9c5db"
+          },
+          "original_deadline": 1794754312,
+          "review_expiry": 1794754104,
+          "gas": {
+            "actual_local_receipt_success": true,
+            "cold_trace_call_gas": 10770951,
+            "effective_gas_price_wei": 1000000000,
+            "exact_padded_call_passed": true,
+            "fee_scope": "Controlled local EVM gas only; no complete Robinhood fee or spending-policy approval.",
+            "final_estimate": 11446251,
+            "full_cap_call_passed": true,
+            "initial_estimate": 11446251,
+            "profile_cap": 24000000,
+            "receipt_gas_used": 10770951,
+            "receipt_local_gas_cost_wei": 10770951000000000,
+            "remaining_profile_margin": 9692186,
+            "required_25_percent_padded_gas": 14307814,
+            "transaction_hash": "0xe334595fc5705f9558cc1432fdacb29db9c71bd801a4f21595a248f66365e063"
+          },
+          "exact_successful_pre_submission_calls": [
+            {
+              "wire_index": 2200,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x0c7b556d30bbbec7d269783ada65cc049acc6058352e208fec4b8e64990de803",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 2654,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x935ef7bd6d07aa3d2da6982180d7b25e2cf108dfa694cde348856e479f34e565",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 2675,
+              "gas": 24000000,
+              "anchor": {
+                "blockHash": "0x935ef7bd6d07aa3d2da6982180d7b25e2cf108dfa694cde348856e479f34e565",
+                "requireCanonical": true
+              }
+            },
+            {
+              "wire_index": 2676,
+              "gas": 14307814,
+              "anchor": {
+                "blockHash": "0x935ef7bd6d07aa3d2da6982180d7b25e2cf108dfa694cde348856e479f34e565",
+                "requireCanonical": true
+              }
+            }
+          ],
+          "rights_books_prefunds_pause_and_scope_reconciled": true,
+          "actual_cli_seconds": 15.046000000002095,
+          "inner_catalogue_profile_unchanged_label": "accounting7/LP-allocation1/canonicalV9/protocol-policy1/portfolio2/maintenance3/confirmation3/compound4/custody5/emergency2/LP-routing2/pricing2/Entry-routing3/reviewedEntry2/directgovernance2/fee-intake1/residual-reinvest1",
+          "explicit_schema": 2,
+          "retained_mask": 14,
+          "no_mask_downgrade": true,
+          "original_floors_retained": true,
+          "actual_output": "75172320608049045477",
+          "minimum_output": "74389870883257535706",
+          "minimum_liquidity": "2702590775697494938524",
+          "quote": {
+            "calls_path": [
+              9,
+              23,
+              31
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+            "selector": "0x3a111353",
+            "output": "0x0000000000000000000000000000000000000000000000041339bb50208a1fe50000000000000000000000000000000000000000dc240893e6c3b932a1f6a4e6fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff435000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000d3c21bcecceda1000000",
+            "error": null
+          },
+          "actual_core_swap": {
+            "calls_path": [
+              9,
+              23,
+              43,
+              0,
+              0
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+            "selector": "0xf3cd914c",
+            "output": "0xfffffffffffffffa7ca4f4ebfd2846d900000000000000041339bb50208a1fe5",
+            "error": null
+          },
+          "oracle_capture": {
+            "calls_path": [
+              7,
+              10,
+              6
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x4ce11f5d",
+            "output": null,
+            "error": null
+          },
+          "oracle_armed": {
+            "calls_path": [
+              9,
+              23,
+              42
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0xca9d9f15",
+            "output": null,
+            "error": null
+          },
+          "oracle_after_swap": {
+            "calls_path": [
+              9,
+              23,
+              43,
+              0,
+              2
+            ],
+            "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x5c0736c6",
+            "output": null,
+            "error": null
+          },
+          "oracle_final_end": {
+            "calls_path": [
+              11,
+              9,
+              2
+            ],
+            "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+            "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+            "selector": "0x0f8ebca6",
+            "output": null,
+            "error": null
+          },
+          "quoted_full_state_words": [
+            "0000000000000000000000000000000000000000dc240893e6c3b932a1f6a4e6",
+            "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff435",
+            "0000000000000000000000000000000000000000000000000000000000000000",
+            "00000000000000000000000000000000000000000000000000000000000001f4",
+            "00000000000000000000000000000000000000000000d3c21bcecceda1000000"
+          ],
+          "reference_acceptance_sha256": "23db5859ed5ab271c0a564a4d13bd3dffaddff4751732c2ee16ffc1c9eab9468",
+          "runtime_pins": {
+            "access": {
+              "address": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+              "code_hash": "0xa4a231ef82a6160eb8c874541abdf1ba63a3d9720c79158fb21b1feb7bc66e23"
+            },
+            "nft": {
+              "address": "0x756e0562323adcda4430d6cb456d9151f605290b",
+              "code_hash": "0x2b2b3ebf69b926664d235770ffe7b9c0aaeba3b47e659392d3ed4b1869e43c8e"
+            },
+            "vault": {
+              "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+              "code_hash": "0xe2be8379571eba0a14f2d4d14fd021ca4e36e96a7a03e3b9281836506f3eed26"
+            },
+            "rewards": {
+              "address": "0x1af7f588a501ea2b5bb3feefa744892aa2cf00e6",
+              "code_hash": "0x62c578726c4706e393aebbeb18526d907c59b669197751192fceffe681da9612"
+            },
+            "royalties": {
+              "address": "0x20067a7558168e12ad53b235f2f7408feea4985f",
+              "code_hash": "0x2f01c469f0ae9784ca169be72b9850605ff1e248e466ad2e66ef650a9182b24d"
+            },
+            "claim_router": {
+              "address": "0x514dd0bcaf5994ef889f482b79d39d18b6e4363f",
+              "code_hash": "0xd3c682e6fcd6e047eded4545da778f34b42d8225b2e133bb469074892a6f285a"
+            },
+            "handoff": {
+              "address": "0x8227724c33c1748a42d1c1cd06e21ab8deb6eb0a",
+              "code_hash": "0x53354cc5eeb8ed05a6e71f852259d5ef0312b7b45b6517abdb00bdb38c054438"
+            },
+            "vault_canonical": {
+              "address": "0xe916cadb12c49389e487eb1e8194b1459b29b0ec",
+              "code_hash": "0xd22c882cef37fa1a8a9ef4dc5ee6ad70a19efa30477df68f8694185c43e4da07"
+            },
+            "principal_exit": {
+              "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+              "code_hash": "0x96c8e427f0470d8da3b564999374d923601a32dded6c76488f16f0cd2f79c10d"
+            },
+            "rewards_canonical": {
+              "address": "0x1f8fc9dbebe2d5471b686313fd2546f2d3d4f9cc",
+              "code_hash": "0x4af7afd8c608748fccf4425ff8b966ea0f626e42977fc4b45a8563c19650c73d"
+            },
+            "seadrop_mint": {
+              "address": "0x94771550282853f6e0124c302f7de1cf50aa45ca",
+              "code_hash": "0x2217931eca50b502474663ef222acb9ec7b5521c2604676ebfcc0479dadc96c3"
+            },
+            "seadrop": {
+              "address": "0x00005ea00ac477b1030ce78506496e8c2de24bf5",
+              "code_hash": "0x53e4b9339cf624803c9a7d0195576cca5b917920813508d86b3eb93dcbabeb5c"
+            },
+            "pools": {
+              "address": "0x96d3f6c20eed2697647f543fe6c08bc2fbf39758",
+              "code_hash": "0x7618ffcebd819ff7bf9a93b87996ee600fdee636f5179439dc4aef33625725dc"
+            },
+            "liquidity": {
+              "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+              "code_hash": "0x9c1a09167d90197725b33a731564bb341c480b76e11817b6f224be426bda0b0e"
+            },
+            "strategy": {
+              "address": "0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+              "code_hash": "0xd2c5ca5b86e8824e531883de7c715e07bbcfa4f9e9162ee50430502a9b245110"
+            },
+            "budget": {
+              "address": "0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+              "code_hash": "0x66d4abdbbbf752d2f9ad8618446c0b700520aa357b450ad1832eb36d66804df2"
+            },
+            "portfolio_policy": {
+              "address": "0x2a07706473244bc757e10f2a9e86fb532828afe3",
+              "code_hash": "0x11a92280dc4b1b54d497d3ec27fa7f9f5e4ff685307d5d4615145c093b13c95d"
+            },
+            "rebalance_confirmation": {
+              "address": "0x3d7ebc40af7092e3f1c81f2e996cba5cae2090d7",
+              "code_hash": "0xe24c2449112a4f97ff0aacb117ebcd7bb727604984d29f5eed5f079771145b8a"
+            },
+            "balancing_router": {
+              "address": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+              "code_hash": "0xc805cc5e08c3c3103f9e5e911ab22f556f27766e9621eca4f2325835ac84195b"
+            },
+            "lp_balance_math": {
+              "address": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+              "code_hash": "0xee598b9c0b60b33a3e9090a965cc8f2d9e7c77201d71f167b47bc7e30130de07"
+            },
+            "lp_position_executor": {
+              "address": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+              "code_hash": "0x80ee750c33cd8dd140f4f250b16827acff27d41be7d97a92f01c90d660a75d89"
+            },
+            "protocol_policy": {
+              "address": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+              "code_hash": "0xe195668e7233a6b18797ede6c42d716c82fdb9a4db4f57093ebefa31c4463558"
+            },
+            "pool_manager": {
+              "address": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+              "code_hash": "0x51ae509f929c3312b1f597e4af4960973ebca0689f0e814935d06decc9ec469e"
+            },
+            "state_view": {
+              "address": "0xa0cb889707d426a7a386870a03bc70d1b0697598",
+              "code_hash": "0x1b447fa5407c296ee533b9f1ee4df1b4a25220cb362479545ce7ad7a60d40d0e"
+            },
+            "position_manager": {
+              "address": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+              "code_hash": "0x7dea2c3689feda69e20f5f694f9b9a11f5a1187490a283da590cf67dfcb27578"
+            },
+            "permit2": {
+              "address": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+              "code_hash": "0xdf019c2ed616b85fe931e3ad2caaf0396966563f76f5ebb3039c07a39c708c28"
+            },
+            "activation_assets": {
+              "address": "0x671cef55a1373e85d4522dace6eea7cf52b573c8",
+              "code_hash": "0x5aa6cf8358c9e8fccb76c5254de15f11481a7c2aa3c23e2e13dcd3de96988c77"
+            },
+            "contribution_pricing": {
+              "address": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+              "code_hash": "0x26ba4b24f018e6d78f945c87c248c97010d627e4c877ff7c9c479bf561d39e4a"
+            },
+            "custody_validation": {
+              "address": "0x2bb6964044936b4c0a5401076f4ae85c1d77752d",
+              "code_hash": "0x44de55ccc24912d165a5ef24e45eb7e055c7c2f110004a06c2c9869ae3189fe5"
+            },
+            "fees": {
+              "address": "0x3cff5e7ebecb676c3cb602d0ef2d46710b88854e",
+              "code_hash": "0x4314d1d2de478ee7c0906b9b62bd9703fa103201ebdd7cb826c59459e3d2d578"
+            },
+            "oracle": {
+              "address": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+              "code_hash": "0x915d389590337386c0d795fb871ab3dca24157ef7e92728b2ea8b439b483740e"
+            }
+          },
+          "full_cap_exact_call_count": 3,
+          "padded_exact_call_count": 1,
+          "scope_cleanup": {
+            "after_execution_active": false,
+            "after_emergency_active": false,
+            "after_consolidation_active": false,
+            "verified_by_raw_after_snapshot": true
+          }
+        }
+      ],
+      "production_source_sha256": {
+        "ZZZContributionPricing": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "ZZZCustodyValidation": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "ZZZLPBalanceMath": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "ZZZLPBalancer": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "ZZZLiquidityManager": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "ZZZMigrationBudget": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      },
+      "normal4_exact_source_pins_match": true,
+      "outer_actual_runtime_profile": "accounting7/custody5/mint2/V10/execution1/LP3"
+    }
+  ],
+  "limitations": [
+    "Controlled real-contract local fixtures with synthetic admission/feeds/VRF/Permit2/external depth; not live market/provider/target-gas/full-fee/independent approval.",
+    "Inner offline catalogue labels retain canonicalV9/LP-routing2; outer exact runtime/config proves mint2/V10/execution1/LP3, without relabeling old catalogue bytes.",
+    "Reviewed deadlines are fresh intents fixed before CLI; frozen calldata/expiry are preserved thereafter.",
+    "Manual captures show successful full-cap calls at both anchors and one final padded call; management park has padded calls at both anchors. No additional count is inferred.",
+    "Existing evidence only; reviewer made no RPC requests, transaction submissions, tests, compiler or analyzer runs."
+  ],
+  "normal4_equivalence_artifact_sha256": "b037ca48cdaa0ce982a58512e725037674150c0e68661cf176481361f7b654ee"
+}

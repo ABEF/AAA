@@ -1,17 +1,20 @@
 # PoPL current project context
 
-The [isolated manual recovery rehearsal](reports/manual-recovery-rehearsal-20261115/REVIEW.md) completes actual local C14,
-D14, park→Parked D14 and separately selected oracle-outage D0 through the unchanged
-production unsigned CLI and real local governance transactions. Four new EVM
-methods overlap these workflows; six local receipts reconcile. Worst exact25%
-padded manual call13,010,802/24M; defaults and all61 production Solidity sources
-remain unchanged. No old suite is rerun. Emergency retained-price checks still
-reject a swap through their live reference: use a separately reviewed execution
-venue; no automatic bypass. Real markets/complete target fees, maximum state,
-contract-wallet/host operation and independent approval remain open. Existing
-Anvil is not touched; its historical RPC was unavailable, so old state-root
-equality is not claimed. Website bytes/journals/signing and paused heartbeat stay.
-
+The [guarded manual reference-swap fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) extends execution1/LP3 to priced
+paused manual C/D. One transaction-bound vector precedes fingerprints/harvest;
+the exact caller-selected core swap/output/full post-state is proved before
+settlement, with live source/control/callback validation retained. No cap,
+permission, default or automatic bypass changes. Masks0/8 remain unpriced;
+bits1/16 retain their own eligibility checks. Six Solidity sources change;
+same-core principal-as-reference remains excluded.25 new/3 adapted methods,
+three actual unchanged-CLI local manual receipts and the complete park→recovery
+journey pass. Worst full25% padded manual gas16,315,867/24M.48 normal size gates pass;
+Manager101/Vault32/Oracle3runtime bytes and Oracle79init bytes remain. Current
+strict review565=113 individually current+452 exact referenced-source reuse.
+Old artifacts/runtimes/profile labels remain historical; new exact pins and
+fresh reviews are required. No deployment/service/site/signing/journal or
+existing-chain change; heartbeat stays paused. Real markets/complete target
+fees, maximum state, host/contract-wallet operation and independent audit remain.
 
 Manual LP preparation now has [stage/cause diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 for Active B/C/D and explicit Parked D. Known local errors are typed; opaque
@@ -82,8 +85,8 @@ for one transaction, proves the selected actual-core output/full post-state
 before settlement, then preserves live source freshness/agreement and final
 callback checks. Public Oracle reads stay live; no keeper-selected price or
 global cache is added. In ordinary captured execution a reviewed external reference may also swap,
-but cannot be the same-core PoPL principal destination. Emergency retained-price
-fingerprints remain stricter; see the new manual rehearsal limitation above. Policy/source changes,
+but cannot be the same-core PoPL principal destination. Priced manual fingerprints now use the same authenticated own-transition
+proof with fresh exact runtimes; the earlier rejected source stays historical. Policy/source changes,
 unplanned market movement and nested scope borrowing fail closed. The fixed
 existing Math child shares read-only work; no new deployed helper, custody
 recipient or authority is added. Accounting7/canonicalV10 and financial limits

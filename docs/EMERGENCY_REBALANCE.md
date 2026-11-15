@@ -5,6 +5,14 @@ increase the unchanged main, use [governance same-main consolidation](OPERATOR_M
 The new source requires residual-reinvest1 peers and fresh schema17 admission;
 old emergency2 runtimes keep their original dispatcher and profile.
 
+The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+preserves existing function/request schemas and capability numbers, while
+changing exact source/runtime identities. Retained-price manual C/D may use a
+reviewed external reference as their exact swap venue under the authenticated
+own-swap proof below. Adopt only matching freshly reviewed runtimes/consumers;
+do not relabel old deployments, saved reviews or pending journals. Source
+publication does not authorize a deployment, public transaction or service change.
+
 
 Fresh accounting7 source candidate; production NOT APPROVED. Current normal
 gates, scoped offline checks and local actual-v4-core integration pass within
@@ -60,7 +68,7 @@ across callbacks even if bit4 financial checks are disabled.
 | Retain bit | Checks kept |
 | --- | --- |
 | `1` | Raw ordinary 85%-threshold-or-deliberate-geometry eligibility and hard cooldown. It also retains dependencies of that raw Strategy read. |
-| `2` | Fresh independent prices and spot/reference agreement before/after execution. |
+| `2` | Starting independent bounds with live freshness/agreement, spot bands and exact authenticated own-swap proof before/after execution. |
 | `4` | Captured aggregate maintenance retention, venue/fee-adjusted output floors and idle ceilings. Valuing these limits still requires healthy USD prices even if bit2 is off. |
 | `8` | Pool `operationsEnabled` admission for deployment/swapping. |
 | `16` | Existing sampled confirmation, still fresh at inclusion; does not implicitly retain bit1 cooldown/raw eligibility. Its live condition/prices/identity still must validate. Pause does not create observations or stop their expiry. An absent/stale/stopped window rejects if this bit is selected. The established deliberate-range exception remains. |
@@ -85,6 +93,42 @@ agreement is disabled. These are necessary data dependencies, not a promise
 that all32 masks can execute during a price outage. `checks=0` is the reviewed
 no-price/no-policy force route from Active OR Parked custody. The automatic
 Balancer venue list is not used to select its explicit swap.
+
+### Captured prices without dropping retained safeguards
+
+When bit2 or4 is retained, fixed Budget opens one Pricing-owned transaction
+scope before the first emergency fingerprint, harvest or unwind. Bit2-only
+captures even without value checkpoints; bit4-only still requires USD sources
+and captures the original aggregate/output/idle value vector. Manager quotes
+the exact requested pool, direction and amount, then proves exact output and
+the quoted full price/tick/fees/liquidity immediately after `core.swap`, before
+input settlement or output callbacks. It does not choose a different route or
+relax the caller's output/L floors.
+
+Only that authenticated own-swap transition may advance the reviewed external
+reference. ETH publication, unrelated reference movement, source/policy changes,
+nested scope borrowing or unexpected settlement callbacks still fail closed.
+Live freshness, sequencer protection and two-source agreement remain; valid
+trades can still reject real spot, gross/additional-loss, idle or caller limits.
+No success or MEV guarantee is made. A same-core principal destination cannot
+be the reference: own LP removal/minting is not covered by this exception.
+
+The Manager-only, nonsettling `quoteSwap` preserves structural venue admission
+but does not separately reinstate operations-enabled. Actual execution enforces
+retained bit8; ordinary price paths still require enabled operations. Public
+Oracle reads remain live. The captured scope stays through Vault economic/
+settlement checks and the final emergency fingerprint, then clears before
+Budget disarms; C retains its later static custody and local policy checks.
+Masks0/8 do not add Oracle-health evaluation, while bits1/16 retain their
+independent eligibility/confirmation dependencies.
+
+The [earlier rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` proves the former atomic self-reference rejection and separate-venue
+gas baseline; those bytes/results remain historical. Use the current report for
+changed-source gas and `scripts/rehearse-manual-reference.py` with its matching
+`test/ManualReferenceSwapQualification.t.sol` exports for the guarded14
+`active-c14`, `active-d14` or `parked-d14` local cases. No real provider, target
+fees, maximum workload, contract-wallet or operating acceptance is implied.
 
 For close-only recovery, use paused `park` or `closeResidual`, with both optional
 raw receipt floors zero if explicitly accepted. Follow the

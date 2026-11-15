@@ -1,0 +1,15 @@
+{
+  "before_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+  "after_sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8",
+  "before": "    function _reverseMarket() private {\n        uint160 next=uint160(uint256(Q96)*105/100);\n        _to(core,state,targetKey,next);_to(core,state,referenceKey,next);_to(core,state,executionKey,next);\n        _to(independentCore,independentState,referenceKey,next);_fresh();\n        vm.prank(KEEPER);vault.collectFees(bucket,block.timestamp+100);\n    }\n",
+  "after": "    function _reverseMarket() private {\n        uint160 next=uint160(uint256(Q96)*105/100);\n        _to(core,state,targetKey,next);_to(core,state,referenceKey,next);_to(core,state,executionKey,next);\n        _to(independentCore,independentState,referenceKey,next);_fresh();\n        vm.prank(GOVERNANCE);access.setPaused(false);\n        vm.prank(KEEPER);vault.collectFees(bucket,block.timestamp+100);\n        vm.prank(GOVERNANCE);access.setPaused(true);\n    }\n",
+  "only_change": "Legitimate governance unpause, keeper harvest, governance pause during reverse-market fixture setup, before the reviewed request.",
+  "already_passed20_reuse": "All twenty already-passed methods use reverse=false and never enter the corrected helper. All other source bytes and all production sources unchanged.",
+  "rerun_methods": [
+    "testManualReferenceC14ZZZToETH",
+    "testManualReferenceD14ZZZToETH",
+    "testManualReferenceParkedD14ZZZToETH",
+    "testManualReferenceD4ValueOnlyWithOperationsDisabled",
+    "testManualReferenceD8OperationsOnlyWithOracleOutage"
+  ]
+}

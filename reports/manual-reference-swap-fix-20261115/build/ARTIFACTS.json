@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "Exact build evidence raw bytes; this manifest excludes itself",
+  "sha256": {
+    "ATTEMPTS.json": "6b70faeaef63cd76bd9c6b8cb4ed1e76ae91516e0326bc0bfd6025f15db5c897",
+    "compiler-input.json.gz": "da046010ffef2efe32870d58478f11ed52a25a7932b4726768bc9fe1ef1abfd3",
+    "compiler-output.json.gz": "d18a51c0f5d19c6abec3fbad7f50d9997c9e5b65c10ad80c7299c942234a19b4",
+    "EQUIVALENCE.json": "b037ca48cdaa0ce982a58512e725037674150c0e68661cf176481361f7b654ee",
+    "failed-attempts/1/RESULT.json": "cd901481066a6b7e101d2bd234adb4e39135b3b67300a9d8502871545f6fcd3b",
+    "failed-attempts/1/START.json": "3da944503413cf6d4a892a589922b11940ed0df20997dd80f6ad7261bf3c6bf3",
+    "failed-attempts/2/RESULT.json": "8450e06281517c08faeb2643c8723e926940524adb330eccad0a48a75f443eed",
+    "failed-attempts/2/START.json": "8031addba18455c0bc4fb373a12af7dfbcc8f9d32cd76fb4514fc30375945f3e",
+    "failed-attempts/3/RESULT.json": "8a6ee21136e2b63ffbf4a01a44134ff0b3b5d9a864d30cad3643a2fecdd933cd",
+    "failed-attempts/3/START.json": "71d9bf1148c006a955416bc16f180b915c423865afbb4a74be27ff9def3dd069",
+    "production-size-gates.json": "43b3bdbe58c31893b9e648f3cc2e565e096a730f089abef4745f8fe3a7f78633",
+    "RESULT.json": "a050be172c6030403cfd107a8a87f7cc681d4babb2c21481783d22f254cfa218",
+    "source-manifest.json": "c1fbb683be3735d4558f553acb1af0153ffaf74b808e113a760fcde30bd8af4b",
+    "START.json": "02d9a986e74cf2b6f2dd4f36bcb58db65af21de0ab43f6acf440b62da36e9d90"
+  }
+}

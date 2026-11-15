@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+The [current manual reference fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) is locally verified:
+25 new/3 adapted methods, exact same-reference C/D/Parked local receipts,48 normal
+gates and source-bound static coverage. Existing ABIs stay; three fixed helper
+methods are added (959 callable functions/1012 complete operator examples).
+Exact new runtime/source pins and reviews are mandatory; no installed consumer,
+public signer or contract changes automatically.
+
 [Actual local manual recovery](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is verified for C14,
 D14, park→Parked D14 and separately chosen outage D0. The unchanged production
 CLI prepares exact reviewed calls, and actual governance transactions preserve

@@ -1,0 +1,182 @@
+{
+  "files": {
+    "ACTUAL_RECEIPT_REVIEW.json": {
+      "bytes": 61748,
+      "sha256": "8ead8e4e63f735c856923868584038cbb0ecb678834921bf1a93e6cab4e5f770"
+    },
+    "ADAPTED_HOST_SCOPE.json": {
+      "bytes": 642,
+      "sha256": "6d8a85a1d64ae736546f86852b9feb0363df2a2fb34339c477385025c38c5065"
+    },
+    "CALLBACK_TRACE_PROOFS.json": {
+      "bytes": 17990,
+      "sha256": "94f97274df7ba2900a5f41fbbf34d5dba3b50d15c012260f930f84c32c7d0389"
+    },
+    "FINAL_TESTS.json": {
+      "bytes": 1626222,
+      "sha256": "86b1b10340d086977911a4cde74d7f1068b4da555e68aeff4bd932083725ae15"
+    },
+    "NEW_HOST_STAGE1.sol": {
+      "bytes": 54163,
+      "sha256": "15365c5245a2d697e4880c5d965498d35c758de1a9a6b33549f7180146415927"
+    },
+    "NEW_HOST_STAGE2.sol": {
+      "bytes": 54196,
+      "sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f"
+    },
+    "NEW_HOST_STAGE2_DELTA.json": {
+      "bytes": 725,
+      "sha256": "66da52e6aac7949d754fdf873d3a3aa26f015204c2cc9d59ec17ffbca742bd94"
+    },
+    "NEW_HOST_STAGE3_DELTA.json": {
+      "bytes": 1641,
+      "sha256": "8e4a4745ca6997958355c1520ae81645a5d11bad6da776795b13d00ec4031b1f"
+    },
+    "WIRE_DERIVATIONS.json": {
+      "bytes": 63518,
+      "sha256": "9cdc2714b7b01e6d1b5a6c8f17f37c7e55812637a68af53fe071aca39e7c98fd"
+    },
+    "exports/adapted-testActualManualC14ConsolidatesExistingMain/forge.json": {
+      "bytes": 30053109,
+      "sha256": "c6df00ba5439cf55c1b54f643b06e11ab030d7241415e532a28a44380ea27022"
+    },
+    "exports/adapted-testActualManualD14ReplacesBothLegs/forge.json": {
+      "bytes": 30059739,
+      "sha256": "f91230d79d96512233614e87da423bc8ff9a8bec33e65827dc8354a6febda6a6"
+    },
+    "exports/adapted-testActualParkedD14RetainsFinancialGuards/forge.json": {
+      "bytes": 37934161,
+      "sha256": "6a7257dc1c596a0da876a483f39811fd652a32a1411de5f126ae84acacb3cf0a"
+    },
+    "exports/new-testManualReferenceC14ETHToZZZ-stage2/forge.json": {
+      "bytes": 28408193,
+      "sha256": "93035360ee393392586eb41514eddcdc82ade81ce170e5c00d66db069e7356b5"
+    },
+    "exports/new-testManualReferenceC14ZZZToETH-stage3/forge.json": {
+      "bytes": 16173433,
+      "sha256": "b7eabbe9d470fc8a95131de6bdac77a2d95883feb2333b46074b8568f73383d4"
+    },
+    "exports/new-testManualReferenceD0ExplicitSwapWithOracleOutage/forge.json": {
+      "bytes": 15055294,
+      "sha256": "f216043495cd0609cbf3fb74a1f12c546ca1d111c3784b4ec470847ae2c98dfa"
+    },
+    "exports/new-testManualReferenceD0NoSwapWithOracleOutage/forge.json": {
+      "bytes": 15036566,
+      "sha256": "884e7a372840347aea5034c752f38b3ffce1f8d3664cab477268248300fb00ad"
+    },
+    "exports/new-testManualReferenceD14ETHToZZZ/forge.json": {
+      "bytes": 28423816,
+      "sha256": "1adc714d429e72e3224a807648e298920d979839a7ce5a4d897e89f12f33768d"
+    },
+    "exports/new-testManualReferenceD14ZZZToETH-stage3/forge.json": {
+      "bytes": 16191484,
+      "sha256": "e68fa901a553c5fca5efb64bdc8a099e51767ba909b2b4b91744ef8da928183a"
+    },
+    "exports/new-testManualReferenceD2NoSwapAndSequentialRecapture/forge.json": {
+      "bytes": 17464491,
+      "sha256": "58a4ca543ca0d1462a4f6e4f5f83577710a83156161ed432cefeb241031c7923"
+    },
+    "exports/new-testManualReferenceD2PriceOnlyWithOperationsDisabled/forge.json": {
+      "bytes": 15819926,
+      "sha256": "52fefc369f8c8c309c08905d58ad070be5298695f0762d40c877a8b1ed354006"
+    },
+    "exports/new-testManualReferenceD4ValueOnlyWithOperationsDisabled-stage3/forge.json": {
+      "bytes": 16095935,
+      "sha256": "5c6566d4d2117effa1f50ba4f98a12727c11c6b4e956565a120cd60d9b11be8f"
+    },
+    "exports/new-testManualReferenceD8OperationsOnlyWithOracleOutage-stage3/forge.json": {
+      "bytes": 15203027,
+      "sha256": "9199d257af446a3f78333ea4327586ed0ac42366c93b8570214ab5a23052d559"
+    },
+    "exports/new-testManualReferenceExactOutputAndLiquidityFloorsRemainMandatory/forge.json": {
+      "bytes": 16466782,
+      "sha256": "f37ea0b0536f34fa253dee80d5c912d860c6d71c96ea49d94a8f8eecc37ae0f6"
+    },
+    "exports/new-testManualReferenceGuardedBStillRoutesAutomatically/forge.json": {
+      "bytes": 15901173,
+      "sha256": "6d2ba76a2ae1a0e680d8882b3334028a596dc56d14de6a60be6cd9498b95fa18"
+    },
+    "exports/new-testManualReferenceInitialIndependentDisagreementStillReverts/forge.json": {
+      "bytes": 14497047,
+      "sha256": "4d070c96f085f170500697b56e71472a4f7d40c462f63fc273d7b5030c4ca68a"
+    },
+    "exports/new-testManualReferenceMaintenancePolicyChangeDuringRefundReverts/forge.json": {
+      "bytes": 17871114,
+      "sha256": "36ae160797c3cde6663ed60f64ba4043a692e555be9c4accc9a0a66b25f95d97"
+    },
+    "exports/new-testManualReferenceNestedExternalCaptureCannotBorrowScope/forge.json": {
+      "bytes": 16050360,
+      "sha256": "c4e1e8a1cbb05476195dceca6c4d1af7b24d056b0927a8750679cc776923a460"
+    },
+    "exports/new-testManualReferenceParkedD14ETHToZZZ/forge.json": {
+      "bytes": 28404334,
+      "sha256": "e7c63017b33bff3efcbd8702bdf911394bac200f3241af98059156af2df1c246"
+    },
+    "exports/new-testManualReferenceParkedD14ZZZToETH-stage3/forge.json": {
+      "bytes": 16169729,
+      "sha256": "fd301af28007ecfc5b686073a06d3d4f7eca79512b11a25d90642076411203c9"
+    },
+    "exports/new-testManualReferenceQualityChangeDuringApprovalResetReverts/forge.json": {
+      "bytes": 17419512,
+      "sha256": "0123c491021db110562cbdc7b981fa76295c725b9ef30bcafb3a12d7632906d5"
+    },
+    "exports/new-testManualReferenceRejectsETHRoundDuringInputPull/forge.json": {
+      "bytes": 16860464,
+      "sha256": "cb82a6b0155ebb7c179621da00ebdd7ca9f21fa72b397f89ff8b2db252b43370"
+    },
+    "exports/new-testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund/forge.json": {
+      "bytes": 17173312,
+      "sha256": "1cbdd0c9c4430078352f192ffd8cea3ed8e6983aaed5fc5da49d08a53dc95857"
+    },
+    "exports/new-testManualReferenceRejectsLiveDisagreementAfterOwnSwap/forge.json": {
+      "bytes": 17179019,
+      "sha256": "a9b53ba04eeec5d1621b29802fe4560c2c4a04efda207bed92cf323ecbf9b30c"
+    },
+    "exports/new-testManualReferenceRejectsStaleETHDuringRefund/forge.json": {
+      "bytes": 17099465,
+      "sha256": "19ee62818860e41285b29b31cdd64595a1a92c566e9cb55354df87d960f9317a"
+    },
+    "exports/new-testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund/forge.json": {
+      "bytes": 17180510,
+      "sha256": "76febefa40b0b9c1851ffb0d33a5c940937c6ed954e70b94ae3d5f52839f0137"
+    },
+    "exports/new-testManualReferenceSourceDisableRestoreCannotReviveCapture/forge.json": {
+      "bytes": 17349182,
+      "sha256": "4588e89b6f0715c45b65ebf428a41de24b1665036d39efd41f2e271fa7f11ab6"
+    },
+    "exports/new-testManualReferenceSourceGasPolicyChangeDuringRefundReverts/forge.json": {
+      "bytes": 17284351,
+      "sha256": "11bae9282d6dbc7c60f2024e306daf5db7318045be77ba820ebfa30c7c914a0d"
+    },
+    "focused-fixed/out/ManualRecoveryQualification.t.sol/ManualRecoveryQualificationTest.json": {
+      "bytes": 3431394,
+      "sha256": "749021bbe93afa8de554278a18a2ddef229f4a16c64d4ae9a7bec7eec95917e6"
+    },
+    "focused-fixed/out/ManualReferenceSwapQualification.t.sol/ManualReferenceSwapQualificationTest.json": {
+      "bytes": 3542761,
+      "sha256": "b4367d4b0f72cf4602686d9fccbe4b4bba5f2ba188c0a51beff14f33cecc49ef"
+    },
+    "rpc/c14-2/active-c14/rpc-records.read-calls.json.gz": {
+      "bytes": 22654,
+      "sha256": "b8baf44c629f41134b90c2fd09527d65f1476bb59494e713dbea8bef2185fe46"
+    },
+    "rpc/d14-1/active-d14/rpc-records.read-calls.json.gz": {
+      "bytes": 22945,
+      "sha256": "3cb2defeb07d94bb4ce4821c304b21b69f38856ca0012ec60486f12e9d2f2271"
+    },
+    "rpc/parked14-1/parked-d14/rpc-records.read-calls.json.gz": {
+      "bytes": 38145,
+      "sha256": "1f5ea746ea2b5a606c25f74f268b105ff38e114abb1f906c785db4e831c462ce"
+    },
+    "source/test/ManualRecoveryQualification.t.sol": {
+      "bytes": 40744,
+      "sha256": "d99dab05b396b925cba412317c74b26540e8061aefb94f151d83eef4358b73ec"
+    },
+    "source/test/ManualReferenceSwapQualification.t.sol": {
+      "bytes": 54303,
+      "sha256": "9a40c61f363a864659883c6b54081b41a78e1f8e5b85614a40c1d4f540ae5be8"
+    }
+  },
+  "schema": 1,
+  "scope": "Complete original accepted28ForgeJSON files and exact compiledhost artifacts; all three newhostsource stages/equivalence; exact original non-code wire records for currentactualcases. No normalcompiler duplication."
+}

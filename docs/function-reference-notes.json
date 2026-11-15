@@ -2838,7 +2838,7 @@
         "unlockCallback(bytes)": {
           "purpose": "Settle the exact outstanding swap inside the pinned v4 PoolManager unlock callback.",
           "access": "Only bound PoolManager with the matching one-time pending payload hash.",
-          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path.",
+          "notes": "Ordinary and priced manual execution use an exact actual-core output/post-state quote. Oracle proves the complete price/tick/fees/liquidity immediately after core.swap, before settlement callbacks, then validates later boundaries. Only the proven own transition may change a registered external reference. Explicit masks without2/4 retain their unpriced path and caller floors.",
           "inputs": {
             "0": "Exact pending ABI payload; callback authentication binds its hash."
           },
@@ -2871,8 +2871,8 @@
           }
         },
         "balance(bytes32,uint256,uint256,uint256,uint256)": {
-          "purpose": "Atomically balance only the supplied budget using zero or one swap selected from reviewed venues; return exact remaining ETH/ZZZ amounts for subsequent LP deployment.",
-          "access": "Only fixed authorized Vault; sealed/current module, short deadline and enabled native target. No arbitrary recipient.",
+          "purpose": "Balance only this exact attributed ETH/ZZZ budget with at most one swap. Ordinary execution selects the reviewed catalogue; priced manual execution proves the exact caller-selected admitted venue/direction/amount before settlement.",
+          "access": "Only the sealed fixed Vault; exact current module, short deadline and structural native admission. Operations-enabled remains mandatory for ordinary execution or retained emergency bit8. No arbitrary recipient.",
           "inputs": {
             "0": "Actual native ETH/fixed-ZZZ LP destination pool ID.",
             "1": "Existing Vault-owned physical LP NFT ID, or zero to plan a new target range. Not a PoPL NFT ID.",
@@ -6675,8 +6675,8 @@
           }
         },
         "markMaintenance(uint256)": {
-          "purpose": "Start normal maintenance captured execution pricing and record actual both-leg/idle values at its original vector. Explicit emergency uses its separate retained mask.",
-          "access": "Actual Vault-owned Budget only; stateless read.",
+          "purpose": "Capture original normal-maintenance prices and actual both-leg/idle values. During priced manual recovery, reuse the earlier Budget-owned capture and preserve the explicitly retained mask.",
+          "access": "Only the fixed Vault migrationBudget companion. State-changing noncustodial scope capture, not a stateless or operator-callable read.",
           "inputs": {
             "0": "Shared Vault custody bucket ID, not an individual NFT or physical LP token ID."
           },
@@ -6798,10 +6798,19 @@
           }
         },
         "endMaintenance(uint256)": {
-          "purpose": "Validate and clear ordinary maintenance captured pricing after Budget custody/portfolio/loss checks. Explicit emergency retains its own mask path.",
+          "purpose": "Validate and clear ordinary maintenance pricing after Budget custody/portfolio/loss checks. During explicit emergency, the separately owned scope stays until the final manual fingerprint and emergencyExecution closing call.",
           "access": "Only the immutable Vault migrationBudget companion; matching active normal maintenance scope is required.",
           "inputs": {
             "0": "Exact active maintenance bucket ID."
+          },
+          "status": "internal"
+        },
+        "emergencyExecution(uint256,bool)": {
+          "purpose": "Open a transaction-bound ETH/fixed-ZZZ manual price scope, or validate and clear it after Vault settlement/economic checks and the final emergency fingerprint. C retains later price-independent custody/policy checks.",
+          "access": "Only the immutable Vault migrationBudget companion. Its fixed nonreentrant begin/end wrappers validate the active manual authority/lifecycle; this helper preserves bucket exclusivity and Oracle scope ownership.",
+          "inputs": {
+            "0": "Positive exact current manual bucket ID; closing must match the scope opened.",
+            "1": "True to capture before first fingerprint/harvest/unwind; false to validate and clear after the final fingerprint."
           },
           "status": "internal"
         }
@@ -7212,7 +7221,7 @@
           }
         },
         "quoteSwap(bytes32,bool,uint256)": {
-          "purpose": "Produce an exact full-input actual-core quote including complete expected MarketState; no funds settle and all quote state reverts.",
+          "purpose": "Produce the exact requested full-input actual-core output and expected MarketState without settlement; every quote state change reverts. Structural admission remains; quote-only reads do not require operations-enabled. The actual Manager separately enforces ordinary or retained emergency operations controls.",
           "access": "Only the sealed controller-bound fixed Manager; not operator, keeper or arbitrary user.",
           "inputs": {
             "0": "Reviewed native swap venue PoolId.",
@@ -7716,6 +7725,28 @@
             "0": "True if active operating LP, elapsed independent compound interval, no raw rebalance need and no pending range target."
           },
           "notes": "Public arbitrary dependency queries are advisory. Production Pricing.onlyBudget supplies the actual Budget and retains authorization."
+        },
+        "executionValidateExitPrice(bytes32)": {
+          "purpose": "Check actual pool spot against the captured independent reference without reinstating the separate operations-enabled emergency bit.",
+          "access": "Anyone; read-only helper. Manager separately enforces authority, structural admission and the retained safeguard mask.",
+          "inputs": {
+            "0": "Exact admitted native ETH/fixed-ZZZ PoolId selected by the reviewed manual request."
+          },
+          "outputs": {
+            "0": "Current Q64.96 spot after independent-reference band validation. This read alone does not authorize execution."
+          }
+        },
+        "executionMinimumOutputForExit(bytes32,bool,uint256)": {
+          "purpose": "Compute captured gross-loss and after-known-fee additional-loss output floors without reinstating operations-enabled admission.",
+          "access": "Anyone; read-only helper. Does not waive caller floors, Manager permissions or the separately retained emergency checks.",
+          "inputs": {
+            "0": "Exact admitted native ETH/fixed-ZZZ swap venue PoolId.",
+            "1": "True ETH to ZZZ; false ZZZ to ETH.",
+            "2": "Positive exact raw input amount, bounded by uint128; manual request has the stronger signed-int128 bound."
+          },
+          "outputs": {
+            "0": "Stronger raw output floor from captured input/output bounds, governed gross loss and actual directional fees plus additional-loss limit."
+          }
         }
       },
       "constructor": {

@@ -1,0 +1,9 @@
+{
+  "bytes": 20416336,
+  "sha256": "6928fa9b6c85a245651ce79a087ac0e640d3846e0547653c7802fce2f77780d5",
+  "files": 45,
+  "complete_unit_files": 28,
+  "uncompressed_bytes": 553859319,
+  "compression": "standard ZIP-LZMA; no extraction required to inspect original JSON",
+  "manifest_sha256": "6176ce87a3d2aae3e7572b9cc583b77b68ab2a2fc72475acd628f6d116c34be4"
+}

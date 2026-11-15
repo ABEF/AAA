@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 33 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 34 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. Source publication, installed-service adoption and production qualification are separate milestones; this checklist does not approve deployment or rollout.
 
@@ -243,7 +243,7 @@ Custody, ownership and reward accounting.
   - [Gas optimization](reports/gas-feasibility-20261111/REVIEW.md) shares a fresh source-call ceiling only inside each STATIC capture/full-validation chain, with all mutable-boundary proofs/49-word codec/ABI/storage and budgets unchanged.23focused EVM methods succeed; no unchanged broad suite repeats. Exact runtime admission and actual market/provider qualification remain open.
   - [20M/24M controlled completion](reports/gas-profiles-20261113/REVIEW.md) verifies exact launch contributions and single/hybrid main-residual lifecycle without relaxing routing, pricing, accounting, time or financial guards. All61 production sources remain byte-identical. These bounded fixtures do not qualify real routes/depth, full cohorts or production adoption.
   - [Current real routing blocker](reports/predeployment-qualification-20261113/markets/REVIEW.md): only tiny07ee2b among seven active fee-compatible known native pools can share selected-pool500bps reference bands. Conditional ETH quotes lose14.211291%/84.654786% against respective initial spots; these are diagnostic, not actual whole contribution acceptance. Preserve target/venue/additional/caller guards; obtain compatible external depth before full real-market qualification.
-  - [Actual manual limitation](reports/manual-recovery-rehearsal-20261115/REVIEW.md): C/D retaining price-dependent guards use a live fingerprint, not the ordinary captured-transition exception. Actual swap traces reproduce reference mutation followed by Manager.balance rejection despite feasible original floors; atomic state is preserved. A separately reviewed third execution venue succeeds. Review a safe emergency-compatible transition design before claiming reference-as-venue support there; no automatic14→0 fallback or guard/default change.
+  - [Historical manual limitation](reports/manual-recovery-rehearsal-20261115/REVIEW.md) reproduced live-fingerprint self-rejection. The [current fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) captures the original vector before manual work and authenticates exactly the selected core output/full state before settlement.25 new/3 adapted methods and actual same-reference C/D/Parked receipts pass without weakening selected guards. Source/ABI/runtime pins must be renewed explicitly; real markets/fees/maximum-state/host approval remain open.
 
   </details>
 
@@ -458,6 +458,20 @@ Custody, ownership and reward accounting.
   - [Whole-project execution](reports/whole-project-execution-20261029/VERIFICATION.md) fills122output annotations preserving all previous notes; zero purpose/input/output gaps with source-bound generator/check.33concrete contract ABI tables are not proof of security or independent provider qualification.
   - [Authority inventory](reports/authority-audit-20261103/AUTHORITY_INVENTORY.json) resolves241mutable effective implementations and577reads; these are source counts, not executed tests. Owner reward claims remain available; terminal batches governance-only.
   - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
+
+  </details>
+
+<a id="task-manual-reference-swap-proof"></a>
+
+- [x] **[Preserve safeguards for manual swaps through a price reference](docs/REFERENCE_SWAP_EXECUTION.md)** - Implemented. Priced manual C/D now use a whole-operation captured vector and exact caller-selected actual-core swap/output/full-state proof. Live source/control/callback validation remains. Original inputs/masks/floors, governance-only permission, unpriced recovery choices and defaults stay. Fresh exact pins/reviews required; no automatic deployment or adoption.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Source and verification](reports/manual-reference-swap-fix-20261115/REVIEW.md):25 distinct new methods plus3 deliberately adapted legacy expectations, with explicit source/branch reuse and original fixture failures. Unchanged suites/oldD0/public RPC work are not rerun. All nine actual late mutation callbacks complete successfully before later production rejection; rollback is checked.
+  - Actual unchanged-CLI C14/ActiveD14/ParkedD14 same-reference receipts preserve exact original input/minOut/minL/expiry and match actual-core quote/fullstate. Complete park→recovery stays on one new owned chain. Full25% padded maximum16,315,867/24M;32M local blocks. No default/financial guard/permission relaxed, no extra route or automatic14→0 fallback.
+  - All48 normal runtime/initcode gates pass at original settings; failed changed-source attempts1–3 retained. FinalManager101/Vault32/Oracle3 runtime headroom and Oracle79 initcode-argument headroom remain tight. Source-exact static565=113 individually current+452 unique exact referenced-source reuse, not independent audit.
+  - Existing signatures/storage/codec/capability versions remain; three fixed helper methods extend ABI without new module/custody/authority. New source/code/consumer pins are mandatory; original artifacts/journals/runtimes stay historical. Same-core principal-as-reference remains prohibited and financial/source disagreement can still legitimately reject. Real markets, fees, maximum state, hosts and independent approval remain open.
 
   </details>
 
@@ -692,6 +706,7 @@ The data and services behind the app.
   - The [operator gas-profile procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m) specifies exact20M browser/backend equality, decimal-string vs numeric fields, full20% activation policy2 vs25% manual/keeper padding, separate activation/claim listeners, fee approval, pending-first restart and rollback. Earlier manual24M helper evidence is injected-only; the new separate manual-recovery-gas-rehearsal milestone records actual controlled C/D/Parked receipts, without changing the scope of the six keeper calls. Templates remain incomplete, with no signed/submitted operation or rollout.
   - [44-task assessment](reports/open-tasks-audit-20261113/TASK_ASSESSMENTS.json) records concrete source milestones and remaining operator/provider/host boundaries without claiming44bugs or universal diagnostics. No unresolved new contract-policy decision was established; required external inputs remain explicit.
   - [Controlled manual recovery](reports/manual-recovery-rehearsal-20261115/REVIEW.md) passes actual unchanged CLI/default clock/current full graph and exact local governance receipts for C14/D14/Parked14/explicit0. Four new EVM methods overlap these workflows, six total receipts reconcile and all owned nodes stop. Worst exact25%-padded13,010,802/24M; defaults unchanged. Real markets/complete target fees, maximum state, contract-wallet/host acceptance and emergency reference-venue coupling remain open. The legacy offline Catalog profile label is provenance, not runtime identity; exact current runtime/config pins are separately verified.
+  - [Guarded reference-swap fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) closes the reproduced manual-only self-coupling through captured prices and exact own-transition proof. Current three same-reference CLI transactions fit24M with full25%; all selected limits and request fields remain. Old da24 gas and Catalog provenance stay historical. Complete target fees/provider/market/maximum-state and actual contract-wallet/host qualification remain open.
 
   </details>
 
@@ -1695,4 +1710,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `7aa14ad7a3349a8ea833cbb7eb1c154676a01270bce93ece61feecf20342e8aa`.
+Snapshot SHA-256: `15429649a5a3e9fddfe8abd92ae62cdf2af501040935117b1f94ae262d65733e`.

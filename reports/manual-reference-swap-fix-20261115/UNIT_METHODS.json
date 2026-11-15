@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "new_unique_successes": {
+    "testManualReferenceC14ETHToZZZ": [
+      "exports/new-testManualReferenceC14ETHToZZZ-stage2/RESULT.json"
+    ],
+    "testManualReferenceC14ZZZToETH": [
+      "exports/new-testManualReferenceC14ZZZToETH-stage3/RESULT.json"
+    ],
+    "testManualReferenceD0ExplicitSwapWithOracleOutage": [
+      "exports/new-testManualReferenceD0ExplicitSwapWithOracleOutage/RESULT.json"
+    ],
+    "testManualReferenceD0NoSwapWithOracleOutage": [
+      "exports/new-testManualReferenceD0NoSwapWithOracleOutage/RESULT.json"
+    ],
+    "testManualReferenceD14ETHToZZZ": [
+      "exports/new-testManualReferenceD14ETHToZZZ/RESULT.json"
+    ],
+    "testManualReferenceD14ZZZToETH": [
+      "exports/new-testManualReferenceD14ZZZToETH-stage3/RESULT.json"
+    ],
+    "testManualReferenceD2NoSwapAndSequentialRecapture": [
+      "exports/new-testManualReferenceD2NoSwapAndSequentialRecapture/RESULT.json"
+    ],
+    "testManualReferenceD2PriceOnlyWithOperationsDisabled": [
+      "exports/new-testManualReferenceD2PriceOnlyWithOperationsDisabled/RESULT.json"
+    ],
+    "testManualReferenceD4ValueOnlyWithOperationsDisabled": [
+      "exports/new-testManualReferenceD4ValueOnlyWithOperationsDisabled-stage3/RESULT.json"
+    ],
+    "testManualReferenceD8OperationsOnlyWithOracleOutage": [
+      "exports/new-testManualReferenceD8OperationsOnlyWithOracleOutage-stage3/RESULT.json"
+    ],
+    "testManualReferenceExactOutputAndLiquidityFloorsRemainMandatory": [
+      "exports/new-testManualReferenceExactOutputAndLiquidityFloorsRemainMandatory/RESULT.json"
+    ],
+    "testManualReferenceGuardedBStillRoutesAutomatically": [
+      "exports/new-testManualReferenceGuardedBStillRoutesAutomatically/RESULT.json"
+    ],
+    "testManualReferenceInitialIndependentDisagreementStillReverts": [
+      "exports/new-testManualReferenceInitialIndependentDisagreementStillReverts/RESULT.json"
+    ],
+    "testManualReferenceMaintenancePolicyChangeDuringRefundReverts": [
+      "exports/new-testManualReferenceMaintenancePolicyChangeDuringRefundReverts/RESULT.json"
+    ],
+    "testManualReferenceNestedExternalCaptureCannotBorrowScope": [
+      "exports/new-testManualReferenceNestedExternalCaptureCannotBorrowScope/RESULT.json"
+    ],
+    "testManualReferenceParkedD14ETHToZZZ": [
+      "exports/new-testManualReferenceParkedD14ETHToZZZ/RESULT.json"
+    ],
+    "testManualReferenceParkedD14ZZZToETH": [
+      "exports/new-testManualReferenceParkedD14ZZZToETH-stage3/RESULT.json"
+    ],
+    "testManualReferenceQualityChangeDuringApprovalResetReverts": [
+      "exports/new-testManualReferenceQualityChangeDuringApprovalResetReverts/RESULT.json"
+    ],
+    "testManualReferenceRejectsETHRoundDuringInputPull": [
+      "exports/new-testManualReferenceRejectsETHRoundDuringInputPull/RESULT.json"
+    ],
+    "testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund": [
+      "exports/new-testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund/RESULT.json"
+    ],
+    "testManualReferenceRejectsLiveDisagreementAfterOwnSwap": [
+      "exports/new-testManualReferenceRejectsLiveDisagreementAfterOwnSwap/RESULT.json"
+    ],
+    "testManualReferenceRejectsStaleETHDuringRefund": [
+      "exports/new-testManualReferenceRejectsStaleETHDuringRefund/RESULT.json"
+    ],
+    "testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund": [
+      "exports/new-testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund/RESULT.json"
+    ],
+    "testManualReferenceSourceDisableRestoreCannotReviveCapture": [
+      "exports/new-testManualReferenceSourceDisableRestoreCannotReviveCapture/RESULT.json"
+    ],
+    "testManualReferenceSourceGasPolicyChangeDuringRefundReverts": [
+      "exports/new-testManualReferenceSourceGasPolicyChangeDuringRefundReverts/RESULT.json"
+    ]
+  },
+  "changed_unique_successes": {
+    "testActualManualC14ConsolidatesExistingMain": [
+      "exports/adapted-testActualManualC14ConsolidatesExistingMain/RESULT.json"
+    ],
+    "testActualManualD14ReplacesBothLegs": [
+      "exports/adapted-testActualManualD14ReplacesBothLegs/RESULT.json"
+    ],
+    "testActualParkedD14RetainsFinancialGuards": [
+      "exports/adapted-testActualParkedD14RetainsFinancialGuards/RESULT.json"
+    ]
+  },
+  "failed_new_fixture_attempts": [
+    {
+      "method": "testManualReferenceC14ETHToZZZ",
+      "path": "exports/new-testManualReferenceC14ETHToZZZ/RESULT.json",
+      "reason": "Unauthorized()"
+    },
+    {
+      "method": "testManualReferenceC14ZZZToETH",
+      "path": "exports/new-testManualReferenceC14ZZZToETH/RESULT.json",
+      "reason": "Paused()"
+    },
+    {
+      "method": "testManualReferenceD14ZZZToETH",
+      "path": "exports/new-testManualReferenceD14ZZZToETH/RESULT.json",
+      "reason": "Paused()"
+    },
+    {
+      "method": "testManualReferenceD4ValueOnlyWithOperationsDisabled",
+      "path": "exports/new-testManualReferenceD4ValueOnlyWithOperationsDisabled/RESULT.json",
+      "reason": "Paused()"
+    },
+    {
+      "method": "testManualReferenceD8OperationsOnlyWithOracleOutage",
+      "path": "exports/new-testManualReferenceD8OperationsOnlyWithOracleOutage/RESULT.json",
+      "reason": "Paused()"
+    },
+    {
+      "method": "testManualReferenceParkedD14ZZZToETH",
+      "path": "exports/new-testManualReferenceParkedD14ZZZToETH/RESULT.json",
+      "reason": "Paused()"
+    }
+  ],
+  "unchanged_methods_rerun": 0,
+  "scope": "Source/branch stages remain in original START/RESULT/forge captures; successful methods are not rerun after unrelated fixture-only branch fixes."
+}

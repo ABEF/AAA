@@ -97,8 +97,16 @@ contract ZZZLPBalanceMath {
             IExecutionMathControls(s.portfolioPolicy()).controlFingerprint(target),lower,upper,ref,first,second));
     }
     function executionValidatePrice(bytes32 pool)external view returns(uint160 spot){
+        return _executionValidatePrice(pool,true);
+    }
+    /// @notice Captured manual price check independent of the separately
+    /// retained operations-enabled bit. This read grants no execution right.
+    function executionValidateExitPrice(bytes32 pool)external view returns(uint160 spot){
+        return _executionValidatePrice(pool,false);
+    }
+    function _executionValidatePrice(bytes32 pool,bool requireOperations)private view returns(uint160 spot){
         IZZZAccess a=_access();PoolConfig memory c=IZZZPools(a.module(Ids.POOLS)).accounting(pool);
-        if(!c.operationsEnabled)revert InvalidState();
+        if(requireOperations && !c.operationsEnabled)revert InvalidState();
         uint160 ref=IZZZExecutionOracle(a.module(Ids.ORACLE)).executionReferenceX96(c.key.currency0,c.key.currency1);
         spot=IZZZLiquidity(a.module(Ids.LIQUIDITY)).spot(pool);
         if(spot==0)revert InvalidState();
@@ -113,9 +121,17 @@ contract ZZZLPBalanceMath {
         p.extraLoss=IExecutionMathStrategy(a.module(Ids.STRATEGY)).additionalLossBps();
     }
     function executionMinimumOutput(bytes32 pool,bool direction,uint256 amount)external view returns(uint256){
+        return _executionMinimumOutput(pool,direction,amount,true);
+    }
+    /// @notice Same captured gross/additional-loss floors and actual fees,
+    /// without reinstating a deliberately omitted operations-enabled check.
+    function executionMinimumOutputForExit(bytes32 pool,bool direction,uint256 amount)external view returns(uint256){
+        return _executionMinimumOutput(pool,direction,amount,false);
+    }
+    function _executionMinimumOutput(bytes32 pool,bool direction,uint256 amount,bool requireOperations)private view returns(uint256){
         if(amount==0 || amount>type(uint128).max)revert InvalidAmount();
         IZZZAccess a=_access();PoolConfig memory c=IZZZPools(a.module(Ids.POOLS)).accounting(pool);
-        if(!c.operationsEnabled)revert InvalidState();
+        if(requireOperations && !c.operationsEnabled)revert InvalidState();
         (,,uint24 protocol,uint24 fee)=IExecutionMathState(a.module(Ids.LIQUIDITY)).stateView().getSlot0(pool);
         if(c.key.hooks!=address(0) || fee!=c.key.fee || fee>100000 || (protocol & 0xfff)>1000 || protocol>>12>1000)revert InvalidState();
         uint256 selected=direction?protocol & 0xfff:protocol>>12;

@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {IZZZAccess,IZZZVault,IZZZPools,IZZZLiquidity,IZZZOracle,IZZZStrategy,IZZZRewards,IPositionManagerMinimal,IStateViewMinimal} from "./interfaces/IZZZ.sol";
+import {IZZZAccess,IZZZVault,IZZZPools,IZZZLiquidity,IZZZStrategy,IZZZRewards,IPositionManagerMinimal,IStateViewMinimal} from "./interfaces/IZZZ.sol";
 import {EmergencyRebalance} from "./interfaces/IZZZEmergency.sol";
+import {IZZZExecutionOracle} from "./interfaces/IZZZExecutionOracle.sol";
 import {Ids,Position,PositionStatus,PoolConfig,PoolKey} from "./libraries/ZZZTypes.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 interface ILocalParkingState {
@@ -149,8 +150,12 @@ contract ZZZCustodyValidation {
         if ((request.checks & 6) != 0) {
             PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(
                 IZZZVault(access.module(Ids.VAULT)).group(request.bucket).poolId);
-            IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-            (,,bytes32 a) = oracle.priceBounds(c.key.currency0); (,,bytes32 b) = oracle.priceBounds(c.key.currency1);
+            IZZZExecutionOracle oracle = IZZZExecutionOracle(access.module(Ids.ORACLE));
+            // Bounds preserve the starting identity, while full live validation
+            // permits ONLY the authenticated own-swap transition. Policy,
+            // unrelated sources and settlement callbacks remain fail-closed.
+            oracle.validateExecution();
+            (,,bytes32 a) = oracle.executionBounds(c.key.currency0); (,,bytes32 b) = oracle.executionBounds(c.key.currency1);
             result = keccak256(abi.encode(result,a,b,IZZZStrategy(access.module(Ids.STRATEGY)).executionQualityRevision()));
         }
     }

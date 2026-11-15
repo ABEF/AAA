@@ -11,12 +11,15 @@ guarded request into a forced request.
 | `scripts/prepare-operator-management.py` | Park, resume, raw residual close and each collective-exit step below. |
 | `scripts/prepare-manual-lp.py` | Schema1 Active B/C/D, plus explicit schema2 Parked emergency D below. |
 
-The [controlled local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
-now exercises current mint2/V10 manual C/D, Parked recovery and an actual
-park-to-recovery journey through the unchanged production CLIs. Matching
-production deployments, target providers/fees, contract-wallet execution and
-operating acceptance remain unqualified. No existing service, site, signer or
-chain is changed.
+The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+allows a reviewed external price reference to execute the exact supplied manual
+swap while retaining selected financial guards. The
+[earlier controlled rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` covers mint2/V10 C/D, Parked recovery and park-to-recovery through the
+production CLIs; its former reference-swap rejection and gas remain historical.
+Matching production deployments, target providers/fees, contract-wallet execution
+and operating acceptance remain unqualified. No existing service, site, signer
+or chain is changed.
 
 This adapter supports **direct empty-code governance EOAs only**. It checks the
 governance address's code at both pinned snapshots. Contract wallets, including
@@ -187,7 +190,7 @@ No schema, mask, route, ticks, output floor or expiry is inferred.
 | Retained bit | Parked effect |
 | --- | --- |
 | 1 | **Unsupported**: ordinary trigger/cooldown requires an Active main. Reject; never silently clear. |
-| 2 | Retain live independent-price and pool-price protections. |
+| 2 | Retain independent/pool-price protection using starting bounds plus full live source and authenticated own-swap proofs. |
 | 4 | Retain value, execution-quality and idle guards, including required USD sources even if bit2 is bypassed. |
 | 8 | Retain current main/swap venue operations-enabled flags. |
 | 16 | **Unsupported**: sampled confirmation requires an Active main. Reject; never silently clear. |
@@ -231,16 +234,31 @@ separate governance unpause. A revert leaves Parked state/funds unchanged except
 for transaction gas. Never repeat an ambiguous submitted transaction as new work.
 
 The earlier [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-retains its injected-RPC scope. The later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
-adds current-contract CLI, gas and receipt evidence described below. It does not
-qualify a target provider, production fee budget or contract-wallet envelope.
+retains its injected-RPC scope. The [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` adds CLI, gas and receipt evidence for that baseline. The
+[current reference-swap record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+separately owns the updated source's verification. Neither qualifies a target
+provider, production fee budget or contract-wallet envelope.
 
 Use the [complete B/C/D matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
 and the maintained [operator procedure](OPERATOR_MANUAL.md#same-main-residual-consolidation).
 
 <a id="local-manual-recovery-rehearsal"></a>
 
-## Actual local manual recovery rehearsal
+## Current manual reference swaps and historical recovery rehearsal
+
+Current priced manual C/D capture both ETH/ZZZ source bounds before the first
+emergency fingerprint, harvest or unwind whenever bit2 or4 is retained. Manager
+quotes the exact selected venue/direction/amount, verifies its exact output and
+full quoted core state immediately after the swap and before settlement, then
+validates live source freshness/agreement, controls and callbacks through LP
+placement and the final emergency fingerprint. A favorable later reference
+cannot replace the starting USD loss/output/idle vector. Public Oracle reads
+remain live. See the [current source/verification record](../reports/manual-reference-swap-fix-20261115/REVIEW.md).
+
+The following gas table belongs exclusively to the earlier `da24f65` source.
+Use the current report for new-source gas; do not reuse this table to approve a
+new runtime, budget or route.
 
 The [15 November record](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 covers four explicit manual flows on newly owned Anvil chains. Each actual
@@ -293,26 +311,45 @@ choose any later unpause separately.
 
 ### Retained guards and the execution venue
 
-Actual checks14 probes reject when the explicit swap changes a pool used by
-the live price reference. Recorded traces show a successful core swap followed
-by a changed emergency fingerprint and atomic rejection. This is a remaining
-manual-execution limitation; normal LP-routing3 evidence does not close it.
+At `da24f65`, actual checks14 probes rejected after an own swap changed its live
+reference fingerprint; successful baseline flows used a non-reference venue.
+That evidence remains unchanged. Current matching source instead authenticates
+the selected own-swap transition, so a reviewed external reference may also be
+the swap venue without dropping bit2 or4. It must still be distinct from the
+same-core PoPL principal destination; LP removal/minting is not an authorized
+reference-liquidity change.
 
-The successful checks14 flows use a separately admitted execution venue that
-does not alter either live reference. Select and review that venue, swap amount
-and original floors explicitly; preparation does not choose another route.
-If no suitable venue is available, stop and review the dependency or make a
-separate governance emergency decision. There is no automatic checks14-to0
-retry, and bypassing financial guards can permit near-total principal loss.
+Bit2-only opens the price scope even without value checkpoints. Bit4-only still
+requires USD sources, captured gross/additional-loss floors and idle limits;
+omitting bit8 does not accidentally restore operations-enabled through a quote.
+Manager-only `quoteSwap` settles nothing and keeps structural pool admission;
+actual Manager execution enforces retained bit8 and ordinary price paths still
+require operations enabled. Masks0/8 add no Oracle-health dependency; retained
+eligibility/confirmation bits1/16 keep their independent Active-main requirements.
+
+Quotes and captured getters grant no execution authority. Live freshness,
+sequencer/source agreement, policy/source revisions, exact custody, asset flows,
+caller output/L floors and selected financial guards remain. Genuine spot/loss/
+idle limits or source disagreement can still reject an operation. No route,
+mask, floor or expiry changes automatically, and no MEV immunity is claimed.
+Bypassing financial guards can permit near-total principal loss.
+
+The capability numbers and existing request shapes stay the same; exact changed
+source/runtime pins require explicitly matching reviewed consumers and fresh
+reviews. Keep old artifacts, journals and runtime profiles under their original
+identities. Do not relabel the old rejection/gas evidence as new-source results.
 
 ### Reproduce only on a new owned local chain
 
-Use fresh authenticated exports and the artifact from the four new methods in
-`test/ManualRecoveryQualification.t.sol`; the report records the isolated build
-and source scope. The producer accepts no RPC URL, key or existing-node target:
+For the current source, use fresh authenticated exports and the matching
+`test/ManualReferenceSwapQualification.t.sol` artifact with
+`scripts/rehearse-manual-reference.py`. It admits only explicit checks14 C/D/
+Parked D reference-swap cases, preserves exact selected inputs and uses the
+pinned strictly owned-node launcher. The current report records the exact
+methods/build/evidence; the wrapper accepts no RPC URL, key or existing-node target:
 
 ```text
-python scripts/rehearse-manual-recovery.py --exports FRESH_METHOD_EXPORTS --host-artifact MATCHING_HOST_ARTIFACT --anvil REVIEWED_LOCAL_ANVIL_EXE --python LOCAL_PYTHON_EXE --case parked-d14 --new-review-deadline-seconds 500 --output NEW_OWNED_REHEARSAL_OUTPUT
+python scripts/rehearse-manual-reference.py --exports FRESH_METHOD_EXPORTS --host-artifact MATCHING_HOST_ARTIFACT --anvil REVIEWED_LOCAL_ANVIL_EXE --python LOCAL_PYTHON_EXE --case parked-d14 --new-review-deadline-seconds 500 --output NEW_OWNED_REHEARSAL_OUTPUT
 ```
 
 The placeholder paths must identify that fresh controlled export, matching host
@@ -327,6 +364,11 @@ rejects mutation requests. Only its owned node may be mined or impersonate the
 disposable governance EOA for local receipts; it records exact state/receipts and
 stops its own processes. Inspect `cleanup.json` and every pending intent. It
 cannot target the existing local chain or deploy to a public network.
+
+The earlier `scripts/rehearse-manual-recovery.py` rejection probe and original
+host/gas captures belong to `da24f65`. The current wrapper reuses its pinned
+isolation infrastructure with current exports; running the old acceptance
+command against new behavior is not current-source qualification.
 
 This controlled graph has two active NFTs, one dormant NFT and one active bucket,
 with real Access, current

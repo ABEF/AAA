@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Guarded manual reference-swap fix](manual-reference-swap-fix-20261115/REVIEW.md)
+records six-file code changes,25 new/3 adapted methods, actual same-reference C/D/
+Parked local receipts,48 normal gates and565 source-bound static dispositions.
+Historical rejection/failed size/fixture stages remain preserved. No unchanged
+suite repeats, live rollout or independent production approval.
+
 [Actual manual recovery rehearsal](manual-recovery-rehearsal-20261115/REVIEW.md)
 records four controlled current-profile manual workflows, six local receipts,
 exact25% padded gas and a portable offline evidence checker. New fixtures and

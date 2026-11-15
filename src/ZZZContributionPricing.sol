@@ -128,9 +128,7 @@ contract ZZZContributionPricing {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(bucket);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if(!IPricingBudget(msg.sender).emergencyActive()) {
-            if(maintenanceBucket!=0 || basis.phase!=0)revert InvalidState();
-            maintenanceBucket=bucket;
-            IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1);
+            _beginMaintenanceExecution(bucket,c.key.currency1);
         }
         (mark.price0,,)=IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency0);
         (mark.price1,,)=IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency1);
@@ -144,6 +142,25 @@ contract ZZZContributionPricing {
     /// portfolio and loss proof. Explicit emergency masks keep their own path.
     function endMaintenance(uint256 bucket) external onlyBudget {
         if(IPricingBudget(msg.sender).emergencyActive())return;
+        _endMaintenanceExecution(bucket);
+    }
+    /// @notice Fixed Budget opens before any priced manual movement and closes
+    /// after Vault settlement/final manifest, before disarming its context.
+    /// Budget validates its active context immediately before either call.
+    /// Only that sealed, nonreentrant caller can reach this entry; intervening
+    /// source/configuration reads are STATIC, so no duplicate status read is needed.
+    function emergencyExecution(uint256 bucket,bool opening) external onlyBudget {
+        if(opening) {
+            Position memory p=IZZZVault(access.module(Ids.VAULT)).group(bucket);
+            _beginMaintenanceExecution(bucket,IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId).key.currency1);
+        } else _endMaintenanceExecution(bucket);
+    }
+    function _beginMaintenanceExecution(uint256 bucket,address zzz) private {
+        if(bucket==0 || maintenanceBucket!=0 || basis.phase!=0)revert InvalidState();
+        maintenanceBucket=bucket;
+        IZZZExecutionOracle(address(oracle)).beginExecution(zzz);
+    }
+    function _endMaintenanceExecution(uint256 bucket) private {
         if(maintenanceBucket!=bucket || bucket==0)revert InvalidState();
         IZZZExecutionOracle(address(oracle)).endExecution();
         delete maintenanceBucket;

@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "scope": "Offline exact accepted old/new compiler bytecode template comparison; no compiler/test execution.",
+  "old_compiler_output_sha256": "27b773bc781f9cc9f9f4583fa8a9cdaf380c7e7c58eff0a867090a1f3ffa5012",
+  "new_compiler_output_sha256": "b659f79e113d05f0a4a110031e61711ce0dcb764023d8acc4774c49d2e1bf136",
+  "rows": [
+    {
+      "source": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "source_unchanged": true,
+      "existing_abi_equal": true,
+      "runtime_template_bytes_before": 24573,
+      "runtime_template_bytes_after": 24573,
+      "runtime_executable_body_equal": true,
+      "before_body_sha256": "87b8a3572edb62b924f2d2095091e8ed6fa7bed386ac7fa0772182b7b7845f11",
+      "after_body_sha256": "87b8a3572edb62b924f2d2095091e8ed6fa7bed386ac7fa0772182b7b7845f11",
+      "creation_bytes_before": 48466,
+      "creation_bytes_after": 49009,
+      "note": "Compiler templates only; constructor immutables and deployed address/runtime admission remain separate. New child creation can change parent initcode even with identical runtime body."
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "source_unchanged": true,
+      "existing_abi_equal": true,
+      "runtime_template_bytes_before": 24544,
+      "runtime_template_bytes_after": 24544,
+      "runtime_executable_body_equal": true,
+      "before_body_sha256": "da66640abc4383996620188d92f9409051165030a3e26fb4b092a609613cc3d7",
+      "after_body_sha256": "da66640abc4383996620188d92f9409051165030a3e26fb4b092a609613cc3d7",
+      "creation_bytes_before": 25970,
+      "creation_bytes_after": 25970,
+      "note": "Compiler templates only; constructor immutables and deployed address/runtime admission remain separate. New child creation can change parent initcode even with identical runtime body."
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "source_unchanged": true,
+      "existing_abi_equal": true,
+      "runtime_template_bytes_before": 23923,
+      "runtime_template_bytes_after": 23923,
+      "runtime_executable_body_equal": true,
+      "before_body_sha256": "be1765b5669352df07a57ef62bbe114ca624735f0fe738a98538dc494441b035",
+      "after_body_sha256": "be1765b5669352df07a57ef62bbe114ca624735f0fe738a98538dc494441b035",
+      "creation_bytes_before": 25400,
+      "creation_bytes_after": 25400,
+      "note": "Compiler templates only; constructor immutables and deployed address/runtime admission remain separate. New child creation can change parent initcode even with identical runtime body."
+    }
+  ]
+}

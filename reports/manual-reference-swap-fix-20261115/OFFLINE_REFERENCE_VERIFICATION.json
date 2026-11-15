@@ -1,0 +1,289 @@
+{
+  "accepted_manual_rows": 3,
+  "accepted_park_journey_rows": 1,
+  "adapted_unit_methods": 3,
+  "archive_scope": "Public subset: all four actual current core captures/full calltrees; exact original post-receipt wire slices and producer excerpts; normal/compiler and full unit traces retained externally by raw manifest. Derived files are not relabelled original raw captures.",
+  "earlier_confirmed_park_preserved": 0,
+  "evidence_archive_sha256": "d2eb6fa25249864129149343c17699312d6f9c422f8526745906cc64de43d6b2",
+  "external_full_archive": {
+    "external_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\manual-reference-swap-fix-20261115-da24f65",
+    "kind": "hash_manifest_of_complete_original_files",
+    "manifest_file": "RAW_CAPTURE_MANIFEST.json",
+    "manifest_sha256": "745bcf32036fa000edea5c5b4cc4fa136c8bea44ccf2a1fded9892ba68d9651b"
+  },
+  "new_cli_executions": 0,
+  "new_evm_executions": 0,
+  "new_unit_methods": 25,
+  "offline_only": true,
+  "rehearsal_source_sha256": "b03f8403eb70508b1d57f36b329a36aa82d12faaa0fd34813a1a16d59f5b7aa0",
+  "rows": [
+    {
+      "accepted_flow": true,
+      "action": "C",
+      "assertions": {
+        "all_selected_nft_rights_preserved": true,
+        "closed_physical_leg_count": 1,
+        "closed_physical_legs_zero_liquidity": true,
+        "closure_proof": "actual_receipt_full_delta_and_pinned_position_manager_burn",
+        "compound_release_and_actual_backing_reconciled": true,
+        "exact_existing_reward_and_buyback_books_preserved": true,
+        "global_pause_retained": true,
+        "governance_paid_only_receipt_gas": true,
+        "main_identity_geometry_and_clock_match_selected_action": true,
+        "new_fees_in_controlled_receipt_raw": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "captured_evidence_sha256": {
+        "after": "d299116eea1efa74f0fcf0a4753be777e29e17da87f8dab3d45092e5e5fd122a",
+        "before": "ff87264224ae0890e23d53e8f18cd731db5f9433dc9d89e9a7278aec7219a3da",
+        "call-trace": "6e2a9f55f5b5f60ceb1266e976cb89851cc2e201d1f8f64e088b75204df9f33e",
+        "cli-execution": "47ef49207bd58354917129304d4fb826221f113b6ca33023af8c47beef237cf9",
+        "receipt": "494aad39d62a29abab8cb668dbb426847b56fd06d674f380940ed182fa11f989",
+        "receipt-trace": "a87afd16dd613f13f8b5945c211fd189af6d2c0c72dc3dd8faa98131d55586d5",
+        "review": "64cacec7b3e7b5486e2e017332f8d431185b5290cd02f5a8146074412fb7ed07",
+        "transaction": "c9643ee4a629cec0765b45916a2f6d9afdb18647f70353b672334595f9dc0b0c"
+      },
+      "cli_posts": 1240,
+      "cli_seconds": 15.718999999997322,
+      "effective_gas_price_wei": 1000000000,
+      "exact_25_percent_padding": 15997859,
+      "final_estimate": 12798287,
+      "headroom_to_24M": 8002141,
+      "initial_estimate": 12798287,
+      "name": "C14",
+      "owned_node_stopped": true,
+      "path": "rpc/c14-2/active-c14/manual",
+      "receipt_gas_used": 11916187,
+      "recorded_post_receipt_queries": [
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x1aa067862e5070a596c510588bc5362c2f5f06a55c5665ba674ab6cbaa274154",
+            false
+          ]
+        },
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x1aa067862e5070a596c510588bc5362c2f5f06a55c5665ba674ab6cbaa274154",
+            false
+          ]
+        }
+      ],
+      "same_reference_exact_quote_and_full_state_proof": true,
+      "selected_checks": "14",
+      "transaction_hash": "0x7f9489135b1ae93c026dd4ce797716349b28bbb28bc38fe30583d235bc8a7830"
+    },
+    {
+      "accepted_flow": true,
+      "action": "D",
+      "assertions": {
+        "all_selected_nft_rights_preserved": true,
+        "closed_physical_leg_count": 2,
+        "closed_physical_legs_zero_liquidity": true,
+        "closure_proof": "actual_receipt_full_delta_and_pinned_position_manager_burn",
+        "compound_release_and_actual_backing_reconciled": true,
+        "exact_existing_reward_and_buyback_books_preserved": true,
+        "global_pause_retained": true,
+        "governance_paid_only_receipt_gas": true,
+        "main_identity_geometry_and_clock_match_selected_action": true,
+        "new_fees_in_controlled_receipt_raw": [
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "captured_evidence_sha256": {
+        "after": "9c59aa0c34996a934303ac2de13859db6a6756402096e5cd47dd093f657f0f29",
+        "before": "a001c9ae7f0e4cc04a18499a6421089b2992ea04eb1f66d31850e25a2f3d138b",
+        "call-trace": "be1a35364380eae26583db1bd834b93548187704934d6c8d695ca4a708ebec55",
+        "cli-execution": "59133cf4d539df17efb7b8634eaa40614033bf8bdf0a4668e72528b89c7ecc63",
+        "receipt": "4e7ae33690f17f1fe9207b1ea757cce8c51333b64c0ca2884deeec9b95c46eb8",
+        "receipt-trace": "62a175c3a814a25a8f688160422b2a6995a7bdc575589c8264027b4e89ec2f26",
+        "review": "b99f341addf6e3dc4022d7522e9ab3ca348d0e236adea0ce3387a27d08adfe55",
+        "transaction": "a884b20215c1d32d39aa3150ae12d891b105a9d8dfd87acdd7d1fd726ee35428"
+      },
+      "cli_posts": 1244,
+      "cli_seconds": 16.702999999994063,
+      "effective_gas_price_wei": 1000000000,
+      "exact_25_percent_padding": 16315867,
+      "final_estimate": 13052693,
+      "headroom_to_24M": 7684133,
+      "initial_estimate": 13052693,
+      "name": "D14",
+      "owned_node_stopped": true,
+      "path": "rpc/d14-1/active-d14/manual",
+      "receipt_gas_used": 12124593,
+      "recorded_post_receipt_queries": [
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0xd2da1e478df1d4b38e3232896f0175c920aca6b5f57132018254beaa451d6795",
+            false
+          ]
+        },
+        {
+          "matches": 1,
+          "method": "eth_call",
+          "params": [
+            {
+              "data": "0x57f32c710000000000000000000000000000000000000000000000000000000000000002",
+              "to": "0x15cf58144ef33af1e14b5208015d11f9143e27b9"
+            },
+            "latest"
+          ]
+        },
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0xd2da1e478df1d4b38e3232896f0175c920aca6b5f57132018254beaa451d6795",
+            false
+          ]
+        }
+      ],
+      "same_reference_exact_quote_and_full_state_proof": true,
+      "selected_checks": "14",
+      "transaction_hash": "0x8fa621994e6922309755f5d2262fba80bf9e1e4d24e2f602626f8258a05b0a31"
+    },
+    {
+      "accepted_flow": true,
+      "action": "park",
+      "assertions": {
+        "all_selected_nft_rights_preserved": true,
+        "closed_physical_leg_count": 2,
+        "closed_physical_legs_zero_liquidity": true,
+        "closure_proof": "actual_receipt_full_delta_and_pinned_position_manager_burn",
+        "compound_release_and_actual_backing_reconciled": true,
+        "exact_existing_reward_and_buyback_books_preserved": true,
+        "global_pause_retained": true,
+        "governance_paid_only_receipt_gas": true,
+        "main_identity_geometry_and_clock_match_selected_action": true,
+        "new_fees_in_controlled_receipt_raw": [
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "captured_evidence_sha256": {
+        "after": "0f91c42fb9ea38e98f8084f0c23ad9846b9c811fc069e8313500ef3c094c2306",
+        "before": "e042ad2a23a031d9331aaa753d5df09c47d5fb6cd07bfa47568f68eb013d57dd",
+        "call-trace": "8a0d76567d22925cc5a0e72f22aab838f34e90c2856529d29cc0d7124cb2e6a8",
+        "cli-execution": "fa8b6fe152436cff2586a1602007b90039ea381d6c4f745268737442bb1d2624",
+        "receipt": "f6cf0381a86a2076d9ea25c43b4d325da6feedb430c42c3fa40f6c12464daa93",
+        "receipt-trace": "9488d72b16492682af7dee5a501103e68e9ba0f2ec21ecd2872b6ea6ffcfa353",
+        "review": "0e6347cdfd471edb8e6853209fde221e83362045d4c93bec6af0a07ce9adf703",
+        "transaction": "e15cf5971f9d4ada5dead0799966626fb3e0c4bbb8509ef9786b82e28ff11ec9"
+      },
+      "cli_posts": 1148,
+      "cli_seconds": 17.4059999999954,
+      "effective_gas_price_wei": 1000000000,
+      "exact_25_percent_padding": 2020129,
+      "final_estimate": 1616103,
+      "headroom_to_24M": 21979871,
+      "initial_estimate": 1616103,
+      "name": "park-current-journey",
+      "owned_node_stopped": true,
+      "path": "rpc/parked14-1/parked-d14/park",
+      "receipt_gas_used": 1367998,
+      "recorded_post_receipt_queries": [
+        {
+          "matches": 1,
+          "method": "eth_call",
+          "params": [
+            {
+              "data": "0x57f32c710000000000000000000000000000000000000000000000000000000000000002",
+              "to": "0x15cf58144ef33af1e14b5208015d11f9143e27b9"
+            },
+            "latest"
+          ]
+        },
+        {
+          "matches": 1,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x58ca6658404516114dd3ab3a9629bb194cd5c711898a80393826e13c020bd902",
+            false
+          ]
+        }
+      ],
+      "selected_checks": null,
+      "transaction_hash": "0xd7fe210b5acc4a1eaa8382ab9230471cc6f213f31a3e1ab9403105b2f6dd76f6"
+    },
+    {
+      "accepted_flow": true,
+      "action": "D",
+      "assertions": {
+        "all_selected_nft_rights_preserved": true,
+        "closed_physical_leg_count": 0,
+        "closed_physical_legs_zero_liquidity": true,
+        "closure_proof": "not_applicable_no_preexisting_live_legs",
+        "compound_release_and_actual_backing_reconciled": true,
+        "exact_existing_reward_and_buyback_books_preserved": true,
+        "global_pause_retained": true,
+        "governance_paid_only_receipt_gas": true,
+        "main_identity_geometry_and_clock_match_selected_action": true,
+        "new_fees_in_controlled_receipt_raw": []
+      },
+      "captured_evidence_sha256": {
+        "after": "2656a131ca81d46feddedc898994b9c2b81d23812f69a37a3a538d983d900fc8",
+        "before": "0f91c42fb9ea38e98f8084f0c23ad9846b9c811fc069e8313500ef3c094c2306",
+        "call-trace": "573e216be35342382ae1efd8eab666ab4ff1935d62b683c2d42d99d0f1da9415",
+        "cli-execution": "7b0644a45bc0bb13308fc3106f2307f39bf6ce5cbb9d780fa73e749f480f67a2",
+        "receipt": "416e1adc2a231c616ef0e5f621df42f64f3545a003665481a14fa0f25ec34f13",
+        "receipt-trace": "a33ab338adb4f07266e0f578f2575af7771d2ca1092b166d1958f02d50d2b83d",
+        "review": "d3b3638ada5f489356c6bfb80fe17bbc04e265f288e0015a09d02d8b75a36280",
+        "transaction": "65912a33fb2ee6a090e174d44c14b4bda610a83386a273b0417cf5fceb1776d8"
+      },
+      "cli_posts": 924,
+      "cli_seconds": 15.046000000002095,
+      "effective_gas_price_wei": 1000000000,
+      "exact_25_percent_padding": 14307814,
+      "final_estimate": 11446251,
+      "headroom_to_24M": 9692186,
+      "initial_estimate": 11446251,
+      "name": "ParkedD14",
+      "owned_node_stopped": true,
+      "path": "rpc/parked14-1/parked-d14/manual",
+      "receipt_gas_used": 10770951,
+      "recorded_post_receipt_queries": [
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x1f4cb98d2d866d937943cd0a7d5c0e922e771cdd5d274a90ddb8de2c7574aac8",
+            false
+          ]
+        },
+        {
+          "matches": 2,
+          "method": "eth_getBlockByHash",
+          "params": [
+            "0x1f4cb98d2d866d937943cd0a7d5c0e922e771cdd5d274a90ddb8de2c7574aac8",
+            false
+          ]
+        }
+      ],
+      "same_reference_exact_quote_and_full_state_proof": true,
+      "selected_checks": "14",
+      "transaction_hash": "0xe334595fc5705f9558cc1432fdacb29db9c71bd801a4f21595a248f66365e063"
+    }
+  ],
+  "schema": 1,
+  "successful": true,
+  "unchanged_old_methods_rerun": 0,
+  "unique_transactions": 4
+}

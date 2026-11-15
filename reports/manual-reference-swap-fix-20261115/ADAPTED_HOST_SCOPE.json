@@ -1,0 +1,18 @@
+{
+  "old_sha256": "2cea70dcab9906d8282e3bed7f1a525cfab414e42152da8d87f46c015c7b232b",
+  "new_sha256": "d99dab05b396b925cba412317c74b26540e8061aefb94f151d83eef4358b73ec",
+  "changed_existing_function_bodies": [
+    "testActualManualC14ConsolidatesExistingMain",
+    "testActualManualD14ReplacesBothLegs",
+    "testActualParkedD14RetainsFinancialGuards"
+  ],
+  "removed_helpers": [
+    "_referenceRejection"
+  ],
+  "added_helpers": [
+    "_referenceAccepted"
+  ],
+  "unchanged_function_count": 33,
+  "unchanged_D0_body_sha256": "c139eea3ce7c7325253f993f913078c4447d89b7f268a143d78640ff2f8bc9e9",
+  "old_D0_not_selected": true
+}

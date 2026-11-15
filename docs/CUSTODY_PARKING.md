@@ -67,9 +67,11 @@ destinations can receive resumed existing LP. Existing bucket aliases cannot be
 reassigned. The tool neither signs nor changes pause state, mode or pending work.
 After actual execution inspect the receipt and source state before preparing
 the next step. The earlier [source verification](../reports/operator-management-20261109/REVIEW.md)
-retains its injected-RPC scope. The later [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+retains its injected-RPC scope. The [earlier actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 includes a production-CLI park receipt followed by schema2 D14 recovery on the
-same newly owned chain; it does not approve a live provider or deployment.
+same newly owned chain at `da24f65`; it does not approve a live provider or
+deployment. The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+has separate source/verification evidence.
 
 ## Exact price-independent close
 
@@ -111,10 +113,10 @@ Ordinary `resume` remains guarded and may choose another reviewed same-pair pool
 Old runtimes may reject both-zero floors despite sharing the same ABI/version;
 verify exact source/runtime pins rather than relabeling installed contracts.
 
-## Actual recovery outcome and remaining venue limit
+## Recovery outcome and current reference-swap protection
 
-The [current local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
-verifies both-leg parking and Parked D14 recovery through unchanged production
+The [baseline local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+at `da24f65` verifies both-leg parking and Parked D14 recovery through production
 CLIs, exact padded calls and included local receipts. Parking increments
 `parkingNonce` by 1, preserves `custodyEpoch`, previous centre/rebalance time and
 last compound, and leaves designated compound in Fees. Recovery releases only
@@ -130,20 +132,38 @@ intended continuing policy. C consolidation instead completes mode OFF, advances
 its control revision, increments both parking nonce/custody epoch and updates
 last compound while preserving the main and rebalance clock.
 
-Checks14 recovery requires working financial protections. Actual traces also
-show a guarded manual rejection when the swap changes its live reference pool.
-Use an explicitly reviewed, admitted execution venue distinct from both live
-references for the measured guarded path; admission alone does not cure this
-coupling. No route or checks0 fallback is selected automatically. The separately
-selected checks0 outage scenario is emergency-only and can accept near-total
-loss; mandatory custody, caller floors and settlement checks still apply.
+Checks14 recovery still requires working financial protections. The baseline
+traces reproduced the former reference-as-swap rejection. In the
+[current source](../reports/manual-reference-swap-fix-20261115/REVIEW.md), retaining
+bit2 or4 starts a whole-operation captured scope before the first emergency
+fingerprint. Manager proves the exact caller-selected swap output/full core
+post-state before settlement and revalidates live sources, controls and callbacks
+through deployment/final fingerprint. Bit4 uses the starting USD vector even
+without bit2; bit8 remains independent. Masks0/8 introduce no Oracle-health read,
+and Parked still cannot retain Active-only bits1/16.
 
-Measured Parked D14 uses 8,822,193 estimated gas, 11,027,742 with full 25% padding and
+A reviewed external reference may now be the explicit swap venue without
+removing financial guards. It still cannot be the same-core principal LP
+destination. Manager-only nonsettling `quoteSwap` keeps structural admission and
+does not itself restore a deliberately omitted operations flag; actual Manager
+execution applies retained bit8. Real source-agreement, spot/loss/idle limits and
+caller floors can still block a trade. No success or front-running guarantee,
+route substitution or checks0 fallback is added. Explicit checks0 remains an
+emergency choice that can accept near-total loss; mandatory custody, caller
+floors and settlement checks remain.
+
+Unchanged capability numbers do not identify the updated runtime. Review exact
+fresh source/runtime/consumer pins and preserve old profiles, artifacts and
+pending journals under their original identities; no installed instance changes.
+
+At the historical `da24f65` baseline, Parked D14 uses 8,822,193 estimated gas, 11,027,742 with full 25% padding and
 8,181,893 receipt gas. Explicit D0 uses 3,007,714 / 3,759,643 / 2,626,114 respectively.
 Both passed the full 24M cap and exact padded call under a local 32M block bound.
 These controlled token/feed/VRF/Permit2/depth and local-admission results do not
 qualify real markets, target-chain fees, maximum workloads or production operation.
-Use the [complete gas/post-state table and strictly owned-node reproduction](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal);
+These values do not qualify the updated source; use its report for current gas.
+Use the [historical gas/post-state table and current strictly owned-node reproduction](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal)
+with `scripts/rehearse-manual-reference.py` and its matching new host;
 no existing Anvil, journal or public funds are used by that helper.
 
 ## Resume or choose another action

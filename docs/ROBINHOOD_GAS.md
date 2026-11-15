@@ -1,5 +1,12 @@
 # Robinhood gas and RPC qualification
 
+[Current manual reference-venue measurements](../reports/manual-reference-swap-fix-20261115/REVIEW.md) use the fixed
+source and actual local CLI/receipts. Worst exact25% padded manual gas16,315,867/24M;
+this supersedes the earlier non-reference manual row only for these controlled
+new-source cases. Keep12M defaults, full padding and fee/caller limits. These
+Anvil31337 execution measurements do not quote complete Robinhood4663 fees or
+approve provider, maximum workload, configuration adoption or deployment.
+
 The [isolated manual C/D rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) adds actual local
 governance receipts with full25% padding. These are execution-gas measurements
 on Anvil31337, not Robinhood4663 complete-fee quotes or provider admission.

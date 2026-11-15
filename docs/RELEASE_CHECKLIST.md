@@ -5,7 +5,9 @@ passes with a real governance EOA and current mint2/V10/execution1/LP3 graph und
 controlled markets. This is local composition/gas acceptance only. Real feeds,
 routes/depth, complete Robinhood fees, maximum workloads, contract-wallet/host
 operation and independent approval remain mandatory; no profile or service is
-adopted. Retained emergency reference-as-venue coupling is unresolved.
+adopted. The [current source fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) resolves the specific
+manual own-reference rejection; its bounded local acceptance does not qualify
+real market depth, target fees or production operation.
 
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression

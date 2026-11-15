@@ -149,7 +149,6 @@ contract ManualRecoveryQualificationTest is Test {
     event RecoveryUnsignedCall(string label,address sender,address destination,uint256 value,bytes data,
         uint256 cap,uint16 paddingBps,uint256 bucket,uint256[] nftIds);
     event RecoveryGas(string label,uint256 callGas,uint256 paddedGas);
-    event RecoveryReferenceRejection(string label,bytes request,bytes reason,bytes32 beforeState,bytes32 afterState,bytes32 originalRequestHash);
     event RecoveryReferenceQuote(string label,uint256 output,uint128 liquidity,uint256 minimumOut,uint128 minimumLiquidity);
 
     receive() external payable {}
@@ -368,8 +367,8 @@ contract ManualRecoveryQualificationTest is Test {
         assertEq(keccak256(abi.encode(r)),requestHash,"negative probes preserve original request");
     }
     function _copy(EmergencyRebalance memory r) private pure returns(EmergencyRebalance memory) {return abi.decode(abi.encode(r),(EmergencyRebalance));}
-    function _referenceRejection(string memory label,EmergencyRebalance memory r,bool consolidate) private {
-        assertEq(r.checks,14);assertGt(r.amountIn,0,"reference rejection requires an actual swap");
+    function _referenceAccepted(string memory label,EmergencyRebalance memory r,bool consolidate) private returns(EmergencyRebalance memory) {
+        assertEq(r.checks,14);assertGt(r.amountIn,0,"reference acceptance requires an actual swap");
         bytes32 original=keccak256(abi.encode(r));EmergencyRebalance memory bad=_copy(r);bad.swapPool=referencePool;
         assertTrue(registry.get(referencePool).operationsEnabled);assertTrue(registry.isNativePool(referencePool));
         strategy.validateExitPrice(target);strategy.validateExitPrice(referencePool);
@@ -380,8 +379,8 @@ contract ManualRecoveryQualificationTest is Test {
         (uint128 quotedL,)=router.deploymentAmounts(manager.spot(target),r.lower,r.upper,a0,a1);
         assertGe(quotedL,r.minimumLiquidity,"reference quote proves explicit LP floor");
         emit RecoveryReferenceQuote(label,output,quotedL,r.minimumOut,r.minimumLiquidity);
-        bytes32 beforeState=_atomic();bytes memory reason=_fails(bad,consolidate,GOVERNANCE);
-        assertEq(keccak256(abi.encode(r)),original);emit RecoveryReferenceRejection(label,abi.encode(bad),reason,beforeState,_atomic(),original);
+        assertEq(keccak256(abi.encode(r)),original,"reference selection preserves the original reviewed floors");
+        return bad;
     }
     function _post(Before memory b,bool consolidate) private view {
         Position memory p=vault.group(bucket);
@@ -425,17 +424,17 @@ contract ManualRecoveryQualificationTest is Test {
         _hybrid();ZZZPortfolioPolicy portfolio=strategy.portfolioPolicy();
         vm.prank(GOVERNANCE);portfolio.setMode(target,false,REVIEW);
         _currentExportTime();EmergencyRebalance memory r=_request(true,14);_mandatoryFailures(r,true);
-        _referenceRejection("active-c14",r,true);_run("active-c14",r,true,1);
+        r=_referenceAccepted("active-c14",r,true);_run("active-c14",r,true,1);
     }
     function testActualManualD14ReplacesBothLegs() public {
         _hybrid();_currentExportTime();EmergencyRebalance memory r=_request(false,14);_mandatoryFailures(r,false);
-        _referenceRejection("active-d14",r,false);_run("active-d14",r,false,1);
+        r=_referenceAccepted("active-d14",r,false);_run("active-d14",r,false,1);
     }
     function testActualParkedD14RetainsFinancialGuards() public {
         _hybrid();_currentExportTime();_export("parked14-before-park");_park();EmergencyRebalance memory r=_request(false,14);
         _mandatoryFailures(r,false);EmergencyRebalance memory bad=_copy(r);bad.checks=15;_fails(bad,false,GOVERNANCE);
         bad=_copy(r);bad.checks=30;_fails(bad,false,GOVERNANCE);assertEq(r.checks,14);
-        _referenceRejection("parked-d14",r,false);_run("parked-d14",r,false,2);
+        r=_referenceAccepted("parked-d14",r,false);_run("parked-d14",r,false,2);
     }
     function testActualParkedD0ExplicitOracleOutage() public {
         _hybrid();_currentExportTime();_park();EmergencyRebalance memory r=_request(false,0);

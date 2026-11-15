@@ -11,18 +11,18 @@
       "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "d79e8c74691ebe242b9d141c479083c1010dede80ed2638cbc95d069607b7210",
-      "src/ZZZCustodyValidation.sol": "966dc55ec955a3ac180ece6c9325cfda8af698d30aa34136acc68c6e0452ec5a",
+      "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
-      "src/ZZZLPBalanceMath.sol": "17b60de2e5d3199231764cd72103f8e4d42e7ae9884fae5f109a992258cedd1f",
-      "src/ZZZLPBalancer.sol": "8dcc0a44855fd5de9fde34fbfcbc76e122374824312b6af7b4581dafa906c59c",
+      "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "src/ZZZLPBalancer.sol": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
       "src/ZZZLPPositionExecutor.sol": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
       "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
-      "src/ZZZLiquidityManager.sol": "bcbc8dc42e27b8de499fdbdbcab2c4b2f8601d100dde5c99490d1d9c5a9ad750",
+      "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
       "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
       "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
-      "src/ZZZMigrationBudget.sol": "4fa307b1e6368d33f4c62995728dda825a21507dd26425add5613163d814f15a",
+      "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
       "src/ZZZNFT.sol": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
       "src/ZZZNFTCanonical.sol": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
       "src/ZZZNFTMetadata.sol": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "7741d92ee499a2a8bdda9ae234ffcb474e34518bb0196390d1a0d70079c68b0c",
-    "compiler_output_sha256": "27b773bc781f9cc9f9f4583fa8a9cdaf380c7e7c58eff0a867090a1f3ffa5012",
-    "size_evidence_sha256": "a7675199d04c4a609b682a9f4dc8584c3d622f34e554e01ab222b8cf2bfcbdb5",
+    "compiler_input_sha256": "1dd850af6ed9ac2b31a0e41eef36fd6e363209df8b792fe286ac33fe885051dd",
+    "compiler_output_sha256": "b659f79e113d05f0a4a110031e61711ce0dcb764023d8acc4774c49d2e1bf136",
+    "size_evidence_sha256": "43b3bdbe58c31893b9e648f3cc2e565e096a730f089abef4745f8fe3a7f78633",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -3897,6 +3897,24 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "opening",
+              "type": "bool"
+            }
+          ],
+          "name": "emergencyExecution",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "endEntry",
           "outputs": [],
@@ -4211,7 +4229,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "87e923abd1a4f8ea4dab48c4cd0ecf05100d533ea95b0e9ac92478c4683d2f3b"
+      "abi_sha256": "0ee152fa7203a69a41e9d44f57d3914a95537972c7082b09535eb2b7431dc566"
     },
     "ZZZCustodyValidation": {
       "source": "src/ZZZCustodyValidation.sol",
@@ -6140,6 +6158,35 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "direction",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "executionMinimumOutputForExit",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "token",
               "type": "address"
@@ -6216,6 +6263,25 @@
             {
               "internalType": "uint160",
               "name": "referenceX96",
+              "type": "uint160"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            }
+          ],
+          "name": "executionValidateExitPrice",
+          "outputs": [
+            {
+              "internalType": "uint160",
+              "name": "spot",
               "type": "uint160"
             }
           ],
@@ -6729,7 +6795,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "26d0380eace1ea418d74f15e83c2c6c48714258bc89b1782516fefd9538de84e"
+      "abi_sha256": "620bdaae3d949e41054b15ab6a686a17ed5166c1083b42ebafd3017b8063b79a"
     },
     "ZZZLPBalancer": {
       "source": "src/ZZZLPBalancer.sol",
@@ -28104,7 +28170,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "b9c65d77f4a4fdfee4b7a25d204bdf1a29e91ec671d43ec0dd125163b9cf2bf1",
+  "notes_sha256": "e0fc04fa4707326b2cb425e6a283fc197b68a0b47e3d259a58bc1db1448ba83d",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -32440,6 +32506,38 @@
           "notes": null
         },
         {
+          "signature": "emergencyExecution(uint256,bool)",
+          "kind": "function",
+          "name": "emergencyExecution",
+          "state_mutability": "nonpayable",
+          "purpose": "Open a transaction-bound ETH/fixed-ZZZ manual price scope, or validate and clear it after Vault settlement/economic checks and the final emergency fingerprint. C retains later price-independent custody/policy checks.",
+          "access": "Only the immutable Vault migrationBudget companion. Its fixed nonreentrant begin/end wrappers validate the active manual authority/lifecycle; this helper preserves bucket exclusivity and Oracle scope ownership.",
+          "status": "internal",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive exact current manual bucket ID; closing must match the scope opened."
+            },
+            {
+              "position": 1,
+              "name": "opening",
+              "label": "opening",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True to capture before first fingerprint/harvest/unwind; false to validate and clear after the final fingerprint."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "endEntry()",
           "kind": "function",
           "name": "endEntry",
@@ -32457,7 +32555,7 @@
           "kind": "function",
           "name": "endMaintenance",
           "state_mutability": "nonpayable",
-          "purpose": "Validate and clear ordinary maintenance captured pricing after Budget custody/portfolio/loss checks. Explicit emergency retains its own mask path.",
+          "purpose": "Validate and clear ordinary maintenance pricing after Budget custody/portfolio/loss checks. During explicit emergency, the separately owned scope stays until the final manual fingerprint and emergencyExecution closing call.",
           "access": "Only the immutable Vault migrationBudget companion; matching active normal maintenance scope is required.",
           "status": "internal",
           "inputs": [
@@ -32684,8 +32782,8 @@
           "kind": "function",
           "name": "markMaintenance",
           "state_mutability": "nonpayable",
-          "purpose": "Start normal maintenance captured execution pricing and record actual both-leg/idle values at its original vector. Explicit emergency uses its separate retained mask.",
-          "access": "Actual Vault-owned Budget only; stateless read.",
+          "purpose": "Capture original normal-maintenance prices and actual both-leg/idle values. During priced manual recovery, reuse the earlier Budget-owned capture and preserve the explicitly retained mask.",
+          "access": "Only the fixed Vault migrationBudget companion. State-changing noncustodial scope capture, not a stateless or operator-callable read.",
           "status": "documented",
           "inputs": [
             {
@@ -35943,6 +36041,57 @@
           "notes": null
         },
         {
+          "signature": "executionMinimumOutputForExit(bytes32,bool,uint256)",
+          "kind": "function",
+          "name": "executionMinimumOutputForExit",
+          "state_mutability": "view",
+          "purpose": "Compute captured gross-loss and after-known-fee additional-loss output floors without reinstating operations-enabled admission.",
+          "access": "Anyone; read-only helper. Does not waive caller floors, Manager permissions or the separately retained emergency checks.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact admitted native ETH/fixed-ZZZ swap venue PoolId."
+            },
+            {
+              "position": 1,
+              "name": "direction",
+              "label": "direction",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True ETH to ZZZ; false ZZZ to ETH."
+            },
+            {
+              "position": 2,
+              "name": "amount",
+              "label": "amount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Positive exact raw input amount, bounded by uint128; manual request has the stronger signed-int128 bound."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Stronger raw output floor from captured input/output bounds, governed gross loss and actual directional fees plus additional-loss limit."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "executionPrices(address)",
           "kind": "function",
           "name": "executionPrices",
@@ -36086,6 +36235,39 @@
               "canonical_type": "uint160",
               "internal_type": "uint160",
               "explanation": "Original captured or live Q64.96 independent reference."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "executionValidateExitPrice(bytes32)",
+          "kind": "function",
+          "name": "executionValidateExitPrice",
+          "state_mutability": "view",
+          "purpose": "Check actual pool spot against the captured independent reference without reinstating the separate operations-enabled emergency bit.",
+          "access": "Anyone; read-only helper. Manager separately enforces authority, structural admission and the retained safeguard mask.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact admitted native ETH/fixed-ZZZ PoolId selected by the reviewed manual request."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "spot",
+              "label": "spot",
+              "type": "uint160",
+              "canonical_type": "uint160",
+              "internal_type": "uint160",
+              "explanation": "Current Q64.96 spot after independent-reference band validation. This read alone does not authorize execution."
             }
           ],
           "native_value": null,
@@ -38192,7 +38374,7 @@
           "kind": "function",
           "name": "quoteSwap",
           "state_mutability": "nonpayable",
-          "purpose": "Produce an exact full-input actual-core quote including complete expected MarketState; no funds settle and all quote state reverts.",
+          "purpose": "Produce the exact requested full-input actual-core output and expected MarketState without settlement; every quote state change reverts. Structural admission remains; quote-only reads do not require operations-enabled. The actual Manager separately enforces ordinary or retained emergency operations controls.",
           "access": "Only the sealed controller-bound fixed Manager; not operator, keeper or arbitrary user.",
           "status": "internal",
           "inputs": [
@@ -41113,8 +41295,8 @@
           "kind": "function",
           "name": "balance",
           "state_mutability": "payable",
-          "purpose": "Atomically balance only the supplied budget using zero or one swap selected from reviewed venues; return exact remaining ETH/ZZZ amounts for subsequent LP deployment.",
-          "access": "Only fixed authorized Vault; sealed/current module, short deadline and enabled native target. No arbitrary recipient.",
+          "purpose": "Balance only this exact attributed ETH/ZZZ budget with at most one swap. Ordinary execution selects the reviewed catalogue; priced manual execution proves the exact caller-selected admitted venue/direction/amount before settlement.",
+          "access": "Only the sealed fixed Vault; exact current module, short deadline and structural native admission. Operations-enabled remains mandatory for ordinary execution or retained emergency bit8. No arbitrary recipient.",
           "status": "documented",
           "inputs": [
             {
@@ -42307,7 +42489,7 @@
             }
           ],
           "native_value": null,
-          "notes": "Normal execution uses one exact full-output actual-core quote; Oracle proves complete expected price/tick/fees/liquidity immediately after core.swap and again after settlement/refunds. Only a verified own swap may advance a reviewed external reference. Explicit emergency remains a separate caller/mask path."
+          "notes": "Ordinary and priced manual execution use an exact actual-core output/post-state quote. Oracle proves the complete price/tick/fees/liquidity immediately after core.swap, before settlement callbacks, then validates later boundaries. Only the proven own transition may change a registered external reference. Explicit masks without2/4 retain their unpriced path and caller floors."
         },
         {
           "signature": "receive()",
@@ -66682,7 +66864,7 @@
   "gaps": [],
   "counts": {
     "contracts": 40,
-    "functions": 956,
+    "functions": 959,
     "constructors": 40,
     "receive_hooks": 13,
     "fallback_hooks": 0,

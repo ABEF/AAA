@@ -2,8 +2,10 @@
 
 Use the [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) and
 [operator procedure](OPERATOR_MANUAL.md#local-manual-recovery-rehearsal) for actual
-local C/D receipts, gas and post-state checks. This closes controlled local
-composition only; emergency reference-as-venue coupling remains open.
+local C/D receipts, gas and post-state checks. That earlier record closes its controlled local
+composition only. The [current guarded manual fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) now
+accepts a proven own swap through an external reference, retaining all selected
+financial/live checks. New pins and current-source gas evidence remain required.
 
 Use [manual LP failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 to interpret failed stages, known local causes, opaque RPC errors and uncertain

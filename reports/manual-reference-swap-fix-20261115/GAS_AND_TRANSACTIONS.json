@@ -1,0 +1,41 @@
+[
+  {
+    "case": "active-c14",
+    "action": "C",
+    "source_acceptance": "rpc/c14-2/REFERENCE_ACCEPTANCE.json",
+    "transaction_hash": "0x7f9489135b1ae93c026dd4ce797716349b28bbb28bc38fe30583d235bc8a7830",
+    "estimate": 12798287,
+    "exact25percent_padded": 15997859,
+    "receipt_gas": 11916187,
+    "headroom_to24M": 8002141,
+    "review_sha256": "64cacec7b3e7b5486e2e017332f8d431185b5290cd02f5a8146074412fb7ed07",
+    "transaction_sha256": "c9643ee4a629cec0765b45916a2f6d9afdb18647f70353b672334595f9dc0b0c",
+    "receipt_sha256": "494aad39d62a29abab8cb668dbb426847b56fd06d674f380940ed182fa11f989"
+  },
+  {
+    "case": "active-d14",
+    "action": "D",
+    "source_acceptance": "rpc/d14-1/REFERENCE_ACCEPTANCE.json",
+    "transaction_hash": "0x8fa621994e6922309755f5d2262fba80bf9e1e4d24e2f602626f8258a05b0a31",
+    "estimate": 13052693,
+    "exact25percent_padded": 16315867,
+    "receipt_gas": 12124593,
+    "headroom_to24M": 7684133,
+    "review_sha256": "b99f341addf6e3dc4022d7522e9ab3ca348d0e236adea0ce3387a27d08adfe55",
+    "transaction_sha256": "a884b20215c1d32d39aa3150ae12d891b105a9d8dfd87acdd7d1fd726ee35428",
+    "receipt_sha256": "4e7ae33690f17f1fe9207b1ea757cce8c51333b64c0ca2884deeec9b95c46eb8"
+  },
+  {
+    "case": "parked-d14",
+    "action": "D",
+    "source_acceptance": "rpc/parked14-1/REFERENCE_ACCEPTANCE.json",
+    "transaction_hash": "0xe334595fc5705f9558cc1432fdacb29db9c71bd801a4f21595a248f66365e063",
+    "estimate": 11446251,
+    "exact25percent_padded": 14307814,
+    "receipt_gas": 10770951,
+    "headroom_to24M": 9692186,
+    "review_sha256": "d3b3638ada5f489356c6bfb80fe17bbc04e265f288e0015a09d02d8b75a36280",
+    "transaction_sha256": "65912a33fb2ee6a090e174d44c14b4bda610a83386a273b0417cf5fceb1776d8",
+    "receipt_sha256": "416e1adc2a231c616ef0e5f621df42f64f3545a003665481a14fa0f25ec34f13"
+  }
+]

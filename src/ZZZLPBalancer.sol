@@ -98,8 +98,11 @@ contract ZZZLPBalancer is ZZZModule {
         return selected + fee - Math.mulDiv(selected,fee,1_000_000);
     }
     function _pool(bytes32 id) private view returns (PoolConfig memory c) {
+        return _pool(id,true);
+    }
+    function _pool(bytes32 id,bool requireOperations) private view returns (PoolConfig memory c) {
         c = IZZZPools(access.module(Ids.POOLS)).accounting(id);
-        if (!c.operationsEnabled || c.key.currency0 != address(0) || c.key.currency1 == address(0) ||
+        if ((requireOperations && !c.operationsEnabled) || c.key.currency0 != address(0) || c.key.currency1 == address(0) ||
             c.key.hooks != address(0) || c.key.fee > 100000 || c.maxSlippageBps > 1000 ||
             keccak256(abi.encode(c.key)) != id) revert InvalidConfiguration();
     }
@@ -287,11 +290,13 @@ contract ZZZLPBalancer is ZZZModule {
                 (state.protocolFee & 0xfff)>1000 || state.protocolFee>>12>1000)revert InvalidState();
         }
     }
-    /// @notice Fresh exact-input proof for a typed standalone Manager swap.
-    /// It transfers nothing and cannot be called by a keeper or arbitrary user.
+    /// @notice Fresh exact-input proof for a typed Manager swap. All structural
+    /// admission stays; operations-enabled belongs to Manager's ordinary or
+    /// explicit retained-bit8 path. Quoting settles nothing and reverts all core
+    /// changes; it grants no permission to a keeper or arbitrary user.
     function quoteSwap(bytes32 poolId,bool direction,uint256 amount) external returns(uint256 output,MarketState memory state) {
         if(msg.sender!=liquidityManager() || !access.isSealed())revert Unauthorized();
-        return this.quoteCandidate(_pool(poolId).key,direction,amount);
+        return this.quoteCandidate(_pool(poolId,false).key,direction,amount);
     }
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         if (msg.sender != address(poolManager) || pendingQuoteHash == bytes32(0) || keccak256(data) != pendingQuoteHash) revert Unauthorized();

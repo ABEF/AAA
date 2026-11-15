@@ -1,0 +1,7 @@
+{
+  "phase": "before_node_or_output_creation",
+  "source_sha256": "cb8f88c5908865c7ef42d548045a7d9a3c70c1ae91bed45600cba782eb9b403e",
+  "reason": "Foundry metadata hashes LF-normalized Manager/Balancer inputs, whereas raw repository source preserves CRLF. Only explicit LF metadata normalization changed; raw hashes stay pinned.",
+  "actual_nodes_spawned": 0,
+  "transactions": 0
+}

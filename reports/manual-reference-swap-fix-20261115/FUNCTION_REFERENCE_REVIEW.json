@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "existing_abis_byte_for_byte_equal": true,
+  "new_abi_methods": {
+    "ZZZContributionPricing": [
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "bucket",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "opening",
+            "type": "bool"
+          }
+        ],
+        "name": "emergencyExecution",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "ZZZLPBalanceMath": [
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "pool",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "direction",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "executionMinimumOutputForExit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "pool",
+            "type": "bytes32"
+          }
+        ],
+        "name": "executionValidateExitPrice",
+        "outputs": [
+          {
+            "internalType": "uint160",
+            "name": "spot",
+            "type": "uint160"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ]
+  },
+  "existing1009examples_unchanged": true,
+  "new_example_count": 3,
+  "total_examples": 1012,
+  "reference_before": "762d7fd8cdf0428f0bc948ee2f5fb05cd2fe464f8513bab32d3f55c2c6f84c10",
+  "reference_after": "921d93016e92bb66809f4945dd9ffc12883c13565faf21ace5274045a02c5099",
+  "source_snapshot_boundary": "Fresh source/runtime/normal compiler pins; old reviews/artifacts remain original bytes and are never rehashed.",
+  "reference_hash_domains": {
+    "reference_before": "Canonical-JSON SHA from immediately before final example rebinding, not a claimed raw baseline file SHA.",
+    "reference_after": "Canonical-JSON SHA used by the maintained operator example checker.",
+    "final_catalog_reference_raw_sha256": "7158ee98be7a96cb417200d19750e41a127c8c989b9d80d63f7a87255ff2ddb6",
+    "final_operator_reference_canonical_sha256": "921d93016e92bb66809f4945dd9ffc12883c13565faf21ace5274045a02c5099",
+    "captured_catalog_boundary": "Actual CLI preserves exact original raw reference/notes/source snapshots. Different raw/canonical hash domains are not source drift."
+  }
+}

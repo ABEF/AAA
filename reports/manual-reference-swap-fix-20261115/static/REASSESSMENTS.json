@@ -1,0 +1,1991 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "independent_audit": false,
+  "reviewer": "Internal independent child-agent scoped source review",
+  "source_stage": "normal-4 / static-c6df24a8ac",
+  "input_sha256": "0c77b00d00fed07dd74a01e161451e1ad22d7063ca308bd71b215ac7d82853fa",
+  "record_count": 113,
+  "source_sha256_lf": {
+    "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+    "src/ZZZActivationEntry.sol": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+    "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+    "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+    "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+    "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+    "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031",
+    "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+    "src/ZZZMigration.sol": "4fe0afe1ef2c88cb2d43a849ea7fc4c50f6d9cf0a54638bb50ea5993dc1c8302",
+    "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+    "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+    "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+    "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+    "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+    "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb"
+  },
+  "findings": [
+    {
+      "record": 1,
+      "fingerprint": "526d14a03e8be365751fce48674112c343b7116f8af386e1fc5562acc761852c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks_scope_0) (src/ZZZLiquidityManager.sol#302)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Guarded-consolidation planReplacement runs under fixed-Vault-only nonReentrant balance. Its fixed router settles nothing. Original tokenPrefund is an intentional invariant: exact final native/token balances, original main L/ticks and balanceContext reject callback changes rather than adopting a stale spendable balance.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 2,
+      "fingerprint": "f7dc8e0853d144fec623320bede1b121e615437b8d064eb0eae3dfca9c505f1e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender,p.amountOut,p.afterState) (src/ZZZLiquidityManager.sol#315)\n\t\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#250)\n\t\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#251)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Actual swap executes under Vault-only nonReentrant balance with authenticated pending callback hash, exact output/full-state proof and final original prefund/context checks. Unexpected token balance changes cannot become accepted custody; they atomically reject.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 3,
+      "fingerprint": "9f4e079b13bf3202dedbf6c9787f1bdd5aeb84bc2a8b1aa4d1d470c7c5607d3b",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#237-256):\n\tExternal call allowing reentrancy:\n\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#250)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#247)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#252-253)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Fixed Oracle.beforeSwap uses bounded STATIC downstream observations. beforeOutput deliberately precedes the mutable core/settlement boundary; final recipient balance must equal that original value plus proven output, under Manager's nonReentrant entry and exact pending payload hash.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 4,
+      "fingerprint": "f130a8e4e3c3400259d9c122bc0b175bf2246fcf0fba5592f6b14811e11b9446",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,_portfolioPolicy().minimumMainBps(targetPool),marks) (src/ZZZLiquidityManager.sol#293-294)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Hybrid replacement routing uses captured main floor and bounded rollback-only quotes under Vault-only nonReentrant balance. tokenPrefund forbids spending pre-existing Manager assets; exact final balances, physical LP metadata/L and context remain mandatory.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 5,
+      "fingerprint": "ca80bfac1f03a4cc3fc7e7cbf1407095577801c2ca74ad3318f1e4a8947afde2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks) (src/ZZZLiquidityManager.sol#293-294)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "This separately inlined mainFloor=10000 replacement context still uses the fixed nonsettling router and nonReentrant parent. Original tokenPrefund is checked after refunds with native balance, existing LP metadata and source/configuration context; it is never refreshed after callbacks.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 6,
+      "fingerprint": "36faee2a22fbf5804abd84557d0ad83de3c9ca6259e61ab1d82291d4b837e3bb",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- _sendNative(msg.sender,refund0) (src/ZZZLiquidityManager.sol#322)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Native refunds target the authenticated fixed Vault caller. The receipt arm/accumulator are cleared before forwarding; nonReentrant balance then checks exact original native/token prefunds and context. Receiver changes to balances or controls cause atomic rejection.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 7,
+      "fingerprint": "b4c9c187579e0550fc601dc33a12b27c6d14313d62c6c31c915c3dda44bc042e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- (p.amountOut,p.afterState) = balancingRouter.quoteSwap(p.poolId,p.zeroForOne,p.amountIn) (src/ZZZLiquidityManager.sol#312)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Manual quoteSwap is fixed-Manager-only/sealed and rolls back its actual-core quote without settlement. Actual Manager independently checks retained operations, exact output/state and final prefunds/context under nonReentrant balance. The original token balance remains a deliberate invariant.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 8,
+      "fingerprint": "146af4ff0a58387fe9abd5b378306e44f8514b86aa20439791e1181c3c1e128e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#237-256):\n\tExternal call allowing reentrancy:\n\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#251)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#247)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#252-253)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "unlock accepts only immutable core and exact pendingSwapHash. Callback proves exact input delta, caller floor, quoted output and Oracle state; final recipient balance equals original beforeOutput plus amountOut. NonReentrant entry and final validation reject callback interference.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 9,
+      "fingerprint": "bf835c043a4fc165a0323ea0c5eb32c23c04cb6c3f44c912e0c7c68cab1865e5",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1) (src/ZZZLiquidityManager.sol#303)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#269)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool) != context (src/ZZZLiquidityManager.sol#328-329)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Ordinary plan is bounded to four reviewed venues and bounded rollback quotes under fixed-Vault-only nonReentrant balance. Final refunds restore original token/native prefunds and preserve existing LP L/ticks plus authenticated context; quotes cannot settle or adopt a later balance.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 10,
+      "fingerprint": "fdb29b60513e004ac13d9409a29cb39a981f666197ac9461715afe3ea00494cf",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLPPositionExecutor.collect(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#261-268):\n\tExternal calls:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#265)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#282)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#267)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#282)\n\tExternal calls sending eth:\n\t- _collectOne(poolId,c.key,id,deadline) (src/ZZZLPPositionExecutor.sol#265)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#267)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\tState variables written after the call(s):\n\t- _collectOne(poolId,c.key,aux,deadline) (src/ZZZLPPositionExecutor.sol#267)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#279)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#74)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#38) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#56-58)\n",
+      "referenced_paths": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Executor.collect is fixed-Manager-only, sealed and nonReentrant. Each of at most two legs proves Vault ownership/pool metadata and actual receipts. receive accepts only armed immutable core; receipt state is cleared before exact forwarding to fixed Vault.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c"
+      }
+    },
+    {
+      "record": 11,
+      "fingerprint": "a347f627d64cac2cf8bf5c75e6dc550aef69d0c6321fb3d829cc71b71cb556cc",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLPPositionExecutor.close(bytes32,uint256,uint256) (src/ZZZLPPositionExecutor.sol#287-297):\n\tExternal calls:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#292)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#282)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#294)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLPPositionExecutor.sol#282)\n\tExternal calls sending eth:\n\t- _closeOne(poolId,c,id,deadline) (src/ZZZLPPositionExecutor.sol#292)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#294)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLPPositionExecutor.sol#67)\n\tState variables written after the call(s):\n\t- _closeOne(poolId,c,aux,deadline) (src/ZZZLPPositionExecutor.sol#294)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#279)\n\t\t- nativeReceived = 0 (src/ZZZLPPositionExecutor.sol#74)\n\tZZZLPPositionExecutor.nativeReceived (src/ZZZLPPositionExecutor.sol#38) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.receive() (src/ZZZLPPositionExecutor.sol#56-58)\n\t- delete primaryOfSecondary[aux] (src/ZZZLPPositionExecutor.sol#295)\n\tZZZLPPositionExecutor.primaryOfSecondary (src/ZZZLPPositionExecutor.sol#40) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor._main(uint256) (src/ZZZLPPositionExecutor.sol#87-89)\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#110-121)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#95-108)\n\t- delete secondaryId[id] (src/ZZZLPPositionExecutor.sol#295)\n\tZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#39) can be used in cross function reentrancies:\n\t- ZZZLPPositionExecutor.portfolioAmounts(uint256) (src/ZZZLPPositionExecutor.sol#110-121)\n\t- ZZZLPPositionExecutor.portfolioFingerprint(uint256) (src/ZZZLPPositionExecutor.sol#95-108)\n\t- ZZZLPPositionExecutor.secondaryId (src/ZZZLPPositionExecutor.sol#39)\n",
+      "referenced_paths": [
+        "src/ZZZLPPositionExecutor.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Executor.close is fixed-Manager-only and nonReentrant. Both Vault-owned legs close with actual metadata, raw floors and exact receipts before association deletion. Native receipt state clears before forwarding to fixed Vault; failure restores assets and residual associations atomically.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c"
+      }
+    },
+    {
+      "record": 12,
+      "fingerprint": "c29e38f0311bc1f6828418b85ef32ff7ed4a1ae958eccd06aa2052c0c741af04",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZMigrationBudget.endEmergency() (src/ZZZMigrationBudget.sol#106-111):\n\tExternal calls:\n\t- _pricing().emergencyExecution(emergencyBucket,false) (src/ZZZMigrationBudget.sol#109)\n\tState variables written after the call(s):\n\t- emergencyActive = false (src/ZZZMigrationBudget.sol#110)\n\tZZZMigrationBudget.emergencyActive (src/ZZZMigrationBudget.sol#51) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#241-261)\n\t- ZZZMigrationBudget._skip(uint8) (src/ZZZMigrationBudget.sol#126)\n\t- ZZZMigrationBudget.balanceContext(uint256) (src/ZZZMigrationBudget.sol#357-360)\n\t- ZZZMigrationBudget.checkpoint(uint256,uint8) (src/ZZZMigrationBudget.sol#205-224)\n\t- ZZZMigrationBudget.emergencyActive (src/ZZZMigrationBudget.sol#51)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#228-230)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#233-237)\n\t- ZZZMigrationBudget.mintTarget(uint256) (src/ZZZMigrationBudget.sol#346-354)\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#112-116)\n\t- ZZZMigrationBudget.validateRebalance(uint256,uint128) (src/ZZZMigrationBudget.sol#393-401)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#390-392)\n\t- delete emergencyBucket (src/ZZZMigrationBudget.sol#110)\n\tZZZMigrationBudget.emergencyBucket (src/ZZZMigrationBudget.sol#52) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget.emergencyBucket (src/ZZZMigrationBudget.sol#52)\n\t- ZZZMigrationBudget.emergencyFingerprint() (src/ZZZMigrationBudget.sol#117-125)\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#112-116)\n\t- delete emergencyChecks (src/ZZZMigrationBudget.sol#110)\n\tZZZMigrationBudget.emergencyChecks (src/ZZZMigrationBudget.sol#53) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._skip(uint8) (src/ZZZMigrationBudget.sol#126)\n\t- ZZZMigrationBudget.emergencyChecks (src/ZZZMigrationBudget.sol#53)\n\t- ZZZMigrationBudget.emergencyFingerprint() (src/ZZZMigrationBudget.sol#117-125)\n\t- ZZZMigrationBudget.validateRebalance(uint256,uint128) (src/ZZZMigrationBudget.sol#393-401)\n\t- delete emergencyGovernor (src/ZZZMigrationBudget.sol#110)\n\tZZZMigrationBudget.emergencyGovernor (src/ZZZMigrationBudget.sol#54) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#112-116)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Budget.endEmergency is fixed-Migration-only/nonReentrant and validates active paused governance plus empty snapshot. Fixed Pricing/Oracle final validation uses STATIC downstream reads; emergency flags intentionally remain set until scope clear returns, then local deletion disarms the context.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 13,
+      "fingerprint": "a8c71905d38f3b26296d3ba131c74acc477003b32b52809ae0bd706ad7932567",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1) (src/ZZZContributionPricing.sol#187)\n\tState variables written after the call(s):\n\t- basis.maxIdleBps = entry.maxIdleBps (src/ZZZContributionPricing.sol#190)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- basis.entryPolicyFingerprint = keccak256(bytes)(abi.encode(address(policy),entry)) (src/ZZZContributionPricing.sol#191)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- basis.limits = uint32(c.maxSlippageBps) | (uint32(cap) << 16) (src/ZZZContributionPricing.sol#196)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Private _pair runs after authenticated begin sets phase=1. Immutable Oracle allows only Pricing, rejects nested scopes and observes feeds/policies with STATIC calls. Remaining entry limits/marks finish before any user-asset movement; a feed cannot reenter these writes.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 14,
+      "fingerprint": "3977b234a0bf0d4a6ed197a48a6fae498ba26ad9bff2ec9fa2ba6da0e0db6c99",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217):\n\tExternal calls:\n\t- _pair(pool) (src/ZZZContributionPricing.sol#209)\n\t\t- IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1) (src/ZZZContributionPricing.sol#187)\n\tState variables written after the call(s):\n\t- _mark(source) (src/ZZZContributionPricing.sol#212)\n\t\t- assets.push(token) (src/ZZZContributionPricing.sol#181)\n\tZZZContributionPricing.assets (src/ZZZContributionPricing.sol#65) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#175-182)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- basis.lowerInput = lowerUSD (src/ZZZContributionPricing.sol#215)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- basis.upperInput = Math.mulDiv(amount,m.upper,m.scale,Math.Rounding.Ceil) (src/ZZZContributionPricing.sol#216)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- _mark(source) (src/ZZZContributionPricing.sol#212)\n\t\t- marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint) (src/ZZZContributionPricing.sol#180)\n\tZZZContributionPricing.marks (src/ZZZContributionPricing.sol#64) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#175-182)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing._upper(address,uint256) (src/ZZZContributionPricing.sol#247-252)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "beginEntryReviewed authenticates bound Entry, live lifecycle and idle phase, then sets phase=1 before immutable Oracle capture. Downstream sources are STATIC. Original input bounds, exact entry fingerprint and caller loss cap are fixed before asset callbacks.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 15,
+      "fingerprint": "d24a9d30770440ba90b6f856cf468c024db96301821e4df6d278fb671ab3ded2",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296):\n\tExternal calls:\n\t- _pricing().endMaintenance(id) (src/ZZZMigrationBudget.sol#292)\n\tState variables written after the call(s):\n\t- delete compoundIncluded (src/ZZZMigrationBudget.sol#294)\n\tZZZMigrationBudget.compoundIncluded (src/ZZZMigrationBudget.sol#73) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#265-271)\n\t- delete snapshot (src/ZZZMigrationBudget.sol#293)\n\tZZZMigrationBudget.snapshot (src/ZZZMigrationBudget.sol#72) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#241-261)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#265-271)\n\t- ZZZMigrationBudget.assertDeployed(uint256) (src/ZZZMigrationBudget.sol#314-319)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#228-230)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#233-237)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#390-392)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_afterMove runs through onlyVault checkpoints inside Vault's nonReentrant maintenance. Financial/control checks precede fixed Pricing.endMaintenance, whose Oracle observations are STATIC, then local snapshot cleanup. Emergency scope intentionally survives until outer final manifest and explicit Budget.endEmergency.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 16,
+      "fingerprint": "54d670cc3a982426d11715fca8385259c4ad0ba4e89bed517af4ea65cc65446c",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#163-167):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).endExecution() (src/ZZZContributionPricing.sol#165)\n\tState variables written after the call(s):\n\t- delete maintenanceBucket (src/ZZZContributionPricing.sol#166)\n\tZZZContributionPricing.maintenanceBucket (src/ZZZContributionPricing.sol#38) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#163-167)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Private _endMaintenanceExecution requires matching nonzero bucket and fixed Budget caller. Immutable Oracle.endExecution requires Pricing ownership/no Manager loan and full STATIC source validation before transient clear; no token/receiver callback occurs before maintenanceBucket deletion.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 17,
+      "fingerprint": "2a422f8c7262eb7b06bbca19a78b10e4afd88b59edd0e3d14432c04a0d21c3e8",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#241-261):\n\tExternal calls:\n\t- mark = _pricing().markMaintenance(id) (src/ZZZMigrationBudget.sol#255)\n\tState variables written after the call(s):\n\t- snapshot = s (src/ZZZMigrationBudget.sol#260)\n\tZZZMigrationBudget.snapshot (src/ZZZMigrationBudget.sol#72) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#241-261)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#265-271)\n\t- ZZZMigrationBudget.assertDeployed(uint256) (src/ZZZMigrationBudget.sol#314-319)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#228-230)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#233-237)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#390-392)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Private _beforeMove runs via onlyVault under Vault's maintenance lock, rejects existing snapshot and captures limits/controls before fixed Pricing mark. Oracle capture rejects nesting and observes sources STATIC. Nonzero complete mark is required before committing snapshot; no token callback exists here.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 18,
+      "fingerprint": "4a8b864f927d78c4272b029dd1a246bfff578afc2008c942298533c4efd0e8d1",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239):\n\tExternal calls:\n\t- _pair(pool) (src/ZZZContributionPricing.sol#227)\n\t\t- IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1) (src/ZZZContributionPricing.sol#187)\n\tState variables written after the call(s):\n\t- basis.lowerInput = _pairValue(a0,a1) (src/ZZZContributionPricing.sol#229)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- basis.upperInput = _upper(basis.token0,a0) + _upper(basis.token1,a1) (src/ZZZContributionPricing.sol#230)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n\t- basis.bucket = bucket (src/ZZZContributionPricing.sol#236)\n\tZZZContributionPricing.basis (src/ZZZContributionPricing.sol#63) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#158-162)\n\t- ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351)\n\t- ZZZContributionPricing._lower(address,uint256) (src/ZZZContributionPricing.sol#240-246)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198)\n\t- ZZZContributionPricing._pairValue(uint256,uint256) (src/ZZZContributionPricing.sol#253-255)\n\t- ZZZContributionPricing._putUnchanged() (src/ZZZContributionPricing.sol#299-301)\n\t- ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317)\n\t- ZZZContributionPricing.active() (src/ZZZContributionPricing.sol#85)\n\t- ZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#220-239)\n\t- ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#202-217)\n\t- ZZZContributionPricing.contributionNav(uint256) (src/ZZZContributionPricing.sol#285-292)\n\t- ZZZContributionPricing.endEntry() (src/ZZZContributionPricing.sol#342-346)\n\t- ZZZContributionPricing.entryIdleLimit(uint256) (src/ZZZContributionPricing.sol#100-103)\n\t- ZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32) (src/ZZZContributionPricing.sol#318-339)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#276-282)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#256-261)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Budget-only begin validates the exact prior Entry context or sets phase=1 before _pair. Immutable Oracle capture has STATIC downstream reads. Packed ETH/ZZZ amounts, original lower input, frozen limits and _unchanged must match before bucket adoption; sources cannot mutate during capture.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 19,
+      "fingerprint": "e874ea7e2d69388ff024ec1bfe177cda8a11971d4725a340ad3fc07ec50b149d",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).request (src/ZZZLiquidityManager.sol#270) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes EmergencyRebalance memory to zero. Fields are read only in emergency branches after loading the fixed Migration request. Ordinary paths obtain authenticated ticks and router plan instead; default request fields cannot be interpreted as a reviewed emergency.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 20,
+      "fingerprint": "037aa4199e992d215ddf6809814f55b4a2aa9c34ad90045ad225fed1afe27967",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).p (src/ZZZLiquidityManager.sol#283) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Plan is intentionally zero-initialized. Emergency fills exact request fields; priced masks subsequently fill quote output/full state. Unpriced masks deliberately retain amountOut=0, avoiding an invented Oracle proof. Ordinary branches assign complete returned plans; unused no-swap fields are harmless.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 21,
+      "fingerprint": "de90a17ba3bf19294ac77882ec2519e8600e638253587e104f2f1f47368e163e",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool).state (src/ZZZLPBalancer.sol#204) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "MarketState is assigned with output only when quote succeeds. Its consumers are inside quoted=true; failed quotes merely shrink hi and never record a plan or execute a trade. Full state is independently proven again during actual execution.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 22,
+      "fingerprint": "dc7be7dba84df6fc75f3cb92056b00126e9865b7de3bd73004ef595d971ca47f",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).priorLiquidity (src/ZZZLiquidityManager.sol#272) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "priorLiquidity intentionally defaults zero for new-main flow. ExistingLpId branch authenticates NFT and reads actual L before pull, then compares final L/ticks against that populated baseline. Zero is never used as an existing-position liquidity assertion.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 23,
+      "fingerprint": "387e13eab2763187f1481d652c4ee3c7718ec00c080e402bb2f9ba367a71a674",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.plan(bytes32,int24,int24,uint256,uint256).marks (src/ZZZLPBalancer.sol#135) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Zero marks are the single-main sentinel: plan passes mainFloor=10000, so Math uses captured Prices rather than marks. Hybrid replacement supplies and validates its nonzero captured four-word vector. There is no uninitialized hybrid valuation.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 24,
+      "fingerprint": "a66cdc17f9df4ac7759d7e5f4ff04f1d0977caa519cbc1faac5e355e27883d29",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).marks_scope_0 (src/ZZZLiquidityManager.sol#301) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Guarded same-main consolidation intentionally passes zero marks with mainFloor=10000. Math selects captured Prices for that mode; only hybrid branches require marks. Active-main filtering and exact later placement remain enabled.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 25,
+      "fingerprint": "b82f7ec0b2afb9dacec2eb16733d7fc35af5bde9627501ce107348ea42c1ec4e",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool).interpolated (src/ZZZLPBalancer.sol#203) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "interpolated=0 is a per-pass sentinel meaning no valid secant candidate. Search uses it only when nonzero and inside [lo,hi), otherwise safe midpoint. Failed/skipped branches cannot reuse previous interpolation memory.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 26,
+      "fingerprint": "1105d1e3c4afef06c00e5a85dca9f71705a1d784b4df1dd1518374ff4a5c45a0",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool).output (src/ZZZLPBalancer.sol#204) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "output is assigned with state only on successful quote. All consumers are inside quoted=true; failure leaves false and reduces hi. No zero/uninitialized quote can populate best or become an executed swap.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 27,
+      "fingerprint": "05c38d93a3acd9cad1858d593d268d44587ac16e949ac12df07439ed5b16b22a",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.assertPortfolioUtilization(uint256,uint256,uint256,uint256,uint256).residual (src/ZZZLPBalanceMath.sol#184) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "residual correctly defaults zero without secondaryId. With residual, actual token amounts are independently valued before main+residual+idle allocation checks. Raw L is never added across different ranges; default zero is the correct absent-leg value.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 28,
+      "fingerprint": "5858e3a98dd795781ad7002a407907569e0a2313d634a64c8a340377410c2a0a",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZMigrationBudget._beforeMove(uint256,bool).s (src/ZZZMigrationBudget.sol#244) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Snapshot required bucket/source/control/limit/price/scale/idle/value fields are populated before storage assignment and value must be nonzero. portfolioRevision/replacement intentionally stay zero only in emergency, whose completion does not consume ordinary portfolio fields.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 29,
+      "fingerprint": "74ae1e6593d0c08d7ea146e052a5c45261973afb4de48bc2e815db1fc2330b2c",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.evaluate(ZZZLPBalanceMath.Context,uint160,uint256,uint256).used1 (src/ZZZLPBalanceMath.sol#261) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "used1 must remain zero at/below lower range boundary, where LP holds only token0. Other branches assign it from actual L and bounds before value conversion. Solidity zero initialization is the correct one-sided amount.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 30,
+      "fingerprint": "19e7e95320f4140e20bd38c711cc790caeb55e8ced400959b9931bed79be3014",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool).quoted (src/ZZZLPBalancer.sol#204) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "quoted defaults false each iteration and changes true only alongside successful output/state assignment. Exceptions take only the hi-reduction branch. A failed or absent quote cannot be treated as valid.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 31,
+      "fingerprint": "4458a36e5d07a19a42cff80e2546c88ee748858367bd2c83e28fd51e8a74f7e1",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool).lo (src/ZZZLPBalancer.sol#196) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "lo=0 is the intentional nonnegative input-search lower bound. hi is available funds clamped to int128 maximum; positive seed is clamped and branches tighten the bracket. Checked arithmetic and at most12 iterations prevent unbounded search.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 32,
+      "fingerprint": "26f67668218662c674851ea92e341507f88280b2fc87466a3dc73fa1d9664613",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.evaluate(ZZZLPBalanceMath.Context,uint160,uint256,uint256).used0 (src/ZZZLPBalanceMath.sol#261) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "used0 correctly stays zero at/above upper boundary, where principal is token1-only. Other branches populate it from actual L and sqrt bounds. This avoids fabricating token0 inventory rather than omitting initialization.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 33,
+      "fingerprint": "e8ed49e5de846b30a38d4a2bd98fe215d863ce139126356e4fae23d0a67f51bb",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._executionValue(address,uint256) (src/ZZZContributionPricing.sol#262-265) ignores return value by (lower,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#263)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_executionValue deliberately values actual principal at captured lower price. Original input upper bounds and fingerprints are enforced by contribution/maintenance contexts and full mutable-boundary Oracle validation; unused tuple fields are not required here.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 34,
+      "fingerprint": "8bbe9109c378ea42606f216175cc2fdc5bbef095ae57b545238ff59777136cfe",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335) ignores return value by (lower,upper,None) = IZZZExecutionStrategy(address(balancingRouter.balanceMath())).executionTarget(targetPool) (src/ZZZLiquidityManager.sol#278)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Manager needs only exact ticks from executionTarget, which already validates operations and derives geometry from captured reference. Subsequent policy/full-state/placement checks remain. The unused returned reference need not be duplicated as another price authority.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 35,
+      "fingerprint": "97e31421b9e94303e12d1a345f63df6b00c0822b82fc50c45b1d9af0511d74d8",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.policyFingerprint(bytes32,bytes32) (src/ZZZLPBalanceMath.sol#82-98) ignores return value by (lower0,None,first) = o.executionBounds(address(0)) (src/ZZZLPBalanceMath.sol#87)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "policyFingerprint uses ETH lower price for geometry and its original round/policy fingerprint for provenance. Upper bounds remain captured and used by financial floors, while full Oracle boundary validation persists. Ignoring an unused upper tuple value does not drop its safeguards.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 36,
+      "fingerprint": "f2e8d828b43fc7f3d5b4c1ecc6317b6872e3631eadb8f418c087e7ade516a218",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZCustodyValidation._emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#147-161) ignores return value by (None,None,a) = oracle.executionBounds(c.key.currency0) (src/ZZZCustodyValidation.sol#158)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Emergency commitment needs the original ETH source/policy fingerprint. It explicitly fully validates execution before hashing both captured fingerprints; retained value and price guards separately consume captured bounds. Verified own-swap movement cannot replace starting identity.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a"
+      }
+    },
+    {
+      "record": 37,
+      "fingerprint": "7fadba6f04d1aa44188834f9c20e707aa31bc2356d0f1d72408f1a12b4c4c99b",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#130-132) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#131)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "spot is a narrow actual sqrt accessor. Callers needing tick/activity/fees/L read those separately, and policySpot adds captured independent-reference checks. Returning only sqrt grants no movement authority or substitute full-state proof.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 38,
+      "fingerprint": "89c865cb74287d4872cde58ac2873d1607ae506e2a54abc59a73e1945b05b584",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#123-140) ignores return value by (mark.price0,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency0) (src/ZZZContributionPricing.sol#133)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "markMaintenance intentionally stores conservative captured ETH lower price with scale/idle/value and maintenance policy. Oracle owns original source identity and final validation. Upper/fingerprint values need not be duplicated in MaintenanceMark.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 39,
+      "fingerprint": "acf52ecd14715f1fd7c0f7a91a365d84f6677c0aebbf84cedc1fc0b77bce2c7a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.configureExecutionPools(bytes32[],bytes32) (src/ZZZLPBalancer.sol#73-86) ignores return value by (None,None,None,fee) = stateView.getSlot0(pools[i]) (src/ZZZLPBalancer.sol#79)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Venue configuration needs actual LP fee equal admitted PoolKey after structural admission and Strategy price validation. Later exact quote/full-state execution rechecks current state. Other getSlot0 fields are not required in this configuration step.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 40,
+      "fingerprint": "be7df9a287150bdb2b635f0c7fce11809e28e18d015589a36c8d50153349b3e9",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.executionPrices(address) (src/ZZZLPBalanceMath.sol#115-122) ignores return value by (p.lower1,p.upper1,None) = IZZZExecutionOracle(address(o)).executionBounds(token) (src/ZZZLPBalanceMath.sol#118)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "executionPrices needs ZZZ lower/upper bounds for conservative output/input floors. Oracle retains source fingerprints and fully validates provenance/freshness at mutable boundaries. A duplicate unused fingerprint is unnecessary in this arithmetic-only helper.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 41,
+      "fingerprint": "4912457f8539c64b2d9b5c08a7add6685e4c145c160ab22e7b211b91edbce716",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.executionPrices(address) (src/ZZZLPBalanceMath.sol#115-122) ignores return value by (p.lower0,p.upper0,None) = IZZZExecutionOracle(address(o)).executionBounds(address(0)) (src/ZZZLPBalanceMath.sol#117)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "executionPrices consumes both ETH bounds while fixed Oracle scope retains round/policy provenance and full boundary validation. Ignoring the unused fingerprint neither makes source selection mutable nor adds a live-price override.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 42,
+      "fingerprint": "a0c95f4f3d6ffcc8802e9f31f6c99f92995356b8d1d9727fd09cd67293df11f9",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZCustodyValidation._emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#147-161) ignores return value by (None,None,b) = oracle.executionBounds(c.key.currency1) (src/ZZZCustodyValidation.sol#158)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "ZZZ fingerprint enters emergency commitment after full validateExecution. Pricing/Budget and minimum-output helpers separately use original numerical bounds. Own-swap market advancement therefore preserves identity without adopting a repriced fingerprint.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a"
+      }
+    },
+    {
+      "record": 43,
+      "fingerprint": "8bcfd3220acc6c6319da6dfcb1a1b69da77acfa3cfdd666fdb15f327d43c2a33",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.principalAmounts(address,address,uint256) (src/ZZZLPBalanceMath.sol#229-240) ignores return value by (current,None,None,None) = IStateViewMinimal(state).getSlot0(keccak256(bytes)(abi.encode(key))) (src/ZZZLPBalanceMath.sol#235)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "principalAmounts requires sqrt, position ticks and actual L for Uniswap principal math; other slot fields do not enter that formula. Fixed Manager/Executor callers separately check ownership/custody/full execution state. This read grants no withdrawal authority.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 44,
+      "fingerprint": "c7afb853264e76883c6907770d2ae7a93a721050240c2aadffe1cf0a8b77b5ce",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#365-370) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#367)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "validateReservation calls get to require registered-pool existence/admission by revert, then checks bucket association. It makes no trade or valuation; token identity and operation permission are checked separately by movement/configuration validation.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 45,
+      "fingerprint": "671670748ba707c18024d8ae1fbd6a866df0d915da331c6a8c32926ba94fbb49",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath._executionMinimumOutput(bytes32,bool,uint256,bool) (src/ZZZLPBalanceMath.sol#131-139) ignores return value by (None,None,protocol,fee) = IExecutionMathState(a.module(Ids.LIQUIDITY)).stateView().getSlot0(pool) (src/ZZZLPBalanceMath.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Floor arithmetic needs actual directional protocol/LP fees; policySpot and full quoted state handle sqrt/tick. Hooklessness, admitted fee and protocol bounds remain checked before captured USD and unchanged gross/additional-loss floors are applied.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 46,
+      "fingerprint": "61a32db0b69ab47e20f799dcb08c73740cf3f7dbe31151ee98d6b00f5b555a9e",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZCustodyValidation._consolidation(uint256,bool) (src/ZZZCustodyValidation.sol#111-134) ignores return value by (None,tick,None,None) = IStateViewMinimal(ICustodyExecutionFingerprint(address(manager)).stateView()).getSlot0(p.poolId) (src/ZZZCustodyValidation.sol#125)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Consolidation preflight needs current tick to prove main active in guarded mode. Immutable ticks/owner/L/pool identity and controls are checked independently. Ignoring sqrt/fees here does not replace complete execution validation.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a"
+      }
+    },
+    {
+      "record": 47,
+      "fingerprint": "7331394075169f8ff1bc24f6daf54053de0da67a74c484744b31a1f101aeb0a9",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#377-380) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault()).group(id).poolId) (src/ZZZMigrationBudget.sol#379)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "validateUnwind uses validateExitPrice as a success-or-revert safety assertion, not a numerical calculation. Only explicit emergency omission of bit2 skips it. Custody, raw floors, exact receipts and atomic rollback remain independent.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 48,
+      "fingerprint": "5562094a38d5a3b16bfeef7a73201c767ea5e2462dc520a2b6cf0ce7c2647b49",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.policyFingerprint(bytes32,bytes32) (src/ZZZLPBalanceMath.sol#82-98) ignores return value by (lower1,None,second) = o.executionBounds(t.key.currency1) (src/ZZZLPBalanceMath.sol#88)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "ZZZ lower price determines reference geometry and second commits original source/policy round identity. Upper bounds still drive captured input/output financial checks. The read-only commitment need not return all numerical pricing fields again.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 49,
+      "fingerprint": "53225e07cf3b15fd673dd7431819aff7080bb2d785b2680b6862aaa0533eefe0",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool) (src/ZZZLPBalancer.sol#187-272) ignores return value by (beforePrice,None,protocol,fee) = stateView.getSlot0(id) (src/ZZZLPBalancer.sol#193)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "routePlan uses current sqrt and directional fees; target activity and actual after-tick are separately checked. Quote returns the full five-word state, subsequently proven during real execution. Initial tick is not needed for this sizing step.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 50,
+      "fingerprint": "4106f44cee64a026981abbadaf32e0c3b80321761f287199e462b8f66365d2dc",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#123-140) ignores return value by (mark.price1,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency1) (src/ZZZContributionPricing.sol#134)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "markMaintenance uses captured ZZZ lower price and scale for aggregate before/after NAV. Whole-scope/final-manifest validation retains original identity, freshness and agreement. Upper/fingerprint fields need not be duplicated in this mark.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 51,
+      "fingerprint": "bf876e7b0035c9d03c959f2411ee52e8154be6bb48931601663d89b73f53ce2b",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.configureExecutionPools(bytes32[],bytes32) (src/ZZZLPBalancer.sol#73-86) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(pools[i]) (src/ZZZLPBalancer.sol#78)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "configureExecutionPools requires validatePrice success, verifies actual admitted LP fee and bounded distinct venues. Returned sqrt need not be stored because each execution re-quotes and validates a fresh captured context.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 52,
+      "fingerprint": "90503c60ff84c2f27c645bd4906e59df79c559d970291d2add25627c0a86a71d",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.quoteCandidate(PoolKey,bool,uint256) (src/ZZZLPBalancer.sol#275-292) ignores return value by poolManager.unlock(payload) (src/ZZZLPBalancer.sol#279-291)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "quoteCandidate must receive the exact196-byte QuoteResult revert. Successful unlock deliberately triggers InvalidState and other revert shapes fail. Ignoring hypothetical successful return data is required to prove no quote settled assets or committed core state.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 53,
+      "fingerprint": "eb875d4688a31f9b37e194bdd95edb24d8a74fb1e6547f55969dec153ea628f8",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._activeTarget(ZZZLPBalanceMath.Context) (src/ZZZLPBalancer.sol#143-146) ignores return value by (price,tick,None,None) = stateView.getSlot0(x.target) (src/ZZZLPBalancer.sol#144)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_activeTarget needs sqrt and tick to prove physical activity/geometry. Pool admission handles fees, and actual quote/execution checks all after-state fields. Ignoring unused fee fields here does not skip fee validation elsewhere.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 54,
+      "fingerprint": "a7036fdfeaff5ebc220c685be4f21dcb02b29087440d51794332a98706438c25",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZMigrationBudget.beginEmergency(uint256,uint8) (src/ZZZMigrationBudget.sol#98-105) should emit an event for: \n\t- emergencyBucket = bucket (src/ZZZMigrationBudget.sol#100) \n\t- emergencyChecks = checks (src/ZZZMigrationBudget.sol#100) \n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "beginEmergency arms a transaction-local context, not persistent governance configuration. Outer Migration emits exact request/review hashes and retained checks after successful EmergencyRebalanced/ResidualConsolidated. Reverted intermediate state disappears; another intermediate event adds no success provenance.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 55,
+      "fingerprint": "b41e6423de976df672e7de099b95c77139207af9303f9308f236ea1a29eb50e4",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.receive() (src/ZZZLiquidityManager.sol#69-72) should emit an event for: \n\t- nativeReceived += msg.value (src/ZZZLiquidityManager.sol#71) \n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "receive only accepts the armed immutable native sender and accumulates actual receipts. Outer exact-balance checks and operation/fee events record completion. A per-transfer event adds gas without creating a new entitlement or configuration audit trail.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 56,
+      "fingerprint": "478e33f649872d285ab797156c1cfed89df2dbac77c2f4a53bb5791ad74d5e1e",
+      "check": "missing-zero-check",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.beginEmergency().budget (src/ZZZLiquidityManager.sol#94) lacks a zero-check on :\n\t\t- emergencyBudget = budget (src/ZZZLiquidityManager.sol#96)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Only fixed Vault can beginEmergency; its Budget is immutable constructor-created. Typed emergencyBucket/validateEmergency calls must succeed before storing the address. Zero/empty-code cannot return required ABI data and fails closed; no arbitrary unvalidated Budget is installed.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 57,
+      "fingerprint": "c3eab838c82582a81c04867be198cf13442cdaf0250f0e7e3a4c89d7486a43c0",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#312)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "begin-path _unchanged validates captured bounds/fingerprints through fixed Oracle after full validation. Marked assets have hard34 cap and concretely only ETH/fixed ZZZ. STATIC reads cannot mutate this loop; bounded rechecking deliberately prevents repricing before contribution.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 58,
+      "fingerprint": "e97c0517f8bd589e28ef130b6f5a2ab2af0a6f2be1ab0fa065138c0cbe85c188",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._evaluate(ZZZLPBalanceMath.Context,uint160,uint256,uint256) (src/ZZZLPBalancer.sol#118-121) has external calls inside a loop: balanceMath.evaluate(x,price,a0,a1) (src/ZZZLPBalancer.sol#120)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "routePlan calls immutable Math.evaluate pure arithmetic for at most12 iterations. It settles no assets and invokes no user callbacks. Bounded shared arithmetic avoids duplicated Manager bytecode; full target/provider gas feasibility remains separately qualified.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 59,
+      "fingerprint": "81c2ba4f504fd443282a79fef3e2bd9fc75b5740c36600852e1b7b7e76b1ba6b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.configureExecutionPools(bytes32[],bytes32) (src/ZZZLPBalancer.sol#73-86) has external calls inside a loop: IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(pools[i]) (src/ZZZLPBalancer.sol#78)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Only governance configures at most four distinct venues. validatePrice is read-only through fixed Strategy/Oracle, and failure reverts the complete configuration. No asset settlement or quote-only operations bypass is used by this admission loop.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 60,
+      "fingerprint": "cbf3c329de33d22caf43228baaeadc9dd91570842a12f4c970ea77bcaf7cab5d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#313-314)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "finish checks decimals and marks using bounded STATIC calls after full validation. Matching scales protect against token callbacks. These repeated integrity checks are necessary final contribution proof, not an uncontrolled external-payment loop.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 61,
+      "fingerprint": "b3795a51d5bc9e88620d62878dc43046516e169cef7b5b14194e15fefaa911cc",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#312)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "finish rechecks each original captured bound/fingerprint after mutable token/LP boundaries. Assets are bounded and concrete inputs yield at most two marks; calls are STATIC. The cost preserves anti-repricing provenance rather than introducing unbounded work.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 62,
+      "fingerprint": "13ed91a1ea5767b323c6fd65fcc7f3c142cc47c51492f936fd03e0a38a06f38d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._plan(bytes32,int24,int24,uint256,uint256,uint16,uint256[4],bool) (src/ZZZLPBalancer.sol#151-186) has external calls inside a loop: (candidate,deployed) = this.routePlan(x,venues[i],baseline.excess0,requireActive) (src/ZZZLPBalancer.sol#175-181)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.planReplacement(bytes32,int24,int24,uint256,uint256,uint16,uint256[4])\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "planReplacement examines at most four reviewed venues; each route uses at most12 gas-capped rollback quotes. Failed candidates are not adopted and no assets settle. Final executionRevision/policyFingerprint must equal original captured controls.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 63,
+      "fingerprint": "9954243011cb61fe30526f8698af76291663ba915de03fad7d500e39b811ea6b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#313-314)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "endEntry repeats decimal/mark integrity after approval reset and final callbacks, before clear. The bounded downstream reads are STATIC; clearing earlier would miss late mutation. Original marks intentionally persist through complete Entry settlement.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 64,
+      "fingerprint": "81a695d4d0482c1aa6ad673d91bd87bece65f749a086cb872c1865671872c8ea",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._minimum(ZZZLPBalanceMath.Prices,bool,uint256,uint16,uint256) (src/ZZZLPBalancer.sol#122-124) has external calls inside a loop: balanceMath.minimumOutput(p,direction,amount,loss,fee) (src/ZZZLPBalancer.sol#123)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "minimumOutput is fixed-child pure arithmetic inside at most12 search iterations. It separately preserves gross and fee-adjusted additional-loss floors; no token/recipient callback occurs. Actual execution retains stronger caller and captured floors.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 65,
+      "fingerprint": "050ff2d0aed590da0cc82f9ef3b3d850f7eaf9d59af74ed6ca876c6d99d21391",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.policyFingerprint(bytes32,bytes32) (src/ZZZLPBalancer.sol#67-69) has external calls inside a loop: balanceMath.policyFingerprint(target,venue) (src/ZZZLPBalancer.sol#68)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "routePlan records candidate policyFingerprint via fixed STATIC Math. Four venues and twelve iterations bound work; Registry/source/quality/portfolio revisions are committed and Manager rechecks them. Repeated commitments prevent stale candidate adoption.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 66,
+      "fingerprint": "c779af3b7911f70a515c3d746a61d81f719bf1c64e76593f65e7402ad230763d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#313-314)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "begin-path decimal equality checks are bounded to marked ETH/fixed ZZZ and STATIC. They prove scale matches original marks before contribution. No mutable callback can extend the array during this integrity loop.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 67,
+      "fingerprint": "42fba44ac5ff33e4162596ff6e49acd0270466f04f484536d3ea4333f0806265",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.configureExecutionPools(bytes32[],bytes32) (src/ZZZLPBalancer.sol#73-86) has external calls inside a loop: (None,None,None,fee) = stateView.getSlot0(pools[i]) (src/ZZZLPBalancer.sol#79)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Governance admission is capped at four distinct entries. getSlot0 is fixed-StateView STATIC and must match admitted fee; native/hook/identity and price checks run atomically. No per-entry asset transfer or unbounded public list exists.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 68,
+      "fingerprint": "0f158d372112f7ccdf1ea245da06b47139cab8894a3f333ca26257ca2665c803",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#305-317) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#312)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "endEntry bounds/fingerprint checks happen after late approval-reset callbacks and before scope clear. Fixed STATIC getters and the bounded mark array make the work finite; matching originals closes a late-state gap.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 69,
+      "fingerprint": "c939f6632ad052853ee5a8fbe96d3e6caa410990df8e4c236cdb4621ac20ed4b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool) (src/ZZZLPBalancer.sol#187-272) has external calls inside a loop: (out,result) = this.quoteCandidate{gas: quoteGasLimit}(c.key,direction,input) (src/ZZZLPBalancer.sol#205-207)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "routePlan has governed4-12 iterations and100k-300k per-quote gas. Each self-only immutable hookless-core quote must roll back hypothetical state; failures tighten the bracket and never settle. Bounded gas cost remains an operating qualification requirement.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 70,
+      "fingerprint": "5f802edc0527928b8068b6865cf730c6ca9354c0253df261aac42ee5a9f7759a",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._plan(bytes32,int24,int24,uint256,uint256,uint16,uint256[4],bool) (src/ZZZLPBalancer.sol#151-186) has external calls inside a loop: (candidate,deployed) = this.routePlan(x,venues[i],baseline.excess0,requireActive) (src/ZZZLPBalancer.sol#175-181)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.plan(bytes32,int24,int24,uint256,uint256)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Ordinary plan considers at most four venues and bounded quotes, skips failed candidates and rechecks router/policy revisions. Solver _pool remains operations-enabled; new quoteSwap false does not admit a disabled ordinary route.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 71,
+      "fingerprint": "6c7b79ea42e548d908bf183704e8f4d06d4d0f99fcd4ee0265066056d9a622e9",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._pool(bytes32,bool) (src/ZZZLPBalancer.sol#103-108) has external calls inside a loop: c = IZZZPools(access.module(Ids.POOLS)).accounting(id) (src/ZZZLPBalancer.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZLPBalancer.configureExecutionPools(bytes32[],bytes32)\n\t\tZZZLPBalancer._pool(bytes32)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Configuration reaches _pool(id,true) for at most four governed venues. Registry/Access reads are STATIC and structural/fee/slippage/operations checks remain. Only fixed-Manager nonsettling quoteSwap explicitly selects false; admission cannot enable disabled execution.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 72,
+      "fingerprint": "87e8f5341d57f9e8326435310a739e06668f5a591d17c357181e2ecf095cd945",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZMigrationBudget.checkpoint(uint256,uint8) (src/ZZZMigrationBudget.sol#205-224):\n\tExternal calls:\n\t- _beforeMove(id,false) (src/ZZZMigrationBudget.sol#219)\n\t\t- mark = _pricing().markMaintenance(id) (src/ZZZMigrationBudget.sol#255)\n\tState variables written after the call(s):\n\t- lastCompound[id] = uint64(block.timestamp) (src/ZZZMigrationBudget.sol#220)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "checkpoint is onlyVault inside Vault's nonReentrant operation. _beforeMove captures through fixed Pricing/Oracle STATIC observations before successful compound-clock write. Later failures revert clock/snapshot; phase4 manual clock remains atomic and distinct from rebalance time.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 73,
+      "fingerprint": "02b6f905335904a8986e3735acda730119d0477ffd7dc7630f0cea4042e92789",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#336-375):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#354)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#358)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#363)\n\t- poolManager.take(output,address(this),amountOut) (src/ZZZLiquidityManager.sol#370)\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#372)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#342-343)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#342-343)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#372)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#372)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#148)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "unlockCallback requires immutable core and exact consumed pending hash under outer nonReentrant Manager. _finishNativeCredit clears sender/accumulator before fixed-recipient forwarding, then exact balance and full source proof cover settlement callbacks.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 74,
+      "fingerprint": "4b113e79d42916931c37f008ccbbb3436520060dc1e186b7445b0ef4c2426041",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLPBalancer.quoteCandidate(PoolKey,bool,uint256) (src/ZZZLPBalancer.sol#275-292):\n\tExternal calls:\n\t- poolManager.unlock(payload) (src/ZZZLPBalancer.sol#279-291)\n\tState variables written after the call(s):\n\t- pendingQuoteHash = bytes32(0) (src/ZZZLPBalancer.sol#281)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "quoteCandidate is onlySelf via fixed-Manager/bounded routes. Immutable hookless-core callback is exact-hash authenticated and must revert QuoteResult; no tokens settle. Catch clears pending hash and validates exact result shape, preventing failed/nested payload adoption.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 75,
+      "fingerprint": "d8f540c86c69db30eae5f290ddce870ff10b0c598ba2350f37b942efec2b60ce",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#183-198):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1) (src/ZZZContributionPricing.sol#187)\n\tState variables written after the call(s):\n\t- _mark(c.key.currency0) (src/ZZZContributionPricing.sol#197)\n\t\t- assets.push(token) (src/ZZZContributionPricing.sol#181)\n\t- _mark(c.key.currency1) (src/ZZZContributionPricing.sol#197)\n\t\t- assets.push(token) (src/ZZZContributionPricing.sol#181)\n\t- _mark(c.key.currency0) (src/ZZZContributionPricing.sol#197)\n\t\t- marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint) (src/ZZZContributionPricing.sol#180)\n\t- _mark(c.key.currency1) (src/ZZZContributionPricing.sol#197)\n\t\t- marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint) (src/ZZZContributionPricing.sol#180)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Authenticated begin sets phase=1 before private _pair; maintenanceBucket must be zero and immutable Oracle rejects nesting. Downstream observations are STATIC. Subsequent ETH/fixed-ZZZ mark writes cannot be reentered by arbitrary users/feeds.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 76,
+      "fingerprint": "12e2741f8bd9b9008eb1cc38ba85ddb9a36294b10eae6a235534d0140ba6f79d",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._clear() (src/ZZZContributionPricing.sol#347-351):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).endExecution() (src/ZZZContributionPricing.sol#348)\n\tState variables written after the call(s):\n\t- delete assets (src/ZZZContributionPricing.sol#350)\n\t- delete basis (src/ZZZContributionPricing.sol#350)\n\t- delete marks[assets[i]] (src/ZZZContributionPricing.sol#349)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "_clear calls only immutable Oracle.endExecution, requiring Pricing ownership/no loan and STATIC final validation before transient clear. Bounded local marks/assets/basis deletion follows without any token/receiver callback. Failure atomically preserves prior complete state.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 77,
+      "fingerprint": "566cb9e415c845a2ea15989e02ed9803461f64a3aea3892d69dfc8b9ebb39d5d",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#336-375):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#354)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#358)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#363)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#342-343)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#342-343)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZLiquidityManager.sol#369)\n\t- nativeSender = address(poolManager) (src/ZZZLiquidityManager.sol#368)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Immutable core plus exact pending payload authenticate this callback under outer Manager lock. It proves input/output and Oracle expected state before settlement. Native arm/accumulator are used only for immutable core.take and cleared before onward recipient callbacks.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 78,
+      "fingerprint": "4811704567200b3869ea6ed9bacaf5ad070ed15e4a8502593ef0863ff3d3791a",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#272-296):\n\tExternal calls:\n\t- _pricing().endMaintenance(id) (src/ZZZMigrationBudget.sol#292)\n\tEvent emitted after the call(s):\n\t- MigrationValueChecked(id,s.value,deployed,idle) (src/ZZZMigrationBudget.sol#295)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "MigrationValueChecked follows fixed Pricing.endMaintenance with only STATIC Oracle observations. onlyVault plus outer Vault nonReentrant lock prevents interleaved checkpoints. Event reports captured before/deployed/idle values after final checks, never a reentrantly adopted result.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 79,
+      "fingerprint": "2e7fa2e64f5d68dd86d7364a9b95db05996d3920c1cf75edbfb8b5c3cafe3d1a",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLPBalancer._plan(bytes32,int24,int24,uint256,uint256,uint16,uint256[4],bool) (src/ZZZLPBalancer.sol#151-186):\n\tExternal calls:\n\t- (candidate,deployed) = this.routePlan(x,venues[i],baseline.excess0,requireActive) (src/ZZZLPBalancer.sol#175-181)\n\tEvent emitted after the call(s):\n\t- BalancePlanned(target,best.poolId,best.zeroForOne,best.amountIn,best.amountOut,best.revision) (src/ZZZLPBalancer.sol#185)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "BalancePlanned follows bounded self-only rollback quotes without settlement/token callbacks. Router/policy revisions are checked after the loop. It describes a candidate review, not executed income/custody; actual Manager separately proves execution deltas/full state.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 80,
+      "fingerprint": "765d7f42cab05fe7307e2624376fa8d30712fc368cf3888346fe011aca2590bf",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.compoundReady(uint256,address) (src/ZZZLPBalanceMath.sol#204-214) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- block.timestamp < previous + IExecutionMathCompoundBudget(budget).compoundInterval(p.poolId) (src/ZZZLPBalanceMath.sol#211)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "block.timestamp gates compound eligibility after max(lastCompound,lastRebalance) with governed600-second to7-day interval. Small block-time variation shifts boundary scheduling; accepted timing uncertainty is not randomness or uninterrupted price evidence. Execution still requires all financial/authority guards.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 81,
+      "fingerprint": "2ad63779f6874c5e282376e5bf6f5dc8dbac74a0027e0ab779427bd7f4d6d2ae",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalancer.quoteCandidate(PoolKey,bool,uint256) (src/ZZZLPBalancer.sol#275-292) uses assembly\n\t- INLINE ASM (src/ZZZLPBalancer.sol#283)\n\t- INLINE ASM (src/ZZZLPBalancer.sol#286)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Assembly copies exactly192 bytes only after a196-byte custom revert and exact QuoteResult selector check, then ABI decodes and bounds output/sqrt/tick/fees. memory-safe mcopy has no arbitrary pointer/delegatecall; successful unlock and unexpected shapes reject.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 82,
+      "fingerprint": "8f1e7329c0739c8ceee94cc9631bf806ed00e321be75536b02090947e27c658e",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalancer.routePlan(ZZZLPBalanceMath.Context,bytes32,bool,bool) (src/ZZZLPBalancer.sol#187-272) has a high cyclomatic complexity (36).\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "routePlan's36 branches preserve active-main feasibility, directional fee/total/additional floors and single/hybrid scoring. OnlySelf, maximum12 gas-capped rollback quotes and later exact execution constrain it. Complexity remains an audit/maintenance risk; global optimality or MEV immunity is not claimed.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 83,
+      "fingerprint": "4ad401677659ec0f2466cd8e610fe1f500882e33cbef2f949ad6d5b86707b6ce",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath.seed(ZZZLPBalanceMath.Context,bool,uint256) (src/ZZZLPBalanceMath.sol#269-291) has a high cyclomatic complexity (14).\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "seed separates full balance from hybrid main-floor sizing with nonzero-unit/divisor checks and explicit rounding. Caller clamps funds/int128 and actual quote floors remain. Fourteen branches preserve distinct economic rules; complexity remains a review obligation, not a solved detector defect.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 84,
+      "fingerprint": "afe7ffea96a5c48b300ccdce14653ba7a843a2fe2affb43b407ebce04a764ec4",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#336-375) has a high cyclomatic complexity (15).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "Fifteen callback branches handle native/token exact deltas, quote-state advance and receipts. Immutable core/hash authentication, outer nonReentrant entry, pre-settlement afterSwap and final proof constrain them. Complexity is retained for protection and remains an audit risk.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 85,
+      "fingerprint": "12b6fd93c62ccc030108d58073d25c205b67aaef8bd1945278307a46a612c32d",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalancer._plan(bytes32,int24,int24,uint256,uint256,uint16,uint256[4],bool) (src/ZZZLPBalancer.sol#151-186) has a high cyclomatic complexity (12).\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "_plan distinguishes sufficient no-trade, active destination and single/hybrid candidate selection. Fixed-Manager authorization, four venues, bounded rollback search and captured revisions constrain it. Twelve-way strategy complexity is accepted, not evidence of optimal economics.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 86,
+      "fingerprint": "58ee81832448ea2a82cdddd63e4ea50c10689bb70bc26d5cfadf3fa0f1b79947",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#259-335) has a high cyclomatic complexity (20).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "accepted_risk",
+      "rationale": "balance's20 branches preserve manual/ordinary and new/existing main, scoped budget, one swap, refunds and original L/ticks. Vault-only nonReentrant and exact final prefund/context checks constrain behavior. Complexity remains ongoing review risk rather than claiming every market case solved.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 87,
+      "fingerprint": "2e8a29a5a5ae39d3f66294f418add2bd0f92d8202ba25a1358df53f7f6103106",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#141-146):\n\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#144)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "false_positive",
+      "rationale": "Private _sendNative forwards exact amounts only in authenticated nonReentrant Manager flows to fixed module recipients. It skips zero, checks call success and exact balance decrease; receipt arm clears first. No public arbitrary-recipient drain/fallback exists; rejection rolls back.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 88,
+      "fingerprint": "a37cae48232a43ef50c324a510c9fb1932109fec769fdbeada5345f1e9bc5fe7",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-376) should inherit from IPositionExecutionParent (src/ZZZLPPositionExecutor.sol#12-18)\n",
+      "referenced_paths": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Manager concretely exposes executionConfig/Spot/OrdinaryReplacement/HybridReplacement and balanceContext with exact IPositionExecutionParent signatures. Immutable Executor plus sealed Access binds caller. Optional inheritance adds no authorization; typed current consumers already compile.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 89,
+      "fingerprint": "1ea057c627e3fe51c2281fb05c1db7ad697a905712c91cc68502d404746e34e4",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IExecutionFixedZZZ (src/ZZZOracle.sol#13)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZOracle.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Math.fixedZZZ implements the exact address read and resolves nonzero code-bearing deployment ZZZ through fixed Registry/ActivationAssets. It is not a token setter. Structural interface dispatch is sufficient; explicit local inheritance adds no runtime protection.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+      }
+    },
+    {
+      "record": 90,
+      "fingerprint": "e99b6189d949152bed88a3a09cd56280947c48922307029dc1631be98464ef01",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IPricingEntry (src/ZZZContributionPricing.sol#12-14)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "ActivationEntry.pricingContext implements the exact four-argument bool read for its in-flight authenticated contribution. Bound Entry and context checks supply security. IPricingEntry is a narrow ABI facade; optional inheritance would not fix a missing function.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 91,
+      "fingerprint": "6bb453a2dc3ccf533f98d577a3e4cdce1c792982c0b24b004b673811af5f4701",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#20-310) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#21)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "PortfolioPolicy.controlFingerprint implements the exact bytes32 view and includes scoped policy controls/revisions. IResidualPolicyControl grants no authority. Structural rather than explicit inheritance identifies no absent runtime function or missing permission.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36"
+      }
+    },
+    {
+      "record": 92,
+      "fingerprint": "b0bdede3b09c1aa34ed1a2260785ee83878c4a61383f4d1ed1ca1c434251a4eb",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZPoolRegistry (src/ZZZPoolRegistry.sol#22-186) should inherit from IExecutionMathNativePools (src/ZZZLPBalanceMath.sol#26)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPoolRegistry.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Registry concretely implements isNativePool(bytes32) used by Math admission. Governance/native/pool structural checks remain separate. Optional inheritance does not change ABI dispatch, fixed Registry address or actual venue qualification.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa"
+      }
+    },
+    {
+      "record": 93,
+      "fingerprint": "f18fd22d60d1735545a96dc23abd6bc4bfafc0aa6f959de810064fcb66a2e489",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-376) should inherit from IPricingExecutionManager (src/ZZZContributionPricing.sol#11)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Manager.executionStrategy returns the exact fixed Balancer Math child address expected by IPricingExecutionManager. It is read-only, without configurable arithmetic replacement. Structural conformance does not remove selector availability or parent binding.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      }
+    },
+    {
+      "record": 94,
+      "fingerprint": "4722ccca42a92ef163df42fe1777aded3369b2e3d935aac63a8fc5740841a470",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#20-310) should inherit from IExecutionMathMainFloor (src/ZZZLPBalanceMath.sol#25)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "PortfolioPolicy.minimumMainBps matches the uint16 read with governed overrides and hard6000 lower bound. The narrow facade grants no execution permission; optional inheritance would not strengthen the economic floor.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36"
+      }
+    },
+    {
+      "record": 95,
+      "fingerprint": "a461ffb1e6507c3d139ab32975cfdd28bccac71b9487ca0d7e497215f549b1b0",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#51-374) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#23-28)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol",
+        "src/ZZZVaultCanonical.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "VaultCanonical implements exact validateOwner/HolderExit/Contribution signatures with its fixed Vault caller and actual canonical rules. Budget forwards authenticated module parameters. Missing explicit facade inheritance identifies no unimplemented runtime validation.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb"
+      }
+    },
+    {
+      "record": 96,
+      "fingerprint": "d8b9acc2cfb623f6d874a89d40c871fbd91bb23fc471f93d542fbb22e49646d3",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IZZZExecutionStrategy (src/interfaces/IZZZExecutionOracle.sol#44-48)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/interfaces/IZZZExecutionOracle.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Math implements executionTarget, executionValidatePrice and executionMinimumOutput with captured Oracle prices and ordinary operations checks. New Exit wrappers do not change those ordinary signatures. Optional IZZZExecutionStrategy inheritance is structural documentation, not a missing guard.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1"
+      }
+    },
+    {
+      "record": 97,
+      "fingerprint": "20993414e3237c7e7f70e9b01083a02cdd5b6a2cfad11555c06726617bf766b7",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-376) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#91-117)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZ.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Manager provides concrete IZZZLiquidity custody/amounts/spot/balance/placement methods with sealed module permissions and fixed Executor. Typed calls compile. Optional inheritance does not replace runtime pins, role checks or nonReentrant custody enforcement.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+        "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997"
+      }
+    },
+    {
+      "record": 98,
+      "fingerprint": "203221d9b67ae956f630d7a6fd67bda7a5c43eca9aa7c066c95cd29de16bb55e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-439) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#20-23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Budget maintenanceBucket/maintenancePrices exactly match IPortfolioBudget and expose the authenticated active snapshot to Manager. No new authority is created by these reads. Structural inheritance does not alter snapshot lifecycle or manual-scope cleanup.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 99,
+      "fingerprint": "be2fe7e176ea69c976eb968992c696e3d81de154bf859182432c1ac6e8e34d71",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#20-310) should inherit from IExecutionMathPortfolio (src/ZZZLPBalanceMath.sol#21)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "PortfolioPolicy.range has the same PoolConfig,uint160,uint8 external ABI and two int24 outputs as IExecutionMathPortfolio. Reviewed geometry/parent/governance controls remain; memory versus calldata on the concrete declaration does not change selector dispatch.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36"
+      }
+    },
+    {
+      "record": 100,
+      "fingerprint": "885fd8b8011ac962842910f2cc6552355f7a9e3ba3d4610ea759e1be93fb9414",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IPricingMaintenanceMath (src/ZZZContributionPricing.sol#21-28)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Math implements all six maintenance-read methods: compoundReady, rebalance/residual validation, maintenanceValues, checkMaintenance and assertPortfolioUtilization. Fixed Pricing resolves this immutable child. These reads cannot move funds; explicit inheritance adds no missing guard.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 101,
+      "fingerprint": "8687beb55fe49a8e72b861ec15840593cca13142585f76edf96c7c9a9098315e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-376) should inherit from IZZZEmergencyLiquidity (src/interfaces/IZZZEmergency.sol#39-42)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZEmergency.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Manager beginEmergency/endEmergency match IZZZEmergencyLiquidity and enforce onlyModule(VAULT), nonReentrant and validated fixed Budget context. Real modifiers reside in concrete methods; optional interface inheritance changes neither access nor scope.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+        "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
+      }
+    },
+    {
+      "record": 102,
+      "fingerprint": "77e8411e5b3f31ccbc03684fc034f1513ad98abd727794de9dc4e9c3d352789d",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRebalanceConfirmation (src/ZZZRebalanceConfirmation.sol#32-225) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#21)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "RebalanceConfirmation.controlFingerprint concretely implements the exact bytes32 view consumed by IResidualPolicyControl, including scoped confirmation settings. Narrow ABI coincidence does not require shared inheritance with PortfolioPolicy or imply missing role enforcement.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3"
+      }
+    },
+    {
+      "record": 103,
+      "fingerprint": "6d2a40ae588d409dc363df1b2b91243a1aa3d08a079e8e5bf5f9e68f62927ed2",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZMigration (src/ZZZMigration.sol#30-369) should inherit from IEmergencyManifest (src/ZZZMigrationBudget.sol#17-20)\n",
+      "referenced_paths": [
+        "src/ZZZMigration.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Migration emergencyFingerprint/Target implement IEmergencyManifest. Fingerprint admits only fixed Budget and validates active emergency; target reads current exact request. Optional inheritance adds no management authority beyond existing governance-only execution.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigration.sol": "4fe0afe1ef2c88cb2d43a849ea7fc4c50f6d9cf0a54638bb50ea5993dc1c8302",
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 104,
+      "fingerprint": "5e87444fdf207f229f5b4f30c89767d813743cbc89cfe0df8024ae130d9e3b03",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#41-439) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#23-28)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Budget concretely exposes the three IBudgetVaultValidation methods as onlyVault forwarders to fixed VaultCanonical. Canonical validation and authenticated caller data remain. It need not inherit the downstream local facade to safely implement those selectors.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      }
+    },
+    {
+      "record": 105,
+      "fingerprint": "53d92a240b6c54b34d563a7933c25489d1816b46a7355cc595af40589a38f8ae",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-376) should inherit from IVaultResidualLiquidity (src/ZZZVault.sol#23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZVault.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Manager.closeSecondary matches IVaultResidualLiquidity and is fixed-Vault-only/nonReentrant with Executor custody checks. Optional inheritance does not permit holder withdrawals or change close-only attribution; no absent implementation is detected.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+        "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e"
+      }
+    },
+    {
+      "record": 106,
+      "fingerprint": "a8d0dd817fe5c322ed56aa089f9db8da1a6c7a1a6d7876c8fa4e67abd3adda50",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer._pool(bytes32,bool) (src/ZZZLPBalancer.sol#103-108) uses literals with too many digits:\n\t- (requireOperations && ! c.operationsEnabled) || c.key.currency0 != address(0) || c.key.currency1 == address(0) || c.key.hooks != address(0) || c.key.fee > 100000 || c.maxSlippageBps > 1000 || keccak256(bytes)(abi.encode(c.key)) != id (src/ZZZLPBalancer.sol#105-107)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "100000 is the10% LP-fee ceiling in v4 millionths;1000 is the10% basis-point slippage ceiling. Distinct units are intentional alongside PoolId/native/hook checks. Digit separators are cosmetic, not grounds to alter ceilings.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 107,
+      "fingerprint": "d2c0dc3f3d0fab287aca80284562e25769f27d544cd8ecf7dcecbee26d6f91cf",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath.nativeConfig(bytes32,bool) (src/ZZZLPBalanceMath.sol#61-66) uses literals with too many digits:\n\t- (requireOperations && ! c.operationsEnabled) || keccak256(bytes)(abi.encode(c.key)) != pool || c.key.currency0 != address(0) || c.key.currency1 == address(0) || c.key.fee > 100000 || c.key.hooks != address(0) || ! IExecutionMathNativePools(pools).isNativePool(pool) (src/ZZZLPBalanceMath.sol#63-65)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "nativeConfig uses100000 as deliberate fee ceiling in millionths with exact native admission/PoolId/hookless checks. Operations is optional only through explicit parent flag. Digit spelling is not a magnitude or authorization defect.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 108,
+      "fingerprint": "25edc01fa84f0d59724014ba50955c525abf0b5131cda30cf09e07d0d62353f5",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZLPBalanceMath._executionMinimumOutput(bytes32,bool,uint256,bool) (src/ZZZLPBalanceMath.sol#131-139) uses literals with too many digits:\n\t- c.key.hooks != address(0) || fee != c.key.fee || fee > 100000 || (protocol & 0xfff) > 1000 || protocol >> 12 > 1000 (src/ZZZLPBalanceMath.sol#136)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "The100000 LP-fee and1000 per-direction protocol-fee bounds use millionths and feed the actual combined directional fee. Both intentional limits are checked before loss floors; digit-count warning does not justify rounding or relaxing either.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      }
+    },
+    {
+      "record": 109,
+      "fingerprint": "33fa769ef7fc3443f7b09f3f04d3bf021fd01dda08b61a1e48bb8ff8fa45fc08",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.configureSolver(uint8,uint32,bytes32) (src/ZZZLPBalancer.sol#88-94) uses literals with too many digits:\n\t- iterations < 4 || iterations > 12 || gasLimit < 100000 || gasLimit > 300000 || reviewHash == bytes32(0) (src/ZZZLPBalancer.sol#90)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Governed solver bounds are4-12 iterations and100000-300000 per-quote gas with nonzero reviewHash. These are reviewed work caps, not prices/bps. Decimal formatting has no safety consequence; provider/chain gas acceptance remains separate.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 110,
+      "fingerprint": "c5bfd902c97c1b185043b741f051648a61908b596f801a6f1e624935355bd57e",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZLPBalancer.slitherConstructorVariables() (src/ZZZLPBalancer.sol#18-313) uses literals with too many digits:\n\t- quoteGasLimit = 200000 (src/ZZZLPBalancer.sol#30)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Default quoteGasLimit=200000 is a bounded per-candidate core quote allowance, governed within100000-300000. It is not the transaction gas default or unlimited external call. Digit separators would be cosmetic only.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 111,
+      "fingerprint": "e0083bdfc84c02f310b1013eacc0389c7b4295f2417b46e92ef089bb85db0632",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#349) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "_clear deletes bounded assets/marks after immutable Oracle end; no callback occurs inside deletion. Concrete contributions mark at most ETH/fixed ZZZ, hard34 cap remains. Caching length saves minor reads but does not fix correctness/security or justify unrelated refactoring.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    },
+    {
+      "record": 112,
+      "fingerprint": "c1aabca5a0a363c6b854b28cb9ee4871e3058ecdb74c4dfcb0165098f3efdcdf",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < venues.length (src/ZZZLPBalancer.sol#173) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZLPBalancer.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "Venue array is governance-bounded to four. Only hookless rollback quotes execute in the loop and final revisions/context must match; solver admission stays ops-enabled. Cached length is optional minor gas work, not an unbounded-search or permission fix.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      }
+    },
+    {
+      "record": 113,
+      "fingerprint": "056026fce37734bf58fab6d21550fa767b077cf20e15762ebe8ec9bee0eb57d8",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#310) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "disposition": "informational",
+      "rationale": "_unchanged iterates bounded ETH/fixed-ZZZ marks with STATIC getters after full Oracle validation, so array cannot mutate in that chain. Cached length offers minor gas savings; retaining original-mark checks is essential, and no accounting/reentrancy defect is identified.",
+      "review_scope": "Individually reassessed against current normal4 production source, six-file manual-reference-swap diff and actual function/caller/callback context; not inferred safe from detector group or prior disposition. No additional analyzer, compiler, EVM, network or historical suite run by this reviewer.",
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      }
+    }
+  ],
+  "limitations": [
+    "Individual static triage does not prove exploit absence, market/provider qualification or production approval.",
+    "452 exact prior record reuses are checked separately by parent; none is counted as newly assessed here.",
+    "Complexity, timing uncertainty and bounded gas costs remain explicitly accepted or informational rather than declared solved."
+  ]
+}

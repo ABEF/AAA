@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+The [manual reference-swap source fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) resolves the reproduced
+emergency-only self-rejection: captured starting prices and exact own-swap proof
+replace comparison against a changing live fingerprint. Live freshness/agreement,
+original caller/economic floors and callbacks remain checked.25 new/3 adapted
+methods and actual local C/D/Parked receipts pass; no weaker guard/default or
+automatic fallback. Prior rejection and gas evidence keep their original scope.
+
 The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) closes controlled actual
 local C/D/Parked CLI-to-receipt composition and gas measurement. The verified
 worst padded call is13,010,802/24M. It also reproduces an open emergency-only
@@ -154,7 +161,7 @@ Original reports remain immutable; counts are not independent defects/tests.
 
 Earlier reconciliation repaired a stale CI review pointer after two manual-view
 edits; its44focused Python checks and unchanged-contract scope remain historical.
-The strict pointer selects the [reference-execution record](../reports/reference-execution-20261111/static-review.json):567records,162current-context dispositions and405unique exact referenced-source reuses. The prior541(45/496) record remains historical. Prior spot560 and contribution3558 remain source-scoped; no installed environment is upgraded.
+The strict pointer now selects the [manual-reference review](../reports/manual-reference-swap-fix-20261115/static-review.json):565 records,113 individually current/452 unique exact referenced-source reuses. Earlier567/541/560/558 records remain historical at their original source; no installed environment is upgraded.
 
 The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
 found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,

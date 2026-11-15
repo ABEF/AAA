@@ -1,0 +1,415 @@
+{
+  "schema": 1,
+  "passed": true,
+  "count": 9,
+  "proofs": [
+    {
+      "method": "testManualReferenceRejectsETHRoundDuringInputPull",
+      "forge_path": "exports/new-testManualReferenceRejectsETHRoundDuringInputPull/forge.json",
+      "forge_sha256": "cb82a6b0155ebb7c179621da00ebdd7ca9f21fa72b397f89ff8b2db252b43370",
+      "callback_frame_index": 8634,
+      "callback_selector": "0x0ddba9fa",
+      "callback_data": "0x0ddba9fa00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 134
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8475,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7893,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7675,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceRejectsStaleETHDuringRefund",
+      "forge_path": "exports/new-testManualReferenceRejectsStaleETHDuringRefund/forge.json",
+      "forge_sha256": "19ee62818860e41285b29b31cdd64595a1a92c566e9cb55354df87d960f9317a",
+      "callback_frame_index": 8988,
+      "callback_selector": "0x0ddba9fa",
+      "callback_data": "0x0ddba9fa00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 138
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8473,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 7891,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "index": 7673,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xcd2150060000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund",
+      "forge_path": "exports/new-testManualReferenceRejectsTinyIndependentMarketMoveDuringRefund/forge.json",
+      "forge_sha256": "76febefa40b0b9c1851ffb0d33a5c940937c6ed954e70b94ae3d5f52839f0137",
+      "callback_frame_index": 9034,
+      "callback_selector": "0x0ddba9fa",
+      "callback_data": "0x0ddba9fa00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8519,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7937,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7719,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund",
+      "forge_path": "exports/new-testManualReferenceRejectsExtraPrimaryMarketMoveDuringRefund/forge.json",
+      "forge_sha256": "1cbdd0c9c4430078352f192ffd8cea3ed8e6983aaed5fc5da49d08a53dc95857",
+      "callback_frame_index": 9034,
+      "callback_selector": "0x0ddba9fa",
+      "callback_data": "0x0ddba9fa00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8519,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7937,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7719,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceRejectsLiveDisagreementAfterOwnSwap",
+      "forge_path": "exports/new-testManualReferenceRejectsLiveDisagreementAfterOwnSwap/forge.json",
+      "forge_sha256": "a9b53ba04eeec5d1621b29802fe4560c2c4a04efda207bed92cf323ecbf9b30c",
+      "callback_frame_index": 9033,
+      "callback_selector": "0x0ddba9fa",
+      "callback_data": "0x0ddba9fa00000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000001b636f6e6669726d65642d63616c6c6261636b2d6d75746174696f6e0000000000"
+          },
+          "decoded": null,
+          "position": 2,
+          "index": 142
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8518,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7936,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7718,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceSourceDisableRestoreCannotReviveCapture",
+      "forge_path": "exports/new-testManualReferenceSourceDisableRestoreCannotReviveCapture/forge.json",
+      "forge_sha256": "4588e89b6f0715c45b65ebf428a41de24b1665036d39efd41f2e271fa7f11ab6",
+      "callback_frame_index": 9320,
+      "callback_selector": "0xa2fd14dc",
+      "callback_data": "0xa2fd14dc0000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x000000000000000000000000212224d2f2d262cd093ee13240ca4873fccbba3c0000000000000000000000000000000000000000000000000000000000000004"
+          },
+          "decoded": null,
+          "position": 4,
+          "index": 146
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8805,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 8223,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 8005,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 8004,
+          "address": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "data_selector": "0xa3d6bde9",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceQualityChangeDuringApprovalResetReverts",
+      "forge_path": "exports/new-testManualReferenceQualityChangeDuringApprovalResetReverts/forge.json",
+      "forge_sha256": "0123c491021db110562cbdc7b981fa76295c725b9ef30bcafb3a12d7632906d5",
+      "callback_frame_index": 9425,
+      "callback_selector": "0xa2fd14dc",
+      "callback_data": "0xa2fd14dc0000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x000000000000000000000000d16d567549a2a2a2005aeacf7fb193851603dd700000000000000000000000000000000000000000000000000000000000000001"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 145
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8172,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7953,
+          "address": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "data_selector": "0xa3d6bde9",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceSourceGasPolicyChangeDuringRefundReverts",
+      "forge_path": "exports/new-testManualReferenceSourceGasPolicyChangeDuringRefundReverts/forge.json",
+      "forge_sha256": "11bae9282d6dbc7c60f2024e306daf5db7318045be77ba820ebfa30c7c914a0d",
+      "callback_frame_index": 9269,
+      "callback_selector": "0xa2fd14dc",
+      "callback_data": "0xa2fd14dc0000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b000000000000000000000000000000000000000000000000000000000007a121"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 144
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8754,
+          "address": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "data_selector": "0xdcd87610",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 8172,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7953,
+          "address": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "data_selector": "0xa3d6bde9",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    },
+    {
+      "method": "testManualReferenceMaintenancePolicyChangeDuringRefundReverts",
+      "forge_path": "exports/new-testManualReferenceMaintenancePolicyChangeDuringRefundReverts/forge.json",
+      "forge_sha256": "36ae160797c3cde6663ed60f64ba4043a692e555be9c4accc9a0a66b25f95d97",
+      "callback_frame_index": 9270,
+      "callback_selector": "0xa2fd14dc",
+      "callback_data": "0xa2fd14dc0000000000000000000000000000000000000000000000000000000000000001",
+      "callback_returned_successfully": true,
+      "callback_output": "0x",
+      "confirmed_callback_logs": [
+        {
+          "raw_log": {
+            "topics": [
+              "0x73088fcb7a814c155b30c8e7851b53c23bd04653bca720687206bf833740d45c"
+            ],
+            "data": "0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b9d3bc85c802db79177fca01b0da3a1b53d21631138a4e53598ebb3df372f1876"
+          },
+          "decoded": null,
+          "position": 3,
+          "index": 144
+        }
+      ],
+      "failed_outer_ancestors_after_callback_return": [
+        {
+          "index": 8173,
+          "address": "0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+          "data_selector": "0x42831bbd",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7955,
+          "address": "0x27cc01a4676c73fe8b6d0933ac991bff1d77c4da",
+          "data_selector": "0x42ef002c",
+          "reason": "0xbaf3f0f7"
+        },
+        {
+          "index": 7954,
+          "address": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+          "data_selector": "0xa3d6bde9",
+          "reason": "0xbaf3f0f7"
+        }
+      ],
+      "scope": "Actual execution arena, not the standalone mutation preflight. Every selected true callback completed and logged before outer production failure."
+    }
+  ]
+}

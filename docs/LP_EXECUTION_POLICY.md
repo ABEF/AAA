@@ -8,6 +8,13 @@ proof before settlement. It does not change the85% trigger,600-second sampled
 window, strict300-second gap,240-second service checks,60–300-second jitter,
 12-hour cooldown, main/residual rules or financial limits. Reference and same-
 core principal destination remain distinct. [Design](REFERENCE_SWAP_EXECUTION.md).
+The [current manual fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+also covers paused forced C/D when bit2 or bit4 is retained. Budget captures
+through fixed Pricing before any manual fingerprint/harvest/unwind; Manager
+quotes and proves the exact supplied pool/direction/amount, then validates live
+sources and callbacks through settlement and final LP checks. It never chooses
+another trade or lowers a caller floor. The earlier `da24f65` manual rejection
+and gas measurements retain their [historical scope](../reports/manual-recovery-rehearsal-20261115/REVIEW.md).
 
 Current [accounting7 / portfolio2](POSITION_V7.md) source candidate with mint2/
 canonicalV10 and optional execution-price1/LP-routing3. The original portfolio
@@ -208,12 +215,14 @@ post-swap ratio and actual useful deployment are evaluated on-chain. Single-mode
 comparison maximizes sampled useful deployment; hybrid comparison seeks a
 qualifying main allocation with limited swap size. Neither is a global optimum.
 
-Manager/Balancer `LP_ROUTING_VERSION()==2`, their fixed arithmetic/physical
+Explicit execution-price1 requires Manager/Balancer `LP_ROUTING_VERSION()==3`, their fixed arithmetic/physical
 executor children, reciprocal parents and exact core/state/PosM/Permit2/runtime
 pins identify the fresh capability. The Balancer and Strategy helpers are
 standalone fixed-controller companions: their parent resolves the sealed Access
 module, without a mutable parent setter. `ZZZLPPositionExecutor` is a fixed typed
 contract, not a new human operator, generic executor or external custodian.
+Omitted/zero execution-price profiles retain historical LP-routing2; reciprocal
+parents or a shared capability name do not upgrade their runtime identity.
 
 Governance admits a compatible future pool through
 `PoolRegistry.configureNative(fullConfig)`, normally with deposits disabled.
@@ -228,6 +237,14 @@ output, post-swap state, approved recipient, captured policy/price controls and
 final value checks must pass. Governance can set bounded solver iterations4–12
 and quote gas100,000–300,000; defaults8/200,000 are not gas qualification.
 More venues/iterations can cost more; unavailable quotes cannot waive a floor.
+
+Paused forced C/D preserve the operator's exact explicit venue/amount rather
+than running ordinary best-venue selection. The Manager-only `quoteSwap` proves
+that selected input and full post-state without settling assets. Its quote-only
+pool read retains structural admission and does not independently require the
+operations flag; actual execution still enforces retained bit8, while ordinary
+price validation always requires operations enabled. A disabled venue is not
+automatically authorized by being quotable.
 
 ## Deterministic execution and adjustable economics
 
@@ -259,6 +276,21 @@ cooldown, confirmation/explicit configuration exception, price, custody and
 financial checks still apply. Coordinate the service and recover pending hashes;
 a same-key transaction outside its journal requires nonce/receipt/spend
 reconciliation before restart. [Manual procedure](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time).
+
+Paused governance manual C/D remain a separate deliberate emergency path.
+Retaining bit2 or4 opens one transaction-bound price scope; bit4 still enforces
+USD loss/quality/idle floors without bit2. Masks0/8 do not add Oracle-health
+evaluation. Bits1/16 retain their separate Active-main eligibility/confirmation
+requirements. Captured fingerprints do not excuse a changed ETH publication,
+unplanned source/control revision, failed live agreement, settlement callback or
+caller floor. Same-core principal/reference overlap remains rejected.
+
+Current source requires newly reviewed exact runtime/consumer pins; unchanged
+capability numbers do not relabel old profiles, journals or evidence. Use the
+[current manual guide](MANUAL_LP_PREPARATION.md#local-manual-recovery-rehearsal)
+for source-specific reproduction and the new report for measured gas. A valid
+operation can still fail real source-agreement, spot, loss, idle or liquidity
+floors; this is not an always-success or front-running guarantee.
 
 ## Harvest, compound and contributions
 

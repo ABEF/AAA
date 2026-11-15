@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "before_sha256": "15365c5245a2d697e4880c5d965498d35c758de1a9a6b33549f7180146415927",
+  "after_sha256": "b527a436068e8cd3c82e6617fde4fc97ca9aad6d1f23ac78fd6100484850837f",
+  "only_change": {
+    "before": "if(consolidate){vm.prank(GOVERNANCE);strategy.portfolioPolicy().setMode(target,false,REVIEW);}",
+    "after": "if(consolidate){ZZZPortfolioPolicy policy=strategy.portfolioPolicy();vm.prank(GOVERNANCE);policy.setMode(target,false,REVIEW);}"
+  },
+  "successful_stage1_D14_reuse": "consolidate=false; corrected branch is never entered. All other source bytes and all production sources unchanged.",
+  "already_passed_method": "testManualReferenceD14ETHToZZZ",
+  "rerun_successful_D14": false
+}
