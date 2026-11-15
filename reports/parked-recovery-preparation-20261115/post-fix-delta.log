@@ -1,0 +1,7 @@
+test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) ... ok
+test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.996s
+
+OK

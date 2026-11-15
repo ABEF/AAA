@@ -197,6 +197,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Publish poplint without changing the demo | [Demo/integration environment map](SITE_ENVIRONMENTS.md) |
 | Configure reviewed API holdings; rehearse wallet sends on local Anvil only | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
 | Prepare park/resume/residual close or each holder-return step without signing | [Typed custody and terminal management](MANUAL_LP_PREPARATION.md#custody-and-terminal-management-selections) |
+| Prepare paused Parked emergency recovery with explicit safeguard bypasses | [Parked D selection and inputs](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2) |
 | Prepare a reviewHash and exact ordered explorer inputs without signing | [Offline review preparation](#prepare-and-check-an-offline-reviewhash) |
 | Find every read/write, caller and example input | [Complete short call tables](#operator-call-tables) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
@@ -220,8 +221,19 @@ You choose them; the tool never guesses floors, routes or force. Park and raw
 residual close stay paused and leave attributed idle; only park permits draining
 during preparation. Resume requires unpaused Parked state and retains normal
 financial/deployment guards. Closing the residual is not consolidation into main.
-Existing B/C/D reviews remain Active-only; Parked emergency force remains the
-separate [manual contract procedure](CUSTODY_PARKING.md#explicit-raw-floors-and-forced-re-entry).
+Schema1 B/C/D remains Active-only. The separate [schema2 Parked D preparation](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
+uses the same `scripts/prepare-manual-lp.py` command with `schema:2`, `action:"D"`
+and `expected_position_status:"parked"`, plus all original explicit selection
+fields. You select new ticks, exact optional swap, positive new-L/output floors,
+deadline and retained checks. Bits1/16 require Active LP and are rejected for
+Parked; bits2/4/8 remain independently selectable, with USD still required by4.
+Nothing silently clears a safeguard. Review the artifact's bypass disclosure,
+funding and both simulations before separate governance signing. Only attributed
+idle/designated compound are redeployed in the current pool into one new main;
+shares and earned rewards stay. Recovery remains paused; verify the actual
+receipt/post-state, reconcile pending work, then separately unpause. No holder
+or keeper permission is added, and no service restart or live setting is applied
+by preparation. [Verification](../reports/parked-recovery-preparation-20261115/REVIEW.md).
 
 The two simulations preserve exact calldata and frozen gas, with known blockers
 reported separately from opaque RPC failures. Manual reviews retain25% estimate

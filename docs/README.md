@@ -1,5 +1,9 @@
 # Documentation map
 
+For paused parked-liquidity recovery, use the [explicit schema2 D inputs](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
+and [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md).
+Selected bypasses are disclosed; no permissions, signing or live settings change.
+
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression
 methods pass at their recorded stages. Existing task implementation milestones
@@ -71,7 +75,7 @@ Use the new mint procedure for team/allowlist/public quotas, proofs and
 configuration; it does not authorize public deployment or signer changes.
 
 
-Reviewed2026-11-13. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
+Reviewed2026-11-15. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
 owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
 capabilities. **Undeployed; production NOT APPROVED.**
 

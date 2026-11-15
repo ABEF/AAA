@@ -9,7 +9,7 @@ guarded request into a forced request.
 | Preparer | Scope |
 | --- | --- |
 | `scripts/prepare-operator-management.py` | Park, resume, raw residual close and each collective-exit step below. |
-| `scripts/prepare-manual-lp.py` | Existing Active-state B/C/D consolidation/full emergency requests; unchanged. |
+| `scripts/prepare-manual-lp.py` | Schema1 Active B/C/D, plus explicit schema2 Parked emergency D below. |
 
 This is a source implementation. Actual matching deployment/configuration,
 provider support, gas/fee semantics, wallet execution and operator rehearsal
@@ -152,12 +152,84 @@ preparing the next; reviews are not a preauthorized dependent sequence. See the
 | C | `consolidateResidual(request,true)` | Explicit checks0–31, current main ticks and reviewed explicit swap or no swap. Minimum is **added main L**. An inactive main can remain inactive. |
 | D | `emergencyRebalance(request)` | Explicit checks0–31, explicitly selected replacement ticks and swap or no swap. Minimum is **new position L**. |
 
-All three adapters currently require an **Active** source bucket. Parked full
-emergency recovery is explicitly unsupported by this tool, although the contract
-has a separate supported state space. There is no automatic recentering or
-fallback. B/C preserve the main and do not include designated compound funds;
-D closes both legs and may include designated compound. Rewards and royalties
-remain separate from operation principal.
+Schema1 requires an **Active** source bucket for all three actions. An old D
+selection is never reinterpreted as Parked recovery. B/C preserve the main and
+exclude designated compound; Active D closes both legs and may include designated
+compound. There is no automatic recentering or fallback. Rewards, buyback reserves
+and royalties remain separate from operation principal.
+
+## Parked emergency recovery: explicit schema2
+
+Use this only for an intentional paused-governance recovery into the bucket's
+**current** native ETH/fixed-ZZZ pool. Guarded unpaused `resume` remains the normal
+alternative, including movement to another admitted same-pair pool. Neither
+preparer switches between these actions on failure.
+
+For `scripts/prepare-manual-lp.py`, supply the same complete selection fields
+listed below, but set **integer `schema: 2`**, **`action: "D"`** and add exactly
+**`expected_position_status: "parked"`**. All ABI integers remain decimal strings.
+B/C, missing status, Active state and unknown fields are refused under schema2.
+No schema, mask, route, ticks, output floor or expiry is inferred.
+
+| Input | Required choice |
+| --- | --- |
+| `bucket` | Actual registered Parked bucket with positive NFT shares. |
+| `checks` | Explicit sum of retained bits2/4/8; see the table below. |
+| `lower`, `upper` | Reviewed new main ticks, ordered and aligned to current pool tick spacing. |
+| `swapPool`, `zeroForOne`, `amountIn`, `minimumOut` | Exact reviewed admitted fixed-pair swap, or explicit zero pool/amount/output and false direction for no swap. |
+| `minimumLiquidity` | Positive raw **new main L**, not USD or token units. |
+| `deadline` | Original absolute deadline, current and at most600seconds from the initial snapshot. |
+| `review_notes_sha256`, `evidence_sha256` | Original nonzero note/evidence digests; same strict rules as schema1. |
+
+| Retained bit | Parked effect |
+| --- | --- |
+| 1 | **Unsupported**: ordinary trigger/cooldown requires an Active main. Reject; never silently clear. |
+| 2 | Retain live independent-price and pool-price protections. |
+| 4 | Retain value, execution-quality and idle guards, including required USD sources even if bit2 is bypassed. |
+| 8 | Retain current main/swap venue operations-enabled flags. |
+| 16 | **Unsupported**: sampled confirmation requires an Active main. Reject; never silently clear. |
+
+For example, explicitly selected `checks: "14"` retains2/4/8 and bypasses1/16;
+this illustrates the mask, not a chosen operating setting. `checks: "0"` bypasses
+all five optional categories. It can accept severe loss or an inactive new range.
+The schema2 artifact lists retained/bypassed categories; a selected retained bit
+is not a claim that its condition passed without both exact simulations.
+
+Mandatory governance, sealed/paused/operating lifecycle, current admitted native
+pair/core bindings, exact accounting and callbacks, explicit positive caller L
+and swap-output floors, deadline and atomic rollback remain. Bit8 bypass does not
+admit an unknown pool. Mask0 skips optional USD-price/source-health evaluation. Oracle runtime/bindings
+and explicit execution-profile source revision remain authenticated, as does the
+current on-chain pool spot needed to mint.
+Broken tokens, core settlement or RPC can still prevent recovery.
+
+The reader proves zero main/residual association and the exact nonzero-domain
+empty portfolio fingerprints, pool reservation and complete bucket inventory.
+Only attributed bucket idle plus already-designated compound may fund recovery;
+neither existing rewards nor another bucket's funds may subsidize it. It does not
+invent a physical LP or call Active-only geometry reads for position0. Both
+snapshots bind shares, idle, compound, custody hash, nonce/epoch and governed
+controls. Changes abort the artifact rather than updating the selected calldata.
+
+Run the same B/C/D command below with a **new** output path. Inspect schema2's
+source-state/bypass disclosure, exact current Migration target, frozen calldata,
+original floors/expiry and both successful simulations. The first snapshot is at
+configured confirmation depth; the later canonical tip is labelled unconfirmed.
+Funding,25% gas headroom, original fee ceilings and block bounds remain unchanged.
+The output stays unsigned with `ready_for_submission:false` and
+`production_approved:false`; it contains no nonce, gas or signing fields in the
+transaction. There is no automatic route, resend, signing or unpause.
+
+After a separately authorized successful governance transaction, verify the
+receipt, bucket Active state, new Vault-owned main/no residual, remaining
+attributed funds and unchanged shares/reward reserves. **The protocol stays
+paused**. Review restored prices/settings and reconcile pending work before
+separate governance unpause. A revert leaves Parked state/funds unchanged except
+for transaction gas. Never repeat an ambiguous submitted transaction as new work.
+
+[Source review and verification](../reports/parked-recovery-preparation-20261115/REVIEW.md)
+cover injected-RPC preparation only, not actual provider, target-gas, wallet or
+operating qualification. Contract-wallet envelopes remain unsupported here.
 
 Use the [complete B/C/D matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
 and the maintained [operator procedure](OPERATOR_MANUAL.md#same-main-residual-consolidation).
@@ -193,7 +265,7 @@ original price/network-fee caps and observed governance funding. No cap rises
 automatically. Contract/delegated-wallet execution envelopes are unsupported by
 this adapter. This direct-EOA artifact prepares the Migration call itself.
 
-The existing **B/C/D** selection has exactly `schema`, `action`, `bucket`, `checks`, `lower`,
+The **schema1 B/C/D** selection has exactly `schema`, `action`, `bucket`, `checks`, `lower`,
 `upper`, `swapPool`, `zeroForOne`, `amountIn`, `minimumOut`, `minimumLiquidity`,
 `deadline`, `review_notes_sha256`, `evidence_sha256`. Schema is integer1; action
 is B, C or D; direction is a boolean. Evidence contains1–15 distinct nonzero
@@ -208,7 +280,7 @@ checks0 does not read USD feeds, require operation-enabled flags or consult the
 automatic route catalogue. Mandatory custody/control/runtime checks remain.
 A positive explicit swap still needs its authenticated admitted fixed-pair venue
 and captured operation principal. Bit4 requires USD data even without bit2.
-For D, observed physical/idle/already-designated compound is a lower bound that
+For Active D, observed physical/idle/already-designated compound is a lower bound that
 excludes the operation's future harvest. It is not a preflight spending ceiling.
 Both exact full simulations must authorize the unchanged explicit amount using
 the source's real harvest/release/accounting; the tool forecasts no extra funds.
@@ -221,8 +293,9 @@ the source's real harvest/release/accounting; the tool forecasts no extra funds.
    the maintained recovery procedure. This tool neither examines that journal nor
    proves that no other pending transaction exists. Pause separately from the
    governance wallet before capturing manual inputs.
-2. Select B, C or D explicitly and obtain the exact current main ticks, intended
-   positive added/new-L floor, retained mask and any explicit swap input/floor.
+2. Select B, C or D explicitly and obtain current main ticks for B/C or reviewed
+   replacement ticks for D, plus the positive added/new-L floor, retained mask
+   and any explicit swap input/floor. Parked D requires the schema2 selection above.
    The adapter verifies supplied choices; it is not a sizing solver.
 3. Run with a **new** output path:
 

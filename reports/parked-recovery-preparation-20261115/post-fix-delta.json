@@ -1,0 +1,21 @@
+{
+  "stage": "post-fix-delta",
+  "source_before": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_parked_manual_lp_review.py": "aa19cc9fdcd15093fd5143528f07a2b0ef81b6e733734ae48d4074eb34bc4c38"
+  },
+  "source_after": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_parked_manual_lp_review.py": "aa19cc9fdcd15093fd5143528f07a2b0ef81b6e733734ae48d4074eb34bc4c38"
+  },
+  "unchanged": true,
+  "methods": [
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls"
+  ],
+  "method_count": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "successful": true
+}

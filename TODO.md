@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-11-13 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-15 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**8 To do | 39 In progress | 30 Implemented locally | 1 Not planned**
+**8 To do | 39 In progress | 31 Implemented locally | 1 Not planned**
 
 Implemented means built and locally checked, not deployed or independently audited. Source publication, installed-service adoption and production qualification are separate milestones; this checklist does not approve deployment or rollout.
 
@@ -667,7 +667,7 @@ The data and services behind the app.
 
 <a id="task-operation-review"></a>
 
-- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Parked forced-D, contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.
+- [ ] **[Unify operation readiness and financial diagnostics](docs/KEEPER_COORDINATION.md#read-only-operation-review)** - In progress. Read-only keeper reports cover rebalance, compound and harvest. Direct-EOA unsigned tools prepare Active B/C/D plus park/resume/residual-only close and begin/close/allocate/distribute collective return, with exact snapshots, explicit floors and gas envelopes. Explicit schema2 Parked D is implemented with selected bypass disclosure; contract-wallet envelopes, universal diagnostics and actual provider/operator qualification remain open; no signing or execution approval.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -685,7 +685,7 @@ The data and services behind the app.
   - [Action resilience audit](reports/action-resilience-audit-20261102/VERIFICATION.md): The action/output matrix explains each major write receipt, post-state and fault boundary. It is reviewed documentation, not implementation of missing automated operation adapters. Compounded reserve-release amounts are not total actual LP deployed; API unavailability after confirmation must not trigger a duplicate action.
   - Operator guidance distinguishes direct Entry3 input admission, Balancer.configureExecutionPools and earned-LP converter route methods. Current royalty claims need no converter/route; earlier royalty converter procedures remain historical. A reviewHash is offline provenance, not an executed simulation; ordinary caps and explicit paused-governance emergency bypass remain separate. See [consolidated operator corrections](reports/project-consolidation-20261103/REVIEW.md). Actual live planning/simulation, source rollout and operating acceptance stay open.
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
-  - [Typed manual-LP preparation](docs/MANUAL_LP_PREPARATION.md) implements explicit Active-state B/C/D as a bounded source-only milestone for direct empty-code governance wallets; contract/delegated-wallet envelopes explicitly reject before funding review, without restricting contract authority. Authenticate runtime/governance/pause/main/residual/control snapshots, prepare exact added-L versus new-L floors and custody/review commitments, retain the original expiry and exact calldata, and simulate freshly before publication. Healthy market movement is re-evaluated rather than treated as a geometry change. No automatic force, floor choice, signing, deadline extension, intent deletion or Parked-state support. Actual provider/manual rehearsal and wider adapters remain open. [Both-flow scope](reports/moving-market-flows-20261106/INPUT_MATRIX.md).
+  - [Typed manual-LP preparation](docs/MANUAL_LP_PREPARATION.md) implements explicit Active-state B/C/D as a bounded source-only milestone for direct empty-code governance wallets; contract/delegated-wallet envelopes explicitly reject before funding review, without restricting contract authority. Authenticate runtime/governance/pause/main/residual/control snapshots, prepare exact added-L versus new-L floors and custody/review commitments, retain the original expiry and exact calldata, and simulate freshly before publication. Healthy market movement is re-evaluated rather than treated as a geometry change. Schema1 remains Active-only; separate explicit schema2 now supports Parked D. No automatic force, floor choice, signing, deadline extension or intent deletion. Actual provider/manual rehearsal and wider adapters remain open. [Both-flow scope](reports/moving-market-flows-20261106/INPUT_MATRIX.md).
   - [Retry diagnostics](reports/exact-lp-engine-20261106/VERIFICATION.md): rebalance/compound/harvest rows expose matching journal-backed retry waits and return not_due before simulation. Pending/lifecycle/authority remain first; missing timing staysnull/unavailable. Decimal-string legacy counters normalize through the existing parser. No added RPC, journal writes, signing or worker-policy change; universal report and actual hosting/provider qualification remain open.
   - [Operator management extension](reports/operator-management-20261109/REVIEW.md): seven source-only typed custody/terminal actions, automatic exact request/hash inputs, confirmed/latest controls, unchanged calldata/gas simulations, explicit batch-budget partial payouts, current-owner/cursor inclusion limits, sanitized blockers and durable exclusive publication. Existing Active B/C/D unchanged. No Solidity/profile/authority/service/site/signing change; actual operator/provider/target-gas and independent acceptance remain open.
   - The [operator gas-profile procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m) specifies exact20M browser/backend equality, decimal-string vs numeric fields, full20% activation policy2 vs25% manual/keeper padding, separate activation/claim listeners, fee approval, pending-first restart and rollback. Manual24M gas helpers have injected-input evidence; actual governance Migration C/D workloads are not represented by the six keeper calls. Templates remain incomplete, with no signed/submitted operation or rollout.
@@ -776,6 +776,20 @@ The data and services behind the app.
 
   - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
   - [Holder input hardening](reports/system-adversarial-20261026/ops-input/VERIFICATION.md) caps reads before allocation, rejects duplicate/nonfinite/overflow JSON, normalizes parser limits and sanitizes argument errors.24affected methods pass,12new included once; valid flags/static help/exclusive outputs and unresolved-escrow/nonapproval semantics remain. Actual holder/escrow rehearsal still required.
+
+  </details>
+
+<a id="task-parked-emergency-preparation"></a>
+
+- [x] **[Prepare explicit unsigned Parked emergency recovery](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)** - Implemented. Schema2/actionD explicitly requires Parked state, authenticates the empty physical portfolio and attributed idle/compound, preserves original floors/expiry and simulates exact calldata at two snapshots. Selected retained/bypassed categories are disclosed; impossible Active-only guards reject. Schema1 and governance permissions stay. Source completion is not actual provider/operator/gas approval.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Source review and focused verification](reports/parked-recovery-preparation-20261115/VERIFICATION.md) preserve schema1 Active B/C/D and reject silent schema/state coercion. Parked requires schema2/D/expected_position_status:parked, exact admitted current-pool identity, positive shares and nonempty attributed idle/designated compound; reward/buyback/royalty backing stays separate.
+  - Bits1/16 require Active LP and reject clearly. Select bits2/4/8 explicitly; bit4 still requires USD data when2 is bypassed. Mask0 keeps governance, pause/seal/lifecycle, structural admission, custody/balances/callbacks, caller floors and expiry; it does not promise economically sensible or active placement. No automatic bypass or route selection.
+  - Confirmed/latest control drift, reorg, expiry, funding/budget or retained-simulation failure refuses publication. New output only, no nonce/gas/signing fields in transaction, no journal writes/signing/unpause/service or chain changes. After separate authorized execution verify receipt, new main/Active bucket, funds/shares/rights and still-paused state before separate unpause.
+  - Actual governance C/D gas, complete provider fees, contract-wallet envelopes and operating/independent acceptance remain under operation-review and release gates; unchanged contracts and suites are not rerun for this Python preparation extension.
 
   </details>
 
@@ -1651,4 +1665,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `06c894d1a2f4246765b02e2ff0ca267302945ea18b27f9c1795928c3e03613a4`.
+Snapshot SHA-256: `ad8e81a8ebc44adb53721f34f576f47f77f639034e86350a61011162ab6053b3`.

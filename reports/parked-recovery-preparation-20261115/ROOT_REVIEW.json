@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "baseline": "fce0ac27952997d8501098a96743603d4ff2a236",
+  "scope": "Unsigned Parked recovery preparation; actual reader with injected wire; no EVM/provider/wallet or operating qualification",
+  "new_methods": [
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_incompatible_parked_mask_has_specific_sanitized_reason",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_direct_eoa_only_original_deadline_gas_and_canonical_state",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_noncanonical_missing_getters_never_become_zero",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_parked_explicit_swap_floor_and_source_revert_are_preserved",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema1_remains_active_only_and_unchanged_shape",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_selection_and_metadata_are_bound_without_mutating_input",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_main_residual_and_exact_nonzero_fingerprints_are_required",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_mask_does_not_need_usd_timing_or_enabled_operations",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls"
+  ],
+  "unique_new_method_count": 19,
+  "source_sha256": {
+    "zzz_ops/manual_lp_review.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23",
+    "tests_python/test_parked_manual_lp_review.py": "aa19cc9fdcd15093fd5143528f07a2b0ef81b6e733734ae48d4074eb34bc4c38"
+  },
+  "baseline_manual_raw_sha256": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54",
+  "unchanged_production_solidity_count": 61,
+  "unchanged_normal_compiler_input_count": 100,
+  "unchanged_strict_source_pin_count": 64,
+  "protected_dirty_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "website_head": "206892ab8b93d65cae3564e71feaf4435f90cdee",
+  "website_byte_pins": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "reused_not_rerun": [
+    "prior normal compiler100-source input/48 gates",
+    "prior567 strict dispositions",
+    "unchanged Solidity/EVM/old Python/browser suites"
+  ],
+  "authority_or_financial_defaults_changed": false,
+  "signing_or_transaction_submission": false,
+  "services_sites_chains_journals_or_paused_heartbeat_changed": false,
+  "limitations": [
+    "EOA-only unsigned adapter; no contract-wallet envelope",
+    "Injected successful void is not on-chain guard eligibility or gas proof",
+    "Actual matching runtime/provider/complete fees/manual C-D gas and operator rehearsal remain open",
+    "Broad operation-review remains progress; this closes only the ParkedD source milestone"
+  ],
+  "baseline_document_archive": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\parked-recovery-preparation-20261115-fce0ac2\\originals"
+}

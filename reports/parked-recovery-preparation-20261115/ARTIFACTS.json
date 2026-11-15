@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scope": "Exact raw bytes of this report package, excluding this manifest itself",
+  "sha256": {
+    "active-artifact-comparison.json": "59f696304e4cbb0d97952845dadf2c13eddfca76d3574e8d4371294a6d3c69e1",
+    "baseline-delta.json": "09979fd2405782c2a6b0420ffcc879b4ccc39ed54384973cb42a97751830a609",
+    "baseline-delta.log": "a03bc9653f533a77f63780ac91c2454f0e31678348f39f200623c5a6565b4fa0",
+    "baseline-final-tests.json": "332cfd0f56b82fb427403bc4b8a73febd145759b26a4fb7007c48f2704820dac",
+    "baseline-final-tests.log": "c223c3e3579c93dd8a2a8bf9c5bcd6986a51ca3d57cea5fafb905a19c0627b03",
+    "baseline-new-tests.log": "5322f1557f9aa66689cc14048bd3dfc6ba30b046ceb01012cd55b694e1109455",
+    "COMPLETION.json": "56ee47119f4e232d85e80c78a3c16380c6a74ac8e792642c6d3b1f6dbc76215b",
+    "first-post-tests.log": "0c0be75a4d5323553a2e96b6495a5b70c98f2ece48f07a29ae828927b6c3e22f",
+    "post-fix-delta.json": "524e110db138989cf7a011dc1d2aa1e204b33f997d327f10c11cc4ef2aeae65e",
+    "post-fix-delta.log": "435f91bd281722cb12279552128632b8350038133bb28e3e5b3e5ad0d7526f2e",
+    "post-fix.json": "20ac3a1d3d8db8efd383bad73c1679240d1e20c3b1d5d261514b4ec41a128fef",
+    "post-fix.log": "49b703a390d8bc75ae8cf5c7d6b358002d2287b73a660dd2121e7dcbea620169",
+    "post17-final19-method-reuse.json": "4141cc8bdfe7a9b215cf75f3cff3a26710ec96002699b8b050b99024b86af1bd",
+    "REVIEW.md": "c308af864d8504e8b2fdf84b435a2d8694e4952e18cb99de07a1f1ce620bec1d",
+    "ROOT_REVIEW.json": "a682651acc0f497d2c3518cd26a23fcbab4f46e8b7787ce836d928fd85dfe922",
+    "VERIFICATION.md": "5ddd3404d133fd8fd7c2ef099313b5a6b7379eea3dd2478c7d9c5a38e3f02369"
+  }
+}

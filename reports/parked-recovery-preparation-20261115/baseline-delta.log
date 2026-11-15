@@ -1,0 +1,79 @@
+test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) ... 
+  test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) (zeroForOne=True) ... ERROR
+  test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) (zeroForOne=False) ... ERROR
+test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) ... 
+  test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) (variant='valid') ... ERROR
+  test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) (variant='revision') ... FAIL
+
+======================================================================
+ERROR: test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) (zeroForOne=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 232, in test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 52, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves) (zeroForOne=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 232, in test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 52, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) (variant='valid')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 260, in test_explicit_execution1_lp3_profile_and_late_source_controls
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 52, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\parked-recovery-preparation-20261115-fce0ac2\implementation\manual_lp_review.baseline.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+FAIL: test_explicit_execution1_lp3_profile_and_late_source_controls (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls) (variant='revision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 266, in test_explicit_execution1_lp3_profile_and_late_source_controls
+    self.assertEqual(1 if variant=='revision' else 0,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.355s
+
+FAILED (failures=1, errors=3)

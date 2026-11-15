@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Parked recovery preparation](parked-recovery-preparation-20261115/REVIEW.md)
+adds explicit schema2 D with selected bypass disclosure and authenticated Parked
+fund/custody controls. [Verification](parked-recovery-preparation-20261115/VERIFICATION.md)
+separates new focused checks from unchanged-source evidence. No Solidity,
+signing, runtime, service, site or chain change; actual operating approval stays open.
+
 [44-linked-task audit](open-tasks-audit-20261113/REVIEW.md) separates actual code
 defects from qualification/accepted boundaries, fixes RPC-probe and indexer
 request amplification, and records20new focused methods without unchanged

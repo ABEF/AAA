@@ -1,0 +1,127 @@
+{
+  "original_test_source_sha256": "7815aa2020dc2afee959772d9031aba97c82d72251c3d9d6fdd7cde46a62c6d4",
+  "final_test_source_sha256": "aa19cc9fdcd15093fd5143528f07a2b0ef81b6e733734ae48d4074eb34bc4c38",
+  "previously_executed_test_count": 17,
+  "unchanged_helpers_and_methods": [
+    {
+      "method": "setUpClass",
+      "ast_identical": true,
+      "sha256": "6f94cf795847950c82c4b3b20402653f4896725ca88f9983dfc30c136c5e196b"
+    },
+    {
+      "method": "setUp",
+      "ast_identical": true,
+      "sha256": "fb9f667d6f8f8f942c53f9436817c4f0f02ff50466d83f90eaa6b75c168e9b57"
+    },
+    {
+      "method": "put",
+      "ast_identical": true,
+      "sha256": "96aebf6a792a2a1962606aa5ad5f65a1bbf152b79b1765cfa588d8c702d49ef6"
+    },
+    {
+      "method": "prepare",
+      "ast_identical": true,
+      "sha256": "a4741b23437e68fa9f69682126c8b424aa79dc3000afd00845a15020c15593f6"
+    },
+    {
+      "method": "sync_custody",
+      "ast_identical": true,
+      "sha256": "7ce60fa57dc63a552388ec83067000e5f072f62ad424ff26c040e0e739fc23fd"
+    },
+    {
+      "method": "calls",
+      "ast_identical": true,
+      "sha256": "1a84c2514123149836ecfe9377fe1dd36cd08d09577bd9cc0f530790522c18cc"
+    },
+    {
+      "method": "test_explicit_schema2_parked_d_exact_static_call_and_disclosure",
+      "ast_identical": true,
+      "sha256": "7084568186310196d5e740231602a3a686a85ce58b0117ed5df163713e6bd838"
+    },
+    {
+      "method": "test_schema1_remains_active_only_and_unchanged_shape",
+      "ast_identical": true,
+      "sha256": "bbbf7d5e987555ecc21cbcf85b68a6e5646c53947370371f54e9b3eaa5e47879"
+    },
+    {
+      "method": "test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state",
+      "ast_identical": true,
+      "sha256": "c6f14c7eb0a03be62138d53cba5af84cdebcd6e63a008cfea02aa5f4322dc813"
+    },
+    {
+      "method": "test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads",
+      "ast_identical": true,
+      "sha256": "37f6b2e06b418eddb86171a052cfab86560fdc4055e8bf4493ed1e81eaebb2c8"
+    },
+    {
+      "method": "test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed",
+      "ast_identical": true,
+      "sha256": "8fd3e2d7bc8797d792a914361f450eafa1b53785c69288b902dc1eab05004b41"
+    },
+    {
+      "method": "test_idle_and_designated_compound_are_only_parked_operation_principal",
+      "ast_identical": true,
+      "sha256": "8ff55b8d566f863fd2ffe05a78513100d025b55619d14c91ea3b39874f3a5937"
+    },
+    {
+      "method": "test_zero_main_residual_and_exact_nonzero_fingerprints_are_required",
+      "ast_identical": true,
+      "sha256": "12650d0718a89560667b379bab18af1e4d95758998c270773346dcf7befc2e9e"
+    },
+    {
+      "method": "test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required",
+      "ast_identical": true,
+      "sha256": "36d5c8db8746f8409b781295fe93be20791b7b4dca44d7194f0d4cbf691bc86a"
+    },
+    {
+      "method": "test_zero_mask_does_not_need_usd_timing_or_enabled_operations",
+      "ast_identical": true,
+      "sha256": "5289bdb916e2e1ec188ea7f037617ddb0a83668c733aac3af2b11fe06b75c07c"
+    },
+    {
+      "method": "test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass",
+      "ast_identical": true,
+      "sha256": "a1ccf8aefbf61fc5edc98896cb6c37140b16f2dd5923d7a27ca1a02a2358b040"
+    },
+    {
+      "method": "test_parked_explicit_swap_floor_and_source_revert_are_preserved",
+      "ast_identical": true,
+      "sha256": "07735b22afd5bf16d85a238930976abe8ae4a849c33043b4acb683a8de785573"
+    },
+    {
+      "method": "test_every_parked_control_is_rechecked_at_later_canonical_tip",
+      "ast_identical": true,
+      "sha256": "5964bf85233a52570a426e22b9926019aed5b7f8bfd2afeffc1e6649c3248725"
+    },
+    {
+      "method": "test_noncanonical_missing_getters_never_become_zero",
+      "ast_identical": true,
+      "sha256": "fae811eb753a73dd1017b04b9381c358384e02ffa91b952ec1d2414483d81a1d"
+    },
+    {
+      "method": "test_direct_eoa_only_original_deadline_gas_and_canonical_state",
+      "ast_identical": true,
+      "sha256": "e4f5a562f85bcecff84295b60f713abc9d34d38c2a9160384ee4321a6a741a4c"
+    },
+    {
+      "method": "test_selection_and_metadata_are_bound_without_mutating_input",
+      "ast_identical": true,
+      "sha256": "b7668de80de60140eefdc1096a3b42009042af481815910bfbb8b4eb59434d38"
+    },
+    {
+      "method": "test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure",
+      "ast_identical": true,
+      "sha256": "e3aedfa727ee6dcb295b817d6cf27c95c7845a4db7ddd061f4a3c5634986104b"
+    },
+    {
+      "method": "test_cli_incompatible_parked_mask_has_specific_sanitized_reason",
+      "ast_identical": true,
+      "sha256": "69d9ff62829f9f40abebe24906bd1316092b3b1a8ec3580b0be7a22a96281e35"
+    }
+  ],
+  "new_methods": [
+    "test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves",
+    "test_explicit_execution1_lp3_profile_and_late_source_controls"
+  ],
+  "successful": true
+}

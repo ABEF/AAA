@@ -1,0 +1,28 @@
+{
+  "source_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\parked-recovery-preparation-20261115-fce0ac2\\implementation\\manual_lp_review.baseline.py": "fbbfc71755b4bb56f92497e93e5c4fdd918b33610c8ce692603e22e4789dbc54",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\manual_lp_review.py": "3e5369b751589d7db05bf4932473f5916b29685d85cbf8c7b1e13cb19f039b23"
+  },
+  "old_test_methods_executed": 0,
+  "comparisons": [
+    {
+      "action": "B",
+      "full_rendered_bytes_identical": true,
+      "baseline_sha256": "30a71a17ce0ceaf2dfd479545fdfd2bdf71379be84874d86e61af9a2c15cb159",
+      "current_sha256": "30a71a17ce0ceaf2dfd479545fdfd2bdf71379be84874d86e61af9a2c15cb159"
+    },
+    {
+      "action": "C",
+      "full_rendered_bytes_identical": true,
+      "baseline_sha256": "7b7d517d51bd8164fb706b35df61aeaeee46378713700fc83a1ee5f1a33408e1",
+      "current_sha256": "7b7d517d51bd8164fb706b35df61aeaeee46378713700fc83a1ee5f1a33408e1"
+    },
+    {
+      "action": "D",
+      "full_rendered_bytes_identical": true,
+      "baseline_sha256": "ff1103800d257c09ced05cee024790aaaab1be17857cd6005a6a139fae704e26",
+      "current_sha256": "ff1103800d257c09ced05cee024790aaaab1be17857cd6005a6a139fae704e26"
+    }
+  ],
+  "successful": true
+}

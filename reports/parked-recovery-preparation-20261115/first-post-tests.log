@@ -1,0 +1,37 @@
+test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) ... ok
+test_cli_incompatible_parked_mask_has_specific_sanitized_reason (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_incompatible_parked_mask_has_specific_sanitized_reason) ... ok
+test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure) ... ok
+test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) ... 
+  test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) (variant='decimals') ... ERROR
+test_direct_eoa_only_original_deadline_gas_and_canonical_state (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_direct_eoa_only_original_deadline_gas_and_canonical_state) ... ok
+test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) ... ok
+test_explicit_schema2_parked_d_exact_static_call_and_disclosure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure) ... ok
+test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) ... ok
+test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed) ... ok
+test_noncanonical_missing_getters_never_become_zero (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_noncanonical_missing_getters_never_become_zero) ... ok
+test_parked_explicit_swap_floor_and_source_revert_are_preserved (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_parked_explicit_swap_floor_and_source_revert_are_preserved) ... ok
+test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass) ... ok
+test_schema1_remains_active_only_and_unchanged_shape (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema1_remains_active_only_and_unchanged_shape) ... ok
+test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state) ... ok
+test_selection_and_metadata_are_bound_without_mutating_input (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_selection_and_metadata_are_bound_without_mutating_input) ... ok
+test_zero_main_residual_and_exact_nonzero_fingerprints_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_main_residual_and_exact_nonzero_fingerprints_are_required) ... ok
+test_zero_mask_does_not_need_usd_timing_or_enabled_operations (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_mask_does_not_need_usd_timing_or_enabled_operations) ... ok
+
+======================================================================
+ERROR: test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) (variant='decimals')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 185, in test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required
+    if variant=='decimals':self.put(addr(20),'decimals()',17)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 47, in put
+    self.f.put(role, method, value, *args)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 138, in put
+    self.f.rpc.responses[self.targets[role],native_data(method,*args)]=words(*values)
+                         ~~~~~~~~~~~~^^^^^^
+KeyError: '0x0000000000000000000000000000000000000014'
+
+----------------------------------------------------------------------
+Ran 17 tests in 36.599s
+
+FAILED (errors=1)

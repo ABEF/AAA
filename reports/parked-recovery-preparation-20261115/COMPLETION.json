@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "scope": "Root mechanical/source verification; no test bodies/RPC/EVM/compiler/static analyzer run",
+  "successful": true,
+  "new_focused_methods": 19,
+  "old_test_methods_executed": 0,
+  "inventory_only_selected_methods": [
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_both_swap_directions_use_exact_unequal_idle_and_designated_reserves",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_incompatible_parked_mask_has_specific_sanitized_reason",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_direct_eoa_only_original_deadline_gas_and_canonical_state",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_noncanonical_missing_getters_never_become_zero",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_parked_explicit_swap_floor_and_source_revert_are_preserved",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema1_remains_active_only_and_unchanged_shape",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_selection_and_metadata_are_bound_without_mutating_input",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_main_residual_and_exact_nonzero_fingerprints_are_required",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_mask_does_not_need_usd_timing_or_enabled_operations"
+  ],
+  "inventory_only_tests_executed": 0,
+  "new_or_updated_local_links_checked": [
+    {
+      "source": "AGENTS.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "AGENTS.md",
+      "href": "reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "href": "reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "README.md",
+      "href": "reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "README.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "TODO.md",
+      "href": "reports/parked-recovery-preparation-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "TODO.md",
+      "href": "docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/AUDIT_FINDINGS.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/CUSTODY_PARKING.md",
+      "href": "MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/IMPLEMENTATION_STATUS.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/MANUAL_LP_PREPARATION.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/README.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/RELEASE_CHECKLIST.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "docs/ROADMAP.md",
+      "href": "MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "href": "MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "href": "../reports/parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/README.md",
+      "href": "parked-recovery-preparation-20261115/VERIFICATION.md"
+    },
+    {
+      "source": "reports/README.md",
+      "href": "parked-recovery-preparation-20261115/REVIEW.md"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/REVIEW.md",
+      "href": "../../docs/CUSTODY_PARKING.md"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/REVIEW.md",
+      "href": "../../docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/REVIEW.md",
+      "href": "../../TODO.md#task-operation-review"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/REVIEW.md",
+      "href": "VERIFICATION.md"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/REVIEW.md",
+      "href": "../../docs/OPERATOR_MANUAL.md"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "ROOT_REVIEW.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "baseline-new-tests.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "baseline-final-tests.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "post-fix-delta.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "post-fix.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "COMPLETION.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "baseline-delta.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "active-artifact-comparison.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "baseline-delta.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "first-post-tests.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "post-fix-delta.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "post17-final19-method-reuse.json"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "post-fix.log"
+    },
+    {
+      "source": "reports/parked-recovery-preparation-20261115/VERIFICATION.md",
+      "href": "baseline-final-tests.json"
+    }
+  ],
+  "todo_check": "Project Todo verified.",
+  "function_reference_check": {
+    "passed": true,
+    "contracts": 40,
+    "functions": 956,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0,
+    "explanation_gaps": 0
+  },
+  "operator_reference_check": {
+    "passed": true,
+    "rows": 1009,
+    "ready_for_submission": false
+  },
+  "protected_files_byte_identical": 4,
+  "production_solidity_byte_identical": 61,
+  "source_doc_whitespace_check": "passed with existing CRLF recognized as line endings; raw evidence logs excluded and preserved byte-identically",
+  "open_task_count_unchanged": 47,
+  "publication_gate": "Exact index and committed HEAD import-closure/blob checks are required separately; external proofs avoid a self-hashing report",
+  "external_evidence_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\parked-recovery-preparation-20261115-fce0ac2"
+}

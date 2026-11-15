@@ -1,5 +1,14 @@
 # AAA / ZZZ PoPL project instructions
 
+The [Parked recovery preparation](reports/parked-recovery-preparation-20261115/REVIEW.md) adds explicit schema2/actionD with
+`expected_position_status:"parked"` to the unsigned manual tool. Schema1 Active
+B/C/D stays unchanged. Governance/paused/operating authority, current-pool fixed
+ETH/ZZZ custody, caller floors, original expiry, two exact simulations and fee
+bounds remain. Retained bits1/16 require an Active main and are rejected; bits2/4/8
+are explicit, with USD still required by4. No automatic bypass, route, signing,
+unpause, journal or environment change. Actual operator/provider/target-gas and
+contract-wallet qualification remain open. See the [operator inputs](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2).
+
 The [44-linked-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes read-only request amplification:
 the probe now supports optional actual-HTTP pacing, stops a refused/rate-limited
 endpoint and bounds internal posts/timeouts by the original90s budget. Indexer
@@ -200,7 +209,8 @@ state and a later canonical tip. Distribution uses the explicit reviewed batch
 budget and reports a count, never a paid prefix or guaranteed beneficiaries.
 Local blockers/uncertain output publication are explicit; no signer, journal,
 nonce reservation, queue, force fallback or authority change is added. Existing
-Active B/C/D and checkpoint2 retain their original scope; Parked forced-D and
+Active B/C/D and checkpoint2 retain their original scope. The new explicit
+schema2 Parked D adapter above completes unsigned preparation for that path;
 contract-wallet envelopes still require separate manual preparation. Seventy
 distinct focused checks plus an overlapping final CLI diagnostic recheck pass
 with injected RPC; seven encodings match offline Cast. These are not live wallet,
@@ -223,7 +233,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-13. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-15. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.

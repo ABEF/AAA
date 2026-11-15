@@ -300,8 +300,10 @@ implements previously missing park/resume/residual-close and terminal-return
 adapters. It handles exact custody inputs, phase-specific pause/preparation,
 current-owner/cursor drift, gas-sensitive partial payouts and uncertain durable
 publication without signing or automatic fallback. Known local blockers remain
-distinct from opaque RPC failure. Actual operator/provider/gas acceptance,
-contract-wallet envelopes and Parked forced-D preparation remain open.
+distinct from opaque RPC failure. The [Parked recovery extension](../reports/parked-recovery-preparation-20261115/REVIEW.md)
+adds an explicit schema2 D selection and authenticated empty-portfolio/fund proof.
+Active-only guards are rejected, not silently removed; all bypasses are disclosed.
+Actual operator/provider/gas acceptance and contract-wallet envelopes remain open.
 
 ## Provenance and unresolved findings
 

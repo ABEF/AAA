@@ -89,10 +89,20 @@ floor still binds exactly. Market movement can turn a formerly two-sided LP
 wholly into one currency without changing its fingerprint. All custody, current
 physical-principal, actual receipt, nonce/epoch, deadline and reserve checks stay.
 
-To put parked funds back into the CURRENT pool without optional price/timing/
-loss policy, remain paused and prepare a fresh
-`Migration.emergencyRebalance(request)` with `checks=0`, explicit valid ticks,
-optional exact admitted swap and positive raw output/LP floors. See the
+To put parked funds back into the CURRENT pool under explicitly selected
+emergency protections, remain paused and prepare a fresh
+`Migration.emergencyRebalance(request)`. The [schema2 Parked D preparer](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
+fetches exact custody/control inputs and produces the same unsigned contract
+call. Supply `schema:2`, `action:"D"`, `expected_position_status:"parked"`, reviewed
+ticks, exact optional admitted swap, positive output/new-L floors and original
+deadline. Explicitly select retained bits2/4/8; bits1/16 require an Active main
+and cannot be retained here. Bit4 still needs USD sources without bit2. Mask0
+bypasses every optional category and may accept severe loss or inactive placement;
+it is never selected automatically. Mandatory governance/lifecycle, native-pair
+admission, exact custody, balances, callbacks, caller floors and atomic rollback
+remain. Funding comes only from attributed idle and designated compound, not
+holder rewards/buyback/royalties. Recovery creates one main, stays paused and
+requires actual receipt/post-state review before a separate unpause. See the
 [force procedure](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call).
 Ordinary `resume` remains guarded and may choose another reviewed same-pair pool.
 Old runtimes may reject both-zero floors despite sharing the same ABI/version;

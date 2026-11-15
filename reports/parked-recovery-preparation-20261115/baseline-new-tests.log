@@ -1,0 +1,920 @@
+test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) ... 
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=0) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=1) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=2) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=3) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=4) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=5) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=6) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=7) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=8) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=9) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=10) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=11) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=12) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=13) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=14) ... ERROR
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=15) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=16) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=17) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=18) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=19) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=20) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=21) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=22) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=23) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=24) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=25) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=26) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=27) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=28) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=29) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=30) ... FAIL
+  test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=31) ... FAIL
+test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure) ... {"ok": false, "error_type": "ValueError", "reason": "manual_preparation_unavailable_or_invalid"}
+FAIL
+test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) ... 
+  test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) (variant='decimals') ... ERROR
+test_direct_eoa_only_original_deadline_gas_and_canonical_state (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_direct_eoa_only_original_deadline_gas_and_canonical_state) ... ok
+test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) ... 
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='idle') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='compound') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='shares') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='status') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='main') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='custody') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='nonce') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='epoch') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='governance') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='paused') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='sealed') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='preparing') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='canonical') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='terminal') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='exit_phase') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='policy') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='registry') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='secondary_count') ... FAIL
+  test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='runtime') ... FAIL
+test_explicit_schema2_parked_d_exact_static_call_and_disclosure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure) ... ERROR
+test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) ... 
+  test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='idle') ... ERROR
+  test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='compound') ... ERROR
+  test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='both') ... ERROR
+test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) ... ERROR
+test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed) ... ERROR
+test_noncanonical_missing_getters_never_become_zero (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_noncanonical_missing_getters_never_become_zero) ... ok
+test_parked_explicit_swap_floor_and_source_revert_are_preserved (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_parked_explicit_swap_floor_and_source_revert_are_preserved) ... ERROR
+test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass) ... ERROR
+test_schema1_remains_active_only_and_unchanged_shape (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema1_remains_active_only_and_unchanged_shape) ... ok
+test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_schema2_rejects_non_d_missing_wrong_extra_or_implicit_state) ... ok
+test_selection_and_metadata_are_bound_without_mutating_input (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_selection_and_metadata_are_bound_without_mutating_input) ... ERROR
+test_zero_main_residual_and_exact_nonzero_fingerprints_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_main_residual_and_exact_nonzero_fingerprints_are_required) ... ok
+test_zero_mask_does_not_need_usd_timing_or_enabled_operations (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_mask_does_not_need_usd_timing_or_enabled_operations) ... ERROR
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=8)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=10)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=12)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=14)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 116, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    result=self.prepare();disclosure=result['safeguards']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required) (variant='decimals')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 177, in test_complete_pool_key_alias_inventory_and_fixed_asset_pins_are_required
+    if variant=='decimals':self.put(addr(20),'decimals()',17)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 47, in put
+    self.f.put(role, method, value, *args)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_lp_review.py", line 138, in put
+    self.f.rpc.responses[self.targets[role],native_data(method,*args)]=words(*values)
+                         ~~~~~~~~~~~~^^^^^^
+KeyError: '0x0000000000000000000000000000000000000014'
+
+======================================================================
+ERROR: test_explicit_schema2_parked_d_exact_static_call_and_disclosure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 59, in test_explicit_schema2_parked_d_exact_static_call_and_disclosure
+    result = self.prepare()
+             ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='idle')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 141, in test_idle_and_designated_compound_are_only_parked_operation_principal
+    self.prepare()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='compound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 141, in test_idle_and_designated_compound_are_only_parked_operation_principal
+    self.prepare()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal) (kind='both')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 141, in test_idle_and_designated_compound_are_only_parked_operation_principal
+    self.prepare()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_idle_and_designated_compound_are_only_parked_operation_principal (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_idle_and_designated_compound_are_only_parked_operation_principal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 144, in test_idle_and_designated_compound_are_only_parked_operation_principal
+    with self.assertRaisesRegex(RpcError, 'principal'):self.prepare()
+                                                       ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 128, in test_no_physical_zero_id_reads_and_other_bucket_residual_is_allowed
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_parked_explicit_swap_floor_and_source_revert_are_preserved (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_parked_explicit_swap_floor_and_source_revert_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 201, in test_parked_explicit_swap_floor_and_source_revert_are_preserved
+    result=self.prepare()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 193, in test_retained_operations_flag_and_source_simulation_failure_never_auto_bypass
+    with self.assertRaises(RpcError):self.prepare()
+                                     ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_selection_and_metadata_are_bound_without_mutating_input (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_selection_and_metadata_are_bound_without_mutating_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 261, in test_selection_and_metadata_are_bound_without_mutating_input
+    original=copy.deepcopy(self.request);result=self.prepare()
+                                                ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+ERROR: test_zero_mask_does_not_need_usd_timing_or_enabled_operations (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_zero_mask_does_not_need_usd_timing_or_enabled_operations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 184, in test_zero_mask_does_not_need_usd_timing_or_enabled_operations
+    self.prepare()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 50, in prepare
+    return M.prepare(self.f.config, self.f.policy, self.request, rpc=self.rpc,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 297, in prepare
+    config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+                                                                     ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\manual_lp_review.py", line 52, in selection
+    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\operator_review.py", line 44, in _keys
+    if not isinstance(value,dict) or set(value)!=set(expected):raise ValueError('Unexpected or missing object fields')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unexpected or missing object fields
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=1)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=3)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=5)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=7)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=9)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=11)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=13)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=15)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=16)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=17)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=18)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=19)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=20)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=21)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=22)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=23)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=24)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=25)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=26)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=27)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=28)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=29)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=30)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads) (mask=31)
+----------------------------------------------------------------------
+ValueError: Unexpected or missing object fields
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 112, in test_all_32_masks_report_retained_bits_and_only_relevant_optional_reads
+    with self.assertRaisesRegex(ValueError, 'Parked.*trigger|Parked.*confirmation'):self.prepare()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Parked.*trigger|Parked.*confirmation" does not match "Unexpected or missing object fields"
+
+======================================================================
+FAIL: test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 282, in test_cli_prepare_real_reader_exclusive_output_and_sanitized_failure
+    self.assertEqual(0,M.main(args))
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='idle')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='compound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='shares')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='status')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='main')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='custody')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='nonce')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='epoch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='governance')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='paused')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='sealed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='preparing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='canonical')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='terminal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='exit_phase')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='registry')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='secondary_count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_every_parked_control_is_rechecked_at_later_canonical_tip (tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip) (variant='runtime')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_parked_manual_lp_review.py", line 237, in test_every_parked_control_is_rechecked_at_later_canonical_tip
+    self.assertEqual(1,len(self.rpc.simulations))
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 16 tests in 18.233s
+
+FAILED (failures=44, errors=19)

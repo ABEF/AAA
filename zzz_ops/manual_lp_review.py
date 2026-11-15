@@ -1,4 +1,4 @@
-"""Active-state B/C/D preparation for direct empty-code governance EOAs only.
+"""Active B/C/D and explicit Parked emergency-D unsigned preparation.
 
 No signing, journal access, generic call targets, guessed floors, force fallback,
 deadline extension or execution approval. Configured runtime pins still require
@@ -40,6 +40,10 @@ class UnsupportedGovernanceEnvelope(ValueError):
     """Contract/delegated wallets require a separately prepared outer envelope."""
 
 
+class IncompatibleParkedGuards(ValueError):
+    """Pinned Active-only guards cannot be retained by a Parked request."""
+
+
 def digest(value):return hashlib.sha256(offline.canonical(value)).hexdigest()
 
 
@@ -49,10 +53,14 @@ def integer(value, *, bits=256, signed=False, positive=False):
 
 
 def selection(raw):
-    offline._keys(raw,{'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
-        'amountIn','minimumOut','minimumLiquidity','deadline','review_notes_sha256','evidence_sha256'})
-    if type(raw['schema']) is not int or raw['schema']!=1 or raw['action'] not in ('B','C','D'):
+    schema=raw.get('schema') if isinstance(raw,dict) else None
+    fields={'schema','action','bucket','checks','lower','upper','swapPool','zeroForOne',
+        'amountIn','minimumOut','minimumLiquidity','deadline','review_notes_sha256','evidence_sha256'}
+    offline._keys(raw,fields|({'expected_position_status'} if type(schema) is int and schema==2 else set()))
+    if type(schema) is not int or schema not in (1,2) or raw['action'] not in ('B','C','D'):
         raise ValueError('Select exactly Active-state manual action B, C or D')
+    if schema==2 and (raw['action']!='D' or raw['expected_position_status']!='parked'):
+        raise ValueError('Schema2 requires explicit Parked emergency action D only')
     result=copy.deepcopy(raw)
     for field,bits,signed,positive in [('bucket',256,False,True),('checks',8,False,False),
             ('lower',24,True,False),('upper',24,True,False),('amountIn',128,False,False),
@@ -74,7 +82,32 @@ def selection(raw):
         raise ValueError('Explicit swap fields are inconsistent')
     if raw['action']=='B' and (result['checks']!=14 or swap):
         raise ValueError('Guarded B requires checks14 and no explicit swap')
+    # These retained guards require an Active physical LP in the pinned source.
+    # Never silently clear the caller's mask or claim a Parked call can pass them.
+    if schema==2 and result['checks']&17:
+        raise IncompatibleParkedGuards('Parked emergency cannot retain Active trigger or sampled confirmation guards (bits1/16)')
     return result
+
+
+def parked_safeguards(checks):
+    """Disclose consent, never substitute mask bits for execution evidence."""
+    names=((1,'ordinary_trigger_and_hard_cooldown'),(2,'independent_price_and_spot_checks'),
+        (4,'retained_value_and_execution_loss'),(8,'pool_operations_flags'),
+        (16,'sampled_price_confirmation'))
+    return {'checks':checks,
+        'retained':[{'bit':bit,'name':name,'status':'retained_for_exact_simulation'}
+            for bit,name in names if checks&bit],
+        'bypassed':[{'bit':bit,'name':name,'status':'explicitly_bypassed_by_caller'}
+            for bit,name in names if not checks&bit],
+        'usd_required':bool(checks&6),'mask_is_eligibility_proof':False,
+        'mandatory_controls':['current_governance_only','sealed_paused_operating_pre_exit',
+            'direct_empty_code_governance_eoa','pinned_module_and_asset_identities',
+            'registered_bucket_alias_and_shares','zero_live_main_and_residual',
+            'exact_attributed_idle_and_designated_compound','custody_hash_nonce_epoch',
+            'caller_swap_floors_liquidity_floor_deadline','atomic_accounting_callbacks_and_rollback',
+            'unchanged_calldata_confirmed_and_canonical_tip_simulation','original_gas_fee_and_funding_limits'],
+        'protocol_remains_paused':True,
+        'warning':'Bypassed financial guards may permit near-total principal loss; this review is not execution approval.'}
 
 
 def encode(request, action):
@@ -150,6 +183,47 @@ class Reader:
     def binding(self,role,method,expected):
         if self.uint(role,method)!=int(self.targets[expected],16):raise RpcError('Manual helper binding differs')
 
+    def parked_pool(self,pool,zzz):
+        """Authenticate the complete fixed native pair without a live LP read."""
+        config=self.read('pools','accounting(bytes32)',pool,count=14)
+        values=[int(word,16) for word in config]
+        widths=(160,160,24,24,160,1,1,16,16,16,16,32,256,256)
+        if (any(value>=1<<width for value,width in zip(values,widths)) or
+                values[0]!=0 or values[1]!=zzz or values[4]!=0 or
+                not 1<=values[3]<=32767 or values[2]>100000 or
+                '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex()!=pool or
+                self.read('pools','get(bytes32)',pool,count=14)!=config):
+            raise RpcError('Parked pool key or canonical configuration differs')
+        return config
+
+    def parked_physical(self,position,bucket):
+        """Prove absent live legs using the pinned Manager/Executor zero-ID ABI.
+
+        Zero-ID portfolio hashes are nonzero domain fingerprints. Calling the
+        Active physical reader, ticks(0) or portfolioAmounts(0) is invalid.
+        """
+        if position['lp_token_id']!=0 or self.uint('liquidity','secondaryId(uint256)',0)!=0:
+            raise RpcError('Parked source retains a physical main or residual')
+        count=self.uint('liquidity','activeSecondaryCount()')
+        if count>4:raise RpcError('Parked residual inventory exceeds its bound')
+        stable='0x'+keccak256(bytes.fromhex(f'{int(self.targets["lp_position_executor"],16):064x}'+'0'*64)).hex()
+        execution='0x'+keccak256(bytes.fromhex(stable[2:]+'0'*128)).hex()
+        if (self.hashed('liquidity','portfolioFingerprint(uint256)',0)!=stable or
+                self.hashed('liquidity','executionPortfolioFingerprint(uint256)',0)!=execution):
+            raise RpcError('Parked zero-ID portfolio fingerprint differs')
+        pool=position['pool_id']
+        if self.uint('vault','poolBucket(bytes32)',pool)!=bucket:
+            raise RpcError('Parked source pool alias differs')
+        total=self.uint('vault','bucketCount()');maximum=self.uint('vault','MAX_BUCKETS()')
+        if maximum!=4 or not 1<=total<=maximum:
+            raise RpcError('Parked custody bucket inventory exceeds its bound')
+        buckets=[self.uint('vault','bucketAt(uint256)',i) for i in range(total)]
+        if any(identifier==0 for identifier in buckets) or len(set(buckets))!=total or bucket not in buckets:
+            raise RpcError('Parked source is absent from registered custody inventory')
+        return {'scope':'parked_no_live_lp','pool_id':pool,'lp_token_id':0,'secondary_id':0,
+            'physical_legs':[],'active_secondary_count':count,'registered_buckets':list(map(str,buckets)),
+            'portfolio_fingerprint':stable,'execution_portfolio_fingerprint':execution}
+
     def snapshot(self,s,governance,*,full):
         p=self.p;b=s['bucket'];c=self.targets
         execution_prices=None
@@ -183,14 +257,20 @@ class Reader:
         if governance_code!='0x':
             raise UnsupportedGovernanceEnvelope('unsupported_contract_wallet_envelope: direct empty-code governance EOA required')
         raw=self.read('vault','group(uint256)',b,count=8);position=decode_position(raw,7)
-        if position['status']!='active':raise ValueError('Only Active-state manual B/C/D is supported; Parked is unsupported')
-        hashes={role:item.code_hash for role,item in p.contracts.items()}
-        physical=physical_portfolio(self.read,lambda target:p.rpc.call('eth_getCode',[target,self.block]),
-            contracts=c,code_hashes=hashes,bucket=b,accounting_version=7,physical_only=True,
-            execution_price_version=p.execution_price_version)
+        parked=s['schema']==2
+        if parked:
+            if position['status']!='parked':raise ValueError('Explicit Parked emergency source state differs')
+            physical=self.parked_physical(position,b)
+        else:
+            if position['status']!='active':raise ValueError('Only Active-state manual B/C/D is supported; Parked is unsupported')
+            hashes={role:item.code_hash for role,item in p.contracts.items()}
+            physical=physical_portfolio(self.read,lambda target:p.rpc.call('eth_getCode',[target,self.block]),
+                contracts=c,code_hashes=hashes,bucket=b,accounting_version=7,physical_only=True,
+                execution_price_version=p.execution_price_version)
         pool=position['pool_id'];main=position['lp_token_id'];legs=physical['physical_legs']
-        config=self.read('pools','accounting(bytes32)',pool,count=14)
+        config=None if parked else self.read('pools','accounting(bytes32)',pool,count=14)
         zzz=self.uint('activation_assets','zzz()')
+        if parked:config=self.parked_pool(pool,zzz)
         if (int(config[0],16)!=0 or int(config[1],16)!=zzz or zzz==0 or
                 self.uint('principal_exit','currentZZZ()')!=zzz):raise RpcError('Manual fixed asset identity differs')
         asset='0x'+f'{zzz:040x}'
@@ -199,7 +279,7 @@ class Reader:
         if self.uint(asset,'decimals()')!=p.assets[asset].decimals:raise RpcError('Fixed ZZZ decimals differ')
         shares=self.uint('vault','bucketTotalShares(uint256)',b)
         if shares==0:raise RpcError('Manual bucket has no authenticated shares')
-        lower,upper=legs[0]['tick_lower'],legs[0]['tick_upper']
+        lower,upper=((s['lower'],s['upper']) if parked else (legs[0]['tick_lower'],legs[0]['tick_upper']))
         if s['action']!='D' and (s['lower'],s['upper'])!=(lower,upper):
             raise ValueError('Same-main request must keep the exact current ticks')
         spacing=int(config[3],16)
@@ -212,9 +292,12 @@ class Reader:
             raise RpcError('Same-main operation has no residual or attributed idle')
         if s['checks']&8 and not _bool(config[6]):raise RpcError('Retained operations flag is disabled')
         reserves=[self.uint('fees','compoundBalance(uint256,address)',b,t) for t in (ZERO,asset)]
+        if parked and not any((position['idle0'],position['idle1'],*reserves)):
+            raise RpcError('Parked source has no attributed or designated principal')
         swap=None
         if s['amountIn']:
-            swap_config=self.read('pools','accounting(bytes32)',s['swapPool'],count=14)
+            swap_config=(self.parked_pool(s['swapPool'],zzz) if parked else
+                self.read('pools','accounting(bytes32)',s['swapPool'],count=14))
             if (swap_config[:2]!=config[:2] or int(swap_config[4],16)!=0 or
                     '0x'+keccak256(bytes.fromhex(''.join(swap_config[:5]))).hex()!=s['swapPool']):
                 raise RpcError('Explicit swap venue is not the admitted fixed pair')
@@ -225,12 +308,13 @@ class Reader:
                 amounts=[int(w,16) for w in self.read('liquidity','amounts(uint256)',leg['lp_token_id'],count=2)]
                 available=[a+b for a,b in zip(available,amounts)]
             if s['action']=='D':available=[a+b for a,b in zip(available,reserves)]
-            if s['action']!='D' and s['amountIn']>available[0 if s['zeroForOne'] else 1]:
+            if (parked or s['action']!='D') and s['amountIn']>available[0 if s['zeroForOne'] else 1]:
                 raise RpcError('Explicit swap exceeds captured attributed operation principal')
             swap={'config':swap_config,'available_principal_raw':list(map(str,available)),
-                'availability_scope':('observed_lower_bound_excludes_future_harvest' if s['action']=='D'
+                'availability_scope':('attributed_idle_and_designated_compound_only' if parked else
+                    'observed_lower_bound_excludes_future_harvest' if s['action']=='D'
                     else 'captured_residual_and_attributed_idle_only'),
-                'captured_amount_is_preflight_ceiling':s['action']!='D'}
+                'captured_amount_is_preflight_ceiling':parked or s['action']!='D'}
         financial={'state':'not_retained','price_bounds':None,'maintenance_policy':None}
         if s['checks']&6:
             bounds=[self.read('oracle','priceBounds(address)',token,count=3) for token in (ZERO,asset)]
@@ -259,15 +343,24 @@ class Reader:
             routing={'revision':self.uint('balancing_router','executionRevision()'),
                 'pools':[self.hashed('balancing_router','executionPoolAt(uint256)',i) for i in range(count)]}
         custody=self.hashed('principal_exit','emergencyCustodyHash(uint256)' if s['action']=='D' else 'consolidationCustodyHash(uint256)',b)
+        nonce=self.uint('principal_exit','parkingNonce(uint256)',b);epoch=self.uint('principal_exit','custodyEpoch(uint256)',b)
+        if parked:
+            if max(nonce,epoch)>=1<<64:raise RpcError('Parked custody nonce or epoch exceeds uint64')
+            expected='0x'+keccak256(bytes.fromhex(''.join([
+                f'{p.chain:064x}',f'{int(c["vault"],16):064x}',f'{b:064x}',*raw,
+                f'{shares:064x}',physical['execution_portfolio_fingerprint'][2:]]))).hex()
+            if custody!=expected:raise RpcError('Parked emergency custody hash differs from exact source state')
         return {'governance':governance,'governance_code':governance_code,
             'governance_wallet_scope':'direct_empty_code_governance_eoa_only',
             'position_words':raw,'shares':str(shares),'physical':physical,
-            'custody_hash':custody,'parking_nonce':str(self.uint('principal_exit','parkingNonce(uint256)',b)),
-            'custody_epoch':str(self.uint('principal_exit','custodyEpoch(uint256)',b)),
+            'custody_hash':custody,'parking_nonce':str(nonce),
+            'custody_epoch':str(epoch),
             'pool_configuration':config,'registry_revision':str(self.uint('pools','configurationRevision()')),
             'portfolio_control':self.hashed('portfolio_policy','controlFingerprint(bytes32)',pool),
             'compound_reserves_raw':list(map(str,reserves)),'financial':financial,'timing':timing,'swap':swap,'routing':routing,
-            **({'execution_price':execution_prices} if p.execution_price_version else {})}
+            **({'execution_price':execution_prices} if p.execution_price_version else {}),
+            **({'source_position_status':'parked','selection_schema':2,'selection_sha256':s['_selection_sha256']}
+                if parked else {})}
 
 
 def validate_policy(policy,catalog):
@@ -295,6 +388,7 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
     input_references=(read_config,policy,request)
     original=[digest(value) for value in input_references]
     config=copy.deepcopy(read_config);policy=copy.deepcopy(policy);s=selection(request)
+    if s['schema']==2:s['_selection_sha256']=original[2]
     governance,fee=validate_policy(policy,catalog)
     with request_scope(Budget(seconds=MAX_SECONDS,calls=MAX_CALLS,posts=1536)):
         p=Projection(config,rpc=rpc,clock=clock)
@@ -343,7 +437,7 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
             raise RpcError('Manual original deadline expired after final review')
         if [digest(value) for value in input_references]!=original:raise RpcError('Manual configuration changed during preparation')
         if clock()>=min(s['deadline'],header['timestamp']+p.max_age):raise RpcError('Manual preparation expired')
-        return {'schema':1,'kind':'unsigned_manual_lp_preparation','action':s['action'],
+        result={'schema':1,'kind':'unsigned_manual_lp_preparation','action':s['action'],
             'read_only':True,'production_approved':False,'ready_for_submission':False,
             'governance_wallet_scope':'direct_empty_code_governance_eoa_only',
             'operator_revalidation_required':True,'transaction':{**tx,'chainId':hex(p.chain)},'signature':signature,'arguments':inputs,
@@ -363,6 +457,12 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
             'limitations':['Active-state B/C/D only; no Parked emergency, floor selection, signing or future inclusion guarantee.',
                 'Geometry coherence uses the same upstream source; provider honesty and actual host/gas require qualification.',
                 'Review hash is provenance, not authority; exact custody hash and inclusion-time on-chain checks remain mandatory.']}
+        if s['schema']==2:
+            result.update(schema=2,expected_position_status='parked',selection_sha256=original[2],
+                safeguards=parked_safeguards(s['checks']))
+            result['limitations'][0]=('Explicit Parked emergency D only; bits1/16 are incompatible and are never silently cleared. '
+                'No floor selection, signing, unpause, new destination or future inclusion guarantee.')
+        return result
 
 
 def write_exclusive(path,raw):
@@ -397,5 +497,6 @@ def main(argv=None):
         # Never echo transport text, endpoint credentials, paths or raw inputs.
         print(json.dumps({'ok':False,'error_type':type(exc).__name__,
             'reason':('unsupported_contract_wallet_envelope' if isinstance(exc,UnsupportedGovernanceEnvelope)
+                else 'parked_active_trigger_or_confirmation_incompatible' if isinstance(exc,IncompatibleParkedGuards)
                 else 'manual_preparation_unavailable_or_invalid')}),file=sys.stderr)
         return 1

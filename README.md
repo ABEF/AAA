@@ -1,6 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [current44-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes
+[Parked emergency recovery](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
+now has explicit unsigned preparation with selected safeguards, exact custody
+proofs and fresh simulations. Governance permissions, contract code and live
+environments are unchanged. [Source review](reports/parked-recovery-preparation-20261115/REVIEW.md).
+
+The [13November44-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes
 RPC-probe deadlines/refusal handling and unnecessary indexer log retries, with
 20distinct new regression methods. It corrects operator pricing/profile guidance;
 contract implementations, financial safeguards and live environments are unchanged.

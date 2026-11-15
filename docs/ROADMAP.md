@@ -146,9 +146,10 @@ original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
 
 The [unsigned operator extension](../reports/operator-management-20261109/REVIEW.md)
 adds reversible parking/resume/residual closure and all terminal holder-return
-steps, alongside existing Active B/C/D. Qualify actual operator-selected floors,
-provider/hash/complete-fee support, target gas and wallet execution. Parked
-forced-D and contract-wallet envelopes remain separate manual procedures.
+steps, alongside schema1 Active B/C/D. The [explicit schema2 Parked D adapter](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
+now prepares paused recovery with selected safeguard bypasses. Qualify actual
+operator-selected floors, provider/hash/complete-fee support, target gas and wallet
+execution; contract-wallet envelopes remain separate manual procedures.
 Preparation adds no signing, queue, force/recenter fallback or execution approval.
 
 Qualify the new explicit claim planner with actual worst-case currencies/fees,

@@ -129,9 +129,11 @@ The [exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFIC
 The [checkpoint2/manual milestone](../reports/checkpoint2-manual-20261107/REVIEW.md)
 adds backend source only. Exact artifact approval, original/no-lineage scope,
 complete raw24-hour suffix and source/anchor pins remain mandatory. Manual
-Active-state B/C/D uses explicit limits/masks and two exact full simulations;
-Parked/other actions, actual provider/wallet execution and host operation remain
-unqualified. No Solidity, ABI, runtime, authority, financial right or installed
+Active-state B/C/D retains its original limits/masks and two exact simulations.
+The [Parked schema2 follow-up](../reports/parked-recovery-preparation-20261115/REVIEW.md)
+adds explicit unsigned D without changing contracts or permission. Actual
+provider/wallet/target-gas and host operation remain unqualified; source tests do
+not authorize emergency bypasses or execution. No Solidity, ABI, runtime, authority, financial right or installed
 environment changes, so unchanged normal/static contract evidence is reused.
 
 ## Unsigned management extension
